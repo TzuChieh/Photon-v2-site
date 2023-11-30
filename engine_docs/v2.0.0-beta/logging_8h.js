@@ -1,7 +1,7 @@
 var logging_8h =
 [
-    [ "LogGroup", "structph_1_1_log_group.html", "structph_1_1_log_group" ],
-    [ "LogGroups", "classph_1_1_log_groups.html", "classph_1_1_log_groups" ],
+    [ "ph::LogGroup", "structph_1_1_log_group.html", "structph_1_1_log_group" ],
+    [ "ph::LogGroups", "classph_1_1_log_groups.html", "classph_1_1_log_groups" ],
     [ "PH_DECLARE_LOG_GROUP", "logging_8h.html#acc337adfdbc7ea775f7f7d6102ce855a", null ],
     [ "PH_DEFAULT_LOG", "logging_8h.html#af3b02a5e28c3079993e6318dd3799d60", null ],
     [ "PH_DEFAULT_LOG_ERROR", "logging_8h.html#af6ce37e03c7b301b78809420ba70eded", null ],
@@ -26,8 +26,10 @@ var logging_8h =
     [ "PH_LOG_WARNING", "logging_8h.html#a290098d3658028db348eddf93addb233", null ],
     [ "PH_LOG_WARNING_STRING", "logging_8h.html#a5832a352e23606ab39f3445a946fba11", null ],
     [ "add_log_group", "logging_8h.html#a34aa46d94ec2c99715c7ff250b7925ca", null ],
-    [ "CORE_LOGGER", "logging_8h.html#ac60e9de4ab5669e391847a5e2435679e", null ],
+    [ "exit", "logging_8h.html#af97dbb68e5a4854925b026813f74f67f", null ],
     [ "get_core_log_groups", "logging_8h.html#a8ac9672b2a124ec6bca30533b76654ce", null ],
+    [ "get_core_logger", "logging_8h.html#a1f13dc279c7d054956dd0af12ce30b2f", null ],
+    [ "init", "logging_8h.html#af93e0fff4fed01baaaaf55ecdf6481ea", null ],
     [ "log_to_logger", "logging_8h.html#aa0c0a969b381ff9c34b88bac881d1854", null ],
     [ "PH_DECLARE_LOG_GROUP", "logging_8h.html#aea7093b43723ed7bc166a4fbad9f10cb", null ]
 ];

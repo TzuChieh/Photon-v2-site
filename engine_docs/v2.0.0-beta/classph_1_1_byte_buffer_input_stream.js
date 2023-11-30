@@ -14,7 +14,7 @@ var classph_1_1_byte_buffer_input_stream =
     [ "charBuffer", "classph_1_1_byte_buffer_input_stream.html#a945a57493f317b7818e4a3e29d439f76", null ],
     [ "numBufferBytes", "classph_1_1_byte_buffer_input_stream.html#a605f9c257b4aa87ce2025b075853c66a", null ],
     [ "operator bool", "classph_1_1_byte_buffer_input_stream.html#a1094704e4ca8947d08c828003122dfb4", null ],
-    [ "operator=", "classph_1_1_byte_buffer_input_stream.html#a990f844fe25935ecfa4eafb7fd38e8fe", null ],
+    [ "operator=", "classph_1_1_byte_buffer_input_stream.html#a922af9c21d205acc26390431ec522847", null ],
     [ "read", "classph_1_1_byte_buffer_input_stream.html#aaa3b1c48b2ff207a2ddfd877c8373d7e", null ],
     [ "readData", "classph_1_1_byte_buffer_input_stream.html#afb75c64dd14f87612fbae375db94ce4f", null ],
     [ "readSome", "classph_1_1_byte_buffer_input_stream.html#ad11b8290552e2c2da98fcb9e579ba3ad", null ],

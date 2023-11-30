@@ -1,10 +1,10 @@
 var classph_1_1_ies_data =
 [
     [ "EReflectFrom", "classph_1_1_ies_data.html#a78d25252480ee06fd2d2db5d4878e68f", [
-      [ "THETA_HEAD", "classph_1_1_ies_data.html#a78d25252480ee06fd2d2db5d4878e68fae906675a78a7eaab74bd230f9497dbc6", null ],
-      [ "THETA_TAIL", "classph_1_1_ies_data.html#a78d25252480ee06fd2d2db5d4878e68faee55d65d34b0c56ba4ec77e433bf9ae8", null ],
-      [ "PHI_HEAD", "classph_1_1_ies_data.html#a78d25252480ee06fd2d2db5d4878e68faa9e31ff768b9c44479e4049ccb857074", null ],
-      [ "PHI_TAIL", "classph_1_1_ies_data.html#a78d25252480ee06fd2d2db5d4878e68faa62cb3a4ee8fd2823e4d67e44f9163f9", null ]
+      [ "Theta_Head", "classph_1_1_ies_data.html#a78d25252480ee06fd2d2db5d4878e68fa9909bfbb6aa3d8f43ac43ab2ae53dfe3", null ],
+      [ "Theta_Tail", "classph_1_1_ies_data.html#a78d25252480ee06fd2d2db5d4878e68fa8903b620a4a271dfb0806387e7a683e6", null ],
+      [ "Phi_Head", "classph_1_1_ies_data.html#a78d25252480ee06fd2d2db5d4878e68faff4896eae775ee5b4bfac9c28173727e", null ],
+      [ "Phi_Tail", "classph_1_1_ies_data.html#a78d25252480ee06fd2d2db5d4878e68fa371886b8e2773dbc5f9b1597985ee557", null ]
     ] ],
     [ "IesData", "classph_1_1_ies_data.html#a36f18a61c108cc4f3da2f936c03bfeee", null ],
     [ "numAttenuationFactorPhiSamples", "classph_1_1_ies_data.html#a8e476efa1613cf4bad31ee0359d4f466", null ],

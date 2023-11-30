@@ -1,8 +1,11 @@
 var sdl__traits_8h =
 [
-    [ "CHasSdlClassDefinition", "sdl__traits_8h.html#aaa8fa672cd6d8c3e1434a9af1c19cbfb", null ],
-    [ "CHasSdlFunctionDefinition", "sdl__traits_8h.html#a9a74fdfe5ff0ffb0a2a6cad00d09258e", null ],
-    [ "CHasSdlStructDefinition", "sdl__traits_8h.html#af652245e369d308be596bbd385e19bd7", null ],
-    [ "CHasStaticSdlCategoryInfo", "sdl__traits_8h.html#a8bc284b44a21efacbe5d191255ba84f5", null ],
-    [ "CIsSdlResource", "sdl__traits_8h.html#ac633bf003c2bb8093a8564394ba23323", null ]
+    [ "ph::CSdlResource", "conceptph_1_1_c_sdl_resource.html", null ],
+    [ "ph::CHasStaticSdlCategoryInfo", "conceptph_1_1_c_has_static_sdl_category_info.html", null ],
+    [ "ph::CHasSdlClassDefinition", "conceptph_1_1_c_has_sdl_class_definition.html", null ],
+    [ "ph::CHasSdlStructDefinition", "conceptph_1_1_c_has_sdl_struct_definition.html", null ],
+    [ "ph::CHasSdlFunctionDefinition", "conceptph_1_1_c_has_sdl_function_definition.html", null ],
+    [ "ph::CHasSdlEnumDefinition", "conceptph_1_1_c_has_sdl_enum_definition.html", null ],
+    [ "ph::CSdlInstance", "conceptph_1_1_c_sdl_instance.html", null ],
+    [ "ph::CSdlStructSupportsInitToDefault", "conceptph_1_1_c_sdl_struct_supports_init_to_default.html", null ]
 ];

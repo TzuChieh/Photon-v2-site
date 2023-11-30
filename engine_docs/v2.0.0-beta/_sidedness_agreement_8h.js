@@ -1,6 +1,6 @@
 var _sidedness_agreement_8h =
 [
-    [ "SidednessAgreement", "classph_1_1_sidedness_agreement.html", "classph_1_1_sidedness_agreement" ],
+    [ "ph::SidednessAgreement", "classph_1_1_sidedness_agreement.html", "classph_1_1_sidedness_agreement" ],
     [ "ESidednessPolicy", "_sidedness_agreement_8h.html#ab7ef8f11c7d7bffec2c1fbd554ab9e78", [
       [ "DO_NOT_CARE", "_sidedness_agreement_8h.html#ab7ef8f11c7d7bffec2c1fbd554ab9e78a2ec1cf0b202854255f0bdd4b11ac7960", null ],
       [ "STRICT", "_sidedness_agreement_8h.html#ab7ef8f11c7d7bffec2c1fbd554ab9e78a4c50b1af679a751969aaad2881a34bef", null ],

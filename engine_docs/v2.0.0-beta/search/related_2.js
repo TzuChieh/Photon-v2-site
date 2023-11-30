@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['tbasicsdlfieldset_10424',['TBasicSdlFieldSet',['../classph_1_1_t_basic_sdl_field_set.html#a41617b9f5eaacebb0b780805aff7e9ea',1,'ph::TBasicSdlFieldSet']]],
-  ['tsdlnestedfield_10425',['TSdlNestedField',['../classph_1_1_t_owned_sdl_field.html#a00318eeb6a7db3ac1e4ccbf8030eff36',1,'ph::TOwnedSdlField']]]
+  ['samplegenerator_0',['SampleGenerator',['../classph_1_1_samples_n_d_handle.html#aff85efc5797fd992e692918db96361d0',1,'ph::SamplesNDHandle']]],
+  ['staticrigidtransform_1',['StaticRigidTransform',['../classph_1_1math_1_1_static_affine_transform.html#ac2aacd8479717a89a4bf4983b4224dbb',1,'ph::math::StaticAffineTransform']]]
 ];

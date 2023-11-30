@@ -13,6 +13,8 @@ var assertion_8h =
     [ "PH_ASSERT_NE", "assertion_8h.html#af4c9378687a6e56415ea36738a102952", null ],
     [ "PH_ASSERT_UNREACHABLE_SECTION", "assertion_8h.html#aa2f996be5296d116fe4476fccc100d8a", null ],
     [ "PH_INTERNAL_RANGE_MSG", "assertion_8h.html#a537a14745362d9f923c5fd017a0879e2", null ],
+    [ "PH_STATIC_ASSERT_DEPENDENT_FALSE", "assertion_8h.html#afd170cf7acf2a793a26437bafd247402", null ],
     [ "on_assertion_failed", "assertion_8h.html#afb2c097abc4ae73683151fc3a4497ba4", null ],
-    [ "output_assertion_message", "assertion_8h.html#a9cb2b3dafce97bb1254344c689b5af8e", null ]
+    [ "output_assertion_message", "assertion_8h.html#a1e235d766376bc6db0c81e8b2515bc84", null ],
+    [ "DEPENDENT_FALSE", "assertion_8h.html#a3057abc356dc47c98586193297b10313", null ]
 ];

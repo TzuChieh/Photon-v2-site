@@ -9,7 +9,7 @@ var classph_1_1_single_lens_observer =
     [ "getSensorOffset", "classph_1_1_single_lens_observer.html#a6fda2d89a240dc7ec2fb7afbe76143af", null ],
     [ "getSensorSize", "classph_1_1_single_lens_observer.html#a0f5fdf8b9bc722c6b9f0e8e5cf6dc9e9", null ],
     [ "makeRasterToSensor", "classph_1_1_single_lens_observer.html#ad3d3d80b6dc4da0722aa6851bde3605c", null ],
-    [ "PH_DEFINE_SDL_CLASS", "classph_1_1_single_lens_observer.html#a5979bd09e2ec5a2472eb8a368faa079a", null ],
+    [ "PH_DEFINE_SDL_CLASS", "classph_1_1_single_lens_observer.html#a236e7bc821e9d55b51dce1bd966a68e9", null ],
     [ "m_focalDistanceMM", "classph_1_1_single_lens_observer.html#abd905a434a5468a3d1e8cb9d152468c3", null ],
     [ "m_fovDegrees", "classph_1_1_single_lens_observer.html#ae1c9e017c842f5db69cf740ca9294b47", null ],
     [ "m_lensRadiusMM", "classph_1_1_single_lens_observer.html#ad0199cabae0319632855db728d54b83e", null ],

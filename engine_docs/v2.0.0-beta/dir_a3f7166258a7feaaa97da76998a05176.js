@@ -7,7 +7,5 @@ var dir_a3f7166258a7feaaa97da76998a05176 =
     [ "AssimpModelParser.cpp", "_assimp_model_parser_8cpp.html", null ],
     [ "AssimpModelParser.h", "_assimp_model_parser_8h.html", null ],
     [ "ModelParser.cpp", "_model_parser_8cpp.html", null ],
-    [ "ModelParser.h", "_model_parser_8h.html", [
-      [ "ModelParser", "classph_1_1_model_parser.html", "classph_1_1_model_parser" ]
-    ] ]
+    [ "ModelParser.h", "_model_parser_8h.html", "_model_parser_8h" ]
 ];

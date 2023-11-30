@@ -11,56 +11,34 @@ var dir_e11b0d151eb01caf664c9344ba74d0cd =
     [ "Transform", "dir_1cecb4ffa75c6214048b902a7f8324fd.html", "dir_1cecb4ffa75c6214048b902a7f8324fd" ],
     [ "constant.h", "constant_8h.html", "constant_8h" ],
     [ "hash.h", "hash_8h.html", "hash_8h" ],
+    [ "hash.ipp", "hash_8ipp.html", "hash_8ipp" ],
     [ "math.cpp", "math_8cpp.html", "math_8cpp" ],
     [ "math.h", "math_8h.html", "math_8h" ],
     [ "math_common.h", "math__common_8h.html", null ],
-    [ "math_exceptions.h", "math__exceptions_8h.html", [
-      [ "MathException", "classph_1_1math_1_1_math_exception.html", "classph_1_1math_1_1_math_exception" ],
-      [ "ColorError", "classph_1_1math_1_1_color_error.html", "classph_1_1math_1_1_color_error" ]
-    ] ],
+    [ "math_exceptions.h", "math__exceptions_8h.html", "math__exceptions_8h" ],
     [ "math_fwd.h", "math__fwd_8h.html", "math__fwd_8h" ],
     [ "math_table.h", "math__table_8h.html", "math__table_8h" ],
     [ "Random.cpp", "_random_8cpp.html", null ],
-    [ "Random.h", "_random_8h.html", [
-      [ "Random", "classph_1_1math_1_1_random.html", null ]
-    ] ],
-    [ "Real.h", "_real_8h.html", [
-      [ "Real", "classph_1_1math_1_1_real.html", "classph_1_1math_1_1_real" ]
-    ] ],
-    [ "TArithmeticArray.h", "_t_arithmetic_array_8h.html", [
-      [ "TArithmeticArray", "classph_1_1math_1_1_t_arithmetic_array.html", "classph_1_1math_1_1_t_arithmetic_array" ]
-    ] ],
+    [ "Random.h", "_random_8h.html", "_random_8h" ],
+    [ "Real.h", "_real_8h.html", "_real_8h" ],
+    [ "TArithmeticArray.h", "_t_arithmetic_array_8h.html", "_t_arithmetic_array_8h" ],
     [ "TArithmeticArray.ipp", "_t_arithmetic_array_8ipp.html", null ],
-    [ "TFraction.h", "_t_fraction_8h.html", [
-      [ "TFraction", "classph_1_1math_1_1_t_fraction.html", "classph_1_1math_1_1_t_fraction" ]
-    ] ],
+    [ "TFraction.h", "_t_fraction_8h.html", "_t_fraction_8h" ],
     [ "time.h", "_math_2_time_8h.html", "_math_2_time_8h" ],
-    [ "TMatrix2.h", "_t_matrix2_8h.html", [
-      [ "TMatrix2", "classph_1_1math_1_1_t_matrix2.html", "classph_1_1math_1_1_t_matrix2" ]
-    ] ],
+    [ "TMatrix2.h", "_t_matrix2_8h.html", "_t_matrix2_8h" ],
     [ "TMatrix2.ipp", "_t_matrix2_8ipp.html", null ],
-    [ "TMatrix3.h", "_t_matrix3_8h.html", [
-      [ "TMatrix3", "classph_1_1math_1_1_t_matrix3.html", "classph_1_1math_1_1_t_matrix3" ]
-    ] ],
+    [ "TMatrix3.h", "_t_matrix3_8h.html", "_t_matrix3_8h" ],
     [ "TMatrix3.ipp", "_t_matrix3_8ipp.html", null ],
-    [ "TMatrix4.h", "_t_matrix4_8h.html", [
-      [ "TMatrix4", "classph_1_1math_1_1_t_matrix4.html", "classph_1_1math_1_1_t_matrix4" ]
-    ] ],
+    [ "TMatrix4.h", "_t_matrix4_8h.html", "_t_matrix4_8h" ],
     [ "TMatrix4.ipp", "_t_matrix4_8ipp.html", null ],
-    [ "TOrthonormalBasis3.h", "_t_orthonormal_basis3_8h.html", [
-      [ "TOrthonormalBasis3", "classph_1_1math_1_1_t_orthonormal_basis3.html", "classph_1_1math_1_1_t_orthonormal_basis3" ]
-    ] ],
+    [ "TOrthonormalBasis3.h", "_t_orthonormal_basis3_8h.html", "_t_orthonormal_basis3_8h" ],
     [ "TOrthonormalBasis3.ipp", "_t_orthonormal_basis3_8ipp.html", null ],
-    [ "TQuaternion.h", "_t_quaternion_8h.html", [
-      [ "TQuaternion", "classph_1_1math_1_1_t_quaternion.html", "classph_1_1math_1_1_t_quaternion" ]
-    ] ],
+    [ "TQuaternion.h", "_t_quaternion_8h.html", "_t_quaternion_8h" ],
     [ "TQuaternion.ipp", "_t_quaternion_8ipp.html", null ],
     [ "TVector2.h", "_t_vector2_8h.html", "_t_vector2_8h" ],
     [ "TVector2.ipp", "_t_vector2_8ipp.html", null ],
     [ "TVector3.h", "_t_vector3_8h.html", "_t_vector3_8h" ],
     [ "TVector3.ipp", "_t_vector3_8ipp.html", "_t_vector3_8ipp" ],
-    [ "TVector4.h", "_t_vector4_8h.html", [
-      [ "TVector4", "classph_1_1math_1_1_t_vector4.html", "classph_1_1math_1_1_t_vector4" ]
-    ] ],
+    [ "TVector4.h", "_t_vector4_8h.html", "_t_vector4_8h" ],
     [ "TVector4.ipp", "_t_vector4_8ipp.html", null ]
 ];

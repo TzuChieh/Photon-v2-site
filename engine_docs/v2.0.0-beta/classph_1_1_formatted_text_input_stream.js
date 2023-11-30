@@ -5,8 +5,9 @@ var classph_1_1_formatted_text_input_stream =
     [ "FormattedTextInputStream", "classph_1_1_formatted_text_input_stream.html#ad53ae072a6e0c15c88ed4348195713c1", null ],
     [ "FormattedTextInputStream", "classph_1_1_formatted_text_input_stream.html#a533cb592ac7b6d0d11d1f04f263e29e8", null ],
     [ "FormattedTextInputStream", "classph_1_1_formatted_text_input_stream.html#a6a24746ae5130326c4c3a98bff2e7c06", null ],
-    [ "acquireName", "classph_1_1_formatted_text_input_stream.html#a881b193f01d6884dcdd02df86112f21f", null ],
-    [ "operator=", "classph_1_1_formatted_text_input_stream.html#adbaa05372c17e00573c3bbd34b716a12", null ],
+    [ "acquireName", "classph_1_1_formatted_text_input_stream.html#aff799be15b62e6f8cb27937c29877298", null ],
+    [ "operator=", "classph_1_1_formatted_text_input_stream.html#acd25568fb988e7e71a38808f73ca19e0", null ],
+    [ "readAll", "classph_1_1_formatted_text_input_stream.html#a657a8a95a3598f353a82e333bd7bfb51", null ],
     [ "readAllTightly", "classph_1_1_formatted_text_input_stream.html#a7485cee0d5c486bac7252a055fcc2b5c", null ],
     [ "m_streamName", "classph_1_1_formatted_text_input_stream.html#a4b8e65ce986ebcd0f3b1b453f57dc2ab", null ]
 ];

@@ -1,8 +1,8 @@
 var _indexed_vertex_buffer_8h =
 [
-    [ "IndexedVertexBuffer", "classph_1_1_indexed_vertex_buffer.html", "classph_1_1_indexed_vertex_buffer" ],
-    [ "AttributeDeclaration", "structph_1_1_indexed_vertex_buffer_1_1_attribute_declaration.html", "structph_1_1_indexed_vertex_buffer_1_1_attribute_declaration" ],
-    [ "Entry", "structph_1_1_indexed_vertex_buffer_1_1_entry.html", "structph_1_1_indexed_vertex_buffer_1_1_entry" ],
+    [ "ph::IndexedVertexBuffer", "classph_1_1_indexed_vertex_buffer.html", "classph_1_1_indexed_vertex_buffer" ],
+    [ "ph::IndexedVertexBuffer::AttributeDeclaration", "structph_1_1_indexed_vertex_buffer_1_1_attribute_declaration.html", "structph_1_1_indexed_vertex_buffer_1_1_attribute_declaration" ],
+    [ "ph::IndexedVertexBuffer::Entry", "structph_1_1_indexed_vertex_buffer_1_1_entry.html", "structph_1_1_indexed_vertex_buffer_1_1_entry" ],
     [ "EVertexAttribute", "_indexed_vertex_buffer_8h.html#a7e33dd6c4833698ef95d3dcfe04f0a0f", [
       [ "Position_0", "_indexed_vertex_buffer_8h.html#a7e33dd6c4833698ef95d3dcfe04f0a0fa2bcdbedf7a76a5d8d76873d033caff0a", null ],
       [ "Normal_0", "_indexed_vertex_buffer_8h.html#a7e33dd6c4833698ef95d3dcfe04f0a0fa584a226372849b59fcc9dd72317337fe", null ],

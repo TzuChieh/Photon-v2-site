@@ -1,10 +1,9 @@
 var classph_1_1_actor =
 [
-    [ "Actor", "classph_1_1_actor.html#af260265303f5395f55846eb2e8d63be9", null ],
-    [ "Actor", "classph_1_1_actor.html#af43a37ccd55054812170eb289b5e9c1d", null ],
-    [ "cook", "classph_1_1_actor.html#a9b6c6bbfdb4567232ce96207cfda6919", null ],
+    [ "cook", "classph_1_1_actor.html#a3f88bb3c058a518f540ee49c4dac94c3", null ],
     [ "getCookOrder", "classph_1_1_actor.html#ae588f941475efffdae007195c8e13adc", null ],
-    [ "operator=", "classph_1_1_actor.html#ae5f7b6683e77beba67dfd7733a7a91dc", null ],
-    [ "PH_DEFINE_SDL_CLASS", "classph_1_1_actor.html#aa8772cdb6d9c4003644460fadfb5931b", null ],
-    [ "swap", "classph_1_1_actor.html#a8ebc2f3c159a448e6ce5831106d2931a", null ]
+    [ "PH_DEFINE_SDL_CLASS", "classph_1_1_actor.html#a04dd2c9ce19fef89fdffdd9a4e90ff9a", null ],
+    [ "postCook", "classph_1_1_actor.html#a192c4bfd05995ea0f1bf3b69768e7e5d", null ],
+    [ "preCook", "classph_1_1_actor.html#abdd063fbdc995b5144a936a583ca6244", null ],
+    [ "stagelessCook", "classph_1_1_actor.html#ad1d2a20cbb34215d57d6b2824218e7f3", null ]
 ];

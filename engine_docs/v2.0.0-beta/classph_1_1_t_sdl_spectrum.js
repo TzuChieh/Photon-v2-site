@@ -1,8 +1,9 @@
 var classph_1_1_t_sdl_spectrum =
 [
     [ "TSdlSpectrum", "classph_1_1_t_sdl_spectrum.html#ac3d7509ee7943c77639713a835f95f5c", null ],
-    [ "loadFromSdl", "classph_1_1_t_sdl_spectrum.html#ae3d7e3f8765cdd1300cb6b3f5e29d493", null ],
-    [ "saveToSdl", "classph_1_1_t_sdl_spectrum.html#a7685eebae100e6bd707c7a1999a78685", null ],
+    [ "loadFromSdl", "classph_1_1_t_sdl_spectrum.html#ad00ab6da3dd417fac00938cb8cbe304c", null ],
+    [ "ownedNativeData", "classph_1_1_t_sdl_spectrum.html#adf5328496d28b69c79ce6b278793a2a4", null ],
+    [ "saveToSdl", "classph_1_1_t_sdl_spectrum.html#a1ed93e0412fdcee0348f22b2c72620be", null ],
     [ "valueAsString", "classph_1_1_t_sdl_spectrum.html#a34eff7b1294ea28b83e58af2450686f1", null ],
     [ "m_usage", "classph_1_1_t_sdl_spectrum.html#a97287e00d5c6c9bc263068db2eb11c87", null ]
 ];

@@ -1,8 +1,12 @@
 var _utility_2utility_8h =
 [
-    [ "HeterogeneousStringHash", "structph_1_1detail_1_1_heterogeneous_string_hash.html", "structph_1_1detail_1_1_heterogeneous_string_hash" ],
-    [ "TNonTypeTemplateArgDummy", "structph_1_1_t_non_type_template_arg_dummy.html", null ],
-    [ "TStdUnorderedStringMap", "_utility_2utility_8h.html#ac837148000ded601032a44ed7ae37761", null ],
+    [ "ph::TNonTypeTemplateArgDummy< T, VALUE >", "structph_1_1_t_non_type_template_arg_dummy.html", null ],
+    [ "PH_DECLARE_RULE_OF_5_MEMBERS", "_utility_2utility_8h.html#a68432c8d4ab2916cfb74c4640ee88f6f", null ],
+    [ "PH_DECLARE_RULE_OF_5_MEMBERS_NO_DTOR", "_utility_2utility_8h.html#aa0635783c7f744c190efe53784387031", null ],
+    [ "PH_DEFINE_INLINE_RULE_OF_5_MEMBERS", "_utility_2utility_8h.html#afa87532c3c11b8dad14d4cd25dfa00b7", null ],
+    [ "PH_DEFINE_INLINE_RULE_OF_5_MEMBERS_NO_DTOR", "_utility_2utility_8h.html#ad8e10a0e23436665e9b124f942489cbe", null ],
+    [ "PH_DEFINE_RULE_OF_5_MEMBERS", "_utility_2utility_8h.html#ae93ae26d1a22a69bbccaf8aba9cded3e", null ],
+    [ "PH_DEFINE_RULE_OF_5_MEMBERS_NO_DTOR", "_utility_2utility_8h.html#ac188ab6d555beb38f456af994f05ad72", null ],
     [ "bitwise_cast", "_utility_2utility_8h.html#a74286ca8596f0e37fdc3650c3e72c691", null ],
     [ "enum_size", "_utility_2utility_8h.html#a0d3e015dc9f7674dbf795a75385cda0a", null ],
     [ "enum_to_string", "_utility_2utility_8h.html#a2e8e601f93efff74360a027ba59d4232", null ],

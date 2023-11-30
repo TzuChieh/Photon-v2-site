@@ -11,6 +11,6 @@ var classph_1_1math_1_1_t_matrix3 =
     [ "inverse", "classph_1_1math_1_1_t_matrix3.html#ad5c37cec8a266c22bf227b664d270852", null ],
     [ "mul", "classph_1_1math_1_1_t_matrix3.html#aa0db23d8838f4ebe543afbad98b64746", null ],
     [ "operator*", "classph_1_1math_1_1_t_matrix3.html#a5466c7f87adda8aa02112dbb9ee821b4", null ],
-    [ "operator=", "classph_1_1math_1_1_t_matrix3.html#a3c95d813055999568ebc7855a5983bef", null ],
-    [ "operator=", "classph_1_1math_1_1_t_matrix3.html#a6a5c1af81aa56d5e1e4ec9faaf678303", null ]
+    [ "operator=", "classph_1_1math_1_1_t_matrix3.html#a296b21e0b248c7491bfb852837333aef", null ],
+    [ "operator=", "classph_1_1math_1_1_t_matrix3.html#a7323d31858b7e0af179ac02a77280e89", null ]
 ];

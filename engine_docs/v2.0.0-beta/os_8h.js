@@ -1,5 +1,8 @@
 var os_8h =
 [
+    [ "PH_OPERATING_SYSTEM_IS_LINUX", "os_8h.html#a4e73fa22b5a753007c7a4611be7926b6", null ],
+    [ "PH_OPERATING_SYSTEM_IS_OSX", "os_8h.html#a908f3ef48bfe756b59f46b94f1b33aa5", null ],
+    [ "PH_OPERATING_SYSTEM_IS_WINDOWS", "os_8h.html#ab3366c66f4774d372240cde737f78493", null ],
     [ "EWindowsVersion", "os_8h.html#a19b458c339590bd8d6525abd294ef2e7", [
       [ "Unknown", "os_8h.html#a19b458c339590bd8d6525abd294ef2e7a88183b946cc5f0e8c96b2e66e1c74a7e", null ],
       [ "Windows_2000", "os_8h.html#a19b458c339590bd8d6525abd294ef2e7a433b8b5b5cd19e55a6c24d119803d61f", null ],

@@ -1,6 +1,6 @@
 var ph__core_8cpp =
 [
-    [ "PH_DEFINE_INTERNAL_LOG_GROUP", "ph__core_8cpp.html#a03caa3b421539ef45cf5da0c53fc180a", null ],
+    [ "PH_DEFINE_INTERNAL_LOG_GROUP", "ph__core_8cpp.html#a261d8fba95b3de10839d9c042f609e41", null ],
     [ "phAquireFrame", "ph__core_8cpp.html#a88053cbcbfac1be399ca4c7907f5a0a3", null ],
     [ "phAquireFrameRaw", "ph__core_8cpp.html#a54299ee86ee626fa8f0fea7cf7e280d5", null ],
     [ "phAsyncGetRendererState", "ph__core_8cpp.html#a73e3980f2ffba97e9fc8c589e4fbbcaf", null ],

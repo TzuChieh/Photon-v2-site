@@ -1,10 +1,10 @@
 var classph_1_1_ies_file =
 [
     [ "EIesFileType", "classph_1_1_ies_file.html#a90f6227147b3673129122672f0d586b5", [
+      [ "Unknown", "classph_1_1_ies_file.html#a90f6227147b3673129122672f0d586b5a88183b946cc5f0e8c96b2e66e1c74a7e", null ],
       [ "LM_63_1986", "classph_1_1_ies_file.html#a90f6227147b3673129122672f0d586b5af29bf828c44fdb68f115739c25acc383", null ],
       [ "LM_63_1991", "classph_1_1_ies_file.html#a90f6227147b3673129122672f0d586b5a7d0a68ead8c17ccbf0e9513488ec2819", null ],
-      [ "LM_63_1995", "classph_1_1_ies_file.html#a90f6227147b3673129122672f0d586b5ae4ea047d1131fd1471abe632dab881a9", null ],
-      [ "UNKNOWN", "classph_1_1_ies_file.html#a90f6227147b3673129122672f0d586b5a696b031073e74bf2cb98e5ef201d4aa3", null ]
+      [ "LM_63_1995", "classph_1_1_ies_file.html#a90f6227147b3673129122672f0d586b5ae4ea047d1131fd1471abe632dab881a9", null ]
     ] ],
     [ "EPhotometricWebType", "classph_1_1_ies_file.html#aad491b64ff23f630764f05db028a2f67", [
       [ "A", "classph_1_1_ies_file.html#aad491b64ff23f630764f05db028a2f67a7fc56270e7a70fa81a5935b72eacbe29", null ],

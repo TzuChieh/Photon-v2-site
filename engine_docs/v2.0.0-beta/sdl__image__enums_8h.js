@@ -12,6 +12,6 @@ var sdl__image__enums_8h =
       [ "Repeat", "sdl__image__enums_8h.html#af0c6de5f0cbfd30ac84f7b0af8529b55a7020426cfb0a204051be4b3053d2acc8", null ],
       [ "FlippedClampToEdge", "sdl__image__enums_8h.html#af0c6de5f0cbfd30ac84f7b0af8529b55a897226ff039be1a3fb27e97e34552d18", null ]
     ] ],
-    [ "PH_DEFINE_SDL_ENUM", "sdl__image__enums_8h.html#abdd6572bbbe0fae8cf5973ffaf2689e1", null ],
-    [ "PH_DEFINE_SDL_ENUM", "sdl__image__enums_8h.html#a4f81bd37aeb2666bff245fd2abe27afe", null ]
+    [ "PH_DEFINE_SDL_ENUM", "sdl__image__enums_8h.html#af87a634c0c2fb812c88a9dee27b05a2c", null ],
+    [ "PH_DEFINE_SDL_ENUM", "sdl__image__enums_8h.html#a567a9e0fa9bc44956712408b3194601d", null ]
 ];

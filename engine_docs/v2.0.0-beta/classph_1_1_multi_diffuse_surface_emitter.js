@@ -9,7 +9,7 @@ var classph_1_1_multi_diffuse_surface_emitter =
     [ "genDirectSample", "classph_1_1_multi_diffuse_surface_emitter.html#a98fcd8ab6e7dfd79b3b61f39fdbefb67", null ],
     [ "getEmittedRadiance", "classph_1_1_multi_diffuse_surface_emitter.html#af4f0302f4538fcc66d9dbaf60a4a6eab", null ],
     [ "setBackFaceEmit", "classph_1_1_multi_diffuse_surface_emitter.html#afb1056c658717324a498877ebbfee68a", null ],
-    [ "setEmittedRadiance", "classph_1_1_multi_diffuse_surface_emitter.html#a8ae84f1828d100a8bae281b729dae889", null ],
+    [ "setEmittedRadiance", "classph_1_1_multi_diffuse_surface_emitter.html#a4d5c6561e59e735124c7e84071246857", null ],
     [ "setFrontFaceEmit", "classph_1_1_multi_diffuse_surface_emitter.html#aa9169595c22e508b57a97a25e0e48fbb", null ],
     [ "m_emitters", "classph_1_1_multi_diffuse_surface_emitter.html#a74c8a145f7ba6a260322a76747a90de4", null ],
     [ "m_extendedArea", "classph_1_1_multi_diffuse_surface_emitter.html#ae00d0ed40f51bcac59719e2eab502cab", null ],

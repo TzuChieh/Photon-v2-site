@@ -10,16 +10,12 @@ var dir_6c133ef7de7d90dc7af97c16d31f8cca =
     [ "spectral_data.h", "spectral__data_8h.html", "spectral__data_8h" ],
     [ "spectral_samples.h", "spectral__samples_8h.html", "spectral__samples_8h" ],
     [ "spectral_samples.ipp", "spectral__samples_8ipp.html", "spectral__samples_8ipp" ],
-    [ "Spectrum.h", "_spectrum_8h.html", "_spectrum_8h" ],
+    [ "Spectrum.h", "_spectrum_8h.html", null ],
     [ "spectrum_fwd.h", "spectrum__fwd_8h.html", "spectrum__fwd_8h" ],
-    [ "TSampledSpectrum.h", "_t_sampled_spectrum_8h.html", [
-      [ "TSampledSpectrum", "classph_1_1math_1_1_t_sampled_spectrum.html", "classph_1_1math_1_1_t_sampled_spectrum" ]
-    ] ],
+    [ "TSampledSpectrum.h", "_t_sampled_spectrum_8h.html", "_t_sampled_spectrum_8h" ],
     [ "TSampledSpectrum.ipp", "_t_sampled_spectrum_8ipp.html", null ],
     [ "TSpectrumBase.h", "_t_spectrum_base_8h.html", "_t_spectrum_base_8h" ],
     [ "TSpectrumBase.ipp", "_t_spectrum_base_8ipp.html", null ],
-    [ "TTristimulusSpectrum.h", "_t_tristimulus_spectrum_8h.html", [
-      [ "TTristimulusSpectrum", "classph_1_1math_1_1_t_tristimulus_spectrum.html", "classph_1_1math_1_1_t_tristimulus_spectrum" ]
-    ] ],
+    [ "TTristimulusSpectrum.h", "_t_tristimulus_spectrum_8h.html", "_t_tristimulus_spectrum_8h" ],
     [ "TTristimulusSpectrum.ipp", "_t_tristimulus_spectrum_8ipp.html", null ]
 ];

@@ -1,14 +1,15 @@
 var classph_1_1_scene_description =
 [
     [ "SceneDescription", "classph_1_1_scene_description.html#aa87c2c46eafa6368f92adac35f5cb1bb", null ],
-    [ "addResource", "classph_1_1_scene_description.html#a16b5b274c712513d86fcda33b5aff073", null ],
-    [ "getNameToResourceMap", "classph_1_1_scene_description.html#a9e1972f524da6f9acae89dd1721f93d7", null ],
-    [ "getNameToResourceMap", "classph_1_1_scene_description.html#a94e642cd960c1bd1947e9c0db47dbb1a", null ],
-    [ "getResource", "classph_1_1_scene_description.html#afd122a16bbd791c3b8d221d232ac72a2", null ],
-    [ "getResource", "classph_1_1_scene_description.html#a9a4d5be51318c1d912fa439144cf48ed", null ],
-    [ "getResources", "classph_1_1_scene_description.html#a6fc5459465b6fd27d4cfbe5971aac7a4", null ],
-    [ "hasResource", "classph_1_1_scene_description.html#af7e2e6e2dedce4abb5d4bcb85603b5a8", null ],
-    [ "listAllResources", "classph_1_1_scene_description.html#ac20da903102867e7526c9fdc32637d9f", null ],
-    [ "toCategoryIndex", "classph_1_1_scene_description.html#ada3347a7d563625ff9eecf57644f6a9a", null ],
-    [ "m_resources", "classph_1_1_scene_description.html#a82bf2a1b8525d81c07c80585e9172a35", null ]
+    [ "get", "classph_1_1_scene_description.html#a4b7500383abbb435b8a3a48b25d4fcb5", null ],
+    [ "getPhantoms", "classph_1_1_scene_description.html#afaecbbb44424905b2fcfe7571a653f45", null ],
+    [ "getPhantoms", "classph_1_1_scene_description.html#a23a5bcd3d0c255a59cf1d4712cd87111", null ],
+    [ "getResources", "classph_1_1_scene_description.html#a3dfb7b5b21ea791d2bd0b93f0b72c4d1", null ],
+    [ "getResources", "classph_1_1_scene_description.html#ade34cb37ba450dda9ff9a01f46f3ef59", null ],
+    [ "getWorkingDirectory", "classph_1_1_scene_description.html#a138f08b903878931dbc01772ff93e9b8", null ],
+    [ "has", "classph_1_1_scene_description.html#a19b717a7e7855d54c81968c56914a0ff", null ],
+    [ "setWorkingDirectory", "classph_1_1_scene_description.html#a8938e93a8d23ab656e3b95b947ab6ff8", null ],
+    [ "m_phantomResources", "classph_1_1_scene_description.html#a8468d31e696ef337edf289410c8e98bf", null ],
+    [ "m_resources", "classph_1_1_scene_description.html#a719503a65295a727ea911481929846bc", null ],
+    [ "m_workingDirectory", "classph_1_1_scene_description.html#a46b65afa555621fcae94330ba19d67da", null ]
 ];

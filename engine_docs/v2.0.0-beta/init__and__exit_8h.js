@@ -1,6 +1,5 @@
 var init__and__exit_8h =
 [
-    [ "exit_api_database", "init__and__exit_8h.html#af8cdc306ea7c4693d18fcaa91f458e8d", null ],
-    [ "init_command_parser", "init__and__exit_8h.html#ae20f04d4d64c1a0e9cb06524b7bf1bdf", null ],
-    [ "init_core_infrastructure", "init__and__exit_8h.html#a367c872f8fbe3cda29f11f653a74c72a", null ]
+    [ "exit_API_database", "init__and__exit_8h.html#a2f6f5008c69294f8129701bfff40aaf3", null ],
+    [ "init_engine_IO_infrastructure", "init__and__exit_8h.html#aebdf17a4ddc6b5297952af30d1ca6e79", null ]
 ];

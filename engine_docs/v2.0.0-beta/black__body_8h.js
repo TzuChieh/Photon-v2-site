@@ -1,5 +1,5 @@
 var black__body_8h =
 [
-    [ "black_body_radiance_at", "black__body_8h.html#a9fa31ad274d843ea3ad9020490b82c11", null ],
-    [ "black_body_radiance_curve", "black__body_8h.html#adbcb1d6dfceda00baebe908358d4121a", null ]
+    [ "black_body_spectral_radiance_at", "black__body_8h.html#ab6c812780186db6fffc4e5b25946f17e", null ],
+    [ "black_body_spectral_radiance_curve", "black__body_8h.html#a2e1994639e2978dc226efa4ef08cbec5", null ]
 ];

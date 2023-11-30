@@ -1,7 +1,8 @@
 var classph_1_1_t_sdl_vector3 =
 [
     [ "TSdlVector3", "classph_1_1_t_sdl_vector3.html#a854bfd6648d9af14355d69e372e06da3", null ],
-    [ "loadFromSdl", "classph_1_1_t_sdl_vector3.html#a7b5208fc27f98ecef28a636e193a6fea", null ],
-    [ "saveToSdl", "classph_1_1_t_sdl_vector3.html#aee3947163ea262ab78ace4460c9ce812", null ],
+    [ "loadFromSdl", "classph_1_1_t_sdl_vector3.html#ae2a22122bde286214a0552983f61169c", null ],
+    [ "ownedNativeData", "classph_1_1_t_sdl_vector3.html#a211186e67fb4ec947d6d0d03d07a8e7b", null ],
+    [ "saveToSdl", "classph_1_1_t_sdl_vector3.html#aee00c84f808132b185a10dbabd7a4158", null ],
     [ "valueAsString", "classph_1_1_t_sdl_vector3.html#a6386f0a3b3faebd9000c2365d197e5af", null ]
 ];

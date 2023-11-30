@@ -1,11 +1,12 @@
 var classph_1_1_t_sdl_nested_field =
 [
-    [ "TSdlNestedField", "classph_1_1_t_sdl_nested_field.html#a7e4d5ec65ca288c5eb2b7fced67affe6", null ],
-    [ "associatedResource", "classph_1_1_t_sdl_nested_field.html#a115533ce5e811df12c3b9f44fad63201", null ],
-    [ "loadFromSdl", "classph_1_1_t_sdl_nested_field.html#abd96d78b6880de4884a89299705b1ca9", null ],
-    [ "saveToSdl", "classph_1_1_t_sdl_nested_field.html#a4abff7307ae023056d8bd2c32c1a7e23", null ],
-    [ "setValueToDefault", "classph_1_1_t_sdl_nested_field.html#a7df73752aebfcec60311d0c8b4c386fd", null ],
+    [ "TSdlNestedField", "classph_1_1_t_sdl_nested_field.html#aa13b54e1406c48581f8b70d211bf318d", null ],
+    [ "loadFromSdl", "classph_1_1_t_sdl_nested_field.html#a97b4e51aff6b6ec15a9959f8e4e339e4", null ],
+    [ "ownedNativeData", "classph_1_1_t_sdl_nested_field.html#abc5fee23b1a6664a98f66f128ab10d88", null ],
+    [ "ownedResources", "classph_1_1_t_sdl_nested_field.html#add5c309ab364e4a63631494eaac45b09", null ],
+    [ "ownedValueToDefault", "classph_1_1_t_sdl_nested_field.html#abeca7f31e9182d7147b061943a1927bf", null ],
+    [ "saveToSdl", "classph_1_1_t_sdl_nested_field.html#a872fce0e12970e3d3fa09f800622ca04", null ],
     [ "valueToString", "classph_1_1_t_sdl_nested_field.html#af3cc9e04a0dcc69644f4dc362553c16b", null ],
-    [ "m_innerObjField", "classph_1_1_t_sdl_nested_field.html#a4118c40a0342f5d2a44bcd3c79cfe10e", null ],
+    [ "m_innerObjField", "classph_1_1_t_sdl_nested_field.html#a788025c473b289da5165ffe00abf5fea", null ],
     [ "m_innerObjPtr", "classph_1_1_t_sdl_nested_field.html#aa0202dc60a9c46f41393bd10cc0a06b4", null ]
 ];

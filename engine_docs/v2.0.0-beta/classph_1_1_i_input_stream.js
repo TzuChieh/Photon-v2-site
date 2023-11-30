@@ -6,5 +6,5 @@ var classph_1_1_i_input_stream =
     [ "readSome", "classph_1_1_i_input_stream.html#ae2443ee3348bfd6dc361e1eeed893a32", null ],
     [ "readString", "classph_1_1_i_input_stream.html#ad8a53daafc7dcabdc7da7989f1fc429d", null ],
     [ "seekGet", "classph_1_1_i_input_stream.html#a4bc65760be9331abdbbd97a8e3539491", null ],
-    [ "tellGet", "classph_1_1_i_input_stream.html#a02042f0b7983c82153062d47c9da3bf4", null ]
+    [ "tellGet", "classph_1_1_i_input_stream.html#a05a872bb07dbe846a0c680e99fd3793d", null ]
 ];

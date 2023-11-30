@@ -1,6 +1,6 @@
 var _t_sdl_real_8h =
 [
-    [ "TSdlReal", "classph_1_1_t_sdl_real.html", "classph_1_1_t_sdl_real" ],
+    [ "ph::TSdlReal< Owner, FloatType, SdlValueType >", "classph_1_1_t_sdl_real.html", "classph_1_1_t_sdl_real" ],
     [ "TSdlDouble", "_t_sdl_real_8h.html#a0f2cba013ac03c8c1944d708b9339f83", null ],
     [ "TSdlFloat", "_t_sdl_real_8h.html#abeb482341982704afaafcc9d2fc4ea49", null ],
     [ "TSdlFloat32", "_t_sdl_real_8h.html#a5007fa1bbf40fc87a83d24003753dfbc", null ],

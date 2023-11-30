@@ -9,7 +9,7 @@ var classph_1_1_bvh_builder =
     [ "BvhBuilder", "classph_1_1_bvh_builder.html#a7a0492f39333149d800c995e7a58031b", null ],
     [ "buildBinaryBvhInfoNodeRecursive", "classph_1_1_bvh_builder.html#a8bce99f2f6242047a8082c053008570b", null ],
     [ "buildBinaryBvhLinearDepthFirstNodeRecursive", "classph_1_1_bvh_builder.html#a6458f95377aa95b8f616cffbaec0b70a", null ],
-    [ "buildInformativeBinaryBvh", "classph_1_1_bvh_builder.html#a4409b765fa22074173f90c053b79c4ae", null ],
+    [ "buildInformativeBinaryBvh", "classph_1_1_bvh_builder.html#aa70855d052fa1c47d03cff667187d2dc", null ],
     [ "buildLinearDepthFirstBinaryBvh", "classph_1_1_bvh_builder.html#ab3cc8dac9e80db066bb658637794261c", null ],
     [ "splitWithEqualIntersectables", "classph_1_1_bvh_builder.html#a64a6656a68e2f626bf80ce246a4144c5", null ],
     [ "splitWithSahBuckets", "classph_1_1_bvh_builder.html#a3ed44769fce2792d0c42d2adf4f8eab7", null ],

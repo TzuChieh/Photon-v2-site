@@ -1,6 +1,6 @@
 var _t_sdl_integer_8h =
 [
-    [ "TSdlInteger", "classph_1_1_t_sdl_integer.html", "classph_1_1_t_sdl_integer" ],
+    [ "ph::TSdlInteger< Owner, IntType, SdlValueType >", "classph_1_1_t_sdl_integer.html", "classph_1_1_t_sdl_integer" ],
     [ "TSdlInt16", "_t_sdl_integer_8h.html#a684bff0945c60921738e5e1912619dbd", null ],
     [ "TSdlInt32", "_t_sdl_integer_8h.html#a008ba29dbc9a5b8ba44a3e8b99a2332e", null ],
     [ "TSdlInt64", "_t_sdl_integer_8h.html#ad67c07bc1f8300b06e50053e96a2323a", null ],
@@ -17,7 +17,7 @@ var _t_sdl_integer_8h =
     [ "TSdlOptionalUint8", "_t_sdl_integer_8h.html#a4b673de140753c9492ed29aa9a62a21c", null ],
     [ "TSdlSize", "_t_sdl_integer_8h.html#a11a1d28e14bb14cb707a4a70621b2e49", null ],
     [ "TSdlUint16", "_t_sdl_integer_8h.html#aed917443def3a3e63a4f19b92463762c", null ],
-    [ "TSdlUint32", "_t_sdl_integer_8h.html#ac5f1bf537c3d313b6e6eb118d1d172fb", null ],
-    [ "TSdlUint64", "_t_sdl_integer_8h.html#ad4d5dad4a27352c7cd0e7f2b247f0d44", null ],
+    [ "TSdlUInt32", "_t_sdl_integer_8h.html#ae921849f4dab81a008aba032d26bc33f", null ],
+    [ "TSdlUInt64", "_t_sdl_integer_8h.html#a9373eb4e3f5266060ee85fec1c0520c2", null ],
     [ "TSdlUint8", "_t_sdl_integer_8h.html#a61cd91033b23496f9338dea9f58e46b4", null ]
 ];

@@ -1,6 +1,6 @@
 var _cook_order_8h =
 [
-    [ "CookOrder", "structph_1_1_cook_order.html", "structph_1_1_cook_order" ],
+    [ "ph::CookOrder", "classph_1_1_cook_order.html", "classph_1_1_cook_order" ],
     [ "CookLevel", "_cook_order_8h.html#a9cc8f904685fe6dca8e9e438b908d550", null ],
     [ "CookPriority", "_cook_order_8h.html#a5c6dfc49da309fdce5d9a1cf8cddc130", null ],
     [ "ECookLevel", "_cook_order_8h.html#a6f9f9c205359845b3b02105599f9355e", [

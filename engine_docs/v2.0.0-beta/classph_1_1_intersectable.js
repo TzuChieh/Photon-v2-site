@@ -5,5 +5,5 @@ var classph_1_1_intersectable =
     [ "calcIntersectionDetail", "classph_1_1_intersectable.html#acde51d3d2292a0dd9c011dd9ad174bf2", null ],
     [ "isIntersecting", "classph_1_1_intersectable.html#ae445743ad48751b06f89a08cd8910b3e", null ],
     [ "isOccluding", "classph_1_1_intersectable.html#ab2704ced51a4d65af7030b1a45a4fdda", null ],
-    [ "mayIntersectVolume", "classph_1_1_intersectable.html#a81ce747704edfba51582555c38713728", null ]
+    [ "mayOverlapVolume", "classph_1_1_intersectable.html#a86fce4c0b0c1f99a50380ce41ad2875a", null ]
 ];

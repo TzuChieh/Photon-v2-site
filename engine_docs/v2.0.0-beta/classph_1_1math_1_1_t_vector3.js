@@ -1,10 +1,6 @@
 var classph_1_1math_1_1_t_vector3 =
 [
     [ "Base", "classph_1_1math_1_1_t_vector3.html#ad54bc4a7b55a7f6d5480b30556f90661", null ],
-    [ "TVector3", "classph_1_1math_1_1_t_vector3.html#a28064bc2cbc9dc31c282d2f7654461b2", null ],
-    [ "TVector3", "classph_1_1math_1_1_t_vector3.html#af71d86aed78876cc520556afc0ec2ffa", null ],
-    [ "TVector3", "classph_1_1math_1_1_t_vector3.html#a6293d1fcc8371b6fcd0621e75f884189", null ],
-    [ "~TVector3", "classph_1_1math_1_1_t_vector3.html#afee97ad592aca1428c6fb92672039c35", null ],
     [ "TVector3", "classph_1_1math_1_1_t_vector3.html#aa037e1d46f98b670d3e20c8e64a03371", null ],
     [ "TVector3", "classph_1_1math_1_1_t_vector3.html#ae6a9fedcf2ee394b872bd91a65362d23", null ],
     [ "b", "classph_1_1math_1_1_t_vector3.html#aeb33d446be21b99021edb91ed9e0de0f", null ],
@@ -14,8 +10,7 @@ var classph_1_1math_1_1_t_vector3 =
     [ "g", "classph_1_1math_1_1_t_vector3.html#af6aaff5a605a81a6b87de3aaa6d2c93e", null ],
     [ "g", "classph_1_1math_1_1_t_vector3.html#a6f39192d00e5fcd097ca11e837d7bb02", null ],
     [ "maddLocal", "classph_1_1math_1_1_t_vector3.html#a2a4d184546453e7438f498f88a869af1", null ],
-    [ "operator=", "classph_1_1math_1_1_t_vector3.html#aa5cfbe7d59e930adac5ca559f9506022", null ],
-    [ "operator=", "classph_1_1math_1_1_t_vector3.html#ad37cb99ad04ca4d09fd5eed9f457fd53", null ],
+    [ "PH_DEFINE_INLINE_RULE_OF_5_MEMBERS", "classph_1_1math_1_1_t_vector3.html#aa439205ee8bbc31427949ec1d8333b63", null ],
     [ "r", "classph_1_1math_1_1_t_vector3.html#ab7d370df0f9a455f564b783ef06b2a59", null ],
     [ "r", "classph_1_1math_1_1_t_vector3.html#a2531cf6d15cb33bb184c1cdcc17f0a67", null ],
     [ "reflect", "classph_1_1math_1_1_t_vector3.html#ae7c764af4b9fdc3f2df2c84f83964d78", null ],

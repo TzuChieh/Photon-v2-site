@@ -8,5 +8,6 @@ var _common_2utility_8h =
     [ "PH_CONCAT_7", "_common_2utility_8h.html#a0283f7de8e686f7a8dcf4890da7b932e", null ],
     [ "PH_CONCAT_8", "_common_2utility_8h.html#a06ea3b7082381378b14f8343853c1f8f", null ],
     [ "PH_NO_OP", "_common_2utility_8h.html#a58d6d0664e5c76c51ebd57905e76eca7", null ],
-    [ "PH_NOT_IMPLEMENTED_WARNING", "_common_2utility_8h.html#a9606a731ad538fc32118bbef00693bfb", null ]
+    [ "PH_NOT_IMPLEMENTED_WARNING", "_common_2utility_8h.html#a9606a731ad538fc32118bbef00693bfb", null ],
+    [ "output_not_implemented_warning", "_common_2utility_8h.html#a469aa47e4b2da92f0b9bd9be352af784", null ]
 ];

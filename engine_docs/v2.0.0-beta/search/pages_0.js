@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['directories_10529',['Directories',['../directories.html',1,'']]]
+  ['directories_0',['Directories',['../directories.html',1,'']]]
 ];

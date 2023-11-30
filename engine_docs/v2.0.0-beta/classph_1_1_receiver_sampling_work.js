@@ -4,7 +4,7 @@ var classph_1_1_receiver_sampling_work =
     [ "ReceiverSamplingWork", "classph_1_1_receiver_sampling_work.html#a5d4636294abecfd531b45eae9a42379d", null ],
     [ "ReceiverSamplingWork", "classph_1_1_receiver_sampling_work.html#aa86cb4e76047bb533abb6e727a7a43dc", null ],
     [ "addProcessor", "classph_1_1_receiver_sampling_work.html#a5e26fe21ec52d6c648b3201b99d0ef34", null ],
-    [ "asyncGetStatistics", "classph_1_1_receiver_sampling_work.html#a2dc5d28c75b113a3f69b9808460b79ac", null ],
+    [ "asyncGetStatistics", "classph_1_1_receiver_sampling_work.html#ada4ea02b31ae0b5e5cba07027dd70a23", null ],
     [ "doWork", "classph_1_1_receiver_sampling_work.html#a9de884174cd6666dadcfbd9eeb70558f", null ],
     [ "onWorkFinish", "classph_1_1_receiver_sampling_work.html#a46ddee0978329737eea4efa5a30584c6", null ],
     [ "onWorkReport", "classph_1_1_receiver_sampling_work.html#a224b7864b815006332e27b11d4491d11", null ],

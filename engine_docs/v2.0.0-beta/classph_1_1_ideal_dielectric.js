@@ -1,7 +1,7 @@
 var classph_1_1_ideal_dielectric =
 [
     [ "IdealDielectric", "classph_1_1_ideal_dielectric.html#a75ef5d49b51c52826a1ac73c90d19636", null ],
-    [ "IdealDielectric", "classph_1_1_ideal_dielectric.html#a4fa1f9d72e3b8c9e8cf187871a701724", null ],
+    [ "IdealDielectric", "classph_1_1_ideal_dielectric.html#a93881f0795061698fb4d63927cf6936c", null ],
     [ "calcBsdf", "classph_1_1_ideal_dielectric.html#aeaec77c7bb31d51c72aa27d7e2062863", null ],
     [ "calcBsdfSample", "classph_1_1_ideal_dielectric.html#afd33074a61fefa02061b4b0982b5a05f", null ],
     [ "calcBsdfSamplePdfW", "classph_1_1_ideal_dielectric.html#a57e903895b303e3d7f0389d202d41af6", null ],

@@ -7,7 +7,7 @@ var classph_1_1_single_frame_render_session =
     [ "getSampleSourceName", "classph_1_1_single_frame_render_session.html#aab1aceb2e9a2b689e727a7023c9db88e", null ],
     [ "getTopLevelAcceleratorType", "classph_1_1_single_frame_render_session.html#a39b9c3281a724bc0e814aaf225189e53", null ],
     [ "getVisualizerName", "classph_1_1_single_frame_render_session.html#a3333ba161d902f3e7a9cb47e6f8b5bd7", null ],
-    [ "PH_DEFINE_SDL_CLASS", "classph_1_1_single_frame_render_session.html#a19ce56e1e830b0ad5ae50c6fc42443ef", null ],
+    [ "PH_DEFINE_SDL_CLASS", "classph_1_1_single_frame_render_session.html#a1b07ff434d5d20c5326f41e6ef41cfe5", null ],
     [ "setTopLevelAcceleratorType", "classph_1_1_single_frame_render_session.html#a80a1024e9e475b078cb40f2879d80d19", null ],
     [ "m_frameSizePx", "classph_1_1_single_frame_render_session.html#ac11d73679dfb7e3a3efe32badc55f667", null ],
     [ "m_observerName", "classph_1_1_single_frame_render_session.html#a407f82c0de9f854eedbf796df45c98bc", null ],

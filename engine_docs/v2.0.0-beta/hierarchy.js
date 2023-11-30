@@ -6,7 +6,7 @@ var hierarchy =
     [ "ph::ApiHelper", "classph_1_1_api_helper.html", null ],
     [ "ph::IndexedVertexBuffer::AttributeDeclaration", "structph_1_1_indexed_vertex_buffer_1_1_attribute_declaration.html", null ],
     [ "ph::AttributeTags", "classph_1_1_attribute_tags.html", null ],
-    [ "ph::TBasicSdlEnum< EnumType_, MAX_ENTRIES >::BasicEnumEntry", "structph_1_1_t_basic_sdl_enum_1_1_basic_enum_entry.html", null ],
+    [ "ph::TSdlGeneralEnum< InEnumType, MAX_ENTRIES >::BasicEnumEntry", "structph_1_1_t_sdl_general_enum_1_1_basic_enum_entry.html", null ],
     [ "ph::BinaryFileReader", "classph_1_1_binary_file_reader.html", null ],
     [ "ph::BlockFunction", "classph_1_1_block_function.html", [
       [ "ph::BfConstant", "classph_1_1_bf_constant.html", null ]
@@ -28,23 +28,31 @@ var hierarchy =
     [ "ph::BvhLinearNode", "classph_1_1_bvh_linear_node.html", null ],
     [ "ph::BvhSahBucket", "classph_1_1_bvh_sah_bucket.html", null ],
     [ "ph::ByteBuffer", "classph_1_1_byte_buffer.html", null ],
-    [ "ph::ValueClauses::Clause", "structph_1_1_value_clauses_1_1_clause.html", null ],
+    [ "ph::SdlCommandParser::CommandHeader", "structph_1_1_sdl_command_parser_1_1_command_header.html", null ],
     [ "ph::CommandLineArguments", "classph_1_1_command_line_arguments.html", null ],
     [ "ph::ConductiveInterfaceInfo", "classph_1_1_conductive_interface_info.html", null ],
     [ "ph::Config", "classph_1_1_config.html", null ],
     [ "ph::CookedDataStorage", "classph_1_1_cooked_data_storage.html", null ],
-    [ "ph::CookedResourceCollection", "classph_1_1_cooked_resource_collection.html", null ],
-    [ "ph::CookOrder", "structph_1_1_cook_order.html", null ],
-    [ "ph::CookResults", "classph_1_1_cook_results.html", null ],
+    [ "ph::CookedGeometry", "classph_1_1_cooked_geometry.html", null ],
+    [ "ph::CookedMotion", "classph_1_1_cooked_motion.html", null ],
+    [ "ph::CookedNamedResource", "classph_1_1_cooked_named_resource.html", null ],
+    [ "ph::CookingConfig", "classph_1_1_cooking_config.html", null ],
+    [ "ph::CookingContext", "classph_1_1_cooking_context.html", null ],
+    [ "ph::CookOrder", "classph_1_1_cook_order.html", null ],
     [ "ph::CoreCookingContext", "classph_1_1_core_cooking_context.html", null ],
     [ "ph::CoreResource", "classph_1_1_core_resource.html", null ],
+    [ "ph::CsvFile", "classph_1_1_csv_file.html", null ],
+    [ "ph::CsvFileRow", "classph_1_1_csv_file_row.html", null ],
     [ "ph::TSPSCExecutor< Work >::CustomCallable", "structph_1_1_t_s_p_s_c_executor_1_1_custom_callable.html", null ],
     [ "ph::function_detail::TFunction< R(Args...), MIN_SIZE_HINT >::Data", "unionph_1_1function__detail_1_1_t_function_3_01_r_07_args_8_8_8_08_00_01_m_i_n___s_i_z_e___h_i_n_t_01_4_1_1_data.html", null ],
     [ "ph::math::DefaultSpectralSampleProps", "classph_1_1math_1_1_default_spectral_sample_props.html", null ],
+    [ "ph::math::DeterministicSeeder", "classph_1_1math_1_1_deterministic_seeder.html", null ],
     [ "ph::DielectricInterfaceInfo", "classph_1_1_dielectric_interface_info.html", null ],
     [ "ph::DirectEnergySampleInput", "classph_1_1_direct_energy_sample_input.html", null ],
     [ "ph::DirectEnergySampleOutput", "classph_1_1_direct_energy_sample_output.html", null ],
     [ "ph::DirectEnergySampleQuery", "classph_1_1_direct_energy_sample_query.html", null ],
+    [ "ph::DomeRadianceFunctionInfo", "structph_1_1_dome_radiance_function_info.html", null ],
+    [ "ph::EmbeddedPrimitiveMetaGetter", "structph_1_1_embedded_primitive_meta_getter.html", null ],
     [ "ph::EmitFunction", "classph_1_1_emit_function.html", null ],
     [ "ph::Emitter", "classph_1_1_emitter.html", [
       [ "ph::OmniModulatedEmitter", "classph_1_1_omni_modulated_emitter.html", null ],
@@ -61,12 +69,15 @@ var hierarchy =
     ] ],
     [ "ph::function_detail::TFunction< R(Args...), MIN_SIZE_HINT >::EmptyStruct", "structph_1_1function__detail_1_1_t_function_3_01_r_07_args_8_8_8_08_00_01_m_i_n___s_i_z_e___h_i_n_t_01_4_1_1_empty_struct.html", null ],
     [ "ph::Engine", "classph_1_1_engine.html", null ],
+    [ "ph::EngineInitSettings", "classph_1_1_engine_init_settings.html", null ],
     [ "ph::IndexedVertexBuffer::Entry", "structph_1_1_indexed_vertex_buffer_1_1_entry.html", null ],
     [ "ph::ExrFileReader", "classph_1_1_exr_file_reader.html", null ],
     [ "ph::ExrFileWriter", "classph_1_1_exr_file_writer.html", null ],
     [ "std::false_type", null, [
       [ "ph::IsBuildable< Built, From, typename >", "structph_1_1_is_buildable.html", null ]
     ] ],
+    [ "ph::Filesystem", "classph_1_1_filesystem.html", null ],
+    [ "ph::halton_detail::FixedPermuter", "classph_1_1halton__detail_1_1_fixed_permuter.html", null ],
     [ "ph::FixedSizeThreadPool", "classph_1_1_fixed_size_thread_pool.html", null ],
     [ "ph::FrameOperator", "classph_1_1_frame_operator.html", [
       [ "ph::GammaCorrection", "classph_1_1_gamma_correction.html", null ],
@@ -85,8 +96,10 @@ var hierarchy =
     ] ],
     [ "ph::FullRay", "classph_1_1_full_ray.html", null ],
     [ "ph::TimerStatsReport::GroupedTimeRecord", "structph_1_1_timer_stats_report_1_1_grouped_time_record.html", null ],
+    [ "std::hash< ph::math::TAABB2D< T > >", "structstd_1_1hash_3_01ph_1_1math_1_1_t_a_a_b_b2_d_3_01_t_01_4_01_4.html", null ],
+    [ "std::hash< ph::math::TVector2< T > >", "structstd_1_1hash_3_01ph_1_1math_1_1_t_vector2_3_01_t_01_4_01_4.html", null ],
     [ "ph::HdrOperator", "classph_1_1_hdr_operator.html", null ],
-    [ "ph::detail::HeterogeneousStringHash", "structph_1_1detail_1_1_heterogeneous_string_hash.html", null ],
+    [ "ph::string_utils::detail::HeterogeneousStringHash", "structph_1_1string__utils_1_1detail_1_1_heterogeneous_string_hash.html", null ],
     [ "ph::HitDetail", "classph_1_1_hit_detail.html", null ],
     [ "ph::HitInfo", "classph_1_1_hit_info.html", null ],
     [ "ph::HitProbe", "classph_1_1_hit_probe.html", null ],
@@ -102,26 +115,23 @@ var hierarchy =
       [ "ph::IOutputStream", "classph_1_1_i_output_stream.html", [
         [ "ph::StdOutputStream", "classph_1_1_std_output_stream.html", [
           [ "ph::BinaryFileOutputStream", "classph_1_1_binary_file_output_stream.html", null ],
-          [ "ph::FormattedTextFileOutputStream", "classph_1_1_formatted_text_file_output_stream.html", null ]
+          [ "ph::FormattedTextOutputStream", "classph_1_1_formatted_text_output_stream.html", null ]
         ] ]
       ] ]
     ] ],
     [ "ph::IesData", "classph_1_1_ies_data.html", null ],
     [ "ph::IesFile", "classph_1_1_ies_file.html", null ],
     [ "ph::IMoveOnly", "classph_1_1_i_move_only.html", [
-      [ "ph::TBasicSdlFieldSet< ph::TOwnedSdlField< MethodStruct > >", "classph_1_1_t_basic_sdl_field_set.html", null ],
-      [ "ph::TBasicSdlFieldSet< ph::TOwnedSdlField< StructType > >", "classph_1_1_t_basic_sdl_field_set.html", null ],
-      [ "ph::TUniquePtrVector< ph::PrimitiveMetadata >", "classph_1_1_t_unique_ptr_vector.html", null ],
-      [ "ph::TUniquePtrVector< ph::math::Transform >", "classph_1_1_t_unique_ptr_vector.html", null ],
-      [ "ph::ActorCookingContext", "classph_1_1_actor_cooking_context.html", null ],
-      [ "ph::CookedUnit", "classph_1_1_cooked_unit.html", null ],
+      [ "ph::TSdlBruteForceFieldSet< ph::TSdlOwnedField< MethodStruct > >", "classph_1_1_t_sdl_brute_force_field_set.html", null ],
+      [ "ph::TSdlBruteForceFieldSet< TSdlOwnedField< Owner > >", "classph_1_1_t_sdl_brute_force_field_set.html", null ],
+      [ "ph::TSdlBruteForceFieldSet< ph::TSdlOwnedField< StructType > >", "classph_1_1_t_sdl_brute_force_field_set.html", null ],
       [ "ph::CoreCookedUnit", "classph_1_1_core_cooked_unit.html", null ],
       [ "ph::Film", "classph_1_1_film.html", [
-        [ "ph::TSamplingFilm< math::Vector3R >", "classph_1_1_t_sampling_film.html", [
-          [ "ph::Vector3Film", "classph_1_1_vector3_film.html", null ]
-        ] ],
         [ "ph::TSamplingFilm< math::Spectrum >", "classph_1_1_t_sampling_film.html", [
           [ "ph::HdrRgbFilm", "classph_1_1_hdr_rgb_film.html", null ]
+        ] ],
+        [ "ph::TSamplingFilm< math::Vector3R >", "classph_1_1_t_sampling_film.html", [
+          [ "ph::Vector3Film", "classph_1_1_vector3_film.html", null ]
         ] ],
         [ "ph::TSamplingFilm< Sample >", "classph_1_1_t_sampling_film.html", null ]
       ] ],
@@ -129,28 +139,30 @@ var hierarchy =
       [ "ph::FrameProcessor", "classph_1_1_frame_processor.html", null ],
       [ "ph::InitiallyPausedThread", "classph_1_1_initially_paused_thread.html", null ],
       [ "ph::MemoryArena", "classph_1_1_memory_arena.html", null ],
-      [ "ph::ModelBuilder", "classph_1_1_model_builder.html", null ],
       [ "ph::ReceiverSamplingWork", "classph_1_1_receiver_sampling_work.html", null ],
       [ "ph::SurfaceTracer", "classph_1_1_surface_tracer.html", null ],
-      [ "ph::TBasicSdlFieldSet< BaseFieldType, MAX_FIELDS >", "classph_1_1_t_basic_sdl_field_set.html", null ],
+      [ "ph::TSdlBruteForceFieldSet< BaseFieldType, MAX_FIELDS >", "classph_1_1_t_sdl_brute_force_field_set.html", null ],
       [ "ph::TUniquePtrVector< BaseType >", "classph_1_1_t_unique_ptr_vector.html", null ],
       [ "ph::VisualWorld", "classph_1_1_visual_world.html", null ],
       [ "ph::mipmapgen", "classph_1_1mipmapgen.html", null ]
     ] ],
     [ "ph::TIndexedKdtreeIntersector< Index >::IndexedIntersectables", "structph_1_1_t_indexed_kdtree_intersector_1_1_indexed_intersectables.html", null ],
-    [ "ph::math::IndexedItemEndpoint", "structph_1_1math_1_1_indexed_item_endpoint.html", null ],
     [ "ph::math::IndexedKdtreeParams", "classph_1_1math_1_1_indexed_kdtree_params.html", null ],
     [ "ph::IndexedTriangle", "classph_1_1_indexed_triangle.html", null ],
-    [ "ph::IndexedTriangleMesh", "classph_1_1_indexed_triangle_mesh.html", null ],
     [ "ph::TPKdTreeTriangleMesh< Index >::IndexedTriFaces", "structph_1_1_t_p_kd_tree_triangle_mesh_1_1_indexed_tri_faces.html", null ],
     [ "ph::IndexedTriMesh", "classph_1_1_indexed_tri_mesh.html", [
       [ "ph::TAosTriMesh< Index, Vertex, VerticesToTriFace >", "classph_1_1_t_aos_tri_mesh.html", null ]
     ] ],
     [ "ph::IndexedUIntBuffer", "classph_1_1_indexed_u_int_buffer.html", null ],
     [ "ph::IndexedVertexBuffer", "classph_1_1_indexed_vertex_buffer.html", null ],
+    [ "ph::TPIndexedKdTreeTriangleMesh< Index >::IndexToTriangle", "structph_1_1_t_p_indexed_kd_tree_triangle_mesh_1_1_index_to_triangle.html", null ],
     [ "ph::IniFile", "classph_1_1_ini_file.html", null ],
     [ "ph::IniFile::IniSection", "structph_1_1_ini_file_1_1_ini_section.html", null ],
     [ "ph::INoCopyAndMove", "classph_1_1_i_no_copy_and_move.html", [
+      [ "ph::CookedResourceCollectionBase", "classph_1_1_cooked_resource_collection_base.html", [
+        [ "ph::CookedResourceCollection", "classph_1_1_cooked_resource_collection.html", null ],
+        [ "ph::TransientResourceCache", "classph_1_1_transient_resource_cache.html", null ]
+      ] ],
       [ "ph::TMRSWResource< Resource >", "classph_1_1_t_m_r_s_w_resource.html", null ],
       [ "ph::TSPSCRingBuffer< T, N >::ConsumerGuard", "classph_1_1_t_s_p_s_c_ring_buffer_1_1_consumer_guard.html", null ],
       [ "ph::TSPSCRingBuffer< T, N >::ProducerGuard", "classph_1_1_t_s_p_s_c_ring_buffer_1_1_producer_guard.html", null ],
@@ -173,6 +185,7 @@ var hierarchy =
         ] ],
         [ "ph::PEmpty", "classph_1_1_p_empty.html", null ],
         [ "ph::PTriangle", "classph_1_1_p_triangle.html", null ],
+        [ "ph::TMetaInjectionPrimitive< PrimitiveMetaGetter, PrimitiveGetter >", "classph_1_1_t_meta_injection_primitive.html", null ],
         [ "ph::TPIndexedKdTreeTriangleMesh< Index >", "classph_1_1_t_p_indexed_kd_tree_triangle_mesh.html", null ],
         [ "ph::TPKdTreeTriangleMesh< Index >", "classph_1_1_t_p_kd_tree_triangle_mesh.html", null ],
         [ "ph::TransformedPrimitive", "classph_1_1_transformed_primitive.html", null ]
@@ -186,16 +199,44 @@ var hierarchy =
         [ "ph::TStepperReceiverMeasurementEstimator< SamplingFilmType, EstimationType >", "classph_1_1_t_stepper_receiver_measurement_estimator.html", null ]
       ] ]
     ] ],
+    [ "ph::IResourceIdentifierResolver", "classph_1_1_i_resource_identifier_resolver.html", [
+      [ "ph::SdlResourceLocator", "classph_1_1_sdl_resource_locator.html", null ]
+    ] ],
+    [ "ph::ISdlInstantiable", "classph_1_1_i_sdl_instantiable.html", [
+      [ "ph::SdlClass", "classph_1_1_sdl_class.html", [
+        [ "ph::TSdlOwnerClass< Owner, FieldSet >", "classph_1_1_t_sdl_owner_class.html", null ]
+      ] ],
+      [ "ph::SdlFunction", "classph_1_1_sdl_function.html", [
+        [ "ph::TSdlMethod< MethodStruct, TargetType >", "classph_1_1_t_sdl_method.html", null ]
+      ] ],
+      [ "ph::SdlStruct", "classph_1_1_sdl_struct.html", [
+        [ "ph::TSdlOwnerStruct< StructType >", "classph_1_1_t_sdl_owner_struct.html", null ]
+      ] ]
+    ] ],
+    [ "ph::ISdlReferenceGroup", "classph_1_1_i_sdl_reference_group.html", [
+      [ "ph::RawResourceCollection", "classph_1_1_raw_resource_collection.html", null ],
+      [ "ph::SceneDescription", "classph_1_1_scene_description.html", null ]
+    ] ],
     [ "ph::ISdlResource", "classph_1_1_i_sdl_resource.html", [
       [ "ph::SdlResourceBase", "classph_1_1_sdl_resource_base.html", [
-        [ "ph::TSdlResourceBase< ETypeCategory::Ref_Actor >", "classph_1_1_t_sdl_resource_base.html", [
+        [ "ph::TSdlResourceBase< ESdlTypeCategory::Ref_Actor >", "classph_1_1_t_sdl_resource_base.html", [
           [ "ph::Actor", "classph_1_1_actor.html", [
             [ "ph::PhysicalActor", "classph_1_1_physical_actor.html", [
               [ "ph::ADome", "classph_1_1_a_dome.html", [
                 [ "ph::AImageDome", "classph_1_1_a_image_dome.html", null ],
                 [ "ph::APreethamDome", "classph_1_1_a_preetham_dome.html", null ]
               ] ],
-              [ "ph::ALight", "classph_1_1_a_light.html", null ],
+              [ "ph::ALight", "classph_1_1_a_light.html", [
+                [ "ph::AGeometricLight", "classph_1_1_a_geometric_light.html", [
+                  [ "ph::AAreaLight", "classph_1_1_a_area_light.html", [
+                    [ "ph::APointLight", "classph_1_1_a_point_light.html", null ],
+                    [ "ph::ARectangleLight", "classph_1_1_a_rectangle_light.html", null ],
+                    [ "ph::ASphereLight", "classph_1_1_a_sphere_light.html", null ]
+                  ] ],
+                  [ "ph::AModelLight", "classph_1_1_a_model_light.html", null ]
+                ] ],
+                [ "ph::AIesAttenuatedLight", "classph_1_1_a_ies_attenuated_light.html", null ]
+              ] ],
               [ "ph::AModel", "classph_1_1_a_model.html", [
                 [ "ph::APhantomModel", "classph_1_1_a_phantom_model.html", null ]
               ] ],
@@ -203,34 +244,13 @@ var hierarchy =
             ] ]
           ] ]
         ] ],
-        [ "ph::TSdlResourceBase< ETypeCategory::Ref_Option >", "classph_1_1_t_sdl_resource_base.html", [
-          [ "ph::Option", "classph_1_1_option.html", [
-            [ "ph::RenderSession", "classph_1_1_render_session.html", [
-              [ "ph::SingleFrameRenderSession", "classph_1_1_single_frame_render_session.html", null ]
-            ] ]
-          ] ]
-        ] ],
-        [ "ph::TSdlResourceBase< ETypeCategory::Ref_Image >", "classph_1_1_t_sdl_resource_base.html", [
-          [ "ph::Image", "classph_1_1_image.html", [
-            [ "ph::BinaryMixedImage", "classph_1_1_binary_mixed_image.html", [
-              [ "ph::GradientImage", "classph_1_1_gradient_image.html", null ]
-            ] ],
-            [ "ph::CheckerboardImage", "classph_1_1_checkerboard_image.html", null ],
-            [ "ph::ConstantImage", "classph_1_1_constant_image.html", null ],
-            [ "ph::MathImage", "classph_1_1_math_image.html", null ],
-            [ "ph::RasterImageBase", "classph_1_1_raster_image_base.html", [
-              [ "ph::RasterFileImage", "classph_1_1_raster_file_image.html", null ]
-            ] ],
-            [ "ph::UnifiedColorImage", "classph_1_1_unified_color_image.html", null ],
-            [ "ph::UnifiedNumericImage", "classph_1_1_unified_numeric_image.html", null ]
-          ] ]
-        ] ],
-        [ "ph::TSdlResourceBase< ETypeCategory::Ref_Geometry >", "classph_1_1_t_sdl_resource_base.html", [
+        [ "ph::TSdlResourceBase< ESdlTypeCategory::Ref_Geometry >", "classph_1_1_t_sdl_resource_base.html", [
           [ "ph::Geometry", "classph_1_1_geometry.html", [
             [ "ph::GCuboid", "classph_1_1_g_cuboid.html", null ],
             [ "ph::GEmpty", "classph_1_1_g_empty.html", null ],
             [ "ph::GIndexedTriangleMesh", "classph_1_1_g_indexed_triangle_mesh.html", null ],
             [ "ph::GMengerSponge", "classph_1_1_g_menger_sponge.html", null ],
+            [ "ph::GPlyPolygonMesh", "classph_1_1_g_ply_polygon_mesh.html", null ],
             [ "ph::GRectangle", "classph_1_1_g_rectangle.html", null ],
             [ "ph::GSphere", "classph_1_1_g_sphere.html", null ],
             [ "ph::GTriangle", "classph_1_1_g_triangle.html", null ],
@@ -239,12 +259,33 @@ var hierarchy =
             [ "ph::GeometrySoup", "classph_1_1_geometry_soup.html", null ]
           ] ]
         ] ],
-        [ "ph::TSdlResourceBase< ETypeCategory::Ref_Motion >", "classph_1_1_t_sdl_resource_base.html", [
-          [ "ph::MotionSource", "classph_1_1_motion_source.html", [
-            [ "ph::ConstantVelocityMotion", "classph_1_1_constant_velocity_motion.html", null ]
+        [ "ph::TSdlResourceBase< ESdlTypeCategory::Ref_Image >", "classph_1_1_t_sdl_resource_base.html", [
+          [ "ph::Image", "classph_1_1_image.html", [
+            [ "ph::BinaryMixedImage", "classph_1_1_binary_mixed_image.html", [
+              [ "ph::GradientImage", "classph_1_1_gradient_image.html", null ]
+            ] ],
+            [ "ph::BlackBodyRadiationImage", "classph_1_1_black_body_radiation_image.html", null ],
+            [ "ph::CheckerboardImage", "classph_1_1_checkerboard_image.html", null ],
+            [ "ph::ConstantImage", "classph_1_1_constant_image.html", null ],
+            [ "ph::MathImage", "classph_1_1_math_image.html", null ],
+            [ "ph::RasterImageBase", "classph_1_1_raster_image_base.html", [
+              [ "ph::RasterFileImage", "classph_1_1_raster_file_image.html", null ]
+            ] ],
+            [ "ph::SwizzledImage", "classph_1_1_swizzled_image.html", null ]
           ] ]
         ] ],
-        [ "ph::TSdlResourceBase< ETypeCategory::Ref_Material >", "classph_1_1_t_sdl_resource_base.html", [
+        [ "ph::TSdlResourceBase< ESdlTypeCategory::Ref_LightSource >", "classph_1_1_t_sdl_resource_base.html", [
+          [ "ph::LightSource", "classph_1_1_light_source.html", [
+            [ "ph::AreaSource", "classph_1_1_area_source.html", [
+              [ "ph::PointSource", "classph_1_1_point_source.html", null ],
+              [ "ph::RectangleSource", "classph_1_1_rectangle_source.html", null ],
+              [ "ph::SphereSource", "classph_1_1_sphere_source.html", null ]
+            ] ],
+            [ "ph::IesAttenuatedSource", "classph_1_1_ies_attenuated_source.html", null ],
+            [ "ph::ModelSource", "classph_1_1_model_source.html", null ]
+          ] ]
+        ] ],
+        [ "ph::TSdlResourceBase< ESdlTypeCategory::Ref_Material >", "classph_1_1_t_sdl_resource_base.html", [
           [ "ph::Material", "classph_1_1_material.html", [
             [ "ph::FullMaterial", "classph_1_1_full_material.html", null ],
             [ "ph::SurfaceMaterial", "classph_1_1_surface_material.html", [
@@ -262,15 +303,19 @@ var hierarchy =
             ] ]
           ] ]
         ] ],
-        [ "ph::TSdlResourceBase< ETypeCategory::Ref_LightSource >", "classph_1_1_t_sdl_resource_base.html", [
-          [ "ph::LightSource", "classph_1_1_light_source.html", [
-            [ "ph::AreaSource", "classph_1_1_area_source.html", [
-              [ "ph::PointSource", "classph_1_1_point_source.html", null ],
-              [ "ph::RectangleSource", "classph_1_1_rectangle_source.html", null ],
-              [ "ph::SphereSource", "classph_1_1_sphere_source.html", null ]
-            ] ],
-            [ "ph::IesAttenuatedSource", "classph_1_1_ies_attenuated_source.html", null ],
-            [ "ph::ModelSource", "classph_1_1_model_source.html", null ]
+        [ "ph::TSdlResourceBase< ESdlTypeCategory::Ref_Motion >", "classph_1_1_t_sdl_resource_base.html", [
+          [ "ph::MotionSource", "classph_1_1_motion_source.html", [
+            [ "ph::ConstantVelocityMotion", "classph_1_1_constant_velocity_motion.html", null ]
+          ] ]
+        ] ],
+        [ "ph::TSdlResourceBase< ESdlTypeCategory::Ref_Object >", "classph_1_1_t_sdl_resource_base.html", [
+          [ "ph::Object", "classph_1_1_object.html", null ]
+        ] ],
+        [ "ph::TSdlResourceBase< ESdlTypeCategory::Ref_Option >", "classph_1_1_t_sdl_resource_base.html", [
+          [ "ph::Option", "classph_1_1_option.html", [
+            [ "ph::RenderSession", "classph_1_1_render_session.html", [
+              [ "ph::SingleFrameRenderSession", "classph_1_1_single_frame_render_session.html", null ]
+            ] ]
           ] ]
         ] ],
         [ "ph::CoreSdlResource", "classph_1_1_core_sdl_resource.html", [
@@ -297,14 +342,14 @@ var hierarchy =
     ] ],
     [ "ph::TSPSCRingBuffer< T, N >::Item", "structph_1_1_t_s_p_s_c_ring_buffer_1_1_item.html", null ],
     [ "ph::IUninstantiable", "classph_1_1_i_uninstantiable.html", [
+      [ "ph::math::TChromaticAdaptationDefinitionHelper< EChromaticAdaptation::Bradford >", "classph_1_1math_1_1_t_chromatic_adaptation_definition_helper.html", [
+        [ "ph::math::TChromaticAdaptationDefinition< EChromaticAdaptation::Bradford, T >", "classph_1_1math_1_1_t_chromatic_adaptation_definition_3_01_e_chromatic_adaptation_1_1_bradford_00_01_t_01_4.html", null ]
+      ] ],
       [ "ph::math::TChromaticAdaptationDefinitionHelper< EChromaticAdaptation::VonKries >", "classph_1_1math_1_1_t_chromatic_adaptation_definition_helper.html", [
         [ "ph::math::TChromaticAdaptationDefinition< EChromaticAdaptation::VonKries, T >", "classph_1_1math_1_1_t_chromatic_adaptation_definition_3_01_e_chromatic_adaptation_1_1_von_kries_00_01_t_01_4.html", null ]
       ] ],
       [ "ph::math::TChromaticAdaptationDefinitionHelper< EChromaticAdaptation::XYZScaling >", "classph_1_1math_1_1_t_chromatic_adaptation_definition_helper.html", [
         [ "ph::math::TChromaticAdaptationDefinition< EChromaticAdaptation::XYZScaling, T >", "classph_1_1math_1_1_t_chromatic_adaptation_definition_3_01_e_chromatic_adaptation_1_1_x_y_z_scaling_00_01_t_01_4.html", null ]
-      ] ],
-      [ "ph::math::TChromaticAdaptationDefinitionHelper< EChromaticAdaptation::Bradford >", "classph_1_1math_1_1_t_chromatic_adaptation_definition_helper.html", [
-        [ "ph::math::TChromaticAdaptationDefinition< EChromaticAdaptation::Bradford, T >", "classph_1_1math_1_1_t_chromatic_adaptation_definition_3_01_e_chromatic_adaptation_1_1_bradford_00_01_t_01_4.html", null ]
       ] ],
       [ "ph::math::TSpectralColorSpaceDefinitionHelper< EColorSpace::Spectral_Smits, EColorSpace::Linear_sRGB >", "classph_1_1math_1_1_t_spectral_color_space_definition_helper.html", [
         [ "ph::math::TColorSpaceDefinition< EColorSpace::Spectral_Smits, T >", "classph_1_1math_1_1_t_color_space_definition_3_01_e_color_space_1_1_spectral___smits_00_01_t_01_4.html", null ]
@@ -312,8 +357,8 @@ var hierarchy =
       [ "ph::math::TTristimulusColorSpaceDefinitionHelper< EColorSpace::ACEScg, EReferenceWhite::ACES >", "classph_1_1math_1_1_t_tristimulus_color_space_definition_helper.html", [
         [ "ph::math::TColorSpaceDefinition< EColorSpace::ACEScg, T >", "classph_1_1math_1_1_t_color_space_definition_3_01_e_color_space_1_1_a_c_e_scg_00_01_t_01_4.html", null ]
       ] ],
-      [ "ph::math::TTristimulusColorSpaceDefinitionHelper< EColorSpace::sRGB, EReferenceWhite::D65 >", "classph_1_1math_1_1_t_tristimulus_color_space_definition_helper.html", [
-        [ "ph::math::TColorSpaceDefinition< EColorSpace::sRGB, T >", "classph_1_1math_1_1_t_color_space_definition_3_01_e_color_space_1_1s_r_g_b_00_01_t_01_4.html", null ]
+      [ "ph::math::TTristimulusColorSpaceDefinitionHelper< EColorSpace::CIE_XYZ, EReferenceWhite::D65 >", "classph_1_1math_1_1_t_tristimulus_color_space_definition_helper.html", [
+        [ "ph::math::TColorSpaceDefinition< EColorSpace::CIE_XYZ, T >", "classph_1_1math_1_1_t_color_space_definition_3_01_e_color_space_1_1_c_i_e___x_y_z_00_01_t_01_4.html", null ]
       ] ],
       [ "ph::math::TTristimulusColorSpaceDefinitionHelper< EColorSpace::CIE_xyY, EReferenceWhite::D65 >", "classph_1_1math_1_1_t_tristimulus_color_space_definition_helper.html", [
         [ "ph::math::TColorSpaceDefinition< EColorSpace::CIE_xyY, T >", "classph_1_1math_1_1_t_color_space_definition_3_01_e_color_space_1_1_c_i_e__xy_y_00_01_t_01_4.html", null ]
@@ -321,8 +366,8 @@ var hierarchy =
       [ "ph::math::TTristimulusColorSpaceDefinitionHelper< EColorSpace::Linear_sRGB, EReferenceWhite::D65 >", "classph_1_1math_1_1_t_tristimulus_color_space_definition_helper.html", [
         [ "ph::math::TColorSpaceDefinition< EColorSpace::Linear_sRGB, T >", "classph_1_1math_1_1_t_color_space_definition_3_01_e_color_space_1_1_linear__s_r_g_b_00_01_t_01_4.html", null ]
       ] ],
-      [ "ph::math::TTristimulusColorSpaceDefinitionHelper< EColorSpace::CIE_XYZ, EReferenceWhite::D65 >", "classph_1_1math_1_1_t_tristimulus_color_space_definition_helper.html", [
-        [ "ph::math::TColorSpaceDefinition< EColorSpace::CIE_XYZ, T >", "classph_1_1math_1_1_t_color_space_definition_3_01_e_color_space_1_1_c_i_e___x_y_z_00_01_t_01_4.html", null ]
+      [ "ph::math::TTristimulusColorSpaceDefinitionHelper< EColorSpace::sRGB, EReferenceWhite::D65 >", "classph_1_1math_1_1_t_tristimulus_color_space_definition_helper.html", [
+        [ "ph::math::TColorSpaceDefinition< EColorSpace::sRGB, T >", "classph_1_1math_1_1_t_color_space_definition_3_01_e_color_space_1_1s_r_g_b_00_01_t_01_4.html", null ]
       ] ],
       [ "ph::math::TChromaticAdaptationDefinitionHelper< ALGORITHM >", "classph_1_1math_1_1_t_chromatic_adaptation_definition_helper.html", null ],
       [ "ph::math::TColorSpaceDefinitionHelper< COLOR_SPACE, REF_WHITE >", "classph_1_1math_1_1_t_color_space_definition_helper.html", null ],
@@ -350,10 +395,10 @@ var hierarchy =
       [ "ph::LogicalException", "classph_1_1_logical_exception.html", [
         [ "ph::IllegalOperationException", "classph_1_1_illegal_operation_exception.html", null ],
         [ "ph::InvalidArgumentException", "classph_1_1_invalid_argument_exception.html", null ],
+        [ "ph::OutOfRangeException", "classph_1_1_out_of_range_exception.html", null ],
         [ "ph::UninitializedObjectException", "classph_1_1_uninitialized_object_exception.html", null ]
       ] ]
     ] ],
-    [ "ph::LogSender", "classph_1_1_log_sender.html", null ],
     [ "ph::Workflow::ManagedWork", "classph_1_1_workflow_1_1_managed_work.html", null ],
     [ "ph::Microfacet", "classph_1_1_microfacet.html", [
       [ "ph::AnisoTrowbridgeReitz", "classph_1_1_aniso_trowbridge_reitz.html", null ],
@@ -365,16 +410,16 @@ var hierarchy =
     ] ],
     [ "ph::MicrosurfaceInfo", "classph_1_1_microsurface_info.html", null ],
     [ "ph::ModelParser", "classph_1_1_model_parser.html", null ],
+    [ "ph::MotionCookConfig", "classph_1_1_motion_cook_config.html", null ],
     [ "ph::field_set_op::NoOpNoticeReceiver", "structph_1_1field__set__op_1_1_no_op_notice_receiver.html", null ],
-    [ "ph::ObservableRenderData", "classph_1_1_observable_render_data.html", null ],
     [ "ph::VolumeDistanceSample::Output", "classph_1_1_volume_distance_sample_1_1_output.html", null ],
-    [ "ph::OutputPayloads", "classph_1_1_output_payloads.html", null ],
+    [ "ph::math::detail::Pcg64UInt128", "classph_1_1math_1_1detail_1_1_pcg64_u_int128.html", null ],
+    [ "ph::halton_detail::PerDigitPermuter", "classph_1_1halton__detail_1_1_per_digit_permuter.html", null ],
     [ "ph::PeriodicSingleThreadExecutor", "classph_1_1_periodic_single_thread_executor.html", null ],
     [ "ph::PfmFileWriter", "classph_1_1_pfm_file_writer.html", null ],
     [ "PHObservableRenderData", "struct_p_h_observable_render_data.html", null ],
     [ "PHRenderState", "struct_p_h_render_state.html", null ],
     [ "ph::PictureData", "classph_1_1_picture_data.html", null ],
-    [ "ph::PictureSaver", "classph_1_1_picture_saver.html", null ],
     [ "ph::PixelBuffer2D", "classph_1_1_pixel_buffer2_d.html", [
       [ "ph::TFrameBuffer2D< T, N >", "classph_1_1_t_frame_buffer2_d.html", null ]
     ] ],
@@ -385,8 +430,8 @@ var hierarchy =
     [ "ph::PlyPropertyListValues", "classph_1_1_ply_property_list_values.html", null ],
     [ "ph::PlyPropertyValues", "classph_1_1_ply_property_values.html", null ],
     [ "ph::PMStatistics", "classph_1_1_p_m_statistics.html", null ],
+    [ "ph::PreCookReport", "classph_1_1_pre_cook_report.html", null ],
     [ "ph::PreCookResourceCollectionProxy", "classph_1_1_pre_cook_resource_collection_proxy.html", null ],
-    [ "ph::PreCookResults", "classph_1_1_pre_cook_results.html", null ],
     [ "ph::PrimitiveBuildingMaterial", "classph_1_1_primitive_building_material.html", null ],
     [ "ph::PrimitiveChannel", "classph_1_1_primitive_channel.html", null ],
     [ "ph::PrimitiveMetadata", "classph_1_1_primitive_metadata.html", null ],
@@ -398,7 +443,6 @@ var hierarchy =
     [ "ph::PrimitivePosSampleQuery", "classph_1_1_primitive_pos_sample_query.html", null ],
     [ "ph::PtVolumetricEstimator", "classph_1_1_pt_volumetric_estimator.html", null ],
     [ "ph::RadianceSensor", "classph_1_1_radiance_sensor.html", null ],
-    [ "ph::detail::halton::RadicalInversePermutations", "classph_1_1detail_1_1halton_1_1_radical_inverse_permutations.html", null ],
     [ "ph::math::Random", "classph_1_1math_1_1_random.html", null ],
     [ "ph::Ray", "classph_1_1_ray.html", null ],
     [ "ph::RayDifferential", "classph_1_1_ray_differential.html", null ],
@@ -410,6 +454,7 @@ var hierarchy =
       ] ]
     ] ],
     [ "ph::Statistics::Record", "classph_1_1_statistics_1_1_record.html", null ],
+    [ "ph::ReferencedPrimitiveMetaGetter", "structph_1_1_referenced_primitive_meta_getter.html", null ],
     [ "ph::RegularPicture", "classph_1_1_regular_picture.html", null ],
     [ "ph::RegularPictureFormat", "classph_1_1_regular_picture_format.html", null ],
     [ "ph::Renderer", "classph_1_1_renderer.html", [
@@ -421,8 +466,9 @@ var hierarchy =
       ] ]
     ] ],
     [ "ph::RendererProxy", "classph_1_1_renderer_proxy.html", null ],
+    [ "ph::RenderObservationInfo", "classph_1_1_render_observation_info.html", null ],
     [ "ph::RenderProgress", "classph_1_1_render_progress.html", null ],
-    [ "ph::RenderState", "classph_1_1_render_state.html", null ],
+    [ "ph::RenderStats", "classph_1_1_render_stats.html", null ],
     [ "ph::RenderWork", "classph_1_1_render_work.html", [
       [ "ph::TRadianceEvaluationWork< FullPhoton >", "classph_1_1_t_radiance_evaluation_work.html", [
         [ "ph::PPMRadianceEvaluationWork", "classph_1_1_p_p_m_radiance_evaluation_work.html", null ]
@@ -433,14 +479,17 @@ var hierarchy =
       [ "ph::TViewPathTracingWork< ViewPathHandler >", "classph_1_1_t_view_path_tracing_work.html", null ]
     ] ],
     [ "ph::RenderWorker", "classph_1_1_render_worker.html", null ],
-    [ "ph::ResourceCookReport", "classph_1_1_resource_cook_report.html", null ],
-    [ "ph::SdlReferenceResolver::ResourceInfo", "structph_1_1_sdl_reference_resolver_1_1_resource_info.html", null ],
+    [ "ph::ResourceIdentifier", "classph_1_1_resource_identifier.html", null ],
+    [ "ph::SdlDependencyResolver::ResourceInfo", "structph_1_1_sdl_dependency_resolver_1_1_resource_info.html", null ],
     [ "ph::RoughnessToAlphaMapping", "classph_1_1_roughness_to_alpha_mapping.html", null ],
     [ "std::runtime_error", null, [
       [ "ph::RuntimeException", "classph_1_1_runtime_exception.html", [
-        [ "ph::ActorCookException", "classph_1_1_actor_cook_exception.html", null ],
+        [ "ph::CookException", "classph_1_1_cook_exception.html", [
+          [ "ph::ActorCookException", "classph_1_1_actor_cook_exception.html", null ]
+        ] ],
         [ "ph::IOException", "classph_1_1_i_o_exception.html", [
-          [ "ph::FileIOError", "classph_1_1_file_i_o_error.html", null ]
+          [ "ph::FileIOError", "classph_1_1_file_i_o_error.html", null ],
+          [ "ph::FilesystemError", "classph_1_1_filesystem_error.html", null ]
         ] ],
         [ "ph::NumericException", "classph_1_1_numeric_exception.html", [
           [ "ph::OverflowException", "classph_1_1_overflow_exception.html", null ]
@@ -448,10 +497,10 @@ var hierarchy =
         [ "ph::SdlException", "classph_1_1_sdl_exception.html", [
           [ "ph::SdlLoadError", "classph_1_1_sdl_load_error.html", null ],
           [ "ph::SdlSaveError", "classph_1_1_sdl_save_error.html", null ]
+        ] ],
+        [ "ph::math::MathException", "classph_1_1math_1_1_math_exception.html", [
+          [ "ph::math::ColorError", "classph_1_1math_1_1_color_error.html", null ]
         ] ]
-      ] ],
-      [ "ph::math::MathException", "classph_1_1math_1_1_math_exception.html", [
-        [ "ph::math::ColorError", "classph_1_1math_1_1_color_error.html", null ]
       ] ]
     ] ],
     [ "ph::RussianRoulette", "classph_1_1_russian_roulette.html", null ],
@@ -477,86 +526,85 @@ var hierarchy =
       [ "ph::HenyeyGreenstein", "classph_1_1_henyey_greenstein.html", null ]
     ] ],
     [ "ph::Scene", "classph_1_1_scene.html", null ],
-    [ "ph::SceneDescription", "classph_1_1_scene_description.html", null ],
+    [ "ph::VisualWorld::SceneActor", "structph_1_1_visual_world_1_1_scene_actor.html", null ],
     [ "ph::detail::stats::ScopedTimer", "structph_1_1detail_1_1stats_1_1_scoped_timer.html", null ],
-    [ "ph::SdlClass", "classph_1_1_sdl_class.html", [
-      [ "ph::TOwnerSdlClass< Owner, FieldSet >", "classph_1_1_t_owner_sdl_class.html", null ]
+    [ "ph::SdlCommandGenerator", "classph_1_1_sdl_command_generator.html", [
+      [ "ph::SdlSceneFileWriter", "classph_1_1_sdl_scene_file_writer.html", null ]
     ] ],
+    [ "ph::SdlCommandParser", "classph_1_1_sdl_command_parser.html", [
+      [ "ph::SdlSceneFileReader", "classph_1_1_sdl_scene_file_reader.html", null ]
+    ] ],
+    [ "ph::SdlDataPacketInterface", "classph_1_1_sdl_data_packet_interface.html", [
+      [ "ph::SdlInlinePacketInterface", "classph_1_1_sdl_inline_packet_interface.html", null ]
+    ] ],
+    [ "ph::SdlDependencyResolver", "classph_1_1_sdl_dependency_resolver.html", null ],
     [ "ph::SdlEnum", "classph_1_1_sdl_enum.html", [
-      [ "ph::TBasicSdlEnum< EnumType_, MAX_ENTRIES >", "classph_1_1_t_basic_sdl_enum.html", null ]
+      [ "ph::TSdlGeneralEnum< InEnumType, MAX_ENTRIES >", "classph_1_1_t_sdl_general_enum.html", null ]
     ] ],
     [ "ph::SdlField", "classph_1_1_sdl_field.html", [
-      [ "ph::TOwnedSdlField< OuterType >", "classph_1_1_t_owned_sdl_field.html", [
+      [ "ph::TSdlOwnedField< OuterType >", "classph_1_1_t_sdl_owned_field.html", [
         [ "ph::TSdlNestedField< OuterType, InnerType >", "classph_1_1_t_sdl_nested_field.html", null ]
       ] ],
-      [ "ph::TOwnedSdlField< InnerType >", "classph_1_1_t_owned_sdl_field.html", null ],
-      [ "ph::TOwnedSdlField< Owner >", "classph_1_1_t_owned_sdl_field.html", [
-        [ "ph::TSdlReference< UnifiedNumericImage, Owner >", "classph_1_1_t_sdl_reference.html", [
-          [ "ph::TSdlUnifiedNumericImage< Owner >", "classph_1_1_t_sdl_unified_numeric_image.html", null ]
-        ] ],
-        [ "ph::TSdlReference< UnifiedColorImage, Owner >", "classph_1_1_t_sdl_reference.html", [
-          [ "ph::TSdlUnifiedColorImage< Owner >", "classph_1_1_t_sdl_unified_color_image.html", null ]
-        ] ],
-        [ "ph::TAbstractSdlValue< T, Owner >", "classph_1_1_t_abstract_sdl_value.html", [
-          [ "ph::TSdlValue< math::TQuaternion< real >, Owner >", "classph_1_1_t_sdl_value.html", [
-            [ "ph::TSdlQuaternion< Owner, Element, SdlValueType >", "classph_1_1_t_sdl_quaternion.html", null ]
-          ] ],
-          [ "ph::TSdlValue< std::string, Owner >", "classph_1_1_t_sdl_value.html", [
-            [ "ph::TSdlString< Owner, SdlValueType >", "classph_1_1_t_sdl_string.html", null ]
-          ] ],
-          [ "ph::TSdlValue< real, Owner >", "classph_1_1_t_sdl_value.html", [
-            [ "ph::TSdlReal< Owner, FloatType, SdlValueType >", "classph_1_1_t_sdl_real.html", null ]
-          ] ],
-          [ "ph::TSdlValue< Path, Owner >", "classph_1_1_t_sdl_value.html", [
-            [ "ph::TSdlPath< Owner, SdlValueType >", "classph_1_1_t_sdl_path.html", null ]
-          ] ],
-          [ "ph::TSdlValue< bool, Owner >", "classph_1_1_t_sdl_value.html", [
-            [ "ph::TSdlBool< Owner, SdlValueType >", "classph_1_1_t_sdl_bool.html", null ]
-          ] ],
-          [ "ph::TSdlValue< EnumType, Owner >", "classph_1_1_t_sdl_value.html", [
-            [ "ph::TSdlEnumField< Owner, EnumType, SdlValueType >", "classph_1_1_t_sdl_enum_field.html", null ]
-          ] ],
-          [ "ph::TSdlValue< std::vector< real >, Owner >", "classph_1_1_t_sdl_value.html", [
-            [ "ph::TSdlRealArray< Owner, Element, SdlValueType >", "classph_1_1_t_sdl_real_array.html", null ]
-          ] ],
-          [ "ph::TSdlValue< integer, Owner >", "classph_1_1_t_sdl_value.html", [
-            [ "ph::TSdlInteger< Owner, IntType, SdlValueType >", "classph_1_1_t_sdl_integer.html", null ]
-          ] ],
-          [ "ph::TSdlValue< math::TVector2< Element >, Owner >", "classph_1_1_t_sdl_value.html", [
-            [ "ph::TSdlVector2< Owner, Element, SdlValueType >", "classph_1_1_t_sdl_vector2.html", null ]
-          ] ],
-          [ "ph::TSdlValue< math::Spectrum, Owner >", "classph_1_1_t_sdl_value.html", [
-            [ "ph::TSdlSpectrum< Owner, SdlValueType >", "classph_1_1_t_sdl_spectrum.html", null ]
-          ] ],
-          [ "ph::TSdlValue< math::TVector3< real >, Owner >", "classph_1_1_t_sdl_value.html", [
-            [ "ph::TSdlVector3< Owner, Element, SdlValueType >", "classph_1_1_t_sdl_vector3.html", null ]
-          ] ],
+      [ "ph::TSdlOwnedField< InnerType >", "classph_1_1_t_sdl_owned_field.html", null ],
+      [ "ph::TSdlOwnedField< Owner >", "classph_1_1_t_sdl_owned_field.html", [
+        [ "ph::TSdlAbstractValue< bool, Owner >", "classph_1_1_t_sdl_abstract_value.html", null ],
+        [ "ph::TSdlAbstractValue< EnumType, Owner >", "classph_1_1_t_sdl_abstract_value.html", null ],
+        [ "ph::TSdlAbstractValue< integer, Owner >", "classph_1_1_t_sdl_abstract_value.html", null ],
+        [ "ph::TSdlAbstractValue< Path, Owner >", "classph_1_1_t_sdl_abstract_value.html", null ],
+        [ "ph::TSdlAbstractValue< math::TQuaternion< real >, Owner >", "classph_1_1_t_sdl_abstract_value.html", null ],
+        [ "ph::TSdlAbstractValue< real, Owner >", "classph_1_1_t_sdl_abstract_value.html", null ],
+        [ "ph::TSdlAbstractValue< std::vector< real >, Owner >", "classph_1_1_t_sdl_abstract_value.html", null ],
+        [ "ph::TSdlAbstractValue< ResourceIdentifier, Owner >", "classph_1_1_t_sdl_abstract_value.html", null ],
+        [ "ph::TSdlAbstractValue< math::Spectrum, Owner >", "classph_1_1_t_sdl_abstract_value.html", null ],
+        [ "ph::TSdlAbstractValue< std::string, Owner >", "classph_1_1_t_sdl_abstract_value.html", null ],
+        [ "ph::TSdlAbstractValue< math::TVector2< Element >, Owner >", "classph_1_1_t_sdl_abstract_value.html", null ],
+        [ "ph::TSdlAbstractValue< math::TVector3< real >, Owner >", "classph_1_1_t_sdl_abstract_value.html", null ],
+        [ "ph::TSdlAbstractValue< T, Owner >", "classph_1_1_t_sdl_abstract_value.html", [
+          [ "ph::TSdlValue< bool, Owner >", "classph_1_1_t_sdl_value.html", null ],
+          [ "ph::TSdlValue< EnumType, Owner >", "classph_1_1_t_sdl_value.html", null ],
+          [ "ph::TSdlValue< integer, Owner >", "classph_1_1_t_sdl_value.html", null ],
+          [ "ph::TSdlValue< Path, Owner >", "classph_1_1_t_sdl_value.html", null ],
+          [ "ph::TSdlValue< math::TQuaternion< real >, Owner >", "classph_1_1_t_sdl_value.html", null ],
+          [ "ph::TSdlValue< real, Owner >", "classph_1_1_t_sdl_value.html", null ],
+          [ "ph::TSdlValue< std::vector< real >, Owner >", "classph_1_1_t_sdl_value.html", null ],
+          [ "ph::TSdlValue< ResourceIdentifier, Owner >", "classph_1_1_t_sdl_value.html", null ],
+          [ "ph::TSdlValue< math::Spectrum, Owner >", "classph_1_1_t_sdl_value.html", null ],
+          [ "ph::TSdlValue< std::string, Owner >", "classph_1_1_t_sdl_value.html", null ],
+          [ "ph::TSdlValue< math::TVector2< Element >, Owner >", "classph_1_1_t_sdl_value.html", null ],
+          [ "ph::TSdlValue< math::TVector3< real >, Owner >", "classph_1_1_t_sdl_value.html", null ],
           [ "ph::TSdlOptionalValue< T, Owner >", "classph_1_1_t_sdl_optional_value.html", null ],
-          [ "ph::TSdlValue< T, Owner >", "classph_1_1_t_sdl_value.html", null ]
+          [ "ph::TSdlValue< T, Owner >", "classph_1_1_t_sdl_value.html", [
+            [ "ph::TSdlBool< Owner, SdlValueType >", "classph_1_1_t_sdl_bool.html", null ],
+            [ "ph::TSdlEnumField< Owner, EnumType, SdlValueType >", "classph_1_1_t_sdl_enum_field.html", null ],
+            [ "ph::TSdlInteger< Owner, IntType, SdlValueType >", "classph_1_1_t_sdl_integer.html", null ],
+            [ "ph::TSdlPath< Owner, SdlValueType >", "classph_1_1_t_sdl_path.html", null ],
+            [ "ph::TSdlQuaternion< Owner, Element, SdlValueType >", "classph_1_1_t_sdl_quaternion.html", null ],
+            [ "ph::TSdlReal< Owner, FloatType, SdlValueType >", "classph_1_1_t_sdl_real.html", null ],
+            [ "ph::TSdlRealArray< Owner, Element, SdlValueType >", "classph_1_1_t_sdl_real_array.html", null ],
+            [ "ph::TSdlResourceIdentifier< Owner, IS_SRI, SdlValueType >", "classph_1_1_t_sdl_resource_identifier.html", null ],
+            [ "ph::TSdlSpectrum< Owner, SdlValueType >", "classph_1_1_t_sdl_spectrum.html", null ],
+            [ "ph::TSdlString< Owner, SdlValueType >", "classph_1_1_t_sdl_string.html", null ],
+            [ "ph::TSdlVector2< Owner, Element, SdlValueType >", "classph_1_1_t_sdl_vector2.html", null ],
+            [ "ph::TSdlVector3< Owner, Element, SdlValueType >", "classph_1_1_t_sdl_vector3.html", null ]
+          ] ]
         ] ],
-        [ "ph::TSdlReference< T, Owner >", "classph_1_1_t_sdl_reference.html", null ]
+        [ "ph::TSdlReference< T, Owner >", "classph_1_1_t_sdl_reference.html", null ],
+        [ "ph::TSdlReferenceArray< T, Owner >", "classph_1_1_t_sdl_reference_array.html", null ]
       ] ]
     ] ],
-    [ "ph::SdlFunction", "classph_1_1_sdl_function.html", [
-      [ "ph::TSdlMethod< MethodStruct, TargetType >", "classph_1_1_t_sdl_method.html", null ]
-    ] ],
-    [ "ph::SdlInputPayload", "classph_1_1_sdl_input_payload.html", null ],
+    [ "ph::SdlInputClause", "classph_1_1_sdl_input_clause.html", null ],
+    [ "ph::SdlInputClauses", "classph_1_1_sdl_input_clauses.html", null ],
     [ "ph::SdlIOContext", "classph_1_1_sdl_i_o_context.html", [
       [ "ph::SdlInputContext", "classph_1_1_sdl_input_context.html", null ],
       [ "ph::SdlOutputContext", "classph_1_1_sdl_output_context.html", null ]
     ] ],
-    [ "ph::SdlOutputPayload", "classph_1_1_sdl_output_payload.html", null ],
-    [ "ph::SdlParser", "classph_1_1_sdl_parser.html", null ],
-    [ "ph::SdlReferenceResolver", "classph_1_1_sdl_reference_resolver.html", null ],
-    [ "ph::SdlResourceIdentifier", "classph_1_1_sdl_resource_identifier.html", null ],
+    [ "ph::SdlNativeData", "classph_1_1_sdl_native_data.html", null ],
+    [ "ph::SdlOutputClause", "classph_1_1_sdl_output_clause.html", null ],
+    [ "ph::SdlOutputClauses", "classph_1_1_sdl_output_clauses.html", null ],
     [ "ph::PhysicalActor::SdlRotate", "structph_1_1_physical_actor_1_1_sdl_rotate.html", null ],
     [ "ph::PhysicalActor::SdlScale", "structph_1_1_physical_actor_1_1_sdl_scale.html", null ],
-    [ "ph::SdlStruct", "classph_1_1_sdl_struct.html", [
-      [ "ph::TOwnerSdlStruct< StructType >", "classph_1_1_t_owner_sdl_struct.html", null ]
-    ] ],
     [ "ph::SdlStructFieldStump", "classph_1_1_sdl_struct_field_stump.html", null ],
     [ "ph::PhysicalActor::SdlTranslate", "structph_1_1_physical_actor_1_1_sdl_translate.html", null ],
-    [ "ph::SdlWriter", "classph_1_1_sdl_writer.html", null ],
     [ "ph::SemanticVersion", "classph_1_1_semantic_version.html", null ],
     [ "ph::SenseEvent", "classph_1_1_sense_event.html", null ],
     [ "ph::SGUtil", "classph_1_1_s_g_util.html", null ],
@@ -590,13 +638,20 @@ var hierarchy =
     [ "ph::texfunc::TAddConstant< InputType, ConstantType, OutputType >", "classph_1_1texfunc_1_1_t_add_constant.html", null ],
     [ "ph::math::TAnalyticalIntegrator1D< T >", "classph_1_1math_1_1_t_analytical_integrator1_d.html", null ],
     [ "ph::DammertzDispatcher::TAnalyzer< MODE >", "classph_1_1_dammertz_dispatcher_1_1_t_analyzer.html", null ],
+    [ "ph::TAnyPtr< IS_CONST >", "classph_1_1_t_any_ptr.html", null ],
+    [ "ph::TAnyPtr< false >", "classph_1_1_t_any_ptr.html", null ],
     [ "ph::math::TArithmeticArrayBase< Derived, T, N >", "classph_1_1math_1_1_t_arithmetic_array_base.html", [
-      [ "ph::math::TArithmeticArray< float64, PH_NUMERIC_IMAGE_MAX_ELEMENTS >", "classph_1_1math_1_1_t_arithmetic_array.html", null ],
       [ "ph::math::TSpectrumBase< TSampledSpectrum< COLOR_SPACE, T, Props >, COLOR_SPACE, T, Props::NUM_SAMPLES >", "classph_1_1math_1_1_t_spectrum_base.html", [
         [ "ph::math::TSampledSpectrum< COLOR_SPACE, T, Props >", "classph_1_1math_1_1_t_sampled_spectrum.html", null ]
       ] ],
       [ "ph::math::TSpectrumBase< TTristimulusSpectrum< COLOR_SPACE, T >, COLOR_SPACE, T, 3 >", "classph_1_1math_1_1_t_spectrum_base.html", [
         [ "ph::math::TTristimulusSpectrum< COLOR_SPACE, T >", "classph_1_1math_1_1_t_tristimulus_spectrum.html", null ]
+      ] ],
+      [ "ph::math::TVectorNBase< TVector2< float64 >, float64, 2 >", "classph_1_1math_1_1_t_vector_n_base.html", null ],
+      [ "ph::math::TVectorNBase< TVector3< real >, real, 3 >", "classph_1_1math_1_1_t_vector_n_base.html", null ],
+      [ "ph::math::TVectorNBase< TVector2< Element >, Element, 2 >", "classph_1_1math_1_1_t_vector_n_base.html", null ],
+      [ "ph::math::TVectorNBase< TVector2< T >, T, 2 >", "classph_1_1math_1_1_t_vector_n_base.html", [
+        [ "ph::math::TVector2< T >", "classph_1_1math_1_1_t_vector2.html", null ]
       ] ],
       [ "ph::math::TVectorNBase< TVector3< T >, T, 3 >", "classph_1_1math_1_1_t_vector_n_base.html", [
         [ "ph::math::TVector3< T >", "classph_1_1math_1_1_t_vector3.html", null ]
@@ -604,19 +659,21 @@ var hierarchy =
       [ "ph::math::TVectorNBase< TVector4< T >, T, 4 >", "classph_1_1math_1_1_t_vector_n_base.html", [
         [ "ph::math::TVector4< T >", "classph_1_1math_1_1_t_vector4.html", null ]
       ] ],
-      [ "ph::math::TVectorNBase< TVector2< T >, T, 2 >", "classph_1_1math_1_1_t_vector_n_base.html", [
-        [ "ph::math::TVector2< T >", "classph_1_1math_1_1_t_vector2.html", null ]
-      ] ],
       [ "ph::math::TVectorNBase< TVectorN< T, N >, T, N >", "classph_1_1math_1_1_t_vector_n_base.html", [
         [ "ph::math::TVectorN< T, N >", "classph_1_1math_1_1_t_vector_n.html", null ]
       ] ],
+      [ "ph::math::TVectorNBase< TVector2< int64 >, int64, 2 >", "classph_1_1math_1_1_t_vector_n_base.html", null ],
+      [ "ph::math::TVectorNBase< TVector2< uint32 >, uint32, 2 >", "classph_1_1math_1_1_t_vector_n_base.html", null ],
+      [ "ph::math::TVectorNBase< TVector2< std::size_t >, std::size_t, 2 >", "classph_1_1math_1_1_t_vector_n_base.html", null ],
+      [ "ph::math::TVectorNBase< TVector2< real >, real, 2 >", "classph_1_1math_1_1_t_vector_n_base.html", null ],
       [ "ph::math::TSpectrumBase< Derived, COLOR_SPACE, T, N >", "classph_1_1math_1_1_t_spectrum_base.html", null ],
       [ "ph::math::TVectorNBase< Derived, T, N >", "classph_1_1math_1_1_t_vector_n_base.html", [
-        [ "ph::math::TVector2< real >", "classph_1_1math_1_1_t_vector2.html", null ],
-        [ "ph::math::TVector2< std::size_t >", "classph_1_1math_1_1_t_vector2.html", null ],
+        [ "ph::math::TVector2< float64 >", "classph_1_1math_1_1_t_vector2.html", null ],
+        [ "ph::math::TVector2< Element >", "classph_1_1math_1_1_t_vector2.html", null ],
         [ "ph::math::TVector2< int64 >", "classph_1_1math_1_1_t_vector2.html", null ],
         [ "ph::math::TVector2< uint32 >", "classph_1_1math_1_1_t_vector2.html", null ],
-        [ "ph::math::TVector2< float64 >", "classph_1_1math_1_1_t_vector2.html", null ],
+        [ "ph::math::TVector2< std::size_t >", "classph_1_1math_1_1_t_vector2.html", null ],
+        [ "ph::math::TVector2< real >", "classph_1_1math_1_1_t_vector2.html", null ],
         [ "ph::math::TVector3< real >", "classph_1_1math_1_1_t_vector3.html", null ]
       ] ]
     ] ],
@@ -625,32 +682,50 @@ var hierarchy =
       [ "ph::math::TArithmeticArray< T, SampleProps::NUM_SAMPLES >", "classph_1_1math_1_1_t_arithmetic_array.html", null ],
       [ "ph::math::TArithmeticArray< T, N >", "classph_1_1math_1_1_t_arithmetic_array.html", null ]
     ] ],
+    [ "ph::math::TArithmeticArrayBase< TSampledSpectrum< COLOR_SPACE, T, Props >, T, N >", "classph_1_1math_1_1_t_arithmetic_array_base.html", null ],
+    [ "ph::math::TArithmeticArrayBase< TTristimulusSpectrum< COLOR_SPACE, T >, T, N >", "classph_1_1math_1_1_t_arithmetic_array_base.html", null ],
+    [ "ph::math::TArithmeticArrayBase< TVector2< Element >, Element, N >", "classph_1_1math_1_1_t_arithmetic_array_base.html", null ],
+    [ "ph::math::TArithmeticArrayBase< TVector2< float64 >, float64, N >", "classph_1_1math_1_1_t_arithmetic_array_base.html", null ],
+    [ "ph::math::TArithmeticArrayBase< TVector2< int64 >, int64, N >", "classph_1_1math_1_1_t_arithmetic_array_base.html", null ],
+    [ "ph::math::TArithmeticArrayBase< TVector2< real >, real, N >", "classph_1_1math_1_1_t_arithmetic_array_base.html", null ],
+    [ "ph::math::TArithmeticArrayBase< TVector2< std::size_t >, std::size_t, N >", "classph_1_1math_1_1_t_arithmetic_array_base.html", null ],
+    [ "ph::math::TArithmeticArrayBase< TVector2< T >, T, N >", "classph_1_1math_1_1_t_arithmetic_array_base.html", null ],
+    [ "ph::math::TArithmeticArrayBase< TVector2< uint32 >, uint32, N >", "classph_1_1math_1_1_t_arithmetic_array_base.html", null ],
+    [ "ph::math::TArithmeticArrayBase< TVector3< real >, real, N >", "classph_1_1math_1_1_t_arithmetic_array_base.html", null ],
+    [ "ph::math::TArithmeticArrayBase< TVector3< T >, T, N >", "classph_1_1math_1_1_t_arithmetic_array_base.html", null ],
+    [ "ph::math::TArithmeticArrayBase< TVector4< T >, T, N >", "classph_1_1math_1_1_t_arithmetic_array_base.html", null ],
+    [ "ph::math::TArithmeticArrayBase< TVectorN< T, N >, T, N >", "classph_1_1math_1_1_t_arithmetic_array_base.html", null ],
     [ "ph::TArrayAsStack< T, N >", "classph_1_1_t_array_as_stack.html", null ],
     [ "ph::TArrayAsStack< const Intersectable *, PH_HIT_PROBE_DEPTH >", "classph_1_1_t_array_as_stack.html", null ],
     [ "ph::TArrayAsVector< T, N >", "classph_1_1_t_array_as_vector.html", null ],
     [ "ph::TArrayAsVector< const SdlFunction *, PH_SDL_MAX_FUNCTIONS >", "classph_1_1_t_array_as_vector.html", null ],
-    [ "ph::TArrayAsVector< ph::TBasicSdlEnum::BasicEnumEntry, 64 >", "classph_1_1_t_array_as_vector.html", null ],
+    [ "ph::TArrayAsVector< ph::TSdlGeneralEnum::BasicEnumEntry, 64 >", "classph_1_1_t_array_as_vector.html", null ],
     [ "ph::TArrayAsVector< std::unique_ptr< BaseFieldType >, PH_SDL_MAX_FIELDS >", "classph_1_1_t_array_as_vector.html", null ],
-    [ "ph::TAtomicQueue< T >", "classph_1_1_t_atomic_queue.html", null ],
+    [ "ph::TArrayAsVector< std::unique_ptr< ph::TSdlOwnedField< MethodStruct > >, PH_SDL_MAX_FIELDS >", "classph_1_1_t_array_as_vector.html", null ],
+    [ "ph::TArrayAsVector< std::unique_ptr< ph::TSdlOwnedField< StructType > >, PH_SDL_MAX_FIELDS >", "classph_1_1_t_array_as_vector.html", null ],
+    [ "ph::TArrayAsVector< std::unique_ptr< TSdlOwnedField< Owner > >, PH_SDL_MAX_FIELDS >", "classph_1_1_t_array_as_vector.html", null ],
+    [ "ph::TAtomicQuasiQueue< T >", "classph_1_1_t_atomic_quasi_queue.html", null ],
     [ "ph::math::TBasicTriangle< T >", "classph_1_1math_1_1_t_basic_triangle.html", [
       [ "ph::math::TWatertightTriangle< real >", "classph_1_1math_1_1_t_watertight_triangle.html", null ],
       [ "ph::math::TTriangle< T >", "classph_1_1math_1_1_t_triangle.html", null ],
       [ "ph::math::TWatertightTriangle< T >", "classph_1_1math_1_1_t_watertight_triangle.html", null ]
     ] ],
+    [ "ph::math::TBasicTriangle< real >", "classph_1_1math_1_1_t_basic_triangle.html", null ],
     [ "ph::TBitFlags< Value, Input >", "classph_1_1_t_bit_flags.html", null ],
     [ "ph::TBitFlags< uint32, ESurfacePhenomenon >", "classph_1_1_t_bit_flags.html", null ],
-    [ "ph::TBlockableAtomicQueue< T >", "classph_1_1_t_blockable_atomic_queue.html", null ],
-    [ "ph::TBlockableAtomicQueue< Workload >", "classph_1_1_t_blockable_atomic_queue.html", null ],
+    [ "ph::TBlockableAtomicQuasiQueue< T >", "classph_1_1_t_blockable_atomic_quasi_queue.html", null ],
+    [ "ph::TBlockableAtomicQuasiQueue< Workload >", "classph_1_1_t_blockable_atomic_quasi_queue.html", null ],
     [ "ph::math::TChromaticAdaptationDefinition< ALGORITHM, T >", "classph_1_1math_1_1_t_chromatic_adaptation_definition.html", null ],
     [ "ph::math::detail::TCIEXYZCmfKernel< T, SampleProps >", "structph_1_1math_1_1detail_1_1_t_c_i_e_x_y_z_cmf_kernel.html", null ],
+    [ "ph::detail::TClosestHitProbeResult< Index >", "structph_1_1detail_1_1_t_closest_hit_probe_result.html", null ],
     [ "ph::math::TColorSpaceDefinition< COLOR_SPACE, T >", "classph_1_1math_1_1_t_color_space_definition.html", null ],
     [ "ph::math::detail::TColorSpaceDummy< COLOR_SPACE >", "classph_1_1math_1_1detail_1_1_t_color_space_dummy.html", null ],
     [ "ph::TConstIteratorProxy< ContainerType >", "classph_1_1_t_const_iterator_proxy.html", null ],
     [ "ph::math::TDecomposedTransform< T >", "classph_1_1math_1_1_t_decomposed_transform.html", null ],
-    [ "ph::math::TDecomposedTransform< real >", "classph_1_1math_1_1_t_decomposed_transform.html", null ],
     [ "ph::texfunc::TDefaultConversion< InputType, OutputType >", "classph_1_1texfunc_1_1_t_default_conversion.html", null ],
     [ "ph::TDirectLightEstimator< POLICY >", "classph_1_1_t_direct_light_estimator.html", null ],
     [ "ph::math::TDisk< T >", "classph_1_1math_1_1_t_disk.html", null ],
+    [ "ph::TEmbeddedPrimitiveGetter< PrimitiveType >", "structph_1_1_t_embedded_primitive_getter.html", null ],
     [ "ph::SdlEnum::TEntry< ValueType >", "structph_1_1_sdl_enum_1_1_t_entry.html", null ],
     [ "ph::TEstimationArray< EstimationType >", "classph_1_1_t_estimation_array.html", null ],
     [ "ph::TestPoint", "classph_1_1_test_point.html", null ],
@@ -663,7 +738,9 @@ var hierarchy =
     [ "ph::TFrame< HdrComponent, 3 >", "classph_1_1_t_frame.html", null ],
     [ "ph::TFrame< uint64, 1 >", "classph_1_1_t_frame.html", null ],
     [ "ph::function_detail::TFunction< T, MIN_SIZE_HINT >", "classph_1_1function__detail_1_1_t_function.html", null ],
+    [ "ph::function_detail::TFunction< bool(std::size_t elementIdx, SdlSetterVariant input)>", "classph_1_1function__detail_1_1_t_function.html", null ],
     [ "ph::function_detail::TFunction< R(Args...), MIN_SIZE_HINT >", "classph_1_1function__detail_1_1_t_function_3_01_r_07_args_8_8_8_08_00_01_m_i_n___s_i_z_e___h_i_n_t_01_4.html", null ],
+    [ "ph::function_detail::TFunction< SdlGetterVariant(std::size_t elementIdx)>", "classph_1_1function__detail_1_1_t_function.html", null ],
     [ "ph::function_detail::TFunction< void(void), 0 >", "classph_1_1function__detail_1_1_t_function.html", null ],
     [ "ph::math::THemisphere< T >", "classph_1_1math_1_1_t_hemisphere.html", null ],
     [ "ph::Time", "classph_1_1_time.html", null ],
@@ -672,13 +749,17 @@ var hierarchy =
     [ "ph::TimerStatsReport::TimeRecord", "structph_1_1_timer_stats_report_1_1_time_record.html", null ],
     [ "ph::TimerStatsReport", "classph_1_1_timer_stats_report.html", null ],
     [ "ph::Timestamp", "classph_1_1_timestamp.html", null ],
+    [ "ph::math::TIndexedItemEndpoint< Index >", "structph_1_1math_1_1_t_indexed_item_endpoint.html", null ],
     [ "ph::math::TIndexedKdtree< IndexToItem, ItemToAABB, Index >", "classph_1_1math_1_1_t_indexed_kdtree.html", null ],
     [ "ph::math::TIndexedKdtree< IndexedIntersectables, IntersectableAABBCalculator, uint32 >", "classph_1_1math_1_1_t_indexed_kdtree.html", null ],
     [ "ph::math::TIndexedKdtree< IndexedTriFaces, TriFaceAABBCalculator, Index >", "classph_1_1math_1_1_t_indexed_kdtree.html", null ],
+    [ "ph::math::TIndexedKdtree< IndexToTriangle, TriangleToAABB, Index >", "classph_1_1math_1_1_t_indexed_kdtree.html", null ],
     [ "ph::math::TIndexedKdtreeNode< Index, USE_SINGLE_ITEM_OPT >", "classph_1_1math_1_1_t_indexed_kdtree_node.html", null ],
     [ "ph::math::TIndexedPointKdtree< Item, Index, PointCalculator >", "classph_1_1math_1_1_t_indexed_point_kdtree.html", null ],
+    [ "ph::math::TIndexedPointKdtree< FullPhoton >", "classph_1_1math_1_1_t_indexed_point_kdtree.html", null ],
     [ "ph::math::TIndexedPointKdtree< ph::FullPhoton >", "classph_1_1math_1_1_t_indexed_point_kdtree.html", null ],
     [ "ph::math::TIndexedPointKdtree< Photon >", "classph_1_1math_1_1_t_indexed_point_kdtree.html", null ],
+    [ "ph::TIndexedPolygonBuffer< N >", "classph_1_1_t_indexed_polygon_buffer.html", null ],
     [ "ph::math::TIndexedVector3< T >", "classph_1_1math_1_1_t_indexed_vector3.html", null ],
     [ "ph::TIRayEstimator< EstimationType >", "classph_1_1_t_i_ray_estimator.html", null ],
     [ "ph::TIRayEstimator< math::Spectrum >", "classph_1_1_t_i_ray_estimator.html", [
@@ -717,6 +798,7 @@ var hierarchy =
     [ "ph::math::TMatrixMxNBase< Derived, T, N, N >", "classph_1_1math_1_1_t_matrix_mx_n_base.html", [
       [ "ph::math::TMatrixNBase< Derived, T, N >", "classph_1_1math_1_1_t_matrix_n_base.html", null ]
     ] ],
+    [ "ph::math::TMatrixMxNBase< TMatrix3< T >, T, N, N >", "classph_1_1math_1_1_t_matrix_mx_n_base.html", null ],
     [ "ph::TMergeableFilmProxy< Sample >", "classph_1_1_t_mergeable_film_proxy.html", null ],
     [ "ph::TMis< STYLE >", "classph_1_1_t_mis.html", null ],
     [ "ph::texfunc::TMultiply< InputTypeA, InputTypeB, OutputType >", "classph_1_1texfunc_1_1_t_multiply.html", null ],
@@ -738,6 +820,7 @@ var hierarchy =
     [ "ph::math::TPwcDistribution2D< T >", "classph_1_1math_1_1_t_pwc_distribution2_d.html", null ],
     [ "ph::math::TPwcDistribution2D< real >", "classph_1_1math_1_1_t_pwc_distribution2_d.html", null ],
     [ "ph::math::TQuaternion< T >", "classph_1_1math_1_1_t_quaternion.html", null ],
+    [ "ph::math::TQuaternion< real >", "classph_1_1math_1_1_t_quaternion.html", null ],
     [ "ph::math::Transform", "classph_1_1math_1_1_transform.html", [
       [ "ph::math::RigidTransform", "classph_1_1math_1_1_rigid_transform.html", [
         [ "ph::math::DynamicLinearTranslation", "classph_1_1math_1_1_dynamic_linear_translation.html", null ],
@@ -745,18 +828,26 @@ var hierarchy =
       ] ],
       [ "ph::math::StaticAffineTransform", "classph_1_1math_1_1_static_affine_transform.html", null ]
     ] ],
-    [ "ph::TRelaxedRW< T >", "classph_1_1_t_relaxed_r_w.html", null ],
+    [ "ph::TransformInfo", "classph_1_1_transform_info.html", null ],
+    [ "ph::TransientVisualElement", "classph_1_1_transient_visual_element.html", null ],
+    [ "ph::TReferencedPrimitiveGetter< PrimitiveType >", "structph_1_1_t_referenced_primitive_getter.html", null ],
+    [ "ph::TRelaxedAtomic< T >", "classph_1_1_t_relaxed_atomic.html", null ],
+    [ "ph::TPIndexedKdTreeTriangleMesh< Index >::TriangleToAABB", "structph_1_1_t_p_indexed_kd_tree_triangle_mesh_1_1_triangle_to_a_a_b_b.html", null ],
     [ "ph::TriFace", "classph_1_1_tri_face.html", null ],
     [ "ph::TPKdTreeTriangleMesh< Index >::TriFaceAABBCalculator", "structph_1_1_t_p_kd_tree_triangle_mesh_1_1_tri_face_a_a_b_b_calculator.html", null ],
     [ "std::true_type", null, [
-      [ "ph::is_constructible_v< Built, From > >>", "structph_1_1_is_buildable_3_01_built_00_01_from_00_01std_1_1enable__if__t_3_01std_1_1is__converta6aac1ed5d2b2b1ac61e1c4a0d874ccc.html", null ]
+      [ "ph::IsBuildable< Built, From, std::enable_if_t< std::is_convertible_v< From, Built >||std::is_constructible_v< Built, From > > >", "structph_1_1_is_buildable_3_01_built_00_01_from_00_01std_1_1enable__if__t_3_01std_1_1is__convertda9fd9890447f483d9e1632d4e0943fa.html", null ]
     ] ],
     [ "ph::TSampler< OutputType >", "classph_1_1_t_sampler.html", null ],
     [ "ph::TSampler< ph::math::TTristimulusSpectrum >", "classph_1_1_t_sampler.html", null ],
     [ "ph::texfunc::TScalarToSpectrum< T >", "classph_1_1texfunc_1_1_t_scalar_to_spectrum.html", null ],
-    [ "ph::TSdl< T >", "classph_1_1_t_sdl.html", null ],
+    [ "ph::TSdl< StaticT >", "classph_1_1_t_sdl.html", null ],
+    [ "ph::TSdl< T >", "classph_1_1_t_sdl_3_01_t_01_4.html", null ],
+    [ "ph::TSdl< void >", "classph_1_1_t_sdl_3_01void_01_4.html", null ],
+    [ "ph::TSdlAccessorVariant< Variant >", "classph_1_1_t_sdl_accessor_variant.html", null ],
+    [ "ph::TSdlAnyInstance< IS_CONST >", "classph_1_1_t_sdl_any_instance.html", null ],
     [ "ph::TSdlEnum< EnumType >", "classph_1_1_t_sdl_enum.html", null ],
-    [ "TSdlValue< std::vector< math::TVector3< real >>, Owner >", null, [
+    [ "TSdlValue< std::vector< math::TVector3< real > >, Owner >", null, [
       [ "ph::TSdlVector3Array< Owner, Element, SdlValueType >", "classph_1_1_t_sdl_vector3_array.html", null ]
     ] ],
     [ "ph::math::detail::TSmitsSPDBasis< T, SampleProps >", "structph_1_1math_1_1detail_1_1_t_smits_s_p_d_basis.html", null ],
@@ -767,7 +858,11 @@ var hierarchy =
     [ "ph::TSPSCExecutor< Work >", "classph_1_1_t_s_p_s_c_executor.html", null ],
     [ "ph::TSPSCRingBuffer< T, N >", "classph_1_1_t_s_p_s_c_ring_buffer.html", null ],
     [ "ph::TStableIndexDenseVector< T, SIndex >", "classph_1_1_t_stable_index_dense_vector.html", null ],
+    [ "ph::TStackSentinel< BUFFER_BYTES >", "classph_1_1_t_stack_sentinel.html", null ],
     [ "ph::TTexture< OutputType >", "classph_1_1_t_texture.html", [
+      [ "ph::TPixelTexture2D< math::Spectrum >", "classph_1_1_t_pixel_texture2_d.html", [
+        [ "ph::TColorPixelTexture2D< COLOR_SPACE >", "classph_1_1_t_color_pixel_texture2_d.html", null ]
+      ] ],
       [ "ph::TPixelTexture2D< math::TArithmeticArray< T, N > >", "classph_1_1_t_pixel_texture2_d.html", [
         [ "ph::TNumericPixelTexture2D< T, 1 >", "classph_1_1_t_numeric_pixel_texture2_d.html", [
           [ "ph::TScalarPixelTexture2D< T >", "classph_1_1_t_scalar_pixel_texture2_d.html", null ]
@@ -782,15 +877,13 @@ var hierarchy =
       [ "ph::TUnaryTextureOperator< InputType, OutputType, OperatorType >", "classph_1_1_t_unary_texture_operator.html", null ]
     ] ],
     [ "ph::TTexture< math::Spectrum >", "classph_1_1_t_texture.html", [
-      [ "ph::TPixelTexture2D< math::Spectrum >", "classph_1_1_t_pixel_texture2_d.html", [
-        [ "ph::TColorPixelTexture2D< COLOR_SPACE >", "classph_1_1_t_color_pixel_texture2_d.html", null ]
-      ] ],
       [ "ph::HdrRgbTexture2D", "classph_1_1_hdr_rgb_texture2_d.html", null ],
       [ "ph::LdrRgbTexture2D", "classph_1_1_ldr_rgb_texture2_d.html", null ],
       [ "ph::PreethamTexture", "classph_1_1_preetham_texture.html", null ],
       [ "ph::TConstantSpectralTexture< COLOR_SPACE >", "classph_1_1_t_constant_spectral_texture.html", null ],
       [ "ph::TConstantTristimulusTexture< COLOR_SPACE >", "classph_1_1_t_constant_tristimulus_texture.html", null ]
     ] ],
+    [ "ph::TTexture< math::TArithmeticArray< T, N > >", "classph_1_1_t_texture.html", null ],
     [ "ph::TTexture< OutputT >", "classph_1_1_t_texture.html", [
       [ "ph::TSwizzledTexture< InputT, OutputT, OUTPUT_N >", "classph_1_1_t_swizzled_texture.html", null ]
     ] ],
@@ -805,6 +898,19 @@ var hierarchy =
         ] ]
       ] ]
     ] ],
+    [ "ph::math::TUniformRandomBitGenerator< Derived, Bits >", "classph_1_1math_1_1_t_uniform_random_bit_generator.html", [
+      [ "ph::math::TUrbg32x2< URBG1, URBG2 >", "classph_1_1math_1_1_t_urbg32x2.html", null ]
+    ] ],
+    [ "ph::math::TUniformRandomBitGenerator< Pcg32, uint32 >", "classph_1_1math_1_1_t_uniform_random_bit_generator.html", [
+      [ "ph::math::Pcg32", "classph_1_1math_1_1_pcg32.html", null ]
+    ] ],
+    [ "ph::math::TUniformRandomBitGenerator< Pcg64DXSM, uint64 >", "classph_1_1math_1_1_t_uniform_random_bit_generator.html", [
+      [ "ph::math::Pcg64DXSM", "classph_1_1math_1_1_pcg64_d_x_s_m.html", null ]
+    ] ],
+    [ "ph::math::TUniformRandomBitGenerator< TMt19937< Bits >, Bits >", "classph_1_1math_1_1_t_uniform_random_bit_generator.html", [
+      [ "ph::math::TMt19937< Bits >", "classph_1_1math_1_1_t_mt19937.html", null ]
+    ] ],
+    [ "ph::math::TUniformRandomBitGenerator< TUrbg32x2< URBG1, URBG1 >, uint64 >", "classph_1_1math_1_1_t_uniform_random_bit_generator.html", null ],
     [ "ph::TViewPathHandler< Derived >", "classph_1_1_t_view_path_handler.html", null ],
     [ "ph::TViewPathHandler< TPPMViewpointCollector< Viewpoint > >", "classph_1_1_t_view_path_handler.html", [
       [ "ph::TPPMViewpointCollector< Viewpoint >", "classph_1_1_t_p_p_m_viewpoint_collector.html", null ]
@@ -824,10 +930,8 @@ var hierarchy =
     [ "ph::UvwMapper", "classph_1_1_uvw_mapper.html", [
       [ "ph::SphericalMapper", "classph_1_1_spherical_mapper.html", null ]
     ] ],
-    [ "ph::ValueClauses", "classph_1_1_value_clauses.html", null ],
     [ "ph::ViewPathTracingPolicy", "classph_1_1_view_path_tracing_policy.html", null ],
     [ "ph::Viewport", "classph_1_1_viewport.html", null ],
-    [ "ph::VisualWorldInfo", "classph_1_1_visual_world_info.html", null ],
     [ "ph::VolumeBehavior", "classph_1_1_volume_behavior.html", null ],
     [ "ph::VolumeDistanceSample", "classph_1_1_volume_distance_sample.html", null ],
     [ "ph::VolumeOptics", "classph_1_1_volume_optics.html", [

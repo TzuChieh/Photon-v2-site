@@ -8,7 +8,7 @@ var classph_1_1_viewport =
     [ "getWindowPx", "classph_1_1_viewport.html#a8c4f856d47c47e608e14d985b7760752", null ],
     [ "hasView", "classph_1_1_viewport.html#a030c63a0c0a149666fa4614f3bb9244e", null ],
     [ "numBasePixels", "classph_1_1_viewport.html#a835c76d96ed97ab55aab71f4da49355e", null ],
-    [ "numWindowPixels", "classph_1_1_viewport.html#a9eb5b3852a25b837b94a3af83b90c9f6", null ],
+    [ "numCroppedRegionPixels", "classph_1_1_viewport.html#a3f39f96184b923de8e348435fea79c18", null ],
     [ "toString", "classph_1_1_viewport.html#ae38e51106e74f5a1f21c1940a2de33ee", null ],
     [ "m_baseSizePx", "classph_1_1_viewport.html#ac3ad9d61755c954d730c3a76576378df", null ],
     [ "m_windowPx", "classph_1_1_viewport.html#aa7ca02c1fc5a89243e15a6a53cac9810", null ]

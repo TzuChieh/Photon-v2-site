@@ -6,7 +6,7 @@ var classph_1_1_transformed_intersectable =
     [ "calcIntersectionDetail", "classph_1_1_transformed_intersectable.html#aae56ef8dbd5085f1dc3c6637077c5a5f", null ],
     [ "isIntersecting", "classph_1_1_transformed_intersectable.html#a918040fa8e9455c62928f5ebde8179c3", null ],
     [ "isOccluding", "classph_1_1_transformed_intersectable.html#a8c8fa9657f7359d0daad6dd66f50d339", null ],
-    [ "mayIntersectVolume", "classph_1_1_transformed_intersectable.html#ad25ed190ad7ed71363d0ac3fef2ea154", null ],
+    [ "mayOverlapVolume", "classph_1_1_transformed_intersectable.html#abf80f1c049916a6a4f80b16f4b3a6222", null ],
     [ "operator=", "classph_1_1_transformed_intersectable.html#acc2b9414a83b0d73d4c322239afffe4f", null ],
     [ "m_intersectable", "classph_1_1_transformed_intersectable.html#a29206ee9a2589f74fa0bf53f4f1d0c52", null ],
     [ "m_localToWorld", "classph_1_1_transformed_intersectable.html#af694e2f0840ebacac62910e54fe74a6c", null ],

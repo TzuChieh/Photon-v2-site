@@ -1,6 +1,6 @@
 var config_8h =
 [
-    [ "Config", "classph_1_1_config.html", null ],
+    [ "ph::Config", "classph_1_1_config.html", null ],
     [ "PH_ABORT_ON_ASSERTION_FAILED", "config_8h.html#a40b8298d29a13d3a54469f62000e4030", null ],
     [ "PH_CONFIG_DIRECTORY", "config_8h.html#a263e5343178a3bf10acb197a4840663f", null ],
     [ "PH_DEBUG", "config_8h.html#a80b37348f4e5051cd5b62edf64ca2320", null ],
@@ -14,6 +14,7 @@ var config_8h =
     [ "PH_MEMORY_ARENA_DEFAULT_BLOCK_SIZE_IN_BYTES", "config_8h.html#a634a0ef7caae4eebb44abe5382df5c96", null ],
     [ "PH_NUMERIC_IMAGE_MAX_ELEMENTS", "config_8h.html#a519237ed61cc02aa57f8b964ed1ec643", null ],
     [ "PH_PRINT_STACK_TRACE_ON_ASSERTION_FAILED", "config_8h.html#a7bfa2ed940fc6a24c53ed052598a1551", null ],
+    [ "PH_PROFILING", "config_8h.html#a98baf4102ba17b41f7ca816a3e9f745b", null ],
     [ "PH_PSDL_VERSION", "config_8h.html#a808be1e365b7e684476e9f3ba5713992", null ],
     [ "PH_RENDER_MODE_LINEAR_SRGB", "config_8h.html#a6624486cdc6b7543182cfbad4fd3e0bf", null ],
     [ "PH_RESOURCE_DIRECTORY", "config_8h.html#a3473d1037b45a3a9899609a3fc636c55", null ],
@@ -23,5 +24,6 @@ var config_8h =
     [ "PH_SPECTRUM_SAMPLED_MIN_WAVELENGTH_NM", "config_8h.html#af67f4fac3fe545cf2de4a8d1a8c8da9b", null ],
     [ "PH_SPECTRUM_SAMPLED_NUM_SAMPLES", "config_8h.html#a15844a86f1c4b9264b461b2155548f9f", null ],
     [ "PH_STRICT_FLOATING_POINT_SIZES", "config_8h.html#a091618138ddc0b017c4dc7a98f12ae7f", null ],
-    [ "PH_TFUNCTION_DEFAULT_MIN_SIZE_IN_BYTES", "config_8h.html#a76f8d90d3f16b6fac6ad477205eda363", null ]
+    [ "PH_TFUNCTION_DEFAULT_MIN_SIZE_IN_BYTES", "config_8h.html#a76f8d90d3f16b6fac6ad477205eda363", null ],
+    [ "PH_USE_DOUBLE_REAL", "config_8h.html#a4d30f2c71a05d60a268c3c813c6ebbf0", null ]
 ];

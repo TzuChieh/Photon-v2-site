@@ -1,9 +1,9 @@
 var classph_1_1_math_image =
 [
     [ "MathImage", "classph_1_1_math_image.html#a729a3a59a6c99b92de3244867d736d58", null ],
-    [ "genColorTexture", "classph_1_1_math_image.html#a1dd66d8cb6c3b394ebbb6f659e58c649", null ],
-    [ "genNumericTexture", "classph_1_1_math_image.html#a9af2f072276d962d0b13dcb9585f4f68", null ],
-    [ "PH_DEFINE_SDL_CLASS", "classph_1_1_math_image.html#a6a07f79d6900d7b4b69e96ca481e2474", null ],
+    [ "genColorTexture", "classph_1_1_math_image.html#a8a9fae0c1007f69d042dfe2208a73db7", null ],
+    [ "genNumericTexture", "classph_1_1_math_image.html#aa8d86fe026315696b572c9d28820a782", null ],
+    [ "PH_DEFINE_SDL_CLASS", "classph_1_1_math_image.html#a571dfee89880df66293aa07123d89ac5", null ],
     [ "setInputImage0", "classph_1_1_math_image.html#afff35bf21728b4c849bbf055f7ea9ec3", null ],
     [ "setInputImage1", "classph_1_1_math_image.html#a19fd5f9adafbe6a97f83608b57217a87", null ],
     [ "setOperandImage", "classph_1_1_math_image.html#a7ef56fe3cc6dd14652574caf7112515d", null ],

@@ -15,37 +15,19 @@ var dir_1ad6433457b0067ef8f54a4fa85f5c9a =
     [ "VolumeBehavior", "dir_526ca57988c3d25e7f402c9b19dffaba.html", "dir_526ca57988c3d25e7f402c9b19dffaba" ],
     [ "ECoordSys.h", "_e_coord_sys_8h.html", "_e_coord_sys_8h" ],
     [ "Engine.cpp", "_engine_8cpp.html", "_engine_8cpp" ],
-    [ "Engine.h", "_engine_8h.html", [
-      [ "Engine", "classph_1_1_engine.html", "classph_1_1_engine" ]
-    ] ],
+    [ "Engine.h", "_engine_8h.html", "_engine_8h" ],
     [ "FullRay.cpp", "_full_ray_8cpp.html", null ],
-    [ "FullRay.h", "_full_ray_8h.html", [
-      [ "FullRay", "classph_1_1_full_ray.html", "classph_1_1_full_ray" ]
-    ] ],
+    [ "FullRay.h", "_full_ray_8h.html", "_full_ray_8h" ],
     [ "HitDetail.cpp", "_hit_detail_8cpp.html", null ],
-    [ "HitDetail.h", "_hit_detail_8h.html", [
-      [ "HitDetail", "classph_1_1_hit_detail.html", "classph_1_1_hit_detail" ]
-    ] ],
+    [ "HitDetail.h", "_hit_detail_8h.html", "_hit_detail_8h" ],
     [ "HitInfo.cpp", "_hit_info_8cpp.html", null ],
-    [ "HitInfo.h", "_hit_info_8h.html", [
-      [ "HitInfo", "classph_1_1_hit_info.html", "classph_1_1_hit_info" ]
-    ] ],
+    [ "HitInfo.h", "_hit_info_8h.html", "_hit_info_8h" ],
     [ "HitProbe.cpp", "_hit_probe_8cpp.html", null ],
-    [ "HitProbe.h", "_hit_probe_8h.html", [
-      [ "HitProbe", "classph_1_1_hit_probe.html", "classph_1_1_hit_probe" ]
-    ] ],
-    [ "Ray.h", "_ray_8h.html", [
-      [ "Ray", "classph_1_1_ray.html", "classph_1_1_ray" ]
-    ] ],
+    [ "HitProbe.h", "_hit_probe_8h.html", "_hit_probe_8h" ],
+    [ "Ray.h", "_ray_8h.html", "_ray_8h" ],
     [ "RayDifferential.cpp", "_ray_differential_8cpp.html", null ],
-    [ "RayDifferential.h", "_ray_differential_8h.html", [
-      [ "RayDifferential", "classph_1_1_ray_differential.html", "classph_1_1_ray_differential" ]
-    ] ],
-    [ "Sample.h", "_core_2_sample_8h.html", [
-      [ "Sample", "classph_1_1_sample.html", "classph_1_1_sample" ]
-    ] ],
+    [ "RayDifferential.h", "_ray_differential_8h.html", "_ray_differential_8h" ],
+    [ "Sample.h", "_core_2_sample_8h.html", "_core_2_sample_8h" ],
     [ "SurfaceHit.cpp", "_surface_hit_8cpp.html", null ],
-    [ "SurfaceHit.h", "_surface_hit_8h.html", [
-      [ "SurfaceHit", "classph_1_1_surface_hit.html", "classph_1_1_surface_hit" ]
-    ] ]
+    [ "SurfaceHit.h", "_surface_hit_8h.html", "_surface_hit_8h" ]
 ];

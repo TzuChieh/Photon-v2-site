@@ -7,6 +7,6 @@ var classph_1_1math_1_1_t_sampled_spectrum =
     [ "~TSampledSpectrum", "classph_1_1math_1_1_t_sampled_spectrum.html#a321c1d3e2c3f8d41ee18ef7ca3389e0a", null ],
     [ "TSampledSpectrum", "classph_1_1math_1_1_t_sampled_spectrum.html#abad7d1b9188b8d565101b9df536f9865", null ],
     [ "makeResampled", "classph_1_1math_1_1_t_sampled_spectrum.html#a077964dded2f1b98718596386e9416e5", null ],
-    [ "operator=", "classph_1_1math_1_1_t_sampled_spectrum.html#a089108fb779222dadb949ec03bd9fb25", null ],
-    [ "operator=", "classph_1_1math_1_1_t_sampled_spectrum.html#a0625cfd3ccae49bd23abd88e0e405168", null ]
+    [ "operator=", "classph_1_1math_1_1_t_sampled_spectrum.html#a7af6abce99905dc028402c084c99830c", null ],
+    [ "operator=", "classph_1_1math_1_1_t_sampled_spectrum.html#a6c1352bea73eaf17dc5adbedccb7ed79", null ]
 ];

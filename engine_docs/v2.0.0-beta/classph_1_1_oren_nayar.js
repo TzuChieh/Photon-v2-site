@@ -1,7 +1,7 @@
 var classph_1_1_oren_nayar =
 [
-    [ "OrenNayar", "classph_1_1_oren_nayar.html#ac4789ec5831b022dd6921cdd7f8cd24c", null ],
-    [ "OrenNayar", "classph_1_1_oren_nayar.html#aad1c35443295568a1112f2793bc55798", null ],
+    [ "OrenNayar", "classph_1_1_oren_nayar.html#af7be9eb5b18a13d065b26e793b8dd19f", null ],
+    [ "OrenNayar", "classph_1_1_oren_nayar.html#a0b88d267cfd573ea130b4afba7f8e7e7", null ],
     [ "calcBsdf", "classph_1_1_oren_nayar.html#ae922c44b4b71d54106c9eb84ea6c7f3f", null ],
     [ "calcBsdfSample", "classph_1_1_oren_nayar.html#a6a4ca3922c3d28206db25b63ecab2cb0", null ],
     [ "calcBsdfSamplePdfW", "classph_1_1_oren_nayar.html#ab79197c0795fca7cf5c62e9b0cdb5245", null ],

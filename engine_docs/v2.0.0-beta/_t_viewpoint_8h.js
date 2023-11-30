@@ -1,6 +1,6 @@
 var _t_viewpoint_8h =
 [
-    [ "TViewpoint", "classph_1_1_t_viewpoint.html", "classph_1_1_t_viewpoint" ],
+    [ "ph::TViewpoint< Derived >", "classph_1_1_t_viewpoint.html", "classph_1_1_t_viewpoint" ],
     [ "EViewpointData", "_t_viewpoint_8h.html#a7d646adaf4c44ccfcbbe787120a7cb1f", [
       [ "SURFACE_HIT", "_t_viewpoint_8h.html#a7d646adaf4c44ccfcbbe787120a7cb1fa98e1f022b0a334f93146fda9d3e0aa44", null ],
       [ "RASTER_COORD", "_t_viewpoint_8h.html#a7d646adaf4c44ccfcbbe787120a7cb1fa414657d9a739c0346bb75f628537f4fb", null ],

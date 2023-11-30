@@ -6,7 +6,7 @@ var classph_1_1_oriented_raster_observer =
     [ "makeObserverPose", "classph_1_1_oriented_raster_observer.html#a1844f1ddd414ebf2117478ffa72c0bf5", null ],
     [ "makePosition", "classph_1_1_oriented_raster_observer.html#a0e9e6fc1d09265e40f19543265e4e483", null ],
     [ "makeRotation", "classph_1_1_oriented_raster_observer.html#a4e4e7c509f1a1c86d5a82f306407da72", null ],
-    [ "PH_DEFINE_SDL_CLASS", "classph_1_1_oriented_raster_observer.html#a910406948d5c1032352e04f78eedea02", null ],
+    [ "PH_DEFINE_SDL_CLASS", "classph_1_1_oriented_raster_observer.html#a53f9565a31badb4c87bdc102899f8f87", null ],
     [ "m_direction", "classph_1_1_oriented_raster_observer.html#a0acc088eebf304530085a54ca59ab745", null ],
     [ "m_position", "classph_1_1_oriented_raster_observer.html#a8141f004f6cb1a50ce0e955f5f40c173", null ],
     [ "m_upAxis", "classph_1_1_oriented_raster_observer.html#a98e1d0ebc66c4c3840920279f568a032", null ],

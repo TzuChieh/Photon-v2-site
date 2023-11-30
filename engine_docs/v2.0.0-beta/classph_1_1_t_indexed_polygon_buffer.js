@@ -1,0 +1,20 @@
+var classph_1_1_t_indexed_polygon_buffer =
+[
+    [ "TIndexedPolygonBuffer", "classph_1_1_t_indexed_polygon_buffer.html#aa163a85cc79d0103bb03be38b07cb07d", null ],
+    [ "averagePerPolygonMemoryUsage", "classph_1_1_t_indexed_polygon_buffer.html#ab59e4339b10a6ee474c91bf287b83eb0", null ],
+    [ "getFaceAttribute", "classph_1_1_t_indexed_polygon_buffer.html#ab3dfa712906f3b6d723623244ba3fd38", null ],
+    [ "getIndexBuffer", "classph_1_1_t_indexed_polygon_buffer.html#a4ec66adf93380158a5babc18de168f04", null ],
+    [ "getIndexBuffer", "classph_1_1_t_indexed_polygon_buffer.html#aca0d2b58fc7f1444a3ca0e73314c57b8", null ],
+    [ "getNormals", "classph_1_1_t_indexed_polygon_buffer.html#afe3b9c0280ee653f68004cabfc3fbf39", null ],
+    [ "getPositions", "classph_1_1_t_indexed_polygon_buffer.html#a5e0b862a4bb38744470d76426acf0fe7", null ],
+    [ "getTexCoords", "classph_1_1_t_indexed_polygon_buffer.html#a19bf10d0d4ede7a7b618fbf171cb5681", null ],
+    [ "getVertexBuffer", "classph_1_1_t_indexed_polygon_buffer.html#a59c04ef146e810e5afc7aa1026e7cf92", null ],
+    [ "getVertexBuffer", "classph_1_1_t_indexed_polygon_buffer.html#ad0600e8c5030a9bd2d59cf1a01443b60", null ],
+    [ "hasFaceAttribute", "classph_1_1_t_indexed_polygon_buffer.html#ae8e723dd8fc71da5feaa1eef80d42a37", null ],
+    [ "hasNormal", "classph_1_1_t_indexed_polygon_buffer.html#aacabc7598d290f51c2cf3c4be69a314a", null ],
+    [ "hasTexCoord", "classph_1_1_t_indexed_polygon_buffer.html#a64574c001b51fc432b18bfab0c8a0695", null ],
+    [ "memoryUsage", "classph_1_1_t_indexed_polygon_buffer.html#a848e259575541dacf93267470e8846e0", null ],
+    [ "numFaces", "classph_1_1_t_indexed_polygon_buffer.html#acae24983998acdd99956431fc9eb210c", null ],
+    [ "m_indexBuffer", "classph_1_1_t_indexed_polygon_buffer.html#a48dd6dce45364ce5104a193bd8780958", null ],
+    [ "m_vertexBuffer", "classph_1_1_t_indexed_polygon_buffer.html#a77da5e37f62bb1c058d57f282714edb2", null ]
+];

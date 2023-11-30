@@ -7,6 +7,6 @@ var classph_1_1math_1_1_t_tristimulus_spectrum =
     [ "~TTristimulusSpectrum", "classph_1_1math_1_1_t_tristimulus_spectrum.html#a181806dcb46b3a72171851e7c855cf1a", null ],
     [ "TTristimulusSpectrum", "classph_1_1math_1_1_t_tristimulus_spectrum.html#a09fc9777fb2648e34f63137b06f63f9b", null ],
     [ "TTristimulusSpectrum", "classph_1_1math_1_1_t_tristimulus_spectrum.html#ab148d378142e7250dbb36c07fa9e0077", null ],
-    [ "operator=", "classph_1_1math_1_1_t_tristimulus_spectrum.html#a1b3a73de7750c37e84bef1daf8e69b68", null ],
-    [ "operator=", "classph_1_1math_1_1_t_tristimulus_spectrum.html#aa54e107b0b098eaacb1849a6b5e4a812", null ]
+    [ "operator=", "classph_1_1math_1_1_t_tristimulus_spectrum.html#a3e72512c35bf735246b97b28e111c6f0", null ],
+    [ "operator=", "classph_1_1math_1_1_t_tristimulus_spectrum.html#ad766257e17e3d05a02d656b235188ff8", null ]
 ];

@@ -2,9 +2,7 @@ var dir_5d7cbe695353800ab9a622e4d83d7d91 =
 [
     [ "ApiDatabase.cpp", "_api_database_8cpp.html", null ],
     [ "ApiDatabase.h", "_api_database_8h.html", "_api_database_8h" ],
-    [ "ApiHelper.h", "_api_helper_8h.html", [
-      [ "ApiHelper", "classph_1_1_api_helper.html", null ]
-    ] ],
+    [ "ApiHelper.h", "_api_helper_8h.html", "_api_helper_8h" ],
     [ "EEngineProject.cpp", "_e_engine_project_8cpp.html", "_e_engine_project_8cpp" ],
     [ "init_and_exit.cpp", "init__and__exit_8cpp.html", "init__and__exit_8cpp" ],
     [ "init_and_exit.h", "init__and__exit_8h.html", "init__and__exit_8h" ],
