@@ -28,7 +28,8 @@ var NAVTREE =
     [ "Photon-v2 Renderer", "index.html", "index" ],
     [ "Directories", "directories.html", [
       [ "Root Directories", "directories.html#root", null ],
-      [ "Standalone/Composite Data Containers", "directories.html#data_containers", null ]
+      [ "Standalone/Composite Data Containers", "directories.html#data_containers", null ],
+      [ "Math functions", "directories.html#math", null ]
     ] ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
@@ -129,15 +130,15 @@ var NAVTREEINDEX =
 "classph_1_1math_1_1_t_vector_n_base.html#af9d1d3b795493af388eda032711dd465",
 "compiler_8h.html#a4b9ad3e2ea69c69bc404db7ad0de2206",
 "dir_d393e87181c8c1f46de27c9af8abb0a6.html",
-"kdtree__core_8h.html",
-"namespaceph.html#a11a1d28e14bb14cb707a4a70621b2e49",
-"namespaceph.html#a9bb63a88582f2ef1632f2690da884ceb",
-"namespaceph_1_1detail.html#afb2c097abc4ae73683151fc3a4497ba4",
-"namespaceph_1_1math.html#aea61422c22a925abcb12792d024217cc",
-"ph__core_8cpp.html#ad4518b7bb54c76aafe496dff9988013a",
-"sdl__helpers_8ipp.html#a9e3a060577c496cabaee6d92c2c98743",
-"structph_1_1_ini_file_1_1_ini_section.html",
-"structph_1_1_timer_stats_report_1_1_time_record.html#a56fcb579893a003e6f2c3bca6f85ea50"
+"io__utils_8h_source.html",
+"namespaceph.html#a119259705cc0087cef8a3905bcfa0b46",
+"namespaceph.html#a99b3031077d09c67c83a3a39001ed00c",
+"namespaceph_1_1detail.html#a5eb2dcf1450d496ce75711442c1d6051",
+"namespaceph_1_1math.html#ae7853802be4d35a3625b5f313151d1baace31e2a082d17e038fcc6e3006166653",
+"ph__core_8cpp.html#acd684abe215d974d1e39986117ad8fb2",
+"sdl__helpers_8ipp.html#a9e0f507e441d4a627ee74d38ac43def1",
+"structph_1_1_indexed_vertex_buffer_1_1_entry.html#aeac63180b14c661f760b39b69b5bc8eb",
+"structph_1_1_timer_stats_report_1_1_time_record.html#a5374462ea0c2d4e040ff9761c2abac4e"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
