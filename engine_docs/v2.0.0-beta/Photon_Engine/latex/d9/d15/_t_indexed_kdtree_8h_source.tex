@@ -1,0 +1,107 @@
+\doxysection{TIndexed\+Kdtree.\+h}
+\hypertarget{_t_indexed_kdtree_8h_source}{}\label{_t_indexed_kdtree_8h_source}\index{Source/Math/Algorithm/IndexedKdtree/TIndexedKdtree.h@{Source/Math/Algorithm/IndexedKdtree/TIndexedKdtree.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Math/Geometry/TAABB3D.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Math/Algorithm/IndexedKdtree/TIndexedKdtreeNode.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}Utility/utility.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}Math/Algorithm/IndexedKdtree/TIndexedItemEndpoint.h"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}Core/Ray.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}Core/HitProbe.h"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}Common/assertion.h"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}Math/Geometry/TLineSegment.h"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}Math/Algorithm/IndexedKdtree/IndexedKdtreeParams.h"{}}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <cstddef>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <type\_traits>}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ <optional>}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph_1_1math}{ph::math}}}
+\DoxyCodeLine{00021\ \{}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ TesterFunc,\ \textcolor{keyword}{typename}\ Item>}
+\DoxyCodeLine{00024\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptph_1_1math_1_1_c_item_segment_intersection_tester_vanilla}{CItemSegmentIntersectionTesterVanilla}}\ =\ \textcolor{keyword}{requires}\ (TesterFunc\ func,\ Item\ item)}
+\DoxyCodeLine{00025\ \{}
+\DoxyCodeLine{00026\ \ \ \ \ \{\ func(item,\ TLineSegment<real>\{\})\ \}\ -\/>\ std::same\_as<std::optional<real>>;}
+\DoxyCodeLine{00027\ \};}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ TesterFunc,\ \textcolor{keyword}{typename}\ Item>}
+\DoxyCodeLine{00030\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptph_1_1math_1_1_c_item_segment_intersection_tester_with_index}{CItemSegmentIntersectionTesterWithIndex}}\ =\ \textcolor{keyword}{requires}\ (}
+\DoxyCodeLine{00031\ \ \ \ \ TesterFunc\ func,\ }
+\DoxyCodeLine{00032\ \ \ \ \ Item\ item,\ }
+\DoxyCodeLine{00033\ \ \ \ \ TLineSegment<real>\ segment,}
+\DoxyCodeLine{00034\ \ \ \ \ std::size\_t\ itemIndex)}
+\DoxyCodeLine{00035\ \{}
+\DoxyCodeLine{00036\ \ \ \ \ \{\ func(item,\ segment,\ itemIndex)\ \}\ -\/>\ std::same\_as<std::optional<real>>;}
+\DoxyCodeLine{00037\ \};}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ TesterFunc,\ \textcolor{keyword}{typename}\ Item>}
+\DoxyCodeLine{00040\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptph_1_1math_1_1_c_item_segment_intersection_tester}{CItemSegmentIntersectionTester}}\ =\ }
+\DoxyCodeLine{00041\ \ \ \ \ \mbox{\hyperlink{conceptph_1_1math_1_1_c_item_segment_intersection_tester_vanilla}{CItemSegmentIntersectionTesterVanilla<TesterFunc,\ Item>}}\ ||}
+\DoxyCodeLine{00042\ \ \ \ \ \mbox{\hyperlink{conceptph_1_1math_1_1_c_item_segment_intersection_tester_with_index}{CItemSegmentIntersectionTesterWithIndex<TesterFunc,\ Item>}};}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{keyword}{template}<}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keyword}{typename}\ IndexToItem,}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keyword}{typename}\ ItemToAABB,}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keyword}{typename}\ Index\ =\ std::size\_t>}
+\DoxyCodeLine{00048\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1math_1_1_t_indexed_kdtree}{TIndexedKdtree}}\ final}
+\DoxyCodeLine{00049\ \{}
+\DoxyCodeLine{00050\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_invocable\_v<IndexToItem,\ Index>);}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keyword}{using\ }Item\ =\ \textcolor{keyword}{decltype}(std::declval<IndexToItem>()(std::declval<Index>()));}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classph_1_1math_1_1_t_indexed_kdtree_node}{Node}}\ =\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_kdtree_node}{TIndexedKdtreeNode<Index>}};}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{structph_1_1math_1_1_t_indexed_item_endpoint}{ItemEndpoint}}\ =\ \mbox{\hyperlink{structph_1_1math_1_1_t_indexed_item_endpoint}{TIndexedItemEndpoint<Index>}};}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_invocable\_r\_v<AABB3D,\ ItemToAABB,\ Item>);}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00061\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_kdtree}{TIndexedKdtree}}(}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ std::size\_t\ \ \ \ \ \ \ \ \ numItems,}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ IndexToItem\ \ \ \ \ \ \ \ \ indexToItem,}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ ItemToAABB\ \ \ \ \ \ \ \ \ \ itemToAABB,}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_indexed_kdtree_params}{IndexedKdtreeParams}}\ params\ =\ \mbox{\hyperlink{classph_1_1math_1_1_indexed_kdtree_params}{IndexedKdtreeParams}}());}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ TesterFunc>}
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keywordtype}{bool}\ nearestTraversal(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_line_segment}{TLineSegment<real>}}\&\ segment,\ TesterFunc\&\&\ intersectionTester)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d}{AABB3D}}\ getAABB()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keywordtype}{bool}\ isEmpty()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keywordtype}{void}\ build(ItemToAABB\ itemToAABB,\ \mbox{\hyperlink{classph_1_1math_1_1_indexed_kdtree_params}{IndexedKdtreeParams}}\ params);}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keywordtype}{void}\ buildNodeRecursive(}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ std::size\_t\ nodeIndex,}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d}{AABB3D}}\&\ nodeAABB,}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Index*\ nodeItemIndices,}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ std::size\_t\ numNodeItems,}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ std::size\_t\ currentNodeDepth,}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ std::size\_t\ currentBadRefines,}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::vector<AABB3D>\&\ itemAABBs,}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ std::size\_t\ maxNodeDepth,}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_indexed_kdtree_params}{IndexedKdtreeParams}}\ params,}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ Index*\ negativeItemIndicesCache,}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ Index*\ positiveItemIndicesCache,}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ std::array<std::unique\_ptr<\mbox{\hyperlink{structph_1_1math_1_1_t_indexed_item_endpoint}{ItemEndpoint}}[]>,\ 3>\&\ endpointsCache);}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00091\ \ \ \ \ std::size\_t\ \ \ \ \ \ \ \ m\_numItems;}
+\DoxyCodeLine{00092\ \ \ \ \ IndexToItem\ \ \ \ \ \ \ \ m\_indexToItem;}
+\DoxyCodeLine{00093\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d}{AABB3D}}\ \ \ \ \ \ \ \ \ \ \ \ \ m\_rootAABB;}
+\DoxyCodeLine{00094\ \ \ \ \ std::vector<Node>\ \ m\_nodeBuffer;\textcolor{comment}{//\ TODO:\ compact\ this\ after\ build\ or\ use\ array}}
+\DoxyCodeLine{00095\ \ \ \ \ std::size\_t\ \ \ \ \ \ \ \ m\_numNodes;\textcolor{comment}{//\ TODO:\ remove\ this}}
+\DoxyCodeLine{00096\ \ \ \ \ std::vector<Index>\ m\_itemIndices;\textcolor{comment}{//\ TODO:\ compact\ this\ after\ build\ or\ use\ array}}
+\DoxyCodeLine{00097\ \};}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \}\textcolor{comment}{//\ end\ namespace\ ph::math}}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \textcolor{preprocessor}{\#include\ "{}Math/Algorithm/IndexedKdtree/TIndexedKdtree.ipp"{}}}
+
+\end{DoxyCode}

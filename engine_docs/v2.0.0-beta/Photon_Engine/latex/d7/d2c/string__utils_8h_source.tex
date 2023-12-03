@@ -1,0 +1,524 @@
+\doxysection{string\+\_\+utils.\+h}
+\hypertarget{string__utils_8h_source}{}\label{string__utils_8h_source}\index{Source/Utility/string\_utils.h@{Source/Utility/string\_utils.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Common/assertion.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Utility/string\_utils\_table.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}Utility/exception.h"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <cstddef>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <string\_view>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <stdexcept>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <charconv>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <limits>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <climits>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <type\_traits>}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <format>}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <concepts>}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ <unordered\_map>}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ <functional>}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ <array>}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{namespace\ }ph::string\_utils}
+\DoxyCodeLine{00023\ \{}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ ObjType>}
+\DoxyCodeLine{00026\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptph_1_1string__utils_1_1_c_has_to_string}{CHasToString}}\ =\ \textcolor{keyword}{requires}\ (\textcolor{keyword}{const}\ ObjType\&\ obj)}
+\DoxyCodeLine{00027\ \{}
+\DoxyCodeLine{00028\ \ \ \ \ \{\ obj.toString()\ \}\ -\/>\ std::convertible\_to<std::string\_view>;}
+\DoxyCodeLine{00029\ \};}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \}\textcolor{comment}{//\ end\ namespace\ ph::string\_utils}}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#define\ PH\_DEFINE\_INLINE\_TO\_STRING\_FORMATTER\_SPECIALIZATION(...)\(\backslash\)}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\ \ \ \ struct\ ::std::formatter<\_\_VA\_ARGS\_\_>\ :\ ::std::formatter<::std::string>\(\backslash\)}}
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\ \ \ \ \{\(\backslash\)}}
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ static\_assert(::ph::string\_utils::CHasToString<\_\_VA\_ARGS\_\_>,\(\backslash\)}}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ "{}type\ "{}\ \#\_\_VA\_ARGS\_\_\ "{}\ must\ have\ a\ const\ method\ toString()\ and\ the\ result\ should\ be\ "{}\(\backslash\)}}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ "{}implicitly\ convertible\ to\ std::string"{});\ \(\backslash\)}}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ }\textcolor{comment}{/*\ \`{}parse()`\ is\ inherited\ from\ the\ base\ class\ */}\textcolor{preprocessor}{\(\backslash\)}}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ }\textcolor{comment}{/*\ Define\ \`{}format()`\ by\ calling\ \`{}std::string`'s\ implementation\ with\ custom\ type's\ \`{}toString()`*/}\textcolor{preprocessor}{\(\backslash\)}}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ inline\ auto\ format(const\ \_\_VA\_ARGS\_\_\&\ value,\ ::std::format\_context\&\ ctx)\(\backslash\)}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \{\(\backslash\)}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ return\ ::std::formatter<::std::string>::format(\(\backslash\)}}
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ value.toString(),\ ctx);\(\backslash\)}}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \}\(\backslash\)}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\ \ \ \ \}}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#define\ PH\_DEFINE\_INLINE\_TO\_STRING\_FORMATTER(...)\(\backslash\)}}
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\ \ \ \ template<>\(\backslash\)}}
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\ \ \ \ PH\_DEFINE\_INLINE\_TO\_STRING\_FORMATTER\_SPECIALIZATION(\_\_VA\_ARGS\_\_)}}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00080\ \textcolor{preprocessor}{\#define\ PH\_DEFINE\_INLINE\_TO\_STRING\_FORMATTER\_TEMPLATE(...)\(\backslash\)}}
+\DoxyCodeLine{00081\ \textcolor{preprocessor}{\ \ \ \ PH\_DEFINE\_INLINE\_TO\_STRING\_FORMATTER\_SPECIALIZATION(\_\_VA\_ARGS\_\_)}}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \textcolor{keyword}{namespace\ }ph::string\_utils}
+\DoxyCodeLine{00084\ \{}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \textcolor{keyword}{namespace\ }detail}
+\DoxyCodeLine{00087\ \{}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \textcolor{comment}{//\ References:\ }}
+\DoxyCodeLine{00090\ \textcolor{comment}{//\ [1]\ https://www.cppstories.com/2021/heterogeneous-\/access-\/cpp20/}}
+\DoxyCodeLine{00091\ \textcolor{comment}{//\ [2]\ https://en.cppreference.com/w/cpp/container/unordered\_map/find}}
+\DoxyCodeLine{00092\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structph_1_1string__utils_1_1detail_1_1_heterogeneous_string_hash}{HeterogeneousStringHash}}}
+\DoxyCodeLine{00093\ \{}
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keyword}{using\ }is\_transparent\ =\ void;}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \ \ \ \ [[nodiscard]]}
+\DoxyCodeLine{00097\ \ \ \ \ std::size\_t\ operator\ ()\ (\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ txt)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00098\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::hash<std::string\_view>\{\}(txt);}
+\DoxyCodeLine{00100\ \ \ \ \ \}}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \ \ \ \ [[nodiscard]]}
+\DoxyCodeLine{00103\ \ \ \ \ std::size\_t\ operator\ ()\ (std::string\_view\ txt)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00104\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::hash<std::string\_view>\{\}(txt);}
+\DoxyCodeLine{00106\ \ \ \ \ \}}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \ \ \ \ [[nodiscard]]}
+\DoxyCodeLine{00109\ \ \ \ \ std::size\_t\ operator\ ()\ (\textcolor{keyword}{const}\ std::string\&\ txt)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00110\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::hash<std::string>\{\}(txt);}
+\DoxyCodeLine{00112\ \ \ \ \ \}}
+\DoxyCodeLine{00113\ \};}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ \}\textcolor{comment}{//\ end\ namespace\ detail}}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00122\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Value>}
+\DoxyCodeLine{00123\ \textcolor{keyword}{using\ }TStdUnorderedStringMap\ =\ std::unordered\_map<}
+\DoxyCodeLine{00124\ \ \ \ \ std::string,\ Value,\ \mbox{\hyperlink{structph_1_1string__utils_1_1detail_1_1_heterogeneous_string_hash}{detail::HeterogeneousStringHash}},\ std::equal\_to<>>;}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00126\ \textcolor{keyword}{enum\ class}\ EWhitespace}
+\DoxyCodeLine{00127\ \{}
+\DoxyCodeLine{00129\ \ \ \ \ Common,}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00132\ \ \ \ \ Standard}
+\DoxyCodeLine{00133\ \};}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00135\ \textcolor{keyword}{template}<EWhitespace\ TYPE\ =\ EWhitespace::Common>}
+\DoxyCodeLine{00136\ \textcolor{keyword}{inline}\ std::string\_view\ get\_whitespaces()}
+\DoxyCodeLine{00137\ \{}
+\DoxyCodeLine{00138\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(TYPE\ ==\ EWhitespace::Common)}
+\DoxyCodeLine{00139\ \ \ \ \ \{}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ table::common\_whitespaces;}
+\DoxyCodeLine{00141\ \ \ \ \ \}}
+\DoxyCodeLine{00142\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(TYPE\ ==\ EWhitespace::Standard)}
+\DoxyCodeLine{00143\ \ \ \ \ \{}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ table::standard\_whitespaces;}
+\DoxyCodeLine{00145\ \ \ \ \ \}}
+\DoxyCodeLine{00146\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00147\ \ \ \ \ \{}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_assert}(TYPE\ ==\ EWhitespace::Common\ ||\ TYPE\ ==\ EWhitespace::Standard,}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Must\ include\ a\ case\ for\ each\ enum\ entry;\ did\ you\ forget\ to\ add\ one?"{}});}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00152\ \ \ \ \ \}}
+\DoxyCodeLine{00153\ \}}
+\DoxyCodeLine{00154\ }
+\DoxyCodeLine{00155\ \textcolor{keyword}{template}<EWhitespace\ TYPE\ =\ EWhitespace::Common>}
+\DoxyCodeLine{00156\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ is\_whitespace(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ ch)}
+\DoxyCodeLine{00157\ \{}
+\DoxyCodeLine{00158\ \ \ \ \ \textcolor{keywordflow}{return}\ get\_whitespaces<TYPE>().find(ch)\ !=\ std::string\_view::npos;}
+\DoxyCodeLine{00159\ \}}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00161\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ has\_any\_of(\textcolor{keyword}{const}\ std::string\_view\ srcStr,\ \textcolor{keyword}{const}\ std::string\_view\ candidates)}
+\DoxyCodeLine{00162\ \{}
+\DoxyCodeLine{00163\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ foundPos\ =\ srcStr.find\_first\_of(candidates);}
+\DoxyCodeLine{00164\ \ \ \ \ \textcolor{keywordflow}{return}\ foundPos\ !=\ std::string\_view::npos;}
+\DoxyCodeLine{00165\ \}}
+\DoxyCodeLine{00166\ }
+\DoxyCodeLine{00167\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ has\_none\_of(\textcolor{keyword}{const}\ std::string\_view\ srcStr,\ \textcolor{keyword}{const}\ std::string\_view\ candidates)}
+\DoxyCodeLine{00168\ \{}
+\DoxyCodeLine{00169\ \ \ \ \ \textcolor{keywordflow}{return}\ !has\_any\_of(srcStr,\ candidates);}
+\DoxyCodeLine{00170\ \}}
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00181\ \textcolor{keyword}{inline}\ std::string\_view\ cut\_head(\textcolor{keyword}{const}\ std::string\_view\ srcStr,\ \textcolor{keyword}{const}\ std::string\_view\ candidates)}
+\DoxyCodeLine{00182\ \{}
+\DoxyCodeLine{00183\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ nonCutPos\ =\ srcStr.find\_first\_not\_of(candidates);}
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00185\ \ \ \ \ \textcolor{keyword}{auto}\ cutStr\ =\ srcStr;}
+\DoxyCodeLine{00186\ }
+\DoxyCodeLine{00187\ \ \ \ \ \textcolor{comment}{//\ remove\_prefix():\ behavior\ is\ undefined\ for\ inputPos\ >\ size(),\ avoid\ that}}
+\DoxyCodeLine{00188\ \ \ \ \ \textcolor{comment}{//\ with\ the\ ternary\ operator}}
+\DoxyCodeLine{00189\ \ \ \ \ cutStr.remove\_prefix(}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ nonCutPos\ !=\ std::string\_view::npos\ ?\ nonCutPos\ :\ srcStr.size());}
+\DoxyCodeLine{00191\ }
+\DoxyCodeLine{00192\ \ \ \ \ \textcolor{keywordflow}{return}\ cutStr;}
+\DoxyCodeLine{00193\ \}}
+\DoxyCodeLine{00194\ }
+\DoxyCodeLine{00204\ \textcolor{keyword}{inline}\ std::string\_view\ cut\_tail(\textcolor{keyword}{const}\ std::string\_view\ srcStr,\ \textcolor{keyword}{const}\ std::string\_view\ candidates)}
+\DoxyCodeLine{00205\ \{}
+\DoxyCodeLine{00206\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ nonCutPos\ =\ srcStr.find\_last\_not\_of(candidates);}
+\DoxyCodeLine{00207\ }
+\DoxyCodeLine{00208\ \ \ \ \ \textcolor{keyword}{auto}\ cutStr\ =\ srcStr;}
+\DoxyCodeLine{00209\ }
+\DoxyCodeLine{00210\ \ \ \ \ \textcolor{comment}{//\ remove\_suffix():\ behavior\ is\ undefined\ for\ inputPos\ >\ size(),\ avoid\ that}}
+\DoxyCodeLine{00211\ \ \ \ \ \textcolor{comment}{//\ with\ the\ ternary\ operator;}}
+\DoxyCodeLine{00212\ \ \ \ \ \textcolor{comment}{//\ also,\ if\ <nonCutPos>\ is\ not\ npos,\ <srcStr>\ will\ not\ be\ empty}}
+\DoxyCodeLine{00213\ \ \ \ \ cutStr.remove\_suffix(}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ nonCutPos\ !=\ std::string\_view::npos\ ?\ srcStr.size()\ -\/\ 1\ -\/\ nonCutPos\ :\ srcStr.size());}
+\DoxyCodeLine{00215\ }
+\DoxyCodeLine{00216\ \ \ \ \ \textcolor{keywordflow}{return}\ cutStr;}
+\DoxyCodeLine{00217\ \}}
+\DoxyCodeLine{00218\ }
+\DoxyCodeLine{00228\ \textcolor{keyword}{inline}\ std::string\_view\ cut\_ends(\textcolor{keyword}{const}\ std::string\_view\ srcStr,\ \textcolor{keyword}{const}\ std::string\_view\ candidates)}
+\DoxyCodeLine{00229\ \{}
+\DoxyCodeLine{00230\ \ \ \ \ \textcolor{keywordflow}{return}\ cut\_head(cut\_tail(srcStr,\ candidates),\ candidates);}
+\DoxyCodeLine{00231\ \}}
+\DoxyCodeLine{00232\ }
+\DoxyCodeLine{00238\ \textcolor{keyword}{template}<EWhitespace\ TYPE\ =\ EWhitespace::Common>}
+\DoxyCodeLine{00239\ \textcolor{keyword}{inline}\ std::string\_view\ trim\_head(\textcolor{keyword}{const}\ std::string\_view\ srcStr)}
+\DoxyCodeLine{00240\ \{}
+\DoxyCodeLine{00241\ \ \ \ \ \textcolor{keywordflow}{return}\ cut\_head(srcStr,\ get\_whitespaces<TYPE>());}
+\DoxyCodeLine{00242\ \}}
+\DoxyCodeLine{00243\ }
+\DoxyCodeLine{00249\ \textcolor{keyword}{template}<EWhitespace\ TYPE\ =\ EWhitespace::Common>}
+\DoxyCodeLine{00250\ \textcolor{keyword}{inline}\ std::string\_view\ trim\_tail(\textcolor{keyword}{const}\ std::string\_view\ srcStr)}
+\DoxyCodeLine{00251\ \{}
+\DoxyCodeLine{00252\ \ \ \ \ \textcolor{keywordflow}{return}\ cut\_tail(srcStr,\ get\_whitespaces<TYPE>());}
+\DoxyCodeLine{00253\ \}}
+\DoxyCodeLine{00254\ }
+\DoxyCodeLine{00260\ \textcolor{keyword}{template}<EWhitespace\ TYPE\ =\ EWhitespace::Common>}
+\DoxyCodeLine{00261\ \textcolor{keyword}{inline}\ std::string\_view\ trim(\textcolor{keyword}{const}\ std::string\_view\ srcStr)}
+\DoxyCodeLine{00262\ \{}
+\DoxyCodeLine{00263\ \ \ \ \ \textcolor{keywordflow}{return}\ trim\_head<TYPE>(trim\_tail<TYPE>(srcStr));}
+\DoxyCodeLine{00264\ \}}
+\DoxyCodeLine{00265\ }
+\DoxyCodeLine{00273\ \textcolor{keyword}{inline}\ std::string\_view\ next\_token(}
+\DoxyCodeLine{00274\ \ \ \ \ std::string\_view\ \ \ \ \ \ \ \ srcStr,\ }
+\DoxyCodeLine{00275\ \ \ \ \ std::string\_view*\ \textcolor{keyword}{const}\ out\_remainingStr\ =\ \textcolor{keyword}{nullptr},}
+\DoxyCodeLine{00276\ \ \ \ \ \textcolor{keyword}{const}\ std::string\_view\ \ tokenSeparators\ =\ get\_whitespaces<>())}
+\DoxyCodeLine{00277\ \{}
+\DoxyCodeLine{00278\ \ \ \ \ srcStr\ =\ cut\_head(srcStr,\ tokenSeparators);}
+\DoxyCodeLine{00279\ }
+\DoxyCodeLine{00280\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ separatorPos\ =\ srcStr.find\_first\_of(tokenSeparators);}
+\DoxyCodeLine{00281\ \ \ \ \ \textcolor{keywordflow}{if}(separatorPos\ !=\ std::string\_view::npos)}
+\DoxyCodeLine{00282\ \ \ \ \ \{}
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ nextToken\ =\ srcStr.substr(0,\ separatorPos);}
+\DoxyCodeLine{00284\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(out\_remainingStr)}
+\DoxyCodeLine{00285\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \`{}separatorPos\ +\ 1`\ as\ we\ do\ not\ want\ to\ include\ the\ separator}}
+\DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ \ \ \ \ *out\_remainingStr\ =\ srcStr.substr(separatorPos\ +\ 1);}
+\DoxyCodeLine{00288\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00289\ }
+\DoxyCodeLine{00290\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ nextToken;}
+\DoxyCodeLine{00291\ \ \ \ \ \}}
+\DoxyCodeLine{00292\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00293\ \ \ \ \ \{}
+\DoxyCodeLine{00294\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ srcStr;}
+\DoxyCodeLine{00295\ \ \ \ \ \}}
+\DoxyCodeLine{00296\ \}}
+\DoxyCodeLine{00297\ }
+\DoxyCodeLine{00303\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{char}\ az\_to\_AZ(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ ch)}
+\DoxyCodeLine{00304\ \{}
+\DoxyCodeLine{00305\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::numeric\_limits<unsigned\ char>::max()\ ==\ table::ASCII\_TO\_UPPER.size()\ -\/\ 1);}
+\DoxyCodeLine{00306\ }
+\DoxyCodeLine{00307\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ mappedCharIdx\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\textcolor{keyword}{>}(ch);}
+\DoxyCodeLine{00308\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{char}\textcolor{keyword}{>}(table::ASCII\_TO\_UPPER[mappedCharIdx]);}
+\DoxyCodeLine{00309\ \}}
+\DoxyCodeLine{00310\ }
+\DoxyCodeLine{00316\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{char}\ AZ\_to\_az(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ ch)}
+\DoxyCodeLine{00317\ \{}
+\DoxyCodeLine{00318\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::numeric\_limits<unsigned\ char>::max()\ ==\ table::ASCII\_TO\_LOWER.size()\ -\/\ 1);}
+\DoxyCodeLine{00319\ }
+\DoxyCodeLine{00320\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ mappedCharIdx\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\textcolor{keyword}{>}(ch);}
+\DoxyCodeLine{00321\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{char}\textcolor{keyword}{>}(table::ASCII\_TO\_LOWER[mappedCharIdx]);}
+\DoxyCodeLine{00322\ \}}
+\DoxyCodeLine{00323\ }
+\DoxyCodeLine{00331\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ az\_to\_AZ(std::string*\ \textcolor{keyword}{const}\ str)}
+\DoxyCodeLine{00332\ \{}
+\DoxyCodeLine{00333\ \ \ \ \ PH\_ASSERT(str);}
+\DoxyCodeLine{00334\ }
+\DoxyCodeLine{00335\ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{char}\&\ ch\ :\ *str)}
+\DoxyCodeLine{00336\ \ \ \ \ \{}
+\DoxyCodeLine{00337\ \ \ \ \ \ \ \ \ ch\ =\ az\_to\_AZ(ch);}
+\DoxyCodeLine{00338\ \ \ \ \ \}}
+\DoxyCodeLine{00339\ \}}
+\DoxyCodeLine{00340\ }
+\DoxyCodeLine{00348\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ AZ\_to\_az(std::string*\ \textcolor{keyword}{const}\ str)}
+\DoxyCodeLine{00349\ \{}
+\DoxyCodeLine{00350\ \ \ \ \ PH\_ASSERT(str);}
+\DoxyCodeLine{00351\ }
+\DoxyCodeLine{00352\ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{char}\&\ ch\ :\ *str)}
+\DoxyCodeLine{00353\ \ \ \ \ \{}
+\DoxyCodeLine{00354\ \ \ \ \ \ \ \ \ ch\ =\ AZ\_to\_az(ch);}
+\DoxyCodeLine{00355\ \ \ \ \ \}}
+\DoxyCodeLine{00356\ \}}
+\DoxyCodeLine{00357\ }
+\DoxyCodeLine{00360\ \textcolor{keyword}{inline}\ std::string\ repeat(\textcolor{keyword}{const}\ std::string\_view\ str,\ \textcolor{keyword}{const}\ std::size\_t\ n)}
+\DoxyCodeLine{00361\ \{}
+\DoxyCodeLine{00362\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ totalSize\ =\ str.size()\ *\ n;}
+\DoxyCodeLine{00363\ }
+\DoxyCodeLine{00364\ \ \ \ \ \textcolor{comment}{//\ Valid\ for\ the\ case\ where\ <totalSize>\ is\ 0}}
+\DoxyCodeLine{00365\ \ \ \ \ std::string\ result;}
+\DoxyCodeLine{00366\ \ \ \ \ result.reserve(totalSize);}
+\DoxyCodeLine{00367\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ i\ =\ 0;\ i\ <\ n;\ ++i)}
+\DoxyCodeLine{00368\ \ \ \ \ \{}
+\DoxyCodeLine{00369\ \ \ \ \ \ \ \ \ result\ +=\ str;}
+\DoxyCodeLine{00370\ \ \ \ \ \}}
+\DoxyCodeLine{00371\ }
+\DoxyCodeLine{00372\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00373\ \}}
+\DoxyCodeLine{00374\ }
+\DoxyCodeLine{00377\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ erase\_all(std::string\&\ str,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ ch)}
+\DoxyCodeLine{00378\ \{}
+\DoxyCodeLine{00379\ \ \ \ \ str.erase(std::remove(str.begin(),\ str.end(),\ ch),\ str.end());}
+\DoxyCodeLine{00380\ \}}
+\DoxyCodeLine{00381\ }
+\DoxyCodeLine{00382\ \textcolor{keyword}{namespace\ }detail\_from\_to\_char}
+\DoxyCodeLine{00383\ \{}
+\DoxyCodeLine{00384\ }
+\DoxyCodeLine{00385\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ throw\_from\_std\_errc\_if\_has\_error(\textcolor{keyword}{const}\ std::errc\ errorCode)}
+\DoxyCodeLine{00386\ \{}
+\DoxyCodeLine{00387\ \ \ \ \ \textcolor{comment}{//\ According\ to\ several\ sources,\ 0,\ or\ zero-\/initialized\ std::errc,}}
+\DoxyCodeLine{00388\ \ \ \ \ \textcolor{comment}{//\ indicates\ no\ error.}}
+\DoxyCodeLine{00389\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00390\ \ \ \ \ \textcolor{comment}{//\ [1]\ see\ the\ example\ for\ std::from\_chars}}
+\DoxyCodeLine{00391\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ https://en.cppreference.com/w/cpp/utility/from\_chars}}
+\DoxyCodeLine{00392\ \ \ \ \ \textcolor{comment}{//\ [2]\ https://stackoverflow.com/a/63567008}}
+\DoxyCodeLine{00393\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00394\ \ \ \ \ \textcolor{keyword}{constexpr}\ std::errc\ NO\_ERROR\_VALUE\ =\ std::errc();}
+\DoxyCodeLine{00395\ }
+\DoxyCodeLine{00396\ \ \ \ \ \textcolor{keywordflow}{switch}(errorCode)}
+\DoxyCodeLine{00397\ \ \ \ \ \{}
+\DoxyCodeLine{00398\ \ \ \ \ \textcolor{keywordflow}{case}\ NO\_ERROR\_VALUE:}
+\DoxyCodeLine{00399\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00400\ }
+\DoxyCodeLine{00401\ \ \ \ \ \textcolor{keywordflow}{case}\ std::errc::invalid\_argument:}
+\DoxyCodeLine{00402\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ InvalidArgumentException(}
+\DoxyCodeLine{00403\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}input\ cannot\ be\ interpreted\ as\ a\ numeric\ value"{}});}
+\DoxyCodeLine{00404\ }
+\DoxyCodeLine{00405\ \ \ \ \ \textcolor{keywordflow}{case}\ std::errc::result\_out\_of\_range:}
+\DoxyCodeLine{00406\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ OverflowException(}
+\DoxyCodeLine{00407\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}result\ will\ overflow\ the\ arithmetic\ type"{}});}
+\DoxyCodeLine{00408\ }
+\DoxyCodeLine{00409\ \ \ \ \ \textcolor{keywordflow}{case}\ std::errc::value\_too\_large:}
+\DoxyCodeLine{00410\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ OutOfRangeException(}
+\DoxyCodeLine{00411\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}result\ cannot\ fit\ in\ the\ output\ buffer"{}});}
+\DoxyCodeLine{00412\ }
+\DoxyCodeLine{00413\ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00414\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ RuntimeException(}
+\DoxyCodeLine{00415\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}unknown\ error:\ std::errc\ =\ "{}}\ +\ std::to\_string(}
+\DoxyCodeLine{00416\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_cast<}std::underlying\_type\_t<std::errc>\textcolor{keyword}{>}(errorCode)));}
+\DoxyCodeLine{00417\ \ \ \ \ \}}
+\DoxyCodeLine{00418\ \}}
+\DoxyCodeLine{00419\ }
+\DoxyCodeLine{00420\ \}\textcolor{comment}{//\ end\ namespace\ detail\_from\_to\_char}}
+\DoxyCodeLine{00421\ }
+\DoxyCodeLine{00425\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00426\ \textcolor{keyword}{inline}\ T\ parse\_float(\textcolor{keyword}{const}\ std::string\_view\ floatStr)}
+\DoxyCodeLine{00427\ \{}
+\DoxyCodeLine{00428\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_floating\_point\_v<T>,}
+\DoxyCodeLine{00429\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}parse\_float()\ accepts\ only\ floating\ point\ type."{}});}
+\DoxyCodeLine{00430\ }
+\DoxyCodeLine{00431\ \ \ \ \ \textcolor{comment}{//\ \`{}std::from\_chars()`\ do\ not\ ignore\ leading\ whitespaces,\ we\ need\ to\ do\ it\ manually}}
+\DoxyCodeLine{00432\ \ \ \ \ \textcolor{keyword}{const}\ std::string\_view\ floatStrNoLeadingWS\ =\ trim\_head(floatStr);}
+\DoxyCodeLine{00433\ }
+\DoxyCodeLine{00434\ \ \ \ \ T\ value;}
+\DoxyCodeLine{00435\ \ \ \ \ \textcolor{keyword}{const}\ std::from\_chars\_result\ result\ =\ std::from\_chars(}
+\DoxyCodeLine{00436\ \ \ \ \ \ \ \ \ floatStrNoLeadingWS.data(),}
+\DoxyCodeLine{00437\ \ \ \ \ \ \ \ \ floatStrNoLeadingWS.data()\ +\ floatStrNoLeadingWS.size(),}
+\DoxyCodeLine{00438\ \ \ \ \ \ \ \ \ value);}
+\DoxyCodeLine{00439\ }
+\DoxyCodeLine{00440\ \ \ \ \ detail\_from\_to\_char::throw\_from\_std\_errc\_if\_has\_error(result.ec);}
+\DoxyCodeLine{00441\ }
+\DoxyCodeLine{00442\ \ \ \ \ \textcolor{keywordflow}{return}\ value;}
+\DoxyCodeLine{00443\ \}}
+\DoxyCodeLine{00444\ }
+\DoxyCodeLine{00450\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00451\ \textcolor{keyword}{inline}\ T\ parse\_int(std::string\_view\ intStr)}
+\DoxyCodeLine{00452\ \{}
+\DoxyCodeLine{00453\ \ \ \ \ \textcolor{comment}{//\ TODO:\ option\ to\ handle\ base\ prefix\ (e.g.,\ 0x)}}
+\DoxyCodeLine{00454\ }
+\DoxyCodeLine{00455\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_integral\_v<T>,}
+\DoxyCodeLine{00456\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}parse\_int()\ accepts\ only\ integer\ type."{}});}
+\DoxyCodeLine{00457\ }
+\DoxyCodeLine{00458\ \ \ \ \ \textcolor{comment}{//\ \`{}std::from\_chars()`\ do\ not\ ignore\ leading\ whitespaces,\ we\ need\ to\ do\ it\ manually}}
+\DoxyCodeLine{00459\ \ \ \ \ intStr\ =\ trim\_head(intStr);}
+\DoxyCodeLine{00460\ }
+\DoxyCodeLine{00461\ \ \ \ \ \textcolor{keywordtype}{int}\ base\ =\ 10;}
+\DoxyCodeLine{00462\ \ \ \ \ \textcolor{keywordflow}{if}(intStr.starts\_with(\textcolor{stringliteral}{"{}0x"{}}))}
+\DoxyCodeLine{00463\ \ \ \ \ \{}
+\DoxyCodeLine{00464\ \ \ \ \ \ \ \ \ base\ =\ 16;}
+\DoxyCodeLine{00465\ }
+\DoxyCodeLine{00466\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Remove\ "{}0x"{}\ as\ \`{}std::from\_chars()`\ do\ not\ recognize\ base\ prefix}}
+\DoxyCodeLine{00467\ \ \ \ \ \ \ \ \ intStr.remove\_prefix(2);}
+\DoxyCodeLine{00468\ \ \ \ \ \}}
+\DoxyCodeLine{00469\ }
+\DoxyCodeLine{00470\ \ \ \ \ T\ value;}
+\DoxyCodeLine{00471\ \ \ \ \ \textcolor{keyword}{const}\ std::from\_chars\_result\ result\ =\ std::from\_chars(}
+\DoxyCodeLine{00472\ \ \ \ \ \ \ \ \ intStr.data(),}
+\DoxyCodeLine{00473\ \ \ \ \ \ \ \ \ intStr.data()\ +\ intStr.size(),}
+\DoxyCodeLine{00474\ \ \ \ \ \ \ \ \ value,}
+\DoxyCodeLine{00475\ \ \ \ \ \ \ \ \ base);}
+\DoxyCodeLine{00476\ }
+\DoxyCodeLine{00477\ \ \ \ \ detail\_from\_to\_char::throw\_from\_std\_errc\_if\_has\_error(result.ec);}
+\DoxyCodeLine{00478\ }
+\DoxyCodeLine{00479\ \ \ \ \ \textcolor{keywordflow}{return}\ value;}
+\DoxyCodeLine{00480\ \}}
+\DoxyCodeLine{00481\ }
+\DoxyCodeLine{00485\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ NumberType>}
+\DoxyCodeLine{00486\ \textcolor{keyword}{inline}\ NumberType\ parse\_number(\textcolor{keyword}{const}\ std::string\_view\ numberStr)}
+\DoxyCodeLine{00487\ \{}
+\DoxyCodeLine{00488\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(std::is\_floating\_point\_v<NumberType>)}
+\DoxyCodeLine{00489\ \ \ \ \ \{}
+\DoxyCodeLine{00490\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ parse\_float<NumberType>(numberStr);}
+\DoxyCodeLine{00491\ \ \ \ \ \}}
+\DoxyCodeLine{00492\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00493\ \ \ \ \ \{}
+\DoxyCodeLine{00494\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_integral\_v<NumberType>);}
+\DoxyCodeLine{00495\ }
+\DoxyCodeLine{00496\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ parse\_int<NumberType>(numberStr);}
+\DoxyCodeLine{00497\ \ \ \ \ \}}
+\DoxyCodeLine{00498\ \}}
+\DoxyCodeLine{00499\ }
+\DoxyCodeLine{00509\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00510\ \textcolor{keyword}{inline}\ std::size\_t\ stringify\_float(\textcolor{keyword}{const}\ T\ value,\ \textcolor{keywordtype}{char}*\ \textcolor{keyword}{const}\ out\_buffer,\ \textcolor{keyword}{const}\ std::size\_t\ bufferSize)}
+\DoxyCodeLine{00511\ \{}
+\DoxyCodeLine{00512\ \ \ \ \ \textcolor{comment}{//\ TODO:\ option\ to\ handle\ base\ prefix\ (e.g.,\ 0x)}}
+\DoxyCodeLine{00513\ }
+\DoxyCodeLine{00514\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_floating\_point\_v<T>,}
+\DoxyCodeLine{00515\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}stringify\_float()\ accepts\ only\ floating\ point\ type."{}});}
+\DoxyCodeLine{00516\ }
+\DoxyCodeLine{00517\ \ \ \ \ PH\_ASSERT(out\_buffer);}
+\DoxyCodeLine{00518\ \ \ \ \ PH\_ASSERT\_GE(bufferSize,\ 1);}
+\DoxyCodeLine{00519\ }
+\DoxyCodeLine{00520\ \ \ \ \ \textcolor{keyword}{const}\ std::to\_chars\_result\ result\ =\ std::to\_chars(}
+\DoxyCodeLine{00521\ \ \ \ \ \ \ \ \ out\_buffer,}
+\DoxyCodeLine{00522\ \ \ \ \ \ \ \ \ out\_buffer\ +\ bufferSize,}
+\DoxyCodeLine{00523\ \ \ \ \ \ \ \ \ value);}
+\DoxyCodeLine{00524\ }
+\DoxyCodeLine{00525\ \ \ \ \ detail\_from\_to\_char::throw\_from\_std\_errc\_if\_has\_error(result.ec);}
+\DoxyCodeLine{00526\ }
+\DoxyCodeLine{00527\ \ \ \ \ \textcolor{comment}{//\ Must\ written\ at\ least\ a\ char,\ and\ must\ not\ exceed\ bufferSize}}
+\DoxyCodeLine{00528\ \ \ \ \ PH\_ASSERT(out\_buffer\ <\ result.ptr\ \&\&\ result.ptr\ <=\ out\_buffer\ +\ bufferSize);}
+\DoxyCodeLine{00529\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}std::size\_t\textcolor{keyword}{>}(result.ptr\ -\/\ out\_buffer);}
+\DoxyCodeLine{00530\ \}}
+\DoxyCodeLine{00531\ }
+\DoxyCodeLine{00541\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{int}egral\ T>}
+\DoxyCodeLine{00542\ \textcolor{keyword}{inline}\ std::size\_t\ stringify\_int\_alphabetic(}
+\DoxyCodeLine{00543\ \ \ \ \ T\ value,\ }
+\DoxyCodeLine{00544\ \ \ \ \ \textcolor{keywordtype}{char}*\ \textcolor{keyword}{const}\ out\_buffer,\ }
+\DoxyCodeLine{00545\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ bufferSize,}
+\DoxyCodeLine{00546\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ base)}
+\DoxyCodeLine{00547\ \{}
+\DoxyCodeLine{00548\ \ \ \ \ PH\_ASSERT(out\_buffer);}
+\DoxyCodeLine{00549\ \ \ \ \ PH\_ASSERT\_IN\_RANGE\_INCLUSIVE(base,\ 2,\ 62);}
+\DoxyCodeLine{00550\ }
+\DoxyCodeLine{00551\ \ \ \ \ std::size\_t\ numCharsWritten\ =\ 0;}
+\DoxyCodeLine{00552\ }
+\DoxyCodeLine{00553\ \ \ \ \ \textcolor{comment}{//\ Write\ sign}}
+\DoxyCodeLine{00554\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(std::is\_signed\_v<T>)}
+\DoxyCodeLine{00555\ \ \ \ \ \{}
+\DoxyCodeLine{00556\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(value\ <\ 0)}
+\DoxyCodeLine{00557\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00558\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(bufferSize\ ==\ 0)}
+\DoxyCodeLine{00559\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00560\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ OutOfRangeException(}
+\DoxyCodeLine{00561\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}result\ cannot\ fit\ in\ the\ output\ buffer:\ 0\ buffer\ size,\ cannot\ hold\ the\ negative\ sign"{}});}
+\DoxyCodeLine{00562\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00563\ }
+\DoxyCodeLine{00564\ \ \ \ \ \ \ \ \ \ \ \ \ out\_buffer[0]\ =\ \textcolor{charliteral}{'-\/'};}
+\DoxyCodeLine{00565\ \ \ \ \ \ \ \ \ \ \ \ \ ++numCharsWritten;}
+\DoxyCodeLine{00566\ }
+\DoxyCodeLine{00567\ \ \ \ \ \ \ \ \ \ \ \ \ value\ =\ -\/value;}
+\DoxyCodeLine{00568\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00569\ \ \ \ \ \}}
+\DoxyCodeLine{00570\ }
+\DoxyCodeLine{00571\ \ \ \ \ \textcolor{comment}{//\ Use\ a\ temporary\ buffer,\ enough\ to\ hold\ base\ 2\ output}}
+\DoxyCodeLine{00572\ \ \ \ \ std::array<\textcolor{keywordtype}{unsigned}\ char,\ \textcolor{keyword}{sizeof}(T)\ *\ CHAR\_BIT>\ tmpBuffer;}
+\DoxyCodeLine{00573\ \ \ \ \ \textcolor{keyword}{auto}\ tmpBufferEnd\ =\ tmpBuffer.end();}
+\DoxyCodeLine{00574\ }
+\DoxyCodeLine{00575\ \ \ \ \ PH\_ASSERT\_GE(value,\ 0);}
+\DoxyCodeLine{00576\ \ \ \ \ \textcolor{keywordflow}{do}}
+\DoxyCodeLine{00577\ \ \ \ \ \{}
+\DoxyCodeLine{00578\ \ \ \ \ \ \ \ \ *(-\/-\/tmpBufferEnd)\ =\ table::BASE62\_DIGITS[value\ \%\ base];}
+\DoxyCodeLine{00579\ \ \ \ \ \ \ \ \ value\ /=\ base;}
+\DoxyCodeLine{00580\ \ \ \ \ \}\ \textcolor{keywordflow}{while}(value\ >\ 0);}
+\DoxyCodeLine{00581\ \ \ \ \ }
+\DoxyCodeLine{00582\ \ \ \ \ \textcolor{keyword}{auto}\ numDigits\ =\ tmpBuffer.end()\ -\/\ tmpBufferEnd;}
+\DoxyCodeLine{00583\ \ \ \ \ \textcolor{keywordflow}{if}(numCharsWritten\ +\ numDigits\ >\ bufferSize)}
+\DoxyCodeLine{00584\ \ \ \ \ \{}
+\DoxyCodeLine{00585\ \ \ \ \ \ \ \ \ throw\_formatted<OutOfRangeException>(}
+\DoxyCodeLine{00586\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}result\ cannot\ fit\ in\ the\ output\ buffer:\ need=\{\},\ given=\{\}"{}},}
+\DoxyCodeLine{00587\ \ \ \ \ \ \ \ \ \ \ \ \ numCharsWritten\ +\ numDigits,\ bufferSize);}
+\DoxyCodeLine{00588\ \ \ \ \ \}}
+\DoxyCodeLine{00589\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00590\ \ \ \ \ \{}
+\DoxyCodeLine{00591\ \ \ \ \ \ \ \ \ std::copy(tmpBufferEnd,\ tmpBuffer.end(),\ out\_buffer\ +\ numCharsWritten);}
+\DoxyCodeLine{00592\ \ \ \ \ \ \ \ \ numCharsWritten\ +=\ numDigits;}
+\DoxyCodeLine{00593\ \ \ \ \ \}}
+\DoxyCodeLine{00594\ }
+\DoxyCodeLine{00595\ \ \ \ \ \textcolor{keywordflow}{return}\ numCharsWritten;}
+\DoxyCodeLine{00596\ \}}
+\DoxyCodeLine{00597\ }
+\DoxyCodeLine{00607\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{int}egral\ T>}
+\DoxyCodeLine{00608\ \textcolor{keyword}{inline}\ std::size\_t\ stringify\_int(}
+\DoxyCodeLine{00609\ \ \ \ \ T\ value,\ }
+\DoxyCodeLine{00610\ \ \ \ \ \textcolor{keywordtype}{char}*\ out\_buffer,\ }
+\DoxyCodeLine{00611\ \ \ \ \ std::size\_t\ bufferSize,}
+\DoxyCodeLine{00612\ \ \ \ \ \textcolor{keywordtype}{int}\ base\ =\ 10)}
+\DoxyCodeLine{00613\ \{}
+\DoxyCodeLine{00614\ \ \ \ \ PH\_ASSERT\_IN\_RANGE\_INCLUSIVE(base,\ 2,\ 62);}
+\DoxyCodeLine{00615\ }
+\DoxyCodeLine{00616\ \ \ \ \ \textcolor{comment}{//\ Base\ in\ [2,\ 36]\ is\ supported\ by\ STL\ via\ \`{}to\_chars()`}}
+\DoxyCodeLine{00617\ \ \ \ \ \textcolor{keywordflow}{if}(2\ <=\ base\ \&\&\ base\ <=\ 36)}
+\DoxyCodeLine{00618\ \ \ \ \ \{}
+\DoxyCodeLine{00619\ \ \ \ \ \ \ \ \ PH\_ASSERT(out\_buffer);}
+\DoxyCodeLine{00620\ \ \ \ \ \ \ \ \ PH\_ASSERT\_GE(bufferSize,\ 1);}
+\DoxyCodeLine{00621\ }
+\DoxyCodeLine{00622\ \ \ \ \ \ \ \ \ std::to\_chars\_result\ result\ =\ std::to\_chars(}
+\DoxyCodeLine{00623\ \ \ \ \ \ \ \ \ \ \ \ \ out\_buffer,}
+\DoxyCodeLine{00624\ \ \ \ \ \ \ \ \ \ \ \ \ out\_buffer\ +\ bufferSize,}
+\DoxyCodeLine{00625\ \ \ \ \ \ \ \ \ \ \ \ \ value,}
+\DoxyCodeLine{00626\ \ \ \ \ \ \ \ \ \ \ \ \ base);}
+\DoxyCodeLine{00627\ }
+\DoxyCodeLine{00628\ \ \ \ \ \ \ \ \ detail\_from\_to\_char::throw\_from\_std\_errc\_if\_has\_error(result.ec);}
+\DoxyCodeLine{00629\ }
+\DoxyCodeLine{00630\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Must\ written\ at\ least\ a\ char,\ and\ must\ not\ exceed\ bufferSize}}
+\DoxyCodeLine{00631\ \ \ \ \ \ \ \ \ PH\_ASSERT(out\_buffer\ <\ result.ptr\ \&\&\ result.ptr\ <=\ out\_buffer\ +\ bufferSize);}
+\DoxyCodeLine{00632\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}std::size\_t\textcolor{keyword}{>}(result.ptr\ -\/\ out\_buffer);}
+\DoxyCodeLine{00633\ \ \ \ \ \}}
+\DoxyCodeLine{00634\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00635\ \ \ \ \ \{}
+\DoxyCodeLine{00636\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ stringify\_int\_alphabetic(value,\ out\_buffer,\ bufferSize,\ base);}
+\DoxyCodeLine{00637\ \ \ \ \ \}}
+\DoxyCodeLine{00638\ \}}
+\DoxyCodeLine{00639\ }
+\DoxyCodeLine{00644\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ NumberType>}
+\DoxyCodeLine{00645\ \textcolor{keyword}{inline}\ std::size\_t\ stringify\_number(\textcolor{keyword}{const}\ NumberType\ value,\ \textcolor{keywordtype}{char}*\ \textcolor{keyword}{const}\ out\_buffer,\ \textcolor{keyword}{const}\ std::size\_t\ bufferSize)}
+\DoxyCodeLine{00646\ \{}
+\DoxyCodeLine{00647\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(std::is\_floating\_point\_v<NumberType>)}
+\DoxyCodeLine{00648\ \ \ \ \ \{}
+\DoxyCodeLine{00649\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ stringify\_float<NumberType>(value,\ out\_buffer,\ bufferSize);}
+\DoxyCodeLine{00650\ \ \ \ \ \}}
+\DoxyCodeLine{00651\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00652\ \ \ \ \ \{}
+\DoxyCodeLine{00653\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_integral\_v<NumberType>);}
+\DoxyCodeLine{00654\ }
+\DoxyCodeLine{00655\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ stringify\_int<NumberType>(value,\ out\_buffer,\ bufferSize);}
+\DoxyCodeLine{00656\ \ \ \ \ \}}
+\DoxyCodeLine{00657\ \}}
+\DoxyCodeLine{00658\ }
+\DoxyCodeLine{00663\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ NumberType>}
+\DoxyCodeLine{00664\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ stringify\_number(\textcolor{keyword}{const}\ NumberType\ value,\ std::string*\ \textcolor{keyword}{const}\ out\_str,\ \textcolor{keyword}{const}\ std::size\_t\ maxChars\ =\ 64)}
+\DoxyCodeLine{00665\ \{}
+\DoxyCodeLine{00666\ \ \ \ \ PH\_ASSERT(out\_str);}
+\DoxyCodeLine{00667\ }
+\DoxyCodeLine{00668\ \ \ \ \ out\_str-\/>resize(maxChars);}
+\DoxyCodeLine{00669\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ actualStrSize\ =\ string\_utils::stringify\_number<NumberType>(}
+\DoxyCodeLine{00670\ \ \ \ \ \ \ \ \ value,\ out\_str-\/>data(),\ out\_str-\/>size());}
+\DoxyCodeLine{00671\ \ \ \ \ out\_str-\/>resize(actualStrSize);}
+\DoxyCodeLine{00672\ \}}
+\DoxyCodeLine{00673\ }
+\DoxyCodeLine{00674\ \}\textcolor{comment}{//\ end\ namespace\ ph::string\_utils}}
+
+\end{DoxyCode}

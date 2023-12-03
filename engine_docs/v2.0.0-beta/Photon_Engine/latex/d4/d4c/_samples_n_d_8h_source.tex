@@ -1,0 +1,200 @@
+\doxysection{Samples\+ND.\+h}
+\hypertarget{_samples_n_d_8h_source}{}\label{_samples_n_d_8h_source}\index{Source/Core/SampleGenerator/SamplesND.h@{Source/Core/SampleGenerator/SamplesND.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Common/assertion.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Math/TArithmeticArray.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}Math/Random/shuffle.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}Core/SampleGenerator/SampleFlow.h"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <cstddef>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <array>}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00012\ \{}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_samples_n_d}{SamplesND}}\ final}
+\DoxyCodeLine{00015\ \{}
+\DoxyCodeLine{00016\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00017\ \ \ \ \ \mbox{\hyperlink{classph_1_1_samples_n_d}{SamplesND}}();}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \ \ \ \ \mbox{\hyperlink{classph_1_1_samples_n_d}{SamplesND}}(}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ real*\ \ \ \ \ \ \ buffer,\ }
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ std::size\_t\ numDims,\ }
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ std::size\_t\ numSamples);}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \ \ \ \ \mbox{\hyperlink{classph_1_1_samples_n_d}{SamplesND}}(}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ real*\ \ \ \ \ \ \ buffer,\ }
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ std::size\_t\ numDims,\ }
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ std::size\_t\ numSamples,\ }
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ std::size\_t\ strideSize,\ }
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ std::size\_t\ offsetInStride);}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordtype}{void}\ shuffle();}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordtype}{void}\ shuffleDimension(std::size\_t\ dimIndex);}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordtype}{void}\ shuffleDimensions(std::size\_t\ dimIndexBegin,\ std::size\_t\ dimIndexEnd);}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordtype}{void}\ shuffleAllDimensions();}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordtype}{void}\ setSample(std::size\_t\ index,\ \textcolor{keyword}{const}\ real*\ sample);}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordtype}{void}\ setSample(std::size\_t\ index,\ \textcolor{keyword}{const}\ std::array<real,\ N>\&\ sample);}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \ \ real*\ buffer();}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \ \ \ std::size\_t\ numDims()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00044\ \ \ \ \ std::size\_t\ numSamples()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00045\ \ \ \ \ std::size\_t\ numElements()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordtype}{bool}\ isValid()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \ \ real*\ operator\ []\ (std::size\_t\ index);}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00051\ \ \ \ \ real*\ \ \ \ \ \ \ m\_buffer;}
+\DoxyCodeLine{00052\ \ \ \ \ std::size\_t\ m\_numDims;}
+\DoxyCodeLine{00053\ \ \ \ \ std::size\_t\ m\_numSamples;}
+\DoxyCodeLine{00054\ \ \ \ \ std::size\_t\ m\_strideSize;}
+\DoxyCodeLine{00055\ \ \ \ \ std::size\_t\ m\_offsetInStride;}
+\DoxyCodeLine{00056\ \};}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \textcolor{comment}{//\ In-\/header\ Implementations:}}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \textcolor{keyword}{inline}\ SamplesND::SamplesND()\ :}
+\DoxyCodeLine{00061\ \ \ \ \ m\_buffer\ \ \ \ \ \ \ \ (nullptr),\ }
+\DoxyCodeLine{00062\ \ \ \ \ m\_numDims\ \ \ \ \ \ \ (0),\ }
+\DoxyCodeLine{00063\ \ \ \ \ m\_numSamples\ \ \ \ (0),}
+\DoxyCodeLine{00064\ \ \ \ \ m\_strideSize\ \ \ \ (0),}
+\DoxyCodeLine{00065\ \ \ \ \ m\_offsetInStride(0)}
+\DoxyCodeLine{00066\ \{\}}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \textcolor{keyword}{inline}\ SamplesND::SamplesND(}
+\DoxyCodeLine{00069\ \ \ \ \ real*\ \textcolor{keyword}{const}\ \ \ \ \ \ \ buffer,\ }
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ numDims,\ }
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ numSamples)\ :}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \ \ SamplesND(}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ buffer,}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ numDims,}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ numSamples,}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ numDims,}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ 0)}
+\DoxyCodeLine{00079\ \{\}}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \textcolor{keyword}{inline}\ SamplesND::SamplesND(}
+\DoxyCodeLine{00082\ \ \ \ \ real*\ \textcolor{keyword}{const}\ \ \ \ \ \ \ buffer,}
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ numDims,}
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ numSamples,}
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ strideSize,}
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ offsetInStride)\ :}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \ \ \ \ m\_buffer\ \ \ \ \ \ \ \ (buffer),}
+\DoxyCodeLine{00089\ \ \ \ \ m\_numDims\ \ \ \ \ \ \ (numDims),}
+\DoxyCodeLine{00090\ \ \ \ \ m\_numSamples\ \ \ \ (numSamples),}
+\DoxyCodeLine{00091\ \ \ \ \ m\_strideSize\ \ \ \ (strideSize),}
+\DoxyCodeLine{00092\ \ \ \ \ m\_offsetInStride(offsetInStride)}
+\DoxyCodeLine{00093\ \{}
+\DoxyCodeLine{00094\ \ \ \ \ PH\_ASSERT(buffer);}
+\DoxyCodeLine{00095\ \ \ \ \ PH\_ASSERT\_LT(offsetInStride,\ strideSize);}
+\DoxyCodeLine{00096\ \ \ \ \ PH\_ASSERT\_IN\_RANGE\_INCLUSIVE(numDims,\ 1,\ strideSize\ -\/\ offsetInStride);}
+\DoxyCodeLine{00097\ \ \ \ \ PH\_ASSERT\_GT(numSamples,\ 0);}
+\DoxyCodeLine{00098\ \}}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ SamplesND::shuffle()}
+\DoxyCodeLine{00101\ \{}
+\DoxyCodeLine{00102\ \ \ \ \ math::shuffle\_durstenfeld\_index\_pairs(}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ 0,\ m\_numSamples,\ }
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ [\textcolor{keyword}{this}](\textcolor{keyword}{const}\ std::size\_t\ indexA,\ \textcolor{keyword}{const}\ std::size\_t\ indexB)}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ di\ =\ 0;\ di\ <\ m\_numDims;\ ++di)}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::swap((*\textcolor{keyword}{this})[indexA][di],}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (*\textcolor{keyword}{this})[indexB][di]);}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00112\ \}}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ SamplesND::shuffleDimension(\textcolor{keyword}{const}\ std::size\_t\ dimIndex)}
+\DoxyCodeLine{00115\ \{}
+\DoxyCodeLine{00116\ \ \ \ \ PH\_ASSERT\_MSG(dimIndex\ <\ m\_numDims,}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}dimension\ index\ must\ be\ smaller\ than\ number\ of\ dimensions"{}});}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ \ \ \ \ math::shuffle\_durstenfeld\_index\_pairs(}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ 0,\ m\_numSamples,\ }
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ [\textcolor{keyword}{this},\ dimIndex](\textcolor{keyword}{const}\ std::size\_t\ indexA,\ \textcolor{keyword}{const}\ std::size\_t\ indexB)}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ std::swap((*\textcolor{keyword}{this})[indexA][dimIndex],\ }
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (*\textcolor{keyword}{this})[indexB][dimIndex]);}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00126\ \}}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ SamplesND::shuffleDimensions(\textcolor{keyword}{const}\ std::size\_t\ dimIndexBegin,\ \textcolor{keyword}{const}\ std::size\_t\ dimIndexEnd)}
+\DoxyCodeLine{00129\ \{}
+\DoxyCodeLine{00130\ \ \ \ \ PH\_ASSERT\_MSG(dimIndexBegin\ <\ dimIndexEnd,}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}invalid\ dimension\ index\ range"{}});}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00133\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ dimIndex\ =\ dimIndexBegin;\ dimIndex\ <\ dimIndexEnd;\ ++dimIndex)}
+\DoxyCodeLine{00134\ \ \ \ \ \{}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ shuffleDimension(dimIndex);}
+\DoxyCodeLine{00136\ \ \ \ \ \}}
+\DoxyCodeLine{00137\ \}}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00139\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ SamplesND::shuffleAllDimensions()}
+\DoxyCodeLine{00140\ \{}
+\DoxyCodeLine{00141\ \ \ \ \ shuffleDimensions(0,\ m\_numDims);}
+\DoxyCodeLine{00142\ \}}
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00144\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ SamplesND::setSample(\textcolor{keyword}{const}\ std::size\_t\ index,\ \textcolor{keyword}{const}\ real*\ \textcolor{keyword}{const}\ sample)}
+\DoxyCodeLine{00145\ \{}
+\DoxyCodeLine{00146\ \ \ \ \ PH\_ASSERT(sample);}
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00148\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ di\ =\ 0;\ di\ <\ m\_numDims;\ ++di)}
+\DoxyCodeLine{00149\ \ \ \ \ \{}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ (*this)[index][di]\ =\ sample[di];}
+\DoxyCodeLine{00151\ \ \ \ \ \}}
+\DoxyCodeLine{00152\ \}}
+\DoxyCodeLine{00153\ }
+\DoxyCodeLine{00154\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00155\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ SamplesND::setSample(\textcolor{keyword}{const}\ std::size\_t\ index,\ \textcolor{keyword}{const}\ std::array<real,\ N>\&\ sample)}
+\DoxyCodeLine{00156\ \{}
+\DoxyCodeLine{00157\ \ \ \ \ PH\_ASSERT\_EQ(N,\ m\_numDims);}
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00159\ \ \ \ \ setSample(index,\ sample.data());}
+\DoxyCodeLine{00160\ \}}
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00162\ \textcolor{keyword}{inline}\ real*\ SamplesND::buffer()}
+\DoxyCodeLine{00163\ \{}
+\DoxyCodeLine{00164\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_buffer;}
+\DoxyCodeLine{00165\ \}}
+\DoxyCodeLine{00166\ }
+\DoxyCodeLine{00167\ \textcolor{keyword}{inline}\ std::size\_t\ SamplesND::numDims()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00168\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00169\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_numDims;}
+\DoxyCodeLine{00170\ \}}
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00172\ \textcolor{keyword}{inline}\ std::size\_t\ SamplesND::numSamples()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00173\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00174\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_numSamples;}
+\DoxyCodeLine{00175\ \}}
+\DoxyCodeLine{00176\ }
+\DoxyCodeLine{00177\ \textcolor{keyword}{inline}\ std::size\_t\ SamplesND::numElements()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00178\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00179\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_numSamples\ *\ m\_numDims;}
+\DoxyCodeLine{00180\ \}}
+\DoxyCodeLine{00181\ }
+\DoxyCodeLine{00182\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ SamplesND::isValid()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00183\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00184\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_buffer\ !=\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00185\ \}}
+\DoxyCodeLine{00186\ }
+\DoxyCodeLine{00187\ \textcolor{keyword}{inline}\ real*\ SamplesND::operator\ []\ (\textcolor{keyword}{const}\ std::size\_t\ index)}
+\DoxyCodeLine{00188\ \{}
+\DoxyCodeLine{00189\ \ \ \ \ PH\_ASSERT\_LT(index,\ numSamples());}
+\DoxyCodeLine{00190\ }
+\DoxyCodeLine{00191\ \ \ \ \ \textcolor{keywordflow}{return}\ \&(m\_buffer[index\ *\ m\_strideSize\ +\ m\_offsetInStride]);}
+\DoxyCodeLine{00192\ \}}
+\DoxyCodeLine{00193\ }
+\DoxyCodeLine{00194\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+
+\end{DoxyCode}

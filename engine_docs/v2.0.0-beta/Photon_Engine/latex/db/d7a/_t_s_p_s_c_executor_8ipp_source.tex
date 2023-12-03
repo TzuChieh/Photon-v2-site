@@ -1,0 +1,231 @@
+\doxysection{TSPSCExecutor.\+ipp}
+\hypertarget{_t_s_p_s_c_executor_8ipp_source}{}\label{_t_s_p_s_c_executor_8ipp_source}\index{Source/Utility/Concurrent/TSPSCExecutor.ipp@{Source/Utility/Concurrent/TSPSCExecutor.ipp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#include\ "{}Utility/Concurrent/TSPSCExecutor.h"{}}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ "{}Common/assertion.h"{}}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00005\ \{}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Work>}
+\DoxyCodeLine{00008\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_t_s_p_s_c_executor_a98a11651bfe5596cb1acb4d5125c45fb}{TSPSCExecutor<Work>::\string~TSPSCExecutor}}()}
+\DoxyCodeLine{00009\ \{}
+\DoxyCodeLine{00010\ \ \ \ \ terminate();}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keywordflow}{if}(m\_thread.hasStarted())}
+\DoxyCodeLine{00013\ \ \ \ \ \{}
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ m\_thread.join();}
+\DoxyCodeLine{00015\ \ \ \ \ \}}
+\DoxyCodeLine{00016\ \}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Work>}
+\DoxyCodeLine{00019\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_s_p_s_c_executor_aff408fe833f82bb136083d0e62ff8592}{TSPSCExecutor<Work>::setWorkProcessor}}(std::function<\textcolor{keywordtype}{void}(\textcolor{keyword}{const}\ Work\&\ work)>\ workProcessor)}
+\DoxyCodeLine{00020\ \{}
+\DoxyCodeLine{00021\ \ \ \ \ PH\_ASSERT\_MSG(!m\_thread.hasStarted(),}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}cannot\ set\ the\ work\ processor\ after\ the\ executor\ has\ already\ started"{}});}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \ \ \ \ m\_workProcessor\ =\ std::move(workProcessor);}
+\DoxyCodeLine{00025\ \}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Work>}
+\DoxyCodeLine{00028\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_s_p_s_c_executor}{TSPSCExecutor<Work>::setOnConsumerStart}}(std::function<\textcolor{keywordtype}{void}(\textcolor{keywordtype}{void})>\ onConsumerStart)}
+\DoxyCodeLine{00029\ \{}
+\DoxyCodeLine{00030\ \ \ \ \ PH\_ASSERT\_MSG(!m\_thread.hasStarted(),}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}cannot\ set\ callback\ after\ the\ executor\ has\ already\ started"{}});}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \ \ \ m\_onConsumerStart\ =\ std::move(onConsumerStart);}
+\DoxyCodeLine{00034\ \}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Work>}
+\DoxyCodeLine{00037\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ TSPSCExecutor<Work>::setOnConsumerTerminate(std::function<\textcolor{keywordtype}{void}(\textcolor{keywordtype}{void})>\ onConsumerTerminate)}
+\DoxyCodeLine{00038\ \{}
+\DoxyCodeLine{00039\ \ \ \ \ PH\_ASSERT\_MSG(!m\_thread.hasStarted(),}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}cannot\ set\ callback\ after\ the\ executor\ has\ already\ started"{}});}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ m\_onConsumerTerminate\ =\ std::move(onConsumerTerminate);}
+\DoxyCodeLine{00043\ \}}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Work>}
+\DoxyCodeLine{00046\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_s_p_s_c_executor_a0d4416821710b9c3c01b9798376a9f4e}{TSPSCExecutor<Work>::start}}()}
+\DoxyCodeLine{00047\ \{}
+\DoxyCodeLine{00048\ \ \ \ \ PH\_ASSERT\_MSG(!m\_thread.hasStarted(),}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}cannot\ start\ an\ already-\/started\ executor"{}});}
+\DoxyCodeLine{00050\ \ \ \ \ PH\_ASSERT\_MSG(m\_workProcessor,}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}work\ processor\ must\ be\ set\ before\ starting\ the\ executor"{}});}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ m\_producerThreadId\ =\ std::this\_thread::get\_id();}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \ \ m\_thread.start();}
+\DoxyCodeLine{00056\ \}}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Work>}
+\DoxyCodeLine{00059\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ DeducedWork>}
+\DoxyCodeLine{00060\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_s_p_s_c_executor_a348023aebd44b96af2d54e6aacda79a0}{TSPSCExecutor<Work>::addWork}}(DeducedWork\&\&\ work)}
+\DoxyCodeLine{00061\ \{}
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_constructible\_v<Work,\ DeducedWork>);}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \ \ \ \ PH\_ASSERT(isProducerThread());}
+\DoxyCodeLine{00065\ \ \ \ \ PH\_ASSERT(m\_thread.hasStarted());}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \ \ \ m\_workloadQueue.enqueue(std::forward<DeducedWork>(work));}
+\DoxyCodeLine{00068\ \}}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Work>}
+\DoxyCodeLine{00071\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_s_p_s_c_executor_a75b1bd75567ccb5adcd30bdd592b42ce}{TSPSCExecutor<Work>::waitAllWorks}}()}
+\DoxyCodeLine{00072\ \{}
+\DoxyCodeLine{00073\ \ \ \ \ PH\_ASSERT(isProducerThread());}
+\DoxyCodeLine{00074\ \ \ \ \ PH\_ASSERT(m\_thread.hasStarted());}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{comment}{//\ As\ the\ work\ queue\ is\ FIFO\ when\ observed\ from\ any\ single\ thread,\ to\ wait\ all\ works\ added\ }}
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{comment}{//\ by\ this\ thread\ to\ finish,\ we\ add\ a\ new\ work\ and\ wait\ for\ it\ to\ finish\ (could\ be\ slower\ }}
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{comment}{//\ because\ we\ have\ one\ extra\ work\ to\ process,\ but\ generally\ good\ enough)}}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \ \ \ \ std::atomic\_flag\ isFinished;}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \ \ \ \ CustomCallable\ waitWork;}
+\DoxyCodeLine{00083\ \ \ \ \ waitWork.callable\ =}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ [\&isFinished]()}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Memory\ effects\ on\ consumer\ thread\ should\ be\ made\ visible}}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ isFinished.test\_and\_set(std::memory\_order\_release);}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ isFinished.notify\_one();}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00090\ \ \ \ \ m\_workloadQueue.enqueue(std::move(waitWork));}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{comment}{//\ Wait\ for\ works\ added\ by\ this\ thread\ to\ finish;\ memory\ effects\ on\ consumer\ thread\ should\ be\ }}
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{comment}{//\ made\ visible}}
+\DoxyCodeLine{00094\ \ \ \ \ isFinished.wait(\textcolor{keyword}{false},\ std::memory\_order\_acquire);}
+\DoxyCodeLine{00095\ \}}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Work>}
+\DoxyCodeLine{00098\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_s_p_s_c_executor_a52bee5c6bbc09397af7f73ef55969c93}{TSPSCExecutor<Work>::requestTermination}}()}
+\DoxyCodeLine{00099\ \{}
+\DoxyCodeLine{00100\ \ \ \ \ PH\_ASSERT(isProducerThread());}
+\DoxyCodeLine{00101\ \ \ \ \ PH\_ASSERT(m\_thread.hasStarted());}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \ \ \ \ terminate();}
+\DoxyCodeLine{00104\ \}}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Work>}
+\DoxyCodeLine{00107\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_s_p_s_c_executor_ace6ac9244a6753e4a2da159fabd10d8d}{TSPSCExecutor<Work>::waitForTermination}}()}
+\DoxyCodeLine{00108\ \{}
+\DoxyCodeLine{00109\ \ \ \ \ PH\_ASSERT\_MSG(!isConsumerThread(),}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}wait\ for\ termination\ on\ consumer\ thread\ can\ lead\ to\ deadlock"{}});}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \ \ \ \ PH\_ASSERT\_MSG(!isProducerThread()\ ||\ (isProducerThread()\ \&\&\ m\_isTerminationRequested.test(std::memory\_order\_relaxed)),}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}termination\ not\ requested\ before\ wait\ on\ producer\ thread,\ this\ can\ lead\ to\ deadlock"{}});}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{comment}{//\ Memory\ effects\ on\ consumer\ thread\ should\ be\ made\ visible}}
+\DoxyCodeLine{00116\ \ \ \ \ m\_isTerminated.wait(\textcolor{keyword}{false},\ std::memory\_order\_acquire);}
+\DoxyCodeLine{00117\ \}}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Work>}
+\DoxyCodeLine{00120\ \textcolor{keyword}{inline}\ std::thread::id\ \mbox{\hyperlink{classph_1_1_t_s_p_s_c_executor_a7dd7b547217281c83d117359584375b1}{TSPSCExecutor<Work>::getId}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00121\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00122\ \ \ \ \ PH\_ASSERT(m\_thread.getId()\ !=\ std::thread::id());}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00124\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_thread.getId();}
+\DoxyCodeLine{00125\ \}}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00127\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Work>}
+\DoxyCodeLine{00128\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_t_s_p_s_c_executor_ac550b3718b38d56f5684e1ea546ee7d2}{TSPSCExecutor<Work>::hasStarted}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00129\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00130\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_thread.hasStarted();}
+\DoxyCodeLine{00131\ \}}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00133\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Work>}
+\DoxyCodeLine{00134\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_s_p_s_c_executor}{TSPSCExecutor<Work>::asyncExecute}}()}
+\DoxyCodeLine{00135\ \{}
+\DoxyCodeLine{00136\ \ \ \ \ PH\_ASSERT(isConsumerThread());}
+\DoxyCodeLine{00137\ \ \ \ \ PH\_ASSERT(m\_thread.hasStarted());}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00139\ \ \ \ \ \textcolor{keywordflow}{if}(m\_onConsumerStart)}
+\DoxyCodeLine{00140\ \ \ \ \ \{}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ m\_onConsumerStart();}
+\DoxyCodeLine{00142\ \ \ \ \ \}}
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00144\ \ \ \ \ asyncProcessWorks();}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00146\ \ \ \ \ \textcolor{keywordflow}{if}(m\_onConsumerTerminate)}
+\DoxyCodeLine{00147\ \ \ \ \ \{}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ m\_onConsumerTerminate();}
+\DoxyCodeLine{00149\ \ \ \ \ \}}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00151\ \ \ \ \ \textcolor{comment}{//\ Memory\ effects\ before\ this\ should\ be\ made\ visible\ for\ waiting\ threads}}
+\DoxyCodeLine{00152\ \ \ \ \ m\_isTerminated.test\_and\_set(std::memory\_order\_release);}
+\DoxyCodeLine{00153\ \ \ \ \ m\_isTerminated.notify\_all();}
+\DoxyCodeLine{00154\ \}}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00156\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Work>}
+\DoxyCodeLine{00157\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ TSPSCExecutor<Work>::asyncProcessWorks()}
+\DoxyCodeLine{00158\ \{}
+\DoxyCodeLine{00159\ \ \ \ \ PH\_ASSERT(isConsumerThread());}
+\DoxyCodeLine{00160\ \ \ \ \ PH\_ASSERT(m\_thread.hasStarted());}
+\DoxyCodeLine{00161\ \ \ \ \ PH\_ASSERT(m\_workProcessor);}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00163\ \ \ \ \ Workload\ currentWorkload;}
+\DoxyCodeLine{00164\ \ \ \ \ \textcolor{keywordflow}{while}(!m\_isTerminationRequested.test(std::memory\_order\_relaxed))}
+\DoxyCodeLine{00165\ \ \ \ \ \{}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ m\_workloadQueue.waitDequeue(\&currentWorkload);}
+\DoxyCodeLine{00167\ }
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(std::holds\_alternative<Work>(currentWorkload))}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \ \ \ \ m\_workProcessor(std::get<Work>(currentWorkload));}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(std::holds\_alternative<CustomCallable>(currentWorkload))}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \ \ \ \ std::get<CustomCallable>(currentWorkload).callable();}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \ \ \ \ PH\_ASSERT(std::holds\_alternative<std::monostate>(currentWorkload));}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \ \ \ \ PH\_ASSERT\_UNREACHABLE\_SECTION();}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00181\ \ \ \ \ \}}
+\DoxyCodeLine{00182\ \}}
+\DoxyCodeLine{00183\ }
+\DoxyCodeLine{00184\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Work>}
+\DoxyCodeLine{00185\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ TSPSCExecutor<Work>::isConsumerThread()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00186\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00187\ \ \ \ \ \textcolor{keywordflow}{return}\ getId()\ ==\ std::this\_thread::get\_id();}
+\DoxyCodeLine{00188\ \}}
+\DoxyCodeLine{00189\ }
+\DoxyCodeLine{00190\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Work>}
+\DoxyCodeLine{00191\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ TSPSCExecutor<Work>::isProducerThread()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00192\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00193\ \ \ \ \ PH\_ASSERT(m\_producerThreadId\ !=\ std::thread::id());}
+\DoxyCodeLine{00194\ }
+\DoxyCodeLine{00195\ \ \ \ \ \textcolor{keywordflow}{return}\ std::this\_thread::get\_id()\ ==\ m\_producerThreadId;}
+\DoxyCodeLine{00196\ \}}
+\DoxyCodeLine{00197\ }
+\DoxyCodeLine{00198\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Work>}
+\DoxyCodeLine{00199\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ TSPSCExecutor<Work>::terminate()}
+\DoxyCodeLine{00200\ \{}
+\DoxyCodeLine{00201\ \ \ \ \ \textcolor{comment}{//\ Nothing\ to\ terminate\ if\ the\ executor\ was\ not\ even\ started.\ Basically\ querying\ this\ state\ is\ safe\ as}}
+\DoxyCodeLine{00202\ \ \ \ \ \textcolor{comment}{//\ it\ is\ either\ called\ on\ producer\ thread\ or\ on\ dtor\ calling\ thread,\ and\ the\ contract\ is\ that\ the\ }}
+\DoxyCodeLine{00203\ \ \ \ \ \textcolor{comment}{//\ programmer\ should\ ensure\ a\ proper\ ordering\ of\ \`{}start()`\ -\/>\ \`{}requestTermination()`\ -\/>\ \`{}dtor()`.}}
+\DoxyCodeLine{00204\ \ \ \ \ \textcolor{keywordflow}{if}(!m\_thread.hasStarted())}
+\DoxyCodeLine{00205\ \ \ \ \ \{}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00207\ \ \ \ \ \}}
+\DoxyCodeLine{00208\ }
+\DoxyCodeLine{00209\ \ \ \ \ \textcolor{comment}{//\ Just\ try\ to\ break\ the\ worker\ loop\ as\ soon\ as\ possible\ (and\ as\ non-\/intrusive\ as\ possible)}}
+\DoxyCodeLine{00210\ \ \ \ \ m\_isTerminationRequested.test\_and\_set(std::memory\_order\_relaxed);}
+\DoxyCodeLine{00211\ }
+\DoxyCodeLine{00212\ \ \ \ \ \textcolor{comment}{//\ If\ the\ consumer\ is\ waiting\ or\ is\ going\ to\ wait,\ adding\ another\ work\ that\ sets\ the\ flag\ is\ }}
+\DoxyCodeLine{00213\ \ \ \ \ \textcolor{comment}{//\ required\ (so\ the\ consumer\ can\ unwait).\ The\ flag\ will\ be\ set\ on\ the\ consumer\ thread\ and\ is\ }}
+\DoxyCodeLine{00214\ \ \ \ \ \textcolor{comment}{//\ guaranteed\ to\ break\ the\ loop\ there\ as\ testing\ the\ flag\ is\ sequentially\ after\ setting\ }}
+\DoxyCodeLine{00215\ \ \ \ \ \textcolor{comment}{//\ the\ flag.}}
+\DoxyCodeLine{00216\ \ \ \ \ CustomCallable\ terminateWork;}
+\DoxyCodeLine{00217\ \ \ \ \ terminateWork.callable\ =}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ [\textcolor{keyword}{this}]()}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \ \ \ \ m\_isTerminationRequested.test\_and\_set(std::memory\_order\_relaxed);}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00222\ \ \ \ \ m\_workloadQueue.enqueue(std::move(terminateWork));}
+\DoxyCodeLine{00223\ \}}
+\DoxyCodeLine{00224\ }
+\DoxyCodeLine{00225\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+
+\end{DoxyCode}

@@ -1,0 +1,103 @@
+\doxysection{PTriangle.\+h}
+\hypertarget{_p_triangle_8h_source}{}\label{_p_triangle_8h_source}\index{Source/Core/Intersectable/PTriangle.h@{Source/Core/Intersectable/PTriangle.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Core/Intersectable/Primitive.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Math/TVector3.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}Common/assertion.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}Math/Geometry/TWatertightTriangle.h"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00009\ \{}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{class\ }Ray;}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_p_triangle}{PTriangle}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classph_1_1_primitive}{Primitive}}}
+\DoxyCodeLine{00014\ \{}
+\DoxyCodeLine{00015\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00016\ \ \ \ \ \mbox{\hyperlink{classph_1_1_p_triangle}{PTriangle}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\&\ vA,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\&\ vB,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\&\ vC);}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_p_triangle_aea355fb93eb215f3f048e234c4ff2623}{isIntersecting}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_ray}{Ray}}\&\ ray,\ \mbox{\hyperlink{classph_1_1_hit_probe}{HitProbe}}\&\ probe)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_p_triangle_a44d612bfdbbcdc03c86b49d6e29fab8b}{calcIntersectionDetail}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_ray}{Ray}}\&\ ray,\ \mbox{\hyperlink{classph_1_1_hit_probe}{HitProbe}}\&\ probe,}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_hit_detail}{HitDetail}}*\ out\_detail)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_p_triangle_afef96de5ae97eb477b7d64bf96aed6d5}{mayOverlapVolume}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d}{math::AABB3D}}\&\ volume)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00022\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d}{math::AABB3D}}\ \mbox{\hyperlink{classph_1_1_p_triangle_ac8552d3dd854599a6b0c74fc07c85a5f}{calcAABB}}()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00023\ \ \ \ \ real\ \mbox{\hyperlink{classph_1_1_p_triangle_ac5f51903f0f1d95ebee299f28c6f3e4a}{calcPositionSamplePdfA}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\&\ position)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_p_triangle_a9fdb105a80341be7d012fc1dc6b89bd0}{genPositionSample}}(\mbox{\hyperlink{classph_1_1_primitive_pos_sample_query}{PrimitivePosSampleQuery}}\&\ query,\ \mbox{\hyperlink{classph_1_1_sample_flow}{SampleFlow}}\&\ sampleFlow)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \ \ \ \ real\ \mbox{\hyperlink{classph_1_1_p_triangle_ad2715bcab6e94d46a7a0f92465b98b73}{calcExtendedArea}}()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{comment}{//\ TODO:\ update\ internal\ data\ like\ area\ when\ setters\ are\ called}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ setNa(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\&\ nA)}
+\DoxyCodeLine{00031\ \ \ \ \ \{}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ PH\_ASSERT\_MSG(nA.isFinite()\ \&\&\ nA.length()\ >\ 0.9\_r,\ nA.toString());}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ m\_nA\ =\ nA;}
+\DoxyCodeLine{00035\ \ \ \ \ \}}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ setNb(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\&\ nB)}
+\DoxyCodeLine{00038\ \ \ \ \ \{}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ PH\_ASSERT\_MSG(nB.isFinite()\ \&\&\ nB.length()\ >\ 0.9\_r,\ nB.toString());}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ m\_nB\ =\ nB;}
+\DoxyCodeLine{00042\ \ \ \ \ \}}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ setNc(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\&\ nC)}
+\DoxyCodeLine{00045\ \ \ \ \ \{}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ PH\_ASSERT\_MSG(nC.isFinite()\ \&\&\ nC.length()\ >\ 0.9\_r,\ nC.toString());}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ m\_nC\ =\ nC;}
+\DoxyCodeLine{00049\ \ \ \ \ \}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ setUVWa(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\&\ uvwA)}
+\DoxyCodeLine{00052\ \ \ \ \ \{}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ m\_uvwA\ =\ uvwA;}
+\DoxyCodeLine{00054\ \ \ \ \ \}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ setUVWb(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\&\ uvwB)}
+\DoxyCodeLine{00057\ \ \ \ \ \{}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ m\_uvwB\ =\ uvwB;}
+\DoxyCodeLine{00059\ \ \ \ \ \}}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ setUVWc(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\&\ uvwC)}
+\DoxyCodeLine{00062\ \ \ \ \ \{}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ m\_uvwC\ =\ uvwC;}
+\DoxyCodeLine{00064\ \ \ \ \ \}}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\&\ getUVWa()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00067\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_uvwA;}
+\DoxyCodeLine{00069\ \ \ \ \ \}}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\&\ getUVWb()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00072\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_uvwB;}
+\DoxyCodeLine{00074\ \ \ \ \ \}}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\&\ getUVWc()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00077\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_uvwC;}
+\DoxyCodeLine{00079\ \ \ \ \ \}}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classph_1_1math_1_1_t_watertight_triangle}{Triangle}}\ =\ \mbox{\hyperlink{classph_1_1math_1_1_t_watertight_triangle}{math::TWatertightTriangle<real>}};}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_watertight_triangle}{Triangle}}\ m\_triangle;}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\ m\_nA;}
+\DoxyCodeLine{00087\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\ m\_nB;}
+\DoxyCodeLine{00088\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\ m\_nC;}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\ m\_uvwA;}
+\DoxyCodeLine{00091\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\ m\_uvwB;}
+\DoxyCodeLine{00092\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\ m\_uvwC;}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\ m\_faceNormal;}
+\DoxyCodeLine{00095\ \};}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+
+\end{DoxyCode}

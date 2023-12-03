@@ -1,0 +1,53 @@
+\doxysection{lta.\+h}
+\hypertarget{lta_8h_source}{}\label{lta_8h_source}\index{Source/Core/LTABuildingBlock/lta.h@{Source/Core/LTABuildingBlock/lta.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Common/primitive\_type.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Math/TVector3.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}Common/assertion.h"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <cmath>}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00010\ \{}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{namespace\ }lta}
+\DoxyCodeLine{00013\ \{}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ \ \ \ Using\ shading\ normal\ for\ light\ transport\ algorithms\ is\ equivalent\ to\ using}}
+\DoxyCodeLine{00017\ \textcolor{comment}{\ \ \ \ asymmetric\ BSDFs.\ This\ can\ lead\ to\ inconsistent\ results\ between\ regular\ }}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ \ \ \ and\ adjoint\ algorithms.\ This\ correction\ factor,\ when\ multiplied\ with\ BSDF,}}
+\DoxyCodeLine{00019\ \textcolor{comment}{\ \ \ \ restores\ the\ symmetric\ condition\ of\ the\ BSDF\ during\ importance\ transport.}}
+\DoxyCodeLine{00020\ \textcolor{comment}{}}
+\DoxyCodeLine{00021\ \textcolor{comment}{\ \ \ \ <Ns>:\ shading\ normal}}
+\DoxyCodeLine{00022\ \textcolor{comment}{\ \ \ \ <Ng>:\ geometry\ normal}}
+\DoxyCodeLine{00023\ \textcolor{comment}{\ \ \ \ <L>:\ \ direction\ of\ incident\ importance}}
+\DoxyCodeLine{00024\ \textcolor{comment}{\ \ \ \ <V>:\ \ direction\ of\ excitant\ importance}}
+\DoxyCodeLine{00025\ \textcolor{comment}{}}
+\DoxyCodeLine{00026\ \textcolor{comment}{\ \ \ \ Note\ that\ all\ vectors\ are\ expected\ to\ be\ in\ unit\ length\ and\ leaving\ }}
+\DoxyCodeLine{00027\ \textcolor{comment}{\ \ \ \ the\ surface.}}
+\DoxyCodeLine{00028\ \textcolor{comment}{}}
+\DoxyCodeLine{00029\ \textcolor{comment}{\ \ \ \ References:}}
+\DoxyCodeLine{00030\ \textcolor{comment}{}}
+\DoxyCodeLine{00031\ \textcolor{comment}{\ \ \ \ Eric\ Veach,\ "{}Non-\/symmetric\ Scattering\ in\ Light\ Transport\ Algorithms"{},}}
+\DoxyCodeLine{00032\ \textcolor{comment}{\ \ \ \ Eurographics\ Rendering\ Workshop\ 1996\ Proceedings.}}
+\DoxyCodeLine{00033\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00034\ \textcolor{keyword}{inline}\ real\ importance\_BSDF\_Ns\_corrector(}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{const}\ math::Vector3R\&\ Ns,}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{const}\ math::Vector3R\&\ Ng,}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keyword}{const}\ math::Vector3R\&\ L,}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keyword}{const}\ math::Vector3R\&\ V)}
+\DoxyCodeLine{00039\ \{}
+\DoxyCodeLine{00040\ \ \ \ \ PH\_ASSERT\_GT(std::abs(Ns.dot(V)\ *\ Ng.dot(L)),\ 0.0\_r);}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordflow}{return}\ std::abs((Ns.dot(V)\ *\ Ng.dot(L))\ /\ (Ng.dot(V)\ *\ Ns.dot(L)));}
+\DoxyCodeLine{00043\ \}}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \}\textcolor{comment}{//\ end\ namespace\ lta}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+
+\end{DoxyCode}

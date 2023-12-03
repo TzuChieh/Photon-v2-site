@@ -1,0 +1,161 @@
+\doxysection{TSdl\+Integer.\+h}
+\hypertarget{_t_sdl_integer_8h_source}{}\label{_t_sdl_integer_8h_source}\index{Source/SDL/Introspect/TSdlInteger.h@{Source/SDL/Introspect/TSdlInteger.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}SDL/Introspect/TSdlValue.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}SDL/Introspect/TSdlOptionalValue.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}Common/primitive\_type.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}Common/assertion.h"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{sdl__helpers_8h}{SDL/sdl\_helpers.h}}"{}}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <type\_traits>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00014\ \{}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Owner,\ \textcolor{keyword}{typename}\ IntType\ =\ \textcolor{keywordtype}{int}eger,\ \textcolor{keyword}{typename}\ SdlValueType\ =\ TSdlValue<IntType,\ Owner>>}
+\DoxyCodeLine{00019\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_t_sdl_integer}{TSdlInteger}}\ :\ \textcolor{keyword}{public}\ SdlValueType}
+\DoxyCodeLine{00020\ \{}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_base\_of\_v<TSdlAbstractValue<IntType,\ Owner>,\ SdlValueType>,}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}SdlValueType\ should\ be\ a\ subclass\ of\ TSdlAbstractValue."{}});}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ ValueType>}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_t_sdl_integer}{TSdlInteger}}(std::string\ valueName,\ ValueType\ Owner::*\ \textcolor{keyword}{const}\ valuePtr)\ :\ }
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ SdlValueType(\textcolor{stringliteral}{"{}integer"{}},\ std::move(valueName),\ valuePtr)}
+\DoxyCodeLine{00028\ \ \ \ \ \{\}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{inline}\ std::string\ valueAsString(\textcolor{keyword}{const}\ IntType\&\ value)\textcolor{keyword}{\ const\ override}}
+\DoxyCodeLine{00031\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::to\_string(value);}
+\DoxyCodeLine{00033\ \ \ \ \ \}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_sdl_native_data}{SdlNativeData}}\ \mbox{\hyperlink{classph_1_1_t_sdl_integer_aa1aeff5612e9e38c7d743682e60d169f}{ownedNativeData}}(Owner\&\ owner)\textcolor{keyword}{\ const\ override}}
+\DoxyCodeLine{00036\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ IntType*\ \textcolor{keyword}{const}\ intPtr\ =\ this-\/>\mbox{\hyperlink{classph_1_1_t_sdl_value_a706565be62e0104124f619c27d9f924a}{getValue}}(owner);}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(std::is\_base\_of\_v<TSdlOptionalValue<IntType,\ Owner>,\ SdlValueType>)}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ data\ =\ \mbox{\hyperlink{classph_1_1_sdl_native_data}{SdlNativeData}}(}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ [\&optInt\ =\ this-\/>valueRef(owner)](std::size\_t\ \textcolor{comment}{/*\ elementIdx\ */})\ -\/>\ \mbox{\hyperlink{classph_1_1_t_sdl_accessor_variant}{SdlGetterVariant}}}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ optInt}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ?\ \mbox{\hyperlink{classph_1_1_sdl_native_data_a632f90a9950791b7c25f89293d3822d5}{SdlNativeData::permissiveElementGetter}}(\&(*optInt))}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ std::monostate\{\};}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \},}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ [\&optInt\ =\ this-\/>valueRef(owner)](std::size\_t\ \textcolor{comment}{/*\ elementIdx\ */},\ \mbox{\hyperlink{classph_1_1_t_sdl_accessor_variant}{SdlSetterVariant}}\ input)\ -\/>\ \textcolor{keywordtype}{bool}}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(input.isEmpty())}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ optInt\ =\ std::nullopt;}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ optInt\ =\ IntType\{\};}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1_sdl_native_data_a035296228dfe6619da40577b68ecc3f0}{SdlNativeData::permissiveElementSetter}}(input,\ \&(*optInt));}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \},}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceph_a76393562caa22c28431e3d8da5706a2b}{AnyNonConstPtr}}(intPtr));}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ data.\mbox{\hyperlink{classph_1_1_sdl_native_data_a31819f46d6bd68e7854be1efa3e1adfa}{numElements}}\ =\ intPtr\ ?\ 1\ :\ 0;}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ data.elementContainer\ =\ \mbox{\hyperlink{namespaceph_ace69f5c0a73308d2c88c512f8b70016ea66ba162102bbf6ae31b522aec561735e}{ESdlDataFormat::Single}};}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ data.elementType\ =\ sdl::int\_type\_of<IntType>();}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ data.isNullClearable\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ data;}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1_sdl_native_data_ae95e05b58c7e3ea8eddd69dcee0b6bc4}{SdlNativeData::fromSingleElement}}(}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ intPtr,\ \mbox{\hyperlink{namespaceph_ace69f5c0a73308d2c88c512f8b70016ea66ba162102bbf6ae31b522aec561735e}{ESdlDataFormat::Single}},\ sdl::int\_type\_of<IntType>(),\ \textcolor{keyword}{true},\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00073\ \ \ \ \ \}}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_sdl_integer_ae80994107eb0816aacd9ef0a7b80f202}{loadFromSdl}}(}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ Owner\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ owner,}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_sdl_input_clause}{SdlInputClause}}\&\ \ clause,}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_sdl_input_context}{SdlInputContext}}\&\ ctx)\textcolor{keyword}{\ const\ override}}
+\DoxyCodeLine{00080\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ this-\/>\mbox{\hyperlink{classph_1_1_t_sdl_value_a10a624c8ee21919ff7d95b5b67ac0746}{setValue}}(owner,\ sdl::load\_int<IntType>(clause.\mbox{\hyperlink{classph_1_1_sdl_input_clause_a3a57fdbbab5543025ef072715c949c65}{value}}));}
+\DoxyCodeLine{00082\ \ \ \ \ \}}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_sdl_integer_ab85b766271f083f70a1caa9ab8da8b57}{saveToSdl}}(}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Owner\&\ \ \ \ \ \ \ \ \ \ \ \ owner,}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_sdl_output_clause}{SdlOutputClause}}\&\ \ \ \ \ \ \ \ out\_clause,}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_sdl_output_context}{SdlOutputContext}}\&\ ctx)\textcolor{keyword}{\ const\ override}}
+\DoxyCodeLine{00088\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\textcolor{keyword}{const}\ IntType*\ value\ =\ this-\/>\mbox{\hyperlink{classph_1_1_t_sdl_value_a2980df26bdcefcafa2a7b235db2adf58}{getConstValue}}(owner);\ value)}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ sdl::save\_int<IntType>(*value,\ \&out\_clause.\mbox{\hyperlink{classph_1_1_sdl_output_clause_a27625fd790a2cb49f0cfd9c113ddb5ea}{value}});}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ out\_clause.\mbox{\hyperlink{classph_1_1_sdl_output_clause_a8bd6ce2a952288003b3b7d085f375cb4}{isEmpty}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00097\ \ \ \ \ \}}
+\DoxyCodeLine{00098\ \};}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00102\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Owner,\ \textcolor{keyword}{typename}\ IntType\ =\ \textcolor{keywordtype}{int}eger>}
+\DoxyCodeLine{00103\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classph_1_1_t_sdl_integer}{TSdlOptionalInteger}}\ =\ \mbox{\hyperlink{classph_1_1_t_sdl_integer}{TSdlInteger<Owner,\ IntType,\ TSdlOptionalValue<IntType,\ Owner>}}>;}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Owner>}
+\DoxyCodeLine{00106\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classph_1_1_t_sdl_integer}{TSdlInt8}}\ =\ \mbox{\hyperlink{classph_1_1_t_sdl_integer}{TSdlInteger<Owner,\ int8>}};}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Owner>}
+\DoxyCodeLine{00109\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classph_1_1_t_sdl_integer}{TSdlUint8}}\ =\ \mbox{\hyperlink{classph_1_1_t_sdl_integer}{TSdlInteger<Owner,\ uint8>}};}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Owner>}
+\DoxyCodeLine{00112\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classph_1_1_t_sdl_integer}{TSdlInt16}}\ =\ \mbox{\hyperlink{classph_1_1_t_sdl_integer}{TSdlInteger<Owner,\ int16>}};}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Owner>}
+\DoxyCodeLine{00115\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classph_1_1_t_sdl_integer}{TSdlUint16}}\ =\ \mbox{\hyperlink{classph_1_1_t_sdl_integer}{TSdlInteger<Owner,\ uint16>}};}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Owner>}
+\DoxyCodeLine{00118\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classph_1_1_t_sdl_integer}{TSdlInt32}}\ =\ \mbox{\hyperlink{classph_1_1_t_sdl_integer}{TSdlInteger<Owner,\ int32>}};}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Owner>}
+\DoxyCodeLine{00121\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classph_1_1_t_sdl_integer}{TSdlUInt32}}\ =\ \mbox{\hyperlink{classph_1_1_t_sdl_integer}{TSdlInteger<Owner,\ uint32>}};}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00123\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Owner>}
+\DoxyCodeLine{00124\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classph_1_1_t_sdl_integer}{TSdlInt64}}\ =\ \mbox{\hyperlink{classph_1_1_t_sdl_integer}{TSdlInteger<Owner,\ int64>}};}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00126\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Owner>}
+\DoxyCodeLine{00127\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classph_1_1_t_sdl_integer}{TSdlUInt64}}\ =\ \mbox{\hyperlink{classph_1_1_t_sdl_integer}{TSdlInteger<Owner,\ uint64>}};}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00129\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Owner>}
+\DoxyCodeLine{00130\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classph_1_1_t_sdl_integer}{TSdlSize}}\ =\ \mbox{\hyperlink{classph_1_1_t_sdl_integer}{TSdlInteger<Owner,\ std::size\_t>}};}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00132\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Owner>}
+\DoxyCodeLine{00133\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classph_1_1_t_sdl_integer}{TSdlOptionalInt8}}\ =\ \mbox{\hyperlink{classph_1_1_t_sdl_integer}{TSdlOptionalInteger<Owner,\ int8>}};}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00135\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Owner>}
+\DoxyCodeLine{00136\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classph_1_1_t_sdl_integer}{TSdlOptionalUint8}}\ =\ \mbox{\hyperlink{classph_1_1_t_sdl_integer}{TSdlOptionalInteger<Owner,\ uint8>}};}
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00138\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Owner>}
+\DoxyCodeLine{00139\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classph_1_1_t_sdl_integer}{TSdlOptionalInt16}}\ =\ \mbox{\hyperlink{classph_1_1_t_sdl_integer}{TSdlOptionalInteger<Owner,\ int16>}};}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00141\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Owner>}
+\DoxyCodeLine{00142\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classph_1_1_t_sdl_integer}{TSdlOptionalUint16}}\ =\ \mbox{\hyperlink{classph_1_1_t_sdl_integer}{TSdlOptionalInteger<Owner,\ uint16>}};}
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00144\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Owner>}
+\DoxyCodeLine{00145\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classph_1_1_t_sdl_integer}{TSdlOptionalInt32}}\ =\ \mbox{\hyperlink{classph_1_1_t_sdl_integer}{TSdlOptionalInteger<Owner,\ int32>}};}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00147\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Owner>}
+\DoxyCodeLine{00148\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classph_1_1_t_sdl_integer}{TSdlOptionalUint32}}\ =\ \mbox{\hyperlink{classph_1_1_t_sdl_integer}{TSdlOptionalInteger<Owner,\ uint32>}};}
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00150\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Owner>}
+\DoxyCodeLine{00151\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classph_1_1_t_sdl_integer}{TSdlOptionalInt64}}\ =\ \mbox{\hyperlink{classph_1_1_t_sdl_integer}{TSdlOptionalInteger<Owner,\ int64>}};}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00153\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Owner>}
+\DoxyCodeLine{00154\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classph_1_1_t_sdl_integer}{TSdlOptionalUint64}}\ =\ \mbox{\hyperlink{classph_1_1_t_sdl_integer}{TSdlOptionalInteger<Owner,\ uint64>}};}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00156\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Owner>}
+\DoxyCodeLine{00157\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classph_1_1_t_sdl_integer}{TSdlOptionalSize}}\ =\ \mbox{\hyperlink{classph_1_1_t_sdl_integer}{TSdlOptionalInteger<Owner,\ std::size\_t>}};}
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00159\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+
+\end{DoxyCode}

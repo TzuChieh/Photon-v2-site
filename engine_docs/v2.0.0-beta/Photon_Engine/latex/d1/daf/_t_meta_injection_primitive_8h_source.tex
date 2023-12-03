@@ -1,0 +1,195 @@
+\doxysection{TMeta\+Injection\+Primitive.\+h}
+\hypertarget{_t_meta_injection_primitive_8h_source}{}\label{_t_meta_injection_primitive_8h_source}\index{Source/Core/Intersectable/TMetaInjectionPrimitive.h@{Source/Core/Intersectable/TMetaInjectionPrimitive.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Core/Intersectable/Primitive.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Core/Intersectable/PrimitiveMetadata.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}Core/HitProbe.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}Utility/traits.h"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}Common/assertion.h"{}}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <concepts>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00013\ \{}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{namespace\ }detail}
+\DoxyCodeLine{00016\ \{}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ GetterType>}
+\DoxyCodeLine{00019\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptph_1_1detail_1_1_c_primitive_meta_getter}{CPrimitiveMetaGetter}}\ =\ \textcolor{keyword}{requires}\ (\textcolor{keyword}{const}\ GetterType\ getter)}
+\DoxyCodeLine{00020\ \{}
+\DoxyCodeLine{00021\ \ \ \ \ \{\ getter()\ \}\ -\/>\ std::same\_as<const\ PrimitiveMetadata*>;}
+\DoxyCodeLine{00022\ \};}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ GetterType>}
+\DoxyCodeLine{00025\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptph_1_1detail_1_1_c_primitive_getter}{CPrimitiveGetter}}\ =\ \textcolor{keyword}{requires}\ (\textcolor{keyword}{const}\ GetterType\ getter)}
+\DoxyCodeLine{00026\ \{}
+\DoxyCodeLine{00027\ \ \ \ \ \{\ getter()\ \}\ -\/>\ std::convertible\_to<const\ Primitive*>;}
+\DoxyCodeLine{00028\ \};}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \}\textcolor{comment}{//\ end\ namespace\ detail}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structph_1_1_referenced_primitive_meta_getter}{ReferencedPrimitiveMetaGetter}}\ final}
+\DoxyCodeLine{00033\ \{}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_primitive_metadata}{PrimitiveMetadata}}*\ metadata;}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{structph_1_1_referenced_primitive_meta_getter}{ReferencedPrimitiveMetaGetter}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_primitive_metadata}{PrimitiveMetadata}}*\ \textcolor{keyword}{const}\ metadata)}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ :\ metadata(metadata)}
+\DoxyCodeLine{00038\ \ \ \ \ \{\}}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_primitive_metadata}{PrimitiveMetadata}}*\ operator\ ()\ ()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00041\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ metadata;}
+\DoxyCodeLine{00043\ \ \ \ \ \}}
+\DoxyCodeLine{00044\ \};}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structph_1_1_embedded_primitive_meta_getter}{EmbeddedPrimitiveMetaGetter}}\ final}
+\DoxyCodeLine{00047\ \{}
+\DoxyCodeLine{00048\ \ \ \ \ \mbox{\hyperlink{classph_1_1_primitive_metadata}{PrimitiveMetadata}}\ metadata;}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}...\ DeducedArgs>}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{structph_1_1_embedded_primitive_meta_getter}{EmbeddedPrimitiveMetaGetter}}(DeducedArgs\&\&...\ args)}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ :\ metadata(std::forward<DeducedArgs>(args)...)}
+\DoxyCodeLine{00053\ \ \ \ \ \{\}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_primitive_metadata}{PrimitiveMetadata}}*\ operator\ ()\ ()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00056\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \&metadata;}
+\DoxyCodeLine{00058\ \ \ \ \ \}}
+\DoxyCodeLine{00059\ \};}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \textcolor{keyword}{template}<CDerived<Primitive>\ PrimitiveType>}
+\DoxyCodeLine{00062\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structph_1_1_t_referenced_primitive_getter}{TReferencedPrimitiveGetter}}\ final}
+\DoxyCodeLine{00063\ \{}
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keyword}{const}\ PrimitiveType*\ primitive;}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{structph_1_1_t_referenced_primitive_getter}{TReferencedPrimitiveGetter}}(\textcolor{keyword}{const}\ PrimitiveType*\ \textcolor{keyword}{const}\ primitive)}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ :\ primitive(primitive)}
+\DoxyCodeLine{00068\ \ \ \ \ \{\}}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keyword}{const}\ PrimitiveType*\ operator\ ()\ ()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00071\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ primitive;}
+\DoxyCodeLine{00073\ \ \ \ \ \}}
+\DoxyCodeLine{00074\ \};}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \textcolor{keyword}{template}<CDerived<Primitive>\ PrimitiveType>}
+\DoxyCodeLine{00077\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structph_1_1_t_embedded_primitive_getter}{TEmbeddedPrimitiveGetter}}\ final}
+\DoxyCodeLine{00078\ \{}
+\DoxyCodeLine{00079\ \ \ \ \ PrimitiveType\ primitive;}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}...\ DeducedArgs>}
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{structph_1_1_t_embedded_primitive_getter}{TEmbeddedPrimitiveGetter}}(DeducedArgs\&\&...\ args)}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ :\ primitive(std::forward<DeducedArgs>(args)...)}
+\DoxyCodeLine{00084\ \ \ \ \ \{\}}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keyword}{const}\ PrimitiveType*\ operator\ ()\ ()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00087\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \&primitive;}
+\DoxyCodeLine{00089\ \ \ \ \ \}}
+\DoxyCodeLine{00090\ \};}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \textcolor{comment}{//\ TODO:\ could\ use\ EBO\ on\ some\ cases}}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \textcolor{keyword}{template}<detail::CPrimitiveMetaGetter\ PrimitiveMetaGetter,\ detail::CPrimitiveGetter\ PrimitiveGetter>}
+\DoxyCodeLine{00095\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_t_meta_injection_primitive}{TMetaInjectionPrimitive}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classph_1_1_primitive}{Primitive}}}
+\DoxyCodeLine{00096\ \{}
+\DoxyCodeLine{00097\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00098\ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_meta_injection_primitive}{TMetaInjectionPrimitive}}(PrimitiveMetaGetter\ metaGetter,\ PrimitiveGetter\ primitiveGetter)}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classph_1_1_primitive}{Primitive}}()}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ ,\ m\_metaGetter(std::move(metaGetter))}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ ,\ m\_primitiveGetter(std::move(primitiveGetter))}
+\DoxyCodeLine{00102\ \ \ \ \ \{\}}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_t_meta_injection_primitive_afd52c5a8f64c66107e1911772acf6db4}{isIntersecting}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_ray}{Ray}}\&\ ray,\ \mbox{\hyperlink{classph_1_1_hit_probe}{HitProbe}}\&\ probe)\textcolor{keyword}{\ const\ override}}
+\DoxyCodeLine{00105\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(m\_primitiveGetter()-\/>\mbox{\hyperlink{classph_1_1_t_meta_injection_primitive_afd52c5a8f64c66107e1911772acf6db4}{isIntersecting}}(ray,\ probe))}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Hit\ detail\ will\ be\ modified\ by\ this\ primitive}}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ probe.\mbox{\hyperlink{classph_1_1_hit_probe_a7df5934cb78fc0772ec90c55f8cc9696}{pushIntermediateHit}}(\textcolor{keyword}{this});}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00117\ \ \ \ \ \}}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_meta_injection_primitive_a5c2404cdb3222de642d99c1a13461880}{calcIntersectionDetail}}(}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_ray}{Ray}}\&\ ray,}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_hit_probe}{HitProbe}}\&\ probe,}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_hit_detail}{HitDetail}}*\ \textcolor{keyword}{const}\ out\_detail)\textcolor{keyword}{\ const\ override}}
+\DoxyCodeLine{00123\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ probe.popIntermediateHit();}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ failed,\ it\ is\ likely\ to\ be\ caused\ by\ mismatched/missing\ probe\ push\ or\ pop\ in\ the\ hit\ stack}}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ PH\_ASSERT(probe.getCurrentHit()\ ==\ \mbox{\hyperlink{classph_1_1_t_meta_injection_primitive_a6e5c8239f37b4445519c9b0f7b2e894d}{getInjectee}}());}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ m\_primitiveGetter()-\/>calcIntersectionDetail(ray,\ probe,\ out\_detail);}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ This\ is\ a\ representative\ of\ the\ original\ primitive}}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ out\_detail-\/>setHitIntrinsics(\textcolor{keyword}{this},\ out\_detail-\/>getUVW(),\ out\_detail-\/>\mbox{\hyperlink{classph_1_1_hit_detail_aa3dede6dce1e8dbff595646e5c89101a}{getRayT}}());}
+\DoxyCodeLine{00133\ \ \ \ \ \}}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00135\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d}{math::AABB3D}}\ \mbox{\hyperlink{classph_1_1_t_meta_injection_primitive_a9d726a028a60e5cc0f2fd4434926ae7f}{calcAABB}}()\textcolor{keyword}{\ const\ override}}
+\DoxyCodeLine{00136\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_primitiveGetter()-\/>calcAABB();}
+\DoxyCodeLine{00138\ \ \ \ \ \}}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00140\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_t_meta_injection_primitive_a41acc60dc086618458fc44b5756dcdea}{isOccluding}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_ray}{Ray}}\&\ ray)\textcolor{keyword}{\ const\ override}}
+\DoxyCodeLine{00141\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_primitiveGetter()-\/>isOccluding(ray);}
+\DoxyCodeLine{00143\ \ \ \ \ \}}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00145\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_t_meta_injection_primitive_a2bd15a864afc3102a0d9288383eaa408}{mayOverlapVolume}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d}{math::AABB3D}}\&\ volume)\textcolor{keyword}{\ const\ override}}
+\DoxyCodeLine{00146\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_primitiveGetter()-\/>mayOverlapVolume(volume);}
+\DoxyCodeLine{00148\ \ \ \ \ \}}
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00150\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_meta_injection_primitive_a378bea4fb6a87fa3cbabfe2ae659c440}{genPositionSample}}(\mbox{\hyperlink{classph_1_1_primitive_pos_sample_query}{PrimitivePosSampleQuery}}\&\ query,\ \mbox{\hyperlink{classph_1_1_sample_flow}{SampleFlow}}\&\ sampleFlow)\textcolor{keyword}{\ const\ override}}
+\DoxyCodeLine{00151\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ m\_primitiveGetter()-\/>genPositionSample(query,\ sampleFlow);}
+\DoxyCodeLine{00153\ \ \ \ \ \}}
+\DoxyCodeLine{00154\ }
+\DoxyCodeLine{00155\ \ \ \ \ real\ \mbox{\hyperlink{classph_1_1_t_meta_injection_primitive_a5e5590ff91bbc65a77842d82d726eaf6}{calcPositionSamplePdfA}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\&\ position)\textcolor{keyword}{\ const\ override}}
+\DoxyCodeLine{00156\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_primitiveGetter()-\/>calcPositionSamplePdfA(position);}
+\DoxyCodeLine{00158\ \ \ \ \ \}}
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00160\ \ \ \ \ real\ \mbox{\hyperlink{classph_1_1_t_meta_injection_primitive_a929a93a8cf18107053441a979252f582}{calcExtendedArea}}()\textcolor{keyword}{\ const\ override}}
+\DoxyCodeLine{00161\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_primitiveGetter()-\/>calcExtendedArea();}
+\DoxyCodeLine{00163\ \ \ \ \ \}}
+\DoxyCodeLine{00164\ }
+\DoxyCodeLine{00165\ \ \ \ \ \textcolor{keywordtype}{bool}\ uvwToPosition(}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\&\ uvw,}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}*\ \textcolor{keyword}{const}\ out\_position)\textcolor{keyword}{\ const\ override}}
+\DoxyCodeLine{00168\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_primitiveGetter()-\/>uvwToPosition(uvw,\ out\_position);}
+\DoxyCodeLine{00170\ \ \ \ \ \}}
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00172\ \ \ \ \ \textcolor{keyword}{const}\ PrimitiveMetadata*\ getMetadata()\textcolor{keyword}{\ const\ override}}
+\DoxyCodeLine{00173\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Metadata\ from\ \`{}m\_primitiveGetter()-\/>getMetadata()`\ (if\ any)\ is\ intentionally\ overridden}}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ by\ the\ injected\ one}}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_metaGetter();}
+\DoxyCodeLine{00177\ \ \ \ \ \}}
+\DoxyCodeLine{00178\ }
+\DoxyCodeLine{00182\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}*\ \mbox{\hyperlink{classph_1_1_t_meta_injection_primitive_a6e5c8239f37b4445519c9b0f7b2e894d}{getInjectee}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00183\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_primitiveGetter();}
+\DoxyCodeLine{00185\ \ \ \ \ \}}
+\DoxyCodeLine{00186\ }
+\DoxyCodeLine{00187\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00188\ \ \ \ \ PrimitiveMetaGetter\ m\_metaGetter;}
+\DoxyCodeLine{00189\ \ \ \ \ PrimitiveGetter\ m\_primitiveGetter;}
+\DoxyCodeLine{00190\ \};}
+\DoxyCodeLine{00191\ }
+\DoxyCodeLine{00192\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+
+\end{DoxyCode}

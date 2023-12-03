@@ -1,0 +1,236 @@
+\doxysection{Ply\+File.\+h}
+\hypertarget{_ply_file_8h_source}{}\label{_ply_file_8h_source}\index{Source/DataIO/PlyFile.h@{Source/DataIO/PlyFile.h}}
+\mbox{\hyperlink{_ply_file_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}DataIO/FileSystem/Path.h"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}Utility/SemanticVersion.h"{}}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}Math/constant.h"{}}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ "{}Common/primitive\_type.h"{}}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <cstddef>}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ <string\_view>}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ <climits>}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}\ \{\ \textcolor{keyword}{class\ }IInputStream;\ \}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00025\ \{}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{keyword}{enum\ class}\ EPlyDataFormat}
+\DoxyCodeLine{00028\ \{}
+\DoxyCodeLine{00029\ \ \ \ \ ASCII\ =\ 0,}
+\DoxyCodeLine{00030\ \ \ \ \ BinaryLittleEndian,}
+\DoxyCodeLine{00031\ \ \ \ \ BinaryBigEndian,}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \ \ \ NUM}
+\DoxyCodeLine{00034\ \};}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{keyword}{enum\ class}\ \mbox{\hyperlink{namespaceph_a97a9109e30bbf746d1cc750fd37866b7}{EPlyDataType}}}
+\DoxyCodeLine{00037\ \{}
+\DoxyCodeLine{00038\ \ \ \ \ Unspecified\ =\ 0,}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00041\ \ \ \ \ \mbox{\hyperlink{namespaceph_a97a9109e30bbf746d1cc750fd37866b7a7d839b2c12bfd40ac121b4cc9e81c539}{Int8}},}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00044\ \ \ \ \ \mbox{\hyperlink{namespaceph_a97a9109e30bbf746d1cc750fd37866b7ab31df9c476d20e85ff898121efe11b5a}{UInt8}},}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00047\ \ \ \ \ Int16,}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00050\ \ \ \ \ \mbox{\hyperlink{namespaceph_a97a9109e30bbf746d1cc750fd37866b7a8bd950a9d7779b83f5c30046c9aaf1cf}{UInt16}},}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00053\ \ \ \ \ Int32,}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00056\ \ \ \ \ \mbox{\hyperlink{namespaceph_a97a9109e30bbf746d1cc750fd37866b7ae7956ed7be1c5025a27ed3cb42a396bd}{UInt32}},}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00059\ \ \ \ \ Float32,}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00062\ \ \ \ \ \mbox{\hyperlink{namespaceph_a97a9109e30bbf746d1cc750fd37866b7ad2b556d8a8f5c8ac323f51a4b82e79a0}{Float64}},}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \ \ \ \ NUM}
+\DoxyCodeLine{00065\ \};}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structph_1_1_ply_i_o_config}{PlyIOConfig}}\ final}
+\DoxyCodeLine{00068\ \{}
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structph_1_1_ply_i_o_config_a8c2e0f4f00a9f27979884607eea89153}{bIgnoreComments}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structph_1_1_ply_i_o_config_a1a8958f6d4f0736deac2537bc0684209}{bPreloadIntoMemory}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00076\ \ \ \ \ std::size\_t\ \mbox{\hyperlink{structph_1_1_ply_i_o_config_a6bc00e209ce16e142ea5365a97f9dd67}{preloadMemoryThreshold}}\ =\ 1\ *\ math::constant::GiB;}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00079\ \ \ \ \ std::size\_t\ \mbox{\hyperlink{structph_1_1_ply_i_o_config_abdb578a0e78b06f26da055e0d918db87}{reduceStorageMemoryThreshold}}\ =\ 768\ *\ math::constant::MiB;}
+\DoxyCodeLine{00080\ \};}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_ply_property_values}{PlyPropertyValues}};}
+\DoxyCodeLine{00083\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_ply_property_list_values}{PlyPropertyListValues}};}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00087\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structph_1_1_ply_property}{PlyProperty}}\ final}
+\DoxyCodeLine{00088\ \{}
+\DoxyCodeLine{00089\ \ \ \ \ std::string\ \ name;}
+\DoxyCodeLine{00090\ \ \ \ \ \mbox{\hyperlink{namespaceph_a97a9109e30bbf746d1cc750fd37866b7}{EPlyDataType}}\ dataType;}
+\DoxyCodeLine{00091\ \ \ \ \ \mbox{\hyperlink{namespaceph_a97a9109e30bbf746d1cc750fd37866b7}{EPlyDataType}}\ listSizeType;}
+\DoxyCodeLine{00092\ \ \ \ \ std::size\_t\ \ strideOffset;}
+\DoxyCodeLine{00093\ \ \ \ \ std::size\_t\ \ fixedListSize;}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00098\ \ \ \ \ std::vector<std::byte>\ \mbox{\hyperlink{structph_1_1_ply_property_a03540e180098530dc7605efd5fecbe12}{rawListBuffer}};}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00103\ \ \ \ \ std::vector<std::size\_t>\ \mbox{\hyperlink{structph_1_1_ply_property_af9e5e40f3f6052be100e2d68a825e7c1}{listSizesPrefixSum}};}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ \ \ \ \ \mbox{\hyperlink{structph_1_1_ply_property}{PlyProperty}}();}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{keywordtype}{bool}\ isList()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00108\ \ \ \ \ \textcolor{keywordtype}{bool}\ isFixedSizeList()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00109\ \};}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00113\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structph_1_1_ply_element}{PlyElement}}\ final}
+\DoxyCodeLine{00114\ \{}
+\DoxyCodeLine{00115\ \ \ \ \ std::string\ \ \ \ \ \ \ \ \ \ \ \ \ \ name;}
+\DoxyCodeLine{00116\ \ \ \ \ std::size\_t\ \ \ \ \ \ \ \ \ \ \ \ \ \ numElements;}
+\DoxyCodeLine{00117\ \ \ \ \ std::vector<PlyProperty>\ properties;}
+\DoxyCodeLine{00118\ \ \ \ \ std::size\_t\ \ \ \ \ \ \ \ \ \ \ \ \ \ strideSize;}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00128\ \ \ \ \ std::vector<std::byte>\ \mbox{\hyperlink{structph_1_1_ply_element_a1fd3744a53e99e0f3e119820278825c3}{rawBuffer}};}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ \ \ \ \ \mbox{\hyperlink{structph_1_1_ply_element}{PlyElement}}();}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00132\ \ \ \ \ \textcolor{keywordtype}{bool}\ isLoaded()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00133\ \ \ \ \ \textcolor{keywordtype}{bool}\ containsList()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00134\ \ \ \ \ \mbox{\hyperlink{structph_1_1_ply_property}{PlyProperty}}*\ findProperty(std::string\_view\ name);}
+\DoxyCodeLine{00135\ \ \ \ \ \mbox{\hyperlink{classph_1_1_ply_property_values}{PlyPropertyValues}}\ propertyValues(\mbox{\hyperlink{structph_1_1_ply_property}{PlyProperty}}*\ prop);}
+\DoxyCodeLine{00136\ \ \ \ \ \mbox{\hyperlink{classph_1_1_ply_property_list_values}{PlyPropertyListValues}}\ listPropertyValues(\mbox{\hyperlink{structph_1_1_ply_property}{PlyProperty}}*\ prop);}
+\DoxyCodeLine{00137\ \};}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00141\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_ply_property_values}{PlyPropertyValues}}\ final}
+\DoxyCodeLine{00142\ \{}
+\DoxyCodeLine{00143\ \ \ \ \ \textcolor{keyword}{friend}\ \mbox{\hyperlink{structph_1_1_ply_element}{PlyElement}};}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00145\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00146\ \ \ \ \ float64\ get(std::size\_t\ index)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00147\ \ \ \ \ \textcolor{keywordtype}{void}\ set(std::size\_t\ index,\ float64\ value);}
+\DoxyCodeLine{00148\ \ \ \ \ std::size\_t\ size()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00149\ \ \ \ \ \textcolor{keyword}{operator}\ bool\ ()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00151\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00152\ \ \ \ \ \mbox{\hyperlink{classph_1_1_ply_property_values}{PlyPropertyValues}}();}
+\DoxyCodeLine{00153\ }
+\DoxyCodeLine{00154\ \ \ \ \ \mbox{\hyperlink{classph_1_1_ply_property_values}{PlyPropertyValues}}(}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ std::byte*\ \ \ rawBuffer,}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ std::size\_t\ \ strideSize,}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ std::size\_t\ \ numElements,}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceph_a97a9109e30bbf746d1cc750fd37866b7}{EPlyDataType}}\ valueType);}
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00160\ \ \ \ \ std::size\_t\ getBufferOffset(std::size\_t\ index)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00162\ \ \ \ \ std::byte*\ \ \ m\_rawBuffer;}
+\DoxyCodeLine{00163\ \ \ \ \ std::size\_t\ \ m\_strideSize;}
+\DoxyCodeLine{00164\ \ \ \ \ std::size\_t\ \ m\_numElements;}
+\DoxyCodeLine{00165\ \ \ \ \ \mbox{\hyperlink{namespaceph_a97a9109e30bbf746d1cc750fd37866b7}{EPlyDataType}}\ m\_valueType;}
+\DoxyCodeLine{00166\ \};}
+\DoxyCodeLine{00167\ }
+\DoxyCodeLine{00170\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_ply_property_list_values}{PlyPropertyListValues}}\ final}
+\DoxyCodeLine{00171\ \{}
+\DoxyCodeLine{00172\ \ \ \ \ \textcolor{keyword}{friend}\ \mbox{\hyperlink{structph_1_1_ply_element}{PlyElement}};}
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00174\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00175\ \ \ \ \ float64\ get(std::size\_t\ listIndex,\ std::size\_t\ listElementIndex)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00176\ \ \ \ \ \textcolor{keywordtype}{void}\ set(std::size\_t\ listIndex,\ std::size\_t\ listElementIndex,\ float64\ value);}
+\DoxyCodeLine{00177\ \ \ \ \ }
+\DoxyCodeLine{00180\ \ \ \ \ std::size\_t\ \mbox{\hyperlink{classph_1_1_ply_property_list_values_ad71bcb6a55d94d81c4cfde6a17486bdd}{size}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00181\ }
+\DoxyCodeLine{00184\ \ \ \ \ std::size\_t\ \mbox{\hyperlink{classph_1_1_ply_property_list_values_a1997585738191aed6d9c5bba01e6b316}{listSize}}(std::size\_t\ listIndex)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00185\ }
+\DoxyCodeLine{00186\ \ \ \ \ \textcolor{keywordtype}{bool}\ isFixedSizeList()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00187\ \ \ \ \ std::size\_t\ fixedListSize()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00188\ \ \ \ \ \textcolor{keyword}{operator}\ bool\ ()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00189\ }
+\DoxyCodeLine{00190\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00191\ \ \ \ \ \mbox{\hyperlink{classph_1_1_ply_property_list_values}{PlyPropertyListValues}}();}
+\DoxyCodeLine{00192\ }
+\DoxyCodeLine{00193\ \ \ \ \ \mbox{\hyperlink{classph_1_1_ply_property_list_values}{PlyPropertyListValues}}(}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ std::byte*\ \ \ rawBuffer,}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ std::size\_t*\ listSizesPrefixSum,}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ std::size\_t\ \ numLists,}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ std::size\_t\ \ fixedListSize,}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceph_a97a9109e30bbf746d1cc750fd37866b7}{EPlyDataType}}\ valueType);}
+\DoxyCodeLine{00199\ }
+\DoxyCodeLine{00200\ \ \ \ \ std::size\_t\ getBufferOffset(std::size\_t\ listIndex,\ std::size\_t\ listElementIndex)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00201\ }
+\DoxyCodeLine{00202\ \ \ \ \ std::byte*\ \ \ m\_rawBuffer;}
+\DoxyCodeLine{00203\ \ \ \ \ std::size\_t*\ m\_listSizesPrefixSum;}
+\DoxyCodeLine{00204\ \ \ \ \ std::size\_t\ \ m\_numLists;}
+\DoxyCodeLine{00205\ \ \ \ \ std::size\_t\ \ m\_fixedListSize;}
+\DoxyCodeLine{00206\ \ \ \ \ \mbox{\hyperlink{namespaceph_a97a9109e30bbf746d1cc750fd37866b7}{EPlyDataType}}\ m\_valueType;}
+\DoxyCodeLine{00207\ \};}
+\DoxyCodeLine{00208\ }
+\DoxyCodeLine{00209\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_ply_file}{PlyFile}}\ final}
+\DoxyCodeLine{00210\ \{}
+\DoxyCodeLine{00211\ \ \ \ \ \textcolor{keyword}{static\_assert}(\textcolor{keyword}{sizeof}(std::byte)\ *\ CHAR\_BIT\ ==\ 8,}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}The\ file\ explicitly\ depends\ on\ the\ fact\ that\ std::byte\ contains\ 8\ bits."{}});}
+\DoxyCodeLine{00213\ }
+\DoxyCodeLine{00214\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00215\ \ \ \ \ \mbox{\hyperlink{classph_1_1_ply_file}{PlyFile}}();}
+\DoxyCodeLine{00216\ }
+\DoxyCodeLine{00219\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classph_1_1_ply_file}{PlyFile}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_alt_path}{Path}}\&\ plyFilePath);}
+\DoxyCodeLine{00220\ }
+\DoxyCodeLine{00224\ \ \ \ \ \mbox{\hyperlink{classph_1_1_ply_file}{PlyFile}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_alt_path}{Path}}\&\ plyFilePath,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structph_1_1_ply_i_o_config}{PlyIOConfig}}\&\ config);}
+\DoxyCodeLine{00225\ }
+\DoxyCodeLine{00226\ \ \ \ \ \mbox{\hyperlink{structph_1_1_ply_element}{PlyElement}}*\ findElement(std::string\_view\ name);}
+\DoxyCodeLine{00227\ \ \ \ \ std::size\_t\ numElements()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00228\ }
+\DoxyCodeLine{00229\ \ \ \ \ EPlyDataFormat\ getInputFormat()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00230\ \ \ \ \ \textcolor{keywordtype}{void}\ setInputFormat(EPlyDataFormat\ format);}
+\DoxyCodeLine{00231\ \ \ \ \ EPlyDataFormat\ getOutputFormat()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00232\ \ \ \ \ \textcolor{keywordtype}{void}\ setOutputFormat(EPlyDataFormat\ format);}
+\DoxyCodeLine{00233\ }
+\DoxyCodeLine{00238\ \ \ \ \ std::size\_t\ \mbox{\hyperlink{classph_1_1_ply_file_a16d64f74c527ebb954c2f63d43f21218}{numComments}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00239\ \ \ \ \ std::string\_view\ getComment(std::size\_t\ commentIndex)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00241\ }
+\DoxyCodeLine{00244\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_ply_file_a96e520467f8a0c1b0420543bff3a0f2e}{loadFile}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_alt_path}{Path}}\&\ plyFilePath,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structph_1_1_ply_i_o_config}{PlyIOConfig}}\&\ config);}
+\DoxyCodeLine{00245\ }
+\DoxyCodeLine{00248\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_ply_file_aec991e2f6686c2d08c388d4d75f0ccbe}{clearBuffer}}();}
+\DoxyCodeLine{00249\ }
+\DoxyCodeLine{00250\ \ \ \ \ \mbox{\hyperlink{classph_1_1_semantic_version}{SemanticVersion}}\ getVersion()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00251\ }
+\DoxyCodeLine{00252\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00254\ \ \ \ \ \textcolor{keywordtype}{void}\ parseHeader(\mbox{\hyperlink{classph_1_1_i_input_stream}{IInputStream}}\&\ stream,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structph_1_1_ply_i_o_config}{PlyIOConfig}}\&\ config);}
+\DoxyCodeLine{00255\ }
+\DoxyCodeLine{00259\ \ \ \ \ \textcolor{keywordtype}{void}\ loadBuffer(\mbox{\hyperlink{classph_1_1_i_input_stream}{IInputStream}}\&\ stream,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structph_1_1_ply_i_o_config}{PlyIOConfig}}\&\ config);}
+\DoxyCodeLine{00260\ }
+\DoxyCodeLine{00262\ \ \ \ \ \textcolor{keywordtype}{void}\ loadAsciiElementBuffer(}
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_i_input_stream}{IInputStream}}\&\ stream,\ }
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structph_1_1_ply_element}{PlyElement}}\&\ element,\ }
+\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structph_1_1_ply_i_o_config}{PlyIOConfig}}\&\ config);}
+\DoxyCodeLine{00266\ }
+\DoxyCodeLine{00268\ \ \ \ \ \textcolor{keywordtype}{void}\ loadBinaryElementBuffer(}
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_i_input_stream}{IInputStream}}\&\ stream,\ }
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structph_1_1_ply_element}{PlyElement}}\&\ element,\ }
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structph_1_1_ply_i_o_config}{PlyIOConfig}}\&\ config);}
+\DoxyCodeLine{00272\ }
+\DoxyCodeLine{00274\ \ \ \ \ \textcolor{keywordtype}{void}\ loadNonListBinaryElementBuffer(}
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_i_input_stream}{IInputStream}}\&\ stream,}
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structph_1_1_ply_element}{PlyElement}}\&\ element,}
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structph_1_1_ply_i_o_config}{PlyIOConfig}}\&\ config);}
+\DoxyCodeLine{00278\ }
+\DoxyCodeLine{00279\ \ \ \ \ \textcolor{keywordtype}{void}\ loadSingleBinaryPlyDataToBuffer(}
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_i_input_stream}{IInputStream}}\&\ stream,\ }
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceph_a97a9109e30bbf746d1cc750fd37866b7}{EPlyDataType}}\ dataType,\ }
+\DoxyCodeLine{00282\ \ \ \ \ \ \ \ \ std::byte*\ out\_buffer);}
+\DoxyCodeLine{00283\ }
+\DoxyCodeLine{00285\ \ \ \ \ \textcolor{keywordtype}{void}\ compactBuffer();}
+\DoxyCodeLine{00286\ }
+\DoxyCodeLine{00288\ \ \ \ \ \textcolor{keywordtype}{void}\ reserveBuffer();}
+\DoxyCodeLine{00289\ }
+\DoxyCodeLine{00290\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00291\ \ \ \ \ EPlyDataFormat\ \ \ \ \ \ \ \ \ \ \ m\_inputFormat;}
+\DoxyCodeLine{00292\ \ \ \ \ EPlyDataFormat\ \ \ \ \ \ \ \ \ \ \ m\_outputFormat;}
+\DoxyCodeLine{00293\ \ \ \ \ EPlyDataFormat\ \ \ \ \ \ \ \ \ \ \ m\_nativeFormat;}
+\DoxyCodeLine{00294\ \ \ \ \ \mbox{\hyperlink{classph_1_1_semantic_version}{SemanticVersion}}\ \ \ \ \ \ \ \ \ \ m\_version;}
+\DoxyCodeLine{00295\ \ \ \ \ std::vector<std::string>\ m\_comments;}
+\DoxyCodeLine{00296\ \ \ \ \ std::vector<PlyElement>\ \ m\_elements;}
+\DoxyCodeLine{00297\ \};}
+\DoxyCodeLine{00298\ }
+\DoxyCodeLine{00299\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+
+\end{DoxyCode}

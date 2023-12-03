@@ -1,0 +1,155 @@
+\doxysection{TWatertight\+Triangle.\+ipp}
+\hypertarget{_t_watertight_triangle_8ipp_source}{}\label{_t_watertight_triangle_8ipp_source}\index{Source/Math/Geometry/TWatertightTriangle.ipp@{Source/Math/Geometry/TWatertightTriangle.ipp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Math/Geometry/TWatertightTriangle.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Common/assertion.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}Common/primitive\_type.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}Math/TVector3.h"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <cmath>}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph_1_1math}{ph::math}}}
+\DoxyCodeLine{00012\ \{}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00015\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ TWatertightTriangle<T>::isIntersecting(}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keyword}{const}\ TLineSegment<T>\&\ segment,}
+\DoxyCodeLine{00017\ \ \ \ \ T*\ \textcolor{keyword}{const}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ out\_hitT,}
+\DoxyCodeLine{00018\ \ \ \ \ TVector3<T>*\ \textcolor{keyword}{const}\ \ \ \ \ out\_hitBarycentricCoords)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00019\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00020\ \ \ \ \ PH\_ASSERT(out\_hitT);}
+\DoxyCodeLine{00021\ \ \ \ \ PH\_ASSERT(out\_hitBarycentricCoords);}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ \ \ TVector3<T>\ segmentDir\ =\ segment.getDirection();}
+\DoxyCodeLine{00024\ \ \ \ \ TVector3<T>\ vAt\ \ \ \ \ \ \ \ =\ this-\/>getVa().sub(segment.getOrigin());}
+\DoxyCodeLine{00025\ \ \ \ \ TVector3<T>\ vBt\ \ \ \ \ \ \ \ =\ this-\/>getVb().sub(segment.getOrigin());}
+\DoxyCodeLine{00026\ \ \ \ \ TVector3<T>\ vCt\ \ \ \ \ \ \ \ =\ this-\/>getVc().sub(segment.getOrigin());}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{comment}{//\ Find\ the\ dominant\ dimension\ of\ ray\ direction\ and\ make\ it\ Z;\ the\ rest\ }}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{comment}{//\ dimensions\ are\ arbitrarily\ assigned}}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keywordflow}{if}(std::abs(segmentDir.x())\ >\ std::abs(segmentDir.y()))}
+\DoxyCodeLine{00031\ \ \ \ \ \{}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ X\ dominant}}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(std::abs(segmentDir.x())\ >\ std::abs(segmentDir.z()))}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ segmentDir.set(\{segmentDir.y(),\ segmentDir.z(),\ segmentDir.x()\});}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ vAt.set(\{vAt.y(),\ vAt.z(),\ vAt.x()\});}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ vBt.set(\{vBt.y(),\ vBt.z(),\ vBt.x()\});}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ vCt.set(\{vCt.y(),\ vCt.z(),\ vCt.x()\});}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Z\ dominant}}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ left\ as-\/is}}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00045\ \ \ \ \ \}}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00047\ \ \ \ \ \{}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Y\ dominant}}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(std::abs(segmentDir.y())\ >\ std::abs(segmentDir.z()))}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ segmentDir.set(\{segmentDir.z(),\ segmentDir.x(),\ segmentDir.y()\});}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ vAt.set(\{vAt.z(),\ vAt.x(),\ vAt.y()\});}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ vBt.set(\{vBt.z(),\ vBt.x(),\ vBt.y()\});}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ vCt.set(\{vCt.z(),\ vCt.x(),\ vCt.y()\});}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Z\ dominant}}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ left\ as-\/is}}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00061\ \ \ \ \ \}}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \ \ \ \ PH\_ASSERT\_MSG(segmentDir.z()\ !=\ T(0)\ \&\&\ std::isfinite(segmentDir.z()),\ std::to\_string(segmentDir.z()));}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keyword}{const}\ T\ rcpSegmentDirZ\ =\ T(1)\ /\ segmentDir.z();}
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keyword}{const}\ T\ shearX\ \ \ \ \ \ \ \ \ =\ -\/segmentDir.x()\ *\ rcpSegmentDirZ;}
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keyword}{const}\ T\ shearY\ \ \ \ \ \ \ \ \ =\ -\/segmentDir.y()\ *\ rcpSegmentDirZ;}
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keyword}{const}\ T\ shearZ\ \ \ \ \ \ \ \ \ =\ rcpSegmentDirZ;}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ \ \ vAt.x()\ +=\ shearX\ *\ vAt.z();}
+\DoxyCodeLine{00071\ \ \ \ \ vAt.y()\ +=\ shearY\ *\ vAt.z();}
+\DoxyCodeLine{00072\ \ \ \ \ vBt.x()\ +=\ shearX\ *\ vBt.z();}
+\DoxyCodeLine{00073\ \ \ \ \ vBt.y()\ +=\ shearY\ *\ vBt.z();}
+\DoxyCodeLine{00074\ \ \ \ \ vCt.x()\ +=\ shearX\ *\ vCt.z();}
+\DoxyCodeLine{00075\ \ \ \ \ vCt.y()\ +=\ shearY\ *\ vCt.z();}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \ \ \ \ T\ funcEa\ =\ vBt.x()\ *\ vCt.y()\ -\/\ vBt.y()\ *\ vCt.x();}
+\DoxyCodeLine{00078\ \ \ \ \ T\ funcEb\ =\ vCt.x()\ *\ vAt.y()\ -\/\ vCt.y()\ *\ vAt.x();}
+\DoxyCodeLine{00079\ \ \ \ \ T\ funcEc\ =\ vAt.x()\ *\ vBt.y()\ -\/\ vAt.y()\ *\ vBt.x();}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{comment}{//\ FIXME:\ properly\ check\ if\ T\ is\ of\ lower\ precision\ than\ float64}}
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{comment}{//\ Possibly\ fallback\ to\ higher\ precision\ test\ for\ triangle\ edges}}
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(\textcolor{keyword}{sizeof}(T)\ <\ \textcolor{keyword}{sizeof}(float64))}
+\DoxyCodeLine{00084\ \ \ \ \ \{}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(funcEa\ ==\ T(0)\ ||\ funcEb\ ==\ T(0)\ ||\ funcEc\ ==\ T(0))}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ float64\ funcEa64\ =\ \textcolor{keyword}{static\_cast<}float64\textcolor{keyword}{>}(vBt.x())\ *\ \textcolor{keyword}{static\_cast<}float64\textcolor{keyword}{>}(vCt.y())\ -\/}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_cast<}float64\textcolor{keyword}{>}(vBt.y())\ *\ \textcolor{keyword}{static\_cast<}float64\textcolor{keyword}{>}(vCt.x());}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ float64\ funcEb64\ =\ \textcolor{keyword}{static\_cast<}float64\textcolor{keyword}{>}(vCt.x())\ *\ \textcolor{keyword}{static\_cast<}float64\textcolor{keyword}{>}(vAt.y())\ -\/}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_cast<}float64\textcolor{keyword}{>}(vCt.y())\ *\ \textcolor{keyword}{static\_cast<}float64\textcolor{keyword}{>}(vAt.x());}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ float64\ funcEc64\ =\ \textcolor{keyword}{static\_cast<}float64\textcolor{keyword}{>}(vAt.x())\ *\ \textcolor{keyword}{static\_cast<}float64\textcolor{keyword}{>}(vBt.y())\ -\/}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_cast<}float64\textcolor{keyword}{>}(vAt.y())\ *\ \textcolor{keyword}{static\_cast<}float64\textcolor{keyword}{>}(vBt.x());}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ funcEa\ =\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(funcEa64);}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ funcEb\ =\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(funcEb64);}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ funcEc\ =\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(funcEc64);}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00098\ \ \ \ \ \}}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keywordflow}{if}((funcEa\ <\ T(0)\ ||\ funcEb\ <\ T(0)\ ||\ funcEc\ <\ T(0))\ \&\&\ }
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ (funcEa\ >\ T(0)\ ||\ funcEb\ >\ T(0)\ ||\ funcEc\ >\ T(0)))}
+\DoxyCodeLine{00102\ \ \ \ \ \{}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00104\ \ \ \ \ \}}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keyword}{const}\ T\ determinant\ =\ funcEa\ +\ funcEb\ +\ funcEc;}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \ \ \ \ \textcolor{keywordflow}{if}(determinant\ ==\ T(0))}
+\DoxyCodeLine{00109\ \ \ \ \ \{}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00111\ \ \ \ \ \}}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ \ \ \ \ vAt.z()\ *=\ shearZ;}
+\DoxyCodeLine{00114\ \ \ \ \ vBt.z()\ *=\ shearZ;}
+\DoxyCodeLine{00115\ \ \ \ \ vCt.z()\ *=\ shearZ;}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{keyword}{const}\ T\ hitTscaled\ =\ funcEa\ *\ vAt.z()\ +\ funcEb\ *\ vBt.z()\ +\ funcEc\ *\ vCt.z();}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{keywordflow}{if}(determinant\ >\ T(0))}
+\DoxyCodeLine{00120\ \ \ \ \ \{}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(hitTscaled\ <\ segment.getMinT()\ *\ determinant\ ||\ hitTscaled\ >\ segment.getMaxT()\ *\ determinant)}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00125\ \ \ \ \ \}}
+\DoxyCodeLine{00126\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00127\ \ \ \ \ \{}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(hitTscaled\ >\ segment.getMinT()\ *\ determinant\ ||\ hitTscaled\ <\ segment.getMaxT()\ *\ determinant)}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00132\ \ \ \ \ \}}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00134\ \ \ \ \ \textcolor{comment}{//\ So\ the\ ray\ intersects\ the\ triangle}}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00136\ \ \ \ \ PH\_ASSERT\_MSG(determinant\ !=\ T(0)\ \&\&\ std::isfinite(determinant),\ std::to\_string(determinant));}
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00138\ \ \ \ \ \textcolor{keyword}{const}\ T\ rcpDeterminant\ =\ T(1)\ /\ determinant;}
+\DoxyCodeLine{00139\ \ \ \ \ \textcolor{keyword}{const}\ T\ baryA\ \ \ \ \ \ \ \ \ \ =\ funcEa\ *\ rcpDeterminant;}
+\DoxyCodeLine{00140\ \ \ \ \ \textcolor{keyword}{const}\ T\ baryB\ \ \ \ \ \ \ \ \ \ =\ funcEb\ *\ rcpDeterminant;}
+\DoxyCodeLine{00141\ \ \ \ \ \textcolor{keyword}{const}\ T\ baryC\ \ \ \ \ \ \ \ \ \ =\ funcEc\ *\ rcpDeterminant;}
+\DoxyCodeLine{00142\ \ \ \ \ \textcolor{keyword}{const}\ T\ hitT\ \ \ \ \ \ \ \ \ \ \ =\ hitTscaled\ *\ rcpDeterminant;}
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00144\ \ \ \ \ *out\_hitT\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ hitT;}
+\DoxyCodeLine{00145\ \ \ \ \ *out\_hitBarycentricCoords\ =\ TVector3<T>(baryA,\ baryB,\ baryC);}
+\DoxyCodeLine{00146\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00147\ \}}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00149\ \}\textcolor{comment}{//\ end\ namespace\ ph::math}}
+
+\end{DoxyCode}

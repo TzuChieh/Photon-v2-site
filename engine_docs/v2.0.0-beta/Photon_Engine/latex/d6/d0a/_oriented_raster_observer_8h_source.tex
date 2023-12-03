@@ -1,0 +1,83 @@
+\doxysection{Oriented\+Raster\+Observer.\+h}
+\hypertarget{_oriented_raster_observer_8h_source}{}\label{_oriented_raster_observer_8h_source}\index{Source/EngineEnv/Observer/OrientedRasterObserver.h@{Source/EngineEnv/Observer/OrientedRasterObserver.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}EngineEnv/Observer/Observer.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}SDL/sdl\_interface.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}Common/primitive\_type.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}Math/TVector2.h"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}Math/TVector3.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}Math/TQuaternion.h"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}Math/Transform/TDecomposedTransform.h"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}Common/assertion.h"{}}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <optional>}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00015\ \{}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_oriented_raster_observer}{OrientedRasterObserver}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classph_1_1_observer}{Observer}}}
+\DoxyCodeLine{00018\ \{}
+\DoxyCodeLine{00019\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_oriented_raster_observer}{OrientedRasterObserver}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordtype}{void}\ cook(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_core_cooking_context}{CoreCookingContext}}\&\ ctx,\ \mbox{\hyperlink{classph_1_1_core_cooked_unit}{CoreCookedUnit}}\&\ cooked)\ \textcolor{keyword}{override}\ =\ 0;}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00025\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_decomposed_transform}{math::TDecomposedTransform<float64>}}\ makeObserverPose()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00026\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3D}}\ makePosition()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00027\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_quaternion}{math::QuaternionD}}\ makeRotation()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00028\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3D}}\ makeDirection()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00031\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\ m\_position;}
+\DoxyCodeLine{00032\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\ m\_yawPitchRollDegrees;}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \ \ std::optional<math::Vector3R>\ m\_direction;}
+\DoxyCodeLine{00035\ \ \ \ \ std::optional<math::Vector3R>\ m\_upAxis;}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classph_1_1math_1_1_t_quaternion}{math::QuaternionD}}\ makeRotationFromVectors(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\&\ direction,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\&\ upAxis);}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classph_1_1math_1_1_t_quaternion}{math::QuaternionD}}\ makeRotationFromYawPitchRoll(real\ yawDegrees,\ real\ pitchDegrees,\ real\ rollDegrees);}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00041\ \ \ \ \ PH\_DEFINE\_SDL\_CLASS(\mbox{\hyperlink{classph_1_1_t_sdl_owner_class}{TSdlOwnerClass<OrientedRasterObserver>}})}
+\DoxyCodeLine{00042\ \ \ \ \ \{}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ ClassType\ clazz(\textcolor{stringliteral}{"{}oriented-\/raster"{}});}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ clazz.docName(\textcolor{stringliteral}{"{}Oriented\ Raster\ Observer"{}});}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ clazz.description(}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Observers\ that\ work\ by\ projecting\ incoming\ energy\ in\ certain\ ways.\ "{}}}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Projective\ observers\ face\ the\ -\/z\ axis\ (+y\ up)\ and\ reside\ on\ (0,\ 0,\ 0)\ by\ default."{}});}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ clazz.baseOn<\mbox{\hyperlink{classph_1_1_observer}{Observer}}>();}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_sdl_vector3}{TSdlVector3<OwnerType>}}\ position(\textcolor{stringliteral}{"{}position"{}},\ \&OwnerType::m\_position);}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ position.description(\textcolor{stringliteral}{"{}Position\ of\ the\ observer."{}});}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ position.defaultTo(\{0,\ 0,\ 0\});}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ clazz.addField(position);}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_sdl_vector3}{TSdlVector3<OwnerType>}}\ yawPitchRollDegrees(\textcolor{stringliteral}{"{}yaw-\/pitch-\/row-\/degrees"{}},\ \&OwnerType::m\_yawPitchRollDegrees);}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ yawPitchRollDegrees.description(}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Direction\ that\ this\ observer\ is\ looking\ at\ in\ yaw\ pitch\ form.\ "{}}}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}yaw:\ Rotation\ around\ +y\ axis\ in\ [-\/180,\ 180];\ "{}}}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}pitch:\ Declination\ from\ the\ horizon\ in\ [-\/90,\ 90];\ "{}}}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}row:\ Rotation\ around\ +z\ axis\ in\ [-\/180,\ 180]."{}});}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ yawPitchRollDegrees.defaultTo(\{0,\ 0,\ 0\});}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ yawPitchRollDegrees.optional();}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ clazz.addField(yawPitchRollDegrees);}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_sdl_vector3}{TSdlOptionalVector3<OwnerType>}}\ direction(\textcolor{stringliteral}{"{}direction"{}},\ \&OwnerType::m\_direction);}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ direction.description(\textcolor{stringliteral}{"{}Direction\ vector\ that\ this\ observer\ is\ looking\ at.\ No\ need\ to\ be\ normalized."{}});}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ clazz.addField(direction);}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_sdl_vector3}{TSdlOptionalVector3<OwnerType>}}\ upAxis(\textcolor{stringliteral}{"{}up-\/axis"{}},\ \&OwnerType::m\_upAxis);}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ upAxis.description(\textcolor{stringliteral}{"{}The\ direction\ vector\ that\ this\ observer\ consider\ as\ upward.\ No\ need\ to\ be\ normalized."{}});}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ clazz.addField(upAxis);}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ clazz;}
+\DoxyCodeLine{00074\ \ \ \ \ \}}
+\DoxyCodeLine{00075\ \};}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+
+\end{DoxyCode}

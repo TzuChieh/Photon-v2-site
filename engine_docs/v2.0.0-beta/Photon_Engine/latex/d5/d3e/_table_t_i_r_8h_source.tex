@@ -1,0 +1,99 @@
+\doxysection{Table\+TIR.\+h}
+\hypertarget{_table_t_i_r_8h_source}{}\label{_table_t_i_r_8h_source}\index{Source/Core/SurfaceBehavior/SurfaceOptics/LaurentBelcour/TableTIR.h@{Source/Core/SurfaceBehavior/SurfaceOptics/LaurentBelcour/TableTIR.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}DataIO/BinaryFileReader.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}DataIO/FileSystem/Path.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}Common/assertion.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{logging_8h}{Common/logging.h}}"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}Common/primitive\_type.h"{}}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00012\ \{}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \mbox{\hyperlink{logging_8h_a6f3ae1815da4078262e15d5edae54cb5}{PH\_DEFINE\_EXTERNAL\_LOG\_GROUP}}(TableTIR,\ BSDF);}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_table_t_i_r}{TableTIR}}\ final}
+\DoxyCodeLine{00017\ \{}
+\DoxyCodeLine{00018\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classph_1_1_table_t_i_r}{TableTIR}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_alt_path}{Path}}\&\ tableFilePath);}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \ \ \ \ real\ sample(real\ cosWi,\ real\ alpha,\ real\ relIor)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00024\ \ \ \ \ std::vector<float>\ m\_table;}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordtype}{int}\ m\_numCosWi;}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordtype}{int}\ m\_numAlpha;}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordtype}{int}\ m\_numRelIor;}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keywordtype}{float}\ m\_minCosWi,\ \ m\_maxCosWi;}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordtype}{float}\ m\_minAlpha,\ \ m\_maxAlpha;}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordtype}{float}\ m\_minRelIor,\ m\_maxRelIor;}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordtype}{int}\ calcIndex(\textcolor{keywordtype}{int}\ iCosWi,\ \textcolor{keywordtype}{int}\ iAlpha,\ \textcolor{keywordtype}{int}\ iRelIor)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00035\ \};}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{comment}{//\ In-\/header\ Implementations:}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{keyword}{inline}\ TableTIR::TableTIR(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_alt_path}{Path}}\&\ tableFilePath)\ :}
+\DoxyCodeLine{00040\ \ \ \ \ m\_table(),}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ m\_numCosWi\ (0),}
+\DoxyCodeLine{00043\ \ \ \ \ m\_numAlpha\ (0),}
+\DoxyCodeLine{00044\ \ \ \ \ m\_numRelIor(0),}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \ \ m\_minCosWi\ (0.0f),\ m\_maxCosWi\ (0.0f),}
+\DoxyCodeLine{00047\ \ \ \ \ m\_minAlpha\ (0.0f),\ m\_maxAlpha\ (0.0f),}
+\DoxyCodeLine{00048\ \ \ \ \ m\_minRelIor(0.0f),\ m\_maxRelIor(0.0f)}
+\DoxyCodeLine{00049\ \{}
+\DoxyCodeLine{00050\ \ \ \ \ PH\_LOG(\mbox{\hyperlink{classph_1_1_table_t_i_r}{TableTIR}},\ \textcolor{stringliteral}{"{}loading\ <\{\}>"{}},\ tableFilePath.toString());}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ \mbox{\hyperlink{classph_1_1_binary_file_reader}{BinaryFileReader}}\ reader(tableFilePath);}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordflow}{if}(!reader.open())}
+\DoxyCodeLine{00054\ \ \ \ \ \{}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00056\ \ \ \ \ \}}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ \ \ reader.read(\&m\_numCosWi);}
+\DoxyCodeLine{00059\ \ \ \ \ reader.read(\&m\_numAlpha);}
+\DoxyCodeLine{00060\ \ \ \ \ reader.read(\&m\_numRelIor);}
+\DoxyCodeLine{00061\ \ \ \ \ reader.read(\&m\_minCosWi);\ \ reader.read(\&m\_maxCosWi);}
+\DoxyCodeLine{00062\ \ \ \ \ reader.read(\&m\_minAlpha);\ \ reader.read(\&m\_maxAlpha);}
+\DoxyCodeLine{00063\ \ \ \ \ reader.read(\&m\_minRelIor);\ reader.read(\&m\_maxRelIor);}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ \ \ PH\_LOG\_DEBUG(TableTIR,\ \textcolor{stringliteral}{"{}dimension:\ (cos-\/w\_i\ =\ \{\},\ alpha\ =\ \{\},\ relative-\/IOR\ =\ \{\})"{}},\ }
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ m\_numCosWi,\ m\_numAlpha,\ m\_numRelIor);}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ \ PH\_LOG\_DEBUG(TableTIR,\ \textcolor{stringliteral}{"{}range:\ (cos-\/w\_i\ =\ [\{\},\ \{\}],\ alpha\ =\ [\{\},\ \{\}],\ relative-\/IOR\ =\ [\{\},\ \{\}])"{}},}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ m\_minCosWi,\ m\_maxCosWi,}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ m\_minAlpha,\ m\_maxAlpha,}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ m\_minRelIor,\ m\_maxRelIor);}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \ \ PH\_ASSERT(m\_numCosWi\ >\ 0\ \&\&\ m\_numAlpha\ >\ 0\ \&\&\ m\_numRelIor\ >\ 0);}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ tableSize\ =\ }
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_cast<}std::size\_t\textcolor{keyword}{>}(m\_numCosWi)\ *}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_cast<}std::size\_t\textcolor{keyword}{>}(m\_numAlpha)\ *}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_cast<}std::size\_t\textcolor{keyword}{>}(m\_numRelIor);}
+\DoxyCodeLine{00079\ \ \ \ \ m\_table.resize(tableSize,\ 0.0f);}
+\DoxyCodeLine{00080\ \ \ \ \ reader.read(m\_table.data(),\ m\_table.size());}
+\DoxyCodeLine{00081\ \}}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{int}\ TableTIR::calcIndex(\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ iCosWi,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ iAlpha,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ iRelIor)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00084\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{comment}{//\ make\ sure\ the\ indices\ stay\ in\ the\ limits}}
+\DoxyCodeLine{00086\ \ \ \ \ PH\_ASSERT(0\ <=\ iCosWi\ \ \&\&\ iCosWi\ \ <\ m\_numCosWi);}
+\DoxyCodeLine{00087\ \ \ \ \ PH\_ASSERT(0\ <=\ iAlpha\ \ \&\&\ iAlpha\ \ <\ m\_numAlpha);}
+\DoxyCodeLine{00088\ \ \ \ \ PH\_ASSERT(0\ <=\ iRelIor\ \&\&\ iRelIor\ <\ m\_numRelIor);}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keywordflow}{return}\ iRelIor\ +\ m\_numRelIor\ *\ (iAlpha\ +\ m\_numAlpha\ *\ iCosWi);}
+\DoxyCodeLine{00091\ \}}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+
+\end{DoxyCode}

@@ -1,0 +1,95 @@
+\doxysection{TBit\+Flags.\+h}
+\hypertarget{_t_bit_flags_8h_source}{}\label{_t_bit_flags_8h_source}\index{Source/Utility/TBitFlags.h@{Source/Utility/TBitFlags.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Utility/traits.h"{}}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <type\_traits>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <initializer\_list>}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00009\ \{}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Value,\ \textcolor{keyword}{typename}\ Input\ =\ Value>}
+\DoxyCodeLine{00016\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_t_bit_flags}{TBitFlags}}\ final}
+\DoxyCodeLine{00017\ \{}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_integral\_v<Value>);}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_integral\_v<Input>\ ||\ std::is\_enum\_v<Input>);}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keyword}{static\_assert}(\textcolor{keyword}{sizeof}(Value)\ >=\ \textcolor{keyword}{sizeof}(Input),}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Input\ type\ may\ overflow\ Value\ type."{}});}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{using\ }FlagsSet\ =\ std::initializer\_list<Input>;}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00030\ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_bit_flags_ad29c3d52290f70d7bf1ec43f73dee0dc}{TBitFlags}}();}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classph_1_1_t_bit_flags_ad29c3d52290f70d7bf1ec43f73dee0dc}{TBitFlags}}(\textcolor{keyword}{const}\ FlagsSet\&\ flagsSet);}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ OtherInput>}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classph_1_1_t_bit_flags_ad29c3d52290f70d7bf1ec43f73dee0dc}{TBitFlags}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_t_bit_flags}{TBitFlags<Value,\ OtherInput>}}\&\ otherFlags);}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00044\ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_bit_flags}{TBitFlags}}\&\ \mbox{\hyperlink{classph_1_1_t_bit_flags_ad60c78988e69b8643a22574c0fec9333}{unionWith}}(\textcolor{keyword}{const}\ FlagsSet\&\ flagsSet);}
+\DoxyCodeLine{00045\ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_bit_flags}{TBitFlags}}\&\ \mbox{\hyperlink{classph_1_1_t_bit_flags_ad60c78988e69b8643a22574c0fec9333}{unionWith}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_t_bit_flags}{TBitFlags}}\&\ flags);}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00050\ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_bit_flags}{TBitFlags}}\&\ \mbox{\hyperlink{classph_1_1_t_bit_flags_aaa5c1e8f1f9bc304e99b0cd3404097d4}{intersectWith}}(\textcolor{keyword}{const}\ FlagsSet\&\ flagsSet);}
+\DoxyCodeLine{00051\ \ \ \ \ }
+\DoxyCodeLine{00055\ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_bit_flags}{TBitFlags}}\&\ \mbox{\hyperlink{classph_1_1_t_bit_flags_a1a17ddbf1c994f7478ed261aa47aab2a}{turnOn}}(\textcolor{keyword}{const}\ FlagsSet\&\ flagsSet);}
+\DoxyCodeLine{00056\ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_bit_flags}{TBitFlags}}\&\ turnOff(\textcolor{keyword}{const}\ FlagsSet\&\ flagsSet);}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_t_bit_flags_a8824aa4828fcfa7b01b15ac998b29428}{hasNone}}(\textcolor{keyword}{const}\ FlagsSet\&\ flagsSet)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_t_bit_flags_a735266389464361a7e7661dfa53a8c41}{hasAny}}(\textcolor{keyword}{const}\ FlagsSet\&\ flagsSet)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_t_bit_flags_a8b0b27af09928343885a94b740f73f95}{hasAll}}(\textcolor{keyword}{const}\ FlagsSet\&\ flagsSet)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_t_bit_flags_a8f5c553a249648c2b376f7cd446dd4ab}{hasExactly}}(\textcolor{keyword}{const}\ FlagsSet\&\ flagsSet)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keywordtype}{bool}\ has(Input\ singleFlag)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keywordtype}{bool}\ hasNo(Input\ singleFlag)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00077\ \ \ \ \ }
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_t_bit_flags_ac3cf4524aba7d49d8875b2bffcdf8a49}{isEmpty}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keywordtype}{bool}\ isEqual(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_t_bit_flags}{TBitFlags}}\&\ other)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00086\ \ \ \ \ Value\ \mbox{\hyperlink{classph_1_1_t_bit_flags_a1c73a77c181a5eb9ecfefb814d28d371}{get}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{comment}{//\ TODO:\ method\ for\ clear\ all\ flags}}
+\DoxyCodeLine{00089\ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_bit_flags}{TBitFlags}}\&\ set(\textcolor{keyword}{const}\ FlagsSet\&\ flagsSet);}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keyword}{inline}\ Input\ \mbox{\hyperlink{classph_1_1_t_bit_flags_a7928f030772b0fc6ad53dfd167499952}{getEnum}}()\ const\ }
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ requires\ \mbox{\hyperlink{conceptph_1_1_c_enum}{CEnum}}<Input>\ \&\&\ (sizeof(Input)\ >=\ sizeof(Value))}
+\DoxyCodeLine{00096\ \ \ \ \ \{}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}Input\textcolor{keyword}{>}(m\_bits);}
+\DoxyCodeLine{00098\ \ \ \ \ \}}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00101\ \ \ \ \ Value\ m\_bits;}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{keyword}{static}\ Value\ collectFlags(\textcolor{keyword}{const}\ FlagsSet\&\ flagsSet);}
+\DoxyCodeLine{00104\ \};}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00108\ \textcolor{keyword}{template}<CEnum\ EnumType>}
+\DoxyCodeLine{00109\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classph_1_1_t_bit_flags}{TEnumFlags}}\ =\ \mbox{\hyperlink{classph_1_1_t_bit_flags}{TBitFlags<std::underlying\_type\_t<EnumType>}},\ EnumType>;}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ \textcolor{preprocessor}{\#define\ PH\_DEFINE\_INLINE\_ENUM\_FLAG\_OPERATORS(EnumType)\(\backslash\)}}
+\DoxyCodeLine{00114\ \textcolor{preprocessor}{\ \ \ \ static\_assert(::ph::CEnum<EnumType>,\ \#EnumType\ "{}\ must\ be\ an\ enum\ type"{});\(\backslash\)}}
+\DoxyCodeLine{00115\ \textcolor{preprocessor}{\ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00116\ \textcolor{preprocessor}{\ \ \ \ inline\ EnumType\ operator\ |\ (const\ EnumType\ lhs,\ const\ EnumType\ rhs)\(\backslash\)}}
+\DoxyCodeLine{00117\ \textcolor{preprocessor}{\ \ \ \ \{\(\backslash\)}}
+\DoxyCodeLine{00118\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ return\ ::ph::TEnumFlags<EnumType>(\{lhs,\ rhs\}).getEnum();\(\backslash\)}}
+\DoxyCodeLine{00119\ \textcolor{preprocessor}{\ \ \ \ \}\(\backslash\)}}
+\DoxyCodeLine{00120\ \textcolor{preprocessor}{\ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00121\ \textcolor{preprocessor}{\ \ \ \ inline\ EnumType\ operator\ \&\ (const\ EnumType\ lhs,\ const\ EnumType\ rhs)\(\backslash\)}}
+\DoxyCodeLine{00122\ \textcolor{preprocessor}{\ \ \ \ \{\(\backslash\)}}
+\DoxyCodeLine{00123\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ return\ ::ph::TEnumFlags<EnumType>(\{lhs\}).intersectWith(\{rhs\}).getEnum();\(\backslash\)}}
+\DoxyCodeLine{00124\ \textcolor{preprocessor}{\ \ \ \ \}}}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00126\ \textcolor{preprocessor}{\#include\ "{}Utility/TBitFlags.ipp"{}}}
+
+\end{DoxyCode}

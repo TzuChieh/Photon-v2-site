@@ -1,0 +1,46 @@
+\doxysection{TRelaxed\+Atomic.\+h}
+\hypertarget{_t_relaxed_atomic_8h_source}{}\label{_t_relaxed_atomic_8h_source}\index{Source/Utility/Concurrent/TRelaxedAtomic.h@{Source/Utility/Concurrent/TRelaxedAtomic.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <atomic>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <type\_traits>}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00007\ \{}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00013\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_t_relaxed_atomic}{TRelaxedAtomic}}\ final}
+\DoxyCodeLine{00014\ \{}
+\DoxyCodeLine{00015\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00016\ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_relaxed_atomic}{TRelaxedAtomic}}()}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ :\ m\_atomic(T())}
+\DoxyCodeLine{00018\ \ \ \ \ \{\}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_relaxed_atomic}{TRelaxedAtomic}}(T\ value)}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ :\ m\_atomic(value)}
+\DoxyCodeLine{00022\ \ \ \ \ \{\}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00029\ \ \ \ \ T\ \mbox{\hyperlink{classph_1_1_t_relaxed_atomic_a95caf6f25cae0b472ea395f40867ca57}{relaxedRead}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00030\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_atomic.load(std::memory\_order\_relaxed);}
+\DoxyCodeLine{00032\ \ \ \ \ \}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_relaxed_atomic_ae2bab6464016de163e51afbc1f3042a7}{relaxedWrite}}(T\ value)}
+\DoxyCodeLine{00040\ \ \ \ \ \{}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ m\_atomic.store(value,\ std::memory\_order\_relaxed);}
+\DoxyCodeLine{00042\ \ \ \ \ \}}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ T\ relaxedFetchAdd(T\ value)\ \textcolor{keyword}{requires}\ std::is\_integral\_v<T>\ \&\&\ std::is\_floating\_point\_v<T>}
+\DoxyCodeLine{00045\ \ \ \ \ \{}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_atomic.fetch\_add(value,\ std::memory\_order\_relaxed);}
+\DoxyCodeLine{00047\ \ \ \ \ \}}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00050\ \ \ \ \ std::atomic<T>\ m\_atomic;}
+\DoxyCodeLine{00051\ \};}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+
+\end{DoxyCode}

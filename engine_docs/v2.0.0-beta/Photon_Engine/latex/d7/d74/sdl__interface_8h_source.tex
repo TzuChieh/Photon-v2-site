@@ -1,0 +1,154 @@
+\doxysection{sdl\+\_\+interface.\+h}
+\hypertarget{sdl__interface_8h_source}{}\label{sdl__interface_8h_source}\index{Source/SDL/sdl\_interface.h@{Source/SDL/sdl\_interface.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}SDL/ISdlResource.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_sdl_8h}{SDL/TSdl.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}SDL/Introspect/TSdlEnum.h"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ Base\ types}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}SDL/Introspect/SdlClass.h"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}SDL/Introspect/SdlStruct.h"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}SDL/Introspect/SdlFunction.h"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}SDL/Introspect/SdlEnum.h"{}}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ Enum\ types}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ "{}SDL/Introspect/TSdlGeneralEnum.h"{}}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ Owner\ types}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ "{}SDL/Introspect/TSdlOwnerClass.h"{}}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ "{}SDL/Introspect/TSdlOwnerStruct.h"{}}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{comment}{//\ Field\ types}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}SDL/Introspect/TSdlBool.h"{}}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}SDL/Introspect/TSdlInteger.h"{}}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ "{}SDL/Introspect/TSdlReal.h"{}}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ "{}SDL/Introspect/TSdlString.h"{}}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ "{}SDL/Introspect/TSdlVector2.h"{}}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ "{}SDL/Introspect/TSdlVector3.h"{}}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ "{}SDL/Introspect/TSdlQuaternion.h"{}}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#include\ "{}SDL/Introspect/TSdlRealArray.h"{}}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#include\ "{}SDL/Introspect/TSdlVector3Array.h"{}}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#include\ "{}SDL/Introspect/TSdlReference.h"{}}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#include\ "{}SDL/Introspect/TSdlReferenceArray.h"{}}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#include\ "{}SDL/Introspect/TSdlEnumField.h"{}}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#include\ "{}SDL/Introspect/TSdlPath.h"{}}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#include\ "{}SDL/Introspect/TSdlResourceIdentifier.h"{}}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{comment}{//\ Function\ types}}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#include\ "{}SDL/Introspect/TSdlMethod.h"{}}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#include\ <type\_traits>}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00061\ \textcolor{preprocessor}{\#define\ PH\_DEFINE\_SDL\_CLASS(...)}\textcolor{comment}{/*\ variadic\ args\ for\ template\ types\ that\ contain\ commas\ */}\textcolor{preprocessor}{\(\backslash\)}}
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\ \ \ \ using\ ClassType\ =\ std::remove\_cv\_t<\_\_VA\_ARGS\_\_>;\(\backslash\)}}
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\ \ \ \ using\ OwnerType\ =\ std::remove\_cv\_t<typename\ ClassType::OwnerType>;\(\backslash\)}}
+\DoxyCodeLine{00065\ \textcolor{preprocessor}{\ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00066\ \textcolor{preprocessor}{\ \ \ \ }\textcolor{comment}{/*\ A\ marker\ so\ we\ know\ the\ macro\ has\ been\ called.\ */}\textcolor{preprocessor}{\(\backslash\)}}
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\ \ \ \ using\ SdlClassDefinitionMarker\ =\ OwnerType;\(\backslash\)}}
+\DoxyCodeLine{00068\ \textcolor{preprocessor}{\ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00069\ \textcolor{preprocessor}{\ \ \ \ inline\ static\ const\ ClassType*\ getSdlClass()\(\backslash\)}}
+\DoxyCodeLine{00070\ \textcolor{preprocessor}{\ \ \ \ \{\(\backslash\)}}
+\DoxyCodeLine{00071\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ static\_assert(std::is\_base\_of\_v<::ph::ISdlResource,\ OwnerType>,\(\backslash\)}}
+\DoxyCodeLine{00072\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ "{}PH\_DEFINE\_SDL\_CLASS()\ can\ only\ be\ defined\ for\ SDL\ resource."{});\(\backslash\)}}
+\DoxyCodeLine{00073\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ static\_assert(std::is\_base\_of\_v<::ph::SdlClass,\ ClassType>,\(\backslash\)}}
+\DoxyCodeLine{00074\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ "{}PH\_DEFINE\_SDL\_CLASS()\ must\ return\ a\ class\ derived\ from\ SdlClass."{});\(\backslash\)}}
+\DoxyCodeLine{00075\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00076\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ static\ const\ ClassType\ sdlClass\ =\ internal\_sdl\_class\_impl();\(\backslash\)}}
+\DoxyCodeLine{00077\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ return\ \&sdlClass;\(\backslash\)}}
+\DoxyCodeLine{00078\ \textcolor{preprocessor}{\ \ \ \ \}\(\backslash\)}}
+\DoxyCodeLine{00079\ \textcolor{preprocessor}{\ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00080\ \textcolor{preprocessor}{\ \ \ \ inline\ const\ ::ph::SdlClass*\ getDynamicSdlClass()\ const\ override\(\backslash\)}}
+\DoxyCodeLine{00081\ \textcolor{preprocessor}{\ \ \ \ \{\(\backslash\)}}
+\DoxyCodeLine{00082\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ return\ getSdlClass();\(\backslash\)}}
+\DoxyCodeLine{00083\ \textcolor{preprocessor}{\ \ \ \ \}\(\backslash\)}}
+\DoxyCodeLine{00084\ \textcolor{preprocessor}{\ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00085\ \textcolor{preprocessor}{\ \ \ \ inline\ static\ ClassType\ internal\_sdl\_class\_impl()}}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \textcolor{preprocessor}{\#define\ PH\_DEFINE\_SDL\_STRUCT(...)}\textcolor{comment}{/*\ variadic\ args\ for\ template\ types\ that\ contain\ commas\ */}\textcolor{preprocessor}{\(\backslash\)}}
+\DoxyCodeLine{00088\ \textcolor{preprocessor}{\ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00089\ \textcolor{preprocessor}{\ \ \ \ using\ StructType\ =\ std::remove\_cv\_t<\_\_VA\_ARGS\_\_>;\(\backslash\)}}
+\DoxyCodeLine{00090\ \textcolor{preprocessor}{\ \ \ \ using\ OwnerType\ \ =\ std::remove\_cv\_t<typename\ StructType::OwnerType>;\(\backslash\)}}
+\DoxyCodeLine{00091\ \textcolor{preprocessor}{\ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00092\ \textcolor{preprocessor}{\ \ \ \ }\textcolor{comment}{/*\ A\ marker\ so\ we\ know\ the\ macro\ has\ been\ called.\ */}\textcolor{preprocessor}{\(\backslash\)}}
+\DoxyCodeLine{00093\ \textcolor{preprocessor}{\ \ \ \ using\ SdlStructDefinitionMarker\ =\ OwnerType;\(\backslash\)}}
+\DoxyCodeLine{00094\ \textcolor{preprocessor}{\ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00095\ \textcolor{preprocessor}{\ \ \ \ inline\ static\ const\ StructType*\ getSdlStruct()\(\backslash\)}}
+\DoxyCodeLine{00096\ \textcolor{preprocessor}{\ \ \ \ \{\(\backslash\)}}
+\DoxyCodeLine{00097\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ static\_assert(std::is\_base\_of\_v<::ph::SdlStruct,\ StructType>,\(\backslash\)}}
+\DoxyCodeLine{00098\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ "{}PH\_DEFINE\_SDL\_STRUCT()\ must\ return\ a\ struct\ derived\ from\ SdlStruct."{});\(\backslash\)}}
+\DoxyCodeLine{00099\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00100\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ static\ const\ StructType\ sdlStruct\ =\ internal\_sdl\_struct\_impl();\(\backslash\)}}
+\DoxyCodeLine{00101\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ return\ \&sdlStruct;\(\backslash\)}}
+\DoxyCodeLine{00102\ \textcolor{preprocessor}{\ \ \ \ \}\(\backslash\)}}
+\DoxyCodeLine{00103\ \textcolor{preprocessor}{\ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00104\ \textcolor{preprocessor}{\ \ \ \ inline\ static\ StructType\ internal\_sdl\_struct\_impl()}}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \textcolor{preprocessor}{\#define\ PH\_DEFINE\_SDL\_FUNCTION(...)}\textcolor{comment}{/*\ variadic\ args\ for\ template\ types\ that\ contain\ commas\ */}\textcolor{preprocessor}{\(\backslash\)}}
+\DoxyCodeLine{00107\ \textcolor{preprocessor}{\ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00108\ \textcolor{preprocessor}{\ \ \ \ using\ FunctionType\ =\ std::remove\_cv\_t<\_\_VA\_ARGS\_\_>;\(\backslash\)}}
+\DoxyCodeLine{00109\ \textcolor{preprocessor}{\ \ \ \ using\ OwnerType\ \ \ \ =\ std::remove\_cv\_t<typename\ FunctionType::OwnerType>;\(\backslash\)}}
+\DoxyCodeLine{00110\ \textcolor{preprocessor}{\ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00111\ \textcolor{preprocessor}{\ \ \ \ }\textcolor{comment}{/*\ A\ marker\ so\ we\ know\ the\ macro\ has\ been\ called.\ */}\textcolor{preprocessor}{\(\backslash\)}}
+\DoxyCodeLine{00112\ \textcolor{preprocessor}{\ \ \ \ using\ SdlFunctionDefinitionMarker\ =\ OwnerType;\(\backslash\)}}
+\DoxyCodeLine{00113\ \textcolor{preprocessor}{\ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00114\ \textcolor{preprocessor}{\ \ \ \ inline\ static\ const\ FunctionType*\ getSdlFunction()\(\backslash\)}}
+\DoxyCodeLine{00115\ \textcolor{preprocessor}{\ \ \ \ \{\(\backslash\)}}
+\DoxyCodeLine{00116\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ static\_assert(std::is\_base\_of\_v<::ph::SdlFunction,\ FunctionType>,\(\backslash\)}}
+\DoxyCodeLine{00117\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ "{}PH\_DEFINE\_SDL\_FUNCTION()\ must\ return\ a\ function\ derived\ from\ SdlFunction."{});\(\backslash\)}}
+\DoxyCodeLine{00118\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00119\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ static\ const\ FunctionType\ sdlFunction\ =\ internal\_sdl\_function\_impl();\(\backslash\)}}
+\DoxyCodeLine{00120\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ return\ \&sdlFunction;\(\backslash\)}}
+\DoxyCodeLine{00121\ \textcolor{preprocessor}{\ \ \ \ \}\(\backslash\)}}
+\DoxyCodeLine{00122\ \textcolor{preprocessor}{\ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00123\ \textcolor{preprocessor}{\ \ \ \ inline\ static\ FunctionType\ internal\_sdl\_function\_impl()}}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00140\ \textcolor{preprocessor}{\#define\ PH\_DEFINE\_SDL\_ENUM(...)}\textcolor{comment}{/*\ variadic\ args\ for\ template\ types\ that\ contain\ commas\ */}\textcolor{preprocessor}{\(\backslash\)}}
+\DoxyCodeLine{00141\ \textcolor{preprocessor}{\ \ \ \ template<>\(\backslash\)}}
+\DoxyCodeLine{00142\ \textcolor{preprocessor}{\ \ \ \ class\ TSdlEnum<std::remove\_cv\_t<typename\ \_\_VA\_ARGS\_\_::EnumType>>\ final\(\backslash\)}}
+\DoxyCodeLine{00143\ \textcolor{preprocessor}{\ \ \ \ \{\(\backslash\)}}
+\DoxyCodeLine{00144\ \textcolor{preprocessor}{\ \ \ \ public:\(\backslash\)}}
+\DoxyCodeLine{00145\ \textcolor{preprocessor}{\ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00146\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ using\ SdlEnumType\ =\ std::remove\_cv\_t<\_\_VA\_ARGS\_\_>;\(\backslash\)}}
+\DoxyCodeLine{00147\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ using\ EnumType\ \ \ \ =\ std::remove\_cv\_t<typename\ SdlEnumType::EnumType>;\(\backslash\)}}
+\DoxyCodeLine{00148\ \textcolor{preprocessor}{\ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00149\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ static\_assert(std::is\_enum\_v<EnumType>,\(\backslash\)}}
+\DoxyCodeLine{00150\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ "{}EnumType\ must\ be\ an\ enum.\ Currently\ it\ is\ not."{});\(\backslash\)}}
+\DoxyCodeLine{00151\ \textcolor{preprocessor}{\ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00152\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ }\textcolor{comment}{/*\ A\ marker\ so\ we\ know\ the\ macro\ has\ been\ called.\ */}\textcolor{preprocessor}{\(\backslash\)}}
+\DoxyCodeLine{00153\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ using\ SdlEnumDefinitionMarker\ =\ EnumType;\(\backslash\)}}
+\DoxyCodeLine{00154\ \textcolor{preprocessor}{\ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00155\ \textcolor{preprocessor}{\ \ \ \ public:\(\backslash\)}}
+\DoxyCodeLine{00156\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ inline\ EnumType\ operator\ []\ (const\ std::string\_view\ entryName)\ const\(\backslash\)}}
+\DoxyCodeLine{00157\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \{\(\backslash\)}}
+\DoxyCodeLine{00158\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ const\ ::ph::SdlEnum::TEntry<EnumType>\ entry\ =\ getSdlEnum()-\/>getTypedEntry(entryName);\(\backslash\)}}
+\DoxyCodeLine{00159\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ return\ entry.value;\(\backslash\)}}
+\DoxyCodeLine{00160\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \}\(\backslash\)}}
+\DoxyCodeLine{00161\ \textcolor{preprocessor}{\ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00162\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ inline\ std::string\_view\ operator\ []\ (const\ EnumType\ entryValue)\ const\(\backslash\)}}
+\DoxyCodeLine{00163\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \{\(\backslash\)}}
+\DoxyCodeLine{00164\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ const\ ::ph::SdlEnum::TEntry<EnumType>\ entry\ =\ getSdlEnum()-\/>getTypedEntry(entryValue);\(\backslash\)}}
+\DoxyCodeLine{00165\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ return\ entry.name;\(\backslash\)}}
+\DoxyCodeLine{00166\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \}\(\backslash\)}}
+\DoxyCodeLine{00167\ \textcolor{preprocessor}{\ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00168\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ inline\ static\ const\ SdlEnumType*\ getSdlEnum()\(\backslash\)}}
+\DoxyCodeLine{00169\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \{\(\backslash\)}}
+\DoxyCodeLine{00170\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ static\_assert(std::is\_base\_of\_v<::ph::SdlEnum,\ SdlEnumType>,\(\backslash\)}}
+\DoxyCodeLine{00171\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}PH\_DEFINE\_SDL\_ENUM()\ must\ return\ an\ enum\ derived\ from\ SdlEnum."{});\(\backslash\)}}
+\DoxyCodeLine{00172\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00173\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ static\ const\ SdlEnumType\ sdlEnum\ =\ internal\_sdl\_enum\_impl();\(\backslash\)}}
+\DoxyCodeLine{00174\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ return\ \&sdlEnum;\(\backslash\)}}
+\DoxyCodeLine{00175\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \}\(\backslash\)}}
+\DoxyCodeLine{00176\ \textcolor{preprocessor}{\ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00177\ \textcolor{preprocessor}{\ \ \ \ private:\(\backslash\)}}
+\DoxyCodeLine{00178\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ static\ SdlEnumType\ internal\_sdl\_enum\_impl();\(\backslash\)}}
+\DoxyCodeLine{00179\ \textcolor{preprocessor}{\ \ \ \ \};\(\backslash\)}}
+\DoxyCodeLine{00180\ \textcolor{preprocessor}{\ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00181\ \textcolor{preprocessor}{\ \ \ \ }\textcolor{comment}{/*\ In-\/header\ Implementations:\ */}\textcolor{preprocessor}{\(\backslash\)}}
+\DoxyCodeLine{00182\ \textcolor{preprocessor}{\ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00183\ \textcolor{preprocessor}{\ \ \ \ inline\ \_\_VA\_ARGS\_\_\ TSdlEnum<std::remove\_cv\_t<typename\ \_\_VA\_ARGS\_\_::EnumType>>::internal\_sdl\_enum\_impl()}}
+
+\end{DoxyCode}

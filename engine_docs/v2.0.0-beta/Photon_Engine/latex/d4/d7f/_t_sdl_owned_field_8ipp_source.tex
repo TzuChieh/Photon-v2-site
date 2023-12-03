@@ -1,0 +1,125 @@
+\doxysection{TSdl\+Owned\+Field.\+ipp}
+\hypertarget{_t_sdl_owned_field_8ipp_source}{}\label{_t_sdl_owned_field_8ipp_source}\index{Source/SDL/Introspect/TSdlOwnedField.ipp@{Source/SDL/Introspect/TSdlOwnedField.ipp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}SDL/Introspect/TSdlOwnedField.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Common/assertion.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}SDL/Introspect/SdlInputContext.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}SDL/Introspect/SdlOutputContext.h"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}SDL/sdl\_exceptions.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{sdl__helpers_8h}{SDL/sdl\_helpers.h}}"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}SDL/SdlInputClause.h"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}SDL/SdlOutputClause.h"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}Utility/traits.h"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}SDL/TSdlAnyInstance.h"{}}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00017\ \{}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Owner>}
+\DoxyCodeLine{00020\ \textcolor{keyword}{inline}\ TSdlOwnedField<Owner>::TSdlOwnedField(}
+\DoxyCodeLine{00021\ \ \ \ \ std::string\ typeName,\ }
+\DoxyCodeLine{00022\ \ \ \ \ std::string\ valueName)}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \ \ \ \ :\ SdlField(}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ std::move(typeName),\ }
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ std::move(valueName))}
+\DoxyCodeLine{00027\ \{\}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Owner>}
+\DoxyCodeLine{00030\ \textcolor{keyword}{inline}\ TSdlOwnedField<Owner>::TSdlOwnedField(}
+\DoxyCodeLine{00031\ \ \ \ \ std::string\ typeName,\ }
+\DoxyCodeLine{00032\ \ \ \ \ std::string\ valueName,\ }
+\DoxyCodeLine{00033\ \ \ \ \ std::string\ typeSignature)}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ :\ SdlField(}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ std::move(typeName),\ }
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ std::move(valueName),}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ std::move(typeSignature))}
+\DoxyCodeLine{00039\ \{\}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Owner>}
+\DoxyCodeLine{00042\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_sdl_native_data}{SdlNativeData}}\ \mbox{\hyperlink{classph_1_1_t_sdl_owned_field}{TSdlOwnedField<Owner>::nativeData}}(\mbox{\hyperlink{classph_1_1_t_sdl_any_instance}{SdlNonConstInstance}}\ instance)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00043\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00045\ \ \ \ \ \{}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ Owner*\ \textcolor{keyword}{const}\ owner\ =\ instance.get<Owner>();}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!owner)}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Cannot\ get\ native\ data}}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \{\};}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ownedNativeData(*owner);}
+\DoxyCodeLine{00054\ \ \ \ \ \}}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordflow}{catch}(\textcolor{keyword}{const}\ SdlException\&\ \textcolor{comment}{/*\ e\ */})}
+\DoxyCodeLine{00056\ \ \ \ \ \{}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Cannot\ get\ native\ data}}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \{\};}
+\DoxyCodeLine{00059\ \ \ \ \ \}}
+\DoxyCodeLine{00060\ \}}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Owner>}
+\DoxyCodeLine{00063\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_sdl_owned_field}{TSdlOwnedField<Owner>::fromSdl}}(}
+\DoxyCodeLine{00064\ \ \ \ \ Owner\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ owner,}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_sdl_input_clause}{SdlInputClause}}\&\ \ clause,}
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_sdl_input_context}{SdlInputContext}}\&\ ctx)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00067\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00069\ \ \ \ \ \{}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ loadFromSdl(owner,\ clause,\ ctx);}
+\DoxyCodeLine{00071\ \ \ \ \ \}}
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordflow}{catch}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_sdl_exception}{SdlException}}\&\ e)}
+\DoxyCodeLine{00073\ \ \ \ \ \{}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(isFallbackEnabled())}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ ownedValueToDefault(owner);}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Always\ log\ for\ recovered\ failed\ loading\ attempt}}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ (as\ the\ user\ provided\ a\ SDL\ value\ string\ for\ the\ field,\ }}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ a\ successful\ parse\ was\ expected)}}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ PH\_LOG\_WARNING(\mbox{\hyperlink{classph_1_1_sdl_field}{SdlField}},\ \textcolor{stringliteral}{"{}load\ error\ from\ \{\}\ -\/>\ \{\};\ value\ defaults\ to\ \{\}"{}},\ }
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sdl::gen\_pretty\_name(ctx.\mbox{\hyperlink{classph_1_1_sdl_i_o_context_a5b9c08b5228d2e5e4718e08485cb83d5}{getSrcClass}}(),\ \textcolor{keyword}{this}),}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ e.whatStr(),}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ valueToString(owner));}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Let\ caller\ handle\ the\ error\ if\ fallback\ is\ disabled}}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \mbox{\hyperlink{classph_1_1_sdl_load_error}{SdlLoadError}}(}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}load\ error\ from\ "{}}\ +\ sdl::gen\_pretty\_name(ctx.\mbox{\hyperlink{classph_1_1_sdl_i_o_context_a5b9c08b5228d2e5e4718e08485cb83d5}{getSrcClass}}(),\ \textcolor{keyword}{this})\ +}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}\ -\/>\ "{}}\ +\ e.whatStr()\ +\ \textcolor{stringliteral}{"{};\ "{}}\ +}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}value\ left\ uninitialized"{}});}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00096\ \ \ \ \ \}}
+\DoxyCodeLine{00097\ \}}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Owner>}
+\DoxyCodeLine{00100\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_sdl_owned_field}{TSdlOwnedField<Owner>::toSdl}}(}
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{keyword}{const}\ Owner\&\ \ \ \ \ \ \ \ \ \ \ \ owner,}
+\DoxyCodeLine{00102\ \ \ \ \ \mbox{\hyperlink{classph_1_1_sdl_output_clause}{SdlOutputClause}}\&\ \ \ \ \ \ \ \ out\_clause,}
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_sdl_output_context}{SdlOutputContext}}\&\ ctx)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00104\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00105\ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00106\ \ \ \ \ \{}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ saveToSdl(owner,\ out\_clause,\ ctx);}
+\DoxyCodeLine{00108\ \ \ \ \ \}}
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{keywordflow}{catch}(\textcolor{keyword}{const}\ SdlException\&\ e)}
+\DoxyCodeLine{00110\ \ \ \ \ \{}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Provide\ more\ information\ and\ let\ caller\ handle\ the\ error}}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ SdlSaveError(}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}save\ error\ from\ "{}}\ +\ sdl::gen\_pretty\_name(ctx.\mbox{\hyperlink{classph_1_1_sdl_i_o_context_a5b9c08b5228d2e5e4718e08485cb83d5}{getSrcClass}}(),\ \textcolor{keyword}{this})\ +}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}\ -\/>\ "{}}\ +\ e.whatStr());}
+\DoxyCodeLine{00116\ \ \ \ \ \}}
+\DoxyCodeLine{00117\ \}}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+
+\end{DoxyCode}

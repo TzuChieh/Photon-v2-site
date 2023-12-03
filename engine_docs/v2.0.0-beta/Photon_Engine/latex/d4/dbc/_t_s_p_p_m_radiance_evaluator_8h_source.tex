@@ -1,0 +1,287 @@
+\doxysection{TSPPMRadiance\+Evaluator.\+h}
+\hypertarget{_t_s_p_p_m_radiance_evaluator_8h_source}{}\label{_t_s_p_p_m_radiance_evaluator_8h_source}\index{Source/Core/Renderer/PM/TSPPMRadianceEvaluator.h@{Source/Core/Renderer/PM/TSPPMRadianceEvaluator.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Core/Renderer/PM/TViewPathHandler.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Core/Renderer/PM/TViewpoint.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}Core/Renderer/PM/TPhoton.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}Common/assertion.h"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}Common/primitive\_type.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}Core/SurfaceHit.h"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}Core/Intersectable/Primitive.h"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}Core/Intersectable/PrimitiveMetadata.h"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}Core/Emitter/Emitter.h"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}Core/SurfaceBehavior/SurfaceBehavior.h"{}}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}Core/SurfaceBehavior/SurfaceOptics.h"{}}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ "{}Math/Random.h"{}}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ "{}World/Scene.h"{}}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ "{}Core/Filmic/HdrRgbFilm.h"{}}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ "{}Core/Renderer/PM/TPhotonMap.h"{}}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{math_8h}{Math/math.h}}"{}}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ "{}Core/Scheduler/Region.h"{}}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ "{}Core/SurfaceBehavior/BsdfEvalQuery.h"{}}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ <type\_traits>}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00027\ \{}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Viewpo\textcolor{keywordtype}{int},\ \textcolor{keyword}{typename}\ Photon>}
+\DoxyCodeLine{00030\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_t_s_p_p_m_radiance_evaluator}{TSPPMRadianceEvaluator}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classph_1_1_t_view_path_handler}{TViewPathHandler}}<TSPPMRadianceEvaluator<Viewpoint,\ Photon>>}
+\DoxyCodeLine{00031\ \{}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_base\_of\_v<TViewpoint<Viewpoint>,\ Viewpoint>);}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_base\_of\_v<TPhoton<Photon>,\ Photon>);}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00036\ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_s_p_p_m_radiance_evaluator}{TSPPMRadianceEvaluator}}(}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ Viewpoint*\ viewpoints,}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ std::size\_t\ numViewpoints,}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_point_kdtree}{TPhotonMap<Photon>}}*\ photonMap,}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ std::size\_t\ numPhotonPaths,}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_scene}{Scene}}*\ scene,}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_hdr_rgb_film}{HdrRgbFilm}}*\ film,}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d}{Region}}\&\ filmRegion,}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ std::size\_t\ numSamplesPerPixel,}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ std::size\_t\ maxViewpointDepth);}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordtype}{bool}\ impl\_onReceiverSampleStart(}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{math::Vector2D}}\&\ rasterCoord,}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_spectrum}{math::Spectrum}}\&\ pathThroughput);}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keyword}{auto}\ impl\_onPathHitSurface(}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ std::size\_t\ \ \ \ \ \ \ \ \ \ \ pathLength,}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_surface_hit}{SurfaceHit}}\&\ \ \ \ \ surfaceHit,}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_spectrum}{math::Spectrum}}\&\ pathThroughput)\ -\/>\ \mbox{\hyperlink{classph_1_1_view_path_tracing_policy}{ViewPathTracingPolicy}};}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordtype}{void}\ impl\_onReceiverSampleEnd();}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordtype}{void}\ impl\_onSampleBatchFinished();}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00061\ \ \ \ \ Viewpoint*\ m\_viewpoints;}
+\DoxyCodeLine{00062\ \ \ \ \ std::size\_t\ m\_numViewpoints;}
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_point_kdtree}{TPhotonMap<Photon>}}*\ m\_photonMap;}
+\DoxyCodeLine{00064\ \ \ \ \ std::size\_t\ m\_numPhotonPaths;}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_scene}{Scene}}*\ m\_scene;}
+\DoxyCodeLine{00066\ \ \ \ \ \mbox{\hyperlink{classph_1_1_hdr_rgb_film}{HdrRgbFilm}}*\ m\_film;}
+\DoxyCodeLine{00067\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d}{Region}}\ m\_filmRegion;}
+\DoxyCodeLine{00068\ \ \ \ \ std::size\_t\ m\_numSamplesPerPixel;}
+\DoxyCodeLine{00069\ \ \ \ \ std::size\_t\ m\_maxViewpointDepth;}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ Viewpoint*\ m\_viewpoint;}
+\DoxyCodeLine{00072\ \ \ \ \ std::vector<Photon>\ m\_photonCache;}
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordtype}{bool}\ m\_isViewpointFound;}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keywordtype}{void}\ addViewRadiance(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_spectrum}{math::Spectrum}}\&\ radiance);}
+\DoxyCodeLine{00076\ \};}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \textcolor{comment}{//\ In-\/header\ Implementations:}}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Viewpo\textcolor{keywordtype}{int},\ \textcolor{keyword}{typename}\ Photon>}
+\DoxyCodeLine{00081\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_t_s_p_p_m_radiance_evaluator}{TSPPMRadianceEvaluator<Viewpoint,\ Photon>::TSPPMRadianceEvaluator}}(}
+\DoxyCodeLine{00082\ \ \ \ \ Viewpoint*\ viewpoints,}
+\DoxyCodeLine{00083\ \ \ \ \ std::size\_t\ numViewpoints,}
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_point_kdtree}{TPhotonMap<Photon>}}*\ photonMap,}
+\DoxyCodeLine{00085\ \ \ \ \ std::size\_t\ numPhotonPaths,}
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_scene}{Scene}}*\ scene,}
+\DoxyCodeLine{00087\ \ \ \ \ \mbox{\hyperlink{classph_1_1_hdr_rgb_film}{HdrRgbFilm}}*\ film,}
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d}{Region}}\&\ filmRegion,}
+\DoxyCodeLine{00089\ \ \ \ \ std::size\_t\ numSamplesPerPixel,}
+\DoxyCodeLine{00090\ \ \ \ \ std::size\_t\ maxViewpointDepth)\ :}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \ \ \ \ m\_viewpoints(viewpoints),}
+\DoxyCodeLine{00093\ \ \ \ \ m\_numViewpoints(numViewpoints),}
+\DoxyCodeLine{00094\ \ \ \ \ m\_photonMap(photonMap),}
+\DoxyCodeLine{00095\ \ \ \ \ m\_numPhotonPaths(numPhotonPaths),}
+\DoxyCodeLine{00096\ \ \ \ \ m\_scene(scene),}
+\DoxyCodeLine{00097\ \ \ \ \ m\_film(film),}
+\DoxyCodeLine{00098\ \ \ \ \ m\_filmRegion(filmRegion),}
+\DoxyCodeLine{00099\ \ \ \ \ m\_numSamplesPerPixel(numSamplesPerPixel),}
+\DoxyCodeLine{00100\ \ \ \ \ m\_maxViewpointDepth(maxViewpointDepth)}
+\DoxyCodeLine{00101\ \{}
+\DoxyCodeLine{00102\ \ \ \ \ PH\_ASSERT(m\_viewpoints);}
+\DoxyCodeLine{00103\ \ \ \ \ PH\_ASSERT(photonMap);}
+\DoxyCodeLine{00104\ \ \ \ \ PH\_ASSERT\_GE(numPhotonPaths,\ 1);}
+\DoxyCodeLine{00105\ \ \ \ \ PH\_ASSERT(scene);}
+\DoxyCodeLine{00106\ \ \ \ \ PH\_ASSERT(film);}
+\DoxyCodeLine{00107\ \ \ \ \ PH\_ASSERT\_GE(maxViewpointDepth,\ 1);}
+\DoxyCodeLine{00108\ \}}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Viewpo\textcolor{keywordtype}{int},\ \textcolor{keyword}{typename}\ Photon>}
+\DoxyCodeLine{00111\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ TSPPMRadianceEvaluator<Viewpoint,\ Photon>::impl\_onReceiverSampleStart(}
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{keyword}{const}\ math::Vector2D\&\ rasterCoord,}
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{keyword}{const}\ math::Spectrum\&\ pathThroughput)}
+\DoxyCodeLine{00114\ \{}
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{comment}{//\ FIXME:\ sample\ res}}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ fRasterCoord\ =\ math::Vector2R(rasterCoord);}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{keyword}{const}\ math::Vector2S\ regionPosPx(math::Vector2R(}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceph_1_1math_a9e5d8a7a977115813ceeba3f0c00cbdb}{math::clamp}}(}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ fRasterCoord.x()\ -\/\ \textcolor{keyword}{static\_cast<}real\textcolor{keyword}{>}(m\_film-\/>getEffectiveWindowPx().getMinVertex().x()),}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ 0.0\_r,}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_cast<}real\textcolor{keyword}{>}(m\_film-\/>getEffectiveResPx().x()\ -\/\ 1)),}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceph_1_1math_a9e5d8a7a977115813ceeba3f0c00cbdb}{math::clamp}}(}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ fRasterCoord.y()\ -\/\ \textcolor{keyword}{static\_cast<}real\textcolor{keyword}{>}(m\_film-\/>getEffectiveWindowPx().getMinVertex().y()),}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ 0.0\_r,\ }
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_cast<}real\textcolor{keyword}{>}(m\_film-\/>getEffectiveResPx().y()\ -\/\ 1))));}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00129\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ viewpointIdx\ =\ }
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ regionPosPx.y()\ *\ \textcolor{keyword}{static\_cast<}std::size\_t\textcolor{keyword}{>}(m\_film-\/>getEffectiveResPx().x())\ +}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ regionPosPx.x();}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00133\ \ \ \ \ PH\_ASSERT\_LT(viewpointIdx,\ m\_numViewpoints);}
+\DoxyCodeLine{00134\ \ \ \ \ m\_viewpoint\ =\ \&(m\_viewpoints[viewpointIdx]);}
+\DoxyCodeLine{00135\ \ \ \ \ }
+\DoxyCodeLine{00136\ \ \ \ \ m\_isViewpointFound\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00138\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00139\ \}}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00141\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Viewpo\textcolor{keywordtype}{int},\ \textcolor{keyword}{typename}\ Photon>}
+\DoxyCodeLine{00142\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ TSPPMRadianceEvaluator<Viewpoint,\ Photon>::impl\_onPathHitSurface(}
+\DoxyCodeLine{00143\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ \ \ \ \ pathLength,}
+\DoxyCodeLine{00144\ \ \ \ \ \textcolor{keyword}{const}\ SurfaceHit\&\ \ \ \ \ surfaceHit,}
+\DoxyCodeLine{00145\ \ \ \ \ \textcolor{keyword}{const}\ math::Spectrum\&\ pathThroughput)\ -\/>\ ViewPathTracingPolicy}
+\DoxyCodeLine{00146\ \{}
+\DoxyCodeLine{00147\ \ \ \ \ \textcolor{keyword}{const}\ PrimitiveMetadata*\ metadata\ =\ surfaceHit.getDetail().getPrimitive()-\/>getMetadata();}
+\DoxyCodeLine{00148\ \ \ \ \ \textcolor{keyword}{const}\ SurfaceOptics*\ optics\ =\ metadata-\/>getSurface().getOptics();}
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00150\ \ \ \ \ \textcolor{comment}{//\ TODO:\ MIS}}
+\DoxyCodeLine{00151\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(Viewpoint::template\ has<EViewpointData::VIEW\_RADIANCE>())}
+\DoxyCodeLine{00152\ \ \ \ \ \{}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(metadata-\/>getSurface().getEmitter())}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ math::Spectrum\ viewRadiance;}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ metadata-\/>getSurface().getEmitter()-\/>evalEmittedRadiance(surfaceHit,\ \&viewRadiance);}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ addViewRadiance(pathThroughput\ *\ viewRadiance);}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00159\ \ \ \ \ \}}
+\DoxyCodeLine{00160\ \ \ \ \ }
+\DoxyCodeLine{00161\ \ \ \ \ \textcolor{comment}{//\ TODO:\ better\ handling\ of\ glossy\ optics}}
+\DoxyCodeLine{00162\ \ \ \ \ \textcolor{keywordflow}{if}(optics-\/>getAllPhenomena().hasAny(\{ESurfacePhenomenon::DIFFUSE\_REFLECTION\})\ ||}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ pathLength\ >=\ m\_maxViewpointDepth)}
+\DoxyCodeLine{00164\ \ \ \ \ \{}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(Viewpoint::template\ has<EViewpointData::SURFACE\_HIT>())\ \{}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ m\_viewpoint-\/>template\ set<EViewpointData::SURFACE\_HIT>(surfaceHit);}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(Viewpoint::template\ has<EViewpointData::VIEW\_THROUGHPUT>())\ \{}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ m\_viewpoint-\/>template\ set<EViewpointData::VIEW\_THROUGHPUT>(pathThroughput);}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(Viewpoint::template\ has<EViewpointData::VIEW\_DIR>())\ \{}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \ \ \ \ m\_viewpoint-\/>template\ set<EViewpointData::VIEW\_DIR>(surfaceHit.getIncidentRay().getDirection().mul(-\/1));}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00174\ }
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ m\_isViewpointFound\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00176\ }
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ViewPathTracingPolicy().kill();}
+\DoxyCodeLine{00178\ \ \ \ \ \}}
+\DoxyCodeLine{00179\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00180\ \ \ \ \ \{}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ViewPathTracingPolicy().}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \ \ \ \ traceSinglePathFor(ALL\_ELEMENTALS).}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \ \ \ \ useRussianRoulette(\textcolor{keyword}{true});}
+\DoxyCodeLine{00184\ \ \ \ \ \}}
+\DoxyCodeLine{00185\ \}}
+\DoxyCodeLine{00186\ }
+\DoxyCodeLine{00187\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Viewpo\textcolor{keywordtype}{int},\ \textcolor{keyword}{typename}\ Photon>}
+\DoxyCodeLine{00188\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ TSPPMRadianceEvaluator<Viewpoint,\ Photon>::impl\_onReceiverSampleEnd()}
+\DoxyCodeLine{00189\ \{}
+\DoxyCodeLine{00190\ \ \ \ \ \textcolor{keywordflow}{if}(!m\_isViewpointFound)}
+\DoxyCodeLine{00191\ \ \ \ \ \{}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00193\ \ \ \ \ \}}
+\DoxyCodeLine{00194\ }
+\DoxyCodeLine{00195\ \ \ \ \ \textcolor{keyword}{const}\ SurfaceTracer\ surfaceTracer(m\_scene);}
+\DoxyCodeLine{00196\ }
+\DoxyCodeLine{00197\ \ \ \ \ \textcolor{keyword}{const}\ SurfaceHit\&\ \ \ \ surfaceHit\ =\ m\_viewpoint-\/>template\ get<EViewpointData::SURFACE\_HIT>();}
+\DoxyCodeLine{00198\ \ \ \ \ \textcolor{keyword}{const}\ math::Vector3R\ L\ \ \ \ \ \ \ \ \ \ =\ m\_viewpoint-\/>template\ get<EViewpointData::VIEW\_DIR>();}
+\DoxyCodeLine{00199\ \ \ \ \ \textcolor{keyword}{const}\ math::Vector3R\ Ng\ \ \ \ \ \ \ \ \ =\ surfaceHit.getGeometryNormal();}
+\DoxyCodeLine{00200\ \ \ \ \ \textcolor{keyword}{const}\ math::Vector3R\ Ns\ \ \ \ \ \ \ \ \ =\ surfaceHit.getShadingNormal();}
+\DoxyCodeLine{00201\ \ \ \ \ \textcolor{keyword}{const}\ real\ \ \ \ \ \ \ \ \ \ \ R\ \ \ \ \ \ \ \ \ \ =\ m\_viewpoint-\/>template\ get<EViewpointData::RADIUS>();}
+\DoxyCodeLine{00202\ }
+\DoxyCodeLine{00203\ \ \ \ \ m\_photonCache.clear();}
+\DoxyCodeLine{00204\ \ \ \ \ m\_photonMap-\/>findWithinRange(surfaceHit.getPosition(),\ R,\ m\_photonCache);}
+\DoxyCodeLine{00205\ }
+\DoxyCodeLine{00206\ \ \ \ \ \textcolor{comment}{//\ FIXME:\ as\ a\ parameter}}
+\DoxyCodeLine{00207\ \ \ \ \ \textcolor{keyword}{const}\ real\ alpha\ =\ 2.0\_r\ /\ 3.0\_r;}
+\DoxyCodeLine{00208\ }
+\DoxyCodeLine{00209\ \ \ \ \ \textcolor{keyword}{const}\ real\ N\ \ \ \ =\ m\_viewpoint-\/>template\ get<EViewpointData::NUM\_PHOTONS>();}
+\DoxyCodeLine{00210\ \ \ \ \ \textcolor{keyword}{const}\ real\ M\ \ \ \ =\ \textcolor{keyword}{static\_cast<}real\textcolor{keyword}{>}(m\_photonCache.size());}
+\DoxyCodeLine{00211\ \ \ \ \ \textcolor{keyword}{const}\ real\ newN\ =\ N\ +\ alpha\ *\ M;}
+\DoxyCodeLine{00212\ \ \ \ \ \textcolor{keyword}{const}\ real\ newR\ =\ (N\ +\ M)\ !=\ 0.0\_r\ ?\ R\ *\ std::sqrt(newN\ /\ (N\ +\ M))\ :\ R;}
+\DoxyCodeLine{00213\ }
+\DoxyCodeLine{00214\ \ \ \ \ \textcolor{keyword}{const}\ BsdfQueryContext\ bsdfContext(ALL\_ELEMENTALS,\ ETransport::IMPORTANCE,\ ESidednessPolicy::STRICT);}
+\DoxyCodeLine{00215\ }
+\DoxyCodeLine{00216\ \ \ \ \ math::Spectrum\ tauM(0);}
+\DoxyCodeLine{00217\ \ \ \ \ BsdfEvalQuery\ \ bsdfEval(bsdfContext);}
+\DoxyCodeLine{00218\ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ photon\ :\ m\_photonCache)}
+\DoxyCodeLine{00219\ \ \ \ \ \{}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ math::Vector3R\ V\ =\ photon.template\ get<EPhotonData::FROM\_DIR>();}
+\DoxyCodeLine{00221\ }
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ bsdfEval.inputs.set(surfaceHit,\ L,\ V);}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!surfaceTracer.doBsdfEvaluation(bsdfEval))}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00227\ }
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ math::Spectrum\ tau\ =\ photon.template\ get<EPhotonData::THROUGHPUT\_RADIANCE>();}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ tau.mulLocal(bsdfEval.outputs.bsdf);}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ tau.mulLocal(lta::importance\_BSDF\_Ns\_corrector(Ns,\ Ng,\ L,\ V));}
+\DoxyCodeLine{00231\ }
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ tauM.addLocal(tau);}
+\DoxyCodeLine{00233\ \ \ \ \ \}}
+\DoxyCodeLine{00234\ \ \ \ \ tauM.mulLocal(m\_viewpoint-\/>template\ get<EViewpointData::VIEW\_THROUGHPUT>());}
+\DoxyCodeLine{00235\ }
+\DoxyCodeLine{00236\ \ \ \ \ \textcolor{keyword}{const}\ math::Spectrum\ tauN\ \ \ =\ m\_viewpoint-\/>template\ get<EViewpointData::TAU>();}
+\DoxyCodeLine{00237\ \ \ \ \ \textcolor{keyword}{const}\ math::Spectrum\ newTau\ =\ (N\ +\ M)\ !=\ 0.0\_r\ ?\ (tauN\ +\ tauM)\ *\ (newN\ /\ (N\ +\ M))\ :\ math::Spectrum(0);}
+\DoxyCodeLine{00238\ }
+\DoxyCodeLine{00239\ \ \ \ \ m\_viewpoint-\/>template\ set<EViewpointData::RADIUS>(newR);}
+\DoxyCodeLine{00240\ \ \ \ \ m\_viewpoint-\/>template\ set<EViewpointData::NUM\_PHOTONS>(newN);}
+\DoxyCodeLine{00241\ \ \ \ \ m\_viewpoint-\/>template\ set<EViewpointData::TAU>(newTau);}
+\DoxyCodeLine{00242\ \}}
+\DoxyCodeLine{00243\ }
+\DoxyCodeLine{00244\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Viewpo\textcolor{keywordtype}{int},\ \textcolor{keyword}{typename}\ Photon>}
+\DoxyCodeLine{00245\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ TSPPMRadianceEvaluator<Viewpoint,\ Photon>::impl\_onSampleBatchFinished()}
+\DoxyCodeLine{00246\ \{}
+\DoxyCodeLine{00247\ \ \ \ \ \textcolor{comment}{//\ evaluate\ radiance\ using\ current\ iteration's\ data}}
+\DoxyCodeLine{00248\ \ \ \ \ \textcolor{keywordflow}{for}(int64\ y\ =\ m\_filmRegion.getMinVertex().y();\ y\ <\ m\_filmRegion.getMaxVertex().y();\ ++y)}
+\DoxyCodeLine{00249\ \ \ \ \ \{}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(int64\ x\ =\ m\_filmRegion.getMinVertex().x();\ x\ <\ m\_filmRegion.getMaxVertex().x();\ ++x)}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ viewpointIdx\ =}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (y\ -\/\ m\_film-\/>getEffectiveWindowPx().getMinVertex().y())\ *\ \textcolor{keyword}{static\_cast<}std::size\_t\textcolor{keyword}{>}(m\_film-\/>getEffectiveResPx().x())\ +}
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (x\ -\/\ m\_film-\/>getEffectiveWindowPx().getMinVertex().x());}
+\DoxyCodeLine{00255\ }
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \ \ \ \ PH\_ASSERT\_LT(viewpointIdx,\ m\_numViewpoints);}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ viewpoint\ =\ m\_viewpoints[viewpointIdx];}
+\DoxyCodeLine{00258\ }
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ real\ radius\ \ \ \ \ \ \ \ \ \ \ \ \ =\ viewpoint.template\ get<EViewpointData::RADIUS>();}
+\DoxyCodeLine{00260\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ real\ kernelArea\ \ \ \ \ \ \ \ \ =\ radius\ *\ radius\ *\ math::constant::pi<real>;}
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ real\ radianceMultiplier\ =\ 1.0\_r\ /\ (kernelArea\ *\ \textcolor{keyword}{static\_cast<}real\textcolor{keyword}{>}(m\_numPhotonPaths));}
+\DoxyCodeLine{00262\ }
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ \ \ \ \ math::Spectrum\ radiance(viewpoint.template\ get<EViewpointData::TAU>()\ *\ radianceMultiplier);}
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ \ \ \ \ radiance.addLocal(viewpoint.template\ get<EViewpointData::VIEW\_RADIANCE>()\ /\ \textcolor{keyword}{static\_cast<}real\textcolor{keyword}{>}(m\_numSamplesPerPixel));}
+\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ \ \ \ \ m\_film-\/>setPixel(\textcolor{keyword}{static\_cast<}float64\textcolor{keyword}{>}(x),\ \textcolor{keyword}{static\_cast<}float64\textcolor{keyword}{>}(y),\ radiance);}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00267\ \ \ \ \ \}}
+\DoxyCodeLine{00268\ \}}
+\DoxyCodeLine{00269\ }
+\DoxyCodeLine{00270\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Viewpo\textcolor{keywordtype}{int},\ \textcolor{keyword}{typename}\ Photon>}
+\DoxyCodeLine{00271\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ TSPPMRadianceEvaluator<Viewpoint,\ Photon>::addViewRadiance(\textcolor{keyword}{const}\ math::Spectrum\&\ radiance)}
+\DoxyCodeLine{00272\ \{}
+\DoxyCodeLine{00273\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(Viewpoint::template\ has<EViewpointData::VIEW\_RADIANCE>())}
+\DoxyCodeLine{00274\ \ \ \ \ \{}
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ math::Spectrum\ viewRadiance\ =\ m\_viewpoint-\/>template\ get<EViewpointData::VIEW\_RADIANCE>();}
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ viewRadiance.addLocal(radiance);}
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ m\_viewpoint-\/>template\ set<EViewpointData::VIEW\_RADIANCE>(viewRadiance);}
+\DoxyCodeLine{00278\ \ \ \ \ \}}
+\DoxyCodeLine{00279\ \}}
+\DoxyCodeLine{00280\ }
+\DoxyCodeLine{00281\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+
+\end{DoxyCode}

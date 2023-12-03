@@ -1,0 +1,226 @@
+\doxysection{TPPMViewpoint\+Collector.\+h}
+\hypertarget{_t_p_p_m_viewpoint_collector_8h_source}{}\label{_t_p_p_m_viewpoint_collector_8h_source}\index{Source/Core/Renderer/PM/TPPMViewpointCollector.h@{Source/Core/Renderer/PM/TPPMViewpointCollector.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Core/Renderer/PM/TViewPathHandler.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Core/Renderer/PM/TViewpoint.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}Common/assertion.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}Common/primitive\_type.h"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}Core/SurfaceHit.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}Core/Intersectable/Primitive.h"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}Core/Intersectable/PrimitiveMetadata.h"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}Core/Emitter/Emitter.h"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}Core/SurfaceBehavior/SurfaceBehavior.h"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}Core/SurfaceBehavior/SurfaceOptics.h"{}}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}Math/Random.h"{}}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <type\_traits>}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00020\ \{}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Viewpo\textcolor{keywordtype}{int}>}
+\DoxyCodeLine{00023\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_t_p_p_m_viewpoint_collector}{TPPMViewpointCollector}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classph_1_1_t_view_path_handler}{TViewPathHandler}}<TPPMViewpointCollector<Viewpoint>>}
+\DoxyCodeLine{00024\ \{}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_base\_of\_v<TViewpoint<Viewpoint>,\ Viewpoint>);}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00028\ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_p_p_m_viewpoint_collector}{TPPMViewpointCollector}}(}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ std::size\_t\ maxViewpointDepth,}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ real\ \ \ \ \ \ \ \ initialKernelRadius);}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordtype}{bool}\ impl\_onReceiverSampleStart(}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{math::Vector2D}}\&\ rasterCoord,}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_spectrum}{math::Spectrum}}\&\ pathThroughput);}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{auto}\ impl\_onPathHitSurface(}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ std::size\_t\ \ \ \ \ \ \ \ \ \ \ pathLength,}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_surface_hit}{SurfaceHit}}\&\ \ \ \ \ surfaceHit,}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_spectrum}{math::Spectrum}}\&\ pathThroughput)\ -\/>\ \mbox{\hyperlink{classph_1_1_view_path_tracing_policy}{ViewPathTracingPolicy}};}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordtype}{void}\ impl\_onReceiverSampleEnd();}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordtype}{void}\ impl\_onSampleBatchFinished();}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ std::vector<Viewpoint>\ claimViewpoints();}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00048\ \ \ \ \ std::vector<Viewpoint>\ m\_viewpoints;}
+\DoxyCodeLine{00049\ \ \ \ \ std::size\_t\ \ \ \ \ \ \ \ \ \ \ \ m\_maxViewpointDepth;}
+\DoxyCodeLine{00050\ \ \ \ \ real\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_initialKernelRadius;}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ Viewpoint\ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_viewpoint;}
+\DoxyCodeLine{00053\ \ \ \ \ std::size\_t\ \ \ \ \ \ \ \ \ \ \ \ m\_receiverSampleViewpoints;}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordtype}{void}\ addViewpoint(}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_surface_hit}{SurfaceHit}}\&\ \ \ \ \ surfaceHit,\ }
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\&\ viewDir,}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_spectrum}{math::Spectrum}}\&\ pathThroughput);}
+\DoxyCodeLine{00059\ \};}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \textcolor{comment}{//\ In-\/header\ Implementations:}}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Viewpo\textcolor{keywordtype}{int}>}
+\DoxyCodeLine{00064\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_t_p_p_m_viewpoint_collector}{TPPMViewpointCollector<Viewpoint>::TPPMViewpointCollector}}(}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ \ \ \ \ \ \ maxViewpointDepth,}
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keyword}{const}\ real\ \ \ \ \ \ \ \ \ \ \ \ \ \ initialKernelRadius)\ :\ }
+\DoxyCodeLine{00067\ \ \ \ \ m\_maxViewpointDepth\ \ (maxViewpointDepth),}
+\DoxyCodeLine{00068\ \ \ \ \ m\_initialKernelRadius(initialKernelRadius)}
+\DoxyCodeLine{00069\ \{}
+\DoxyCodeLine{00070\ \ \ \ \ PH\_ASSERT\_GE(maxViewpointDepth,\ 1);}
+\DoxyCodeLine{00071\ \ \ \ \ PH\_ASSERT\_GT(initialKernelRadius,\ 0.0\_r);}
+\DoxyCodeLine{00072\ \}}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Viewpo\textcolor{keywordtype}{int}>}
+\DoxyCodeLine{00075\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ TPPMViewpointCollector<Viewpoint>::impl\_onReceiverSampleStart(}
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keyword}{const}\ math::Vector2D\&\ rasterCoord,}
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keyword}{const}\ math::Spectrum\&\ pathThroughput)}
+\DoxyCodeLine{00078\ \{}
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keywordflow}{if}(pathThroughput.isZero())}
+\DoxyCodeLine{00080\ \ \ \ \ \{}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ TODO:\ should\ we\ add\ a\ 0-\/contribution\ viewpoint?}}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00083\ \ \ \ \ \}}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(Viewpoint::template\ has<EViewpointData::RASTER\_COORD>())\ \{}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ m\_viewpoint.template\ set<EViewpointData::RASTER\_COORD>(rasterCoord);}
+\DoxyCodeLine{00087\ \ \ \ \ \}}
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(Viewpoint::template\ has<EViewpointData::RADIUS>())\ \{}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ m\_viewpoint.template\ set<EViewpointData::RADIUS>(m\_initialKernelRadius);}
+\DoxyCodeLine{00090\ \ \ \ \ \}}
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(Viewpoint::template\ has<EViewpointData::NUM\_PHOTONS>())\ \{}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ m\_viewpoint.template\ set<EViewpointData::NUM\_PHOTONS>(0.0\_r);}
+\DoxyCodeLine{00093\ \ \ \ \ \}}
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(Viewpoint::template\ has<EViewpointData::TAU>())\ \{}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ m\_viewpoint.template\ set<EViewpointData::TAU>(math::Spectrum(0));}
+\DoxyCodeLine{00096\ \ \ \ \ \}}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ \ \ \ \ m\_receiverSampleViewpoints\ =\ 0;}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00101\ \}}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Viewpo\textcolor{keywordtype}{int}>}
+\DoxyCodeLine{00104\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ TPPMViewpointCollector<Viewpoint>::impl\_onPathHitSurface(}
+\DoxyCodeLine{00105\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ \ \ \ \ pathLength,}
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keyword}{const}\ SurfaceHit\&\ \ \ \ \ surfaceHit,}
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{keyword}{const}\ math::Spectrum\&\ pathThroughput)\ -\/>\ ViewPathTracingPolicy}
+\DoxyCodeLine{00108\ \{}
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{keyword}{const}\ PrimitiveMetadata*\ \textcolor{keyword}{const}\ metadata\ =\ surfaceHit.getDetail().getPrimitive()-\/>getMetadata();}
+\DoxyCodeLine{00110\ \ \ \ \ \textcolor{keyword}{const}\ SurfaceOptics*\ \textcolor{keyword}{const}\ \ \ \ \ optics\ \ \ =\ metadata-\/>getSurface().getOptics();}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{comment}{//\ check\ if\ there's\ any\ non-\/delta\ elemental}}
+\DoxyCodeLine{00113\ \ \ \ \ SurfacePhenomena\ phenomena\ =\ optics-\/>getAllPhenomena();}
+\DoxyCodeLine{00114\ \ \ \ \ phenomena.turnOff(\{}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ ESurfacePhenomenon::DELTA\_REFLECTION,}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ ESurfacePhenomenon::DELTA\_TRANSMISSION\});}
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{keywordflow}{if}(!phenomena.isEmpty())}
+\DoxyCodeLine{00118\ \ \ \ \ \{}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ It\ is\ okay\ to\ add\ a\ viewpoint\ without\ specifying\ which\ surface}}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ elemental\ is\ used-\/-\/since\ it\ is\ impossible\ for\ delta\ elementals}}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ to\ have\ non-\/zero\ contribution\ in\ any\ BSDF\ evaluation\ process,\ so}}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ we\ will\ not\ double-\/count\ any\ path\ throughput.}}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ addViewpoint(}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ surfaceHit,\ }
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ surfaceHit.getIncidentRay().getDirection().mul(-\/1),\ }
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ pathThroughput);}
+\DoxyCodeLine{00127\ \ \ \ \ \}}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00129\ \ \ \ \ \textcolor{keywordflow}{if}(pathLength\ <\ m\_maxViewpointDepth\ \&\&\ }
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ optics-\/>getAllPhenomena().hasAny(\{}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ ESurfacePhenomenon::DELTA\_REFLECTION,}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ ESurfacePhenomenon::DELTA\_TRANSMISSION\}))}
+\DoxyCodeLine{00133\ \ \ \ \ \{}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ViewPathTracingPolicy().}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ traceBranchedPathFor(SurfacePhenomena(\{}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ESurfacePhenomenon::DELTA\_REFLECTION,}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ESurfacePhenomenon::DELTA\_TRANSMISSION\})).}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ useRussianRoulette(\textcolor{keyword}{false});}
+\DoxyCodeLine{00139\ \ \ \ \ \}}
+\DoxyCodeLine{00140\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00141\ \ \ \ \ \{}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ PH\_ASSERT\_LE(pathLength,\ m\_maxViewpointDepth);}
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ViewPathTracingPolicy().kill();}
+\DoxyCodeLine{00145\ \ \ \ \ \}}
+\DoxyCodeLine{00146\ \}}
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00148\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Viewpo\textcolor{keywordtype}{int}>}
+\DoxyCodeLine{00149\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ TPPMViewpointCollector<Viewpoint>::impl\_onReceiverSampleEnd()}
+\DoxyCodeLine{00150\ \{}
+\DoxyCodeLine{00151\ \ \ \ \ \textcolor{keywordflow}{if}(m\_receiverSampleViewpoints\ >\ 0)}
+\DoxyCodeLine{00152\ \ \ \ \ \{}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Normalize\ current\ receiver\ sample's\ path\ throughput.}}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(Viewpoint::template\ has<EViewpointData::VIEW\_THROUGHPUT>())}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ i\ =\ m\_viewpoints.size()\ -\/\ m\_receiverSampleViewpoints;\ i\ <\ m\_viewpoints.size();\ ++i)}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\&\ viewpoint\ =\ m\_viewpoints[i];}
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ math::Spectrum\ pathThroughput\ =\ viewpoint.template\ get<EViewpointData::VIEW\_THROUGHPUT>();}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pathThroughput.mulLocal(\textcolor{keyword}{static\_cast<}real\textcolor{keyword}{>}(m\_receiverSampleViewpoints));}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ viewpoint.template\ set<EViewpointData::VIEW\_THROUGHPUT>(pathThroughput);}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00165\ \ \ \ \ \}}
+\DoxyCodeLine{00166\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00167\ \ \ \ \ \{}
+\DoxyCodeLine{00170\ }
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \textcolor{comment}{//m\_viewpoint.template\ set<EViewpointData::RADIUS>(0.0\_r);}}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \textcolor{comment}{//addViewpoint(}}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ SurfaceHit(),}}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ Vector3R(),}}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ Spectrum());}}
+\DoxyCodeLine{00177\ \ \ \ \ \}}
+\DoxyCodeLine{00178\ \}}
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00180\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Viewpo\textcolor{keywordtype}{int}>}
+\DoxyCodeLine{00181\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ TPPMViewpointCollector<Viewpoint>::impl\_onSampleBatchFinished()}
+\DoxyCodeLine{00182\ \{\}}
+\DoxyCodeLine{00183\ }
+\DoxyCodeLine{00184\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Viewpo\textcolor{keywordtype}{int}>}
+\DoxyCodeLine{00185\ std::vector<Viewpoint>\ TPPMViewpointCollector<Viewpoint>::claimViewpoints()}
+\DoxyCodeLine{00186\ \{}
+\DoxyCodeLine{00187\ \ \ \ \ \textcolor{keywordflow}{return}\ std::move(m\_viewpoints);}
+\DoxyCodeLine{00188\ \}}
+\DoxyCodeLine{00189\ }
+\DoxyCodeLine{00190\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Viewpo\textcolor{keywordtype}{int}>}
+\DoxyCodeLine{00191\ \textcolor{keywordtype}{void}\ TPPMViewpointCollector<Viewpoint>::addViewpoint(}
+\DoxyCodeLine{00192\ \ \ \ \ \textcolor{keyword}{const}\ SurfaceHit\&\ \ \ \ \ surfaceHit,}
+\DoxyCodeLine{00193\ \ \ \ \ \textcolor{keyword}{const}\ math::Vector3R\&\ viewDir,}
+\DoxyCodeLine{00194\ \ \ \ \ \textcolor{keyword}{const}\ math::Spectrum\&\ pathThroughput)}
+\DoxyCodeLine{00195\ \{}
+\DoxyCodeLine{00196\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(Viewpoint::template\ has<EViewpointData::VIEW\_RADIANCE>())}
+\DoxyCodeLine{00197\ \ \ \ \ \{}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ PrimitiveMetadata*\ \textcolor{keyword}{const}\ metadata\ =\ surfaceHit.getDetail().getPrimitive()-\/>getMetadata();}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ PH\_ASSERT(metadata);}
+\DoxyCodeLine{00200\ }
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ math::Spectrum\ viewRadiance(0);}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(metadata-\/>getSurface().getEmitter())}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \ \ \ \ metadata-\/>getSurface().getEmitter()-\/>evalEmittedRadiance(surfaceHit,\ \&viewRadiance);}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ m\_viewpoint.template\ set<EViewpointData::VIEW\_RADIANCE>(viewRadiance);}
+\DoxyCodeLine{00207\ \ \ \ \ \}}
+\DoxyCodeLine{00208\ }
+\DoxyCodeLine{00209\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(Viewpoint::template\ has<EViewpointData::SURFACE\_HIT>())\ \{}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ m\_viewpoint.template\ set<EViewpointData::SURFACE\_HIT>(surfaceHit);}
+\DoxyCodeLine{00211\ \ \ \ \ \}}
+\DoxyCodeLine{00212\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(Viewpoint::template\ has<EViewpointData::VIEW\_THROUGHPUT>())\ \{}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ m\_viewpoint.template\ set<EViewpointData::VIEW\_THROUGHPUT>(pathThroughput);}
+\DoxyCodeLine{00214\ \ \ \ \ \}}
+\DoxyCodeLine{00215\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(Viewpoint::template\ has<EViewpointData::VIEW\_DIR>())\ \{}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ m\_viewpoint.template\ set<EViewpointData::VIEW\_DIR>(viewDir);}
+\DoxyCodeLine{00217\ \ \ \ \ \}}
+\DoxyCodeLine{00218\ }
+\DoxyCodeLine{00219\ \ \ \ \ m\_viewpoints.push\_back(m\_viewpoint);}
+\DoxyCodeLine{00220\ \ \ \ \ ++m\_receiverSampleViewpoints;}
+\DoxyCodeLine{00221\ \}}
+\DoxyCodeLine{00222\ }
+\DoxyCodeLine{00223\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+
+\end{DoxyCode}

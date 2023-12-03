@@ -1,0 +1,135 @@
+\doxysection{Ideal\+Substance.\+h}
+\hypertarget{_ideal_substance_8h_source}{}\label{_ideal_substance_8h_source}\index{Source/Actor/Material/IdealSubstance.h@{Source/Actor/Material/IdealSubstance.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Actor/Material/SurfaceMaterial.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Common/primitive\_type.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}Math/Color/Spectrum.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}Math/TVector3.h"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}SDL/sdl\_interface.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}Actor/Material/Utility/EInterfaceFresnel.h"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}Actor/SDLExtension/TSdlSpectrum.h"{}}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <optional>}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00014\ \{}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{enum\ class}\ EIdealSubstance}
+\DoxyCodeLine{00017\ \{}
+\DoxyCodeLine{00018\ \ \ \ \ Absorber\ =\ 0,}
+\DoxyCodeLine{00019\ \ \ \ \ DielectricReflector,}
+\DoxyCodeLine{00020\ \ \ \ \ MetallicReflector,}
+\DoxyCodeLine{00021\ \ \ \ \ Transmitter,}
+\DoxyCodeLine{00022\ \ \ \ \ Dielectric}
+\DoxyCodeLine{00023\ \};}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ PH\_DEFINE\_SDL\_ENUM(TSdlGeneralEnum<EIdealSubstance>)}
+\DoxyCodeLine{00026\ \{}
+\DoxyCodeLine{00027\ \ \ \ \ SdlEnumType\ sdlEnum(\textcolor{stringliteral}{"{}ideal-\/substance"{}});}
+\DoxyCodeLine{00028\ \ \ \ \ sdlEnum.description(\textcolor{stringliteral}{"{}Type\ of\ the\ physical\ behavior\ of\ a\ perfectly\ smooth\ surface."{}});}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \ \ \ sdlEnum.addEntry(EnumType::Absorber,\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}absorber"{}});}
+\DoxyCodeLine{00031\ \ \ \ \ sdlEnum.addEntry(EnumType::DielectricReflector,\ \textcolor{stringliteral}{"{}dielectric-\/reflector"{}});}
+\DoxyCodeLine{00032\ \ \ \ \ sdlEnum.addEntry(EnumType::MetallicReflector,\ \ \ \textcolor{stringliteral}{"{}metallic-\/reflector"{}});}
+\DoxyCodeLine{00033\ \ \ \ \ sdlEnum.addEntry(EnumType::Transmitter,\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}transmitter"{}});}
+\DoxyCodeLine{00034\ \ \ \ \ sdlEnum.addEntry(EnumType::Dielectric,\ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}dielectric"{}});}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordflow}{return}\ sdlEnum;}
+\DoxyCodeLine{00037\ \}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_ideal_substance}{IdealSubstance}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classph_1_1_surface_material}{SurfaceMaterial}}}
+\DoxyCodeLine{00040\ \{}
+\DoxyCodeLine{00041\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00042\ \ \ \ \ \mbox{\hyperlink{classph_1_1_ideal_substance}{IdealSubstance}}();}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordtype}{void}\ genSurface(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_cooking_context}{CookingContext}}\&\ ctx,\ \mbox{\hyperlink{classph_1_1_surface_behavior}{SurfaceBehavior}}\&\ behavior)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordtype}{void}\ setSubstance(EIdealSubstance\ substance);}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00049\ \ \ \ \ EIdealSubstance\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_substance;}
+\DoxyCodeLine{00050\ \ \ \ \ EInterfaceFresnel\ \ \ \ \ \ \ \ \ \ \ \ \ m\_fresnel;}
+\DoxyCodeLine{00051\ \ \ \ \ real\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_iorOuter;}
+\DoxyCodeLine{00052\ \ \ \ \ real\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_iorInner;}
+\DoxyCodeLine{00053\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_spectrum}{math::Spectrum}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_f0;}
+\DoxyCodeLine{00054\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_spectrum}{math::Spectrum}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_reflectionScale;}
+\DoxyCodeLine{00055\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_spectrum}{math::Spectrum}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_transmissionScale;}
+\DoxyCodeLine{00056\ \ \ \ \ std::optional<math::Spectrum>\ m\_iorInnerN;}
+\DoxyCodeLine{00057\ \ \ \ \ std::optional<math::Spectrum>\ m\_iorInnerK;}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00060\ \ \ \ \ PH\_DEFINE\_SDL\_CLASS(\mbox{\hyperlink{classph_1_1_t_sdl_owner_class}{TSdlOwnerClass<IdealSubstance>}})}
+\DoxyCodeLine{00061\ \ \ \ \ \{}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ ClassType\ clazz(\textcolor{stringliteral}{"{}ideal-\/substance"{}});}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ clazz.description(\textcolor{stringliteral}{"{}Models\ a\ perfectly\ smooth\ surface\ with\ various\ physical\ properties."{}});}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ clazz.docName(\textcolor{stringliteral}{"{}Ideal\ Substance\ Material"{}});}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ clazz.baseOn<\mbox{\hyperlink{classph_1_1_surface_material}{SurfaceMaterial}}>();}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_sdl_enum_field}{TSdlEnumField<OwnerType,\ EIdealSubstance>}}\ substance(\textcolor{stringliteral}{"{}substance"{}},\ \&OwnerType::m\_substance);}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ substance.description(\textcolor{stringliteral}{"{}Specifying\ the\ physical\ property/behavior\ of\ the\ surface."{}});}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ substance.required();}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ substance.defaultTo(EIdealSubstance::Absorber);}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ clazz.addField(substance);}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_sdl_enum_field}{TSdlEnumField<OwnerType,\ EInterfaceFresnel>}}\ fresnel(\textcolor{stringliteral}{"{}fresnel"{}},\ \&OwnerType::m\_fresnel);}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ fresnel.description(\textcolor{stringliteral}{"{}Type\ of\ the\ Fresnel\ for\ the\ interface."{}});}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ fresnel.defaultTo(EInterfaceFresnel::Schlick);}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ fresnel.optional();}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ clazz.addField(fresnel);}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_sdl_real}{TSdlReal<OwnerType>}}\ iorOuter(\textcolor{stringliteral}{"{}ior-\/outer"{}},\ \&OwnerType::m\_iorOuter);}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ iorOuter.description(\textcolor{stringliteral}{"{}The\ index\ of\ refraction\ outside\ the\ surface."{}});}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ iorOuter.defaultTo(1);}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ iorOuter.optional();}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ clazz.addField(iorOuter);}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_sdl_real}{TSdlReal<OwnerType>}}\ iorInner(\textcolor{stringliteral}{"{}ior-\/inner"{}},\ \&OwnerType::m\_iorInner);}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ iorInner.description(\textcolor{stringliteral}{"{}The\ index\ of\ refraction\ inside\ the\ surface."{}});}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ iorInner.defaultTo(1.5\_r);}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ iorInner.optional();}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ clazz.addField(iorInner);}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_sdl_spectrum}{TSdlSpectrum<OwnerType>}}\ f0(\textcolor{stringliteral}{"{}f0"{}},\ \mbox{\hyperlink{namespaceph_1_1math_a821af6da20aaed56cc09ad440633d067a633d6abff0a3fc22404347728d195059}{math::EColorUsage::RAW}},\ \&OwnerType::m\_f0);}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ f0.description(}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Surface\ reflectance\ on\ normal\ incidence.\ This\ value\ is\ expected\ "{}}}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}to\ be\ given\ in\ linear-\/sRGB\ space.\ When\ this\ parameter\ is\ used,\ "{}}}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}the\ underlying\ Fresnel\ model\ will\ be\ an\ approximated\ one\ (schlick)\ "{}}}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}which\ is\ pretty\ popular\ in\ real-\/time\ graphics."{}});}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ f0.optional();}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ f0.defaultTo(\mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_spectrum}{math::Spectrum}}(1));}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ clazz.addField(f0);}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_sdl_spectrum}{TSdlSpectrum<OwnerType>}}\ reflectionScale(\textcolor{stringliteral}{"{}reflection-\/scale"{}},\ \mbox{\hyperlink{namespaceph_1_1math_a821af6da20aaed56cc09ad440633d067a633d6abff0a3fc22404347728d195059}{math::EColorUsage::RAW}},\ \&OwnerType::m\_reflectionScale);}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ reflectionScale.description(}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}A\ scaling\ factor\ for\ reflected\ energy.\ Note\ that\ this\ property\ is\ only\ for\ "{}}}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}artistic\ control\ and\ is\ not\ physically\ correct."{}});}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ reflectionScale.defaultTo(\mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_spectrum}{math::Spectrum}}(1));}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ reflectionScale.optional();}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ clazz.addField(reflectionScale);}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_sdl_spectrum}{TSdlSpectrum<OwnerType>}}\ transmissionScale(\textcolor{stringliteral}{"{}transmission-\/scale"{}},\ \mbox{\hyperlink{namespaceph_1_1math_a821af6da20aaed56cc09ad440633d067a633d6abff0a3fc22404347728d195059}{math::EColorUsage::RAW}},\ \&OwnerType::m\_transmissionScale);}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ transmissionScale.description(}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}A\ scaling\ factor\ for\ transmitted\ energy.\ Note\ that\ this\ property\ is\ only\ for\ "{}}}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}artistic\ control\ and\ is\ not\ physically\ correct."{}});}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ transmissionScale.defaultTo(\mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_spectrum}{math::Spectrum}}(1));}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ transmissionScale.optional();}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ clazz.addField(transmissionScale);}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_sdl_spectrum}{TSdlOptionalSpectrum<OwnerType>}}\ iorInnerN(\textcolor{stringliteral}{"{}ior-\/inner-\/n"{}},\ \mbox{\hyperlink{namespaceph_1_1math_a821af6da20aaed56cc09ad440633d067a633d6abff0a3fc22404347728d195059}{math::EColorUsage::RAW}},\ \&OwnerType::m\_iorInnerN);}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ iorInnerN.description(\textcolor{stringliteral}{"{}The\ complex\ index\ of\ refraction\ (real\ part)\ inside\ the\ metallic\ interface."{}});}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ clazz.addField(iorInnerN);}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_sdl_spectrum}{TSdlOptionalSpectrum<OwnerType>}}\ iorInnerK(\textcolor{stringliteral}{"{}ior-\/inner-\/k"{}},\ \mbox{\hyperlink{namespaceph_1_1math_a821af6da20aaed56cc09ad440633d067a633d6abff0a3fc22404347728d195059}{math::EColorUsage::RAW}},\ \&OwnerType::m\_iorInnerK);}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ iorInnerK.description(\textcolor{stringliteral}{"{}The\ complex\ index\ of\ refraction\ (imaginary\ part)\ inside\ the\ metallic\ interface."{}});}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ clazz.addField(iorInnerK);}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ clazz;}
+\DoxyCodeLine{00126\ \ \ \ \ \}}
+\DoxyCodeLine{00127\ \};}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00129\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+
+\end{DoxyCode}

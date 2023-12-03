@@ -1,0 +1,72 @@
+\doxysection{TPIndexed\+Kd\+Tree\+Triangle\+Mesh.\+h}
+\hypertarget{_t_p_indexed_kd_tree_triangle_mesh_8h_source}{}\label{_t_p_indexed_kd_tree_triangle_mesh_8h_source}\index{Source/Core/Intersectable/TPIndexedKdTreeTriangleMesh.h@{Source/Core/Intersectable/TPIndexedKdTreeTriangleMesh.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Core/Intersectable/Primitive.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Core/Intersectable/DataStructure/TIndexedPolygonBuffer.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}Math/Algorithm/IndexedKdtree/TIndexedKdtree.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}Math/Geometry/TWatertightTriangle.h"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}Common/assertion.h"{}}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00012\ \{}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Index>}
+\DoxyCodeLine{00015\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_t_p_indexed_kd_tree_triangle_mesh}{TPIndexedKdTreeTriangleMesh}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classph_1_1_primitive}{Primitive}}}
+\DoxyCodeLine{00016\ \{}
+\DoxyCodeLine{00017\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classph_1_1_t_p_indexed_kd_tree_triangle_mesh}{TPIndexedKdTreeTriangleMesh}}(}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_indexed_polygon_buffer}{IndexedTriangleBuffer}}*\ triangleBuffer,}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_indexed_kdtree_params}{math::IndexedKdtreeParams}}\ params\ =\ \mbox{\hyperlink{classph_1_1math_1_1_indexed_kdtree_params}{math::IndexedKdtreeParams}}());}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_t_p_indexed_kd_tree_triangle_mesh_a15eb63ba9141e5ccb103692994f231b2}{isIntersecting}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_ray}{Ray}}\&\ ray,\ \mbox{\hyperlink{classph_1_1_hit_probe}{HitProbe}}\&\ probe)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_p_indexed_kd_tree_triangle_mesh_a0a6770ef5267912ff05bb2f03016a3ff}{calcIntersectionDetail}}(}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_ray}{Ray}}\&\ ray,}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_hit_probe}{HitProbe}}\&\ probe,}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_hit_detail}{HitDetail}}*\ out\_detail)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d}{math::AABB3D}}\ \mbox{\hyperlink{classph_1_1_t_p_indexed_kd_tree_triangle_mesh_a38e0a28a8693e6be5087906cc1884970}{calcAABB}}()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classph_1_1math_1_1_t_watertight_triangle}{Triangle}}\ =\ \mbox{\hyperlink{classph_1_1math_1_1_t_watertight_triangle}{math::TWatertightTriangle<real>}};}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{struct\ }IndexToTriangle}
+\DoxyCodeLine{00035\ \ \ \ \ \{}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_indexed_polygon_buffer}{IndexedTriangleBuffer}}*\ triangleBuffer;}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_watertight_triangle}{Triangle}}\ operator\ ()\ (\textcolor{keyword}{const}\ std::size\_t\ index)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00039\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ PH\_ASSERT(triangleBuffer);}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ PH\_ASSERT\_LT(index,\ triangleBuffer-\/>numFaces());}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1math_1_1_t_watertight_triangle}{Triangle}}(triangleBuffer-\/>getPositions(index));}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00045\ \ \ \ \ \};}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keyword}{struct\ }TriangleToAABB}
+\DoxyCodeLine{00048\ \ \ \ \ \{}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d}{math::AABB3D}}\ operator\ ()\ (\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_watertight_triangle}{Triangle}}\&\ triangle)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00050\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ triangle.getAABB();}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00053\ \ \ \ \ \};}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classph_1_1math_1_1_t_indexed_kdtree}{KdTree}}\ =\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_kdtree}{math::TIndexedKdtree}}<}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ IndexToTriangle,}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ TriangleToAABB,}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ Index>;}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_indexed_polygon_buffer}{IndexedTriangleBuffer}}*\ m\_triangleBuffer;}
+\DoxyCodeLine{00061\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_kdtree}{KdTree}}\ m\_kdTree;}
+\DoxyCodeLine{00062\ \};}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \textcolor{preprocessor}{\#include\ "{}Core/Intersectable/TPIndexedKdTreeTriangleMesh.ipp"{}}}
+
+\end{DoxyCode}

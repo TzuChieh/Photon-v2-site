@@ -1,0 +1,71 @@
+\doxysection{shuffle.\+h}
+\hypertarget{shuffle_8h_source}{}\label{shuffle_8h_source}\index{Source/Math/Random/shuffle.h@{Source/Math/Random/shuffle.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Common/assertion.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Math/Random.h"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <cstddef>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <iterator>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph_1_1math}{ph::math}}}
+\DoxyCodeLine{00012\ \{}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{namespace\ }detail::shuffle}
+\DoxyCodeLine{00015\ \{}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00018\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structph_1_1math_1_1detail_1_1shuffle_1_1_standard_swapper}{StandardSwapper}}}
+\DoxyCodeLine{00019\ \{}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keywordtype}{void}\ operator\ ()\ (T\&\ a,\ T\&\ b)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00021\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ enable\ ADL}}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }std::swap;}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ swap(a,\ b);}
+\DoxyCodeLine{00026\ \ \ \ \ \}}
+\DoxyCodeLine{00027\ \};}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \}\textcolor{comment}{//\ end\ namespace\ detail::shuffle}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ IndexPairConsumer>}
+\DoxyCodeLine{00032\ \textcolor{keywordtype}{void}\ shuffle\_durstenfeld\_index\_pairs(}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ \ \ \ \ \ \ beginIndex,}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ \ \ \ \ \ \ endIndex,}
+\DoxyCodeLine{00035\ \ \ \ \ IndexPairConsumer\ \ \ \ \ \ \ consumer)}
+\DoxyCodeLine{00036\ \{}
+\DoxyCodeLine{00037\ \ \ \ \ PH\_ASSERT\_LE(beginIndex,\ endIndex);}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ i\ =\ beginIndex;\ i\ <\ endIndex;\ ++i)}
+\DoxyCodeLine{00040\ \ \ \ \ \{}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ ri\ =\ math::Random::genUniformIndex\_iL\_eU(i,\ endIndex);}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ consumer(i,\ ri);}
+\DoxyCodeLine{00043\ \ \ \ \ \}}
+\DoxyCodeLine{00044\ \}}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \textcolor{keyword}{template}<}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keyword}{typename}\ RandomIterator,\ }
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keyword}{typename}\ Swapper\ =\ \mbox{\hyperlink{structph_1_1math_1_1detail_1_1shuffle_1_1_standard_swapper}{detail::shuffle::StandardSwapper<typename\ std::iterator\_traits<RandomIterator>::value\_type}}>>}
+\DoxyCodeLine{00049\ \textcolor{keywordtype}{void}\ shuffle\_durstenfeld(}
+\DoxyCodeLine{00050\ \ \ \ \ RandomIterator\ begin,\ RandomIterator\ end,}
+\DoxyCodeLine{00051\ \ \ \ \ Swapper\ swapper\ =\ Swapper())}
+\DoxyCodeLine{00052\ \{}
+\DoxyCodeLine{00053\ \ \ \ \ PH\_ASSERT(begin\ <=\ end);}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ NUM\_ELEMENTS\ =\ \textcolor{keyword}{static\_cast<}std::size\_t\textcolor{keyword}{>}(std::distance(begin,\ end));}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \ \ shuffle\_durstenfeld\_index\_pairs(}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ 0,\ NUM\_ELEMENTS,\ }
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ [=,\ \&swapper](}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ indexA,\ \textcolor{keyword}{const}\ std::size\_t\ indexB)}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ swapper(begin[indexA],\ begin[indexB]);}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00063\ \}}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \}\textcolor{comment}{//\ end\ namespace\ ph::math}}
+
+\end{DoxyCode}

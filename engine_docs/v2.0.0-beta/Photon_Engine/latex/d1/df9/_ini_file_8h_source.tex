@@ -1,0 +1,136 @@
+\doxysection{Ini\+File.\+h}
+\hypertarget{_ini_file_8h_source}{}\label{_ini_file_8h_source}\index{Source/DataIO/IniFile.h@{Source/DataIO/IniFile.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}DataIO/FileSystem/Path.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Common/assertion.h"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <string\_view>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <cstddef>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <optional>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00014\ \{}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_ini_file}{IniFile}}\ final}
+\DoxyCodeLine{00017\ \{}
+\DoxyCodeLine{00018\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classph_1_1_ini_file}{IniFile}}\ read(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_alt_path}{Path}}\&\ iniFilePath);}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00022\ \ \ \ \ \mbox{\hyperlink{classph_1_1_ini_file}{IniFile}}();}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classph_1_1_ini_file}{IniFile}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_alt_path}{Path}}\&\ iniFilePath);}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordtype}{void}\ save(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_alt_path}{Path}}\&\ iniFilePath);}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordtype}{void}\ clear();}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \ \ \ \ std::size\_t\ numSections()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00029\ \ \ \ \ std::string\_view\ getSectionName(std::size\_t\ sectionIdx)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00030\ \ \ \ \ std::string\_view\ getCurrentSectionName()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00031\ \ \ \ \ std::optional<std::size\_t>\ findSectionIndex(std::string\_view\ sectionName)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordtype}{void}\ setCurrentSection(std::size\_t\ sectionIdx);}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordtype}{void}\ setCurrentSection(std::string\_view\ sectionName,\ \textcolor{keywordtype}{bool}\ createIfNotExist\ =\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00034\ \ \ \ \ }
+\DoxyCodeLine{00035\ \ \ \ \ std::size\_t\ numProperties()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00036\ \ \ \ \ std::string\_view\ getPropertyName(std::size\_t\ propertyIdx)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00037\ \ \ \ \ std::string\_view\ getPropertyValue(std::size\_t\ propertyIdx)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00038\ \ \ \ \ std::optional<std::size\_t>\ findPropertyIndex(std::string\_view\ propertyName)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordtype}{void}\ setProperty(std::size\_t\ propertyIdx,\ std::string\_view\ propertyValue);}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordtype}{void}\ setProperty(std::string\_view\ propertyName,\ std::string\_view\ propertyValue,\ \textcolor{keywordtype}{bool}\ createIfNotExist\ =\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_ini_file_aae7cb1d8586f85269731db6b49a86e31}{append}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_ini_file}{IniFile}}\&\ other);}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keyword}{struct\ }IniSection\ final}
+\DoxyCodeLine{00051\ \ \ \ \ \{}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ std::string\ name;}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ std::vector<std::pair<std::string,\ std::string>>\ keyValPairs;}
+\DoxyCodeLine{00054\ \ \ \ \ \};}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \ \ std::vector<IniSection>\ m\_sections;}
+\DoxyCodeLine{00057\ \ \ \ \ std::size\_t\ \ \ \ \ \ \ \ \ \ \ \ \ m\_currentSectionIdx;}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ \ \ IniSection\&\ getIniSection(std::size\_t\ sectionIdx);}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keyword}{const}\ IniSection\&\ getIniSection(std::size\_t\ sectionIdx)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00061\ \};}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \textcolor{comment}{//\ In-\/header\ Implementations:}}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \textcolor{keyword}{inline}\ std::size\_t\ IniFile::numSections()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00066\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_sections.size();}
+\DoxyCodeLine{00068\ \}}
+\DoxyCodeLine{00069\ \ \ \ \ }
+\DoxyCodeLine{00070\ \textcolor{keyword}{inline}\ std::size\_t\ IniFile::numProperties()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00071\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordflow}{return}\ getIniSection(m\_currentSectionIdx).keyValPairs.size();}
+\DoxyCodeLine{00073\ \}}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \textcolor{keyword}{inline}\ std::string\_view\ IniFile::getSectionName(\textcolor{keyword}{const}\ std::size\_t\ sectionIdx)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00076\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keywordflow}{return}\ getIniSection(sectionIdx).name;}
+\DoxyCodeLine{00078\ \}}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \textcolor{keyword}{inline}\ std::string\_view\ IniFile::getCurrentSectionName()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00081\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keywordflow}{return}\ getIniSection(m\_currentSectionIdx).name;}
+\DoxyCodeLine{00083\ \}}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ IniFile::setCurrentSection(\textcolor{keyword}{const}\ std::size\_t\ sectionIdx)}
+\DoxyCodeLine{00086\ \{}
+\DoxyCodeLine{00087\ \ \ \ \ PH\_ASSERT\_LT(sectionIdx,\ m\_sections.size());}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \ \ \ \ m\_currentSectionIdx\ =\ sectionIdx;}
+\DoxyCodeLine{00090\ \}}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \textcolor{keyword}{inline}\ std::string\_view\ IniFile::getPropertyName(\textcolor{keyword}{const}\ std::size\_t\ propertyIdx)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00093\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keyword}{const}\ IniSection\&\ section\ =\ getIniSection(m\_currentSectionIdx);}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \ \ \ \ PH\_ASSERT\_LT(propertyIdx,\ section.keyValPairs.size());}
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keywordflow}{return}\ section.keyValPairs[propertyIdx].first;}
+\DoxyCodeLine{00098\ \}}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \textcolor{keyword}{inline}\ std::string\_view\ IniFile::getPropertyValue(\textcolor{keyword}{const}\ std::size\_t\ propertyIdx)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00101\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keyword}{const}\ IniSection\&\ section\ =\ getIniSection(m\_currentSectionIdx);}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \ \ \ \ PH\_ASSERT\_LT(propertyIdx,\ section.keyValPairs.size());}
+\DoxyCodeLine{00105\ \ \ \ \ \textcolor{keywordflow}{return}\ section.keyValPairs[propertyIdx].second;}
+\DoxyCodeLine{00106\ \}}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ IniFile::setProperty(\textcolor{keyword}{const}\ std::size\_t\ propertyIdx,\ \textcolor{keyword}{const}\ std::string\_view\ propertyValue)}
+\DoxyCodeLine{00109\ \{}
+\DoxyCodeLine{00110\ \ \ \ \ IniSection\&\ section\ =\ getIniSection(m\_currentSectionIdx);}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \ \ \ \ PH\_ASSERT\_LT(propertyIdx,\ section.keyValPairs.size());}
+\DoxyCodeLine{00113\ \ \ \ \ section.keyValPairs[propertyIdx].second\ =\ propertyValue;}
+\DoxyCodeLine{00114\ \}}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00116\ \textcolor{keyword}{inline}\ IniFile::IniSection\&\ IniFile::getIniSection(\textcolor{keyword}{const}\ std::size\_t\ sectionIdx)}
+\DoxyCodeLine{00117\ \{}
+\DoxyCodeLine{00118\ \ \ \ \ PH\_ASSERT\_LT(sectionIdx,\ m\_sections.size());}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_sections[sectionIdx];}
+\DoxyCodeLine{00121\ \}}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00123\ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ IniFile::IniSection\&\ IniFile::getIniSection(\textcolor{keyword}{const}\ std::size\_t\ sectionIdx)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00124\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00125\ \ \ \ \ PH\_ASSERT\_LT(sectionIdx,\ m\_sections.size());}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00127\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_sections[sectionIdx];}
+\DoxyCodeLine{00128\ \}}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ IniFile::clear()}
+\DoxyCodeLine{00131\ \{}
+\DoxyCodeLine{00132\ \ \ \ \ m\_sections.clear();}
+\DoxyCodeLine{00133\ \}}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00135\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+
+\end{DoxyCode}

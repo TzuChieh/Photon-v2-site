@@ -1,0 +1,170 @@
+\doxysection{TSdl\+Quaternion.\+h}
+\hypertarget{_t_sdl_quaternion_8h_source}{}\label{_t_sdl_quaternion_8h_source}\index{Source/SDL/Introspect/TSdlQuaternion.h@{Source/SDL/Introspect/TSdlQuaternion.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}SDL/Introspect/TSdlValue.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}SDL/Introspect/TSdlOptionalValue.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}Common/primitive\_type.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}Math/TQuaternion.h"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}Common/assertion.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{sdl__helpers_8h}{SDL/sdl\_helpers.h}}"{}}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <type\_traits>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00014\ \{}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Owner,\ \textcolor{keyword}{typename}\ Element\ =\ real,\ \textcolor{keyword}{typename}\ SdlValueType\ =\ TSdlValue<math::TQuaternion<Element>,\ Owner>>}
+\DoxyCodeLine{00017\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_t_sdl_quaternion}{TSdlQuaternion}}\ :\ \textcolor{keyword}{public}\ SdlValueType}
+\DoxyCodeLine{00018\ \{}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_base\_of\_v<TSdlAbstractValue<math::TQuaternion<Element>,\ Owner>,\ SdlValueType>,}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}SdlValueType\ should\ be\ a\ subclass\ of\ TSdlAbstractValue."{}});}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_same\_v<Element,\ real>,}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Currently\ supports\ only\ ph::real"{}});}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ ValueType>}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_t_sdl_quaternion}{TSdlQuaternion}}(std::string\ valueName,\ ValueType\ Owner::*\ \textcolor{keyword}{const}\ valuePtr)\ :}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ SdlValueType(\textcolor{stringliteral}{"{}quaternion"{}},\ std::move(valueName),\ valuePtr)}
+\DoxyCodeLine{00029\ \ \ \ \ \{}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(std::is\_same\_v<SdlValueType,\ TSdlValue<math::TQuaternion<Element>,\ Owner>>)}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>defaultTo(\mbox{\hyperlink{classph_1_1math_1_1_t_quaternion}{math::TQuaternion<Element>::makeNoRotation}}());}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00034\ \ \ \ \ \}}
+\DoxyCodeLine{00035\ \ \ \ \ }
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{inline}\ std::string\ valueAsString(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_quaternion}{math::TQuaternion<Element>}}\&\ quat)\textcolor{keyword}{\ const\ override}}
+\DoxyCodeLine{00037\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ quat.toString();}
+\DoxyCodeLine{00039\ \ \ \ \ \}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_sdl_native_data}{SdlNativeData}}\ \mbox{\hyperlink{classph_1_1_t_sdl_quaternion_a4a5a1d25531762adde9b83d3a87f780d}{ownedNativeData}}(Owner\&\ owner)\textcolor{keyword}{\ const\ override}}
+\DoxyCodeLine{00042\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_quaternion}{math::TQuaternion<Element>}}*\ \textcolor{keyword}{const}\ quat\ =\ this-\/>\mbox{\hyperlink{classph_1_1_t_sdl_value_a706565be62e0104124f619c27d9f924a}{getValue}}(owner);}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(std::is\_base\_of\_v<TSdlOptionalValue<math::TQuaternion<Element>,\ Owner>,\ SdlValueType>)}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ data\ =\ \mbox{\hyperlink{classph_1_1_sdl_native_data}{SdlNativeData}}(}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ [\&optQuat\ =\ this-\/>valueRef(owner)](std::size\_t\ elementIdx)\ -\/>\ \mbox{\hyperlink{classph_1_1_t_sdl_accessor_variant}{SdlGetterVariant}}}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(optQuat)}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}(elementIdx)}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 0:\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1_sdl_native_data_a632f90a9950791b7c25f89293d3822d5}{SdlNativeData::permissiveElementGetter}}(\&(optQuat-\/>x));}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 1:\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1_sdl_native_data_a632f90a9950791b7c25f89293d3822d5}{SdlNativeData::permissiveElementGetter}}(\&(optQuat-\/>y));}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 2:\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1_sdl_native_data_a632f90a9950791b7c25f89293d3822d5}{SdlNativeData::permissiveElementGetter}}(\&(optQuat-\/>z));}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 3:\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1_sdl_native_data_a632f90a9950791b7c25f89293d3822d5}{SdlNativeData::permissiveElementGetter}}(\&(optQuat-\/>w));}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{default}:\ \textcolor{keywordflow}{return}\ std::monostate\{\};}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::monostate\{\};}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \},}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ [\&optQuat\ =\ this-\/>valueRef(owner)](std::size\_t\ elementIdx,\ \mbox{\hyperlink{classph_1_1_t_sdl_accessor_variant}{SdlSetterVariant}}\ input)\ -\/>\ \textcolor{keywordtype}{bool}}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(input.isEmpty())}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ optQuat\ =\ std::nullopt;}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!optQuat)}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ optQuat\ =\ \mbox{\hyperlink{classph_1_1math_1_1_t_quaternion}{math::TQuaternion<Element>}}\{\};}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}(elementIdx)}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 0:\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1_sdl_native_data_a035296228dfe6619da40577b68ecc3f0}{SdlNativeData::permissiveElementSetter}}(input,\ \&(optQuat-\/>x));}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 1:\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1_sdl_native_data_a035296228dfe6619da40577b68ecc3f0}{SdlNativeData::permissiveElementSetter}}(input,\ \&(optQuat-\/>y));}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 2:\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1_sdl_native_data_a035296228dfe6619da40577b68ecc3f0}{SdlNativeData::permissiveElementSetter}}(input,\ \&(optQuat-\/>z));}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 3:\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1_sdl_native_data_a035296228dfe6619da40577b68ecc3f0}{SdlNativeData::permissiveElementSetter}}(input,\ \&(optQuat-\/>w));}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{default}:\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \},}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceph_a76393562caa22c28431e3d8da5706a2b}{AnyNonConstPtr}}(quat));}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ data.\mbox{\hyperlink{classph_1_1_sdl_native_data_ac4ae3347b42cda22281f162b50afd205}{elementContainer}}\ =\ \mbox{\hyperlink{namespaceph_ace69f5c0a73308d2c88c512f8b70016ea3743af167c53361d795405561faac2b2}{ESdlDataFormat::Quaternion}};}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ data.elementType\ =\ sdl::number\_type\_of<Element>();}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ data.numElements\ =\ quat\ ?\ 4\ :\ 0;}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ data.tupleSize\ =\ 4;}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ data.isNullClearable\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ data;}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_sdl_native_data}{SdlNativeData}}\ data;}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(quat)}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ data\ =\ \mbox{\hyperlink{classph_1_1_sdl_native_data}{SdlNativeData}}(}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ [quat](std::size\_t\ elementIdx)\ -\/>\ \mbox{\hyperlink{classph_1_1_t_sdl_accessor_variant}{SdlGetterVariant}}}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}(elementIdx)}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 0:\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1_sdl_native_data_a632f90a9950791b7c25f89293d3822d5}{SdlNativeData::permissiveElementGetter}}(\&(quat-\/>x));}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 1:\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1_sdl_native_data_a632f90a9950791b7c25f89293d3822d5}{SdlNativeData::permissiveElementGetter}}(\&(quat-\/>y));}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 2:\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1_sdl_native_data_a632f90a9950791b7c25f89293d3822d5}{SdlNativeData::permissiveElementGetter}}(\&(quat-\/>z));}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 3:\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1_sdl_native_data_a632f90a9950791b7c25f89293d3822d5}{SdlNativeData::permissiveElementGetter}}(\&(quat-\/>w));}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{default}:\ \textcolor{keywordflow}{return}\ std::monostate\{\};}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \},}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ [quat](std::size\_t\ elementIdx,\ \mbox{\hyperlink{classph_1_1_t_sdl_accessor_variant}{SdlSetterVariant}}\ input)\ -\/>\ \textcolor{keywordtype}{bool}}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}(elementIdx)}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 0:\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1_sdl_native_data_a035296228dfe6619da40577b68ecc3f0}{SdlNativeData::permissiveElementSetter}}(input,\ \&(quat-\/>x));}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 1:\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1_sdl_native_data_a035296228dfe6619da40577b68ecc3f0}{SdlNativeData::permissiveElementSetter}}(input,\ \&(quat-\/>y));}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 2:\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1_sdl_native_data_a035296228dfe6619da40577b68ecc3f0}{SdlNativeData::permissiveElementSetter}}(input,\ \&(quat-\/>z));}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 3:\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1_sdl_native_data_a035296228dfe6619da40577b68ecc3f0}{SdlNativeData::permissiveElementSetter}}(input,\ \&(quat-\/>w));}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{default}:\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \},}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceph_a76393562caa22c28431e3d8da5706a2b}{AnyNonConstPtr}}(quat));}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ data.\mbox{\hyperlink{classph_1_1_sdl_native_data_ac4ae3347b42cda22281f162b50afd205}{elementContainer}}\ =\ \mbox{\hyperlink{namespaceph_ace69f5c0a73308d2c88c512f8b70016ea3743af167c53361d795405561faac2b2}{ESdlDataFormat::Quaternion}};}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ data.\mbox{\hyperlink{classph_1_1_sdl_native_data_a82fcba9016c044594965ced726e61d3e}{elementType}}\ =\ sdl::number\_type\_of<Element>();}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ data.\mbox{\hyperlink{classph_1_1_sdl_native_data_a31819f46d6bd68e7854be1efa3e1adfa}{numElements}}\ =\ quat\ ?\ 4\ :\ 0;}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ data.\mbox{\hyperlink{classph_1_1_sdl_native_data_a346603e838af711c249a686cba104fd2}{tupleSize}}\ =\ 4;}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ data;}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00134\ \ \ \ \ \}}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00136\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00137\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_sdl_quaternion_a320fb857f94a2ded622d8f0571b31331}{loadFromSdl}}(}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ Owner\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ owner,}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_sdl_input_clause}{SdlInputClause}}\&\ \ clause,}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_sdl_input_context}{SdlInputContext}}\&\ ctx)\textcolor{keyword}{\ const\ override}}
+\DoxyCodeLine{00141\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ this-\/>\mbox{\hyperlink{classph_1_1_t_sdl_value_a10a624c8ee21919ff7d95b5b67ac0746}{setValue}}(owner,\ sdl::load\_quaternion(std::string(clause.\mbox{\hyperlink{classph_1_1_sdl_input_clause_a3a57fdbbab5543025ef072715c949c65}{value}})));}
+\DoxyCodeLine{00143\ \ \ \ \ \}}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00145\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_sdl_quaternion_ae73bdef6fc9ae9274552b1195aa155a8}{saveToSdl}}(}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Owner\&\ \ \ \ \ \ \ \ \ \ \ \ owner,}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_sdl_output_clause}{SdlOutputClause}}\&\ \ \ \ \ \ \ \ out\_clause,}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_sdl_output_context}{SdlOutputContext}}\&\ ctx)\textcolor{keyword}{\ const\ override}}
+\DoxyCodeLine{00149\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_quaternion}{math::TQuaternion<Element>}}*\ quat\ =\ this-\/>\mbox{\hyperlink{classph_1_1_t_sdl_value_a2980df26bdcefcafa2a7b235db2adf58}{getConstValue}}(owner);\ quat)}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \ \ \ \ sdl::save\_quaternion(*quat,\ \&out\_clause.\mbox{\hyperlink{classph_1_1_sdl_output_clause_a27625fd790a2cb49f0cfd9c113ddb5ea}{value}});}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ out\_clause.\mbox{\hyperlink{classph_1_1_sdl_output_clause_a8bd6ce2a952288003b3b7d085f375cb4}{isEmpty}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00158\ \ \ \ \ \}}
+\DoxyCodeLine{00159\ \};}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00161\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Owner,\ \textcolor{keyword}{typename}\ Element\ =\ real>}
+\DoxyCodeLine{00162\ \textcolor{keyword}{using\ }TSdlOptionalQuaternion\ =\ TSdlQuaternion<Owner,\ Element,\ TSdlOptionalValue<math::TQuaternion<Element>,\ Owner>>;}
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00164\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+
+\end{DoxyCode}

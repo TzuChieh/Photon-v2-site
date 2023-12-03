@@ -1,0 +1,70 @@
+\doxysection{TSdl\+String.\+h}
+\hypertarget{_t_sdl_string_8h_source}{}\label{_t_sdl_string_8h_source}\index{Source/SDL/Introspect/TSdlString.h@{Source/SDL/Introspect/TSdlString.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}SDL/Introspect/TSdlValue.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Common/primitive\_type.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}Common/assertion.h"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00010\ \{}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Owner,\ \textcolor{keyword}{typename}\ SdlValueType\ =\ TSdlValue<std::\textcolor{keywordtype}{string},\ Owner>>}
+\DoxyCodeLine{00013\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_t_sdl_string}{TSdlString}}\ :\ \textcolor{keyword}{public}\ SdlValueType}
+\DoxyCodeLine{00014\ \{}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_base\_of\_v<TSdlAbstractValue<std::string,\ Owner>,\ SdlValueType>,}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}SdlValueType\ should\ be\ a\ subclass\ of\ TSdlAbstractValue."{}});}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ ValueType>}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_t_sdl_string}{TSdlString}}(std::string\ valueName,\ ValueType\ Owner::*\ \textcolor{keyword}{const}\ valuePtr)\ :}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ SdlValueType(\textcolor{stringliteral}{"{}string"{}},\ std::move(valueName),\ valuePtr)}
+\DoxyCodeLine{00022\ \ \ \ \ \{\}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keyword}{inline}\ std::string\ valueAsString(\textcolor{keyword}{const}\ std::string\&\ str)\textcolor{keyword}{\ const\ override}}
+\DoxyCodeLine{00025\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ str;}
+\DoxyCodeLine{00027\ \ \ \ \ \}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_sdl_native_data}{SdlNativeData}}\ \mbox{\hyperlink{classph_1_1_t_sdl_string_ae02f2fe705d7582ae2ddd6c3a7bf64ff}{ownedNativeData}}(Owner\&\ owner)\textcolor{keyword}{\ const\ override}}
+\DoxyCodeLine{00030\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ std::string*\ \textcolor{keyword}{const}\ str\ =\ this-\/>\mbox{\hyperlink{classph_1_1_t_sdl_value_a706565be62e0104124f619c27d9f924a}{getValue}}(owner);}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1_sdl_native_data_ae95e05b58c7e3ea8eddd69dcee0b6bc4}{SdlNativeData::fromSingleElement}}(}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ str,\ \mbox{\hyperlink{namespaceph_ace69f5c0a73308d2c88c512f8b70016ea66ba162102bbf6ae31b522aec561735e}{ESdlDataFormat::Single}},\ \mbox{\hyperlink{namespaceph_ada33bb2d4bc26b3ec1da2acb348ef4eba27118326006d3829667a400ad23d5d98}{ESdlDataType::String}},\ \textcolor{keyword}{true},\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00034\ \ \ \ \ \}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_sdl_string_aad5f885bc791e9e2cbcf461aa29a6f11}{loadFromSdl}}(}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ Owner\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ owner,}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_sdl_input_clause}{SdlInputClause}}\&\ \ clause,}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_sdl_input_context}{SdlInputContext}}\&\ ctx)\textcolor{keyword}{\ const\ override}}
+\DoxyCodeLine{00041\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Load\ value\ directly\ as\ it\ is\ already\ a\ string}}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ this-\/>\mbox{\hyperlink{classph_1_1_t_sdl_value_a10a624c8ee21919ff7d95b5b67ac0746}{setValue}}(owner,\ clause.\mbox{\hyperlink{classph_1_1_sdl_input_clause_a3a57fdbbab5543025ef072715c949c65}{value}});}
+\DoxyCodeLine{00044\ \ \ \ \ \}}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_sdl_string_a78d2a5a2373d8ce25e124c1d61192736}{saveToSdl}}(}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Owner\&\ \ \ \ \ \ \ \ \ \ \ \ owner,}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_sdl_output_clause}{SdlOutputClause}}\&\ \ \ \ \ \ \ \ out\_clause,}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_sdl_output_context}{SdlOutputContext}}\&\ ctx)\textcolor{keyword}{\ const\ override}}
+\DoxyCodeLine{00050\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Not\ testing\ whether\ the\ string\ contains\ whitespaces-\/-\/just\ add\ double\ quotes}}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ out\_clause.\mbox{\hyperlink{classph_1_1_sdl_output_clause_a27625fd790a2cb49f0cfd9c113ddb5ea}{value}}\ =\ \textcolor{charliteral}{'"{}'};}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\textcolor{keyword}{const}\ std::string*\ str\ =\ this-\/>\mbox{\hyperlink{classph_1_1_t_sdl_value_a2980df26bdcefcafa2a7b235db2adf58}{getConstValue}}(owner);\ str)}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Append\ value\ directly\ as\ it\ is\ already\ a\ string}}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ out\_clause.\mbox{\hyperlink{classph_1_1_sdl_output_clause_a27625fd790a2cb49f0cfd9c113ddb5ea}{value}}\ +=\ *str;}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ out\_clause.\mbox{\hyperlink{classph_1_1_sdl_output_clause_a27625fd790a2cb49f0cfd9c113ddb5ea}{value}}\ +=\ \textcolor{charliteral}{'"{}'};}
+\DoxyCodeLine{00061\ \ \ \ \ \}}
+\DoxyCodeLine{00062\ \};}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+
+\end{DoxyCode}

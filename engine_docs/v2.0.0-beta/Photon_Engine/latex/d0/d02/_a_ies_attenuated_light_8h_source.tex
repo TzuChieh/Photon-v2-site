@@ -1,0 +1,60 @@
+\doxysection{AIes\+Attenuated\+Light.\+h}
+\hypertarget{_a_ies_attenuated_light_8h_source}{}\label{_a_ies_attenuated_light_8h_source}\index{Source/Actor/Light/AIesAttenuatedLight.h@{Source/Actor/Light/AIesAttenuatedLight.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Actor/Light/ALight.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}DataIO/FileSystem/ResourceIdentifier.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}DataIO/FileSystem/Path.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}SDL/sdl\_interface.h"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}Core/Texture/TTexture.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}Math/Color/Spectrum.h"{}}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00013\ \{}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_a_ies_attenuated_light}{AIesAttenuatedLight}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classph_1_1_a_light}{ALight}}}
+\DoxyCodeLine{00016\ \{}
+\DoxyCodeLine{00017\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00018\ \ \ \ \ \mbox{\hyperlink{classph_1_1_pre_cook_report}{PreCookReport}}\ \mbox{\hyperlink{classph_1_1_a_ies_attenuated_light_aa920831a76389566563d5cb907e9c16b}{preCook}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_cooking_context}{CookingContext}}\&\ ctx)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00019\ \ \ \ \ \mbox{\hyperlink{classph_1_1_transient_visual_element}{TransientVisualElement}}\ \mbox{\hyperlink{classph_1_1_a_ies_attenuated_light_a654e67614d8e0bbdc451d195dcdcd51d}{cook}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_cooking_context}{CookingContext}}\&\ ctx,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_pre_cook_report}{PreCookReport}}\&\ report)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordtype}{void}\ setSource(\textcolor{keyword}{const}\ std::shared\_ptr<ALight>\&\ source);}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordtype}{void}\ setIesFile(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_alt_path}{Path}}\&\ iesFile);}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00025\ \ \ \ \ \mbox{\hyperlink{classph_1_1_transient_visual_element}{TransientVisualElement}}\ getSourceVisualElement(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_cooking_context}{CookingContext}}\&\ ctx)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00026\ \ \ \ \ std::shared\_ptr<TTexture<math::Spectrum>>\ loadAttenuationTexture()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \ \ \ \ std::shared\_ptr<ALight>\ m\_source;}
+\DoxyCodeLine{00029\ \ \ \ \ \mbox{\hyperlink{classph_1_1_resource_identifier}{ResourceIdentifier}}\ m\_iesFile;}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00032\ \ \ \ \ PH\_DEFINE\_SDL\_CLASS(\mbox{\hyperlink{classph_1_1_t_sdl_owner_class}{TSdlOwnerClass<AIesAttenuatedLight>}})}
+\DoxyCodeLine{00033\ \ \ \ \ \{}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ ClassType\ clazz(\textcolor{stringliteral}{"{}ies-\/attenuated-\/light"{}});}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ clazz.docName(\textcolor{stringliteral}{"{}IES-\/Attenuated\ Light\ Actor"{}});}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ clazz.description(}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Attenuating\ energy\ emitting\ strength\ of\ a\ light\ with\ an\ IES\ profile."{}});}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ clazz.baseOn<\mbox{\hyperlink{classph_1_1_a_light}{ALight}}>();}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_sdl_reference}{TSdlReference<ALight,\ OwnerType>}}\ source(\textcolor{stringliteral}{"{}source"{}},\ \&OwnerType::m\_source);}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ source.description(\textcolor{stringliteral}{"{}The\ light\ source\ that\ will\ be\ attenuated."{}});}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ source.optional();}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ clazz.addField(source);}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_sdl_resource_identifier}{TSdlResourceIdentifier<OwnerType>}}\ iesFile(\textcolor{stringliteral}{"{}ies-\/file"{}},\ \&OwnerType::m\_iesFile);}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ iesFile.description(\textcolor{stringliteral}{"{}The\ IES\ file."{}});}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ iesFile.required();}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ clazz.addField(iesFile);}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ clazz;}
+\DoxyCodeLine{00051\ \ \ \ \ \}}
+\DoxyCodeLine{00052\ \};}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+
+\end{DoxyCode}

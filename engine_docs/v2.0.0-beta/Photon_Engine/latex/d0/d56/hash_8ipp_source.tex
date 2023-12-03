@@ -1,0 +1,206 @@
+\doxysection{hash.\+ipp}
+\hypertarget{hash_8ipp_source}{}\label{hash_8ipp_source}\index{Source/Math/hash.ipp@{Source/Math/hash.ipp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Math/hash.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Math/TVector3.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}Common/assertion.h"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <type\_traits>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <cmath>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <bit>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <climits>}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph_1_1math}{ph::math}}}
+\DoxyCodeLine{00014\ \{}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Integer>}
+\DoxyCodeLine{00017\ \textcolor{keyword}{inline}\ std::size\_t\ \mbox{\hyperlink{namespaceph_1_1math_ae4917cd3e0f831b6bd3308fa7c445016}{discrete\_spatial\_hash}}(}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keyword}{const}\ Integer\ \ \ \ \ x,}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keyword}{const}\ Integer\ \ \ \ \ y,}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keyword}{const}\ Integer\ \ \ \ \ z,}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ hashTableSize)}
+\DoxyCodeLine{00022\ \{}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_integral\_v<Integer>);}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \ \ \ \ PH\_ASSERT\_GT(hashTableSize,\ 0);}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordflow}{return}\ ((\textcolor{keyword}{static\_cast<}std::size\_t\textcolor{keyword}{>}(x)\ *\ 73856093)\ \string^\ }
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ (\textcolor{keyword}{static\_cast<}std::size\_t\textcolor{keyword}{>}(y)\ *\ 19349663)\ \string^\ }
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ (\textcolor{keyword}{static\_cast<}std::size\_t\textcolor{keyword}{>}(z)\ *\ 83492791))\ \%\ hashTableSize;}
+\DoxyCodeLine{00030\ \}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Integer>}
+\DoxyCodeLine{00033\ \textcolor{keyword}{inline}\ std::size\_t\ \mbox{\hyperlink{namespaceph_1_1math_ae4917cd3e0f831b6bd3308fa7c445016}{discrete\_spatial\_hash}}(}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{const}\ Integer\ \ \ \ \ x,}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{const}\ Integer\ \ \ \ \ y,}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ hashTableSize)}
+\DoxyCodeLine{00037\ \{}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_integral\_v<Integer>);}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ PH\_ASSERT\_GT(hashTableSize,\ 0);}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordflow}{return}\ ((\textcolor{keyword}{static\_cast<}std::size\_t\textcolor{keyword}{>}(x)\ *\ 73856093)\ \string^}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ (\textcolor{keyword}{static\_cast<}std::size\_t\textcolor{keyword}{>}(y)\ *\ 83492791))\ \%\ hashTableSize;}
+\DoxyCodeLine{00044\ \}}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{int}egral\ T>}
+\DoxyCodeLine{00047\ \textcolor{keyword}{inline}\ std::size\_t\ \mbox{\hyperlink{namespaceph_1_1math_ae4917cd3e0f831b6bd3308fa7c445016}{discrete\_spatial\_hash}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{TVector3<T>}}\&\ point,\ \textcolor{keyword}{const}\ std::size\_t\ hashTableSize)}
+\DoxyCodeLine{00048\ \{}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespaceph_1_1math_ae4917cd3e0f831b6bd3308fa7c445016}{discrete\_spatial\_hash}}(point.x,\ point.y,\ point.z,\ hashTableSize);}
+\DoxyCodeLine{00050\ \}}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{float}ing\_po\textcolor{keywordtype}{int}\ T>}
+\DoxyCodeLine{00053\ \textcolor{keyword}{inline}\ std::size\_t\ \mbox{\hyperlink{namespaceph_1_1math_ae4917cd3e0f831b6bd3308fa7c445016}{discrete\_spatial\_hash}}(}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{TVector3<T>}}\&\ point,\ }
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{TVector3<T>}}\&\ cellSize,}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ \ hashTableSize)}
+\DoxyCodeLine{00057\ \{}
+\DoxyCodeLine{00058\ \ \ \ \ PH\_ASSERT\_GT(cellSize.x,\ 0);}
+\DoxyCodeLine{00059\ \ \ \ \ PH\_ASSERT\_GT(cellSize.y,\ 0);}
+\DoxyCodeLine{00060\ \ \ \ \ PH\_ASSERT\_GT(cellSize.z,\ 0);}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespaceph_1_1math_ae4917cd3e0f831b6bd3308fa7c445016}{discrete\_spatial\_hash}}(}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_cast<}std::size\_t\textcolor{keyword}{>}(std::floor(point.x\ /\ cellSize.x)),\ }
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_cast<}std::size\_t\textcolor{keyword}{>}(std::floor(point.y\ /\ cellSize.y)),\ }
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_cast<}std::size\_t\textcolor{keyword}{>}(std::floor(point.z\ /\ cellSize.z)),\ }
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ hashTableSize);}
+\DoxyCodeLine{00067\ \}}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \textcolor{keyword}{inline}\ uint32\ \mbox{\hyperlink{namespaceph_1_1math_a9c59773f54074f6e5f0e32c5ef4c0a96}{murmur3\_bit\_mix\_32}}(uint32\ v)}
+\DoxyCodeLine{00070\ \{}
+\DoxyCodeLine{00071\ \ \ \ \ v\ \string^=\ v\ >>\ 16;}
+\DoxyCodeLine{00072\ \ \ \ \ v\ *=\ 0x85EBCA6BUL;}
+\DoxyCodeLine{00073\ \ \ \ \ v\ \string^=\ v\ >>\ 13;}
+\DoxyCodeLine{00074\ \ \ \ \ v\ *=\ 0xC2B2AE35UL;}
+\DoxyCodeLine{00075\ \ \ \ \ v\ \string^=\ v\ >>\ 16;}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keywordflow}{return}\ v;}
+\DoxyCodeLine{00078\ \}}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \textcolor{keyword}{inline}\ uint64\ \mbox{\hyperlink{namespaceph_1_1math_a01043fa9b4769c1a7444e7e8fb143535}{murmur3\_bit\_mix\_64}}(uint64\ v)}
+\DoxyCodeLine{00081\ \{}
+\DoxyCodeLine{00082\ \ \ \ \ v\ \string^=\ (v\ >>\ 33);}
+\DoxyCodeLine{00083\ \ \ \ \ v\ *=\ 0xFF51AFD7ED558CCDULL;}
+\DoxyCodeLine{00084\ \ \ \ \ v\ \string^=\ (v\ >>\ 33);}
+\DoxyCodeLine{00085\ \ \ \ \ v\ *=\ 0xC4CEB9FE1A85EC53ULL;}
+\DoxyCodeLine{00086\ \ \ \ \ v\ \string^=\ (v\ >>\ 33);}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keywordflow}{return}\ v;}
+\DoxyCodeLine{00089\ \}}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \textcolor{keyword}{inline}\ uint64\ \mbox{\hyperlink{namespaceph_1_1math_acb56174f050862060121bd5462dfe1bb}{murmur3\_v13\_bit\_mix\_64}}(uint64\ v)}
+\DoxyCodeLine{00092\ \{}
+\DoxyCodeLine{00093\ \ \ \ \ v\ \string^=\ (v\ >>\ 30);}
+\DoxyCodeLine{00094\ \ \ \ \ v\ *=\ 0xBF58476D1CE4E5B9ULL;}
+\DoxyCodeLine{00095\ \ \ \ \ v\ \string^=\ (v\ >>\ 27);}
+\DoxyCodeLine{00096\ \ \ \ \ v\ *=\ 0x94D049BB133111EBULL;}
+\DoxyCodeLine{00097\ \ \ \ \ v\ \string^=\ (v\ >>\ 31);}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keywordflow}{return}\ v;}
+\DoxyCodeLine{00100\ \}}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \textcolor{keyword}{inline}\ uint64\ \mbox{\hyperlink{namespaceph_1_1math_a5e096044157a72ac3ed27025b65cc274}{moremur\_bit\_mix\_64}}(uint64\ v)}
+\DoxyCodeLine{00103\ \{}
+\DoxyCodeLine{00104\ \ \ \ \ \textcolor{comment}{//\ The\ constants\ were\ derived\ by\ Pelle\ Evensen:}}
+\DoxyCodeLine{00105\ \ \ \ \ \textcolor{comment}{//\ https://mostlymangling.blogspot.com/2019/12/stronger-\/better-\/morer-\/moremur-\/better.html}}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \ \ \ \ v\ \string^=\ v\ >>\ 27;}
+\DoxyCodeLine{00108\ \ \ \ \ v\ *=\ 0x3C79AC492BA7B653ULL;}
+\DoxyCodeLine{00109\ \ \ \ \ v\ \string^=\ v\ >>\ 33;}
+\DoxyCodeLine{00110\ \ \ \ \ v\ *=\ 0x1C69B3F74AC4AE35ULL;}
+\DoxyCodeLine{00111\ \ \ \ \ v\ \string^=\ v\ >>\ 27;}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{keywordflow}{return}\ v;}
+\DoxyCodeLine{00114\ \}}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00116\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00117\ \textcolor{keyword}{inline}\ uint32\ \mbox{\hyperlink{namespaceph_1_1math_a45d86025b912ecd026e05d1aa6130d2c}{murmur3\_32}}(\textcolor{keyword}{const}\ T\&\ data,\ \textcolor{keyword}{const}\ uint32\ seed)}
+\DoxyCodeLine{00118\ \{}
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespaceph_1_1math_a45d86025b912ecd026e05d1aa6130d2c}{murmur3\_32}}(\&data,\ 1,\ seed);}
+\DoxyCodeLine{00120\ \}}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00123\ \textcolor{keyword}{inline}\ uint32\ \mbox{\hyperlink{namespaceph_1_1math_a45d86025b912ecd026e05d1aa6130d2c}{murmur3\_32}}(\textcolor{keyword}{const}\ T*\ \textcolor{keyword}{const}\ data,\ \textcolor{keyword}{const}\ std::size\_t\ dataSize,\ \textcolor{keyword}{const}\ uint32\ seed)}
+\DoxyCodeLine{00124\ \{}
+\DoxyCodeLine{00125\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00126\ \textcolor{comment}{\ \ \ \ References:}}
+\DoxyCodeLine{00127\ \textcolor{comment}{\ \ \ \ [1]\ Wiki:\ https://en.wikipedia.org/wiki/MurmurHash\ (`murmur3\_32()`)}}
+\DoxyCodeLine{00128\ \textcolor{comment}{\ \ \ \ [2]\ aappleby's\ smhasher:\ https://github.com/aappleby/smhasher/\ (`MurmurHash3\_x86\_32()`)}}
+\DoxyCodeLine{00129\ \textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ \ \ \ \ \textcolor{keyword}{static\_assert}(CHAR\_BIT\ ==\ 8);}
+\DoxyCodeLine{00132\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_trivially\_copyable\_v<T>,}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}\`{}T`\ should\ be\ trivially\ copyable\ to\ be\ able\ to\ interpret\ it\ as\ bytes."{}});}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00135\ \ \ \ \ \textcolor{keyword}{constexpr}\ uint32\ c1\ =\ 0xCC9E2D51UL;}
+\DoxyCodeLine{00136\ \ \ \ \ \textcolor{keyword}{constexpr}\ uint32\ c2\ =\ 0x1B873593UL;}
+\DoxyCodeLine{00137\ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ r1\ =\ 15;}
+\DoxyCodeLine{00138\ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ r2\ =\ 13;}
+\DoxyCodeLine{00139\ \ \ \ \ \textcolor{keyword}{constexpr}\ uint32\ m\ =\ 5;}
+\DoxyCodeLine{00140\ \ \ \ \ \textcolor{keyword}{constexpr}\ uint32\ n\ =\ 0xE6546B64UL;}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00142\ \ \ \ \ \textcolor{keyword}{auto}\ \textcolor{keyword}{const}\ bytes\ =\ \textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const\ }uint8*\textcolor{keyword}{>}(data);}
+\DoxyCodeLine{00143\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ numBytes\ =\ dataSize\ *\ \textcolor{keyword}{sizeof}(T);}
+\DoxyCodeLine{00144\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ numBlocks\ =\ numBytes\ /\ 4;}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00146\ \ \ \ \ uint32\ h1\ =\ seed;}
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00148\ \ \ \ \ \textcolor{comment}{//\ Body}}
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00150\ \ \ \ \ \textcolor{comment}{//\ Read\ in\ blocks\ of\ 4\ bytes}}
+\DoxyCodeLine{00151\ \ \ \ \ \textcolor{keywordflow}{for}(uint32\ bi\ =\ 0;\ bi\ <\ numBlocks;\ ++bi)}
+\DoxyCodeLine{00152\ \ \ \ \ \{}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ byteIndex\ =\ bi\ *\ 4;}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ PH\_ASSERT\_LT(byteIndex,\ numBytes);}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ uint32\ block32;}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ std::copy\_n(bytes\ +\ byteIndex,\ 4,\ \textcolor{keyword}{reinterpret\_cast<}uint8*\textcolor{keyword}{>}(\&block32));}
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ To\ remove\ a\ source\ of\ differing\ results\ across\ endiannesses,\ perform\ byte\ swap\ on}}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ big-\/endian\ CPUs\ (a\ swap\ here\ has\ no\ effects\ on\ hash\ properties\ though)}}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(std::endian::native\ ==\ std::endian::big)}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \ \ \ \ block32\ =\ std::byteswap(block32);}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ uint32\ k1\ =\ block32;}
+\DoxyCodeLine{00167\ }
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ k1\ *=\ c1;}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ k1\ =\ std::rotl(k1,\ r1);}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ k1\ *=\ c2;}
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ h1\ \string^=\ k1;}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ h1\ =\ std::rotl(h1,\ r2);}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ h1\ =\ h1\ *\ m\ +\ n;}
+\DoxyCodeLine{00175\ \ \ \ \ \}}
+\DoxyCodeLine{00176\ }
+\DoxyCodeLine{00177\ \ \ \ \ \textcolor{comment}{//\ Tail}}
+\DoxyCodeLine{00178\ }
+\DoxyCodeLine{00179\ \ \ \ \ \textcolor{keyword}{auto}\ \textcolor{keyword}{const}\ tailBytes\ =\ bytes\ +\ numBlocks\ *\ 4;}
+\DoxyCodeLine{00180\ }
+\DoxyCodeLine{00181\ \ \ \ \ uint32\ k1\ =\ 0;}
+\DoxyCodeLine{00182\ }
+\DoxyCodeLine{00183\ \ \ \ \ \textcolor{keywordflow}{switch}(numBytes\ \&\ 3)}
+\DoxyCodeLine{00184\ \ \ \ \ \{}
+\DoxyCodeLine{00185\ \ \ \ \ \textcolor{keywordflow}{case}\ 3:\ k1\ \string^=\ tailBytes[2]\ <<\ 16UL;}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \ \ \ \ [[fallthrough]];}
+\DoxyCodeLine{00187\ \ \ \ \ \textcolor{keywordflow}{case}\ 2:\ k1\ \string^=\ tailBytes[1]\ <<\ 8UL;}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \ \ \ \ [[fallthrough]];}
+\DoxyCodeLine{00189\ \ \ \ \ \textcolor{keywordflow}{case}\ 1:\ k1\ \string^=\ tailBytes[0];}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \ \ \ \ k1\ *=\ c1;\ k1\ =\ std::rotl(k1,\ r1);\ k1\ *=\ c2;\ h1\ \string^=\ k1;}
+\DoxyCodeLine{00191\ \ \ \ \ \};}
+\DoxyCodeLine{00192\ }
+\DoxyCodeLine{00193\ \ \ \ \ \textcolor{comment}{//\ Finalization}}
+\DoxyCodeLine{00194\ }
+\DoxyCodeLine{00195\ \ \ \ \ h1\ \string^=\ \textcolor{keyword}{static\_cast<}uint32\textcolor{keyword}{>}(dataSize);}
+\DoxyCodeLine{00196\ \ \ \ \ h1\ =\ \mbox{\hyperlink{namespaceph_1_1math_a9c59773f54074f6e5f0e32c5ef4c0a96}{murmur3\_bit\_mix\_32}}(h1);}
+\DoxyCodeLine{00197\ \ \ \ \ \textcolor{keywordflow}{return}\ h1;}
+\DoxyCodeLine{00198\ \}}
+\DoxyCodeLine{00199\ }
+\DoxyCodeLine{00200\ \}\textcolor{comment}{//\ end\ namespace\ ph::math}}
+
+\end{DoxyCode}

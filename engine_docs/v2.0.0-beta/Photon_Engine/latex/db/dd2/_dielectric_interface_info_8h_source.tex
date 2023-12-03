@@ -1,0 +1,70 @@
+\doxysection{Dielectric\+Interface\+Info.\+h}
+\hypertarget{_dielectric_interface_info_8h_source}{}\label{_dielectric_interface_info_8h_source}\index{Source/Actor/Material/Utility/DielectricInterfaceInfo.h@{Source/Actor/Material/Utility/DielectricInterfaceInfo.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Common/primitive\_type.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Actor/Material/Utility/EInterfaceFresnel.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}SDL/sdl\_interface.h"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <variant>}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00011\ \{}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{class\ }DielectricFresnel;}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00020\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_dielectric_interface_info}{DielectricInterfaceInfo}}\ final}
+\DoxyCodeLine{00021\ \{}
+\DoxyCodeLine{00022\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00023\ \ \ \ \ \mbox{\hyperlink{classph_1_1_dielectric_interface_info}{DielectricInterfaceInfo}}();}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \ \ \ \ \mbox{\hyperlink{classph_1_1_dielectric_interface_info}{DielectricInterfaceInfo}}(}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ EInterfaceFresnel\ fresnel,}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ real\ \ \ \ \ \ \ \ \ \ \ \ \ \ iorOuter,}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ real\ \ \ \ \ \ \ \ \ \ \ \ \ \ iorInner);}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \ \ \ std::unique\_ptr<DielectricFresnel>\ genFresnelEffect()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordtype}{void}\ setFresnel(EInterfaceFresnel\ fresnel);}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordtype}{void}\ setIorOuter(real\ iorOuter);}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordtype}{void}\ setIorInner(real\ iorInner);}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00037\ \ \ \ \ EInterfaceFresnel\ m\_fresnel;}
+\DoxyCodeLine{00038\ \ \ \ \ real\ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_iorOuter;}
+\DoxyCodeLine{00039\ \ \ \ \ real\ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_iorInner;}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00042\ \ \ \ \ PH\_DEFINE\_SDL\_STRUCT(\mbox{\hyperlink{classph_1_1_t_sdl_owner_struct}{TSdlOwnerStruct<DielectricInterfaceInfo>}})}
+\DoxyCodeLine{00043\ \ \ \ \ \{}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ StructType\ ztruct(\textcolor{stringliteral}{"{}dielectric-\/interface"{}});}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ ztruct.description(\textcolor{stringliteral}{"{}Data\ describing\ the\ effects\ when\ light\ hits\ an\ dielectric\ interface."{}});}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_sdl_enum_field}{TSdlEnumField<OwnerType,\ EInterfaceFresnel>}}\ fresnel(\textcolor{stringliteral}{"{}fresnel"{}},\ \&OwnerType::m\_fresnel);}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ fresnel.description(\textcolor{stringliteral}{"{}Type\ of\ the\ Fresnel\ for\ the\ dielectric\ interface."{}});}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ fresnel.optional();}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ fresnel.defaultTo(EInterfaceFresnel::Exact);}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ ztruct.addField(fresnel);}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_sdl_real}{TSdlReal<OwnerType>}}\ iorOuter(\textcolor{stringliteral}{"{}ior-\/outer"{}},\ \&OwnerType::m\_iorOuter);}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ iorOuter.description(\textcolor{stringliteral}{"{}The\ index\ of\ refraction\ outside\ of\ this\ interface."{}});}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ iorOuter.optional();}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ iorOuter.defaultTo(1);}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ ztruct.addField(iorOuter);}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_sdl_real}{TSdlReal<OwnerType>}}\ iorInner(\textcolor{stringliteral}{"{}ior-\/inner"{}},\ \&OwnerType::m\_iorInner);}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ iorInner.description(\textcolor{stringliteral}{"{}The\ index\ of\ refraction\ inside\ of\ this\ interface."{}});}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ iorInner.niceToHave();}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ iorInner.defaultTo(1.5\_r);}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ ztruct.addField(iorInner);}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ztruct;}
+\DoxyCodeLine{00066\ \ \ \ \ \}}
+\DoxyCodeLine{00067\ \};}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+
+\end{DoxyCode}

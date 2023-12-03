@@ -1,0 +1,25 @@
+var math_8h =
+[
+    [ "clamp", "df/db1/math_8h.html#a9e5d8a7a977115813ceeba3f0c00cbdb", null ],
+    [ "clear_bits_in_range", "df/db1/math_8h.html#af11f191a13f32e5ff37ba539bb731029", null ],
+    [ "fast_rcp_sqrt", "df/db1/math_8h.html#acc970fbe8bc77521af0103b29e524baa", null ],
+    [ "fast_sqrt", "df/db1/math_8h.html#adb93254f78909d9fef4bc8d7326b7670", null ],
+    [ "flag_bit", "df/db1/math_8h.html#a7c44afb09e2610c07148d4b1120e4614", null ],
+    [ "fp16_bits_to_fp32", "df/db1/math_8h.html#a050fd048afd360173b15c10a05c21f7c", null ],
+    [ "fp32_to_fp16_bits", "df/db1/math_8h.html#a91780ac8e52ddfdd3f0314cc36b882c2", null ],
+    [ "fractional_part", "df/db1/math_8h.html#a9460c87b6dab3097ee4d084d9b59a604", null ],
+    [ "is_even", "df/db1/math_8h.html#a3d787dce79dfdd2614927831c40ab231", null ],
+    [ "is_odd", "df/db1/math_8h.html#a00dacdca0d6501e4506f1e80350c6529", null ],
+    [ "ith_evenly_divided_range", "df/db1/math_8h.html#a830bc8cab76b0720b0756fce21828b3f", null ],
+    [ "log2_floor", "df/db1/math_8h.html#aef693a3af48988419e383d739b935a4b", null ],
+    [ "next_power_of_2", "df/db1/math_8h.html#a2dd1eb154bffce7df042dbdd88aa161b", null ],
+    [ "normalize_integer", "df/db1/math_8h.html#a4690860b243fe5e072ff6048732ae2a3", null ],
+    [ "product", "df/db1/math_8h.html#a536816208c239c8b2e217d70d5ec5d08", null ],
+    [ "reverse_bits", "df/db1/math_8h.html#a2cf56679844b291df412ba311723c828", null ],
+    [ "set_bits_in_range", "df/db1/math_8h.html#abbf29a619bc4b2cd6e88bbc5e3380a0f", null ],
+    [ "sign", "df/db1/math_8h.html#a7377d0dddd537e4e7a04f98bd8e1114e", null ],
+    [ "to_degrees", "df/db1/math_8h.html#a3b5aeb6bb0f2f3339e033d34fa70a894", null ],
+    [ "to_radians", "df/db1/math_8h.html#a8d924d614efcdd92fcce816a3f8eebf3", null ],
+    [ "uint64_mul", "df/db1/math_8h.html#a996b8aaa152f5e58eea616b7340f7659", null ],
+    [ "wrap", "df/db1/math_8h.html#a48cf078fd719072dfc9c27d67a730c3c", null ]
+];

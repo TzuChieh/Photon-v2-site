@@ -1,0 +1,46 @@
+\doxysection{Naive\+Reinhard\+Tone\+Mapping.\+h}
+\hypertarget{_naive_reinhard_tone_mapping_8h_source}{}\label{_naive_reinhard_tone_mapping_8h_source}\index{Source/Frame/Operator/NaiveReinhardToneMapping.h@{Source/Frame/Operator/NaiveReinhardToneMapping.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Frame/Operator/FrameOperator.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Common/assertion.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}Common/primitive\_type.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}Core/Quantity/ColorSpace.h"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <cmath>}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00011\ \{}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_naive_reinhard_tone_mapping}{NaiveReinhardToneMapping}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classph_1_1_frame_operator}{FrameOperator}}}
+\DoxyCodeLine{00014\ \{}
+\DoxyCodeLine{00015\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00016\ \ \ \ \ \mbox{\hyperlink{classph_1_1_naive_reinhard_tone_mapping}{NaiveReinhardToneMapping}}();}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keywordtype}{void}\ operate(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_t_frame}{HdrRgbFrame}}\&\ srcFrame,\ \mbox{\hyperlink{classph_1_1_t_frame}{HdrRgbFrame}}*\ out\_dstFrame)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00019\ \};}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{comment}{//\ In-\/header\ Implementations:}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{keyword}{inline}\ NaiveReinhardToneMapping::NaiveReinhardToneMapping()}
+\DoxyCodeLine{00024\ \{\}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ NaiveReinhardToneMapping::operate(\textcolor{keyword}{const}\ HdrRgbFrame\&\ srcFrame,\ HdrRgbFrame*\ \textcolor{keyword}{const}\ out\_dstFrame)}
+\DoxyCodeLine{00027\ \{}
+\DoxyCodeLine{00028\ \ \ \ \ PH\_ASSERT(out\_dstFrame);}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \ \ \ out\_dstFrame-\/>setSize(srcFrame.getSizePx());}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \ \ srcFrame.forEachPixel(}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ [\textcolor{keyword}{this},\ out\_dstFrame]}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ uint32\ x,\ \textcolor{keyword}{const}\ uint32\ y,\ \textcolor{keyword}{const}\ HdrRgbFrame::Pixel\&\ pixel)}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ out\_dstFrame-\/>setPixel(x,\ y,\ pixel.div(pixel\ +\ 1.0\_r));}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00038\ \}}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+
+\end{DoxyCode}

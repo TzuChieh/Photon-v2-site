@@ -1,0 +1,61 @@
+\doxysection{Preetham\+Texture.\+h}
+\hypertarget{_preetham_texture_8h_source}{}\label{_preetham_texture_8h_source}\index{Source/Core/Texture/Sky/PreethamTexture.h@{Source/Core/Texture/Sky/PreethamTexture.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Core/Texture/TTexture.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Common/primitive\_type.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}Math/Color/Spectrum.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}Math/TVector3.h"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <cmath>}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00012\ \{}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_preetham_texture}{PreethamTexture}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classph_1_1_t_texture}{TTexture}}<math::Spectrum>}
+\DoxyCodeLine{00015\ \{}
+\DoxyCodeLine{00016\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00017\ \ \ \ \ \mbox{\hyperlink{classph_1_1_preetham_texture}{PreethamTexture}}(}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ real\ phiSun,}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ real\ thetaSun,}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ real\ turbidity,}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ real\ energyScale\ =\ 1.0\_r);}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordtype}{void}\ sample(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_sample_location}{SampleLocation}}\&\ sampleLocation,\ \mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_spectrum}{math::Spectrum}}*\ out\_value)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00026\ \ \ \ \ real\ \ \ \ \ \ \ \ \ \ \ m\_phiSun;}
+\DoxyCodeLine{00027\ \ \ \ \ real\ \ \ \ \ \ \ \ \ \ \ m\_thetaSun;}
+\DoxyCodeLine{00028\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\ m\_A\_xyY;}
+\DoxyCodeLine{00029\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\ m\_B\_xyY;}
+\DoxyCodeLine{00030\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\ m\_C\_xyY;}
+\DoxyCodeLine{00031\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\ m\_D\_xyY;}
+\DoxyCodeLine{00032\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\ m\_E\_xyY;}
+\DoxyCodeLine{00033\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\ m\_Yabs\_xyY;}
+\DoxyCodeLine{00034\ \ \ \ \ real\ \ \ \ \ \ \ \ \ \ \ m\_energyScale;}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\ F(real\ theta,\ real\ cosGamma)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00037\ \};}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{comment}{//\ In-\/header\ Implementations:}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\ PreethamTexture::F(\textcolor{keyword}{const}\ real\ theta,\ \textcolor{keyword}{const}\ real\ cosGamma)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00042\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ rcpCosTheta\ =\ 1.0\_r\ /\ std::cos(theta);}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{comment}{//\ Gamma\ is\ the\ angle\ between\ direction\ to\ sun\ and\ view\ vector}}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ gamma\ \ \ \ \ =\ std::acos(cosGamma);}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ cos2Gamma\ =\ cosGamma\ *\ cosGamma;}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordflow}{return}\ \{}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ (1.0\_r\ +\ m\_A\_xyY.x()\ *\ std::exp(m\_B\_xyY.x()\ *\ rcpCosTheta))\ *\ (1.0\_r\ +\ m\_C\_xyY.x()\ *\ std::exp(m\_D\_xyY.x()\ *\ gamma)\ +\ m\_E\_xyY.x()\ *\ cos2Gamma),}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ (1.0\_r\ +\ m\_A\_xyY.y()\ *\ std::exp(m\_B\_xyY.y()\ *\ rcpCosTheta))\ *\ (1.0\_r\ +\ m\_C\_xyY.y()\ *\ std::exp(m\_D\_xyY.y()\ *\ gamma)\ +\ m\_E\_xyY.y()\ *\ cos2Gamma),}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ (1.0\_r\ +\ m\_A\_xyY.z()\ *\ std::exp(m\_B\_xyY.z()\ *\ rcpCosTheta))\ *\ (1.0\_r\ +\ m\_C\_xyY.z()\ *\ std::exp(m\_D\_xyY.z()\ *\ gamma)\ +\ m\_E\_xyY.z()\ *\ cos2Gamma)\};}
+\DoxyCodeLine{00053\ \}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+
+\end{DoxyCode}

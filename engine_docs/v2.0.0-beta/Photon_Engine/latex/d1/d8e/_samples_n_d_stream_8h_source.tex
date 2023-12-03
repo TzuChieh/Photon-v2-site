@@ -1,0 +1,138 @@
+\doxysection{Samples\+NDStream.\+h}
+\hypertarget{_samples_n_d_stream_8h_source}{}\label{_samples_n_d_stream_8h_source}\index{Source/Core/SampleGenerator/SamplesNDStream.h@{Source/Core/SampleGenerator/SamplesNDStream.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Common/primitive\_type.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Common/assertion.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}Core/SampleGenerator/SampleFlow.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}Math/Random.h"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <cstddef>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <array>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00013\ \{}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_samples_n_d_stream}{SamplesNDStream}}\ final}
+\DoxyCodeLine{00016\ \{}
+\DoxyCodeLine{00017\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00018\ \ \ \ \ \mbox{\hyperlink{classph_1_1_samples_n_d_stream}{SamplesNDStream}}(}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ real*\ buffer,\ }
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ std::size\_t\ numDims,\ }
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ std::size\_t\ numSamples);}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keyword}{const}\ real*\ readSample();}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00026\ \ \ \ \ std::array<real,\ N>\ readSample();}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \ \ \ \ \mbox{\hyperlink{classph_1_1_sample_flow}{SampleFlow}}\ readSampleAsFlow();}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \ \ \ std::size\_t\ numDims()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00031\ \ \ \ \ std::size\_t\ numSamples()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00034\ \ \ \ \ std::array<real,\ N>\ get(std::size\_t\ index)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{const}\ real*\ \mbox{\hyperlink{classph_1_1_samples_n_d_stream_a0ed1de82a91b4ecf1453e54639244fd4}{operator\ []\ }}(std::size\_t\ index)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keyword}{const}\ real*\ \ \ \ \ \ \ m\_buffer;}
+\DoxyCodeLine{00043\ \ \ \ \ std::size\_t\ \ \ \ \ \ \ m\_numDims;}
+\DoxyCodeLine{00044\ \ \ \ \ std::size\_t\ \ \ \ \ \ \ m\_numSamples;}
+\DoxyCodeLine{00045\ \ \ \ \ std::size\_t\ \ \ \ \ \ \ m\_readIndex;}
+\DoxyCodeLine{00046\ \ \ \ \ std::vector<real>\ m\_overreadBuffer;}
+\DoxyCodeLine{00047\ \};}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \textcolor{comment}{//\ In-\/header\ Implementations:}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \textcolor{keyword}{inline}\ SamplesNDStream::SamplesNDStream(}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keyword}{const}\ real*\ \textcolor{keyword}{const}\ buffer,}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ numDims,}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ numSamples)\ :\ }
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \ \ m\_buffer\ \ \ \ \ \ \ \ (buffer),}
+\DoxyCodeLine{00057\ \ \ \ \ m\_numDims\ \ \ \ \ \ \ (numDims),}
+\DoxyCodeLine{00058\ \ \ \ \ m\_numSamples\ \ \ \ (numSamples),}
+\DoxyCodeLine{00059\ \ \ \ \ m\_readIndex\ \ \ \ \ (0),}
+\DoxyCodeLine{00060\ \ \ \ \ m\_overreadBuffer(numDims)\textcolor{comment}{//\ TODO:\ possibly\ make\ it\ record\ all\ samples\ for\ further\ usage\ (let\ SamplesND\ provide\ buffer?)}}
+\DoxyCodeLine{00061\ \{}
+\DoxyCodeLine{00062\ \ \ \ \ PH\_ASSERT(buffer);}
+\DoxyCodeLine{00063\ \ \ \ \ PH\_ASSERT\_GT(numDims,\ 0);}
+\DoxyCodeLine{00064\ \ \ \ \ PH\_ASSERT\_GT(numSamples,\ 0);}
+\DoxyCodeLine{00065\ \}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ real*\ SamplesNDStream::readSample()}
+\DoxyCodeLine{00068\ \{}
+\DoxyCodeLine{00069\ \ \ \ \ PH\_ASSERT\_EQ(m\_overreadBuffer.size(),\ m\_numDims);}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keywordflow}{if}(m\_readIndex\ <\ m\_numSamples)}
+\DoxyCodeLine{00072\ \ \ \ \ \{}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (*\textcolor{keyword}{this})[m\_readIndex++];}
+\DoxyCodeLine{00074\ \ \ \ \ \}}
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00076\ \ \ \ \ \{}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keyword}{auto}\&\ element\ :\ m\_overreadBuffer)}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ element\ =\ math::Random::genUniformReal\_i0\_e1();}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_overreadBuffer.data();}
+\DoxyCodeLine{00082\ \ \ \ \ \}}
+\DoxyCodeLine{00083\ \}}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00086\ \textcolor{keyword}{inline}\ std::array<real,\ N>\ SamplesNDStream::readSample()}
+\DoxyCodeLine{00087\ \{}
+\DoxyCodeLine{00088\ \ \ \ \ PH\_ASSERT\_EQ(N,\ m\_numDims);}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keyword}{const}\ real*\ \textcolor{keyword}{const}\ samplePtr\ =\ readSample();}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \ \ \ \ std::array<real,\ N>\ sample;}
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ di\ =\ 0;\ di\ <\ N;\ ++di)}
+\DoxyCodeLine{00094\ \ \ \ \ \{}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ sample[di]\ =\ samplePtr[di];}
+\DoxyCodeLine{00096\ \ \ \ \ \}}
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keywordflow}{return}\ sample;}
+\DoxyCodeLine{00098\ \}}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \textcolor{keyword}{inline}\ SampleFlow\ SamplesNDStream::readSampleAsFlow()}
+\DoxyCodeLine{00101\ \{}
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keywordflow}{return}\ SampleFlow(readSample(),\ m\_numDims);}
+\DoxyCodeLine{00103\ \}}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ \textcolor{keyword}{inline}\ std::size\_t\ SamplesNDStream::numDims()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00106\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_numDims;}
+\DoxyCodeLine{00108\ \}}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \textcolor{keyword}{inline}\ std::size\_t\ SamplesNDStream::numSamples()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00111\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_numSamples;}
+\DoxyCodeLine{00113\ \}}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00116\ \textcolor{keyword}{inline}\ std::array<real,\ N>\ SamplesNDStream::get(\textcolor{keyword}{const}\ std::size\_t\ index)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00117\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00118\ \ \ \ \ PH\_ASSERT\_EQ(N,\ m\_numDims);}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \ \ \ \ std::array<real,\ N>\ sample;}
+\DoxyCodeLine{00121\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ di\ =\ 0;\ di\ <\ N;\ ++di)}
+\DoxyCodeLine{00122\ \ \ \ \ \{}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ sample[di]\ =\ (*this)[index][di];}
+\DoxyCodeLine{00124\ \ \ \ \ \}}
+\DoxyCodeLine{00125\ \ \ \ \ \textcolor{keywordflow}{return}\ sample;}
+\DoxyCodeLine{00126\ \}}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ real*\ \mbox{\hyperlink{classph_1_1_samples_n_d_stream_a0ed1de82a91b4ecf1453e54639244fd4}{SamplesNDStream::operator\ []\ }}(\textcolor{keyword}{const}\ std::size\_t\ index)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00129\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00130\ \ \ \ \ PH\_ASSERT\_LT(index,\ numSamples());}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00132\ \ \ \ \ \textcolor{keywordflow}{return}\ \&(m\_buffer[index\ *\ m\_numDims]);}
+\DoxyCodeLine{00133\ \}}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00135\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+
+\end{DoxyCode}

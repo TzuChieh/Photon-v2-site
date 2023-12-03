@@ -1,0 +1,235 @@
+\doxysection{color\+\_\+basics.\+h}
+\hypertarget{color__basics_8h_source}{}\label{color__basics_8h_source}\index{Source/Math/Color/color\_basics.h@{Source/Math/Color/color\_basics.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Common/primitive\_type.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Common/config.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}Common/assertion.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}Math/Color/color\_enums.h"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}Utility/utility.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}Utility/traits.h"{}}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <array>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <cstddef>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <concepts>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <type\_traits>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph_1_1math}{ph::math}}}
+\DoxyCodeLine{00017\ \{}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Property>}
+\DoxyCodeLine{00020\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptph_1_1math_1_1_c_spectral_sample_props}{CSpectralSampleProps}}\ =\ \textcolor{keyword}{requires}}
+\DoxyCodeLine{00021\ \{}
+\DoxyCodeLine{00022\ \ \ \ \ TNonTypeTemplateArgDummy<std::size\_t,\ Property::NUM\_SAMPLES>();}
+\DoxyCodeLine{00023\ \ \ \ \ TNonTypeTemplateArgDummy<std::size\_t,\ Property::MIN\_WAVELENGTH\_NM>();}
+\DoxyCodeLine{00024\ \ \ \ \ TNonTypeTemplateArgDummy<std::size\_t,\ Property::MAX\_WAVELENGTH\_NM>();}
+\DoxyCodeLine{00025\ \};}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1math_1_1_default_spectral_sample_props}{DefaultSpectralSampleProps}}\ final}
+\DoxyCodeLine{00028\ \{}
+\DoxyCodeLine{00029\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ std::size\_t\ NUM\_SAMPLES\ \ \ \ \ \ \ =\ PH\_SPECTRUM\_SAMPLED\_NUM\_SAMPLES;}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ std::size\_t\ MIN\_WAVELENGTH\_NM\ =\ PH\_SPECTRUM\_SAMPLED\_MIN\_WAVELENGTH\_NM;}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ std::size\_t\ MAX\_WAVELENGTH\_NM\ =\ PH\_SPECTRUM\_SAMPLED\_MAX\_WAVELENGTH\_NM;}
+\DoxyCodeLine{00033\ \};}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00036\ \textcolor{comment}{Color\ implementations\ generally\ use\ dedicated\ types\ for\ color\ values.\ For\ example,\ \`{}TTristimulusValues`\ }}
+\DoxyCodeLine{00037\ \textcolor{comment}{is\ used\ for\ tristimulus\ values\ and\ \`{}TSpectralSampleValues`\ is\ for\ spectral\ values.\ There\ are\ also}}
+\DoxyCodeLine{00038\ \textcolor{comment}{more\ types\ for\ other\ color-\/related\ concepts.}}
+\DoxyCodeLine{00039\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \textcolor{keyword}{using\ }ColorValue\ =\ real;}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00044\ \textcolor{keyword}{using\ }TRawColorValues\ =\ std::array<T,\ N>;}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00047\ \textcolor{keyword}{using\ }TTristimulusValues\ =\ TRawColorValues<T,\ 3>;}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00052\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ CSpectralSampleProps\ SampleProps\ =\ DefaultSpectralSampleProps>}
+\DoxyCodeLine{00053\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespaceph_1_1math_ab6e489b4814390fb4f1a68257d8d432d}{TSpectralSampleValues}}\ =\ TRawColorValues<T,\ SampleProps::NUM\_SAMPLES>;}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00056\ \textcolor{keyword}{using\ }TChromaticityValues\ =\ TRawColorValues<T,\ 2>;}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \textcolor{keyword}{using\ }TristimulusValues\ \ \ \ =\ TTristimulusValues<ColorValue>;}
+\DoxyCodeLine{00059\ \textcolor{keyword}{using\ }SpectralSampleValues\ =\ \mbox{\hyperlink{namespaceph_1_1math_ab6e489b4814390fb4f1a68257d8d432d}{TSpectralSampleValues<ColorValue>}};}
+\DoxyCodeLine{00060\ \textcolor{keyword}{using\ }ChromaticityValues\ \ \ =\ TChromaticityValues<ColorValue>;}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \textcolor{keyword}{namespace\ }detail}
+\DoxyCodeLine{00063\ \{}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \textcolor{keyword}{template}<EColorSpace\ COLOR\_SPACE>}
+\DoxyCodeLine{00066\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1math_1_1detail_1_1_t_color_space_dummy}{TColorSpaceDummy}}\ final}
+\DoxyCodeLine{00067\ \{\};}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \}\textcolor{comment}{//\ end\ namespace\ detail}}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00073\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ ImplType>}
+\DoxyCodeLine{00074\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptph_1_1math_1_1_c_color_values_interface}{CColorValuesInterface}}\ =\ \textcolor{keyword}{requires}\ (}
+\DoxyCodeLine{00075\ \ \ \ \ ImplType\ \ \ \ \ \ \ instance,}
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keyword}{const}\ ImplType\ constInstance)}
+\DoxyCodeLine{00077\ \{}
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{comment}{//\ getColorSpace()\ must\ be\ usable\ as\ a\ non-\/type\ template\ argument}}
+\DoxyCodeLine{00079\ \ \ \ \ detail::TColorSpaceDummy<ImplType::getColorSpace()>();}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{comment}{//\ Test\ for\ the\ method\ void\ setColorValues(const\ TRawColorValues<T,\ N>\&).}}
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{comment}{//\ Note:\ we\ do\ not\ want\ to\ pass\ in\ the\ template\ parameters\ (for\ convenience),\ so\ we\ test\ by\ calling\ }}
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{comment}{//\ the\ method\ with\ an\ empty\ braced-\/init-\/list.}}
+\DoxyCodeLine{00084\ \ \ \ \ instance.setColorValues(\{\});}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{comment}{//\ Test\ for\ the\ method\ getColorValues().}}
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{comment}{//\ Note:\ we\ do\ not\ want\ to\ pass\ in\ the\ template\ parameters\ (for\ convenience),\ so\ we\ test\ by\ calling\ }}
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{comment}{//\ the\ method\ and\ see\ if\ the\ return\ value\ can\ be\ subscripted.}}
+\DoxyCodeLine{00089\ \ \ \ \ constInstance.getColorValues()[0];}
+\DoxyCodeLine{00090\ \};}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00094\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ ColorValuesType>}
+\DoxyCodeLine{00095\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptph_1_1math_1_1_c_raw_color_values}{CRawColorValues}}\ =\ }
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{comment}{//\ We\ would\ want\ to\ have\ something\ like\ \`{}std::is\_std\_array`,\ the\ following\ is\ good\ enough\ though}}
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{comment}{//\ (covers\ most\ of\ the\ use\ cases)}}
+\DoxyCodeLine{00098\ \ \ \ \ !\mbox{\hyperlink{conceptph_1_1math_1_1_c_color_values_interface}{CColorValuesInterface<ColorValuesType>}}\ \&\&}
+\DoxyCodeLine{00099\ \ \ \ \ \mbox{\hyperlink{conceptph_1_1_c_subscriptable}{CSubscriptable<ColorValuesType>}}\ \&\&}
+\DoxyCodeLine{00100\ \ \ \ \ std::is\_aggregate\_v<ColorValuesType>\ \&\&}
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{keyword}{requires}\ (ColorValuesType\ colorValues)}
+\DoxyCodeLine{00102\ \ \ \ \ \{}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ colorValues.fill(0);}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ colorValues.begin();}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ colorValues.end();}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ colorValues.cbegin();}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ colorValues.cend();}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \{\ colorValues.size()\ \}\ -\/>\ std::convertible\_to<std::size\_t>;}
+\DoxyCodeLine{00109\ \ \ \ \ \};}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \textcolor{keyword}{namespace\ }detail}
+\DoxyCodeLine{00112\ \{}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00126\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00127\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ make\_chromaticity\_table()}
+\DoxyCodeLine{00128\ -\/>\ std::array<TChromaticityValues<T>,\ \textcolor{keyword}{static\_cast<}std::size\_t\textcolor{keyword}{>}(EReferenceWhite::NUM)>}
+\DoxyCodeLine{00129\ \{}
+\DoxyCodeLine{00130\ \ \ \ \ std::array<TChromaticityValues<double>,\ \textcolor{keyword}{static\_cast<}std::size\_t\textcolor{keyword}{>}(EReferenceWhite::NUM)>\ table;}
+\DoxyCodeLine{00131\ \ \ \ \ }
+\DoxyCodeLine{00132\ \ \ \ \ \textcolor{comment}{//\ By\ default\ fill\ all\ values\ as\ standard\ illuminant\ E}}
+\DoxyCodeLine{00133\ \ \ \ \ table.fill(\{1.0\ /\ 3.0,\ 1.0\ /\ 3.0\});}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00135\ \ \ \ \ table[\textcolor{keyword}{static\_cast<}std::size\_t\textcolor{keyword}{>}(EReferenceWhite::A)]\ \ \ \ \ \ \ \ =\ \{0.44758,\ 0.40745\};}
+\DoxyCodeLine{00136\ \ \ \ \ table[\textcolor{keyword}{static\_cast<}std::size\_t\textcolor{keyword}{>}(EReferenceWhite::B)]\ \ \ \ \ \ \ \ =\ \{0.34842,\ 0.35161\};}
+\DoxyCodeLine{00137\ \ \ \ \ table[\textcolor{keyword}{static\_cast<}std::size\_t\textcolor{keyword}{>}(EReferenceWhite::C)]\ \ \ \ \ \ \ \ =\ \{0.31006,\ 0.31616\};}
+\DoxyCodeLine{00138\ \ \ \ \ table[\textcolor{keyword}{static\_cast<}std::size\_t\textcolor{keyword}{>}(EReferenceWhite::D50)]\ \ \ \ \ \ =\ \{0.34570,\ 0.35850\};}
+\DoxyCodeLine{00139\ \ \ \ \ table[\textcolor{keyword}{static\_cast<}std::size\_t\textcolor{keyword}{>}(EReferenceWhite::D55)]\ \ \ \ \ \ =\ \{0.33243,\ 0.34744\};}
+\DoxyCodeLine{00140\ \ \ \ \ table[\textcolor{keyword}{static\_cast<}std::size\_t\textcolor{keyword}{>}(EReferenceWhite::D60)]\ \ \ \ \ \ =\ \{0.321616709705268,\ 0.337619916550817\};}
+\DoxyCodeLine{00141\ \ \ \ \ table[\textcolor{keyword}{static\_cast<}std::size\_t\textcolor{keyword}{>}(EReferenceWhite::D65)]\ \ \ \ \ \ =\ \{0.31270,\ 0.32900\};}
+\DoxyCodeLine{00142\ \ \ \ \ table[\textcolor{keyword}{static\_cast<}std::size\_t\textcolor{keyword}{>}(EReferenceWhite::D75)]\ \ \ \ \ \ =\ \{0.29903,\ 0.31488\};}
+\DoxyCodeLine{00143\ \ \ \ \ table[\textcolor{keyword}{static\_cast<}std::size\_t\textcolor{keyword}{>}(EReferenceWhite::E)]\ \ \ \ \ \ \ \ =\ \{1.0\ /\ 3.0,\ 1.0\ /\ 3.0\};}
+\DoxyCodeLine{00144\ \ \ \ \ table[\textcolor{keyword}{static\_cast<}std::size\_t\textcolor{keyword}{>}(EReferenceWhite::F1)]\ \ \ \ \ \ \ =\ \{0.31310,\ 0.33710\};}
+\DoxyCodeLine{00145\ \ \ \ \ table[\textcolor{keyword}{static\_cast<}std::size\_t\textcolor{keyword}{>}(EReferenceWhite::F2)]\ \ \ \ \ \ \ =\ \{0.37210,\ 0.37510\};}
+\DoxyCodeLine{00146\ \ \ \ \ table[\textcolor{keyword}{static\_cast<}std::size\_t\textcolor{keyword}{>}(EReferenceWhite::F3)]\ \ \ \ \ \ \ =\ \{0.40910,\ 0.39410\};}
+\DoxyCodeLine{00147\ \ \ \ \ table[\textcolor{keyword}{static\_cast<}std::size\_t\textcolor{keyword}{>}(EReferenceWhite::F4)]\ \ \ \ \ \ \ =\ \{0.44020,\ 0.40310\};}
+\DoxyCodeLine{00148\ \ \ \ \ table[\textcolor{keyword}{static\_cast<}std::size\_t\textcolor{keyword}{>}(EReferenceWhite::F5)]\ \ \ \ \ \ \ =\ \{0.31380,\ 0.34520\};}
+\DoxyCodeLine{00149\ \ \ \ \ table[\textcolor{keyword}{static\_cast<}std::size\_t\textcolor{keyword}{>}(EReferenceWhite::F6)]\ \ \ \ \ \ \ =\ \{0.37790,\ 0.38820\};}
+\DoxyCodeLine{00150\ \ \ \ \ table[\textcolor{keyword}{static\_cast<}std::size\_t\textcolor{keyword}{>}(EReferenceWhite::F7)]\ \ \ \ \ \ \ =\ \{0.31290,\ 0.32920\};}
+\DoxyCodeLine{00151\ \ \ \ \ table[\textcolor{keyword}{static\_cast<}std::size\_t\textcolor{keyword}{>}(EReferenceWhite::F8)]\ \ \ \ \ \ \ =\ \{0.34580,\ 0.35860\};}
+\DoxyCodeLine{00152\ \ \ \ \ table[\textcolor{keyword}{static\_cast<}std::size\_t\textcolor{keyword}{>}(EReferenceWhite::F9)]\ \ \ \ \ \ \ =\ \{0.37410,\ 0.37270\};}
+\DoxyCodeLine{00153\ \ \ \ \ table[\textcolor{keyword}{static\_cast<}std::size\_t\textcolor{keyword}{>}(EReferenceWhite::F10)]\ \ \ \ \ \ =\ \{0.34580,\ 0.35880\};}
+\DoxyCodeLine{00154\ \ \ \ \ table[\textcolor{keyword}{static\_cast<}std::size\_t\textcolor{keyword}{>}(EReferenceWhite::F11)]\ \ \ \ \ \ =\ \{0.38050,\ 0.37690\};}
+\DoxyCodeLine{00155\ \ \ \ \ table[\textcolor{keyword}{static\_cast<}std::size\_t\textcolor{keyword}{>}(EReferenceWhite::F12)]\ \ \ \ \ \ =\ \{0.43700,\ 0.40420\};}
+\DoxyCodeLine{00156\ \ \ \ \ table[\textcolor{keyword}{static\_cast<}std::size\_t\textcolor{keyword}{>}(EReferenceWhite::LED\_B1)]\ \ \ =\ \{0.45600,\ 0.40780\};}
+\DoxyCodeLine{00157\ \ \ \ \ table[\textcolor{keyword}{static\_cast<}std::size\_t\textcolor{keyword}{>}(EReferenceWhite::LED\_B2)]\ \ \ =\ \{0.43570,\ 0.40120\};}
+\DoxyCodeLine{00158\ \ \ \ \ table[\textcolor{keyword}{static\_cast<}std::size\_t\textcolor{keyword}{>}(EReferenceWhite::LED\_B3)]\ \ \ =\ \{0.37560,\ 0.37230\};}
+\DoxyCodeLine{00159\ \ \ \ \ table[\textcolor{keyword}{static\_cast<}std::size\_t\textcolor{keyword}{>}(EReferenceWhite::LED\_B4)]\ \ \ =\ \{0.34220,\ 0.35020\};}
+\DoxyCodeLine{00160\ \ \ \ \ table[\textcolor{keyword}{static\_cast<}std::size\_t\textcolor{keyword}{>}(EReferenceWhite::LED\_B5)]\ \ \ =\ \{0.31180,\ 0.32360\};}
+\DoxyCodeLine{00161\ \ \ \ \ table[\textcolor{keyword}{static\_cast<}std::size\_t\textcolor{keyword}{>}(EReferenceWhite::LED\_BH1)]\ \ =\ \{0.44740,\ 0.40660\};}
+\DoxyCodeLine{00162\ \ \ \ \ table[\textcolor{keyword}{static\_cast<}std::size\_t\textcolor{keyword}{>}(EReferenceWhite::LED\_RGB1)]\ =\ \{0.45570,\ 0.42110\};}
+\DoxyCodeLine{00163\ \ \ \ \ table[\textcolor{keyword}{static\_cast<}std::size\_t\textcolor{keyword}{>}(EReferenceWhite::LED\_V1)]\ \ \ =\ \{0.45480,\ 0.40440\};}
+\DoxyCodeLine{00164\ \ \ \ \ table[\textcolor{keyword}{static\_cast<}std::size\_t\textcolor{keyword}{>}(EReferenceWhite::LED\_V2)]\ \ \ =\ \{0.37810,\ 0.37750\};}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00166\ \ \ \ \ \textcolor{comment}{//\ References:\ }}
+\DoxyCodeLine{00167\ \ \ \ \ \textcolor{comment}{//\ [1]\ TB-\/2014-\/004:\ Informative\ Notes\ on\ SMPTE\ ST\ 2065-\/1\ –\ Academy\ Color\ Encoding\ Specification\ (ACES)}}
+\DoxyCodeLine{00168\ \ \ \ \ \textcolor{comment}{//\ https://www.oscars.org/science-\/technology/aces/aces-\/documentation}}
+\DoxyCodeLine{00169\ \ \ \ \ \textcolor{comment}{//\ [2]\ TB-\/2018-\/001:\ Derivation\ of\ the\ ACES\ White\ Point\ Chromaticity\ Coordinates}}
+\DoxyCodeLine{00170\ \ \ \ \ \textcolor{comment}{//\ https://www.oscars.org/science-\/technology/aces/aces-\/documentation}}
+\DoxyCodeLine{00171\ \ \ \ \ table[\textcolor{keyword}{static\_cast<}std::size\_t\textcolor{keyword}{>}(\mbox{\hyperlink{namespaceph_1_1math_ac8bbf5c13da6b60663011e0be1acb6c4a01ec90d9624dce53f3f3492882841fe6}{EReferenceWhite::ACES}})]\ =\ \{0.32168,\ 0.33767\};}
+\DoxyCodeLine{00172\ }
+\DoxyCodeLine{00173\ \ \ \ \ std::array<TChromaticityValues<T>,\ \textcolor{keyword}{static\_cast<}std::size\_t\textcolor{keyword}{>}(EReferenceWhite::NUM)>\ castedTable;}
+\DoxyCodeLine{00174\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ i\ =\ 0;\ i\ <\ table.size();\ ++i)}
+\DoxyCodeLine{00175\ \ \ \ \ \{}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ castedTable[i][0]\ =\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(table[i][0]);}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ castedTable[i][1]\ =\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(table[i][1]);}
+\DoxyCodeLine{00178\ \ \ \ \ \}}
+\DoxyCodeLine{00179\ \ \ \ \ \textcolor{keywordflow}{return}\ castedTable;}
+\DoxyCodeLine{00180\ \}}
+\DoxyCodeLine{00181\ }
+\DoxyCodeLine{00182\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ ColorValuesType>}
+\DoxyCodeLine{00183\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ get\_any\_element\_from\_color\_values(\textcolor{keyword}{const}\ ColorValuesType\&\ colorValues)}
+\DoxyCodeLine{00184\ \{}
+\DoxyCodeLine{00185\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(CRawColorValues<ColorValuesType>)}
+\DoxyCodeLine{00186\ \ \ \ \ \{}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ colorValues[0];}
+\DoxyCodeLine{00188\ \ \ \ \ \}}
+\DoxyCodeLine{00189\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(CColorValuesInterface<ColorValuesType>)}
+\DoxyCodeLine{00190\ \ \ \ \ \{}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ colorValues.getColorValues()[0];}
+\DoxyCodeLine{00192\ \ \ \ \ \}}
+\DoxyCodeLine{00193\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00194\ \ \ \ \ \{}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Note:\ According\ to\ [expr.type.conv]/2,\ quote:}}
+\DoxyCodeLine{00196\ \textcolor{comment}{\ \ \ \ \ \ \ \ "{}if\ the\ type\ is\ cv\ void\ and\ the\ initializer\ is\ ()\ or\ \{\}\ (after\ pack\ expansion,\ if\ any),\ }}
+\DoxyCodeLine{00197\ \textcolor{comment}{\ \ \ \ \ \ \ \ the\ expression\ is\ a\ prvalue\ of\ the\ specified\ type\ that\ performs\ no\ initialization."{}}}
+\DoxyCodeLine{00198\ \textcolor{comment}{\ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keywordtype}{void}\{\};}
+\DoxyCodeLine{00200\ \ \ \ \ \}}
+\DoxyCodeLine{00201\ \}}
+\DoxyCodeLine{00202\ }
+\DoxyCodeLine{00203\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ ColorValuesType>}
+\DoxyCodeLine{00204\ \textcolor{keyword}{using\ }TColorValuesElementType\ =\ \textcolor{keyword}{decltype}(get\_any\_element\_from\_color\_values(std::declval<ColorValuesType>()));}
+\DoxyCodeLine{00205\ }
+\DoxyCodeLine{00206\ \}\textcolor{comment}{//\ end\ namespace\ detail}}
+\DoxyCodeLine{00207\ }
+\DoxyCodeLine{00208\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T\ =\ ColorValue>}
+\DoxyCodeLine{00209\ \textcolor{keyword}{inline}\ TChromaticityValues<T>\ chromaticity\_of(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_1_1math_ac8bbf5c13da6b60663011e0be1acb6c4}{EReferenceWhite}}\ refWhite)}
+\DoxyCodeLine{00210\ \{}
+\DoxyCodeLine{00211\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ TABLE\ =\ detail::make\_chromaticity\_table<T>();}
+\DoxyCodeLine{00212\ }
+\DoxyCodeLine{00213\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ index\ =\ \textcolor{keyword}{static\_cast<}std::size\_t\textcolor{keyword}{>}(refWhite);}
+\DoxyCodeLine{00214\ \ \ \ \ PH\_ASSERT\_LT(index,\ TABLE.size());}
+\DoxyCodeLine{00215\ \ \ \ \ \textcolor{keywordflow}{return}\ TABLE[index];}
+\DoxyCodeLine{00216\ \}}
+\DoxyCodeLine{00217\ }
+\DoxyCodeLine{00218\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00219\ \textcolor{comment}{For\ reference\ whites,\ set\ Y\ value\ to\ 1\ (the\ brightest\ white\ that\ a\ color\ display\ supports).}}
+\DoxyCodeLine{00220\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00221\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T\ =\ ColorValue>}
+\DoxyCodeLine{00222\ \textcolor{keyword}{inline}\ TTristimulusValues<T>\ CIEXYZ\_of\_custom\_reference\_white(\textcolor{keyword}{const}\ TChromaticityValues<T>\&\ refWhite)}
+\DoxyCodeLine{00223\ \{}
+\DoxyCodeLine{00224\ \ \ \ \ \textcolor{comment}{//\ Reference\ whites\ should\ not\ have\ any\ component\ being\ <=\ 0}}
+\DoxyCodeLine{00225\ \ \ \ \ PH\_ASSERT\_GT(refWhite[0],\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(0));}
+\DoxyCodeLine{00226\ \ \ \ \ PH\_ASSERT\_GT(refWhite[1],\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(0));}
+\DoxyCodeLine{00227\ }
+\DoxyCodeLine{00228\ \ \ \ \ \textcolor{keyword}{const}\ T\ x\ =\ refWhite[0];}
+\DoxyCodeLine{00229\ \ \ \ \ \textcolor{keyword}{const}\ T\ y\ =\ refWhite[1];}
+\DoxyCodeLine{00230\ }
+\DoxyCodeLine{00231\ \ \ \ \ \textcolor{comment}{//\ Y\ is\ set\ to\ 1}}
+\DoxyCodeLine{00232\ \ \ \ \ \textcolor{keyword}{const}\ T\ Y\_over\_y\ =\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(1)\ /\ y;}
+\DoxyCodeLine{00233\ \ \ \ \ \textcolor{keywordflow}{return}}
+\DoxyCodeLine{00234\ \ \ \ \ \{}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ Y\_over\_y\ *\ x,}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ 1.0,}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ Y\_over\_y\ *\ (\textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(1)\ -\/\ x\ -\/\ y)}
+\DoxyCodeLine{00238\ \ \ \ \ \};}
+\DoxyCodeLine{00239\ \}}
+\DoxyCodeLine{00240\ }
+\DoxyCodeLine{00241\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T\ =\ ColorValue>}
+\DoxyCodeLine{00242\ \textcolor{keyword}{inline}\ TTristimulusValues<T>\ CIEXYZ\_of(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_1_1math_ac8bbf5c13da6b60663011e0be1acb6c4}{EReferenceWhite}}\ refWhite)}
+\DoxyCodeLine{00243\ \{}
+\DoxyCodeLine{00244\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ chromaticity\ =\ chromaticity\_of<T>(refWhite);}
+\DoxyCodeLine{00245\ \ \ \ \ \textcolor{keywordflow}{return}\ CIEXYZ\_of\_custom\_reference\_white<T>(chromaticity);}
+\DoxyCodeLine{00246\ \}}
+\DoxyCodeLine{00247\ }
+\DoxyCodeLine{00248\ \}\textcolor{comment}{//\ end\ namespace\ ph::math}}
+
+\end{DoxyCode}

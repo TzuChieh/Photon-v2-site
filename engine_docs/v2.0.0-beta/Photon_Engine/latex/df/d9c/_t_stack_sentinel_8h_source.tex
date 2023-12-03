@@ -1,0 +1,75 @@
+\doxysection{TStack\+Sentinel.\+h}
+\hypertarget{_t_stack_sentinel_8h_source}{}\label{_t_stack_sentinel_8h_source}\index{Source/Utility/Debug/TStackSentinel.h@{Source/Utility/Debug/TStackSentinel.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Common/debug.h"{}}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <cstddef>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <cstdint>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00010\ \{}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ BUFFER\_BYTES\ =\ 16\ *\ 1024>}
+\DoxyCodeLine{00017\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_t_stack_sentinel}{TStackSentinel}}\ final}
+\DoxyCodeLine{00018\ \{}
+\DoxyCodeLine{00019\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{auto}\ makeUnique()}
+\DoxyCodeLine{00021\ \ \ \ \ -\/>\ std::unique\_ptr<TStackSentinel>;}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_stack_sentinel}{TStackSentinel}}();}
+\DoxyCodeLine{00024\ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_stack_sentinel}{\string~TStackSentinel}}();}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{static}\ std::uint8\_t\ genValue(std::size\_t\ byteIdx);}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \ \ std::uint8\_t\ m\_stackBuffer[BUFFER\_BYTES];}
+\DoxyCodeLine{00030\ \};}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ BUFFER\_BYTES>}
+\DoxyCodeLine{00033\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1_t_stack_sentinel}{TStackSentinel<BUFFER\_BYTES>::makeUnique}}()}
+\DoxyCodeLine{00034\ -\/>\ std::unique\_ptr<TStackSentinel>}
+\DoxyCodeLine{00035\ \{}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordflow}{return}\ std::make\_unique<TStackSentinel>();}
+\DoxyCodeLine{00037\ \}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ BUFFER\_BYTES>}
+\DoxyCodeLine{00040\ \textcolor{keyword}{inline}\ TStackSentinel<BUFFER\_BYTES>::TStackSentinel()}
+\DoxyCodeLine{00041\ \{}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ i\ =\ 0;\ i\ <\ BUFFER\_BYTES;\ ++i)}
+\DoxyCodeLine{00043\ \ \ \ \ \{}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ m\_stackBuffer[i]\ =\ genValue(i);}
+\DoxyCodeLine{00045\ \ \ \ \ \}}
+\DoxyCodeLine{00046\ \}}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ BUFFER\_BYTES>}
+\DoxyCodeLine{00049\ \textcolor{keyword}{inline}\ TStackSentinel<BUFFER\_BYTES>::\string~TStackSentinel()}
+\DoxyCodeLine{00050\ \{}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ i\ =\ 0;\ i\ <\ BUFFER\_BYTES;\ ++i)}
+\DoxyCodeLine{00052\ \ \ \ \ \{}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(m\_stackBuffer[i]\ !=\ genValue(i))}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ PH\_DEBUG\_BREAK();}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00057\ \ \ \ \ \}}
+\DoxyCodeLine{00058\ \}}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ BUFFER\_BYTES>}
+\DoxyCodeLine{00061\ \textcolor{keyword}{inline}\ std::uint8\_t\ TStackSentinel<BUFFER\_BYTES>::genValue(\textcolor{keyword}{const}\ std::size\_t\ byteIdx)}
+\DoxyCodeLine{00062\ \{}
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{comment}{//\ Generates\ the\ pattern\ \`{}BAADF00D`\ (bad\ food)}}
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keywordflow}{switch}(byteIdx\ \%\ 4)}
+\DoxyCodeLine{00065\ \ \ \ \ \{}
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keywordflow}{case}\ 0:\ \textcolor{keywordflow}{return}\ 0xBA;}
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordflow}{case}\ 1:\ \textcolor{keywordflow}{return}\ 0xAD;}
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keywordflow}{case}\ 2:\ \textcolor{keywordflow}{return}\ 0xF0;}
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keywordflow}{case}\ 3:\ \textcolor{keywordflow}{return}\ 0x0D;}
+\DoxyCodeLine{00070\ \ \ \ \ \}}
+\DoxyCodeLine{00071\ \}}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+
+\end{DoxyCode}

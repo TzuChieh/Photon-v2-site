@@ -1,0 +1,108 @@
+\doxysection{Transform.\+h}
+\hypertarget{_transform_8h_source}{}\label{_transform_8h_source}\index{Source/Math/Transform/Transform.h@{Source/Math/Transform/Transform.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Math/math\_fwd.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Math/Geometry/TAABB3D.h"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00009\ \{}
+\DoxyCodeLine{00010\ \ \ \ \ \textcolor{keyword}{class\ }Time;}
+\DoxyCodeLine{00011\ \ \ \ \ \textcolor{keyword}{class\ }Ray;}
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keyword}{class\ }HitInfo;}
+\DoxyCodeLine{00013\ \}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph_1_1math}{ph::math}}}
+\DoxyCodeLine{00016\ \{}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{comment}{//\ TODO:\ templatize}}
+\DoxyCodeLine{00019\ \textcolor{comment}{//\ TODO:\ use\ line\ segment,\ not\ ray}}
+\DoxyCodeLine{00020\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1math_1_1_transform}{Transform}}}
+\DoxyCodeLine{00021\ \{}
+\DoxyCodeLine{00022\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classph_1_1math_1_1_transform}{\string~Transform}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{comment}{//\ DEPRECATED}}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{virtual}\ std::unique\_ptr<Transform>\ genInversed()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{comment}{//\ Treating\ a\ Vector3R\ as\ either}}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{comment}{//\ 1)\ vectors\ \ \ \ \ \ (V)}}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{comment}{//\ 2)\ orientations\ (O)\ (such\ as\ normals\ and\ tangents)}}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{comment}{//\ 3)\ points\ \ \ \ \ \ \ (P)\ }}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{comment}{//\ and\ calculate\ the\ transformed\ result.}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordtype}{void}\ transformV(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{Vector3R}}\&\ vector,\ }
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{Vector3R}}*\ out\_vector)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{void}\ transformO(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{Vector3R}}\&\ orientation,\ }
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{Vector3R}}*\ out\_orientation)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordtype}{void}\ transformP(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{Vector3R}}\&\ point,\ }
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{Vector3R}}*\ out\_point)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordtype}{void}\ transformV(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{Vector3R}}\&\ vector,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_time}{Time}}\&\ time,\ }
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{Vector3R}}*\ out\_vector)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordtype}{void}\ transformO(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{Vector3R}}\&\ orientation,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_time}{Time}}\&\ time,\ }
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{Vector3R}}*\ out\_orientation)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordtype}{void}\ transformP(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{Vector3R}}\&\ point,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_time}{Time}}\&\ time,\ }
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{Vector3R}}*\ out\_point)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{comment}{//\ Notice\ that\ transforming\ a\ ray\ neither\ will\ change\ its\ parametric\ }}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{comment}{//\ distance\ (t)\ nor\ renormalizing\ its\ direction\ vector\ even\ if\ the\ transform\ }}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{comment}{//\ contains\ scale\ factor;\ because\ if\ users\ respect\ the\ ray\ segment's\ }}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{comment}{//\ definition:}}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{comment}{//\ }}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ Ray\ Segment\ =\ [rayOrigin\ +\ rayMinT\ *\ rayDirection,\ }}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ rayOrigin\ +\ rayMaxT\ *\ rayDirection]}}
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{comment}{//\ }}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{comment}{//\ this\ operation\ will\ always\ yield\ a\ correctly\ transformed\ result\ while\ }}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{comment}{//\ saving\ an\ expensive\ sqrt()\ call.}}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordtype}{void}\ transform(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_ray}{Ray}}\&\ ray,\ }
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_ray}{Ray}}*\ out\_ray)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keywordtype}{void}\ transform(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_hit_info}{HitInfo}}\&\ info,}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_hit_info}{HitInfo}}*\ out\_info)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keywordtype}{void}\ transform(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d}{AABB3D}}\&\ aabb,\ }
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d}{AABB3D}}*\ out\_aabb)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keywordtype}{void}\ transform(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_hit_info}{HitInfo}}\&\ info,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_time}{Time}}\&\ time,}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_hit_info}{HitInfo}}*\ out\_info)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keywordtype}{void}\ transform(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d}{AABB3D}}\&\ aabb,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_time}{Time}}\&\ time,}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d}{AABB3D}}*\ out\_aabb)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{comment}{//\ Treating\ a\ Vector3R\ as\ either\ a\ vector,\ orientation,\ or\ point\ and\ }}
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{comment}{//\ calculate\ the\ transformed\ result.}}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ transformVector(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{Vector3R}}\&\ vector,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_time}{Time}}\&\ time,\ }
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{Vector3R}}*\ out\_vector)\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ transformOrientation(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{Vector3R}}\&\ orientation,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_time}{Time}}\&\ time,}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{Vector3R}}*\ out\_orientation)\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ transformPoint(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{Vector3R}}\&\ point,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_time}{Time}}\&\ time,\ }
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{Vector3R}}*\ out\_point)\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{comment}{//\ Transform\ the\ specified\ line\ segment.\ A\ line\ segment's\ definition\ is\ }}
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{comment}{//\ as\ follows:}}
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{comment}{//\ }}
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ Line\ Segment\ =\ [lineStartPos\ +\ lineMinT\ *\ lineDir,}}
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lineStartPos\ +\ lineMaxT\ *\ lineDir]}}
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{comment}{//\ Also\ note\ that\ lineDir\ is\ not\ necessary\ to\ be\ normalized.}}
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ transformLineSegment(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{Vector3R}}\&\ lineStartPos,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{Vector3R}}\&\ lineDir,\ }
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ real\ lineMinT,\ real\ lineMaxT,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_time}{Time}}\&\ time,\ }
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{Vector3R}}*\ out\_lineStartPos,\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{Vector3R}}*\ out\_lineDir,}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ real*\ out\_lineMinT,\ real*\ out\_lineMaxT)\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00100\ \};}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \}\textcolor{comment}{//\ end\ namespace\ ph::math}}
+
+\end{DoxyCode}

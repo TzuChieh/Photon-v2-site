@@ -1,0 +1,108 @@
+\doxysection{Cooked\+Resource\+Collection\+Base.\+h}
+\hypertarget{_cooked_resource_collection_base_8h_source}{}\label{_cooked_resource_collection_base_8h_source}\index{Source/World/Foundation/CookedResourceCollectionBase.h@{Source/World/Foundation/CookedResourceCollectionBase.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Utility/INoCopyAndMove.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Utility/TUniquePtrVector.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}Utility/Concurrent/TSynchronized.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}SDL/SdlResourceId.h"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{logging_8h}{Common/logging.h}}"{}}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <unordered\_map>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00015\ \{}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \mbox{\hyperlink{logging_8h_a6f3ae1815da4078262e15d5edae54cb5}{PH\_DEFINE\_EXTERNAL\_LOG\_GROUP}}(CookedResourceCollectionBase,\ World);}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00023\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_cooked_resource_collection_base}{CookedResourceCollectionBase}}\ :\ \textcolor{keyword}{private}\ \mbox{\hyperlink{classph_1_1_i_no_copy_and_move}{INoCopyAndMove}}}
+\DoxyCodeLine{00024\ \{}
+\DoxyCodeLine{00025\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classph_1_1_cooked_resource_collection_base}{\string~CookedResourceCollectionBase}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{virtual}\ std::string\ getStats()\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ CookedType>}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{using\ }TSdlResourceIdMap\ =\ std::unordered\_map<SdlResourceId,\ std::unique\_ptr<CookedType>>;}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ DerivedType,\ \textcolor{keyword}{typename}\ BaseType,\ \textcolor{keyword}{typename}...\ DeducedArgs>}
+\DoxyCodeLine{00035\ \ \ \ \ [[nodiscard]]}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{static}\ DerivedType*\ makeCookedResource(}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ TSynchronized<\mbox{\hyperlink{classph_1_1_t_unique_ptr_vector}{TUniquePtrVector<BaseType>}}>\&\ syncedResources,}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ DeducedArgs\&\&...\ args)}
+\DoxyCodeLine{00039\ \ \ \ \ \{}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Create\ resource\ in\ separate\ expression\ since\ no\ lock\ is\ required\ yet}}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ newResource\ =\ std::make\_unique<DerivedType>(std::forward<DeducedArgs>(args)...);}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ DerivedType*\ resourcePtr\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ syncedResources.locked(}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ [\&resourcePtr,\ \&newResource](\textcolor{keyword}{auto}\&\ resources)}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ resourcePtr\ =\ resources.add(std::move(newResource));}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ resourcePtr;}
+\DoxyCodeLine{00051\ \ \ \ \ \}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ CookedType,\ \textcolor{keyword}{typename}...\ DeducedArgs>}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keyword}{static}\ CookedType*\ makeCookedResourceWithID(}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ TSynchronized<TSdlResourceIdMap<CookedType>>\&\ syncedIdToResource,}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ SdlResourceId\ \textcolor{keywordtype}{id},\ }
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ DeducedArgs\&\&...\ args)}
+\DoxyCodeLine{00058\ \ \ \ \ \{}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Create\ resource\ in\ separate\ expression\ since\ no\ lock\ is\ required\ yet}}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ newResource\ =\ std::make\_unique<CookedType>(std::forward<DeducedArgs>(args)...);}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ CookedType*\ resourcePtr\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ syncedIdToResource.locked(}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ [\textcolor{keywordtype}{id},\ \&resourcePtr,\ \&newResource](\textcolor{keyword}{auto}\&\ idToResource)}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ findResult\ =\ idToResource.find(\textcolor{keywordtype}{id});}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(findResult\ ==\ idToResource.end())}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ resourcePtr\ =\ newResource.get();}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ idToResource[id]\ =\ std::move(newResource);}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ PH\_LOG(CookedResourceCollectionBase,}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}overwriting\ existing\ cooked\ resource\ (id:\ \{\})"{}},\ id);}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Clear\ the\ content\ of\ existing\ resource\ while\ keeping\ its\ pointer\ valid}}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ resourcePtr\ =\ findResult-\/>second.get();}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *resourcePtr\ =\ std::move(*newResource);}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ resourcePtr;}
+\DoxyCodeLine{00084\ \ \ \ \ \}}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ CookedType,\ \textcolor{keyword}{typename}...\ DeducedArgs>}
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ CookedType*\ getCookedResourceByID(}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ TSynchronized<TSdlResourceIdMap<CookedType>>\&\ syncedIdToResource,}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ SdlResourceId\ \textcolor{keywordtype}{id})}
+\DoxyCodeLine{00090\ \ \ \ \ \{}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ CookedType*\ resourcePtr\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ syncedIdToResource.constLocked(}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ [\textcolor{keywordtype}{id},\ \&resourcePtr](\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ idToResource)}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ findResult\ =\ idToResource.find(\textcolor{keywordtype}{id});}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(findResult\ !=\ idToResource.end())}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ resourcePtr\ =\ findResult-\/>second.get();}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ resourcePtr;}
+\DoxyCodeLine{00103\ \ \ \ \ \}}
+\DoxyCodeLine{00104\ \};}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+
+\end{DoxyCode}

@@ -1,0 +1,104 @@
+\doxysection{Transformed\+Primitive.\+h}
+\hypertarget{_transformed_primitive_8h_source}{}\label{_transformed_primitive_8h_source}\index{Source/Core/Intersectable/TransformedPrimitive.h@{Source/Core/Intersectable/TransformedPrimitive.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Core/Intersectable/Primitive.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Core/Intersectable/TransformedIntersectable.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}Core/HitDetail.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}Core/HitProbe.h"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}Common/assertion.h"{}}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00010\ \{}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{namespace\ }math}
+\DoxyCodeLine{00013\ \{}
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keyword}{class\ }RigidTransform;}
+\DoxyCodeLine{00015\ \}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_transformed_primitive}{TransformedPrimitive}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classph_1_1_primitive}{Primitive}}}
+\DoxyCodeLine{00018\ \{}
+\DoxyCodeLine{00019\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{comment}{//\ A\ transformed\ primitive\ accepts\ only\ rigid\ transformations.\ This\ way,\ }}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{comment}{//\ properties\ such\ as\ surface\ area\ and\ volume\ are\ guaranteed\ to\ be\ the\ same}}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{comment}{//\ during\ transformations.}}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00024\ \ \ \ \ \mbox{\hyperlink{classph_1_1_transformed_primitive}{TransformedPrimitive}}(}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_primitive}{Primitive}}*\ \ \ \ \ \ \ \ \ \ \ \ primitive,}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_rigid_transform}{math::RigidTransform}}*\ localToWorld,}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_rigid_transform}{math::RigidTransform}}*\ worldToLocal);}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_transformed_primitive_a3b5142026448657c61a7a25267e1586b}{isOccluding}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_ray}{Ray}}\&\ ray)\textcolor{keyword}{\ const\ override}}
+\DoxyCodeLine{00030\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_intersectable.\mbox{\hyperlink{classph_1_1_transformed_intersectable_a8c8fa9657f7359d0daad6dd66f50d339}{isOccluding}}(ray);}
+\DoxyCodeLine{00032\ \ \ \ \ \}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_transformed_primitive_a871b99c5bdd3037f466f4d9c926dc638}{isIntersecting}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_ray}{Ray}}\&\ ray,\ \mbox{\hyperlink{classph_1_1_hit_probe}{HitProbe}}\&\ probe)\textcolor{keyword}{\ const\ override}}
+\DoxyCodeLine{00035\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(m\_intersectable.\mbox{\hyperlink{classph_1_1_transformed_intersectable_a918040fa8e9455c62928f5ebde8179c3}{isIntersecting}}(ray,\ probe))}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ probe.\mbox{\hyperlink{classph_1_1_hit_probe_a7df5934cb78fc0772ec90c55f8cc9696}{pushIntermediateHit}}(\textcolor{keyword}{this});}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00045\ \ \ \ \ \}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_transformed_primitive_a5d6b087a1bf1d860ce99e735611f29ea}{calcIntersectionDetail}}(}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_ray}{Ray}}\&\ \ \ \ \ \ \ ray,}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_hit_probe}{HitProbe}}\&\ \ \ \ \ \ \ \ probe,}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_hit_detail}{HitDetail}}*\ \textcolor{keyword}{const}\ out\_detail)\textcolor{keyword}{\ const\ override}}
+\DoxyCodeLine{00051\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ probe.popIntermediateHit();}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ failed,\ it\ is\ likely\ to\ be\ caused\ by\ mismatched/missing\ probe\ push\ or\ pop\ in\ the\ hit\ stack}}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ PH\_ASSERT(probe.getCurrentHit()\ ==\ \&m\_intersectable);}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ m\_intersectable.\mbox{\hyperlink{classph_1_1_transformed_intersectable_aae56ef8dbd5085f1dc3c6637077c5a5f}{calcIntersectionDetail}}(ray,\ probe,\ out\_detail);}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ out\_detail-\/>setHitIntrinsics(\textcolor{keyword}{this},\ out\_detail-\/>getUVW(),\ out\_detail-\/>\mbox{\hyperlink{classph_1_1_hit_detail_aa3dede6dce1e8dbff595646e5c89101a}{getRayT}}());}
+\DoxyCodeLine{00059\ \ \ \ \ \}}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_transformed_primitive_ab70d17a2922239b42b14fb7c15214355}{mayOverlapVolume}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d}{math::AABB3D}}\&\ aabb)\textcolor{keyword}{\ const\ override}}
+\DoxyCodeLine{00062\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_intersectable.\mbox{\hyperlink{classph_1_1_transformed_intersectable_abf80f1c049916a6a4f80b16f4b3a6222}{mayOverlapVolume}}(aabb);}
+\DoxyCodeLine{00064\ \ \ \ \ \}}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d}{math::AABB3D}}\ \mbox{\hyperlink{classph_1_1_transformed_primitive_a80d4ff93de46b1a99e5c75de26be49bc}{calcAABB}}()\textcolor{keyword}{\ const\ override}}
+\DoxyCodeLine{00067\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_intersectable.\mbox{\hyperlink{classph_1_1_transformed_intersectable_afd1b64239cb06e04dea3d633c6954fdf}{calcAABB}}();}
+\DoxyCodeLine{00069\ \ \ \ \ \}}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ real\ \mbox{\hyperlink{classph_1_1_transformed_primitive_aae87094afb5fe0dff78ab75ad02902b9}{calcPositionSamplePdfA}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\&\ position)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_transformed_primitive_aa92fe01bb17be4af74e0f8c3d9e4e67e}{genPositionSample}}(\mbox{\hyperlink{classph_1_1_primitive_pos_sample_query}{PrimitivePosSampleQuery}}\&\ query,\ \mbox{\hyperlink{classph_1_1_sample_flow}{SampleFlow}}\&\ sampleFlow)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keywordtype}{bool}\ uvwToPosition(}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\&\ uvw,}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}*\ \ \ \ \ \ \ out\_position)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keyword}{inline}\ real\ \mbox{\hyperlink{classph_1_1_transformed_primitive_a162d74bca4c46883046723aff3da4b96}{calcExtendedArea}}()\textcolor{keyword}{\ const\ override}}
+\DoxyCodeLine{00079\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ does\ not\ change\ under\ rigid\ transform}}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_primitive-\/>\mbox{\hyperlink{classph_1_1_primitive_a2c352873161e8bab85ddb4a86eb489c8}{calcExtendedArea}}();}
+\DoxyCodeLine{00082\ \ \ \ \ \}}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_primitive_metadata}{PrimitiveMetadata}}*\ getMetadata()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_primitive}{Primitive}}*\ \ \ \ \ \ \ \ \ \ \ \ m\_primitive;}
+\DoxyCodeLine{00088\ \ \ \ \ \mbox{\hyperlink{classph_1_1_transformed_intersectable}{TransformedIntersectable}}\ \ \ \ m\_intersectable;}
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_rigid_transform}{math::RigidTransform}}*\ m\_localToWorld;}
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_rigid_transform}{math::RigidTransform}}*\ m\_worldToLocal;}
+\DoxyCodeLine{00091\ \};}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ PrimitiveMetadata*\ TransformedPrimitive::getMetadata()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00094\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_primitive-\/>getMetadata();}
+\DoxyCodeLine{00096\ \}}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+
+\end{DoxyCode}

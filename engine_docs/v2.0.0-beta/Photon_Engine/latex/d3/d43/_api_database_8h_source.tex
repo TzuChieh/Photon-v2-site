@@ -1,0 +1,126 @@
+\doxysection{Api\+Database.\+h}
+\hypertarget{_api_database_8h_source}{}\label{_api_database_8h_source}\index{Source/Api/ApiDatabase.h@{Source/Api/ApiDatabase.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Utility/TStableIndexDenseVector.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{logging_8h}{Common/logging.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}Core/Engine.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}Frame/TFrame.h"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}Utility/ByteBuffer.h"{}}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <mutex>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <type\_traits>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00016\ \{}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \mbox{\hyperlink{logging_8h_a6f3ae1815da4078262e15d5edae54cb5}{PH\_DEFINE\_EXTERNAL\_LOG\_GROUP}}(ApiDatabase,\ Core);}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_api_database}{ApiDatabase}}\ final}
+\DoxyCodeLine{00021\ \{}
+\DoxyCodeLine{00022\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Resource>}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keyword}{static}\ std::size\_t\ addResource(std::unique\_ptr<Resource>\ resource);}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Resource>}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{static}\ Resource*\ getResource(std::size\_t\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Resource>}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ removeResource(std::size\_t\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Resource>}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keyword}{static}\ std::weak\_ptr<Resource>\ useResource(std::size\_t\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ clear();}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Resource>}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classph_1_1_t_stable_index_dense_vector}{TStableIndexDenseVector<std::shared\_ptr<Resource>}}>\&\ RESOURCES();}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keyword}{static}\ std::mutex\&\ MUTEX();}
+\DoxyCodeLine{00042\ \};}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{comment}{//\ In-\/header\ Implementations:}}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Resource>}
+\DoxyCodeLine{00047\ \textcolor{keyword}{inline}\ std::size\_t\ ApiDatabase::addResource(std::unique\_ptr<Resource>\ resource)}
+\DoxyCodeLine{00048\ \{}
+\DoxyCodeLine{00049\ \ \ \ \ std::lock\_guard<std::mutex>\ lock(MUTEX());}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ \textcolor{keywordtype}{id}\ =\ RESOURCES<Resource>().add(std::move(resource));}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ PH\_LOG(\mbox{\hyperlink{classph_1_1_api_database}{ApiDatabase}},\ \textcolor{stringliteral}{"{}added\ resource<\{\}>"{}},\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordflow}{return}\ id;}
+\DoxyCodeLine{00056\ \}}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Resource>}
+\DoxyCodeLine{00059\ \textcolor{keyword}{inline}\ Resource*\ ApiDatabase::getResource(\textcolor{keyword}{const}\ std::size\_t\ \textcolor{keywordtype}{id})}
+\DoxyCodeLine{00060\ \{}
+\DoxyCodeLine{00061\ \ \ \ \ std::lock\_guard<std::mutex>\ lock(MUTEX());}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keyword}{auto}*\ \textcolor{keyword}{const}\ resource\ =\ RESOURCES<Resource>().get(\textcolor{keywordtype}{id});}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordflow}{if}(!resource)}
+\DoxyCodeLine{00066\ \ \ \ \ \{}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ PH\_LOG\_WARNING(ApiDatabase,\ \textcolor{stringliteral}{"{}resource<\{\}>\ does\ not\ exist"{}},\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{00068\ \ \ \ \ \}}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keywordflow}{return}\ resource\ ?\ resource-\/>get()\ :\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00071\ \}}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Resource>}
+\DoxyCodeLine{00074\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ ApiDatabase::removeResource(\textcolor{keyword}{const}\ std::size\_t\ \textcolor{keywordtype}{id})}
+\DoxyCodeLine{00075\ \{}
+\DoxyCodeLine{00076\ \ \ \ \ std::lock\_guard<std::mutex>\ lock(MUTEX());}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ isRemoved\ =\ RESOURCES<Resource>().remove(\textcolor{keywordtype}{id});}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keywordflow}{if}(isRemoved)}
+\DoxyCodeLine{00081\ \ \ \ \ \{}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ PH\_LOG(ApiDatabase,\ \textcolor{stringliteral}{"{}removed\ resource<\{\}>"{}},\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{00083\ \ \ \ \ \}}
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00085\ \ \ \ \ \{}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ PH\_LOG\_WARNING(ApiDatabase,\ \textcolor{stringliteral}{"{}failed\ removing\ resource<\{\}>"{}},\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{00087\ \ \ \ \ \}}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keywordflow}{return}\ isRemoved;}
+\DoxyCodeLine{00090\ \}}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Resource>}
+\DoxyCodeLine{00093\ \textcolor{keyword}{inline}\ std::weak\_ptr<Resource>\ ApiDatabase::useResource(\textcolor{keyword}{const}\ std::size\_t\ \textcolor{keywordtype}{id})}
+\DoxyCodeLine{00094\ \{}
+\DoxyCodeLine{00095\ \ \ \ \ std::lock\_guard<std::mutex>\ lock(MUTEX());}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keywordflow}{return}\ RESOURCES<Resource>().isStableIndexValid(\textcolor{keywordtype}{id})\ ?\ RESOURCES<Resource>()[id]\ :\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00098\ \}}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Resource>}
+\DoxyCodeLine{00101\ \textcolor{keyword}{inline}\ TStableIndexDenseVector<std::shared\_ptr<Resource>>\&\ ApiDatabase::RESOURCES()}
+\DoxyCodeLine{00102\ \{}
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{keyword}{static\_assert}(}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ std::is\_same\_v<Resource,\ Engine>\ \ \ \ \ \ ||}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ std::is\_same\_v<Resource,\ HdrRgbFrame>\ ||}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ std::is\_same\_v<Resource,\ ByteBuffer>,}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}error:\ in\ ApiDatabase::getResource(),\ "{}}}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}type\ of\ the\ specified\ resource\ is\ unsupported"{}});}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \ \ \ \ \textcolor{keyword}{static}\ TStableIndexDenseVector<std::shared\_ptr<Resource>>\ resources;}
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{keywordflow}{return}\ resources;}
+\DoxyCodeLine{00112\ \}}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \textcolor{keyword}{inline}\ std::mutex\&\ ApiDatabase::MUTEX()}
+\DoxyCodeLine{00115\ \{}
+\DoxyCodeLine{00116\ \ \ \ \ \textcolor{keyword}{static}\ std::mutex\ lock;}
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{keywordflow}{return}\ lock;}
+\DoxyCodeLine{00118\ \}}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+
+\end{DoxyCode}

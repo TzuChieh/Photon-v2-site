@@ -1,0 +1,42 @@
+\doxysection{conversions.\+h}
+\hypertarget{conversions_8h_source}{}\label{conversions_8h_source}\index{Source/Core/SurfaceBehavior/SurfaceOptics/LaurentBelcour/conversions.h@{Source/Core/SurfaceBehavior/SurfaceOptics/LaurentBelcour/conversions.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Common/assertion.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Common/primitive\_type.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{math_8h}{Math/math.h}}"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <cmath>}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00010\ \{}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{namespace\ }conversions}
+\DoxyCodeLine{00013\ \{}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{inline}\ real\ alphaToVariance(\textcolor{keyword}{const}\ real\ alpha)}
+\DoxyCodeLine{00016\ \{}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keyword}{const}\ real\ clampedAlpha\ =\ \mbox{\hyperlink{namespaceph_1_1math_a9e5d8a7a977115813ceeba3f0c00cbdb}{math::clamp}}(alpha,\ 0.0\_r,\ 0.9999\_r);}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keyword}{const}\ real\ alpha1p1\ =\ std::pow(clampedAlpha,\ 1.1\_r);}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keywordflow}{return}\ alpha1p1\ /\ (1.0\_r\ -\/\ alpha1p1);}
+\DoxyCodeLine{00020\ \}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{inline}\ real\ varianceToAlpha(\textcolor{keyword}{const}\ real\ variance)}
+\DoxyCodeLine{00023\ \{}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordflow}{return}\ std::pow(variance\ /\ (1.0\_r\ +\ variance),\ 1.0\_r\ /\ 1.1\_r);}
+\DoxyCodeLine{00025\ \}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{keyword}{inline}\ real\ gToVariance(\textcolor{keyword}{const}\ real\ g)}
+\DoxyCodeLine{00028\ \{}
+\DoxyCodeLine{00029\ \ \ \ \ PH\_ASSERT(0.0\_r\ <\ g\ \&\&\ g\ <=\ 1.0\_r);}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordflow}{return}\ std::pow((1.0\_r\ -\/\ g)\ /\ g,\ 0.8\_r)\ /\ (1.0\_r\ +\ g);}
+\DoxyCodeLine{00032\ \}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \}\textcolor{comment}{//\ end\ namespace\ conversions}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+
+\end{DoxyCode}

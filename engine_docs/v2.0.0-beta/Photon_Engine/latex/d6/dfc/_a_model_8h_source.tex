@@ -1,0 +1,65 @@
+\doxysection{AModel.\+h}
+\hypertarget{_a_model_8h_source}{}\label{_a_model_8h_source}\index{Source/Actor/AModel.h@{Source/Actor/AModel.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Actor/PhysicalActor.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Actor/Geometry/Geometry.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}Actor/Material/Material.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}Actor/MotionSource/MotionSource.h"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}SDL/sdl\_interface.h"{}}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00013\ \{}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_a_model}{AModel}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classph_1_1_physical_actor}{PhysicalActor}}}
+\DoxyCodeLine{00016\ \{}
+\DoxyCodeLine{00017\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00018\ \ \ \ \ \mbox{\hyperlink{classph_1_1_pre_cook_report}{PreCookReport}}\ \mbox{\hyperlink{classph_1_1_a_model_a8900b4e8ce07cdf0eea1a8ab35e48617}{preCook}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_cooking_context}{CookingContext}}\&\ ctx)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00019\ \ \ \ \ \mbox{\hyperlink{classph_1_1_transient_visual_element}{TransientVisualElement}}\ cook(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_cooking_context}{CookingContext}}\&\ ctx,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_pre_cook_report}{PreCookReport}}\&\ report)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_geometry}{Geometry}}*\ getGeometry()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_material}{Material}}*\ getMaterial()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordtype}{void}\ setGeometry(\textcolor{keyword}{const}\ std::shared\_ptr<Geometry>\&\ geometry);}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordtype}{void}\ setMaterial(\textcolor{keyword}{const}\ std::shared\_ptr<Material>\&\ material);}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordtype}{void}\ setMotionSource(\textcolor{keyword}{const}\ std::shared\_ptr<MotionSource>\&\ motion);}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00028\ \ \ \ \ std::shared\_ptr<Geometry>\ \ \ \ \ m\_geometry;}
+\DoxyCodeLine{00029\ \ \ \ \ std::shared\_ptr<Material>\ \ \ \ \ m\_material;}
+\DoxyCodeLine{00030\ \ \ \ \ std::shared\_ptr<MotionSource>\ m\_motionSource;}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00033\ \ \ \ \ PH\_DEFINE\_SDL\_CLASS(\mbox{\hyperlink{classph_1_1_t_sdl_owner_class}{TSdlOwnerClass<AModel>}})}
+\DoxyCodeLine{00034\ \ \ \ \ \{}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ ClassType\ clazz(\textcolor{stringliteral}{"{}model"{}});}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ clazz.docName(\textcolor{stringliteral}{"{}Model\ Actor"{}});}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ clazz.description(\textcolor{stringliteral}{"{}An\ actor\ that\ has\ a\ certain\ 3-\/D\ shape\ in\ the\ scene."{}});}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ clazz.baseOn<\mbox{\hyperlink{classph_1_1_physical_actor}{PhysicalActor}}>();}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_sdl_reference}{TSdlReference<Geometry,\ OwnerType>}}\ geometry(\textcolor{stringliteral}{"{}geometry"{}},\ \&OwnerType::m\_geometry);}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ geometry.description(\textcolor{stringliteral}{"{}A\ geometry\ that\ represent\ this\ actor's\ shape."{}});}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ geometry.required();}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ clazz.addField(geometry);}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_sdl_reference}{TSdlReference<Material,\ OwnerType>}}\ material(\textcolor{stringliteral}{"{}material"{}},\ \&OwnerType::m\_material);}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ material.description(\textcolor{stringliteral}{"{}A\ material\ that\ describes\ this\ actor's\ surface\ appearance."{}});}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ material.required();}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ clazz.addField(material);}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_sdl_reference}{TSdlReference<MotionSource,\ OwnerType>}}\ motion(\textcolor{stringliteral}{"{}motion"{}},\ \&OwnerType::m\_motionSource);}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ motion.description(\textcolor{stringliteral}{"{}Movement\ of\ this\ actor."{}});}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ motion.optional();}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ clazz.addField(motion);}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ clazz;}
+\DoxyCodeLine{00056\ \ \ \ \ \}}
+\DoxyCodeLine{00057\ \};}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+
+\end{DoxyCode}

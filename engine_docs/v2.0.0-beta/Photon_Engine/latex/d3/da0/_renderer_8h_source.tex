@@ -1,0 +1,141 @@
+\doxysection{Renderer.\+h}
+\hypertarget{_renderer_8h_source}{}\label{_renderer_8h_source}\index{Source/Core/Renderer/Renderer.h@{Source/Core/Renderer/Renderer.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Common/primitive\_type.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Core/Renderer/RenderWorker.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}Core/Renderer/RenderWork.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}Core/SampleGenerator/SampleGenerator.h"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}Math/Geometry/TAABB2D.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}Core/Renderer/ERegionStatus.h"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}Core/Renderer/Statistics.h"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}Frame/frame\_fwd.h"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}Core/Renderer/AttributeTags.h"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}Core/Renderer/RenderStats.h"{}}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}Core/Scheduler/Region.h"{}}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ "{}Common/assertion.h"{}}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ "{}Utility/Timer.h"{}}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ "{}Core/Renderer/RenderObservationInfo.h"{}}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ "{}Frame/Viewport.h"{}}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ <mutex>}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ <atomic>}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ <deque>}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}\ \{\ \textcolor{keyword}{class\ }CoreCookedUnit;\ \}}
+\DoxyCodeLine{00027\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}\ \{\ \textcolor{keyword}{class\ }VisualWorld;\ \}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00030\ \{}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{keyword}{class\ }RenderWorker;}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_renderer}{Renderer}}}
+\DoxyCodeLine{00035\ \{}
+\DoxyCodeLine{00036\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00037\ \ \ \ \ \mbox{\hyperlink{classph_1_1_renderer}{Renderer}}(\mbox{\hyperlink{classph_1_1_viewport}{Viewport}}\ viewport,\ uint32\ numWorkers);}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classph_1_1_renderer}{\string~Renderer}}();}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_renderer_a2f4189e1d2c699f7244146db1afdc578}{doUpdate}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_core_cooked_unit}{CoreCookedUnit}}\&\ cooked,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_visual_world}{VisualWorld}}\&\ world)\ =\ 0;}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{comment}{//\ Start\ rendering.}}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ doRender()\ =\ 0;}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{comment}{//\ Get\ the\ rendered\ result.}}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ retrieveFrame(std::size\_t\ layerIndex,\ \mbox{\hyperlink{classph_1_1_t_frame}{HdrRgbFrame}}\&\ out\_frame)\ =\ 0;}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{comment}{//\ Get\ the\ rendering\ region\ that\ has\ been\ updated.}}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{comment}{//\ TODO:\ allow\ polling\ unioned\ regions\ seems\ like\ a\ good\ idea}}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keyword}{virtual}\ ERegionStatus\ asyncPollUpdatedRegion(\mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d}{Region}}*\ out\_region)\ =\ 0;}
+\DoxyCodeLine{00055\ \ \ \ \ }
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classph_1_1_render_stats}{RenderStats}}\ \mbox{\hyperlink{classph_1_1_renderer_a19e25bfd0d5b7e7230be357fd87ede24}{asyncQueryRenderStats}}()\ =\ 0;}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classph_1_1_render_progress}{RenderProgress}}\ \mbox{\hyperlink{classph_1_1_renderer_a3ff30b76619602fb84530ade1a73fd63}{asyncQueryRenderProgress}}()\ =\ 0;}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{comment}{//\ Similar\ to\ retrieveFrame(2),\ except\ that\ correctness\ is\ not\ guaranteed\ }}
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{comment}{//\ for\ the\ returned\ frame.}}
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ asyncPeekFrame(}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ std::size\_t\ \ \ layerIndex,}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d}{Region}}\&\ region,}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_frame}{HdrRgbFrame}}\&\ \ out\_frame)\ =\ 0;}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classph_1_1_render_observation_info}{RenderObservationInfo}}\ \mbox{\hyperlink{classph_1_1_renderer_a1ba8678db34d73ece1540362f28a644d}{getObservationInfo}}()\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keywordtype}{void}\ update(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_core_cooked_unit}{CoreCookedUnit}}\&\ cooked,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_visual_world}{VisualWorld}}\&\ world);}
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keywordtype}{void}\ render();}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_renderer_acb94fca033ca3aa8b35a43b42385be87}{setNumWorkers}}(uint32\ numWorkers);}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \ \ \ \ uint32\ numWorkers()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00089\ \ \ \ \ uint32\ getRenderWidthPx()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00090\ \ \ \ \ uint32\ getRenderHeightPx()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00091\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d}{math::TAABB2D<int64>}}\ getCropWindowPx()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00095\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d}{math::TAABB2D<int64>}}\ \mbox{\hyperlink{classph_1_1_renderer_a7b3f00f5396e7459541d951b49a2cacd}{getRenderRegionPx}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_viewport}{Viewport}}\&\ \mbox{\hyperlink{classph_1_1_renderer_a42d8776ecca1c73e0150583970f74749}{getViewport}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keywordtype}{bool}\ asyncIsUpdating()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{keywordtype}{bool}\ asyncIsRendering()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00106\ \ \ \ \ \mbox{\hyperlink{classph_1_1_viewport}{Viewport}}\ m\_viewport;}
+\DoxyCodeLine{00107\ \ \ \ \ uint32\ \ \ m\_numWorkers;}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00109\ \ \ \ \ std::vector<RenderWorker>\ m\_workers;}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \ \ \ \ std::atomic\_bool\ m\_isUpdating;}
+\DoxyCodeLine{00112\ \ \ \ \ std::atomic\_bool\ m\_isRendering;}
+\DoxyCodeLine{00113\ \};}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ \textcolor{comment}{//\ In-\/header\ Implementations:}}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ \textcolor{keyword}{inline}\ uint32\ Renderer::numWorkers()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00118\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_numWorkers;}
+\DoxyCodeLine{00120\ \}}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ \textcolor{keyword}{inline}\ uint32\ Renderer::getRenderWidthPx()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00123\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00124\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_viewport.\mbox{\hyperlink{classph_1_1_viewport_a88999fadc6b4978786962c095c607861}{getBaseSizePx}}().x();}
+\DoxyCodeLine{00125\ \}}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00127\ \textcolor{keyword}{inline}\ uint32\ Renderer::getRenderHeightPx()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00128\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00129\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_viewport.\mbox{\hyperlink{classph_1_1_viewport_a88999fadc6b4978786962c095c607861}{getBaseSizePx}}().y();}
+\DoxyCodeLine{00130\ \}}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00132\ \textcolor{keyword}{inline}\ math::TAABB2D<int64>\ Renderer::getCropWindowPx()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00133\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00134\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_viewport.\mbox{\hyperlink{classph_1_1_viewport_a8c4f856d47c47e608e14d985b7760752}{getWindowPx}}();}
+\DoxyCodeLine{00135\ \}}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00137\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d}{math::TAABB2D<int64>}}\ \mbox{\hyperlink{classph_1_1_renderer_a7b3f00f5396e7459541d951b49a2cacd}{Renderer::getRenderRegionPx}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00138\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00139\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_viewport.\mbox{\hyperlink{classph_1_1_viewport_acb9d5fb94e520499cb863f987c95d60b}{getCroppedRegionPx}}();}
+\DoxyCodeLine{00140\ \}}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00142\ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_viewport}{Viewport}}\&\ \mbox{\hyperlink{classph_1_1_renderer_a42d8776ecca1c73e0150583970f74749}{Renderer::getViewport}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00143\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00144\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_viewport;}
+\DoxyCodeLine{00145\ \}}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00147\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ Renderer::asyncIsUpdating()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00148\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00149\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_isUpdating.load(std::memory\_order\_relaxed);}
+\DoxyCodeLine{00150\ \}}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00152\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ Renderer::asyncIsRendering()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00153\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00154\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_isRendering.load(std::memory\_order\_relaxed);}
+\DoxyCodeLine{00155\ \}}
+\DoxyCodeLine{00156\ }
+\DoxyCodeLine{00157\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+
+\end{DoxyCode}

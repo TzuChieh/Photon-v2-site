@@ -1,0 +1,62 @@
+\doxysection{profiling.\+h}
+\hypertarget{profiling_8h_source}{}\label{profiling_8h_source}\index{Source/Common/profiling.h@{Source/Common/profiling.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Common/config.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Common/utility.h"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}Common/ThirdParty/lib\_tracy.h"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#if\ PH\_PROFILING}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#define\ PH\_DEFINE\_PROFILE\_UNIT\_NAME(unitName)\(\backslash\)}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\ \ \ \ inline\ constexpr\ const\ char*\ internal\_impl\_profile\_unit\_name\_\#\#unitName\ =\ \#unitName}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#define\ PH\_PROFILE\_UNIT\_NAME(unitName)}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#if\ PH\_PROFILING\ \&\&\ PH\_THIRD\_PARTY\_HAS\_TRACY}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00025\ \textcolor{comment}{Note\ on\ names\ used\ by\ Tracy:\ Some\ Tracy\ macros\ require\ unique\ names\ to\ have\ unique\ pointer,\ see}}
+\DoxyCodeLine{00026\ \textcolor{comment}{Tracy\ manual\ 3.1.2\ "{}Unique\ pointers"{}.\ \`{}PH\_DEFINE\_PROFILE\_UNIT\_NAME()`\ meet\ the\ requirement.}}
+\DoxyCodeLine{00027\ \textcolor{comment}{Macro\ parameters\ named\ \`{}unitName`\ require\ unique\ names.\ For\ any\ other\ name\ (macro\ parameters\ with\ a}}
+\DoxyCodeLine{00028\ \textcolor{comment}{\`{}Str`\ suffix),\ see\ Tracy\ manual\ 3.1\ "{}Handling\ text\ strings"{}\ more\ details\ (TL;DR:\ use\ literal\ for}}
+\DoxyCodeLine{00029\ \textcolor{comment}{names\ without\ a\ size\ parameter;\ otherwise\ the\ string\ data\ will\ be\ copied).}}
+\DoxyCodeLine{00030\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#define\ PH\_PROFILE\_LOOP\_MARK(unitName)\(\backslash\)}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\ \ \ \ FrameMarkNamed(internal\_impl\_profile\_unit\_name\_\#\#unitName)}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#define\ PH\_PROFILE\_LOOP\_BEGIN(unitName)\(\backslash\)}}
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\ \ \ \ FrameMarkStart(internal\_impl\_profile\_unit\_name\_\#\#unitName)}}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#define\ PH\_PROFILE\_LOOP\_END(unitName)\(\backslash\)}}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\ \ \ \ FrameMarkEnd(internal\_impl\_profile\_unit\_name\_\#\#unitName)}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#define\ PH\_PROFILE\_SCOPE()\(\backslash\)}}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\ \ \ \ ZoneScoped}}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#define\ PH\_PROFILE\_NAMED\_SCOPE(nameStr)\(\backslash\)}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\ \ \ \ ZoneScopedN(nameStr)}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#define\ PH\_PROFILE\_NAME\_THIS\_THREAD(threadNameStr)\(\backslash\)}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\ \ \ \ tracy::SetThreadName(threadNameStr)}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#define\ PH\_PROFILE\_LOOP\_MARK(unitName)\ PH\_NO\_OP()}}
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#define\ PH\_PROFILE\_LOOP\_BEGIN(unitName)\ PH\_NO\_OP()}}
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\#define\ PH\_PROFILE\_LOOP\_END(unitName)\ PH\_NO\_OP()}}
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#define\ PH\_PROFILE\_SCOPE()\ PH\_NO\_OP()}}
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\#define\ PH\_PROFILE\_NAMED\_SCOPE(nameStr)\ PH\_NO\_OP()}}
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#define\ PH\_PROFILE\_NAME\_THIS\_THREAD(threadNameStr)\ PH\_NO\_OP()}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

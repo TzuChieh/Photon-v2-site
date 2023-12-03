@@ -1,0 +1,119 @@
+\doxysection{Pcg32.\+h}
+\hypertarget{_pcg32_8h_source}{}\label{_pcg32_8h_source}\index{Source/Math/Random/Pcg32.h@{Source/Math/Random/Pcg32.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Math/Random/TUniformRandomBitGenerator.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Common/primitive\_type.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}Math/hash.h"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph_1_1math}{ph::math}}}
+\DoxyCodeLine{00008\ \{}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00011\ \textcolor{comment}{\ *\ The\ following\ PCG\ implementation\ is\ a\ version\ adapted\ for\ use\ in\ Photon.\ Most\ algorithmic\ parts}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ *\ are\ left\ as-\/is\ the\ original\ reference\ implementation\ by\ Melissa\ O'Neill\ and\ other\ sources\ (listed}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ *\ in\ the\ documentation\ of\ \`{}Pcg32`\ class).}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ *\ }}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ *\ The\ PCG\ Random\ Number\ Generator\ was\ developed\ by\ Melissa\ O'Neill\ <oneill@pcg-\/random.org>.}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00017\ \textcolor{comment}{\ *\ Licensed\ under\ the\ Apache\ License,\ Version\ 2.0\ (the\ "{}License"{});}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ *\ you\ may\ not\ use\ this\ file\ except\ in\ compliance\ with\ the\ License.}}
+\DoxyCodeLine{00019\ \textcolor{comment}{\ *\ You\ may\ obtain\ a\ copy\ of\ the\ License\ at}}
+\DoxyCodeLine{00020\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00021\ \textcolor{comment}{\ *\ \ \ \ \ http://www.apache.org/licenses/LICENSE-\/2.0}}
+\DoxyCodeLine{00022\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00023\ \textcolor{comment}{\ *\ Unless\ required\ by\ applicable\ law\ or\ agreed\ to\ in\ writing,\ software}}
+\DoxyCodeLine{00024\ \textcolor{comment}{\ *\ distributed\ under\ the\ License\ is\ distributed\ on\ an\ "{}AS\ IS"{}\ BASIS,}}
+\DoxyCodeLine{00025\ \textcolor{comment}{\ *\ WITHOUT\ WARRANTIES\ OR\ CONDITIONS\ OF\ ANY\ KIND,\ either\ express\ or\ implied.}}
+\DoxyCodeLine{00026\ \textcolor{comment}{\ *\ See\ the\ License\ for\ the\ specific\ language\ governing\ permissions\ and}}
+\DoxyCodeLine{00027\ \textcolor{comment}{\ *\ limitations\ under\ the\ License.}}
+\DoxyCodeLine{00028\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00029\ \textcolor{comment}{\ *\ For\ additional\ information\ about\ the\ PCG\ random\ number\ generation\ scheme,}}
+\DoxyCodeLine{00030\ \textcolor{comment}{\ *\ including\ its\ license\ and\ other\ licensing\ options,\ visit}}
+\DoxyCodeLine{00031\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00032\ \textcolor{comment}{\ *\ \ \ \ \ \ \ http://www.pcg-\/random.org}}
+\DoxyCodeLine{00033\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00042\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1math_1_1_pcg32}{Pcg32}}\ final\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classph_1_1math_1_1_t_uniform_random_bit_generator}{TUniformRandomBitGenerator}}<Pcg32,\ uint32>}
+\DoxyCodeLine{00043\ \{}
+\DoxyCodeLine{00044\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00045\ \ \ \ \ PH\_DEFINE\_INLINE\_RULE\_OF\_5\_MEMBERS(\mbox{\hyperlink{classph_1_1math_1_1_pcg32}{Pcg32}});}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classph_1_1math_1_1_pcg32}{Pcg32}}(uint64\ initialSequence);}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00053\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_pcg32}{Pcg32}}(uint64\ initialSequence,\ uint64\ initialState);}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \ \ uint32\ impl\_generate();}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordtype}{void}\ impl\_jumpAhead(uint64\ distance);}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00059\ \ \ \ \ uint32\ generateUInt32();}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ uint64\ DEFAULT\_STATE\ =\ 0x853C49E6748FEA9Bull;}
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ uint64\ DEFAULT\_STREAM\_ID\ =\ 0xDA3E39CB94B95BDBull;}
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ uint64\ MULTIPLIER\ =\ 0x5851F42D4C957F2Dull;}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ \ \ uint64\ m\_state\ =\ DEFAULT\_STATE;}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00068\ \ \ \ \ uint64\ m\_increment\ =\ DEFAULT\_STREAM\_ID;}
+\DoxyCodeLine{00069\ \};}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \textcolor{keyword}{inline}\ Pcg32::Pcg32(\textcolor{keyword}{const}\ uint64\ initialSequence)}
+\DoxyCodeLine{00072\ \ \ \ \ :\ \mbox{\hyperlink{classph_1_1math_1_1_pcg32}{Pcg32}}(initialSequence,\ \mbox{\hyperlink{namespaceph_1_1math_a5e096044157a72ac3ed27025b65cc274}{moremur\_bit\_mix\_64}}(initialSequence))}
+\DoxyCodeLine{00073\ \{\}}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \textcolor{keyword}{inline}\ Pcg32::Pcg32(\textcolor{keyword}{const}\ uint64\ initialSequence,\ \textcolor{keyword}{const}\ uint64\ initialState)}
+\DoxyCodeLine{00076\ \ \ \ \ :\ \mbox{\hyperlink{classph_1_1math_1_1_pcg32}{Pcg32}}()}
+\DoxyCodeLine{00077\ \{}
+\DoxyCodeLine{00078\ \ \ \ \ m\_state\ =\ 0u;}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{comment}{//\ Ensure\ \`{}m\_increment`\ is\ odd}}
+\DoxyCodeLine{00081\ \ \ \ \ m\_increment\ =\ (initialSequence\ <<\ 1u)\ |\ 1u;}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \ \ \ \ generateUInt32();}
+\DoxyCodeLine{00084\ \ \ \ \ m\_state\ +=\ initialState;}
+\DoxyCodeLine{00085\ \ \ \ \ generateUInt32();}
+\DoxyCodeLine{00086\ \}}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \textcolor{keyword}{inline}\ uint32\ Pcg32::impl\_generate()}
+\DoxyCodeLine{00089\ \{}
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keywordflow}{return}\ generateUInt32();}
+\DoxyCodeLine{00091\ \}}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ Pcg32::impl\_jumpAhead(\textcolor{keyword}{const}\ uint64\ distance)}
+\DoxyCodeLine{00094\ \{}
+\DoxyCodeLine{00095\ \ \ \ \ uint64\ curMult\ =\ MULTIPLIER;}
+\DoxyCodeLine{00096\ \ \ \ \ uint64\ curPlus\ =\ m\_increment;}
+\DoxyCodeLine{00097\ \ \ \ \ uint64\ accMult\ =\ 1u;}
+\DoxyCodeLine{00098\ \ \ \ \ uint64\ accPlus\ =\ 0u;}
+\DoxyCodeLine{00099\ \ \ \ \ uint64\ delta\ =\ distance;}
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keywordflow}{while}(delta\ >\ 0)}
+\DoxyCodeLine{00101\ \ \ \ \ \{}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(delta\ \&\ 1)}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ accMult\ *=\ curMult;}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ accPlus\ =\ accPlus\ *\ curMult\ +\ curPlus;}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ curPlus\ =\ (curMult\ +\ 1)\ *\ curPlus;}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ curMult\ *=\ curMult;}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ delta\ /=\ 2;}
+\DoxyCodeLine{00110\ \ \ \ \ \}}
+\DoxyCodeLine{00111\ \ \ \ \ m\_state\ =\ accMult\ *\ m\_state\ +\ accPlus;}
+\DoxyCodeLine{00112\ \}}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \textcolor{keyword}{inline}\ uint32\ Pcg32::generateUInt32()}
+\DoxyCodeLine{00115\ \{}
+\DoxyCodeLine{00116\ \ \ \ \ \textcolor{comment}{//\ Linear\ congruential\ generator}}
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{keyword}{const}\ uint64\ oldState\ =\ m\_state;}
+\DoxyCodeLine{00118\ \ \ \ \ m\_state\ =\ oldState\ *\ MULTIPLIER\ +\ m\_increment;}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \ \ \ \ uint32\ xorShifted\ =\ \textcolor{keyword}{static\_cast<}uint32\textcolor{keyword}{>}(((oldState\ >>\ 18u)\ \string^\ oldState)\ >>\ 27u);}
+\DoxyCodeLine{00121\ \ \ \ \ uint32\ rot\ =\ \textcolor{keyword}{static\_cast<}uint32\textcolor{keyword}{>}(oldState\ >>\ 59u);}
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{keywordflow}{return}\ (xorShifted\ >>\ rot)\ |\ (xorShifted\ <<\ ((\string~rot\ +\ 1u)\ \&\ 31));}
+\DoxyCodeLine{00123\ \}}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \}\textcolor{comment}{//\ end\ namespace\ ph::math}}
+
+\end{DoxyCode}

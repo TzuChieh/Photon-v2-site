@@ -1,0 +1,102 @@
+\doxysection{Initially\+Paused\+Thread.\+h}
+\hypertarget{_initially_paused_thread_8h_source}{}\label{_initially_paused_thread_8h_source}\index{Source/Utility/Concurrent/InitiallyPausedThread.h@{Source/Utility/Concurrent/InitiallyPausedThread.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Utility/IMoveOnly.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Common/debug.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{logging_8h}{Common/logging.h}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}Utility/exception.h"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <thread>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <future>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <functional>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00014\ \{}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_initially_paused_thread}{InitiallyPausedThread}}\ final\ :\ \textcolor{keyword}{private}\ \mbox{\hyperlink{classph_1_1_i_move_only}{IMoveOnly}}}
+\DoxyCodeLine{00017\ \{}
+\DoxyCodeLine{00018\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00021\ \ \ \ \ \mbox{\hyperlink{classph_1_1_initially_paused_thread_ab3bfd8676ead9b59a5ae0fec6ec1a7c5}{InitiallyPausedThread}}();}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_initially_paused_thread_ab3bfd8676ead9b59a5ae0fec6ec1a7c5}{InitiallyPausedThread}}(\mbox{\hyperlink{classph_1_1_initially_paused_thread}{InitiallyPausedThread}}\&\&\ other)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Func,\ \textcolor{keyword}{typename}...\ Args>}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classph_1_1_initially_paused_thread_ab3bfd8676ead9b59a5ae0fec6ec1a7c5}{InitiallyPausedThread}}(Func\&\&\ func,\ Args\&\&...\ args);}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00039\ \ \ \ \ \mbox{\hyperlink{classph_1_1_initially_paused_thread_a8efeae7b622bc07689341107d4528550}{\string~InitiallyPausedThread}}();}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_initially_paused_thread_aacc8da38d38fa892417ae50197b0995e}{start}}();}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_initially_paused_thread_aa5ad510aeaca8abbf7107a28a4fdf1b9}{join}}();}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_initially_paused_thread_a535e0583a5551e1af84c06c29f696eb7}{hasStarted}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_initially_paused_thread_a5db222ca2cf1736517c5475b63ded8ed}{hasJoined}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00066\ \ \ \ \ std::thread::id\ \mbox{\hyperlink{classph_1_1_initially_paused_thread_a0f0e0c4357e3d655ca7a8df16a380d9e}{getId}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_initially_paused_thread}{InitiallyPausedThread}}\&\ operator\ =\ (\mbox{\hyperlink{classph_1_1_initially_paused_thread}{InitiallyPausedThread}}\&\&\ rhs)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keywordtype}{void}\ setPromisedValue(\textcolor{keywordtype}{bool}\ value);}
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordtype}{bool}\ isEmptyThread()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ \ \ std::thread\ \ \ \ \ \ \ \ m\_thread;}
+\DoxyCodeLine{00075\ \ \ \ \ std::promise<bool>\ m\_startPromise;}
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_hasStarted;}
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_hasJoined;}
+\DoxyCodeLine{00078\ \};}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Func,\ \textcolor{keyword}{typename}...\ Args>}
+\DoxyCodeLine{00081\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_initially_paused_thread_ab3bfd8676ead9b59a5ae0fec6ec1a7c5}{InitiallyPausedThread::InitiallyPausedThread}}(Func\&\&\ func,\ Args\&\&...\ args)}
+\DoxyCodeLine{00082\ \ \ \ \ :\ \mbox{\hyperlink{classph_1_1_initially_paused_thread}{InitiallyPausedThread}}()}
+\DoxyCodeLine{00083\ \{}
+\DoxyCodeLine{00084\ \ \ \ \ m\_thread\ =\ std::thread(}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ [startFuture\ =\ m\_startPromise.get\_future(),}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ func\ =\ std::bind(std::forward<Func>(func),\ std::forward<Args>(args)...)]}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ ()\ \textcolor{keyword}{mutable}}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ try}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if(startFuture.get())}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ func();}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}(\textcolor{keyword}{const}\ Exception\&\ e)}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ PH\_DEFAULT\_LOG\_ERROR(\textcolor{stringliteral}{"{}[InitiallyPausedThread]\ unhandled\ exception\ thrown:\ \{\}"{}},}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ e.what());}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ PH\_DEBUG\_BREAK();}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00104\ \}}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ InitiallyPausedThread::hasStarted()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00107\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00108\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_hasStarted;}
+\DoxyCodeLine{00109\ \}}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ InitiallyPausedThread::hasJoined()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00112\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_hasJoined;}
+\DoxyCodeLine{00114\ \}}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00116\ \textcolor{keyword}{inline}\ std::thread::id\ InitiallyPausedThread::getId()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00117\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00118\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_thread.get\_id();}
+\DoxyCodeLine{00119\ \}}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ InitiallyPausedThread::isEmptyThread()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00122\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00123\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_thread.get\_id()\ ==\ std::thread::id();}
+\DoxyCodeLine{00124\ \}}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00126\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+
+\end{DoxyCode}

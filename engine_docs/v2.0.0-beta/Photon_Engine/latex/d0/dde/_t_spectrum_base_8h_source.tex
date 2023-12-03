@@ -1,0 +1,160 @@
+\doxysection{TSpectrum\+Base.\+h}
+\hypertarget{_t_spectrum_base_8h_source}{}\label{_t_spectrum_base_8h_source}\index{Source/Math/Color/TSpectrumBase.h@{Source/Math/Color/TSpectrumBase.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Math/General/TArithmeticArrayBase.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Math/Color/spectrum\_fwd.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}Math/math\_fwd.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}Math/Color/color\_enums.h"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}Math/Color/color\_basics.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}Utility/utility.h"{}}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <cstddef>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <type\_traits>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <concepts>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph_1_1math}{ph::math}}}
+\DoxyCodeLine{00016\ \{}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00026\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived,\ EColorSpace\ COLOR\_SPACE,\ \textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00027\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1math_1_1_t_spectrum_base}{TSpectrumBase}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classph_1_1math_1_1_t_arithmetic_array_base}{TArithmeticArrayBase}}<Derived,\ T,\ N>}
+\DoxyCodeLine{00028\ \{}
+\DoxyCodeLine{00029\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classph_1_1math_1_1_t_arithmetic_array_base}{Base}}\ =\ \mbox{\hyperlink{classph_1_1math_1_1_t_arithmetic_array_base}{TArithmeticArrayBase<Derived,\ T,\ N>}};}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keyword}{using\ }Base::m;}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{comment}{//\ Hide\ special\ members\ as\ this\ class\ is\ not\ intended\ to\ be\ used\ polymorphically.}}
+\DoxyCodeLine{00036\ \textcolor{comment}{//\ It\ is\ derived\ class's\ choice\ to\ expose\ them\ (by\ defining\ them\ in\ public)\ or\ not.}}
+\DoxyCodeLine{00037\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00038\ \ \ \ \ PH\_DEFINE\_INLINE\_RULE\_OF\_5\_MEMBERS(\mbox{\hyperlink{classph_1_1math_1_1_t_spectrum_base}{TSpectrumBase}});}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keyword}{using\ }Base::Base;}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ U>}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classph_1_1math_1_1_t_spectrum_base}{TSpectrumBase}}(\textcolor{keyword}{const}\ TRawColorValues<U,\ N>\&\ values);}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ NUM\_VALUES\ =\ Base::NUM\_ELEMENTS;}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{consteval}\ \mbox{\hyperlink{namespaceph_1_1math_a957eab3ceed525ebce5c24b6b57eb975}{EColorSpace}}\ getColorSpace()\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \ \ std::size\_t\ minComponent()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00051\ \ \ \ \ std::size\_t\ maxComponent()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ Derived\&\ setColorValues(\textcolor{keyword}{const}\ TRawColorValues<T,\ N>\&\ values);}
+\DoxyCodeLine{00054\ \ \ \ \ Derived\&\ setColorValues(T\ rawColorValue);}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keyword}{const}\ TRawColorValues<T,\ N>\&\ getColorValues()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keyword}{template}<EColorSpace\ SRC\_COLOR\_SPACE>}
+\DoxyCodeLine{00058\ \ \ \ \ Derived\&\ setTransformed(\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ srcColorValues,\ \mbox{\hyperlink{namespaceph_1_1math_a821af6da20aaed56cc09ad440633d067}{EColorUsage}}\ usage);}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keyword}{template}<CColorValuesInterface\ ImplType>}
+\DoxyCodeLine{00061\ \ \ \ \ Derived\&\ setTransformed(\textcolor{keyword}{const}\ ImplType\&\ srcColorValues,\ \mbox{\hyperlink{namespaceph_1_1math_a821af6da20aaed56cc09ad440633d067}{EColorUsage}}\ usage);}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keyword}{template}<EColorSpace\ DST\_COLOR\_SPACE>}
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keyword}{auto}\ toTransformed(\mbox{\hyperlink{namespaceph_1_1math_a821af6da20aaed56cc09ad440633d067}{EColorUsage}}\ usage)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keywordtype}{void}\ transformFrom(\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ srcColorValues,\ \mbox{\hyperlink{namespaceph_1_1math_a957eab3ceed525ebce5c24b6b57eb975}{EColorSpace}}\ srcColorSpace,\ \mbox{\hyperlink{namespaceph_1_1math_a821af6da20aaed56cc09ad440633d067}{EColorUsage}}\ usage);}
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordtype}{void}\ transformTo(\textcolor{keyword}{auto}*\ out\_dstColorValues,\ \mbox{\hyperlink{namespaceph_1_1math_a957eab3ceed525ebce5c24b6b57eb975}{EColorSpace}}\ dstColorSpace,\ \mbox{\hyperlink{namespaceph_1_1math_a821af6da20aaed56cc09ad440633d067}{EColorUsage}}\ usage)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00068\ \ \ \ \ }
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keyword}{template}<EColorSpace\ SPECTRAL\_COLOR\_SPACE\ =\ EColorSpace::Spectral>}
+\DoxyCodeLine{00072\ \ \ \ \ Derived\&\ \mbox{\hyperlink{classph_1_1math_1_1_t_spectrum_base_ae108d06dbcb8d3c10a6a054e4182e37b}{setSpectral}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_1_1math_ab6e489b4814390fb4f1a68257d8d432d}{TSpectralSampleValues<T>}}\&\ sampleValues,\ \mbox{\hyperlink{namespaceph_1_1math_a821af6da20aaed56cc09ad440633d067}{EColorUsage}}\ usage);}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keyword}{template}<CColorValuesInterface\ ImplType>}
+\DoxyCodeLine{00077\ \ \ \ \ Derived\&\ \mbox{\hyperlink{classph_1_1math_1_1_t_spectrum_base_adb79829e5562723b57e907ff487c8613}{setSpectral}}(\textcolor{keyword}{const}\ ImplType\&\ sampleValues,\ \mbox{\hyperlink{namespaceph_1_1math_a821af6da20aaed56cc09ad440633d067}{EColorUsage}}\ usage);}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keyword}{template}<EColorSpace\ SPECTRAL\_COLOR\_SPACE\ =\ EColorSpace::Spectral>}
+\DoxyCodeLine{00082\ \ \ \ \ \mbox{\hyperlink{namespaceph_1_1math_ab6e489b4814390fb4f1a68257d8d432d}{TSpectralSampleValues<T>}}\ \mbox{\hyperlink{classph_1_1math_1_1_t_spectrum_base_abbedcfdb5b487191ca316092b24c616b}{toSpectral}}(\mbox{\hyperlink{namespaceph_1_1math_a821af6da20aaed56cc09ad440633d067}{EColorUsage}}\ usage)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{comment}{//\ TODO:\ overloads\ for\ directly\ take\ another\ TSpectrumBase\ in\ different\ space}}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \ \ \ \ T\ relativeLuminance(\mbox{\hyperlink{namespaceph_1_1math_a821af6da20aaed56cc09ad440633d067}{EColorUsage}}\ usage\ =\ \mbox{\hyperlink{namespaceph_1_1math_a821af6da20aaed56cc09ad440633d067a8d4c0b2cef256d21ab680366c8b1c6bf}{EColorUsage::EMR}})\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00090\ \ \ \ \ Derived\&\ \mbox{\hyperlink{classph_1_1math_1_1_t_spectrum_base_acbc1ca16de15ca5ac1f33fdd12af2401}{setLinearSRGB}}(\textcolor{keyword}{const}\ TRawColorValues<T,\ 3>\&\ linearSRGB,\ \mbox{\hyperlink{namespaceph_1_1math_a821af6da20aaed56cc09ad440633d067}{EColorUsage}}\ usage);}
+\DoxyCodeLine{00091\ \ \ \ \ }
+\DoxyCodeLine{00094\ \ \ \ \ TRawColorValues<T,\ 3>\ \mbox{\hyperlink{classph_1_1math_1_1_t_spectrum_base_a0519ad66f1ed0eeae6b2867e238c6a35}{toLinearSRGB}}(\mbox{\hyperlink{namespaceph_1_1math_a821af6da20aaed56cc09ad440633d067}{EColorUsage}}\ usage)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \ \ \ \ Derived\&\ putEnergy(T\ energyLevel);}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keyword}{using\ }Base::add;}
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keyword}{using\ }Base::addLocal;}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{keyword}{using\ }Base::sub;}
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keyword}{using\ }Base::subLocal;}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \ \ \ \ \textcolor{keyword}{using\ }Base::mul;}
+\DoxyCodeLine{00105\ \ \ \ \ \textcolor{keyword}{using\ }Base::mulLocal;}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{keyword}{using\ }Base::div;}
+\DoxyCodeLine{00108\ \ \ \ \ \textcolor{keyword}{using\ }Base::divLocal;}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \ \ \ \ \textcolor{keyword}{using\ }Base::pow;}
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{keyword}{using\ }Base::powLocal;}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{keyword}{using\ }Base::exp;}
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{keyword}{using\ }Base::expLocal;}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00116\ \ \ \ \ \textcolor{keyword}{using\ }Base::sqrt;}
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{keyword}{using\ }Base::sqrtLocal;}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{keyword}{using\ }Base::clamp;}
+\DoxyCodeLine{00120\ \ \ \ \ \textcolor{keyword}{using\ }Base::clampLocal;}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{keyword}{using\ }Base::abs;}
+\DoxyCodeLine{00123\ \ \ \ \ \textcolor{keyword}{using\ }Base::absLocal;}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \ \ \ \ \textcolor{keyword}{using\ }Base::rcp;}
+\DoxyCodeLine{00126\ \ \ \ \ \textcolor{keyword}{using\ }Base::rcpLocal;}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \ \ \ \ \textcolor{keyword}{using\ }Base::complement;}
+\DoxyCodeLine{00129\ \ \ \ \ \textcolor{keyword}{using\ }Base::complementLocal;}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ \ \ \ \ \textcolor{keyword}{using\ }Base::sum;}
+\DoxyCodeLine{00132\ \ \ \ \ \textcolor{keyword}{using\ }Base::avg;}
+\DoxyCodeLine{00133\ \ \ \ \ \textcolor{keyword}{using\ }Base::min;}
+\DoxyCodeLine{00134\ \ \ \ \ \textcolor{keyword}{using\ }Base::max;}
+\DoxyCodeLine{00135\ \ \ \ \ \textcolor{keyword}{using\ }Base::ceil;}
+\DoxyCodeLine{00136\ \ \ \ \ \textcolor{keyword}{using\ }Base::floor;}
+\DoxyCodeLine{00137\ \ \ \ \ \textcolor{keyword}{using\ }Base::product;}
+\DoxyCodeLine{00138\ \ \ \ \ \textcolor{keyword}{using\ }Base::lerp;}
+\DoxyCodeLine{00139\ \ \ \ \ \textcolor{keyword}{using\ }Base::isZero;}
+\DoxyCodeLine{00140\ \ \ \ \ \textcolor{keyword}{using\ }Base::isNonNegative;}
+\DoxyCodeLine{00141\ \ \ \ \ \textcolor{keyword}{using\ }Base::isFinite;}
+\DoxyCodeLine{00142\ \ \ \ \ \textcolor{keyword}{using\ }Base::begin;}
+\DoxyCodeLine{00143\ \ \ \ \ \textcolor{keyword}{using\ }Base::end;}
+\DoxyCodeLine{00144\ \ \ \ \ \textcolor{keyword}{using\ }Base::isEqual;}
+\DoxyCodeLine{00145\ \ \ \ \ \textcolor{keyword}{using\ }Base::isNear;}
+\DoxyCodeLine{00146\ \ \ \ \ \textcolor{keyword}{using\ }Base::toString;}
+\DoxyCodeLine{00147\ \ \ \ \ \textcolor{keyword}{using\ }Base::toVector;}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00149\ \ \ \ \ \textcolor{keyword}{using\ }Base::operator\ [];}
+\DoxyCodeLine{00150\ \ \ \ \ \textcolor{keyword}{using\ }Base::operator\ ==;}
+\DoxyCodeLine{00151\ \ \ \ \ \textcolor{keyword}{using\ }Base::operator\ !=;}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00153\ \ \ \ \ \textcolor{keyword}{using\ }Base::operator\ +;}
+\DoxyCodeLine{00154\ \ \ \ \ \textcolor{keyword}{using\ }Base::operator\ +=;}
+\DoxyCodeLine{00155\ \ \ \ \ \textcolor{keyword}{using\ }Base::operator\ -\/;}
+\DoxyCodeLine{00156\ \ \ \ \ \textcolor{keyword}{using\ }Base::operator\ -\/=;}
+\DoxyCodeLine{00157\ \ \ \ \ \textcolor{keyword}{using\ }Base::operator\ *;}
+\DoxyCodeLine{00158\ \ \ \ \ \textcolor{keyword}{using\ }Base::operator\ *=;}
+\DoxyCodeLine{00159\ \ \ \ \ \textcolor{keyword}{using\ }Base::operator\ /;}
+\DoxyCodeLine{00160\ \ \ \ \ \textcolor{keyword}{using\ }Base::operator\ /=;}
+\DoxyCodeLine{00161\ \ \ \ \ }
+\DoxyCodeLine{00162\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00167\ \ \ \ \ \textcolor{keyword}{template}<EColorSpace\ SRC\_COLOR\_SPACE>}
+\DoxyCodeLine{00168\ \ \ \ \ \textcolor{keywordtype}{void}\ setTransformedIfCompatible(\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ srcColorValues,\ \mbox{\hyperlink{namespaceph_1_1math_a821af6da20aaed56cc09ad440633d067}{EColorUsage}}\ usage);}
+\DoxyCodeLine{00169\ }
+\DoxyCodeLine{00174\ \ \ \ \ \textcolor{keyword}{template}<EColorSpace\ DST\_COLOR\_SPACE>}
+\DoxyCodeLine{00175\ \ \ \ \ \textcolor{keywordtype}{void}\ toTransformedIfCompatible(\textcolor{keyword}{auto}*\ out\_dstColorValues,\ \mbox{\hyperlink{namespaceph_1_1math_a821af6da20aaed56cc09ad440633d067}{EColorUsage}}\ usage)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00176\ \};}
+\DoxyCodeLine{00177\ }
+\DoxyCodeLine{00178\ \}\textcolor{comment}{//\ end\ namespace\ ph::math}}
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00180\ \textcolor{preprocessor}{\#include\ "{}Math/Color/TSpectrumBase.ipp"{}}}
+
+\end{DoxyCode}

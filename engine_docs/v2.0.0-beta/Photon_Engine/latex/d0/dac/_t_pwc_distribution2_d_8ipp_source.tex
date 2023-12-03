@@ -1,0 +1,92 @@
+\doxysection{TPwc\+Distribution2\+D.\+ipp}
+\hypertarget{_t_pwc_distribution2_d_8ipp_source}{}\label{_t_pwc_distribution2_d_8ipp_source}\index{Source/Math/Random/TPwcDistribution2D.ipp@{Source/Math/Random/TPwcDistribution2D.ipp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Math/Random/TPwcDistribution2D.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Common/assertion.h"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph_1_1math}{ph::math}}}
+\DoxyCodeLine{00007\ \{}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00010\ \textcolor{keyword}{inline}\ TPwcDistribution2D<T>::TPwcDistribution2D(}
+\DoxyCodeLine{00011\ \ \ \ \ \textcolor{keyword}{const}\ TAABB2D<T>\&\ \ \ \ \ \ \ \ \ \ \ \ range,}
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keyword}{const}\ T*\ \textcolor{keyword}{const}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ weights,}
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keyword}{const}\ TVector2<std::size\_t>\&\ numWeights)\ :\ }
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \ \ \ \ m\_marginalYs(),}
+\DoxyCodeLine{00016\ \ \ \ \ m\_conditionalXs(numWeights.y())}
+\DoxyCodeLine{00017\ \{}
+\DoxyCodeLine{00018\ \ \ \ \ PH\_ASSERT(weights\ \&\&\ numWeights.x()\ >\ 0\ \&\&\ numWeights.y()\ >\ 0);}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{comment}{//\ initialize\ conditional\ distributions\ for\ each\ row}}
+\DoxyCodeLine{00021\ \ \ \ \ std::vector<T>\ rowSums(numWeights.y(),\ 0);}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ y\ =\ 0;\ y\ <\ numWeights.y();\ ++y)}
+\DoxyCodeLine{00023\ \ \ \ \ \{}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ baseIndex\ =\ y\ *\ numWeights.x();}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ x\ =\ 0;\ x\ <\ numWeights.x();\ ++x)}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \ rowSums[y]\ +=\ weights[baseIndex\ +\ x];}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ m\_conditionalXs[y]\ =\ TPwcDistribution1D<T>(}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ range.getMinVertex().x(),}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ range.getMaxVertex().x(),}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ \&(weights[baseIndex]),}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ numWeights.x());}
+\DoxyCodeLine{00035\ \ \ \ \ \}}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{comment}{//\ initialize\ marginal\ distribution\ for\ each\ row}}
+\DoxyCodeLine{00038\ \ \ \ \ m\_marginalYs\ =\ TPwcDistribution1D<T>(}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ range.getMinVertex().y(),}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ range.getMaxVertex().y(),}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ rowSums);}
+\DoxyCodeLine{00042\ \}}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00045\ \textcolor{keyword}{inline}\ TPwcDistribution2D<T>::TPwcDistribution2D(}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keyword}{const}\ T*\ \textcolor{keyword}{const}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ weights,}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keyword}{const}\ TVector2<std::size\_t>\&\ numWeights)\ :\ }
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ \ \ TPwcDistribution2D(}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ TAABB2D<T>(TVector2<T>(0),\ TVector2<T>(1)),\ }
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ weights,\ }
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ numWeights)}
+\DoxyCodeLine{00053\ \{\}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00056\ \textcolor{keyword}{inline}\ TPwcDistribution2D<T>::TPwcDistribution2D()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00059\ \textcolor{keyword}{inline}\ TVector2<T>\ TPwcDistribution2D<T>::sampleContinuous(}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keyword}{const}\ std::array<T,\ 2>\&\ sample,}
+\DoxyCodeLine{00061\ \ \ \ \ T*\ \textcolor{keyword}{const}\ out\_pdf)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00062\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00063\ \ \ \ \ PH\_ASSERT(out\_pdf);}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ \ \ std::size\_t\ y;}
+\DoxyCodeLine{00066\ \ \ \ \ T\ pdfY,\ pdfXgivenY;}
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keyword}{const}\ T\ sampleY\ =\ m\_marginalYs.sampleContinuous(sample[1],\ \&pdfY,\ \&y);}
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keyword}{const}\ T\ sampleX\ =\ m\_conditionalXs[y].sampleContinuous(sample[0],\ \&pdfXgivenY);}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ \ \ *out\_pdf\ =\ pdfXgivenY\ *\ pdfY;}
+\DoxyCodeLine{00071\ \ \ \ \ PH\_ASSERT(*out\_pdf\ >\ 0);}
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordflow}{return}\ TVector2<T>(sampleX,\ sampleY);}
+\DoxyCodeLine{00073\ \}}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00076\ \textcolor{keyword}{inline}\ T\ TPwcDistribution2D<T>::pdfContinuous(\textcolor{keyword}{const}\ std::array<T,\ 2>\&\ sample)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00077\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ y\ =\ m\_marginalYs.continuousToDiscrete(sample[1]);}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keyword}{const}\ T\ pdfY\ \ \ \ \ \ \ =\ m\_marginalYs.pdfContinuous(y);}
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keyword}{const}\ T\ pdfXgivenY\ =\ m\_conditionalXs[y].pdfContinuous(sample[0]);}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keywordflow}{return}\ pdfXgivenY\ *\ pdfY;}
+\DoxyCodeLine{00084\ \}}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \}\textcolor{comment}{//\ end\ namespace\ ph::math}}
+
+\end{DoxyCode}

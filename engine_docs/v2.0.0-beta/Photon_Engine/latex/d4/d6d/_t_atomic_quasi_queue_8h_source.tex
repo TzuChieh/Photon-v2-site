@@ -1,0 +1,87 @@
+\doxysection{TAtomic\+Quasi\+Queue.\+h}
+\hypertarget{_t_atomic_quasi_queue_8h_source}{}\label{_t_atomic_quasi_queue_8h_source}\index{Source/Utility/Concurrent/TAtomicQuasiQueue.h@{Source/Utility/Concurrent/TAtomicQuasiQueue.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Common/config.h"{}}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <moodycamel/concurrentqueue.h>}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <cstddef>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <iterator>}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00011\ \{}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00023\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_t_atomic_quasi_queue}{TAtomicQuasiQueue}}\ final}
+\DoxyCodeLine{00024\ \{}
+\DoxyCodeLine{00025\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00026\ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_atomic_quasi_queue}{TAtomicQuasiQueue}}();}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classph_1_1_t_atomic_quasi_queue}{TAtomicQuasiQueue}}(std::size\_t\ initialCapacity);}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ U>}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_atomic_quasi_queue_aef12bfe3e639ef4b72d9d24ec59de22a}{enqueue}}(U\&\&\ item);}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keyword}{template}<std::input\_iterator\ Iterator>}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_atomic_quasi_queue_afca5b0773748c084d5ace907be044a71}{enqueueBulk}}(Iterator\ firstItem,\ std::size\_t\ numItems);}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ U>}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_t_atomic_quasi_queue_ae60f1c33f0ab1b97920ab66481d9f2d8}{tryEnqueue}}(U\&\&\ item);}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_t_atomic_quasi_queue_a2cbff98c159d9c613988a792292744a5}{tryDequeue}}(T*\ out\_item);}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keyword}{template}<std::output\_iterator<T>\ Iterator>}
+\DoxyCodeLine{00062\ \ \ \ \ std::size\_t\ tryDequeueBulk(Iterator\ out\_firstItem,\ std::size\_t\ numItems);}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00069\ \ \ \ \ std::size\_t\ \mbox{\hyperlink{classph_1_1_t_atomic_quasi_queue_a01fca94d667587ae18b36ca558b1167c}{estimatedSize}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \textcolor{preprocessor}{\#if\ PH\_ENSURE\_LOCKFREE\_ALGORITHMS\_ARE\_LOCKLESS}}
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keyword}{static\_assert}(moodycamel::ConcurrentQueue<T>::is\_lock\_free());}
+\DoxyCodeLine{00075\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00078\ \textcolor{comment}{\ \ \ \ \`{}moodycamel::ConcurrentQueue`\ is\ lock\ free\ and\ the\ queue\ itself\ is\ thread-\/safe,\ meaning\ that\ using}}
+\DoxyCodeLine{00079\ \textcolor{comment}{\ \ \ \ the\ queue\ under\ multiple\ producers\ and\ multiple\ consumers\ will\ not\ break\ the\ internal\ state\ of\ the}}
+\DoxyCodeLine{00080\ \textcolor{comment}{\ \ \ \ queue,\ and\ all\ operations\ generally\ will\ not\ block\ in\ any\ way.\ However,\ there\ are\ several\ implications}}
+\DoxyCodeLine{00081\ \textcolor{comment}{\ \ \ \ due\ to\ its\ design,\ the\ most\ important\ ones\ are:}}
+\DoxyCodeLine{00082\ \textcolor{comment}{}}
+\DoxyCodeLine{00083\ \textcolor{comment}{\ \ \ \ *\ Items\ enqueued\ by\ each\ thread\ will\ come\ out\ in\ the\ same\ order\ as\ they\ were\ enqueued,\ however,\ there}}
+\DoxyCodeLine{00084\ \textcolor{comment}{\ \ \ \ is\ no\ defined\ item\ order\ between\ threads\ even\ with\ external\ synchronization.\ It\ is\ FIFO\ when\ viewed}}
+\DoxyCodeLine{00085\ \textcolor{comment}{\ \ \ \ from\ any\ single\ thread,\ but\ not\ FIFO\ when\ viewed\ across\ threads.\ Normally\ this\ is\ not\ an\ issue,\ as\ if}}
+\DoxyCodeLine{00086\ \textcolor{comment}{\ \ \ \ a\ total\ item\ order\ is\ desired,\ you\ need\ some\ sort\ of\ synchronization\ and\ might\ as\ well\ just\ queue\ into}}
+\DoxyCodeLine{00087\ \textcolor{comment}{\ \ \ \ a\ synchronized\ queue\ from\ a\ single\ thread.}}
+\DoxyCodeLine{00088\ \textcolor{comment}{\ \ \ \ See\ [1]\ ConcurrentQueue\ not\ a\ FIFO}}
+\DoxyCodeLine{00089\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ https://github.com/cameron314/concurrentqueue/issues/52}}
+\DoxyCodeLine{00090\ \textcolor{comment}{\ \ \ \ \ \ \ \ [2]\ I\ can't\ understand\ how\ this\ queue\ ensure\ ordering\ between\ multiple\ producer...}}
+\DoxyCodeLine{00091\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ https://github.com/cameron314/concurrentqueue/issues/262}}
+\DoxyCodeLine{00092\ \textcolor{comment}{\ \ \ \ \ \ \ \ [3]\ FIFO\ guarantees\ for\ SPMC\ usage?}}
+\DoxyCodeLine{00093\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ https://github.com/cameron314/concurrentqueue/issues/309}}
+\DoxyCodeLine{00094\ \textcolor{comment}{}}
+\DoxyCodeLine{00095\ \textcolor{comment}{\ \ \ \ *\ Items\ enqueued\ on\ one\ thread\ may\ not\ be\ successfully\ dequeued\ in\ another\ thread,\ unless\ there\ are\ }}
+\DoxyCodeLine{00096\ \textcolor{comment}{\ \ \ \ external\ means\ to\ ensure\ the\ enqueue\ operation\ is\ visible\ on\ the\ dequeue\ thread.}}
+\DoxyCodeLine{00097\ \textcolor{comment}{\ \ \ \ See\ [1]\ [SPMC]\ externally\ synchronized\ try\_dequeue\ fails\ with\ items\ in\ queue}}
+\DoxyCodeLine{00098\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ https://github.com/cameron314/concurrentqueue/issues/265}}
+\DoxyCodeLine{00099\ \textcolor{comment}{\ \ \ \ \ \ \ \ [2]\ try\_enqueue()\ returns\ true\ but\ approx\_size()\ is\ always\ 0\ and\ try\_dequeue()\ fails}}
+\DoxyCodeLine{00100\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ https://github.com/cameron314/concurrentqueue/issues/285}}
+\DoxyCodeLine{00101\ \textcolor{comment}{}}
+\DoxyCodeLine{00102\ \textcolor{comment}{\ \ \ \ *\ All\ the\ memory\ effects\ done\ by\ a\ thread\ before\ it\ enqueues\ an\ item\ will\ be\ visible\ on\ another}}
+\DoxyCodeLine{00103\ \textcolor{comment}{\ \ \ \ thread\ after\ it\ dequeues\ that\ item.\ Basic\ aquire-\/release\ semantics\ are\ guaranteed.\ This\ ensures\ }}
+\DoxyCodeLine{00104\ \textcolor{comment}{\ \ \ \ that\ all\ the\ effects\ of\ work\ done\ by\ a\ thread\ before\ it\ enqueues\ an\ element\ will\ be\ visible\ on\ }}
+\DoxyCodeLine{00105\ \textcolor{comment}{\ \ \ \ another\ thread\ after\ it\ dequeues\ that\ element.}}
+\DoxyCodeLine{00106\ \textcolor{comment}{\ \ \ \ See\ [1]\ sequential\ consistent}}
+\DoxyCodeLine{00107\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ https://github.com/cameron314/concurrentqueue/issues/73}}
+\DoxyCodeLine{00108\ \textcolor{comment}{}}
+\DoxyCodeLine{00109\ \textcolor{comment}{\ \ \ \ Most\ performant\ case:\ single-\/producer\ multi-\/consumer.}}
+\DoxyCodeLine{00110\ \textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{00111\ \ \ \ \ moodycamel::ConcurrentQueue<T>\ m\_queue;}
+\DoxyCodeLine{00112\ \};}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00116\ \textcolor{preprocessor}{\#include\ "{}Utility/Concurrent/TAtomicQuasiQueue.ipp"{}}}
+
+\end{DoxyCode}

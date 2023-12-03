@@ -1,0 +1,799 @@
+\doxysection{TArithmetic\+Array\+Base.\+ipp}
+\hypertarget{_t_arithmetic_array_base_8ipp_source}{}\label{_t_arithmetic_array_base_8ipp_source}\index{Source/Math/General/TArithmeticArrayBase.ipp@{Source/Math/General/TArithmeticArrayBase.ipp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Math/General/TArithmeticArrayBase.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Common/assertion.h"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <cmath>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph_1_1math}{ph::math}}}
+\DoxyCodeLine{00010\ \{}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00013\ \textcolor{keyword}{inline}\ TArithmeticArrayBase<Derived,\ T,\ N>::TArithmeticArrayBase(\textcolor{keyword}{const}\ T\ value)}
+\DoxyCodeLine{00014\ \{}
+\DoxyCodeLine{00015\ \ \ \ \ m.fill(value);}
+\DoxyCodeLine{00016\ \}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00019\ \textcolor{keyword}{inline}\ TArithmeticArrayBase<Derived,\ T,\ N>::TArithmeticArrayBase(Elements\ values)\ :}
+\DoxyCodeLine{00020\ \ \ \ \ m(std::move(values))}
+\DoxyCodeLine{00021\ \{\}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00024\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ TArithmeticArrayBase<Derived,\ T,\ N>::add(\textcolor{keyword}{const}\ Derived\&\ rhs)\ \textcolor{keyword}{const}}
+\DoxyCodeLine{00025\ -\/>\ Derived}
+\DoxyCodeLine{00026\ \{}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordflow}{return}\ Derived(\textcolor{keyword}{static\_cast<}\textcolor{keyword}{const\ }Derived\&\textcolor{keyword}{>}(*\textcolor{keyword}{this})).addLocal(rhs);}
+\DoxyCodeLine{00028\ \}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00031\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ TArithmeticArrayBase<Derived,\ T,\ N>::add(\textcolor{keyword}{const}\ T\ rhs)\ \textcolor{keyword}{const}}
+\DoxyCodeLine{00032\ -\/>\ Derived}
+\DoxyCodeLine{00033\ \{}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordflow}{return}\ Derived(\textcolor{keyword}{static\_cast<}\textcolor{keyword}{const\ }Derived\&\textcolor{keyword}{>}(*\textcolor{keyword}{this})).addLocal(rhs);}
+\DoxyCodeLine{00035\ \}}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00038\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1math_1_1_t_arithmetic_array_base}{TArithmeticArrayBase<Derived,\ T,\ N>::addLocal}}(\textcolor{keyword}{const}\ Derived\&\ rhs)}
+\DoxyCodeLine{00039\ -\/>\ Derived\&}
+\DoxyCodeLine{00040\ \{}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ i\ =\ 0;\ i\ <\ N;\ ++i)}
+\DoxyCodeLine{00042\ \ \ \ \ \{}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ m[i]\ +=\ rhs.Self::m[i];}
+\DoxyCodeLine{00044\ \ \ \ \ \}}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}Derived\&\textcolor{keyword}{>}(*this);}
+\DoxyCodeLine{00046\ \}}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00049\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1math_1_1_t_arithmetic_array_base}{TArithmeticArrayBase<Derived,\ T,\ N>::addLocal}}(\textcolor{keyword}{const}\ T\ rhs)}
+\DoxyCodeLine{00050\ -\/>\ Derived\&}
+\DoxyCodeLine{00051\ \{}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ i\ =\ 0;\ i\ <\ N;\ ++i)}
+\DoxyCodeLine{00053\ \ \ \ \ \{}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ m[i]\ +=\ rhs;}
+\DoxyCodeLine{00055\ \ \ \ \ \}}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}Derived\&\textcolor{keyword}{>}(*this);}
+\DoxyCodeLine{00057\ \}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00060\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1math_1_1_t_arithmetic_array_base}{TArithmeticArrayBase<Derived,\ T,\ N>::sub}}(\textcolor{keyword}{const}\ Derived\&\ rhs)\ \textcolor{keyword}{const}}
+\DoxyCodeLine{00061\ -\/>\ Derived}
+\DoxyCodeLine{00062\ \{}
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keywordflow}{return}\ Derived(\textcolor{keyword}{static\_cast<}\textcolor{keyword}{const\ }Derived\&\textcolor{keyword}{>}(*\textcolor{keyword}{this})).subLocal(rhs);}
+\DoxyCodeLine{00064\ \}}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00067\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ TArithmeticArrayBase<Derived,\ T,\ N>::sub(\textcolor{keyword}{const}\ T\ rhs)\ \textcolor{keyword}{const}}
+\DoxyCodeLine{00068\ -\/>\ Derived}
+\DoxyCodeLine{00069\ \{}
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keywordflow}{return}\ Derived(\textcolor{keyword}{static\_cast<}\textcolor{keyword}{const\ }Derived\&\textcolor{keyword}{>}(*\textcolor{keyword}{this})).subLocal(rhs);}
+\DoxyCodeLine{00071\ \}}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00074\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ TArithmeticArrayBase<Derived,\ T,\ N>::subLocal(\textcolor{keyword}{const}\ Derived\&\ rhs)}
+\DoxyCodeLine{00075\ -\/>\ Derived\&}
+\DoxyCodeLine{00076\ \{}
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ i\ =\ 0;\ i\ <\ N;\ ++i)}
+\DoxyCodeLine{00078\ \ \ \ \ \{}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ m[i]\ -\/=\ rhs.Self::m[i];}
+\DoxyCodeLine{00080\ \ \ \ \ \}}
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}Derived\&\textcolor{keyword}{>}(*this);}
+\DoxyCodeLine{00082\ \}}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00085\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ TArithmeticArrayBase<Derived,\ T,\ N>::subLocal(\textcolor{keyword}{const}\ T\ rhs)}
+\DoxyCodeLine{00086\ -\/>\ Derived\&}
+\DoxyCodeLine{00087\ \{}
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ i\ =\ 0;\ i\ <\ N;\ ++i)}
+\DoxyCodeLine{00089\ \ \ \ \ \{}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ m[i]\ -\/=\ rhs;}
+\DoxyCodeLine{00091\ \ \ \ \ \}}
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}Derived\&\textcolor{keyword}{>}(*this);}
+\DoxyCodeLine{00093\ \}}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00096\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ TArithmeticArrayBase<Derived,\ T,\ N>::mul(\textcolor{keyword}{const}\ Derived\&\ rhs)\ \textcolor{keyword}{const}}
+\DoxyCodeLine{00097\ -\/>\ Derived}
+\DoxyCodeLine{00098\ \{}
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keywordflow}{return}\ Derived(\textcolor{keyword}{static\_cast<}\textcolor{keyword}{const\ }Derived\&\textcolor{keyword}{>}(*\textcolor{keyword}{this})).mulLocal(rhs);}
+\DoxyCodeLine{00100\ \}}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00103\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ TArithmeticArrayBase<Derived,\ T,\ N>::mul(\textcolor{keyword}{const}\ T\ rhs)\ \textcolor{keyword}{const}}
+\DoxyCodeLine{00104\ -\/>\ Derived}
+\DoxyCodeLine{00105\ \{}
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keywordflow}{return}\ Derived(\textcolor{keyword}{static\_cast<}\textcolor{keyword}{const\ }Derived\&\textcolor{keyword}{>}(*\textcolor{keyword}{this})).mulLocal(rhs);}
+\DoxyCodeLine{00107\ \}}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00109\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00110\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ TArithmeticArrayBase<Derived,\ T,\ N>::mulLocal(\textcolor{keyword}{const}\ Derived\&\ rhs)}
+\DoxyCodeLine{00111\ -\/>\ Derived\&}
+\DoxyCodeLine{00112\ \{}
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ i\ =\ 0;\ i\ <\ N;\ ++i)}
+\DoxyCodeLine{00114\ \ \ \ \ \{}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ m[i]\ *=\ rhs.Self::m[i];}
+\DoxyCodeLine{00116\ \ \ \ \ \}}
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}Derived\&\textcolor{keyword}{>}(*this);}
+\DoxyCodeLine{00118\ \}}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00121\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ TArithmeticArrayBase<Derived,\ T,\ N>::mulLocal(\textcolor{keyword}{const}\ T\ rhs)}
+\DoxyCodeLine{00122\ -\/>\ Derived\&}
+\DoxyCodeLine{00123\ \{}
+\DoxyCodeLine{00124\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ i\ =\ 0;\ i\ <\ N;\ ++i)}
+\DoxyCodeLine{00125\ \ \ \ \ \{}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ m[i]\ *=\ rhs;}
+\DoxyCodeLine{00127\ \ \ \ \ \}}
+\DoxyCodeLine{00128\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}Derived\&\textcolor{keyword}{>}(*this);}
+\DoxyCodeLine{00129\ \}}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00132\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ TArithmeticArrayBase<Derived,\ T,\ N>::div(\textcolor{keyword}{const}\ Derived\&\ rhs)\ \textcolor{keyword}{const}}
+\DoxyCodeLine{00133\ -\/>\ Derived}
+\DoxyCodeLine{00134\ \{}
+\DoxyCodeLine{00135\ \ \ \ \ \textcolor{keywordflow}{return}\ Derived(\textcolor{keyword}{static\_cast<}\textcolor{keyword}{const\ }Derived\&\textcolor{keyword}{>}(*\textcolor{keyword}{this})).divLocal(rhs);}
+\DoxyCodeLine{00136\ \}}
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00138\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00139\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ TArithmeticArrayBase<Derived,\ T,\ N>::div(\textcolor{keyword}{const}\ T\ rhs)\ \textcolor{keyword}{const}}
+\DoxyCodeLine{00140\ -\/>\ Derived}
+\DoxyCodeLine{00141\ \{}
+\DoxyCodeLine{00142\ \ \ \ \ \textcolor{keywordflow}{return}\ Derived(\textcolor{keyword}{static\_cast<}\textcolor{keyword}{const\ }Derived\&\textcolor{keyword}{>}(*\textcolor{keyword}{this})).divLocal(rhs);}
+\DoxyCodeLine{00143\ \}}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00145\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00146\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ TArithmeticArrayBase<Derived,\ T,\ N>::divLocal(\textcolor{keyword}{const}\ Derived\&\ rhs)}
+\DoxyCodeLine{00147\ -\/>\ Derived\&}
+\DoxyCodeLine{00148\ \{}
+\DoxyCodeLine{00149\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ i\ =\ 0;\ i\ <\ N;\ ++i)}
+\DoxyCodeLine{00150\ \ \ \ \ \{}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ m[i]\ /=\ rhs.Self::m[i];}
+\DoxyCodeLine{00152\ \ \ \ \ \}}
+\DoxyCodeLine{00153\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}Derived\&\textcolor{keyword}{>}(*this);}
+\DoxyCodeLine{00154\ \}}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00156\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00157\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ TArithmeticArrayBase<Derived,\ T,\ N>::divLocal(\textcolor{keyword}{const}\ T\ rhs)}
+\DoxyCodeLine{00158\ -\/>\ Derived\&}
+\DoxyCodeLine{00159\ \{}
+\DoxyCodeLine{00160\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ i\ =\ 0;\ i\ <\ N;\ ++i)}
+\DoxyCodeLine{00161\ \ \ \ \ \{}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ m[i]\ /=\ rhs;}
+\DoxyCodeLine{00163\ \ \ \ \ \}}
+\DoxyCodeLine{00164\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}Derived\&\textcolor{keyword}{>}(*this);}
+\DoxyCodeLine{00165\ \}}
+\DoxyCodeLine{00166\ }
+\DoxyCodeLine{00167\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00168\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ U>}
+\DoxyCodeLine{00169\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ TArithmeticArrayBase<Derived,\ T,\ N>::pow(\textcolor{keyword}{const}\ U\ exponent)\ \textcolor{keyword}{const}}
+\DoxyCodeLine{00170\ -\/>\ Derived}
+\DoxyCodeLine{00171\ \{}
+\DoxyCodeLine{00172\ \ \ \ \ \textcolor{keywordflow}{return}\ Derived(\textcolor{keyword}{static\_cast<}\textcolor{keyword}{const\ }Derived\&\textcolor{keyword}{>}(*\textcolor{keyword}{this})).powLocal(exponent);}
+\DoxyCodeLine{00173\ \}}
+\DoxyCodeLine{00174\ }
+\DoxyCodeLine{00175\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00176\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ U>}
+\DoxyCodeLine{00177\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ TArithmeticArrayBase<Derived,\ T,\ N>::powLocal(\textcolor{keyword}{const}\ U\ exponent)}
+\DoxyCodeLine{00178\ -\/>\ Derived\&}
+\DoxyCodeLine{00179\ \{}
+\DoxyCodeLine{00180\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ i\ =\ 0;\ i\ <\ N;\ ++i)}
+\DoxyCodeLine{00181\ \ \ \ \ \{}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ m[i]\ =\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(std::pow(m[i],\ exponent));}
+\DoxyCodeLine{00183\ \ \ \ \ \}}
+\DoxyCodeLine{00184\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}Derived\&\textcolor{keyword}{>}(*this);}
+\DoxyCodeLine{00185\ \}}
+\DoxyCodeLine{00186\ }
+\DoxyCodeLine{00187\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00188\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ TArithmeticArrayBase<Derived,\ T,\ N>::pow(\textcolor{keyword}{const}\ Derived\&\ exponent)\ \textcolor{keyword}{const}}
+\DoxyCodeLine{00189\ -\/>\ Derived}
+\DoxyCodeLine{00190\ \{}
+\DoxyCodeLine{00191\ \ \ \ \ \textcolor{keywordflow}{return}\ Derived(\textcolor{keyword}{static\_cast<}\textcolor{keyword}{const\ }Derived\&\textcolor{keyword}{>}(*\textcolor{keyword}{this})).powLocal(exponent);}
+\DoxyCodeLine{00192\ \}}
+\DoxyCodeLine{00193\ }
+\DoxyCodeLine{00194\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00195\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ TArithmeticArrayBase<Derived,\ T,\ N>::powLocal(\textcolor{keyword}{const}\ Derived\&\ exponent)}
+\DoxyCodeLine{00196\ -\/>\ Derived\&}
+\DoxyCodeLine{00197\ \{}
+\DoxyCodeLine{00198\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ i\ =\ 0;\ i\ <\ N;\ ++i)}
+\DoxyCodeLine{00199\ \ \ \ \ \{}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ m[i]\ =\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(std::pow(m[i],\ exponent.Self::m[i]));}
+\DoxyCodeLine{00201\ \ \ \ \ \}}
+\DoxyCodeLine{00202\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}Derived\&\textcolor{keyword}{>}(*this);}
+\DoxyCodeLine{00203\ \}}
+\DoxyCodeLine{00204\ }
+\DoxyCodeLine{00205\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00206\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ U>}
+\DoxyCodeLine{00207\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ TArithmeticArrayBase<Derived,\ T,\ N>::exp(\textcolor{keyword}{const}\ U\ exponent)\ \textcolor{keyword}{const}}
+\DoxyCodeLine{00208\ -\/>\ Derived}
+\DoxyCodeLine{00209\ \{}
+\DoxyCodeLine{00210\ \ \ \ \ \textcolor{keywordflow}{return}\ Derived(\textcolor{keyword}{static\_cast<}\textcolor{keyword}{const\ }Derived\&\textcolor{keyword}{>}(*\textcolor{keyword}{this})).expLocal(exponent);}
+\DoxyCodeLine{00211\ \}}
+\DoxyCodeLine{00212\ }
+\DoxyCodeLine{00213\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00214\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ U>}
+\DoxyCodeLine{00215\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ TArithmeticArrayBase<Derived,\ T,\ N>::expLocal(\textcolor{keyword}{const}\ U\ exponent)}
+\DoxyCodeLine{00216\ -\/>\ Derived\&}
+\DoxyCodeLine{00217\ \{}
+\DoxyCodeLine{00218\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ i\ =\ 0;\ i\ <\ N;\ ++i)}
+\DoxyCodeLine{00219\ \ \ \ \ \{}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ m[i]\ =\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(std::exp(exponent));}
+\DoxyCodeLine{00221\ \ \ \ \ \}}
+\DoxyCodeLine{00222\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}Derived\&\textcolor{keyword}{>}(*this);}
+\DoxyCodeLine{00223\ \}}
+\DoxyCodeLine{00224\ }
+\DoxyCodeLine{00225\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00226\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ TArithmeticArrayBase<Derived,\ T,\ N>::exp(\textcolor{keyword}{const}\ Derived\&\ exponent)\ \textcolor{keyword}{const}}
+\DoxyCodeLine{00227\ -\/>\ Derived}
+\DoxyCodeLine{00228\ \{}
+\DoxyCodeLine{00229\ \ \ \ \ \textcolor{keywordflow}{return}\ Derived(\textcolor{keyword}{static\_cast<}\textcolor{keyword}{const\ }Derived\&\textcolor{keyword}{>}(*\textcolor{keyword}{this})).expLocal(exponent);}
+\DoxyCodeLine{00230\ \}}
+\DoxyCodeLine{00231\ }
+\DoxyCodeLine{00232\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00233\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ TArithmeticArrayBase<Derived,\ T,\ N>::expLocal(\textcolor{keyword}{const}\ Derived\&\ exponent)}
+\DoxyCodeLine{00234\ -\/>\ Derived\&}
+\DoxyCodeLine{00235\ \{}
+\DoxyCodeLine{00236\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ i\ =\ 0;\ i\ <\ N;\ ++i)}
+\DoxyCodeLine{00237\ \ \ \ \ \{}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ m[i]\ =\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(std::exp(exponent.Self::m[i]));}
+\DoxyCodeLine{00239\ \ \ \ \ \}}
+\DoxyCodeLine{00240\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}Derived\&\textcolor{keyword}{>}(*this);}
+\DoxyCodeLine{00241\ \}}
+\DoxyCodeLine{00242\ }
+\DoxyCodeLine{00243\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00244\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ TArithmeticArrayBase<Derived,\ T,\ N>::sqrt()\ const}
+\DoxyCodeLine{00245\ -\/>\ Derived}
+\DoxyCodeLine{00246\ \{}
+\DoxyCodeLine{00247\ \ \ \ \ \textcolor{keywordflow}{return}\ Derived(\textcolor{keyword}{static\_cast<}\textcolor{keyword}{const\ }Derived\&\textcolor{keyword}{>}(*\textcolor{keyword}{this})).sqrtLocal();}
+\DoxyCodeLine{00248\ \}}
+\DoxyCodeLine{00249\ }
+\DoxyCodeLine{00250\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00251\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ TArithmeticArrayBase<Derived,\ T,\ N>::sqrtLocal()}
+\DoxyCodeLine{00252\ -\/>\ Derived\&}
+\DoxyCodeLine{00253\ \{}
+\DoxyCodeLine{00254\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ i\ =\ 0;\ i\ <\ N;\ ++i)}
+\DoxyCodeLine{00255\ \ \ \ \ \{}
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ m[i]\ =\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(std::sqrt(m[i]));}
+\DoxyCodeLine{00257\ \ \ \ \ \}}
+\DoxyCodeLine{00258\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}Derived\&\textcolor{keyword}{>}(*this);}
+\DoxyCodeLine{00259\ \}}
+\DoxyCodeLine{00260\ }
+\DoxyCodeLine{00261\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00262\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ TArithmeticArrayBase<Derived,\ T,\ N>::clamp(\textcolor{keyword}{const}\ T\ lowerBound,\ \textcolor{keyword}{const}\ T\ upperBound)\ \textcolor{keyword}{const}}
+\DoxyCodeLine{00263\ -\/>\ Derived}
+\DoxyCodeLine{00264\ \{}
+\DoxyCodeLine{00265\ \ \ \ \ \textcolor{keywordflow}{return}\ Derived(\textcolor{keyword}{static\_cast<}\textcolor{keyword}{const\ }Derived\&\textcolor{keyword}{>}(*\textcolor{keyword}{this})).clampLocal(lowerBound,\ upperBound);}
+\DoxyCodeLine{00266\ \}}
+\DoxyCodeLine{00267\ }
+\DoxyCodeLine{00268\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00269\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ TArithmeticArrayBase<Derived,\ T,\ N>::clampLocal(\textcolor{keyword}{const}\ T\ lowerBound,\ \textcolor{keyword}{const}\ T\ upperBound)}
+\DoxyCodeLine{00270\ -\/>\ Derived\&}
+\DoxyCodeLine{00271\ \{}
+\DoxyCodeLine{00272\ \ \ \ \ \textcolor{comment}{//\ TODO:\ properly\ handle\ integer\ types}}
+\DoxyCodeLine{00273\ }
+\DoxyCodeLine{00274\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ i\ =\ 0;\ i\ <\ N;\ ++i)}
+\DoxyCodeLine{00275\ \ \ \ \ \{}
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ m[i]\ =\ std::fmin(upperBound,\ std::fmax(m[i],\ lowerBound));}
+\DoxyCodeLine{00277\ \ \ \ \ \}}
+\DoxyCodeLine{00278\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}Derived\&\textcolor{keyword}{>}(*this);}
+\DoxyCodeLine{00279\ \}}
+\DoxyCodeLine{00280\ }
+\DoxyCodeLine{00281\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00282\ \textcolor{keyword}{inline}\ T\ TArithmeticArrayBase<Derived,\ T,\ N>::sum()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00283\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00284\ \ \ \ \ T\ result(0);}
+\DoxyCodeLine{00285\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ i\ =\ 0;\ i\ <\ N;\ ++i)}
+\DoxyCodeLine{00286\ \ \ \ \ \{}
+\DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ result\ +=\ m[i];}
+\DoxyCodeLine{00288\ \ \ \ \ \}}
+\DoxyCodeLine{00289\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00290\ \}}
+\DoxyCodeLine{00291\ }
+\DoxyCodeLine{00292\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00293\ \textcolor{keyword}{inline}\ T\ TArithmeticArrayBase<Derived,\ T,\ N>::avg()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00294\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00295\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(std::is\_floating\_point\_v<T>)}
+\DoxyCodeLine{00296\ \ \ \ \ \{}
+\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Optimization\ for\ floating-\/point\ types:\ division\ by\ multiplication}}
+\DoxyCodeLine{00298\ \ \ \ \ \ \ \ \ \textcolor{keyword}{constexpr}\ T\ rcpN\ =\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(1)\ /\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(N);}
+\DoxyCodeLine{00299\ }
+\DoxyCodeLine{00300\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ sum()\ *\ rcpN;}
+\DoxyCodeLine{00301\ \ \ \ \ \}}
+\DoxyCodeLine{00302\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00303\ \ \ \ \ \{}
+\DoxyCodeLine{00304\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ sum()\ /\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(N);}
+\DoxyCodeLine{00305\ \ \ \ \ \}}
+\DoxyCodeLine{00306\ \}}
+\DoxyCodeLine{00307\ }
+\DoxyCodeLine{00308\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00309\ \textcolor{keyword}{inline}\ T\ TArithmeticArrayBase<Derived,\ T,\ N>::product()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00310\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00311\ \ \ \ \ T\ result(1);}
+\DoxyCodeLine{00312\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ i\ =\ 0;\ i\ <\ N;\ ++i)}
+\DoxyCodeLine{00313\ \ \ \ \ \{}
+\DoxyCodeLine{00314\ \ \ \ \ \ \ \ \ result\ *=\ m[i];}
+\DoxyCodeLine{00315\ \ \ \ \ \}}
+\DoxyCodeLine{00316\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00317\ \}}
+\DoxyCodeLine{00318\ }
+\DoxyCodeLine{00319\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00320\ \textcolor{keyword}{inline}\ T\ TArithmeticArrayBase<Derived,\ T,\ N>::min()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00321\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00322\ \ \ \ \ \textcolor{keywordflow}{return}\ m[minIndex()];}
+\DoxyCodeLine{00323\ \}}
+\DoxyCodeLine{00324\ }
+\DoxyCodeLine{00325\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00326\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ TArithmeticArrayBase<Derived,\ T,\ N>::min(\textcolor{keyword}{const}\ Derived\&\ other)\ \textcolor{keyword}{const}}
+\DoxyCodeLine{00327\ -\/>\ Derived}
+\DoxyCodeLine{00328\ \{}
+\DoxyCodeLine{00329\ \ \ \ \ Derived\ result(\textcolor{keyword}{static\_cast<}\textcolor{keyword}{const\ }Derived\&\textcolor{keyword}{>}(*\textcolor{keyword}{this}));}
+\DoxyCodeLine{00330\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ i\ =\ 0;\ i\ <\ N;\ ++i)}
+\DoxyCodeLine{00331\ \ \ \ \ \{}
+\DoxyCodeLine{00332\ \ \ \ \ \ \ \ \ result.Self::m[i]\ =\ std::min(m[i],\ other.Self::m[i]);}
+\DoxyCodeLine{00333\ \ \ \ \ \}}
+\DoxyCodeLine{00334\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00335\ \}}
+\DoxyCodeLine{00336\ }
+\DoxyCodeLine{00337\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00338\ \textcolor{keyword}{inline}\ std::size\_t\ TArithmeticArrayBase<Derived,\ T,\ N>::minIndex()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00339\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00340\ \ \ \ \ std::size\_t\ result\ =\ 0;}
+\DoxyCodeLine{00341\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ i\ =\ 1;\ i\ <\ N;\ ++i)}
+\DoxyCodeLine{00342\ \ \ \ \ \{}
+\DoxyCodeLine{00343\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(m[i]\ <\ m[result])}
+\DoxyCodeLine{00344\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00345\ \ \ \ \ \ \ \ \ \ \ \ \ result\ =\ i;}
+\DoxyCodeLine{00346\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00347\ \ \ \ \ \}}
+\DoxyCodeLine{00348\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00349\ \}}
+\DoxyCodeLine{00350\ }
+\DoxyCodeLine{00351\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00352\ \textcolor{keyword}{inline}\ T\ TArithmeticArrayBase<Derived,\ T,\ N>::max()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00353\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00354\ \ \ \ \ \textcolor{keywordflow}{return}\ m[maxIndex()];}
+\DoxyCodeLine{00355\ \}}
+\DoxyCodeLine{00356\ }
+\DoxyCodeLine{00357\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00358\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ TArithmeticArrayBase<Derived,\ T,\ N>::max(\textcolor{keyword}{const}\ Derived\&\ other)\ \textcolor{keyword}{const}}
+\DoxyCodeLine{00359\ -\/>\ Derived}
+\DoxyCodeLine{00360\ \{}
+\DoxyCodeLine{00361\ \ \ \ \ Derived\ result(\textcolor{keyword}{static\_cast<}\textcolor{keyword}{const\ }Derived\&\textcolor{keyword}{>}(*\textcolor{keyword}{this}));}
+\DoxyCodeLine{00362\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ i\ =\ 0;\ i\ <\ N;\ ++i)}
+\DoxyCodeLine{00363\ \ \ \ \ \{}
+\DoxyCodeLine{00364\ \ \ \ \ \ \ \ \ result.Self::m[i]\ =\ std::max(m[i],\ other.Self::m[i]);}
+\DoxyCodeLine{00365\ \ \ \ \ \}}
+\DoxyCodeLine{00366\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00367\ \}}
+\DoxyCodeLine{00368\ }
+\DoxyCodeLine{00369\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00370\ \textcolor{keyword}{inline}\ std::size\_t\ TArithmeticArrayBase<Derived,\ T,\ N>::maxIndex()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00371\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00372\ \ \ \ \ std::size\_t\ result\ =\ 0;}
+\DoxyCodeLine{00373\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ i\ =\ 1;\ i\ <\ N;\ ++i)}
+\DoxyCodeLine{00374\ \ \ \ \ \{}
+\DoxyCodeLine{00375\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(m[i]\ >\ m[result])}
+\DoxyCodeLine{00376\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00377\ \ \ \ \ \ \ \ \ \ \ \ \ result\ =\ i;}
+\DoxyCodeLine{00378\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00379\ \ \ \ \ \}}
+\DoxyCodeLine{00380\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00381\ \}}
+\DoxyCodeLine{00382\ }
+\DoxyCodeLine{00383\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00384\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ TArithmeticArrayBase<Derived,\ T,\ N>::ceil()\ const}
+\DoxyCodeLine{00385\ -\/>\ Derived}
+\DoxyCodeLine{00386\ \{}
+\DoxyCodeLine{00387\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(std::is\_floating\_point\_v<T>)}
+\DoxyCodeLine{00388\ \ \ \ \ \{}
+\DoxyCodeLine{00389\ \ \ \ \ \ \ \ \ Derived\ result(\textcolor{keyword}{static\_cast<}\textcolor{keyword}{const\ }Derived\&\textcolor{keyword}{>}(*\textcolor{keyword}{this}));}
+\DoxyCodeLine{00390\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ i\ =\ 0;\ i\ <\ N;\ ++i)}
+\DoxyCodeLine{00391\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00392\ \ \ \ \ \ \ \ \ \ \ \ \ result.Self::m[i]\ =\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(std::ceil(m[i]));}
+\DoxyCodeLine{00393\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00394\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00395\ \ \ \ \ \}}
+\DoxyCodeLine{00396\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00397\ \ \ \ \ \{}
+\DoxyCodeLine{00398\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}\textcolor{keyword}{const\ }Derived\&\textcolor{keyword}{>}(*this);}
+\DoxyCodeLine{00399\ \ \ \ \ \}}
+\DoxyCodeLine{00400\ \}}
+\DoxyCodeLine{00401\ }
+\DoxyCodeLine{00402\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00403\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ TArithmeticArrayBase<Derived,\ T,\ N>::floor()\ const}
+\DoxyCodeLine{00404\ -\/>\ Derived}
+\DoxyCodeLine{00405\ \{}
+\DoxyCodeLine{00406\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(std::is\_floating\_point\_v<T>)}
+\DoxyCodeLine{00407\ \ \ \ \ \{}
+\DoxyCodeLine{00408\ \ \ \ \ \ \ \ \ Derived\ result(\textcolor{keyword}{static\_cast<}\textcolor{keyword}{const\ }Derived\&\textcolor{keyword}{>}(*\textcolor{keyword}{this}));}
+\DoxyCodeLine{00409\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ i\ =\ 0;\ i\ <\ N;\ ++i)}
+\DoxyCodeLine{00410\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00411\ \ \ \ \ \ \ \ \ \ \ \ \ result.Self::m[i]\ =\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(std::floor(m[i]));}
+\DoxyCodeLine{00412\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00413\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00414\ \ \ \ \ \}}
+\DoxyCodeLine{00415\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00416\ \ \ \ \ \{}
+\DoxyCodeLine{00417\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}\textcolor{keyword}{const\ }Derived\&\textcolor{keyword}{>}(*this);}
+\DoxyCodeLine{00418\ \ \ \ \ \}}
+\DoxyCodeLine{00419\ \}}
+\DoxyCodeLine{00420\ }
+\DoxyCodeLine{00421\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00422\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ TArithmeticArrayBase<Derived,\ T,\ N>::abs()\ const}
+\DoxyCodeLine{00423\ -\/>\ Derived}
+\DoxyCodeLine{00424\ \{}
+\DoxyCodeLine{00425\ \ \ \ \ \textcolor{keywordflow}{return}\ Derived(\textcolor{keyword}{static\_cast<}\textcolor{keyword}{const\ }Derived\&\textcolor{keyword}{>}(*\textcolor{keyword}{this})).absLocal();}
+\DoxyCodeLine{00426\ \}}
+\DoxyCodeLine{00427\ }
+\DoxyCodeLine{00428\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00429\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ TArithmeticArrayBase<Derived,\ T,\ N>::absLocal()}
+\DoxyCodeLine{00430\ -\/>\ Derived\&}
+\DoxyCodeLine{00431\ \{}
+\DoxyCodeLine{00432\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ i\ =\ 0;\ i\ <\ N;\ ++i)}
+\DoxyCodeLine{00433\ \ \ \ \ \{}
+\DoxyCodeLine{00434\ \ \ \ \ \ \ \ \ m[i]\ =\ std::abs(m[i]);}
+\DoxyCodeLine{00435\ \ \ \ \ \}}
+\DoxyCodeLine{00436\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}Derived\&\textcolor{keyword}{>}(*this);}
+\DoxyCodeLine{00437\ \}}
+\DoxyCodeLine{00438\ }
+\DoxyCodeLine{00439\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00440\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ TArithmeticArrayBase<Derived,\ T,\ N>::rcp()\ const}
+\DoxyCodeLine{00441\ -\/>\ Derived}
+\DoxyCodeLine{00442\ \{}
+\DoxyCodeLine{00443\ \ \ \ \ \textcolor{keywordflow}{return}\ Derived(\textcolor{keyword}{static\_cast<}\textcolor{keyword}{const\ }Derived\&\textcolor{keyword}{>}(*\textcolor{keyword}{this})).rcpLocal();}
+\DoxyCodeLine{00444\ \}}
+\DoxyCodeLine{00445\ }
+\DoxyCodeLine{00446\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00447\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ TArithmeticArrayBase<Derived,\ T,\ N>::rcpLocal()}
+\DoxyCodeLine{00448\ -\/>\ Derived\&}
+\DoxyCodeLine{00449\ \{}
+\DoxyCodeLine{00450\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ i\ =\ 0;\ i\ <\ N;\ ++i)}
+\DoxyCodeLine{00451\ \ \ \ \ \{}
+\DoxyCodeLine{00452\ \ \ \ \ \ \ \ \ m[i]\ =\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(1)\ /\ m[i];}
+\DoxyCodeLine{00453\ \ \ \ \ \}}
+\DoxyCodeLine{00454\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}Derived\&\textcolor{keyword}{>}(*this);}
+\DoxyCodeLine{00455\ \}}
+\DoxyCodeLine{00456\ }
+\DoxyCodeLine{00457\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00458\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ TArithmeticArrayBase<Derived,\ T,\ N>::complement()\ const}
+\DoxyCodeLine{00459\ -\/>\ Derived}
+\DoxyCodeLine{00460\ \{}
+\DoxyCodeLine{00461\ \ \ \ \ \textcolor{keywordflow}{return}\ Derived(\textcolor{keyword}{static\_cast<}\textcolor{keyword}{const\ }Derived\&\textcolor{keyword}{>}(*\textcolor{keyword}{this})).complementLocal();}
+\DoxyCodeLine{00462\ \}}
+\DoxyCodeLine{00463\ }
+\DoxyCodeLine{00464\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00465\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ TArithmeticArrayBase<Derived,\ T,\ N>::complementLocal()}
+\DoxyCodeLine{00466\ -\/>\ Derived\&}
+\DoxyCodeLine{00467\ \{}
+\DoxyCodeLine{00468\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ i\ =\ 0;\ i\ <\ N;\ ++i)}
+\DoxyCodeLine{00469\ \ \ \ \ \{}
+\DoxyCodeLine{00470\ \ \ \ \ \ \ \ \ m[i]\ =\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(1)\ -\/\ m[i];}
+\DoxyCodeLine{00471\ \ \ \ \ \}}
+\DoxyCodeLine{00472\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}Derived\&\textcolor{keyword}{>}(*this);}
+\DoxyCodeLine{00473\ \}}
+\DoxyCodeLine{00474\ }
+\DoxyCodeLine{00475\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00476\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ U>}
+\DoxyCodeLine{00477\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ TArithmeticArrayBase<Derived,\ T,\ N>::lerp(\textcolor{keyword}{const}\ Derived\&\ rhs,\ \textcolor{keyword}{const}\ U\ factor)\ \textcolor{keyword}{const}}
+\DoxyCodeLine{00478\ -\/>\ Derived}
+\DoxyCodeLine{00479\ \{}
+\DoxyCodeLine{00480\ \ \ \ \ Derived\ result(\textcolor{keyword}{static\_cast<}\textcolor{keyword}{const\ }Derived\&\textcolor{keyword}{>}(*\textcolor{keyword}{this}));}
+\DoxyCodeLine{00481\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ i\ =\ 0;\ i\ <\ N;\ ++i)}
+\DoxyCodeLine{00482\ \ \ \ \ \{}
+\DoxyCodeLine{00483\ \ \ \ \ \ \ \ \ result.m[i]\ =\ m[i]\ *\ (\textcolor{keyword}{static\_cast<}U\textcolor{keyword}{>}(1)\ -\/\ factor)\ +\ rhs.m[i]\ *\ factor;}
+\DoxyCodeLine{00484\ \ \ \ \ \}}
+\DoxyCodeLine{00485\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00486\ \}}
+\DoxyCodeLine{00487\ }
+\DoxyCodeLine{00488\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00489\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ TArithmeticArrayBase<Derived,\ T,\ N>::isZero()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00490\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00491\ \ \ \ \ \textcolor{comment}{//\ TODO:\ using\ lengthSquared()\ ==\ 0\ can\ achieve\ branchless\ isZero()}}
+\DoxyCodeLine{00492\ \ \ \ \ \textcolor{comment}{//\ (will\ it\ be\ faster?)}}
+\DoxyCodeLine{00493\ }
+\DoxyCodeLine{00494\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ i\ =\ 0;\ i\ <\ N;\ ++i)}
+\DoxyCodeLine{00495\ \ \ \ \ \{}
+\DoxyCodeLine{00496\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(m[i]\ !=\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(0))}
+\DoxyCodeLine{00497\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00498\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00499\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00500\ \ \ \ \ \}}
+\DoxyCodeLine{00501\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00502\ \}}
+\DoxyCodeLine{00503\ }
+\DoxyCodeLine{00504\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00505\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ TArithmeticArrayBase<Derived,\ T,\ N>::isNonNegative()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00506\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00507\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(std::is\_unsigned\_v<T>)}
+\DoxyCodeLine{00508\ \ \ \ \ \{}
+\DoxyCodeLine{00509\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00510\ \ \ \ \ \}}
+\DoxyCodeLine{00511\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00512\ \ \ \ \ \{}
+\DoxyCodeLine{00513\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ i\ =\ 0;\ i\ <\ N;\ ++i)}
+\DoxyCodeLine{00514\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00515\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(m[i]\ <\ 0)}
+\DoxyCodeLine{00516\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00517\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00518\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00519\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00520\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00521\ \ \ \ \ \}}
+\DoxyCodeLine{00522\ \}}
+\DoxyCodeLine{00523\ }
+\DoxyCodeLine{00524\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00525\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ TArithmeticArrayBase<Derived,\ T,\ N>::isFinite()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00526\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00527\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ i\ =\ 0;\ i\ <\ N;\ ++i)}
+\DoxyCodeLine{00528\ \ \ \ \ \{}
+\DoxyCodeLine{00529\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!std::isfinite(m[i]))}
+\DoxyCodeLine{00530\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00531\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00532\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00533\ \ \ \ \ \}}
+\DoxyCodeLine{00534\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00535\ \}}
+\DoxyCodeLine{00536\ }
+\DoxyCodeLine{00537\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00538\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ std::size\_t\ \mbox{\hyperlink{classph_1_1math_1_1_t_arithmetic_array_base}{TArithmeticArrayBase<Derived,\ T,\ N>::size}}()\ const\ noexcept}
+\DoxyCodeLine{00539\ \{}
+\DoxyCodeLine{00540\ \ \ \ \ \textcolor{keywordflow}{return}\ NUM\_ELEMENTS;}
+\DoxyCodeLine{00541\ \}}
+\DoxyCodeLine{00542\ }
+\DoxyCodeLine{00543\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00544\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1math_1_1_t_arithmetic_array_base}{TArithmeticArrayBase<Derived,\ T,\ N>::set}}(\textcolor{keyword}{const}\ T\ value)}
+\DoxyCodeLine{00545\ -\/>\ Derived\&}
+\DoxyCodeLine{00546\ \{}
+\DoxyCodeLine{00547\ \ \ \ \ m.fill(value);}
+\DoxyCodeLine{00548\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}Derived\&\textcolor{keyword}{>}(*this);}
+\DoxyCodeLine{00549\ \}}
+\DoxyCodeLine{00550\ }
+\DoxyCodeLine{00551\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00552\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1math_1_1_t_arithmetic_array_base}{TArithmeticArrayBase<Derived,\ T,\ N>::set}}(\textcolor{keyword}{const}\ std::size\_t\ index,\ \textcolor{keyword}{const}\ T\ value)}
+\DoxyCodeLine{00553\ -\/>\ Derived\&}
+\DoxyCodeLine{00554\ \{}
+\DoxyCodeLine{00555\ \ \ \ \ PH\_ASSERT\_LT(index,\ N);}
+\DoxyCodeLine{00556\ }
+\DoxyCodeLine{00557\ \ \ \ \ m[index]\ =\ value;}
+\DoxyCodeLine{00558\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}Derived\&\textcolor{keyword}{>}(*this);}
+\DoxyCodeLine{00559\ \}}
+\DoxyCodeLine{00560\ }
+\DoxyCodeLine{00561\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00562\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ TArithmeticArrayBase<Derived,\ T,\ N>::set(\textcolor{keyword}{const}\ std::array<T,\ N>\&\ values)}
+\DoxyCodeLine{00563\ -\/>\ Derived\&}
+\DoxyCodeLine{00564\ \{}
+\DoxyCodeLine{00565\ \ \ \ \ m\ =\ values;}
+\DoxyCodeLine{00566\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}Derived\&\textcolor{keyword}{>}(*this);}
+\DoxyCodeLine{00567\ \}}
+\DoxyCodeLine{00568\ }
+\DoxyCodeLine{00569\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00570\ \textcolor{keyword}{inline}\ T\&\ TArithmeticArrayBase<Derived,\ T,\ N>::operator\ []\ (\textcolor{keyword}{const}\ std::size\_t\ index)}
+\DoxyCodeLine{00571\ \{}
+\DoxyCodeLine{00572\ \ \ \ \ PH\_ASSERT\_LT(index,\ N);}
+\DoxyCodeLine{00573\ }
+\DoxyCodeLine{00574\ \ \ \ \ \textcolor{keywordflow}{return}\ m[index];}
+\DoxyCodeLine{00575\ \}}
+\DoxyCodeLine{00576\ }
+\DoxyCodeLine{00577\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00578\ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ T\&\ TArithmeticArrayBase<Derived,\ T,\ N>::operator\ []\ (\textcolor{keyword}{const}\ std::size\_t\ index)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00579\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00580\ \ \ \ \ PH\_ASSERT\_LT(index,\ N);}
+\DoxyCodeLine{00581\ }
+\DoxyCodeLine{00582\ \ \ \ \ \textcolor{keywordflow}{return}\ m[index];}
+\DoxyCodeLine{00583\ \}}
+\DoxyCodeLine{00584\ }
+\DoxyCodeLine{00585\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00586\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ TArithmeticArrayBase<Derived,\ T,\ N>::isEqual(\textcolor{keyword}{const}\ Derived\&\ other)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00587\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00588\ \ \ \ \ \textcolor{keywordflow}{return}\ m\ ==\ other.Self::m;}
+\DoxyCodeLine{00589\ \}}
+\DoxyCodeLine{00590\ }
+\DoxyCodeLine{00591\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00592\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ TArithmeticArrayBase<Derived,\ T,\ N>::isNear(\textcolor{keyword}{const}\ Derived\&\ other,\ \textcolor{keyword}{const}\ T\ margin)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00593\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00594\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ i\ =\ 0;\ i\ <\ N;\ ++i)}
+\DoxyCodeLine{00595\ \ \ \ \ \{}
+\DoxyCodeLine{00596\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(std::abs(m[i]\ -\/\ other.Self::m[i])\ >\ margin)}
+\DoxyCodeLine{00597\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00598\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00599\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00600\ \ \ \ \ \}}
+\DoxyCodeLine{00601\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00602\ \}}
+\DoxyCodeLine{00603\ }
+\DoxyCodeLine{00604\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00605\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ TArithmeticArrayBase<Derived,\ T,\ N>::operator\ ==\ (\textcolor{keyword}{const}\ Derived\&\ other)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00606\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00607\ \ \ \ \ \textcolor{keywordflow}{return}\ isEqual(other);}
+\DoxyCodeLine{00608\ \}}
+\DoxyCodeLine{00609\ }
+\DoxyCodeLine{00610\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00611\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ TArithmeticArrayBase<Derived,\ T,\ N>::operator\ !=\ (\textcolor{keyword}{const}\ Derived\&\ other)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00612\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00613\ \ \ \ \ \textcolor{keywordflow}{return}\ !isEqual(other);}
+\DoxyCodeLine{00614\ \}}
+\DoxyCodeLine{00615\ }
+\DoxyCodeLine{00616\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00617\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ TArithmeticArrayBase<Derived,\ T,\ N>::operator\ +\ (\textcolor{keyword}{const}\ Derived\&\ rhs)\ \textcolor{keyword}{const}}
+\DoxyCodeLine{00618\ -\/>\ Derived}
+\DoxyCodeLine{00619\ \{}
+\DoxyCodeLine{00620\ \ \ \ \ \textcolor{keywordflow}{return}\ add(rhs);}
+\DoxyCodeLine{00621\ \}}
+\DoxyCodeLine{00622\ }
+\DoxyCodeLine{00623\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00624\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ TArithmeticArrayBase<Derived,\ T,\ N>::operator\ +\ (\textcolor{keyword}{const}\ T\ rhs)\ \textcolor{keyword}{const}}
+\DoxyCodeLine{00625\ -\/>\ Derived}
+\DoxyCodeLine{00626\ \{}
+\DoxyCodeLine{00627\ \ \ \ \ \textcolor{keywordflow}{return}\ add(rhs);}
+\DoxyCodeLine{00628\ \}}
+\DoxyCodeLine{00629\ }
+\DoxyCodeLine{00630\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00631\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ TArithmeticArrayBase<Derived,\ T,\ N>::operator\ -\/\ (\textcolor{keyword}{const}\ Derived\&\ rhs)\ \textcolor{keyword}{const}}
+\DoxyCodeLine{00632\ -\/>\ Derived}
+\DoxyCodeLine{00633\ \{}
+\DoxyCodeLine{00634\ \ \ \ \ \textcolor{keywordflow}{return}\ sub(rhs);}
+\DoxyCodeLine{00635\ \}}
+\DoxyCodeLine{00636\ }
+\DoxyCodeLine{00637\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00638\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ TArithmeticArrayBase<Derived,\ T,\ N>::operator\ -\/\ (\textcolor{keyword}{const}\ T\ rhs)\ \textcolor{keyword}{const}}
+\DoxyCodeLine{00639\ -\/>\ Derived}
+\DoxyCodeLine{00640\ \{}
+\DoxyCodeLine{00641\ \ \ \ \ \textcolor{keywordflow}{return}\ sub(rhs);}
+\DoxyCodeLine{00642\ \}}
+\DoxyCodeLine{00643\ }
+\DoxyCodeLine{00644\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00645\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ TArithmeticArrayBase<Derived,\ T,\ N>::operator\ *\ (\textcolor{keyword}{const}\ Derived\&\ rhs)\ \textcolor{keyword}{const}}
+\DoxyCodeLine{00646\ -\/>\ Derived}
+\DoxyCodeLine{00647\ \{}
+\DoxyCodeLine{00648\ \ \ \ \ \textcolor{keywordflow}{return}\ mul(rhs);}
+\DoxyCodeLine{00649\ \}}
+\DoxyCodeLine{00650\ }
+\DoxyCodeLine{00651\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00652\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ TArithmeticArrayBase<Derived,\ T,\ N>::operator\ *\ (\textcolor{keyword}{const}\ T\ rhs)\ \textcolor{keyword}{const}}
+\DoxyCodeLine{00653\ -\/>\ Derived}
+\DoxyCodeLine{00654\ \{}
+\DoxyCodeLine{00655\ \ \ \ \ \textcolor{keywordflow}{return}\ mul(rhs);}
+\DoxyCodeLine{00656\ \}}
+\DoxyCodeLine{00657\ }
+\DoxyCodeLine{00658\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00659\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ TArithmeticArrayBase<Derived,\ T,\ N>::operator\ /\ (\textcolor{keyword}{const}\ Derived\&\ rhs)\ \textcolor{keyword}{const}}
+\DoxyCodeLine{00660\ -\/>\ Derived}
+\DoxyCodeLine{00661\ \{}
+\DoxyCodeLine{00662\ \ \ \ \ \textcolor{keywordflow}{return}\ div(rhs);}
+\DoxyCodeLine{00663\ \}}
+\DoxyCodeLine{00664\ }
+\DoxyCodeLine{00665\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00666\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ TArithmeticArrayBase<Derived,\ T,\ N>::operator\ /\ (\textcolor{keyword}{const}\ T\ rhs)\ \textcolor{keyword}{const}}
+\DoxyCodeLine{00667\ -\/>\ Derived}
+\DoxyCodeLine{00668\ \{}
+\DoxyCodeLine{00669\ \ \ \ \ \textcolor{keywordflow}{return}\ div(rhs);}
+\DoxyCodeLine{00670\ \}}
+\DoxyCodeLine{00671\ }
+\DoxyCodeLine{00672\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00673\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ TArithmeticArrayBase<Derived,\ T,\ N>::operator\ +=\ (\textcolor{keyword}{const}\ Derived\&\ rhs)}
+\DoxyCodeLine{00674\ -\/>\ Derived\&}
+\DoxyCodeLine{00675\ \{}
+\DoxyCodeLine{00676\ \ \ \ \ \textcolor{keywordflow}{return}\ addLocal(rhs);}
+\DoxyCodeLine{00677\ \}}
+\DoxyCodeLine{00678\ }
+\DoxyCodeLine{00679\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00680\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ TArithmeticArrayBase<Derived,\ T,\ N>::operator\ +=\ (\textcolor{keyword}{const}\ T\ rhs)}
+\DoxyCodeLine{00681\ -\/>\ Derived\&}
+\DoxyCodeLine{00682\ \{}
+\DoxyCodeLine{00683\ \ \ \ \ \textcolor{keywordflow}{return}\ addLocal(rhs);}
+\DoxyCodeLine{00684\ \}}
+\DoxyCodeLine{00685\ }
+\DoxyCodeLine{00686\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00687\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ TArithmeticArrayBase<Derived,\ T,\ N>::operator\ -\/=\ (\textcolor{keyword}{const}\ Derived\&\ rhs)}
+\DoxyCodeLine{00688\ -\/>\ Derived\&}
+\DoxyCodeLine{00689\ \{}
+\DoxyCodeLine{00690\ \ \ \ \ \textcolor{keywordflow}{return}\ subLocal(rhs);}
+\DoxyCodeLine{00691\ \}}
+\DoxyCodeLine{00692\ }
+\DoxyCodeLine{00693\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00694\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ TArithmeticArrayBase<Derived,\ T,\ N>::operator\ -\/=\ (\textcolor{keyword}{const}\ T\ rhs)}
+\DoxyCodeLine{00695\ -\/>\ Derived\&}
+\DoxyCodeLine{00696\ \{}
+\DoxyCodeLine{00697\ \ \ \ \ \textcolor{keywordflow}{return}\ subLocal(rhs);}
+\DoxyCodeLine{00698\ \}}
+\DoxyCodeLine{00699\ }
+\DoxyCodeLine{00700\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00701\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ TArithmeticArrayBase<Derived,\ T,\ N>::operator\ *=\ (\textcolor{keyword}{const}\ Derived\&\ rhs)}
+\DoxyCodeLine{00702\ -\/>\ Derived\&}
+\DoxyCodeLine{00703\ \{}
+\DoxyCodeLine{00704\ \ \ \ \ \textcolor{keywordflow}{return}\ mulLocal(rhs);}
+\DoxyCodeLine{00705\ \}}
+\DoxyCodeLine{00706\ }
+\DoxyCodeLine{00707\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00708\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ TArithmeticArrayBase<Derived,\ T,\ N>::operator\ *=\ (\textcolor{keyword}{const}\ T\ rhs)}
+\DoxyCodeLine{00709\ -\/>\ Derived\&}
+\DoxyCodeLine{00710\ \{}
+\DoxyCodeLine{00711\ \ \ \ \ \textcolor{keywordflow}{return}\ mulLocal(rhs);}
+\DoxyCodeLine{00712\ \}}
+\DoxyCodeLine{00713\ }
+\DoxyCodeLine{00714\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00715\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ TArithmeticArrayBase<Derived,\ T,\ N>::operator\ /=\ (\textcolor{keyword}{const}\ Derived\&\ rhs)}
+\DoxyCodeLine{00716\ -\/>\ Derived\&}
+\DoxyCodeLine{00717\ \{}
+\DoxyCodeLine{00718\ \ \ \ \ \textcolor{keywordflow}{return}\ divLocal(rhs);}
+\DoxyCodeLine{00719\ \}}
+\DoxyCodeLine{00720\ }
+\DoxyCodeLine{00721\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00722\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ TArithmeticArrayBase<Derived,\ T,\ N>::operator\ /=\ (\textcolor{keyword}{const}\ T\ rhs)}
+\DoxyCodeLine{00723\ -\/>\ Derived\&}
+\DoxyCodeLine{00724\ \{}
+\DoxyCodeLine{00725\ \ \ \ \ \textcolor{keywordflow}{return}\ divLocal(rhs);}
+\DoxyCodeLine{00726\ \}}
+\DoxyCodeLine{00727\ }
+\DoxyCodeLine{00728\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00729\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ TArithmeticArrayBase<Derived,\ T,\ N>::begin()\ noexcept}
+\DoxyCodeLine{00730\ -\/>\ typename\ std::array<T,\ N>::iterator}
+\DoxyCodeLine{00731\ \{}
+\DoxyCodeLine{00732\ \ \ \ \ \textcolor{keywordflow}{return}\ m.begin();}
+\DoxyCodeLine{00733\ \}}
+\DoxyCodeLine{00734\ }
+\DoxyCodeLine{00735\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00736\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ TArithmeticArrayBase<Derived,\ T,\ N>::begin()\ const\ noexcept}
+\DoxyCodeLine{00737\ -\/>\ typename\ std::array<T,\ N>::const\_iterator}
+\DoxyCodeLine{00738\ \{}
+\DoxyCodeLine{00739\ \ \ \ \ \textcolor{keywordflow}{return}\ m.cbegin();}
+\DoxyCodeLine{00740\ \}}
+\DoxyCodeLine{00741\ }
+\DoxyCodeLine{00742\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00743\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ TArithmeticArrayBase<Derived,\ T,\ N>::end()\ noexcept}
+\DoxyCodeLine{00744\ -\/>\ typename\ std::array<T,\ N>::iterator}
+\DoxyCodeLine{00745\ \{}
+\DoxyCodeLine{00746\ \ \ \ \ \textcolor{keywordflow}{return}\ m.end();}
+\DoxyCodeLine{00747\ \}}
+\DoxyCodeLine{00748\ }
+\DoxyCodeLine{00749\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00750\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ TArithmeticArrayBase<Derived,\ T,\ N>::end()\ const\ noexcept}
+\DoxyCodeLine{00751\ -\/>\ typename\ std::array<T,\ N>::const\_iterator}
+\DoxyCodeLine{00752\ \{}
+\DoxyCodeLine{00753\ \ \ \ \ \textcolor{keywordflow}{return}\ m.cend();}
+\DoxyCodeLine{00754\ \}}
+\DoxyCodeLine{00755\ }
+\DoxyCodeLine{00756\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00757\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ TArithmeticArrayBase<Derived,\ T,\ N>::toString()\ const}
+\DoxyCodeLine{00758\ -\/>\ std::\textcolor{keywordtype}{string}}
+\DoxyCodeLine{00759\ \{}
+\DoxyCodeLine{00760\ \ \ \ \ PH\_ASSERT\_NE(N,\ 0);}
+\DoxyCodeLine{00761\ }
+\DoxyCodeLine{00762\ \ \ \ \ std::string\ result(\textcolor{stringliteral}{"{}["{}});}
+\DoxyCodeLine{00763\ \ \ \ \ result\ +=\ std::to\_string(m[0]);}
+\DoxyCodeLine{00764\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ i\ =\ 1;\ i\ <\ N;\ ++i)}
+\DoxyCodeLine{00765\ \ \ \ \ \{}
+\DoxyCodeLine{00766\ \ \ \ \ \ \ \ \ result\ +=\ \textcolor{stringliteral}{"{},\ "{}}\ +\ std::to\_string(m[i]);}
+\DoxyCodeLine{00767\ \ \ \ \ \}}
+\DoxyCodeLine{00768\ \ \ \ \ result\ +=\ \textcolor{stringliteral}{"{}]"{}};}
+\DoxyCodeLine{00769\ }
+\DoxyCodeLine{00770\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00771\ \}}
+\DoxyCodeLine{00772\ }
+\DoxyCodeLine{00773\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00774\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ TArithmeticArrayBase<Derived,\ T,\ N>::toVector()\ const}
+\DoxyCodeLine{00775\ -\/>\ std::vector<T>}
+\DoxyCodeLine{00776\ \{}
+\DoxyCodeLine{00777\ \ \ \ \ std::vector<T>\ vector(N);}
+\DoxyCodeLine{00778\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ i\ =\ 0;\ i\ <\ N;\ ++i)}
+\DoxyCodeLine{00779\ \ \ \ \ \{}
+\DoxyCodeLine{00780\ \ \ \ \ \ \ \ \ vector[i]\ =\ m[i];}
+\DoxyCodeLine{00781\ \ \ \ \ \}}
+\DoxyCodeLine{00782\ }
+\DoxyCodeLine{00783\ \ \ \ \ \textcolor{keywordflow}{return}\ vector;}
+\DoxyCodeLine{00784\ \}}
+\DoxyCodeLine{00785\ }
+\DoxyCodeLine{00786\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00787\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ TArithmeticArrayBase<Derived,\ T,\ N>::toArray()\ const}
+\DoxyCodeLine{00788\ -\/>\ std::array<T,\ N>}
+\DoxyCodeLine{00789\ \{}
+\DoxyCodeLine{00790\ \ \ \ \ \textcolor{keywordflow}{return}\ m;}
+\DoxyCodeLine{00791\ \}}
+\DoxyCodeLine{00792\ }
+\DoxyCodeLine{00793\ \}\textcolor{comment}{//\ end\ namespace\ ph::math}}
+
+\end{DoxyCode}

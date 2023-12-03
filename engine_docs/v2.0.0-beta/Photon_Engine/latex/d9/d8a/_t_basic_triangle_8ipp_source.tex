@@ -1,0 +1,263 @@
+\doxysection{TBasic\+Triangle.\+ipp}
+\hypertarget{_t_basic_triangle_8ipp_source}{}\label{_t_basic_triangle_8ipp_source}\index{Source/Math/Geometry/TBasicTriangle.ipp@{Source/Math/Geometry/TBasicTriangle.ipp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Math/Geometry/TBasicTriangle.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Common/assertion.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}Math/TMatrix2.h"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <cmath>}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph_1_1math}{ph::math}}}
+\DoxyCodeLine{00010\ \{}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00013\ \textcolor{keyword}{inline}\ TVector3<T>\ TBasicTriangle<T>::interpolate(}
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keyword}{const}\ std::array<TVector3<T>,\ 3>\&\ attributes,}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keyword}{const}\ TVector3<T>\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ barycentricCoords)}
+\DoxyCodeLine{00016\ \{}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keywordflow}{return}\ interpolate(}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ attributes[0],}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ attributes[1],}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ attributes[2],}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ barycentricCoords);}
+\DoxyCodeLine{00022\ \}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00025\ \textcolor{keyword}{inline}\ TVector3<T>\ TBasicTriangle<T>::interpolate(}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{const}\ TVector3<T>\&\ attributeA,}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{const}\ TVector3<T>\&\ attributeB,}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{const}\ TVector3<T>\&\ attributeC,}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{const}\ TVector3<T>\&\ barycentricCoords)}
+\DoxyCodeLine{00030\ \{}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordflow}{return}\ TVector3<T>::weightedSum(}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ attributeA,\ barycentricCoords.x(),}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ attributeB,\ barycentricCoords.y(),}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ attributeC,\ barycentricCoords.z());}
+\DoxyCodeLine{00035\ \}}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00038\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ TBasicTriangle<T>::calcSurfaceParamDerivatives(}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{const}\ std::array<TVector3<T>,\ 3>\&\ attributes,}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{const}\ std::array<TVector2<T>,\ 3>\&\ parameterizations,}
+\DoxyCodeLine{00041\ \ \ \ \ TVector3<T>*\ \textcolor{keyword}{const}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ out\_dXdU,}
+\DoxyCodeLine{00042\ \ \ \ \ TVector3<T>*\ \textcolor{keyword}{const}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ out\_dXdV)}
+\DoxyCodeLine{00043\ \{}
+\DoxyCodeLine{00044\ \ \ \ \ PH\_ASSERT(out\_dXdU);}
+\DoxyCodeLine{00045\ \ \ \ \ PH\_ASSERT(out\_dXdV);}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ deltaUv01\ =\ parameterizations[1]\ -\/\ parameterizations[0];}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ deltaUv02\ =\ parameterizations[2]\ -\/\ parameterizations[0];}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keyword}{const}\ TMatrix2<T>\ A(}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ deltaUv01,}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ deltaUv02);}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ deltaAttr01\ =\ attributes[1]\ -\/\ attributes[0];}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ deltaAttr02\ =\ attributes[2]\ -\/\ attributes[0];}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keyword}{const}\ std::array<std::array<T,\ 2>,\ 3>\ bs\ =\ \{}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ deltaAttr01.x(),\ deltaAttr02.x(),}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ deltaAttr01.y(),\ deltaAttr02.y(),}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ deltaAttr01.z(),\ deltaAttr02.z()\};}
+\DoxyCodeLine{00061\ \ \ \ \ }
+\DoxyCodeLine{00062\ \ \ \ \ std::array<std::array<T,\ 2>,\ 3>\ xs;}
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keywordflow}{if}(A.solve(bs,\ \&xs))}
+\DoxyCodeLine{00064\ \ \ \ \ \{}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ out\_dXdU-\/>x()\ =\ xs[0][0];\ out\_dXdV-\/>x()\ =\ xs[0][1];}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ out\_dXdU-\/>y()\ =\ xs[1][0];\ out\_dXdV-\/>y()\ =\ xs[1][1];}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ out\_dXdU-\/>z()\ =\ xs[2][0];\ out\_dXdV-\/>z()\ =\ xs[2][1];}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00070\ \ \ \ \ \}}
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00072\ \ \ \ \ \{}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00074\ \ \ \ \ \}}
+\DoxyCodeLine{00075\ \}}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00078\ \textcolor{keyword}{inline}\ TBasicTriangle<T>::TBasicTriangle(}
+\DoxyCodeLine{00079\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{TVector3<T>}}\ vA,}
+\DoxyCodeLine{00080\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{TVector3<T>}}\ vB,}
+\DoxyCodeLine{00081\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{TVector3<T>}}\ vC)\ :\ }
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \ \ \ \ m\_vA(std::move(vA)),}
+\DoxyCodeLine{00084\ \ \ \ \ m\_vB(std::move(vB)),}
+\DoxyCodeLine{00085\ \ \ \ \ m\_vC(std::move(vC))}
+\DoxyCodeLine{00086\ \{\}}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00089\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1math_1_1_t_basic_triangle}{TBasicTriangle<T>::TBasicTriangle}}(std::array<\mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{TVector3<T>}},\ 3>\ vertices)\ :}
+\DoxyCodeLine{00090\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_basic_triangle}{TBasicTriangle}}(}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ std::move(vertices[0]),}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ std::move(vertices[1]),}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ std::move(vertices[2]))}
+\DoxyCodeLine{00094\ \{\}}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00097\ \textcolor{keyword}{inline}\ T\ \mbox{\hyperlink{classph_1_1math_1_1_t_basic_triangle}{TBasicTriangle<T>::getArea}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00098\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ [eAB,\ eAC]\ =\ getEdgeVectors();}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{keywordflow}{return}\ eAB.cross(eAC).length()\ *\ T(0.5);}
+\DoxyCodeLine{00102\ \}}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00105\ \textcolor{keyword}{inline}\ TVector3<T>\ TBasicTriangle<T>::getFaceNormal()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00106\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ [eAB,\ eAC]\ =\ getEdgeVectors();}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{keywordflow}{return}\ eAB.cross(eAC).normalizeLocal();}
+\DoxyCodeLine{00110\ \}}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00113\ \textcolor{keyword}{inline}\ TAABB3D<T>\ TBasicTriangle<T>::getAABB()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00114\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00115\ \ \ \ \ T\ minX\ =\ m\_vA.x(),\ maxX\ =\ m\_vA.x(),}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ minY\ =\ m\_vA.y(),\ maxY\ =\ m\_vA.y(),}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ minZ\ =\ m\_vA.z(),\ maxZ\ =\ m\_vA.z();}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{keywordflow}{if}\ \ \ \ \ (m\_vB.x()\ >\ maxX)\ maxX\ =\ m\_vB.x();}
+\DoxyCodeLine{00120\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(m\_vB.x()\ <\ minX)\ minX\ =\ m\_vB.x();}
+\DoxyCodeLine{00121\ \ \ \ \ \textcolor{keywordflow}{if}\ \ \ \ \ (m\_vB.y()\ >\ maxY)\ maxY\ =\ m\_vB.y();}
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(m\_vB.y()\ <\ minY)\ minY\ =\ m\_vB.y();}
+\DoxyCodeLine{00123\ \ \ \ \ \textcolor{keywordflow}{if}\ \ \ \ \ (m\_vB.z()\ >\ maxZ)\ maxZ\ =\ m\_vB.z();}
+\DoxyCodeLine{00124\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(m\_vB.z()\ <\ minZ)\ minZ\ =\ m\_vB.z();}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00126\ \ \ \ \ \textcolor{keywordflow}{if}\ \ \ \ \ (m\_vC.x()\ >\ maxX)\ maxX\ =\ m\_vC.x();}
+\DoxyCodeLine{00127\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(m\_vC.x()\ <\ minX)\ minX\ =\ m\_vC.x();}
+\DoxyCodeLine{00128\ \ \ \ \ \textcolor{keywordflow}{if}\ \ \ \ \ (m\_vC.y()\ >\ maxY)\ maxY\ =\ m\_vC.y();}
+\DoxyCodeLine{00129\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(m\_vC.y()\ <\ minY)\ minY\ =\ m\_vC.y();}
+\DoxyCodeLine{00130\ \ \ \ \ \textcolor{keywordflow}{if}\ \ \ \ \ (m\_vC.z()\ >\ maxZ)\ maxZ\ =\ m\_vC.z();}
+\DoxyCodeLine{00131\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(m\_vC.z()\ <\ minZ)\ minZ\ =\ m\_vC.z();}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00133\ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ TRIANGLE\_EPSILON\ =\ T(0.0001);}
+\DoxyCodeLine{00134\ \ \ \ \ }
+\DoxyCodeLine{00135\ \ \ \ \ \textcolor{keywordflow}{return}\ math::TAABB3D<T>(}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ math::Vector3R(minX\ -\/\ TRIANGLE\_EPSILON,\ minY\ -\/\ TRIANGLE\_EPSILON,\ minZ\ -\/\ TRIANGLE\_EPSILON),}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ math::Vector3R(maxX\ +\ TRIANGLE\_EPSILON,\ maxY\ +\ TRIANGLE\_EPSILON,\ maxZ\ +\ TRIANGLE\_EPSILON));}
+\DoxyCodeLine{00138\ \}}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00140\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00141\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{TVector3<T>}}\ \mbox{\hyperlink{classph_1_1math_1_1_t_basic_triangle}{TBasicTriangle<T>::getFaceNormalSafe}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{TVector3<T>}}\&\ failSafe)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00142\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00143\ \ \ \ \ \textcolor{keywordflow}{return}\ !isDegenerate()\ ?\ getFaceNormal()\ :\ failSafe;}
+\DoxyCodeLine{00144\ \}}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00146\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00147\ \textcolor{keyword}{inline}\ std::pair<TVector3<T>,\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{TVector3<T>}}>\ \mbox{\hyperlink{classph_1_1math_1_1_t_basic_triangle}{TBasicTriangle<T>::getEdgeVectors}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00148\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00149\ \ \ \ \ \textcolor{keywordflow}{return}\ \{}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ m\_vB.sub(m\_vA),\textcolor{comment}{//\ edge\ vector\ AB}}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ m\_vC.sub(m\_vA)\ \textcolor{comment}{//\ edge\ vector\ AC}}
+\DoxyCodeLine{00152\ \ \ \ \ \};}
+\DoxyCodeLine{00153\ \}}
+\DoxyCodeLine{00154\ }
+\DoxyCodeLine{00155\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00156\ \textcolor{keyword}{inline}\ TVector3<T>\ TBasicTriangle<T>::surfaceToBarycentric(\textcolor{keyword}{const}\ TVector3<T>\&\ position)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00157\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00158\ \ \ \ \ \textcolor{comment}{//\ Reference:\ Real-\/Time\ Collision\ Detection,\ Volume\ 1,\ P.47\ \string~\ P.48}}
+\DoxyCodeLine{00159\ \ \ \ \ \textcolor{comment}{//\ Computes\ barycentric\ coordinates\ (a,\ b,\ c)\ for\ a\ position\ with\ }}
+\DoxyCodeLine{00160\ \ \ \ \ \textcolor{comment}{//\ respect\ to\ triangle\ ABC.}}
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00162\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ eAP\ \ \ \ \ \ \ \ =\ position.sub(m\_vA);}
+\DoxyCodeLine{00163\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ [eAB,\ eAC]\ =\ getEdgeVectors();}
+\DoxyCodeLine{00164\ }
+\DoxyCodeLine{00165\ \ \ \ \ \textcolor{keyword}{const}\ T\ d00\ =\ eAB.dot(eAB);}
+\DoxyCodeLine{00166\ \ \ \ \ \textcolor{keyword}{const}\ T\ d01\ =\ eAB.dot(eAC);}
+\DoxyCodeLine{00167\ \ \ \ \ \textcolor{keyword}{const}\ T\ d11\ =\ eAC.dot(eAC);}
+\DoxyCodeLine{00168\ \ \ \ \ \textcolor{keyword}{const}\ T\ d20\ =\ eAP.dot(eAB);}
+\DoxyCodeLine{00169\ \ \ \ \ \textcolor{keyword}{const}\ T\ d21\ =\ eAP.dot(eAC);}
+\DoxyCodeLine{00170\ \ \ \ \ }
+\DoxyCodeLine{00171\ \ \ \ \ \textcolor{comment}{//\ TODO:\ check\ numeric\ stability}}
+\DoxyCodeLine{00172\ }
+\DoxyCodeLine{00173\ \ \ \ \ \textcolor{keyword}{const}\ T\ denominator\ =\ d00\ *\ d11\ -\/\ d01\ *\ d01;}
+\DoxyCodeLine{00174\ \ \ \ \ \textcolor{keywordflow}{if}(denominator\ ==\ T(0))}
+\DoxyCodeLine{00175\ \ \ \ \ \{}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \{0,\ 0,\ 0\};}
+\DoxyCodeLine{00177\ \ \ \ \ \}}
+\DoxyCodeLine{00178\ }
+\DoxyCodeLine{00179\ \ \ \ \ \textcolor{keyword}{const}\ T\ rcpDenominator\ =\ T(1)\ /\ denominator;}
+\DoxyCodeLine{00180\ \ \ \ \ }
+\DoxyCodeLine{00181\ \ \ \ \ \textcolor{keyword}{const}\ T\ b\ =\ (d11\ *\ d20\ -\/\ d01\ *\ d21)\ *\ rcpDenominator;}
+\DoxyCodeLine{00182\ \ \ \ \ \textcolor{keyword}{const}\ T\ c\ =\ (d00\ *\ d21\ -\/\ d01\ *\ d20)\ *\ rcpDenominator;}
+\DoxyCodeLine{00183\ \ \ \ \ \textcolor{keyword}{const}\ T\ a\ =\ T(1)\ -\/\ b\ -\/\ c;}
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00185\ \ \ \ \ \textcolor{keywordflow}{return}\ \{a,\ b,\ c\};}
+\DoxyCodeLine{00186\ \}}
+\DoxyCodeLine{00187\ }
+\DoxyCodeLine{00188\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00189\ \textcolor{keyword}{inline}\ TVector3<T>\ TBasicTriangle<T>::barycentricToSurface(\textcolor{keyword}{const}\ TVector3<T>\&\ barycentricCoords)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00190\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00191\ \ \ \ \ \textcolor{keywordflow}{return}\ TVector3<T>::weightedSum(}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ m\_vA,\ barycentricCoords.x(),}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ m\_vB,\ barycentricCoords.y(),}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ m\_vC,\ barycentricCoords.z());}
+\DoxyCodeLine{00195\ \}}
+\DoxyCodeLine{00196\ }
+\DoxyCodeLine{00197\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00198\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{TVector3<T>}}\ \mbox{\hyperlink{classph_1_1math_1_1_t_basic_triangle}{TBasicTriangle<T>::sampleToBarycentricOsada}}(\textcolor{keyword}{const}\ std::array<T,\ 2>\&\ sample)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00199\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00200\ \ \ \ \ PH\_ASSERT\_IN\_RANGE\_INCLUSIVE(sample[0],\ T(0),\ T(1));}
+\DoxyCodeLine{00201\ \ \ \ \ PH\_ASSERT\_IN\_RANGE\_INCLUSIVE(sample[1],\ T(0),\ T(1));}
+\DoxyCodeLine{00202\ }
+\DoxyCodeLine{00203\ \ \ \ \ \textcolor{keyword}{const}\ T\ A\ =\ std::sqrt(sample[0]);}
+\DoxyCodeLine{00204\ \ \ \ \ \textcolor{keyword}{const}\ T\ B\ =\ sample[1];}
+\DoxyCodeLine{00205\ }
+\DoxyCodeLine{00206\ \ \ \ \ \textcolor{keywordflow}{return}\ \{}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ T(1)\ -\/\ A,\ }
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ A\ *\ (T(1)\ -\/\ B),\ }
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ B\ *\ A}
+\DoxyCodeLine{00210\ \ \ \ \ \};}
+\DoxyCodeLine{00211\ \}}
+\DoxyCodeLine{00212\ }
+\DoxyCodeLine{00213\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00214\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{TVector3<T>}}\ \mbox{\hyperlink{classph_1_1math_1_1_t_basic_triangle}{TBasicTriangle<T>::sampleToBarycentricOsada}}(\textcolor{keyword}{const}\ std::array<T,\ 2>\&\ sample,\ T*\ \textcolor{keyword}{const}\ out\_pdfA)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00215\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00216\ \ \ \ \ PH\_ASSERT(out\_pdfA);}
+\DoxyCodeLine{00217\ }
+\DoxyCodeLine{00218\ \ \ \ \ *out\_pdfA\ =\ uniformSurfaceSamplePdfA();}
+\DoxyCodeLine{00219\ }
+\DoxyCodeLine{00220\ \ \ \ \ \textcolor{keywordflow}{return}\ sampleToBarycentricOsada(sample);}
+\DoxyCodeLine{00221\ \}}
+\DoxyCodeLine{00222\ }
+\DoxyCodeLine{00223\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00224\ \textcolor{keyword}{inline}\ T\ \mbox{\hyperlink{classph_1_1math_1_1_t_basic_triangle}{TBasicTriangle<T>::uniformSurfaceSamplePdfA}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00225\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00226\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(1)\ /\ getArea();}
+\DoxyCodeLine{00227\ \}}
+\DoxyCodeLine{00228\ }
+\DoxyCodeLine{00229\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00230\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1math_1_1_t_basic_triangle}{TBasicTriangle<T>::isDegenerate}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00231\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00232\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ [eAB,\ eAC]\ \ =\ getEdgeVectors();}
+\DoxyCodeLine{00233\ \ \ \ \ \textcolor{keyword}{const}\ T\ \ \ \ crossFactor\ =\ eAB.cross(eAC).lengthSquared();}
+\DoxyCodeLine{00234\ }
+\DoxyCodeLine{00235\ \ \ \ \ \textcolor{comment}{//\ NaN\ and\ Inf\ aware}}
+\DoxyCodeLine{00236\ \ \ \ \ \textcolor{keywordflow}{return}\ !(crossFactor\ >\ T(0))\ ||\ std::isinf(crossFactor);}
+\DoxyCodeLine{00237\ \}}
+\DoxyCodeLine{00238\ }
+\DoxyCodeLine{00239\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00240\ \textcolor{keyword}{inline}\ TVector3<T>\ TBasicTriangle<T>::getVa()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00241\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00242\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_vA;}
+\DoxyCodeLine{00243\ \}}
+\DoxyCodeLine{00244\ }
+\DoxyCodeLine{00245\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00246\ \textcolor{keyword}{inline}\ TVector3<T>\ TBasicTriangle<T>::getVb()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00247\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00248\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_vB;}
+\DoxyCodeLine{00249\ \}}
+\DoxyCodeLine{00250\ }
+\DoxyCodeLine{00251\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00252\ \textcolor{keyword}{inline}\ TVector3<T>\ TBasicTriangle<T>::getVc()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00253\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00254\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_vC;}
+\DoxyCodeLine{00255\ \}}
+\DoxyCodeLine{00256\ }
+\DoxyCodeLine{00257\ \}\textcolor{comment}{//\ end\ namespace\ ph::math}}
+
+\end{DoxyCode}

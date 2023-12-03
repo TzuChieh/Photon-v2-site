@@ -1,0 +1,125 @@
+\doxysection{Raw\+Resource\+Collection.\+h}
+\hypertarget{_raw_resource_collection_8h_source}{}\label{_raw_resource_collection_8h_source}\index{Source/SDL/RawResourceCollection.h@{Source/SDL/RawResourceCollection.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}SDL/ISdlReferenceGroup.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}SDL/sdl\_exceptions.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}Common/assertion.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}Utility/utility.h"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}Utility/string\_utils.h"{}}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <unordered\_map>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <type\_traits>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <cstddef>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00017\ \{}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_raw_resource_collection}{RawResourceCollection}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classph_1_1_i_sdl_reference_group}{ISdlReferenceGroup}}}
+\DoxyCodeLine{00020\ \{}
+\DoxyCodeLine{00021\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00022\ \ \ \ \ \mbox{\hyperlink{classph_1_1_raw_resource_collection}{RawResourceCollection}}();}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \ \ \ \ std::shared\_ptr<ISdlResource>\ \mbox{\hyperlink{classph_1_1_raw_resource_collection_a71014e2c028b96d471867aa050d02dc0}{get}}(std::string\_view\ resourceName)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_raw_resource_collection_ad9bbdcf0690ce62a6dca54f94671ada4}{has}}(std::string\_view\ resourceName)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_raw_resource_collection_a71c1500b514f6fbfdce9879303225c83}{add}}(}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ std::shared\_ptr<ISdlResource>\ resource,}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ std::string\_view\ resourceName);}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00040\ \ \ \ \ std::shared\_ptr<ISdlResource>\ \mbox{\hyperlink{classph_1_1_raw_resource_collection_af0bc3b5adc1871d4c7e9386bce318a66}{remove}}(std::string\_view\ resourceName);}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00050\ \ \ \ \ std::string\ \mbox{\hyperlink{classph_1_1_raw_resource_collection_a533dd09d766469c7214d43dead7776c4}{rename}}(std::string\_view\ resourceName,\ std::string\_view\ newResourceName);}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00056\ \ \ \ \ std::string\ \mbox{\hyperlink{classph_1_1_raw_resource_collection_a9788e7d7abcd1d9ad0c5fc396c7cad46}{makeResourceName}}(std::string\_view\ intendedName);}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00066\ \ \ \ \ std::vector<std::shared\_ptr<T>>\ \mbox{\hyperlink{classph_1_1_raw_resource_collection_abd03ab9fc0bd9524f476d35753f6062a}{getAllOfType}}(}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ std::vector<std::string>*\ out\_resourceNames\ =\ \textcolor{keyword}{nullptr})\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00072\ \ \ \ \ std::vector<std::shared\_ptr<ISdlResource>>\ \mbox{\hyperlink{classph_1_1_raw_resource_collection_a4fdde646b0e5f0cecd6fc34fa051200b}{getAll}}(}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ std::vector<std::string>*\ out\_resourceNames\ =\ \textcolor{keyword}{nullptr})\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00086\ \ \ \ \ std::vector<const\ T*>\ \mbox{\hyperlink{classph_1_1_raw_resource_collection_a611fe135849c9244ba8a481529d8bc03}{listAllOfType}}(}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ std::vector<std::string>*\ out\_resourceNames\ =\ \textcolor{keyword}{nullptr})\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00092\ \ \ \ \ std::vector<const\ ISdlResource*>\ \mbox{\hyperlink{classph_1_1_raw_resource_collection_a98a430dadbc6e1fcff3940192850e5d6}{listAll}}(}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ std::vector<std::string>*\ out\_resourceNames\ =\ \textcolor{keyword}{nullptr})\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{keyword}{using\ }ResourceMapType\ =\ string\_utils::TStdUnorderedStringMap<std::shared\_ptr<ISdlResource>>;}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ \ \ \ \ ResourceMapType\ m\_nameToResource;}
+\DoxyCodeLine{00099\ \};}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \textcolor{keyword}{inline}\ std::shared\_ptr<ISdlResource>\ \mbox{\hyperlink{classph_1_1_raw_resource_collection_a71014e2c028b96d471867aa050d02dc0}{RawResourceCollection::get}}(std::string\_view\ resourceName)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00102\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ iter\ =\ m\_nameToResource.find(resourceName);}
+\DoxyCodeLine{00104\ \ \ \ \ \textcolor{keywordflow}{return}\ iter\ !=\ m\_nameToResource.end()\ ?\ iter-\/>second\ :\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00105\ \}}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_raw_resource_collection_ad9bbdcf0690ce62a6dca54f94671ada4}{RawResourceCollection::has}}(std::string\_view\ resourceName)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00108\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{comment}{//\ Mostly\ the\ same\ as\ \`{}get(1)`,\ while\ saving\ a\ copy\ of\ shared\ pointer.}}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ iter\ =\ m\_nameToResource.find(resourceName);}
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{keywordflow}{return}\ iter\ !=\ m\_nameToResource.end();}
+\DoxyCodeLine{00113\ \}}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00116\ \textcolor{keyword}{inline}\ std::vector<std::shared\_ptr<T>>\ \mbox{\hyperlink{classph_1_1_raw_resource_collection_abd03ab9fc0bd9524f476d35753f6062a}{RawResourceCollection::getAllOfType}}(}
+\DoxyCodeLine{00117\ \ \ \ \ std::vector<std::string>*\ \textcolor{keyword}{const}\ out\_resourceNames)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00118\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_base\_of\_v<ISdlResource,\ T>,}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}T\ is\ not\ a\ SDL\ resource."{}});}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ \ \ \ \ std::vector<std::shared\_ptr<T>>\ resources;}
+\DoxyCodeLine{00123\ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ [name,\ resource]\ :\ m\_nameToResource)}
+\DoxyCodeLine{00124\ \ \ \ \ \{}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ std::shared\_ptr<T>\ castedResource\ =\ std::dynamic\_pointer\_cast<T>(resource);}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(castedResource)}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ resources.push\_back(std::move(castedResource));}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(out\_resourceNames)}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ out\_resourceNames-\/>push\_back(name);}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00135\ \ \ \ \ \}}
+\DoxyCodeLine{00136\ \ \ \ \ \textcolor{keywordflow}{return}\ resources;}
+\DoxyCodeLine{00137\ \}}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00139\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00140\ \textcolor{keyword}{inline}\ std::vector<const\ T*>\ \mbox{\hyperlink{classph_1_1_raw_resource_collection_a611fe135849c9244ba8a481529d8bc03}{RawResourceCollection::listAllOfType}}(}
+\DoxyCodeLine{00141\ \ \ \ \ std::vector<std::string>*\ \textcolor{keyword}{const}\ out\_resourceNames)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00142\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00143\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_base\_of\_v<ISdlResource,\ T>,}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}T\ is\ not\ a\ SDL\ resource."{}});}
+\DoxyCodeLine{00145\ \ \ \ \ }
+\DoxyCodeLine{00146\ \ \ \ \ std::vector<const\ T*>\ resources;}
+\DoxyCodeLine{00147\ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ [name,\ resource]\ :\ m\_nameToResource)}
+\DoxyCodeLine{00148\ \ \ \ \ \{}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ T*\ castedResource\ =\ \textcolor{keyword}{dynamic\_cast<}T*\textcolor{keyword}{>}(resource.get());}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(castedResource)}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \ \ \ \ resources.push\_back(castedResource);}
+\DoxyCodeLine{00153\ }
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(out\_resourceNames)}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ out\_resourceNames-\/>push\_back(name);}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00159\ \ \ \ \ \}}
+\DoxyCodeLine{00160\ \ \ \ \ \textcolor{keywordflow}{return}\ resources;}
+\DoxyCodeLine{00161\ \}}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00163\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+
+\end{DoxyCode}

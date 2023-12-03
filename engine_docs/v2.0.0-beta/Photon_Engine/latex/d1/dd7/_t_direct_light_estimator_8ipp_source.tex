@@ -1,0 +1,95 @@
+\doxysection{TDirect\+Light\+Estimator.\+ipp}
+\hypertarget{_t_direct_light_estimator_8ipp_source}{}\label{_t_direct_light_estimator_8ipp_source}\index{Source/Core/LTABuildingBlock/TDirectLightEstimator.ipp@{Source/Core/LTABuildingBlock/TDirectLightEstimator.ipp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#include\ "{}Core/LTABuildingBlock/TDirectLightEstimator.h"{}}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ "{}Math/TVector3.h"{}}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}World/Scene.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Core/Emitter/Query/DirectEnergySampleQuery.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}Core/SurfaceHit.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}Core/Intersectable/PrimitiveMetadata.h"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}Core/SurfaceBehavior/SurfaceBehavior.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}Core/HitDetail.h"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}Core/Intersectable/Primitive.h"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}Common/assertion.h"{}}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00015\ \{}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{namespace}}
+\DoxyCodeLine{00018\ \{}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{comment}{//\ FIXME:\ hardcoded\ number}}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keyword}{constexpr}\ real\ DL\_RAY\_DELTA\_DIST\ =\ 0.0001\_r;}
+\DoxyCodeLine{00021\ \}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{keyword}{template}<ES\textcolor{keywordtype}{id}ednessPolicy\ POLICY>}
+\DoxyCodeLine{00024\ \textcolor{keyword}{inline}\ TDirectLightEstimator<POLICY>::TDirectLightEstimator(\textcolor{keyword}{const}\ Scene*\ \textcolor{keyword}{const}\ scene)\ :\ }
+\DoxyCodeLine{00025\ \ \ \ \ m\_scene(scene)}
+\DoxyCodeLine{00026\ \{}
+\DoxyCodeLine{00027\ \ \ \ \ PH\_ASSERT(scene);}
+\DoxyCodeLine{00028\ \}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{keyword}{template}<ES\textcolor{keywordtype}{id}ednessPolicy\ POLICY>}
+\DoxyCodeLine{00031\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ TDirectLightEstimator<POLICY>::sample(}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{const}\ SurfaceHit\&\ \ \ \ \ targetPos,}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keyword}{const}\ Time\&\ \ \ \ \ \ \ \ \ \ \ time,}
+\DoxyCodeLine{00034\ \ \ \ \ SampleFlow\&\ \ \ \ \ \ \ \ \ \ \ sampleFlow,}
+\DoxyCodeLine{00035\ \ \ \ \ math::Vector3R*\ \textcolor{keyword}{const}\ out\_L,}
+\DoxyCodeLine{00036\ \ \ \ \ real*\ \textcolor{keyword}{const}\ \ \ \ \ \ \ \ \ \ \ out\_pdfW,}
+\DoxyCodeLine{00037\ \ \ \ \ math::Spectrum*\ \textcolor{keyword}{const}\ out\_emittedRadiance)}
+\DoxyCodeLine{00038\ \{}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{comment}{/*const\ PrimitiveMetadata*\ metadata\ =\ targetPos.getDetail().getPrimitive()-\/>getMetadata();}}
+\DoxyCodeLine{00040\ \textcolor{comment}{\ \ \ \ const\ SurfaceOptics*\ optics\ =\ metadata-\/>getSurface().getOptics();}}
+\DoxyCodeLine{00041\ \textcolor{comment}{\ \ \ \ if(optics-\/>getAllPhenomena().hasAny(\{ESurfacePhenomenon::DELTA\_REFLECTION,\ ESurfacePhenomenon::DELTA\_TRANSMISSION\}))}}
+\DoxyCodeLine{00042\ \textcolor{comment}{\ \ \ \ \{}}
+\DoxyCodeLine{00043\ \textcolor{comment}{\ \ \ \ \ \ \ \ return\ false;}}
+\DoxyCodeLine{00044\ \textcolor{comment}{\ \ \ \ \}*/}}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \ \ DirectEnergySampleQuery\ directLightSample;}
+\DoxyCodeLine{00047\ \ \ \ \ directLightSample.in.set(targetPos.getPosition());}
+\DoxyCodeLine{00048\ \ \ \ \ m\_scene-\/>genDirectSample(directLightSample,\ sampleFlow);}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordflow}{if}(directLightSample.out)}
+\DoxyCodeLine{00050\ \ \ \ \ \{}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ math::Vector3R\ toLightVec\ =\ directLightSample.out.emitPos\ -\/\ directLightSample.in.targetPos;}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ sidedness\ agreement\ between\ real\ geometry\ and\ shading\ normal}}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(toLightVec.lengthSquared()\ >\ math::squared(DL\_RAY\_DELTA\_DIST\ *\ 3)\ \&\&}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ SidednessAgreement(POLICY).isSidednessAgreed(targetPos,\ toLightVec))}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Ray\ visRay(targetPos.getPosition(),\ toLightVec.normalize(),\ DL\_RAY\_DELTA\_DIST,\ toLightVec.length()\ -\/\ DL\_RAY\_DELTA\_DIST\ *\ 2,\ time);}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!m\_scene-\/>isOccluding(visRay))}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ PH\_ASSERT(out\_L\ \&\&\ out\_pdfW\ \&\&\ out\_emittedRadiance);}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *out\_L\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ visRay.getDirection();}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *out\_pdfW\ \ \ \ \ \ \ \ \ \ \ \ =\ directLightSample.out.pdfW;}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *out\_emittedRadiance\ =\ directLightSample.out.radianceLe;}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00070\ \ \ \ \ \}}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00073\ \}}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \textcolor{keyword}{template}<ES\textcolor{keywordtype}{id}ednessPolicy\ POLICY>}
+\DoxyCodeLine{00076\ \textcolor{keyword}{inline}\ real\ TDirectLightEstimator<POLICY>::samplePdfWUnoccluded(}
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keyword}{const}\ SurfaceHit\&\ X,}
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keyword}{const}\ SurfaceHit\&\ Xe,}
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keyword}{const}\ Time\&\ \ \ \ \ \ \ time)}
+\DoxyCodeLine{00080\ \{}
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{comment}{//\ FIXME:\ redundant\ pointers}}
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keyword}{const}\ Primitive*\ \textcolor{keyword}{const}\ emissivePrimitive\ =\ Xe.getDetail().getPrimitive();}
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keyword}{const}\ Emitter*\ \textcolor{keyword}{const}\ \ \ emitter\ \ \ \ \ \ \ \ \ \ \ =\ emissivePrimitive-\/>getMetadata()-\/>getSurface().getEmitter();}
+\DoxyCodeLine{00084\ \ \ \ \ PH\_ASSERT(emitter);}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_scene-\/>calcDirectPdfW(Xe,\ X.getPosition());}
+\DoxyCodeLine{00087\ \}}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+
+\end{DoxyCode}

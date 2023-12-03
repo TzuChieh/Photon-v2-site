@@ -1,0 +1,395 @@
+\doxysection{TSPSCRing\+Buffer.\+h}
+\hypertarget{_t_s_p_s_c_ring_buffer_8h_source}{}\label{_t_s_p_s_c_ring_buffer_8h_source}\index{Source/Utility/Concurrent/TSPSCRingBuffer.h@{Source/Utility/Concurrent/TSPSCRingBuffer.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Common/assertion.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Common/config.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{math_8h}{Math/math.h}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}Utility/INoCopyAndMove.h"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}Utility/utility.h"{}}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <cstddef>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <type\_traits>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <array>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <thread>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <atomic>}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00016\ \{}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00019\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_t_s_p_s_c_ring_buffer}{TSPSCRingBuffer}}\ final}
+\DoxyCodeLine{00020\ \{}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_default\_constructible\_v<T>);}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keyword}{static\_assert}(N\ !=\ 0);}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{struct\ }Item\ final}
+\DoxyCodeLine{00026\ \ \ \ \ \{}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ T\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ storedItem;}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ std::atomic\_flag\ isSealedForConsume;}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ modify\ by\ \`{}beginProcued()`\ \&\ \`{}endProduce()`,\ read-\/only\ otherwise}}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ isBetweenProduceBeginAndEnd;}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ modify\ by\ \`{}beginConsume()`\ \&\ \`{}endConsume()`,\ read-\/only\ otherwise}}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ isBetweenConsumeBeginAndEnd;}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ Item()}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ :\ storedItem\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ()}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ ,\ isSealedForConsume\ \ \ \ \ \ \ \ \ ()}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ ,\ isBetweenProduceBeginAndEnd(\textcolor{keyword}{false})}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ ,\ isBetweenConsumeBeginAndEnd(\textcolor{keyword}{false})}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \{\}}
+\DoxyCodeLine{00042\ \ \ \ \ \};}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_t_s_p_s_c_ring_buffer}{TSPSCRingBuffer}}()}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ :\ m\_items\ \ \ \ \ \ \ \ \ \ \ ()}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ ,\ m\_produceHead\ \ \ \ \ (0)}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ ,\ m\_consumeHead\ \ \ \ \ (0)}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ ,\ m\_headDistance\ \ \ \ (0)}
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#if\ PH\_DEBUG}}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ ,\ m\_producerThreadID()}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ ,\ m\_consumerThreadID()}
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00054\ \ \ \ \ \{\}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_s_p_s_c_ring_buffer_af992502e630f83e2cc73c2c88f5a719a}{beginProduce}}()}
+\DoxyCodeLine{00060\ \ \ \ \ \{}
+\DoxyCodeLine{00061\ \textcolor{preprocessor}{\#if\ PH\_DEBUG}}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ markProducerThread();}
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ PH\_ASSERT(isProducerThread());}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Wait\ until\ current\ item\ is\ available\ for\ producer}}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ Item\&\ currentItem\ =\ getCurrentProducerItem();}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ currentItem.isSealedForConsume.wait(\textcolor{keyword}{true},\ std::memory\_order\_acquire);}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \`{}item`\ can\ now\ be\ modified\ by\ producer}}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ currentItem.isBetweenProduceBeginAndEnd\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00074\ \ \ \ \ \}}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_s_p_s_c_ring_buffer_aeb59a91417d14efc6f6f40b8e16d815c}{endProduce}}()}
+\DoxyCodeLine{00080\ \ \ \ \ \{}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ PH\_ASSERT(isProducerThread());}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Increment\ before\ flag\ release-\/-\/we\ want\ this\ addition\ to\ be\ visible\ on\ consumer}}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ m\_headDistance.fetch\_add(1,\ std::memory\_order\_relaxed);}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ Item\&\ currentItem\ =\ getCurrentProducerItem();}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ currentItem.isBetweenProduceBeginAndEnd\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \`{}item`\ can\ no\ longer\ be\ modified\ by\ producer}}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Mark\ that\ current\ item\ is\ now\ set\ and\ is\ ready\ for\ being\ consumed}}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ hasAlreadySealed\ =\ currentItem.isSealedForConsume.test\_and\_set(std::memory\_order\_release);}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ PH\_ASSERT(!hasAlreadySealed);}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Notify\ the\ potentially\ waiting\ consumer\ so\ it\ can\ start\ consuming\ this\ item}}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ currentItem.isSealedForConsume.notify\_one();}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ advanceProduceHead();}
+\DoxyCodeLine{00099\ \ \ \ \ \}}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00104\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_s_p_s_c_ring_buffer_a9836fa5e4d4ce18d9d61d347cfdfd999}{beginConsume}}()}
+\DoxyCodeLine{00105\ \ \ \ \ \{}
+\DoxyCodeLine{00106\ \textcolor{preprocessor}{\#if\ PH\_DEBUG}}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ markConsumerThread();}
+\DoxyCodeLine{00108\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ PH\_ASSERT(isConsumerThread());}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Wait\ until\ being\ notified\ there\ is\ new\ item\ that\ can\ be\ consumed}}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ Item\&\ currentItem\ =\ getCurrentConsumerItem();}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ currentItem.isSealedForConsume.wait(\textcolor{keyword}{false},\ std::memory\_order\_acquire);}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \`{}item`\ can\ now\ be\ modified\ by\ consumer}}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ currentItem.isBetweenConsumeBeginAndEnd\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00119\ \ \ \ \ \}}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00124\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_s_p_s_c_ring_buffer_a13025045d3cd62d8765594964a2bdafa}{endConsume}}()}
+\DoxyCodeLine{00125\ \ \ \ \ \{}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ PH\_ASSERT(isConsumerThread());}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Decrement\ after\ flag\ acquire-\/-\/will\ never\ underflow\ since\ every\ consumption\ happens\ after\ a}}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ production\ with\ memory\ effects\ made\ visible}}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ m\_headDistance.fetch\_sub(1,\ std::memory\_order\_relaxed);}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ Item\&\ currentItem\ =\ getCurrentConsumerItem();}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ currentItem.isBetweenConsumeBeginAndEnd\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \`{}item`\ can\ no\ longer\ be\ modified\ by\ consumer}}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Mark\ that\ current\ item\ is\ now\ consumed\ and\ is\ ready\ for\ use\ by\ producer\ again}}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ currentItem.isSealedForConsume.clear(std::memory\_order\_release);}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Notify\ the\ potentially\ waiting\ producer\ so\ it\ can\ start\ producing}}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ currentItem.isSealedForConsume.notify\_one();}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ advanceConsumeHead();}
+\DoxyCodeLine{00144\ \ \ \ \ \}}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00150\ \ \ \ \ \textcolor{keyword}{inline}\ T\&\ \mbox{\hyperlink{classph_1_1_t_s_p_s_c_ring_buffer_a13671a7bf8463906834d597ffd997d59}{getBufferForProducer}}()}
+\DoxyCodeLine{00151\ \ \ \ \ \{}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ PH\_ASSERT(\mbox{\hyperlink{classph_1_1_t_s_p_s_c_ring_buffer_aec31b9ec9bfcfbc492b595c8babea2be}{isProducing}}());}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ getCurrentProducerItem().storedItem;}
+\DoxyCodeLine{00154\ \ \ \ \ \}}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00156\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ T\&\ \mbox{\hyperlink{classph_1_1_t_s_p_s_c_ring_buffer_a13671a7bf8463906834d597ffd997d59}{getBufferForProducer}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00157\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ PH\_ASSERT(\mbox{\hyperlink{classph_1_1_t_s_p_s_c_ring_buffer_aec31b9ec9bfcfbc492b595c8babea2be}{isProducing}}());}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ getCurrentProducerItem().storedItem;}
+\DoxyCodeLine{00160\ \ \ \ \ \}}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00167\ \ \ \ \ \textcolor{keyword}{inline}\ T\&\ \mbox{\hyperlink{classph_1_1_t_s_p_s_c_ring_buffer_a22bd6f22356667bab0e9407fc4cd78e2}{getBufferForConsumer}}()}
+\DoxyCodeLine{00168\ \ \ \ \ \{}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ PH\_ASSERT(\mbox{\hyperlink{classph_1_1_t_s_p_s_c_ring_buffer_a351cdb88dd21aa2629f17ff594b8408a}{isConsuming}}());}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ getCurrentConsumerItem().storedItem;}
+\DoxyCodeLine{00171\ \ \ \ \ \}}
+\DoxyCodeLine{00172\ }
+\DoxyCodeLine{00173\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ T\&\ \mbox{\hyperlink{classph_1_1_t_s_p_s_c_ring_buffer_a22bd6f22356667bab0e9407fc4cd78e2}{getBufferForConsumer}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00174\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ PH\_ASSERT(\mbox{\hyperlink{classph_1_1_t_s_p_s_c_ring_buffer_a351cdb88dd21aa2629f17ff594b8408a}{isConsuming}}());}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ getCurrentConsumerItem().storedItem;}
+\DoxyCodeLine{00177\ \ \ \ \ \}}
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00185\ \ \ \ \ \textcolor{keyword}{inline}\ std::size\_t\ \mbox{\hyperlink{classph_1_1_t_s_p_s_c_ring_buffer_ac64eec0798a5e9d5698cd0d2aec338f3}{getHeadDistanceDirectly}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00186\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Pad\ produce\ head\ to\ the\ next\ cycle\ first\ to\ ensure\ positive\ result,\ then\ mod\ it.}}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ }}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \`{}return\ (m\_produceHead\ +\ N\ -\/\ m\_consumeHead)\ \%\ N;`}}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Above\ is\ the\ straightforward\ way\ of\ calculating\ distance,\ however\ the\ result\ is\ ambiguous\ on}}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ determining\ whether\ the\ buffer\ is\ empty\ or\ full-\/-\/returning\ 0\ on\ both\ conditions.}}
+\DoxyCodeLine{00193\ }
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ lossless\_integer\_cast<std::size\_t>(}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \ \ \ \ m\_headDistance.load(std::memory\_order\_relaxed));}
+\DoxyCodeLine{00196\ \ \ \ \ \}}
+\DoxyCodeLine{00197\ }
+\DoxyCodeLine{00201\ \ \ \ \ \textcolor{keyword}{inline}\ std::size\_t\ \mbox{\hyperlink{classph_1_1_t_s_p_s_c_ring_buffer_ad5f6ead15cf3cc87561683d57b355776}{getProduceHead}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00202\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ PH\_ASSERT(isProducerThread());}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_produceHead;}
+\DoxyCodeLine{00205\ \ \ \ \ \}}
+\DoxyCodeLine{00206\ }
+\DoxyCodeLine{00210\ \ \ \ \ \textcolor{keyword}{inline}\ std::size\_t\ \mbox{\hyperlink{classph_1_1_t_s_p_s_c_ring_buffer_a903de33790d49a9d279a4ddb433d0d48}{getConsumeHead}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00211\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ PH\_ASSERT(isConsumerThread());}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_consumeHead;}
+\DoxyCodeLine{00214\ \ \ \ \ \}}
+\DoxyCodeLine{00215\ }
+\DoxyCodeLine{00219\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_t_s_p_s_c_ring_buffer_af22627d9fef129b2dd6053959ae538bc}{mayWaitToProduce}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00220\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00221\ \textcolor{preprocessor}{\#if\ PH\_DEBUG}}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ markProducerThread();}
+\DoxyCodeLine{00223\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00224\ }
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ PH\_ASSERT(isProducerThread());}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ getCurrentProducerItem().isSealedForConsume.test(std::memory\_order\_acquire);}
+\DoxyCodeLine{00227\ \ \ \ \ \}}
+\DoxyCodeLine{00228\ }
+\DoxyCodeLine{00232\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_t_s_p_s_c_ring_buffer_ac46938eba07fc0e082ad615f84116cd1}{mayWaitToConsume}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00233\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00234\ \textcolor{preprocessor}{\#if\ PH\_DEBUG}}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ markConsumerThread();}
+\DoxyCodeLine{00236\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00237\ }
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ PH\_ASSERT(isConsumerThread());}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ !getCurrentConsumerItem().isSealedForConsume.test(std::memory\_order\_acquire);}
+\DoxyCodeLine{00240\ \ \ \ \ \}}
+\DoxyCodeLine{00241\ }
+\DoxyCodeLine{00245\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_t_s_p_s_c_ring_buffer_aec31b9ec9bfcfbc492b595c8babea2be}{isProducing}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00246\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00247\ \textcolor{preprocessor}{\#if\ PH\_DEBUG}}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ markProducerThread();}
+\DoxyCodeLine{00249\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00250\ }
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ PH\_ASSERT(isProducerThread());}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ getCurrentProducerItem().isBetweenProduceBeginAndEnd;}
+\DoxyCodeLine{00253\ \ \ \ \ \}}
+\DoxyCodeLine{00254\ }
+\DoxyCodeLine{00258\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_t_s_p_s_c_ring_buffer_a351cdb88dd21aa2629f17ff594b8408a}{isConsuming}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00259\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00260\ \textcolor{preprocessor}{\#if\ PH\_DEBUG}}
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ markConsumerThread();}
+\DoxyCodeLine{00262\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00263\ }
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ PH\_ASSERT(isConsumerThread());}
+\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ getCurrentConsumerItem().isBetweenConsumeBeginAndEnd;}
+\DoxyCodeLine{00266\ \ \ \ \ \}}
+\DoxyCodeLine{00267\ }
+\DoxyCodeLine{00274\ \ \ \ \ \textcolor{keyword}{inline}\ std::size\_t\ \mbox{\hyperlink{classph_1_1_t_s_p_s_c_ring_buffer_a5b53c378bd544846f3f709db57064986}{unsafeGetProduceHead}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00275\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_produceHead;}
+\DoxyCodeLine{00277\ \ \ \ \ \}}
+\DoxyCodeLine{00278\ }
+\DoxyCodeLine{00279\ \ \ \ \ \textcolor{keyword}{inline}\ std::size\_t\ unsafeGetConsumeHead()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00280\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_consumeHead;}
+\DoxyCodeLine{00282\ \ \ \ \ \}}
+\DoxyCodeLine{00283\ }
+\DoxyCodeLine{00284\ \ \ \ \ \textcolor{keyword}{inline}\ T\&\ unsafeGetBufferReference(\textcolor{keyword}{const}\ std::size\_t\ index)}
+\DoxyCodeLine{00285\ \ \ \ \ \{}
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ PH\_ASSERT\_LT(index,\ N);}
+\DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_items[index].storedItem;}
+\DoxyCodeLine{00288\ \ \ \ \ \}}
+\DoxyCodeLine{00289\ }
+\DoxyCodeLine{00290\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ T\&\ unsafeGetBufferReference(\textcolor{keyword}{const}\ std::size\_t\ index)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00291\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00292\ \ \ \ \ \ \ \ \ PH\_ASSERT\_LT(index,\ N);}
+\DoxyCodeLine{00293\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_items[index].storedItem;}
+\DoxyCodeLine{00294\ \ \ \ \ \}}
+\DoxyCodeLine{00296\ }
+\DoxyCodeLine{00297\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00298\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_t_s_p_s_c_ring_buffer_1_1_producer_guard}{ProducerGuard}}\ final\ :\ \textcolor{keyword}{private}\ \mbox{\hyperlink{classph_1_1_i_no_copy_and_move}{INoCopyAndMove}}}
+\DoxyCodeLine{00299\ \ \ \ \ \{}
+\DoxyCodeLine{00300\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00301\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classph_1_1_t_s_p_s_c_ring_buffer_1_1_producer_guard}{ProducerGuard}}(\mbox{\hyperlink{classph_1_1_t_s_p_s_c_ring_buffer}{TSPSCRingBuffer}}\&\ buffer)}
+\DoxyCodeLine{00302\ \ \ \ \ \ \ \ \ \ \ \ \ :\ m\_buffer(buffer)}
+\DoxyCodeLine{00303\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00304\ \ \ \ \ \ \ \ \ \ \ \ \ m\_buffer.\mbox{\hyperlink{classph_1_1_t_s_p_s_c_ring_buffer_af992502e630f83e2cc73c2c88f5a719a}{beginProduce}}();}
+\DoxyCodeLine{00305\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00306\ }
+\DoxyCodeLine{00307\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_t_s_p_s_c_ring_buffer_1_1_producer_guard}{\string~ProducerGuard}}()}
+\DoxyCodeLine{00308\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00309\ \ \ \ \ \ \ \ \ \ \ \ \ m\_buffer.\mbox{\hyperlink{classph_1_1_t_s_p_s_c_ring_buffer_aeb59a91417d14efc6f6f40b8e16d815c}{endProduce}}();}
+\DoxyCodeLine{00310\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00311\ }
+\DoxyCodeLine{00312\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00313\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_s_p_s_c_ring_buffer}{TSPSCRingBuffer}}\&\ m\_buffer;}
+\DoxyCodeLine{00314\ \ \ \ \ \};}
+\DoxyCodeLine{00315\ }
+\DoxyCodeLine{00316\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_t_s_p_s_c_ring_buffer_1_1_consumer_guard}{ConsumerGuard}}\ final\ :\ \textcolor{keyword}{private}\ \mbox{\hyperlink{classph_1_1_i_no_copy_and_move}{INoCopyAndMove}}}
+\DoxyCodeLine{00317\ \ \ \ \ \{}
+\DoxyCodeLine{00318\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00319\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classph_1_1_t_s_p_s_c_ring_buffer_1_1_consumer_guard}{ConsumerGuard}}(\mbox{\hyperlink{classph_1_1_t_s_p_s_c_ring_buffer}{TSPSCRingBuffer}}\&\ buffer)}
+\DoxyCodeLine{00320\ \ \ \ \ \ \ \ \ \ \ \ \ :\ m\_buffer(buffer)}
+\DoxyCodeLine{00321\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00322\ \ \ \ \ \ \ \ \ \ \ \ \ m\_buffer.\mbox{\hyperlink{classph_1_1_t_s_p_s_c_ring_buffer_a9836fa5e4d4ce18d9d61d347cfdfd999}{beginConsume}}();}
+\DoxyCodeLine{00323\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00324\ }
+\DoxyCodeLine{00325\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_t_s_p_s_c_ring_buffer_1_1_consumer_guard}{\string~ConsumerGuard}}()}
+\DoxyCodeLine{00326\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00327\ \ \ \ \ \ \ \ \ \ \ \ \ m\_buffer.\mbox{\hyperlink{classph_1_1_t_s_p_s_c_ring_buffer_a13025045d3cd62d8765594964a2bdafa}{endConsume}}();}
+\DoxyCodeLine{00328\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00329\ }
+\DoxyCodeLine{00330\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00331\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_s_p_s_c_ring_buffer}{TSPSCRingBuffer}}\&\ m\_buffer;}
+\DoxyCodeLine{00332\ \ \ \ \ \};}
+\DoxyCodeLine{00333\ }
+\DoxyCodeLine{00334\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ ProducerFunc>}
+\DoxyCodeLine{00335\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ guardedProduce(ProducerFunc\ func)}
+\DoxyCodeLine{00336\ \ \ \ \ \{}
+\DoxyCodeLine{00337\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_invocable\_v<ProducerFunc,\ T\&>,}
+\DoxyCodeLine{00338\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}ProducerFunc\ must\ take\ (T\&)."{}});}
+\DoxyCodeLine{00339\ }
+\DoxyCodeLine{00340\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_s_p_s_c_ring_buffer_1_1_producer_guard}{ProducerGuard}}\ guard(*\textcolor{keyword}{this});}
+\DoxyCodeLine{00341\ }
+\DoxyCodeLine{00342\ \ \ \ \ \ \ \ \ func(\mbox{\hyperlink{classph_1_1_t_s_p_s_c_ring_buffer_a13671a7bf8463906834d597ffd997d59}{getBufferForProducer}}());}
+\DoxyCodeLine{00343\ \ \ \ \ \}}
+\DoxyCodeLine{00344\ }
+\DoxyCodeLine{00345\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ ConsumerFunc>}
+\DoxyCodeLine{00346\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ guardedConsume(ConsumerFunc\ func)}
+\DoxyCodeLine{00347\ \ \ \ \ \{}
+\DoxyCodeLine{00348\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_invocable\_v<ConsumerFunc,\ T\&>,}
+\DoxyCodeLine{00349\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}ConsumerFunc\ must\ take\ (T\&)."{}});}
+\DoxyCodeLine{00350\ }
+\DoxyCodeLine{00351\ \ \ \ \ \ \ \ \ ConsumerGuard\ guard(*\textcolor{keyword}{this});}
+\DoxyCodeLine{00352\ }
+\DoxyCodeLine{00353\ \ \ \ \ \ \ \ \ func(\mbox{\hyperlink{classph_1_1_t_s_p_s_c_ring_buffer_a22bd6f22356667bab0e9407fc4cd78e2}{getBufferForConsumer}}());}
+\DoxyCodeLine{00354\ \ \ \ \ \}}
+\DoxyCodeLine{00355\ }
+\DoxyCodeLine{00359\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ std::size\_t\ \mbox{\hyperlink{classph_1_1_t_s_p_s_c_ring_buffer_a01e9af14556c42635a42d4d516641792}{nextProducerConsumerHead}}(}
+\DoxyCodeLine{00360\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ currentProducerConsumerHead,}
+\DoxyCodeLine{00361\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ numAdvancements\ =\ 1)}
+\DoxyCodeLine{00362\ \ \ \ \ \{}
+\DoxyCodeLine{00363\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ math::wrap<std::size\_t>(currentProducerConsumerHead\ +\ numAdvancements,\ 0,\ N\ -\/\ 1);}
+\DoxyCodeLine{00364\ \ \ \ \ \}}
+\DoxyCodeLine{00365\ }
+\DoxyCodeLine{00366\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00371\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ Item\&\ getCurrentProducerItem()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00372\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00373\ \ \ \ \ \ \ \ \ PH\_ASSERT(isProducerThread());}
+\DoxyCodeLine{00374\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_items[m\_produceHead];}
+\DoxyCodeLine{00375\ \ \ \ \ \}}
+\DoxyCodeLine{00376\ }
+\DoxyCodeLine{00377\ \ \ \ \ \textcolor{keyword}{inline}\ Item\&\ getCurrentProducerItem()}
+\DoxyCodeLine{00378\ \ \ \ \ \{}
+\DoxyCodeLine{00379\ \ \ \ \ \ \ \ \ PH\_ASSERT(isProducerThread());}
+\DoxyCodeLine{00380\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_items[m\_produceHead];}
+\DoxyCodeLine{00381\ \ \ \ \ \}}
+\DoxyCodeLine{00383\ }
+\DoxyCodeLine{00388\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ Item\&\ getCurrentConsumerItem()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00389\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00390\ \ \ \ \ \ \ \ \ PH\_ASSERT(isConsumerThread());}
+\DoxyCodeLine{00391\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_items[m\_consumeHead];}
+\DoxyCodeLine{00392\ \ \ \ \ \}}
+\DoxyCodeLine{00393\ }
+\DoxyCodeLine{00394\ \ \ \ \ \textcolor{keyword}{inline}\ Item\&\ getCurrentConsumerItem()}
+\DoxyCodeLine{00395\ \ \ \ \ \{}
+\DoxyCodeLine{00396\ \ \ \ \ \ \ \ \ PH\_ASSERT(isConsumerThread());}
+\DoxyCodeLine{00397\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_items[m\_consumeHead];}
+\DoxyCodeLine{00398\ \ \ \ \ \}}
+\DoxyCodeLine{00400\ }
+\DoxyCodeLine{00404\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ advanceProduceHead()}
+\DoxyCodeLine{00405\ \ \ \ \ \{}
+\DoxyCodeLine{00406\ \ \ \ \ \ \ \ \ PH\_ASSERT(isProducerThread());}
+\DoxyCodeLine{00407\ \ \ \ \ \ \ \ \ m\_produceHead\ =\ \mbox{\hyperlink{classph_1_1_t_s_p_s_c_ring_buffer_a01e9af14556c42635a42d4d516641792}{nextProducerConsumerHead}}(m\_produceHead);}
+\DoxyCodeLine{00408\ \ \ \ \ \}}
+\DoxyCodeLine{00409\ }
+\DoxyCodeLine{00413\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ advanceConsumeHead()}
+\DoxyCodeLine{00414\ \ \ \ \ \{}
+\DoxyCodeLine{00415\ \ \ \ \ \ \ \ \ PH\_ASSERT(isConsumerThread());}
+\DoxyCodeLine{00416\ \ \ \ \ \ \ \ \ m\_consumeHead\ =\ \mbox{\hyperlink{classph_1_1_t_s_p_s_c_ring_buffer_a01e9af14556c42635a42d4d516641792}{nextProducerConsumerHead}}(m\_consumeHead);}
+\DoxyCodeLine{00417\ \ \ \ \ \}}
+\DoxyCodeLine{00418\ }
+\DoxyCodeLine{00419\ \textcolor{preprocessor}{\#if\ PH\_DEBUG}}
+\DoxyCodeLine{00423\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ isProducerThread()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00424\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00425\ \ \ \ \ \ \ \ \ PH\_ASSERT(m\_producerThreadID\ !=\ std::thread::id());}
+\DoxyCodeLine{00426\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::this\_thread::get\_id()\ ==\ m\_producerThreadID;}
+\DoxyCodeLine{00427\ \ \ \ \ \}}
+\DoxyCodeLine{00428\ }
+\DoxyCodeLine{00432\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ isConsumerThread()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00433\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00434\ \ \ \ \ \ \ \ \ PH\_ASSERT(m\_consumerThreadID\ !=\ std::thread::id());}
+\DoxyCodeLine{00435\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::this\_thread::get\_id()\ ==\ m\_consumerThreadID;}
+\DoxyCodeLine{00436\ \ \ \ \ \}}
+\DoxyCodeLine{00437\ }
+\DoxyCodeLine{00438\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ markProducerThread()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00439\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00440\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Lazily\ set\ producer\ thread\ ID}}
+\DoxyCodeLine{00441\ \ \ \ \ \ \ \ \ m\_producerThreadID\ =\ m\_producerThreadID\ !=\ std::thread::id()\ ?}
+\DoxyCodeLine{00442\ \ \ \ \ \ \ \ \ \ \ \ \ m\_producerThreadID\ :\ std::this\_thread::get\_id();}
+\DoxyCodeLine{00443\ \ \ \ \ \}}
+\DoxyCodeLine{00444\ }
+\DoxyCodeLine{00445\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ markConsumerThread()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00446\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00447\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Lazily\ set\ consumer\ thread\ ID}}
+\DoxyCodeLine{00448\ \ \ \ \ \ \ \ \ m\_consumerThreadID\ =\ m\_consumerThreadID\ !=\ std::thread::id()\ ?}
+\DoxyCodeLine{00449\ \ \ \ \ \ \ \ \ \ \ \ \ m\_consumerThreadID\ :\ std::this\_thread::get\_id();}
+\DoxyCodeLine{00450\ \ \ \ \ \}}
+\DoxyCodeLine{00451\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00452\ }
+\DoxyCodeLine{00453\ \ \ \ \ std::array<Item,\ N>\ \ \ \ \ \ \ m\_items;}
+\DoxyCodeLine{00454\ \ \ \ \ std::size\_t\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_produceHead;}
+\DoxyCodeLine{00455\ \ \ \ \ std::size\_t\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_consumeHead;}
+\DoxyCodeLine{00456\ \ \ \ \ std::atomic\_uint\_fast64\_t\ m\_headDistance;}
+\DoxyCodeLine{00457\ \textcolor{preprocessor}{\#if\ PH\_DEBUG}}
+\DoxyCodeLine{00458\ \ \ \ \ \textcolor{comment}{//\ Though\ they\ are\ lazily\ set,\ no\ need\ to\ synchronize\ them\ since\ if\ everything\ is\ used\ correctly,}}
+\DoxyCodeLine{00459\ \ \ \ \ \textcolor{comment}{//\ each\ of\ them\ should\ be\ loaded/stored\ from\ their\ own\ thread.\ Seeing\ uninitialized\ or\ corrupted\ }}
+\DoxyCodeLine{00460\ \ \ \ \ \textcolor{comment}{//\ value\ generally\ will\ cause\ the\ comparison\ to\ current\ thread\ ID\ to\ fail\ which\ is\ also\ what\ we\ want.}}
+\DoxyCodeLine{00461\ \ \ \ \ \textcolor{keyword}{mutable}\ std::thread::id\ \ \ m\_producerThreadID;}
+\DoxyCodeLine{00462\ \ \ \ \ \textcolor{keyword}{mutable}\ std::thread::id\ \ \ m\_consumerThreadID;}
+\DoxyCodeLine{00463\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00464\ \};}
+\DoxyCodeLine{00465\ }
+\DoxyCodeLine{00466\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+
+\end{DoxyCode}

@@ -1,0 +1,51 @@
+\doxysection{location.\+h}
+\hypertarget{location_8h_source}{}\label{location_8h_source}\index{Source/Math/Geometry/location.h@{Source/Math/Geometry/location.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Math/TVector2.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Math/constant.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}Math/time.h"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <cmath>}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph_1_1math}{ph::math}}}
+\DoxyCodeLine{00010\ \{}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00023\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{TVector2<T>}}\ \mbox{\hyperlink{namespaceph_1_1math_aea61422c22a925abcb12792d024217cc}{sun\_sky\_phi\_theta}}(}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keyword}{const}\ T\ solarTime24H,}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{const}\ T\ julianDate,}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{const}\ T\ siteLatitudeRadians)}
+\DoxyCodeLine{00027\ \{}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{using\ namespace\ }ph::math::constant;}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{comment}{//\ Approximated\ solar\ declination\ in\ radians}}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{const}\ T\ delta\ =\ }
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(0.4093)\ *\ std::sin(two\_pi<T>\ *\ (julianDate\ -\/\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(81))\ /\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(368));}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{const}\ T\ sinDelta\ \ \ \ =\ std::sin(delta);}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{const}\ T\ cosDelta\ \ \ \ =\ std::cos(delta);}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{const}\ T\ sinLatitude\ =\ std::sin(siteLatitudeRadians);}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keyword}{const}\ T\ cosLatitude\ =\ std::cos(siteLatitudeRadians);}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{const}\ T\ angleTerm\ \ \ \ =\ pi<T>\ *\ solarTime24H\ /\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(12);}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{const}\ T\ sinAngleTerm\ =\ std::sin(angleTerm);}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keyword}{const}\ T\ cosAngleTerm\ =\ std::cos(angleTerm);}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keyword}{const}\ T\ sunPhiPreetham\ =\ std::atan((-\/cosDelta\ *\ sinAngleTerm)\ /\ (cosLatitude\ *\ sinDelta\ -\/\ sinLatitude\ *\ cosDelta\ *\ cosAngleTerm));}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keyword}{const}\ T\ sunTheta\ \ \ \ \ \ \ =\ pi<T>\ /\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(2)\ -\/\ std::asin(sinLatitude\ *\ sinDelta\ -\/\ cosLatitude\ *\ cosDelta\ *\ cosAngleTerm);}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{comment}{//\ Note\ that\ <sunPhiPreetham>\ here\ has\ (CW\ order)}}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{comment}{//\ 0\ =\ south,\ pi/2\ =\ west,\ pi\ =\ north\ and\ -\/pi/2\ =\ east;\ }}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{comment}{//\ convert\ it\ to\ engine\ order\ here.}}
+\DoxyCodeLine{00049\ \ \ \ \ T\ sunPhi\ =\ -\/sunPhiPreetham\ +\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(3\ /\ 2)\ *\ pi<T>;}
+\DoxyCodeLine{00050\ \ \ \ \ sunPhi\ =\ sunPhi\ >\ two\_pi<T>\ ?\ sunPhi\ -\/\ two\_pi<T>\ :\ sunPhi;}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordflow}{return}\ \{sunPhi,\ sunTheta\};}
+\DoxyCodeLine{00053\ \}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \}\textcolor{comment}{//\ end\ namespace\ ph::math}}
+
+\end{DoxyCode}

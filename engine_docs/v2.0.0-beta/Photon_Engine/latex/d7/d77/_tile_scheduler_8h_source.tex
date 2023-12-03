@@ -1,0 +1,143 @@
+\doxysection{Tile\+Scheduler.\+h}
+\hypertarget{_tile_scheduler_8h_source}{}\label{_tile_scheduler_8h_source}\index{Source/Core/Scheduler/TileScheduler.h@{Source/Core/Scheduler/TileScheduler.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Core/Scheduler/WorkScheduler.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{math_8h}{Math/math.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}Math/constant.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}Common/assertion.h"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}Core/Scheduler/GridScheduler.h"{}}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00012\ \{}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ \ \ \ Divide\ work\ region\ into\ rectangles\ with\ prescribed\ dimensions.}}
+\DoxyCodeLine{00016\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00017\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_tile_scheduler}{TileScheduler}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classph_1_1_work_scheduler}{WorkScheduler}}}
+\DoxyCodeLine{00018\ \{}
+\DoxyCodeLine{00019\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keyword}{enum\ class}\ EOrigin}
+\DoxyCodeLine{00021\ \ \ \ \ \{}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ LOWER\_LEFT,}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ LOWER\_RIGHT,}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ UPPER\_LEFT,}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ UPPER\_RIGHT}
+\DoxyCodeLine{00026\ \ \ \ \ \};}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \ \ \ \ \mbox{\hyperlink{classph_1_1_tile_scheduler}{TileScheduler}}();}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \ \ \ \mbox{\hyperlink{classph_1_1_tile_scheduler}{TileScheduler}}(}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ std::size\_t\ \ \ \ \ \ \ \ \ \ \ numWorkers,}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_work_unit}{WorkUnit}}\&\ \ \ \ \ \ \ totalWorkUnit,}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{math::Vector2S}}\&\ tileSize);}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ \mbox{\hyperlink{classph_1_1_tile_scheduler}{TileScheduler}}(}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ std::size\_t\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ numWorkers,\ }
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_work_unit}{WorkUnit}}\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ totalWorkUnit,}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{math::Vector2S}}\&\ \ \ \ \ \ \ \ \ tileSize,}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ EOrigin\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ origin,}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ math::constant::AxisIndexType\ prioriAxis);}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00043\ \ \ \ \ \mbox{\hyperlink{classph_1_1_grid_scheduler}{GridScheduler}}\ m\_grid;}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordtype}{void}\ scheduleOne(\mbox{\hyperlink{classph_1_1_work_unit}{WorkUnit}}*\ out\_workUnit)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{static}\ GridScheduler::EOrigin\ toGridOrigin(EOrigin\ origin);}
+\DoxyCodeLine{00048\ \};}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \textcolor{comment}{//\ In-\/header\ Implementations:}}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \textcolor{keyword}{inline}\ TileScheduler::TileScheduler()\ :}
+\DoxyCodeLine{00053\ \ \ \ \ \mbox{\hyperlink{classph_1_1_work_scheduler}{WorkScheduler}}()}
+\DoxyCodeLine{00054\ \{\}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \textcolor{keyword}{inline}\ TileScheduler::TileScheduler(}
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ \ \ \ \ numWorkers,}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keyword}{const}\ WorkUnit\&\ \ \ \ \ \ \ totalWorkUnit,}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keyword}{const}\ math::Vector2S\&\ tileSize)\ :}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \ \ TileScheduler(}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ numWorkers,\ }
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ totalWorkUnit,\ }
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ tileSize,}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ EOrigin::LOWER\_LEFT,}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ math::constant::X\_AXIS)}
+\DoxyCodeLine{00067\ \{\}}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \textcolor{keyword}{inline}\ TileScheduler::TileScheduler(}
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ numWorkers,}
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keyword}{const}\ WorkUnit\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ totalWorkUnit,}
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keyword}{const}\ math::Vector2S\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tileSize,}
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keyword}{const}\ EOrigin\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ origin,}
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keyword}{const}\ math::constant::AxisIndexType\ prioriAxis)\ :}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \ \ \ \ WorkScheduler(numWorkers,\ totalWorkUnit),}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \ \ \ \ m\_grid()}
+\DoxyCodeLine{00079\ \{}
+\DoxyCodeLine{00080\ \ \ \ \ PH\_ASSERT\_MSG(tileSize.product()\ >\ 0,\ tileSize.toString());}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{comment}{//\ since\ grid\ scheduler\ slices\ work\ region,\ we\ need\ to\ round\ up\ the\ }}
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{comment}{//\ grid\ size\ to\ make\ each\ slice\ with\ size\ <tileSize>}}
+\DoxyCodeLine{00084\ \ \ \ \ math::TVector2<int64>\ gridSize(}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceph_1_1math_aa1639a1b307574d4434e62163f699d25}{math::ceil\_div}}(totalWorkUnit.getWidth(),\ \ \textcolor{keyword}{static\_cast<}int64\textcolor{keyword}{>}(tileSize.x())),}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceph_1_1math_aa1639a1b307574d4434e62163f699d25}{math::ceil\_div}}(totalWorkUnit.getHeight(),\ \textcolor{keyword}{static\_cast<}int64\textcolor{keyword}{>}(tileSize.y())));}
+\DoxyCodeLine{00087\ \ \ \ \ gridSize.mulLocal(math::TVector2<int64>(tileSize));}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keyword}{const}\ Region\ gridWorkRegion(}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ totalWorkUnit.getRegion().getMinVertex(),}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ totalWorkUnit.getRegion().getMinVertex()\ +\ gridSize);}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \ \ \ \ m\_grid\ =\ GridScheduler(}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ numWorkers,}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ WorkUnit(gridWorkRegion,\ totalWorkUnit.getDepth()),}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ math::Vector2S(gridWorkRegion.getExtents())\ /\ tileSize,}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ toGridOrigin(origin),}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ prioriAxis);}
+\DoxyCodeLine{00099\ \}}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ TileScheduler::scheduleOne(WorkUnit*\ \textcolor{keyword}{const}\ out\_workUnit)}
+\DoxyCodeLine{00102\ \{}
+\DoxyCodeLine{00103\ \ \ \ \ PH\_ASSERT(out\_workUnit);}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ \ \ \ \ \textcolor{comment}{//\ Tile\ coordinates\ are\ always\ in\ the\ canonical\ Cartesian\ space,\ mapping}}
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{comment}{//\ is\ performed\ later\ on.}}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \ \ \ \ WorkUnit\ gridWorkUnit;}
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{keywordflow}{if}(m\_grid.\mbox{\hyperlink{classph_1_1_work_scheduler_a2903b9d4d450a47d397d2450ee56d8ee}{schedule}}(\&gridWorkUnit))}
+\DoxyCodeLine{00110\ \ \ \ \ \{}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ Region\ tileWorkRegion\ =\ gridWorkUnit.getRegion();}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ tileWorkRegion.intersectWith(m\_totalWorkUnit.getRegion());}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!tileWorkRegion.isEmpty())}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ *out\_workUnit\ =\ WorkUnit(tileWorkRegion,\ gridWorkUnit.getDepth());}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00119\ \ \ \ \ \}}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ \ \ \ \ *out\_workUnit\ =\ WorkUnit();}
+\DoxyCodeLine{00122\ \}}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00124\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ GridScheduler::EOrigin\ TileScheduler::toGridOrigin(\textcolor{keyword}{const}\ EOrigin\ origin)}
+\DoxyCodeLine{00125\ \{}
+\DoxyCodeLine{00126\ \ \ \ \ \textcolor{keywordflow}{switch}(origin)}
+\DoxyCodeLine{00127\ \ \ \ \ \{}
+\DoxyCodeLine{00128\ \ \ \ \ \textcolor{keywordflow}{case}\ EOrigin::LOWER\_LEFT:\ \ \textcolor{keywordflow}{return}\ GridScheduler::EOrigin::LOWER\_LEFT;}
+\DoxyCodeLine{00129\ \ \ \ \ \textcolor{keywordflow}{case}\ EOrigin::LOWER\_RIGHT:\ \textcolor{keywordflow}{return}\ GridScheduler::EOrigin::LOWER\_RIGHT;}
+\DoxyCodeLine{00130\ \ \ \ \ \textcolor{keywordflow}{case}\ EOrigin::UPPER\_LEFT:\ \ \textcolor{keywordflow}{return}\ GridScheduler::EOrigin::UPPER\_LEFT;}
+\DoxyCodeLine{00131\ \ \ \ \ \textcolor{keywordflow}{case}\ EOrigin::UPPER\_RIGHT:\ \textcolor{keywordflow}{return}\ GridScheduler::EOrigin::UPPER\_RIGHT;}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00133\ \ \ \ \ \textcolor{keywordflow}{default}:\ \textcolor{keywordflow}{return}\ GridScheduler::EOrigin::LOWER\_LEFT;}
+\DoxyCodeLine{00134\ \ \ \ \ \}}
+\DoxyCodeLine{00135\ \}}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00137\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+
+\end{DoxyCode}

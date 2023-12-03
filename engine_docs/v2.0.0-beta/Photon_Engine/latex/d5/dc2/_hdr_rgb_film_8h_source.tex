@@ -1,0 +1,66 @@
+\doxysection{Hdr\+Rgb\+Film.\+h}
+\hypertarget{_hdr_rgb_film_8h_source}{}\label{_hdr_rgb_film_8h_source}\index{Source/Core/Filmic/HdrRgbFilm.h@{Source/Core/Filmic/HdrRgbFilm.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Common/primitive\_type.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Math/math\_fwd.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}Core/Receiver/RadianceSensor.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}Core/Filmic/TSamplingFilm.h"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}Math/Color/Spectrum.h"{}}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00013\ \{}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ \ \ \ A\ film\ that\ records\ RGB\ values\ internally.\ Although\ film\ samples\ are}}
+\DoxyCodeLine{00017\ \textcolor{comment}{\ \ \ \ added\ as\ spectral\ values,\ they\ are\ automatically\ converted\ to\ linear\ sRGB}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ \ \ \ values\ for\ storage.\ }}
+\DoxyCodeLine{00019\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{comment}{//\ TODO:\ move\ and\ copy}}
+\DoxyCodeLine{00022\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_hdr_rgb_film}{HdrRgbFilm}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classph_1_1_t_sampling_film}{TSamplingFilm}}<math::Spectrum>}
+\DoxyCodeLine{00023\ \{}
+\DoxyCodeLine{00024\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00025\ \ \ \ \ \mbox{\hyperlink{classph_1_1_hdr_rgb_film}{HdrRgbFilm}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ \ \ \mbox{\hyperlink{classph_1_1_hdr_rgb_film}{HdrRgbFilm}}(}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ int64\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ actualWidthPx,\ }
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ int64\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ actualHeightPx,}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_sample_filter}{SampleFilter}}\&\ filter);}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \ \ \mbox{\hyperlink{classph_1_1_hdr_rgb_film}{HdrRgbFilm}}(}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ int64\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ actualWidthPx,\ }
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ int64\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ actualHeightPx,}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d}{math::TAABB2D<int64>}}\&\ effectiveWindowPx,}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_sample_filter}{SampleFilter}}\&\ \ \ \ \ \ \ \ \ filter);}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \ \ \mbox{\hyperlink{classph_1_1_hdr_rgb_film}{HdrRgbFilm}}(\mbox{\hyperlink{classph_1_1_hdr_rgb_film}{HdrRgbFilm}}\&\&\ other);}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordtype}{void}\ addSample(float64\ xPx,\ float64\ yPx,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_spectrum}{math::Spectrum}}\&\ spectrum)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordtype}{void}\ clear()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordtype}{void}\ setEffectiveWindowPx(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d}{math::TAABB2D<int64>}}\&\ effectiveWindow)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordtype}{void}\ addSample(float64\ xPx,\ float64\ yPx,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\&\ rgb);}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordtype}{void}\ mergeWith(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_hdr_rgb_film}{HdrRgbFilm}}\&\ other);}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \mbox{\hyperlink{classph_1_1_hdr_rgb_film}{HdrRgbFilm}}\&\ operator\ =\ (\mbox{\hyperlink{classph_1_1_hdr_rgb_film}{HdrRgbFilm}}\&\&\ other);}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{comment}{//\ HACK}}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordtype}{void}\ setPixel(float64\ xPx,\ float64\ yPx,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_spectrum}{math::Spectrum}}\&\ spectrum);}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordtype}{void}\ developRegion(\mbox{\hyperlink{classph_1_1_t_frame}{HdrRgbFrame}}\&\ out\_frame,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d}{math::TAABB2D<int64>}}\&\ regionPx)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \ \ std::vector<RadianceSensor>\ m\_pixelRadianceSensors;}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keywordtype}{void}\ resizeRadianceSensorBuffer();}
+\DoxyCodeLine{00058\ \};}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+
+\end{DoxyCode}

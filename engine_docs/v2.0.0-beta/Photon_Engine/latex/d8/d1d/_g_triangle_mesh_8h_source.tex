@@ -1,0 +1,78 @@
+\doxysection{GTriangle\+Mesh.\+h}
+\hypertarget{_g_triangle_mesh_8h_source}{}\label{_g_triangle_mesh_8h_source}\index{Source/Actor/Geometry/GTriangleMesh.h@{Source/Actor/Geometry/GTriangleMesh.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Actor/Geometry/Geometry.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Actor/Geometry/GTriangle.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}SDL/sdl\_interface.h"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00010\ \{}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_g_triangle_mesh}{GTriangleMesh}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classph_1_1_geometry}{Geometry}}}
+\DoxyCodeLine{00018\ \{}
+\DoxyCodeLine{00019\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00020\ \ \ \ \ \mbox{\hyperlink{classph_1_1_g_triangle_mesh}{GTriangleMesh}}();}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \ \ \ \ \mbox{\hyperlink{classph_1_1_g_triangle_mesh}{GTriangleMesh}}(}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ std::vector<math::Vector3R>\ positions,}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ std::vector<math::Vector3R>\ texCoords,}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ std::vector<math::Vector3R>\ normals);}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_g_triangle_mesh_a3abf0036f812febb7a10c9a859d9b845}{storeCooked}}(}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_cooked_geometry}{CookedGeometry}}\&\ out\_geometry,}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_cooking_context}{CookingContext}}\&\ ctx)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordtype}{void}\ genPrimitive(}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_primitive_building_material}{PrimitiveBuildingMaterial}}\&\ \ \ \ \ \ \ \ \ data,}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ std::vector<std::unique\_ptr<Primitive>>\&\ out\_primitives)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ std::shared\_ptr<Geometry>\ genTransformed(}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_static_affine_transform}{math::StaticAffineTransform}}\&\ transform)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \ \ std::vector<GTriangle>\ genTriangles()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordtype}{void}\ addTriangle(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_g_triangle}{GTriangle}}\&\ gTriangle);}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00042\ \ \ \ \ std::vector<math::Vector3R>\ m\_positions;}
+\DoxyCodeLine{00043\ \ \ \ \ std::vector<math::Vector3R>\ m\_texCoords;}
+\DoxyCodeLine{00044\ \ \ \ \ std::vector<math::Vector3R>\ m\_normals;}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00047\ \ \ \ \ PH\_DEFINE\_SDL\_CLASS(\mbox{\hyperlink{classph_1_1_t_sdl_owner_class}{TSdlOwnerClass<GTriangleMesh>}})}
+\DoxyCodeLine{00048\ \ \ \ \ \{}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ ClassType\ clazz(\textcolor{stringliteral}{"{}triangle-\/mesh"{}});}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ clazz.docName(\textcolor{stringliteral}{"{}Triangle\ Mesh"{}});}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ clazz.description(\textcolor{stringliteral}{"{}A\ cluster\ of\ triangles\ forming\ a\ singe\ shape\ in\ 3-\/D\ space."{}});}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ clazz.baseOn<\mbox{\hyperlink{classph_1_1_geometry}{Geometry}}>();}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_sdl_vector3_array}{TSdlVector3Array<OwnerType>}}\ positions(\textcolor{stringliteral}{"{}positions"{}},\ \&OwnerType::m\_positions);}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ positions.description(}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Vertex\ coordinates\ of\ all\ triangles.\ Every\ three\ vector3s\ in\ the\ array\ represents\ "{}}}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}a\ single\ triangle.\ The\ vertices\ are\ expected\ to\ be\ given\ in\ counterclockwise\ order."{}});}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ positions.required();}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ clazz.addField(positions);}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_sdl_vector3_array}{TSdlVector3Array<OwnerType>}}\ texCoords(\textcolor{stringliteral}{"{}texture-\/coordinates"{}},\ \&OwnerType::m\_texCoords);}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ texCoords.description(}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Similar\ to\ positions,\ except\ that\ the\ array\ stores\ texture\ coordinates\ for\ each\ triangle."{}});}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ texCoords.optional();}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ clazz.addField(texCoords);}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_sdl_vector3_array}{TSdlVector3Array<OwnerType>}}\ normals(\textcolor{stringliteral}{"{}normals"{}},\ \&OwnerType::m\_normals);}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ normals.description(}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Similar\ to\ positions,\ except\ that\ the\ array\ stores\ normal\ vectors\ for\ each\ triangle."{}});}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ normals.optional();}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ clazz.addField(normals);}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ clazz;}
+\DoxyCodeLine{00074\ \ \ \ \ \}}
+\DoxyCodeLine{00075\ \};}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+
+\end{DoxyCode}

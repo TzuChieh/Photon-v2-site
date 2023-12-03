@@ -1,0 +1,71 @@
+\doxysection{AModel\+Light.\+h}
+\hypertarget{_a_model_light_8h_source}{}\label{_a_model_light_8h_source}\index{Source/Actor/Light/AModelLight.h@{Source/Actor/Light/AModelLight.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Actor/Light/AGeometricLight.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Actor/Image/Image.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}SDL/sdl\_interface.h"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00008\ \{}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_a_model_light}{AModelLight}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classph_1_1_a_geometric_light}{AGeometricLight}}}
+\DoxyCodeLine{00011\ \{}
+\DoxyCodeLine{00012\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00013\ \ \ \ \ std::shared\_ptr<Geometry>\ getGeometry(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_cooking_context}{CookingContext}}\&\ ctx)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00014\ \ \ \ \ std::shared\_ptr<Material>\ getMaterial(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_cooking_context}{CookingContext}}\&\ ctx)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_emitter}{Emitter}}*\ buildEmitter(}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_cooking_context}{CookingContext}}\&\ ctx,}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ TSpanView<const\ Primitive*>\ lightPrimitives)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keywordtype}{void}\ setGeometry(\textcolor{keyword}{const}\ std::shared\_ptr<Geometry>\&\ geometry);}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordtype}{void}\ setMaterial(\textcolor{keyword}{const}\ std::shared\_ptr<Material>\&\ material);}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordtype}{void}\ setBackFaceEmit(\textcolor{keywordtype}{bool}\ isBackFaceEmit);}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00025\ \ \ \ \ std::shared\_ptr<Geometry>\ m\_geometry;}
+\DoxyCodeLine{00026\ \ \ \ \ std::shared\_ptr<Material>\ m\_material;}
+\DoxyCodeLine{00027\ \ \ \ \ std::shared\_ptr<Image>\ m\_emittedRadiance;}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordtype}{bool}\ m\_isBackFaceEmit;}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00031\ \ \ \ \ PH\_DEFINE\_SDL\_CLASS(\mbox{\hyperlink{classph_1_1_t_sdl_owner_class}{TSdlOwnerClass<AModelLight>}})}
+\DoxyCodeLine{00032\ \ \ \ \ \{}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ ClassType\ clazz(\textcolor{stringliteral}{"{}model-\/light"{}});}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ clazz.docName(\textcolor{stringliteral}{"{}Model\ Light\ Actor"{}});}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ clazz.description(}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}A\ light\ source\ that\ emits\ energy\ from\ the\ surface\ of\ a\ geometry.\ A\ surface\ material\ model\ "{}}}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}can\ also\ be\ given\ to\ describe\ its\ surface\ appearance."{}});}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ clazz.baseOn<\mbox{\hyperlink{classph_1_1_a_geometric_light}{AGeometricLight}}>();}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_sdl_reference}{TSdlReference<Geometry,\ OwnerType>}}\ geometry(\textcolor{stringliteral}{"{}geometry"{}},\ \&OwnerType::m\_geometry);}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ geometry.description(\textcolor{stringliteral}{"{}A\ geometry\ that\ defines\ the\ surface\ energy\ is\ going\ to\ emit\ from."{}});}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ geometry.required();}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ clazz.addField(geometry);}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_sdl_reference}{TSdlReference<Material,\ OwnerType>}}\ material(\textcolor{stringliteral}{"{}material"{}},\ \&OwnerType::m\_material);}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ material.description(\textcolor{stringliteral}{"{}A\ material\ that\ describes\ this\ source's\ surface\ appearance."{}});}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ material.optional();}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ clazz.addField(material);}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_sdl_reference}{TSdlReference<Image,\ OwnerType>}}\ emittedRadiance(\textcolor{stringliteral}{"{}emitted-\/radiance"{}},\ \&OwnerType::m\_emittedRadiance);}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ emittedRadiance.description(\textcolor{stringliteral}{"{}An\ image\ that\ describes\ the\ emitted\ radiance\ across\ the\ surface."{}});}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ emittedRadiance.optional();}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ clazz.addField(emittedRadiance);}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_sdl_bool}{TSdlBool<OwnerType>}}\ isBackFaceEmit(\textcolor{stringliteral}{"{}back-\/face-\/emit"{}},\ \&OwnerType::m\_isBackFaceEmit);}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ isBackFaceEmit.description(\textcolor{stringliteral}{"{}Whether\ the\ energy\ should\ emit\ from\ the\ back\ face\ of\ the\ geometry."{}});}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ isBackFaceEmit.defaultTo(\textcolor{keyword}{false});}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ isBackFaceEmit.optional();}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ clazz.addField(isBackFaceEmit);}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ clazz;}
+\DoxyCodeLine{00062\ \ \ \ \ \}}
+\DoxyCodeLine{00063\ \};}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+
+\end{DoxyCode}

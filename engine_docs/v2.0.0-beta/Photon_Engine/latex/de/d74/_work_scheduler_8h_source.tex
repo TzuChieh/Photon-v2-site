@@ -1,0 +1,121 @@
+\doxysection{Work\+Scheduler.\+h}
+\hypertarget{_work_scheduler_8h_source}{}\label{_work_scheduler_8h_source}\index{Source/Core/Scheduler/WorkScheduler.h@{Source/Core/Scheduler/WorkScheduler.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Core/Scheduler/IWorkDispatcher.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Core/Scheduler/WorkUnit.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}Common/primitive\_type.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}Common/assertion.h"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00011\ \{}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00019\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_work_scheduler}{WorkScheduler}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classph_1_1_i_work_dispatcher}{IWorkDispatcher}}}
+\DoxyCodeLine{00020\ \{}
+\DoxyCodeLine{00021\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00024\ \ \ \ \ \mbox{\hyperlink{classph_1_1_work_scheduler_a883f80a5c5b0e47d18ba881ab5251b03}{WorkScheduler}}();}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00028\ \ \ \ \ \mbox{\hyperlink{classph_1_1_work_scheduler_a883f80a5c5b0e47d18ba881ab5251b03}{WorkScheduler}}(std::size\_t\ numWorkers,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_work_unit}{WorkUnit}}\&\ totalWorkUnit);}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_work_scheduler_ad8b870d2489a6e249ab156f445c80114}{dispatch}}(\mbox{\hyperlink{classph_1_1_work_unit}{WorkUnit}}*\ out\_workUnit)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_work_scheduler_a2903b9d4d450a47d397d2450ee56d8ee}{schedule}}(\mbox{\hyperlink{classph_1_1_work_unit}{WorkUnit}}*\ out\_workUnit);}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordtype}{void}\ scheduleAll(std::vector<WorkUnit>\&\ out\_workUnits);}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordtype}{void}\ submit(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_work_unit}{WorkUnit}}\&\ workUnit);}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordtype}{float}\ getScheduledFraction()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordtype}{float}\ getSubmittedFraction()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_work_scheduler_ab1055785bbb680ab6f2710e87bc36cdd}{isExhausted}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00053\ \ \ \ \ std::size\_t\ m\_numWorkers;}
+\DoxyCodeLine{00054\ \ \ \ \ \mbox{\hyperlink{classph_1_1_work_unit}{WorkUnit}}\ \ \ \ m\_totalWorkUnit;}
+\DoxyCodeLine{00055\ \ \ \ \ std::size\_t\ m\_totalVolume;}
+\DoxyCodeLine{00056\ \ \ \ \ std::size\_t\ m\_scheduledVolume;}
+\DoxyCodeLine{00057\ \ \ \ \ std::size\_t\ m\_submittedVolume;}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ scheduleOne(\mbox{\hyperlink{classph_1_1_work_unit}{WorkUnit}}*\ out\_workUnit)\ =\ 0;}
+\DoxyCodeLine{00061\ \};}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \textcolor{comment}{//\ In-\/header\ Implementations:}}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_work_scheduler_a883f80a5c5b0e47d18ba881ab5251b03}{WorkScheduler::WorkScheduler}}()\ :\ }
+\DoxyCodeLine{00066\ \ \ \ \ \mbox{\hyperlink{classph_1_1_work_scheduler}{WorkScheduler}}(1,\ \mbox{\hyperlink{classph_1_1_work_unit}{WorkUnit}}())}
+\DoxyCodeLine{00067\ \{\}}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_work_scheduler_a883f80a5c5b0e47d18ba881ab5251b03}{WorkScheduler::WorkScheduler}}(\textcolor{keyword}{const}\ std::size\_t\ numWorkers,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_work_unit}{WorkUnit}}\&\ totalWorkUnit)\ :}
+\DoxyCodeLine{00070\ \ \ \ \ m\_numWorkers\ \ \ \ \ (numWorkers),}
+\DoxyCodeLine{00071\ \ \ \ \ m\_totalWorkUnit\ \ (totalWorkUnit),}
+\DoxyCodeLine{00072\ \ \ \ \ m\_totalVolume\ \ \ \ (totalWorkUnit.getVolume()),}
+\DoxyCodeLine{00073\ \ \ \ \ m\_scheduledVolume(0),}
+\DoxyCodeLine{00074\ \ \ \ \ m\_submittedVolume(0)}
+\DoxyCodeLine{00075\ \{}
+\DoxyCodeLine{00076\ \ \ \ \ PH\_ASSERT\_GE(numWorkers,\ 1);}
+\DoxyCodeLine{00077\ \}}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_work_scheduler_ad8b870d2489a6e249ab156f445c80114}{WorkScheduler::dispatch}}(\mbox{\hyperlink{classph_1_1_work_unit}{WorkUnit}}*\ \textcolor{keyword}{const}\ out\_workUnit)}
+\DoxyCodeLine{00080\ \{}
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1_work_scheduler_a2903b9d4d450a47d397d2450ee56d8ee}{schedule}}(out\_workUnit);}
+\DoxyCodeLine{00082\ \}}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_work_scheduler_a2903b9d4d450a47d397d2450ee56d8ee}{WorkScheduler::schedule}}(\mbox{\hyperlink{classph_1_1_work_unit}{WorkUnit}}*\ \textcolor{keyword}{const}\ out\_workUnit)}
+\DoxyCodeLine{00085\ \{}
+\DoxyCodeLine{00086\ \ \ \ \ PH\_ASSERT(out\_workUnit);}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keywordflow}{while}(!\mbox{\hyperlink{classph_1_1_work_scheduler_ab1055785bbb680ab6f2710e87bc36cdd}{isExhausted}}())}
+\DoxyCodeLine{00089\ \ \ \ \ \{}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ scheduleOne(out\_workUnit);}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ volume\ =\ out\_workUnit-\/>getVolume();}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(volume\ >\ 0)}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ m\_scheduledVolume\ +=\ volume;}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00098\ \ \ \ \ \}}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \ \ \ \ PH\_ASSERT\_EQ(m\_scheduledVolume,\ m\_totalVolume);}
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00102\ \}}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ WorkScheduler::scheduleAll(std::vector<WorkUnit>\&\ out\_workUnits)}
+\DoxyCodeLine{00105\ \{}
+\DoxyCodeLine{00106\ \ \ \ \ \mbox{\hyperlink{classph_1_1_work_unit}{WorkUnit}}\ workUnit;}
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{keywordflow}{while}(\mbox{\hyperlink{classph_1_1_work_scheduler_a2903b9d4d450a47d397d2450ee56d8ee}{schedule}}(\&workUnit))}
+\DoxyCodeLine{00108\ \ \ \ \ \{}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ out\_workUnits.push\_back(workUnit);}
+\DoxyCodeLine{00110\ \ \ \ \ \}}
+\DoxyCodeLine{00111\ \}}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ WorkScheduler::submit(\textcolor{keyword}{const}\ WorkUnit\&\ workUnit)}
+\DoxyCodeLine{00114\ \{}
+\DoxyCodeLine{00115\ \ \ \ \ m\_submittedVolume\ +=\ workUnit.getVolume();}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ \ \ \ \ PH\_ASSERT\_LE(m\_submittedVolume,\ m\_totalVolume);}
+\DoxyCodeLine{00118\ \}}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{float}\ WorkScheduler::getScheduledFraction()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00121\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{float}\textcolor{keyword}{>}(m\_scheduledVolume)\ /\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{float}\textcolor{keyword}{>}(m\_totalVolume);}
+\DoxyCodeLine{00123\ \}}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{float}\ WorkScheduler::getSubmittedFraction()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00126\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00127\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{float}\textcolor{keyword}{>}(m\_submittedVolume)\ /\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{float}\textcolor{keyword}{>}(m\_totalVolume);}
+\DoxyCodeLine{00128\ \}}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_work_scheduler_ab1055785bbb680ab6f2710e87bc36cdd}{WorkScheduler::isExhausted}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00131\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00132\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_scheduledVolume\ ==\ m\_totalVolume;}
+\DoxyCodeLine{00133\ \}}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00135\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+
+\end{DoxyCode}

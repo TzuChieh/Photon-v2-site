@@ -1,0 +1,93 @@
+\doxysection{Path\+Tracing\+Visualizer.\+h}
+\hypertarget{_path_tracing_visualizer_8h_source}{}\label{_path_tracing_visualizer_8h_source}\index{Source/EngineEnv/Visualizer/PathTracingVisualizer.h@{Source/EngineEnv/Visualizer/PathTracingVisualizer.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}EngineEnv/Visualizer/FrameVisualizer.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Common/primitive\_type.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}Math/TVector2.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}Math/Geometry/TAABB2D.h"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}SDL/sdl\_interface.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}EngineEnv/Visualizer/sdl\_scheduler\_type.h"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}EngineEnv/Visualizer/sdl\_ray\_energy\_estimator\_type.h"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}EngineEnv/Visualizer/sdl\_sample\_filter\_type.h"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}Core/Filmic/SampleFilter.h"{}}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}\ \{\ \textcolor{keyword}{class\ }IRayEnergyEstimator;\ \}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00018\ \{}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_path_tracing_visualizer}{PathTracingVisualizer}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classph_1_1_frame_visualizer}{FrameVisualizer}}}
+\DoxyCodeLine{00021\ \{}
+\DoxyCodeLine{00022\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_path_tracing_visualizer}{PathTracingVisualizer}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordtype}{void}\ cook(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_core_cooking_context}{CoreCookingContext}}\&\ ctx,\ \mbox{\hyperlink{classph_1_1_core_cooked_unit}{CoreCookedUnit}}\&\ cooked)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ \ \ EScheduler\ getScheduler()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00028\ \ \ \ \ ERayEnergyEstimator\ getEstimator()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00029\ \ \ \ \ ESampleFilter\ getSampleFilter()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00032\ \ \ \ \ \mbox{\hyperlink{classph_1_1_sample_filter}{SampleFilter}}\ makeSampleFilter()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00033\ \ \ \ \ std::unique\_ptr<IRayEnergyEstimator>\ makeEstimator()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00036\ \ \ \ \ EScheduler\ \ \ \ \ \ \ \ \ \ m\_scheduler;}
+\DoxyCodeLine{00037\ \ \ \ \ ERayEnergyEstimator\ m\_estimator;}
+\DoxyCodeLine{00038\ \ \ \ \ ESampleFilter\ \ \ \ \ \ \ m\_sampleFilter;}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00041\ \ \ \ \ PH\_DEFINE\_SDL\_CLASS(\mbox{\hyperlink{classph_1_1_t_sdl_owner_class}{TSdlOwnerClass<PathTracingVisualizer>}})}
+\DoxyCodeLine{00042\ \ \ \ \ \{}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ ClassType\ clazz(\textcolor{stringliteral}{"{}path-\/tracing"{}});}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ clazz.docName(\textcolor{stringliteral}{"{}Path\ Tracing\ Visualizer"{}});}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ clazz.description(\textcolor{stringliteral}{"{}Render\ frames\ with\ common\ path\ tracing\ methods."{}});}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ clazz.baseOn<\mbox{\hyperlink{classph_1_1_frame_visualizer}{FrameVisualizer}}>();}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_sdl_enum_field}{TSdlEnumField<OwnerType,\ EScheduler>}}\ scheduler(\textcolor{stringliteral}{"{}scheduler"{}},\ \&OwnerType::m\_scheduler);}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ scheduler.description(\textcolor{stringliteral}{"{}Scheduler\ for\ rendering,\ affect\ the\ order\ of\ rendered\ regions."{}});}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ scheduler.defaultTo(EScheduler::SpiralGrid);}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ scheduler.optional();}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ clazz.addField(scheduler);}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_sdl_enum_field}{TSdlEnumField<OwnerType,\ ERayEnergyEstimator>}}\ estimator(\textcolor{stringliteral}{"{}estimator"{}},\ \&OwnerType::m\_estimator);}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ estimator.description(\textcolor{stringliteral}{"{}The\ energy\ estimating\ component\ used\ by\ the\ visualizer."{}});}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ estimator.defaultTo(ERayEnergyEstimator::BNEEPT);}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ estimator.optional();}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ clazz.addField(estimator);}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_sdl_enum_field}{TSdlEnumField<OwnerType,\ ESampleFilter>}}\ sampleFilter(\textcolor{stringliteral}{"{}sample-\/filter"{}},\ \&OwnerType::m\_sampleFilter);}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ sampleFilter.description(\textcolor{stringliteral}{"{}Sample\ filter\ for\ the\ film\ sampling\ process."{}});}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ sampleFilter.defaultTo(ESampleFilter::BlackmanHarris);}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ sampleFilter.optional();}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ clazz.addField(sampleFilter);}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ clazz;}
+\DoxyCodeLine{00067\ \ \ \ \ \}}
+\DoxyCodeLine{00068\ \};}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \textcolor{comment}{//\ In-\/header\ Implementations:}}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \textcolor{keyword}{inline}\ EScheduler\ PathTracingVisualizer::getScheduler()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00073\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_scheduler;}
+\DoxyCodeLine{00075\ \}}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \textcolor{keyword}{inline}\ ERayEnergyEstimator\ PathTracingVisualizer::getEstimator()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00078\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_estimator;}
+\DoxyCodeLine{00080\ \}}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \textcolor{keyword}{inline}\ ESampleFilter\ PathTracingVisualizer::getSampleFilter()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00083\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_sampleFilter;}
+\DoxyCodeLine{00085\ \}}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+
+\end{DoxyCode}

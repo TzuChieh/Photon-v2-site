@@ -1,0 +1,243 @@
+\doxysection{TDecomposed\+Transform.\+h}
+\hypertarget{_t_decomposed_transform_8h_source}{}\label{_t_decomposed_transform_8h_source}\index{Source/Math/Transform/TDecomposedTransform.h@{Source/Math/Transform/TDecomposedTransform.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Math/TVector3.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Math/TQuaternion.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}Math/TMatrix4.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{math_8h}{Math/math.h}}"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}Common/assertion.h"{}}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <cstdlib>}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph_1_1math}{ph::math}}}
+\DoxyCodeLine{00012\ \{}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00021\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00022\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1math_1_1_t_decomposed_transform}{TDecomposedTransform}}\ final}
+\DoxyCodeLine{00023\ \{}
+\DoxyCodeLine{00024\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00028\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_decomposed_transform_aa65d2b89183683acd3f20bcda9cba229}{TDecomposedTransform}}();}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_decomposed_transform_aa65d2b89183683acd3f20bcda9cba229}{TDecomposedTransform}}(}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{TVector3<T>}}\&\ position,}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_quaternion}{TQuaternion<T>}}\&\ rotation,}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{TVector3<T>}}\&\ scale);}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1math_1_1_t_decomposed_transform}{TDecomposedTransform}}\&\ translate(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{TVector3<T>}}\&\ amount)}
+\DoxyCodeLine{00036\ \ \ \ \ \{}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ translate(amount.x(),\ amount.y(),\ amount.z());}
+\DoxyCodeLine{00038\ \ \ \ \ \}}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1math_1_1_t_decomposed_transform}{TDecomposedTransform}}\&\ translate(\textcolor{keyword}{const}\ T\ x,\ \textcolor{keyword}{const}\ T\ y,\ \textcolor{keyword}{const}\ T\ z)}
+\DoxyCodeLine{00041\ \ \ \ \ \{}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ m\_position.addLocal(\{x,\ y,\ z\});}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00045\ \ \ \ \ \}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1math_1_1_t_decomposed_transform}{TDecomposedTransform}}\ rotate(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_quaternion}{TQuaternion<T>}}\&\ rotation)}
+\DoxyCodeLine{00048\ \ \ \ \ \{}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_quaternion}{TQuaternion<T>}}\ addtionalRotation(rotation);}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ addtionalRotation.normalizeLocal();}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_quaternion}{TQuaternion<T>}}\ totalRotation\ =\ addtionalRotation.mul(m\_rotation).normalizeLocal();}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ setRotation(totalRotation);}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00056\ \ \ \ \ \}}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1math_1_1_t_decomposed_transform}{TDecomposedTransform}}\&\ rotate(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{TVector3<T>}}\&\ axis,\ \textcolor{keyword}{const}\ T\ degrees)}
+\DoxyCodeLine{00059\ \ \ \ \ \{}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{TVector3<T>}}\ normalizedAxis(axis.normalize());}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ rotate(\mbox{\hyperlink{classph_1_1math_1_1_t_quaternion}{TQuaternion<T>}}(normalizedAxis,\ \mbox{\hyperlink{namespaceph_1_1math_a8d924d614efcdd92fcce816a3f8eebf3}{math::to\_radians}}(degrees)));}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00064\ \ \ \ \ \}}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1math_1_1_t_decomposed_transform}{TDecomposedTransform}}\&\ scale(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{TVector3<T>}}\&\ amount)}
+\DoxyCodeLine{00067\ \ \ \ \ \{}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ scale(amount.x(),\ amount.y(),\ amount.z());}
+\DoxyCodeLine{00069\ \ \ \ \ \}}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1math_1_1_t_decomposed_transform}{TDecomposedTransform}}\&\ scale(\textcolor{keyword}{const}\ T\ x,\ \textcolor{keyword}{const}\ T\ y,\ \textcolor{keyword}{const}\ T\ z)}
+\DoxyCodeLine{00072\ \ \ \ \ \{}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ m\_scale.mulLocal(\{x,\ y,\ z\});}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00076\ \ \ \ \ \}}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1math_1_1_t_decomposed_transform}{TDecomposedTransform}}\&\ setPosition(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{TVector3<T>}}\&\ position)}
+\DoxyCodeLine{00079\ \ \ \ \ \{}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ m\_position\ =\ position;}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00083\ \ \ \ \ \}}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1math_1_1_t_decomposed_transform}{TDecomposedTransform}}\&\ setRotation(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_quaternion}{TQuaternion<T>}}\&\ rotation)}
+\DoxyCodeLine{00086\ \ \ \ \ \{}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ m\_rotation\ =\ rotation;}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00090\ \ \ \ \ \}}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1math_1_1_t_decomposed_transform}{TDecomposedTransform}}\&\ setScale(\textcolor{keyword}{const}\ T\ scale)}
+\DoxyCodeLine{00093\ \ \ \ \ \{}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ setScale(\mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{TVector3<T>}}(scale,\ scale,\ scale));}
+\DoxyCodeLine{00095\ \ \ \ \ \}}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1math_1_1_t_decomposed_transform}{TDecomposedTransform}}\&\ setScale(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{TVector3<T>}}\&\ scale)}
+\DoxyCodeLine{00098\ \ \ \ \ \{}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ m\_scale\ =\ scale;}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00102\ \ \ \ \ \}}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{TVector3<T>}}\ getPosition()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00105\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_quaternion}{TQuaternion<T>}}\ getRotation()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00106\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{TVector3<T>}}\ getScale()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \ \ \ \ \textcolor{keywordtype}{void}\ genTransformMatrix(\mbox{\hyperlink{classph_1_1math_1_1_t_matrix4}{TMatrix4<T>}}*\ out\_result)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{keywordtype}{void}\ genInverseTransformMatrix(\mbox{\hyperlink{classph_1_1math_1_1_t_matrix4}{TMatrix4<T>}}*\ out\_result)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{comment}{//\ Inverts\ the\ transformation\ components.\ The\ effect\ of\ inverted\ and\ }}
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{comment}{//\ un-\/inverted\ transforms\ will\ cancel\ each\ other\ out.}}
+\DoxyCodeLine{00113\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_decomposed_transform}{TDecomposedTransform}}\ invert()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{keywordtype}{bool}\ hasScaleEffect(T\ margin\ =\ 0)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00116\ \ \ \ \ \textcolor{keywordtype}{bool}\ isScaleUniform(T\ margin\ =\ 0)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{keywordtype}{bool}\ isIdentity()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{keywordtype}{bool}\ operator\ ==\ (\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_decomposed_transform}{TDecomposedTransform}}\&\ rhs)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00120\ \ \ \ \ \textcolor{keywordtype}{bool}\ operator\ !=\ (\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_decomposed_transform}{TDecomposedTransform}}\&\ rhs)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00123\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{TVector3<T>}}\ m\_position;}
+\DoxyCodeLine{00124\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_quaternion}{TQuaternion<T>}}\ m\_rotation;}
+\DoxyCodeLine{00125\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{TVector3<T>}}\ m\_scale;}
+\DoxyCodeLine{00126\ \};}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \textcolor{comment}{//\ In-\/header\ Implementations:}}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00131\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1math_1_1_t_decomposed_transform_aa65d2b89183683acd3f20bcda9cba229}{TDecomposedTransform<T>::TDecomposedTransform}}()}
+\DoxyCodeLine{00132\ \ \ \ \ :\ \mbox{\hyperlink{classph_1_1math_1_1_t_decomposed_transform}{TDecomposedTransform}}(}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \{0,\ 0,\ 0\},}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_quaternion}{TQuaternion<T>::makeNoRotation}}(),}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \{1,\ 1,\ 1\})}
+\DoxyCodeLine{00136\ \{\}}
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00138\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00139\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1math_1_1_t_decomposed_transform_aa65d2b89183683acd3f20bcda9cba229}{TDecomposedTransform<T>::TDecomposedTransform}}(}
+\DoxyCodeLine{00140\ \ \ \ \ \textcolor{keyword}{const}\ TVector3<T>\&\ position,}
+\DoxyCodeLine{00141\ \ \ \ \ \textcolor{keyword}{const}\ TQuaternion<T>\&\ rotation,}
+\DoxyCodeLine{00142\ \ \ \ \ \textcolor{keyword}{const}\ TVector3<T>\&\ scale)}
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00144\ \ \ \ \ :\ m\_position(position)}
+\DoxyCodeLine{00145\ \ \ \ \ ,\ m\_rotation(rotation)}
+\DoxyCodeLine{00146\ \ \ \ \ ,\ m\_scale(scale)}
+\DoxyCodeLine{00147\ \{\}}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00149\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00150\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ TDecomposedTransform<T>::genTransformMatrix(TMatrix4<T>*\ \textcolor{keyword}{const}\ out\_result)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00151\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00152\ \ \ \ \ PH\_ASSERT(out\_result);}
+\DoxyCodeLine{00153\ }
+\DoxyCodeLine{00154\ \ \ \ \ TMatrix4<T>\ translationMatrix;}
+\DoxyCodeLine{00155\ \ \ \ \ TMatrix4<T>\ rotationMatrix;}
+\DoxyCodeLine{00156\ \ \ \ \ TMatrix4<T>\ scaleMatrix;}
+\DoxyCodeLine{00157\ \ \ \ \ translationMatrix.initTranslation(m\_position);}
+\DoxyCodeLine{00158\ \ \ \ \ rotationMatrix.initRotation(m\_rotation);}
+\DoxyCodeLine{00159\ \ \ \ \ scaleMatrix.initScale(m\_scale);}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00161\ \ \ \ \ *out\_result\ =\ translationMatrix.mul(rotationMatrix).mul(scaleMatrix);}
+\DoxyCodeLine{00162\ \}}
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00164\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00165\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ TDecomposedTransform<T>::genInverseTransformMatrix(TMatrix4<T>*\ \textcolor{keyword}{const}\ out\_result)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00166\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00167\ \ \ \ \ PH\_ASSERT(out\_result);}
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00169\ \ \ \ \ TDecomposedTransform\ inverted\ =\ this-\/>invert();}
+\DoxyCodeLine{00170\ }
+\DoxyCodeLine{00171\ \ \ \ \ TMatrix4<T>\ inverseTranslationMatrix;}
+\DoxyCodeLine{00172\ \ \ \ \ TMatrix4<T>\ inverseRotationMatrix;}
+\DoxyCodeLine{00173\ \ \ \ \ TMatrix4<T>\ inverseScaleMatrix;}
+\DoxyCodeLine{00174\ \ \ \ \ inverseTranslationMatrix.initTranslation(inverted.m\_position);}
+\DoxyCodeLine{00175\ \ \ \ \ inverseRotationMatrix.initRotation(inverted.m\_rotation);}
+\DoxyCodeLine{00176\ \ \ \ \ inverseScaleMatrix.initScale(inverted.m\_scale);}
+\DoxyCodeLine{00177\ }
+\DoxyCodeLine{00178\ \ \ \ \ *out\_result\ =\ inverseScaleMatrix.mul(inverseRotationMatrix).mul(inverseTranslationMatrix);}
+\DoxyCodeLine{00179\ \}}
+\DoxyCodeLine{00180\ }
+\DoxyCodeLine{00181\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00182\ \textcolor{keyword}{inline}\ TDecomposedTransform<T>\ TDecomposedTransform<T>::invert()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00183\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00184\ \ \ \ \ TDecomposedTransform\ result;}
+\DoxyCodeLine{00185\ \ \ \ \ result.m\_position\ =\ m\_position.mul(-\/1);}
+\DoxyCodeLine{00186\ \ \ \ \ result.m\_rotation\ =\ m\_rotation.conjugate();}
+\DoxyCodeLine{00187\ \ \ \ \ result.m\_scale\ \ \ \ =\ m\_scale.rcp();}
+\DoxyCodeLine{00188\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00189\ \}}
+\DoxyCodeLine{00190\ }
+\DoxyCodeLine{00191\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00192\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ TDecomposedTransform<T>::hasScaleEffect(\textcolor{keyword}{const}\ T\ margin)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00193\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00194\ \ \ \ \ \textcolor{keywordflow}{return}\ std::abs(m\_scale.x()\ -\/\ 1)\ >\ margin\ ||}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \ \ \ std::abs(m\_scale.y()\ -\/\ 1)\ >\ margin\ ||}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \ \ \ std::abs(m\_scale.z()\ -\/\ 1)\ >\ margin;}
+\DoxyCodeLine{00197\ \}}
+\DoxyCodeLine{00198\ }
+\DoxyCodeLine{00199\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00200\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ TDecomposedTransform<T>::isScaleUniform(\textcolor{keyword}{const}\ T\ margin)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00201\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00202\ \ \ \ \ \textcolor{keyword}{const}\ T\ dSxSy\ =\ std::abs(m\_scale.x()\ -\/\ m\_scale.y());}
+\DoxyCodeLine{00203\ \ \ \ \ \textcolor{keyword}{const}\ T\ dSySz\ =\ std::abs(m\_scale.y()\ -\/\ m\_scale.z());}
+\DoxyCodeLine{00204\ \ \ \ \ \textcolor{keyword}{const}\ T\ dSzSx\ =\ std::abs(m\_scale.z()\ -\/\ m\_scale.x());}
+\DoxyCodeLine{00205\ }
+\DoxyCodeLine{00206\ \ \ \ \ \textcolor{keywordflow}{return}\ dSxSy\ <\ margin\ \&\&\ dSySz\ <\ margin\ \&\&\ dSzSx\ <\ margin;}
+\DoxyCodeLine{00207\ \}}
+\DoxyCodeLine{00208\ }
+\DoxyCodeLine{00209\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00210\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ TDecomposedTransform<T>::isIdentity()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00211\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00212\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this}\ ==\ TDecomposedTransform();}
+\DoxyCodeLine{00213\ \}}
+\DoxyCodeLine{00214\ }
+\DoxyCodeLine{00215\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00216\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ TDecomposedTransform<T>::operator\ ==\ (\textcolor{keyword}{const}\ TDecomposedTransform\&\ rhs)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00217\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00218\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_position\ ==\ rhs.m\_position\ \&\&}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \ \ \ m\_rotation\ ==\ rhs.m\_rotation\ \&\&}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \ \ \ m\_scale\ ==\ rhs.m\_scale;}
+\DoxyCodeLine{00221\ \}}
+\DoxyCodeLine{00222\ }
+\DoxyCodeLine{00223\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00224\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ TDecomposedTransform<T>::operator\ !=\ (\textcolor{keyword}{const}\ TDecomposedTransform\&\ rhs)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00225\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00226\ \ \ \ \ \textcolor{keywordflow}{return}\ !(*\textcolor{keyword}{this}\ ==\ rhs);}
+\DoxyCodeLine{00227\ \}}
+\DoxyCodeLine{00228\ }
+\DoxyCodeLine{00229\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00230\ \textcolor{keyword}{inline}\ TVector3<T>\ TDecomposedTransform<T>::getPosition()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00231\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00232\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_position;}
+\DoxyCodeLine{00233\ \}}
+\DoxyCodeLine{00234\ }
+\DoxyCodeLine{00235\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00236\ \textcolor{keyword}{inline}\ TQuaternion<T>\ TDecomposedTransform<T>::getRotation()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00237\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00238\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_rotation;}
+\DoxyCodeLine{00239\ \}}
+\DoxyCodeLine{00240\ }
+\DoxyCodeLine{00241\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00242\ \textcolor{keyword}{inline}\ TVector3<T>\ TDecomposedTransform<T>::getScale()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00243\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00244\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_scale;}
+\DoxyCodeLine{00245\ \}}
+\DoxyCodeLine{00246\ }
+\DoxyCodeLine{00247\ \}\textcolor{comment}{//\ end\ namespace\ ph::math}}
+
+\end{DoxyCode}

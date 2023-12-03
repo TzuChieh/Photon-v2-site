@@ -1,0 +1,167 @@
+\doxysection{TArray\+As\+Vector.\+ipp}
+\hypertarget{_t_array_as_vector_8ipp_source}{}\label{_t_array_as_vector_8ipp_source}\index{Source/Utility/TArrayAsVector.ipp@{Source/Utility/TArrayAsVector.ipp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Utility/TArrayAsVector.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Common/config.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}Common/assertion.h"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <type\_traits>}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00011\ \{}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00014\ \textcolor{keyword}{inline}\ TArrayAsVector<T,\ N>::TArrayAsVector()\ :}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \#if\ PH\_DEBUG}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{comment}{//\ Request\ value-\/initialization:\ set\ to\ zeros\ for\ primitive\ types}}
+\DoxyCodeLine{00018\ \ \ \ \ m\_data\{\},}
+\DoxyCodeLine{00019\ \#else}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{comment}{//\ Intentionally\ left\ empty:\ default-\/initialize\ array\ members}}
+\DoxyCodeLine{00021\ \#endif}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ \ \ m\_size(0)}
+\DoxyCodeLine{00024\ \{\}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00027\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ U>}
+\DoxyCodeLine{00028\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ TArrayAsVector<T,\ N>::pushBack(U\&\&\ item)}
+\DoxyCodeLine{00029\ \{}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{comment}{//\ TODO:\ static\ assert\ for\ U\ ==\ T,\ amy\ require\ ref\ and\ ptr\ removal}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \ \ PH\_ASSERT\_LT(m\_size,\ m\_data.size());}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{comment}{//\ FIXME:\ what\ if\ assignment\ throw?\ need\ increment\ m\_size\ later\ only\ if\ assignment\ succeeded;\ }}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{comment}{//\ perhaps\ check\ if\ op\ is\ no-\/throw?}}
+\DoxyCodeLine{00036\ \ \ \ \ m\_data[m\_size++]\ =\ std::forward<U>(item);}
+\DoxyCodeLine{00037\ \}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00040\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ TArrayAsVector<T,\ N>::popBack()}
+\DoxyCodeLine{00041\ \{}
+\DoxyCodeLine{00042\ \ \ \ \ PH\_ASSERT\_GT(m\_size,\ 0);}
+\DoxyCodeLine{00043\ \ \ \ \ }
+\DoxyCodeLine{00044\ \ \ \ \ -\/-\/m\_size;}
+\DoxyCodeLine{00045\ \}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00048\ \textcolor{keyword}{inline}\ std::size\_t\ TArrayAsVector<T,\ N>::size()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00049\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00050\ \ \ \ \ PH\_ASSERT\_LE(m\_size,\ N);}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_size;}
+\DoxyCodeLine{00053\ \}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00056\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ TArrayAsVector<T,\ N>::clear()}
+\DoxyCodeLine{00057\ \{}
+\DoxyCodeLine{00058\ \ \ \ \ m\_size\ =\ 0;}
+\DoxyCodeLine{00059\ \}}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00062\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ TArrayAsVector<T,\ N>::isEmpty()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00063\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_size\ ==\ 0;}
+\DoxyCodeLine{00065\ \}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00068\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ TArrayAsVector<T,\ N>::isFull()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00069\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_size\ ==\ N;}
+\DoxyCodeLine{00071\ \}}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00074\ \textcolor{keyword}{inline}\ T*\ TArrayAsVector<T,\ N>::get(\textcolor{keyword}{const}\ std::size\_t\ index)}
+\DoxyCodeLine{00075\ \{}
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keywordflow}{return}\ index\ <\ m\_size\ ?\ \&(m\_data[index])\ :\ nullptr;}
+\DoxyCodeLine{00077\ \}}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00080\ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ T*\ TArrayAsVector<T,\ N>::get(\textcolor{keyword}{const}\ std::size\_t\ index)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00081\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keywordflow}{return}\ index\ <\ m\_size\ ?\ \&(m\_data[index])\ :\ nullptr;}
+\DoxyCodeLine{00083\ \}}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00086\ \textcolor{keyword}{inline}\ T\&\ TArrayAsVector<T,\ N>::operator\ []\ (\textcolor{keyword}{const}\ std::size\_t\ index)}
+\DoxyCodeLine{00087\ \{}
+\DoxyCodeLine{00088\ \ \ \ \ PH\_ASSERT\_LT(index,\ m\_size);}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_data[index];}
+\DoxyCodeLine{00091\ \}}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00094\ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ T\&\ TArrayAsVector<T,\ N>::operator\ []\ (\textcolor{keyword}{const}\ std::size\_t\ index)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00095\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00096\ \ \ \ \ PH\_ASSERT\_LT(index,\ m\_size);}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_data[index];}
+\DoxyCodeLine{00099\ \}}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00102\ \textcolor{keyword}{inline}\ T\&\ TArrayAsVector<T,\ N>::front()}
+\DoxyCodeLine{00103\ \{}
+\DoxyCodeLine{00104\ \ \ \ \ PH\_ASSERT\_GT(m\_size,\ 0);}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keywordflow}{return}\ (*\textcolor{keyword}{this})[0];}
+\DoxyCodeLine{00107\ \}}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00109\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00110\ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ T\&\ TArrayAsVector<T,\ N>::front()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00111\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00112\ \ \ \ \ PH\_ASSERT\_GT(m\_size,\ 0);}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{keywordflow}{return}\ (*\textcolor{keyword}{this})[0];}
+\DoxyCodeLine{00115\ \}}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00118\ \textcolor{keyword}{inline}\ T\&\ TArrayAsVector<T,\ N>::back()}
+\DoxyCodeLine{00119\ \{}
+\DoxyCodeLine{00120\ \ \ \ \ PH\_ASSERT\_GT(m\_size,\ 0);}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{keywordflow}{return}\ (*\textcolor{keyword}{this})[m\_size\ -\/\ 1];}
+\DoxyCodeLine{00123\ \}}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00126\ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ T\&\ TArrayAsVector<T,\ N>::back()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00127\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00128\ \ \ \ \ PH\_ASSERT\_GT(m\_size,\ 0);}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ \ \ \ \ \textcolor{keywordflow}{return}\ (*\textcolor{keyword}{this})[m\_size\ -\/\ 1];}
+\DoxyCodeLine{00131\ \}}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00133\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00134\ \textcolor{keyword}{typename}\ std::array<T,\ N>::iterator\ TArrayAsVector<T,\ N>::begin()\ noexcept}
+\DoxyCodeLine{00135\ \{}
+\DoxyCodeLine{00136\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_data.begin();}
+\DoxyCodeLine{00137\ \}}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00139\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00140\ \textcolor{keyword}{typename}\ std::array<T,\ N>::const\_iterator\ TArrayAsVector<T,\ N>::begin()\ const\ noexcept}
+\DoxyCodeLine{00141\ \{}
+\DoxyCodeLine{00142\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_data.begin();}
+\DoxyCodeLine{00143\ \}}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00145\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00146\ \textcolor{keyword}{typename}\ std::array<T,\ N>::iterator\ TArrayAsVector<T,\ N>::end()\ noexcept}
+\DoxyCodeLine{00147\ \{}
+\DoxyCodeLine{00148\ \ \ \ \ \textcolor{comment}{//\ Not\ using\ std::advance()\ as\ we\ expect\ it\ to\ be\ randomly\ accessible}}
+\DoxyCodeLine{00149\ \ \ \ \ \textcolor{comment}{//\ (no\ permissive\ code)}}
+\DoxyCodeLine{00150\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_data.begin()\ +\ m\_size;}
+\DoxyCodeLine{00151\ \}}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00153\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00154\ \textcolor{keyword}{typename}\ std::array<T,\ N>::const\_iterator\ TArrayAsVector<T,\ N>::end()\ const\ noexcept}
+\DoxyCodeLine{00155\ \{}
+\DoxyCodeLine{00156\ \ \ \ \ \textcolor{comment}{//\ Not\ using\ std::advance()\ as\ we\ expect\ it\ to\ be\ randomly\ accessible}}
+\DoxyCodeLine{00157\ \ \ \ \ \textcolor{comment}{//\ (no\ permissive\ code)}}
+\DoxyCodeLine{00158\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_data.begin()\ +\ m\_size;}
+\DoxyCodeLine{00159\ \}}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00161\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+
+\end{DoxyCode}

@@ -1,0 +1,66 @@
+\doxysection{Primitive\+Pos\+Sample\+Query.\+h}
+\hypertarget{_primitive_pos_sample_query_8h_source}{}\label{_primitive_pos_sample_query_8h_source}\index{Source/Core/Intersectable/Query/PrimitivePosSampleQuery.h@{Source/Core/Intersectable/Query/PrimitivePosSampleQuery.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Common/primitive\_type.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Common/assertion.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}Math/TVector3.h"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <cstddef>}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00010\ \{}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_primitive_pos_sample_input}{PrimitivePosSampleInput}}\ final}
+\DoxyCodeLine{00013\ \{\};}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_primitive_pos_sample_output}{PrimitivePosSampleOutput}}\ final}
+\DoxyCodeLine{00016\ \{}
+\DoxyCodeLine{00017\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00018\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\ position;}
+\DoxyCodeLine{00019\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\ normal;}
+\DoxyCodeLine{00020\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\ uvw;}
+\DoxyCodeLine{00021\ \ \ \ \ std::size\_t\ \ \ \ faceId;}
+\DoxyCodeLine{00022\ \ \ \ \ real\ \ \ \ \ \ \ \ \ \ \ pdfA;}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \ \ \ \ \mbox{\hyperlink{classph_1_1_primitive_pos_sample_output}{PrimitivePosSampleOutput}}();}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{operator}\ bool\ ()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00026\ \};}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_primitive_pos_sample_query}{PrimitivePosSampleQuery}}\ final}
+\DoxyCodeLine{00029\ \{}
+\DoxyCodeLine{00030\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classph_1_1_primitive_pos_sample_input}{Input}}\ \ =\ \mbox{\hyperlink{classph_1_1_primitive_pos_sample_input}{PrimitivePosSampleInput}};}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classph_1_1_primitive_pos_sample_output}{Output}}\ =\ \mbox{\hyperlink{classph_1_1_primitive_pos_sample_output}{PrimitivePosSampleOutput}};}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \ \ \mbox{\hyperlink{classph_1_1_primitive_pos_sample_input}{Input}}\ \ in;}
+\DoxyCodeLine{00035\ \ \ \ \ \mbox{\hyperlink{classph_1_1_primitive_pos_sample_output}{Output}}\ out;}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \ \ \mbox{\hyperlink{classph_1_1_primitive_pos_sample_query}{PrimitivePosSampleQuery}}();}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordtype}{void}\ setInvalidOutput();}
+\DoxyCodeLine{00040\ \};}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \textcolor{comment}{//\ In-\/header\ Implementations:}}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{keyword}{inline}\ PrimitivePosSampleOutput::operator\ bool\ ()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00045\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00046\ \ \ \ \ PH\_ASSERT\_IN\_RANGE(normal.length(),\ 0.9\_r,\ 1.1\_r);}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordflow}{return}\ pdfA\ >\ 0;}
+\DoxyCodeLine{00048\ \}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \textcolor{keyword}{inline}\ PrimitivePosSampleQuery::PrimitivePosSampleQuery()\ :}
+\DoxyCodeLine{00051\ \ \ \ \ in(),\ out()}
+\DoxyCodeLine{00052\ \{\}}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ PrimitivePosSampleQuery::setInvalidOutput()}
+\DoxyCodeLine{00055\ \{}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{comment}{//\ Must\ cuase\ \`{}PrimitivePosSampleOutput::operator\ bool\ ()`\ method\ to\ evaluate\ to\ \`{}false`}}
+\DoxyCodeLine{00057\ \ \ \ \ out.pdfA\ =\ 0.0\_r;}
+\DoxyCodeLine{00058\ \}}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+
+\end{DoxyCode}

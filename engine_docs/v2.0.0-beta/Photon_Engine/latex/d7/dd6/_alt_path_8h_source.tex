@@ -1,0 +1,179 @@
+\doxysection{Alt\+Path.\+h}
+\hypertarget{_alt_path_8h_source}{}\label{_alt_path_8h_source}\index{Source/DataIO/FileSystem/AltPath.h@{Source/DataIO/FileSystem/AltPath.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Common/assertion.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{os_8h}{Common/os.h}}"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#if\ PH\_OPERATING\_SYSTEM\_IS\_WINDOWS}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\ \ \ \ \#include\ <direct.h>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\ \ \ \ \#include\ <unistd.h>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00015\ \{}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ \ \ \ //\ FIXME:\ this\ is\ no\ longer\ true}}
+\DoxyCodeLine{00019\ \textcolor{comment}{\ \ \ \ This\ path\ class\ has\ exactly\ the\ same\ interface\ as\ DataIO/FileSystem/Path.h,}}
+\DoxyCodeLine{00020\ \textcolor{comment}{\ \ \ \ except\ that\ its\ implementation\ does\ not\ depend\ on\ STL's\ filesystem.}}
+\DoxyCodeLine{00021\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00022\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_alt_path}{AltPath}}}
+\DoxyCodeLine{00023\ \{}
+\DoxyCodeLine{00024\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_alt_path}{AltPath}}()\ :}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_alt_path}{AltPath}}(\textcolor{stringliteral}{"{}./"{}})}
+\DoxyCodeLine{00027\ \ \ \ \ \{\}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{comment}{//\ Constructing\ a\ path\ from\ some\ string\ representing\ of\ the\ path.\ The\ string\ }}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{comment}{//\ can\ be\ either\ a\ relative\ or\ absolute\ path,\ or\ even\ a\ path\ fragment.\ The}}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{comment}{//\ constructed\ path\ substitutes\ all\ separators\ to\ a\ system\ specific\ (preferred)}}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{comment}{//\ one.}}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classph_1_1_alt_path}{AltPath}}(\textcolor{keyword}{const}\ std::string\&\ path)\ :}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ m\_path(path)}
+\DoxyCodeLine{00036\ \ \ \ \ \{}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{char}\&\ ch\ :\ m\_path)}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(ch\ ==\ \textcolor{charliteral}{'\(\backslash\)\(\backslash\)'})}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ch\ =\ \textcolor{charliteral}{'/'};}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00044\ \ \ \ \ \}}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ isRelative()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00047\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ !isAbsolute();}
+\DoxyCodeLine{00049\ \ \ \ \ \}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ isAbsolute()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00052\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(m\_path.empty())}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#if\ PH\_OPERATING\_SYSTEM\_IS\_WINDOWS}}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_path.length()\ >=\ 3\ \&\&\ m\_path[1]\ ==\ \textcolor{charliteral}{':'}\ \&\&\ m\_path[2]\ ==\ \textcolor{charliteral}{'/'};}
+\DoxyCodeLine{00061\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#else}}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_path[0]\ ==\ \textcolor{charliteral}{'/'}\ ||\ m\_path[0]\ ==\ \textcolor{charliteral}{'\string~'};}
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#endif}}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ !m\_path.empty()\ \&\&\ (m\_path[0]\ ==\ \textcolor{charliteral}{'/'}\ ||\ m\_path[0]\ ==\ \textcolor{charliteral}{'\string~'});}
+\DoxyCodeLine{00067\ \ \ \ \ \}}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ isEmpty()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00070\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_path.empty();}
+\DoxyCodeLine{00072\ \ \ \ \ \}}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keyword}{inline}\ std::string\ toAbsoluteString()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00075\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(isAbsolute())}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_path;}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \textcolor{keyword}{constexpr}\ std::size\_t\ BUFFER\_SIZE\ =\ 1024;}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ std::string\ buffer(BUFFER\_SIZE,\ \textcolor{charliteral}{'\(\backslash\)0'});}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_alt_path}{AltPath}}\ workingDirectory;}
+\DoxyCodeLine{00084\ \textcolor{preprocessor}{\ \ \ \ \#ifdef\ \_WIN32}}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ workingDirectory\ =\ \mbox{\hyperlink{classph_1_1_alt_path}{AltPath}}(std::string(\_getcwd(buffer.data(),\ BUFFER\_SIZE)));}
+\DoxyCodeLine{00086\ \textcolor{preprocessor}{\ \ \ \ \#else}}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ workingDirectory\ =\ \mbox{\hyperlink{classph_1_1_alt_path}{AltPath}}(std::string(getcwd(buffer.data(),\ BUFFER\_SIZE)));}
+\DoxyCodeLine{00088\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ workingDirectory\ =\ workingDirectory.removeTrailingSeparator();}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ workingDirectory.append(this-\/>removeLeadingSeparator()).toString();}
+\DoxyCodeLine{00093\ \ \ \ \ \}}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{comment}{//\ Appending\ one\ path\ to\ another.\ System\ specific\ directory\ separators\ are}}
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{comment}{//\ added\ in\ between\ two\ path\ objects.}}
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_alt_path}{AltPath}}\ append(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_alt_path}{AltPath}}\&\ other)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00099\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ thisPath\ \ =\ this-\/>removeTrailingSeparator().m\_path;}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ otherPath\ =\ other.removeLeadingSeparator().m\_path;}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1_alt_path}{AltPath}}(thisPath\ +\ \textcolor{charliteral}{'/'}\ +\ otherPath);}
+\DoxyCodeLine{00104\ \ \ \ \ \}}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keyword}{inline}\ std::string\ toString()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00107\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::string(m\_path.data());}
+\DoxyCodeLine{00109\ \ \ \ \ \}}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_alt_path}{AltPath}}\ removeLeadingSeparator()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00112\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ std::string\ resultPath(m\_path);}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}(!resultPath.empty())}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(resultPath.front()\ ==\ \textcolor{charliteral}{'/'})}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ resultPath.erase(resultPath.begin());}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1_alt_path}{AltPath}}(resultPath);}
+\DoxyCodeLine{00127\ \ \ \ \ \}}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00129\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_alt_path}{AltPath}}\ removeTrailingSeparator()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00130\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ std::string\ resultPath(m\_path);}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}(!resultPath.empty())}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(resultPath.back()\ ==\ \textcolor{charliteral}{'/'})}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ resultPath.pop\_back();}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1_alt_path}{AltPath}}(resultPath);}
+\DoxyCodeLine{00145\ \ \ \ \ \}}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00147\ \ \ \ \ \textcolor{comment}{//\ Returns\ filename\ extension\ if\ present.\ The\ extension\ string\ will\ }}
+\DoxyCodeLine{00148\ \ \ \ \ \textcolor{comment}{//\ start\ with\ a\ period\ character\ "{}."{}.\ If\ the\ path\ contains\ no\ extension,}}
+\DoxyCodeLine{00149\ \ \ \ \ \textcolor{comment}{//\ then\ an\ empty\ string\ is\ returned.}}
+\DoxyCodeLine{00150\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00151\ \ \ \ \ \textcolor{keyword}{inline}\ std::string\ getExtension()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00152\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ dotIndex\ =\ m\_path.find\_last\_of(\textcolor{charliteral}{'.'});}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(dotIndex\ !=\ std::string::npos)}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_path.substr(dotIndex);}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::string();}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00162\ \ \ \ \ \}}
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00164\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ operator\ ==\ (\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_alt_path}{AltPath}}\&\ other)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00165\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_path\ ==\ other.m\_path;}
+\DoxyCodeLine{00167\ \ \ \ \ \}}
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00169\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00170\ \ \ \ \ std::string\ m\_path;}
+\DoxyCodeLine{00171\ \};}
+\DoxyCodeLine{00172\ }
+\DoxyCodeLine{00173\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+
+\end{DoxyCode}

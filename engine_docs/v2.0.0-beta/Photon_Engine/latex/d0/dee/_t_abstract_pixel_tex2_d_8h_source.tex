@@ -1,0 +1,108 @@
+\doxysection{TAbstract\+Pixel\+Tex2\+D.\+h}
+\hypertarget{_t_abstract_pixel_tex2_d_8h_source}{}\label{_t_abstract_pixel_tex2_d_8h_source}\index{Source/Core/Texture/TAbstractPixelTex2D.h@{Source/Core/Texture/TAbstractPixelTex2D.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Core/Texture/TTexture.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Common/assertion.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{math_8h}{Math/math.h}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}Core/Texture/SampleLocation.h"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}Core/Texture/TTexPixel.h"{}}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00010\ \{}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{enum\ class}\ ETexWrapMode}
+\DoxyCodeLine{00013\ \{}
+\DoxyCodeLine{00014\ \ \ \ \ REPEAT,}
+\DoxyCodeLine{00015\ \ \ \ \ CLAMP\_TO\_EDGE}
+\DoxyCodeLine{00016\ \};}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00019\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_t_abstract_pixel_tex2_d}{TAbstractPixelTex2D}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classph_1_1_t_texture}{TTexture}}<TTexPixel<T,\ N>>}
+\DoxyCodeLine{00020\ \{}
+\DoxyCodeLine{00021\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_t_abstract_pixel_tex2_d}{TAbstractPixelTex2D}}()\ :}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_abstract_pixel_tex2_d}{TAbstractPixelTex2D}}(1,\ 1)}
+\DoxyCodeLine{00024\ \ \ \ \ \{\}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_t_abstract_pixel_tex2_d}{TAbstractPixelTex2D}}(\textcolor{keyword}{const}\ uint32\ widthPx,\ \textcolor{keyword}{const}\ uint32\ heightPx)\ :}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_texture}{TTexture<TTexPixel<T,\ N>}}>(),}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ m\_wrapMode(ETexWrapMode::REPEAT)}
+\DoxyCodeLine{00029\ \ \ \ \ \{}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ setWidthPx(widthPx);}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ setHeightPx(heightPx);}
+\DoxyCodeLine{00032\ \ \ \ \ \}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordtype}{void}\ sample(}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_sample_location}{SampleLocation}}\&\ sampleLocation,\ }
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_arithmetic_array}{TTexPixel<T,\ N>}}*\ \ \ \ \ \ out\_value)\ \textcolor{keyword}{const\ override}\ =\ 0;}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keyword}{inline}\ uint32\ \ \ \ \ \ \ getWidthPx()\textcolor{keyword}{\ const\ \ \ \ }\{\ \textcolor{keywordflow}{return}\ m\_widthPx;\ \ \ \ \}}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{inline}\ uint32\ \ \ \ \ \ \ getHeightPx()\textcolor{keyword}{\ const\ \ \ }\{\ \textcolor{keywordflow}{return}\ m\_heightPx;\ \ \ \}}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{inline}\ float64\ \ \ \ \ \ getTexelSizeU()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ m\_texelSizeU;\ \}}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keyword}{inline}\ float64\ \ \ \ \ \ getTexelSizeV()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ m\_texelSizeV;\ \}}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keyword}{inline}\ ETexWrapMode\ getWrapMode()\textcolor{keyword}{\ const\ \ \ }\{\ \textcolor{keywordflow}{return}\ m\_wrapMode;\ \ \ \}}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ setWrapMode(\textcolor{keyword}{const}\ ETexWrapMode\ mode)}
+\DoxyCodeLine{00045\ \ \ \ \ \{}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ m\_wrapMode\ =\ mode;}
+\DoxyCodeLine{00047\ \ \ \ \ \}}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{comment}{//\ Normalizing\ (u,\ v)\ coordinates\ to\ [0,\ 1]\ according\ to\ wrapping\ mode.}}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ normalizeUV(\textcolor{keyword}{const}\ float64\ u,\ \textcolor{keyword}{const}\ float64\ v,\ }
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ float64*\ \textcolor{keyword}{const}\ out\_u,\ float64*\ \textcolor{keyword}{const}\ out\_v)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00053\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}(m\_wrapMode)}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ ETexWrapMode::REPEAT:}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ float64\ fu\ =\ \mbox{\hyperlink{namespaceph_1_1math_a9460c87b6dab3097ee4d084d9b59a604}{math::fractional\_part}}(u);}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ float64\ fv\ =\ \mbox{\hyperlink{namespaceph_1_1math_a9460c87b6dab3097ee4d084d9b59a604}{math::fractional\_part}}(v);}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ *out\_u\ =\ fu\ >=\ 0.0\ ?\ fu\ :\ fu\ +\ 1.0;}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ *out\_v\ =\ fv\ >=\ 0.0\ ?\ fv\ :\ fv\ +\ 1.0;}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ ETexWrapMode::CLAMP\_TO\_EDGE:}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ *out\_u\ =\ \mbox{\hyperlink{namespaceph_1_1math_a9e5d8a7a977115813ceeba3f0c00cbdb}{math::clamp}}(u,\ 0.0,\ 1.0);}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ *out\_v\ =\ \mbox{\hyperlink{namespaceph_1_1math_a9e5d8a7a977115813ceeba3f0c00cbdb}{math::clamp}}(v,\ 0.0,\ 1.0);}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ PH\_ASSERT\_UNREACHABLE\_SECTION();}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ PH\_ASSERT(*out\_u\ >=\ 0.0\ \&\&\ *out\_u\ <=\ 1.0\ \&\&\ }
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *out\_v\ >=\ 0.0\ \&\&\ *out\_v\ <=\ 1.0);}
+\DoxyCodeLine{00076\ \ \ \ \ \}}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ setWidthPx(\textcolor{keyword}{const}\ uint32\ widthPx)}
+\DoxyCodeLine{00079\ \ \ \ \ \{}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ PH\_ASSERT(widthPx\ >\ 0);}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ m\_widthPx\ \ \ \ =\ widthPx;}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ m\_texelSizeU\ =\ 1.0\ /\ widthPx;}
+\DoxyCodeLine{00084\ \ \ \ \ \}}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ setHeightPx(\textcolor{keyword}{const}\ uint32\ heightPx)}
+\DoxyCodeLine{00087\ \ \ \ \ \{}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ PH\_ASSERT(heightPx\ >\ 0);}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ m\_heightPx\ \ \ =\ heightPx;}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ m\_texelSizeV\ =\ 1.0\ /\ heightPx;}
+\DoxyCodeLine{00092\ \ \ \ \ \}}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00095\ \ \ \ \ uint32\ \ \ \ \ \ \ m\_widthPx;}
+\DoxyCodeLine{00096\ \ \ \ \ uint32\ \ \ \ \ \ \ m\_heightPx;}
+\DoxyCodeLine{00097\ \ \ \ \ float64\ \ \ \ \ \ m\_texelSizeU;}
+\DoxyCodeLine{00098\ \ \ \ \ float64\ \ \ \ \ \ m\_texelSizeV;}
+\DoxyCodeLine{00099\ \ \ \ \ ETexWrapMode\ m\_wrapMode;}
+\DoxyCodeLine{00100\ \};}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+
+\end{DoxyCode}

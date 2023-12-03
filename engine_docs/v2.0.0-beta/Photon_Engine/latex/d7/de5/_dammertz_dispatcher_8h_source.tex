@@ -1,0 +1,365 @@
+\doxysection{Dammertz\+Dispatcher.\+h}
+\hypertarget{_dammertz_dispatcher_8h_source}{}\label{_dammertz_dispatcher_8h_source}\index{Source/Core/Scheduler/DammertzDispatcher.h@{Source/Core/Scheduler/DammertzDispatcher.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Core/Scheduler/IWorkDispatcher.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Common/primitive\_type.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}Core/Scheduler/Region.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}Common/assertion.h"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}Frame/TFrame.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{math_8h}{Math/math.h}}"{}}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <cmath>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <cstddef>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <queue>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <limits>}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00019\ \{}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00022\ \textcolor{comment}{\ \ \ \ Regions\ are\ recursively\ refined\ and\ dispatched\ based\ on\ an\ error\ metric}}
+\DoxyCodeLine{00023\ \textcolor{comment}{\ \ \ \ calculated\ from\ two\ frames.\ A\ region\ will\ not\ be\ dispatched\ again\ if\ its}}
+\DoxyCodeLine{00024\ \textcolor{comment}{\ \ \ \ error\ is\ below\ a\ certain\ threshold.\ The\ implementation\ roughly\ follows\ }}
+\DoxyCodeLine{00025\ \textcolor{comment}{\ \ \ \ the\ paper\ written\ by\ Dammertz\ et\ al,\ with\ some\ modifications.}}
+\DoxyCodeLine{00026\ \textcolor{comment}{}}
+\DoxyCodeLine{00027\ \textcolor{comment}{\ \ \ \ Reference:}}
+\DoxyCodeLine{00028\ \textcolor{comment}{}}
+\DoxyCodeLine{00029\ \textcolor{comment}{\ \ \ \ "{}A\ Hierarchical\ Automatic\ Stopping\ Condition\ for\ Monte\ Carlo\ Global\ }}
+\DoxyCodeLine{00030\ \textcolor{comment}{\ \ \ \ Illumination"{},\ Holger\ Dammertz,\ Johannes\ Hanika,\ Alexander\ Keller,\ }}
+\DoxyCodeLine{00031\ \textcolor{comment}{\ \ \ \ Hendrik\ Lensch;\ Full\ Papers\ Proceedings\ of\ the\ WSCG\ 2010,\ p.\ 159-\/164.}}
+\DoxyCodeLine{00032\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00033\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_dammertz_dispatcher}{DammertzDispatcher}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classph_1_1_i_work_dispatcher}{IWorkDispatcher}}}
+\DoxyCodeLine{00034\ \{}
+\DoxyCodeLine{00035\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{enum\ class}\ ERefineMode}
+\DoxyCodeLine{00037\ \ \ \ \ \{}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ MIDPOINT,}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ MIN\_ERROR\_DIFFERENCE}
+\DoxyCodeLine{00040\ \ \ \ \ \};}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keyword}{template}<ERefineMode\ MODE>}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_dammertz_dispatcher_1_1_t_analyzer}{TAnalyzer}};}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \mbox{\hyperlink{classph_1_1_dammertz_dispatcher}{DammertzDispatcher}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classph_1_1_dammertz_dispatcher}{DammertzDispatcher}}(}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ uint32\ \ \ \ \ \ \ \ numWorkers,}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d}{Region}}\&\ fullRegion);}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \ \ \mbox{\hyperlink{classph_1_1_dammertz_dispatcher}{DammertzDispatcher}}(}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ uint32\ \ \ \ \ \ \ \ numWorkers,}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d}{Region}}\&\ fullRegion,\ }
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ real\ \ \ \ \ \ \ \ \ \ precisionStandard,\ }
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ std::size\_t\ \ \ initialDepthPerRegion);}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ \ \ \mbox{\hyperlink{classph_1_1_dammertz_dispatcher}{DammertzDispatcher}}(}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ uint32\ \ \ \ \ \ \ \ numWorkers,}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d}{Region}}\&\ fullRegion,}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ real\ \ \ \ \ \ \ \ \ \ precisionStandard,}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ std::size\_t\ \ \ initialDepthPerRegion,}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ std::size\_t\ \ \ standardDepthPerRegion,}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ std::size\_t\ \ \ terminusDepthPerRegion);}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_dammertz_dispatcher_a0ae150f900747b00f989872c96b9b1ac}{dispatch}}(\mbox{\hyperlink{classph_1_1_work_unit}{WorkUnit}}*\ out\_workUnit)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keyword}{template}<ERefineMode\ MODE>}
+\DoxyCodeLine{00068\ \ \ \ \ \mbox{\hyperlink{classph_1_1_dammertz_dispatcher_1_1_t_analyzer}{TAnalyzer<MODE>}}\ createAnalyzer()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keyword}{template}<ERefineMode\ MODE>}
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keywordtype}{void}\ addAnalyzedData(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_dammertz_dispatcher_1_1_t_analyzer}{TAnalyzer<MODE>}}\&\ analyzer);}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \ \ std::size\_t\ numPendingRegions()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keyword}{template}<ERefineMode\ MODE>}
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_dammertz_dispatcher_1_1_t_analyzer}{TAnalyzer}}\ final}
+\DoxyCodeLine{00077\ \ \ \ \ \{}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \textcolor{keyword}{friend}\ \mbox{\hyperlink{classph_1_1_dammertz_dispatcher}{DammertzDispatcher}};}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ analyzeFinishedRegion(}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d}{Region}}\&\ \ \ \ \ \ finishedRegion,}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_t_frame}{HdrRgbFrame}}\&\ allEffortFrame,}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_t_frame}{HdrRgbFrame}}\&\ halfEffortFrame);}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ isConverged()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_dammertz_dispatcher_1_1_t_analyzer}{TAnalyzer}}(}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ real\ splitThreshold,}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ real\ terminateThreshold,}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ real\ numFullRegionPixels);}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ std::pair<Region,\ Region>\ getNextRegions()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ real\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_splitThreshold;}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ real\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_terminateThreshold;}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ std::pair<Region,\ Region>\ m\_nextRegions;}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ real\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_rcpNumRegionPixels;}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ std::vector<real>\ \ \ \ \ \ \ \ \ m\_accumulatedEps;}
+\DoxyCodeLine{00101\ \ \ \ \ \};}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00104\ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{static}\ std::size\_t\ MIN\_REGION\_AREA\ =\ 256;}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \ \ \ \ real\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_splitThreshold;}
+\DoxyCodeLine{00107\ \ \ \ \ real\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_terminateThreshold;}
+\DoxyCodeLine{00108\ \ \ \ \ std::size\_t\ \ \ \ \ \ \ \ \ \ m\_standardDepthPerRegion;}
+\DoxyCodeLine{00109\ \ \ \ \ std::size\_t\ \ \ \ \ \ \ \ \ \ m\_terminusDepthPerRegion;}
+\DoxyCodeLine{00110\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d}{Region}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_fullRegion;}
+\DoxyCodeLine{00111\ \ \ \ \ std::queue<WorkUnit>\ m\_pendingRegions;}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{keywordtype}{void}\ addAnalyzedRegion(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d}{Region}}\&\ region);}
+\DoxyCodeLine{00114\ \};}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00116\ \textcolor{comment}{//\ In-\/header\ Implementations:}}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ \textcolor{keyword}{template}<DammertzDispatcher::ERefineMode\ MODE>}
+\DoxyCodeLine{00119\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_dammertz_dispatcher_1_1_t_analyzer}{DammertzDispatcher::TAnalyzer<MODE>}}\ DammertzDispatcher::createAnalyzer()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00120\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00121\ \ \ \ \ \textcolor{keywordflow}{return}\ TAnalyzer<MODE>(}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ m\_splitThreshold,\ }
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ m\_terminateThreshold,\ }
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_cast<}real\textcolor{keyword}{>}(m\_fullRegion.getArea()));}
+\DoxyCodeLine{00125\ \}}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00127\ \textcolor{keyword}{template}<DammertzDispatcher::ERefineMode\ MODE>}
+\DoxyCodeLine{00128\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ DammertzDispatcher::addAnalyzedData(\textcolor{keyword}{const}\ TAnalyzer<MODE>\&\ analyzer)}
+\DoxyCodeLine{00129\ \{}
+\DoxyCodeLine{00130\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ nextRegions\ =\ analyzer.getNextRegions();}
+\DoxyCodeLine{00131\ \ \ \ \ addAnalyzedRegion(nextRegions.first);}
+\DoxyCodeLine{00132\ \ \ \ \ addAnalyzedRegion(nextRegions.second);}
+\DoxyCodeLine{00133\ \}}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00135\ \textcolor{keyword}{template}<DammertzDispatcher::ERefineMode\ MODE>}
+\DoxyCodeLine{00136\ \textcolor{keyword}{inline}\ DammertzDispatcher::TAnalyzer<MODE>::TAnalyzer(}
+\DoxyCodeLine{00137\ \ \ \ \ \textcolor{keyword}{const}\ real\ splitThreshold,}
+\DoxyCodeLine{00138\ \ \ \ \ \textcolor{keyword}{const}\ real\ terminateThreshold,}
+\DoxyCodeLine{00139\ \ \ \ \ \textcolor{keyword}{const}\ real\ numFullRegionPixels)\ :\ }
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00141\ \ \ \ \ m\_splitThreshold\ \ \ \ (splitThreshold),}
+\DoxyCodeLine{00142\ \ \ \ \ m\_terminateThreshold(terminateThreshold),}
+\DoxyCodeLine{00143\ \ \ \ \ m\_nextRegions\ \ \ \ \ \ \ (Region(\{0,\ 0\}),\ Region(\{0,\ 0\})),}
+\DoxyCodeLine{00144\ \ \ \ \ m\_rcpNumRegionPixels(1.0\_r\ /\ numFullRegionPixels),}
+\DoxyCodeLine{00145\ \ \ \ \ m\_accumulatedEps\ \ \ \ ()}
+\DoxyCodeLine{00146\ \{\}}
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00148\ \textcolor{keyword}{inline}\ std::size\_t\ DammertzDispatcher::numPendingRegions()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00149\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00150\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_pendingRegions.size();}
+\DoxyCodeLine{00151\ \}}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00153\ \textcolor{keyword}{template}<DammertzDispatcher::ERefineMode\ MODE>}
+\DoxyCodeLine{00154\ \textcolor{keyword}{inline}\ std::pair<Region,\ Region>\ DammertzDispatcher::TAnalyzer<MODE>::getNextRegions()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00155\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00156\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_nextRegions;}
+\DoxyCodeLine{00157\ \}}
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00159\ \textcolor{keyword}{template}<DammertzDispatcher::ERefineMode\ MODE>}
+\DoxyCodeLine{00160\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ DammertzDispatcher::TAnalyzer<MODE>::isConverged()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00161\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00162\ \ \ \ \ \textcolor{keywordflow}{return}\ !m\_nextRegions.first.isArea()\ \&\&\ !m\_nextRegions.second.isArea();}
+\DoxyCodeLine{00163\ \}}
+\DoxyCodeLine{00164\ }
+\DoxyCodeLine{00165\ \textcolor{keyword}{template}<>}
+\DoxyCodeLine{00166\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ DammertzDispatcher::TAnalyzer<DammertzDispatcher::ERefineMode::MIDPOINT>::analyzeFinishedRegion(}
+\DoxyCodeLine{00167\ \ \ \ \ \textcolor{keyword}{const}\ Region\&\ \ \ \ \ \ finishedRegion,}
+\DoxyCodeLine{00168\ \ \ \ \ \textcolor{keyword}{const}\ HdrRgbFrame\&\ allEffortFrame,}
+\DoxyCodeLine{00169\ \ \ \ \ \textcolor{keyword}{const}\ HdrRgbFrame\&\ halfEffortFrame)}
+\DoxyCodeLine{00170\ \{}
+\DoxyCodeLine{00171\ \ \ \ \ \textcolor{keyword}{using\ namespace\ }math;}
+\DoxyCodeLine{00172\ }
+\DoxyCodeLine{00173\ \ \ \ \ PH\_ASSERT\_GE(finishedRegion.getMinVertex().x(),\ 0);}
+\DoxyCodeLine{00174\ \ \ \ \ PH\_ASSERT\_GE(finishedRegion.getMinVertex().y(),\ 0);}
+\DoxyCodeLine{00175\ \ \ \ \ PH\_ASSERT\_LE(finishedRegion.getWidth(),\ \ allEffortFrame.widthPx());}
+\DoxyCodeLine{00176\ \ \ \ \ PH\_ASSERT\_LE(finishedRegion.getHeight(),\ allEffortFrame.heightPx());}
+\DoxyCodeLine{00177\ \ \ \ \ PH\_ASSERT\_LE(finishedRegion.getWidth(),\ \ halfEffortFrame.widthPx());}
+\DoxyCodeLine{00178\ \ \ \ \ PH\_ASSERT\_LE(finishedRegion.getHeight(),\ halfEffortFrame.heightPx());}
+\DoxyCodeLine{00179\ \ \ \ \ \textcolor{keyword}{const}\ TAABB2D<uint32>\ frameRegion(finishedRegion);}
+\DoxyCodeLine{00180\ }
+\DoxyCodeLine{00181\ \ \ \ \ real\ regionError\ =\ 0;}
+\DoxyCodeLine{00182\ \ \ \ \ \textcolor{keywordflow}{for}(uint32\ y\ =\ frameRegion.getMinVertex().y();\ y\ <\ frameRegion.getMaxVertex().y();\ ++y)}
+\DoxyCodeLine{00183\ \ \ \ \ \{}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(uint32\ x\ =\ frameRegion.getMinVertex().x();\ x\ <\ frameRegion.getMaxVertex().x();\ ++x)}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \ \ \ \ HdrRgbFrame::Pixel\ I,\ A;}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \ \ \ \ allEffortFrame.getPixel(x,\ y,\ \&I);}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \ \ \ \ halfEffortFrame.getPixel(x,\ y,\ \&A);}
+\DoxyCodeLine{00189\ }
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ real\ numerator\ \ \ \ \ \ =\ I.sub(A).abs().sum();}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ real\ sumOfI\ \ \ \ \ \ \ \ \ =\ I.sum();}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ real\ rcpDenominator\ =\ sumOfI\ >\ 0\ ?\ \mbox{\hyperlink{namespaceph_1_1math_acc970fbe8bc77521af0103b29e524baa}{math::fast\_rcp\_sqrt}}(sumOfI)\ :\ 0;}
+\DoxyCodeLine{00193\ }
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \ \ \ \ regionError\ +=\ numerator\ *\ rcpDenominator;}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00196\ \ \ \ \ \}}
+\DoxyCodeLine{00197\ \ \ \ \ regionError\ /=\ frameRegion.getArea();}
+\DoxyCodeLine{00198\ \ \ \ \ regionError\ *=\ \mbox{\hyperlink{namespaceph_1_1math_adb93254f78909d9fef4bc8d7326b7670}{fast\_sqrt}}(frameRegion.getArea()\ *\ m\_rcpNumRegionPixels);}
+\DoxyCodeLine{00199\ \ \ \ \ PH\_ASSERT\_MSG(std::isfinite(regionError),\ std::to\_string(regionError));}
+\DoxyCodeLine{00200\ }
+\DoxyCodeLine{00201\ \ \ \ \ \textcolor{keywordflow}{if}(regionError\ >=\ m\_splitThreshold)}
+\DoxyCodeLine{00202\ \ \ \ \ \{}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ error\ is\ large,\ added\ for\ more\ effort}}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ m\_nextRegions.first\ \ =\ finishedRegion;}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ m\_nextRegions.second\ =\ Region(\{0,\ 0\});}
+\DoxyCodeLine{00206\ \ \ \ \ \}}
+\DoxyCodeLine{00207\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(regionError\ >=\ m\_terminateThreshold)}
+\DoxyCodeLine{00208\ \ \ \ \ \{}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(finishedRegion.getArea()\ >=\ MIN\_REGION\_AREA)}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ error\ is\ small,\ splitted\ and\ added\ for\ more\ effort}}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ \ maxDimension\ =\ finishedRegion.\mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d_a11f78e763ceb6a50257c98c9e782c408}{getExtents}}().maxDimension();}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ int64\ midPoint\ \ \ \ \ =\ (finishedRegion.getMinVertex()[maxDimension]\ +\ finishedRegion.getMaxVertex()[maxDimension])\ /\ 2;}
+\DoxyCodeLine{00214\ }
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \ \ \ \ m\_nextRegions\ =\ finishedRegion.getSplitted(maxDimension,\ midPoint);}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \ \ \ \ m\_nextRegions.first\ \ =\ finishedRegion;}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \ \ \ \ m\_nextRegions.second\ =\ Region(\{0,\ 0\});}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00222\ \ \ \ \ \}}
+\DoxyCodeLine{00223\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00224\ \ \ \ \ \{}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ error\ is\ very\ small,\ no\ further\ effort\ needed}}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ m\_nextRegions.first\ \ =\ Region(\{0,\ 0\});}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ m\_nextRegions.second\ =\ Region(\{0,\ 0\});}
+\DoxyCodeLine{00228\ \ \ \ \ \}}
+\DoxyCodeLine{00229\ \}}
+\DoxyCodeLine{00230\ }
+\DoxyCodeLine{00231\ \textcolor{keyword}{template}<>}
+\DoxyCodeLine{00232\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ DammertzDispatcher::TAnalyzer<DammertzDispatcher::ERefineMode::MIN\_ERROR\_DIFFERENCE>::analyzeFinishedRegion(}
+\DoxyCodeLine{00233\ \ \ \ \ \textcolor{keyword}{const}\ Region\&\ \ \ \ \ \ finishedRegion,}
+\DoxyCodeLine{00234\ \ \ \ \ \textcolor{keyword}{const}\ HdrRgbFrame\&\ allEffortFrame,}
+\DoxyCodeLine{00235\ \ \ \ \ \textcolor{keyword}{const}\ HdrRgbFrame\&\ halfEffortFrame)}
+\DoxyCodeLine{00236\ \{}
+\DoxyCodeLine{00237\ \ \ \ \ \textcolor{keyword}{using\ namespace\ }math;}
+\DoxyCodeLine{00238\ }
+\DoxyCodeLine{00239\ \ \ \ \ PH\_ASSERT\_GE(finishedRegion.getMinVertex().x(),\ 0);}
+\DoxyCodeLine{00240\ \ \ \ \ PH\_ASSERT\_GE(finishedRegion.getMinVertex().y(),\ 0);}
+\DoxyCodeLine{00241\ \ \ \ \ PH\_ASSERT\_LE(finishedRegion.getWidth(),\ \ allEffortFrame.widthPx());}
+\DoxyCodeLine{00242\ \ \ \ \ PH\_ASSERT\_LE(finishedRegion.getHeight(),\ allEffortFrame.heightPx());}
+\DoxyCodeLine{00243\ \ \ \ \ PH\_ASSERT\_LE(finishedRegion.getWidth(),\ \ halfEffortFrame.widthPx());}
+\DoxyCodeLine{00244\ \ \ \ \ PH\_ASSERT\_LE(finishedRegion.getHeight(),\ halfEffortFrame.heightPx());}
+\DoxyCodeLine{00245\ \ \ \ \ \textcolor{keyword}{const}\ TAABB2D<uint32>\ frameRegion(finishedRegion);}
+\DoxyCodeLine{00246\ }
+\DoxyCodeLine{00247\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ regionExtents\ =\ frameRegion.getExtents();}
+\DoxyCodeLine{00248\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ maxDimension\ \ =\ regionExtents.maxDimension();}
+\DoxyCodeLine{00249\ }
+\DoxyCodeLine{00250\ \ \ \ \ m\_accumulatedEps.resize(regionExtents[maxDimension]);}
+\DoxyCodeLine{00251\ \ \ \ \ std::fill(m\_accumulatedEps.begin(),\ m\_accumulatedEps.end(),\ 0.0\_r);}
+\DoxyCodeLine{00252\ }
+\DoxyCodeLine{00253\ \ \ \ \ real\ summedEp\ =\ 0;}
+\DoxyCodeLine{00254\ \ \ \ \ \textcolor{keywordflow}{for}(uint32\ y\ =\ frameRegion.getMinVertex().y();\ y\ <\ frameRegion.getMaxVertex().y();\ ++y)}
+\DoxyCodeLine{00255\ \ \ \ \ \{}
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ real\ summedRowEp\ =\ 0;}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(uint32\ x\ =\ frameRegion.getMinVertex().x();\ x\ <\ frameRegion.getMaxVertex().x();\ ++x)}
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ \ \ \ \ HdrRgbFrame::Pixel\ I,\ A;}
+\DoxyCodeLine{00260\ \ \ \ \ \ \ \ \ \ \ \ \ allEffortFrame.getPixel(x,\ y,\ \&I);}
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ \ \ \ \ halfEffortFrame.getPixel(x,\ y,\ \&A);}
+\DoxyCodeLine{00262\ }
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ real\ numerator\ \ \ \ \ \ =\ I.sub(A).abs().sum();}
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ real\ sumOfI\ \ \ \ \ \ \ \ \ =\ I.sum();}
+\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ real\ rcpDenominator\ =\ sumOfI\ >\ 0\ ?\ \mbox{\hyperlink{namespaceph_1_1math_acc970fbe8bc77521af0103b29e524baa}{fast\_rcp\_sqrt}}(sumOfI)\ :\ 0;}
+\DoxyCodeLine{00266\ }
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ \ \ \ \ PH\_ASSERT\_GE(numerator\ *\ rcpDenominator,\ 0);}
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ \ \ \ \ summedRowEp\ +=\ numerator\ *\ rcpDenominator;}
+\DoxyCodeLine{00269\ }
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(maxDimension\ ==\ constant::X\_AXIS)}
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_accumulatedEps[x\ -\/\ frameRegion.getMinVertex().x()]\ +=\ summedRowEp;}
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ summedEp\ +=\ summedRowEp;}
+\DoxyCodeLine{00276\ }
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(maxDimension\ ==\ constant::Y\_AXIS)}
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ \ \ \ \ m\_accumulatedEps[y\ -\/\ frameRegion.getMinVertex().y()]\ =\ summedEp;}
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00281\ \ \ \ \ \}}
+\DoxyCodeLine{00282\ }
+\DoxyCodeLine{00283\ \ \ \ \ real\ regionError\ =\ summedEp;}
+\DoxyCodeLine{00284\ \ \ \ \ regionError\ /=\ frameRegion.getArea();}
+\DoxyCodeLine{00285\ \ \ \ \ regionError\ *=\ \mbox{\hyperlink{namespaceph_1_1math_adb93254f78909d9fef4bc8d7326b7670}{fast\_sqrt}}(frameRegion.getArea()\ *\ m\_rcpNumRegionPixels);}
+\DoxyCodeLine{00286\ \ \ \ \ PH\_ASSERT\_MSG(regionError\ >\ 0\ \&\&\ std::isfinite(regionError),\ std::to\_string(regionError));}
+\DoxyCodeLine{00287\ }
+\DoxyCodeLine{00288\ \ \ \ \ \textcolor{keywordflow}{if}(regionError\ >=\ m\_splitThreshold)}
+\DoxyCodeLine{00289\ \ \ \ \ \{}
+\DoxyCodeLine{00290\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ error\ is\ large,\ added\ for\ more\ effort}}
+\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ m\_nextRegions.first\ \ =\ finishedRegion;}
+\DoxyCodeLine{00292\ \ \ \ \ \ \ \ \ m\_nextRegions.second\ =\ Region(\{0,\ 0\});}
+\DoxyCodeLine{00293\ \ \ \ \ \}}
+\DoxyCodeLine{00294\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(regionError\ >=\ m\_terminateThreshold)}
+\DoxyCodeLine{00295\ \ \ \ \ \{}
+\DoxyCodeLine{00296\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(finishedRegion.getArea()\ >=\ MIN\_REGION\_AREA)}
+\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00298\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Split\ on\ the\ point\ that\ minimizes\ the\ difference\ of\ error\ }}
+\DoxyCodeLine{00299\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ across\ two\ splitted\ regions.\ To\ find\ the\ point,\ we\ squared\ the}}
+\DoxyCodeLine{00300\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ error\ metric\ (to\ avoid\ sqrt)\ and\ stripped\ away\ some\ constants}}
+\DoxyCodeLine{00301\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ which\ do\ not\ affect\ the\ result.}}
+\DoxyCodeLine{00302\ }
+\DoxyCodeLine{00303\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ real\ totalEps\ =\ m\_accumulatedEps.back();}
+\DoxyCodeLine{00304\ }
+\DoxyCodeLine{00305\ \ \ \ \ \ \ \ \ \ \ \ \ int64\ bestPosPx\ \ \ \ =\ 0;}
+\DoxyCodeLine{00306\ \ \ \ \ \ \ \ \ \ \ \ \ real\ \ minErrorDiff\ =\ totalEps\ *\ \mbox{\hyperlink{namespaceph_1_1math_acc970fbe8bc77521af0103b29e524baa}{fast\_rcp\_sqrt}}(\textcolor{keyword}{static\_cast<}real\textcolor{keyword}{>}(m\_accumulatedEps.size()));}
+\DoxyCodeLine{00307\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ i\ =\ 0;\ i\ <\ m\_accumulatedEps.size();\ ++i)}
+\DoxyCodeLine{00308\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00309\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ real\ summedEp0\ =\ m\_accumulatedEps[i];}
+\DoxyCodeLine{00310\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ real\ summedEp1\ =\ totalEps\ -\/\ summedEp0;}
+\DoxyCodeLine{00311\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ PH\_ASSERT\_GE(summedEp0,\ 0);}
+\DoxyCodeLine{00312\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ PH\_ASSERT\_GE(summedEp1,\ 0);}
+\DoxyCodeLine{00313\ }
+\DoxyCodeLine{00314\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ real\ error0\ \ \ \ =\ summedEp0\ *\ \mbox{\hyperlink{namespaceph_1_1math_acc970fbe8bc77521af0103b29e524baa}{fast\_rcp\_sqrt}}(\textcolor{keyword}{static\_cast<}real\textcolor{keyword}{>}(i\ +\ 1));}
+\DoxyCodeLine{00315\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ real\ error1\ \ \ \ =\ summedEp1\ *\ (i\ !=\ m\_accumulatedEps.size()\ -\/\ 1\ ?\ }
+\DoxyCodeLine{00316\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceph_1_1math_acc970fbe8bc77521af0103b29e524baa}{fast\_rcp\_sqrt}}(\textcolor{keyword}{static\_cast<}real\textcolor{keyword}{>}(m\_accumulatedEps.size()\ -\/\ i\ -\/\ 1))\ :\ 0);}
+\DoxyCodeLine{00317\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ real\ errorDiff\ =\ std::abs(error0\ -\/\ error1);}
+\DoxyCodeLine{00318\ }
+\DoxyCodeLine{00319\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(errorDiff\ <\ minErrorDiff)}
+\DoxyCodeLine{00320\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00321\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ minErrorDiff\ =\ errorDiff;}
+\DoxyCodeLine{00322\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ bestPosPx\ \ \ \ =\ \textcolor{keyword}{static\_cast<}int64\textcolor{keyword}{>}(i\ +\ 1);}
+\DoxyCodeLine{00323\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00324\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00325\ }
+\DoxyCodeLine{00326\ \ \ \ \ \ \ \ \ \ \ \ \ m\_nextRegions\ =\ finishedRegion.getSplitted(}
+\DoxyCodeLine{00327\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ maxDimension,\ }
+\DoxyCodeLine{00328\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ finishedRegion.getMinVertex()[maxDimension]\ +\ bestPosPx);}
+\DoxyCodeLine{00329\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00330\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00331\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00332\ \ \ \ \ \ \ \ \ \ \ \ \ m\_nextRegions.first\ \ =\ finishedRegion;}
+\DoxyCodeLine{00333\ \ \ \ \ \ \ \ \ \ \ \ \ m\_nextRegions.second\ =\ Region(\{0,\ 0\});}
+\DoxyCodeLine{00334\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00335\ \ \ \ \ \}}
+\DoxyCodeLine{00336\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00337\ \ \ \ \ \{}
+\DoxyCodeLine{00338\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ error\ is\ very\ small,\ no\ further\ effort\ needed}}
+\DoxyCodeLine{00339\ \ \ \ \ \ \ \ \ m\_nextRegions.first\ \ =\ Region(\{0,\ 0\});}
+\DoxyCodeLine{00340\ \ \ \ \ \ \ \ \ m\_nextRegions.second\ =\ Region(\{0,\ 0\});}
+\DoxyCodeLine{00341\ \ \ \ \ \}}
+\DoxyCodeLine{00342\ \}}
+\DoxyCodeLine{00343\ }
+\DoxyCodeLine{00344\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ DammertzDispatcher::addAnalyzedRegion(\textcolor{keyword}{const}\ Region\&\ region)}
+\DoxyCodeLine{00345\ \{}
+\DoxyCodeLine{00346\ \ \ \ \ \textcolor{keywordflow}{if}(region.isArea())}
+\DoxyCodeLine{00347\ \ \ \ \ \{}
+\DoxyCodeLine{00348\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(region.getArea()\ <=\ MIN\_REGION\_AREA)}
+\DoxyCodeLine{00349\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00350\ \ \ \ \ \ \ \ \ \ \ \ \ m\_pendingRegions.push(WorkUnit(region,\ m\_terminusDepthPerRegion));}
+\DoxyCodeLine{00351\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00352\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00353\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00354\ \ \ \ \ \ \ \ \ \ \ \ \ m\_pendingRegions.push(WorkUnit(region,\ m\_standardDepthPerRegion));}
+\DoxyCodeLine{00355\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00356\ \ \ \ \ \}}
+\DoxyCodeLine{00357\ \}}
+\DoxyCodeLine{00358\ }
+\DoxyCodeLine{00359\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+
+\end{DoxyCode}

@@ -1,0 +1,125 @@
+\doxysection{TSdl\+Spectrum.\+h}
+\hypertarget{_t_sdl_spectrum_8h_source}{}\label{_t_sdl_spectrum_8h_source}\index{Source/Actor/SDLExtension/TSdlSpectrum.h@{Source/Actor/SDLExtension/TSdlSpectrum.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}SDL/Introspect/TSdlValue.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}SDL/Introspect/TSdlOptionalValue.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}Common/primitive\_type.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}Common/assertion.h"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}Math/Color/Spectrum.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{sdl__helpers_8h}{SDL/sdl\_helpers.h}}"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}SDL/SdlResourceLocator.h"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}SDL/Introspect/SdlInputContext.h"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{io__utils_8h}{DataIO/io\_utils.h}}"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}DataIO/io\_exceptions.h"{}}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}Actor/SDLExtension/sdl\_spectrum\_io.h"{}}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ "{}Actor/SDLExtension/sdl\_color\_enums.h"{}}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <type\_traits>}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00022\ \{}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Owner,\ \textcolor{keyword}{typename}\ SdlValueType\ =\ TSdlValue<math::Spectrum,\ Owner>>}
+\DoxyCodeLine{00025\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_t_sdl_spectrum}{TSdlSpectrum}}\ :\ \textcolor{keyword}{public}\ SdlValueType}
+\DoxyCodeLine{00026\ \{}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_base\_of\_v<TSdlAbstractValue<math::Spectrum,\ Owner>,\ SdlValueType>,}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}SdlValueType\ should\ be\ a\ subclass\ of\ TSdlAbstractValue."{}});}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ ValueType>}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_t_sdl_spectrum}{TSdlSpectrum}}(}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ std::string\ valueName,\ }
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_1_1math_a821af6da20aaed56cc09ad440633d067}{math::EColorUsage}}\ usage,}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ ValueType\ Owner::*\ \textcolor{keyword}{const}\ valuePtr)\ :}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ SdlValueType(\textcolor{stringliteral}{"{}spectrum"{}},\ std::move(valueName),\ valuePtr),}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ m\_usage(usage)}
+\DoxyCodeLine{00040\ \ \ \ \ \{\}}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keyword}{inline}\ std::string\ valueAsString(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_spectrum}{math::Spectrum}}\&\ spectrum)\textcolor{keyword}{\ const\ override}}
+\DoxyCodeLine{00043\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ TODO:\ add\ type,\ \#\ values?}}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ spectrum.toString();}
+\DoxyCodeLine{00046\ \ \ \ \ \}}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_sdl_native_data}{SdlNativeData}}\ \mbox{\hyperlink{classph_1_1_t_sdl_spectrum_adf5328496d28b69c79ce6b278793a2a4}{ownedNativeData}}(Owner\&\ owner)\textcolor{keyword}{\ const\ override}}
+\DoxyCodeLine{00049\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_spectrum}{math::Spectrum}}*\ \textcolor{keyword}{const}\ spectrum\ =\ this-\/>\mbox{\hyperlink{classph_1_1_t_sdl_value_a706565be62e0104124f619c27d9f924a}{getValue}}(owner);}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(std::is\_base\_of\_v<TSdlOptionalValue<math::Spectrum,\ Owner>,\ SdlValueType>)}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ data\ =\ \mbox{\hyperlink{classph_1_1_sdl_native_data}{SdlNativeData}}(}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ [\&optSpectrum\ =\ this-\/>valueRef(owner)](std::size\_t\ \textcolor{comment}{/*\ elementIdx\ */})\ -\/>\ \mbox{\hyperlink{classph_1_1_t_sdl_accessor_variant}{SdlGetterVariant}}}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ optSpectrum}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ?\ \mbox{\hyperlink{classph_1_1_sdl_native_data_a632f90a9950791b7c25f89293d3822d5}{SdlNativeData::permissiveElementGetter}}(\&(*optSpectrum))}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ std::monostate\{\};}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \},}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ [\&optSpectrum\ =\ this-\/>valueRef(owner)](std::size\_t\ \textcolor{comment}{/*\ elementIdx\ */},\ \mbox{\hyperlink{classph_1_1_t_sdl_accessor_variant}{SdlSetterVariant}}\ input)\ -\/>\ \textcolor{keywordtype}{bool}}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(input.isEmpty())}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ optSpectrum\ =\ std::nullopt;}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *optSpectrum\ =\ \mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_spectrum}{math::Spectrum}}\{\};}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1_sdl_native_data_a035296228dfe6619da40577b68ecc3f0}{SdlNativeData::permissiveElementSetter}}(input,\ \&(*optSpectrum));}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \},}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceph_a76393562caa22c28431e3d8da5706a2b}{AnyNonConstPtr}}(spectrum));}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ data.\mbox{\hyperlink{classph_1_1_sdl_native_data_a31819f46d6bd68e7854be1efa3e1adfa}{numElements}}\ =\ spectrum\ ?\ 1\ :\ 0;}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ data.elementContainer\ =\ \mbox{\hyperlink{namespaceph_ace69f5c0a73308d2c88c512f8b70016ea66ba162102bbf6ae31b522aec561735e}{ESdlDataFormat::Single}};}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ data.elementType\ =\ \mbox{\hyperlink{namespaceph_ada33bb2d4bc26b3ec1da2acb348ef4ebac0d49cbee3b571a77b483aaceb20270f}{ESdlDataType::Spectrum}};}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ data.isNullClearable\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ data;}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1_sdl_native_data_ae95e05b58c7e3ea8eddd69dcee0b6bc4}{SdlNativeData::fromSingleElement}}(}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ spectrum,\ \mbox{\hyperlink{namespaceph_ace69f5c0a73308d2c88c512f8b70016ea66ba162102bbf6ae31b522aec561735e}{ESdlDataFormat::Single}},\ \mbox{\hyperlink{namespaceph_ada33bb2d4bc26b3ec1da2acb348ef4ebac0d49cbee3b571a77b483aaceb20270f}{ESdlDataType::Spectrum}},\ \textcolor{keyword}{true},\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00086\ \ \ \ \ \}}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_sdl_spectrum_ad00ab6da3dd417fac00938cb8cbe304c}{loadFromSdl}}(}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ Owner\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ owner,}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_sdl_input_clause}{SdlInputClause}}\&\ \ clause,}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_sdl_input_context}{SdlInputContext}}\&\ ctx)\textcolor{keyword}{\ const\ override}}
+\DoxyCodeLine{00093\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ this-\/>\mbox{\hyperlink{classph_1_1_t_sdl_value_a10a624c8ee21919ff7d95b5b67ac0746}{setValue}}(owner,\ sdl::load\_spectrum(clause.\mbox{\hyperlink{classph_1_1_sdl_input_clause_a3a57fdbbab5543025ef072715c949c65}{value}},\ clause.tag,\ m\_usage));}
+\DoxyCodeLine{00095\ \ \ \ \ \}}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_sdl_spectrum_a1ed93e0412fdcee0348f22b2c72620be}{saveToSdl}}(}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Owner\&\ \ \ \ \ \ \ \ \ \ \ \ owner,}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_sdl_output_clause}{SdlOutputClause}}\&\ \ \ \ \ \ \ \ out\_clause,}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_sdl_output_context}{SdlOutputContext}}\&\ ctx)\textcolor{keyword}{\ const\ override}}
+\DoxyCodeLine{00101\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_spectrum}{math::Spectrum}}*\ value\ =\ this-\/>\mbox{\hyperlink{classph_1_1_t_sdl_value_a2980df26bdcefcafa2a7b235db2adf58}{getConstValue}}(owner);\ value)}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ sdl::save\_spectrum(*value,\ \&out\_clause.\mbox{\hyperlink{classph_1_1_sdl_output_clause_a27625fd790a2cb49f0cfd9c113ddb5ea}{value}},\ \&out\_clause.tag);}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ out\_clause.\mbox{\hyperlink{classph_1_1_sdl_output_clause_a8bd6ce2a952288003b3b7d085f375cb4}{isEmpty}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00110\ \ \ \ \ \}}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00113\ \ \ \ \ \mbox{\hyperlink{namespaceph_1_1math_a821af6da20aaed56cc09ad440633d067}{math::EColorUsage}}\ m\_usage;}
+\DoxyCodeLine{00114\ \};}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00116\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Owner>}
+\DoxyCodeLine{00117\ \textcolor{keyword}{using\ }TSdlOptionalSpectrum\ =\ TSdlSpectrum<Owner,\ TSdlOptionalValue<math::Spectrum,\ Owner>>;}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+
+\end{DoxyCode}

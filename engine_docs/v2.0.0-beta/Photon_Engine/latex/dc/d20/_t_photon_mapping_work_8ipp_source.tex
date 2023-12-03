@@ -1,0 +1,185 @@
+\doxysection{TPhoton\+Mapping\+Work.\+ipp}
+\hypertarget{_t_photon_mapping_work_8ipp_source}{}\label{_t_photon_mapping_work_8ipp_source}\index{Source/Core/Renderer/PM/TPhotonMappingWork.ipp@{Source/Core/Renderer/PM/TPhotonMappingWork.ipp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Core/Renderer/PM/TPhotonMappingWork.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}World/Scene.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}Core/Receiver/Receiver.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}Core/SampleGenerator/SampleGenerator.h"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}Core/Ray.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}Core/SurfaceBehavior/SurfaceBehavior.h"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}Core/SurfaceBehavior/SurfaceOptics.h"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}Core/Intersectable/Primitive.h"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}Core/Intersectable/PrimitiveMetadata.h"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}Core/SurfaceHit.h"{}}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}Core/HitProbe.h"{}}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ "{}Core/HitDetail.h"{}}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ "{}Math/Random.h"{}}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ "{}Core/LTABuildingBlock/RussianRoulette.h"{}}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ "{}Common/assertion.h"{}}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ "{}Utility/Timer.h"{}}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ "{}Core/Renderer/PM/PMStatistics.h"{}}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ "{}Core/LTABuildingBlock/SurfaceTracer.h"{}}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}Core/LTABuildingBlock/lta.h"{}}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}Core/SurfaceBehavior/BsdfSampleQuery.h"{}}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00025\ \{}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Photon>}
+\DoxyCodeLine{00028\ \textcolor{keyword}{inline}\ TPhotonMappingWork<Photon>::TPhotonMappingWork(}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{const}\ Scene*\ \textcolor{keyword}{const}\ \ \ \ \ scene,}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{const}\ Receiver*\ \textcolor{keyword}{const}\ \ receiver,}
+\DoxyCodeLine{00032\ \ \ \ \ SampleGenerator*\ \textcolor{keyword}{const}\ sampleGenerator,}
+\DoxyCodeLine{00033\ \ \ \ \ Photon*\ \textcolor{keyword}{const}\ \ \ \ \ \ \ \ \ \ photonBuffer,}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ \ \ \ \ \ numPhotons,}
+\DoxyCodeLine{00035\ \ \ \ \ std::size\_t*\ \textcolor{keyword}{const}\ \ \ \ \ out\_numPhotonPaths)\ :}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \ \ m\_scene(scene),}
+\DoxyCodeLine{00038\ \ \ \ \ m\_receiver(receiver),}
+\DoxyCodeLine{00039\ \ \ \ \ m\_sampleGenerator(sampleGenerator),}
+\DoxyCodeLine{00040\ \ \ \ \ m\_photonBuffer(photonBuffer),}
+\DoxyCodeLine{00041\ \ \ \ \ m\_numPhotons(numPhotons),}
+\DoxyCodeLine{00042\ \ \ \ \ m\_numPhotonPaths(out\_numPhotonPaths)}
+\DoxyCodeLine{00043\ \{}
+\DoxyCodeLine{00044\ \ \ \ \ setPMStatistics(\textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00045\ \}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Photon>}
+\DoxyCodeLine{00048\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ TPhotonMappingWork<Photon>::doWork()}
+\DoxyCodeLine{00049\ \{}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{comment}{//\ FIXME:\ currently\ we\ exit\ immediately\ when\ photon\ buffer\ is\ full;\ we\ should\ trace\ a\ full\ path\ instead}}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ Timer\ timer;}
+\DoxyCodeLine{00053\ \ \ \ \ timer.start();}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keyword}{const}\ BsdfQueryContext\ bsdfContext(ALL\_ELEMENTALS,\ ETransport::IMPORTANCE,\ ESidednessPolicy::STRICT);}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keyword}{const}\ SurfaceTracer\ surfaceTracer(m\_scene);}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ raySampleHandle\ =\ m\_sampleGenerator-\/>declareStageND(2,\ m\_numPhotons);}
+\DoxyCodeLine{00059\ \ \ \ \ m\_sampleGenerator-\/>prepareSampleBatch();\textcolor{comment}{//\ HACK:\ check\ if\ succeeded}}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keyword}{auto}\ raySamples\ =\ m\_sampleGenerator-\/>getSamplesND(raySampleHandle);}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \ \ std::size\_t\ numStoredPhotons\ =\ 0;}
+\DoxyCodeLine{00063\ \ \ \ \ *m\_numPhotonPaths\ \ \ \ \ \ \ \ \ \ \ \ =\ 0;}
+\DoxyCodeLine{00064\ \ \ \ \ std::size\_t\ photonCounter\ \ \ \ =\ 0;}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordflow}{while}(numStoredPhotons\ <\ m\_numPhotons)}
+\DoxyCodeLine{00066\ \ \ \ \ \{}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ ++(*m\_numPhotonPaths);}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ SampleFlow\ sampleFlow\ =\ raySamples.readSampleAsFlow();}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ Ray\ tracingRay;}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ math::Spectrum\ emittedRadiance;}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ math::Vector3R\ emitN;}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ real\ pdfA;}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ real\ pdfW;}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ m\_scene-\/>emitRay(sampleFlow,\ \&tracingRay,\ \&emittedRadiance,\ \&emitN,\ \&pdfA,\ \&pdfW);}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(pdfA\ *\ pdfW\ ==\ 0.0\_r)}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ here\ 0-\/bounce\ lighting\ is\ not\ accounted\ for}}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ math::Spectrum\ throughputRadiance(emittedRadiance);}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ throughputRadiance.divLocal(pdfA);}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ throughputRadiance.divLocal(pdfW);}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ throughputRadiance.mulLocal(emitN.absDot(tracingRay.getDirection()));}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ start\ tracing\ single\ photon\ path}}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}(!throughputRadiance.isZero())}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ SurfaceHit\ surfaceHit;}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!surfaceTracer.traceNextSurface(tracingRay,\ bsdfContext.sidedness,\ \&surfaceHit))}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ PrimitiveMetadata*\ metadata\ =\ surfaceHit.getDetail().getPrimitive()-\/>getMetadata();}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ SurfaceOptics*\ optics\ =\ metadata-\/>getSurface().getOptics();}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ math::Spectrum\ weightedThroughputRadiance;}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(RussianRoulette::surviveOnLuminance(throughputRadiance,\ sampleFlow,\ \&weightedThroughputRadiance))}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ throughputRadiance\ =\ weightedThroughputRadiance;}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Photon\ photon;}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(Photon::template\ has<EPhotonData::POSITION>())\ \{}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ photon.template\ set<EPhotonData::POSITION>(surfaceHit.getPosition());}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(Photon::template\ has<EPhotonData::THROUGHPUT\_RADIANCE>())\ \{}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ photon.template\ set<EPhotonData::THROUGHPUT\_RADIANCE>(throughputRadiance);}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(Photon::template\ has<EPhotonData::FROM\_DIR>())\ \{}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ photon.template\ set<EPhotonData::FROM\_DIR>(tracingRay.getDirection().mul(-\/1));}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_photonBuffer[numStoredPhotons++]\ =\ photon;}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ++photonCounter;}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(numStoredPhotons\ ==\ m\_numPhotons)}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ \}\textcolor{comment}{//\ end\ if\ photon\ survived}}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ BsdfSampleQuery\ bsdfSample(bsdfContext);}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ Ray\ sampledRay;}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \ \ bsdfSample.inputs.set(surfaceHit,\ tracingRay.getDirection().mul(-\/1));}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!surfaceTracer.doBsdfSample(bsdfSample,\ sampleFlow,\ \&sampledRay))}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ math::Vector3R\ V\ =\ tracingRay.getDirection().mul(-\/1);}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ math::Vector3R\ L\ =\ bsdfSample.outputs.L;}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \ \ \ \ math::Vector3R\ Ng\ =\ surfaceHit.getGeometryNormal();}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ math::Vector3R\ Ns\ =\ surfaceHit.getShadingNormal();}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ throughputRadiance.mulLocal(bsdfSample.outputs.pdfAppliedBsdf);}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ throughputRadiance.mulLocal(lta::importance\_BSDF\_Ns\_corrector(Ns,\ Ng,\ L,\ V));}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ throughputRadiance.mulLocal(Ns.absDot(L));}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \ \ tracingRay\ =\ sampledRay;}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \}\textcolor{comment}{//\ end\ single\ photon\ path}}
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(photonCounter\ >=\ 16384)}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \ \ \ \ timer.stop();}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \ \ \ \ setElapsedMs(timer.getDeltaMs());}
+\DoxyCodeLine{00154\ }
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(m\_statistics)}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_statistics-\/>asyncAddNumTracedPhotons(photonCounter);}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \ \ photonCounter\ =\ 0;}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00162\ \ \ \ \ \}\textcolor{comment}{//\ end\ while\ photon\ buffer\ is\ not\ full}}
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00164\ \ \ \ \ timer.stop();}
+\DoxyCodeLine{00165\ \ \ \ \ setElapsedMs(timer.getDeltaMs());}
+\DoxyCodeLine{00166\ }
+\DoxyCodeLine{00167\ \ \ \ \ \textcolor{keywordflow}{if}(m\_statistics)}
+\DoxyCodeLine{00168\ \ \ \ \ \{}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ m\_statistics-\/>asyncAddNumTracedPhotons(photonCounter);}
+\DoxyCodeLine{00170\ \ \ \ \ \}}
+\DoxyCodeLine{00171\ \}}
+\DoxyCodeLine{00172\ }
+\DoxyCodeLine{00173\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Photon>}
+\DoxyCodeLine{00174\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ TPhotonMappingWork<Photon>::setPMStatistics(PMStatistics*\ \textcolor{keyword}{const}\ statistics)}
+\DoxyCodeLine{00175\ \{}
+\DoxyCodeLine{00176\ \ \ \ \ m\_statistics\ =\ statistics;}
+\DoxyCodeLine{00177\ \}}
+\DoxyCodeLine{00178\ }
+\DoxyCodeLine{00179\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+
+\end{DoxyCode}

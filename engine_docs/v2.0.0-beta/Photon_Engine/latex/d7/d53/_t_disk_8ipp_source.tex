@@ -1,0 +1,102 @@
+\doxysection{TDisk.\+ipp}
+\hypertarget{_t_disk_8ipp_source}{}\label{_t_disk_8ipp_source}\index{Source/Math/Geometry/TDisk.ipp@{Source/Math/Geometry/TDisk.ipp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Math/Geometry/TDisk.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Math/TOrthonormalBasis3.h"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph_1_1math}{ph::math}}}
+\DoxyCodeLine{00007\ \{}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00010\ \textcolor{keyword}{inline}\ TDisk<T>::TDisk(\textcolor{keyword}{const}\ T\ radius)\ :\ }
+\DoxyCodeLine{00011\ \ \ \ \ m\_radius(radius)}
+\DoxyCodeLine{00012\ \{}
+\DoxyCodeLine{00013\ \ \ \ \ PH\_ASSERT\_GT(radius,\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(0));}
+\DoxyCodeLine{00014\ \}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00017\ \textcolor{keyword}{inline}\ T\ TDisk<T>::getArea()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00018\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keywordflow}{return}\ constant::pi<T>\ *\ m\_radius\ *\ m\_radius;}
+\DoxyCodeLine{00020\ \}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00023\ \textcolor{keyword}{inline}\ TVector3<T>\ TDisk<T>::sampleToSurface(\textcolor{keyword}{const}\ std::array<T,\ 2>\&\ sample)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00024\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ surfacePos2D\ =\ sampleToSurface2D(sample);}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordflow}{return}\ TVector3<T>(surfacePos2D.y,\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(0),\ surfacePos2D.x);}
+\DoxyCodeLine{00027\ \}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00030\ \textcolor{keyword}{inline}\ TVector3<T>\ TDisk<T>::sampleToSurface(\textcolor{keyword}{const}\ std::array<T,\ 2>\&\ sample,\ T*\ \textcolor{keyword}{const}\ out\_pdfA)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00031\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ surfacePos2D\ =\ sampleToSurface2D(sample,\ out\_pdfA);}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordflow}{return}\ TVector3<T>(surfacePos2D.y,\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(0),\ surfacePos2D.x);}
+\DoxyCodeLine{00034\ \}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00037\ \textcolor{keyword}{inline}\ TVector2<T>\ TDisk<T>::sampleToSurface2D(\textcolor{keyword}{const}\ std::array<T,\ 2>\&\ sample)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00038\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00039\ \ \ \ \ PH\_ASSERT\_IN\_RANGE\_INCLUSIVE(sample[0],\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(0),\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(1));}
+\DoxyCodeLine{00040\ \ \ \ \ PH\_ASSERT\_IN\_RANGE\_INCLUSIVE(sample[1],\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(0),\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(1));}
+\DoxyCodeLine{00041\ \ \ \ \ PH\_ASSERT\_GE(m\_radius,\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(0));}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keyword}{const}\ T\ r\ \ \ =\ std::sqrt(sample[0]);}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keyword}{const}\ T\ phi\ =\ constant::two\_pi<real>\ *\ sample[1];}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ localUnitPos\ =\ TVector2<T>(}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ r\ *\ std::cos(phi),}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ r\ *\ std::sin(phi));}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordflow}{return}\ localUnitPos.mul(m\_radius);}
+\DoxyCodeLine{00051\ \}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00054\ \textcolor{keyword}{inline}\ TVector2<T>\ TDisk<T>::sampleToSurface2D(\textcolor{keyword}{const}\ std::array<T,\ 2>\&\ sample,\ T*\ \textcolor{keyword}{const}\ out\_pdfA)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00055\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00056\ \ \ \ \ PH\_ASSERT(out\_pdfA);}
+\DoxyCodeLine{00057\ \ \ \ \ *out\_pdfA\ =\ uniformSamplePdfA();}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordflow}{return}\ sampleToSurface2D(sample);}
+\DoxyCodeLine{00060\ \}}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00063\ \textcolor{keyword}{inline}\ TVector3<T>\ TDisk<T>::sampleToSurfaceOriented(}
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keyword}{const}\ std::array<T,\ 2>\&\ sample,}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keyword}{const}\ TVector3<T>\&\ \ \ \ \ \ normal,}
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keyword}{const}\ TVector3<T>\&\ \ \ \ \ \ offset)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00067\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ diskPos2d\ =\ sampleToSurface2D(sample);}
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ basis\ \ \ \ \ =\ TOrthonormalBasis3<T>::makeFromUnitY(normal);}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keywordflow}{return}\ (basis.getZAxis()\ *\ diskPos2d.x)\ +\ }
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ (basis.getXAxis()\ *\ diskPos2d.y)\ +\ }
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ offset;}
+\DoxyCodeLine{00074\ \}}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00077\ \textcolor{keyword}{inline}\ TVector3<T>\ TDisk<T>::sampleToSurfaceOriented(}
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keyword}{const}\ std::array<T,\ 2>\&\ sample,}
+\DoxyCodeLine{00079\ \ \ \ \ T*\ \textcolor{keyword}{const}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ out\_pdfA,}
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keyword}{const}\ TVector3<T>\&\ \ \ \ \ \ normal,}
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keyword}{const}\ TVector3<T>\&\ \ \ \ \ \ offset)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00082\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00083\ \ \ \ \ PH\_ASSERT(out\_pdfA);}
+\DoxyCodeLine{00084\ \ \ \ \ *out\_pdfA\ =\ uniformSamplePdfA();}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keywordflow}{return}\ sampleToSurfaceOriented(sample,\ normal,\ offset);}
+\DoxyCodeLine{00087\ \}}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00090\ \textcolor{keyword}{inline}\ T\ TDisk<T>::uniformSamplePdfA()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00091\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{comment}{//\ PDF\_A\ is\ 1/(pi*r\string^2)}}
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(1)\ /\ getArea();}
+\DoxyCodeLine{00094\ \}}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \}\textcolor{comment}{//\ end\ namespace\ ph::math}}
+
+\end{DoxyCode}

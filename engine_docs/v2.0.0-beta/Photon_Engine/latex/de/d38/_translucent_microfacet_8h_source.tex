@@ -1,0 +1,63 @@
+\doxysection{Translucent\+Microfacet.\+h}
+\hypertarget{_translucent_microfacet_8h_source}{}\label{_translucent_microfacet_8h_source}\index{Source/Core/SurfaceBehavior/SurfaceOptics/TranslucentMicrofacet.h@{Source/Core/SurfaceBehavior/SurfaceOptics/TranslucentMicrofacet.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Core/SurfaceBehavior/SurfaceOptics.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Core/SurfaceBehavior/Property/DielectricFresnel.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}Core/SurfaceBehavior/Property/Microfacet.h"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00010\ \{}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_translucent_microfacet}{TranslucentMicrofacet}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classph_1_1_surface_optics}{SurfaceOptics}}}
+\DoxyCodeLine{00013\ \{}
+\DoxyCodeLine{00014\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00015\ \ \ \ \ \mbox{\hyperlink{classph_1_1_translucent_microfacet}{TranslucentMicrofacet}}(}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::shared\_ptr<DielectricFresnel>\&\ fresnel,\ }
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::shared\_ptr<Microfacet>\&\ \ \ \ \ \ \ \ microfacet);}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \ \ \ \ ESurfacePhenomenon\ getPhenomenonOf(SurfaceElemental\ elemental)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \ \ \ \ std::string\ toString()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordtype}{void}\ calcBsdf(}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_bsdf_query_context}{BsdfQueryContext}}\&\ ctx,}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_bsdf_eval_input}{BsdfEvalInput}}\&\ \ \ \ in,}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_bsdf_eval_output}{BsdfEvalOutput}}\&\ \ \ \ \ \ \ \ \ out)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordtype}{void}\ calcBsdfSample(}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_bsdf_query_context}{BsdfQueryContext}}\&\ ctx,}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_bsdf_sample_input}{BsdfSampleInput}}\&\ \ in,}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_sample_flow}{SampleFlow}}\&\ \ \ \ \ \ \ \ \ \ \ \ \ sampleFlow,}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_bsdf_sample_output}{BsdfSampleOutput}}\&\ \ \ \ \ \ \ out)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordtype}{void}\ calcBsdfSamplePdfW(}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_bsdf_query_context}{BsdfQueryContext}}\&\ ctx,}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_bsdf_pdf_input}{BsdfPdfInput}}\&\ \ \ \ \ in,}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_bsdf_pdf_output}{BsdfPdfOutput}}\&\ \ \ \ \ \ \ \ \ \ out)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00041\ \ \ \ \ std::shared\_ptr<DielectricFresnel>\ m\_fresnel;}
+\DoxyCodeLine{00042\ \ \ \ \ std::shared\_ptr<Microfacet>\ \ \ \ \ \ \ \ m\_microfacet;}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keyword}{static}\ real\ getReflectionProbability(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_spectrum}{math::Spectrum}}\&\ F);}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{static}\ SurfaceElemental\ REFLECTION\ \ \ =\ 0;}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{static}\ SurfaceElemental\ TRANSMISSION\ =\ 1;}
+\DoxyCodeLine{00048\ \};}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \textcolor{comment}{//\ In-\/header\ Implementations:}}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \textcolor{keyword}{inline}\ std::string\ TranslucentMicrofacet::toString()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00053\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}Translucent\ Microfacet,\ "{}}\ +\ SurfaceOptics::toString();}
+\DoxyCodeLine{00055\ \}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+
+\end{DoxyCode}

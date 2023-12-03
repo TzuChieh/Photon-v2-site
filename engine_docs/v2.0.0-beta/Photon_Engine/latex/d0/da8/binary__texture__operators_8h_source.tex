@@ -1,0 +1,111 @@
+\doxysection{binary\+\_\+texture\+\_\+operators.\+h}
+\hypertarget{binary__texture__operators_8h_source}{}\label{binary__texture__operators_8h_source}\index{Source/Core/Texture/Function/binary\_texture\_operators.h@{Source/Core/Texture/Function/binary\_texture\_operators.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Core/Texture/TTexture.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Common/assertion.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}Core/Texture/SampleLocation.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}Utility/traits.h"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}Math/Color/Spectrum.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}Math/TArithmeticArray.h"{}}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <cstddef>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <type\_traits>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <concepts>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <array>}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00018\ \{}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{keyword}{namespace\ }texfunc}
+\DoxyCodeLine{00021\ \{}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ OperatorType,\ \textcolor{keyword}{typename}\ InputTypeA,\ \textcolor{keyword}{typename}\ InputTypeB,\ \textcolor{keyword}{typename}\ OutputType>}
+\DoxyCodeLine{00024\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptph_1_1texfunc_1_1_c_binary_operator}{CBinaryOperator}}\ =\ \textcolor{keyword}{requires}\ (OperatorType\ op,\ InputTypeA\ inputA,\ InputTypeB\ inputB)}
+\DoxyCodeLine{00025\ \{}
+\DoxyCodeLine{00026\ \ \ \ \ \{\ op(inputA,\ inputB)\ \}\ -\/>\ std::same\_as<OutputType>;}
+\DoxyCodeLine{00027\ \};}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ InputTypeA,\ \textcolor{keyword}{typename}\ InputTypeB,\ \textcolor{keyword}{typename}\ OutputType>}
+\DoxyCodeLine{00030\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1texfunc_1_1_t_add}{TAdd}}\ final}
+\DoxyCodeLine{00031\ \{}
+\DoxyCodeLine{00032\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00033\ \ \ \ \ OutputType\ operator\ ()\ (\textcolor{keyword}{const}\ InputTypeA\&\ inputValueA,\ \textcolor{keyword}{const}\ InputTypeB\&\ inputValueB)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00034\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_assert}(\mbox{\hyperlink{conceptph_1_1_c_can_add}{CCanAdd<InputTypeA,\ InputTypeB,\ OutputType>}},}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Must\ have\ add\ operator\ for\ <OutputType>\ =\ <InputTypeA>\ +\ <InputTypeB>"{}});}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ inputValueA\ +\ inputValueB;}
+\DoxyCodeLine{00039\ \ \ \ \ \}}
+\DoxyCodeLine{00040\ \};}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classph_1_1texfunc_1_1_t_add}{AddSpectrum}}\ =\ \mbox{\hyperlink{classph_1_1texfunc_1_1_t_add}{TAdd<math::Spectrum,\ math::Spectrum,\ math::Spectrum>}};}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ InputTypeA,\ \textcolor{keyword}{typename}\ InputTypeB,\ \textcolor{keyword}{typename}\ OutputType>}
+\DoxyCodeLine{00045\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1texfunc_1_1_t_multiply}{TMultiply}}\ final}
+\DoxyCodeLine{00046\ \{}
+\DoxyCodeLine{00047\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00048\ \ \ \ \ OutputType\ operator\ ()\ (\textcolor{keyword}{const}\ InputTypeA\&\ inputValueA,\ \textcolor{keyword}{const}\ InputTypeB\&\ inputValueB)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00049\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_assert}(\mbox{\hyperlink{conceptph_1_1_c_can_multiply}{CCanMultiply<InputTypeA,\ InputTypeB,\ OutputType>}},}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Must\ have\ multiply\ operator\ for\ <OutputType>\ =\ <InputTypeA>\ *\ <InputTypeB>"{}});}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ inputValueA\ *\ inputValueB;}
+\DoxyCodeLine{00054\ \ \ \ \ \}}
+\DoxyCodeLine{00055\ \};}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classph_1_1texfunc_1_1_t_multiply}{MultiplySpectrum}}\ =\ \mbox{\hyperlink{classph_1_1texfunc_1_1_t_multiply}{TMultiply<math::Spectrum,\ math::Spectrum,\ math::Spectrum>}};}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \}\textcolor{comment}{//\ end\ namespace\ texfunc}}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \textcolor{keyword}{template}}
+\DoxyCodeLine{00062\ <}
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keyword}{typename}\ InputTypeA,\ }
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keyword}{typename}\ InputTypeB,\ }
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keyword}{typename}\ OutputType,}
+\DoxyCodeLine{00066\ \ \ \ \ \mbox{\hyperlink{conceptph_1_1texfunc_1_1_c_binary_operator}{texfunc::CBinaryOperator<InputTypeA,\ InputTypeB,\ OutputType>}}\ OperatorType}
+\DoxyCodeLine{00067\ >}
+\DoxyCodeLine{00068\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_t_binary_texture_operator}{TBinaryTextureOperator}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classph_1_1_t_texture}{TTexture}}<OutputType>}
+\DoxyCodeLine{00069\ \{}
+\DoxyCodeLine{00070\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keyword}{using\ }InputTexResA\ =\ std::shared\_ptr<TTexture<InputTypeA>>;}
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keyword}{using\ }InputTexResB\ =\ std::shared\_ptr<TTexture<InputTypeB>>;}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_binary_texture_operator}{TBinaryTextureOperator}}(InputTexResA\ inputA,\ InputTexResB\ inputB)\ \textcolor{keyword}{requires}\ std::default\_initializable<OperatorType>\ :}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_binary_texture_operator}{TBinaryTextureOperator}}(std::move(inputA),\ std::move(inputB),\ OperatorType())}
+\DoxyCodeLine{00076\ \ \ \ \ \{\}}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_binary_texture_operator}{TBinaryTextureOperator}}(InputTexResA\ inputA,\ InputTexResB\ inputB,\ OperatorType\ op)\ :}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ m\_inputA\ \ (std::move(inputA)),}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ m\_inputB\ \ (std::move(inputB)),}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ m\_operator(std::move(op))}
+\DoxyCodeLine{00082\ \ \ \ \ \{\}}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keywordtype}{void}\ sample(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_sample_location}{SampleLocation}}\&\ sampleLocation,\ OutputType*\ \textcolor{keyword}{const}\ out\_value)\textcolor{keyword}{\ const\ override}}
+\DoxyCodeLine{00085\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ PH\_ASSERT(m\_inputA);}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ PH\_ASSERT(m\_inputB);}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ PH\_ASSERT(out\_value);}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ InputTypeA\ inputValueA;}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ m\_inputA-\/>sample(sampleLocation,\ \&inputValueA);}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ InputTypeB\ inputValueB;}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ m\_inputB-\/>sample(sampleLocation,\ \&inputValueB);}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ *out\_value\ =\ m\_operator(inputValueA,\ inputValueB);}
+\DoxyCodeLine{00097\ \ \ \ \ \}}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00100\ \ \ \ \ InputTexResA\ m\_inputA;}
+\DoxyCodeLine{00101\ \ \ \ \ InputTexResB\ m\_inputB;}
+\DoxyCodeLine{00102\ \ \ \ \ OperatorType\ m\_operator;}
+\DoxyCodeLine{00103\ \};}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+
+\end{DoxyCode}

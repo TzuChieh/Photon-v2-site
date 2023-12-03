@@ -1,0 +1,102 @@
+\doxysection{Microsurface\+Info.\+h}
+\hypertarget{_microsurface_info_8h_source}{}\label{_microsurface_info_8h_source}\index{Source/Actor/Material/Utility/MicrosurfaceInfo.h@{Source/Actor/Material/Utility/MicrosurfaceInfo.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Common/primitive\_type.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Actor/Material/Utility/EInterfaceMicrosurface.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}Actor/Material/Utility/ERoughnessToAlpha.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}Common/assertion.h"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}SDL/sdl\_interface.h"{}}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <optional>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00014\ \{}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{class\ }Microfacet;}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_microsurface_info}{MicrosurfaceInfo}}\ final}
+\DoxyCodeLine{00019\ \{}
+\DoxyCodeLine{00020\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_microsurface_info}{MicrosurfaceInfo}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ \ \ std::unique\_ptr<Microfacet>\ genMicrofacet()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordtype}{bool}\ isIsotropic()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00026\ \ \ \ \ real\ getIsotropicRoughness()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00027\ \ \ \ \ std::pair<real,\ real>\ getAnisotropicUVRoughnesses()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00030\ \ \ \ \ EInterfaceMicrosurface\ m\_microsurface;}
+\DoxyCodeLine{00031\ \ \ \ \ ERoughnessToAlpha\ \ \ \ \ \ m\_roughnessToAlpha;}
+\DoxyCodeLine{00032\ \ \ \ \ real\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_roughness;}
+\DoxyCodeLine{00033\ \ \ \ \ std::optional<real>\ \ \ \ m\_roughnessV;}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00036\ \ \ \ \ PH\_DEFINE\_SDL\_STRUCT(\mbox{\hyperlink{classph_1_1_t_sdl_owner_struct}{TSdlOwnerStruct<MicrosurfaceInfo>}})}
+\DoxyCodeLine{00037\ \ \ \ \ \{}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ StructType\ ztruct(\textcolor{stringliteral}{"{}microsurface"{}});}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ ztruct.description(\textcolor{stringliteral}{"{}Describing\ microsurface\ structure\ of\ the\ material."{}});}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_sdl_enum_field}{TSdlEnumField<OwnerType,\ EInterfaceMicrosurface>}}\ microsurface(\textcolor{stringliteral}{"{}microsurface"{}},\ \&OwnerType::m\_microsurface);}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ microsurface.description(\textcolor{stringliteral}{"{}Type\ of\ the\ microsurface\ of\ the\ material."{}});}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ microsurface.optional();}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ microsurface.defaultTo(EInterfaceMicrosurface::TrowbridgeReitz);}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ ztruct.addField(microsurface);}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_sdl_enum_field}{TSdlEnumField<OwnerType,\ ERoughnessToAlpha>}}\ roughnessToAlpha(\textcolor{stringliteral}{"{}roughness-\/to-\/alpha"{}},\ \&OwnerType::m\_roughnessToAlpha);}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ roughnessToAlpha.description(\textcolor{stringliteral}{"{}Type\ of\ the\ mapping\ to\ transform\ roughness\ into\ alpha\ value."{}});}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ roughnessToAlpha.optional();}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ roughnessToAlpha.defaultTo(ERoughnessToAlpha::Squared);}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ ztruct.addField(roughnessToAlpha);}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_sdl_real}{TSdlReal<OwnerType>}}\ roughness(\textcolor{stringliteral}{"{}roughness"{}},\ \&OwnerType::m\_roughness);}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ roughness.description(}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Isotropic\ surface\ roughness\ in\ [0,\ 1],\ the\ material\ will\ appear\ "{}}}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}to\ be\ smoother\ with\ smaller\ roughness\ value."{}});}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ roughness.optional();}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ roughness.defaultTo(0.5\_r);}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ ztruct.addField(roughness);}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_sdl_real}{TSdlOptionalReal<OwnerType>}}\ roughnessV(\textcolor{stringliteral}{"{}roughness-\/v"{}},\ \&OwnerType::m\_roughnessV);}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ roughnessV.description(}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Similar\ to\ the\ \`{}roughness`\ parameter,\ but\ is\ used\ for\ anisotropic\ "{}}}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}surface\ appearances.\ This\ value\ controls\ the\ V\ component\ of\ "{}}}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}surface\ roughness.\ If\ this\ value\ is\ provided,\ the\ \`{}roughness`\ "{}}}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}parameter\ is\ interpreted\ as\ the\ U\ component\ of\ surface\ roughness."{}});}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ ztruct.addField(roughnessV);}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ztruct;}
+\DoxyCodeLine{00070\ \ \ \ \ \}}
+\DoxyCodeLine{00071\ \};}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \textcolor{comment}{//\ In-\/header\ Implementations:}}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ MicrosurfaceInfo::isIsotropic()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00076\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keywordflow}{return}\ !m\_roughnessV.has\_value()\ ||\ }
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ (m\_roughnessV.has\_value()\ \&\&\ m\_roughness\ ==\ *m\_roughnessV);}
+\DoxyCodeLine{00079\ \}}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \textcolor{keyword}{inline}\ real\ MicrosurfaceInfo::getIsotropicRoughness()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00082\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00083\ \ \ \ \ PH\_ASSERT(isIsotropic());}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_roughness;}
+\DoxyCodeLine{00086\ \}}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \textcolor{keyword}{inline}\ std::pair<real,\ real>\ MicrosurfaceInfo::getAnisotropicUVRoughnesses()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00089\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00090\ \ \ \ \ PH\_ASSERT(!isIsotropic());}
+\DoxyCodeLine{00091\ \ \ \ \ PH\_ASSERT(m\_roughnessV.has\_value());}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keywordflow}{return}\ \{m\_roughness,\ *m\_roughnessV\};}
+\DoxyCodeLine{00094\ \}}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+
+\end{DoxyCode}

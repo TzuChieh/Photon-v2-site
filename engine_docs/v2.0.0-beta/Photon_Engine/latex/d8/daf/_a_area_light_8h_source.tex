@@ -1,0 +1,57 @@
+\doxysection{AArea\+Light.\+h}
+\hypertarget{_a_area_light_8h_source}{}\label{_a_area_light_8h_source}\index{Source/Actor/Light/AAreaLight.h@{Source/Actor/Light/AAreaLight.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Actor/Light/AGeometricLight.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Common/primitive\_type.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}Math/Color/Spectrum.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}SDL/sdl\_interface.h"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}Actor/SDLExtension/TSdlSpectrum.h"{}}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00010\ \{}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_a_area_light}{AAreaLight}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classph_1_1_a_geometric_light}{AGeometricLight}}}
+\DoxyCodeLine{00013\ \{}
+\DoxyCodeLine{00014\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keyword}{virtual}\ std::shared\_ptr<Geometry>\ getArea(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_cooking_context}{CookingContext}}\&\ ctx)\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \ \ \ \ std::shared\_ptr<Geometry>\ getGeometry(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_cooking_context}{CookingContext}}\&\ ctx)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_emitter}{Emitter}}*\ buildEmitter(}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_cooking_context}{CookingContext}}\&\ ctx,}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ TSpanView<const\ Primitive*>\ lightPrimitives)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00024\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_spectrum}{math::Spectrum}}\ m\_color;}
+\DoxyCodeLine{00025\ \ \ \ \ real\ m\_numWatts;}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00028\ \ \ \ \ PH\_DEFINE\_SDL\_CLASS(\mbox{\hyperlink{classph_1_1_t_sdl_owner_class}{TSdlOwnerClass<AAreaLight>}})}
+\DoxyCodeLine{00029\ \ \ \ \ \{}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ ClassType\ clazz(\textcolor{stringliteral}{"{}area-\/light"{}});}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ clazz.docName(\textcolor{stringliteral}{"{}Area\ Light\ Actor"{}});}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ clazz.description(}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}This\ type\ of\ light\ source\ has\ a\ finite\ area.\ Energy\ is\ allowed\ to\ "{}}}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}emit\ as\ long\ as\ the\ emitting\ source\ is\ within\ the\ area."{}});}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ clazz.baseOn<\mbox{\hyperlink{classph_1_1_a_geometric_light}{AGeometricLight}}>();}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_sdl_spectrum}{TSdlSpectrum<OwnerType>}}\ color(\textcolor{stringliteral}{"{}color"{}},\ \mbox{\hyperlink{namespaceph_1_1math_a821af6da20aaed56cc09ad440633d067a8d4c0b2cef256d21ab680366c8b1c6bf}{math::EColorUsage::EMR}},\ \&OwnerType::m\_color);}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ color.description(\textcolor{stringliteral}{"{}The\ color\ of\ this\ light\ source."{}});}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ color.defaultTo(\mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_spectrum}{math::Spectrum}}().setLinearSRGB(\{1,\ 1,\ 1\},\ \mbox{\hyperlink{namespaceph_1_1math_a821af6da20aaed56cc09ad440633d067a8d4c0b2cef256d21ab680366c8b1c6bf}{math::EColorUsage::EMR}}));}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ clazz.addField(color);}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_sdl_real}{TSdlReal<OwnerType>}}\ numWatts(\textcolor{stringliteral}{"{}watts"{}},\ \&OwnerType::m\_numWatts);}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ numWatts.description(\textcolor{stringliteral}{"{}Energy\ emitted\ by\ this\ light\ source,\ in\ watts."{}});}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ numWatts.defaultTo(100);}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ clazz.addField(numWatts);}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ clazz;}
+\DoxyCodeLine{00048\ \ \ \ \ \}}
+\DoxyCodeLine{00049\ \};}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+
+\end{DoxyCode}

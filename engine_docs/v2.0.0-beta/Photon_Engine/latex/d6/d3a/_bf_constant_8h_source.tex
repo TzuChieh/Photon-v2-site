@@ -1,0 +1,60 @@
+\doxysection{Bf\+Constant.\+h}
+\hypertarget{_bf_constant_8h_source}{}\label{_bf_constant_8h_source}\index{Source/Core/VolumeBehavior/BlockFunction/BfConstant.h@{Source/Core/VolumeBehavior/BlockFunction/BfConstant.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Core/VolumeBehavior/BlockFunction.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Core/SurfaceHit.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}Math/Color/Spectrum.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}Common/assertion.h"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <cmath>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00012\ \{}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_bf_constant}{BfConstant}}\ final\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classph_1_1_block_function}{BlockFunction}}}
+\DoxyCodeLine{00015\ \{}
+\DoxyCodeLine{00016\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_bf_constant}{BfConstant}}()\ :}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_bf_constant}{BfConstant}}(\mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_spectrum}{math::Spectrum}}(0))}
+\DoxyCodeLine{00019\ \ \ \ \ \{\}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_bf_constant}{BfConstant}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_spectrum}{math::Spectrum}}\&\ coeff)\ :}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_block_function}{BlockFunction}}(),}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ m\_absorptionCoeff(coeff)}
+\DoxyCodeLine{00024\ \ \ \ \ \{\}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_bf_constant}{\string~BfConstant}}()\ \textcolor{keyword}{override}\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ evalAbsorptionCoeff(}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_surface_hit}{SurfaceHit}}\&\ \ \ \ \ \textcolor{comment}{/*\ X\ */},\ }
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_spectrum}{math::Spectrum}}*\ \textcolor{keyword}{const}\ out\_coeff)\textcolor{keyword}{\ const\ override}}
+\DoxyCodeLine{00031\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ PH\_ASSERT(out\_coeff);}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ *out\_coeff\ =\ m\_absorptionCoeff;}
+\DoxyCodeLine{00035\ \ \ \ \ \}}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_spectrum}{math::Spectrum}}\ calcTransmittance(\textcolor{keyword}{const}\ real\ dist)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00038\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ PH\_ASSERT\_MSG(dist\ >=\ 0.0\_r,\ }
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}dist\ =\ "{}}\ +\ std::to\_string(dist));}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_spectrum}{math::Spectrum}}\ transmittance;}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ i\ =\ 0;\ i\ <\ math::Spectrum::NUM\_VALUES;\ ++i)}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ transmittance[i]\ =\ std::exp(-\/m\_absorptionCoeff[i]\ *\ dist);}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ transmittance;}
+\DoxyCodeLine{00048\ \ \ \ \ \}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00051\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_spectrum}{math::Spectrum}}\ m\_absorptionCoeff;}
+\DoxyCodeLine{00052\ \};}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+
+\end{DoxyCode}

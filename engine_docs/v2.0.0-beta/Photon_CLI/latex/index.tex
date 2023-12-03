@@ -1,0 +1,48 @@
+\chapter{Command-\/line Interface (CLI)}
+\hypertarget{index}{}\label{index}\index{Command-\/line Interface (CLI)@{Command-\/line Interface (CLI)}}
+\label{index_md__r_e_a_d_m_e}%
+\Hypertarget{index_md__r_e_a_d_m_e}%
+ Photon-\/v2 comes with an application called {\ttfamily Photon\+CLI}, which is a command-\/line interface of the render engine. Command-\/line interface can come in handy if you are batch rendering or using it on a remote server. It also, in theory, offers slightly better performance in terms of render time. This is a documentation of available options and some examples. Check out {\ttfamily Photon\+Studio} if you are more interested in using a GUI.\hypertarget{index_autotoc_md1}{}\doxysection{\texorpdfstring{Available Options}{Available Options}}\label{index_autotoc_md1}
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Options   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Effects    }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Options   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Effects    }\\\cline{1-2}
+\endhead
+{\ttfamily -\/s \texorpdfstring{$<$}{<}path\texorpdfstring{$>$}{>}}   &Specify path to scene file. To render an image series, you can specify {\ttfamily "{}my\+Scene\texorpdfstring{$\ast$}{*}.\+p2"{}} as {\ttfamily \texorpdfstring{$<$}{<}path\texorpdfstring{$>$}{>}} where {\ttfamily \texorpdfstring{$\ast$}{*}} is a wildcard for any string ({\ttfamily -\/-\/series} is required in this case). (default path\+: {\ttfamily "{}./scene.\+p2"{}})    \\\cline{1-2}
+{\ttfamily -\/o \texorpdfstring{$<$}{<}path\texorpdfstring{$>$}{>}}   &Specify image output path. This should be a filename for single image and a directory for image series. (default path\+: {\ttfamily "{}./rendered\+\_\+scene.\+png"{}})    \\\cline{1-2}
+{\ttfamily -\/of \texorpdfstring{$<$}{<}format\texorpdfstring{$>$}{>}}   &Specify the format of output image. Supported formats are\+: {\ttfamily png}, {\ttfamily jpg}, {\ttfamily bmp}, {\ttfamily tga}, {\ttfamily hdr}, {\ttfamily exr}. If this option is omitted, format is deduced from filename extension.    \\\cline{1-2}
+{\ttfamily -\/t \texorpdfstring{$<$}{<}number\texorpdfstring{$>$}{>}}   &Set number of threads used for rendering. (default\+: {\ttfamily 1}, single thread)    \\\cline{1-2}
+{\ttfamily -\/p \texorpdfstring{$<$}{<}number\texorpdfstring{$>$}{>}}   &Output an intermediate image whenever the render has progressed {\ttfamily \texorpdfstring{$<$}{<}number\texorpdfstring{$>$}{>}}\%. (default\+: never output intermediate image)    \\\cline{1-2}
+{\ttfamily -\/-\/raw}   &Do not perform any post-\/processing. (default\+: perform post-\/processing)    \\\cline{1-2}
+{\ttfamily -\/-\/help}   &Print help message then exit.    \\\cline{1-2}
+{\ttfamily -\/-\/series}   &Render an image series. The order for rendering will be lexicographical order of the wildcarded string. Currently only .png is supported.    \\\cline{1-2}
+{\ttfamily -\/-\/start \texorpdfstring{$<$}{<}\texorpdfstring{$\ast$}{*}\texorpdfstring{$>$}{>}}   &Render image series starting from a specific wildcarded string.    \\\cline{1-2}
+{\ttfamily -\/-\/finish \texorpdfstring{$<$}{<}\texorpdfstring{$\ast$}{*}\texorpdfstring{$>$}{>}}   &Render image series until a specific wildcarded string is matched. (inclusive)   \\\cline{1-2}
+\end{longtabu}
+\hypertarget{index_autotoc_md2}{}\doxysection{\texorpdfstring{Examples}{Examples}}\label{index_autotoc_md2}
+Rendering a scene file named {\ttfamily ./ocean.p2} using 4 threads and save the rendered image as {\ttfamily ./my\+\_\+image.jpg}\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{PhotonCLI\ -\/s\ "{}./ocean.p2"{}\ -\/o\ "{}./my\_image.jpg"{}\ -\/t\ 4}
+
+\end{DoxyCode}
+
+
+For animations, assuming there is a folder {\ttfamily gif\+\_\+animation} containing scene files for a 3-\/frame animation\+: {\ttfamily pose1.\+p2}, {\ttfamily pose2.\+p2}, {\ttfamily pose3.\+p2}, to render and save the images (.png) to a folder {\ttfamily gif\+\_\+images}, you can specify\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{PhotonCLI\ -\/s\ "{}./gif\_animation/pose*.p2"{}\ -\/-\/series\ -\/-\/start\ "{}1"{}\ -\/-\/finish\ "{}3"{}\ -\/o\ "{}./gif\_images/"{}\ -\/t\ 4}
+
+\end{DoxyCode}
+
+
+Note that in the above example, the rendered image will be named by the wildcarded string, namely they are stored as {\ttfamily ./gif\+\_\+images/1.png}, {\ttfamily ./gif\+\_\+images/2.png}, and {\ttfamily ./gif\+\_\+images/3.png}.
+
+An important note is that by default, post effects including tone-\/mapping is performed. If saving the rendered image in high dynamic range is desired, {\ttfamily -\/-\/raw} should be specified manually as {\ttfamily Photon\+CLI} will {\itshape NOT} automatically turn off post-\/processing by detecting image format. 

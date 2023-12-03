@@ -1,0 +1,106 @@
+\doxysection{Radical\+Inverse\+Permutations.\+h}
+\hypertarget{_radical_inverse_permutations_8h_source}{}\label{_radical_inverse_permutations_8h_source}\index{Source/Core/SampleGenerator/Halton/RadicalInversePermutations.h@{Source/Core/SampleGenerator/Halton/RadicalInversePermutations.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\#include\ "{}Common/assertion.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\#include\ "{}Common/primitive\_type.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\#include\ "{}Math/math\_table.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\#include\ "{}Math/Random/shuffle.h"{}}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\#include\ "{}Core/SampleGenerator/Detail/halton.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//\#include\ <vector>}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\#include\ <cstddef>}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\#include\ <utility>}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\#include\ <limits>}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//namespace\ ph::halton::detail}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\{}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//}}
+\DoxyCodeLine{00017\ \textcolor{comment}{//class\ RadicalInversePermutations\ final}}
+\DoxyCodeLine{00018\ \textcolor{comment}{//\{}}
+\DoxyCodeLine{00019\ \textcolor{comment}{//public:}}
+\DoxyCodeLine{00020\ \textcolor{comment}{//\ \ using\ Digit\ =\ uint16;}}
+\DoxyCodeLine{00021\ \textcolor{comment}{//\ \ static\_assert(math::table::PRIME\_TABLE[MAX\_DIMENSIONS]\ <=\ std::numeric\_limits<Digit>::max(),}}
+\DoxyCodeLine{00022\ \textcolor{comment}{//\ \ \ \ \ \ "{}Digit\ may\ overflow"{});}}
+\DoxyCodeLine{00023\ \textcolor{comment}{//}}
+\DoxyCodeLine{00024\ \textcolor{comment}{//\ \ explicit\ RadicalInversePermutations(std::size\_t\ numDims);}}
+\DoxyCodeLine{00025\ \textcolor{comment}{//}}
+\DoxyCodeLine{00026\ \textcolor{comment}{//\ \ auto\ getPermutationForDim(std::size\_t\ dimIndex)\ const}}
+\DoxyCodeLine{00027\ \textcolor{comment}{//\ \ \ \ \ \ -\/>\ const\ Digit*;}}
+\DoxyCodeLine{00028\ \textcolor{comment}{//}}
+\DoxyCodeLine{00029\ \textcolor{comment}{//private:}}
+\DoxyCodeLine{00030\ \textcolor{comment}{//\ \ std::vector<Digit>\ m\_permutations;}}
+\DoxyCodeLine{00031\ \textcolor{comment}{//}}
+\DoxyCodeLine{00032\ \textcolor{comment}{//\ \ using\ Offset\ =\ decltype(math::table::PRIME\_TABLE)::value\_type;}}
+\DoxyCodeLine{00033\ \textcolor{comment}{//\ \ static\ auto\ PERMUTATION\_OFFSETS(std::size\_t\ dimIndex)\ }}
+\DoxyCodeLine{00034\ \textcolor{comment}{//\ \ \ \ \ \ -\/>\ Offset;}}
+\DoxyCodeLine{00035\ \textcolor{comment}{//}}
+\DoxyCodeLine{00036\ \textcolor{comment}{//\ \ static\ auto\ makePermutationOffsets()}}
+\DoxyCodeLine{00037\ \textcolor{comment}{//\ \ \ \ \ \ -\/>\ std::vector<Offset>;}}
+\DoxyCodeLine{00038\ \textcolor{comment}{//\};}}
+\DoxyCodeLine{00039\ \textcolor{comment}{//}}
+\DoxyCodeLine{00041\ \textcolor{comment}{//}}
+\DoxyCodeLine{00042\ \textcolor{comment}{//inline\ RadicalInversePermutations::RadicalInversePermutations(const\ std::size\_t\ numDims)}}
+\DoxyCodeLine{00043\ \textcolor{comment}{//\{}}
+\DoxyCodeLine{00044\ \textcolor{comment}{//\ \ PH\_ASSERT\_LE(numDims,\ MAX\_DIMENSIONS);}}
+\DoxyCodeLine{00045\ \textcolor{comment}{//}}
+\DoxyCodeLine{00046\ \textcolor{comment}{//\ \ //\ The\ offset\ after\ index\ <numDims\ -\/\ 1>\ is\ the\ total\ size\ of\ the\ buffer}}
+\DoxyCodeLine{00047\ \textcolor{comment}{//\ \ m\_permutations.resize(PERMUTATION\_OFFSETS(numDims));}}
+\DoxyCodeLine{00048\ \textcolor{comment}{//}}
+\DoxyCodeLine{00049\ \textcolor{comment}{//\ \ //\ Generate\ random\ digit\ permutation/mapping\ for\ each\ dimension}}
+\DoxyCodeLine{00050\ \textcolor{comment}{//\ \ for(std::size\_t\ di\ =\ 0;\ di\ <\ numDims;\ ++di)}}
+\DoxyCodeLine{00051\ \textcolor{comment}{//\ \ \{}}
+\DoxyCodeLine{00052\ \textcolor{comment}{//\ \ \ \ \ \ const\ auto\ \ \ base\ \ \ \ \ \ \ \ \ \ \ =\ math::table::PRIME\_TABLE[di];}}
+\DoxyCodeLine{00053\ \textcolor{comment}{//\ \ \ \ \ \ Digit*\ const\ permutationPtr\ =\ \&(m\_permutations[PERMUTATION\_OFFSETS(di)]);}}
+\DoxyCodeLine{00054\ \textcolor{comment}{//}}
+\DoxyCodeLine{00055\ \textcolor{comment}{//\ \ \ \ \ \ for(Digit\ digit\ =\ 0;\ digit\ <\ base;\ ++digit)}}
+\DoxyCodeLine{00056\ \textcolor{comment}{//\ \ \ \ \ \ \{}}
+\DoxyCodeLine{00057\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ permutationPtr[digit]\ =\ digit;}}
+\DoxyCodeLine{00058\ \textcolor{comment}{//\ \ \ \ \ \ \}}}
+\DoxyCodeLine{00059\ \textcolor{comment}{//\ \ \ \ \ \ math::shuffle\_durstenfeld(permutationPtr,\ permutationPtr\ +\ base);}}
+\DoxyCodeLine{00060\ \textcolor{comment}{//\ \ \}}}
+\DoxyCodeLine{00061\ \textcolor{comment}{//\}}}
+\DoxyCodeLine{00062\ \textcolor{comment}{//}}
+\DoxyCodeLine{00063\ \textcolor{comment}{//inline\ auto\ RadicalInversePermutations::getPermutationForDim(const\ std::size\_t\ dimIndex)\ const}}
+\DoxyCodeLine{00064\ \textcolor{comment}{//\ \ -\/>\ const\ Digit*}}
+\DoxyCodeLine{00065\ \textcolor{comment}{//\{}}
+\DoxyCodeLine{00066\ \textcolor{comment}{//\ \ PH\_ASSERT\_LT(dimIndex,\ MAX\_DIMENSIONS);}}
+\DoxyCodeLine{00067\ \textcolor{comment}{//}}
+\DoxyCodeLine{00068\ \textcolor{comment}{//\ \ const\ auto\ offset\ =\ PERMUTATION\_OFFSETS(dimIndex);}}
+\DoxyCodeLine{00069\ \textcolor{comment}{//\ \ PH\_ASSERT\_LT(offset\ +\ math::table::PRIME\_TABLE[dimIndex],\ m\_permutations.size());}}
+\DoxyCodeLine{00070\ \textcolor{comment}{//}}
+\DoxyCodeLine{00071\ \textcolor{comment}{//\ \ return\ \&(m\_permutations[offset]);}}
+\DoxyCodeLine{00072\ \textcolor{comment}{//\}}}
+\DoxyCodeLine{00073\ \textcolor{comment}{//}}
+\DoxyCodeLine{00074\ \textcolor{comment}{//inline\ auto\ RadicalInversePermutations::PERMUTATION\_OFFSETS(const\ std::size\_t\ dimIndex)}}
+\DoxyCodeLine{00075\ \textcolor{comment}{//\ \ -\/>\ Offset}}
+\DoxyCodeLine{00076\ \textcolor{comment}{//\{}}
+\DoxyCodeLine{00077\ \textcolor{comment}{//\ \ static\ std::vector<Offset>\ offsets(makePermutationOffsets());}}
+\DoxyCodeLine{00078\ \textcolor{comment}{//}}
+\DoxyCodeLine{00079\ \textcolor{comment}{//\ \ PH\_ASSERT\_LT(dimIndex,\ offsets.size());}}
+\DoxyCodeLine{00080\ \textcolor{comment}{//\ \ return\ offsets[dimIndex];}}
+\DoxyCodeLine{00081\ \textcolor{comment}{//\}}}
+\DoxyCodeLine{00082\ \textcolor{comment}{//}}
+\DoxyCodeLine{00083\ \textcolor{comment}{//inline\ auto\ RadicalInversePermutations::makePermutationOffsets()}}
+\DoxyCodeLine{00084\ \textcolor{comment}{//\ \ -\/>\ std::vector<Offset>}}
+\DoxyCodeLine{00085\ \textcolor{comment}{//\{}}
+\DoxyCodeLine{00086\ \textcolor{comment}{//\ \ //\ The\ offsets\ are\ actually\ a\ prefix\ sum\ of\ the\ prime\ table,\ but\ start}}
+\DoxyCodeLine{00087\ \textcolor{comment}{//\ \ //\ with\ 0.}}
+\DoxyCodeLine{00088\ \textcolor{comment}{//}}
+\DoxyCodeLine{00089\ \textcolor{comment}{//\ \ std::vector<Offset>\ offsets(MAX\_DIMENSIONS\ +\ 1);}}
+\DoxyCodeLine{00090\ \textcolor{comment}{//\ \ offsets[0]\ =\ math::table::PRIME\_TABLE[0];}}
+\DoxyCodeLine{00091\ \textcolor{comment}{//\ \ for(std::size\_t\ i\ =\ 1;\ i\ <\ offsets.size();\ ++i)}}
+\DoxyCodeLine{00092\ \textcolor{comment}{//\ \ \{}}
+\DoxyCodeLine{00093\ \textcolor{comment}{//\ \ \ \ \ \ offsets[i]\ =\ offsets[i\ -\/\ 1]\ +\ math::table::PRIME\_TABLE[i\ -\/\ 1];}}
+\DoxyCodeLine{00094\ \textcolor{comment}{//}}
+\DoxyCodeLine{00095\ \textcolor{comment}{//\ \ \ \ \ \ PH\_ASSERT\_MSG(offsets[i]\ >\ offsets[i\ -\/\ 1],\ }}
+\DoxyCodeLine{00096\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ "{}offsets\ overflow"{});}}
+\DoxyCodeLine{00097\ \textcolor{comment}{//\ \ \}}}
+\DoxyCodeLine{00098\ \textcolor{comment}{//\ \ return\ std::move(offsets);}}
+\DoxyCodeLine{00099\ \textcolor{comment}{//\}}}
+\DoxyCodeLine{00100\ \textcolor{comment}{//}}
+\DoxyCodeLine{00101\ \textcolor{comment}{//\}//\ end\ namespace\ ph::halton::detail}}
+
+\end{DoxyCode}

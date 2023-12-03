@@ -1,0 +1,141 @@
+\doxysection{logging.\+h}
+\hypertarget{logging_8h_source}{}\label{logging_8h_source}\index{Source/Common/logging.h@{Source/Common/logging.h}}
+\mbox{\hyperlink{logging_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Common/Log/logger\_fwd.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Common/Log/ELogLevel.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}Common/config.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}Common/utility.h"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <cstddef>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <format>}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00020\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00021\ \{}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structph_1_1_log_group}{LogGroup}}\ final}
+\DoxyCodeLine{00024\ \{}
+\DoxyCodeLine{00025\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00026\ \ \ \ \ std::string\ groupName;}
+\DoxyCodeLine{00027\ \ \ \ \ std::string\ category;}
+\DoxyCodeLine{00028\ \};}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_log_groups}{LogGroups}}\ final}
+\DoxyCodeLine{00031\ \{}
+\DoxyCodeLine{00032\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_log_groups}{LogGroups}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_log_groups}{LogGroups}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_log_groups}{LogGroups}}\&\ other)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_log_groups}{LogGroups}}\&\ operator\ =\ (\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_log_groups}{LogGroups}}\&\ rhs)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \ \ std::size\_t\ addGroup(std::string\_view\ groupName,\ std::string\_view\ category\ =\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00038\ \ \ \ \ std::size\_t\ numGroups()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structph_1_1_log_group}{LogGroup}}\&\ getGroup(std::size\_t\ index)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00042\ \ \ \ \ std::vector<LogGroup>\ m\_groups;}
+\DoxyCodeLine{00043\ \};}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \mbox{\hyperlink{classph_1_1_log_groups}{LogGroups}}\ get\_core\_log\_groups();}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \textcolor{keyword}{namespace\ }ph::detail::core\_logging}
+\DoxyCodeLine{00050\ \{}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \textcolor{keywordtype}{void}\ init();}
+\DoxyCodeLine{00053\ \textcolor{keywordtype}{void}\ exit();}
+\DoxyCodeLine{00054\ Logger\&\ get\_core\_logger();}
+\DoxyCodeLine{00055\ std::size\_t\ add\_log\_group(std::string\_view\ groupName,\ std::string\_view\ category\ =\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00056\ \textcolor{keywordtype}{void}\ log\_to\_logger(Logger\&\ logger,\ std::string\_view\ groupName,\ ELogLevel\ logLevel,\ std::string\_view\ logMessage);}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \}\textcolor{comment}{//\ end\ namespace\ ph::detail::core\_logging}}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#define\ PH\_DECLARE\_LOG\_GROUP(groupName)\(\backslash\)}}
+\DoxyCodeLine{00065\ \textcolor{preprocessor}{\ \ \ \ ::ph::Logger\&\ internal\_impl\_logger\_access\_\#\#groupName()}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00069\ \textcolor{preprocessor}{\#define\ PH\_DEFINE\_LOG\_GROUP(groupName,\ category)\(\backslash\)}}
+\DoxyCodeLine{00070\ \textcolor{preprocessor}{\ \ \ \ ::ph::Logger\&\ internal\_impl\_logger\_access\_\#\#groupName()\(\backslash\)}}
+\DoxyCodeLine{00071\ \textcolor{preprocessor}{\ \ \ \ \{\(\backslash\)}}
+\DoxyCodeLine{00072\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ static\ const\ std::size\_t\ logGroupIndex\ =\ ::ph::detail::core\_logging::add\_log\_group(\#groupName,\ \#category);\(\backslash\)}}
+\DoxyCodeLine{00073\ \textcolor{preprocessor}{\ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00074\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ return\ ::ph::detail::core\_logging::get\_core\_logger();\(\backslash\)}}
+\DoxyCodeLine{00075\ \textcolor{preprocessor}{\ \ \ \ \}}}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \textcolor{preprocessor}{\#define\ PH\_DEFINE\_INLINE\_LOG\_GROUP(groupName,\ category)\(\backslash\)}}
+\DoxyCodeLine{00078\ \textcolor{preprocessor}{\ \ \ \ inline\ ::ph::Logger\&\ internal\_impl\_logger\_access\_\#\#groupName()\(\backslash\)}}
+\DoxyCodeLine{00079\ \textcolor{preprocessor}{\ \ \ \ \{\(\backslash\)}}
+\DoxyCodeLine{00080\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ static\ const\ std::size\_t\ logGroupIndex\ =\ ::ph::detail::core\_logging::add\_log\_group(\#groupName,\ \#category);\(\backslash\)}}
+\DoxyCodeLine{00081\ \textcolor{preprocessor}{\ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00082\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ return\ ::ph::detail::core\_logging::get\_core\_logger();\(\backslash\)}}
+\DoxyCodeLine{00083\ \textcolor{preprocessor}{\ \ \ \ \}}}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00088\ \textcolor{preprocessor}{\#define\ PH\_DEFINE\_INTERNAL\_LOG\_GROUP(groupName,\ category)\(\backslash\)}}
+\DoxyCodeLine{00089\ \textcolor{preprocessor}{\ \ \ \ namespace\(\backslash\)}}
+\DoxyCodeLine{00090\ \textcolor{preprocessor}{\ \ \ \ \{\(\backslash\)}}
+\DoxyCodeLine{00091\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ PH\_DEFINE\_INLINE\_LOG\_GROUP(groupName,\ category);\(\backslash\)}}
+\DoxyCodeLine{00092\ \textcolor{preprocessor}{\ \ \ \ \}}}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00097\ \textcolor{preprocessor}{\#define\ PH\_DEFINE\_EXTERNAL\_LOG\_GROUP(groupName,\ category)\ PH\_DEFINE\_INLINE\_LOG\_GROUP(groupName,\ category)}}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \textcolor{preprocessor}{\#define\ PH\_LOG\_RAW\_STRING\_TO\_CORE\_LOGGER(groupName,\ logLevel,\ rawString)\(\backslash\)}}
+\DoxyCodeLine{00100\ \textcolor{preprocessor}{\ \ \ \ ::ph::detail::core\_logging::log\_to\_logger(\(\backslash\)}}
+\DoxyCodeLine{00101\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ internal\_impl\_logger\_access\_\#\#groupName(),\(\backslash\)}}
+\DoxyCodeLine{00102\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#groupName,\(\backslash\)}}
+\DoxyCodeLine{00103\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ logLevel,\(\backslash\)}}
+\DoxyCodeLine{00104\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ rawString)}}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \textcolor{comment}{//\ TODO:\ it\ could\ be\ beneficial\ to\ determine\ when\ can\ we\ use\ std::vformat()}}
+\DoxyCodeLine{00107\ \textcolor{comment}{//\ instead\ of\ always\ using\ std::format()\ for\ logging}}
+\DoxyCodeLine{00108\ \textcolor{comment}{//\ PH\_LOG\_STRING()\ variant\ for\ directly\ logging\ a\ runtime\ string?}}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \textcolor{preprocessor}{\#define\ PH\_LOG\_FORMAT\_STRING\_TO\_CORE\_LOGGER(groupName,\ logLevel,\ formatString,\ ...)\(\backslash\)}}
+\DoxyCodeLine{00111\ \textcolor{preprocessor}{\ \ \ \ PH\_LOG\_RAW\_STRING\_TO\_CORE\_LOGGER(\(\backslash\)}}
+\DoxyCodeLine{00112\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ groupName,\(\backslash\)}}
+\DoxyCodeLine{00113\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ logLevel,\(\backslash\)}}
+\DoxyCodeLine{00114\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ std::format(formatString\ \_\_VA\_OPT\_\_(,)\ \_\_VA\_ARGS\_\_))}}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00116\ \textcolor{preprocessor}{\#if\ PH\_ENABLE\_DEBUG\_LOG}}
+\DoxyCodeLine{00117\ \textcolor{preprocessor}{\ \ \ \ \#define\ PH\_LOG\_DEBUG\_STRING(groupName,\ rawString)\ PH\_LOG\_RAW\_STRING\_TO\_CORE\_LOGGER(groupName,\ ::ph::ELogLevel::Debug,\ rawString)}}
+\DoxyCodeLine{00118\ \textcolor{preprocessor}{\ \ \ \ \#define\ PH\_LOG\_DEBUG(groupName,\ formatString,\ ...)\ PH\_LOG\_FORMAT\_STRING\_TO\_CORE\_LOGGER(groupName,\ ::ph::ELogLevel::Debug,\ formatString,\ \_\_VA\_ARGS\_\_)}}
+\DoxyCodeLine{00119\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00120\ \textcolor{preprocessor}{\ \ \ \ \#define\ PH\_LOG\_DEBUG\_STRING(groupName,\ rawString)\ PH\_NO\_OP()}}
+\DoxyCodeLine{00121\ \textcolor{preprocessor}{\ \ \ \ \#define\ PH\_LOG\_DEBUG(groupName,\ formatString,\ ...)\ PH\_NO\_OP()}}
+\DoxyCodeLine{00122\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00124\ \textcolor{preprocessor}{\#define\ PH\_LOG\_STRING(groupName,\ rawString)\ PH\_LOG\_RAW\_STRING\_TO\_CORE\_LOGGER(groupName,\ ::ph::ELogLevel::Note,\ rawString)}}
+\DoxyCodeLine{00125\ \textcolor{preprocessor}{\#define\ PH\_LOG(groupName,\ formatString,\ ...)\ PH\_LOG\_FORMAT\_STRING\_TO\_CORE\_LOGGER(groupName,\ ::ph::ELogLevel::Note,\ formatString,\ \_\_VA\_ARGS\_\_)}}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00127\ \textcolor{preprocessor}{\#define\ PH\_LOG\_WARNING\_STRING(groupName,\ rawString)\ PH\_LOG\_RAW\_STRING\_TO\_CORE\_LOGGER(groupName,\ ::ph::ELogLevel::Warning,\ rawString)}}
+\DoxyCodeLine{00128\ \textcolor{preprocessor}{\#define\ PH\_LOG\_WARNING(groupName,\ formatString,\ ...)\ PH\_LOG\_FORMAT\_STRING\_TO\_CORE\_LOGGER(groupName,\ ::ph::ELogLevel::Warning,\ formatString,\ \_\_VA\_ARGS\_\_)}}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ \textcolor{preprocessor}{\#define\ PH\_LOG\_ERROR\_STRING(groupName,\ rawString)\ PH\_LOG\_RAW\_STRING\_TO\_CORE\_LOGGER(groupName,\ ::ph::ELogLevel::Error,\ rawString)}}
+\DoxyCodeLine{00131\ \textcolor{preprocessor}{\#define\ PH\_LOG\_ERROR(groupName,\ formatString,\ ...)\ PH\_LOG\_FORMAT\_STRING\_TO\_CORE\_LOGGER(groupName,\ ::ph::ELogLevel::Error,\ formatString,\ \_\_VA\_ARGS\_\_)}}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00133\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00134\ \{}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00136\ \textcolor{comment}{//\ Photon\ renderer's\ default\ log\ group}}
+\DoxyCodeLine{00137\ \mbox{\hyperlink{logging_8h_acc337adfdbc7ea775f7f7d6102ce855a}{PH\_DECLARE\_LOG\_GROUP}}(PhotonRenderer);}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00142\ \textcolor{preprocessor}{\#if\ PH\_ENABLE\_DEBUG\_LOG}}
+\DoxyCodeLine{00143\ \textcolor{preprocessor}{\ \ \ \ \#define\ PH\_DEFAULT\_LOG\_DEBUG(formatString,\ ...)\ PH\_LOG\_DEBUG(PhotonRenderer,\ formatString,\ \_\_VA\_ARGS\_\_)}}
+\DoxyCodeLine{00144\ \textcolor{preprocessor}{\ \ \ \ \#define\ PH\_DEFAULT\_LOG\_DEBUG\_STRING(rawString)\ PH\_LOG\_DEBUG\_STRING(PhotonRenderer,\ rawString)}}
+\DoxyCodeLine{00145\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00146\ \textcolor{preprocessor}{\ \ \ \ \#define\ PH\_LOG\_DEBUG\_STRING(groupName,\ rawString)\ PH\_NO\_OP()}}
+\DoxyCodeLine{00147\ \textcolor{preprocessor}{\ \ \ \ \#define\ PH\_LOG\_DEBUG(groupName,\ formatString,\ ...)\ PH\_NO\_OP()}}
+\DoxyCodeLine{00148\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00150\ \textcolor{preprocessor}{\#define\ PH\_DEFAULT\_LOG(formatString,\ ...)\ PH\_LOG(PhotonRenderer,\ formatString,\ \_\_VA\_ARGS\_\_)}}
+\DoxyCodeLine{00151\ \textcolor{preprocessor}{\#define\ PH\_DEFAULT\_LOG\_STRING(rawString)\ PH\_LOG\_STRING(PhotonRenderer,\ rawString)}}
+\DoxyCodeLine{00152\ \textcolor{preprocessor}{\#define\ PH\_DEFAULT\_LOG\_WARNING(formatString,\ ...)\ PH\_LOG\_WARNING(PhotonRenderer,\ formatString,\ \_\_VA\_ARGS\_\_)}}
+\DoxyCodeLine{00153\ \textcolor{preprocessor}{\#define\ PH\_DEFAULT\_LOG\_WARNING\_STRING(rawString)\ PH\_LOG\_WARNING\_STRING(PhotonRenderer,\ rawString)}}
+\DoxyCodeLine{00154\ \textcolor{preprocessor}{\#define\ PH\_DEFAULT\_LOG\_ERROR(formatString,\ ...)\ PH\_LOG\_ERROR(PhotonRenderer,\ formatString,\ \_\_VA\_ARGS\_\_)}}
+\DoxyCodeLine{00155\ \textcolor{preprocessor}{\#define\ PH\_DEFAULT\_LOG\_ERROR\_STRING(rawString)\ PH\_LOG\_ERROR\_STRING(PhotonRenderer,\ rawString)}}
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00158\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+
+\end{DoxyCode}

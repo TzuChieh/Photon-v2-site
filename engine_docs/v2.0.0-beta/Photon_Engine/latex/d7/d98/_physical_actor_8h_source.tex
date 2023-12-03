@@ -1,0 +1,150 @@
+\doxysection{Physical\+Actor.\+h}
+\hypertarget{_physical_actor_8h_source}{}\label{_physical_actor_8h_source}\index{Source/Actor/PhysicalActor.h@{Source/Actor/PhysicalActor.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Actor/Actor.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Common/primitive\_type.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}Math/Transform/StaticAffineTransform.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}Actor/Basic/TransformInfo.h"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}Math/TVector3.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}Math/TQuaternion.h"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}SDL/sdl\_interface.h"{}}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <optional>}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00014\ \{}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_physical_actor}{PhysicalActor}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classph_1_1_actor}{Actor}}}
+\DoxyCodeLine{00017\ \{}
+\DoxyCodeLine{00018\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00019\ \ \ \ \ \mbox{\hyperlink{classph_1_1_transient_visual_element}{TransientVisualElement}}\ cook(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_cooking_context}{CookingContext}}\&\ ctx,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_pre_cook_report}{PreCookReport}}\&\ report)\ \textcolor{keyword}{const\ override}\ =\ 0;}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordtype}{void}\ translate(\textcolor{keyword}{const}\ real\ amountX,\ \textcolor{keyword}{const}\ real\ amountY,\ \textcolor{keyword}{const}\ real\ amountZ);}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordtype}{void}\ translate(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\&\ amount);}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordtype}{void}\ rotate(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\&\ axis,\ \textcolor{keyword}{const}\ real\ additionanDegrees);}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordtype}{void}\ rotate(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_quaternion}{math::QuaternionR}}\&\ additionalRotation);}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordtype}{void}\ scale(\textcolor{keyword}{const}\ real\ uniformAmount);}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordtype}{void}\ scale(\textcolor{keyword}{const}\ real\ amountX,\ \textcolor{keyword}{const}\ real\ amountY,\ \textcolor{keyword}{const}\ real\ amountZ);}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordtype}{void}\ scale(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\&\ amount);}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordtype}{void}\ setBaseTransform(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_decomposed_transform}{math::TDecomposedTransform<real>}}\&\ baseLocalToWorld);}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00032\ \ \ \ \ \mbox{\hyperlink{classph_1_1_transform_info}{TransformInfo}}\ m\_localToWorld;}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structph_1_1_physical_actor_1_1_sdl_translate}{SdlTranslate}}}
+\DoxyCodeLine{00036\ \ \ \ \ \{}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\ amount;}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ operator\ ()\ (\mbox{\hyperlink{classph_1_1_physical_actor}{PhysicalActor}}\&\ actor)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00040\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ actor.translate(amount);}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ PH\_DEFINE\_SDL\_FUNCTION(\mbox{\hyperlink{classph_1_1_t_sdl_method}{TSdlMethod<SdlTranslate,\ PhysicalActor>}})}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ FunctionType\ func(\textcolor{stringliteral}{"{}translate"{}});}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ func.description(\textcolor{stringliteral}{"{}Moves\ the\ actor\ away\ from\ the\ original\ location\ with\ a\ specified\ amount."{}});}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_sdl_vector3}{TSdlVector3<OwnerType>}}\ amount(\textcolor{stringliteral}{"{}amount"{}},\ \&OwnerType::amount);}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ amount.description(\textcolor{stringliteral}{"{}The\ amount\ to\ move\ on\ each\ axis."{}});}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ amount.defaultTo(\{0,\ 0,\ 0\});}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ func.addParam(amount);}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ func;}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00056\ \ \ \ \ \};}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structph_1_1_physical_actor_1_1_sdl_rotate}{SdlRotate}}}
+\DoxyCodeLine{00059\ \ \ \ \ \{}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ std::optional<math::Vector3R>\ \ \ \ axis;}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ std::optional<real>\ \ \ \ \ \ \ \ \ \ \ \ \ \ degrees;}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ std::optional<math::QuaternionR>\ rotation;}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ operator\ ()\ (\mbox{\hyperlink{classph_1_1_physical_actor}{PhysicalActor}}\&\ actor)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00065\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(rotation)}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ actor.rotate((*rotation).normalize());}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(axis\ \&\&\ degrees)}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ actor.rotate((*axis).normalize(),\ *degrees);}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \mbox{\hyperlink{classph_1_1_sdl_load_error}{SdlLoadError}}(}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}possible\ input\ formats\ are:\ "{}}}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}1.\ A\ vector3\ axis\ and\ real\ degrees;\ "{}}}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}2.\ Specify\ rotation\ directly\ with\ a\ quaternion."{}});}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ PH\_DEFINE\_SDL\_FUNCTION(\mbox{\hyperlink{classph_1_1_t_sdl_method}{TSdlMethod<SdlRotate,\ PhysicalActor>}})}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ FunctionType\ func(\textcolor{stringliteral}{"{}rotate"{}});}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ func.description(\textcolor{stringliteral}{"{}Rotates\ the\ actor\ along\ an\ axis\ with\ a\ specified\ amount."{}});}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_sdl_vector3}{TSdlOptionalVector3<OwnerType>}}\ axis(\textcolor{stringliteral}{"{}axis"{}},\ \&OwnerType::axis);}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ axis.description(\textcolor{stringliteral}{"{}The\ axis\ for\ rotation."{}});}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ func.addParam(axis);}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_sdl_real}{TSdlOptionalReal<OwnerType>}}\ degrees(\textcolor{stringliteral}{"{}degrees"{}},\ \&OwnerType::degrees);}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ degrees.description(\textcolor{stringliteral}{"{}The\ amount\ of\ the\ rotation,\ in\ degrees."{}});}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ func.addParam(degrees);}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_sdl_quaternion}{TSdlOptionalQuaternion<OwnerType>}}\ rotation(\textcolor{stringliteral}{"{}rotation"{}},\ \&OwnerType::rotation);}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ rotation.description(\textcolor{stringliteral}{"{}Specify\ the\ rotation\ with\ a\ quaternion\ directly."{}});}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ func.addParam(rotation);}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ func;}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00102\ \ \ \ \ \};}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structph_1_1_physical_actor_1_1_sdl_scale}{SdlScale}}}
+\DoxyCodeLine{00105\ \ \ \ \ \{}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\ amount;}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ operator\ ()\ (\mbox{\hyperlink{classph_1_1_physical_actor}{PhysicalActor}}\&\ actor)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00109\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ actor.scale(amount);}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ PH\_DEFINE\_SDL\_FUNCTION(\mbox{\hyperlink{classph_1_1_t_sdl_method}{TSdlMethod<SdlScale,\ PhysicalActor>}})}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ FunctionType\ func(\textcolor{stringliteral}{"{}scale"{}});}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ func.description(\textcolor{stringliteral}{"{}Enlarges\ or\ shrinks\ the\ actor\ with\ some\ specified\ amount."{}});}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_sdl_vector3}{TSdlVector3<OwnerType>}}\ amount(\textcolor{stringliteral}{"{}amount"{}},\ \&OwnerType::amount);}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ amount.description(\textcolor{stringliteral}{"{}The\ amount\ to\ scale\ on\ each\ axis."{}});}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ amount.defaultTo(\{1,\ 1,\ 1\});}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ func.addParam(amount);}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ func;}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00125\ \ \ \ \ \};}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00127\ \ \ \ \ PH\_DEFINE\_SDL\_CLASS(\mbox{\hyperlink{classph_1_1_t_sdl_owner_class}{TSdlOwnerClass<PhysicalActor>}})}
+\DoxyCodeLine{00128\ \ \ \ \ \{}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ ClassType\ clazz(\textcolor{stringliteral}{"{}physical"{}});}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ clazz.docName(\textcolor{stringliteral}{"{}Physical\ Actor"{}});}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ clazz.description(\textcolor{stringliteral}{"{}An\ actor\ that\ is\ visible\ and\ can\ be\ transformed."{}});}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ clazz.baseOn<\mbox{\hyperlink{classph_1_1_actor}{Actor}}>();}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ clazz.addStruct(\&OwnerType::m\_localToWorld);}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ clazz.addFunction<\mbox{\hyperlink{structph_1_1_physical_actor_1_1_sdl_translate}{SdlTranslate}}>();}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ clazz.addFunction<\mbox{\hyperlink{structph_1_1_physical_actor_1_1_sdl_rotate}{SdlRotate}}>();}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ clazz.addFunction<\mbox{\hyperlink{structph_1_1_physical_actor_1_1_sdl_scale}{SdlScale}}>();}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ clazz;}
+\DoxyCodeLine{00141\ \ \ \ \ \}}
+\DoxyCodeLine{00142\ \};}
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00144\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+
+\end{DoxyCode}

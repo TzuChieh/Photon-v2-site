@@ -1,0 +1,178 @@
+\doxysection{Timer.\+h}
+\hypertarget{_timer_8h_source}{}\label{_timer_8h_source}\index{Source/Utility/Timer.h@{Source/Utility/Timer.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Common/primitive\_type.h"{}}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <chrono>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <ratio>}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00009\ \{}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_timer}{Timer}}\ final}
+\DoxyCodeLine{00014\ \{}
+\DoxyCodeLine{00015\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keyword}{using\ }Clock\ =\ std::chrono::steady\_clock;}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keyword}{using\ }DefaultTimeUnit\ =\ Clock::duration;}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00020\ \ \ \ \ \mbox{\hyperlink{classph_1_1_timer}{Timer}}();}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00024\ \ \ \ \ \mbox{\hyperlink{classph_1_1_timer}{Timer}}\&\ \mbox{\hyperlink{classph_1_1_timer_aced04c0fd3c262cd90260c60116f6db1}{start}}();}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00029\ \ \ \ \ \mbox{\hyperlink{classph_1_1_timer}{Timer}}\&\ \mbox{\hyperlink{classph_1_1_timer_a5811024f54e638a9ec18e9eba32aacd9}{accumulatedStart}}();}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00033\ \ \ \ \ \mbox{\hyperlink{classph_1_1_timer}{Timer}}\&\ \mbox{\hyperlink{classph_1_1_timer_a806b8e6c88e04cb4b6551838a54f6371}{stop}}();}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00039\ \ \ \ \ DefaultTimeUnit\ \mbox{\hyperlink{classph_1_1_timer_ad84461cff50c286d4a44ef65d3a1e194}{markLap}}();}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00045\ \ \ \ \ DefaultTimeUnit\ \mbox{\hyperlink{classph_1_1_timer_ab341685b402bd3d10dd443fe4951f371}{peekLap}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00050\ \ \ \ \ DefaultTimeUnit\ \mbox{\hyperlink{classph_1_1_timer_a99b4f650346c6898aa6c756fdd0f7d8a}{getDelta}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ NumberType\ =\ u\textcolor{keywordtype}{int}64>}
+\DoxyCodeLine{00059\ \ \ \ \ NumberType\ \mbox{\hyperlink{classph_1_1_timer_a9d0fc873191692d7ee86537ae42b3a5d}{markLapS}}();}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ NumberType\ =\ u\textcolor{keywordtype}{int}64>}
+\DoxyCodeLine{00062\ \ \ \ \ NumberType\ markLapMs();}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ NumberType\ =\ u\textcolor{keywordtype}{int}64>}
+\DoxyCodeLine{00065\ \ \ \ \ NumberType\ markLapUs();}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ NumberType\ =\ u\textcolor{keywordtype}{int}64>}
+\DoxyCodeLine{00068\ \ \ \ \ NumberType\ markLapNs();}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ NumberType\ =\ u\textcolor{keywordtype}{int}64>}
+\DoxyCodeLine{00071\ \ \ \ \ NumberType\ getDeltaS()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ NumberType\ =\ u\textcolor{keywordtype}{int}64>}
+\DoxyCodeLine{00074\ \ \ \ \ NumberType\ getDeltaMs()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ NumberType\ =\ u\textcolor{keywordtype}{int}64>}
+\DoxyCodeLine{00077\ \ \ \ \ NumberType\ getDeltaUs()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ NumberType\ =\ u\textcolor{keywordtype}{int}64>}
+\DoxyCodeLine{00080\ \ \ \ \ NumberType\ getDeltaNs()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ TimeRepresentation,\ \textcolor{keyword}{typename}\ TimePeriod>}
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keyword}{static}\ TimeRepresentation\ castToNumber(DefaultTimeUnit\ duration);}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \ \ \ \ Clock::time\_point\ m\_timeMark;}
+\DoxyCodeLine{00088\ \ \ \ \ DefaultTimeUnit\ \ \ m\_totalDuration;}
+\DoxyCodeLine{00089\ \};}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \textcolor{keyword}{inline}\ Timer::Timer()\ :}
+\DoxyCodeLine{00092\ \ \ \ \ m\_timeMark(),\ m\_totalDuration(DefaultTimeUnit::zero())}
+\DoxyCodeLine{00093\ \{\}}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_timer}{Timer}}\&\ \mbox{\hyperlink{classph_1_1_timer_aced04c0fd3c262cd90260c60116f6db1}{Timer::start}}()}
+\DoxyCodeLine{00096\ \{}
+\DoxyCodeLine{00097\ \ \ \ \ m\_timeMark\ =\ Clock::now();}
+\DoxyCodeLine{00098\ \ \ \ \ m\_totalDuration\ =\ DefaultTimeUnit::zero();}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00101\ \}}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_timer}{Timer}}\&\ \mbox{\hyperlink{classph_1_1_timer_a5811024f54e638a9ec18e9eba32aacd9}{Timer::accumulatedStart}}()}
+\DoxyCodeLine{00104\ \{}
+\DoxyCodeLine{00105\ \ \ \ \ m\_timeMark\ =\ Clock::now();}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00108\ \}}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_timer}{Timer}}\&\ \mbox{\hyperlink{classph_1_1_timer_a806b8e6c88e04cb4b6551838a54f6371}{Timer::stop}}()}
+\DoxyCodeLine{00111\ \{}
+\DoxyCodeLine{00112\ \ \ \ \ m\_totalDuration\ +=\ Clock::now()\ -\/\ m\_timeMark;}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00115\ \}}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ \textcolor{keyword}{inline}\ Timer::DefaultTimeUnit\ \mbox{\hyperlink{classph_1_1_timer_ad84461cff50c286d4a44ef65d3a1e194}{Timer::markLap}}()}
+\DoxyCodeLine{00118\ \{}
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ currentTime\ =\ Clock::now();}
+\DoxyCodeLine{00120\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ lapDuration\ =\ currentTime\ -\/\ m\_timeMark;}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ \ \ \ \ m\_timeMark\ =\ currentTime;}
+\DoxyCodeLine{00123\ \ \ \ \ m\_totalDuration\ +=\ lapDuration;}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \ \ \ \ \textcolor{keywordflow}{return}\ lapDuration;}
+\DoxyCodeLine{00126\ \}}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \textcolor{keyword}{inline}\ Timer::DefaultTimeUnit\ \mbox{\hyperlink{classph_1_1_timer_ab341685b402bd3d10dd443fe4951f371}{Timer::peekLap}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00129\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00130\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ currentTime\ =\ Clock::now();}
+\DoxyCodeLine{00131\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ lapDuration\ =\ currentTime\ -\/\ m\_timeMark;}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00133\ \ \ \ \ \textcolor{keywordflow}{return}\ lapDuration;}
+\DoxyCodeLine{00134\ \}}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00136\ \textcolor{keyword}{inline}\ Timer::DefaultTimeUnit\ \mbox{\hyperlink{classph_1_1_timer_a99b4f650346c6898aa6c756fdd0f7d8a}{Timer::getDelta}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00137\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00138\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_totalDuration;}
+\DoxyCodeLine{00139\ \}}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00141\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ NumberType>}
+\DoxyCodeLine{00142\ \textcolor{keyword}{inline}\ NumberType\ \mbox{\hyperlink{classph_1_1_timer_a9d0fc873191692d7ee86537ae42b3a5d}{Timer::markLapS}}()}
+\DoxyCodeLine{00143\ \{}
+\DoxyCodeLine{00144\ \ \ \ \ \textcolor{keywordflow}{return}\ castToNumber<NumberType,\ std::ratio<1>>(\mbox{\hyperlink{classph_1_1_timer_ad84461cff50c286d4a44ef65d3a1e194}{markLap}}());}
+\DoxyCodeLine{00145\ \}}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00147\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ NumberType>}
+\DoxyCodeLine{00148\ \textcolor{keyword}{inline}\ NumberType\ Timer::markLapMs()}
+\DoxyCodeLine{00149\ \{}
+\DoxyCodeLine{00150\ \ \ \ \ \textcolor{keywordflow}{return}\ castToNumber<NumberType,\ std::milli>(\mbox{\hyperlink{classph_1_1_timer_ad84461cff50c286d4a44ef65d3a1e194}{markLap}}());}
+\DoxyCodeLine{00151\ \}}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00153\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ NumberType>}
+\DoxyCodeLine{00154\ \textcolor{keyword}{inline}\ NumberType\ Timer::markLapUs()}
+\DoxyCodeLine{00155\ \{}
+\DoxyCodeLine{00156\ \ \ \ \ \textcolor{keywordflow}{return}\ castToNumber<NumberType,\ std::micro>(\mbox{\hyperlink{classph_1_1_timer_ad84461cff50c286d4a44ef65d3a1e194}{markLap}}());}
+\DoxyCodeLine{00157\ \}}
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00159\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ NumberType>}
+\DoxyCodeLine{00160\ \textcolor{keyword}{inline}\ NumberType\ Timer::markLapNs()}
+\DoxyCodeLine{00161\ \{}
+\DoxyCodeLine{00162\ \ \ \ \ \textcolor{keywordflow}{return}\ castToNumber<NumberType,\ std::nano>(\mbox{\hyperlink{classph_1_1_timer_ad84461cff50c286d4a44ef65d3a1e194}{markLap}}());}
+\DoxyCodeLine{00163\ \}}
+\DoxyCodeLine{00164\ }
+\DoxyCodeLine{00165\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ NumberType>}
+\DoxyCodeLine{00166\ \textcolor{keyword}{inline}\ NumberType\ Timer::getDeltaS()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00167\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00168\ \ \ \ \ \textcolor{keywordflow}{return}\ castToNumber<NumberType,\ std::ratio<1>>(\mbox{\hyperlink{classph_1_1_timer_a99b4f650346c6898aa6c756fdd0f7d8a}{getDelta}}());}
+\DoxyCodeLine{00169\ \}}
+\DoxyCodeLine{00170\ }
+\DoxyCodeLine{00171\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ NumberType>}
+\DoxyCodeLine{00172\ \textcolor{keyword}{inline}\ NumberType\ Timer::getDeltaMs()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00173\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00174\ \ \ \ \ \textcolor{keywordflow}{return}\ castToNumber<NumberType,\ std::milli>(\mbox{\hyperlink{classph_1_1_timer_a99b4f650346c6898aa6c756fdd0f7d8a}{getDelta}}());}
+\DoxyCodeLine{00175\ \}}
+\DoxyCodeLine{00176\ }
+\DoxyCodeLine{00177\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ NumberType>}
+\DoxyCodeLine{00178\ \textcolor{keyword}{inline}\ NumberType\ Timer::getDeltaUs()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00179\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00180\ \ \ \ \ \textcolor{keywordflow}{return}\ castToNumber<NumberType,\ std::micro>(\mbox{\hyperlink{classph_1_1_timer_a99b4f650346c6898aa6c756fdd0f7d8a}{getDelta}}());}
+\DoxyCodeLine{00181\ \}}
+\DoxyCodeLine{00182\ }
+\DoxyCodeLine{00183\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ NumberType>}
+\DoxyCodeLine{00184\ \textcolor{keyword}{inline}\ NumberType\ Timer::getDeltaNs()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00185\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00186\ \ \ \ \ \textcolor{keywordflow}{return}\ castToNumber<NumberType,\ std::nano>(\mbox{\hyperlink{classph_1_1_timer_a99b4f650346c6898aa6c756fdd0f7d8a}{getDelta}}());}
+\DoxyCodeLine{00187\ \}}
+\DoxyCodeLine{00188\ }
+\DoxyCodeLine{00189\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ TimeRepresentation,\ \textcolor{keyword}{typename}\ TimePeriod>}
+\DoxyCodeLine{00190\ \textcolor{keyword}{inline}\ TimeRepresentation\ Timer::castToNumber(\textcolor{keyword}{const}\ DefaultTimeUnit\ duration)}
+\DoxyCodeLine{00191\ \{}
+\DoxyCodeLine{00192\ \ \ \ \ \textcolor{keyword}{using\ }DstDuration\ =\ std::chrono::duration<TimeRepresentation,\ TimePeriod>;}
+\DoxyCodeLine{00193\ }
+\DoxyCodeLine{00194\ \ \ \ \ \textcolor{comment}{//\ We\ do\ not\ simply\ do\ \`{}return\ DstDuration(duration);`\ since\ the\ implicit\ conversion\ will\ not}}
+\DoxyCodeLine{00195\ \ \ \ \ \textcolor{comment}{//\ allow\ any\ precision\ loss.\ Here\ we\ want\ behavior\ similar\ to\ \`{}static\_cast`.}}
+\DoxyCodeLine{00196\ \ \ \ \ \textcolor{keywordflow}{return}\ std::chrono::duration\_cast<DstDuration>(duration).count();}
+\DoxyCodeLine{00197\ \}}
+\DoxyCodeLine{00198\ }
+\DoxyCodeLine{00199\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+
+\end{DoxyCode}

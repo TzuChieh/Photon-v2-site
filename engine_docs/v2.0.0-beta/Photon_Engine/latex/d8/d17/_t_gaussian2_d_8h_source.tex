@@ -1,0 +1,63 @@
+\doxysection{TGaussian2\+D.\+h}
+\hypertarget{_t_gaussian2_d_8h_source}{}\label{_t_gaussian2_d_8h_source}\index{Source/Math/Function/TGaussian2D.h@{Source/Math/Function/TGaussian2D.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Math/Function/TMathFunction2D.h"{}}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <cmath>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph_1_1math}{ph::math}}}
+\DoxyCodeLine{00009\ \{}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ ValueType>}
+\DoxyCodeLine{00012\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1math_1_1_t_gaussian2_d}{TGaussian2D}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classph_1_1math_1_1_t_math_function2_d}{TMathFunction2D}}<ValueType>}
+\DoxyCodeLine{00013\ \{}
+\DoxyCodeLine{00014\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00015\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_gaussian2_d}{TGaussian2D}}(ValueType\ sigmaX,\ ValueType\ sigmaY,\ ValueType\ amplitude);}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \ \ \ \ ValueType\ evaluate(ValueType\ x,\ ValueType\ y)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{comment}{//\ Sink\ the\ gaussian\ with\ specified\ amount;\ effectively\ subtract\ then}}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{comment}{//\ clamp\ to\ zero.}}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordtype}{void}\ setSubmergeAmount(ValueType\ amt);}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00024\ \ \ \ \ ValueType\ m\_xExpMultiplier;}
+\DoxyCodeLine{00025\ \ \ \ \ ValueType\ m\_yExpMultiplier;}
+\DoxyCodeLine{00026\ \ \ \ \ ValueType\ m\_amplitude;}
+\DoxyCodeLine{00027\ \ \ \ \ ValueType\ m\_submergeAmount;}
+\DoxyCodeLine{00028\ \};}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ ValueType>}
+\DoxyCodeLine{00031\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1math_1_1_t_gaussian2_d}{TGaussian2D<ValueType>::TGaussian2D}}(}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{const}\ ValueType\ sigmaX,}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keyword}{const}\ ValueType\ sigmaY,\ }
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{const}\ ValueType\ amplitude)\ :}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_math_function2_d}{TMathFunction2D}}<ValueType>(),}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \ \ m\_xExpMultiplier(static\_cast<ValueType>(-\/1)\ /\ (static\_cast<ValueType>(2)\ *\ sigmaX\ *\ sigmaX)),}
+\DoxyCodeLine{00039\ \ \ \ \ m\_yExpMultiplier(static\_cast<ValueType>(-\/1)\ /\ (static\_cast<ValueType>(2)\ *\ sigmaY\ *\ sigmaY)),}
+\DoxyCodeLine{00040\ \ \ \ \ m\_amplitude\ \ \ \ \ (amplitude),}
+\DoxyCodeLine{00041\ \ \ \ \ m\_submergeAmount(0)}
+\DoxyCodeLine{00042\ \{\}}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ ValueType>}
+\DoxyCodeLine{00045\ \textcolor{keyword}{inline}\ ValueType\ \mbox{\hyperlink{classph_1_1math_1_1_t_gaussian2_d}{TGaussian2D<ValueType>::evaluate}}(\textcolor{keyword}{const}\ ValueType\ x,\ \textcolor{keyword}{const}\ ValueType\ y)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00046\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keyword}{const}\ ValueType\ func\ =\ m\_amplitude\ *\ std::exp(m\_xExpMultiplier\ *\ x\ *\ x\ +\ m\_yExpMultiplier\ *\ y\ *\ y);}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordflow}{return}\ std::max(func\ -\/\ m\_submergeAmount,\ \textcolor{keyword}{static\_cast<}ValueType\textcolor{keyword}{>}(0));}
+\DoxyCodeLine{00049\ \}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ ValueType>}
+\DoxyCodeLine{00052\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ TGaussian2D<ValueType>::setSubmergeAmount(\textcolor{keyword}{const}\ ValueType\ amt)}
+\DoxyCodeLine{00053\ \{}
+\DoxyCodeLine{00054\ \ \ \ \ m\_submergeAmount\ =\ amt;}
+\DoxyCodeLine{00055\ \}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \}\textcolor{comment}{//\ end\ namespace\ ph::math}}
+
+\end{DoxyCode}

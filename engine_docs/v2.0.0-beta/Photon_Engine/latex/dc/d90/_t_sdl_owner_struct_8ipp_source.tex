@@ -1,0 +1,123 @@
+\doxysection{TSdl\+Owner\+Struct.\+ipp}
+\hypertarget{_t_sdl_owner_struct_8ipp_source}{}\label{_t_sdl_owner_struct_8ipp_source}\index{Source/SDL/Introspect/TSdlOwnerStruct.ipp@{Source/SDL/Introspect/TSdlOwnerStruct.ipp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}SDL/Introspect/TSdlOwnerStruct.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}SDL/Introspect/SdlField.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}SDL/Introspect/SdlStructFieldStump.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}Common/assertion.h"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <type\_traits>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00013\ \{}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ StructType>}
+\DoxyCodeLine{00016\ \textcolor{keyword}{inline}\ TSdlOwnerStruct<StructType>::TSdlOwnerStruct(std::string\ name)\ :}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \ \ \ \ SdlStruct(std::move(name)),}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \ \ \ \ m\_fields()}
+\DoxyCodeLine{00021\ \{\}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ StructType>}
+\DoxyCodeLine{00024\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00025\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ TSdlOwnerStruct<StructType>::addField(T\ sdlField)}
+\DoxyCodeLine{00026\ \ \ \ \ -\/>\ TSdlOwnerStruct\&}
+\DoxyCodeLine{00027\ \{}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{comment}{//\ More\ restrictions\ on\ the\ type\ of\ T\ may\ be\ imposed\ by\ FieldSet}}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_base\_of\_v<SdlField,\ T>,}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}T\ is\ not\ a\ SdlField\ thus\ cannot\ be\ added."{}});}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \ \ m\_fields.addField(std::move(sdlField));}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00035\ \}}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ StructType>}
+\DoxyCodeLine{00038\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ StructObjType>}
+\DoxyCodeLine{00039\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ TSdlOwnerStruct<StructType>::addStruct(StructObjType\ StructType::*\ const\ structObjPtr)}
+\DoxyCodeLine{00040\ \ \ \ \ -\/>\ TSdlOwnerStruct\&}
+\DoxyCodeLine{00041\ \{}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{comment}{//\ More\ restrictions\ on\ StructObjType\ may\ be\ imposed\ by\ FieldSet}}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_base\_of\_v<SdlStruct,\ StructObjType>,}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}StructObjType\ is\ not\ a\ SdlStruct\ thus\ cannot\ be\ added."{}});}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \ \ PH\_ASSERT(structObjPtr);}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \ \ m\_fields.addFields(SdlStructFieldStump().genFieldSet(structObjPtr));}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00051\ \}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ StructType>}
+\DoxyCodeLine{00054\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ StructObjType>}
+\DoxyCodeLine{00055\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ TSdlOwnerStruct<StructType>::addStruct(}
+\DoxyCodeLine{00056\ \ \ \ \ StructObjType\ StructType::*\ const\ structObjPtr,}
+\DoxyCodeLine{00057\ \ \ \ \ const\ SdlStructFieldStump\&\ \ \ \ \ \ \ \ structFieldStump)}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ \ \ -\/>\ TSdlOwnerStruct\&}
+\DoxyCodeLine{00060\ \{}
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{comment}{//\ More\ restrictions\ on\ StructObjType\ may\ be\ imposed\ by\ FieldSet}}
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_base\_of\_v<SdlStruct,\ StructObjType>,}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}StructObjType\ is\ not\ a\ SdlStruct\ thus\ cannot\ be\ added."{}});}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ \ \ PH\_ASSERT(structObjPtr);}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \ \ \ m\_fields.addFields(structFieldStump.genFieldSet(structObjPtr));}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00070\ \}}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ StructType>}
+\DoxyCodeLine{00073\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_sdl_owner_struct}{TSdlOwnerStruct<StructType>::initDefaultStruct}}(StructType\&\ structObj)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00074\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00075\ \ \ \ \ setFieldsToDefaults(structObj);}
+\DoxyCodeLine{00076\ \}}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ StructType>}
+\DoxyCodeLine{00079\ \textcolor{keyword}{inline}\ std::size\_t\ \mbox{\hyperlink{classph_1_1_t_sdl_owner_struct}{TSdlOwnerStruct<StructType>::numFields}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00080\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_fields.\mbox{\hyperlink{classph_1_1_t_sdl_owner_struct_a67e1f78fd7f25bc8a2f4564cef384eb3}{numFields}}();}
+\DoxyCodeLine{00082\ \}}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ StructType>}
+\DoxyCodeLine{00085\ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_sdl_field}{SdlField}}*\ \mbox{\hyperlink{classph_1_1_t_sdl_owner_struct}{TSdlOwnerStruct<StructType>::getField}}(\textcolor{keyword}{const}\ std::size\_t\ index)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00086\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_fields.\mbox{\hyperlink{classph_1_1_t_sdl_owner_struct_ae96324fb421f8462b09d704456e251c0}{getField}}(index);}
+\DoxyCodeLine{00088\ \}}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ StructType>}
+\DoxyCodeLine{00091\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1_t_sdl_owner_struct}{TSdlOwnerStruct<StructType>::getFields}}()\ const}
+\DoxyCodeLine{00092\ \ \ \ \ -\/>\ const\ \mbox{\hyperlink{classph_1_1_t_sdl_brute_force_field_set}{TSdlBruteForceFieldSet}}<\mbox{\hyperlink{classph_1_1_t_sdl_owned_field}{TSdlOwnedField}}<StructType>>\&}
+\DoxyCodeLine{00093\ \{}
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_fields;}
+\DoxyCodeLine{00095\ \}}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ StructType>}
+\DoxyCodeLine{00098\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ TSdlOwnerStruct<StructType>::description(std::string\ descriptionStr)}
+\DoxyCodeLine{00099\ \ \ \ \ -\/>\ TSdlOwnerStruct\&}
+\DoxyCodeLine{00100\ \{}
+\DoxyCodeLine{00101\ \ \ \ \ setDescription(std::move(descriptionStr));}
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00103\ \}}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ StructType>}
+\DoxyCodeLine{00106\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ TSdlOwnerStruct<StructType>::setFieldsToDefaults(StructType\&\ structObj)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00107\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00108\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ fieldIdx\ =\ 0;\ fieldIdx\ <\ m\_fields.numFields();\ ++fieldIdx)}
+\DoxyCodeLine{00109\ \ \ \ \ \{}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ field\ =\ m\_fields[fieldIdx];}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Set\ field\ to\ default\ value\ regardless\ of\ its\ importance\ (field\ importance\ is\ for\ import/export)}}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ field.ownedValueToDefault(structObj);}
+\DoxyCodeLine{00114\ \ \ \ \ \}}
+\DoxyCodeLine{00115\ \}}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+
+\end{DoxyCode}

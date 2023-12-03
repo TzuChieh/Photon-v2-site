@@ -1,0 +1,187 @@
+\doxysection{ph\+::Memory\+Arena Class Reference}
+\hypertarget{classph_1_1_memory_arena}{}\label{classph_1_1_memory_arena}\index{ph::MemoryArena@{ph::MemoryArena}}
+
+
+A general purpose bump allocator.  
+
+
+
+
+{\ttfamily \#include $<$Memory\+Arena.\+h$>$}
+
+Inheritance diagram for ph\+::Memory\+Arena\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{db/d5c/classph_1_1_memory_arena}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classph_1_1_memory_arena_ae32d29cebf84d32ec9350c40b9e73f1f}\label{classph_1_1_memory_arena_ae32d29cebf84d32ec9350c40b9e73f1f} 
+{\bfseries Memory\+Arena} ()
+\begin{DoxyCompactList}\small\item\em Empty arena without any allocation performed yet. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classph_1_1_memory_arena_a67abd2c6db2d50c7a1744d5da48e140a}{Memory\+Arena}} (std\+::size\+\_\+t block\+Size\+Hint\+In\+Bytes, std\+::size\+\_\+t num\+Default\+Blocks)
+\item 
+std\+::byte \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classph_1_1_memory_arena_ac2bac8418034d3ef61afe18ac0dadb56}{alloc\+Raw}} (std\+::size\+\_\+t num\+Bytes, std\+::size\+\_\+t alignment\+In\+Bytes=alignof(std\+::max\+\_\+align\+\_\+t))
+\begin{DoxyCompactList}\small\item\em Allocate raw memory. The memory returned contains no object--placement new is required before any use of the memory content, otherwise it is UB by C++ standard. \end{DoxyCompactList}\item 
+\Hypertarget{classph_1_1_memory_arena_af6abecb6a8f2eefcad52b5ae94bf9d37}\label{classph_1_1_memory_arena_af6abecb6a8f2eefcad52b5ae94bf9d37} 
+void {\bfseries clear} ()
+\begin{DoxyCompactList}\small\item\em Reset the usage of the arena. All memory handed out are effectively deallocated/deleted after this call. The arena then transitions to its initial state and is ready for allocation again. Destructors are called if required. \end{DoxyCompactList}\item 
+\Hypertarget{classph_1_1_memory_arena_a858ab23f78ca1408925399d762c1a099}\label{classph_1_1_memory_arena_a858ab23f78ca1408925399d762c1a099} 
+std\+::size\+\_\+t {\bfseries num\+Used\+Bytes} () const
+\item 
+\Hypertarget{classph_1_1_memory_arena_a5685321bae69b1f76c79a6791ed728ae}\label{classph_1_1_memory_arena_a5685321bae69b1f76c79a6791ed728ae} 
+std\+::size\+\_\+t {\bfseries num\+Allocated\+Bytes} () const
+\item 
+\Hypertarget{classph_1_1_memory_arena_a94ae20251ad363553c40e748d612f37d}\label{classph_1_1_memory_arena_a94ae20251ad363553c40e748d612f37d} 
+std\+::size\+\_\+t {\bfseries get\+Block\+Size\+In\+Bytes} () const
+\item 
+\Hypertarget{classph_1_1_memory_arena_ac2724c03ce5ddaf13ff28c459792bf39}\label{classph_1_1_memory_arena_ac2724c03ce5ddaf13ff28c459792bf39} 
+std\+::size\+\_\+t {\bfseries num\+Allocated\+Blocks} () const
+\item 
+{\footnotesize template$<$typename T $>$ \newline
+requires std\+::is\+\_\+trivially\+\_\+destructible\+\_\+v$<$T$>$}\\T \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classph_1_1_memory_arena_a0e98ed104db86e4a4223b2c75da243ee}{alloc}} ()
+\begin{DoxyCompactList}\small\item\em Allocate raw memory for type {\ttfamily T}. Convenient method for allocating raw memory for object of type {\ttfamily T}. Alignment is handled automatically. See \doxylink{classph_1_1_memory_arena_ac2bac8418034d3ef61afe18ac0dadb56}{alloc\+Raw(std\+::size\+\_\+t, std\+::size\+\_\+t)} for details. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ \newline
+requires std\+::is\+\_\+trivially\+\_\+destructible\+\_\+v$<$T$>$}\\TSpan$<$ T $>$ \mbox{\hyperlink{classph_1_1_memory_arena_a9a2aa5cbf673d59ebe264110435ffab7}{alloc\+Array}} (const std\+::size\+\_\+t array\+Size)
+\begin{DoxyCompactList}\small\item\em Allocate raw memory for array of type {\ttfamily T}. Convenient method for allocating raw memory for array of type {\ttfamily T}. Alignment is handled automatically. See \doxylink{classph_1_1_memory_arena_ac2bac8418034d3ef61afe18ac0dadb56}{alloc\+Raw(std\+::size\+\_\+t, std\+::size\+\_\+t)} for details. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T , typename... Args$>$ }\\T \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classph_1_1_memory_arena_ad7ca52ec8bce133b7d04b18452551ef2}{make}} (Args \&\&... args)
+\begin{DoxyCompactList}\small\item\em Make an object of type {\ttfamily T}. Convenient method for creating an object without needing a placement new later. Equivalent to allocate then placement new for an object of type {\ttfamily T}. Alignment is handled automatically. Additionally, destructors will be automatically called (if needed) when clearing the arena. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\textbf{ }\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classph_1_1_memory_arena_a99012d98c5cade451f9fe29f3cd923d2}{Memory\+Arena}} (\mbox{\hyperlink{classph_1_1_memory_arena}{Memory\+Arena}} \&\&other)=default
+\begin{DoxyCompactList}\small\item\em Move another arena into this one. The moved-\/from arena cannot be used unless\+: \end{DoxyCompactList}\item 
+\Hypertarget{classph_1_1_memory_arena_ad765fa0458b4904f984f271bc39e6006}\label{classph_1_1_memory_arena_ad765fa0458b4904f984f271bc39e6006} 
+\mbox{\hyperlink{classph_1_1_memory_arena}{Memory\+Arena}} \& {\bfseries operator=} (\mbox{\hyperlink{classph_1_1_memory_arena}{Memory\+Arena}} \&\&rhs)=default
+\end{DoxyCompactItemize}
+
+
+
+\doxysubsection{Detailed Description}
+A general purpose bump allocator. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classph_1_1_memory_arena_a67abd2c6db2d50c7a1744d5da48e140a}\label{classph_1_1_memory_arena_a67abd2c6db2d50c7a1744d5da48e140a} 
+\index{ph::MemoryArena@{ph::MemoryArena}!MemoryArena@{MemoryArena}}
+\index{MemoryArena@{MemoryArena}!ph::MemoryArena@{ph::MemoryArena}}
+\doxysubsubsection{\texorpdfstring{MemoryArena()}{MemoryArena()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily ph\+::\+Memory\+Arena\+::\+Memory\+Arena (\begin{DoxyParamCaption}\item[{std\+::size\+\_\+t}]{block\+Size\+Hint\+In\+Bytes,  }\item[{std\+::size\+\_\+t}]{num\+Default\+Blocks }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em block\+Size\+Hint\+In\+Bytes} & Size of each memory block in the arena. This imposed a limit on the maximum size of a single allocation. The parameter is only a hint, actual size may be larger for performance reasons. \\
+\hline
+{\em num\+Default\+Blocks} & Number of pre-\/allocated blocks. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classph_1_1_memory_arena_a99012d98c5cade451f9fe29f3cd923d2}\label{classph_1_1_memory_arena_a99012d98c5cade451f9fe29f3cd923d2} 
+\index{ph::MemoryArena@{ph::MemoryArena}!MemoryArena@{MemoryArena}}
+\index{MemoryArena@{MemoryArena}!ph::MemoryArena@{ph::MemoryArena}}
+\doxysubsubsection{\texorpdfstring{MemoryArena()}{MemoryArena()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily ph\+::\+Memory\+Arena\+::\+Memory\+Arena (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classph_1_1_memory_arena}{Memory\+Arena}} \&\&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [default]}}
+
+
+
+Move another arena into this one. The moved-\/from arena cannot be used unless\+: 
+
+
+\begin{DoxyEnumerate}
+\item yet another arena has moved into it
+\item {\ttfamily \doxylink{classph_1_1_memory_arena_af6abecb6a8f2eefcad52b5ae94bf9d37}{clear()}} has been called. 
+\end{DoxyEnumerate}
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classph_1_1_memory_arena_a0e98ed104db86e4a4223b2c75da243ee}\label{classph_1_1_memory_arena_a0e98ed104db86e4a4223b2c75da243ee} 
+\index{ph::MemoryArena@{ph::MemoryArena}!alloc@{alloc}}
+\index{alloc@{alloc}!ph::MemoryArena@{ph::MemoryArena}}
+\doxysubsubsection{\texorpdfstring{alloc()}{alloc()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \newline
+requires std\+::is\+\_\+trivially\+\_\+destructible\+\_\+v$<$T$>$\\
+T \texorpdfstring{$\ast$}{*} ph\+::\+Memory\+Arena\+::alloc (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Allocate raw memory for type {\ttfamily T}. Convenient method for allocating raw memory for object of type {\ttfamily T}. Alignment is handled automatically. See \doxylink{classph_1_1_memory_arena_ac2bac8418034d3ef61afe18ac0dadb56}{alloc\+Raw(std\+::size\+\_\+t, std\+::size\+\_\+t)} for details. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Type for the raw memory allocated. \\
+\hline
+\end{DoxyTemplParams}
+\begin{DoxyNote}{Note}
+Placement new is required before any use of the memory content. 
+\end{DoxyNote}
+\Hypertarget{classph_1_1_memory_arena_a9a2aa5cbf673d59ebe264110435ffab7}\label{classph_1_1_memory_arena_a9a2aa5cbf673d59ebe264110435ffab7} 
+\index{ph::MemoryArena@{ph::MemoryArena}!allocArray@{allocArray}}
+\index{allocArray@{allocArray}!ph::MemoryArena@{ph::MemoryArena}}
+\doxysubsubsection{\texorpdfstring{allocArray()}{allocArray()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \newline
+requires std\+::is\+\_\+trivially\+\_\+destructible\+\_\+v$<$T$>$\\
+TSpan$<$ T $>$ ph\+::\+Memory\+Arena\+::alloc\+Array (\begin{DoxyParamCaption}\item[{const std\+::size\+\_\+t}]{array\+Size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Allocate raw memory for array of type {\ttfamily T}. Convenient method for allocating raw memory for array of type {\ttfamily T}. Alignment is handled automatically. See \doxylink{classph_1_1_memory_arena_ac2bac8418034d3ef61afe18ac0dadb56}{alloc\+Raw(std\+::size\+\_\+t, std\+::size\+\_\+t)} for details. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Type for the raw array memory allocated. \\
+\hline
+\end{DoxyTemplParams}
+\begin{DoxyNote}{Note}
+Placement new is required before any use of the memory content. 
+\end{DoxyNote}
+\Hypertarget{classph_1_1_memory_arena_ac2bac8418034d3ef61afe18ac0dadb56}\label{classph_1_1_memory_arena_ac2bac8418034d3ef61afe18ac0dadb56} 
+\index{ph::MemoryArena@{ph::MemoryArena}!allocRaw@{allocRaw}}
+\index{allocRaw@{allocRaw}!ph::MemoryArena@{ph::MemoryArena}}
+\doxysubsubsection{\texorpdfstring{allocRaw()}{allocRaw()}}
+{\footnotesize\ttfamily std\+::byte \texorpdfstring{$\ast$}{*} ph\+::\+Memory\+Arena\+::alloc\+Raw (\begin{DoxyParamCaption}\item[{std\+::size\+\_\+t}]{num\+Bytes,  }\item[{std\+::size\+\_\+t}]{alignment\+In\+Bytes = {\ttfamily alignof(std\+:\+:max\+\_\+align\+\_\+t)} }\end{DoxyParamCaption})}
+
+
+
+Allocate raw memory. The memory returned contains no object--placement new is required before any use of the memory content, otherwise it is UB by C++ standard. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em num\+Bytes} & Number of bytes to allocate. \\
+\hline
+{\em alignment\+In\+Bytes} & Alignment requirement of the allocation, in bytes. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Allocated memory, never {\ttfamily nullptr}. 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std\+::bad\+\_\+alloc} & If the allocation failed. \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{classph_1_1_memory_arena_ad7ca52ec8bce133b7d04b18452551ef2}\label{classph_1_1_memory_arena_ad7ca52ec8bce133b7d04b18452551ef2} 
+\index{ph::MemoryArena@{ph::MemoryArena}!make@{make}}
+\index{make@{make}!ph::MemoryArena@{ph::MemoryArena}}
+\doxysubsubsection{\texorpdfstring{make()}{make()}}
+{\footnotesize\ttfamily template$<$typename T , typename... Args$>$ \\
+T \texorpdfstring{$\ast$}{*} ph\+::\+Memory\+Arena\+::make (\begin{DoxyParamCaption}\item[{Args \&\&...}]{args }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Make an object of type {\ttfamily T}. Convenient method for creating an object without needing a placement new later. Equivalent to allocate then placement new for an object of type {\ttfamily T}. Alignment is handled automatically. Additionally, destructors will be automatically called (if needed) when clearing the arena. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Type for the object created. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em args} & Arguments for calling the constructor of {\ttfamily T}. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Source/\+Utility/Memory\+Arena.\+h\item 
+Source/\+Utility/Memory\+Arena.\+cpp\end{DoxyCompactItemize}

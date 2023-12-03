@@ -1,0 +1,243 @@
+\doxysection{Picture\+Data.\+ipp}
+\hypertarget{_picture_data_8ipp_source}{}\label{_picture_data_8ipp_source}\index{Source/Frame/PictureData.ipp@{Source/Frame/PictureData.ipp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#include\ "{}Frame/PictureData.h"{}}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ "{}Frame/TFrame.h"{}}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Common/assertion.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Utility/utility.h"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <type\_traits>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00011\ \{}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_picture_data_a3eeb66c80d97cd291b7f24aac4bc7d62}{PictureData::PictureData}}()}
+\DoxyCodeLine{00014\ \ \ \ \ :\ m\_sizePx(0)}
+\DoxyCodeLine{00015\ \ \ \ \ ,\ m\_numComponents(0)}
+\DoxyCodeLine{00016\ \ \ \ \ ,\ m\_componentType(EPicturePixelComponent::Empty)}
+\DoxyCodeLine{00017\ \ \ \ \ ,\ m\_data(nullptr)}
+\DoxyCodeLine{00018\ \ \ \ \ ,\ m\_numBytesInData(0)}
+\DoxyCodeLine{00019\ \{\}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_picture_data_a3eeb66c80d97cd291b7f24aac4bc7d62}{PictureData::PictureData}}(}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{math::Vector2S}}\ sizePx,}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ numPicComponents,}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keyword}{const}\ EPicturePixelComponent\ componentType)}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \ \ \ \ :\ m\_sizePx(sizePx)}
+\DoxyCodeLine{00027\ \ \ \ \ ,\ m\_numComponents(numPicComponents)}
+\DoxyCodeLine{00028\ \ \ \ \ ,\ m\_componentType(componentType)}
+\DoxyCodeLine{00029\ \ \ \ \ ,\ m\_data()}
+\DoxyCodeLine{00030\ \ \ \ \ ,\ m\_numBytesInData(0)}
+\DoxyCodeLine{00031\ \{}
+\DoxyCodeLine{00032\ \ \ \ \ m\_numBytesInData\ =\ sizePx.product()\ *\ numPicComponents\ *\ num\_bytes\_in\_component(componentType);}
+\DoxyCodeLine{00033\ \ \ \ \ m\_data\ =\ std::make\_unique<std::byte[]>(m\_numBytesInData);}
+\DoxyCodeLine{00034\ \}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ PixelData>}
+\DoxyCodeLine{00037\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_picture_data_a3eeb66c80d97cd291b7f24aac4bc7d62}{PictureData::PictureData}}(}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{math::Vector2S}}\ sizePx,}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ numPicComponents,}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{const}\ EPicturePixelComponent\ componentType,}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keyword}{const}\ PixelData*\ \textcolor{keyword}{const}\ pixelData,}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ pixelDataSize)}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ :\ \mbox{\hyperlink{classph_1_1_picture_data}{PictureData}}(}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ sizePx,}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ numPicComponents,}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ componentType)}
+\DoxyCodeLine{00048\ \{}
+\DoxyCodeLine{00049\ \ \ \ \ setPixels(pixelData,\ pixelDataSize);}
+\DoxyCodeLine{00050\ \}}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_picture_data_a3eeb66c80d97cd291b7f24aac4bc7d62}{PictureData::PictureData}}(\mbox{\hyperlink{classph_1_1_picture_data}{PictureData}}\&\&\ other)}
+\DoxyCodeLine{00053\ \ \ \ \ :\ \mbox{\hyperlink{classph_1_1_picture_data}{PictureData}}()}
+\DoxyCodeLine{00054\ \{}
+\DoxyCodeLine{00055\ \ \ \ \ *\textcolor{keyword}{this}\ =\ std::move(other);}
+\DoxyCodeLine{00056\ \}}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ math::Vector2S\&\ PictureData::getSizePx()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00059\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_sizePx;}
+\DoxyCodeLine{00061\ \}}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \textcolor{keyword}{inline}\ std::size\_t\ PictureData::getWidthPx()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00064\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordflow}{return}\ getSizePx().x();}
+\DoxyCodeLine{00066\ \}}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \textcolor{keyword}{inline}\ std::size\_t\ PictureData::getHeightPx()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00069\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keywordflow}{return}\ getSizePx().y();}
+\DoxyCodeLine{00071\ \}}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \textcolor{keyword}{inline}\ std::size\_t\ PictureData::numComponents()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00074\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_numComponents;}
+\DoxyCodeLine{00076\ \}}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \textcolor{keyword}{inline}\ EPicturePixelComponent\ PictureData::getComponentType()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00079\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_componentType;}
+\DoxyCodeLine{00081\ \}}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \textcolor{keyword}{inline}\ TSpan<std::byte>\ PictureData::getBytes()}
+\DoxyCodeLine{00084\ \{}
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keywordflow}{return}\ \{m\_data.get(),\ m\_numBytesInData\};}
+\DoxyCodeLine{00086\ \}}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \textcolor{keyword}{inline}\ TSpanView<std::byte>\ PictureData::getBytes()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00089\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keywordflow}{return}\ \{m\_data.get(),\ m\_numBytesInData\};}
+\DoxyCodeLine{00091\ \}}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ PixelData>}
+\DoxyCodeLine{00094\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ PictureData::setPixels(}
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keyword}{const}\ PixelData*\ \textcolor{keyword}{const}\ pixelData,}
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ numPixelDataElements)}
+\DoxyCodeLine{00097\ \{}
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{comment}{//\ Note\ that\ the\ following\ assertion\ my\ not\ be\ true:\ }}
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{comment}{//\ \`{}PH\_ASSERT\_EQ(m\_numBytesInData,\ sizePx.product()\ *\ inNumComponents\ *\ sizeof(PixelData));`}}
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{comment}{//\ Consider\ a\ typical\ case\ where\ RGBA\ is\ packed\ into\ an\ \`{}int32`.\ \`{}PixelData`\ would\ be\ \`{}int32`}}
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{comment}{//\ which\ contains\ 4\ components\ already.\ It\ is\ up\ to\ the\ user\ to\ provide\ suitably-\/sized\ \`{}pixelData`.}}
+\DoxyCodeLine{00104\ \ \ \ \ }
+\DoxyCodeLine{00105\ \ \ \ \ \textcolor{comment}{//\ Implies\ that\ \`{}PixelData`\ should\ not\ be\ padded}}
+\DoxyCodeLine{00106\ \ \ \ \ PH\_ASSERT\_EQ(m\_numBytesInData,\ numPixelDataElements\ *\ \textcolor{keyword}{sizeof}(PixelData));}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \ \ \ \ \textcolor{comment}{//\ Should\ have\ been\ allocated;\ set\ pixels\ on\ empty\ picture\ is\ not\ allowed.}}
+\DoxyCodeLine{00109\ \ \ \ \ PH\_ASSERT(m\_data);}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{comment}{//\ Generally\ we\ would\ want\ \`{}PixelData`\ to\ be\ trivially\ copyable\ since\ we\ are\ basically\ handling}}
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{comment}{//\ raw\ bytes\ here}}
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_trivially\_copyable\_v<PixelData>);}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ \ \ \ \ std::copy(}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const\ }std::byte*\textcolor{keyword}{>}(pixelData),}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const\ }std::byte*\textcolor{keyword}{>}(pixelData\ +\ numPixelDataElements),}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ m\_data.get());}
+\DoxyCodeLine{00119\ \}}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ FrameComponent,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00122\ \textcolor{keyword}{inline}\ TFrame<FrameComponent,\ N>\ PictureData::toFrame()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00123\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00124\ \ \ \ \ \textcolor{keywordflow}{switch}(m\_componentType)}
+\DoxyCodeLine{00125\ \ \ \ \ \{}
+\DoxyCodeLine{00126\ \ \ \ \ \textcolor{keywordflow}{case}\ EPicturePixelComponent::Int8:}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ pictureToFrame<int8,\ FrameComponent,\ N>();}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00129\ \ \ \ \ \textcolor{keywordflow}{case}\ EPicturePixelComponent::UInt8:}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ pictureToFrame<uint8,\ FrameComponent,\ N>();}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00132\ \ \ \ \ \textcolor{keywordflow}{case}\ EPicturePixelComponent::Int16:}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ pictureToFrame<int16,\ FrameComponent,\ N>();}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00135\ \ \ \ \ \textcolor{keywordflow}{case}\ EPicturePixelComponent::UInt16:}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ pictureToFrame<uint16,\ FrameComponent,\ N>();}
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00138\ \ \ \ \ \textcolor{keywordflow}{case}\ EPicturePixelComponent::Int32:}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ pictureToFrame<int32,\ FrameComponent,\ N>();}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00141\ \ \ \ \ \textcolor{keywordflow}{case}\ EPicturePixelComponent::UInt32:}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ pictureToFrame<uint32,\ FrameComponent,\ N>();}
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00144\ \ \ \ \ \textcolor{keywordflow}{case}\ EPicturePixelComponent::Int64:}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ pictureToFrame<int64,\ FrameComponent,\ N>();}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00147\ \ \ \ \ \textcolor{keywordflow}{case}\ EPicturePixelComponent::UInt64:}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ pictureToFrame<uint64,\ FrameComponent,\ N>();}
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00150\ \ \ \ \ \textcolor{keywordflow}{case}\ EPicturePixelComponent::Float32:}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ pictureToFrame<float32,\ FrameComponent,\ N>();}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00153\ \ \ \ \ \textcolor{keywordflow}{case}\ EPicturePixelComponent::Float64:}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ pictureToFrame<float64,\ FrameComponent,\ N>();}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00156\ \ \ \ \ \textcolor{keywordflow}{default}:\ }
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ PH\_ASSERT\_UNREACHABLE\_SECTION();}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00159\ \ \ \ \ \}}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00161\ \ \ \ \ \textcolor{keywordflow}{return}\ TFrame<FrameComponent,\ N>();}
+\DoxyCodeLine{00162\ \}}
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00164\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ PictureData::isEmpty()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00165\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00166\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_data\ ==\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00167\ \}}
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00169\ \textcolor{keyword}{inline}\ PictureData\&\ PictureData::operator\ =\ (PictureData\&\&\ rhs)}
+\DoxyCodeLine{00170\ \{}
+\DoxyCodeLine{00171\ \ \ \ \ m\_sizePx\ =\ rhs.m\_sizePx;}
+\DoxyCodeLine{00172\ \ \ \ \ m\_numComponents\ =\ rhs.m\_numComponents;}
+\DoxyCodeLine{00173\ \ \ \ \ m\_componentType\ =\ rhs.m\_componentType;}
+\DoxyCodeLine{00174\ \ \ \ \ m\_data\ =\ std::move(rhs.m\_data);}
+\DoxyCodeLine{00175\ \ \ \ \ m\_numBytesInData\ =\ rhs.m\_numBytesInData;}
+\DoxyCodeLine{00176\ }
+\DoxyCodeLine{00177\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00178\ \}}
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00180\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ PictureComponent,\ \textcolor{keyword}{typename}\ FrameComponent,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00181\ \textcolor{keyword}{inline}\ TFrame<FrameComponent,\ N>\ PictureData::pictureToFrame()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00182\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00183\ \ \ \ \ \textcolor{comment}{//\ Generally\ we\ would\ want\ \`{}PictureComponent`\ and\ \`{}FrameComponent`\ to\ be\ trivially\ copyable\ since\ }}
+\DoxyCodeLine{00184\ \ \ \ \ \textcolor{comment}{//\ we\ are\ basically\ handling\ raw\ bytes\ here}}
+\DoxyCodeLine{00185\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_trivially\_copyable\_v<PictureComponent>);}
+\DoxyCodeLine{00186\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_trivially\_copyable\_v<FrameComponent>);}
+\DoxyCodeLine{00187\ }
+\DoxyCodeLine{00188\ \ \ \ \ PH\_ASSERT(m\_data);}
+\DoxyCodeLine{00189\ }
+\DoxyCodeLine{00190\ \ \ \ \ \textcolor{keyword}{using\ }FrameType\ =\ TFrame<FrameComponent,\ N>;}
+\DoxyCodeLine{00191\ \ \ \ \ \textcolor{keyword}{using\ }FramePixelType\ =\ \textcolor{keyword}{typename}\ FrameType::Pixel;}
+\DoxyCodeLine{00192\ }
+\DoxyCodeLine{00193\ \ \ \ \ \textcolor{comment}{//\ Pixel\ component\ casting\ is\ based\ on\ the\ smaller\ number\ of\ components\ of\ the\ two-\/-\/other}}
+\DoxyCodeLine{00194\ \ \ \ \ \textcolor{comment}{//\ components\ are\ either\ discarded\ or\ defaulted\ to\ 0.}}
+\DoxyCodeLine{00195\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ minComponents\ =\ std::min(m\_numComponents,\ N);}
+\DoxyCodeLine{00196\ }
+\DoxyCodeLine{00197\ \ \ \ \ FrameType\ frame(}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ lossless\_cast<uint32>(m\_sizePx.x()),}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ lossless\_cast<uint32>(m\_sizePx.y()));}
+\DoxyCodeLine{00200\ \ \ \ \ frame.forEachPixel(}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ [\textcolor{keyword}{this},\ minComponents](\textcolor{keyword}{const}\ std::size\_t\ x,\ \textcolor{keyword}{const}\ std::size\_t\ y)}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \ \ \ \ FramePixelType\ pixel;}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ ci\ =\ 0;\ ci\ <\ minComponents;\ ++ci)}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ byteIndex\ =\ getByteIndex<PictureComponent>(x,\ y,\ ci);}
+\DoxyCodeLine{00207\ }
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ PictureComponent\ pictureComponent;}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::copy(}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_data.get()\ +\ byteIndex,}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_data.get()\ +\ byteIndex\ +\ \textcolor{keyword}{sizeof}(PictureComponent),}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{reinterpret\_cast<}std::byte*\textcolor{keyword}{>}(\&pictureComponent));}
+\DoxyCodeLine{00213\ }
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pixel[ci]\ =\ \textcolor{keyword}{static\_cast<}FrameComponent\textcolor{keyword}{>}(pictureComponent);}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00216\ }
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ pixel;}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00219\ }
+\DoxyCodeLine{00220\ \ \ \ \ \textcolor{keywordflow}{return}\ frame;}
+\DoxyCodeLine{00221\ \}}
+\DoxyCodeLine{00222\ }
+\DoxyCodeLine{00223\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ PictureComponent>}
+\DoxyCodeLine{00224\ \textcolor{keyword}{inline}\ std::size\_t\ PictureData::getByteIndex(}
+\DoxyCodeLine{00225\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ xPx,}
+\DoxyCodeLine{00226\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ yPx,}
+\DoxyCodeLine{00227\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ componentIndex)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00228\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00229\ \ \ \ \ PH\_ASSERT\_LT(xPx,\ m\_sizePx.x());}
+\DoxyCodeLine{00230\ \ \ \ \ PH\_ASSERT\_LT(yPx,\ m\_sizePx.y());}
+\DoxyCodeLine{00231\ \ \ \ \ PH\_ASSERT\_LT(componentIndex,\ m\_numComponents);}
+\DoxyCodeLine{00232\ }
+\DoxyCodeLine{00233\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ linearPixelIndex\ =\ yPx\ *\ m\_sizePx.x()\ +\ xPx;}
+\DoxyCodeLine{00234\ \ \ \ \ \textcolor{keywordflow}{return}\ (linearPixelIndex\ *\ m\_numComponents\ +\ componentIndex)\ *\ \textcolor{keyword}{sizeof}(PictureComponent);}
+\DoxyCodeLine{00235\ \}}
+\DoxyCodeLine{00236\ }
+\DoxyCodeLine{00237\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+
+\end{DoxyCode}

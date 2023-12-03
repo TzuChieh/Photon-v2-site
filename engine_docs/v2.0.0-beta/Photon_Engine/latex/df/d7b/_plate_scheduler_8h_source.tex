@@ -1,0 +1,63 @@
+\doxysection{Plate\+Scheduler.\+h}
+\hypertarget{_plate_scheduler_8h_source}{}\label{_plate_scheduler_8h_source}\index{Source/Core/Scheduler/PlateScheduler.h@{Source/Core/Scheduler/PlateScheduler.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Core/Scheduler/WorkScheduler.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Common/assertion.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{math_8h}{Math/math.h}}"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00010\ \{}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ \ \ \ Schedules\ a\ complete\ region,\ without\ any\ planar\ division,\ to\ each\ worker.\ }}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ \ \ \ Only\ work\ depth\ is\ distributed\ among\ workers.}}
+\DoxyCodeLine{00015\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00016\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_plate_scheduler}{PlateScheduler}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classph_1_1_work_scheduler}{WorkScheduler}}}
+\DoxyCodeLine{00017\ \{}
+\DoxyCodeLine{00018\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00019\ \ \ \ \ \mbox{\hyperlink{classph_1_1_plate_scheduler}{PlateScheduler}}();}
+\DoxyCodeLine{00020\ \ \ \ \ \mbox{\hyperlink{classph_1_1_plate_scheduler}{PlateScheduler}}(std::size\_t\ numWorkers,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_work_unit}{WorkUnit}}\&\ totalWorkUnit);}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00023\ \ \ \ \ std::size\_t\ m\_numScheduled;}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordtype}{void}\ scheduleOne(\mbox{\hyperlink{classph_1_1_work_unit}{WorkUnit}}*\ out\_workUnit)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00026\ \};}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{comment}{//\ In-\/header\ Implementations:}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{keyword}{inline}\ PlateScheduler::PlateScheduler()\ :\ }
+\DoxyCodeLine{00031\ \ \ \ \ \mbox{\hyperlink{classph_1_1_work_scheduler}{WorkScheduler}}()}
+\DoxyCodeLine{00032\ \{\}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{keyword}{inline}\ PlateScheduler::PlateScheduler(\textcolor{keyword}{const}\ std::size\_t\ numWorkers,\ \textcolor{keyword}{const}\ WorkUnit\&\ totalWorkUnit)\ :}
+\DoxyCodeLine{00035\ \ \ \ \ WorkScheduler(numWorkers,\ totalWorkUnit),}
+\DoxyCodeLine{00036\ \ \ \ \ m\_numScheduled(0)}
+\DoxyCodeLine{00037\ \{\}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ PlateScheduler::scheduleOne(WorkUnit*\ \textcolor{keyword}{const}\ out\_workUnit)}
+\DoxyCodeLine{00040\ \{}
+\DoxyCodeLine{00041\ \ \ \ \ PH\_ASSERT(out\_workUnit);}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordflow}{if}(m\_numScheduled\ <\ m\_numWorkers)}
+\DoxyCodeLine{00044\ \ \ \ \ \{}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ depthRange\ =\ \mbox{\hyperlink{namespaceph_1_1math_a830bc8cab76b0720b0756fce21828b3f}{math::ith\_evenly\_divided\_range}}(}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ m\_numScheduled,\ m\_totalWorkUnit.getDepth(),\ m\_numWorkers);}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ *out\_workUnit\ =\ WorkUnit(m\_totalWorkUnit.getRegion(),\ depthRange.second\ -\/\ depthRange.first);}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ ++m\_numScheduled;}
+\DoxyCodeLine{00050\ \ \ \ \ \}}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00052\ \ \ \ \ \{}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ *out\_workUnit\ =\ WorkUnit();}
+\DoxyCodeLine{00054\ \ \ \ \ \}}
+\DoxyCodeLine{00055\ \}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+
+\end{DoxyCode}

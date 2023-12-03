@@ -1,0 +1,86 @@
+\doxysection{constant\+\_\+textures.\+h}
+\hypertarget{constant__textures_8h_source}{}\label{constant__textures_8h_source}\index{Source/Core/Texture/constant\_textures.h@{Source/Core/Texture/constant\_textures.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Core/Texture/TTexture.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Common/assertion.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}Math/Color/color\_enums.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}Math/Color/color\_basics.h"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}Math/Color/Spectrum.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}Core/Texture/SampleLocation.h"{}}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00013\ \{}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00021\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ OutputType>}
+\DoxyCodeLine{00022\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_t_constant_texture}{TConstantTexture}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classph_1_1_t_texture}{TTexture}}<OutputType>}
+\DoxyCodeLine{00023\ \{}
+\DoxyCodeLine{00024\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classph_1_1_t_constant_texture}{TConstantTexture}}(OutputType\ value)}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classph_1_1_t_texture}{TTexture<OutputType>}}()}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ ,\ m\_value(std::move(value))}
+\DoxyCodeLine{00028\ \ \ \ \ \{\}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keywordtype}{void}\ sample(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_sample_location}{SampleLocation}}\&\ sampleLocation,\ OutputType*\ \textcolor{keyword}{const}\ out\_value)\textcolor{keyword}{\ const\ override}}
+\DoxyCodeLine{00031\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ PH\_ASSERT(out\_value);}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ *out\_value\ =\ m\_value;}
+\DoxyCodeLine{00035\ \ \ \ \ \}}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00038\ \ \ \ \ OutputType\ m\_value;}
+\DoxyCodeLine{00039\ \};}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00045\ \textcolor{keyword}{template}<math::EColorSpace\ COLOR\_SPACE\ =\ math::EColorSpace::Linear\_sRGB>}
+\DoxyCodeLine{00046\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_t_constant_tristimulus_texture}{TConstantTristimulusTexture}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classph_1_1_t_texture}{TTexture}}<math::Spectrum>}
+\DoxyCodeLine{00047\ \{}
+\DoxyCodeLine{00048\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classph_1_1_t_constant_tristimulus_texture}{TConstantTristimulusTexture}}(math::TristimulusValues\ value)}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classph_1_1_t_texture}{TTexture<math::Spectrum>}}()}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ ,\ m\_value(std::move(value))}
+\DoxyCodeLine{00052\ \ \ \ \ \{\}}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classph_1_1_t_constant_tristimulus_texture}{TConstantTristimulusTexture}}(math::ColorValue\ value)}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classph_1_1_t_texture}{TTexture<math::Spectrum>}}()}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ ,\ m\_value(\{value,\ value,\ value\})}
+\DoxyCodeLine{00057\ \ \ \ \ \{\}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordtype}{void}\ sample(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_sample_location}{SampleLocation}}\&\ sampleLocation,\ \mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_spectrum}{math::Spectrum}}*\ \textcolor{keyword}{const}\ out\_value)\textcolor{keyword}{\ const\ override}}
+\DoxyCodeLine{00060\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ PH\_ASSERT(out\_value);}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ out\_value-\/>setTransformed<COLOR\_SPACE>(m\_value,\ sampleLocation.expectedUsage());}
+\DoxyCodeLine{00064\ \ \ \ \ \}}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00067\ \ \ \ \ math::TristimulusValues\ m\_value;}
+\DoxyCodeLine{00068\ \};}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00074\ \textcolor{keyword}{template}<math::EColorSpace\ COLOR\_SPACE\ =\ math::EColorSpace::Spectral>}
+\DoxyCodeLine{00075\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_t_constant_spectral_texture}{TConstantSpectralTexture}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classph_1_1_t_texture}{TTexture}}<math::Spectrum>}
+\DoxyCodeLine{00076\ \{}
+\DoxyCodeLine{00077\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classph_1_1_t_constant_spectral_texture}{TConstantSpectralTexture}}(math::SpectralSampleValues\ value)}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classph_1_1_t_texture}{TTexture<math::Spectrum>}}()}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ ,\ m\_value(std::move(value))}
+\DoxyCodeLine{00081\ \ \ \ \ \{\}}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keywordtype}{void}\ sample(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_sample_location}{SampleLocation}}\&\ sampleLocation,\ \mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_spectrum}{math::Spectrum}}*\ \textcolor{keyword}{const}\ out\_value)\textcolor{keyword}{\ const\ override}}
+\DoxyCodeLine{00084\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ PH\_ASSERT(out\_value);}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ out\_value-\/>\mbox{\hyperlink{classph_1_1math_1_1_t_spectrum_base_ae108d06dbcb8d3c10a6a054e4182e37b}{setSpectral}}<COLOR\_SPACE>(m\_value,\ sampleLocation.expectedUsage());}
+\DoxyCodeLine{00088\ \ \ \ \ \}}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00091\ \ \ \ \ math::SpectralSampleValues\ m\_value;}
+\DoxyCodeLine{00092\ \};}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+
+\end{DoxyCode}

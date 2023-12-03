@@ -1,0 +1,101 @@
+\doxysection{APreetham\+Dome.\+h}
+\hypertarget{_a_preetham_dome_8h_source}{}\label{_a_preetham_dome_8h_source}\index{Source/Actor/Dome/APreethamDome.h@{Source/Actor/Dome/APreethamDome.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Actor/ADome.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Common/primitive\_type.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}DataIO/FileSystem/Path.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}Core/Texture/TTexture.h"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}Math/Color/Spectrum.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}Math/TVector2.h"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}SDL/sdl\_interface.h"{}}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <optional>}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00015\ \{}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00021\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_a_preetham_dome}{APreethamDome}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classph_1_1_a_dome}{ADome}}}
+\DoxyCodeLine{00022\ \{}
+\DoxyCodeLine{00023\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00024\ \ \ \ \ std::shared\_ptr<TTexture<math::Spectrum>>\ loadRadianceFunction(}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_cooking_context}{CookingContext}}\&\ ctx,\ \mbox{\hyperlink{structph_1_1_dome_radiance_function_info}{DomeRadianceFunctionInfo}}*\ out\_info)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00028\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{math::Vector2R}}\ calcSunSphericalCoordinates()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ checkTurbidity(real\ turbidity);}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \ \ real\ m\_turbidity;}
+\DoxyCodeLine{00033\ \ \ \ \ real\ m\_standardTime24H;}
+\DoxyCodeLine{00034\ \ \ \ \ real\ m\_standardMeridianDegrees;}
+\DoxyCodeLine{00035\ \ \ \ \ real\ m\_siteLatitudeDegrees;}
+\DoxyCodeLine{00036\ \ \ \ \ real\ m\_siteLongitudeDegrees;}
+\DoxyCodeLine{00037\ \ \ \ \ integer\ m\_julianDate;}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \ \ std::optional<math::Vector2R>\ m\_sunPhiThetaDegrees;}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00042\ \ \ \ \ PH\_DEFINE\_SDL\_CLASS(\mbox{\hyperlink{classph_1_1_t_sdl_owner_class}{TSdlOwnerClass<APreethamDome>}})}
+\DoxyCodeLine{00043\ \ \ \ \ \{}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ ClassType\ clazz(\textcolor{stringliteral}{"{}preetham-\/dome"{}});}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ clazz.docName(\textcolor{stringliteral}{"{}Preetham\ Dome\ Actor"{}});}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ clazz.description(}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Using\ Preetham\ model\ to\ generate\ absolute\ energy\ from\ sky."{}});}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ clazz.baseOn<\mbox{\hyperlink{classph_1_1_a_dome}{ADome}}>();}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_sdl_real}{TSdlReal<OwnerType>}}\ turbidity(\textcolor{stringliteral}{"{}turbidity"{}},\ \&OwnerType::m\_turbidity);}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ turbidity.description(\textcolor{stringliteral}{"{}Turbidity\ of\ the\ atmosphere."{}});}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ turbidity.defaultTo(3.0\_r);}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ turbidity.optional();}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ clazz.addField(turbidity);}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_sdl_real}{TSdlReal<OwnerType>}}\ standardTime24H(\textcolor{stringliteral}{"{}standard-\/time-\/24h"{}},\ \&OwnerType::m\_standardTime24H);}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ standardTime24H.description(\textcolor{stringliteral}{"{}Standard\ time\ in\ 24H."{}});}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ standardTime24H.defaultTo(12.0\_r);}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ standardTime24H.optional();}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ clazz.addField(standardTime24H);}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_sdl_real}{TSdlReal<OwnerType>}}\ standardMeridianDegrees(\textcolor{stringliteral}{"{}standard-\/meridian-\/degrees"{}},\ \&OwnerType::m\_standardMeridianDegrees);}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ standardMeridianDegrees.description(\textcolor{stringliteral}{"{}Standard\ meridian\ in\ degrees."{}});}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ standardMeridianDegrees.defaultTo(0.0\_r);}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ standardMeridianDegrees.optional();}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ clazz.addField(standardMeridianDegrees);}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_sdl_real}{TSdlReal<OwnerType>}}\ siteLatitudeDegrees(\textcolor{stringliteral}{"{}site-\/latitude-\/degrees"{}},\ \&OwnerType::m\_siteLatitudeDegrees);}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ siteLatitudeDegrees.description(}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Site\ latitude\ in\ [-\/90,\ 90]\ degrees\ (\(\backslash\)"{}+\(\backslash\)"{}\ implies\ N\ and\ \(\backslash\)"{}-\/\(\backslash\)"{}\ implies\ S)."{}});}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ siteLatitudeDegrees.defaultTo(0.0\_r);}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ siteLatitudeDegrees.optional();}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ clazz.addField(siteLatitudeDegrees);}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_sdl_real}{TSdlReal<OwnerType>}}\ siteLongitudeDegrees(\textcolor{stringliteral}{"{}site-\/longitude-\/degrees"{}},\ \&OwnerType::m\_siteLongitudeDegrees);}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ siteLongitudeDegrees.description(}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Site\ longitude\ in\ [0,\ 360]\ degrees\ (with\ prime\ meridian\ being\ 0)"{}});}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ siteLongitudeDegrees.defaultTo(0.0\_r);}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ siteLongitudeDegrees.optional();}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ clazz.addField(siteLongitudeDegrees);}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_sdl_integer}{TSdlInteger<OwnerType>}}\ julianDate(\textcolor{stringliteral}{"{}julian-\/date"{}},\ \&OwnerType::m\_julianDate);}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ julianDate.description(\textcolor{stringliteral}{"{}The\ day\ of\ the\ year\ as\ an\ integer\ in\ the\ range\ [1,\ 366]."{}});}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ julianDate.defaultTo(1);}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ julianDate.optional();}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ clazz.addField(julianDate);}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_sdl_vector2}{TSdlOptionalVector2R<OwnerType>}}\ sunPhiThetaDegrees(\textcolor{stringliteral}{"{}sun-\/phi-\/theta-\/degrees"{}},\ \&OwnerType::m\_sunPhiThetaDegrees);}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ sunPhiThetaDegrees.description(}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Directly\ specify\ sun\ position\ in\ the\ sky\ in\ spherical\ coordinates.\ Note\ that\ this\ option\ "{}}}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}may\ not\ be\ physically\ correct\ since\ not\ every\ position\ in\ the\ sky\ is\ possible\ for\ the\ sun\ "{}}}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}given\ a\ location\ on\ Earth."{}});}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ clazz.addField(sunPhiThetaDegrees);}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ clazz;}
+\DoxyCodeLine{00096\ \ \ \ \ \}}
+\DoxyCodeLine{00097\ \};}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+
+\end{DoxyCode}

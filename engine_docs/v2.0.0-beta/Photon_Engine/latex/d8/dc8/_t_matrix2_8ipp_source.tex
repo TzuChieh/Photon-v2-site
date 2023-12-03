@@ -1,0 +1,188 @@
+\doxysection{TMatrix2.\+ipp}
+\hypertarget{_t_matrix2_8ipp_source}{}\label{_t_matrix2_8ipp_source}\index{Source/Math/TMatrix2.ipp@{Source/Math/TMatrix2.ipp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Math/TMatrix2.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Math/TVector2.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}Math/TVector3.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}Common/assertion.h"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <limits>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <cmath>}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph_1_1math}{ph::math}}}
+\DoxyCodeLine{00013\ \{}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00016\ \textcolor{keyword}{inline}\ TMatrix2<T>\ TMatrix2<T>::makeIdentity()\ }
+\DoxyCodeLine{00017\ \{}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keywordflow}{return}\ TMatrix2().initIdentity();}
+\DoxyCodeLine{00019\ \}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00022\ \textcolor{keyword}{inline}\ TMatrix2<T>::TMatrix2(\textcolor{keyword}{const}\ T\ value)\ :\ }
+\DoxyCodeLine{00023\ \ \ \ \ TMatrix2(value,\ value,\ value,\ value)}
+\DoxyCodeLine{00024\ \{\}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00027\ \textcolor{keyword}{inline}\ TMatrix2<T>::TMatrix2(\textcolor{keyword}{const}\ T\ m00,\ \textcolor{keyword}{const}\ T\ m01,\ \textcolor{keyword}{const}\ T\ m10,\ \textcolor{keyword}{const}\ T\ m11)\ :\ }
+\DoxyCodeLine{00028\ \ \ \ \ m\{m00,\ m01,}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ m10,\ m11\}}
+\DoxyCodeLine{00030\ \{\}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00033\ \textcolor{keyword}{inline}\ TMatrix2<T>::TMatrix2(\textcolor{keyword}{const}\ TVector2<T>\&\ m00m01,\ \textcolor{keyword}{const}\ TVector2<T>\&\ m10m11)\ :\ }
+\DoxyCodeLine{00034\ \ \ \ \ m\{m00m01.x(),\ m00m01.y(),}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ m10m11.x(),\ m10m11.y()\}}
+\DoxyCodeLine{00036\ \{\}}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00039\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ U>}
+\DoxyCodeLine{00040\ \textcolor{keyword}{inline}\ TMatrix2<T>::TMatrix2(\textcolor{keyword}{const}\ TMatrix2<U>\&\ other)\ :}
+\DoxyCodeLine{00041\ \ \ \ \ m\{static\_cast<T>(other.m[0][0]),\ static\_cast<T>(other.m[0][1]),}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ static\_cast<T>(other.m[1][0]),\ static\_cast<T>(other.m[1][1])\}}
+\DoxyCodeLine{00043\ \{\}}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00046\ \textcolor{keyword}{inline}\ TMatrix2<T>\&\ TMatrix2<T>::initIdentity()}
+\DoxyCodeLine{00047\ \{}
+\DoxyCodeLine{00048\ \ \ \ \ m[0][0]\ =\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(1);\ m[0][1]\ =\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(0);}
+\DoxyCodeLine{00049\ \ \ \ \ m[1][0]\ =\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(0);\ m[1][1]\ =\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(1);}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00052\ \}}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00055\ \textcolor{keyword}{inline}\ TMatrix2<T>\ TMatrix2<T>::mul(\textcolor{keyword}{const}\ TMatrix2\&\ rhs)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00056\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00057\ \ \ \ \ TMatrix2\ result;}
+\DoxyCodeLine{00058\ \ \ \ \ this-\/>mul(rhs,\ \&result);}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00060\ \}}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00063\ \textcolor{keyword}{inline}\ TMatrix2<T>\ TMatrix2<T>::mul(\textcolor{keyword}{const}\ T\ value)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00064\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordflow}{return}\ TMatrix2(*this).mulLocal(value);}
+\DoxyCodeLine{00066\ \}}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00069\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ TMatrix2<T>::mul(\textcolor{keyword}{const}\ TMatrix2\&\ rhs,\ TMatrix2*\ \textcolor{keyword}{const}\ out\_result)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00070\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00071\ \ \ \ \ out\_result-\/>m[0][0]\ =\ m[0][0]\ *\ rhs.m[0][0]\ +\ m[0][1]\ *\ rhs.m[1][0];}
+\DoxyCodeLine{00072\ \ \ \ \ out\_result-\/>m[0][1]\ =\ m[0][0]\ *\ rhs.m[0][1]\ +\ m[0][1]\ *\ rhs.m[1][1];}
+\DoxyCodeLine{00073\ \ \ \ \ out\_result-\/>m[1][0]\ =\ m[1][0]\ *\ rhs.m[0][0]\ +\ m[1][1]\ *\ rhs.m[1][0];}
+\DoxyCodeLine{00074\ \ \ \ \ out\_result-\/>m[1][1]\ =\ m[1][0]\ *\ rhs.m[0][1]\ +\ m[1][1]\ *\ rhs.m[1][1];}
+\DoxyCodeLine{00075\ \}}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00078\ \textcolor{keyword}{inline}\ TMatrix2<T>\&\ TMatrix2<T>::mulLocal(\textcolor{keyword}{const}\ T\ value)}
+\DoxyCodeLine{00079\ \{}
+\DoxyCodeLine{00080\ \ \ \ \ m[0][0]\ *=\ value;}
+\DoxyCodeLine{00081\ \ \ \ \ m[0][1]\ *=\ value;}
+\DoxyCodeLine{00082\ \ \ \ \ m[1][0]\ *=\ value;}
+\DoxyCodeLine{00083\ \ \ \ \ m[1][1]\ *=\ value;}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00086\ \}}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00089\ \textcolor{keyword}{inline}\ TMatrix2<T>\ TMatrix2<T>::inverse()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00090\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keywordflow}{return}\ TMatrix2(\ m[1][1],\ -\/m[0][1],\ }
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ -\/m[1][0],\ \ m[0][0]).mulLocal(\textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(1)\ /\ determinant());}
+\DoxyCodeLine{00093\ \}}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00096\ \textcolor{keyword}{inline}\ T\ TMatrix2<T>::determinant()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00097\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keywordflow}{return}\ m[0][0]\ *\ m[1][1]\ -\/\ m[1][0]\ *\ m[0][1];}
+\DoxyCodeLine{00099\ \}}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00102\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1math_1_1_t_matrix2}{TMatrix2<T>::solve}}(}
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{keyword}{const}\ std::array<T,\ 2>\&\ b,}
+\DoxyCodeLine{00104\ \ \ \ \ std::array<T,\ 2>*\ \textcolor{keyword}{const}\ out\_x)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00105\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00106\ \ \ \ \ PH\_ASSERT(out\_x);}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \ \ \ \ std::array<std::array<T,\ 2>,\ 1>\ x;}
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{keywordflow}{if}(solve<1>(\{b\},\ \&x))}
+\DoxyCodeLine{00110\ \ \ \ \ \{}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ (*out\_x)[0]\ =\ x[0][0];}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ (*out\_x)[1]\ =\ x[0][1];}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00115\ \ \ \ \ \}}
+\DoxyCodeLine{00116\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00117\ \ \ \ \ \{}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00119\ \ \ \ \ \}}
+\DoxyCodeLine{00120\ \}}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00123\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1math_1_1_t_matrix2}{TMatrix2<T>::solve}}(}
+\DoxyCodeLine{00124\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{TVector2<T>}}\&\ b,}
+\DoxyCodeLine{00125\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{TVector2<T>}}*\ \textcolor{keyword}{const}\ out\_x)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00126\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00127\ \ \ \ \ PH\_ASSERT(out\_x);}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00129\ \ \ \ \ std::array<T,\ 2>\ x;}
+\DoxyCodeLine{00130\ \ \ \ \ \textcolor{keywordflow}{if}(solve(\{b.x(),\ b.y()\},\ \&x))}
+\DoxyCodeLine{00131\ \ \ \ \ \{}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ out\_x-\/>x()\ =\ x[0];}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ out\_x-\/>y()\ =\ x[1];}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00136\ \ \ \ \ \}}
+\DoxyCodeLine{00137\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00138\ \ \ \ \ \{}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00140\ \ \ \ \ \}}
+\DoxyCodeLine{00141\ \}}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00143\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00144\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00145\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1math_1_1_t_matrix2}{TMatrix2<T>::solve}}(}
+\DoxyCodeLine{00146\ \ \ \ \ \textcolor{keyword}{const}\ std::array<std::array<T,\ 2>,\ N>\&\ bs,}
+\DoxyCodeLine{00147\ \ \ \ \ std::array<std::array<T,\ 2>,\ N>*\ \textcolor{keyword}{const}\ out\_xs)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00148\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00149\ \ \ \ \ \textcolor{keyword}{static\_assert}(!std::numeric\_limits<T>::is\_integer);}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00151\ \ \ \ \ PH\_ASSERT(out\_xs);}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00153\ \ \ \ \ \textcolor{keyword}{const}\ T\ det\ =\ determinant();}
+\DoxyCodeLine{00154\ \ \ \ \ \textcolor{keywordflow}{if}(std::abs(det)\ <=\ std::numeric\_limits<T>::epsilon())}
+\DoxyCodeLine{00155\ \ \ \ \ \{}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00157\ \ \ \ \ \}}
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00159\ \ \ \ \ \textcolor{keyword}{const}\ T\ rcpDeterminant\ =\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(1)\ /\ det;}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00161\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ i\ =\ 0;\ i\ <\ N;\ ++i)}
+\DoxyCodeLine{00162\ \ \ \ \ \{}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ (*out\_xs)[i][0]\ =\ (m[1][1]\ *\ bs[i][0]\ -\/\ m[0][1]\ *\ bs[i][1])\ *\ rcpDeterminant;}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ (*out\_xs)[i][1]\ =\ (m[0][0]\ *\ bs[i][1]\ -\/\ m[1][0]\ *\ bs[i][0])\ *\ rcpDeterminant;}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!std::isfinite((*out\_xs)[i][0])\ ||\ !std::isfinite((*out\_xs)[i][1]))}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00170\ \ \ \ \ \}}
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00172\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00173\ \}}
+\DoxyCodeLine{00174\ }
+\DoxyCodeLine{00175\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00176\ \textcolor{keyword}{inline}\ std::string\ \mbox{\hyperlink{classph_1_1math_1_1_t_matrix2}{TMatrix2<T>::toString}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00177\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00178\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}["{}}\ +\ std::to\_string(m[0][0])\ +\ \textcolor{stringliteral}{"{},\ "{}}\ +\ std::to\_string(m[0][1])\ +\ \textcolor{stringliteral}{"{}]"{}}\ +\ }
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}["{}}\ +\ std::to\_string(m[1][0])\ +\ \textcolor{stringliteral}{"{},\ "{}}\ +\ std::to\_string(m[1][1])\ +\ \textcolor{stringliteral}{"{}]"{}};}
+\DoxyCodeLine{00180\ \}}
+\DoxyCodeLine{00181\ }
+\DoxyCodeLine{00182\ \}\textcolor{comment}{//\ end\ namespace\ ph::math}}
+
+\end{DoxyCode}

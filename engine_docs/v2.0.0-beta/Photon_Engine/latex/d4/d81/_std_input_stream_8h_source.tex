@@ -1,0 +1,76 @@
+\doxysection{Std\+Input\+Stream.\+h}
+\hypertarget{_std_input_stream_8h_source}{}\label{_std_input_stream_8h_source}\index{Source/DataIO/Stream/StdInputStream.h@{Source/DataIO/Stream/StdInputStream.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}DataIO/Stream/IInputStream.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}DataIO/FileSystem/Path.h"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <istream>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00012\ \{}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_std_input_stream}{StdInputStream}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classph_1_1_i_input_stream}{IInputStream}}}
+\DoxyCodeLine{00015\ \{}
+\DoxyCodeLine{00016\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_std_input_stream}{StdInputStream}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classph_1_1_std_input_stream}{StdInputStream}}(std::unique\_ptr<std::istream>\ stream);}
+\DoxyCodeLine{00019\ \ \ \ \ \mbox{\hyperlink{classph_1_1_std_input_stream}{StdInputStream}}(\mbox{\hyperlink{classph_1_1_std_input_stream}{StdInputStream}}\&\&\ other);}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_std_input_stream_ab8c9d01867872e91f368fb2d50ebab58}{read}}(std::size\_t\ numBytes,\ std::byte*\ out\_bytes)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_std_input_stream_aae5f49371b54fecb9633bd8d654314ca}{readString}}(std::string*\ out\_string,\ \textcolor{keywordtype}{char}\ delimiter)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_std_input_stream_a483589deecb654d1402b6db9fcbc7f35}{seekGet}}(std::size\_t\ pos)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00024\ \ \ \ \ std::optional<std::size\_t>\ \mbox{\hyperlink{classph_1_1_std_input_stream_ac3fa974f5b6a7e466cf751e6feadaca7}{tellGet}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{operator}\ bool\ ()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00026\ \ \ \ \ std::size\_t\ \mbox{\hyperlink{classph_1_1_std_input_stream_a406004c7e442a020692d502715f263a5}{readSome}}(std::size\_t\ numBytes,\ std::byte*\ out\_bytes)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \ \ \ \ std::istream*\ getStream()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \ \ \ \mbox{\hyperlink{classph_1_1_std_input_stream}{StdInputStream}}\&\ operator\ =\ (\mbox{\hyperlink{classph_1_1_std_input_stream}{StdInputStream}}\&\&\ rhs);}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordtype}{bool}\ isStreamGoodForRead()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_std_input_stream_a73709a1ba1393a1e9cf86f49b43378be}{ensureStreamIsGoodForRead}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00042\ \ \ \ \ std::string\ \mbox{\hyperlink{classph_1_1_std_input_stream_ac8b088dba7def4a95550309236cc52f9}{getReasonForError}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00045\ \ \ \ \ std::unique\_ptr<std::istream>\ m\_istream;}
+\DoxyCodeLine{00046\ \};}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \textcolor{comment}{//\ In-\/header\ Implementations:}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \textcolor{keyword}{inline}\ StdInputStream::StdInputStream(\mbox{\hyperlink{classph_1_1_std_input_stream}{StdInputStream}}\&\&\ other)}
+\DoxyCodeLine{00051\ \{}
+\DoxyCodeLine{00052\ \ \ \ \ *\textcolor{keyword}{this}\ =\ std::move(other);}
+\DoxyCodeLine{00053\ \}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \textcolor{keyword}{inline}\ StdInputStream\&\ StdInputStream::operator\ =\ (StdInputStream\&\&\ rhs)}
+\DoxyCodeLine{00056\ \{}
+\DoxyCodeLine{00057\ \ \ \ \ m\_istream\ =\ std::move(rhs.m\_istream);}
+\DoxyCodeLine{00058\ \}}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \textcolor{keyword}{inline}\ StdInputStream::operator\ bool\ ()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00061\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keywordflow}{return}\ isStreamGoodForRead();}
+\DoxyCodeLine{00063\ \}}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \textcolor{keyword}{inline}\ std::istream*\ StdInputStream::getStream()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00066\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_istream.get();}
+\DoxyCodeLine{00068\ \}}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ StdInputStream::isStreamGoodForRead()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00071\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_istream\ !=\ \textcolor{keyword}{nullptr}\ \&\&\ m\_istream-\/>good();}
+\DoxyCodeLine{00073\ \}}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+
+\end{DoxyCode}

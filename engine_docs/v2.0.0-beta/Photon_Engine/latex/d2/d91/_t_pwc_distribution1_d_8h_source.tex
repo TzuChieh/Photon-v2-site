@@ -1,0 +1,83 @@
+\doxysection{TPwc\+Distribution1\+D.\+h}
+\hypertarget{_t_pwc_distribution1_d_8h_source}{}\label{_t_pwc_distribution1_d_8h_source}\index{Source/Math/Random/TPwcDistribution1D.h@{Source/Math/Random/TPwcDistribution1D.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <type\_traits>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph_1_1math}{ph::math}}}
+\DoxyCodeLine{00007\ \{}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ \ \ \ A\ 1-\/D\ piecewise\ constant\ distribution\ of\ floating-\/point\ type\ <T>.\ The\ }}
+\DoxyCodeLine{00011\ \textcolor{comment}{\ \ \ \ sample\ weights\ can\ be\ seen\ as\ a\ histogram,\ and\ samples\ are\ drawn\ according}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ \ \ \ to\ each\ column's\ relative\ heights.\ Each\ generated\ sample\ is\ guaranteed\ to}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ \ \ \ have\ a\ non-\/zero\ PDF.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00015\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00016\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1math_1_1_t_pwc_distribution1_d}{TPwcDistribution1D}}\ final}
+\DoxyCodeLine{00017\ \{}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_floating\_point\_v<T>);}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{comment}{//\ The\ range\ of\ the\ distribution\ is\ [<min>,\ <max>];\ and\ corresponding\ sample}}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{comment}{//\ weight\ of\ each\ column\ is\ specified\ via\ <weights>.}}
+\DoxyCodeLine{00023\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_pwc_distribution1_d}{TPwcDistribution1D}}(T\ min,\ T\ max,\ \textcolor{keyword}{const}\ T*\ weights,\ std::size\_t\ numWeights);}
+\DoxyCodeLine{00024\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_pwc_distribution1_d}{TPwcDistribution1D}}(T\ min,\ T\ max,\ \textcolor{keyword}{const}\ std::vector<T>\&\ weights);}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{comment}{//\ Constructs\ a\ distribution\ with\ range\ [0,\ 1].}}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classph_1_1math_1_1_t_pwc_distribution1_d}{TPwcDistribution1D}}(\textcolor{keyword}{const}\ std::vector<T>\&\ weights);}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_pwc_distribution1_d}{TPwcDistribution1D}}();}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{comment}{//\ Given\ a\ uniform\ unit\ random\ sample,\ generate\ a\ continuous\ sample\ }}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{comment}{//\ according\ to\ the\ sample\ weights.}}
+\DoxyCodeLine{00033\ \ \ \ \ T\ sampleContinuous(T\ sample)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00034\ \ \ \ \ T\ sampleContinuous(T\ sample,\ T*\ out\_pdf)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00035\ \ \ \ \ T\ sampleContinuous(T\ sample,\ T*\ out\_pdf,\ std::size\_t*\ out\_straddledColumn)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{comment}{//\ Given\ a\ uniform\ unit\ random\ sample,\ generate\ a\ column\ index\ }}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{comment}{//\ according\ to\ the\ sample\ weights.}}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{comment}{//\ TODO:\ a\ sample\ resued\ version}}
+\DoxyCodeLine{00040\ \ \ \ \ std::size\_t\ sampleDiscrete(T\ sample)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{comment}{//\ PDF\ of\ a\ continuously\ sampled\ value.}}
+\DoxyCodeLine{00043\ \ \ \ \ T\ pdfContinuous(T\ value)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{comment}{//\ PDF\ of\ a\ continuous\ sample\ given\ its\ corresponding\ column\ index.}}
+\DoxyCodeLine{00046\ \ \ \ \ T\ pdfContinuous(std::size\_t\ columnIndex)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{comment}{//\ PDF\ of\ a\ discrete\ sample.}}
+\DoxyCodeLine{00049\ \ \ \ \ T\ pdfDiscrete(std::size\_t\ columnIndex)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{comment}{//\ Calculates\ the\ sampled\ column\ index\ given\ a\ continuously\ sampled\ value.}}
+\DoxyCodeLine{00052\ \ \ \ \ std::size\_t\ continuousToDiscrete(T\ value)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{comment}{//\ Gets\ the\ number\ of\ sample\ weights\ originally\ provided.}}
+\DoxyCodeLine{00055\ \ \ \ \ std::size\_t\ numColumns()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{comment}{//\ range\ of\ the\ distribution}}
+\DoxyCodeLine{00059\ \ \ \ \ T\ m\_min,\ m\_max;}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{comment}{//\ size\ of\ each\ interval}}
+\DoxyCodeLine{00062\ \ \ \ \ T\ m\_delta;}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{comment}{//\ Recording\ first\ non-\/zero\ column\ index\ to\ avoid\ sampling\ column\ with}}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{comment}{//\ zero\ PDF.}}
+\DoxyCodeLine{00066\ \ \ \ \ std::size\_t\ m\_firstNonZeroPdfColumn;}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{comment}{//\ Piecewise\ constant\ weights\ will\ result\ in\ piecewise\ linear\ CDF.}}
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{comment}{//\ CDF\ values\ are\ stored\ on\ all\ turning\ points\ of\ the\ function.\ }}
+\DoxyCodeLine{00070\ \ \ \ \ std::vector<T>\ m\_cdf;}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \ \ \ \ T\ continuouslySampleValue(T\ sample,\ std::size\_t\ straddledColumn)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00073\ \};}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \}\textcolor{comment}{//\ end\ namespace\ ph::math}}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \textcolor{preprocessor}{\#include\ "{}Math/Random/TPwcDistribution1D.ipp"{}}}
+
+\end{DoxyCode}

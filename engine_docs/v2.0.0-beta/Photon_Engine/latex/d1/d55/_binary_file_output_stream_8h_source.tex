@@ -1,0 +1,42 @@
+\doxysection{Binary\+File\+Output\+Stream.\+h}
+\hypertarget{_binary_file_output_stream_8h_source}{}\label{_binary_file_output_stream_8h_source}\index{Source/DataIO/Stream/BinaryFileOutputStream.h@{Source/DataIO/Stream/BinaryFileOutputStream.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}DataIO/Stream/StdOutputStream.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}DataIO/FileSystem/Path.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}Common/assertion.h"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <type\_traits>}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00010\ \{}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_binary_file_output_stream}{BinaryFileOutputStream}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classph_1_1_std_output_stream}{StdOutputStream}}}
+\DoxyCodeLine{00013\ \{}
+\DoxyCodeLine{00014\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_binary_file_output_stream}{BinaryFileOutputStream}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classph_1_1_binary_file_output_stream}{BinaryFileOutputStream}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_alt_path}{Path}}\&\ filePath);}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_binary_file_output_stream}{BinaryFileOutputStream}}(\mbox{\hyperlink{classph_1_1_binary_file_output_stream}{BinaryFileOutputStream}}\&\&\ other)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keywordtype}{void}\ writeData(\textcolor{keyword}{const}\ T*\ data);}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_binary_file_output_stream}{BinaryFileOutputStream}}\&\ operator\ =\ (\mbox{\hyperlink{classph_1_1_binary_file_output_stream}{BinaryFileOutputStream}}\&\&\ rhs)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00023\ \};}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{comment}{//\ In-\/header\ Implementations:}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00028\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ BinaryFileOutputStream::writeData(\textcolor{keyword}{const}\ T*\ \textcolor{keyword}{const}\ data)}
+\DoxyCodeLine{00029\ \{}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_trivially\_copyable\_v<T>);}
+\DoxyCodeLine{00031\ \ \ \ \ PH\_ASSERT(data);}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1_std_output_stream_a4f6c34a21ca27f4548e6f9982044a451}{write}}(\textcolor{keyword}{sizeof}(T),\ \textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const\ }std::byte*\textcolor{keyword}{>}(data));}
+\DoxyCodeLine{00034\ \}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+
+\end{DoxyCode}

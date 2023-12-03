@@ -1,0 +1,80 @@
+\doxysection{Attribute\+Tags.\+h}
+\hypertarget{_attribute_tags_8h_source}{}\label{_attribute_tags_8h_source}\index{Source/Core/Renderer/AttributeTags.h@{Source/Core/Renderer/AttributeTags.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Core/Renderer/EAttribute.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Common/assertion.h"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <array>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <tuple>}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00010\ \{}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_attribute_tags}{AttributeTags}}\ final}
+\DoxyCodeLine{00013\ \{}
+\DoxyCodeLine{00014\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00015\ \ \ \ \ \mbox{\hyperlink{classph_1_1_attribute_tags}{AttributeTags}}();}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keywordtype}{void}\ tag(EAttribute\ target);}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keywordtype}{void}\ tag(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_attribute_tags}{AttributeTags}}\&\ targets);}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keywordtype}{void}\ untag(EAttribute\ target);}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keywordtype}{bool}\ isTagged(EAttribute\ target)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keyword}{using\ }Set\ =\ std::array<bool,\ static\_cast<std::size\_t>(EAttribute::SIZE)>;}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \ \ \ \ Set\ m\_set;}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordtype}{void}\ setTag(std::size\_t\ targetIndex,\ \textcolor{keywordtype}{bool}\ isOn);}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{static}\ std::size\_t\ targetToIndex(EAttribute\ target);}
+\DoxyCodeLine{00029\ \};}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{comment}{//\ In-\/header\ Implementations:}}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{keyword}{inline}\ AttributeTags::AttributeTags()\ :\ }
+\DoxyCodeLine{00034\ \ \ \ \ m\_set()}
+\DoxyCodeLine{00035\ \{}
+\DoxyCodeLine{00036\ \ \ \ \ m\_set.fill(\textcolor{keyword}{false});}
+\DoxyCodeLine{00037\ \}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ AttributeTags::tag(\textcolor{keyword}{const}\ EAttribute\ target)}
+\DoxyCodeLine{00040\ \{}
+\DoxyCodeLine{00041\ \ \ \ \ setTag(targetToIndex(target),\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00042\ \}}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ AttributeTags::tag(\textcolor{keyword}{const}\ AttributeTags\&\ targets)}
+\DoxyCodeLine{00045\ \{}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ i\ =\ 0;\ i\ <\ targets.m\_set.size();\ i++)}
+\DoxyCodeLine{00047\ \ \ \ \ \{}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ setTag(i,\ m\_set[i]\ ||\ targets.m\_set[i]);}
+\DoxyCodeLine{00049\ \ \ \ \ \}}
+\DoxyCodeLine{00050\ \}}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ AttributeTags::untag(\textcolor{keyword}{const}\ EAttribute\ target)}
+\DoxyCodeLine{00053\ \{}
+\DoxyCodeLine{00054\ \ \ \ \ setTag(targetToIndex(target),\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00055\ \}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ AttributeTags::isTagged(\textcolor{keyword}{const}\ EAttribute\ target)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00058\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_set[targetToIndex(target)];}
+\DoxyCodeLine{00060\ \}}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ AttributeTags::setTag(\textcolor{keyword}{const}\ std::size\_t\ targetIndex,\ \textcolor{keywordtype}{bool}\ isOn)}
+\DoxyCodeLine{00063\ \{}
+\DoxyCodeLine{00064\ \ \ \ \ PH\_ASSERT(targetIndex\ <\ std::tuple\_size\_v<Set>);}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ \ \ m\_set[targetIndex]\ =\ isOn;}
+\DoxyCodeLine{00067\ \}}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \textcolor{keyword}{inline}\ std::size\_t\ AttributeTags::targetToIndex(\textcolor{keyword}{const}\ EAttribute\ target)}
+\DoxyCodeLine{00070\ \{}
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}std::size\_t\textcolor{keyword}{>}(target);}
+\DoxyCodeLine{00072\ \}}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+
+\end{DoxyCode}

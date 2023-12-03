@@ -1,0 +1,131 @@
+\doxysection{Static\+Rigid\+Transform.\+h}
+\hypertarget{_static_rigid_transform_8h_source}{}\label{_static_rigid_transform_8h_source}\index{Source/Math/Transform/StaticRigidTransform.h@{Source/Math/Transform/StaticRigidTransform.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Math/Transform/RigidTransform.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Math/Transform/StaticAffineTransform.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}Math/Transform/TDecomposedTransform.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}Common/assertion.h"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{logging_8h}{Common/logging.h}}"{}}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph_1_1math}{ph::math}}}
+\DoxyCodeLine{00010\ \{}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \mbox{\hyperlink{logging_8h_a6f3ae1815da4078262e15d5edae54cb5}{PH\_DEFINE\_EXTERNAL\_LOG\_GROUP}}(StaticRigidTransform,\ Math);}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1math_1_1_static_rigid_transform}{StaticRigidTransform}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classph_1_1math_1_1_rigid_transform}{RigidTransform}}}
+\DoxyCodeLine{00018\ \{}
+\DoxyCodeLine{00019\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_static_rigid_transform}{StaticRigidTransform}}\&\ IDENTITY();}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ U>}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classph_1_1math_1_1_static_rigid_transform}{StaticRigidTransform}}\ makeForward(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_decomposed_transform}{TDecomposedTransform<U>}}\&\ transform);}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ U>}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classph_1_1math_1_1_static_rigid_transform}{StaticRigidTransform}}\ makeInverse(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_decomposed_transform}{TDecomposedTransform<U>}}\&\ transform);}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ U>}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classph_1_1math_1_1_static_rigid_transform}{StaticRigidTransform}}\ makeParentedForward(\textcolor{keyword}{const}\ std::vector<\mbox{\hyperlink{classph_1_1math_1_1_t_decomposed_transform}{TDecomposedTransform<U>}}>\&\ fromRootToLocal);}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ U>}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classph_1_1math_1_1_static_rigid_transform}{StaticRigidTransform}}\ makeParentedInverse(\textcolor{keyword}{const}\ std::vector<\mbox{\hyperlink{classph_1_1math_1_1_t_decomposed_transform}{TDecomposedTransform<U>}}>\&\ fromRootToLocal);}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00037\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_static_rigid_transform_ade438c40b0ef3c3043dc4917f397e780}{StaticRigidTransform}}();}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordtype}{void}\ transformVector(}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{Vector3R}}\&\ vector,}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_time}{Time}}\&\ \ \ \ \ time,}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{Vector3R}}*\ \ \ \ \ \ \ out\_vector)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordtype}{void}\ transformOrientation(}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{Vector3R}}\&\ orientation,}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_time}{Time}}\&\ \ \ \ \ time,}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{Vector3R}}*\ \ \ \ \ \ \ out\_orientation)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordtype}{void}\ transformPoint(}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{Vector3R}}\&\ point,}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_time}{Time}}\&\ \ \ \ \ time,}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{Vector3R}}*\ \ \ \ \ \ \ out\_point)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordtype}{void}\ transformLineSegment(}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{Vector3R}}\&\ lineStartPos,}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{Vector3R}}\&\ lineDir,}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ real\ \ \ \ \ \ \ \ \ \ \ \ lineMinT,}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ real\ \ \ \ \ \ \ \ \ \ \ \ lineMaxT,}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_time}{Time}}\&\ \ \ \ \ time,}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{Vector3R}}*\ \ \ \ \ \ \ out\_lineStartPos,}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{Vector3R}}*\ \ \ \ \ \ \ out\_lineDir,}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ real*\ \ \ \ \ \ \ \ \ \ \ out\_lineMinT,}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ real*\ \ \ \ \ \ \ \ \ \ \ out\_lineMaxT)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00067\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_static_affine_transform}{StaticAffineTransform}}\ m\_staticTransform;}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classph_1_1math_1_1_static_rigid_transform_ade438c40b0ef3c3043dc4917f397e780}{StaticRigidTransform}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_static_affine_transform}{StaticAffineTransform}}\&\ transform);}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ U>}
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ std::vector<TDecomposedTransform<U>>\ getScaleFreeTransforms(}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::vector<\mbox{\hyperlink{classph_1_1math_1_1_t_decomposed_transform}{TDecomposedTransform<U>}}>\&\ transforms);}
+\DoxyCodeLine{00074\ \};}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ U>}
+\DoxyCodeLine{00077\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ StaticRigidTransform::makeForward(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_decomposed_transform}{TDecomposedTransform<U>}}\&\ transform)}
+\DoxyCodeLine{00078\ \ \ \ \ -\/>\ \mbox{\hyperlink{classph_1_1math_1_1_static_rigid_transform}{StaticRigidTransform}}}
+\DoxyCodeLine{00079\ \{}
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1math_1_1_static_rigid_transform}{StaticRigidTransform}}(StaticAffineTransform::makeForward(getScaleFreeTransforms<U>(\{transform\})[0]));}
+\DoxyCodeLine{00081\ \}}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ U>}
+\DoxyCodeLine{00084\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ StaticRigidTransform::makeInverse(\textcolor{keyword}{const}\ TDecomposedTransform<U>\&\ transform)}
+\DoxyCodeLine{00085\ \ \ \ \ -\/>\ StaticRigidTransform}
+\DoxyCodeLine{00086\ \{}
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{keywordflow}{return}\ StaticRigidTransform(StaticAffineTransform::makeInverse(getScaleFreeTransforms<U>(\{transform\})[0]));}
+\DoxyCodeLine{00088\ \}}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ U>}
+\DoxyCodeLine{00091\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ StaticRigidTransform::makeParentedForward(\textcolor{keyword}{const}\ std::vector<TDecomposedTransform<U>>\&\ fromRootToLocal)}
+\DoxyCodeLine{00092\ \ \ \ \ -\/>\ StaticRigidTransform}
+\DoxyCodeLine{00093\ \{}
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keywordflow}{return}\ StaticRigidTransform(StaticAffineTransform::makeParentedForward(getScaleFreeTransforms<U>(\{fromRootToLocal\})));}
+\DoxyCodeLine{00095\ \}}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ U>}
+\DoxyCodeLine{00098\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ StaticRigidTransform::makeParentedInverse(\textcolor{keyword}{const}\ std::vector<TDecomposedTransform<U>>\&\ fromRootToLocal)}
+\DoxyCodeLine{00099\ \ \ \ \ -\/>\ StaticRigidTransform}
+\DoxyCodeLine{00100\ \{}
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{keywordflow}{return}\ StaticRigidTransform(StaticAffineTransform::makeParentedInverse(getScaleFreeTransforms<U>(\{fromRootToLocal\})));}
+\DoxyCodeLine{00102\ \}}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ U>}
+\DoxyCodeLine{00105\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ StaticRigidTransform::getScaleFreeTransforms(\textcolor{keyword}{const}\ std::vector<TDecomposedTransform<U>>\&\ transforms)}
+\DoxyCodeLine{00106\ \ \ \ \ -\/>\ std::vector<TDecomposedTransform<U>>}
+\DoxyCodeLine{00107\ \{}
+\DoxyCodeLine{00108\ \ \ \ \ std::vector<TDecomposedTransform<U>>\ scaleFreeTransforms;}
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ transform\ :\ transforms)}
+\DoxyCodeLine{00110\ \ \ \ \ \{}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ FIXME:\ better\ scale\ tolerance\ value,\ not\ hardcoded\ like\ this}}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!transform.hasScaleEffect(0.000001\_r))}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ scaleFreeTransforms.push\_back(transform);}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ PH\_LOG\_WARNING(StaticRigidTransform,}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}scale\ effect\ detected,\ which\ is\ \{\},\ ignoring"{}},\ transform.getScale().toString());}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ scaleFreeTransforms.push\_back(TDecomposedTransform<U>(transform).setScale(1));}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00123\ \ \ \ \ \}}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \ \ \ \ PH\_ASSERT(scaleFreeTransforms.size()\ ==\ transforms.size());}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00127\ \ \ \ \ \textcolor{keywordflow}{return}\ scaleFreeTransforms;}
+\DoxyCodeLine{00128\ \}}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ \}\textcolor{comment}{//\ end\ namespace\ ph::math}}
+
+\end{DoxyCode}

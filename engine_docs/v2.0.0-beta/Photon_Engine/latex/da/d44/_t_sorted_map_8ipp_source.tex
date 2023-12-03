@@ -1,0 +1,187 @@
+\doxysection{TSorted\+Map.\+ipp}
+\hypertarget{_t_sorted_map_8ipp_source}{}\label{_t_sorted_map_8ipp_source}\index{Source/Utility/TSortedMap.ipp@{Source/Utility/TSortedMap.ipp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Utility/TSortedMap.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Common/assertion.h"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00007\ \{}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00010\ \textcolor{comment}{Values\ stored\ in\ the\ map\ are\ stored\ at\ the\ same\ index\ as\ their\ keys.\ The\ implementation\ generally}}
+\DoxyCodeLine{00011\ \textcolor{comment}{performs\ the\ same\ operation\ as\ those\ performed\ by\ \`{}TSortedVector<KeyType>`.}}
+\DoxyCodeLine{00012\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ KeyType,\ \textcolor{keyword}{typename}\ ValueType,\ \textcolor{keyword}{typename}\ IsLess>}
+\DoxyCodeLine{00015\ \textcolor{keyword}{inline}\ TSortedMap<KeyType,\ ValueType,\ IsLess>::TSortedMap(\textcolor{keyword}{const}\ std::size\_t\ initialCapacity,\ IsLess\ isLess)}
+\DoxyCodeLine{00016\ \ \ \ \ :\ m\_keys\ \ (initialCapacity,\ std::move(isLess))}
+\DoxyCodeLine{00017\ \ \ \ \ ,\ m\_values()}
+\DoxyCodeLine{00018\ \{}
+\DoxyCodeLine{00019\ \ \ \ \ m\_values.reserve(initialCapacity);}
+\DoxyCodeLine{00020\ \}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ KeyType,\ \textcolor{keyword}{typename}\ ValueType,\ \textcolor{keyword}{typename}\ IsLess>}
+\DoxyCodeLine{00023\ \textcolor{keyword}{inline}\ std::size\_t\ \mbox{\hyperlink{classph_1_1_t_sorted_map}{TSortedMap<KeyType,\ ValueType,\ IsLess>::map}}(KeyType\ key,\ ValueType\ value)}
+\DoxyCodeLine{00024\ \{}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ keyIndex\ =\ m\_keys.addValue(std::move(key));}
+\DoxyCodeLine{00026\ \ \ \ \ m\_values.insert(m\_values.begin()\ +\ keyIndex,\ std::move(value));}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordflow}{return}\ keyIndex;}
+\DoxyCodeLine{00028\ \}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ KeyType,\ \textcolor{keyword}{typename}\ ValueType,\ \textcolor{keyword}{typename}\ IsLess>}
+\DoxyCodeLine{00031\ \textcolor{keyword}{inline}\ std::optional<std::size\_t>\ \mbox{\hyperlink{classph_1_1_t_sorted_map}{TSortedMap<KeyType,\ ValueType,\ IsLess>::mapUnique}}(KeyType\ key,\ ValueType\ value)}
+\DoxyCodeLine{00032\ \{}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ optKeyIndex\ =\ m\_keys.addUniqueValue(std::move(key));}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordflow}{if}(!optKeyIndex.has\_value())}
+\DoxyCodeLine{00035\ \ \ \ \ \{}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::nullopt;}
+\DoxyCodeLine{00037\ \ \ \ \ \}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \ \ PH\_ASSERT(optKeyIndex.has\_value());}
+\DoxyCodeLine{00040\ \ \ \ \ m\_values.insert(m\_values.begin()\ +\ *optKeyIndex,\ std::move(value));}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordflow}{return}\ optKeyIndex;}
+\DoxyCodeLine{00042\ \}}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ KeyType,\ \textcolor{keyword}{typename}\ ValueType,\ \textcolor{keyword}{typename}\ IsLess>}
+\DoxyCodeLine{00045\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_t_sorted_map}{TSortedMap<KeyType,\ ValueType,\ IsLess>::unmap}}(\textcolor{keyword}{const}\ KeyType\&\ key)}
+\DoxyCodeLine{00046\ \{}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ optFirstKeyIndex\ =\ m\_keys.removeValue(key);}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordflow}{if}(optFirstKeyIndex.has\_value())}
+\DoxyCodeLine{00049\ \ \ \ \ \{}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ m\_values.erase(m\_values.begin()\ +\ *optFirstKeyIndex);}
+\DoxyCodeLine{00051\ \ \ \ \ \}}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordflow}{return}\ optFirstKeyIndex.has\_value();}
+\DoxyCodeLine{00053\ \}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ KeyType,\ \textcolor{keyword}{typename}\ ValueType,\ \textcolor{keyword}{typename}\ IsLess>}
+\DoxyCodeLine{00056\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_t_sorted_map}{TSortedMap<KeyType,\ ValueType,\ IsLess>::unmapValues}}(\textcolor{keyword}{const}\ KeyType\&\ key)}
+\DoxyCodeLine{00057\ \{}
+\DoxyCodeLine{00058\ \ \ \ \ std::size\_t\ numRemovedValues\ =\ 0;}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ optFirstKeyIndex\ =\ m\_keys.removeValues(key,\ \&numRemovedValues);}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordflow}{if}(optFirstKeyIndex.has\_value())}
+\DoxyCodeLine{00061\ \ \ \ \ \{}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Handles\ the\ cases\ where\ \`{}m\_values`\ is\ empty\ and/or\ \`{}numRemovedValues`\ is\ 0}}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ m\_values.erase(}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ m\_values.begin()\ +\ *optFirstKeyIndex,}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ m\_values.begin()\ +\ *optFirstKeyIndex\ +\ numRemovedValues);}
+\DoxyCodeLine{00066\ \ \ \ \ \}}
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordflow}{return}\ optFirstKeyIndex.has\_value();}
+\DoxyCodeLine{00068\ \}}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ KeyType,\ \textcolor{keyword}{typename}\ ValueType,\ \textcolor{keyword}{typename}\ IsLess>}
+\DoxyCodeLine{00071\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_sorted_map}{TSortedMap<KeyType,\ ValueType,\ IsLess>::unmapByIndex}}(\textcolor{keyword}{const}\ std::size\_t\ valueIndex)}
+\DoxyCodeLine{00072\ \{}
+\DoxyCodeLine{00073\ \ \ \ \ PH\_ASSERT\_LT(valueIndex,\ m\_keys.size());}
+\DoxyCodeLine{00074\ \ \ \ \ PH\_ASSERT\_LT(valueIndex,\ m\_values.size());}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \ \ \ \ m\_keys.removeValueByIndex(valueIndex);}
+\DoxyCodeLine{00077\ \ \ \ \ m\_values.erase(m\_values.begin()\ +\ valueIndex);}
+\DoxyCodeLine{00078\ \}}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ KeyType,\ \textcolor{keyword}{typename}\ ValueType,\ \textcolor{keyword}{typename}\ IsLess>}
+\DoxyCodeLine{00081\ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ ValueType*\ \mbox{\hyperlink{classph_1_1_t_sorted_map}{TSortedMap<KeyType,\ ValueType,\ IsLess>::getValue}}(\textcolor{keyword}{const}\ KeyType\&\ key)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00082\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ optFirstKeyIndex\ =\ m\_keys.indexOfValue(key);}
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keywordflow}{if}(optFirstKeyIndex.has\_value())}
+\DoxyCodeLine{00085\ \ \ \ \ \{}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ PH\_ASSERT\_LT(*optFirstKeyIndex,\ m\_values.size());}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \&m\_values[*optFirstKeyIndex];}
+\DoxyCodeLine{00088\ \ \ \ \ \}}
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00090\ \ \ \ \ \{}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00092\ \ \ \ \ \}}
+\DoxyCodeLine{00093\ \}}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ KeyType,\ \textcolor{keyword}{typename}\ ValueType,\ \textcolor{keyword}{typename}\ IsLess>}
+\DoxyCodeLine{00096\ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ ValueType*\ \mbox{\hyperlink{classph_1_1_t_sorted_map}{TSortedMap<KeyType,\ ValueType,\ IsLess>::getValue}}(\textcolor{keyword}{const}\ KeyType\&\ key,\ \textcolor{keyword}{const}\ std::size\_t\ ithValue)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00097\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ optFirstKeyIndex\ =\ m\_keys.indexOfValue(key);}
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keywordflow}{if}(optFirstKeyIndex.has\_value())}
+\DoxyCodeLine{00100\ \ \ \ \ \{}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ We\ must\ make\ sure\ that\ the\ i-\/th\ index\ starting\ from\ the\ first\ key\ index\ stores\ a\ key\ value}}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ equals\ to\ \`{}key`,\ which\ means\ we\ are\ still\ in\ the\ range\ of\ values\ that\ are\ mapped\ to\ \`{}key`.}}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Do\ not\ rely\ on\ testing\ the\ equality\ of\ values\ as\ \`{}ValueType`\ may\ not\ be\ comparable,\ or\ }}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ values\ that\ compare\ equal\ were\ mapped\ to\ different\ keys.}}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ ithKeyIndex\ =\ *optFirstKeyIndex\ +\ ithValue;}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(ithKeyIndex\ <\ m\_keys.size()\ \&\&\ m\_keys.get(ithKeyIndex)\ ==\ key)}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ PH\_ASSERT\_LT(ithKeyIndex,\ m\_values.size());}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \&m\_values[ithKeyIndex];}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00116\ \ \ \ \ \}}
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00118\ \ \ \ \ \{}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00120\ \ \ \ \ \}}
+\DoxyCodeLine{00121\ \}}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00123\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ KeyType,\ \textcolor{keyword}{typename}\ ValueType,\ \textcolor{keyword}{typename}\ IsLess>}
+\DoxyCodeLine{00124\ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ ValueType\&\ \mbox{\hyperlink{classph_1_1_t_sorted_map}{TSortedMap<KeyType,\ ValueType,\ IsLess>::get}}(\textcolor{keyword}{const}\ std::size\_t\ valueIndex)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00125\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00126\ \ \ \ \ PH\_ASSERT\_LT(valueIndex,\ m\_values.size());}
+\DoxyCodeLine{00127\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_values[valueIndex];}
+\DoxyCodeLine{00128\ \}}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ KeyType,\ \textcolor{keyword}{typename}\ ValueType,\ \textcolor{keyword}{typename}\ IsLess>}
+\DoxyCodeLine{00131\ \textcolor{keyword}{inline}\ ValueType\&\ \mbox{\hyperlink{classph_1_1_t_sorted_map}{TSortedMap<KeyType,\ ValueType,\ IsLess>::get}}(\textcolor{keyword}{const}\ std::size\_t\ valueIndex)}
+\DoxyCodeLine{00132\ \{}
+\DoxyCodeLine{00133\ \ \ \ \ PH\_ASSERT\_LT(valueIndex,\ m\_values.size());}
+\DoxyCodeLine{00134\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_values[valueIndex];}
+\DoxyCodeLine{00135\ \}}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00137\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ KeyType,\ \textcolor{keyword}{typename}\ ValueType,\ \textcolor{keyword}{typename}\ IsLess>}
+\DoxyCodeLine{00138\ \textcolor{keyword}{inline}\ std::pair<const\ KeyType\&,\ const\ ValueType\&>\ \mbox{\hyperlink{classph_1_1_t_sorted_map}{TSortedMap<KeyType,\ ValueType,\ IsLess>::getKeyAndValue}}(\textcolor{keyword}{const}\ std::size\_t\ valueIndex)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00139\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00140\ \ \ \ \ \textcolor{keywordflow}{return}\ \{m\_keys.\mbox{\hyperlink{classph_1_1_t_sorted_map_a609805c316a2ee2a5f98227411d378c7}{get}}(valueIndex),\ get(valueIndex)\};}
+\DoxyCodeLine{00141\ \}}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00143\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ KeyType,\ \textcolor{keyword}{typename}\ ValueType,\ \textcolor{keyword}{typename}\ IsLess>}
+\DoxyCodeLine{00144\ \textcolor{keyword}{inline}\ std::pair<const\ KeyType\&,\ ValueType\&>\ \mbox{\hyperlink{classph_1_1_t_sorted_map}{TSortedMap<KeyType,\ ValueType,\ IsLess>::getKeyAndValue}}(\textcolor{keyword}{const}\ std::size\_t\ valueIndex)}
+\DoxyCodeLine{00145\ \{}
+\DoxyCodeLine{00146\ \ \ \ \ \textcolor{keywordflow}{return}\ \{m\_keys.\mbox{\hyperlink{classph_1_1_t_sorted_map_a609805c316a2ee2a5f98227411d378c7}{get}}(valueIndex),\ get(valueIndex)\};}
+\DoxyCodeLine{00147\ \}}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00149\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ KeyType,\ \textcolor{keyword}{typename}\ ValueType,\ \textcolor{keyword}{typename}\ IsLess>}
+\DoxyCodeLine{00150\ \textcolor{keyword}{inline}\ std::size\_t\ \mbox{\hyperlink{classph_1_1_t_sorted_map}{TSortedMap<KeyType,\ ValueType,\ IsLess>::numValues}}(\textcolor{keyword}{const}\ KeyType\&\ key)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00151\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00152\ \ \ \ \ \textcolor{comment}{//\ We\ store\ duplicated\ keys\ for\ values\ mapped\ to\ the\ same\ key}}
+\DoxyCodeLine{00153\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ numIdenticalKeys\ =\ m\_keys.\mbox{\hyperlink{classph_1_1_t_sorted_map_ac82b23b4f3689ba90ef1c50cb0cbf9b2}{numValues}}(key);}
+\DoxyCodeLine{00154\ \ \ \ \ \textcolor{keywordflow}{return}\ numIdenticalKeys;}
+\DoxyCodeLine{00155\ \}}
+\DoxyCodeLine{00156\ }
+\DoxyCodeLine{00157\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ KeyType,\ \textcolor{keyword}{typename}\ ValueType,\ \textcolor{keyword}{typename}\ IsLess>}
+\DoxyCodeLine{00158\ \textcolor{keyword}{inline}\ std::size\_t\ \mbox{\hyperlink{classph_1_1_t_sorted_map}{TSortedMap<KeyType,\ ValueType,\ IsLess>::size}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00159\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00160\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_values.\mbox{\hyperlink{classph_1_1_t_sorted_map_ae0d145ad78057f90a03bf54ceef90215}{size}}();}
+\DoxyCodeLine{00161\ \}}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00163\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ KeyType,\ \textcolor{keyword}{typename}\ ValueType,\ \textcolor{keyword}{typename}\ IsLess>}
+\DoxyCodeLine{00164\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_t_sorted_map}{TSortedMap<KeyType,\ ValueType,\ IsLess>::isEmpty}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00165\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00166\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_values.empty();}
+\DoxyCodeLine{00167\ \}}
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00169\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ KeyType,\ \textcolor{keyword}{typename}\ ValueType,\ \textcolor{keyword}{typename}\ IsLess>}
+\DoxyCodeLine{00170\ \textcolor{keyword}{inline}\ \textcolor{keyword}{typename}\ std::vector<ValueType>::const\_iterator\ \mbox{\hyperlink{classph_1_1_t_sorted_map}{TSortedMap<KeyType,\ ValueType,\ IsLess>::begin}}()\ const\ noexcept}
+\DoxyCodeLine{00171\ \{}
+\DoxyCodeLine{00172\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_values.begin();}
+\DoxyCodeLine{00173\ \}}
+\DoxyCodeLine{00174\ }
+\DoxyCodeLine{00175\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ KeyType,\ \textcolor{keyword}{typename}\ ValueType,\ \textcolor{keyword}{typename}\ IsLess>}
+\DoxyCodeLine{00176\ \textcolor{keyword}{inline}\ \textcolor{keyword}{typename}\ std::vector<ValueType>::const\_iterator\ TSortedMap<KeyType,\ ValueType,\ IsLess>::end()\ const\ noexcept}
+\DoxyCodeLine{00177\ \{}
+\DoxyCodeLine{00178\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_values.end();}
+\DoxyCodeLine{00179\ \}}
+\DoxyCodeLine{00180\ }
+\DoxyCodeLine{00181\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+
+\end{DoxyCode}

@@ -1,0 +1,72 @@
+\doxysection{TSdl\+Value.\+h}
+\hypertarget{_t_sdl_value_8h_source}{}\label{_t_sdl_value_8h_source}\index{Source/SDL/Introspect/TSdlValue.h@{Source/SDL/Introspect/TSdlValue.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}SDL/Introspect/TSdlAbstractValue.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Common/assertion.h"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <string\_view>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <optional>}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00010\ \{}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ \textcolor{keyword}{typename}\ Owner>}
+\DoxyCodeLine{00023\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_t_sdl_value}{TSdlValue}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classph_1_1_t_sdl_abstract_value}{TSdlAbstractValue}}<T,\ Owner>}
+\DoxyCodeLine{00024\ \{}
+\DoxyCodeLine{00025\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00026\ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_sdl_value}{TSdlValue}}(}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ std::string\ typeName,\ }
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ std::string\ valueName,\ }
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ T\ Owner::*\ valuePtr);}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_sdl_value}{TSdlValue}}(}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ std::string\ typeName,}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ std::string\ valueName,}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ std::string\ typeSignature,}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ T\ Owner::*\ valuePtr);}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \ \ std::string\ \mbox{\hyperlink{classph_1_1_t_sdl_value_a33edd52855c057fdfa245bb262ce411d}{valueAsString}}(\textcolor{keyword}{const}\ T\&\ value)\ \textcolor{keyword}{const\ override}\ =\ 0;}
+\DoxyCodeLine{00038\ \ \ \ \ \mbox{\hyperlink{classph_1_1_sdl_native_data}{SdlNativeData}}\ \mbox{\hyperlink{classph_1_1_t_sdl_value_adde07175fe1471c67a41a4db5bc61940}{ownedNativeData}}(Owner\&\ owner)\ \textcolor{keyword}{const\ override}\ =\ 0;}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_sdl_value_a10a624c8ee21919ff7d95b5b67ac0746}{setValue}}(Owner\&\ owner,\ T\ value)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00041\ \ \ \ \ T*\ \mbox{\hyperlink{classph_1_1_t_sdl_value_a706565be62e0104124f619c27d9f924a}{getValue}}(Owner\&\ owner)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keyword}{const}\ T*\ \mbox{\hyperlink{classph_1_1_t_sdl_value_a2980df26bdcefcafa2a7b235db2adf58}{getConstValue}}(\textcolor{keyword}{const}\ Owner\&\ owner)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_sdl_value_ad359cfd99a5ba3af2d4b6fd06b093476}{ownedValueToDefault}}(Owner\&\ owner)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keyword}{const}\ T*\ getDefaultValue()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_sdl_value}{TSdlValue}}\&\ defaultTo(T\ defaultValue);}
+\DoxyCodeLine{00048\ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_sdl_value}{TSdlValue}}\&\ noDefault();}
+\DoxyCodeLine{00049\ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_sdl_value}{TSdlValue}}\&\ withImportance(\mbox{\hyperlink{namespaceph_a3f81b078141211109d7e3b340d0525cc}{EFieldImportance}}\ importance);}
+\DoxyCodeLine{00050\ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_sdl_value}{TSdlValue}}\&\ description(std::string\ descriptionStr);}
+\DoxyCodeLine{00051\ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_sdl_value}{TSdlValue}}\&\ optional();}
+\DoxyCodeLine{00052\ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_sdl_value}{TSdlValue}}\&\ niceToHave();}
+\DoxyCodeLine{00053\ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_sdl_value}{TSdlValue}}\&\ required();}
+\DoxyCodeLine{00054\ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_sdl_value}{TSdlValue}}\&\ enableFallback(\textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_sdl_field_aaabe04025dfb15c03a90e8d434837df4}{isFallbackEnabled}});}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_sdl_value_a055ed88dc8f4061d70e1ab2b69027304}{loadFromSdl}}(}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ Owner\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ owner,}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_sdl_input_clause}{SdlInputClause}}\&\ \ clause,}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_sdl_input_context}{SdlInputContext}}\&\ ctx)\ \textcolor{keyword}{const\ override}\ =\ 0;}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_sdl_value_aa4ea44692e991b57dfacd7994b7876b5}{saveToSdl}}(}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Owner\&\ \ \ \ \ \ \ \ \ \ \ \ owner,}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_sdl_output_clause}{SdlOutputClause}}\&\ \ \ \ \ \ \ \ out\_clause,}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_sdl_output_context}{SdlOutputContext}}\&\ ctx)\ \textcolor{keyword}{const\ override}\ =\ 0;}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \ \ \ T\&\ valueRef(Owner\&\ owner)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00070\ \ \ \ \ T\ Owner::*\ m\_valuePtr;}
+\DoxyCodeLine{00071\ \ \ \ \ std::optional<T>\ m\_defaultValue;}
+\DoxyCodeLine{00072\ \};}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \textcolor{preprocessor}{\#include\ "{}SDL/Introspect/TSdlValue.ipp"{}}}
+
+\end{DoxyCode}

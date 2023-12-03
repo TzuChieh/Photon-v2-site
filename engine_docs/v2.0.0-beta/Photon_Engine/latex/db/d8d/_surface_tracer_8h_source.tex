@@ -1,0 +1,159 @@
+\doxysection{Surface\+Tracer.\+h}
+\hypertarget{_surface_tracer_8h_source}{}\label{_surface_tracer_8h_source}\index{Source/Core/LTABuildingBlock/SurfaceTracer.h@{Source/Core/LTABuildingBlock/SurfaceTracer.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Utility/IMoveOnly.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Common/assertion.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}World/Scene.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}Core/HitProbe.h"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}Core/SurfaceHit.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}Core/LTABuildingBlock/SidednessAgreement.h"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}Core/SurfaceBehavior/BsdfSampleQuery.h"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}Core/SurfaceBehavior/BsdfEvalQuery.h"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}Core/SurfaceBehavior/BsdfPdfQuery.h"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}Core/Ray.h"{}}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}Math/TVector3.h"{}}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ "{}Core/Intersectable/Primitive.h"{}}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ "{}Core/Intersectable/PrimitiveMetadata.h"{}}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ "{}Core/SurfaceBehavior/SurfaceBehavior.h"{}}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ "{}Core/SurfaceBehavior/SurfaceOptics.h"{}}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ <limits>}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00022\ \{}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{keyword}{class\ }SampleFlow;}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_surface_tracer}{SurfaceTracer}}\ final\ :\ \textcolor{keyword}{private}\ \mbox{\hyperlink{classph_1_1_i_move_only}{IMoveOnly}}}
+\DoxyCodeLine{00027\ \{}
+\DoxyCodeLine{00028\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classph_1_1_surface_tracer}{SurfaceTracer}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_scene}{Scene}}*\ scene);}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordtype}{bool}\ traceNextSurface(}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_ray}{Ray}}\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ray,\ }
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_sidedness_agreement}{SidednessAgreement}}\&\ sidedness,\ }
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_surface_hit}{SurfaceHit}}*\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ out\_X)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordtype}{bool}\ doBsdfSample(}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_bsdf_sample_query}{BsdfSampleQuery}}\&\ bsdfSample,}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_sample_flow}{SampleFlow}}\&\ \ \ \ \ \ sampleFlow,}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_ray}{Ray}}*\ \ \ \ \ \ \ \ \ \ \ \ \ out\_ray)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordtype}{bool}\ doBsdfEvaluation(\mbox{\hyperlink{classph_1_1_bsdf_eval_query}{BsdfEvalQuery}}\&\ bsdfEval)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordtype}{bool}\ doBsdfPdfQuery(\mbox{\hyperlink{classph_1_1_bsdf_pdf_query}{BsdfPdfQuery}}\&\ bsdfPdfQuery)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00043\ \ \ \ \ }
+\DoxyCodeLine{00044\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_scene}{Scene}}*\ m\_scene;}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_surface_optics}{SurfaceOptics}}*\ getSurfaceOptics(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_surface_hit}{SurfaceHit}}\&\ X);}
+\DoxyCodeLine{00048\ \};}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \textcolor{comment}{//\ In-\/header\ Implementations:}}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_surface_optics}{SurfaceOptics}}*\ SurfaceTracer::getSurfaceOptics(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_surface_hit}{SurfaceHit}}\&\ X)}
+\DoxyCodeLine{00053\ \{}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}*\ \textcolor{keyword}{const}\ metadata\ =\ X.getDetail().getPrimitive()-\/>getMetadata();}
+\DoxyCodeLine{00055\ \ \ \ \ PH\_ASSERT(metadata);}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}*\ \textcolor{keyword}{const}\ optics\ =\ metadata-\/>getSurface().getOptics();}
+\DoxyCodeLine{00058\ \ \ \ \ PH\_ASSERT(optics);}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordflow}{return}\ optics;}
+\DoxyCodeLine{00061\ \}}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \textcolor{keyword}{inline}\ SurfaceTracer::SurfaceTracer(\textcolor{keyword}{const}\ Scene*\ \textcolor{keyword}{const}\ scene)\ :}
+\DoxyCodeLine{00064\ \ \ \ \ m\_scene(scene)}
+\DoxyCodeLine{00065\ \{}
+\DoxyCodeLine{00066\ \ \ \ \ PH\_ASSERT(scene);}
+\DoxyCodeLine{00067\ \}}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ SurfaceTracer::traceNextSurface(}
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keyword}{const}\ Ray\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ray,}
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keyword}{const}\ SidednessAgreement\&\ sidedness,}
+\DoxyCodeLine{00072\ \ \ \ \ SurfaceHit*\ \textcolor{keyword}{const}\ \ \ \ \ \ \ \ \ out\_X)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00073\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00074\ \ \ \ \ PH\_ASSERT(m\_scene);}
+\DoxyCodeLine{00075\ \ \ \ \ PH\_ASSERT(out\_X);}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \ \ \ \ HitProbe\ probe;}
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keywordflow}{if}(!m\_scene-\/>isIntersecting(ray,\ \&probe))}
+\DoxyCodeLine{00079\ \ \ \ \ \{}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00081\ \ \ \ \ \}}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \ \ \ \ *out\_X\ =\ SurfaceHit(ray,\ probe);}
+\DoxyCodeLine{00084\ \ \ \ \ sidedness.adjustForSidednessAgreement(*out\_X);}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keywordflow}{return}\ sidedness.isSidednessAgreed(*out\_X,\ ray.getDirection());}
+\DoxyCodeLine{00087\ \}}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ SurfaceTracer::doBsdfSample(}
+\DoxyCodeLine{00090\ \ \ \ \ BsdfSampleQuery\&\ bsdfSample,\ }
+\DoxyCodeLine{00091\ \ \ \ \ SampleFlow\&\ \ \ \ \ \ sampleFlow,\ }
+\DoxyCodeLine{00092\ \ \ \ \ Ray*\ \textcolor{keyword}{const}\ \ \ \ \ \ \ out\_ray)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00093\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00094\ \ \ \ \ PH\_ASSERT(m\_scene);}
+\DoxyCodeLine{00095\ \ \ \ \ PH\_ASSERT(out\_ray);}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keyword}{const}\ SurfaceHit\&\ \ \ \ \ \ \ \ \ X\ \ \ \ \ \ \ \ \ =\ bsdfSample.inputs.X;}
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keyword}{const}\ SidednessAgreement\&\ sidedness\ =\ bsdfSample.context.sidedness;}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keywordflow}{if}(!X.hasSurfaceOptics()\ ||\ }
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ !sidedness.isSidednessAgreed(X,\ bsdfSample.inputs.V))}
+\DoxyCodeLine{00102\ \ \ \ \ \{}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00104\ \ \ \ \ \}}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \ \ \ \ getSurfaceOptics(X)-\/>calcBsdfSample(bsdfSample,\ sampleFlow);}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \ \ \ \ \textcolor{comment}{//\ HACK:\ hard-\/coded\ number}}
+\DoxyCodeLine{00109\ \ \ \ \ *out\_ray\ =\ Ray(X.getPosition(),\ bsdfSample.outputs.L,\ 0.0001\_r,\ std::numeric\_limits<real>::max());}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{keywordflow}{return}\ bsdfSample.outputs.isMeasurable()\ \&\&}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ sidedness.isSidednessAgreed(X,\ bsdfSample.outputs.L);}
+\DoxyCodeLine{00113\ \}}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ SurfaceTracer::doBsdfEvaluation(BsdfEvalQuery\&\ bsdfEval)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00116\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00117\ \ \ \ \ PH\_ASSERT(m\_scene);}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{keyword}{const}\ SurfaceHit\&\ \ \ \ \ \ \ \ \ X\ \ \ \ \ \ \ \ \ =\ bsdfEval.inputs.X;}
+\DoxyCodeLine{00120\ \ \ \ \ \textcolor{keyword}{const}\ SidednessAgreement\&\ sidedness\ =\ bsdfEval.context.sidedness;}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{keywordflow}{if}(!X.hasSurfaceOptics()\ ||}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ !sidedness.isSidednessAgreed(X,\ bsdfEval.inputs.V)\ ||}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ !sidedness.isSidednessAgreed(X,\ bsdfEval.inputs.L))}
+\DoxyCodeLine{00125\ \ \ \ \ \{}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00127\ \ \ \ \ \}}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00129\ \ \ \ \ getSurfaceOptics(X)-\/>calcBsdf(bsdfEval);}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ \ \ \ \ \textcolor{keywordflow}{return}\ bsdfEval.outputs.isGood();}
+\DoxyCodeLine{00132\ \}}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00134\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ SurfaceTracer::doBsdfPdfQuery(BsdfPdfQuery\&\ bsdfPdfQuery)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00135\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00136\ \ \ \ \ PH\_ASSERT(m\_scene);}
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00138\ \ \ \ \ \textcolor{keyword}{const}\ SurfaceHit\&\ \ \ \ \ \ \ \ \ X\ \ \ \ \ \ \ \ \ =\ bsdfPdfQuery.inputs.X;}
+\DoxyCodeLine{00139\ \ \ \ \ \textcolor{keyword}{const}\ SidednessAgreement\&\ sidedness\ =\ bsdfPdfQuery.context.sidedness;}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00141\ \ \ \ \ \textcolor{keywordflow}{if}(!X.hasSurfaceOptics()\ ||}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ !sidedness.isSidednessAgreed(X,\ bsdfPdfQuery.inputs.V)\ ||}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ !sidedness.isSidednessAgreed(X,\ bsdfPdfQuery.inputs.L))}
+\DoxyCodeLine{00144\ \ \ \ \ \{}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00146\ \ \ \ \ \}}
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00148\ \ \ \ \ getSurfaceOptics(X)-\/>calcBsdfSamplePdfW(bsdfPdfQuery);}
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00150\ \ \ \ \ \textcolor{keywordflow}{return}\ bsdfPdfQuery.outputs.sampleDirPdfW\ >\ 0.0\_r;}
+\DoxyCodeLine{00151\ \}}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00153\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+
+\end{DoxyCode}

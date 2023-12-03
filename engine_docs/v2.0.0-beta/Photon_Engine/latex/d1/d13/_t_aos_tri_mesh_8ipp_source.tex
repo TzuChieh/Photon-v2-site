@@ -1,0 +1,99 @@
+\doxysection{TAos\+Tri\+Mesh.\+ipp}
+\hypertarget{_t_aos_tri_mesh_8ipp_source}{}\label{_t_aos_tri_mesh_8ipp_source}\index{Source/Core/Intersectable/DataStructure/TAosTriMesh.ipp@{Source/Core/Intersectable/DataStructure/TAosTriMesh.ipp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Core/Intersectable/DataStructure/TAosTriMesh.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Common/assertion.h"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <limits>}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00010\ \{}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{template}<}
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keyword}{typename}\ Index,\ }
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keyword}{typename}\ Vertex,\ }
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keyword}{typename}\ VerticesToTriFace>}
+\DoxyCodeLine{00016\ \textcolor{keyword}{inline}\ TAosTriMesh<Index,\ Vertex,\ VerticesToTriFace>::}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ TAosTriMesh(}
+\DoxyCodeLine{00019\ \ \ \ \ std::vector<Vertex>\ vertices,}
+\DoxyCodeLine{00020\ \ \ \ \ std::vector<Index>\ \ indices,}
+\DoxyCodeLine{00021\ \ \ \ \ VerticesToTriFace\ \ \ verticesToTriFace)\ :\ }
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ \ \ TAosTriMesh(}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ vertices.date(),}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ vertices.size(),}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ indices.data(),}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ indices.size(),}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ std::move(verticesToTriFace))}
+\DoxyCodeLine{00029\ \{\}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{keyword}{template}<}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{typename}\ Index,\ }
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keyword}{typename}\ Vertex,\ }
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{typename}\ VerticesToTriFace>}
+\DoxyCodeLine{00035\ \textcolor{keyword}{inline}\ TAosTriMesh<Index,\ Vertex,\ VerticesToTriFace>::}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ TAosTriMesh(}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keyword}{const}\ Vertex*\ \textcolor{keyword}{const}\ vertices,}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ \ \ numVertices,}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{const}\ Index*\ \textcolor{keyword}{const}\ \ indices,}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ \ \ numIndices,}
+\DoxyCodeLine{00042\ \ \ \ \ VerticesToTriFace\ \ \ verticesToTriFace)\ :\ }
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ IndexedTriMesh(numIndices\ /\ 3),}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \ \ m\_verticesToTriFace(std::move(verticesToTriFace))}
+\DoxyCodeLine{00047\ \{}
+\DoxyCodeLine{00048\ \ \ \ \ PH\_ASSERT(vertices);}
+\DoxyCodeLine{00049\ \ \ \ \ PH\_ASSERT\_GT(numVertices,\ 0);}
+\DoxyCodeLine{00050\ \ \ \ \ PH\_ASSERT\_LE(numVertices\ -\/\ 1,\ std::numeric\_limits<Index>::max());}
+\DoxyCodeLine{00051\ \ \ \ \ PH\_ASSERT(indices);}
+\DoxyCodeLine{00052\ \ \ \ \ PH\_ASSERT\_GT(numIndices,\ 0);}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ m\_numVertices\ =\ numVertices;}
+\DoxyCodeLine{00055\ \ \ \ \ m\_numIndices\ \ =\ numIndices;}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ \ \ m\_vertices\ =\ std::make\_unique<Vertex[]>(\textcolor{keyword}{new}\ Vertex[numVertices]);}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ i\ =\ 0;\ i\ <\ numVertices;\ ++i)}
+\DoxyCodeLine{00059\ \ \ \ \ \{}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ m\_vertices[i]\ =\ vertices[i];}
+\DoxyCodeLine{00061\ \ \ \ \ \}}
+\DoxyCodeLine{00062\ \ \ \ \ }
+\DoxyCodeLine{00063\ \ \ \ \ m\_indices\ =\ std::make\_unique<Index[]>(\textcolor{keyword}{new}\ Index[numIndices]);}
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ i\ =\ 0;\ i\ <\ numIndices;\ ++i)}
+\DoxyCodeLine{00065\ \ \ \ \ \{}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ PH\_ASSERT\_IN\_RANGE\_INCLUSIVE(indices[i],\ Index(0),\ std::numeric\_limits<Index>::max());}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ m\_indices[i]\ =\ indices[i];}
+\DoxyCodeLine{00069\ \ \ \ \ \}}
+\DoxyCodeLine{00070\ \}}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \textcolor{keyword}{template}<}
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keyword}{typename}\ Index,\ }
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keyword}{typename}\ Vertex,\ }
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keyword}{typename}\ VerticesToTriFace>}
+\DoxyCodeLine{00076\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ TAosTriMesh<Index,\ Vertex,\ VerticesToTriFace>::}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ getFace(\textcolor{keyword}{const}\ std::size\_t\ faceIndex)\ \textcolor{keyword}{const}}
+\DoxyCodeLine{00079\ -\/>\ TriFace}
+\DoxyCodeLine{00080\ \{}
+\DoxyCodeLine{00081\ \ \ \ \ PH\_ASSERT\_LT(faceIndex,\ numFaces());}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ indicesIndex\ =\ faceIndex\ *\ 3;}
+\DoxyCodeLine{00084\ \ \ \ \ PH\_ASSERT\_LT(indicesIndex\ +\ 2,\ m\_numIndices);}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_verticesToTriFace(}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ faceIndex,}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ m\_vertices[m\_indices[indicesIndex]],}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ m\_vertices[m\_indices[indicesIndex\ +\ 1]],\ }
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ m\_vertices[m\_indices[indicesIndex\ +\ 2]]);}
+\DoxyCodeLine{00091\ \}}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+
+\end{DoxyCode}

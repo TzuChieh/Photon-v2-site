@@ -1,0 +1,103 @@
+\doxysection{Math\+Image.\+h}
+\hypertarget{_math_image_8h_source}{}\label{_math_image_8h_source}\index{Source/Actor/Image/MathImage.h@{Source/Actor/Image/MathImage.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Actor/Image/Image.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Common/primitive\_type.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}SDL/sdl\_interface.h"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <optional>}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00012\ \{}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{enum\ class}\ EMathImageOp}
+\DoxyCodeLine{00015\ \{}
+\DoxyCodeLine{00016\ \ \ \ \ Add\ =\ 0,}
+\DoxyCodeLine{00017\ \ \ \ \ Multiply}
+\DoxyCodeLine{00018\ \};}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ PH\_DEFINE\_SDL\_ENUM(TSdlGeneralEnum<EMathImageOp>)}
+\DoxyCodeLine{00021\ \{}
+\DoxyCodeLine{00022\ \ \ \ \ SdlEnumType\ sdlEnum(\textcolor{stringliteral}{"{}math-\/image-\/op"{}});}
+\DoxyCodeLine{00023\ \ \ \ \ sdlEnum.description(\textcolor{stringliteral}{"{}The\ mathematical\ operation\ used\ on\ images."{}});}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \ \ \ \ sdlEnum.addEntry(EnumType::Add,\ \ \ \ \ \ \textcolor{stringliteral}{"{}ADD"{}});}
+\DoxyCodeLine{00026\ \ \ \ \ sdlEnum.addEntry(EnumType::Multiply,\ \textcolor{stringliteral}{"{}MUL"{}});}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordflow}{return}\ sdlEnum;}
+\DoxyCodeLine{00029\ \}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_math_image}{MathImage}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classph_1_1_image}{Image}}}
+\DoxyCodeLine{00032\ \{}
+\DoxyCodeLine{00033\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00034\ \ \ \ \ \mbox{\hyperlink{classph_1_1_math_image}{MathImage}}();}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \ \ std::shared\_ptr<TTexture<Image::ArrayType>>\ genNumericTexture(}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_cooking_context}{CookingContext}}\&\ ctx)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \ \ std::shared\_ptr<TTexture<math::Spectrum>>\ genColorTexture(}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_cooking_context}{CookingContext}}\&\ ctx)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ \mbox{\hyperlink{classph_1_1_math_image}{MathImage}}\&\ setOperation(EMathImageOp\ op);}
+\DoxyCodeLine{00043\ \ \ \ \ \mbox{\hyperlink{classph_1_1_math_image}{MathImage}}\&\ setOperandImage(std::shared\_ptr<Image>\ operand);}
+\DoxyCodeLine{00044\ \ \ \ \ \mbox{\hyperlink{classph_1_1_math_image}{MathImage}}\&\ setScalarInput(float64\ value);}
+\DoxyCodeLine{00045\ \ \ \ \ \mbox{\hyperlink{classph_1_1_math_image}{MathImage}}\&\ setInputImage0(std::shared\_ptr<Image>\ input);}
+\DoxyCodeLine{00046\ \ \ \ \ \mbox{\hyperlink{classph_1_1_math_image}{MathImage}}\&\ setInputImage1(std::shared\_ptr<Image>\ input);}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00049\ \ \ \ \ EMathImageOp\ \ \ \ \ \ \ \ \ \ \ m\_mathOp;}
+\DoxyCodeLine{00050\ \ \ \ \ std::shared\_ptr<Image>\ m\_operandImage;}
+\DoxyCodeLine{00051\ \ \ \ \ float64\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_scalarInput;}
+\DoxyCodeLine{00052\ \ \ \ \ std::shared\_ptr<Image>\ m\_imageInput0;}
+\DoxyCodeLine{00053\ \ \ \ \ std::shared\_ptr<Image>\ m\_imageInput1;}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00056\ \ \ \ \ PH\_DEFINE\_SDL\_CLASS(\mbox{\hyperlink{classph_1_1_t_sdl_owner_class}{TSdlOwnerClass<MathImage>}})}
+\DoxyCodeLine{00057\ \ \ \ \ \{}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ ClassType\ clazz(\textcolor{stringliteral}{"{}math"{}});}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ clazz.docName(\textcolor{stringliteral}{"{}Math\ Image"{}});}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ clazz.description(}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}This\ image\ applies\ mathematical\ modifications\ on\ other\ images,\ such\ as\ addition\ and\ "{}}}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}multiplication."{}});}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ clazz.baseOn<\mbox{\hyperlink{classph_1_1_image}{Image}}>();}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_sdl_enum_field}{TSdlEnumField<OwnerType,\ EMathImageOp>}}\ mathOp(\&OwnerType::m\_mathOp);}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ mathOp.description(\textcolor{stringliteral}{"{}The\ mathematical\ operation\ used."{}});}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ mathOp.defaultTo(EMathImageOp::Add);}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ mathOp.required();}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ clazz.addField(mathOp);}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_sdl_reference}{TSdlReference<Image,\ OwnerType>}}\ operandImage(\textcolor{stringliteral}{"{}operand"{}},\ \&OwnerType::m\_operandImage);}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ operandImage.description(\textcolor{stringliteral}{"{}The\ target\ image\ that\ is\ going\ to\ be\ operated\ on."{}});}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ operandImage.required();}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ clazz.addField(operandImage);}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_sdl_real}{TSdlReal<OwnerType,\ float64>}}\ scalarInput(\textcolor{stringliteral}{"{}scalar-\/input"{}},\ \&OwnerType::m\_scalarInput);}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ scalarInput.description(\textcolor{stringliteral}{"{}A\ scalar\ input\ for\ the\ specified\ mathematical\ operation."{}});}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ scalarInput.defaultTo(0.0);}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ scalarInput.optional();}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ clazz.addField(scalarInput);}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_sdl_reference}{TSdlReference<Image,\ OwnerType>}}\ imageInput0(\textcolor{stringliteral}{"{}input-\/0"{}},\ \&OwnerType::m\_imageInput0);}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ imageInput0.description(\textcolor{stringliteral}{"{}First\ input\ for\ the\ specified\ mathematical\ operation."{}});}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ imageInput0.optional();}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ clazz.addField(imageInput0);}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_sdl_reference}{TSdlReference<Image,\ OwnerType>}}\ imageInput1(\textcolor{stringliteral}{"{}input-\/1"{}},\ \&OwnerType::m\_imageInput1);}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ imageInput1.description(\textcolor{stringliteral}{"{}Second\ input\ for\ the\ specified\ mathematical\ operation."{}});}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ imageInput1.optional();}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ clazz.addField(imageInput1);}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ clazz;}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \ \ \ \ \}}
+\DoxyCodeLine{00095\ \};}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+
+\end{DoxyCode}

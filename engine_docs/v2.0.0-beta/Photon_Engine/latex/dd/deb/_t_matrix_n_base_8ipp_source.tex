@@ -1,0 +1,136 @@
+\doxysection{TMatrix\+NBase.\+ipp}
+\hypertarget{_t_matrix_n_base_8ipp_source}{}\label{_t_matrix_n_base_8ipp_source}\index{Source/Math/General/TMatrixNBase.ipp@{Source/Math/General/TMatrixNBase.ipp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Math/General/TMatrixNBase.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Common/assertion.h"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph_1_1math}{ph::math}}}
+\DoxyCodeLine{00009\ \{}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00012\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1math_1_1_t_matrix_n_base_a0618460442b2a4ca39639e3b215bdc56}{TMatrixNBase<Derived,\ T,\ N>::setIdentity}}()}
+\DoxyCodeLine{00013\ -\/>\ Derived\&}
+\DoxyCodeLine{00014\ \{}
+\DoxyCodeLine{00015\ \ \ \ \ set(\textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(0));}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ ni\ =\ 0;\ ni\ <\ N;\ ++ni)}
+\DoxyCodeLine{00018\ \ \ \ \ \{}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ m[ni][ni]\ =\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(1);}
+\DoxyCodeLine{00020\ \ \ \ \ \}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}Derived\&\textcolor{keyword}{>}(*this);}
+\DoxyCodeLine{00023\ \}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00026\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1math_1_1_t_matrix_n_base}{TMatrixNBase<Derived,\ T,\ N>::setScale}}(\textcolor{keyword}{const}\ TRawColVector<T,\ N>\&\ scaleFactor)}
+\DoxyCodeLine{00027\ -\/>\ Derived\&}
+\DoxyCodeLine{00028\ \{}
+\DoxyCodeLine{00029\ \ \ \ \ set(\textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(0));}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ ni\ =\ 0;\ ni\ <\ N;\ ++ni)}
+\DoxyCodeLine{00032\ \ \ \ \ \{}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ m[ni][ni]\ =\ scaleFactor[ni];}
+\DoxyCodeLine{00034\ \ \ \ \ \}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}Derived\&\textcolor{keyword}{>}(*this);}
+\DoxyCodeLine{00037\ \}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00040\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1math_1_1_t_matrix_n_base}{TMatrixNBase<Derived,\ T,\ N>::mul}}(\textcolor{keyword}{const}\ Derived\&\ rhsMatrix)\ \textcolor{keyword}{const}}
+\DoxyCodeLine{00041\ -\/>\ Derived}
+\DoxyCodeLine{00042\ \{}
+\DoxyCodeLine{00043\ \ \ \ \ Derived\ result(\textcolor{keyword}{static\_cast<}\textcolor{keyword}{const\ }Derived\&\textcolor{keyword}{>}(*\textcolor{keyword}{this}));}
+\DoxyCodeLine{00044\ \ \ \ \ mul(rhsMatrix,\ \&result);}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00046\ \}}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00049\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ TMatrixNBase<Derived,\ T,\ N>::mulLocal(\textcolor{keyword}{const}\ Derived\&\ rhsMatrix)}
+\DoxyCodeLine{00050\ -\/>\ Derived\&}
+\DoxyCodeLine{00051\ \{}
+\DoxyCodeLine{00052\ \ \ \ \ Derived\ result(\textcolor{keyword}{static\_cast<}\textcolor{keyword}{const\ }Derived\&\textcolor{keyword}{>}(*\textcolor{keyword}{this}));}
+\DoxyCodeLine{00053\ \ \ \ \ mul(rhsMatrix,\ \&result);}
+\DoxyCodeLine{00054\ \ \ \ \ Derived::operator\ =\ (result);}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}Derived\&\textcolor{keyword}{>}(*this);}
+\DoxyCodeLine{00057\ \}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00060\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ TMatrixNBase<Derived,\ T,\ N>::mulTransposed(\textcolor{keyword}{const}\ Derived\&\ rhsMatrix)\ \textcolor{keyword}{const}}
+\DoxyCodeLine{00061\ -\/>\ Derived}
+\DoxyCodeLine{00062\ \{}
+\DoxyCodeLine{00063\ \ \ \ \ Derived\ result(\textcolor{keyword}{static\_cast<}\textcolor{keyword}{const\ }Derived\&\textcolor{keyword}{>}(*\textcolor{keyword}{this}));}
+\DoxyCodeLine{00064\ \ \ \ \ mulTransposed(rhsMatrix,\ \&result);}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00066\ \}}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00069\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ TMatrixNBase<Derived,\ T,\ N>::mulTransposedLocal(\textcolor{keyword}{const}\ Derived\&\ rhsMatrix)}
+\DoxyCodeLine{00070\ -\/>\ Derived\&}
+\DoxyCodeLine{00071\ \{}
+\DoxyCodeLine{00072\ \ \ \ \ Derived\ result(\textcolor{keyword}{static\_cast<}\textcolor{keyword}{const\ }Derived\&\textcolor{keyword}{>}(*\textcolor{keyword}{this}));}
+\DoxyCodeLine{00073\ \ \ \ \ mulTransposed(rhsMatrix,\ \&result);}
+\DoxyCodeLine{00074\ \ \ \ \ Derived::operator\ =\ (result);}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}Derived\&\textcolor{keyword}{>}(*this);}
+\DoxyCodeLine{00077\ \}}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00080\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ TMatrixNBase<Derived,\ T,\ N>::mul(\textcolor{keyword}{const}\ Derived\&\ rhsMatrix,\ Derived*\ \textcolor{keyword}{const}\ out\_result)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00081\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00082\ \ \ \ \ PH\_ASSERT(out\_result);}
+\DoxyCodeLine{00083\ \ \ \ \ PH\_ASSERT(out\_result\ !=\ \textcolor{keyword}{this});}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \ \ \ \ Base::template\ multiplyMatrix<N>(rhsMatrix.Self::m,\ \&(out\_result-\/>Self::m));}
+\DoxyCodeLine{00086\ \}}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00089\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ TMatrixNBase<Derived,\ T,\ N>::mulTransposed(\textcolor{keyword}{const}\ Derived\&\ rhsMatrix,\ Derived*\ \textcolor{keyword}{const}\ out\_result)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00090\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00091\ \ \ \ \ PH\_ASSERT(out\_result);}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \ \ \ \ Base::template\ multiplyTransposedMatrix<N>(rhsMatrix.Self::m,\ \&(out\_result-\/>Self::m));}
+\DoxyCodeLine{00094\ \}}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00097\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ TMatrixNBase<Derived,\ T,\ N>::transpose()\ const}
+\DoxyCodeLine{00098\ -\/>\ Derived}
+\DoxyCodeLine{00099\ \{}
+\DoxyCodeLine{00100\ \ \ \ \ Derived\ result(\textcolor{keyword}{static\_cast<}\textcolor{keyword}{const\ }Derived\&\textcolor{keyword}{>}(*\textcolor{keyword}{this}));}
+\DoxyCodeLine{00101\ \ \ \ \ result.Self::transposeLocal();}
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00103\ \}}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00106\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ TMatrixNBase<Derived,\ T,\ N>::transposeLocal()}
+\DoxyCodeLine{00107\ -\/>\ Derived\&}
+\DoxyCodeLine{00108\ \{}
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{comment}{//\ We\ did\ not\ use\ the\ general\ transpose\ from\ base\ here-\/-\/as\ square\ matrices}}
+\DoxyCodeLine{00110\ \ \ \ \ \textcolor{comment}{//\ can\ be\ efficiently\ transposed\ locally.}}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{keyword}{static\_assert}(N\ >=\ 1);}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{comment}{//\ Skip\ N\ =\ 1\ as\ it\ is\ already\ a\ transpose\ by\ itself}}
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ ri\ =\ 0;\ ri\ <\ N\ -\/\ 1;\ ++ri)}
+\DoxyCodeLine{00116\ \ \ \ \ \{}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Skip\ ci\ =\ ri\ as\ diagonal\ elements\ do\ not\ change\ during\ a\ transpose}}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ ci\ =\ ri\ +\ 1;\ ci\ <\ N;\ ++ci)}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Enable\ ADL}}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }std::swap;}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ swap(m[ri][ci],\ m[ci][ri]);}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00125\ \ \ \ \ \}}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00127\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}Derived\&\textcolor{keyword}{>}(*this);}
+\DoxyCodeLine{00128\ \}}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ \}\textcolor{comment}{//\ end\ namespace\ ph::math}}
+
+\end{DoxyCode}

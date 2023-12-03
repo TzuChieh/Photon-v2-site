@@ -1,0 +1,71 @@
+\doxysection{Render\+Session.\+h}
+\hypertarget{_render_session_8h_source}{}\label{_render_session_8h_source}\index{Source/EngineEnv/Session/RenderSession.h@{Source/EngineEnv/Session/RenderSession.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}SDL/Option.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}EngineEnv/CoreSdlResource.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}Common/primitive\_type.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}SDL/sdl\_interface.h"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}\ \{\ \textcolor{keyword}{class\ }CoreCookingContext;\ \}}
+\DoxyCodeLine{00013\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}\ \{\ \textcolor{keyword}{class\ }SceneDescription;\ \}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00016\ \{}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_render_session}{RenderSession}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classph_1_1_option}{Option}}}
+\DoxyCodeLine{00019\ \{}
+\DoxyCodeLine{00020\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_render_session}{RenderSession}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_render_session_a892c7f4afc0ff0aa1a46809563ddeb9f}{applyToContext}}(\mbox{\hyperlink{classph_1_1_core_cooking_context}{CoreCookingContext}}\&\ ctx)\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{comment}{//\ TODO:\ should\ we\ take\ a\ context\ obj?}}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{virtual}\ std::vector<std::shared\_ptr<CoreSdlResource>>\ \mbox{\hyperlink{classph_1_1_render_session_a939fb2912a0ffbfa917920171ecca9bd}{gatherResources}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_scene_description}{SceneDescription}}\&\ scene)\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \ \ uint32\ numWorkers()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00041\ \ \ \ \ std::string\ m\_sessionName;}
+\DoxyCodeLine{00042\ \ \ \ \ uint32\ \ \ \ \ \ m\_numWorkers;}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00045\ \ \ \ \ PH\_DEFINE\_SDL\_CLASS(\mbox{\hyperlink{classph_1_1_t_sdl_owner_class}{TSdlOwnerClass<RenderSession>}})}
+\DoxyCodeLine{00046\ \ \ \ \ \{}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ ClassType\ clazz(\textcolor{stringliteral}{"{}render-\/session"{}});}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ clazz.docName(\textcolor{stringliteral}{"{}Render\ Session"{}});}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ clazz.description(\textcolor{stringliteral}{"{}Settings\ for\ how\ to\ perform\ a\ render\ operation."{}});}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ clazz.baseOn<\mbox{\hyperlink{classph_1_1_option}{Option}}>();}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_sdl_string}{TSdlString<OwnerType>}}\ sessionName(\textcolor{stringliteral}{"{}session-\/name"{}},\ \&OwnerType::m\_sessionName);}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ sessionName.description(\textcolor{stringliteral}{"{}Name\ of\ this\ render\ session."{}});}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ sessionName.defaultTo(\textcolor{stringliteral}{"{}Render\ Session"{}});}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ sessionName.optional();}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ clazz.addField(sessionName);}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_sdl_integer}{TSdlUInt32<OwnerType>}}\ numWorkers(\textcolor{stringliteral}{"{}num-\/workers"{}},\ \&OwnerType::m\_numWorkers);}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ numWorkers.description(\textcolor{stringliteral}{"{}Number\ of\ worker\ threads\ for\ the\ rendering\ operation."{}});}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ numWorkers.defaultTo(1);}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ numWorkers.optional();}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ clazz.addField(numWorkers);}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ clazz;}
+\DoxyCodeLine{00065\ \ \ \ \ \}}
+\DoxyCodeLine{00066\ \};}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \textcolor{comment}{//\ In-\/header\ Implementation:}}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \textcolor{keyword}{inline}\ uint32\ RenderSession::numWorkers()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00071\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_numWorkers;}
+\DoxyCodeLine{00073\ \}}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+
+\end{DoxyCode}

@@ -1,0 +1,403 @@
+\doxysection{Sdl\+Native\+Data.\+ipp}
+\hypertarget{_sdl_native_data_8ipp_source}{}\label{_sdl_native_data_8ipp_source}\index{Source/SDL/Introspect/SdlNativeData.ipp@{Source/SDL/Introspect/SdlNativeData.ipp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}SDL/Introspect/SdlNativeData.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Common/assertion.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}SDL/sdl\_traits.h"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00010\ \{}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Variant>}
+\DoxyCodeLine{00013\ \textcolor{keyword}{inline}\ TSdlAccessorVariant<Variant>::TSdlAccessorVariant()}
+\DoxyCodeLine{00014\ \ \ \ \ :\ m\_variant(std::monostate\{\})}
+\DoxyCodeLine{00015\ \{\}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Variant>}
+\DoxyCodeLine{00018\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00019\ \textcolor{keyword}{inline}\ TSdlAccessorVariant<Variant>::TSdlAccessorVariant(T\ value)}
+\DoxyCodeLine{00020\ \ \ \ \ :\ m\_variant(std::move(value))}
+\DoxyCodeLine{00021\ \{\}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Variant>}
+\DoxyCodeLine{00024\ \textcolor{keyword}{inline}\ TSdlAccessorVariant<Variant>::TSdlAccessorVariant(VariantType\ variant)}
+\DoxyCodeLine{00025\ \ \ \ \ :\ m\_variant(std::move(variant))}
+\DoxyCodeLine{00026\ \{\}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Variant>}
+\DoxyCodeLine{00029\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00030\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ TSdlAccessorVariant<Variant>::has()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00031\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordflow}{return}\ std::holds\_alternative<T>(m\_variant);}
+\DoxyCodeLine{00033\ \}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Variant>}
+\DoxyCodeLine{00036\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00037\ \textcolor{keyword}{inline}\ T\&\ TSdlAccessorVariant<Variant>::get()}
+\DoxyCodeLine{00038\ \{}
+\DoxyCodeLine{00039\ \ \ \ \ PH\_ASSERT(has<T>());}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordflow}{return}\ std::get<T>(m\_variant);}
+\DoxyCodeLine{00041\ \}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Variant>}
+\DoxyCodeLine{00044\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00045\ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ T\&\ TSdlAccessorVariant<Variant>::get()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00046\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00047\ \ \ \ \ PH\_ASSERT(has<T>());}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordflow}{return}\ std::get<T>(m\_variant);}
+\DoxyCodeLine{00049\ \}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Variant>}
+\DoxyCodeLine{00052\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00053\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ TSdlAccessorVariant<Variant>::set(T\ value)}
+\DoxyCodeLine{00054\ \{}
+\DoxyCodeLine{00055\ \ \ \ \ std::get<T>(m\_variant)\ =\ std::move(value);}
+\DoxyCodeLine{00056\ \}}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Variant>}
+\DoxyCodeLine{00059\ \textcolor{keyword}{inline}\ std::size\_t\ TSdlAccessorVariant<Variant>::index()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00060\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_variant.index();}
+\DoxyCodeLine{00062\ \}}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Variant>}
+\DoxyCodeLine{00065\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ TSdlAccessorVariant<Variant>::isEmpty()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00066\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordflow}{return}\ has<std::monostate>();}
+\DoxyCodeLine{00068\ \}}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Variant>}
+\DoxyCodeLine{00071\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ TSdlAccessorVariant<Variant>::getVariant()}
+\DoxyCodeLine{00072\ -\/>\ VariantType\&}
+\DoxyCodeLine{00073\ \{}
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_variant;}
+\DoxyCodeLine{00075\ \}}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Variant>}
+\DoxyCodeLine{00078\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ TSdlAccessorVariant<Variant>::getVariant()\ const}
+\DoxyCodeLine{00079\ -\/>\ const\ VariantType\&}
+\DoxyCodeLine{00080\ \{}
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_variant;}
+\DoxyCodeLine{00082\ \}}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ ElementType>}
+\DoxyCodeLine{00085\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_sdl_native_data}{SdlNativeData}}\ SdlNativeData::fromSingleElement(}
+\DoxyCodeLine{00086\ \ \ \ \ ElementType*\ \textcolor{keyword}{const}\ elementPtr,}
+\DoxyCodeLine{00087\ \ \ \ \ \mbox{\hyperlink{namespaceph_ace69f5c0a73308d2c88c512f8b70016e}{ESdlDataFormat}}\ elementContainer,}
+\DoxyCodeLine{00088\ \ \ \ \ \mbox{\hyperlink{namespaceph_ada33bb2d4bc26b3ec1da2acb348ef4eb}{ESdlDataType}}\ elementType,}
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ canSet,}
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ canDirectAccess)}
+\DoxyCodeLine{00091\ \{}
+\DoxyCodeLine{00092\ \ \ \ \ \mbox{\hyperlink{classph_1_1_sdl_native_data}{SdlNativeData}}\ nativeData;}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{comment}{//\ We\ do\ not\ capture\ element\ value\ directly\ to\ save\ memory-\/-\/value\ needs\ to\ be\ obtained\ from}}
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{comment}{//\ pointer,\ so\ any\ data\ modifications\ can\ be\ observed.}}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keywordflow}{if}(elementPtr)}
+\DoxyCodeLine{00098\ \ \ \ \ \{}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ nativeData.m\_elementGetter\ =}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ [elementPtr](std::size\_t\ \textcolor{comment}{/*\ elementIdx\ */})\ -\/>\ \mbox{\hyperlink{classph_1_1_t_sdl_accessor_variant}{SdlGetterVariant}}}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ permissiveElementGetter(elementPtr);}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00104\ \ \ \ \ \}}
+\DoxyCodeLine{00105\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00106\ \ \ \ \ \{}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ nativeData.m\_elementGetter\ =}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ [elementPtr](std::size\_t\ \textcolor{comment}{/*\ elementIdx\ */})\ -\/>\ \mbox{\hyperlink{classph_1_1_t_sdl_accessor_variant}{SdlGetterVariant}}}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::monostate\{\};}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00112\ \ \ \ \ \}}
+\DoxyCodeLine{00113\ \ \ \ \ }
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{keywordflow}{if}(canSet)}
+\DoxyCodeLine{00115\ \ \ \ \ \{}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(elementPtr)}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ nativeData.m\_elementSetter\ =}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ [elementPtr](std::size\_t\ \textcolor{comment}{/*\ elementIdx\ */},\ \mbox{\hyperlink{classph_1_1_t_sdl_accessor_variant}{SdlSetterVariant}}\ input)\ -\/>\ \textcolor{keywordtype}{bool}}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ permissiveElementSetter(input,\ elementPtr);}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ nativeData.m\_elementSetter\ =}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ [elementPtr](std::size\_t\ \textcolor{comment}{/*\ elementIdx\ */},\ \mbox{\hyperlink{classph_1_1_t_sdl_accessor_variant}{SdlSetterVariant}}\ input)\ -\/>\ \textcolor{keywordtype}{bool}}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00132\ \ \ \ \ \}}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00134\ \ \ \ \ \textcolor{keywordflow}{if}(canDirectAccess)}
+\DoxyCodeLine{00135\ \ \ \ \ \{}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ nativeData.m\_directPtr\ =\ elementPtr;}
+\DoxyCodeLine{00137\ \ \ \ \ \}}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00139\ \ \ \ \ nativeData.\mbox{\hyperlink{classph_1_1_sdl_native_data_a31819f46d6bd68e7854be1efa3e1adfa}{numElements}}\ =\ elementPtr\ ?\ 1\ :\ 0;}
+\DoxyCodeLine{00140\ \ \ \ \ nativeData.\mbox{\hyperlink{classph_1_1_sdl_native_data_ac4ae3347b42cda22281f162b50afd205}{elementContainer}}\ =\ elementContainer;}
+\DoxyCodeLine{00141\ \ \ \ \ nativeData.\mbox{\hyperlink{classph_1_1_sdl_native_data_a82fcba9016c044594965ced726e61d3e}{elementType}}\ =\ elementType;}
+\DoxyCodeLine{00142\ \ \ \ \ \textcolor{keywordflow}{return}\ nativeData;}
+\DoxyCodeLine{00143\ \}}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00145\ \textcolor{keyword}{inline}\ SdlNativeData::SdlNativeData()}
+\DoxyCodeLine{00146\ \ \ \ \ :\ \mbox{\hyperlink{classph_1_1_sdl_native_data}{SdlNativeData}}(}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ [](std::size\_t\ \textcolor{comment}{/*\ elementIdx\ */})\ -\/>\ \mbox{\hyperlink{classph_1_1_t_sdl_accessor_variant}{SdlGetterVariant}}}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::monostate\{\};}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \})}
+\DoxyCodeLine{00151\ \{\}}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00153\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_sdl_native_data_acbd610e7d97131c539827ae78cc74578}{SdlNativeData::SdlNativeData}}(\mbox{\hyperlink{classph_1_1function__detail_1_1_t_function}{ElementGetter}}\ getter)}
+\DoxyCodeLine{00154\ \ \ \ \ :\ \mbox{\hyperlink{classph_1_1_sdl_native_data}{SdlNativeData}}(}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ std::move(getter),}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ [](std::size\_t\ \textcolor{comment}{/*\ elementIdx\ */},\ \mbox{\hyperlink{classph_1_1_t_sdl_accessor_variant}{SdlSetterVariant}}\ \textcolor{comment}{/*\ input\ */})\ -\/>\ bool}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \})}
+\DoxyCodeLine{00160\ \{\}}
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00162\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_sdl_native_data_acbd610e7d97131c539827ae78cc74578}{SdlNativeData::SdlNativeData}}(\mbox{\hyperlink{classph_1_1function__detail_1_1_t_function}{ElementGetter}}\ getter,\ \mbox{\hyperlink{classph_1_1function__detail_1_1_t_function}{ElementSetter}}\ setter)}
+\DoxyCodeLine{00163\ \ \ \ \ :\ \mbox{\hyperlink{classph_1_1_sdl_native_data}{SdlNativeData}}(}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ std::move(getter),\ }
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ std::move(setter),}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ nullptr)}
+\DoxyCodeLine{00167\ \{\}}
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00169\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_sdl_native_data_acbd610e7d97131c539827ae78cc74578}{SdlNativeData::SdlNativeData}}(}
+\DoxyCodeLine{00170\ \ \ \ \ \mbox{\hyperlink{classph_1_1function__detail_1_1_t_function}{ElementGetter}}\ getter,}
+\DoxyCodeLine{00171\ \ \ \ \ \mbox{\hyperlink{classph_1_1function__detail_1_1_t_function}{ElementSetter}}\ setter,}
+\DoxyCodeLine{00172\ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_any_ptr}{AnyNonConstPtr}}\ directPtr)}
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00174\ \ \ \ \ :\ m\_elementGetter(std::move(getter))}
+\DoxyCodeLine{00175\ \ \ \ \ ,\ m\_elementSetter(std::move(setter))}
+\DoxyCodeLine{00176\ \ \ \ \ ,\ m\_directPtr(directPtr)}
+\DoxyCodeLine{00177\ \{\}}
+\DoxyCodeLine{00178\ }
+\DoxyCodeLine{00179\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>\ \textcolor{keyword}{requires}\ std::is\_arithmetic\_v<T>\ ||\ std::is\_enum\_v<T>}
+\DoxyCodeLine{00180\ \textcolor{keyword}{inline}\ std::optional<T>\ SdlNativeData::get(\textcolor{keyword}{const}\ std::size\_t\ elementIdx)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00181\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00182\ \ \ \ \ PH\_ASSERT(m\_elementGetter);}
+\DoxyCodeLine{00183\ }
+\DoxyCodeLine{00184\ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_sdl_accessor_variant}{SdlGetterVariant}}\ output\ =\ m\_elementGetter(elementIdx);}
+\DoxyCodeLine{00185\ \ \ \ \ \textcolor{keywordflow}{switch}(output.index())}
+\DoxyCodeLine{00186\ \ \ \ \ \{}
+\DoxyCodeLine{00187\ \ \ \ \ \textcolor{keywordflow}{case}\ 1:\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(output.get<int64>());}
+\DoxyCodeLine{00188\ \ \ \ \ \textcolor{keywordflow}{case}\ 2:\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(output.get<float64>());}
+\DoxyCodeLine{00189\ \ \ \ \ \textcolor{keywordflow}{default}:\ \textcolor{keywordflow}{return}\ std::nullopt;}
+\DoxyCodeLine{00190\ \ \ \ \ \}}
+\DoxyCodeLine{00191\ \}}
+\DoxyCodeLine{00192\ }
+\DoxyCodeLine{00193\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>\ \textcolor{keyword}{requires}\ std::is\_pointer\_v<T>}
+\DoxyCodeLine{00194\ \textcolor{keyword}{inline}\ T\ SdlNativeData::get(\textcolor{keyword}{const}\ std::size\_t\ elementIdx)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00195\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00196\ \ \ \ \ PH\_ASSERT(m\_elementGetter);}
+\DoxyCodeLine{00197\ }
+\DoxyCodeLine{00198\ \ \ \ \ \textcolor{keyword}{using\ }PtrRemovedT\ =\ std::remove\_pointer\_t<T>;}
+\DoxyCodeLine{00199\ }
+\DoxyCodeLine{00200\ \ \ \ \ SdlGetterVariant\ output\ =\ m\_elementGetter(elementIdx);}
+\DoxyCodeLine{00201\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(CSdlInstance<PtrRemovedT>)}
+\DoxyCodeLine{00202\ \ \ \ \ \{}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ output.has<SdlConstInstance>()}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \ \ \ \ ?\ output.get<SdlConstInstance>().get<PtrRemovedT>()\ :\ nullptr;}
+\DoxyCodeLine{00205\ \ \ \ \ \}}
+\DoxyCodeLine{00206\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00207\ \ \ \ \ \{}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ output.has<\mbox{\hyperlink{namespaceph_a14bed083c6df9bb5fc25512fdf352484}{AnyConstPtr}}>()}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \ \ \ \ ?\ output.get<\mbox{\hyperlink{namespaceph_a14bed083c6df9bb5fc25512fdf352484}{AnyConstPtr}}>().get<PtrRemovedT>()\ :\ nullptr;}
+\DoxyCodeLine{00210\ \ \ \ \ \}}
+\DoxyCodeLine{00211\ \}}
+\DoxyCodeLine{00212\ }
+\DoxyCodeLine{00213\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>\ \textcolor{keyword}{requires}\ std::is\_arithmetic\_v<T>\ ||\ std::is\_enum\_v<T>}
+\DoxyCodeLine{00214\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ SdlNativeData::set(\textcolor{keyword}{const}\ std::size\_t\ elementIdx,\ \textcolor{keyword}{const}\ T\ value)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00215\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00216\ \ \ \ \ PH\_ASSERT(m\_elementSetter);}
+\DoxyCodeLine{00217\ }
+\DoxyCodeLine{00218\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(std::is\_integral\_v<T>\ ||\ std::is\_enum\_v<T>)}
+\DoxyCodeLine{00219\ \ \ \ \ \{}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_elementSetter(elementIdx,\ \textcolor{keyword}{static\_cast<}int64\textcolor{keyword}{>}(value));}
+\DoxyCodeLine{00221\ \ \ \ \ \}}
+\DoxyCodeLine{00222\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(std::is\_floating\_point\_v<T>)}
+\DoxyCodeLine{00223\ \ \ \ \ \{}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_elementSetter(elementIdx,\ \textcolor{keyword}{static\_cast<}float64\textcolor{keyword}{>}(value));}
+\DoxyCodeLine{00225\ \ \ \ \ \}}
+\DoxyCodeLine{00226\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00227\ \ \ \ \ \{}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00229\ \ \ \ \ \}}
+\DoxyCodeLine{00230\ \}}
+\DoxyCodeLine{00231\ }
+\DoxyCodeLine{00232\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>\ \textcolor{keyword}{requires}\ std::is\_pointer\_v<T>}
+\DoxyCodeLine{00233\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ SdlNativeData::set(\textcolor{keyword}{const}\ std::size\_t\ elementIdx,\ T\ \textcolor{keyword}{const}\ ptr)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00234\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00235\ \ \ \ \ PH\_ASSERT(m\_elementSetter);}
+\DoxyCodeLine{00236\ }
+\DoxyCodeLine{00237\ \ \ \ \ \textcolor{keyword}{using\ }PtrRemovedT\ =\ std::remove\_pointer\_t<T>;}
+\DoxyCodeLine{00238\ }
+\DoxyCodeLine{00239\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(CSdlInstance<PtrRemovedT>)}
+\DoxyCodeLine{00240\ \ \ \ \ \{}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_elementSetter(elementIdx,\ SdlNonConstInstance(ptr));}
+\DoxyCodeLine{00242\ \ \ \ \ \}}
+\DoxyCodeLine{00243\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00244\ \ \ \ \ \{}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_elementSetter(elementIdx,\ \mbox{\hyperlink{namespaceph_a76393562caa22c28431e3d8da5706a2b}{AnyNonConstPtr}}(ptr));}
+\DoxyCodeLine{00246\ \ \ \ \ \}}
+\DoxyCodeLine{00247\ \}}
+\DoxyCodeLine{00248\ }
+\DoxyCodeLine{00249\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>\ \textcolor{keyword}{requires}\ std::is\_null\_pointer\_v<T>}
+\DoxyCodeLine{00250\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ SdlNativeData::set(std::size\_t\ elementIdx,\ T\ \textcolor{comment}{/*\ nullPtr\ */})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00251\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00252\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_elementSetter(elementIdx,\ std::monostate\{\});}
+\DoxyCodeLine{00253\ \}}
+\DoxyCodeLine{00254\ }
+\DoxyCodeLine{00255\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00256\ \textcolor{keyword}{inline}\ T*\ \mbox{\hyperlink{classph_1_1_sdl_native_data_a4c509e742a3e42ee42ae9dca7bd2b3e1}{SdlNativeData::directAccess}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00257\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00258\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_directPtr.get<T>();}
+\DoxyCodeLine{00259\ \}}
+\DoxyCodeLine{00260\ }
+\DoxyCodeLine{00261\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ SdlNativeData::setDirectAccessor(\mbox{\hyperlink{classph_1_1_t_any_ptr}{AnyNonConstPtr}}\ accessor)}
+\DoxyCodeLine{00262\ \{}
+\DoxyCodeLine{00263\ \ \ \ \ m\_directPtr\ =\ accessor;}
+\DoxyCodeLine{00264\ \}}
+\DoxyCodeLine{00265\ }
+\DoxyCodeLine{00266\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ SdlNativeData::isIntegerElement()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00267\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00268\ \ \ \ \ \textcolor{keywordflow}{switch}(\mbox{\hyperlink{classph_1_1_sdl_native_data_a82fcba9016c044594965ced726e61d3e}{elementType}})}
+\DoxyCodeLine{00269\ \ \ \ \ \{}
+\DoxyCodeLine{00270\ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespaceph_ada33bb2d4bc26b3ec1da2acb348ef4eba7d839b2c12bfd40ac121b4cc9e81c539}{ESdlDataType::Int8}}:}
+\DoxyCodeLine{00271\ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespaceph_ada33bb2d4bc26b3ec1da2acb348ef4ebab31df9c476d20e85ff898121efe11b5a}{ESdlDataType::UInt8}}:}
+\DoxyCodeLine{00272\ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespaceph_ada33bb2d4bc26b3ec1da2acb348ef4eba39bc2ae44b184207f560ff8619823208}{ESdlDataType::Int16}}:}
+\DoxyCodeLine{00273\ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespaceph_ada33bb2d4bc26b3ec1da2acb348ef4eba8bd950a9d7779b83f5c30046c9aaf1cf}{ESdlDataType::UInt16}}:}
+\DoxyCodeLine{00274\ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespaceph_ada33bb2d4bc26b3ec1da2acb348ef4ebac06129f6e6e15c09328365e553f1dc31}{ESdlDataType::Int32}}:}
+\DoxyCodeLine{00275\ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespaceph_ada33bb2d4bc26b3ec1da2acb348ef4ebae7956ed7be1c5025a27ed3cb42a396bd}{ESdlDataType::UInt32}}:}
+\DoxyCodeLine{00276\ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespaceph_ada33bb2d4bc26b3ec1da2acb348ef4ebafbde23b11d7e59af7828e81144c8b487}{ESdlDataType::Int64}}:}
+\DoxyCodeLine{00277\ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespaceph_ada33bb2d4bc26b3ec1da2acb348ef4ebaaf71234725f0470ccf993e263a8b820a}{ESdlDataType::UInt64}}:}
+\DoxyCodeLine{00278\ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespaceph_ada33bb2d4bc26b3ec1da2acb348ef4ebac26f15e86e3de4c398a8273272aba034}{ESdlDataType::Bool}}:}
+\DoxyCodeLine{00279\ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespaceph_ada33bb2d4bc26b3ec1da2acb348ef4ebacf20423ed48998082c20099488a0917c}{ESdlDataType::Enum}}:}
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00281\ }
+\DoxyCodeLine{00282\ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00284\ \ \ \ \ \}}
+\DoxyCodeLine{00285\ \}}
+\DoxyCodeLine{00286\ }
+\DoxyCodeLine{00287\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ SdlNativeData::isFloatingPointElement()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00288\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00289\ \ \ \ \ \textcolor{keywordflow}{switch}(\mbox{\hyperlink{classph_1_1_sdl_native_data_a82fcba9016c044594965ced726e61d3e}{elementType}})}
+\DoxyCodeLine{00290\ \ \ \ \ \{}
+\DoxyCodeLine{00291\ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespaceph_ada33bb2d4bc26b3ec1da2acb348ef4eba166495adc0d0f53bee6baecc577f5204}{ESdlDataType::Float32}}:}
+\DoxyCodeLine{00292\ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespaceph_ada33bb2d4bc26b3ec1da2acb348ef4ebad2b556d8a8f5c8ac323f51a4b82e79a0}{ESdlDataType::Float64}}:}
+\DoxyCodeLine{00293\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00294\ }
+\DoxyCodeLine{00295\ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00296\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00297\ \ \ \ \ \}}
+\DoxyCodeLine{00298\ \}}
+\DoxyCodeLine{00299\ }
+\DoxyCodeLine{00300\ \textcolor{keyword}{inline}\ SdlNativeData::operator\ bool\ ()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00301\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00302\ \ \ \ \ \textcolor{keywordflow}{return}\ numElements\ >\ 0;}
+\DoxyCodeLine{00303\ \}}
+\DoxyCodeLine{00304\ }
+\DoxyCodeLine{00305\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ ElementType>}
+\DoxyCodeLine{00306\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1_sdl_native_data_a632f90a9950791b7c25f89293d3822d5}{SdlNativeData::permissiveElementGetter}}(ElementType*\ \textcolor{keyword}{const}\ elementPtr)}
+\DoxyCodeLine{00307\ -\/>\ \mbox{\hyperlink{classph_1_1_t_sdl_accessor_variant}{SdlGetterVariant}}}
+\DoxyCodeLine{00308\ \{}
+\DoxyCodeLine{00309\ \ \ \ \ PH\_ASSERT(elementPtr);}
+\DoxyCodeLine{00310\ }
+\DoxyCodeLine{00311\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(std::is\_arithmetic\_v<ElementType>\ ||\ std::is\_enum\_v<ElementType>)}
+\DoxyCodeLine{00312\ \ \ \ \ \{}
+\DoxyCodeLine{00313\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ elementValue\ =\ *elementPtr;}
+\DoxyCodeLine{00314\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(std::is\_integral\_v<ElementType>\ ||\ std::is\_enum\_v<ElementType>)}
+\DoxyCodeLine{00315\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00316\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \`{}int64`\ may\ not\ be\ able\ to\ hold\ all\ values\ (e.g.,\ \`{}uint64`\ or\ large\ enum\ types),\ }}
+\DoxyCodeLine{00317\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ we\ \`{}static\_cast`\ anyway\ since\ user\ should\ instead\ use\ direct\ access\ if\ this\ from\ of}}
+\DoxyCodeLine{00318\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ data\ exchange\ is\ unsatisfactory}}
+\DoxyCodeLine{00319\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}int64\textcolor{keyword}{>}(elementValue);}
+\DoxyCodeLine{00320\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00321\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(std::is\_floating\_point\_v<ElementType>)}
+\DoxyCodeLine{00322\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00323\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \`{}float64`\ should\ be\ able\ to\ hold\ any\ floating\ point\ value}}
+\DoxyCodeLine{00324\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}float64\textcolor{keyword}{>}(elementValue);}
+\DoxyCodeLine{00325\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00326\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00327\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00328\ \ \ \ \ \ \ \ \ \ \ \ \ PH\_STATIC\_ASSERT\_DEPENDENT\_FALSE(ElementType,}
+\DoxyCodeLine{00329\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Unsupported\ element\ value\ type."{}});}
+\DoxyCodeLine{00330\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00331\ \ \ \ \ \}}
+\DoxyCodeLine{00332\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(\mbox{\hyperlink{conceptph_1_1_c_sdl_instance}{CSdlInstance<ElementType>}})}
+\DoxyCodeLine{00333\ \ \ \ \ \{}
+\DoxyCodeLine{00334\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1_t_sdl_any_instance}{SdlConstInstance}}(elementPtr);}
+\DoxyCodeLine{00335\ \ \ \ \ \}}
+\DoxyCodeLine{00336\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00337\ \ \ \ \ \{}
+\DoxyCodeLine{00338\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespaceph_a14bed083c6df9bb5fc25512fdf352484}{AnyConstPtr}}(elementPtr);}
+\DoxyCodeLine{00339\ \ \ \ \ \}}
+\DoxyCodeLine{00340\ \}}
+\DoxyCodeLine{00341\ }
+\DoxyCodeLine{00342\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ ElementType>}
+\DoxyCodeLine{00343\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1_sdl_native_data_a035296228dfe6619da40577b68ecc3f0}{SdlNativeData::permissiveElementSetter}}(\mbox{\hyperlink{classph_1_1_t_sdl_accessor_variant}{SdlSetterVariant}}\ input,\ ElementType*\ \textcolor{keyword}{const}\ out\_elementPtr)}
+\DoxyCodeLine{00344\ -\/>\ \textcolor{keywordtype}{bool}}
+\DoxyCodeLine{00345\ \{}
+\DoxyCodeLine{00346\ \ \ \ \ PH\_ASSERT(out\_elementPtr);}
+\DoxyCodeLine{00347\ }
+\DoxyCodeLine{00348\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(std::is\_arithmetic\_v<ElementType>\ ||\ std::is\_enum\_v<ElementType>)}
+\DoxyCodeLine{00349\ \ \ \ \ \{}
+\DoxyCodeLine{00350\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \`{}ElementType`\ may\ not\ be\ able\ to\ hold\ all\ values\ passed\ in\ via\ \`{}input`\ (e.g.,\ \`{}ElementType`}}
+\DoxyCodeLine{00351\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ being\ \`{}char`),\ we\ \`{}static\_cast`\ anyway\ since\ user\ should\ instead\ use\ direct\ access\ if\ this\ }}
+\DoxyCodeLine{00352\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ from\ of\ data\ exchange\ is\ unsatisfactory}}
+\DoxyCodeLine{00353\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}(input.index())}
+\DoxyCodeLine{00354\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00355\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 1:\ }
+\DoxyCodeLine{00356\ \ \ \ \ \ \ \ \ \ \ \ \ *out\_elementPtr\ =\ \textcolor{keyword}{static\_cast<}ElementType\textcolor{keyword}{>}(input.get<int64>());}
+\DoxyCodeLine{00357\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00358\ }
+\DoxyCodeLine{00359\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 2:\ }
+\DoxyCodeLine{00360\ \ \ \ \ \ \ \ \ \ \ \ \ *out\_elementPtr\ =\ \textcolor{keyword}{static\_cast<}ElementType\textcolor{keyword}{>}(input.get<float64>());}
+\DoxyCodeLine{00361\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00362\ }
+\DoxyCodeLine{00363\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00364\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00365\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00366\ \ \ \ \ \}}
+\DoxyCodeLine{00367\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(\mbox{\hyperlink{conceptph_1_1_c_sdl_instance}{CSdlInstance<ElementType>}})}
+\DoxyCodeLine{00368\ \ \ \ \ \{}
+\DoxyCodeLine{00369\ \ \ \ \ \ \ \ \ ElementType*\ \textcolor{keyword}{const}\ inputPtr\ =\ input.has<\mbox{\hyperlink{classph_1_1_t_sdl_any_instance}{SdlNonConstInstance}}>()}
+\DoxyCodeLine{00370\ \ \ \ \ \ \ \ \ \ \ \ \ ?\ input.get<\mbox{\hyperlink{classph_1_1_t_sdl_any_instance}{SdlNonConstInstance}}>().get<ElementType>()\ :\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00371\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(inputPtr)}
+\DoxyCodeLine{00372\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00373\ \ \ \ \ \ \ \ \ \ \ \ \ *out\_elementPtr\ =\ *inputPtr;}
+\DoxyCodeLine{00374\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00375\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00376\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00377\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00378\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00379\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00380\ \ \ \ \ \}}
+\DoxyCodeLine{00381\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00382\ \ \ \ \ \{}
+\DoxyCodeLine{00383\ \ \ \ \ \ \ \ \ ElementType*\ \textcolor{keyword}{const}\ inputPtr\ =\ input.has<\mbox{\hyperlink{classph_1_1_t_any_ptr}{AnyNonConstPtr}}>()}
+\DoxyCodeLine{00384\ \ \ \ \ \ \ \ \ \ \ \ \ ?\ input.get<\mbox{\hyperlink{classph_1_1_t_any_ptr}{AnyNonConstPtr}}>().get<ElementType>()\ :\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00385\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(inputPtr)}
+\DoxyCodeLine{00386\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00387\ \ \ \ \ \ \ \ \ \ \ \ \ *out\_elementPtr\ =\ *inputPtr;}
+\DoxyCodeLine{00388\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00389\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00390\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00391\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00392\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00393\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00394\ \ \ \ \ \}}
+\DoxyCodeLine{00395\ \}}
+\DoxyCodeLine{00396\ }
+\DoxyCodeLine{00397\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+
+\end{DoxyCode}

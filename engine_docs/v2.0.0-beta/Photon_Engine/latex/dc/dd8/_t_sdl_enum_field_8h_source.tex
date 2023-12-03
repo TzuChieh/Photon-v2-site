@@ -1,0 +1,125 @@
+\doxysection{TSdl\+Enum\+Field.\+h}
+\hypertarget{_t_sdl_enum_field_8h_source}{}\label{_t_sdl_enum_field_8h_source}\index{Source/SDL/Introspect/TSdlEnumField.h@{Source/SDL/Introspect/TSdlEnumField.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}SDL/Introspect/TSdlValue.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}SDL/Introspect/TSdlOptionalValue.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}Common/assertion.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{sdl__helpers_8h}{SDL/sdl\_helpers.h}}"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}SDL/Introspect/TSdlEnum.h"{}}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <type\_traits>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00014\ \{}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00017\ \textcolor{comment}{@note\ The\ definition\ for\ SDL\ enum,\ i.e.,\ the\ definition\ body\ of\ \`{}PH\_DEFINE\_SDL\_ENUM()`\ must}}
+\DoxyCodeLine{00018\ \textcolor{comment}{present\ before\ the\ use\ of\ the\ enum\ field.}}
+\DoxyCodeLine{00019\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00020\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Owner,\ \textcolor{keyword}{typename}\ EnumType,\ \textcolor{keyword}{typename}\ SdlValueType\ =\ TSdlValue<EnumType,\ Owner>>}
+\DoxyCodeLine{00021\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_t_sdl_enum_field}{TSdlEnumField}}\ :\ \textcolor{keyword}{public}\ SdlValueType}
+\DoxyCodeLine{00022\ \{}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_base\_of\_v<TSdlAbstractValue<EnumType,\ Owner>,\ SdlValueType>,}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}SdlValueType\ should\ be\ a\ subclass\ of\ TSdlAbstractValue."{}});}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_enum\_v<EnumType>,}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}EnumType\ must\ be\ a\ C++\ enum."{}});}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ ValueType>}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classph_1_1_t_sdl_enum_field}{TSdlEnumField}}(ValueType\ Owner::*\ \textcolor{keyword}{const}\ valuePtr)}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classph_1_1_t_sdl_enum_field}{TSdlEnumField}}(}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_sdl_enum}{TSdlEnum<EnumType>::getSdlEnum}}()-\/>getName(),\ }
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ valuePtr)}
+\DoxyCodeLine{00035\ \ \ \ \ \{\}}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ ValueType>}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_t_sdl_enum_field}{TSdlEnumField}}(std::string\ valueName,\ ValueType\ Owner::*\ \textcolor{keyword}{const}\ valuePtr)}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ :\ SdlValueType(}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}enum"{}},\ }
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ std::move(valueName),\ }
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}E/"{}}\ +\ \mbox{\hyperlink{classph_1_1_t_sdl_enum}{TSdlEnum<EnumType>::getSdlEnum}}()-\/>getName(),}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ valuePtr)}
+\DoxyCodeLine{00044\ \ \ \ \ \{\}}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keyword}{inline}\ std::string\ valueAsString(\textcolor{keyword}{const}\ EnumType\&\ value)\textcolor{keyword}{\ const\ override}}
+\DoxyCodeLine{00047\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::string(\mbox{\hyperlink{classph_1_1_t_sdl_enum}{TSdlEnum<EnumType>}}()[value]);}
+\DoxyCodeLine{00049\ \ \ \ \ \}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_sdl_native_data}{SdlNativeData}}\ \mbox{\hyperlink{classph_1_1_t_sdl_enum_field_af5d1a8e3c6242806f8ecc81b2851fbf7}{ownedNativeData}}(Owner\&\ owner)\textcolor{keyword}{\ const\ override}}
+\DoxyCodeLine{00052\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ EnumType*\ \textcolor{keyword}{const}\ enumPtr\ =\ this-\/>\mbox{\hyperlink{classph_1_1_t_sdl_value_a706565be62e0104124f619c27d9f924a}{getValue}}(owner);}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(std::is\_base\_of\_v<TSdlOptionalValue<EnumType,\ Owner>,\ SdlValueType>)}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ data\ =\ \mbox{\hyperlink{classph_1_1_sdl_native_data}{SdlNativeData}}(}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ [\&optEnum\ =\ this-\/>valueRef(owner)](std::size\_t\ \textcolor{comment}{/*\ elementIdx\ */})\ -\/>\ \mbox{\hyperlink{classph_1_1_t_sdl_accessor_variant}{SdlGetterVariant}}}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ optEnum}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ?\ \mbox{\hyperlink{classph_1_1_sdl_native_data_a632f90a9950791b7c25f89293d3822d5}{SdlNativeData::permissiveElementGetter}}(\&(*optEnum))}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ std::monostate\{\};}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \},}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ [\&optEnum\ =\ this-\/>valueRef(owner)](std::size\_t\ \textcolor{comment}{/*\ elementIdx\ */},\ \mbox{\hyperlink{classph_1_1_t_sdl_accessor_variant}{SdlSetterVariant}}\ input)\ -\/>\ \textcolor{keywordtype}{bool}}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(input.isEmpty())}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ optEnum\ =\ std::nullopt;}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ optEnum\ =\ EnumType\{\};}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1_sdl_native_data_a035296228dfe6619da40577b68ecc3f0}{SdlNativeData::permissiveElementSetter}}(input,\ \&(*optEnum));}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \},}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceph_a76393562caa22c28431e3d8da5706a2b}{AnyNonConstPtr}}(enumPtr));}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ data.\mbox{\hyperlink{classph_1_1_sdl_native_data_a31819f46d6bd68e7854be1efa3e1adfa}{numElements}}\ =\ enumPtr\ ?\ 1\ :\ 0;}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ data.elementContainer\ =\ \mbox{\hyperlink{namespaceph_ace69f5c0a73308d2c88c512f8b70016ea66ba162102bbf6ae31b522aec561735e}{ESdlDataFormat::Single}};}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ data.elementType\ =\ \mbox{\hyperlink{namespaceph_ada33bb2d4bc26b3ec1da2acb348ef4ebacf20423ed48998082c20099488a0917c}{ESdlDataType::Enum}};}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ data.isNullClearable\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ data;}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1_sdl_native_data_ae95e05b58c7e3ea8eddd69dcee0b6bc4}{SdlNativeData::fromSingleElement}}(}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ enumPtr,\ \mbox{\hyperlink{namespaceph_ace69f5c0a73308d2c88c512f8b70016ea66ba162102bbf6ae31b522aec561735e}{ESdlDataFormat::Single}},\ \mbox{\hyperlink{namespaceph_ada33bb2d4bc26b3ec1da2acb348ef4ebacf20423ed48998082c20099488a0917c}{ESdlDataType::Enum}},\ \textcolor{keyword}{true},\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00089\ \ \ \ \ \}}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_sdl_enum_field_a8eb51634bf5d2a035bc94b97578376a6}{loadFromSdl}}(}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ Owner\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ owner,}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_sdl_input_clause}{SdlInputClause}}\&\ \ clause,}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_sdl_input_context}{SdlInputContext}}\&\ ctx)\textcolor{keyword}{\ const\ override}}
+\DoxyCodeLine{00096\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ this-\/>\mbox{\hyperlink{classph_1_1_t_sdl_value_a10a624c8ee21919ff7d95b5b67ac0746}{setValue}}(owner,\ \mbox{\hyperlink{classph_1_1_t_sdl_enum}{TSdlEnum<EnumType>}}()[clause.\mbox{\hyperlink{classph_1_1_sdl_input_clause_a3a57fdbbab5543025ef072715c949c65}{value}}]);}
+\DoxyCodeLine{00098\ \ \ \ \ \}}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_sdl_enum_field_acfe7b08900461b64da77d5709d3ff374}{saveToSdl}}(}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Owner\&\ \ \ \ \ \ \ \ \ \ \ \ owner,}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_sdl_output_clause}{SdlOutputClause}}\&\ \ \ \ \ \ \ \ out\_clause,}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_sdl_output_context}{SdlOutputContext}}\&\ ctx)\textcolor{keyword}{\ const\ override}}
+\DoxyCodeLine{00104\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\textcolor{keyword}{const}\ EnumType*\ enumValue\ =\ this-\/>\mbox{\hyperlink{classph_1_1_t_sdl_value_a2980df26bdcefcafa2a7b235db2adf58}{getConstValue}}(owner);\ enumValue)}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ out\_clause.\mbox{\hyperlink{classph_1_1_sdl_output_clause_a27625fd790a2cb49f0cfd9c113ddb5ea}{value}}\ =\ \mbox{\hyperlink{classph_1_1_t_sdl_enum}{TSdlEnum<EnumType>}}()[*enumValue];}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ out\_clause.\mbox{\hyperlink{classph_1_1_sdl_output_clause_a8bd6ce2a952288003b3b7d085f375cb4}{isEmpty}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00113\ \ \ \ \ \}}
+\DoxyCodeLine{00114\ \};}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00116\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Owner,\ \textcolor{keyword}{typename}\ EnumType>}
+\DoxyCodeLine{00117\ \textcolor{keyword}{using\ }TSdlOptionalEnumField\ =\ TSdlEnumField<Owner,\ EnumType,\ TSdlOptionalValue<EnumType,\ Owner>>;}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+
+\end{DoxyCode}

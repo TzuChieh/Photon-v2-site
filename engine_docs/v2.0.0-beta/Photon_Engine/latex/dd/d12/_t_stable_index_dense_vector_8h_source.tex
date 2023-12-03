@@ -1,0 +1,246 @@
+\doxysection{TStable\+Index\+Dense\+Vector.\+h}
+\hypertarget{_t_stable_index_dense_vector_8h_source}{}\label{_t_stable_index_dense_vector_8h_source}\index{Source/Utility/TStableIndexDenseVector.h@{Source/Utility/TStableIndexDenseVector.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Common/primitive\_type.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Common/assertion.h"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <cstddef>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <optional>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <limits>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <concepts>}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00014\ \{}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00033\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{int}egral\ SIndex\ =\ std::\textcolor{keywordtype}{size\_t}>}
+\DoxyCodeLine{00034\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_t_stable_index_dense_vector}{TStableIndexDenseVector}}\ final}
+\DoxyCodeLine{00035\ \{}
+\DoxyCodeLine{00036\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{static}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1_t_stable_index_dense_vector_ac692b656ce665dc3bfaa941811b43ce5}{INVALID\_STABLE\_INDEX}}\ =\ std::numeric\_limits<SIndex>::max();}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00045\ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_stable_index_dense_vector_a2d2e1aca01d1661f9ad2d682417381eb}{TStableIndexDenseVector}}();}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classph_1_1_t_stable_index_dense_vector_a2d2e1aca01d1661f9ad2d682417381eb}{TStableIndexDenseVector}}(std::size\_t\ initialCapacity);}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ U>}
+\DoxyCodeLine{00054\ \ \ \ \ SIndex\ \mbox{\hyperlink{classph_1_1_t_stable_index_dense_vector_a8b32deaf8ab647802847fed8affc8c92}{add}}(U\&\&\ \textcolor{keywordtype}{object});}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_t_stable_index_dense_vector_a5c03438dbfa96ae7effb7dffaa10e984}{remove}}(SIndex\ stableIndex);}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_stable_index_dense_vector_a8acf901b2bde3c6b638c577ab2c02c97}{removeAll}}();}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00068\ \ \ \ \ std::size\_t\ \mbox{\hyperlink{classph_1_1_t_stable_index_dense_vector_a72efc1170bad8b3200fd5ddf8b5d037a}{size}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00074\ \ \ \ \ SIndex\ \mbox{\hyperlink{classph_1_1_t_stable_index_dense_vector_af24200f4615d0e161e6a6cd7d4dd7bd9}{nextStableIndex}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_t_stable_index_dense_vector_a0d38b6e4f5952719533409c6f91c2b46}{isStableIndexValid}}(SIndex\ stableIndex)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keyword}{typename}\ std::vector<T>::iterator\ \ \ \ \ \ \ begin()\ noexcept;}
+\DoxyCodeLine{00087\ \ \ \ \ typename\ std::vector<T>::const\_iterator\ begin()\ const\ noexcept;}
+\DoxyCodeLine{00088\ \ \ \ \ typename\ std::vector<T>::iterator\ \ \ \ \ \ \ end()\ \ \ noexcept;}
+\DoxyCodeLine{00089\ \ \ \ \ typename\ std::vector<T>::const\_iterator\ end()\ \ \ const\ noexcept;}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00097\ \ \ \ \ T\&\ operator\ []\ (SIndex\ stableIndex);}
+\DoxyCodeLine{00098\ \ \ \ \ const\ T\&\ operator\ []\ (SIndex\ stableIndex)\ const;}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00107\ \ \ \ \ T*\ get(SIndex\ stableIndex);}
+\DoxyCodeLine{00108\ \ \ \ \ const\ T*\ get(SIndex\ stableIndex)\ const;}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ private:}
+\DoxyCodeLine{00112\ \ \ \ \ SIndex\ dispatchStableIndex();}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{comment}{//\ Object\ index\ type\ for\ locating\ objects\ in\ \`{}m\_objects`\ internally.\ Currently\ the\ same\ as\ \`{}SIndex`}}
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{comment}{//\ as\ we\ cannot\ store\ more\ objects\ than\ \`{}SIndex`\ can\ store.}}
+\DoxyCodeLine{00116\ \ \ \ \ using\ OIndex\ =\ SIndex;}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ \ \ \ \ std::vector<T>\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_objects;}
+\DoxyCodeLine{00119\ \ \ \ \ std::vector<SIndex>\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_objectToStableIndex;}
+\DoxyCodeLine{00120\ \ \ \ \ std::vector<std::pair<OIndex,\ \textcolor{keywordtype}{bool}>>\ m\_stableIndexToObject;}
+\DoxyCodeLine{00121\ \ \ \ \ std::vector<SIndex>\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_freeIndices;}
+\DoxyCodeLine{00122\ \};}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00124\ \textcolor{comment}{//\ Implementations:}}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00126\ template<typename\ T,\ std::integral\ SIndex>}
+\DoxyCodeLine{00127\ inline\ \mbox{\hyperlink{classph_1_1_t_stable_index_dense_vector}{TStableIndexDenseVector}}<T,\ SIndex>::\mbox{\hyperlink{classph_1_1_t_stable_index_dense_vector}{TStableIndexDenseVector}}()\ =\ default;}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00129\ template<typename\ T,\ std::integral\ SIndex>}
+\DoxyCodeLine{00130\ inline\ \mbox{\hyperlink{classph_1_1_t_stable_index_dense_vector}{TStableIndexDenseVector}}<T,\ SIndex>::\mbox{\hyperlink{classph_1_1_t_stable_index_dense_vector}{TStableIndexDenseVector}}(const\ std::\textcolor{keywordtype}{size\_t}\ initialCapacity)\ :}
+\DoxyCodeLine{00131\ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_stable_index_dense_vector}{TStableIndexDenseVector}}()}
+\DoxyCodeLine{00132\ \{}
+\DoxyCodeLine{00133\ \ \ \ \ m\_objects.reserve(initialCapacity);}
+\DoxyCodeLine{00134\ \ \ \ \ m\_objectToStableIndex.reserve(initialCapacity);}
+\DoxyCodeLine{00135\ \ \ \ \ m\_stableIndexToObject.reserve(initialCapacity);}
+\DoxyCodeLine{00136\ \ \ \ \ m\_freeIndices.reserve(initialCapacity);}
+\DoxyCodeLine{00137\ \}}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00139\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{int}egral\ SIndex>}
+\DoxyCodeLine{00140\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ U>}
+\DoxyCodeLine{00141\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1_t_stable_index_dense_vector_a8b32deaf8ab647802847fed8affc8c92}{TStableIndexDenseVector<T,\ SIndex>::add}}(U\&\&\ \textcolor{keywordtype}{object})}
+\DoxyCodeLine{00142\ \ \ \ \ -\/>\ SIndex}
+\DoxyCodeLine{00143\ \{}
+\DoxyCodeLine{00144\ \ \ \ \ \textcolor{keyword}{const}\ SIndex\ stableIndex\ =\ dispatchStableIndex();}
+\DoxyCodeLine{00145\ \ \ \ \ }
+\DoxyCodeLine{00146\ \ \ \ \ m\_objects.push\_back(std::forward<U>(\textcolor{keywordtype}{object}));}
+\DoxyCodeLine{00147\ \ \ \ \ \textcolor{keywordflow}{return}\ stableIndex;}
+\DoxyCodeLine{00148\ \}}
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00150\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{int}egral\ SIndex>}
+\DoxyCodeLine{00151\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_t_stable_index_dense_vector_a5c03438dbfa96ae7effb7dffaa10e984}{TStableIndexDenseVector<T,\ SIndex>::remove}}(\textcolor{keyword}{const}\ SIndex\ stableIndex)}
+\DoxyCodeLine{00152\ \{}
+\DoxyCodeLine{00153\ \ \ \ \ \textcolor{keywordflow}{if}(!\mbox{\hyperlink{classph_1_1_t_stable_index_dense_vector_a0d38b6e4f5952719533409c6f91c2b46}{isStableIndexValid}}(stableIndex))}
+\DoxyCodeLine{00154\ \ \ \ \ \{}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00156\ \ \ \ \ \}}
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00158\ \ \ \ \ PH\_ASSERT\_LT(stableIndex,\ m\_stableIndexToObject.size());}
+\DoxyCodeLine{00159\ \ \ \ \ \textcolor{keyword}{const}\ OIndex\ objIndex\ \ \ \ \ =\ m\_stableIndexToObject[stableIndex].first;}
+\DoxyCodeLine{00160\ \ \ \ \ \textcolor{keyword}{const}\ OIndex\ lastObjIndex\ =\ \textcolor{keyword}{static\_cast<}OIndex\textcolor{keyword}{>}(\mbox{\hyperlink{classph_1_1_t_stable_index_dense_vector_a72efc1170bad8b3200fd5ddf8b5d037a}{size}}()\ -\/\ 1);}
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00162\ \ \ \ \ \textcolor{comment}{//\ Swap\ the\ target\ object\ with\ the\ last\ object;\ also\ copy\ the\ last\ object's\ stable}}
+\DoxyCodeLine{00163\ \ \ \ \ \textcolor{comment}{//\ index\ to\ new\ location.}}
+\DoxyCodeLine{00164\ \ \ \ \ PH\_ASSERT\_LT(objIndex,\ m\_objects.size());}
+\DoxyCodeLine{00165\ \ \ \ \ PH\_ASSERT\_LT(lastObjIndex,\ m\_objects.size());}
+\DoxyCodeLine{00166\ \ \ \ \ PH\_ASSERT\_LT(objIndex,\ m\_objectToStableIndex.size());}
+\DoxyCodeLine{00167\ \ \ \ \ PH\_ASSERT\_LT(lastObjIndex,\ m\_objectToStableIndex.size());}
+\DoxyCodeLine{00168\ \ \ \ \ std::swap(m\_objects[objIndex],\ m\_objects[lastObjIndex]);}
+\DoxyCodeLine{00169\ \ \ \ \ m\_objectToStableIndex[objIndex]\ =\ m\_objectToStableIndex[lastObjIndex];}
+\DoxyCodeLine{00170\ }
+\DoxyCodeLine{00171\ \ \ \ \ \textcolor{comment}{//\ Update\ target\ object's\ validity.}}
+\DoxyCodeLine{00172\ \ \ \ \ m\_stableIndexToObject[stableIndex].second\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00174\ \ \ \ \ \textcolor{comment}{//\ Update\ swapped\ object's\ stable\ index\ mapping.}}
+\DoxyCodeLine{00175\ \ \ \ \ PH\_ASSERT\_LT(m\_objectToStableIndex[objIndex],\ m\_stableIndexToObject.size());}
+\DoxyCodeLine{00176\ \ \ \ \ m\_stableIndexToObject[m\_objectToStableIndex[objIndex]].first\ =\ objIndex;}
+\DoxyCodeLine{00177\ }
+\DoxyCodeLine{00178\ \ \ \ \ \textcolor{comment}{//\ Add\ freed\ stable\ index\ for\ later\ use.}}
+\DoxyCodeLine{00179\ \ \ \ \ m\_freeIndices.push\_back(stableIndex);}
+\DoxyCodeLine{00180\ }
+\DoxyCodeLine{00181\ \ \ \ \ m\_objects.pop\_back();}
+\DoxyCodeLine{00182\ \ \ \ \ m\_objectToStableIndex.pop\_back();}
+\DoxyCodeLine{00183\ }
+\DoxyCodeLine{00184\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00185\ \}}
+\DoxyCodeLine{00186\ }
+\DoxyCodeLine{00187\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{int}egral\ SIndex>}
+\DoxyCodeLine{00188\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_stable_index_dense_vector_a8acf901b2bde3c6b638c577ab2c02c97}{TStableIndexDenseVector<T,\ SIndex>::removeAll}}()}
+\DoxyCodeLine{00189\ \{}
+\DoxyCodeLine{00190\ \ \ \ \ m\_objects.clear();}
+\DoxyCodeLine{00191\ \ \ \ \ m\_objectToStableIndex.clear();}
+\DoxyCodeLine{00192\ \ \ \ \ m\_stableIndexToObject.clear();}
+\DoxyCodeLine{00193\ \ \ \ \ m\_freeIndices.clear();}
+\DoxyCodeLine{00194\ \}}
+\DoxyCodeLine{00195\ }
+\DoxyCodeLine{00196\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{int}egral\ SIndex>}
+\DoxyCodeLine{00197\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_t_stable_index_dense_vector_a0d38b6e4f5952719533409c6f91c2b46}{TStableIndexDenseVector<T,\ SIndex>::isStableIndexValid}}(\textcolor{keyword}{const}\ SIndex\ stableIndex)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00198\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00199\ \ \ \ \ \textcolor{keywordflow}{if}(stableIndex\ >=\ m\_stableIndexToObject.size())}
+\DoxyCodeLine{00200\ \ \ \ \ \{}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00202\ \ \ \ \ \}}
+\DoxyCodeLine{00203\ }
+\DoxyCodeLine{00204\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_stableIndexToObject[stableIndex].second;}
+\DoxyCodeLine{00205\ \}}
+\DoxyCodeLine{00206\ }
+\DoxyCodeLine{00207\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{int}egral\ SIndex>}
+\DoxyCodeLine{00208\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1_t_stable_index_dense_vector_af24200f4615d0e161e6a6cd7d4dd7bd9}{TStableIndexDenseVector<T,\ SIndex>::nextStableIndex}}()\ const}
+\DoxyCodeLine{00209\ \ \ \ \ -\/>\ SIndex}
+\DoxyCodeLine{00210\ \{}
+\DoxyCodeLine{00211\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_freeIndices.empty()\ ?\ m\_objects.size()\ :\ m\_freeIndices.back();}
+\DoxyCodeLine{00212\ \}}
+\DoxyCodeLine{00213\ }
+\DoxyCodeLine{00214\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{int}egral\ SIndex>}
+\DoxyCodeLine{00215\ \textcolor{keyword}{inline}\ T\&\ \mbox{\hyperlink{classph_1_1_t_stable_index_dense_vector}{TStableIndexDenseVector<T,\ SIndex>::operator\ []\ }}(\textcolor{keyword}{const}\ SIndex\ stableIndex)}
+\DoxyCodeLine{00216\ \{}
+\DoxyCodeLine{00217\ \ \ \ \ PH\_ASSERT\_LT(stableIndex,\ m\_stableIndexToObject.size());}
+\DoxyCodeLine{00218\ \ \ \ \ PH\_ASSERT\_LT(m\_stableIndexToObject[stableIndex].first,\ m\_objects.size());}
+\DoxyCodeLine{00219\ }
+\DoxyCodeLine{00220\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_objects[m\_stableIndexToObject[stableIndex].first];}
+\DoxyCodeLine{00221\ \}}
+\DoxyCodeLine{00222\ }
+\DoxyCodeLine{00223\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{int}egral\ SIndex>}
+\DoxyCodeLine{00224\ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ T\&\ TStableIndexDenseVector<T,\ SIndex>::operator\ []\ (\textcolor{keyword}{const}\ SIndex\ stableIndex)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00225\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00226\ \ \ \ \ PH\_ASSERT\_LT(stableIndex,\ m\_stableIndexToObject.size());}
+\DoxyCodeLine{00227\ \ \ \ \ PH\_ASSERT\_LT(m\_stableIndexToObject[stableIndex].first,\ m\_objects.size());}
+\DoxyCodeLine{00228\ }
+\DoxyCodeLine{00229\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_objects[m\_stableIndexToObject[stableIndex].first];}
+\DoxyCodeLine{00230\ \}}
+\DoxyCodeLine{00231\ }
+\DoxyCodeLine{00232\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{int}egral\ SIndex>}
+\DoxyCodeLine{00233\ \textcolor{keyword}{inline}\ T*\ TStableIndexDenseVector<T,\ SIndex>::get(\textcolor{keyword}{const}\ SIndex\ stableIndex)}
+\DoxyCodeLine{00234\ \{}
+\DoxyCodeLine{00235\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1_t_stable_index_dense_vector_a0d38b6e4f5952719533409c6f91c2b46}{isStableIndexValid}}(stableIndex)\ ?\ \&((*this)[stableIndex])\ :\ nullptr;}
+\DoxyCodeLine{00236\ \}}
+\DoxyCodeLine{00237\ }
+\DoxyCodeLine{00238\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{int}egral\ SIndex>}
+\DoxyCodeLine{00239\ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ T*\ TStableIndexDenseVector<T,\ SIndex>::get(\textcolor{keyword}{const}\ SIndex\ stableIndex)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00240\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00241\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1_t_stable_index_dense_vector_a0d38b6e4f5952719533409c6f91c2b46}{isStableIndexValid}}(stableIndex)\ ?\ \&((*this)[stableIndex])\ :\ nullptr;}
+\DoxyCodeLine{00242\ \}}
+\DoxyCodeLine{00243\ }
+\DoxyCodeLine{00244\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{int}egral\ SIndex>}
+\DoxyCodeLine{00245\ \textcolor{keyword}{inline}\ std::size\_t\ \mbox{\hyperlink{classph_1_1_t_stable_index_dense_vector_a72efc1170bad8b3200fd5ddf8b5d037a}{TStableIndexDenseVector<T,\ SIndex>::size}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00246\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00247\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_objects.size();}
+\DoxyCodeLine{00248\ \}}
+\DoxyCodeLine{00249\ }
+\DoxyCodeLine{00250\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{int}egral\ SIndex>}
+\DoxyCodeLine{00251\ \textcolor{keyword}{inline}\ \textcolor{keyword}{typename}\ std::vector<T>::iterator\ \mbox{\hyperlink{classph_1_1_t_stable_index_dense_vector}{TStableIndexDenseVector<T,\ SIndex>::begin}}()\ noexcept}
+\DoxyCodeLine{00252\ \{}
+\DoxyCodeLine{00253\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_objects.begin();}
+\DoxyCodeLine{00254\ \}}
+\DoxyCodeLine{00255\ }
+\DoxyCodeLine{00256\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{int}egral\ SIndex>}
+\DoxyCodeLine{00257\ \textcolor{keyword}{inline}\ \textcolor{keyword}{typename}\ std::vector<T>::const\_iterator\ TStableIndexDenseVector<T,\ SIndex>::begin()\ const\ noexcept}
+\DoxyCodeLine{00258\ \{}
+\DoxyCodeLine{00259\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_objects.begin();}
+\DoxyCodeLine{00260\ \}}
+\DoxyCodeLine{00261\ }
+\DoxyCodeLine{00262\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{int}egral\ SIndex>}
+\DoxyCodeLine{00263\ \textcolor{keyword}{inline}\ \textcolor{keyword}{typename}\ std::vector<T>::iterator\ TStableIndexDenseVector<T,\ SIndex>::end()\ noexcept}
+\DoxyCodeLine{00264\ \{}
+\DoxyCodeLine{00265\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_objects.end();}
+\DoxyCodeLine{00266\ \}}
+\DoxyCodeLine{00267\ }
+\DoxyCodeLine{00268\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{int}egral\ SIndex>}
+\DoxyCodeLine{00269\ \textcolor{keyword}{inline}\ \textcolor{keyword}{typename}\ std::vector<T>::const\_iterator\ TStableIndexDenseVector<T,\ SIndex>::end()\ const\ noexcept}
+\DoxyCodeLine{00270\ \{}
+\DoxyCodeLine{00271\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_objects.end();}
+\DoxyCodeLine{00272\ \}}
+\DoxyCodeLine{00273\ }
+\DoxyCodeLine{00274\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{int}egral\ SIndex>}
+\DoxyCodeLine{00275\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ TStableIndexDenseVector<T,\ SIndex>::dispatchStableIndex()}
+\DoxyCodeLine{00276\ \ \ \ \ -\/>\ SIndex}
+\DoxyCodeLine{00277\ \{}
+\DoxyCodeLine{00278\ \ \ \ \ SIndex\ stableIndex\ =\ \mbox{\hyperlink{classph_1_1_t_stable_index_dense_vector_ac692b656ce665dc3bfaa941811b43ce5}{INVALID\_STABLE\_INDEX}};}
+\DoxyCodeLine{00279\ \ \ \ \ \textcolor{keywordflow}{if}(m\_freeIndices.empty())}
+\DoxyCodeLine{00280\ \ \ \ \ \{}
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ stableIndex\ =\ \textcolor{keyword}{static\_cast<}SIndex\textcolor{keyword}{>}(m\_objects.size());}
+\DoxyCodeLine{00282\ \ \ \ \ \ \ \ \ m\_stableIndexToObject.push\_back(std::make\_pair(stableIndex,\ \textcolor{keyword}{true}));}
+\DoxyCodeLine{00283\ \ \ \ \ \}}
+\DoxyCodeLine{00284\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00285\ \ \ \ \ \{}
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ stableIndex\ =\ m\_freeIndices.back();}
+\DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ m\_freeIndices.pop\_back();}
+\DoxyCodeLine{00288\ }
+\DoxyCodeLine{00289\ \ \ \ \ \ \ \ \ PH\_ASSERT\_LT(stableIndex,\ m\_stableIndexToObject.size());}
+\DoxyCodeLine{00290\ }
+\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ m\_stableIndexToObject[stableIndex].first\ =\ \textcolor{keyword}{static\_cast<}OIndex\textcolor{keyword}{>}(m\_objects.size());}
+\DoxyCodeLine{00292\ \ \ \ \ \ \ \ \ m\_stableIndexToObject[stableIndex].second\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00293\ \ \ \ \ \}}
+\DoxyCodeLine{00294\ }
+\DoxyCodeLine{00295\ \ \ \ \ m\_objectToStableIndex.push\_back(stableIndex);}
+\DoxyCodeLine{00296\ }
+\DoxyCodeLine{00297\ \ \ \ \ \textcolor{keywordflow}{return}\ stableIndex;}
+\DoxyCodeLine{00298\ \}}
+\DoxyCodeLine{00299\ }
+\DoxyCodeLine{00300\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+
+\end{DoxyCode}

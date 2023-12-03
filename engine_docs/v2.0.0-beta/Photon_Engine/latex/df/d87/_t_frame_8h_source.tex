@@ -1,0 +1,107 @@
+\doxysection{TFrame.\+h}
+\hypertarget{_t_frame_8h_source}{}\label{_t_frame_8h_source}\index{Source/Frame/TFrame.h@{Source/Frame/TFrame.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Common/primitive\_type.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Math/math\_fwd.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}Frame/frame\_fwd.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}Math/Function/TMathFunction2D.h"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}Math/TArithmeticArray.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}Core/Texture/texture\_fwd.h"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}Math/Geometry/TAABB2D.h"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}Utility/TSpan.h"{}}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <cstddef>}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00016\ \{}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00019\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_t_frame}{TFrame}}\ final}
+\DoxyCodeLine{00020\ \{}
+\DoxyCodeLine{00021\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keyword}{using\ }Element\ =\ T;}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ U>}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classph_1_1math_1_1_t_arithmetic_array}{TPixel}}\ =\ \mbox{\hyperlink{classph_1_1math_1_1_t_arithmetic_array}{math::TArithmeticArray<U,\ N>}};}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classph_1_1math_1_1_t_arithmetic_array}{Pixel}}\ =\ \mbox{\hyperlink{classph_1_1math_1_1_t_arithmetic_array}{TPixel<T>}};}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ U\ =\ T>}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classph_1_1math_1_1_t_arithmetic_array}{TPixel<U>}}\ makeMonochromaticPixel(U\ value);}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00035\ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_frame_a4d4576141cf399e01733a3ca87fcb4e6}{TFrame}}();}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00039\ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_frame_a4d4576141cf399e01733a3ca87fcb4e6}{TFrame}}(uint32\ wPx,\ uint32\ hPx);}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_frame_a4d4576141cf399e01733a3ca87fcb4e6}{TFrame}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_t_frame}{TFrame}}\&\ other);}
+\DoxyCodeLine{00042\ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_frame_a4d4576141cf399e01733a3ca87fcb4e6}{TFrame}}(\mbox{\hyperlink{classph_1_1_t_frame}{TFrame}}\&\&\ other)\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_t_frame}{\string~TFrame}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordtype}{void}\ fill(T\ value);}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordtype}{void}\ fill(T\ value,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d}{math::TAABB2D<uint32>}}\&\ region);}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordtype}{void}\ flipHorizontally();}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordtype}{void}\ flipVertically();}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordtype}{void}\ setSize(uint32\ wPx,\ uint32\ hPx);}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordtype}{void}\ setSize(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{math::TVector2<uint32>}}\&\ sizePx);}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{comment}{//\ TODO:\ user\ specified\ clamping\ range?}}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{comment}{//\ TODO:\ specify\ size\ instead\ of\ radius\ for\ finer\ control}}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordtype}{void}\ sample(}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_frame}{TFrame}}\&\ sampled,\ }
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_math_function2_d}{math::TMathFunction2D<float64>}}\&\ kernel,\ uint32\ kernelRadiusPx)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ PerPixelOperation>}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordtype}{void}\ forEachPixel(PerPixelOperation\ op);}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ PerPixelOperation>}
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keywordtype}{void}\ forEachPixel(PerPixelOperation\ op)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ PerPixelOperation>}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordtype}{void}\ forEachPixel(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d}{math::TAABB2D<uint32>}}\&\ region,\ PerPixelOperation\ op);}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ PerPixelOperation>}
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keywordtype}{void}\ forEachPixel(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d}{math::TAABB2D<uint32>}}\&\ region,\ PerPixelOperation\ op)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{comment}{//\ TODO:\ sampling\ texture}}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordtype}{void}\ setPixel(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{math::TVector2<uint32>}}\&\ coordPx,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_arithmetic_array}{Pixel}}\&\ pixel);}
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordtype}{void}\ setPixel(uint32\ x,\ uint32\ y,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_arithmetic_array}{Pixel}}\&\ pixel);}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_arithmetic_array}{Pixel}}\ getPixel(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{math::TVector2<uint32>}}\&\ coordPx)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keywordtype}{void}\ getPixel(uint32\ x,\ uint32\ y,\ \mbox{\hyperlink{classph_1_1math_1_1_t_arithmetic_array}{Pixel}}*\ out\_pixel)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00082\ \ \ \ \ TSpan<T>\ \mbox{\hyperlink{classph_1_1_t_frame_a1e40cd607beb3bc9d3998ae3c7ec5f30}{getPixelData}}();}
+\DoxyCodeLine{00083\ \ \ \ \ TSpanView<T>\ \mbox{\hyperlink{classph_1_1_t_frame_a1e40cd607beb3bc9d3998ae3c7ec5f30}{getPixelData}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_frame_a690cebd4231842145c24cb5f32e3003c}{copyPixelData}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d}{math::TAABB2D<uint32>}}\&\ region,\ TSpan<T>\ out\_data)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{math::TVector2<uint32>}}\ getSizePx()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_frame}{TFrame}}\&\ operator\ =\ (\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_t_frame}{TFrame}}\&\ rhs);}
+\DoxyCodeLine{00094\ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_frame}{TFrame}}\&\ operator\ =\ (\mbox{\hyperlink{classph_1_1_t_frame}{TFrame}}\&\&\ rhs)\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \ \ \ \ uint32\ widthPx()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00097\ \ \ \ \ uint32\ heightPx()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keywordtype}{bool}\ isEmpty()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keyword}{constexpr}\ std::size\_t\ numPixelComponents()\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00103\ \ \ \ \ uint32\ m\_widthPx;}
+\DoxyCodeLine{00104\ \ \ \ \ uint32\ m\_heightPx;}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \ \ \ \ std::vector<T>\ m\_pixelData;}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \ \ \ \ std::size\_t\ calcPixelDataBaseIndex(uint32\ x,\ uint32\ y)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00109\ \};}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ \textcolor{preprocessor}{\#include\ "{}Frame/TFrame.ipp"{}}}
+
+\end{DoxyCode}

@@ -1,0 +1,153 @@
+\doxysection{unary\+\_\+texture\+\_\+operators.\+h}
+\hypertarget{unary__texture__operators_8h_source}{}\label{unary__texture__operators_8h_source}\index{Source/Core/Texture/Function/unary\_texture\_operators.h@{Source/Core/Texture/Function/unary\_texture\_operators.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Core/Texture/TTexture.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Common/assertion.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}Core/Texture/SampleLocation.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}Utility/traits.h"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}Math/Color/Spectrum.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}Math/TArithmeticArray.h"{}}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <cstddef>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <type\_traits>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <concepts>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <array>}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00018\ \{}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{keyword}{namespace\ }texfunc}
+\DoxyCodeLine{00021\ \{}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ OperatorType,\ \textcolor{keyword}{typename}\ InputType,\ \textcolor{keyword}{typename}\ OutputType>}
+\DoxyCodeLine{00024\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptph_1_1texfunc_1_1_c_unary_operator}{CUnaryOperator}}\ =\ \textcolor{keyword}{requires}\ (OperatorType\ op,\ InputType\ input)}
+\DoxyCodeLine{00025\ \{}
+\DoxyCodeLine{00026\ \ \ \ \ \{\ op(input)\ \}\ -\/>\ std::same\_as<OutputType>;}
+\DoxyCodeLine{00027\ \};}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ InputType,\ \textcolor{keyword}{typename}\ OutputType>}
+\DoxyCodeLine{00030\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1texfunc_1_1_t_default_conversion}{TDefaultConversion}}\ final}
+\DoxyCodeLine{00031\ \{}
+\DoxyCodeLine{00032\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00033\ \ \ \ \ OutputType\ operator\ ()\ (\textcolor{keyword}{const}\ InputType\&\ inputValue)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00034\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_assert}(\mbox{\hyperlink{structph_1_1_is_buildable}{IsBuildable<OutputType,\ InputType>}}(),}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<OutputType>\ must\ be\ buildable\ from\ <InputType>"{}});}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ OutputType(inputValue);}
+\DoxyCodeLine{00039\ \ \ \ \ \}}
+\DoxyCodeLine{00040\ \};}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00043\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1texfunc_1_1_t_scalar_to_spectrum}{TScalarToSpectrum}}\ final}
+\DoxyCodeLine{00044\ \{}
+\DoxyCodeLine{00045\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00046\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_spectrum}{math::Spectrum}}\ operator\ ()\ (\textcolor{keyword}{const}\ T\ scalarValue)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00047\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_spectrum}{math::Spectrum}}(scalarValue);}
+\DoxyCodeLine{00049\ \ \ \ \ \}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_spectrum}{math::Spectrum}}\ operator\ ()\ (\textcolor{keyword}{const}\ std::array<T,\ 1>\&\ scalarValue)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00052\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (*\textcolor{keyword}{this})(scalarValue[0]);}
+\DoxyCodeLine{00054\ \ \ \ \ \}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_spectrum}{math::Spectrum}}\ operator\ ()\ (\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_arithmetic_array}{math::TArithmeticArray<T,\ 1>}}\&\ scalarValue)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00057\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (*\textcolor{keyword}{this})(scalarValue[0]);}
+\DoxyCodeLine{00059\ \ \ \ \ \}}
+\DoxyCodeLine{00060\ \};}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ InputType,\ \textcolor{keyword}{typename}\ ConstantType,\ \textcolor{keyword}{typename}\ OutputType>}
+\DoxyCodeLine{00063\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1texfunc_1_1_t_add_constant}{TAddConstant}}\ final}
+\DoxyCodeLine{00064\ \{}
+\DoxyCodeLine{00065\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classph_1_1texfunc_1_1_t_add_constant}{TAddConstant}}(ConstantType\ constant)\ :}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ m\_constant(std::move(constant))}
+\DoxyCodeLine{00068\ \ \ \ \ \{\}}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ \ \ OutputType\ operator\ ()\ (\textcolor{keyword}{const}\ InputType\&\ inputValue)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00071\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_assert}(\mbox{\hyperlink{conceptph_1_1_c_can_add}{CCanAdd<InputType,\ ConstantType,\ OutputType>}},}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Must\ have\ add\ operator\ for\ <OutputType>\ =\ <InputType>\ +\ <ConstantType>"{}});}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ inputValue\ +\ m\_constant;}
+\DoxyCodeLine{00076\ \ \ \ \ \}}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00079\ \ \ \ \ ConstantType\ m\_constant;}
+\DoxyCodeLine{00080\ \};}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classph_1_1texfunc_1_1_t_add_constant}{SpectrumAddScalar}}\ =\ \mbox{\hyperlink{classph_1_1texfunc_1_1_t_add_constant}{TAddConstant<math::Spectrum,\ math::ColorValue,\ math::Spectrum>}};}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ InputType,\ \textcolor{keyword}{typename}\ ConstantType,\ \textcolor{keyword}{typename}\ OutputType>}
+\DoxyCodeLine{00085\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1texfunc_1_1_t_multiply_constant}{TMultiplyConstant}}\ final}
+\DoxyCodeLine{00086\ \{}
+\DoxyCodeLine{00087\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classph_1_1texfunc_1_1_t_multiply_constant}{TMultiplyConstant}}(ConstantType\ constant)\ :}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ m\_constant(std::move(constant))}
+\DoxyCodeLine{00090\ \ \ \ \ \{\}}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \ \ \ \ OutputType\ operator\ ()\ (\textcolor{keyword}{const}\ InputType\&\ inputValue)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00093\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_assert}(\mbox{\hyperlink{conceptph_1_1_c_can_multiply}{CCanMultiply<InputType,\ ConstantType,\ OutputType>}},}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Must\ have\ multiply\ operator\ for\ <OutputType>\ =\ <InputType>\ *\ <ConstantType>"{}});}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ inputValue\ *\ m\_constant;}
+\DoxyCodeLine{00098\ \ \ \ \ \}}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00101\ \ \ \ \ ConstantType\ m\_constant;}
+\DoxyCodeLine{00102\ \};}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classph_1_1texfunc_1_1_t_multiply_constant}{SpectrumMultiplyScalar}}\ =\ \mbox{\hyperlink{classph_1_1texfunc_1_1_t_multiply_constant}{TMultiplyConstant<math::Spectrum,\ math::ColorValue,\ math::Spectrum>}};}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \}\textcolor{comment}{//\ end\ namespace\ texfunc}}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \textcolor{keyword}{template}}
+\DoxyCodeLine{00109\ <}
+\DoxyCodeLine{00110\ \ \ \ \ \textcolor{keyword}{typename}\ InputType,\ }
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{keyword}{typename}\ OutputType,\ }
+\DoxyCodeLine{00112\ \ \ \ \ \mbox{\hyperlink{conceptph_1_1texfunc_1_1_c_unary_operator}{texfunc::CUnaryOperator<InputType,\ OutputType>}}\ OperatorType}
+\DoxyCodeLine{00113\ >}
+\DoxyCodeLine{00114\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_t_unary_texture_operator}{TUnaryTextureOperator}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classph_1_1_t_texture}{TTexture}}<OutputType>}
+\DoxyCodeLine{00115\ \{}
+\DoxyCodeLine{00116\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{keyword}{using\ }InputTexRes\ =\ std::shared\_ptr<TTexture<InputType>>;}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classph_1_1_t_unary_texture_operator}{TUnaryTextureOperator}}(InputTexRes\ inputTexture)\ \textcolor{keyword}{requires}\ std::default\_initializable<OperatorType>\ :}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_unary_texture_operator}{TUnaryTextureOperator}}(std::move(inputTexture),\ OperatorType())}
+\DoxyCodeLine{00121\ \ \ \ \ \{\}}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00123\ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_unary_texture_operator}{TUnaryTextureOperator}}(InputTexRes\ inputTexture,\ OperatorType\ op)\ :}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ m\_inputTexture(std::move(inputTexture)),}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ m\_operator\ \ \ \ (std::move(op))}
+\DoxyCodeLine{00126\ \ \ \ \ \{\}}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \ \ \ \ \textcolor{keywordtype}{void}\ sample(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_sample_location}{SampleLocation}}\&\ sampleLocation,\ OutputType*\ \textcolor{keyword}{const}\ out\_value)\textcolor{keyword}{\ const\ override}}
+\DoxyCodeLine{00129\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ PH\_ASSERT(m\_inputTexture);}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ PH\_ASSERT(out\_value);}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ InputType\ inputValue;}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ m\_inputTexture-\/>sample(sampleLocation,\ \&inputValue);}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ *out\_value\ =\ m\_operator(inputValue);}
+\DoxyCodeLine{00137\ \ \ \ \ \}}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00139\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00140\ \ \ \ \ InputTexRes\ \ m\_inputTexture;}
+\DoxyCodeLine{00141\ \ \ \ \ OperatorType\ m\_operator;}
+\DoxyCodeLine{00142\ \};}
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00144\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ InputType,\ \textcolor{keyword}{typename}\ OutputType>}
+\DoxyCodeLine{00145\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classph_1_1_t_unary_texture_operator}{TConversionTexture}}\ =\ \mbox{\hyperlink{classph_1_1_t_unary_texture_operator}{TUnaryTextureOperator<InputType,\ OutputType,\ texfunc::TDefaultConversion<InputType,\ OutputType>}}>;}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00147\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+
+\end{DoxyCode}

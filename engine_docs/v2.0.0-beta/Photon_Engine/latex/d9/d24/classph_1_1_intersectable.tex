@@ -1,0 +1,116 @@
+\doxysection{ph\+::Intersectable Class Reference}
+\hypertarget{classph_1_1_intersectable}{}\label{classph_1_1_intersectable}\index{ph::Intersectable@{ph::Intersectable}}
+
+
+An object in the scene that a ray can intersect with.  
+
+
+
+
+{\ttfamily \#include $<$Intersectable.\+h$>$}
+
+Inheritance diagram for ph\+::Intersectable\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.189873cm]{d9/d24/classph_1_1_intersectable}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual bool \mbox{\hyperlink{classph_1_1_intersectable_ae445743ad48751b06f89a08cd8910b3e}{is\+Intersecting}} (const \mbox{\hyperlink{classph_1_1_ray}{Ray}} \&ray, \mbox{\hyperlink{classph_1_1_hit_probe}{Hit\+Probe}} \&probe) const =0
+\begin{DoxyCompactList}\small\item\em Determine whether a given ray hits the object. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classph_1_1_intersectable_acde51d3d2292a0dd9c011dd9ad174bf2}{calc\+Intersection\+Detail}} (const \mbox{\hyperlink{classph_1_1_ray}{Ray}} \&ray, \mbox{\hyperlink{classph_1_1_hit_probe}{Hit\+Probe}} \&probe, \mbox{\hyperlink{classph_1_1_hit_detail}{Hit\+Detail}} \texorpdfstring{$\ast$}{*}out\+\_\+detail) const =0
+\begin{DoxyCompactList}\small\item\em Calculates properties of a hit, such as coordinates and normal. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d}{math\+::\+AABB3D}} \mbox{\hyperlink{classph_1_1_intersectable_a704f250ee94d802e853748d97dd6722f}{calc\+AABB}} () const =0
+\begin{DoxyCompactList}\small\item\em Calculates Axis-\/\+Aligned Bounding Box (AABB) of itself. \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classph_1_1_intersectable_ab2704ced51a4d65af7030b1a45a4fdda}{is\+Occluding}} (const \mbox{\hyperlink{classph_1_1_ray}{Ray}} \&ray) const
+\begin{DoxyCompactList}\small\item\em Determines whether this object blocks the ray. \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classph_1_1_intersectable_a86fce4c0b0c1f99a50380ce41ad2875a}{may\+Overlap\+Volume}} (const \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d}{math\+::\+AABB3D}} \&volume) const
+\begin{DoxyCompactList}\small\item\em Conservatively checks whether this object overlaps a volume. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+An object in the scene that a ray can intersect with. 
+
+To construct a scene, we must populate it with some {\itshape objects}. Imagining you are beside a table with a mug on it, how would you describe the shape of those two objects? Specifically, how to represent them digitally in a computer? One way to do this is to model them using many triangles or quads. Take a triangle for example, in a renderer like Photon, simply store the three vertices of it is not enough\+: we need to support opearations on the stored data for it to be useful, this is what intersectables are meant for.
+
+The most common operation is {\bfseries{ray intersection test}}. We need to know whether a given ray is intersecting a triangle for the rest of the system to work. Remember that we can also model the table and mug using other shapes such as quads, they should support the same operation set as triangles. Photon supports many kinds of {\itshape object} that can be intersected by rays, such as just-\/mentioned triangles and quads, and they are named after their capability "{}intersectable"{}. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classph_1_1_intersectable_a704f250ee94d802e853748d97dd6722f}\label{classph_1_1_intersectable_a704f250ee94d802e853748d97dd6722f} 
+\index{ph::Intersectable@{ph::Intersectable}!calcAABB@{calcAABB}}
+\index{calcAABB@{calcAABB}!ph::Intersectable@{ph::Intersectable}}
+\doxysubsubsection{\texorpdfstring{calcAABB()}{calcAABB()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d}{math\+::\+AABB3D}} ph\+::\+Intersectable\+::calc\+AABB (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Calculates Axis-\/\+Aligned Bounding Box (AABB) of itself. 
+
+
+
+Implemented in \mbox{\hyperlink{classph_1_1_brute_force_intersector_afc6117ec3a5e91d6be8d320f00840279}{ph\+::\+Brute\+Force\+Intersector}}, \mbox{\hyperlink{classph_1_1_classic_bvh_intersector_a9a9bd6250eac152e59bbdbbef8d579f9}{ph\+::\+Classic\+Bvh\+Intersector}}, \mbox{\hyperlink{classph_1_1_t_indexed_kdtree_intersector_a91d5e4e6ac26d55d010eb904d483481a}{ph\+::\+TIndexed\+Kdtree\+Intersector$<$ Index $>$}}, \mbox{\hyperlink{classph_1_1_kdtree_intersector_a59290291df519f7cfd0b44787731f32c}{ph\+::\+Kdtree\+Intersector}}, \mbox{\hyperlink{classph_1_1_p_basic_sphere_a75e188eb9cbc9915c9072e741495ec30}{ph\+::\+PBasic\+Sphere}}, \mbox{\hyperlink{classph_1_1_p_empty_a8e08625df62a6cd805ec8a08db527c07}{ph\+::\+PEmpty}}, \mbox{\hyperlink{classph_1_1_p_lat_long_env_sphere_ab365271a75cb844ac3bb3a1670812737}{ph\+::\+PLat\+Long\+Env\+Sphere}}, \mbox{\hyperlink{classph_1_1_p_triangle_ac8552d3dd854599a6b0c74fc07c85a5f}{ph\+::\+PTriangle}}, \mbox{\hyperlink{classph_1_1_t_meta_injection_primitive_a9d726a028a60e5cc0f2fd4434926ae7f}{ph\+::\+TMeta\+Injection\+Primitive$<$ Primitive\+Meta\+Getter, Primitive\+Getter $>$}}, \mbox{\hyperlink{classph_1_1_t_p_indexed_kd_tree_triangle_mesh_a38e0a28a8693e6be5087906cc1884970}{ph\+::\+TPIndexed\+Kd\+Tree\+Triangle\+Mesh$<$ Index $>$}}, \mbox{\hyperlink{classph_1_1_t_p_kd_tree_triangle_mesh_a9cef27bda2c7f03f5763cf22bb54da8a}{ph\+::\+TPKd\+Tree\+Triangle\+Mesh$<$ Index $>$}}, \mbox{\hyperlink{classph_1_1_transformed_intersectable_afd1b64239cb06e04dea3d633c6954fdf}{ph\+::\+Transformed\+Intersectable}}, \mbox{\hyperlink{classph_1_1_transformed_primitive_a80d4ff93de46b1a99e5c75de26be49bc}{ph\+::\+Transformed\+Primitive}}, \mbox{\hyperlink{classph_1_1_intersector_a8760833075046d96a131f32ed9d586c7}{ph\+::\+Intersector}}, and \mbox{\hyperlink{classph_1_1_primitive_af5e204e52b0ad4779a6cd888495a248d}{ph\+::\+Primitive}}.
+
+\Hypertarget{classph_1_1_intersectable_acde51d3d2292a0dd9c011dd9ad174bf2}\label{classph_1_1_intersectable_acde51d3d2292a0dd9c011dd9ad174bf2} 
+\index{ph::Intersectable@{ph::Intersectable}!calcIntersectionDetail@{calcIntersectionDetail}}
+\index{calcIntersectionDetail@{calcIntersectionDetail}!ph::Intersectable@{ph::Intersectable}}
+\doxysubsubsection{\texorpdfstring{calcIntersectionDetail()}{calcIntersectionDetail()}}
+{\footnotesize\ttfamily virtual void ph\+::\+Intersectable\+::calc\+Intersection\+Detail (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classph_1_1_ray}{Ray}} \&}]{ray,  }\item[{\mbox{\hyperlink{classph_1_1_hit_probe}{Hit\+Probe}} \&}]{probe,  }\item[{\mbox{\hyperlink{classph_1_1_hit_detail}{Hit\+Detail}} \texorpdfstring{$\ast$}{*}}]{out\+\_\+detail }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Calculates properties of a hit, such as coordinates and normal. 
+
+This method calculates a detailed description of the intersection from the ray and probe used for calling \doxylink{classph_1_1_intersectable_ae445743ad48751b06f89a08cd8910b3e}{is\+Intersecting()} (if an intersection is found). The process of calculating intersection detail will destroy the input probe. 
+
+Implemented in \mbox{\hyperlink{classph_1_1_t_meta_injection_primitive_a5c2404cdb3222de642d99c1a13461880}{ph\+::\+TMeta\+Injection\+Primitive$<$ Primitive\+Meta\+Getter, Primitive\+Getter $>$}}, \mbox{\hyperlink{classph_1_1_transformed_primitive_a5d6b087a1bf1d860ce99e735611f29ea}{ph\+::\+Transformed\+Primitive}}, \mbox{\hyperlink{classph_1_1_intersector_aed0c4b35b8a7bd626f3938111106c81c}{ph\+::\+Intersector}}, \mbox{\hyperlink{classph_1_1_p_empty_a67f9723807ac1206f0932ff30a9914ab}{ph\+::\+PEmpty}}, \mbox{\hyperlink{classph_1_1_p_lat_long01_sphere_a5b31ec520700a9b9675e21d6c08899be}{ph\+::\+PLat\+Long01\+Sphere}}, \mbox{\hyperlink{classph_1_1_p_lat_long_env_sphere_a7f50af07d7606bc9cfd22636cccaa796}{ph\+::\+PLat\+Long\+Env\+Sphere}}, \mbox{\hyperlink{classph_1_1_p_triangle_a44d612bfdbbcdc03c86b49d6e29fab8b}{ph\+::\+PTriangle}}, \mbox{\hyperlink{classph_1_1_t_p_indexed_kd_tree_triangle_mesh_a0a6770ef5267912ff05bb2f03016a3ff}{ph\+::\+TPIndexed\+Kd\+Tree\+Triangle\+Mesh$<$ Index $>$}}, \mbox{\hyperlink{classph_1_1_t_p_kd_tree_triangle_mesh_afcc2133fd23793a30cec5196d34e6424}{ph\+::\+TPKd\+Tree\+Triangle\+Mesh$<$ Index $>$}}, \mbox{\hyperlink{classph_1_1_transformed_intersectable_aae56ef8dbd5085f1dc3c6637077c5a5f}{ph\+::\+Transformed\+Intersectable}}, \mbox{\hyperlink{classph_1_1_p_basic_sphere_aee378d7e90c0e9bcdc1f2a0aa891e7fa}{ph\+::\+PBasic\+Sphere}}, and \mbox{\hyperlink{classph_1_1_primitive_a52e6bbd53007fe29589759a4a051cd6a}{ph\+::\+Primitive}}.
+
+\Hypertarget{classph_1_1_intersectable_ae445743ad48751b06f89a08cd8910b3e}\label{classph_1_1_intersectable_ae445743ad48751b06f89a08cd8910b3e} 
+\index{ph::Intersectable@{ph::Intersectable}!isIntersecting@{isIntersecting}}
+\index{isIntersecting@{isIntersecting}!ph::Intersectable@{ph::Intersectable}}
+\doxysubsubsection{\texorpdfstring{isIntersecting()}{isIntersecting()}}
+{\footnotesize\ttfamily virtual bool ph\+::\+Intersectable\+::is\+Intersecting (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classph_1_1_ray}{Ray}} \&}]{ray,  }\item[{\mbox{\hyperlink{classph_1_1_hit_probe}{Hit\+Probe}} \&}]{probe }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Determine whether a given ray hits the object. 
+
+Checks whether the specified ray intersects this intersectable. If there is an intersection, true is returned and a brief intersection report is stored inside the probe. If there is no intersection, false is returned and the state of the probe is undefined. 
+
+Implemented in \mbox{\hyperlink{classph_1_1_brute_force_intersector_a0a5228b902cb6e48f93de216c537b6ad}{ph\+::\+Brute\+Force\+Intersector}}, \mbox{\hyperlink{classph_1_1_classic_bvh_intersector_aa6c0622694be9e2d095ce55bd2900b38}{ph\+::\+Classic\+Bvh\+Intersector}}, \mbox{\hyperlink{classph_1_1_t_indexed_kdtree_intersector_a7e661abc7fe76c05118eedf5399b0a75}{ph\+::\+TIndexed\+Kdtree\+Intersector$<$ Index $>$}}, \mbox{\hyperlink{classph_1_1_kdtree_intersector_aa64636c9b4f47bc6c281e2b8fa85fec3}{ph\+::\+Kdtree\+Intersector}}, \mbox{\hyperlink{classph_1_1_p_basic_sphere_ac58e5139399fa72a41af4a5d823bd2b4}{ph\+::\+PBasic\+Sphere}}, \mbox{\hyperlink{classph_1_1_p_empty_ad854b6e548b2b40fe8e018a82903c696}{ph\+::\+PEmpty}}, \mbox{\hyperlink{classph_1_1_p_lat_long_env_sphere_a021ee0e189084d1047de6766bd22efe9}{ph\+::\+PLat\+Long\+Env\+Sphere}}, \mbox{\hyperlink{classph_1_1_p_triangle_aea355fb93eb215f3f048e234c4ff2623}{ph\+::\+PTriangle}}, \mbox{\hyperlink{classph_1_1_t_meta_injection_primitive_afd52c5a8f64c66107e1911772acf6db4}{ph\+::\+TMeta\+Injection\+Primitive$<$ Primitive\+Meta\+Getter, Primitive\+Getter $>$}}, \mbox{\hyperlink{classph_1_1_t_p_indexed_kd_tree_triangle_mesh_a15eb63ba9141e5ccb103692994f231b2}{ph\+::\+TPIndexed\+Kd\+Tree\+Triangle\+Mesh$<$ Index $>$}}, \mbox{\hyperlink{classph_1_1_t_p_kd_tree_triangle_mesh_af6cdbbf15712f4f48fe3935cff091b19}{ph\+::\+TPKd\+Tree\+Triangle\+Mesh$<$ Index $>$}}, \mbox{\hyperlink{classph_1_1_transformed_intersectable_a918040fa8e9455c62928f5ebde8179c3}{ph\+::\+Transformed\+Intersectable}}, \mbox{\hyperlink{classph_1_1_transformed_primitive_a871b99c5bdd3037f466f4d9c926dc638}{ph\+::\+Transformed\+Primitive}}, \mbox{\hyperlink{classph_1_1_intersector_a78facadac843c2df2891c7ac159abc50}{ph\+::\+Intersector}}, and \mbox{\hyperlink{classph_1_1_primitive_ae265b7076813fa1c9684f6b128447c91}{ph\+::\+Primitive}}.
+
+\Hypertarget{classph_1_1_intersectable_ab2704ced51a4d65af7030b1a45a4fdda}\label{classph_1_1_intersectable_ab2704ced51a4d65af7030b1a45a4fdda} 
+\index{ph::Intersectable@{ph::Intersectable}!isOccluding@{isOccluding}}
+\index{isOccluding@{isOccluding}!ph::Intersectable@{ph::Intersectable}}
+\doxysubsubsection{\texorpdfstring{isOccluding()}{isOccluding()}}
+{\footnotesize\ttfamily bool ph\+::\+Intersectable\+::is\+Occluding (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classph_1_1_ray}{Ray}} \&}]{ray }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Determines whether this object blocks the ray. 
+
+If greater performance is desired, you can override the default implementation which simply calls \doxylink{classph_1_1_intersectable_ae445743ad48751b06f89a08cd8910b3e}{is\+Intersecting(const Ray\&, Hit\+Probe\&) const }to do the job. The test generally considers the underlying shape as {\bfseries{hollow}} (for closed shape), e.\+g., a sphere is not occluding a line segment inside the sphere. 
+
+Reimplemented in \mbox{\hyperlink{classph_1_1_brute_force_intersector_a70e1236cfa378300de910c8f0b499bed}{ph\+::\+Brute\+Force\+Intersector}}, \mbox{\hyperlink{classph_1_1_p_empty_a43a6c5ff03bd9873730525907c99f192}{ph\+::\+PEmpty}}, \mbox{\hyperlink{classph_1_1_p_lat_long_env_sphere_a1413932615d2fb24f9ae0bc55736e29a}{ph\+::\+PLat\+Long\+Env\+Sphere}}, \mbox{\hyperlink{classph_1_1_t_meta_injection_primitive_a41acc60dc086618458fc44b5756dcdea}{ph\+::\+TMeta\+Injection\+Primitive$<$ Primitive\+Meta\+Getter, Primitive\+Getter $>$}}, \mbox{\hyperlink{classph_1_1_transformed_intersectable_a8c8fa9657f7359d0daad6dd66f50d339}{ph\+::\+Transformed\+Intersectable}}, and \mbox{\hyperlink{classph_1_1_transformed_primitive_a3b5142026448657c61a7a25267e1586b}{ph\+::\+Transformed\+Primitive}}.
+
+\Hypertarget{classph_1_1_intersectable_a86fce4c0b0c1f99a50380ce41ad2875a}\label{classph_1_1_intersectable_a86fce4c0b0c1f99a50380ce41ad2875a} 
+\index{ph::Intersectable@{ph::Intersectable}!mayOverlapVolume@{mayOverlapVolume}}
+\index{mayOverlapVolume@{mayOverlapVolume}!ph::Intersectable@{ph::Intersectable}}
+\doxysubsubsection{\texorpdfstring{mayOverlapVolume()}{mayOverlapVolume()}}
+{\footnotesize\ttfamily bool ph\+::\+Intersectable\+::may\+Overlap\+Volume (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d}{math\+::\+AABB3D}} \&}]{volume }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Conservatively checks whether this object overlaps a volume. 
+
+By conservative, it means {\bfseries{true can be returned even though the object does not overlap the volume}}; but if it actually does, {\bfseries{true must be returned}}. The default implementation performs conservative intersecting test using the AABB calculated by \doxylink{classph_1_1_intersectable_a704f250ee94d802e853748d97dd6722f}{calc\+AABB()}. Although false-\/positives are allowed for this method, providing an implementation with higher accuracy is benefitial for many algorithms used by the renderer. The test generally considers the underlying shape as {\bfseries{hollow}} (for closed shape), while the volume is {\bfseries{solid}}. 
+
+Reimplemented in \mbox{\hyperlink{classph_1_1_transformed_intersectable_abf80f1c049916a6a4f80b16f4b3a6222}{ph\+::\+Transformed\+Intersectable}}, \mbox{\hyperlink{classph_1_1_transformed_primitive_ab70d17a2922239b42b14fb7c15214355}{ph\+::\+Transformed\+Primitive}}, \mbox{\hyperlink{classph_1_1_p_basic_sphere_ab305a89c211275b48dad578131e56b7d}{ph\+::\+PBasic\+Sphere}}, \mbox{\hyperlink{classph_1_1_p_empty_a3ee88ed8bdb84f4bd93aec95e19fc3cd}{ph\+::\+PEmpty}}, \mbox{\hyperlink{classph_1_1_p_lat_long_env_sphere_a62efab606c54547ca10d717acee6b8b1}{ph\+::\+PLat\+Long\+Env\+Sphere}}, \mbox{\hyperlink{classph_1_1_p_triangle_afef96de5ae97eb477b7d64bf96aed6d5}{ph\+::\+PTriangle}}, and \mbox{\hyperlink{classph_1_1_t_meta_injection_primitive_a2bd15a864afc3102a0d9288383eaa408}{ph\+::\+TMeta\+Injection\+Primitive$<$ Primitive\+Meta\+Getter, Primitive\+Getter $>$}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Source/\+Core/\+Intersectable/Intersectable.\+h\item 
+Source/\+Core/\+Intersectable/Intersectable.\+cpp\end{DoxyCompactItemize}

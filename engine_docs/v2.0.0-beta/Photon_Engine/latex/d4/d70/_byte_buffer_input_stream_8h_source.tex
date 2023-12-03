@@ -1,0 +1,239 @@
+\doxysection{Byte\+Buffer\+Input\+Stream.\+h}
+\hypertarget{_byte_buffer_input_stream_8h_source}{}\label{_byte_buffer_input_stream_8h_source}\index{Source/DataIO/Stream/ByteBufferInputStream.h@{Source/DataIO/Stream/ByteBufferInputStream.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}DataIO/Stream/IInputStream.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Common/assertion.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}DataIO/io\_exceptions.h"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <cstddef>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <type\_traits>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <format>}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00014\ \{}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_byte_buffer_input_stream}{ByteBufferInputStream}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classph_1_1_i_input_stream}{IInputStream}}}
+\DoxyCodeLine{00019\ \{}
+\DoxyCodeLine{00020\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00021\ \ \ \ \ \mbox{\hyperlink{classph_1_1_byte_buffer_input_stream}{ByteBufferInputStream}}();}
+\DoxyCodeLine{00022\ \ \ \ \ \mbox{\hyperlink{classph_1_1_byte_buffer_input_stream}{ByteBufferInputStream}}(\textcolor{keyword}{const}\ std::byte*\ srcByteBuffer,\ std::size\_t\ numBytes);}
+\DoxyCodeLine{00023\ \ \ \ \ \mbox{\hyperlink{classph_1_1_byte_buffer_input_stream}{ByteBufferInputStream}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ srcCharBuffer,\ std::size\_t\ numChars);}
+\DoxyCodeLine{00024\ \ \ \ \ \mbox{\hyperlink{classph_1_1_byte_buffer_input_stream}{ByteBufferInputStream}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}*\ srcUCharBuffer,\ std::size\_t\ numUChars);}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classph_1_1_byte_buffer_input_stream}{ByteBufferInputStream}}(std::size\_t\ numBytes);}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_byte_buffer_input_stream}{ByteBufferInputStream}}(\mbox{\hyperlink{classph_1_1_byte_buffer_input_stream}{ByteBufferInputStream}}\&\&\ other)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_byte_buffer_input_stream_aaa3b1c48b2ff207a2ddfd877c8373d7e}{read}}(std::size\_t\ numBytes,\ std::byte*\ out\_bytes)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_byte_buffer_input_stream_a4492e8813fca4621a0652a081597ac34}{readString}}(std::string*\ out\_string,\ \textcolor{keywordtype}{char}\ delimiter)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_byte_buffer_input_stream_a46844aec5022752b7fca2eee8374bb54}{seekGet}}(std::size\_t\ pos)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00031\ \ \ \ \ std::optional<std::size\_t>\ \mbox{\hyperlink{classph_1_1_byte_buffer_input_stream_a158c89d7e05dc9a328dbae3adfce794d}{tellGet}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{operator}\ bool\ ()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00033\ \ \ \ \ std::size\_t\ \mbox{\hyperlink{classph_1_1_byte_buffer_input_stream_ad11b8290552e2c2da98fcb9e579ba3ad}{readSome}}(std::size\_t\ numBytes,\ std::byte*\ out\_bytes)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordtype}{void}\ readData(T*\ out\_data);}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00040\ \ \ \ \ std::size\_t\ \mbox{\hyperlink{classph_1_1_byte_buffer_input_stream_a605f9c257b4aa87ce2025b075853c66a}{numBufferBytes}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00045\ \ \ \ \ std::byte*\ \mbox{\hyperlink{classph_1_1_byte_buffer_input_stream_a09f33d06b0b1010ac0409efd6d613fe1}{byteBuffer}}();}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keyword}{const}\ std::byte*\ \mbox{\hyperlink{classph_1_1_byte_buffer_input_stream_a09f33d06b0b1010ac0409efd6d613fe1}{byteBuffer}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordtype}{char}*\ charBuffer();}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ charBuffer()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}*\ ucharBuffer();}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}*\ ucharBuffer()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_byte_buffer_input_stream_afd6c22e7bd88058de6ca0b0f325acc18}{canRead}}(std::size\_t\ numBytes)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_byte_buffer_input_stream_afd6c22e7bd88058de6ca0b0f325acc18}{canRead}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_byte_buffer_input_stream}{ByteBufferInputStream}}\&\ operator\ =\ (\mbox{\hyperlink{classph_1_1_byte_buffer_input_stream}{ByteBufferInputStream}}\&\&\ rhs)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00072\ \ \ \ \ std::unique\_ptr<std::byte[]>\ m\_byteBuffer;}
+\DoxyCodeLine{00073\ \ \ \ \ std::size\_t\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_numBytes;}
+\DoxyCodeLine{00074\ \ \ \ \ std::size\_t\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_readHead;}
+\DoxyCodeLine{00075\ \};}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \textcolor{comment}{//\ In-\/header\ Implementations:}}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_byte_buffer_input_stream_aaa3b1c48b2ff207a2ddfd877c8373d7e}{ByteBufferInputStream::read}}(\textcolor{keyword}{const}\ std::size\_t\ numBytes,\ std::byte*\ \textcolor{keyword}{const}\ out\_bytes)}
+\DoxyCodeLine{00080\ \{}
+\DoxyCodeLine{00081\ \ \ \ \ PH\_ASSERT(out\_bytes);}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{classph_1_1_byte_buffer_input_stream_afd6c22e7bd88058de6ca0b0f325acc18}{canRead}}(numBytes))}
+\DoxyCodeLine{00084\ \ \ \ \ \{}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ PH\_ASSERT\_LT(m\_readHead,\ \mbox{\hyperlink{classph_1_1_byte_buffer_input_stream_a605f9c257b4aa87ce2025b075853c66a}{numBufferBytes}}());}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ PH\_ASSERT\_LE(m\_readHead\ +\ numBytes,\ \mbox{\hyperlink{classph_1_1_byte_buffer_input_stream_a605f9c257b4aa87ce2025b075853c66a}{numBufferBytes}}());}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ std::copy(}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_byte_buffer_input_stream_a09f33d06b0b1010ac0409efd6d613fe1}{byteBuffer}}()\ +\ m\_readHead,\ }
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_byte_buffer_input_stream_a09f33d06b0b1010ac0409efd6d613fe1}{byteBuffer}}()\ +\ m\_readHead\ +\ numBytes,}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ out\_bytes);}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ m\_readHead\ +=\ numBytes;}
+\DoxyCodeLine{00094\ \ \ \ \ \}}
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00096\ \ \ \ \ \{}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \mbox{\hyperlink{classph_1_1_i_o_exception}{IOException}}(std::format(}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Attempt\ to\ read\ bytes\ in\ [\{\},\ \{\})\ which\ overflows\ [\{\},\ \{\})."{}},}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ m\_readHead,\ m\_readHead\ +\ numBytes,\ m\_readHead,\ \mbox{\hyperlink{classph_1_1_byte_buffer_input_stream_a605f9c257b4aa87ce2025b075853c66a}{numBufferBytes}}()));}
+\DoxyCodeLine{00100\ \ \ \ \ \}}
+\DoxyCodeLine{00101\ \}}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_byte_buffer_input_stream_a4492e8813fca4621a0652a081597ac34}{ByteBufferInputStream::readString}}(std::string*\ \textcolor{keyword}{const}\ out\_string,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ delimiter)}
+\DoxyCodeLine{00104\ \{}
+\DoxyCodeLine{00105\ \ \ \ \ PH\_ASSERT(out\_string);}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{classph_1_1_byte_buffer_input_stream_afd6c22e7bd88058de6ca0b0f325acc18}{canRead}}())}
+\DoxyCodeLine{00108\ \ \ \ \ \{}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ PH\_ASSERT\_LT(m\_readHead,\ \mbox{\hyperlink{classph_1_1_byte_buffer_input_stream_a605f9c257b4aa87ce2025b075853c66a}{numBufferBytes}}());}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \textcolor{keyword}{const}\ charBufferView\ =\ charBuffer();}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ beginIdx\ =\ m\_readHead;}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(;\ m\_readHead\ <\ \mbox{\hyperlink{classph_1_1_byte_buffer_input_stream_a605f9c257b4aa87ce2025b075853c66a}{numBufferBytes}}();\ ++m\_readHead)}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(charBufferView[m\_readHead]\ ==\ delimiter)}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ++m\_readHead;}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ <m\_readHead>\ is\ on\ either\ one\ past\ delimiter\ or\ buffer\ size\ after\ the\ loop}}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ PH\_ASSERT\_LT(beginIdx,\ m\_readHead);}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ out\_string-\/>clear();}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Ternary\ for\ not\ to\ include\ the\ delimiter\ in\ the\ output\ string}}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ numChars\ =\ m\_readHead\ <\ \mbox{\hyperlink{classph_1_1_byte_buffer_input_stream_a605f9c257b4aa87ce2025b075853c66a}{numBufferBytes}}()\ ?\ m\_readHead\ -\/\ 1\ -\/\ beginIdx\ :\ m\_readHead\ -\/\ beginIdx;}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ out\_string-\/>append(}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ \&(charBufferView[beginIdx]),}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ numChars);}
+\DoxyCodeLine{00133\ \ \ \ \ \}}
+\DoxyCodeLine{00134\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00135\ \ \ \ \ \{}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \mbox{\hyperlink{classph_1_1_i_o_exception}{IOException}}(std::format(}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Attempt\ to\ read\ a\ string\ with\ delimiter\ \{\}\ from\ buffer\ range\ [\{\},\ \{\})."{}},}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ delimiter,\ m\_readHead,\ \mbox{\hyperlink{classph_1_1_byte_buffer_input_stream_a605f9c257b4aa87ce2025b075853c66a}{numBufferBytes}}()));}
+\DoxyCodeLine{00139\ \ \ \ \ \}}
+\DoxyCodeLine{00140\ \}}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00142\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_byte_buffer_input_stream_a46844aec5022752b7fca2eee8374bb54}{ByteBufferInputStream::seekGet}}(\textcolor{keyword}{const}\ std::size\_t\ pos)}
+\DoxyCodeLine{00143\ \{}
+\DoxyCodeLine{00144\ \ \ \ \ \textcolor{keywordflow}{if}(pos\ <\ \mbox{\hyperlink{classph_1_1_byte_buffer_input_stream_a605f9c257b4aa87ce2025b075853c66a}{numBufferBytes}}())}
+\DoxyCodeLine{00145\ \ \ \ \ \{}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ m\_readHead\ =\ pos;}
+\DoxyCodeLine{00147\ \ \ \ \ \}}
+\DoxyCodeLine{00148\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00149\ \ \ \ \ \{}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \mbox{\hyperlink{classph_1_1_i_o_exception}{IOException}}(std::format(}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Attempt\ to\ seek\ to\ read\ position\ \{\}\ which\ overflows\ [0,\ \{\})."{}},}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \ \ \ \ pos,\ \mbox{\hyperlink{classph_1_1_byte_buffer_input_stream_a605f9c257b4aa87ce2025b075853c66a}{numBufferBytes}}()));}
+\DoxyCodeLine{00153\ \ \ \ \ \}}
+\DoxyCodeLine{00154\ \}}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00156\ \textcolor{keyword}{inline}\ std::optional<std::size\_t>\ \mbox{\hyperlink{classph_1_1_byte_buffer_input_stream_a158c89d7e05dc9a328dbae3adfce794d}{ByteBufferInputStream::tellGet}}()}
+\DoxyCodeLine{00157\ \{}
+\DoxyCodeLine{00158\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_readHead;}
+\DoxyCodeLine{00159\ \}}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00161\ \textcolor{keyword}{inline}\ std::size\_t\ \mbox{\hyperlink{classph_1_1_byte_buffer_input_stream_ad11b8290552e2c2da98fcb9e579ba3ad}{ByteBufferInputStream::readSome}}(\textcolor{keyword}{const}\ std::size\_t\ numBytes,\ std::byte*\ \textcolor{keyword}{const}\ out\_bytes)}
+\DoxyCodeLine{00162\ \{}
+\DoxyCodeLine{00163\ \ \ \ \ PH\_ASSERT(out\_bytes);}
+\DoxyCodeLine{00164\ }
+\DoxyCodeLine{00165\ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{classph_1_1_byte_buffer_input_stream_afd6c22e7bd88058de6ca0b0f325acc18}{canRead}}(numBytes))}
+\DoxyCodeLine{00166\ \ \ \ \ \{}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_byte_buffer_input_stream_aaa3b1c48b2ff207a2ddfd877c8373d7e}{read}}(numBytes,\ out\_bytes);}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ numBytes;}
+\DoxyCodeLine{00169\ \ \ \ \ \}}
+\DoxyCodeLine{00170\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00171\ \ \ \ \ \{}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ PH\_ASSERT\_LE(m\_readHead,\ \mbox{\hyperlink{classph_1_1_byte_buffer_input_stream_a605f9c257b4aa87ce2025b075853c66a}{numBufferBytes}}());}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ numRemainingBytes\ =\ \mbox{\hyperlink{classph_1_1_byte_buffer_input_stream_a605f9c257b4aa87ce2025b075853c66a}{numBufferBytes}}()\ -\/\ m\_readHead;}
+\DoxyCodeLine{00174\ }
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ PH\_ASSERT\_LT(numRemainingBytes,\ numBytes);}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_byte_buffer_input_stream_aaa3b1c48b2ff207a2ddfd877c8373d7e}{read}}(numRemainingBytes,\ out\_bytes);}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ numRemainingBytes;}
+\DoxyCodeLine{00178\ \ \ \ \ \}}
+\DoxyCodeLine{00179\ \}}
+\DoxyCodeLine{00180\ }
+\DoxyCodeLine{00181\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_byte_buffer_input_stream_afd6c22e7bd88058de6ca0b0f325acc18}{ByteBufferInputStream::canRead}}(\textcolor{keyword}{const}\ std::size\_t\ numBytes)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00182\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00183\ \ \ \ \ PH\_ASSERT(}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ m\_byteBuffer\ ||}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ (!m\_byteBuffer\ \&\&\ m\_readHead\ ==\ 0\ \&\&\ \mbox{\hyperlink{classph_1_1_byte_buffer_input_stream_a605f9c257b4aa87ce2025b075853c66a}{numBufferBytes}}()\ ==\ 0));}
+\DoxyCodeLine{00186\ }
+\DoxyCodeLine{00187\ \ \ \ \ \textcolor{comment}{//\ For\ empty\ buffer,\ the\ only\ allowed\ <numBytes>\ to\ read\ is\ 0}}
+\DoxyCodeLine{00188\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_readHead\ +\ numBytes\ <=\ \mbox{\hyperlink{classph_1_1_byte_buffer_input_stream_a605f9c257b4aa87ce2025b075853c66a}{numBufferBytes}}();}
+\DoxyCodeLine{00189\ \}}
+\DoxyCodeLine{00190\ }
+\DoxyCodeLine{00191\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_byte_buffer_input_stream_afd6c22e7bd88058de6ca0b0f325acc18}{ByteBufferInputStream::canRead}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00192\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00193\ \ \ \ \ PH\_ASSERT(}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ m\_byteBuffer\ ||\ }
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ (!m\_byteBuffer\ \&\&\ m\_readHead\ ==\ 0\ \&\&\ \mbox{\hyperlink{classph_1_1_byte_buffer_input_stream_a605f9c257b4aa87ce2025b075853c66a}{numBufferBytes}}()\ ==\ 0));}
+\DoxyCodeLine{00196\ }
+\DoxyCodeLine{00197\ \ \ \ \ \textcolor{comment}{//\ For\ empty\ buffer,\ both\ <m\_readHead>\ and\ <numBufferBytes()>\ should\ be\ 0\ which\ results\ in\ \`{}false`}}
+\DoxyCodeLine{00198\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_readHead\ <\ \mbox{\hyperlink{classph_1_1_byte_buffer_input_stream_a605f9c257b4aa87ce2025b075853c66a}{numBufferBytes}}();}
+\DoxyCodeLine{00199\ \}}
+\DoxyCodeLine{00200\ }
+\DoxyCodeLine{00201\ \textcolor{keyword}{inline}\ ByteBufferInputStream::operator\ bool\ ()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00202\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00203\ \ \ \ \ \textcolor{keywordflow}{return}\ canRead();}
+\DoxyCodeLine{00204\ \}}
+\DoxyCodeLine{00205\ }
+\DoxyCodeLine{00206\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00207\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ ByteBufferInputStream::readData(T*\ \textcolor{keyword}{const}\ out\_data)}
+\DoxyCodeLine{00208\ \{}
+\DoxyCodeLine{00209\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_trivially\_copyable\_v<T>);}
+\DoxyCodeLine{00210\ \ \ \ \ PH\_ASSERT(out\_data);}
+\DoxyCodeLine{00211\ }
+\DoxyCodeLine{00212\ \ \ \ \ \mbox{\hyperlink{classph_1_1_byte_buffer_input_stream_aaa3b1c48b2ff207a2ddfd877c8373d7e}{read}}(\textcolor{keyword}{sizeof}(T),\ \textcolor{keyword}{reinterpret\_cast<}std::byte*\textcolor{keyword}{>}(out\_data));}
+\DoxyCodeLine{00213\ \}}
+\DoxyCodeLine{00214\ }
+\DoxyCodeLine{00215\ \textcolor{keyword}{inline}\ std::size\_t\ \mbox{\hyperlink{classph_1_1_byte_buffer_input_stream_a605f9c257b4aa87ce2025b075853c66a}{ByteBufferInputStream::numBufferBytes}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00216\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00217\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_numBytes;}
+\DoxyCodeLine{00218\ \}}
+\DoxyCodeLine{00219\ }
+\DoxyCodeLine{00220\ \textcolor{keyword}{inline}\ std::byte*\ \mbox{\hyperlink{classph_1_1_byte_buffer_input_stream_a09f33d06b0b1010ac0409efd6d613fe1}{ByteBufferInputStream::byteBuffer}}()}
+\DoxyCodeLine{00221\ \{}
+\DoxyCodeLine{00222\ \ \ \ \ PH\_ASSERT(m\_byteBuffer);}
+\DoxyCodeLine{00223\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_byteBuffer.get();}
+\DoxyCodeLine{00224\ \}}
+\DoxyCodeLine{00225\ }
+\DoxyCodeLine{00226\ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ std::byte*\ \mbox{\hyperlink{classph_1_1_byte_buffer_input_stream_a09f33d06b0b1010ac0409efd6d613fe1}{ByteBufferInputStream::byteBuffer}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00227\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00228\ \ \ \ \ PH\_ASSERT(m\_byteBuffer);}
+\DoxyCodeLine{00229\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_byteBuffer.get();}
+\DoxyCodeLine{00230\ \}}
+\DoxyCodeLine{00231\ }
+\DoxyCodeLine{00232\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{char}*\ ByteBufferInputStream::charBuffer()}
+\DoxyCodeLine{00233\ \{}
+\DoxyCodeLine{00234\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{reinterpret\_cast<}\textcolor{keywordtype}{char}*\textcolor{keyword}{>}(\mbox{\hyperlink{classph_1_1_byte_buffer_input_stream_a09f33d06b0b1010ac0409efd6d613fe1}{byteBuffer}}());}
+\DoxyCodeLine{00235\ \}}
+\DoxyCodeLine{00236\ }
+\DoxyCodeLine{00237\ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ ByteBufferInputStream::charBuffer()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00238\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00239\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const\ }\textcolor{keywordtype}{char}*\textcolor{keyword}{>}(\mbox{\hyperlink{classph_1_1_byte_buffer_input_stream_a09f33d06b0b1010ac0409efd6d613fe1}{byteBuffer}}());}
+\DoxyCodeLine{00240\ \}}
+\DoxyCodeLine{00241\ }
+\DoxyCodeLine{00242\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}*\ ByteBufferInputStream::ucharBuffer()}
+\DoxyCodeLine{00243\ \{}
+\DoxyCodeLine{00244\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{reinterpret\_cast<}\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}*\textcolor{keyword}{>}(\mbox{\hyperlink{classph_1_1_byte_buffer_input_stream_a09f33d06b0b1010ac0409efd6d613fe1}{byteBuffer}}());}
+\DoxyCodeLine{00245\ \}}
+\DoxyCodeLine{00246\ }
+\DoxyCodeLine{00247\ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}*\ ByteBufferInputStream::ucharBuffer()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00248\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00249\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const\ }\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}*\textcolor{keyword}{>}(\mbox{\hyperlink{classph_1_1_byte_buffer_input_stream_a09f33d06b0b1010ac0409efd6d613fe1}{byteBuffer}}());}
+\DoxyCodeLine{00250\ \}}
+\DoxyCodeLine{00251\ }
+\DoxyCodeLine{00252\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+
+\end{DoxyCode}

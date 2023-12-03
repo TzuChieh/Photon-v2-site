@@ -1,0 +1,131 @@
+\doxysection{TSdl\+Method.\+ipp}
+\hypertarget{_t_sdl_method_8ipp_source}{}\label{_t_sdl_method_8ipp_source}\index{Source/SDL/Introspect/TSdlMethod.ipp@{Source/SDL/Introspect/TSdlMethod.ipp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}SDL/Introspect/TSdlMethod.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Common/assertion.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}SDL/SdlInputClauses.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}SDL/Introspect/SdlInputContext.h"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}SDL/Introspect/field\_set\_op.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}SDL/SceneDescription.h"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}SDL/sdl\_exceptions.h"{}}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00014\ \{}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ MethodStruct,\ \textcolor{keyword}{typename}\ TargetType>}
+\DoxyCodeLine{00017\ \textcolor{keyword}{inline}\ TSdlMethod<MethodStruct,\ TargetType>::TSdlMethod(std::string\ name)\ :}
+\DoxyCodeLine{00018\ \ \ \ \ SdlFunction(std::move(name))}
+\DoxyCodeLine{00019\ \{\}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ MethodStruct,\ \textcolor{keyword}{typename}\ TargetType>}
+\DoxyCodeLine{00022\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ TSdlMethod<MethodStruct,\ TargetType>::call(}
+\DoxyCodeLine{00023\ \ \ \ \ ISdlResource*\ \ \ \ \ \ \ \ \ \ resource,}
+\DoxyCodeLine{00024\ \ \ \ \ SdlInputClauses\&\ \ \ \ \ \ \ clauses,}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{const}\ SdlInputContext\&\ ctx)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00026\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordflow}{if}(!resource)}
+\DoxyCodeLine{00028\ \ \ \ \ \{}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ SdlLoadError(}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}cannot\ call\ SDL\ method\ without\ target\ resource\ "{}}}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}("{}}\ +\ ctx.genPrettySrcClassName()\ +\ \textcolor{stringliteral}{"{})"{}});}
+\DoxyCodeLine{00032\ \ \ \ \ \}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{auto}\ \textcolor{keyword}{const}\ targetRes\ =\ \textcolor{keyword}{dynamic\_cast<}TargetType*\textcolor{keyword}{>}(resource);}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordflow}{if}(!targetRes)}
+\DoxyCodeLine{00036\ \ \ \ \ \{}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ SdlLoadError(}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}type\ cast\ error:\ target\ resource\ is\ not\ owned\ by\ "{}}}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}SDL\ class\ <"{}}\ +\ ctx.genPrettySrcClassName()\ +\ \textcolor{stringliteral}{"{}>"{}});}
+\DoxyCodeLine{00040\ \ \ \ \ \}}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ PH\_ASSERT(targetRes);}
+\DoxyCodeLine{00043\ \ \ \ \ callMethod(*targetRes,\ clauses,\ ctx);}
+\DoxyCodeLine{00044\ \}}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ MethodStruct,\ \textcolor{keyword}{typename}\ TargetType>}
+\DoxyCodeLine{00047\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ TSdlMethod<MethodStruct,\ TargetType>::callMethod(}
+\DoxyCodeLine{00048\ \ \ \ \ TargetType\&\ \ \ \ \ \ \ \ \ \ \ \ targetType,\ }
+\DoxyCodeLine{00049\ \ \ \ \ SdlInputClauses\&\ \ \ \ \ \ \ clauses,}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keyword}{const}\ SdlInputContext\&\ ctx)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00051\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keyword}{static\_assert}(!std::is\_abstract\_v<MethodStruct>\ \&\&\ std::is\_default\_constructible\_v<MethodStruct>,}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}MethodStruct\ must\ be\ non-\/abstract\ and\ default-\/constructible."{}});}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_invocable\_v<MethodStruct,\ TargetType\&>,}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}MethodStruct\ must\ contain\ an\ operator()\ that\ can\ take\ a\ TargetType\ instance."{}});}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ \ \ MethodStruct\ methodStructObj;}
+\DoxyCodeLine{00059\ \ \ \ \ loadParameters(}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ methodStructObj,}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ clauses,}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ ctx);}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \ \ \ \ methodStructObj(targetType);}
+\DoxyCodeLine{00065\ \}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ MethodStruct,\ \textcolor{keyword}{typename}\ TargetType>}
+\DoxyCodeLine{00068\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ TSdlMethod<MethodStruct,\ TargetType>::loadParameters(}
+\DoxyCodeLine{00069\ \ \ \ \ MethodStruct\&\ \ \ \ \ \ \ \ \ \ parameterStruct,}
+\DoxyCodeLine{00070\ \ \ \ \ SdlInputClauses\&\ \ \ \ \ \ \ clauses,}
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keyword}{const}\ SdlInputContext\&\ ctx)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00072\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00073\ \ \ \ \ field\_set\_op::load\_fields\_from\_sdl(}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ parameterStruct,}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ m\_fields,}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ clauses,}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ ctx,}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ [](std::string\ noticeMsg,\ EFieldImportance\ importance)}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(importance\ ==\ EFieldImportance::Optional\ ||\ importance\ ==\ EFieldImportance::NiceToHave)}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ PH\_LOG\_STRING(SdlFunction,\ noticeMsg);}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ PH\_LOG\_WARNING\_STRING(SdlFunction,\ noticeMsg);}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00089\ \}}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ MethodStruct,\ \textcolor{keyword}{typename}\ TargetType>}
+\DoxyCodeLine{00092\ \textcolor{keyword}{inline}\ std::size\_t\ TSdlMethod<MethodStruct,\ TargetType>::numParams()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00093\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_fields.numFields();}
+\DoxyCodeLine{00095\ \}}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ MethodStruct,\ \textcolor{keyword}{typename}\ TargetType>}
+\DoxyCodeLine{00098\ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ SdlField*\ TSdlMethod<MethodStruct,\ TargetType>::getParam(\textcolor{keyword}{const}\ std::size\_t\ index)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00099\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_fields.getField(index);}
+\DoxyCodeLine{00101\ \}}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ MethodStruct,\ \textcolor{keyword}{typename}\ TargetType>}
+\DoxyCodeLine{00104\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00105\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ TSdlMethod<MethodStruct,\ TargetType>::addParam(T\ sdlField)}
+\DoxyCodeLine{00106\ \ \ \ \ -\/>\ TSdlMethod\&}
+\DoxyCodeLine{00107\ \{}
+\DoxyCodeLine{00108\ \ \ \ \ \textcolor{comment}{//\ More\ restrictions\ on\ the\ type\ of\ T\ may\ be\ imposed\ by\ FieldSet}}
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_base\_of\_v<SdlField,\ T>,}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}T\ is\ not\ a\ SdlField\ thus\ cannot\ be\ added."{}});}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \ \ \ \ m\_fields.addField(std::move(sdlField));}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00115\ \}}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ MethodStruct,\ \textcolor{keyword}{typename}\ TargetType>}
+\DoxyCodeLine{00118\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ TSdlMethod<MethodStruct,\ TargetType>::description(std::string\ descriptionStr)}
+\DoxyCodeLine{00119\ \ \ \ \ -\/>\ TSdlMethod\&}
+\DoxyCodeLine{00120\ \{}
+\DoxyCodeLine{00121\ \ \ \ \ setDescription(std::move(descriptionStr));}
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00123\ \}}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+
+\end{DoxyCode}

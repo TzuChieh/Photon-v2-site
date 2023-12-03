@@ -1,0 +1,80 @@
+\doxysection{Surface\+Hit.\+h}
+\hypertarget{_surface_hit_8h_source}{}\label{_surface_hit_8h_source}\index{Source/Core/SurfaceHit.h@{Source/Core/SurfaceHit.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Core/HitDetail.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Core/HitProbe.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}Core/Ray.h"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00008\ \{}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{class\ }SurfaceOptics;}
+\DoxyCodeLine{00011\ \textcolor{keyword}{class\ }VolumeOptics;}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_surface_hit}{SurfaceHit}}\ final}
+\DoxyCodeLine{00014\ \{}
+\DoxyCodeLine{00015\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00016\ \ \ \ \ \mbox{\hyperlink{classph_1_1_surface_hit}{SurfaceHit}}();}
+\DoxyCodeLine{00017\ \ \ \ \ \mbox{\hyperlink{classph_1_1_surface_hit}{SurfaceHit}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_ray}{Ray}}\&\ incidentRay,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_hit_probe}{HitProbe}}\&\ probe);}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \ \ \ \ \mbox{\hyperlink{classph_1_1_surface_hit}{SurfaceHit}}\ switchChannel(uint32\ newChannel)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordtype}{bool}\ hasSurfaceOptics()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordtype}{bool}\ hasInteriorOptics()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordtype}{bool}\ hasExteriorOptics()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_hit_detail}{HitDetail}}\&\ getDetail()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_ray}{Ray}}\&\ getIncidentRay()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00027\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\ getPosition()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00028\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\ getShadingNormal()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00029\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\ getGeometryNormal()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00032\ \ \ \ \ \mbox{\hyperlink{classph_1_1_ray}{Ray}}\ \ \ \ \ \ \ m\_incidentRay;}
+\DoxyCodeLine{00033\ \ \ \ \ \mbox{\hyperlink{classph_1_1_hit_probe}{HitProbe}}\ \ m\_recordedProbe;}
+\DoxyCodeLine{00034\ \ \ \ \ \mbox{\hyperlink{classph_1_1_hit_detail}{HitDetail}}\ m\_detail;}
+\DoxyCodeLine{00035\ \};}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{comment}{//\ In-\/header\ Implementations:}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{keyword}{inline}\ SurfaceHit::SurfaceHit()\ :}
+\DoxyCodeLine{00040\ \ \ \ \ m\_incidentRay(),\ m\_recordedProbe(),\ m\_detail()}
+\DoxyCodeLine{00041\ \{\}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \textcolor{keyword}{inline}\ SurfaceHit::SurfaceHit(\textcolor{keyword}{const}\ Ray\&\ incidentRay,\ \textcolor{keyword}{const}\ HitProbe\&\ probe)\ :}
+\DoxyCodeLine{00044\ \ \ \ \ m\_incidentRay(incidentRay),\ m\_recordedProbe(probe),\ m\_detail()}
+\DoxyCodeLine{00045\ \{}
+\DoxyCodeLine{00046\ \ \ \ \ HitProbe(m\_recordedProbe).calcIntersectionDetail(m\_incidentRay,\ \&m\_detail);}
+\DoxyCodeLine{00047\ \}}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ HitDetail\&\ SurfaceHit::getDetail()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00050\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_detail;}
+\DoxyCodeLine{00052\ \}}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ Ray\&\ SurfaceHit::getIncidentRay()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00055\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_incidentRay;}
+\DoxyCodeLine{00057\ \}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \textcolor{keyword}{inline}\ math::Vector3R\ SurfaceHit::getPosition()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00060\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_detail.getPosition();}
+\DoxyCodeLine{00062\ \}}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \textcolor{keyword}{inline}\ math::Vector3R\ SurfaceHit::getShadingNormal()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00065\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_detail.getShadingNormal();}
+\DoxyCodeLine{00067\ \}}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \textcolor{keyword}{inline}\ math::Vector3R\ SurfaceHit::getGeometryNormal()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00070\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_detail.getGeometryNormal();}
+\DoxyCodeLine{00072\ \}}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+
+\end{DoxyCode}

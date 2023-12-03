@@ -1,0 +1,114 @@
+\doxysection{ESdl\+Type\+Category.\+h}
+\hypertarget{_e_sdl_type_category_8h_source}{}\label{_e_sdl_type_category_8h_source}\index{Source/SDL/ESdlTypeCategory.h@{Source/SDL/ESdlTypeCategory.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Common/assertion.h"{}}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <string\_view>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <unordered\_map>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <array>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <cstddef>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00012\ \{}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{enum\ class}\ ESdlTypeCategory}
+\DoxyCodeLine{00015\ \{}
+\DoxyCodeLine{00016\ \ \ \ \ Unspecified\ =\ 0,}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \ \ \ \ Ref\_Geometry,\ }
+\DoxyCodeLine{00019\ \ \ \ \ Ref\_Material,}
+\DoxyCodeLine{00020\ \ \ \ \ Ref\_Motion,}
+\DoxyCodeLine{00021\ \ \ \ \ Ref\_LightSource,\ }
+\DoxyCodeLine{00022\ \ \ \ \ Ref\_Image,}
+\DoxyCodeLine{00023\ \ \ \ \ Ref\_Actor,\ }
+\DoxyCodeLine{00024\ \ \ \ \ Ref\_FrameProcessor,}
+\DoxyCodeLine{00025\ \ \ \ \ Ref\_Observer,}
+\DoxyCodeLine{00026\ \ \ \ \ Ref\_SampleSource,}
+\DoxyCodeLine{00027\ \ \ \ \ Ref\_Visualizer,}
+\DoxyCodeLine{00028\ \ \ \ \ Ref\_Option,}
+\DoxyCodeLine{00029\ \ \ \ \ Ref\_Object,}
+\DoxyCodeLine{00030\ \ \ \ \ }
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{comment}{//\ Special\ values\ (these\ entries\ should\ always\ be\ the\ last\ ones)}}
+\DoxyCodeLine{00032\ \ \ \ \ SIZE}
+\DoxyCodeLine{00033\ \};}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{keyword}{namespace\ }sdl::detail}
+\DoxyCodeLine{00036\ \{}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \textcolor{comment}{//\ Must\ match\ the\ entries\ in\ \`{}ESdlTypeCategory`}}
+\DoxyCodeLine{00039\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ std::array<std::string\_view,\ static\_cast<std::size\_t>(ESdlTypeCategory::SIZE)>\ CATEGORY\_TO\_STRING\ =}
+\DoxyCodeLine{00040\ \{\{}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{stringliteral}{"{}unspecified"{}},}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{stringliteral}{"{}geometry"{}},}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{stringliteral}{"{}material"{}},}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{stringliteral}{"{}motion"{}},}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{stringliteral}{"{}light-\/source"{}},}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{stringliteral}{"{}image"{}},}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{stringliteral}{"{}actor"{}},}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{stringliteral}{"{}frame-\/processor"{}},}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{stringliteral}{"{}observer"{}},}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{stringliteral}{"{}sample-\/source"{}},}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{stringliteral}{"{}visualizer"{}},}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{stringliteral}{"{}option"{}},}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{stringliteral}{"{}object"{}}}
+\DoxyCodeLine{00054\ \}\};}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \}\textcolor{comment}{//\ end\ namespace\ sdl::detail}}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \textcolor{keyword}{namespace\ }sdl}
+\DoxyCodeLine{00059\ \{}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \textcolor{keyword}{inline}\ std::string\_view\ category\_to\_string(\textcolor{keyword}{const}\ ESdlTypeCategory\ category)}
+\DoxyCodeLine{00062\ \{}
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ categoryIndex\ =\ \textcolor{keyword}{static\_cast<}std::size\_t\textcolor{keyword}{>}(category);}
+\DoxyCodeLine{00064\ \ \ \ \ PH\_ASSERT\_LT(categoryIndex,\ detail::CATEGORY\_TO\_STRING.size());}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordflow}{return}\ detail::CATEGORY\_TO\_STRING[categoryIndex];}
+\DoxyCodeLine{00066\ \}}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \textcolor{keyword}{inline}\ ESdlTypeCategory\ string\_to\_category(\textcolor{keyword}{const}\ std::string\_view\ categoryStr)}
+\DoxyCodeLine{00069\ \{}
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{static}\ std::unordered\_map<std::string\_view,\ ESdlTypeCategory>\ map\ =}
+\DoxyCodeLine{00071\ \ \ \ \ \{\ }
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \{category\_to\_string(ESdlTypeCategory::Ref\_Geometry),\ \ \ \ \ \ \ ESdlTypeCategory::Ref\_Geometry\},}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \{category\_to\_string(ESdlTypeCategory::Ref\_Material),\ \ \ \ \ \ \ ESdlTypeCategory::Ref\_Material\},}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \{category\_to\_string(ESdlTypeCategory::Ref\_Motion),\ \ \ \ \ \ \ \ \ ESdlTypeCategory::Ref\_Motion\},}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \{category\_to\_string(ESdlTypeCategory::Ref\_LightSource),\ \ \ \ ESdlTypeCategory::Ref\_LightSource\},}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \{category\_to\_string(ESdlTypeCategory::Ref\_Image),\ \ \ \ \ \ \ \ \ \ ESdlTypeCategory::Ref\_Image\},}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \{category\_to\_string(ESdlTypeCategory::Ref\_Actor),\ \ \ \ \ \ \ \ \ \ ESdlTypeCategory::Ref\_Actor\},}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \{category\_to\_string(ESdlTypeCategory::Ref\_FrameProcessor),\ ESdlTypeCategory::Ref\_FrameProcessor\},}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \{category\_to\_string(ESdlTypeCategory::Ref\_Observer),\ \ \ \ \ \ \ ESdlTypeCategory::Ref\_Observer\},}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \{category\_to\_string(ESdlTypeCategory::Ref\_SampleSource),\ \ \ ESdlTypeCategory::Ref\_SampleSource\},}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \{category\_to\_string(ESdlTypeCategory::Ref\_Visualizer),\ \ \ \ \ ESdlTypeCategory::Ref\_Visualizer\},}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \{category\_to\_string(ESdlTypeCategory::Ref\_Option),\ \ \ \ \ \ \ \ \ ESdlTypeCategory::Ref\_Option\},}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \{category\_to\_string(ESdlTypeCategory::Ref\_Object),\ \ \ \ \ \ \ \ \ ESdlTypeCategory::Ref\_Object\}}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Any\ other\ strings\ including\ the\ string\ for\ \`{}ESdlTypeCategory::Unspecified`}}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ is\ not\ explicitly\ mapped\ here,\ as\ by\ default\ they\ all\ mapped\ to\ \`{}ESdlTypeCategory::Unspecified`}}
+\DoxyCodeLine{00087\ \ \ \ \ \};}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ iter\ =\ map.find(categoryStr);}
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keywordflow}{if}(iter\ ==\ map.end())}
+\DoxyCodeLine{00091\ \ \ \ \ \{}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Map\ to\ "{}unspecified"{}\ by\ default}}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ESdlTypeCategory::Unspecified;}
+\DoxyCodeLine{00094\ \ \ \ \ \}}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{keywordflow}{return}\ iter-\/>second;}
+\DoxyCodeLine{00097\ \}}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00102\ \textcolor{keyword}{inline}\ std::vector<std::string\_view>\ acquire\_categories()}
+\DoxyCodeLine{00103\ \{}
+\DoxyCodeLine{00104\ \ \ \ \ \textcolor{keywordflow}{return}\ std::vector<std::string\_view>(}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ detail::CATEGORY\_TO\_STRING.begin(),\ }
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ detail::CATEGORY\_TO\_STRING.end());}
+\DoxyCodeLine{00107\ \}}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00109\ \}\textcolor{comment}{//\ end\ namespace\ sdl}}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+
+\end{DoxyCode}

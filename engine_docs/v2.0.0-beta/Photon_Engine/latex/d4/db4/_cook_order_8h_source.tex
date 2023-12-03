@@ -1,0 +1,75 @@
+\doxysection{Cook\+Order.\+h}
+\hypertarget{_cook_order_8h_source}{}\label{_cook_order_8h_source}\index{Source/World/Foundation/CookOrder.h@{Source/World/Foundation/CookOrder.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Common/primitive\_type.h"{}}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <cstddef>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <limits>}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00009\ \{}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{using\ }CookPriority\ =\ uint8;}
+\DoxyCodeLine{00012\ \textcolor{keyword}{using\ }CookLevel\ \ \ \ =\ uint8;}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{enum\ class}\ ECookPriority\ :\ CookPriority}
+\DoxyCodeLine{00015\ \{}
+\DoxyCodeLine{00016\ \ \ \ \ HIGH\ =\ 1,}
+\DoxyCodeLine{00017\ \ \ \ \ NORMAL\ =\ std::numeric\_limits<CookPriority>::max()\ /\ 2,}
+\DoxyCodeLine{00018\ \ \ \ \ LOW}
+\DoxyCodeLine{00019\ \};}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{keyword}{enum\ class}\ ECookLevel\ :\ CookLevel}
+\DoxyCodeLine{00022\ \{}
+\DoxyCodeLine{00023\ \ \ \ \ FIRST\ =\ 0,}
+\DoxyCodeLine{00024\ \ \ \ \ NORMAL\ =\ std::numeric\_limits<CookLevel>::max()\ /\ 2,}
+\DoxyCodeLine{00025\ \ \ \ \ LAST}
+\DoxyCodeLine{00026\ \};}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00030\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_cook_order}{CookOrder}}\ final}
+\DoxyCodeLine{00031\ \{}
+\DoxyCodeLine{00032\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00033\ \ \ \ \ CookPriority\ priority;}
+\DoxyCodeLine{00034\ \ \ \ \ CookLevel\ \ \ \ level;}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00038\ \ \ \ \ \mbox{\hyperlink{classph_1_1_cook_order_a9fbd0551c073f36b1a4140e9b2464082}{CookOrder}}();}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classph_1_1_cook_order_a9fbd0551c073f36b1a4140e9b2464082}{CookOrder}}(ECookPriority\ priority);}
+\DoxyCodeLine{00041\ \ \ \ \ \mbox{\hyperlink{classph_1_1_cook_order_a9fbd0551c073f36b1a4140e9b2464082}{CookOrder}}(ECookPriority\ priority,\ ECookLevel\ level);}
+\DoxyCodeLine{00042\ \ \ \ \ \mbox{\hyperlink{classph_1_1_cook_order_a9fbd0551c073f36b1a4140e9b2464082}{CookOrder}}(CookPriority\ priority,\ CookLevel\ level);}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordtype}{bool}\ operator\ <\ (\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_cook_order}{CookOrder}}\&\ rhs)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00045\ \};}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \textcolor{comment}{//\ In-\/header\ Implementations:}}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_cook_order_a9fbd0551c073f36b1a4140e9b2464082}{CookOrder::CookOrder}}()\ :\ }
+\DoxyCodeLine{00050\ \ \ \ \ \mbox{\hyperlink{classph_1_1_cook_order}{CookOrder}}(ECookPriority::NORMAL,\ ECookLevel::NORMAL)}
+\DoxyCodeLine{00051\ \{\}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_cook_order_a9fbd0551c073f36b1a4140e9b2464082}{CookOrder::CookOrder}}(\textcolor{keyword}{const}\ ECookPriority\ priority)\ :\ }
+\DoxyCodeLine{00054\ \ \ \ \ \mbox{\hyperlink{classph_1_1_cook_order}{CookOrder}}(priority,\ ECookLevel::NORMAL)}
+\DoxyCodeLine{00055\ \{\}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_cook_order_a9fbd0551c073f36b1a4140e9b2464082}{CookOrder::CookOrder}}(\textcolor{keyword}{const}\ ECookPriority\ priority,\ \textcolor{keyword}{const}\ ECookLevel\ level)\ :\ }
+\DoxyCodeLine{00058\ \ \ \ \ CookOrder(static\_cast<CookPriority>(priority),\ static\_cast<CookLevel>(level))}
+\DoxyCodeLine{00059\ \{\}}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_cook_order_a9fbd0551c073f36b1a4140e9b2464082}{CookOrder::CookOrder}}(\textcolor{keyword}{const}\ CookPriority\ priority,\ \textcolor{keyword}{const}\ CookLevel\ level)\ :\ }
+\DoxyCodeLine{00062\ \ \ \ \ priority(priority),\ level(level)}
+\DoxyCodeLine{00063\ \{\}}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ CookOrder::operator\ <\ (\textcolor{keyword}{const}\ CookOrder\&\ rhs)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00066\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{comment}{//\ Smaller\ level\ takes\ precedence\ over\ priority}}
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>level\ !=\ rhs.level\ ?\ }
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ this-\/>level\ <\ rhs.level\ :\ }
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ this-\/>priority\ <\ rhs.priority;}
+\DoxyCodeLine{00071\ \}}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+
+\end{DoxyCode}

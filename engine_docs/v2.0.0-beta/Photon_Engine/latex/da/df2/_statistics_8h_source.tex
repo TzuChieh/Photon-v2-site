@@ -1,0 +1,95 @@
+\doxysection{Statistics.\+h}
+\hypertarget{_statistics_8h_source}{}\label{_statistics_8h_source}\index{Source/Core/Renderer/Statistics.h@{Source/Core/Renderer/Statistics.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Common/primitive\_type.h"{}}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <atomic>}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00008\ \{}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_statistics}{Statistics}}\ final}
+\DoxyCodeLine{00011\ \{}
+\DoxyCodeLine{00012\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_statistics_1_1_record}{Record}}\ final}
+\DoxyCodeLine{00014\ \ \ \ \ \{}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ uint32\ totalWork;}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ uint32\ workDone;}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ uint32\ numSamplesTaken;}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ uint32\ numMsElapsed;}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_statistics_1_1_record}{Record}}()\ :\ totalWork(0),\ workDone(0),\ numSamplesTaken(0),\ numMsElapsed(0)\ \{\}}
+\DoxyCodeLine{00022\ \ \ \ \ \};}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_statistics}{Statistics}}()\ :}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ m\_totalWork(0),\ m\_workDone(0),\ m\_numSamplesTaken(0),\ m\_numMsElapsed(0)}
+\DoxyCodeLine{00027\ \ \ \ \ \{\}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_statistics}{Statistics}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_statistics}{Statistics}}\&\ other)\ :}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ m\_totalWork\ \ \ \ \ \ (other.m\_totalWork.load()),\ }
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ m\_workDone\ \ \ \ \ \ \ (other.m\_workDone.load()),\ }
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ m\_numSamplesTaken(other.m\_numSamplesTaken.load()),\ }
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ m\_numMsElapsed\ \ \ (other.m\_numMsElapsed.load())}
+\DoxyCodeLine{00034\ \ \ \ \ \{\}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ setTotalWork(\textcolor{keyword}{const}\ uint32\ totalWork)}
+\DoxyCodeLine{00037\ \ \ \ \ \{}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ m\_totalWork\ =\ totalWork;}
+\DoxyCodeLine{00039\ \ \ \ \ \}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ setWorkDone(\textcolor{keyword}{const}\ uint32\ workDone)}
+\DoxyCodeLine{00042\ \ \ \ \ \{}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ m\_workDone\ =\ workDone;}
+\DoxyCodeLine{00044\ \ \ \ \ \}}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ setNumSamplesTaken(\textcolor{keyword}{const}\ uint32\ numSamples)}
+\DoxyCodeLine{00047\ \ \ \ \ \{}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ m\_numSamplesTaken\ =\ numSamples;}
+\DoxyCodeLine{00049\ \ \ \ \ \}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ setNumMsElapsed(\textcolor{keyword}{const}\ uint32\ numMsElapsed)}
+\DoxyCodeLine{00052\ \ \ \ \ \{}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ m\_numMsElapsed\ =\ numMsElapsed;}
+\DoxyCodeLine{00054\ \ \ \ \ \}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ incrementWorkDone()}
+\DoxyCodeLine{00057\ \ \ \ \ \{}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ ++m\_workDone;}
+\DoxyCodeLine{00059\ \ \ \ \ \}}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keyword}{inline}\ Record\ record()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00062\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ Record\ record;}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ record.totalWork\ \ \ \ \ \ \ =\ m\_totalWork;}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ record.workDone\ \ \ \ \ \ \ \ =\ m\_workDone;}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ record.numSamplesTaken\ =\ m\_numSamplesTaken;}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ record.numMsElapsed\ \ \ \ =\ m\_numMsElapsed;}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ record;}
+\DoxyCodeLine{00070\ \ \ \ \ \}}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keyword}{inline}\ Statistics\&\ operator\ =\ (\textcolor{keyword}{const}\ Statistics\&\ rhs)}
+\DoxyCodeLine{00073\ \ \ \ \ \{}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ m\_totalWork\ \ \ \ \ \ \ =\ rhs.m\_totalWork.load();}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ m\_workDone\ \ \ \ \ \ \ \ =\ rhs.m\_workDone.load();}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ m\_numSamplesTaken\ =\ rhs.m\_numSamplesTaken.load();}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ m\_numMsElapsed\ \ \ \ =\ rhs.m\_numMsElapsed.load();}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00080\ \ \ \ \ \}}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00083\ \ \ \ \ std::atomic\_uint32\_t\ m\_totalWork;}
+\DoxyCodeLine{00084\ \ \ \ \ std::atomic\_uint32\_t\ m\_workDone;}
+\DoxyCodeLine{00085\ \ \ \ \ std::atomic\_uint32\_t\ m\_numSamplesTaken;}
+\DoxyCodeLine{00086\ \ \ \ \ std::atomic\_uint32\_t\ m\_numMsElapsed;}
+\DoxyCodeLine{00087\ \};}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+
+\end{DoxyCode}

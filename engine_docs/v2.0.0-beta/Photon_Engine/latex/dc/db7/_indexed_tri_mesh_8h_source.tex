@@ -1,0 +1,56 @@
+\doxysection{Indexed\+Tri\+Mesh.\+h}
+\hypertarget{_indexed_tri_mesh_8h_source}{}\label{_indexed_tri_mesh_8h_source}\index{Source/Core/Intersectable/DataStructure/IndexedTriMesh.h@{Source/Core/Intersectable/DataStructure/IndexedTriMesh.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Core/Intersectable/DataStructure/TriFace.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Math/TVector3.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}Common/assertion.h"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <cstddef>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <array>}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00011\ \{}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_indexed_tri_mesh}{IndexedTriMesh}}}
+\DoxyCodeLine{00014\ \{}
+\DoxyCodeLine{00015\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classph_1_1_indexed_tri_mesh}{IndexedTriMesh}}(std::size\_t\ numFaces);}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classph_1_1_indexed_tri_mesh}{\string~IndexedTriMesh}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classph_1_1_tri_face}{TriFace}}\ getFace(std::size\_t\ index)\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keyword}{virtual}\ std::array<math::Vector3R,\ 3>\ getVertices(std::size\_t\ index)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ \ \ std::size\_t\ numFaces()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{comment}{//\ TODO:\ interface\ for\ aquiring\ new\ UV\ from\ a\ different\ channel}}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{comment}{//\ TODO:\ do\ we\ need\ to\ know\ how\ many\ UV\ channels\ this\ mesh\ is\ supporting?}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00029\ \ \ \ \ std::size\_t\ m\_numFaces;}
+\DoxyCodeLine{00030\ \};}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{comment}{//\ In-\/header\ Implementations:}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{keyword}{inline}\ IndexedTriMesh::IndexedTriMesh(\textcolor{keyword}{const}\ std::size\_t\ numFaces)\ :\ }
+\DoxyCodeLine{00035\ \ \ \ \ m\_numFaces(numFaces)}
+\DoxyCodeLine{00036\ \{}
+\DoxyCodeLine{00037\ \ \ \ \ PH\_ASSERT\_GT(numFaces,\ 0);}
+\DoxyCodeLine{00038\ \}}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{keyword}{inline}\ std::array<math::Vector3R,\ 3>\ IndexedTriMesh::getVertices(\textcolor{keyword}{const}\ std::size\_t\ index)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00041\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordflow}{return}\ getFace(index).getVertices();}
+\DoxyCodeLine{00043\ \}}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \textcolor{keyword}{inline}\ std::size\_t\ IndexedTriMesh::numFaces()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00046\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_numFaces;}
+\DoxyCodeLine{00048\ \}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+
+\end{DoxyCode}

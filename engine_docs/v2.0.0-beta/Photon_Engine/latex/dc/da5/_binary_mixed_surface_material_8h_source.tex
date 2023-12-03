@@ -1,0 +1,86 @@
+\doxysection{Binary\+Mixed\+Surface\+Material.\+h}
+\hypertarget{_binary_mixed_surface_material_8h_source}{}\label{_binary_mixed_surface_material_8h_source}\index{Source/Actor/Material/BinaryMixedSurfaceMaterial.h@{Source/Actor/Material/BinaryMixedSurfaceMaterial.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Actor/Material/SurfaceMaterial.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Actor/Image/Image.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}SDL/sdl\_interface.h"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00010\ \{}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{enum\ class}\ ESurfaceMaterialMixMode}
+\DoxyCodeLine{00013\ \{}
+\DoxyCodeLine{00014\ \ \ \ \ Lerp\ =\ 0}
+\DoxyCodeLine{00015\ \};}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ PH\_DEFINE\_SDL\_ENUM(TSdlGeneralEnum<ESurfaceMaterialMixMode>)}
+\DoxyCodeLine{00018\ \{}
+\DoxyCodeLine{00019\ \ \ \ \ SdlEnumType\ sdlEnum(\textcolor{stringliteral}{"{}surface-\/material-\/mix-\/mode"{}});}
+\DoxyCodeLine{00020\ \ \ \ \ sdlEnum.description(\textcolor{stringliteral}{"{}Specify\ how\ surface\ materials\ are\ mixed."{}});}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \ \ \ \ sdlEnum.addEntry(EnumType::Lerp,\ \textcolor{stringliteral}{"{}lerp"{}});}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordflow}{return}\ sdlEnum;}
+\DoxyCodeLine{00025\ \}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_binary_mixed_surface_material}{BinaryMixedSurfaceMaterial}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classph_1_1_surface_material}{SurfaceMaterial}}}
+\DoxyCodeLine{00028\ \{}
+\DoxyCodeLine{00029\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keywordtype}{void}\ genSurface(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_cooking_context}{CookingContext}}\&\ ctx,\ \mbox{\hyperlink{classph_1_1_surface_behavior}{SurfaceBehavior}}\&\ behavior)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordtype}{void}\ setMode(ESurfaceMaterialMixMode\ mode);}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordtype}{void}\ setMaterials(}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ std::shared\_ptr<SurfaceMaterial>\ material0,}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ std::shared\_ptr<SurfaceMaterial>\ material1);}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{void}\ setFactor(real\ factor);}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordtype}{void}\ setFactor(std::shared\_ptr<Image>\ factor);}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00042\ \ \ \ \ ESurfaceMaterialMixMode\ m\_mode;}
+\DoxyCodeLine{00043\ \ \ \ \ std::shared\_ptr<SurfaceMaterial>\ m\_material0;}
+\DoxyCodeLine{00044\ \ \ \ \ std::shared\_ptr<SurfaceMaterial>\ m\_material1;}
+\DoxyCodeLine{00045\ \ \ \ \ std::shared\_ptr<Image>\ m\_factor;}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00048\ \ \ \ \ PH\_DEFINE\_SDL\_CLASS(\mbox{\hyperlink{classph_1_1_t_sdl_owner_class}{TSdlOwnerClass<BinaryMixedSurfaceMaterial>}})}
+\DoxyCodeLine{00049\ \ \ \ \ \{}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ ClassType\ clazz(\textcolor{stringliteral}{"{}binary-\/mixed-\/surface"{}});}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ clazz.docName(\textcolor{stringliteral}{"{}Binary\ Mixed\ Surface"{}});}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ clazz.description(\textcolor{stringliteral}{"{}Mixing\ two\ surface\ materials\ in\ various\ ways."{}});}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ clazz.baseOn<\mbox{\hyperlink{classph_1_1_surface_material}{SurfaceMaterial}}>();}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_sdl_enum_field}{TSdlEnumField<OwnerType,\ ESurfaceMaterialMixMode>}}\ mode(\textcolor{stringliteral}{"{}mode"{}},\ \&OwnerType::m\_mode);}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ mode.description(\textcolor{stringliteral}{"{}Specify\ how\ two\ materials\ are\ mixed."{}});}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ mode.defaultTo(ESurfaceMaterialMixMode::Lerp);}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ mode.required();}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ clazz.addField(mode);}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_sdl_reference}{TSdlReference<SurfaceMaterial,\ OwnerType>}}\ material0(\textcolor{stringliteral}{"{}material-\/0"{}},\ \&OwnerType::m\_material0);}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ material0.description(\textcolor{stringliteral}{"{}The\ first\ material\ that\ participates\ the\ mixing\ process."{}});}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ material0.required();}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ clazz.addField(material0);}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_sdl_reference}{TSdlReference<SurfaceMaterial,\ OwnerType>}}\ material1(\textcolor{stringliteral}{"{}material-\/1"{}},\ \&OwnerType::m\_material1);}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ material1.description(\textcolor{stringliteral}{"{}The\ second\ material\ that\ participates\ the\ mixing\ process."{}});}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ material1.required();}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ clazz.addField(material1);}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_sdl_reference}{TSdlReference<Image,\ OwnerType>}}\ factor(\textcolor{stringliteral}{"{}factor"{}},\ \&OwnerType::m\_factor);}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ factor.description(\textcolor{stringliteral}{"{}Factor\ that\ controls\ the\ contribution\ from\ each\ material."{}});}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ factor.optional();\textcolor{comment}{//\ some\ operation\ might\ not\ need\ a\ factor;\ check\ factor\ at\ cook\ time}}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ clazz.addField(factor);}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ clazz;}
+\DoxyCodeLine{00077\ \ \ \ \ \}}
+\DoxyCodeLine{00078\ \};}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+
+\end{DoxyCode}

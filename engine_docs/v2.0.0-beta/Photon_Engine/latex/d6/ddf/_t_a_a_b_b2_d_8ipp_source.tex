@@ -1,0 +1,254 @@
+\doxysection{TAABB2\+D.\+ipp}
+\hypertarget{_t_a_a_b_b2_d_8ipp_source}{}\label{_t_a_a_b_b2_d_8ipp_source}\index{Source/Math/Geometry/TAABB2D.ipp@{Source/Math/Geometry/TAABB2D.ipp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Math/Geometry/TAABB2D.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Common/assertion.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{math_8h}{Math/math.h}}"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <type\_traits>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <limits>}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph_1_1math}{ph::math}}}
+\DoxyCodeLine{00012\ \{}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00015\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d}{TAABB2D<T>}}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d_a09bfc9d4e4e1723d6eafb1b32a281cff}{TAABB2D<T>::makeEmpty}}()}
+\DoxyCodeLine{00016\ \{}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d}{TAABB2D}}(}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \{std::numeric\_limits<T>::max(),\ std::numeric\_limits<T>::max()\},}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \{std::numeric\_limits<T>::lowest(),\ std::numeric\_limits<T>::lowest()\});}
+\DoxyCodeLine{00020\ \}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00023\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d_af3c05a2614504328fa5807d28a61bc52}{TAABB2D<T>::TAABB2D}}()\ :}
+\DoxyCodeLine{00024\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d}{TAABB2D}}(\mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{TVector2}}<T>(0,\ 0))}
+\DoxyCodeLine{00025\ \{\}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00028\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d_af3c05a2614504328fa5807d28a61bc52}{TAABB2D<T>::TAABB2D}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{TVector2<T>}}\&\ minVertex,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{TVector2<T>}}\&\ maxVertex)\ :\ }
+\DoxyCodeLine{00029\ \ \ \ \ m\_minVertex(minVertex),\ m\_maxVertex(maxVertex)}
+\DoxyCodeLine{00030\ \{\}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00033\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d_af3c05a2614504328fa5807d28a61bc52}{TAABB2D<T>::TAABB2D}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{TVector2<T>}}\&\ point)\ :\ }
+\DoxyCodeLine{00034\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d}{TAABB2D}}(point,\ point)}
+\DoxyCodeLine{00035\ \{\}}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00038\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ U>}
+\DoxyCodeLine{00039\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d}{TAABB2D<T>::TAABB2D}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d}{TAABB2D<U>}}\&\ other)\ :\ }
+\DoxyCodeLine{00040\ \ \ \ \ m\_minVertex(other.getMinVertex()),\ m\_maxVertex(other.getMaxVertex())}
+\DoxyCodeLine{00041\ \{\}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00044\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d}{TAABB2D<T>::isIntersectingArea}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d}{TAABB2D}}\&\ other)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00045\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_maxVertex.x()\ >=\ other.m\_minVertex.x()\ \&\&\ m\_minVertex.x()\ <=\ other.m\_maxVertex.x()\ \&\&}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ m\_maxVertex.y()\ >=\ other.m\_minVertex.y()\ \&\&\ m\_minVertex.y()\ <=\ other.m\_maxVertex.y();}
+\DoxyCodeLine{00048\ \}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00051\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ TAABB2D<T>::isIntersectingArea(\textcolor{keyword}{const}\ TVector2<T>\&\ point)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00052\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordflow}{return}\ point.x()\ >=\ m\_minVertex.x()\ \&\&\ point.x()\ <=\ m\_maxVertex.x()\ \&\&}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ point.y()\ >=\ m\_minVertex.y()\ \&\&\ point.y()\ <=\ m\_maxVertex.y();}
+\DoxyCodeLine{00055\ \}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00058\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d}{TAABB2D<T>::isIntersectingRange}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{TVector2<T>}}\&\ point)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00059\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordflow}{return}\ point.x()\ >=\ m\_minVertex.x()\ \&\&\ point.x()\ <\ m\_maxVertex.x()\ \&\&}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ point.y()\ >=\ m\_minVertex.y()\ \&\&\ point.y()\ <\ m\_maxVertex.y();}
+\DoxyCodeLine{00062\ \}}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00065\ \textcolor{keyword}{inline}\ T\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d}{TAABB2D<T>::getArea}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00066\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00067\ \ \ \ \ PH\_ASSERT\_MSG(!isEmpty(),\ toString());}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keywordflow}{return}\ getWidth()\ *\ getHeight();}
+\DoxyCodeLine{00070\ \}}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00073\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d}{TAABB2D<T>}}\&\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d}{TAABB2D<T>::unionWith}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d}{TAABB2D}}\&\ other)}
+\DoxyCodeLine{00074\ \{}
+\DoxyCodeLine{00075\ \ \ \ \ m\_minVertex\ =\ m\_minVertex.min(other.m\_minVertex);}
+\DoxyCodeLine{00076\ \ \ \ \ m\_maxVertex\ =\ m\_maxVertex.max(other.m\_maxVertex);}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00079\ \}}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00082\ \textcolor{keyword}{inline}\ TAABB2D<T>\&\ TAABB2D<T>::intersectWith(\textcolor{keyword}{const}\ TAABB2D\&\ other)}
+\DoxyCodeLine{00083\ \{}
+\DoxyCodeLine{00084\ \ \ \ \ m\_minVertex\ =\ m\_minVertex.max(other.m\_minVertex);}
+\DoxyCodeLine{00085\ \ \ \ \ m\_maxVertex\ =\ m\_maxVertex.min(other.m\_maxVertex);}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00088\ \}}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00091\ \textcolor{keyword}{inline}\ TAABB2D<T>\&\ TAABB2D<T>::setMinVertex(\textcolor{keyword}{const}\ TVector2<T>\&\ minVertex)}
+\DoxyCodeLine{00092\ \{}
+\DoxyCodeLine{00093\ \ \ \ \ m\_minVertex\ =\ minVertex;}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00096\ \}}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00099\ \textcolor{keyword}{inline}\ TAABB2D<T>\&\ TAABB2D<T>::setMaxVertex(\textcolor{keyword}{const}\ TVector2<T>\&\ maxVertex)}
+\DoxyCodeLine{00100\ \{}
+\DoxyCodeLine{00101\ \ \ \ \ m\_maxVertex\ =\ maxVertex;}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00104\ \}}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00107\ \textcolor{keyword}{inline}\ TAABB2D<T>\&\ TAABB2D<T>::setVertices(std::pair<TVector2<T>,\ TVector2<T>>\ minMaxVertices)}
+\DoxyCodeLine{00108\ \{}
+\DoxyCodeLine{00109\ \ \ \ \ setMinVertex(minMaxVertices.first);}
+\DoxyCodeLine{00110\ \ \ \ \ setMaxVertex(minMaxVertices.second);}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00113\ \}}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00116\ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ TVector2<T>\&\ TAABB2D<T>::getMinVertex()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00117\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00118\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_minVertex;}
+\DoxyCodeLine{00119\ \}}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00122\ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ TVector2<T>\&\ TAABB2D<T>::getMaxVertex()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00123\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00124\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_maxVertex;}
+\DoxyCodeLine{00125\ \}}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00127\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00128\ \textcolor{keyword}{inline}\ std::pair<TVector2<T>,\ TVector2<T>>\ TAABB2D<T>::getVertices()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00129\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00130\ \ \ \ \ \textcolor{keywordflow}{return}\ \{getMinVertex(),\ getMaxVertex()\};}
+\DoxyCodeLine{00131\ \}}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00133\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00134\ \textcolor{keyword}{inline}\ T\ TAABB2D<T>::getWidth()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00135\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00136\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_maxVertex.x()\ -\/\ m\_minVertex.x();}
+\DoxyCodeLine{00137\ \}}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00139\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00140\ \textcolor{keyword}{inline}\ T\ TAABB2D<T>::getHeight()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00141\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00142\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_maxVertex.y()\ -\/\ m\_minVertex.y();}
+\DoxyCodeLine{00143\ \}}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00145\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00146\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{TVector2<T>}}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d}{TAABB2D<T>::getExtents}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00147\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00148\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{TVector2<T>}}(getWidth(),\ getHeight());}
+\DoxyCodeLine{00149\ \}}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00151\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00152\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{TVector2<T>}}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d}{TAABB2D<T>::getCenter}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00153\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00154\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(std::is\_integral\_v<T>)}
+\DoxyCodeLine{00155\ \ \ \ \ \{}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_minVertex.add(m\_maxVertex).div(T(2));}
+\DoxyCodeLine{00157\ \ \ \ \ \}}
+\DoxyCodeLine{00158\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00159\ \ \ \ \ \{}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_minVertex.add(m\_maxVertex).mul(T(0.5));}
+\DoxyCodeLine{00161\ \ \ \ \ \}}
+\DoxyCodeLine{00162\ \}}
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00164\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00165\ \textcolor{keyword}{inline}\ std::pair<TAABB2D<T>,\ TAABB2D<T>>\ TAABB2D<T>::getSplitted(\textcolor{keyword}{const}\ std::size\_t\ axis,\ \textcolor{keyword}{const}\ T\ splitPoint)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00166\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00167\ \ \ \ \ PH\_ASSERT\_MSG(axis\ ==\ 0\ ||\ axis\ ==\ 1,\ std::to\_string(axis));}
+\DoxyCodeLine{00168\ \ \ \ \ PH\_ASSERT\_IN\_RANGE\_INCLUSIVE(splitPoint,\ m\_minVertex[axis],\ m\_maxVertex[axis]);}
+\DoxyCodeLine{00169\ }
+\DoxyCodeLine{00170\ \ \ \ \ \textcolor{keywordflow}{return}\ \{}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ TAABB2D(m\_minVertex,\ TVector2<T>(m\_maxVertex).set(axis,\ splitPoint)),}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ TAABB2D(TVector2<T>(m\_minVertex).set(axis,\ splitPoint),\ m\_maxVertex)}
+\DoxyCodeLine{00173\ \ \ \ \ \};}
+\DoxyCodeLine{00174\ \}}
+\DoxyCodeLine{00175\ }
+\DoxyCodeLine{00176\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00177\ \textcolor{keyword}{inline}\ TAABB2D<T>\ TAABB2D<T>::getUnioned(\textcolor{keyword}{const}\ TAABB2D\&\ other)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00178\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00179\ \ \ \ \ \textcolor{keywordflow}{return}\ TAABB2D(*this).unionWith(other);}
+\DoxyCodeLine{00180\ \}}
+\DoxyCodeLine{00181\ }
+\DoxyCodeLine{00182\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00183\ \textcolor{keyword}{inline}\ TAABB2D<T>\ TAABB2D<T>::getIntersected(\textcolor{keyword}{const}\ TAABB2D\&\ other)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00184\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00185\ \ \ \ \ \textcolor{keywordflow}{return}\ TAABB2D(*this).intersectWith(other);}
+\DoxyCodeLine{00186\ \}}
+\DoxyCodeLine{00187\ }
+\DoxyCodeLine{00188\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00189\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ TAABB2D<T>::isEmpty()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00190\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00191\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_minVertex.x()\ >\ m\_maxVertex.x()\ ||\ m\_minVertex.y()\ >\ m\_maxVertex.y();}
+\DoxyCodeLine{00192\ \}}
+\DoxyCodeLine{00193\ }
+\DoxyCodeLine{00194\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00195\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ TAABB2D<T>::isPoint()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00196\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00197\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_minVertex.isEqual(m\_maxVertex);}
+\DoxyCodeLine{00198\ \}}
+\DoxyCodeLine{00199\ }
+\DoxyCodeLine{00200\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00201\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ TAABB2D<T>::isArea()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00202\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00203\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_maxVertex.x()\ >\ m\_minVertex.x()\ \&\&\ m\_maxVertex.y()\ >\ m\_minVertex.y();}
+\DoxyCodeLine{00204\ \}}
+\DoxyCodeLine{00205\ }
+\DoxyCodeLine{00206\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00207\ \textcolor{keyword}{inline}\ TVector2<T>\ TAABB2D<T>::sampleToSurface(\textcolor{keyword}{const}\ std::array<T,\ 2>\&\ sample)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00208\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00209\ \ \ \ \ PH\_ASSERT\_IN\_RANGE\_INCLUSIVE(sample[0],\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(0),\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(1));}
+\DoxyCodeLine{00210\ \ \ \ \ PH\_ASSERT\_IN\_RANGE\_INCLUSIVE(sample[1],\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(0),\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(1));}
+\DoxyCodeLine{00211\ }
+\DoxyCodeLine{00212\ \ \ \ \ \textcolor{keywordflow}{return}\ xy01ToSurface(\{sample[0],\ sample[1]\});}
+\DoxyCodeLine{00213\ \}}
+\DoxyCodeLine{00214\ }
+\DoxyCodeLine{00215\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00216\ \textcolor{keyword}{inline}\ TVector2<T>\ TAABB2D<T>::xy01ToSurface(\textcolor{keyword}{const}\ TVector2<T>\&\ xy01)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00217\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00218\ \ \ \ \ PH\_ASSERT(!isEmpty());}
+\DoxyCodeLine{00219\ }
+\DoxyCodeLine{00220\ \ \ \ \ \textcolor{keywordflow}{return}\ xy01.mul(getExtents()).add(m\_minVertex);}
+\DoxyCodeLine{00221\ \}}
+\DoxyCodeLine{00222\ }
+\DoxyCodeLine{00223\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00224\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ TAABB2D<T>::isEqual(\textcolor{keyword}{const}\ TAABB2D\&\ other)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00225\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00226\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_minVertex.isEqual(other.m\_minVertex)\ \&\&}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \ \ \ m\_maxVertex.isEqual(other.m\_maxVertex);}
+\DoxyCodeLine{00228\ \}}
+\DoxyCodeLine{00229\ }
+\DoxyCodeLine{00230\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00231\ \textcolor{keyword}{inline}\ std::string\ TAABB2D<T>::toString()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00232\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00233\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}AABB:\ min"{}}\ +\ m\_minVertex.toString()\ +\ \textcolor{stringliteral}{"{},\ max"{}}\ +\ m\_maxVertex.toString();}
+\DoxyCodeLine{00234\ \}}
+\DoxyCodeLine{00235\ }
+\DoxyCodeLine{00236\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00237\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ TAABB2D<T>::operator\ ==\ (\textcolor{keyword}{const}\ TAABB2D\&\ other)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00238\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00239\ \ \ \ \ \textcolor{keywordflow}{return}\ isEqual(other);}
+\DoxyCodeLine{00240\ \}}
+\DoxyCodeLine{00241\ }
+\DoxyCodeLine{00242\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00243\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ TAABB2D<T>::operator\ !=\ (\textcolor{keyword}{const}\ TAABB2D\&\ other)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00244\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00245\ \ \ \ \ \textcolor{keywordflow}{return}\ !isEqual(other);}
+\DoxyCodeLine{00246\ \}}
+\DoxyCodeLine{00247\ }
+\DoxyCodeLine{00248\ \}\textcolor{comment}{//\ end\ namespace\ ph::math}}
+
+\end{DoxyCode}

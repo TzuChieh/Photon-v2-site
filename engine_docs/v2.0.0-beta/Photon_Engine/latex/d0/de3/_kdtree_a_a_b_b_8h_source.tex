@@ -1,0 +1,57 @@
+\doxysection{Kdtree\+AABB.\+h}
+\hypertarget{_kdtree_a_a_b_b_8h_source}{}\label{_kdtree_a_a_b_b_8h_source}\index{Source/Core/Intersectable/Kdtree/KdtreeAABB.h@{Source/Core/Intersectable/Kdtree/KdtreeAABB.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Math/Geometry/TAABB3D.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Core/Ray.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}Core/Intersectable/Kdtree/kdtree\_core.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}Common/primitive\_type.h"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}Math/math\_fwd.h"{}}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00010\ \{}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ TODO:\ replace\ this\ with\ TAABB3D}}
+\DoxyCodeLine{00013\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_kdtree_a_a_b_b}{KdtreeAABB}}\ final}
+\DoxyCodeLine{00014\ \{}
+\DoxyCodeLine{00015\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00016\ \ \ \ \ \mbox{\hyperlink{classph_1_1_kdtree_a_a_b_b}{KdtreeAABB}}();}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classph_1_1_kdtree_a_a_b_b}{KdtreeAABB}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d}{math::AABB3D}}\&\ aabb);}
+\DoxyCodeLine{00018\ \ \ \ \ \mbox{\hyperlink{classph_1_1_kdtree_a_a_b_b}{KdtreeAABB}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\&\ minVertex,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\&\ maxVertex);}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keywordtype}{bool}\ isIntersectingVolume(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_ray}{Ray}}\&\ ray,\ real*\ \textcolor{keyword}{const}\ out\_rayNearHitDist,\ real*\ \textcolor{keyword}{const}\ out\_rayFarHitDist)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordtype}{bool}\ isIntersectingVolume(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d}{math::AABB3D}}\&\ aabb)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordtype}{bool}\ trySplitAt(\textcolor{keyword}{const}\ int32\ axis,\ \textcolor{keyword}{const}\ real\ splitPos,\ \mbox{\hyperlink{classph_1_1_kdtree_a_a_b_b}{KdtreeAABB}}*\ \textcolor{keyword}{const}\ out\_negativeAABB,\ \mbox{\hyperlink{classph_1_1_kdtree_a_a_b_b}{KdtreeAABB}}*\ \textcolor{keyword}{const}\ out\_positiveAABB)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordtype}{void}\ getMinVertex(real*\ \textcolor{keyword}{const}\ out\_vector3f)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordtype}{void}\ getMaxVertex(real*\ \textcolor{keyword}{const}\ out\_vector3f)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00026\ \ \ \ \ real\ getMinVertex(\textcolor{keyword}{const}\ int32\ axis)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00027\ \ \ \ \ real\ getMaxVertex(\textcolor{keyword}{const}\ int32\ axis)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordtype}{void}\ getAABB(\mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d}{math::AABB3D}}*\ \textcolor{keyword}{const}\ out\_aabb)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{inline}\ real\ getExtent(\textcolor{keyword}{const}\ int32\ axis)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00031\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ real\ minVertex[KDTREE\_NUM\_AXES];}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ real\ maxVertex[KDTREE\_NUM\_AXES];}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ getMinVertex(minVertex);}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ getMaxVertex(maxVertex);}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ maxVertex[axis]\ -\/\ minVertex[axis];}
+\DoxyCodeLine{00037\ \ \ \ \ \}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{inline}\ real\ getSurfaceArea()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00040\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ real\ xExtent\ =\ m\_aabb.\mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d_a1c7cf27e2b7ecf50add7da77b78c5e3e}{getMaxVertex}}().x()\ -\/\ m\_aabb.\mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d_af374aa4e2c99cf83c5324f7e5f376fec}{getMinVertex}}().x();}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ real\ yExtent\ =\ m\_aabb.\mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d_a1c7cf27e2b7ecf50add7da77b78c5e3e}{getMaxVertex}}().y()\ -\/\ m\_aabb.\mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d_af374aa4e2c99cf83c5324f7e5f376fec}{getMinVertex}}().y();}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ real\ zExtent\ =\ m\_aabb.\mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d_a1c7cf27e2b7ecf50add7da77b78c5e3e}{getMaxVertex}}().z()\ -\/\ m\_aabb.\mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d_af374aa4e2c99cf83c5324f7e5f376fec}{getMinVertex}}().z();}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 2.0\_r\ *\ (xExtent\ *\ yExtent\ +\ yExtent\ *\ zExtent\ +\ zExtent\ *\ xExtent);}
+\DoxyCodeLine{00045\ \ \ \ \ \}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00048\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d}{math::AABB3D}}\ m\_aabb;}
+\DoxyCodeLine{00049\ \};}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+
+\end{DoxyCode}

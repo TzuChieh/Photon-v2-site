@@ -1,0 +1,60 @@
+\doxysection{sdl\+\_\+traits.\+h}
+\hypertarget{sdl__traits_8h_source}{}\label{sdl__traits_8h_source}\index{Source/SDL/sdl\_traits.h@{Source/SDL/sdl\_traits.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}SDL/sdl\_fwd.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}SDL/ESdlTypeCategory.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}Utility/traits.h"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <type\_traits>}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00010\ \{}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00013\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptph_1_1_c_sdl_resource}{CSdlResource}}\ =\ \mbox{\hyperlink{conceptph_1_1_c_derived}{CDerived<T,\ ISdlResource>}};}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00019\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00020\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptph_1_1_c_has_static_sdl_category_info}{CHasStaticSdlCategoryInfo}}\ =\ }
+\DoxyCodeLine{00021\ \ \ \ \ \mbox{\hyperlink{conceptph_1_1_c_sdl_resource}{CSdlResource<T>}}\ \&\&}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{comment}{//\ Check\ equality\ of\ types\ with\ cv\ removed\ just\ to\ be\ robust}}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{comment}{//\ (in\ case\ the\ implementer\ qualifies\ the\ \`{}CATEGORY`\ member).}}
+\DoxyCodeLine{00024\ \ \ \ \ std::is\_same\_v<std::remove\_cv\_t<\textcolor{keyword}{decltype}(T::CATEGORY)>,\ ESdlTypeCategory>;}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00028\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00029\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptph_1_1_c_has_sdl_class_definition}{CHasSdlClassDefinition}}\ =\ }
+\DoxyCodeLine{00030\ \ \ \ \ \mbox{\hyperlink{conceptph_1_1_c_sdl_resource}{CSdlResource<T>}}\ \&\&}
+\DoxyCodeLine{00031\ \ \ \ \ std::is\_same\_v<typename\ T::SdlClassDefinitionMarker,\ std::remove\_cv\_t<T>>;}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00035\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00036\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptph_1_1_c_has_sdl_struct_definition}{CHasSdlStructDefinition}}\ =}
+\DoxyCodeLine{00037\ \ \ \ \ std::is\_same\_v<typename\ T::SdlStructDefinitionMarker,\ std::remove\_cv\_t<T>>;}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00041\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00042\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptph_1_1_c_has_sdl_function_definition}{CHasSdlFunctionDefinition}}\ =}
+\DoxyCodeLine{00043\ \ \ \ \ std::is\_same\_v<typename\ T::SdlFunctionDefinitionMarker,\ std::remove\_cv\_t<T>>;}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00047\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ EnumType>}
+\DoxyCodeLine{00048\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptph_1_1_c_has_sdl_enum_definition}{CHasSdlEnumDefinition}}\ =}
+\DoxyCodeLine{00049\ \ \ \ \ \mbox{\hyperlink{conceptph_1_1_c_enum}{CEnum<EnumType>}}\ \&\&}
+\DoxyCodeLine{00050\ \ \ \ \ std::is\_same\_v<}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ TSdlEnum<std::remove\_cv\_t<EnumType>>::SdlEnumDefinitionMarker,}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ std::remove\_cv\_t<EnumType>>;}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00055\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptph_1_1_c_sdl_instance}{CSdlInstance}}\ =\ }
+\DoxyCodeLine{00056\ \ \ \ \ \mbox{\hyperlink{conceptph_1_1_c_sdl_resource}{CSdlResource<T>}}\ ||}
+\DoxyCodeLine{00057\ \ \ \ \ \mbox{\hyperlink{conceptph_1_1_c_has_sdl_struct_definition}{CHasSdlStructDefinition<T>}}\ ||}
+\DoxyCodeLine{00058\ \ \ \ \ \mbox{\hyperlink{conceptph_1_1_c_has_sdl_function_definition}{CHasSdlFunctionDefinition<T>}};}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00061\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptph_1_1_c_sdl_struct_supports_init_to_default}{CSdlStructSupportsInitToDefault}}\ =\ \mbox{\hyperlink{conceptph_1_1_c_has_sdl_struct_definition}{CHasSdlStructDefinition<T>}}\ \&\&\ \textcolor{keyword}{requires}\ (T\ instance)}
+\DoxyCodeLine{00062\ \{}
+\DoxyCodeLine{00063\ \ \ \ \ T::getSdlStruct()-\/>initDefaultStruct(instance);}
+\DoxyCodeLine{00064\ \};}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+
+\end{DoxyCode}

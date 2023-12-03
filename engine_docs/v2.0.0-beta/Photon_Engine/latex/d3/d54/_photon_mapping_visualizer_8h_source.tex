@@ -1,0 +1,115 @@
+\doxysection{Photon\+Mapping\+Visualizer.\+h}
+\hypertarget{_photon_mapping_visualizer_8h_source}{}\label{_photon_mapping_visualizer_8h_source}\index{Source/EngineEnv/Visualizer/PhotonMappingVisualizer.h@{Source/EngineEnv/Visualizer/PhotonMappingVisualizer.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}EngineEnv/Visualizer/FrameVisualizer.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Common/primitive\_type.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}Math/TVector2.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}Math/Geometry/TAABB2D.h"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}SDL/sdl\_interface.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}EngineEnv/Visualizer/sdl\_photon\_mapping\_mode.h"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}EngineEnv/Visualizer/sdl\_sample\_filter\_type.h"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}Core/Filmic/SampleFilter.h"{}}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}\ \{\ \textcolor{keyword}{class\ }IRayEnergyEstimator;\ \}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00017\ \{}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_photon_mapping_visualizer}{PhotonMappingVisualizer}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classph_1_1_frame_visualizer}{FrameVisualizer}}}
+\DoxyCodeLine{00020\ \{}
+\DoxyCodeLine{00021\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_photon_mapping_visualizer}{PhotonMappingVisualizer}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordtype}{void}\ cook(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_core_cooking_context}{CoreCookingContext}}\&\ ctx,\ \mbox{\hyperlink{classph_1_1_core_cooked_unit}{CoreCookedUnit}}\&\ cooked)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \ \ \ \ EPhotonMappingMode\ getMode()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00027\ \ \ \ \ ESampleFilter\ getSampleFilter()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00030\ \ \ \ \ \mbox{\hyperlink{classph_1_1_sample_filter}{SampleFilter}}\ makeSampleFilter()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00031\ \ \ \ \ std::unique\_ptr<IRayEnergyEstimator>\ makeEstimator()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00034\ \ \ \ \ EPhotonMappingMode\ m\_mode;}
+\DoxyCodeLine{00035\ \ \ \ \ ESampleFilter\ m\_sampleFilter;}
+\DoxyCodeLine{00036\ \ \ \ \ uint64\ m\_numPhotons;}
+\DoxyCodeLine{00037\ \ \ \ \ uint64\ m\_numPasses;}
+\DoxyCodeLine{00038\ \ \ \ \ uint64\ m\_numSamplesPerPixel;}
+\DoxyCodeLine{00039\ \ \ \ \ real\ m\_photonRadius;}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00042\ \ \ \ \ PH\_DEFINE\_SDL\_CLASS(\mbox{\hyperlink{classph_1_1_t_sdl_owner_class}{TSdlOwnerClass<PhotonMappingVisualizer>}})}
+\DoxyCodeLine{00043\ \ \ \ \ \{}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ ClassType\ clazz(\textcolor{stringliteral}{"{}photon-\/mapping"{}});}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ clazz.docName(\textcolor{stringliteral}{"{}Photon\ Mapping\ Visualizer"{}});}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ clazz.description(\textcolor{stringliteral}{"{}Render\ frames\ with\ common\ photon\ mapping\ methods."{}});}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ clazz.baseOn<\mbox{\hyperlink{classph_1_1_frame_visualizer}{FrameVisualizer}}>();}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_sdl_enum_field}{TSdlEnumField<OwnerType,\ EPhotonMappingMode>}}\ mode(\textcolor{stringliteral}{"{}mode"{}},\ \&OwnerType::m\_mode);}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ mode.description(}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}The\ photon\ mapping\ technique\ used\ by\ the\ visualizer."{}});}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ mode.defaultTo(EPhotonMappingMode::Vanilla);}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ mode.optional();}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ clazz.addField(mode);}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_sdl_enum_field}{TSdlEnumField<OwnerType,\ ESampleFilter>}}\ sampleFilter(\textcolor{stringliteral}{"{}sample-\/filter"{}},\ \&OwnerType::m\_sampleFilter);}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ sampleFilter.description(}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Sample\ filter\ for\ the\ film\ sampling\ process."{}});}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ sampleFilter.defaultTo(ESampleFilter::BlackmanHarris);}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ sampleFilter.optional();}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ clazz.addField(sampleFilter);}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_sdl_integer}{TSdlUInt64<OwnerType>}}\ numPhotons(\textcolor{stringliteral}{"{}num-\/photons"{}},\ \&OwnerType::m\_numPhotons);}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ numPhotons.description(}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Number\ of\ photons\ used.\ For\ progressive\ techniques,\ this\ value\ is\ for\ a\ single\ pass."{}});}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ numPhotons.defaultTo(200000);}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ numPhotons.optional();}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ clazz.addField(numPhotons);}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_sdl_integer}{TSdlUInt64<OwnerType>}}\ numPasses(\textcolor{stringliteral}{"{}num-\/passes"{}},\ \&OwnerType::m\_numPasses);}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ numPasses.description(}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Number\ of\ passes\ performed\ by\ progressive\ techniques."{}});}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ numPasses.defaultTo(1);}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ numPasses.optional();}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ clazz.addField(numPasses);}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_sdl_integer}{TSdlUInt64<OwnerType>}}\ numSamplesPerPixel(\textcolor{stringliteral}{"{}num-\/samples-\/per-\/pixel"{}},\ \&OwnerType::m\_numSamplesPerPixel);}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ numSamplesPerPixel.description(}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Number\ of\ samples\ per\ pixel.\ Higher\ values\ can\ resolve\ image\ aliasing,\ but\ can\ consume\ "{}}}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}large\ amounts\ of\ memory."{}});}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ numSamplesPerPixel.defaultTo(4);}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ numSamplesPerPixel.optional();}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ clazz.addField(numSamplesPerPixel);}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_sdl_real}{TSdlReal<OwnerType>}}\ photonRadius(\textcolor{stringliteral}{"{}photon-\/radius"{}},\ \&OwnerType::m\_photonRadius);}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ photonRadius.description(}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Energy\ contribution\ radius\ for\ each\ photon.\ For\ progressive\ techniques,\ this\ value\ is\ for\ "{}}}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}setting\ up\ the\ initial\ radius."{}});}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ photonRadius.defaultTo(0.1\_r);}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ photonRadius.optional();}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ clazz.addField(photonRadius);}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ clazz;}
+\DoxyCodeLine{00094\ \ \ \ \ \}}
+\DoxyCodeLine{00095\ \};}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \textcolor{comment}{//\ In-\/header\ Implementations:}}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \textcolor{keyword}{inline}\ EPhotonMappingMode\ PhotonMappingVisualizer::getMode()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00100\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_mode;}
+\DoxyCodeLine{00102\ \}}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \textcolor{keyword}{inline}\ ESampleFilter\ PhotonMappingVisualizer::getSampleFilter()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00105\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_sampleFilter;}
+\DoxyCodeLine{00107\ \}}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00109\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+
+\end{DoxyCode}

@@ -1,0 +1,172 @@
+\doxysection{Sdl\+Command\+Parser.\+h}
+\hypertarget{_sdl_command_parser_8h_source}{}\label{_sdl_command_parser_8h_source}\index{Source/SDL/SdlCommandParser.h@{Source/SDL/SdlCommandParser.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}SDL/sdl\_fwd.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}SDL/SdlInputClauses.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}SDL/ESdlTypeCategory.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}SDL/SdlDataPacketInterface.h"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}DataIO/FileSystem/Path.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}Utility/SemanticVersion.h"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}Utility/TSpan.h"{}}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <string\_view>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <unordered\_map>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00017\ \{}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{keyword}{enum\ class}\ ESdlCommandType}
+\DoxyCodeLine{00020\ \{}
+\DoxyCodeLine{00021\ \ \ \ \ Unknown\ =\ 0,}
+\DoxyCodeLine{00022\ \ \ \ \ Directive,}
+\DoxyCodeLine{00023\ \ \ \ \ Load,}
+\DoxyCodeLine{00024\ \ \ \ \ Removal,}
+\DoxyCodeLine{00025\ \ \ \ \ Update,}
+\DoxyCodeLine{00026\ \ \ \ \ Execution,}
+\DoxyCodeLine{00027\ \ \ \ \ Phantom}
+\DoxyCodeLine{00028\ \};}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_sdl_command_parser}{SdlCommandParser}}}
+\DoxyCodeLine{00031\ \{}
+\DoxyCodeLine{00032\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classph_1_1_sdl_command_parser}{SdlCommandParser}}(TSpanView<const\ SdlClass*>\ targetClasses);}
+\DoxyCodeLine{00034\ \ \ \ \ \mbox{\hyperlink{classph_1_1_sdl_command_parser}{SdlCommandParser}}(TSpanView<const\ SdlClass*>\ targetClasses,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_alt_path}{Path}}\&\ sceneWorkingDirectory);}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classph_1_1_sdl_command_parser}{\string~SdlCommandParser}}();}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{comment}{//\ TODO:\ rename\ existing\ methods\ to\ enterAndWait()\ and\ flushAndWait()\ and\ add\ flush()\ and\ enter()\ once\ multithreading\ is\ added}}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{comment}{//\ TODO:\ removeResource()\ callback\ for\ load\ error,\ etc.}}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_sdl_command_parser_ae6690d96819e4c27ada131b368f997d1}{parse}}(std::string\_view\ rawCommandSegment);}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_sdl_command_parser_a860def2d9300d7c61adac4582ba8d93a}{flush}}();}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordtype}{void}\ setPacketInterface(std::unique\_ptr<SdlDataPacketInterface>\ interface);}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordtype}{void}\ setSceneWorkingDirectory(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_alt_path}{Path}}\&\ directory);}
+\DoxyCodeLine{00060\ \ \ \ \ \mbox{\hyperlink{classph_1_1_sdl_data_packet_interface}{SdlDataPacketInterface}}\&\ getPacketInterface();}
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_alt_path}{Path}}\&\ getSceneWorkingDirectory()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_semantic_version}{SemanticVersion}}\&\ getCommandVersion()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00063\ \ \ \ \ std::size\_t\ numParsedCommands()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00064\ \ \ \ \ std::size\_t\ numParseErrors()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_sdl_command_parser_a422573abdd0c16f7af66b6008d392392}{beginCommand}}(}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ ESdlCommandType\ commandType,\ }
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_sdl_class}{SdlClass}}*\ targetClass,}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_sdl_input_context}{SdlInputContext}}*\ out\_ctx)\ =\ 0;}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_sdl_command_parser_aaa1f5c896d27d34146340f5796bc574c}{endCommand}}()\ =\ 0;}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classph_1_1_i_sdl_resource}{ISdlResource}}*\ createResource(}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ std::string\_view\ resourceName,\ }
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_sdl_input_context}{SdlInputContext}}\&\ ctx,}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ ESdlCommandType\ commandType)\ =\ 0;}
+\DoxyCodeLine{00083\ \ \ \ \ }
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ initResource(}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_i_sdl_resource}{ISdlResource}}*\ resource,\ }
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_sdl_input_context}{SdlInputContext}}\&\ ctx,}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ std::string\_view\ resourceName,}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_sdl_input_clauses}{SdlInputClauses}}\&\ clauses,}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ ESdlCommandType\ commandType)\ =\ 0;}
+\DoxyCodeLine{00090\ \ \ \ \ }
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classph_1_1_i_sdl_resource}{ISdlResource}}*\ getResource(}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ std::string\_view\ resourceName,}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_sdl_input_context}{SdlInputContext}}\&\ ctx)\ =\ 0;}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_sdl_command_parser_a5b1db2f6dc5a68913698a0c61f7aac7f}{runExecutor}}(}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ std::string\_view\ executorName,}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_sdl_input_context}{SdlInputContext}}\&\ ctx,}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_i_sdl_resource}{ISdlResource}}*\ targetResource,}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_sdl_input_clauses}{SdlInputClauses}}\&\ clauses,}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ ESdlCommandType\ commandType)\ =\ 0;}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00116\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ commandVersionSet(}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_semantic_version}{SemanticVersion}}\&\ version,}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_sdl_input_context}{SdlInputContext}}\&\ ctx)\ =\ 0;}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00121\ \ \ \ \ \textcolor{comment}{//\ OPT:\ use\ view}}
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{keyword}{struct\ }CommandHeader\ final}
+\DoxyCodeLine{00123\ \ \ \ \ \{}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ ESdlCommandType\ commandType\ =\ ESdlCommandType::Unknown;}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ std::string\ targetCategory;}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ std::string\ targetType;}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ std::string\ executorName;}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ std::string\ reference;}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ std::string\ dataString;}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ isRecognized()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00132\ \ \ \ \ \};}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00134\ \ \ \ \ \mbox{\hyperlink{classph_1_1_semantic_version}{SemanticVersion}}\ m\_commandVersion;}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00136\ \ \ \ \ std::unordered\_map<std::string,\ const\ SdlClass*>\ m\_mangledNameToClass;}
+\DoxyCodeLine{00137\ \ \ \ \ std::unique\_ptr<SdlDataPacketInterface>\ m\_packetInterface;}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00139\ \ \ \ \ \mbox{\hyperlink{classph_1_1_alt_path}{Path}}\ m\_sceneWorkingDirectory;}
+\DoxyCodeLine{00140\ \ \ \ \ \textcolor{keywordtype}{bool}\ m\_isInSingleLineComment;}
+\DoxyCodeLine{00141\ \ \ \ \ std::string\ m\_processedCommandCache;}
+\DoxyCodeLine{00142\ \ \ \ \ std::size\_t\ m\_generatedNameCounter;}
+\DoxyCodeLine{00143\ \ \ \ \ std::size\_t\ m\_numParsedCommands;}
+\DoxyCodeLine{00144\ \ \ \ \ std::size\_t\ m\_numParseErrors;}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00146\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00151\ \ \ \ \ \textcolor{keywordtype}{void}\ enterProcessed(std::string\_view\ processedCommandSegment);}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00153\ \ \ \ \ \textcolor{keywordtype}{void}\ parseCommand(\textcolor{keyword}{const}\ std::string\&\ command);}
+\DoxyCodeLine{00154\ \ \ \ \ \textcolor{keywordtype}{void}\ parseSingleCommand(\textcolor{keyword}{const}\ CommandHeader\&\ command);}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00156\ \ \ \ \ \textcolor{keywordtype}{void}\ parseLoadCommand(\textcolor{keyword}{const}\ CommandHeader\&\ command);}
+\DoxyCodeLine{00157\ \ \ \ \ \textcolor{keywordtype}{void}\ parseExecutionCommand(\textcolor{keyword}{const}\ CommandHeader\&\ command);}
+\DoxyCodeLine{00158\ \ \ \ \ \textcolor{keywordtype}{void}\ parseDirectiveCommand(\textcolor{keyword}{const}\ CommandHeader\&\ command);}
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00162\ \ \ \ \ \textcolor{keywordtype}{void}\ getClauses(}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ std::string\_view\ packetCommand,\ }
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_sdl_input_context}{SdlInputContext}}\&\ ctx,}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ std::string\_view\ targetName,}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_i_sdl_resource}{ISdlResource}}*\ targetInstance,}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_sdl_input_clauses}{SdlInputClauses}}*\ out\_clauses);}
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00169\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_sdl_class}{SdlClass}}*\ getSdlClass(\textcolor{keyword}{const}\ std::string\&\ mangledClassName)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00170\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_sdl_class}{SdlClass}}*\ getSdlClass(std::string\_view\ categoryName,\ std::string\_view\ typeName)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00172\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00173\ \ \ \ \ \textcolor{keyword}{static}\ std::string\ getMangledName(std::string\_view\ categoryName,\ std::string\_view\ typeName);}
+\DoxyCodeLine{00174\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ getMangledName(std::string\_view\ categoryName,\ std::string\_view\ typeName,\ std::string*\ out\_mangledName);}
+\DoxyCodeLine{00175\ \ \ \ \ \textcolor{keyword}{static}\ CommandHeader\ parseCommandHeader(std::string\_view\ command);}
+\DoxyCodeLine{00176\ \};}
+\DoxyCodeLine{00177\ }
+\DoxyCodeLine{00178\ \textcolor{comment}{//\ In-\/header\ Implementations:}}
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00180\ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ Path\&\ SdlCommandParser::getSceneWorkingDirectory()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00181\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00182\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_sceneWorkingDirectory;}
+\DoxyCodeLine{00183\ \}}
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00185\ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ SemanticVersion\&\ SdlCommandParser::getCommandVersion()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00186\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00187\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_commandVersion;}
+\DoxyCodeLine{00188\ \}}
+\DoxyCodeLine{00189\ }
+\DoxyCodeLine{00190\ \textcolor{keyword}{inline}\ std::size\_t\ SdlCommandParser::numParsedCommands()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00191\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00192\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_numParsedCommands;}
+\DoxyCodeLine{00193\ \}}
+\DoxyCodeLine{00194\ }
+\DoxyCodeLine{00195\ \textcolor{keyword}{inline}\ std::size\_t\ SdlCommandParser::numParseErrors()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00196\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00197\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_numParseErrors;}
+\DoxyCodeLine{00198\ \}}
+\DoxyCodeLine{00199\ }
+\DoxyCodeLine{00200\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ SdlCommandParser::CommandHeader::isRecognized()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00201\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00202\ \ \ \ \ \textcolor{keywordflow}{return}\ commandType\ !=\ ESdlCommandType::Unknown;}
+\DoxyCodeLine{00203\ \}}
+\DoxyCodeLine{00204\ }
+\DoxyCodeLine{00205\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+
+\end{DoxyCode}

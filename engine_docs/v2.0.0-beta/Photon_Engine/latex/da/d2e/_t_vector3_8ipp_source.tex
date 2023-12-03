@@ -1,0 +1,262 @@
+\doxysection{TVector3.\+ipp}
+\hypertarget{_t_vector3_8ipp_source}{}\label{_t_vector3_8ipp_source}\index{Source/Math/TVector3.ipp@{Source/Math/TVector3.ipp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Math/TVector3.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Math/TQuaternion.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{math_8h}{Math/math.h}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}Common/assertion.h"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <cmath>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <cstdlib>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph_1_1math}{ph::math}}}
+\DoxyCodeLine{00014\ \{}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00017\ \textcolor{keyword}{inline}\ TVector3<T>\ TVector3<T>::weightedSum(}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keyword}{const}\ TVector3\&\ vA,\ \textcolor{keyword}{const}\ T\ wA,}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keyword}{const}\ TVector3\&\ vB,\ \textcolor{keyword}{const}\ T\ wB,}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keyword}{const}\ TVector3\&\ vC,\ \textcolor{keyword}{const}\ T\ wC)}
+\DoxyCodeLine{00021\ \{}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordflow}{return}\ TVector3(vA.x()\ *\ wA\ +\ vB.x()\ *\ wB\ +\ vC.x()\ *\ wC,}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ vA.y()\ *\ wA\ +\ vB.y()\ *\ wB\ +\ vC.y()\ *\ wC,}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ vA.z()\ *\ wA\ +\ vB.z()\ *\ wB\ +\ vC.z()\ *\ wC);}
+\DoxyCodeLine{00025\ \}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00028\ \textcolor{keyword}{inline}\ TVector3<T>\ TVector3<T>::lerp(\textcolor{keyword}{const}\ TVector3\&\ vA,\ \textcolor{keyword}{const}\ TVector3\&\ vB,\ \textcolor{keyword}{const}\ T\ parametricT)}
+\DoxyCodeLine{00029\ \{}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{const}\ T\ oneMinusT\ =\ 1\ -\/\ parametricT;}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordflow}{return}\ TVector3(vA.x()\ *\ oneMinusT\ +\ vB.x()\ *\ parametricT,}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ vA.y()\ *\ oneMinusT\ +\ vB.y()\ *\ parametricT,}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ vA.z()\ *\ oneMinusT\ +\ vB.z()\ *\ parametricT);}
+\DoxyCodeLine{00034\ \}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00037\ \textcolor{keyword}{inline}\ TVector3<T>::TVector3(\textcolor{keyword}{const}\ T\ vx,\ \textcolor{keyword}{const}\ T\ vy,\ \textcolor{keyword}{const}\ T\ vz)\ :\ }
+\DoxyCodeLine{00038\ \ \ \ \ Base(std::array<T,\ 3>\{vx,\ vy,\ vz\})}
+\DoxyCodeLine{00039\ \{\}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00042\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ U>}
+\DoxyCodeLine{00043\ \textcolor{keyword}{inline}\ TVector3<T>::TVector3(\textcolor{keyword}{const}\ TVector3<U>\&\ other)\ :\ }
+\DoxyCodeLine{00044\ \ \ \ \ TVector3(}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ static\_cast<T>(other[0]),\ }
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ static\_cast<T>(other[1]),}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ static\_cast<T>(other[2]))}
+\DoxyCodeLine{00048\ \{\}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00051\ \textcolor{keyword}{inline}\ TVector3<T>\ TVector3<T>::rotate(\textcolor{keyword}{const}\ TQuaternion<T>\&\ rotation)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00052\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keyword}{const}\ TQuaternion<T>\&\ conjugatedRotation\ =\ rotation.conjugate();}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keyword}{const}\ TQuaternion<T>\ result\ =\ rotation.mul(*this).mulLocal(conjugatedRotation);}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordflow}{return}\ TVector3(result.x,\ result.y,\ result.z);}
+\DoxyCodeLine{00057\ \}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00060\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ TVector3<T>::rotate(\textcolor{keyword}{const}\ TQuaternion<T>\&\ rotation,}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ TVector3*\ \textcolor{keyword}{const}\ out\_result)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00062\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00063\ \ \ \ \ PH\_ASSERT(out\_result\ !=\ \textcolor{keyword}{nullptr}\ \&\&\ out\_result\ !=\ \textcolor{keyword}{this});}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keyword}{const}\ TQuaternion<T>\&\ conjugatedRotation\ =\ rotation.conjugate();}
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keyword}{const}\ TQuaternion<T>\ result\ =\ rotation.mul(*this).mulLocal(conjugatedRotation);}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ \ out\_result-\/>x()\ =\ result.x();}
+\DoxyCodeLine{00069\ \ \ \ \ out\_result-\/>y()\ =\ result.y();}
+\DoxyCodeLine{00070\ \ \ \ \ out\_result-\/>z()\ =\ result.z();}
+\DoxyCodeLine{00071\ \}}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00074\ \textcolor{keyword}{inline}\ TVector3<T>\ TVector3<T>::cross(\textcolor{keyword}{const}\ TVector3\&\ rhs)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00075\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keywordflow}{return}\ TVector3(y()\ *\ rhs.z()\ -\/\ z()\ *\ rhs.y(),}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ z()\ *\ rhs.x()\ -\/\ x()\ *\ rhs.z(),}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ x()\ *\ rhs.y()\ -\/\ y()\ *\ rhs.x());}
+\DoxyCodeLine{00079\ \}}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00082\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ TVector3<T>::cross(\textcolor{keyword}{const}\ TVector3\&\ rhs,\ }
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ TVector3*\ \textcolor{keyword}{const}\ out\_result)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00084\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00085\ \ \ \ \ PH\_ASSERT(out\_result\ !=\ \textcolor{keyword}{nullptr}\ \&\&\ out\_result\ !=\ \textcolor{keyword}{this});}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \ \ \ \ out\_result-\/>x()\ =\ y()\ *\ rhs.z()\ -\/\ z()\ *\ rhs.y();}
+\DoxyCodeLine{00088\ \ \ \ \ out\_result-\/>y()\ =\ z()\ *\ rhs.x()\ -\/\ x()\ *\ rhs.z();}
+\DoxyCodeLine{00089\ \ \ \ \ out\_result-\/>z()\ =\ x()\ *\ rhs.y()\ -\/\ y()\ *\ rhs.x();}
+\DoxyCodeLine{00090\ \}}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00093\ \textcolor{keyword}{inline}\ TVector3<T>\&\ TVector3<T>::maddLocal(\textcolor{keyword}{const}\ T\ multiplier,\ }
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ TVector3\&\ adder)}
+\DoxyCodeLine{00095\ \{}
+\DoxyCodeLine{00096\ \ \ \ \ x()\ =\ x()\ *\ multiplier\ +\ adder.x();}
+\DoxyCodeLine{00097\ \ \ \ \ y()\ =\ y()\ *\ multiplier\ +\ adder.y();}
+\DoxyCodeLine{00098\ \ \ \ \ z()\ =\ x()\ *\ multiplier\ +\ adder.z();}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00101\ \}}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00104\ \textcolor{keyword}{inline}\ TVector3<T>\ TVector3<T>::reflect(\textcolor{keyword}{const}\ TVector3\&\ normal)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00105\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00106\ \ \ \ \ TVector3\ result\ =\ normal.mul(2\ *\ normal.dot(*\textcolor{keyword}{this}));}
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>sub(result);}
+\DoxyCodeLine{00108\ \}}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00111\ \textcolor{keyword}{inline}\ TVector3<T>\&\ TVector3<T>::reflectLocal(\textcolor{keyword}{const}\ TVector3\&\ normal)}
+\DoxyCodeLine{00112\ \{}
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{keyword}{const}\ T\ factor\ =\ 2\ *\ normal.dot(*\textcolor{keyword}{this});}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ \ \ \ \ x()\ -\/=\ factor\ *\ normal.x();}
+\DoxyCodeLine{00116\ \ \ \ \ y()\ -\/=\ factor\ *\ normal.y();}
+\DoxyCodeLine{00117\ \ \ \ \ z()\ -\/=\ factor\ *\ normal.z();}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00120\ \}}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ \textcolor{comment}{//\ returned\ (x,\ y,\ z)\ =\ (min,\ mid,\ max)}}
+\DoxyCodeLine{00123\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00124\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ TVector3<T>::sort(TVector3*\ \textcolor{keyword}{const}\ out\_result)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00125\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00126\ \ \ \ \ PH\_ASSERT(out\_result\ !=\ \textcolor{keyword}{nullptr}\ \&\&\ out\_result\ !=\ \textcolor{keyword}{this});}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \ \ \ \ \textcolor{keywordflow}{if}(x()\ >\ y())}
+\DoxyCodeLine{00129\ \ \ \ \ \{}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(x()\ >\ z())}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ out\_result-\/>z()\ =\ x();}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(y()\ <\ z())}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ out\_result-\/>x()\ =\ y();}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ out\_result-\/>y()\ =\ z();}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ out\_result-\/>x()\ =\ z();}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ out\_result-\/>y()\ =\ y();}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \ \ out\_result-\/>z()\ =\ z();}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \ \ \ \ out\_result-\/>y()\ =\ x();}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \ \ out\_result-\/>x()\ =\ y();}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00151\ \ \ \ \ \}}
+\DoxyCodeLine{00152\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00153\ \ \ \ \ \{}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(x()\ <\ z())}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ out\_result-\/>x()\ =\ x();}
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(y()\ >\ z())}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ out\_result-\/>z()\ =\ y();}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ out\_result-\/>y()\ =\ z();}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ out\_result-\/>z()\ =\ z();}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ out\_result-\/>y()\ =\ y();}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \ \ \ \ out\_result-\/>x()\ =\ z();}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \ \ \ \ out\_result-\/>y()\ =\ x();}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \ \ \ \ out\_result-\/>z()\ =\ y();}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00175\ \ \ \ \ \}}
+\DoxyCodeLine{00176\ \}}
+\DoxyCodeLine{00177\ }
+\DoxyCodeLine{00178\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00179\ \textcolor{keyword}{inline}\ TVector3<T>\ operator\ *\ (\textcolor{keyword}{const}\ T\ rhs,\ \textcolor{keyword}{const}\ TVector3<T>\&\ lhs)}
+\DoxyCodeLine{00180\ \{}
+\DoxyCodeLine{00181\ \ \ \ \ \textcolor{keywordflow}{return}\ lhs.mul(rhs);}
+\DoxyCodeLine{00182\ \}}
+\DoxyCodeLine{00183\ }
+\DoxyCodeLine{00184\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00185\ \textcolor{keyword}{inline}\ T\&\ TVector3<T>::x()}
+\DoxyCodeLine{00186\ \{}
+\DoxyCodeLine{00187\ \ \ \ \ \textcolor{keywordflow}{return}\ m[0];}
+\DoxyCodeLine{00188\ \}}
+\DoxyCodeLine{00189\ }
+\DoxyCodeLine{00190\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00191\ \textcolor{keyword}{inline}\ T\&\ TVector3<T>::y()}
+\DoxyCodeLine{00192\ \{}
+\DoxyCodeLine{00193\ \ \ \ \ \textcolor{keywordflow}{return}\ m[1];}
+\DoxyCodeLine{00194\ \}}
+\DoxyCodeLine{00195\ }
+\DoxyCodeLine{00196\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00197\ \textcolor{keyword}{inline}\ T\&\ TVector3<T>::z()}
+\DoxyCodeLine{00198\ \{}
+\DoxyCodeLine{00199\ \ \ \ \ \textcolor{keywordflow}{return}\ m[2];}
+\DoxyCodeLine{00200\ \}}
+\DoxyCodeLine{00201\ }
+\DoxyCodeLine{00202\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00203\ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ T\&\ TVector3<T>::x()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00204\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00205\ \ \ \ \ \textcolor{keywordflow}{return}\ m[0];}
+\DoxyCodeLine{00206\ \}}
+\DoxyCodeLine{00207\ }
+\DoxyCodeLine{00208\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00209\ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ T\&\ TVector3<T>::y()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00210\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00211\ \ \ \ \ \textcolor{keywordflow}{return}\ m[1];}
+\DoxyCodeLine{00212\ \}}
+\DoxyCodeLine{00213\ }
+\DoxyCodeLine{00214\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00215\ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ T\&\ TVector3<T>::z()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00216\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00217\ \ \ \ \ \textcolor{keywordflow}{return}\ m[2];}
+\DoxyCodeLine{00218\ \}}
+\DoxyCodeLine{00219\ }
+\DoxyCodeLine{00220\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00221\ \textcolor{keyword}{inline}\ T\&\ TVector3<T>::r()}
+\DoxyCodeLine{00222\ \{}
+\DoxyCodeLine{00223\ \ \ \ \ \textcolor{keywordflow}{return}\ m[0];}
+\DoxyCodeLine{00224\ \}}
+\DoxyCodeLine{00225\ }
+\DoxyCodeLine{00226\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00227\ \textcolor{keyword}{inline}\ T\&\ TVector3<T>::g()}
+\DoxyCodeLine{00228\ \{}
+\DoxyCodeLine{00229\ \ \ \ \ \textcolor{keywordflow}{return}\ m[1];}
+\DoxyCodeLine{00230\ \}}
+\DoxyCodeLine{00231\ }
+\DoxyCodeLine{00232\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00233\ \textcolor{keyword}{inline}\ T\&\ TVector3<T>::b()}
+\DoxyCodeLine{00234\ \{}
+\DoxyCodeLine{00235\ \ \ \ \ \textcolor{keywordflow}{return}\ m[2];}
+\DoxyCodeLine{00236\ \}}
+\DoxyCodeLine{00237\ }
+\DoxyCodeLine{00238\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00239\ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ T\&\ TVector3<T>::r()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00240\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00241\ \ \ \ \ \textcolor{keywordflow}{return}\ m[0];}
+\DoxyCodeLine{00242\ \}}
+\DoxyCodeLine{00243\ }
+\DoxyCodeLine{00244\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00245\ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ T\&\ TVector3<T>::g()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00246\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00247\ \ \ \ \ \textcolor{keywordflow}{return}\ m[1];}
+\DoxyCodeLine{00248\ \}}
+\DoxyCodeLine{00249\ }
+\DoxyCodeLine{00250\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00251\ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ T\&\ TVector3<T>::b()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00252\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00253\ \ \ \ \ \textcolor{keywordflow}{return}\ m[2];}
+\DoxyCodeLine{00254\ \}}
+\DoxyCodeLine{00255\ }
+\DoxyCodeLine{00256\ \}\textcolor{comment}{//\ end\ namespace\ ph::math}}
+
+\end{DoxyCode}

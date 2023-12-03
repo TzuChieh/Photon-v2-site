@@ -1,0 +1,778 @@
+\doxysection{color\+\_\+spaces.\+ipp}
+\hypertarget{color__spaces_8ipp_source}{}\label{color__spaces_8ipp_source}\index{Source/Math/Color/color\_spaces.ipp@{Source/Math/Color/color\_spaces.ipp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Math/Color/color\_spaces.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Math/TMatrix3.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}Math/Color/spectral\_samples.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}Utility/IUninstantiable.h"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}Math/math\_exceptions.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}Common/assertion.h"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}Math/TArithmeticArray.h"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{math_8h}{Math/math.h}}"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}Math/Color/chromatic\_adaptations.h"{}}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <cmath>}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph_1_1math}{ph::math}}}
+\DoxyCodeLine{00016\ \{}
+\DoxyCodeLine{00017\ \ \ \ \ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{template}<EColorSpace\ COLOR\_SPACE,\ EReferenceWhite\ REF\_WHITE>}
+\DoxyCodeLine{00019\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1math_1_1_t_color_space_definition_helper}{TColorSpaceDefinitionHelper}}\ :\ \textcolor{keyword}{private}\ \mbox{\hyperlink{classph_1_1_i_uninstantiable}{IUninstantiable}}}
+\DoxyCodeLine{00020\ \{}
+\DoxyCodeLine{00021\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ \textcolor{keyword}{consteval}\ \mbox{\hyperlink{namespaceph_1_1math_a957eab3ceed525ebce5c24b6b57eb975}{EColorSpace}}\ getColorSpace()\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00023\ \ \ \ \ \{}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ COLOR\_SPACE;}
+\DoxyCodeLine{00025\ \ \ \ \ \}}
+\DoxyCodeLine{00026\ \};}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{keyword}{template}<EColorSpace\ COLOR\_SPACE,\ EReferenceWhite\ REF\_WHITE>}
+\DoxyCodeLine{00029\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_color_space_definition_helper}{TTristimulusColorSpaceDefinitionHelper}}\ :\ \textcolor{keyword}{private}\ \mbox{\hyperlink{classph_1_1_i_uninstantiable}{IUninstantiable}}}
+\DoxyCodeLine{00030\ \{}
+\DoxyCodeLine{00031\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ \textcolor{keyword}{consteval}\ \mbox{\hyperlink{namespaceph_1_1math_a957eab3ceed525ebce5c24b6b57eb975}{EColorSpace}}\ getColorSpace()\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00033\ \ \ \ \ \{}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ COLOR\_SPACE;}
+\DoxyCodeLine{00035\ \ \ \ \ \}}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ \textcolor{keyword}{consteval}\ \textcolor{keywordtype}{bool}\ isTristimulus()\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00038\ \ \ \ \ \{}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00040\ \ \ \ \ \}}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ \textcolor{keyword}{consteval}\ \mbox{\hyperlink{namespaceph_1_1math_ac8bbf5c13da6b60663011e0be1acb6c4}{EReferenceWhite}}\ getReferenceWhite()\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00043\ \ \ \ \ \{}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ REF\_WHITE;}
+\DoxyCodeLine{00045\ \ \ \ \ \}}
+\DoxyCodeLine{00046\ \};}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \textcolor{keyword}{template}<EColorSpace\ COLOR\_SPACE,\ EColorSpace\ BOUND\_TRISTIMULUS\_COLOR\_SPACE>}
+\DoxyCodeLine{00049\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1math_1_1_t_spectral_color_space_definition_helper}{TSpectralColorSpaceDefinitionHelper}}\ :\ \textcolor{keyword}{private}\ \mbox{\hyperlink{classph_1_1_i_uninstantiable}{IUninstantiable}}}
+\DoxyCodeLine{00050\ \{}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keyword}{static\_assert}(COLOR\_SPACE\ !=\ BOUND\_TRISTIMULUS\_COLOR\_SPACE,}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Cannot\ define\ a\ spectral\ space\ that\ binds\ itself\ as\ a\ tristimulus\ one.\ "{}}}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}A\ color\ space\ can\ be\ either\ spectral\ or\ tristimulus\ but\ not\ both."{}});}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ \textcolor{keyword}{consteval}\ \mbox{\hyperlink{namespaceph_1_1math_a957eab3ceed525ebce5c24b6b57eb975}{EColorSpace}}\ getColorSpace()\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00057\ \ \ \ \ \{}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ COLOR\_SPACE;}
+\DoxyCodeLine{00059\ \ \ \ \ \}}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ \textcolor{keyword}{consteval}\ \textcolor{keywordtype}{bool}\ isTristimulus()\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00062\ \ \ \ \ \{}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00064\ \ \ \ \ \}}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ \textcolor{keyword}{consteval}\ \mbox{\hyperlink{namespaceph_1_1math_a957eab3ceed525ebce5c24b6b57eb975}{EColorSpace}}\ getBoundTristimulusColorSpace()\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00067\ \ \ \ \ \{}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ BOUND\_TRISTIMULUS\_COLOR\_SPACE;}
+\DoxyCodeLine{00069\ \ \ \ \ \}}
+\DoxyCodeLine{00070\ \};}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00073\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1math_1_1_t_color_space_definition}{TColorSpaceDefinition}}<\mbox{\hyperlink{namespaceph_1_1math_a957eab3ceed525ebce5c24b6b57eb975}{EColorSpace}}::\mbox{\hyperlink{namespaceph_1_1math_a957eab3ceed525ebce5c24b6b57eb975aa0722d9dcf7cc7b24ba4de9888238cfb}{CIE\_XYZ}},\ T>\ final\ :\ }
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_color_space_definition_helper}{TTristimulusColorSpaceDefinitionHelper}}<EColorSpace::CIE\_XYZ,\ EReferenceWhite::D65>}
+\DoxyCodeLine{00075\ \{}
+\DoxyCodeLine{00076\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ TTristimulusValues<T>\ toCIEXYZ(\textcolor{keyword}{const}\ TTristimulusValues<T>\&\ thisColor)}
+\DoxyCodeLine{00078\ \ \ \ \ \{}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Already\ in\ CIE-\/XYZ\ space,\ simply\ return\ the\ source\ color.}}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ thisColor;}
+\DoxyCodeLine{00081\ \ \ \ \ \}}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ TTristimulusValues<T>\ fromCIEXYZ(\textcolor{keyword}{const}\ TTristimulusValues<T>\&\ CIEXYZColor)}
+\DoxyCodeLine{00084\ \ \ \ \ \{}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Already\ in\ CIE-\/XYZ\ space,\ simply\ return\ the\ source\ color.}}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ CIEXYZColor;}
+\DoxyCodeLine{00087\ \ \ \ \ \}}
+\DoxyCodeLine{00088\ \};}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00104\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00105\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1math_1_1_t_color_space_definition}{TColorSpaceDefinition}}<\mbox{\hyperlink{namespaceph_1_1math_a957eab3ceed525ebce5c24b6b57eb975}{EColorSpace}}::\mbox{\hyperlink{namespaceph_1_1math_a957eab3ceed525ebce5c24b6b57eb975a09459a025b9bd3e49c14a141f26f1168}{Linear\_sRGB}},\ T>\ final\ :}
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_color_space_definition_helper}{TTristimulusColorSpaceDefinitionHelper}}<EColorSpace::Linear\_sRGB,\ EReferenceWhite::D65>}
+\DoxyCodeLine{00107\ \{}
+\DoxyCodeLine{00108\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00124\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ TTristimulusValues<T>\ \mbox{\hyperlink{classph_1_1math_1_1_t_color_space_definition_3_01_e_color_space_1_1_linear__s_r_g_b_00_01_t_01_4_add536e3c48d2701dffaece4737011ddb}{toCIEXYZ}}(\textcolor{keyword}{const}\ TTristimulusValues<T>\&\ thisColor)}
+\DoxyCodeLine{00125\ \ \ \ \ \{}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_matrix3}{TMatrix3<T>}}\ M(\mbox{\hyperlink{classph_1_1math_1_1_t_matrix3}{Matrix3D}}(}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ 0.41239079926595934,\ 0.357584339383878,\ \ \ 0.1804807884018343,}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ 0.21263900587151027,\ 0.715168678767756,\ \ \ 0.07219231536073371,}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ 0.01933081871559182,\ 0.11919477979462598,\ 0.9505321522496607));}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ M.multiplyVector(thisColor);}
+\DoxyCodeLine{00132\ \ \ \ \ \}}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00134\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ TTristimulusValues<T>\ fromCIEXYZ(\textcolor{keyword}{const}\ TTristimulusValues<T>\&\ CIEXYZColor)}
+\DoxyCodeLine{00135\ \ \ \ \ \{}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_matrix3}{TMatrix3<T>}}\ M(\mbox{\hyperlink{classph_1_1math_1_1_t_matrix3}{Matrix3D}}(}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ \ 3.2409699419045226,\ \ -\/1.537383177570094,\ \ -\/0.4986107602930034,}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ -\/0.9692436362808796,\ \ \ 1.8759675015077202,\ \ 0.04155505740717559,}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ \ 0.05563007969699366,\ -\/0.20397695888897652,\ 1.0569715142428786));}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ M.multiplyVector(CIEXYZColor);}
+\DoxyCodeLine{00142\ \ \ \ \ \}}
+\DoxyCodeLine{00143\ \};}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00145\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00146\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1math_1_1_t_color_space_definition}{TColorSpaceDefinition}}<\mbox{\hyperlink{namespaceph_1_1math_a957eab3ceed525ebce5c24b6b57eb975}{EColorSpace}}::\mbox{\hyperlink{namespaceph_1_1math_a957eab3ceed525ebce5c24b6b57eb975a9ed33d9be17d174aeb4393a989586ed9}{sRGB}},\ T>\ final\ :}
+\DoxyCodeLine{00147\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_color_space_definition_helper}{TTristimulusColorSpaceDefinitionHelper}}<EColorSpace::sRGB,\ EReferenceWhite::D65>}
+\DoxyCodeLine{00148\ \{}
+\DoxyCodeLine{00149\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00152\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ T\ \mbox{\hyperlink{classph_1_1math_1_1_t_color_space_definition_3_01_e_color_space_1_1s_r_g_b_00_01_t_01_4_ae155e141850892d23b7c02c2b8c8d92c}{gammaCompressSingleChannel}}(\textcolor{keyword}{const}\ T\ linearColorValue)}
+\DoxyCodeLine{00153\ \ \ \ \ \{}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ PH\_ASSERT\_GE(linearColorValue,\ 0.0);}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ PH\_ASSERT\_LE(linearColorValue,\ 1.0);}
+\DoxyCodeLine{00156\ }
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(linearColorValue\ <=\ 0.0031308)}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(12.92\ *\ linearColorValue);}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(1.055\ *\ std::pow(linearColorValue,\ 1.0\ /\ 2.4)\ -\/\ 0.055);}
+\DoxyCodeLine{00163\ \ \ \ \ \}}
+\DoxyCodeLine{00164\ }
+\DoxyCodeLine{00167\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ T\ \mbox{\hyperlink{classph_1_1math_1_1_t_color_space_definition_3_01_e_color_space_1_1s_r_g_b_00_01_t_01_4_a9d51db220d9d2ad7f625bc6017b1fee5}{gammaExpandSingleChannel}}(\textcolor{keyword}{const}\ T\ nonlinearColorValue)}
+\DoxyCodeLine{00168\ \ \ \ \ \{}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ PH\_ASSERT\_GE(nonlinearColorValue,\ 0.0);}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ PH\_ASSERT\_LE(nonlinearColorValue,\ 1.0);}
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(nonlinearColorValue\ <=\ 0.04045)}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(nonlinearColorValue\ /\ 12.92);}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00176\ }
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(std::pow((nonlinearColorValue\ +\ 0.055)\ /\ 1.055,\ 2.4));}
+\DoxyCodeLine{00178\ \ \ \ \ \}}
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00182\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ TTristimulusValues<T>\ \mbox{\hyperlink{classph_1_1math_1_1_t_color_space_definition_3_01_e_color_space_1_1s_r_g_b_00_01_t_01_4_a021401eab1f29b273a471c3b87b2242a}{gammaCompress}}(\textcolor{keyword}{const}\ TTristimulusValues<T>\&\ linearSRGBColor)}
+\DoxyCodeLine{00183\ \ \ \ \ \{}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \ \ \ \ gammaCompressSingleChannel(linearSRGBColor[0]),\ }
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \ \ \ \ gammaCompressSingleChannel(linearSRGBColor[1]),\ }
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \ \ \ \ gammaCompressSingleChannel(linearSRGBColor[2])}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00190\ \ \ \ \ \}}
+\DoxyCodeLine{00191\ }
+\DoxyCodeLine{00194\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ TTristimulusValues<T>\ \mbox{\hyperlink{classph_1_1math_1_1_t_color_space_definition_3_01_e_color_space_1_1s_r_g_b_00_01_t_01_4_ae10fd3f069d89dab2f83365deb1fb091}{gammaExpand}}(\textcolor{keyword}{const}\ TTristimulusValues<T>\&\ nonlinearSRGBColor)}
+\DoxyCodeLine{00195\ \ \ \ \ \{}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \ \ \ \ gammaExpandSingleChannel(nonlinearSRGBColor[0]),}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \ \ \ \ gammaExpandSingleChannel(nonlinearSRGBColor[1]),}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \ \ \ \ gammaExpandSingleChannel(nonlinearSRGBColor[2])}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00202\ \ \ \ \ \}}
+\DoxyCodeLine{00203\ }
+\DoxyCodeLine{00204\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ TTristimulusValues<T>\ toCIEXYZ(\textcolor{keyword}{const}\ TTristimulusValues<T>\&\ thisColor)}
+\DoxyCodeLine{00205\ \ \ \ \ \{}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ TTristimulusValues<T>\ linearSRGBColor\ =\ gammaExpand(thisColor);}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1math_1_1_t_color_space_definition}{TColorSpaceDefinition<EColorSpace::Linear\_sRGB,\ T>::toCIEXYZ}}(linearSRGBColor);}
+\DoxyCodeLine{00208\ \ \ \ \ \}}
+\DoxyCodeLine{00209\ }
+\DoxyCodeLine{00210\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ TTristimulusValues<T>\ fromCIEXYZ(\textcolor{keyword}{const}\ TTristimulusValues<T>\&\ CIEXYZColor)}
+\DoxyCodeLine{00211\ \ \ \ \ \{}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ TTristimulusValues<T>\ linearSRGBColor\ =\ \mbox{\hyperlink{classph_1_1math_1_1_t_color_space_definition}{TColorSpaceDefinition<EColorSpace::Linear\_sRGB,\ T>::fromCIEXYZ}}(CIEXYZColor);}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ gammaCompress(linearSRGBColor);}
+\DoxyCodeLine{00214\ \ \ \ \ \}}
+\DoxyCodeLine{00215\ \};}
+\DoxyCodeLine{00216\ }
+\DoxyCodeLine{00217\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00218\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1math_1_1_t_color_space_definition}{TColorSpaceDefinition}}<\mbox{\hyperlink{namespaceph_1_1math_a957eab3ceed525ebce5c24b6b57eb975}{EColorSpace}}::\mbox{\hyperlink{namespaceph_1_1math_a957eab3ceed525ebce5c24b6b57eb975ab6fb9dfbcbbcea21d6d2529b82d9903e}{CIE\_xyY}},\ T>\ final\ :}
+\DoxyCodeLine{00219\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_color_space_definition_helper}{TTristimulusColorSpaceDefinitionHelper}}<EColorSpace::CIE\_xyY,\ EReferenceWhite::D65>}
+\DoxyCodeLine{00220\ \{}
+\DoxyCodeLine{00221\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00226\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ TTristimulusValues<T>\ \mbox{\hyperlink{classph_1_1math_1_1_t_color_space_definition_3_01_e_color_space_1_1_c_i_e__xy_y_00_01_t_01_4_a97ee7cececff5342329b5ff31a29208f}{toCIEXYZ}}(\textcolor{keyword}{const}\ TTristimulusValues<T>\&\ thisColor)}
+\DoxyCodeLine{00227\ \ \ \ \ \{}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Negative\ luminance\ does\ not\ make\ sense\ (sucking\ light\ out\ of\ your\ eyeballs?\ hmmm),\ so\ we\ clamp\ to\ 0}}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ T\ x\ =\ thisColor[0];}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ T\ y\ =\ thisColor[1];}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ T\ Y\ =\ std::max(thisColor[2],\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(0));}
+\DoxyCodeLine{00232\ }
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(y\ !=\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(0))}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ T\ Y\_over\_y\ =\ Y\ /\ y;}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Y\_over\_y\ *\ x,}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Y,\ }
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Y\_over\_y\ *\ (\textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(1)\ -\/\ x\ -\/\ y)}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ All\ zero\ for\ y\ =\ 0;}}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ the\ Colour\ python\ library\ returns\ (y,\ y,\ y)\ in\ this\ case\ (equivalent\ to\ our\ implementation)}}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \{0.0,\ 0.0,\ 0.0\};}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00249\ \ \ \ \ \}}
+\DoxyCodeLine{00250\ }
+\DoxyCodeLine{00254\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ TTristimulusValues<T>\ \mbox{\hyperlink{classph_1_1math_1_1_t_color_space_definition_3_01_e_color_space_1_1_c_i_e__xy_y_00_01_t_01_4_a9de6cee5cb63049d4f33d183637101eb}{fromCIEXYZ}}(\textcolor{keyword}{const}\ TTristimulusValues<T>\&\ CIEXYZColor)}
+\DoxyCodeLine{00255\ \ \ \ \ \{}
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ CIE\ XYZ\ color\ are\ defined\ to\ be\ non-\/negative,\ clamp\ negative\ values\ to\ 0}}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ T\ CIE\_X\ =\ std::max(CIEXYZColor[0],\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(0));}
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ T\ CIE\_Y\ =\ std::max(CIEXYZColor[1],\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(0));}
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ T\ CIE\_Z\ =\ std::max(CIEXYZColor[2],\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(0));}
+\DoxyCodeLine{00260\ }
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ T\ sumXYZ\ =\ CIE\_X\ +\ CIE\_Y\ +\ CIE\_Z;}
+\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ PH\_ASSERT\_GE(sumXYZ,\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(0));}
+\DoxyCodeLine{00263\ }
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(sumXYZ\ >\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(0))}
+\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ T\ rcpSumXYZ\ =\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(1)\ /\ sumXYZ;}
+\DoxyCodeLine{00267\ }
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ }
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ CIE\_X\ *\ rcpSumXYZ,\textcolor{comment}{//\ x}}
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ CIE\_Y\ *\ rcpSumXYZ,\textcolor{comment}{//\ y}}
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ CIE\_Y\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Y\ (same\ as\ CIE\ XYZ's\ Y)}}
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ So\ the\ input\ XYZ\ color\ is\ black\ (X\ =\ Y\ =\ Z\ =\ 0)}}
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ In\ this\ case,\ we\ should\ return\ our\ reference\ white's\ chromaticity\ coordinates\ (xyY's\ xy),}}
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ refWhiteChromaticity\ =\ chromaticity\_of<T>(getReferenceWhite());}
+\DoxyCodeLine{00280\ }
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}}
+\DoxyCodeLine{00282\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ refWhiteChromaticity[0],}
+\DoxyCodeLine{00284\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ refWhiteChromaticity[1],}
+\DoxyCodeLine{00285\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(0)\ \ \ \ \ \ \ \textcolor{comment}{//\ Y\ =\ 0\ as\ it\ is\ black}}
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00288\ \ \ \ \ \}}
+\DoxyCodeLine{00289\ \};}
+\DoxyCodeLine{00290\ }
+\DoxyCodeLine{00308\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00309\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1math_1_1_t_color_space_definition}{TColorSpaceDefinition}}<\mbox{\hyperlink{namespaceph_1_1math_a957eab3ceed525ebce5c24b6b57eb975}{EColorSpace}}::\mbox{\hyperlink{namespaceph_1_1math_a957eab3ceed525ebce5c24b6b57eb975a1cd2db83c1165ec3c7e7ca28694c92ee}{ACEScg}},\ T>\ final\ :}
+\DoxyCodeLine{00310\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_color_space_definition_helper}{TTristimulusColorSpaceDefinitionHelper}}<EColorSpace::ACEScg,\ EReferenceWhite::ACES>}
+\DoxyCodeLine{00311\ \{}
+\DoxyCodeLine{00312\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00313\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ TTristimulusValues<T>\ toCIEXYZ(\textcolor{keyword}{const}\ TTristimulusValues<T>\&\ thisColor)}
+\DoxyCodeLine{00314\ \ \ \ \ \{}
+\DoxyCodeLine{00315\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ According\ to\ [4],\ this\ is\ the\ matrix\ for\ transformation\ from\ ACEScg\ (AP1)\ to\ CIE-\/XYZ}}
+\DoxyCodeLine{00316\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_matrix3}{TMatrix3<T>}}\ M(\mbox{\hyperlink{classph_1_1math_1_1_t_matrix3}{Matrix3D}}(}
+\DoxyCodeLine{00317\ \ \ \ \ \ \ \ \ \ \ \ \ \ 0.6624541811,\ 0.1340042065,\ 0.1561876870,}
+\DoxyCodeLine{00318\ \ \ \ \ \ \ \ \ \ \ \ \ \ 0.2722287168,\ 0.6740817658,\ 0.0536895174,}
+\DoxyCodeLine{00319\ \ \ \ \ \ \ \ \ \ \ \ \ -\/0.0055746495,\ 0.0040607335,\ 1.0103391003));}
+\DoxyCodeLine{00320\ }
+\DoxyCodeLine{00321\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ M.multiplyVector(thisColor);}
+\DoxyCodeLine{00322\ \ \ \ \ \}}
+\DoxyCodeLine{00323\ }
+\DoxyCodeLine{00324\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ TTristimulusValues<T>\ fromCIEXYZ(\textcolor{keyword}{const}\ TTristimulusValues<T>\&\ CIEXYZColor)}
+\DoxyCodeLine{00325\ \ \ \ \ \{}
+\DoxyCodeLine{00326\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ According\ to\ [4],\ this\ is\ the\ matrix\ for\ transformation\ from\ CIE-\/XYZ\ to\ ACEScg\ (AP1)}}
+\DoxyCodeLine{00327\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_matrix3}{TMatrix3<T>}}\ M(\mbox{\hyperlink{classph_1_1math_1_1_t_matrix3}{Matrix3D}}(}
+\DoxyCodeLine{00328\ \ \ \ \ \ \ \ \ \ \ \ \ \ 1.6410233797,\ -\/0.3248032942,\ -\/0.2364246952,}
+\DoxyCodeLine{00329\ \ \ \ \ \ \ \ \ \ \ \ \ -\/0.6636628587,\ \ 1.6153315917,\ \ 0.0167563477,}
+\DoxyCodeLine{00330\ \ \ \ \ \ \ \ \ \ \ \ \ \ 0.0117218943,\ -\/0.0082844420,\ \ 0.9883948585));}
+\DoxyCodeLine{00331\ }
+\DoxyCodeLine{00332\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ M.multiplyVector(CIEXYZColor);}
+\DoxyCodeLine{00333\ \ \ \ \ \}}
+\DoxyCodeLine{00334\ \};}
+\DoxyCodeLine{00335\ }
+\DoxyCodeLine{00336\ \textcolor{keyword}{namespace\ }detail}
+\DoxyCodeLine{00337\ \{}
+\DoxyCodeLine{00338\ }
+\DoxyCodeLine{00339\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ CSpectralSampleProps\ SampleProps>}
+\DoxyCodeLine{00340\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structph_1_1math_1_1detail_1_1_t_smits_s_p_d_basis}{TSmitsSPDBasis}}\ final}
+\DoxyCodeLine{00341\ \{}
+\DoxyCodeLine{00342\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_arithmetic_array}{TArithmeticArray<T,\ SampleProps::NUM\_SAMPLES>}}\ white;}
+\DoxyCodeLine{00343\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_arithmetic_array}{TArithmeticArray<T,\ SampleProps::NUM\_SAMPLES>}}\ cyan;}
+\DoxyCodeLine{00344\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_arithmetic_array}{TArithmeticArray<T,\ SampleProps::NUM\_SAMPLES>}}\ magenta;}
+\DoxyCodeLine{00345\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_arithmetic_array}{TArithmeticArray<T,\ SampleProps::NUM\_SAMPLES>}}\ yellow;}
+\DoxyCodeLine{00346\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_arithmetic_array}{TArithmeticArray<T,\ SampleProps::NUM\_SAMPLES>}}\ red;}
+\DoxyCodeLine{00347\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_arithmetic_array}{TArithmeticArray<T,\ SampleProps::NUM\_SAMPLES>}}\ green;}
+\DoxyCodeLine{00348\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_arithmetic_array}{TArithmeticArray<T,\ SampleProps::NUM\_SAMPLES>}}\ blue;}
+\DoxyCodeLine{00349\ }
+\DoxyCodeLine{00350\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{structph_1_1math_1_1detail_1_1_t_smits_s_p_d_basis}{TSmitsSPDBasis}}()}
+\DoxyCodeLine{00351\ \ \ \ \ \{}
+\DoxyCodeLine{00352\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Construct\ sampled\ SPD\ bases\ for\ Smits'\ algorithm.}}
+\DoxyCodeLine{00353\ \ \ \ \ }
+\DoxyCodeLine{00354\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }SmitsSPDValueType\ =\ spectral\_data::ArraySmits::value\_type;}
+\DoxyCodeLine{00355\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ NUM\_SMITS\_POINTS\ =\ std::tuple\_size\_v<spectral\_data::ArraySmits>;}
+\DoxyCodeLine{00356\ }
+\DoxyCodeLine{00357\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ sampledValuesWhite\ =\ resample\_spectral\_samples<T,\ SmitsSPDValueType,\ SampleProps>(}
+\DoxyCodeLine{00358\ \ \ \ \ \ \ \ \ \ \ \ \ spectral\_data::smits\_linear\_sRGB\_to\_spectrum\_E\_wavelengths\_nm().data(),}
+\DoxyCodeLine{00359\ \ \ \ \ \ \ \ \ \ \ \ \ spectral\_data::smits\_linear\_sRGB\_to\_spectrum\_E\_white().data(),}
+\DoxyCodeLine{00360\ \ \ \ \ \ \ \ \ \ \ \ \ NUM\_SMITS\_POINTS);}
+\DoxyCodeLine{00361\ }
+\DoxyCodeLine{00362\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ sampledValuesCyan\ =\ resample\_spectral\_samples<T,\ SmitsSPDValueType,\ SampleProps>(}
+\DoxyCodeLine{00363\ \ \ \ \ \ \ \ \ \ \ \ \ spectral\_data::smits\_linear\_sRGB\_to\_spectrum\_E\_wavelengths\_nm().data(),}
+\DoxyCodeLine{00364\ \ \ \ \ \ \ \ \ \ \ \ \ spectral\_data::smits\_linear\_sRGB\_to\_spectrum\_E\_cyan().data(),}
+\DoxyCodeLine{00365\ \ \ \ \ \ \ \ \ \ \ \ \ NUM\_SMITS\_POINTS);}
+\DoxyCodeLine{00366\ }
+\DoxyCodeLine{00367\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ sampledValuesMagenta\ =\ resample\_spectral\_samples<T,\ SmitsSPDValueType,\ SampleProps>(}
+\DoxyCodeLine{00368\ \ \ \ \ \ \ \ \ \ \ \ \ spectral\_data::smits\_linear\_sRGB\_to\_spectrum\_E\_wavelengths\_nm().data(),}
+\DoxyCodeLine{00369\ \ \ \ \ \ \ \ \ \ \ \ \ spectral\_data::smits\_linear\_sRGB\_to\_spectrum\_E\_magenta().data(),}
+\DoxyCodeLine{00370\ \ \ \ \ \ \ \ \ \ \ \ \ NUM\_SMITS\_POINTS);}
+\DoxyCodeLine{00371\ }
+\DoxyCodeLine{00372\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ sampledValuesYellow\ =\ resample\_spectral\_samples<T,\ SmitsSPDValueType,\ SampleProps>(}
+\DoxyCodeLine{00373\ \ \ \ \ \ \ \ \ \ \ \ \ spectral\_data::smits\_linear\_sRGB\_to\_spectrum\_E\_wavelengths\_nm().data(),}
+\DoxyCodeLine{00374\ \ \ \ \ \ \ \ \ \ \ \ \ spectral\_data::smits\_linear\_sRGB\_to\_spectrum\_E\_yellow().data(),}
+\DoxyCodeLine{00375\ \ \ \ \ \ \ \ \ \ \ \ \ NUM\_SMITS\_POINTS);}
+\DoxyCodeLine{00376\ }
+\DoxyCodeLine{00377\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ sampledValuesRed\ =\ resample\_spectral\_samples<T,\ SmitsSPDValueType,\ SampleProps>(}
+\DoxyCodeLine{00378\ \ \ \ \ \ \ \ \ \ \ \ \ spectral\_data::smits\_linear\_sRGB\_to\_spectrum\_E\_wavelengths\_nm().data(),}
+\DoxyCodeLine{00379\ \ \ \ \ \ \ \ \ \ \ \ \ spectral\_data::smits\_linear\_sRGB\_to\_spectrum\_E\_red().data(),}
+\DoxyCodeLine{00380\ \ \ \ \ \ \ \ \ \ \ \ \ NUM\_SMITS\_POINTS);}
+\DoxyCodeLine{00381\ }
+\DoxyCodeLine{00382\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ sampledValuesGreen\ =\ resample\_spectral\_samples<T,\ SmitsSPDValueType,\ SampleProps>(}
+\DoxyCodeLine{00383\ \ \ \ \ \ \ \ \ \ \ \ \ spectral\_data::smits\_linear\_sRGB\_to\_spectrum\_E\_wavelengths\_nm().data(),}
+\DoxyCodeLine{00384\ \ \ \ \ \ \ \ \ \ \ \ \ spectral\_data::smits\_linear\_sRGB\_to\_spectrum\_E\_green().data(),}
+\DoxyCodeLine{00385\ \ \ \ \ \ \ \ \ \ \ \ \ NUM\_SMITS\_POINTS);}
+\DoxyCodeLine{00386\ }
+\DoxyCodeLine{00387\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ sampledValuesBlue\ =\ resample\_spectral\_samples<T,\ SmitsSPDValueType,\ SampleProps>(}
+\DoxyCodeLine{00388\ \ \ \ \ \ \ \ \ \ \ \ \ spectral\_data::smits\_linear\_sRGB\_to\_spectrum\_E\_wavelengths\_nm().data(),}
+\DoxyCodeLine{00389\ \ \ \ \ \ \ \ \ \ \ \ \ spectral\_data::smits\_linear\_sRGB\_to\_spectrum\_E\_blue().data(),}
+\DoxyCodeLine{00390\ \ \ \ \ \ \ \ \ \ \ \ \ NUM\_SMITS\_POINTS);}
+\DoxyCodeLine{00391\ }
+\DoxyCodeLine{00392\ \ \ \ \ \ \ \ \ white.set(sampledValuesWhite);}
+\DoxyCodeLine{00393\ \ \ \ \ \ \ \ \ cyan.set(sampledValuesCyan);}
+\DoxyCodeLine{00394\ \ \ \ \ \ \ \ \ magenta.set(sampledValuesMagenta);}
+\DoxyCodeLine{00395\ \ \ \ \ \ \ \ \ yellow.set(sampledValuesYellow);}
+\DoxyCodeLine{00396\ \ \ \ \ \ \ \ \ red.set(sampledValuesRed);}
+\DoxyCodeLine{00397\ \ \ \ \ \ \ \ \ green.set(sampledValuesGreen);}
+\DoxyCodeLine{00398\ \ \ \ \ \ \ \ \ blue.set(sampledValuesBlue);}
+\DoxyCodeLine{00399\ }
+\DoxyCodeLine{00400\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ TODO:\ should\ we\ ensure\ bases\ sum\ to\ 1\ after\ being\ smapled?}}
+\DoxyCodeLine{00401\ \ \ \ \ \}}
+\DoxyCodeLine{00402\ \};}
+\DoxyCodeLine{00403\ }
+\DoxyCodeLine{00404\ \}\textcolor{comment}{//\ end\ namespace\ detail}}
+\DoxyCodeLine{00405\ }
+\DoxyCodeLine{00406\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00407\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1math_1_1_t_color_space_definition}{TColorSpaceDefinition}}<\mbox{\hyperlink{namespaceph_1_1math_a957eab3ceed525ebce5c24b6b57eb975}{EColorSpace}}::\mbox{\hyperlink{namespaceph_1_1math_a957eab3ceed525ebce5c24b6b57eb975ad105cc4d913228315335035aa21669a8}{Spectral\_Smits}},\ T>\ final\ :}
+\DoxyCodeLine{00408\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{classph_1_1math_1_1_t_spectral_color_space_definition_helper}{TSpectralColorSpaceDefinitionHelper}}<EColorSpace::Spectral\_Smits,\ EColorSpace::Linear\_sRGB>}
+\DoxyCodeLine{00409\ \{}
+\DoxyCodeLine{00410\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00411\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classph_1_1math_1_1_t_color_space_definition_3_01_e_color_space_1_1_linear__s_r_g_b_00_01_t_01_4}{LinearSrgbDef}}\ =\ \mbox{\hyperlink{classph_1_1math_1_1_t_color_space_definition}{TColorSpaceDefinition<EColorSpace::Linear\_sRGB,\ T>}};}
+\DoxyCodeLine{00412\ }
+\DoxyCodeLine{00413\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00414\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ \mbox{\hyperlink{namespaceph_1_1math_ab6e489b4814390fb4f1a68257d8d432d}{TSpectralSampleValues<T>}}\ upSample(\textcolor{keyword}{const}\ TTristimulusValues<T>\&\ boundColor,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_1_1math_a821af6da20aaed56cc09ad440633d067}{EColorUsage}}\ usage)}
+\DoxyCodeLine{00415\ \ \ \ \ \{}
+\DoxyCodeLine{00416\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structph_1_1math_1_1detail_1_1_t_smits_s_p_d_basis}{detail::TSmitsSPDBasis<T,\ DefaultSpectralSampleProps>}}\ basis;}
+\DoxyCodeLine{00417\ }
+\DoxyCodeLine{00418\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ T\ r\ =\ boundColor[0];}
+\DoxyCodeLine{00419\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ T\ g\ =\ boundColor[1];}
+\DoxyCodeLine{00420\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ T\ b\ =\ boundColor[2];}
+\DoxyCodeLine{00421\ }
+\DoxyCodeLine{00422\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_arithmetic_array}{TArithmeticArray<T,\ DefaultSpectralSampleProps::NUM\_SAMPLES>}}\ spd(0);}
+\DoxyCodeLine{00423\ }
+\DoxyCodeLine{00424\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ following\ steps\ mix\ in\ primary\ colors\ only\ as\ needed.\ Also,\ }}
+\DoxyCodeLine{00425\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ (r,\ g,\ b)\ =\ (1,\ 1,\ 1)\ will\ be\ mapped\ to\ a\ constant\ SPD\ with\ }}
+\DoxyCodeLine{00426\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ magnitudes\ =\ 1.}}
+\DoxyCodeLine{00427\ }
+\DoxyCodeLine{00428\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ When\ R\ is\ minimum}}
+\DoxyCodeLine{00429\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(r\ <=\ g\ \&\&\ r\ <=\ b)}
+\DoxyCodeLine{00430\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00431\ \ \ \ \ \ \ \ \ \ \ \ \ spd.addLocal(basis.white\ *\ r);}
+\DoxyCodeLine{00432\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(g\ <=\ b)}
+\DoxyCodeLine{00433\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00434\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ spd.addLocal(basis.cyan\ *\ (g\ -\/\ r));}
+\DoxyCodeLine{00435\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ spd.addLocal(basis.blue\ *\ (b\ -\/\ g));}
+\DoxyCodeLine{00436\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00437\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00438\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00439\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ spd.addLocal(basis.cyan\ *\ (b\ -\/\ r));}
+\DoxyCodeLine{00440\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ spd.addLocal(basis.green\ *\ (g\ -\/\ b));}
+\DoxyCodeLine{00441\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00442\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00443\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ When\ G\ is\ minimum}}
+\DoxyCodeLine{00444\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(g\ <=\ r\ \&\&\ g\ <=\ b)}
+\DoxyCodeLine{00445\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00446\ \ \ \ \ \ \ \ \ \ \ \ \ spd.addLocal(basis.white\ *\ g);}
+\DoxyCodeLine{00447\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(r\ <=\ b)}
+\DoxyCodeLine{00448\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00449\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ spd.addLocal(basis.magenta\ *\ (r\ -\/\ g));}
+\DoxyCodeLine{00450\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ spd.addLocal(basis.blue\ *\ (b\ -\/\ r));}
+\DoxyCodeLine{00451\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00452\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00453\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00454\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ spd.addLocal(basis.magenta\ *\ (b\ -\/\ g));}
+\DoxyCodeLine{00455\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ spd.addLocal(basis.red\ *\ (r\ -\/\ b));}
+\DoxyCodeLine{00456\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00457\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00458\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ When\ B\ is\ minimum}}
+\DoxyCodeLine{00459\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00460\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00461\ \ \ \ \ \ \ \ \ \ \ \ \ spd.addLocal(basis.white\ *\ b);}
+\DoxyCodeLine{00462\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(r\ <=\ g)}
+\DoxyCodeLine{00463\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00464\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ spd.addLocal(basis.yellow\ *\ (r\ -\/\ b));}
+\DoxyCodeLine{00465\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ spd.addLocal(basis.green\ *\ (g\ -\/\ r));}
+\DoxyCodeLine{00466\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00467\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00468\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00469\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ spd.addLocal(basis.yellow\ *\ (g\ -\/\ b));}
+\DoxyCodeLine{00470\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ spd.addLocal(basis.red\ *\ (r\ -\/\ g));}
+\DoxyCodeLine{00471\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00472\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00473\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00474\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_assert}(LinearSrgbDef::getReferenceWhite()\ ==\ EReferenceWhite::D65);}
+\DoxyCodeLine{00475\ }
+\DoxyCodeLine{00476\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_arithmetic_array}{TArithmeticArray<T,\ DefaultSpectralSampleProps::NUM\_SAMPLES>}}\ unitD65Spd(}
+\DoxyCodeLine{00477\ \ \ \ \ \ \ \ \ \ \ \ \ resample\_illuminant\_D65<T>());}
+\DoxyCodeLine{00478\ }
+\DoxyCodeLine{00479\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}(usage)}
+\DoxyCodeLine{00480\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00481\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ For\ things\ such\ as\ illuminants,\ scale\ the\ SPD\ so\ that\ constant\ SPDs\ matches\ the\ distribution\ }}
+\DoxyCodeLine{00482\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ of\ D65.\ This\ way,\ a\ "{}gray"{}\ linear-\/sRGB\ color\ will\ be\ D65\ scaled\ by\ some\ constant.\ Another\ way}}
+\DoxyCodeLine{00483\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ to\ think\ of\ it\ is\ we\ treat\ each\ component\ in\ the\ SPD\ as\ a\ scale\ value,\ and\ the\ resulting\ SPD}}
+\DoxyCodeLine{00484\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ is\ simply\ a\ unit\ D65\ being\ scaled.}}
+\DoxyCodeLine{00485\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespaceph_1_1math_a821af6da20aaed56cc09ad440633d067a8d4c0b2cef256d21ab680366c8b1c6bf}{EColorUsage::EMR}}:}
+\DoxyCodeLine{00486\ \ \ \ \ \ \ \ \ \ \ \ \ spd.mulLocal(unitD65Spd);}
+\DoxyCodeLine{00487\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00488\ }
+\DoxyCodeLine{00489\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ For\ things\ such\ as\ reflectances,\ make\ sure\ energy\ conservation\ requirements\ are\ met.}}
+\DoxyCodeLine{00490\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespaceph_1_1math_a821af6da20aaed56cc09ad440633d067a13eb1af433fe09e8ee2e6b89001c3843}{EColorUsage::ECF}}:}
+\DoxyCodeLine{00491\ \ \ \ \ \ \ \ \ \ \ \ \ spd.clampLocal(0,\ 1);}
+\DoxyCodeLine{00492\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00493\ }
+\DoxyCodeLine{00494\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespaceph_1_1math_a821af6da20aaed56cc09ad440633d067a633d6abff0a3fc22404347728d195059}{EColorUsage::RAW}}:}
+\DoxyCodeLine{00495\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Do\ nothing}}
+\DoxyCodeLine{00496\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00497\ }
+\DoxyCodeLine{00498\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00499\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \mbox{\hyperlink{classph_1_1math_1_1_color_error}{ColorError}}(}
+\DoxyCodeLine{00500\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}A\ color\ usage\ must\ be\ specified\ when\ converting\ spectral\ color\ samples."{}});}
+\DoxyCodeLine{00501\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00502\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00503\ }
+\DoxyCodeLine{00504\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ spd.toArray();}
+\DoxyCodeLine{00505\ \ \ \ \ \}}
+\DoxyCodeLine{00506\ }
+\DoxyCodeLine{00507\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ TTristimulusValues<T>\ downSample(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_1_1math_ab6e489b4814390fb4f1a68257d8d432d}{TSpectralSampleValues<T>}}\&\ sampleValues,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_1_1math_a821af6da20aaed56cc09ad440633d067}{EColorUsage}}\ usage)}
+\DoxyCodeLine{00508\ \ \ \ \ \{}
+\DoxyCodeLine{00509\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ CIEXYZColor\ =\ \mbox{\hyperlink{namespaceph_1_1math_a4e8c5be354cae25f8639d0ebd4a9df17}{spectral\_samples\_to\_CIE\_XYZ}}(sampleValues,\ usage);}
+\DoxyCodeLine{00510\ }
+\DoxyCodeLine{00511\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ linearSrgbColor\ =\ LinearSrgbDef::fromCIEXYZ(CIEXYZColor);}
+\DoxyCodeLine{00512\ }
+\DoxyCodeLine{00513\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(usage\ ==\ EColorUsage::Unspecified)}
+\DoxyCodeLine{00514\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00515\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \mbox{\hyperlink{classph_1_1math_1_1_color_error}{ColorError}}(}
+\DoxyCodeLine{00516\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}A\ color\ usage\ must\ be\ specified\ when\ converting\ spectral\ color\ samples."{}});}
+\DoxyCodeLine{00517\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00518\ }
+\DoxyCodeLine{00519\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ We\ do\ not\ care\ about\ EMR\ color\ usage\ here\ since\ spectral\ samples\ should\ be\ independent\ of}}
+\DoxyCodeLine{00520\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ reference\ whites.\ This\ may\ make\ round-\/trip\ conversions\ less\ stable\ (numerical\ error),\ }}
+\DoxyCodeLine{00521\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ we\ think\ such\ stability\ is\ unimportant,\ however.\ We\ do\ nothing\ for\ RAW\ usage.\ }}
+\DoxyCodeLine{00522\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ }}
+\DoxyCodeLine{00523\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ For\ ECF\ usage,\ we\ make\ sure\ the\ resulting\ value\ is\ well\ being\ in\ [0,\ 1].}}
+\DoxyCodeLine{00524\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(usage\ ==\ \mbox{\hyperlink{namespaceph_1_1math_a821af6da20aaed56cc09ad440633d067a13eb1af433fe09e8ee2e6b89001c3843}{EColorUsage::ECF}})}
+\DoxyCodeLine{00525\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00526\ \ \ \ \ \ \ \ \ \ \ \ \ linearSrgbColor\ =\ \mbox{\hyperlink{classph_1_1math_1_1_t_arithmetic_array}{TArithmeticArray<T,\ 3>}}(linearSrgbColor).clampLocal(0,\ 1).toArray();}
+\DoxyCodeLine{00527\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00528\ }
+\DoxyCodeLine{00529\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ linearSrgbColor;}
+\DoxyCodeLine{00530\ \ \ \ \ \}}
+\DoxyCodeLine{00531\ \};}
+\DoxyCodeLine{00532\ }
+\DoxyCodeLine{00533\ \textcolor{comment}{//\ End\ Color\ Space\ Definitions}}
+\DoxyCodeLine{00534\ }
+\DoxyCodeLine{00535\ \textcolor{comment}{//\ Unspecified\ color\ space\ must\ not\ be\ a\ valid\ color\ space.}}
+\DoxyCodeLine{00536\ \textcolor{keyword}{static\_assert}(!\mbox{\hyperlink{conceptph_1_1math_1_1_c_color_space_definition}{CColorSpaceDefinition<TColorSpaceDefinition<EColorSpace::Unspecified,\ float>}},\ \textcolor{keywordtype}{float}>);}
+\DoxyCodeLine{00537\ \textcolor{keyword}{static\_assert}(!\mbox{\hyperlink{conceptph_1_1math_1_1_c_color_space_definition}{CColorSpaceDefinition<TColorSpaceDefinition<EColorSpace::Unspecified,\ double>}},\ \textcolor{keywordtype}{double}>);}
+\DoxyCodeLine{00538\ }
+\DoxyCodeLine{00539\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespaceph_1_1math_abe1a45b3ea4179b27954f963695cae32}{is\_tristimulus}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_1_1math_a957eab3ceed525ebce5c24b6b57eb975}{EColorSpace}}\ colorSpace)}
+\DoxyCodeLine{00540\ \{}
+\DoxyCodeLine{00541\ \ \ \ \ \textcolor{keywordflow}{switch}(colorSpace)}
+\DoxyCodeLine{00542\ \ \ \ \ \{}
+\DoxyCodeLine{00543\ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespaceph_1_1math_a957eab3ceed525ebce5c24b6b57eb975aa0722d9dcf7cc7b24ba4de9888238cfb}{EColorSpace::CIE\_XYZ}}:}
+\DoxyCodeLine{00544\ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespaceph_1_1math_a957eab3ceed525ebce5c24b6b57eb975ab6fb9dfbcbbcea21d6d2529b82d9903e}{EColorSpace::CIE\_xyY}}:}
+\DoxyCodeLine{00545\ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespaceph_1_1math_a957eab3ceed525ebce5c24b6b57eb975a09459a025b9bd3e49c14a141f26f1168}{EColorSpace::Linear\_sRGB}}:}
+\DoxyCodeLine{00546\ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespaceph_1_1math_a957eab3ceed525ebce5c24b6b57eb975a9ed33d9be17d174aeb4393a989586ed9}{EColorSpace::sRGB}}:}
+\DoxyCodeLine{00547\ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespaceph_1_1math_a957eab3ceed525ebce5c24b6b57eb975a1cd2db83c1165ec3c7e7ca28694c92ee}{EColorSpace::ACEScg}}:}
+\DoxyCodeLine{00548\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00549\ }
+\DoxyCodeLine{00550\ \ \ \ \ \textcolor{keywordflow}{case}\ EColorSpace::Unspecified:}
+\DoxyCodeLine{00551\ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespaceph_1_1math_a957eab3ceed525ebce5c24b6b57eb975ad105cc4d913228315335035aa21669a8}{EColorSpace::Spectral\_Smits}}:}
+\DoxyCodeLine{00552\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00553\ }
+\DoxyCodeLine{00554\ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00555\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ When\ failed,\ you\ may\ have\ added/removed\ some\ entries.\ Handle\ it\ in\ the\ above\ section.}}
+\DoxyCodeLine{00556\ \ \ \ \ \ \ \ \ PH\_ASSERT\_UNREACHABLE\_SECTION();}
+\DoxyCodeLine{00557\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00558\ \ \ \ \ \}}
+\DoxyCodeLine{00559\ \}}
+\DoxyCodeLine{00560\ }
+\DoxyCodeLine{00561\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ InColorValuesType,\ EColorSpace\ COLOR\_SPACE>}
+\DoxyCodeLine{00562\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespaceph_1_1math_a4f9e5426a4fdf63a119b6fac5a86eb98}{is\_compatible}}()}
+\DoxyCodeLine{00563\ \{}
+\DoxyCodeLine{00564\ \ \ \ \ \textcolor{keyword}{using\ }ColorValuesType\ =\ std::remove\_cvref\_t<InColorValuesType>;}
+\DoxyCodeLine{00565\ \ \ \ \ \textcolor{keyword}{using\ }ElementType\ =\ detail::TColorValuesElementType<ColorValuesType>;}
+\DoxyCodeLine{00566\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(std::is\_same\_v<ElementType,\ void>)}
+\DoxyCodeLine{00567\ \ \ \ \ \{}
+\DoxyCodeLine{00568\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00569\ \ \ \ \ \}}
+\DoxyCodeLine{00570\ }
+\DoxyCodeLine{00571\ \ \ \ \ \textcolor{keyword}{using\ }ColorSpaceDef\ =\ \mbox{\hyperlink{classph_1_1math_1_1_t_color_space_definition}{TColorSpaceDefinition<COLOR\_SPACE,\ ElementType>}};}
+\DoxyCodeLine{00572\ }
+\DoxyCodeLine{00573\ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ REQUIRED\_SIZE\ =\ ColorSpaceDef::isTristimulus()}
+\DoxyCodeLine{00574\ \ \ \ \ \ \ \ \ ?\ std::tuple\_size\_v<TTristimulusValues<ElementType>>}
+\DoxyCodeLine{00575\ \ \ \ \ \ \ \ \ :\ std::tuple\_size\_v<TSpectralSampleValues<ElementType>>;}
+\DoxyCodeLine{00576\ }
+\DoxyCodeLine{00577\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(\mbox{\hyperlink{conceptph_1_1math_1_1_c_color_values_interface}{CColorValuesInterface<ColorValuesType>}})}
+\DoxyCodeLine{00578\ \ \ \ \ \{}
+\DoxyCodeLine{00579\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::tuple\_size\_v<decltype(std::declval<ColorValuesType>().getColorValues())>\ ==\ REQUIRED\_SIZE;}
+\DoxyCodeLine{00580\ \ \ \ \ \}}
+\DoxyCodeLine{00581\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00582\ \ \ \ \ \{}
+\DoxyCodeLine{00583\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::tuple\_size\_v<ColorValuesType>\ ==\ REQUIRED\_SIZE;}
+\DoxyCodeLine{00584\ \ \ \ \ \}}
+\DoxyCodeLine{00585\ \}}
+\DoxyCodeLine{00586\ }
+\DoxyCodeLine{00587\ \textcolor{keyword}{template}<EColorSpace\ SRC\_COLOR\_SPACE,\ EColorSpace\ DST\_COLOR\_SPACE,\ \textcolor{keyword}{typename}\ T,\ EChromaticAdaptation\ ALGORITHM>}
+\DoxyCodeLine{00588\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespaceph_1_1math_a57a6066f091fead6bc616fb811b42b21}{transform\_color}}(\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ srcColorValues,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_1_1math_a821af6da20aaed56cc09ad440633d067}{EColorUsage}}\ usage)}
+\DoxyCodeLine{00589\ \{}
+\DoxyCodeLine{00590\ \ \ \ \ \textcolor{comment}{//\ No\ conversion\ needed\ if\ they\ are\ in\ the\ same\ color\ space}}
+\DoxyCodeLine{00591\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(SRC\_COLOR\_SPACE\ ==\ DST\_COLOR\_SPACE)}
+\DoxyCodeLine{00592\ \ \ \ \ \{}
+\DoxyCodeLine{00593\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ srcColorValues;}
+\DoxyCodeLine{00594\ \ \ \ \ \}}
+\DoxyCodeLine{00595\ }
+\DoxyCodeLine{00596\ \ \ \ \ \textcolor{keyword}{using\ }SrcColorSpaceDef\ =\ \mbox{\hyperlink{classph_1_1math_1_1_t_color_space_definition}{TColorSpaceDefinition<SRC\_COLOR\_SPACE,\ T>}};}
+\DoxyCodeLine{00597\ \ \ \ \ \textcolor{keyword}{using\ }DstColorSpaceDef\ =\ \mbox{\hyperlink{classph_1_1math_1_1_t_color_space_definition}{TColorSpaceDefinition<DST\_COLOR\_SPACE,\ T>}};}
+\DoxyCodeLine{00598\ }
+\DoxyCodeLine{00599\ \ \ \ \ \textcolor{comment}{//\ Sanity\ checks}}
+\DoxyCodeLine{00600\ }
+\DoxyCodeLine{00601\ \ \ \ \ \textcolor{keyword}{static\_assert}(\mbox{\hyperlink{conceptph_1_1math_1_1_c_color_space_definition}{CColorSpaceDefinition<SrcColorSpaceDef,\ T>}},}
+\DoxyCodeLine{00602\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Source\ color\ space\ has\ no\ corresponding\ definition."{}});}
+\DoxyCodeLine{00603\ }
+\DoxyCodeLine{00604\ \ \ \ \ \textcolor{keyword}{static\_assert}(\mbox{\hyperlink{conceptph_1_1math_1_1_c_color_space_definition}{CColorSpaceDefinition<DstColorSpaceDef,\ T>}},}
+\DoxyCodeLine{00605\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Destination\ color\ space\ has\ no\ corresponding\ definition."{}});}
+\DoxyCodeLine{00606\ }
+\DoxyCodeLine{00607\ \ \ \ \ \textcolor{comment}{//\ Type\ of\ source\ color\ values\ must\ match\ the\ category\ of\ its\ color\ space}}
+\DoxyCodeLine{00608\ \ \ \ \ \textcolor{keyword}{using\ }SrcColorValues\ =\ std::remove\_cvref\_t<\textcolor{keyword}{decltype}(srcColorValues)>;}
+\DoxyCodeLine{00609\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(SrcColorSpaceDef::isTristimulus())}
+\DoxyCodeLine{00610\ \ \ \ \ \{}
+\DoxyCodeLine{00611\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_same\_v<SrcColorValues,\ TTristimulusValues<T>>);}
+\DoxyCodeLine{00612\ \ \ \ \ \}}
+\DoxyCodeLine{00613\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00614\ \ \ \ \ \{}
+\DoxyCodeLine{00615\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_same\_v<SrcColorValues,\ TSpectralSampleValues<T>>);}
+\DoxyCodeLine{00616\ \ \ \ \ \}}
+\DoxyCodeLine{00617\ }
+\DoxyCodeLine{00618\ \ \ \ \ \textcolor{comment}{//\ There\ are\ 4\ possible\ conversion\ scenarios,\ we\ process\ them\ case\ by\ case:}}
+\DoxyCodeLine{00619\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{00620\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ To\ \ +-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}}
+\DoxyCodeLine{00621\ \ \ \ \ \textcolor{comment}{//\ \ From\ \ \ \ \ \ \ \ \ \ \ \ \ |\ tristimulus\ (T)\ |\ spectral\ \ \ \ (S)\ |}}
+\DoxyCodeLine{00622\ \ \ \ \ \textcolor{comment}{//\ +-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}}
+\DoxyCodeLine{00623\ \ \ \ \ \textcolor{comment}{//\ |\ tristimulus\ (T)\ |\ \ \ \ \ T\ -\/-\/>\ T\ \ \ \ \ |\ \ \ \ \ T\ -\/-\/>\ S\ \ \ \ \ |}}
+\DoxyCodeLine{00624\ \ \ \ \ \textcolor{comment}{//\ +-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}}
+\DoxyCodeLine{00625\ \ \ \ \ \textcolor{comment}{//\ |\ spectral\ \ \ \ (S)\ |\ \ \ \ \ S\ -\/-\/>\ T\ \ \ \ \ |\ \ \ \ \ S\ -\/-\/>\ S\ \ \ \ \ |}}
+\DoxyCodeLine{00626\ \ \ \ \ \textcolor{comment}{//\ +-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}}
+\DoxyCodeLine{00627\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00628\ }
+\DoxyCodeLine{00629\ \ \ \ \ \textcolor{comment}{//\ Case\ 1:\ S\ -\/-\/>\ S,\ just\ copy\ \&\ return\ the\ color\ samples\ as\ spectral\ samples\ are\ already\ in\ a\ }}
+\DoxyCodeLine{00630\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ color-\/space\ neutral\ representation.\ }}
+\DoxyCodeLine{00631\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(!SrcColorSpaceDef::isTristimulus()\ \&\&\ !DstColorSpaceDef::isTristimulus())}
+\DoxyCodeLine{00632\ \ \ \ \ \{}
+\DoxyCodeLine{00633\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(usage\ ==\ EColorUsage::Unspecified)}
+\DoxyCodeLine{00634\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00635\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \mbox{\hyperlink{classph_1_1math_1_1_color_error}{ColorError}}(}
+\DoxyCodeLine{00636\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}A\ color\ usage\ must\ be\ specified\ when\ converting\ spectral\ color\ samples."{}});}
+\DoxyCodeLine{00637\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00638\ }
+\DoxyCodeLine{00639\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ For\ ECF\ usage,\ we\ make\ sure\ the\ resulting\ value\ is\ well\ being\ in\ [0,\ 1].\ }}
+\DoxyCodeLine{00640\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(usage\ ==\ \mbox{\hyperlink{namespaceph_1_1math_a821af6da20aaed56cc09ad440633d067a13eb1af433fe09e8ee2e6b89001c3843}{EColorUsage::ECF}})}
+\DoxyCodeLine{00641\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00642\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_arithmetic_array}{TArithmeticArray<T,\ DefaultSpectralSampleProps::NUM\_SAMPLES>}}\ copiedSamples(srcColorValues);}
+\DoxyCodeLine{00643\ \ \ \ \ \ \ \ \ \ \ \ \ copiedSamples.clampLocal(0,\ 1);}
+\DoxyCodeLine{00644\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ copiedSamples.toArray();}
+\DoxyCodeLine{00645\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00646\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ We\ do\ not\ care\ for\ other\ usages\ as\ they\ have\ no\ hard\ requirements\ on\ sample\ values.}}
+\DoxyCodeLine{00647\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00648\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00649\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ srcColorValues;}
+\DoxyCodeLine{00650\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00651\ \ \ \ \ \}}
+\DoxyCodeLine{00652\ }
+\DoxyCodeLine{00653\ \ \ \ \ \textcolor{comment}{//\ Case\ 2:\ T\ -\/-\/>\ S,\ convert\ input\ tristimulus\ values\ to\ dst's\ bound\ space\ first\ (a\ T\ -\/-\/>\ T\ case),}}
+\DoxyCodeLine{00654\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ then\ perform\ an\ up\ sample.}}
+\DoxyCodeLine{00655\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(SrcColorSpaceDef::isTristimulus()\ \&\&\ !DstColorSpaceDef::isTristimulus())}
+\DoxyCodeLine{00656\ \ \ \ \ \{}
+\DoxyCodeLine{00657\ \ \ \ \ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{namespaceph_1_1math_a957eab3ceed525ebce5c24b6b57eb975}{EColorSpace}}\ BOUND\_COLOR\_SPACE\ =\ DstColorSpaceDef::getBoundTristimulusColorSpace();}
+\DoxyCodeLine{00658\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00659\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ TTristimulusValues<T>\ boundColor\ =\ transform\_color<SRC\_COLOR\_SPACE,\ BOUND\_COLOR\_SPACE,\ T,\ ALGORITHM>(}
+\DoxyCodeLine{00660\ \ \ \ \ \ \ \ \ \ \ \ \ srcColorValues,\ usage);}
+\DoxyCodeLine{00661\ \ \ \ \ }
+\DoxyCodeLine{00662\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ DstColorSpaceDef::upSample(boundColor,\ usage);}
+\DoxyCodeLine{00663\ \ \ \ \ \}}
+\DoxyCodeLine{00664\ }
+\DoxyCodeLine{00665\ \ \ \ \ \textcolor{comment}{//\ Case\ 3:\ S\ -\/-\/>\ T,\ down\ sample\ input\ spectral\ samples\ to\ src's\ bound\ space\ first,\ then\ convert}}
+\DoxyCodeLine{00666\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ the\ bound\ color\ to\ dst\ space\ (a\ T\ -\/-\/>\ T\ case).}}
+\DoxyCodeLine{00667\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(!SrcColorSpaceDef::isTristimulus()\ \&\&\ DstColorSpaceDef::isTristimulus())}
+\DoxyCodeLine{00668\ \ \ \ \ \{}
+\DoxyCodeLine{00669\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ TTristimulusValues<T>\ boundColor\ =\ SrcColorSpaceDef::downSample(srcColorValues,\ usage);}
+\DoxyCodeLine{00670\ }
+\DoxyCodeLine{00671\ \ \ \ \ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{namespaceph_1_1math_a957eab3ceed525ebce5c24b6b57eb975}{EColorSpace}}\ BOUND\_COLOR\_SPACE\ =\ SrcColorSpaceDef::getBoundTristimulusColorSpace();}
+\DoxyCodeLine{00672\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00673\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ transform\_color<BOUND\_COLOR\_SPACE,\ DST\_COLOR\_SPACE,\ T,\ ALGORITHM>(}
+\DoxyCodeLine{00674\ \ \ \ \ \ \ \ \ \ \ \ \ boundColor,\ usage);}
+\DoxyCodeLine{00675\ \ \ \ \ \}}
+\DoxyCodeLine{00676\ }
+\DoxyCodeLine{00677\ \ \ \ \ \textcolor{comment}{//\ Case\ 4:\ T\ -\/-\/>\ T,\ perform\ color\ conversion\ by\ using\ CIE\ XYZ\ as\ an\ intermediate\ space}}
+\DoxyCodeLine{00678\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(SrcColorSpaceDef::isTristimulus()\ \&\&\ DstColorSpaceDef::isTristimulus())}
+\DoxyCodeLine{00679\ \ \ \ \ \{}
+\DoxyCodeLine{00680\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Convert\ to\ CIE\ XYZ\ first}}
+\DoxyCodeLine{00681\ \ \ \ \ \ \ \ \ TTristimulusValues<T>\ srcCIEXYZColor\ =\ SrcColorSpaceDef::toCIEXYZ(srcColorValues);}
+\DoxyCodeLine{00682\ }
+\DoxyCodeLine{00683\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Perform\ chromatic\ adaptation\ if\ needed}}
+\DoxyCodeLine{00684\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(SrcColorSpaceDef::getReferenceWhite()\ !=\ DstColorSpaceDef::getReferenceWhite())}
+\DoxyCodeLine{00685\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00686\ \ \ \ \ \ \ \ \ \ \ \ \ srcCIEXYZColor\ =\ chromatic\_adapt<ALGORITHM,\ T>(}
+\DoxyCodeLine{00687\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ srcCIEXYZColor,}
+\DoxyCodeLine{00688\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SrcColorSpaceDef::getReferenceWhite(),}
+\DoxyCodeLine{00689\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DstColorSpaceDef::getReferenceWhite());}
+\DoxyCodeLine{00690\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00691\ }
+\DoxyCodeLine{00692\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Finally,\ convert\ to\ the\ destination\ color\ space}}
+\DoxyCodeLine{00693\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ DstColorSpaceDef::fromCIEXYZ(srcCIEXYZColor);}
+\DoxyCodeLine{00694\ \ \ \ \ \}}
+\DoxyCodeLine{00695\ }
+\DoxyCodeLine{00696\ \ \ \ \ PH\_ASSERT\_UNREACHABLE\_SECTION();}
+\DoxyCodeLine{00697\ \}}
+\DoxyCodeLine{00698\ }
+\DoxyCodeLine{00699\ \textcolor{keyword}{template}<EColorSpace\ SRC\_COLOR\_SPACE,\ \textcolor{keyword}{typename}\ T,\ EChromaticAdaptation\ ALGORITHM>}
+\DoxyCodeLine{00700\ \textcolor{keyword}{inline}\ T\ \mbox{\hyperlink{namespaceph_1_1math_a2982839b6392253fc67bb096add9a44f}{relative\_luminance}}(\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ srcColorValues,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_1_1math_a821af6da20aaed56cc09ad440633d067}{EColorUsage}}\ usage)}
+\DoxyCodeLine{00701\ \{}
+\DoxyCodeLine{00702\ \ \ \ \ \textcolor{keyword}{using\ }SrcColorSpaceDef\ \ \ \ =\ \mbox{\hyperlink{classph_1_1math_1_1_t_color_space_definition}{TColorSpaceDefinition<SRC\_COLOR\_SPACE,\ T>}};}
+\DoxyCodeLine{00703\ \ \ \ \ \textcolor{keyword}{using\ }CIEXYZColorSpaceDef\ =\ \mbox{\hyperlink{classph_1_1math_1_1_t_color_space_definition}{TColorSpaceDefinition<EColorSpace::CIE\_XYZ,\ T>}};}
+\DoxyCodeLine{00704\ }
+\DoxyCodeLine{00705\ \ \ \ \ T\ relativeLuminance;}
+\DoxyCodeLine{00706\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(SrcColorSpaceDef::isTristimulus())}
+\DoxyCodeLine{00707\ \ \ \ \ \{}
+\DoxyCodeLine{00708\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ First\ transform\ input\ color\ values\ into\ CIE-\/XYZ\ color\ space}}
+\DoxyCodeLine{00709\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ CIEXYZColor\ =\ transform\_color<SRC\_COLOR\_SPACE,\ EColorSpace::CIE\_XYZ,\ T,\ ALGORITHM>(}
+\DoxyCodeLine{00710\ \ \ \ \ \ \ \ \ \ \ \ \ srcColorValues,\ usage);}
+\DoxyCodeLine{00711\ }
+\DoxyCodeLine{00712\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ Y\ component\ should\ be\ the\ relative\ luminance.\ However,\ we\ would\ like\ to\ know\ relative\ luminance}}
+\DoxyCodeLine{00713\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ with\ respect\ to\ source\ color\ space's\ reference\ white.\ Perform\ a\ chromatic\ adaptation\ if\ required}}
+\DoxyCodeLine{00714\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(SrcColorSpaceDef::getReferenceWhite()\ !=\ CIEXYZColorSpaceDef::getReferenceWhite())}
+\DoxyCodeLine{00715\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00716\ \ \ \ \ \ \ \ \ \ \ \ \ CIEXYZColor\ =\ chromatic\_adapt<ALGORITHM,\ T>(}
+\DoxyCodeLine{00717\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ CIEXYZColor,}
+\DoxyCodeLine{00718\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ CIEXYZColorSpaceDef::getReferenceWhite(),}
+\DoxyCodeLine{00719\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SrcColorSpaceDef::getReferenceWhite());}
+\DoxyCodeLine{00720\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00721\ }
+\DoxyCodeLine{00722\ \ \ \ \ \ \ \ \ relativeLuminance\ =\ CIEXYZColor[1];}
+\DoxyCodeLine{00723\ \ \ \ \ \}}
+\DoxyCodeLine{00724\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00725\ \ \ \ \ \{}
+\DoxyCodeLine{00726\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ For\ spectral\ samples,\ we\ do\ not\ transform\ into\ CIE-\/XYZ,\ since\ in\ our\ implementation\ the\ conversion}}
+\DoxyCodeLine{00727\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ will\ be\ associated\ with\ a\ reference\ white\ which\ is\ unnecessary.}}
+\DoxyCodeLine{00728\ }
+\DoxyCodeLine{00729\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ CIEXYZColor\ =\ \mbox{\hyperlink{namespaceph_1_1math_a4e8c5be354cae25f8639d0ebd4a9df17}{spectral\_samples\_to\_CIE\_XYZ}}(srcColorValues,\ usage);}
+\DoxyCodeLine{00730\ \ \ \ \ \ \ \ \ relativeLuminance\ =\ CIEXYZColor[1];}
+\DoxyCodeLine{00731\ \ \ \ \ \}}
+\DoxyCodeLine{00732\ }
+\DoxyCodeLine{00733\ \ \ \ \ \textcolor{comment}{//\ Ensure\ energy\ conservation\ if\ the\ usage\ is\ ECF}}
+\DoxyCodeLine{00734\ \ \ \ \ \textcolor{keywordflow}{if}(usage\ ==\ \mbox{\hyperlink{namespaceph_1_1math_a821af6da20aaed56cc09ad440633d067a13eb1af433fe09e8ee2e6b89001c3843}{EColorUsage::ECF}})}
+\DoxyCodeLine{00735\ \ \ \ \ \{}
+\DoxyCodeLine{00736\ \ \ \ \ \ \ \ \ relativeLuminance\ =\ clamp<T>(relativeLuminance,\ 0,\ 1);}
+\DoxyCodeLine{00737\ \ \ \ \ \}}
+\DoxyCodeLine{00738\ }
+\DoxyCodeLine{00739\ \ \ \ \ \textcolor{keywordflow}{return}\ relativeLuminance;}
+\DoxyCodeLine{00740\ \}}
+\DoxyCodeLine{00741\ }
+\DoxyCodeLine{00742\ \textcolor{keyword}{template}<EColorSpace\ SRC\_COLOR\_SPACE,\ \textcolor{keyword}{typename}\ T,\ EColorSpace\ SPECTRAL\_COLOR\_SPACE,\ EChromaticAdaptation\ ALGORITHM>}
+\DoxyCodeLine{00743\ \textcolor{keyword}{inline}\ T\ estimate\_color\_energy(\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ srcColorValues)}
+\DoxyCodeLine{00744\ \{}
+\DoxyCodeLine{00745\ \ \ \ \ \textcolor{keyword}{using\ }SrcColorSpaceDef\ \ \ \ \ \ =\ \mbox{\hyperlink{classph_1_1math_1_1_t_color_space_definition}{TColorSpaceDefinition<SRC\_COLOR\_SPACE,\ T>}};}
+\DoxyCodeLine{00746\ \ \ \ \ \textcolor{keyword}{using\ }SpectralColorSpaceDef\ =\ \mbox{\hyperlink{classph_1_1math_1_1_t_color_space_definition}{TColorSpaceDefinition<SPECTRAL\_COLOR\_SPACE,\ T>}};}
+\DoxyCodeLine{00747\ }
+\DoxyCodeLine{00748\ \ \ \ \ \textcolor{keyword}{static\_assert}(!SpectralColorSpaceDef::isTristimulus(),}
+\DoxyCodeLine{00749\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}SPECTRAL\_COLOR\_SPACE\ must\ be\ a\ spectral\ color\ space."{}});}
+\DoxyCodeLine{00750\ }
+\DoxyCodeLine{00751\ \ \ \ \ \mbox{\hyperlink{namespaceph_1_1math_ab6e489b4814390fb4f1a68257d8d432d}{TSpectralSampleValues<T>}}\ sampleValues;}
+\DoxyCodeLine{00752\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(SrcColorSpaceDef::isTristimulus())}
+\DoxyCodeLine{00753\ \ \ \ \ \{}
+\DoxyCodeLine{00754\ \ \ \ \ \ \ \ \ sampleValues\ =\ transform\_color<SRC\_COLOR\_SPACE,\ SPECTRAL\_COLOR\_SPACE,\ T,\ ALGORITHM>(}
+\DoxyCodeLine{00755\ \ \ \ \ \ \ \ \ \ \ \ \ srcColorValues,\ \mbox{\hyperlink{namespaceph_1_1math_a821af6da20aaed56cc09ad440633d067a8d4c0b2cef256d21ab680366c8b1c6bf}{EColorUsage::EMR}});}
+\DoxyCodeLine{00756\ \ \ \ \ \}}
+\DoxyCodeLine{00757\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00758\ \ \ \ \ \{}
+\DoxyCodeLine{00759\ \ \ \ \ \ \ \ \ sampleValues\ =\ srcColorValues;}
+\DoxyCodeLine{00760\ \ \ \ \ \}}
+\DoxyCodeLine{00761\ }
+\DoxyCodeLine{00762\ \ \ \ \ \textcolor{keywordflow}{return}\ estimate\_samples\_energy(sampleValues);}
+\DoxyCodeLine{00763\ \}}
+\DoxyCodeLine{00764\ }
+\DoxyCodeLine{00765\ \textcolor{keyword}{template}<EColorSpace\ SRC\_COLOR\_SPACE,\ \textcolor{keyword}{typename}\ T,\ EColorSpace\ SPECTRAL\_COLOR\_SPACE,\ EChromaticAdaptation\ ALGORITHM>}
+\DoxyCodeLine{00766\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ normalize\_color\_energy(\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ srcColorValues)}
+\DoxyCodeLine{00767\ \{}
+\DoxyCodeLine{00768\ \ \ \ \ \textcolor{keyword}{const}\ T\ energy\ =\ estimate\_color\_energy<SRC\_COLOR\_SPACE,\ T,\ SPECTRAL\_COLOR\_SPACE,\ ALGORITHM>(}
+\DoxyCodeLine{00769\ \ \ \ \ \ \ \ \ srcColorValues);}
+\DoxyCodeLine{00770\ }
+\DoxyCodeLine{00771\ \ \ \ \ \textcolor{keyword}{using\ }SrcColorValues\ =\ std::remove\_cvref\_t<\textcolor{keyword}{decltype}(srcColorValues)>;}
+\DoxyCodeLine{00772\ \ \ \ \ TArithmeticArray<T,\ std::tuple\_size\_v<SrcColorValues>>\ copiedSrcColorValues(srcColorValues);}
+\DoxyCodeLine{00773\ \ \ \ \ \textcolor{keywordflow}{if}(energy\ >\ 0)}
+\DoxyCodeLine{00774\ \ \ \ \ \{}
+\DoxyCodeLine{00775\ \ \ \ \ \ \ \ \ copiedSrcColorValues\ /=\ energy;}
+\DoxyCodeLine{00776\ \ \ \ \ \}}
+\DoxyCodeLine{00777\ }
+\DoxyCodeLine{00778\ \ \ \ \ \textcolor{keywordflow}{return}\ copiedSrcColorValues.toArray();}
+\DoxyCodeLine{00779\ \}}
+\DoxyCodeLine{00780\ }
+\DoxyCodeLine{00781\ \textcolor{keyword}{template}<EColorSpace\ SRC\_COLOR\_SPACE,\ \textcolor{keyword}{typename}\ T,\ EColorSpace\ SPECTRAL\_COLOR\_SPACE,\ EChromaticAdaptation\ ALGORITHM>}
+\DoxyCodeLine{00782\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ put\_color\_energy(\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ srcColorValues,\ \textcolor{keyword}{const}\ T\ energyLevel)}
+\DoxyCodeLine{00783\ \{}
+\DoxyCodeLine{00784\ \ \ \ \ \textcolor{keyword}{using\ }SrcColorValues\ =\ std::remove\_cvref\_t<\textcolor{keyword}{decltype}(srcColorValues)>;}
+\DoxyCodeLine{00785\ \ \ \ \ \textcolor{keyword}{using\ }ArrayType\ \ \ \ \ \ =\ TArithmeticArray<T,\ std::tuple\_size\_v<SrcColorValues>>;}
+\DoxyCodeLine{00786\ }
+\DoxyCodeLine{00787\ \ \ \ \ \textcolor{keyword}{const}\ ArrayType\ energyNormalizedColor(}
+\DoxyCodeLine{00788\ \ \ \ \ \ \ \ \ normalize\_color\_energy<SRC\_COLOR\_SPACE,\ T,\ SPECTRAL\_COLOR\_SPACE,\ ALGORITHM>(srcColorValues));}
+\DoxyCodeLine{00789\ }
+\DoxyCodeLine{00790\ \ \ \ \ \textcolor{keywordflow}{return}\ (energyNormalizedColor\ *\ ArrayType(energyLevel)).toArray();}
+\DoxyCodeLine{00791\ \}}
+\DoxyCodeLine{00792\ }
+\DoxyCodeLine{00793\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00794\ \textcolor{keyword}{inline}\ TTristimulusValues<T>\ \mbox{\hyperlink{namespaceph_1_1math_af073289717f681f13febdf1888d38d5b}{sRGB\_nonlinear\_to\_linear}}(\textcolor{keyword}{const}\ TTristimulusValues<T>\&\ nonlinearSRGB)}
+\DoxyCodeLine{00795\ \{}
+\DoxyCodeLine{00796\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1math_1_1_t_color_space_definition}{TColorSpaceDefinition<EColorSpace::sRGB,\ T>::gammaExpand}}(nonlinearSRGB);}
+\DoxyCodeLine{00797\ \}}
+\DoxyCodeLine{00798\ }
+\DoxyCodeLine{00799\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00800\ \textcolor{keyword}{inline}\ TTristimulusValues<T>\ \mbox{\hyperlink{namespaceph_1_1math_ad70f4b84a56b15f96d640ee5dfe83c58}{sRGB\_linear\_to\_nonlinear}}(\textcolor{keyword}{const}\ TTristimulusValues<T>\&\ linearSRGB)}
+\DoxyCodeLine{00801\ \{}
+\DoxyCodeLine{00802\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1math_1_1_t_color_space_definition}{TColorSpaceDefinition<EColorSpace::sRGB,\ T>::gammaCompress}}(linearSRGB);}
+\DoxyCodeLine{00803\ \}}
+\DoxyCodeLine{00804\ }
+\DoxyCodeLine{00805\ \textcolor{keyword}{template}<EColorSpace\ DST\_COLOR\_SPACE,\ \textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00806\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespaceph_1_1math_a4b760ffa2dd0b2fb8b0c477fffd7c097}{transform\_from\_sRGB}}(\textcolor{keyword}{const}\ TTristimulusValues<T>\&\ nonlinearSRGB,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_1_1math_a821af6da20aaed56cc09ad440633d067}{EColorUsage}}\ usage)}
+\DoxyCodeLine{00807\ \{}
+\DoxyCodeLine{00808\ \ \ \ \ \textcolor{keywordflow}{return}\ transform\_color<EColorSpace::sRGB,\ DST\_COLOR\_SPACE,\ T>(}
+\DoxyCodeLine{00809\ \ \ \ \ \ \ \ \ nonlinearSRGB,\ usage);}
+\DoxyCodeLine{00810\ \}}
+\DoxyCodeLine{00811\ }
+\DoxyCodeLine{00812\ \textcolor{keyword}{template}<EColorSpace\ DST\_COLOR\_SPACE,\ \textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00813\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespaceph_1_1math_a9d227a2cbf1065eaa4e4b5d51d71f30c}{transform\_from\_linear\_sRGB}}(\textcolor{keyword}{const}\ TTristimulusValues<T>\&\ linearSRGB,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_1_1math_a821af6da20aaed56cc09ad440633d067}{EColorUsage}}\ usage)}
+\DoxyCodeLine{00814\ \{}
+\DoxyCodeLine{00815\ \ \ \ \ \textcolor{keywordflow}{return}\ transform\_color<EColorSpace::Linear\_sRGB,\ DST\_COLOR\_SPACE,\ T>(}
+\DoxyCodeLine{00816\ \ \ \ \ \ \ \ \ linearSRGB,\ usage);}
+\DoxyCodeLine{00817\ \}}
+\DoxyCodeLine{00818\ }
+\DoxyCodeLine{00819\ \textcolor{keyword}{template}<EColorSpace\ SRC\_COLOR\_SPACE,\ \textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00820\ \textcolor{keyword}{inline}\ TTristimulusValues<T>\ \mbox{\hyperlink{namespaceph_1_1math_ad3164ab55096d5ac1fd9a7158c8ea6d4}{transform\_to\_sRGB}}(\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ srcColorValues,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_1_1math_a821af6da20aaed56cc09ad440633d067}{EColorUsage}}\ usage)}
+\DoxyCodeLine{00821\ \{}
+\DoxyCodeLine{00822\ \ \ \ \ \textcolor{keywordflow}{return}\ transform\_color<SRC\_COLOR\_SPACE,\ EColorSpace::sRGB,\ T>(}
+\DoxyCodeLine{00823\ \ \ \ \ \ \ \ \ srcColorValues,\ usage);}
+\DoxyCodeLine{00824\ \}}
+\DoxyCodeLine{00825\ }
+\DoxyCodeLine{00826\ \textcolor{keyword}{template}<EColorSpace\ SRC\_COLOR\_SPACE,\ \textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00827\ \textcolor{keyword}{inline}\ TTristimulusValues<T>\ \mbox{\hyperlink{namespaceph_1_1math_a9a607a63db401274a7e3d77c0895dcaf}{transform\_to\_linear\_sRGB}}(\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ srcColorValues,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_1_1math_a821af6da20aaed56cc09ad440633d067}{EColorUsage}}\ usage)}
+\DoxyCodeLine{00828\ \{}
+\DoxyCodeLine{00829\ \ \ \ \ \textcolor{keywordflow}{return}\ transform\_color<SRC\_COLOR\_SPACE,\ EColorSpace::Linear\_sRGB,\ T>(}
+\DoxyCodeLine{00830\ \ \ \ \ \ \ \ \ srcColorValues,\ usage);}
+\DoxyCodeLine{00831\ \}}
+\DoxyCodeLine{00832\ }
+\DoxyCodeLine{00833\ \}\textcolor{comment}{//\ end\ namespace\ ph::math}}
+
+\end{DoxyCode}

@@ -1,0 +1,64 @@
+\doxysection{TIndexed\+Kdtree\+Intersector.\+h}
+\hypertarget{_t_indexed_kdtree_intersector_8h_source}{}\label{_t_indexed_kdtree_intersector_8h_source}\index{Source/Core/Intersectable/Intersector/TIndexedKdtreeIntersector.h@{Source/Core/Intersectable/Intersector/TIndexedKdtreeIntersector.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Core/Intersectable/Intersector.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Common/primitive\_type.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}Common/assertion.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}Core/Intersectable/Intersectable.h"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}Math/Algorithm/IndexedKdtree/TIndexedKdtree.h"{}}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00012\ \{}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Index\ =\ u\textcolor{keywordtype}{int}32>}
+\DoxyCodeLine{00015\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_t_indexed_kdtree_intersector}{TIndexedKdtreeIntersector}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classph_1_1_intersector}{Intersector}}}
+\DoxyCodeLine{00016\ \{}
+\DoxyCodeLine{00017\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classph_1_1_t_indexed_kdtree_intersector}{TIndexedKdtreeIntersector}}(\mbox{\hyperlink{classph_1_1math_1_1_indexed_kdtree_params}{math::IndexedKdtreeParams}}\ params\ =\ \mbox{\hyperlink{classph_1_1math_1_1_indexed_kdtree_params}{math::IndexedKdtreeParams}}());}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keywordtype}{void}\ update(TSpanView<const\ Intersectable*>\ intersectables)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_t_indexed_kdtree_intersector_a7e661abc7fe76c05118eedf5399b0a75}{isIntersecting}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_ray}{Ray}}\&\ ray,\ \mbox{\hyperlink{classph_1_1_hit_probe}{HitProbe}}\&\ probe)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00022\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d}{math::AABB3D}}\ \mbox{\hyperlink{classph_1_1_t_indexed_kdtree_intersector_a91d5e4e6ac26d55d010eb904d483481a}{calcAABB}}()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{struct\ }IndexedIntersectables}
+\DoxyCodeLine{00026\ \ \ \ \ \{}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ std::vector<const\ Intersectable*>\ vec;}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_intersectable}{Intersectable}}*\ operator\ ()\ (\textcolor{keyword}{const}\ std::size\_t\ index)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00030\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ PH\_ASSERT\_LT(index,\ vec.size());}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ vec[index];}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00035\ \ \ \ \ \};}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keyword}{struct\ }IntersectableAABBCalculator}
+\DoxyCodeLine{00038\ \ \ \ \ \{}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d}{math::AABB3D}}\ operator\ ()\ (\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_intersectable}{Intersectable}}*\ \textcolor{keyword}{const}\ intersectable)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00040\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ PH\_ASSERT(intersectable);}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ intersectable-\/>\mbox{\hyperlink{classph_1_1_intersectable_a704f250ee94d802e853748d97dd6722f}{calcAABB}}();}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00045\ \ \ \ \ \};}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classph_1_1math_1_1_t_indexed_kdtree}{Tree}}\ =\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_kdtree}{math::TIndexedKdtree}}<}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ IndexedIntersectables,\ }
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ IntersectableAABBCalculator,\ }
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ Index>;}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_kdtree}{Tree}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_tree;}
+\DoxyCodeLine{00053\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_indexed_kdtree_params}{math::IndexedKdtreeParams}}\ m\_params;}
+\DoxyCodeLine{00054\ \};}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \textcolor{preprocessor}{\#include\ "{}Core/Intersectable/Intersector/TIndexedKdtreeIntersector.ipp"{}}}
+
+\end{DoxyCode}

@@ -1,0 +1,72 @@
+\doxysection{ph\+::Sampling\+Renderer Class Reference}
+\hypertarget{classph_1_1_sampling_renderer}{}\label{classph_1_1_sampling_renderer}\index{ph::SamplingRenderer@{ph::SamplingRenderer}}
+Inheritance diagram for ph\+::Sampling\+Renderer\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{d9/d0c/classph_1_1_sampling_renderer}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classph_1_1_sampling_renderer_a95ec3dd9c542ba56c35fb4c780549787}\label{classph_1_1_sampling_renderer_a95ec3dd9c542ba56c35fb4c780549787} 
+{\bfseries Sampling\+Renderer} (std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classph_1_1_i_ray_energy_estimator}{IRay\+Energy\+Estimator}} $>$ estimator, \mbox{\hyperlink{classph_1_1_viewport}{Viewport}} viewport, \mbox{\hyperlink{classph_1_1_sample_filter}{Sample\+Filter}} filter, uint32 num\+Workers)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classph_1_1_renderer}{ph\+::\+Renderer}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Renderer} (\mbox{\hyperlink{classph_1_1_viewport}{Viewport}} viewport, uint32 num\+Workers)
+\item 
+virtual void \mbox{\hyperlink{classph_1_1_renderer_a2f4189e1d2c699f7244146db1afdc578}{do\+Update}} (const \mbox{\hyperlink{classph_1_1_core_cooked_unit}{Core\+Cooked\+Unit}} \&cooked, const \mbox{\hyperlink{classph_1_1_visual_world}{Visual\+World}} \&world)=0
+\begin{DoxyCompactList}\small\item\em Perform necessary updates for rendering. No asynchronous operation is allowed during update. \end{DoxyCompactList}\item 
+virtual void {\bfseries do\+Render} ()=0
+\item 
+virtual void {\bfseries retrieve\+Frame} (std\+::size\+\_\+t layer\+Index, \mbox{\hyperlink{classph_1_1_t_frame}{Hdr\+Rgb\+Frame}} \&out\+\_\+frame)=0
+\item 
+virtual ERegion\+Status {\bfseries async\+Poll\+Updated\+Region} (\mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d}{Region}} \texorpdfstring{$\ast$}{*}out\+\_\+region)=0
+\item 
+virtual \mbox{\hyperlink{classph_1_1_render_stats}{Render\+Stats}} \mbox{\hyperlink{classph_1_1_renderer_a19e25bfd0d5b7e7230be357fd87ede24}{async\+Query\+Render\+Stats}} ()=0
+\begin{DoxyCompactList}\small\item\em Get general information of the ongoing rendering process. More information can be provided by the implementation. The meaning of each stat can be obtained via {\ttfamily \doxylink{classph_1_1_renderer_a1ba8678db34d73ece1540362f28a644d}{get\+Observation\+Info()}}. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classph_1_1_render_progress}{Render\+Progress}} \mbox{\hyperlink{classph_1_1_renderer_a3ff30b76619602fb84530ade1a73fd63}{async\+Query\+Render\+Progress}} ()=0
+\begin{DoxyCompactList}\small\item\em Get progress of the ongoing rendering process. Implementation is advised to provide this information as it is vital for the caller to be able to observe the progress of a potentially long-\/running rendering process. \end{DoxyCompactList}\item 
+virtual void {\bfseries async\+Peek\+Frame} (std\+::size\+\_\+t layer\+Index, const \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d}{Region}} \&region, \mbox{\hyperlink{classph_1_1_t_frame}{Hdr\+Rgb\+Frame}} \&out\+\_\+frame)=0
+\item 
+virtual \mbox{\hyperlink{classph_1_1_render_observation_info}{Render\+Observation\+Info}} \mbox{\hyperlink{classph_1_1_renderer_a1ba8678db34d73ece1540362f28a644d}{get\+Observation\+Info}} () const =0
+\begin{DoxyCompactList}\small\item\em Get information about available transient outputs of an ongoing render operation. This information will be determined after each update (constant throughout the following rendering process). The actual data and can be retrieved via async$<$\+X$>$() methods. \end{DoxyCompactList}\item 
+void {\bfseries update} (const \mbox{\hyperlink{classph_1_1_core_cooked_unit}{Core\+Cooked\+Unit}} \&cooked, const \mbox{\hyperlink{classph_1_1_visual_world}{Visual\+World}} \&world)
+\item 
+void {\bfseries render} ()
+\item 
+void {\bfseries set\+Num\+Workers} (uint32 num\+Workers)
+\begin{DoxyCompactList}\small\item\em Set number of workers for the renderer. \end{DoxyCompactList}\item 
+uint32 {\bfseries num\+Workers} () const
+\item 
+uint32 {\bfseries get\+Render\+Width\+Px} () const
+\item 
+uint32 {\bfseries get\+Render\+Height\+Px} () const
+\item 
+\mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d}{math\+::\+TAABB2D}}$<$ int64 $>$ {\bfseries get\+Crop\+Window\+Px} () const
+\item 
+\mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d}{math\+::\+TAABB2D}}$<$ int64 $>$ {\bfseries get\+Render\+Region\+Px} () const
+\begin{DoxyCompactList}\small\item\em The frame region that is going to be rendered. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{classph_1_1_viewport}{Viewport}} \& {\bfseries get\+Viewport} () const
+\begin{DoxyCompactList}\small\item\em Descriptions regarding dimensions for the rendered frame. \doxylink{classph_1_1_viewport}{Viewport} is set on ctor and stayed constant during the lifetime of the renderer. \end{DoxyCompactList}\item 
+bool {\bfseries async\+Is\+Updating} () const
+\item 
+bool {\bfseries async\+Is\+Rendering} () const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classph_1_1_sampling_renderer_a7ead3e84ac14aa7cf5c2f90a3bcd4d18}\label{classph_1_1_sampling_renderer_a7ead3e84ac14aa7cf5c2f90a3bcd4d18} 
+\mbox{\hyperlink{classph_1_1_sample_filter}{Sample\+Filter}} {\bfseries m\+\_\+filter}
+\item 
+\Hypertarget{classph_1_1_sampling_renderer_a09e90be1b2f016d0a9df55f36c2276b3}\label{classph_1_1_sampling_renderer_a09e90be1b2f016d0a9df55f36c2276b3} 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classph_1_1_i_ray_energy_estimator}{IRay\+Energy\+Estimator}} $>$ {\bfseries m\+\_\+estimator}
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Source/\+Core/\+Renderer/\+Sampling/Sampling\+Renderer.\+h\item 
+Source/\+Core/\+Renderer/\+Sampling/Sampling\+Renderer.\+cpp\end{DoxyCompactItemize}
