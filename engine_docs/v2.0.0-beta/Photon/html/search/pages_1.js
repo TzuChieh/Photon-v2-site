@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['photon_20v2_20renderer_0',['Photon-v2 Renderer',['../index.html',1,'']]],
-  ['project_20structure_1',['Project Structure',['../db/d72/project_structure.html',1,'']]]
+  ['coding_20standard_0',['Coding Standard',['../d4/d92/md__documentation_2coding__standard.html',1,'']]]
 ];

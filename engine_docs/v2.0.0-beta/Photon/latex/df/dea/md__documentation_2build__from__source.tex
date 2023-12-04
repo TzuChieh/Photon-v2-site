@@ -1,0 +1,69 @@
+\chapter{Build From Source}
+\hypertarget{md__documentation_2build__from__source}{}\label{md__documentation_2build__from__source}\index{Build From Source@{Build From Source}}
+\label{md__documentation_2build__from__source_autotoc_md7}%
+\Hypertarget{md__documentation_2build__from__source_autotoc_md7}%
+ Building Photon is super easy since the renderer is coded from scratch (almost) using standard C++. Each of the required third-\/party libraries is either header only or pre-\/compiled, and can be handled automatically with the setup script.\hypertarget{md__documentation_2build__from__source_autotoc_md8}{}\doxysection{\texorpdfstring{Prerequisites}{Prerequisites}}\label{md__documentation_2build__from__source_autotoc_md8}
+Photon uses CMake as its main build system, and the toolkits you need are as follows\+:
+
+
+\begin{DoxyItemize}
+\item CMake 3.\+10+ (3.\+20+ recommended)
+\item Python 3 (3.\+9 recommended)
+\item C++20 compliant compiler (necessary)
+\end{DoxyItemize}
+
+If you want to build the editor in previous version, you will also need\+:
+
+
+\begin{DoxyItemize}
+\item JDK 1.\+8+ and Maven
+\end{DoxyItemize}
+
+This is not required for building the new C++ based editor.
+
+{\itshape Note that the working directory is assumed to be the project root (in the folder that you cloned) if not stated , and please use {\ttfamily ./build/} as build folder for now since build scripts are more or less hard-\/coded to use this path, currently.}\hypertarget{md__documentation_2build__from__source_autotoc_md9}{}\doxysection{\texorpdfstring{Step 1\+: Run the Setup Script}{Step 1: Run the Setup Script}}\label{md__documentation_2build__from__source_autotoc_md9}
+Run the setup script (depending on your system, choose either {\ttfamily ./setup.bat} or {\ttfamily ./setup.sh}), this will download pre-\/compiled libraries and resources into "{}./build"{}.\hypertarget{md__documentation_2build__from__source_autotoc_md10}{}\doxysection{\texorpdfstring{Step 2\+: Compile}{Step 2: Compile}}\label{md__documentation_2build__from__source_autotoc_md10}
+For Windows, just use CMake-\/\+GUI to generate project files for your favorite IDE.
+
+For Linux and mac\+OS, run the following commands\+:
+
+
+\begin{DoxyItemize}
+\item {\ttfamily cd ./build/}
+\item {\ttfamily cmake -\/DCMAKE\+\_\+\+BUILD\+\_\+\+TYPE=release ../}
+\item {\ttfamily make}
+\end{DoxyItemize}\hypertarget{md__documentation_2build__from__source_autotoc_md11}{}\doxysection{\texorpdfstring{Step 3\+: Have Fun}{Step 3: Have Fun}}\label{md__documentation_2build__from__source_autotoc_md11}
+The compiled binaries will be in the {\ttfamily ./build/bin/} folder.\hypertarget{md__documentation_2build__from__source_autotoc_md12}{}\doxysection{\texorpdfstring{Appendix A\+: Available CMake Options}{Appendix A: Available CMake Options}}\label{md__documentation_2build__from__source_autotoc_md12}
+Several options are available for fine-\/tuning the built binaries. To specify a CMake option named {\ttfamily SOME\+\_\+\+OPTION} with value {\ttfamily SOME\+\_\+\+VALUE}, you should add it as an additional argument in the form
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{cmake\ -\/DSOME\_OPTION=SOME\_VALUE\ (other\ arguments...)}
+
+\end{DoxyCode}
+
+
+and substitute {\ttfamily SOME\+\_\+\+OPTION} and {\ttfamily SOME\+\_\+\+VALUE} with the options listed below.
+
+\texorpdfstring{$\ast$}{*}(do not forget the -\/D prefix)\texorpdfstring{$\ast$}{*}
+
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{3}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Options   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Values   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Effects    }\\\cline{1-3}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Options   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Values   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Effects    }\\\cline{1-3}
+\endhead
+CMAKE\+\_\+\+BUILD\+\_\+\+TYPE   &release, debug   &When set, build binaries with optimizations enabled; otherwise no optimization is done.    \\\cline{1-3}
+PH\+\_\+\+BUILD\+\_\+\+TESTS   &ON (default), OFF   &Build unit tests. They should be executed from the build folder.    \\\cline{1-3}
+PH\+\_\+\+BUILD\+\_\+\+EDITOR\+\_\+\+JNI   &ON, OFF (default)   &Build JNI for Photon Studio (previous editor).    \\\cline{1-3}
+PH\+\_\+\+BUILD\+\_\+\+EDITOR   &ON (default), OFF   &Build editor application.    \\\cline{1-3}
+PH\+\_\+\+BUILD\+\_\+\+SDL\+\_\+\+GEN   &ON (default), OFF   &Build SDL automation tool.    \\\cline{1-3}
+PH\+\_\+\+BUILD\+\_\+\+PHOTON\+\_\+\+CLI   &ON (default), OFF   &Build command-\/line application.   \\\cline{1-3}
+\end{longtabu}
+
+
+You can also obtain a complete list of options with descriptions by running {\ttfamily cmake -\/LAH ../} in the build folder. 

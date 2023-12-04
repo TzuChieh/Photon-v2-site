@@ -627,7 +627,5 @@ var annotated_dup =
     ] ],
     [ "std", null, [
       [ "hash< ph::math::TVector2< T > >", "d4/dad/structstd_1_1hash_3_01ph_1_1math_1_1_t_vector2_3_01_t_01_4_01_4.html", null ]
-    ] ],
-    [ "PHObservableRenderData", "d1/d8b/struct_p_h_observable_render_data.html", null ],
-    [ "PHRenderState", "d2/d5e/struct_p_h_render_state.html", null ]
+    ] ]
 ];

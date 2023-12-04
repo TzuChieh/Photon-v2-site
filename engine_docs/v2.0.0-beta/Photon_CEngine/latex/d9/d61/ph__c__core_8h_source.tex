@@ -1,0 +1,204 @@
+\doxysection{ph\+\_\+c\+\_\+core.\+h}
+\hypertarget{ph__c__core_8h_source}{}\label{ph__c__core_8h_source}\index{Include/ph\_c\_core.h@{Include/ph\_c\_core.h}}
+\mbox{\hyperlink{ph__c__core_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00022\ \textcolor{comment}{//\ Note\ that\ this\ header\ should\ always\ be\ compatible\ to\ C.}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{comment}{//\ HACK}}
+\DoxyCodeLine{00025\ \textcolor{comment}{//\#define\ PH\_EXPORT\_API}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{comment}{//\ Checking\ the\ compiling\ environment.}}
+\DoxyCodeLine{00028\ \textcolor{comment}{//\#if\ defined(\_MSC\_VER)}}
+\DoxyCodeLine{00030\ \textcolor{comment}{//}}
+\DoxyCodeLine{00031\ \textcolor{comment}{//\ \ //\ Note:\ The\ use\ of\ dllexport\ implies\ a\ definition,\ while\ dllimport\ implies\ a\ declaration.\ To\ force\ a\ declaration,}}
+\DoxyCodeLine{00032\ \textcolor{comment}{//\ \ //\ an\ "{}extern"{}\ keyword\ with\ dllexport\ is\ needed;\ otherwise,\ a\ definition\ is\ implied.}}
+\DoxyCodeLine{00033\ \textcolor{comment}{//}}
+\DoxyCodeLine{00034\ \textcolor{comment}{//\ \ \#ifdef\ PH\_EXPORT\_API}}
+\DoxyCodeLine{00035\ \textcolor{comment}{//\ \ \ \ \ \ \#define\ PH\_API\ \_\_declspec(dllexport)}}
+\DoxyCodeLine{00036\ \textcolor{comment}{//\ \ \#else}}
+\DoxyCodeLine{00037\ \textcolor{comment}{//\ \ \ \ \ \ \#define\ PH\_API\ \_\_declspec(dllimport)}}
+\DoxyCodeLine{00038\ \textcolor{comment}{//\ \ \#endif}}
+\DoxyCodeLine{00039\ \textcolor{comment}{//}}
+\DoxyCodeLine{00040\ \textcolor{comment}{//\#else}}
+\DoxyCodeLine{00042\ \textcolor{comment}{//}}
+\DoxyCodeLine{00043\ \textcolor{comment}{//\ \ //\ TODO}}
+\DoxyCodeLine{00044\ \textcolor{comment}{//\ \ \#ifdef\ EXPORT\_PHOTON\_API}}
+\DoxyCodeLine{00045\ \textcolor{comment}{//\ \ \ \ \ \ \#define\ PH\_API}}
+\DoxyCodeLine{00046\ \textcolor{comment}{//\ \ \#else}}
+\DoxyCodeLine{00047\ \textcolor{comment}{//\ \ \ \ \ \ \#define\ PH\_API}}
+\DoxyCodeLine{00048\ \textcolor{comment}{//\ \ \#endif}}
+\DoxyCodeLine{00049\ \textcolor{comment}{//}}
+\DoxyCodeLine{00050\ \textcolor{comment}{//\#endif}}
+\DoxyCodeLine{00051\ \textcolor{comment}{//\ end\ compiling\ environment\ check}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \textcolor{comment}{//\ FIXME:\ sort\ of\ hacked}}
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\#define\ PH\_API}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \textcolor{comment}{//\ primitive\ data\ types}}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\#include\ <stddef.h>}}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{char}\ \ \ \ \ \ \ \ \ \ \ PHint8;}
+\DoxyCodeLine{00062\ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ \ PHuint8;}
+\DoxyCodeLine{00063\ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ PHint32;}
+\DoxyCodeLine{00064\ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \ \ PHuint32;}
+\DoxyCodeLine{00065\ \textcolor{keyword}{typedef}\ int64\_t\ \ \ \ \ \ \ \ PHint64;}
+\DoxyCodeLine{00066\ \textcolor{keyword}{typedef}\ uint64\_t\ \ \ \ \ \ \ PHuint64;}
+\DoxyCodeLine{00067\ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ PHfloat32;}
+\DoxyCodeLine{00068\ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{double}\ \ \ \ \ \ \ \ \ PHfloat64;}
+\DoxyCodeLine{00069\ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{char}\ \ \ \ \ \ \ \ \ \ \ PHchar;}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \textcolor{preprocessor}{\#define\ PH\_TRUE\ \ 1}}
+\DoxyCodeLine{00072\ \textcolor{preprocessor}{\#define\ PH\_FALSE\ 0}}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \textcolor{comment}{//\ HACK}}
+\DoxyCodeLine{00075\ \textcolor{keyword}{enum}\ PH\_EATTRIBUTE}
+\DoxyCodeLine{00076\ \{}
+\DoxyCodeLine{00077\ \ \ \ \ LIGHT\_ENERGY,}
+\DoxyCodeLine{00078\ \ \ \ \ NORMAL,}
+\DoxyCodeLine{00079\ \ \ \ \ DEPTH}
+\DoxyCodeLine{00080\ \};}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \textcolor{comment}{//\ HACK}}
+\DoxyCodeLine{00083\ \textcolor{preprocessor}{\#define\ PH\_NUM\_RENDER\_LAYERS\ \ \ \ \ \ \ \ \ 4}}
+\DoxyCodeLine{00084\ \textcolor{preprocessor}{\#define\ PH\_NUM\_RENDER\_STATE\_INTEGERS\ 4}}
+\DoxyCodeLine{00085\ \textcolor{preprocessor}{\#define\ PH\_NUM\_RENDER\_STATE\_REALS\ \ \ \ 4}}
+\DoxyCodeLine{00086\ \textcolor{preprocessor}{\#define\ PH\_MAX\_NAME\_LENGTH\ \ \ \ \ \ \ \ \ \ \ 128}}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \textcolor{comment}{//\ HACK}}
+\DoxyCodeLine{00089\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_p_h_render_state}{PHRenderState}}}
+\DoxyCodeLine{00090\ \{}
+\DoxyCodeLine{00091\ \ \ \ \ PHint64\ \ \ integers[PH\_NUM\_RENDER\_STATE\_INTEGERS];}
+\DoxyCodeLine{00092\ \ \ \ \ PHfloat32\ reals[PH\_NUM\_RENDER\_STATE\_REALS];}
+\DoxyCodeLine{00093\ \};}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \textcolor{comment}{//\ HACK}}
+\DoxyCodeLine{00096\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_p_h_observable_render_data}{PHObservableRenderData}}}
+\DoxyCodeLine{00097\ \{}
+\DoxyCodeLine{00098\ \ \ \ \ PHchar\ layers[PH\_NUM\_RENDER\_LAYERS][PH\_MAX\_NAME\_LENGTH\ +\ 1];}
+\DoxyCodeLine{00099\ \ \ \ \ PHchar\ integers[PH\_NUM\_RENDER\_STATE\_INTEGERS][PH\_MAX\_NAME\_LENGTH\ +\ 1];}
+\DoxyCodeLine{00100\ \ \ \ \ PHchar\ reals[PH\_NUM\_RENDER\_STATE\_REALS][PH\_MAX\_NAME\_LENGTH\ +\ 1];}
+\DoxyCodeLine{00101\ \};}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \textcolor{comment}{//\ HACK}}
+\DoxyCodeLine{00104\ \textcolor{keyword}{enum}\ PH\_ERenderStateType}
+\DoxyCodeLine{00105\ \{}
+\DoxyCodeLine{00106\ \ \ \ \ INTEGER,}
+\DoxyCodeLine{00107\ \ \ \ \ REAL}
+\DoxyCodeLine{00108\ \};}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \textcolor{preprocessor}{\#define\ PH\_FILM\_REGION\_STATUS\_INVALID\ \ -\/1}}
+\DoxyCodeLine{00111\ \textcolor{preprocessor}{\#define\ PH\_FILM\_REGION\_STATUS\_UPDATING\ 1}}
+\DoxyCodeLine{00112\ \textcolor{preprocessor}{\#define\ PH\_FILM\_REGION\_STATUS\_FINISHED\ 2}}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{00115\ \textcolor{keyword}{extern}\ \textcolor{stringliteral}{"{}C"{}}\ \{}
+\DoxyCodeLine{00116\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00119\ \textcolor{comment}{//\ starting\ and\ exiting\ Photon}}
+\DoxyCodeLine{00120\ \textcolor{comment}{//}}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{ph__c__core_8h_acd4c7607ab6cc12a3b82937dc17d4cb3}{PH\_API}}\ \textcolor{keywordtype}{void}\ phConfigCoreResourceDirectory(\textcolor{keyword}{const}\ PHchar*\ directory);}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00124\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{ph__c__core_8h_acd4c7607ab6cc12a3b82937dc17d4cb3}{PH\_API}}\ \textcolor{keywordtype}{int}\ phInit();}
+\DoxyCodeLine{00125\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{ph__c__core_8h_acd4c7607ab6cc12a3b82937dc17d4cb3}{PH\_API}}\ \textcolor{keywordtype}{int}\ phExit();}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00128\ \textcolor{comment}{//\ Core\ Operations}}
+\DoxyCodeLine{00129\ \textcolor{comment}{//}}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ \textcolor{comment}{//\ TODO:\ remove\ the\ word\ "{}film"{}\ from\ develop\ functions}}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00135\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{ph__c__core_8h_acd4c7607ab6cc12a3b82937dc17d4cb3}{PH\_API}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{ph__c__core_8h_ad2902ca9de67459480f59fbe79b6b32f}{phCreateEngine}}(PHuint64*\ out\_engineId,\ \textcolor{keyword}{const}\ PHuint32\ numRenderThreads);}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00137\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{ph__c__core_8h_acd4c7607ab6cc12a3b82937dc17d4cb3}{PH\_API}}\ \textcolor{keywordtype}{void}\ phSetNumRenderThreads(PHuint64\ engineId,\ \textcolor{keyword}{const}\ PHuint32\ numRenderThreads);}
+\DoxyCodeLine{00138\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{ph__c__core_8h_acd4c7607ab6cc12a3b82937dc17d4cb3}{PH\_API}}\ \textcolor{keywordtype}{void}\ phEnterCommand(PHuint64\ engineId,\ \textcolor{keyword}{const}\ PHchar*\ commandFragment);}
+\DoxyCodeLine{00139\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{ph__c__core_8h_acd4c7607ab6cc12a3b82937dc17d4cb3}{PH\_API}}\ \textcolor{keywordtype}{int}\ \ phLoadCommands(PHuint64\ engineId,\ \textcolor{keyword}{const}\ PHchar*\ filePath);}
+\DoxyCodeLine{00140\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{ph__c__core_8h_acd4c7607ab6cc12a3b82937dc17d4cb3}{PH\_API}}\ \textcolor{keywordtype}{void}\ phRender(PHuint64\ engineId);}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00142\ \textcolor{comment}{//\ TODO:\ documentation}}
+\DoxyCodeLine{00143\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{ph__c__core_8h_acd4c7607ab6cc12a3b82937dc17d4cb3}{PH\_API}}\ \textcolor{keywordtype}{void}\ phUpdate(PHuint64\ engineId);}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00145\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{ph__c__core_8h_acd4c7607ab6cc12a3b82937dc17d4cb3}{PH\_API}}\ \textcolor{keywordtype}{void}\ phGetRenderDimension(PHuint64\ engineId,\ PHuint32*\ out\_widthPx,\ PHuint32*\ out\_heightPx);}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00147\ \textcolor{comment}{//\ HACK}}
+\DoxyCodeLine{00148\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{ph__c__core_8h_acd4c7607ab6cc12a3b82937dc17d4cb3}{PH\_API}}\ \textcolor{keywordtype}{void}\ phGetObservableRenderData(}
+\DoxyCodeLine{00149\ \ \ \ \ PHuint64\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ engineId,}
+\DoxyCodeLine{00150\ \ \ \ \ \textcolor{keyword}{struct}\ \mbox{\hyperlink{struct_p_h_observable_render_data}{PHObservableRenderData}}*\ out\_data);}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00152\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{ph__c__core_8h_acd4c7607ab6cc12a3b82937dc17d4cb3}{PH\_API}}\ \textcolor{keywordtype}{void}\ phDeleteEngine(PHuint64\ engineId);}
+\DoxyCodeLine{00153\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{ph__c__core_8h_acd4c7607ab6cc12a3b82937dc17d4cb3}{PH\_API}}\ \textcolor{keywordtype}{void}\ phSetWorkingDirectory(PHuint64\ engineId,\ \textcolor{keyword}{const}\ PHchar*\ workingDirectory);}
+\DoxyCodeLine{00154\ }
+\DoxyCodeLine{00155\ \textcolor{comment}{//\ REFACTOR:\ rename\ aquire\ to\ retrieve}}
+\DoxyCodeLine{00156\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{ph__c__core_8h_acd4c7607ab6cc12a3b82937dc17d4cb3}{PH\_API}}\ \textcolor{keywordtype}{void}\ phAquireFrame(PHuint64\ engineId,\ PHuint64\ channelIndex,\ PHuint64\ frameId);}
+\DoxyCodeLine{00157\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{ph__c__core_8h_acd4c7607ab6cc12a3b82937dc17d4cb3}{PH\_API}}\ \textcolor{keywordtype}{void}\ phAquireFrameRaw(PHuint64\ engineId,\ PHuint64\ channelIndex,\ PHuint64\ frameId);}
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00160\ \textcolor{comment}{//\ Frame\ Operations}}
+\DoxyCodeLine{00161\ \textcolor{comment}{//}}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00163\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{ph__c__core_8h_acd4c7607ab6cc12a3b82937dc17d4cb3}{PH\_API}}\ \textcolor{keywordtype}{void}\ \ phCreateFrame(PHuint64*\ out\_frameId,\ PHuint32\ widthPx,\ PHuint32\ heightPx);}
+\DoxyCodeLine{00164\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{ph__c__core_8h_acd4c7607ab6cc12a3b82937dc17d4cb3}{PH\_API}}\ \textcolor{keywordtype}{void}\ \ phGetFrameDimension(PHuint64\ frameId,\ PHuint32*\ out\_widthPx,\ PHuint32*\ out\_heightPx);}
+\DoxyCodeLine{00165\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{ph__c__core_8h_acd4c7607ab6cc12a3b82937dc17d4cb3}{PH\_API}}\ \textcolor{keywordtype}{void}\ \ phGetFrameRgbData(PHuint64\ frameId,\ \textcolor{keyword}{const}\ PHfloat32**\ out\_data);}
+\DoxyCodeLine{00166\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{ph__c__core_8h_acd4c7607ab6cc12a3b82937dc17d4cb3}{PH\_API}}\ \textcolor{keywordtype}{void}\ \ phDeleteFrame(PHuint64\ frameId);}
+\DoxyCodeLine{00167\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{ph__c__core_8h_acd4c7607ab6cc12a3b82937dc17d4cb3}{PH\_API}}\ \textcolor{keywordtype}{int}\ \ \ phLoadFrame(PHuint64\ frameId,\ \textcolor{keyword}{const}\ PHchar*\ filePath);}
+\DoxyCodeLine{00168\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{ph__c__core_8h_acd4c7607ab6cc12a3b82937dc17d4cb3}{PH\_API}}\ \textcolor{keywordtype}{int}\ \ \ phSaveFrame(PHuint64\ frameId,\ \textcolor{keyword}{const}\ PHchar*\ filePath);}
+\DoxyCodeLine{00169\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{ph__c__core_8h_acd4c7607ab6cc12a3b82937dc17d4cb3}{PH\_API}}\ \textcolor{keywordtype}{int}\ \ \ phSaveFrameToBuffer(PHuint64\ frameId,\ PHuint64\ bufferId);}
+\DoxyCodeLine{00170\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{ph__c__core_8h_acd4c7607ab6cc12a3b82937dc17d4cb3}{PH\_API}}\ \textcolor{keywordtype}{void}\ \ phFrameOpAbsDifference(PHuint64\ frameAId,\ PHuint64\ frameBId,\ PHuint64\ resultFrameId);}
+\DoxyCodeLine{00171\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{ph__c__core_8h_acd4c7607ab6cc12a3b82937dc17d4cb3}{PH\_API}}\ \textcolor{keywordtype}{float}\ phFrameOpMSE(PHuint64\ expectedFrameId,\ PHuint64\ estimatedFramIde);}
+\DoxyCodeLine{00172\ }
+\DoxyCodeLine{00174\ \textcolor{comment}{//\ Miscellaneous\ Operations}}
+\DoxyCodeLine{00175\ \textcolor{comment}{//}}
+\DoxyCodeLine{00176\ }
+\DoxyCodeLine{00177\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{ph__c__core_8h_acd4c7607ab6cc12a3b82937dc17d4cb3}{PH\_API}}\ \textcolor{keywordtype}{void}\ phCreateBuffer(PHuint64*\ out\_bufferId);}
+\DoxyCodeLine{00178\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{ph__c__core_8h_acd4c7607ab6cc12a3b82937dc17d4cb3}{PH\_API}}\ \textcolor{keywordtype}{void}\ phGetBufferBytes(PHuint64\ bufferId,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}**\ out\_bytesPtr,\ \textcolor{keywordtype}{size\_t}*\ out\_numBytes);}
+\DoxyCodeLine{00179\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{ph__c__core_8h_acd4c7607ab6cc12a3b82937dc17d4cb3}{PH\_API}}\ \textcolor{keywordtype}{void}\ phDeleteBuffer(PHuint64\ bufferId);}
+\DoxyCodeLine{00180\ }
+\DoxyCodeLine{00182\ \textcolor{comment}{//\ Asynchronous\ Operations}}
+\DoxyCodeLine{00183\ \textcolor{comment}{//}}
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00185\ \textcolor{comment}{//\ TODO:\ async\ queries\ should\ tolerate\ invalid\ operations\ such\ as\ being\ called}}
+\DoxyCodeLine{00186\ \textcolor{comment}{//\ after\ underlying\ resource\ is\ already\ deleted,\ this\ can\ ease\ the\ burden\ of\ }}
+\DoxyCodeLine{00187\ \textcolor{comment}{//\ callers}}
+\DoxyCodeLine{00188\ }
+\DoxyCodeLine{00189\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{ph__c__core_8h_acd4c7607ab6cc12a3b82937dc17d4cb3}{PH\_API}}\ \textcolor{keywordtype}{void}\ phAsyncGetRendererStatistics(}
+\DoxyCodeLine{00190\ \ \ \ \ PHuint64\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ engineId,}
+\DoxyCodeLine{00191\ \ \ \ \ PHfloat32*\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ out\_percentageProgress,}
+\DoxyCodeLine{00192\ \ \ \ \ PHfloat32*\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ out\_samplesPerSecond);}
+\DoxyCodeLine{00193\ }
+\DoxyCodeLine{00194\ \textcolor{comment}{//\ HACK}}
+\DoxyCodeLine{00195\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{ph__c__core_8h_acd4c7607ab6cc12a3b82937dc17d4cb3}{PH\_API}}\ \textcolor{keywordtype}{void}\ phAsyncGetRendererState(}
+\DoxyCodeLine{00196\ \ \ \ \ PHuint64\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ engineId,}
+\DoxyCodeLine{00197\ \ \ \ \ \textcolor{keyword}{struct}\ \mbox{\hyperlink{struct_p_h_render_state}{PHRenderState}}*\ \ \ \ out\_state);}
+\DoxyCodeLine{00198\ }
+\DoxyCodeLine{00199\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{ph__c__core_8h_acd4c7607ab6cc12a3b82937dc17d4cb3}{PH\_API}}\ \textcolor{keywordtype}{int}\ \ phAsyncPollUpdatedFrameRegion(}
+\DoxyCodeLine{00200\ \ \ \ \ PHuint64\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ engineId,}
+\DoxyCodeLine{00201\ \ \ \ \ PHuint32*\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ out\_xPx,}
+\DoxyCodeLine{00202\ \ \ \ \ PHuint32*\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ out\_yPx,}
+\DoxyCodeLine{00203\ \ \ \ \ PHuint32*\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ out\_widthPx,}
+\DoxyCodeLine{00204\ \ \ \ \ PHuint32*\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ out\_heightPx);}
+\DoxyCodeLine{00205\ }
+\DoxyCodeLine{00206\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{ph__c__core_8h_acd4c7607ab6cc12a3b82937dc17d4cb3}{PH\_API}}\ \textcolor{keywordtype}{void}\ phAsyncPeekFrame(}
+\DoxyCodeLine{00207\ \ \ \ \ PHuint64\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ engineId,\ }
+\DoxyCodeLine{00208\ \ \ \ \ PHuint64\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ channelIndex,}
+\DoxyCodeLine{00209\ \ \ \ \ PHuint32\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ xPx,\ }
+\DoxyCodeLine{00210\ \ \ \ \ PHuint32\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ yPx,}
+\DoxyCodeLine{00211\ \ \ \ \ PHuint32\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ widthPx,\ }
+\DoxyCodeLine{00212\ \ \ \ \ PHuint32\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ heightPx,}
+\DoxyCodeLine{00213\ \ \ \ \ PHuint64\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ frameId);}
+\DoxyCodeLine{00214\ }
+\DoxyCodeLine{00215\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{ph__c__core_8h_acd4c7607ab6cc12a3b82937dc17d4cb3}{PH\_API}}\ \textcolor{keywordtype}{void}\ phAsyncPeekFrameRaw(}
+\DoxyCodeLine{00216\ \ \ \ \ PHuint64\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ engineId,}
+\DoxyCodeLine{00217\ \ \ \ \ PHuint64\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ channelIndex,}
+\DoxyCodeLine{00218\ \ \ \ \ PHuint32\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ xPx,}
+\DoxyCodeLine{00219\ \ \ \ \ PHuint32\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ yPx,}
+\DoxyCodeLine{00220\ \ \ \ \ PHuint32\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ widthPx,}
+\DoxyCodeLine{00221\ \ \ \ \ PHuint32\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ heightPx,}
+\DoxyCodeLine{00222\ \ \ \ \ PHuint64\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ frameId);}
+\DoxyCodeLine{00223\ }
+\DoxyCodeLine{00224\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{00225\ \}}
+\DoxyCodeLine{00226\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

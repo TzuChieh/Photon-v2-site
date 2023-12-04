@@ -404,8 +404,6 @@ var hierarchy =
     [ "ph::halton_detail::PerDigitPermuter", "d4/daa/classph_1_1halton__detail_1_1_per_digit_permuter.html", null ],
     [ "ph::PeriodicSingleThreadExecutor", "d9/d2d/classph_1_1_periodic_single_thread_executor.html", null ],
     [ "ph::PfmFileWriter", "d5/dd4/classph_1_1_pfm_file_writer.html", null ],
-    [ "PHObservableRenderData", "d1/d8b/struct_p_h_observable_render_data.html", null ],
-    [ "PHRenderState", "d2/d5e/struct_p_h_render_state.html", null ],
     [ "ph::PictureData", "dd/d8d/classph_1_1_picture_data.html", null ],
     [ "ph::PixelBuffer2D", "d9/db1/classph_1_1_pixel_buffer2_d.html", [
       [ "ph::TFrameBuffer2D< T, N >", "d1/df2/classph_1_1_t_frame_buffer2_d.html", null ]
