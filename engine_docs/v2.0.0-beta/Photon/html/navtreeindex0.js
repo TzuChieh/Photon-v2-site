@@ -1,13 +1,13 @@
 var NAVTREEINDEX0 =
 {
 "d4/d92/md__documentation_2coding__standard.html":[2],
-"d4/d92/md__documentation_2coding__standard.html#autotoc_md14":[2,0],
-"d4/d92/md__documentation_2coding__standard.html#autotoc_md15":[2,1],
-"d4/d92/md__documentation_2coding__standard.html#autotoc_md16":[2,2],
-"d4/d92/md__documentation_2coding__standard.html#autotoc_md17":[2,3],
-"d4/d92/md__documentation_2coding__standard.html#autotoc_md18":[2,4],
-"d4/d92/md__documentation_2coding__standard.html#autotoc_md19":[2,5],
-"d4/d92/md__documentation_2coding__standard.html#autotoc_md20":[2,6],
+"d4/d92/md__documentation_2coding__standard.html#autotoc_md13":[2,0],
+"d4/d92/md__documentation_2coding__standard.html#autotoc_md14":[2,1],
+"d4/d92/md__documentation_2coding__standard.html#autotoc_md15":[2,2],
+"d4/d92/md__documentation_2coding__standard.html#autotoc_md16":[2,3],
+"d4/d92/md__documentation_2coding__standard.html#autotoc_md17":[2,4],
+"d4/d92/md__documentation_2coding__standard.html#autotoc_md18":[2,5],
+"d4/d92/md__documentation_2coding__standard.html#autotoc_md19":[2,6],
 "db/d72/project_structure.html":[3],
 "db/d72/project_structure.html#libraries":[3,1],
 "db/d72/project_structure.html#programs":[3,0],
@@ -15,7 +15,7 @@ var NAVTREEINDEX0 =
 "df/dea/md__documentation_2build__from__source.html":[1],
 "df/dea/md__documentation_2build__from__source.html#autotoc_md10":[1,9],
 "df/dea/md__documentation_2build__from__source.html#autotoc_md11":[1,10],
-"df/dea/md__documentation_2build__from__source.html#autotoc_md12":[1,11],
+"df/dea/md__documentation_2build__from__source.html#autotoc_md7":[1,6],
 "df/dea/md__documentation_2build__from__source.html#autotoc_md8":[1,7],
 "df/dea/md__documentation_2build__from__source.html#autotoc_md9":[1,8],
 "index.html":[],
@@ -25,6 +25,5 @@ var NAVTREEINDEX0 =
 "index.html#autotoc_md3":[3],
 "index.html#autotoc_md4":[4],
 "index.html#autotoc_md5":[5],
-"index.html#autotoc_md6":[6],
 "pages.html":[]
 };

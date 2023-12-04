@@ -31,23 +31,22 @@ var NAVTREE =
       [ "Useful Links", "index.html#autotoc_md1", null ],
       [ "Contributing", "index.html#autotoc_md2", null ],
       [ "Technical Showreel", "index.html#autotoc_md3", null ],
-      [ "Images", "index.html#autotoc_md4", null ],
-      [ "Scene Description Language", "index.html#autotoc_md5", null ],
-      [ "About the Author", "index.html#autotoc_md6", null ],
-      [ "Prerequisites", "df/dea/md__documentation_2build__from__source.html#autotoc_md8", null ],
-      [ "Step 1: Run the Setup Script", "df/dea/md__documentation_2build__from__source.html#autotoc_md9", null ],
-      [ "Step 2: Compile", "df/dea/md__documentation_2build__from__source.html#autotoc_md10", null ],
-      [ "Step 3: Have Fun", "df/dea/md__documentation_2build__from__source.html#autotoc_md11", null ],
-      [ "Appendix A: Available CMake Options", "df/dea/md__documentation_2build__from__source.html#autotoc_md12", null ]
+      [ "Scene Description Language", "index.html#autotoc_md4", null ],
+      [ "About the Author", "index.html#autotoc_md5", null ],
+      [ "Prerequisites", "df/dea/md__documentation_2build__from__source.html#autotoc_md7", null ],
+      [ "Step 1: Run the Setup Script", "df/dea/md__documentation_2build__from__source.html#autotoc_md8", null ],
+      [ "Step 2: Compile", "df/dea/md__documentation_2build__from__source.html#autotoc_md9", null ],
+      [ "Step 3: Have Fun", "df/dea/md__documentation_2build__from__source.html#autotoc_md10", null ],
+      [ "Appendix A: Available CMake Options", "df/dea/md__documentation_2build__from__source.html#autotoc_md11", null ]
     ] ],
     [ "Coding Standard", "d4/d92/md__documentation_2coding__standard.html", [
-      [ "Why", "d4/d92/md__documentation_2coding__standard.html#autotoc_md14", null ],
-      [ "Language and Naming", "d4/d92/md__documentation_2coding__standard.html#autotoc_md15", null ],
-      [ "Filename Extensions and Includes", "d4/d92/md__documentation_2coding__standard.html#autotoc_md16", null ],
-      [ "Formatting", "d4/d92/md__documentation_2coding__standard.html#autotoc_md17", null ],
-      [ "C++ Syntax", "d4/d92/md__documentation_2coding__standard.html#autotoc_md18", null ],
-      [ "Primitive Type Aliasing", "d4/d92/md__documentation_2coding__standard.html#autotoc_md19", null ],
-      [ "Others", "d4/d92/md__documentation_2coding__standard.html#autotoc_md20", null ]
+      [ "Why", "d4/d92/md__documentation_2coding__standard.html#autotoc_md13", null ],
+      [ "Language and Naming", "d4/d92/md__documentation_2coding__standard.html#autotoc_md14", null ],
+      [ "Filename Extensions and Includes", "d4/d92/md__documentation_2coding__standard.html#autotoc_md15", null ],
+      [ "Formatting", "d4/d92/md__documentation_2coding__standard.html#autotoc_md16", null ],
+      [ "C++ Syntax", "d4/d92/md__documentation_2coding__standard.html#autotoc_md17", null ],
+      [ "Primitive Type Aliasing", "d4/d92/md__documentation_2coding__standard.html#autotoc_md18", null ],
+      [ "Others", "d4/d92/md__documentation_2coding__standard.html#autotoc_md19", null ]
     ] ],
     [ "Project Structure", "db/d72/project_structure.html", [
       [ "Programs", "db/d72/project_structure.html#programs", null ],

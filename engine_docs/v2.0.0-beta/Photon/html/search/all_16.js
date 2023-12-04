@@ -73,8 +73,8 @@ var searchData=
   ['tfunction_70',['tfunction',['../../../Photon_Engine/html/d6/d87/classph_1_1function__detail_1_1_t_function_3_01_r_07_args_8_8_8_08_00_01_m_i_n___s_i_z_e___h_i_n_t_01_4.html#a527aee62cc23f260da38fe18c8a2691c',1,'ph::function_detail::TFunction&lt; R(Args...), MIN_SIZE_HINT &gt;::TFunction()=default'],['../../../Photon_Engine/html/d6/d87/classph_1_1function__detail_1_1_t_function_3_01_r_07_args_8_8_8_08_00_01_m_i_n___s_i_z_e___h_i_n_t_01_4.html#abee9a0fc91151eb2c2da5dc84ebc254b',1,'ph::function_detail::TFunction&lt; R(Args...), MIN_SIZE_HINT &gt;::TFunction(std::nullptr_t)'],['../../../Photon_Engine/html/df/df5/classph_1_1function__detail_1_1_t_function.html',1,'ph::function_detail::TFunction&lt; typename T, std::size_t MIN_SIZE_HINT &gt;'],['../../../Photon_Engine/html/d6/d87/classph_1_1function__detail_1_1_t_function_3_01_r_07_args_8_8_8_08_00_01_m_i_n___s_i_z_e___h_i_n_t_01_4.html#a56299c30b51d0bd6813a3beccaddba8a',1,'ph::function_detail::TFunction&lt; R(Args...), MIN_SIZE_HINT &gt;::TFunction()']]],
   ['tfunction_3c_20r_28args_2e_2e_2e_29_2c_20min_5fsize_5fhint_20_3e_71',['TFunction&lt; R(Args...), MIN_SIZE_HINT &gt;',['../../../Photon_Engine/html/d6/d87/classph_1_1function__detail_1_1_t_function_3_01_r_07_args_8_8_8_08_00_01_m_i_n___s_i_z_e___h_i_n_t_01_4.html',1,'ph::function_detail']]],
   ['tgaussian2d_72',['TGaussian2D',['../../../Photon_Engine/html/d5/d85/classph_1_1math_1_1_t_gaussian2_d.html',1,'ph::math']]],
-  ['the_20author_73',['About the Author',['../index.html#autotoc_md6',1,'']]],
-  ['the_20setup_20script_74',['Step 1: Run the Setup Script',['../df/dea/md__documentation_2build__from__source.html#autotoc_md9',1,'']]],
+  ['the_20author_73',['About the Author',['../index.html#autotoc_md5',1,'']]],
+  ['the_20setup_20script_74',['Step 1: Run the Setup Script',['../df/dea/md__documentation_2build__from__source.html#autotoc_md8',1,'']]],
   ['themisphere_75',['THemisphere',['../../../Photon_Engine/html/da/de9/classph_1_1math_1_1_t_hemisphere.html',1,'ph::math']]],
   ['thindielectricfilm_76',['ThinDielectricFilm',['../../../Photon_Engine/html/d7/db9/classph_1_1_thin_dielectric_film.html',1,'ph']]],
   ['thinfilm_77',['ThinFilm',['../../../Photon_Engine/html/da/d43/classph_1_1_thin_film.html',1,'ph']]],
@@ -283,5 +283,5 @@ var searchData=
   ['tviewpoint_280',['TViewpoint',['../../../Photon_Engine/html/d1/ded/classph_1_1_t_viewpoint.html',1,'ph']]],
   ['tviewpoint_3c_20fullviewpoint_20_3e_281',['TViewpoint&lt; FullViewpoint &gt;',['../../../Photon_Engine/html/d1/ded/classph_1_1_t_viewpoint.html',1,'ph']]],
   ['twatertighttriangle_282',['TWatertightTriangle',['../../../Photon_Engine/html/d9/d04/classph_1_1math_1_1_t_watertight_triangle.html',1,'ph::math']]],
-  ['type_20aliasing_283',['Primitive Type Aliasing',['../d4/d92/md__documentation_2coding__standard.html#autotoc_md19',1,'']]]
+  ['type_20aliasing_283',['Primitive Type Aliasing',['../d4/d92/md__documentation_2coding__standard.html#autotoc_md18',1,'']]]
 ];
