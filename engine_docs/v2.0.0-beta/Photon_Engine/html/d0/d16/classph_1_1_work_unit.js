@@ -2,5 +2,12 @@ var classph_1_1_work_unit =
 [
     [ "WorkUnit", "d0/d16/classph_1_1_work_unit.html#a191abcf8d0349435c23ed57fcc109688", null ],
     [ "WorkUnit", "d0/d16/classph_1_1_work_unit.html#a4b5724a4fc0d7059d37a40ecd93c8197", null ],
-    [ "WorkUnit", "d0/d16/classph_1_1_work_unit.html#ab84230b9af44001910b0b120c4af3935", null ]
+    [ "WorkUnit", "d0/d16/classph_1_1_work_unit.html#ab84230b9af44001910b0b120c4af3935", null ],
+    [ "getAspectRatio", "d0/d16/classph_1_1_work_unit.html#a88e84c0bbee8e219283ff0afc7f263b0", null ],
+    [ "getDepth", "d0/d16/classph_1_1_work_unit.html#aec0b887d6fd90b599c0d507b63549ee8", null ],
+    [ "getHeight", "d0/d16/classph_1_1_work_unit.html#ab0c0c19704b2c0622abc0d0ccd92566f", null ],
+    [ "getRegion", "d0/d16/classph_1_1_work_unit.html#a53dc72cbe5e24dca1167bf0190038700", null ],
+    [ "getVolume", "d0/d16/classph_1_1_work_unit.html#a1302ee4859cf25828d8da33b973c22e0", null ],
+    [ "getWidth", "d0/d16/classph_1_1_work_unit.html#af4bc7f9fa4602db839985767df559315", null ],
+    [ "toString", "d0/d16/classph_1_1_work_unit.html#aa322b0be0f490b0e9a409f297442ea64", null ]
 ];

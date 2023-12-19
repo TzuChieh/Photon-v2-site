@@ -1,119 +1,120 @@
 \doxysection{TCheckerboard\+Texture.\+ipp}
 \hypertarget{_t_checkerboard_texture_8ipp_source}{}\label{_t_checkerboard_texture_8ipp_source}\index{Source/Core/Texture/TCheckerboardTexture.ipp@{Source/Core/Texture/TCheckerboardTexture.ipp}}
-
+\mbox{\hyperlink{_t_checkerboard_texture_8ipp}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#include\ "{}Core/Texture/TCheckerboardTexture.h"{}}}
-\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ "{}Core/Texture/SampleLocation.h"{}}}
-\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Common/assertion.h"{}}}
-\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Core/Texture/constant\_textures.h"{}}}
-\DoxyCodeLine{00005\ }
-\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <iostream>}}
-\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <memory>}}
-\DoxyCodeLine{00008\ }
-\DoxyCodeLine{00009\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
-\DoxyCodeLine{00010\ \{}
-\DoxyCodeLine{00011\ }
-\DoxyCodeLine{00012\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ OutputType>}
-\DoxyCodeLine{00013\ \textcolor{keyword}{inline}\ TCheckerboardTexture<OutputType>::TCheckerboardTexture(}
-\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keyword}{const}\ real\ numUtiles,\ \textcolor{keyword}{const}\ real\ numVtiles,}
-\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keyword}{const}\ OutputType\&\ oddValue,\ \textcolor{keyword}{const}\ OutputType\&\ evenValue)\ :\ }
-\DoxyCodeLine{00016\ }
-\DoxyCodeLine{00017\ \ \ \ \ TCheckerboardTexture(}
-\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ numUtiles,\ numVtiles,\ }
-\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ std::make\_shared<TConstantTexture<OutputType>>(oddValue),}
-\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ std::make\_shared<TConstantTexture<OutputType>>(evenValue))}
-\DoxyCodeLine{00021\ \{\}}
-\DoxyCodeLine{00022\ }
-\DoxyCodeLine{00023\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ OutputType>}
-\DoxyCodeLine{00024\ \textcolor{keyword}{inline}\ TCheckerboardTexture<OutputType>::TCheckerboardTexture(}
-\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{const}\ real\ numUtiles,\ \textcolor{keyword}{const}\ real\ numVtiles,}
-\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{const}\ std::shared\_ptr<TTexture<OutputType>>\&\ oddTexture,}
-\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{const}\ std::shared\_ptr<TTexture<OutputType>>\&\ evenTexture)}
-\DoxyCodeLine{00028\ \{}
-\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordflow}{if}(numUtiles\ <=\ 0.0f\ ||\ numVtiles\ <=\ 0.0f)}
-\DoxyCodeLine{00030\ \ \ \ \ \{}
-\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}warning:\ at\ TCheckerboardTexture's\ ctor,\ "{}}\ }
-\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}number\ of\ tiles\ <=\ 0"{}}\ <<\ std::endl;}
-\DoxyCodeLine{00033\ \ \ \ \ \}}
-\DoxyCodeLine{00034\ }
-\DoxyCodeLine{00035\ \ \ \ \ setOddTexture(oddTexture);}
-\DoxyCodeLine{00036\ \ \ \ \ setEvenTexture(evenTexture);}
-\DoxyCodeLine{00037\ }
-\DoxyCodeLine{00038\ \ \ \ \ setOddTextureScale(math::Vector3R(1.0\_r\ /\ numUtiles));}
-\DoxyCodeLine{00039\ \ \ \ \ setEvenTextureScale(math::Vector3R(1.0\_r\ /\ numVtiles));}
-\DoxyCodeLine{00040\ }
-\DoxyCodeLine{00041\ \ \ \ \ m\_uTileSize\ =\ 1.0f\ /\ numUtiles;}
-\DoxyCodeLine{00042\ \ \ \ \ m\_vTileSize\ =\ 1.0f\ /\ numVtiles;}
-\DoxyCodeLine{00043\ \}}
-\DoxyCodeLine{00044\ }
-\DoxyCodeLine{00045\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ OutputType>}
-\DoxyCodeLine{00046\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ TCheckerboardTexture<OutputType>::sample(}
-\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keyword}{const}\ SampleLocation\&\ sampleLocation,\ OutputType*\ \textcolor{keyword}{const}\ out\_value)\textcolor{keyword}{\ const}}
-\DoxyCodeLine{00048\ \textcolor{keyword}{}\{}
-\DoxyCodeLine{00049\ \ \ \ \ PH\_ASSERT(m\_oddTexture\ \ \&\&\ m\_oddTexture.get()\ \ !=\ \textcolor{keyword}{this});}
-\DoxyCodeLine{00050\ \ \ \ \ PH\_ASSERT(m\_evenTexture\ \&\&\ m\_evenTexture.get()\ !=\ \textcolor{keyword}{this});}
-\DoxyCodeLine{00051\ }
-\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keyword}{const}\ math::Vector3R\ uvw\ =\ sampleLocation.uvw();}
-\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keyword}{const}\ int32\ uNumber\ =\ \textcolor{keyword}{static\_cast<}int32\textcolor{keyword}{>}(std::floor(uvw.x()\ /\ m\_uTileSize));}
-\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keyword}{const}\ int32\ vNumber\ =\ \textcolor{keyword}{static\_cast<}int32\textcolor{keyword}{>}(std::floor(uvw.y()\ /\ m\_vTileSize));}
-\DoxyCodeLine{00055\ }
-\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordflow}{if}(std::abs(uNumber\ \%\ 2)\ !=\ std::abs(vNumber\ \%\ 2))}
-\DoxyCodeLine{00057\ \ \ \ \ \{}
-\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ m\_oddTexture-\/>sample(sampleLocation.getUvwScaled(m\_oddUvwScale),\ }
-\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ out\_value);}
-\DoxyCodeLine{00060\ \ \ \ \ \}}
-\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00062\ \ \ \ \ \{}
-\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ m\_evenTexture-\/>sample(sampleLocation.getUvwScaled(m\_evenUvwScale),\ }
-\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ out\_value);}
-\DoxyCodeLine{00065\ \ \ \ \ \}}
-\DoxyCodeLine{00066\ \}}
-\DoxyCodeLine{00067\ }
-\DoxyCodeLine{00068\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ OutputType>}
-\DoxyCodeLine{00069\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_checkerboard_texture}{TCheckerboardTexture<OutputType>::setOddTexture}}(}
-\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keyword}{const}\ std::shared\_ptr<\mbox{\hyperlink{classph_1_1_t_texture}{TTexture<OutputType>}}>\&\ oddTexture)}
-\DoxyCodeLine{00071\ \{}
-\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordflow}{if}(!oddTexture\ ||\ oddTexture.get()\ ==\ \textcolor{keyword}{this})}
-\DoxyCodeLine{00073\ \ \ \ \ \{}
-\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}warning:\ at\ TCheckerboardTexture::setOddTexture(),\ "{}}\ }
-\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}does\ not\ allow\ empty\ or\ self-\/referencing\ tile"{}}\ <<\ std::endl;}
-\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
-\DoxyCodeLine{00077\ \ \ \ \ \}}
-\DoxyCodeLine{00078\ }
-\DoxyCodeLine{00079\ \ \ \ \ m\_oddTexture\ =\ oddTexture;}
-\DoxyCodeLine{00080\ \}}
-\DoxyCodeLine{00081\ }
-\DoxyCodeLine{00082\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ OutputType>}
-\DoxyCodeLine{00083\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_checkerboard_texture}{TCheckerboardTexture<OutputType>::setEvenTexture}}(}
-\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keyword}{const}\ std::shared\_ptr<\mbox{\hyperlink{classph_1_1_t_texture}{TTexture<OutputType>}}>\&\ evenTexture)}
-\DoxyCodeLine{00085\ \{}
-\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keywordflow}{if}(!evenTexture\ ||\ evenTexture.get()\ ==\ \textcolor{keyword}{this})}
-\DoxyCodeLine{00087\ \ \ \ \ \{}
-\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}warning:\ at\ TCheckerboardTexture::setEvenTexture(),\ "{}}\ }
-\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}does\ not\ allow\ empty\ or\ self-\/referencing\ tile"{}}\ <<\ std::endl;}
-\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
-\DoxyCodeLine{00091\ \ \ \ \ \}}
-\DoxyCodeLine{00092\ }
-\DoxyCodeLine{00093\ \ \ \ \ m\_evenTexture\ =\ evenTexture;}
-\DoxyCodeLine{00094\ \}}
-\DoxyCodeLine{00095\ }
-\DoxyCodeLine{00096\ \textcolor{comment}{/*}}
-\DoxyCodeLine{00097\ \textcolor{comment}{\ \ \ \ Note\ that\ in\ order\ to\ scale\ a\ texture,\ we\ need\ to\ multiply\ texture}}
-\DoxyCodeLine{00098\ \textcolor{comment}{\ \ \ \ coordinates\ by\ a\ reciprocal\ factor.}}
-\DoxyCodeLine{00099\ \textcolor{comment}{*/}}
-\DoxyCodeLine{00100\ }
-\DoxyCodeLine{00101\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ OutputType>}
-\DoxyCodeLine{00102\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_checkerboard_texture}{TCheckerboardTexture<OutputType>::setOddTextureScale}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\&\ scale)}
-\DoxyCodeLine{00103\ \{}
-\DoxyCodeLine{00104\ \ \ \ \ m\_oddUvwScale\ =\ scale.rcp();}
-\DoxyCodeLine{00105\ \}}
-\DoxyCodeLine{00106\ }
-\DoxyCodeLine{00107\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ OutputType>}
-\DoxyCodeLine{00108\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ TCheckerboardTexture<OutputType>::setEvenTextureScale(\textcolor{keyword}{const}\ math::Vector3R\&\ scale)}
-\DoxyCodeLine{00109\ \{}
-\DoxyCodeLine{00110\ \ \ \ \ m\_evenUvwScale\ =\ scale.rcp();}
-\DoxyCodeLine{00111\ \}}
-\DoxyCodeLine{00112\ }
-\DoxyCodeLine{00113\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_checkerboard_texture_8h}{Core/Texture/TCheckerboardTexture.h}}"{}}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_sample_location_8h}{Core/Texture/SampleLocation.h}}"{}}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{constant__textures_8h}{Core/Texture/constant\_textures.h}}"{}}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <Common/assertion.h>}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00011\ \{}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ OutputType>}
+\DoxyCodeLine{00014\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_t_checkerboard_texture_a53787647da23038b270884989f510f6d}{TCheckerboardTexture<OutputType>::TCheckerboardTexture}}(}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keyword}{const}\ real\ numUtiles,\ \textcolor{keyword}{const}\ real\ numVtiles,}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keyword}{const}\ OutputType\&\ oddValue,\ \textcolor{keyword}{const}\ OutputType\&\ evenValue)\ :\ }
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_checkerboard_texture}{TCheckerboardTexture}}(}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ numUtiles,\ numVtiles,\ }
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacestd}{std}}::make\_shared<\mbox{\hyperlink{classph_1_1_t_constant_texture}{TConstantTexture}}<OutputType>>(oddValue),}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacestd}{std}}::make\_shared<\mbox{\hyperlink{classph_1_1_t_constant_texture}{TConstantTexture}}<OutputType>>(evenValue))}
+\DoxyCodeLine{00022\ \{\}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ OutputType>}
+\DoxyCodeLine{00025\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_t_checkerboard_texture_a53787647da23038b270884989f510f6d}{TCheckerboardTexture<OutputType>::TCheckerboardTexture}}(}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{const}\ real\ numUtiles,\ \textcolor{keyword}{const}\ real\ numVtiles,}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{const}\ std::shared\_ptr<\mbox{\hyperlink{classph_1_1_t_texture}{TTexture<OutputType>}}>\&\ oddTexture,}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{const}\ std::shared\_ptr<\mbox{\hyperlink{classph_1_1_t_texture}{TTexture<OutputType>}}>\&\ evenTexture)}
+\DoxyCodeLine{00029\ \{}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keywordflow}{if}(numUtiles\ <=\ 0.0f\ ||\ numVtiles\ <=\ 0.0f)}
+\DoxyCodeLine{00031\ \ \ \ \ \{}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}warning:\ at\ TCheckerboardTexture's\ ctor,\ "{}}\ }
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}number\ of\ tiles\ <=\ 0"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00034\ \ \ \ \ \}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \ \ setOddTexture(oddTexture);}
+\DoxyCodeLine{00037\ \ \ \ \ setEvenTexture(evenTexture);}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \ \ setOddTextureScale(\mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}(1.0\_r\ /\ numUtiles));}
+\DoxyCodeLine{00040\ \ \ \ \ setEvenTextureScale(\mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}(1.0\_r\ /\ numVtiles));}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ m\_uTileSize\ =\ 1.0f\ /\ numUtiles;}
+\DoxyCodeLine{00043\ \ \ \ \ m\_vTileSize\ =\ 1.0f\ /\ numVtiles;}
+\DoxyCodeLine{00044\ \}}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ OutputType>}
+\DoxyCodeLine{00047\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_checkerboard_texture_a14c1f27b70afa7a3b5f15e48d8081134}{TCheckerboardTexture<OutputType>::sample}}(}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_sample_location}{SampleLocation}}\&\ sampleLocation,\ OutputType*\ \textcolor{keyword}{const}\ out\_value)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00049\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00050\ \ \ \ \ PH\_ASSERT(m\_oddTexture\ \ \&\&\ m\_oddTexture.get()\ \ !=\ \textcolor{keyword}{this});}
+\DoxyCodeLine{00051\ \ \ \ \ PH\_ASSERT(m\_evenTexture\ \&\&\ m\_evenTexture.get()\ !=\ \textcolor{keyword}{this});}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\ uvw\ =\ sampleLocation.\mbox{\hyperlink{classph_1_1_sample_location_ac351e93a5024f7425c723f5852bb24e7}{uvw}}();}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keyword}{const}\ int32\ uNumber\ =\ \textcolor{keyword}{static\_cast<}int32\textcolor{keyword}{>}(std::floor(uvw.\mbox{\hyperlink{classph_1_1math_1_1_t_vector3_a8d0eb557cecca2a3e07326c409b2c16b}{x}}()\ /\ m\_uTileSize));}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keyword}{const}\ int32\ vNumber\ =\ \textcolor{keyword}{static\_cast<}int32\textcolor{keyword}{>}(std::floor(uvw.\mbox{\hyperlink{classph_1_1math_1_1_t_vector3_a0a5f0880f6b82a8519416ca9a987818b}{y}}()\ /\ m\_vTileSize));}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keywordflow}{if}(std::abs(uNumber\ \%\ 2)\ !=\ std::abs(vNumber\ \%\ 2))}
+\DoxyCodeLine{00058\ \ \ \ \ \{}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ m\_oddTexture-\/>sample(sampleLocation.\mbox{\hyperlink{classph_1_1_sample_location_ae065a07c1334ef62d26ea969e2719833}{getUvwScaled}}(m\_oddUvwScale),\ }
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ out\_value);}
+\DoxyCodeLine{00061\ \ \ \ \ \}}
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00063\ \ \ \ \ \{}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ m\_evenTexture-\/>sample(sampleLocation.\mbox{\hyperlink{classph_1_1_sample_location_ae065a07c1334ef62d26ea969e2719833}{getUvwScaled}}(m\_evenUvwScale),\ }
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ out\_value);}
+\DoxyCodeLine{00066\ \ \ \ \ \}}
+\DoxyCodeLine{00067\ \}}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ OutputType>}
+\DoxyCodeLine{00070\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_checkerboard_texture_a7f3955a99d36264ac62a811bf4eb6f84}{TCheckerboardTexture<OutputType>::setOddTexture}}(}
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keyword}{const}\ std::shared\_ptr<\mbox{\hyperlink{classph_1_1_t_texture}{TTexture<OutputType>}}>\&\ oddTexture)}
+\DoxyCodeLine{00072\ \{}
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordflow}{if}(!oddTexture\ ||\ oddTexture.get()\ ==\ \textcolor{keyword}{this})}
+\DoxyCodeLine{00074\ \ \ \ \ \{}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}warning:\ at\ TCheckerboardTexture::setOddTexture(),\ "{}}\ }
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}does\ not\ allow\ empty\ or\ self-\/referencing\ tile"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00078\ \ \ \ \ \}}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \ \ \ \ m\_oddTexture\ =\ oddTexture;}
+\DoxyCodeLine{00081\ \}}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ OutputType>}
+\DoxyCodeLine{00084\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_checkerboard_texture_aaee1ee2a54826d4a602a3a16cdcd6355}{TCheckerboardTexture<OutputType>::setEvenTexture}}(}
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keyword}{const}\ std::shared\_ptr<\mbox{\hyperlink{classph_1_1_t_texture}{TTexture<OutputType>}}>\&\ evenTexture)}
+\DoxyCodeLine{00086\ \{}
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{keywordflow}{if}(!evenTexture\ ||\ evenTexture.get()\ ==\ \textcolor{keyword}{this})}
+\DoxyCodeLine{00088\ \ \ \ \ \{}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}warning:\ at\ TCheckerboardTexture::setEvenTexture(),\ "{}}\ }
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}does\ not\ allow\ empty\ or\ self-\/referencing\ tile"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00092\ \ \ \ \ \}}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \ \ \ \ m\_evenTexture\ =\ evenTexture;}
+\DoxyCodeLine{00095\ \}}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00098\ \textcolor{comment}{\ \ \ \ Note\ that\ in\ order\ to\ scale\ a\ texture,\ we\ need\ to\ multiply\ texture}}
+\DoxyCodeLine{00099\ \textcolor{comment}{\ \ \ \ coordinates\ by\ a\ reciprocal\ factor.}}
+\DoxyCodeLine{00100\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ OutputType>}
+\DoxyCodeLine{00103\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_checkerboard_texture_aae41757d88e18afa4648ca6e5e0e6f86}{TCheckerboardTexture<OutputType>::setOddTextureScale}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\&\ scale)}
+\DoxyCodeLine{00104\ \{}
+\DoxyCodeLine{00105\ \ \ \ \ m\_oddUvwScale\ =\ scale.\mbox{\hyperlink{classph_1_1math_1_1_t_vector_n_base_afca307cdbbb18eeb29b05968ec67e0a6}{rcp}}();}
+\DoxyCodeLine{00106\ \}}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ OutputType>}
+\DoxyCodeLine{00109\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_checkerboard_texture_a5ab686deb34aa7babd34a585e61e4a29}{TCheckerboardTexture<OutputType>::setEvenTextureScale}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\&\ scale)}
+\DoxyCodeLine{00110\ \{}
+\DoxyCodeLine{00111\ \ \ \ \ m\_evenUvwScale\ =\ scale.\mbox{\hyperlink{classph_1_1math_1_1_t_vector_n_base_afca307cdbbb18eeb29b05968ec67e0a6}{rcp}}();}
+\DoxyCodeLine{00112\ \}}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
 
 \end{DoxyCode}

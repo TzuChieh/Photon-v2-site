@@ -1,88 +1,89 @@
 \doxysection{geometry.\+h}
 \hypertarget{_math_2_geometry_2_geometry_8h_source}{}\label{_math_2_geometry_2_geometry_8h_source}\index{Source/Math/Geometry/geometry.h@{Source/Math/Geometry/geometry.h}}
-
+\mbox{\hyperlink{_math_2_geometry_2_geometry_8h}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
 \DoxyCodeLine{00002\ }
-\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Math/TVector2.h"{}}}
-\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Math/TVector3.h"{}}}
-\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}Common/assertion.h"{}}}
-\DoxyCodeLine{00006\ }
-\DoxyCodeLine{00007\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph_1_1math}{ph::math}}}
-\DoxyCodeLine{00008\ \{}
-\DoxyCodeLine{00009\ }
-\DoxyCodeLine{00010\ \textcolor{keyword}{namespace\ }detail}
-\DoxyCodeLine{00011\ \{}
-\DoxyCodeLine{00012\ }
-\DoxyCodeLine{00023\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00024\ \textcolor{keyword}{inline}\ TVector2<T>\ octahedron\_diamond\_mirror(\textcolor{keyword}{const}\ TVector2<T>\&\ point)}
-\DoxyCodeLine{00025\ \{}
-\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{const}\ TVector2<T>\ diagonallyMirroredPoint(point.y(),\ point.x());}
-\DoxyCodeLine{00027\ }
-\DoxyCodeLine{00028\ \ \ \ \ \textcolor{comment}{/*}}
-\DoxyCodeLine{00029\ \textcolor{comment}{\ \ \ \ Note\ that\ in\ [1],\ it\ is\ calculated\ as}}
-\DoxyCodeLine{00030\ \textcolor{comment}{}}
-\DoxyCodeLine{00031\ \textcolor{comment}{\ \ \ \ \ \ \ \ return\ (1.0\ -\/\ abs(v.yx))\ *\ (v.xy\ >=\ 0.0\ ?\ 1.0\ :\ -\/1.0);}}
-\DoxyCodeLine{00032\ \textcolor{comment}{}}
-\DoxyCodeLine{00033\ \textcolor{comment}{\ \ \ \ which\ translate\ to\ the\ following:}}
-\DoxyCodeLine{00034\ \textcolor{comment}{\ \ \ \ */}}
-\DoxyCodeLine{00035\ \ \ \ \ \textcolor{comment}{//\ Basically\ mirror\ and\ flip\ along\ various\ axes}}
-\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordflow}{return}\ diagonallyMirroredPoint.abs().complement()\ *\ }
-\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ TVector2<T>(point.x()\ >=\ 0.0f\ ?\ 1.0f\ :\ -\/1.0f,\ point.y()\ >=\ 0.0f\ ?\ 1.0f\ :\ -\/1.0f);}
-\DoxyCodeLine{00038\ }
-\DoxyCodeLine{00039\ \ \ \ \ \textcolor{comment}{/*}}
-\DoxyCodeLine{00040\ \textcolor{comment}{\ \ \ \ However,\ that\ seems\ overly\ complexed.\ Here\ I\ derived\ a\ simpler\ equivalent.\ It\ is\ worth\ noting\ that}}
-\DoxyCodeLine{00041\ \textcolor{comment}{\ \ \ \ my\ variant\ is\ likely\ inferior\ as\ the\ paper\ [2]\ uses\ the\ same\ formulation\ as\ in\ [1].\ They\ use\ only}}
-\DoxyCodeLine{00042\ \textcolor{comment}{\ \ \ \ sign\ changes\ and\ complements\ to\ achieve\ the\ mirror,\ and\ should\ be\ robust\ (no\ seams\ due\ to\ quantization}}
-\DoxyCodeLine{00043\ \textcolor{comment}{\ \ \ \ errors;\ mine's\ uses\ arithmetic\ on\ the\ coordinates\ which\ can\ cause\ problems\ I\ guess).\ }}
-\DoxyCodeLine{00044\ \textcolor{comment}{\ \ \ \ */}}
-\DoxyCodeLine{00045\ \ \ \ \ \textcolor{comment}{/*return\ diagonallyMirroredPoint\ +\ }}
-\DoxyCodeLine{00046\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ TVector2<T>(point.x()\ >=\ 0\ ?\ 1\ :\ -\/1,\ point.y()\ >=\ 0\ ?\ 1\ :\ -\/1);*/}}
-\DoxyCodeLine{00047\ \}}
-\DoxyCodeLine{00048\ }
-\DoxyCodeLine{00049\ \}\textcolor{comment}{//\ end\ namespace\ detail}}
-\DoxyCodeLine{00050\ }
-\DoxyCodeLine{00051\ \textcolor{comment}{//\ TODO:\ precise\ version\ of\ the\ encoding\ (see\ [2])}}
-\DoxyCodeLine{00052\ }
-\DoxyCodeLine{00057\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00058\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{TVector2<T>}}\ \mbox{\hyperlink{namespaceph_1_1math_a726764d140f2eb38f51cca01a6e0740a}{octahedron\_unit\_vector\_encode}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{TVector3<T>}}\&\ unitVec)}
-\DoxyCodeLine{00059\ \{}
-\DoxyCodeLine{00060\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{TVector3<T>}}\ octahedronProj\ =\ unitVec\ /\ unitVec.abs().sum();}
-\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordflow}{if}(octahedronProj.z()\ <\ 0)}
-\DoxyCodeLine{00062\ \ \ \ \ \{}
-\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{TVector2<T>}}\ mirroredXYProj\ =\ detail::octahedron\_diamond\_mirror(\mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{TVector2<T>}}(octahedronProj.x(),\ octahedronProj.y()));}
-\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ octahedronProj.x()\ =\ mirroredXYProj.x();}
-\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ octahedronProj.y()\ =\ mirroredXYProj.y();}
-\DoxyCodeLine{00066\ \ \ \ \ \}}
-\DoxyCodeLine{00067\ }
-\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{TVector2<T>}}(octahedronProj.x(),\ octahedronProj.y())\ *\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(0.5)\ +\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(0.5);}
-\DoxyCodeLine{00069\ \}}
-\DoxyCodeLine{00070\ }
-\DoxyCodeLine{00075\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00076\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{TVector3<T>}}\ \mbox{\hyperlink{namespaceph_1_1math_a97853fb83b95a1bd4eb7c30cfce31938}{octahedron\_unit\_vector\_decode}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{TVector2<T>}}\&\ encodedVal)}
-\DoxyCodeLine{00077\ \{}
-\DoxyCodeLine{00078\ \ \ \ \ PH\_ASSERT\_IN\_RANGE\_INCLUSIVE(encodedVal.x(),\ 0,\ 1);}
-\DoxyCodeLine{00079\ \ \ \ \ PH\_ASSERT\_IN\_RANGE\_INCLUSIVE(encodedVal.y(),\ 0,\ 1);}
-\DoxyCodeLine{00080\ }
-\DoxyCodeLine{00081\ \ \ \ \ \textcolor{comment}{//\ Note\ that\ https://knarkowicz.wordpress.com/2014/04/16/octahedron-\/normal-\/vector-\/encoding/}}
-\DoxyCodeLine{00082\ \ \ \ \ \textcolor{comment}{//\ provides\ an\ alternative\ approach\ that\ is\ faster\ on\ GPU.}}
-\DoxyCodeLine{00083\ }
-\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{TVector2<T>}}\ expandedEncodedVal\ =\ encodedVal\ *\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(2)\ -\/\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(1);}
-\DoxyCodeLine{00085\ }
-\DoxyCodeLine{00086\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{TVector3<T>}}\ octahedronProj(}
-\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ expandedEncodedVal.x(),}
-\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ expandedEncodedVal.y(),}
-\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(1)\ -\/\ expandedEncodedVal.abs().sum());}
-\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keywordflow}{if}(octahedronProj.z()\ <\ 0)}
-\DoxyCodeLine{00091\ \ \ \ \ \{}
-\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{TVector2<T>}}\ mirroredXYProj\ =\ detail::octahedron\_diamond\_mirror(\mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{TVector2<T>}}(octahedronProj.x(),\ octahedronProj.y()));}
-\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ octahedronProj.x()\ =\ mirroredXYProj.x();}
-\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ octahedronProj.y()\ =\ mirroredXYProj.y();}
-\DoxyCodeLine{00095\ \ \ \ \ \}}
-\DoxyCodeLine{00096\ }
-\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keywordflow}{return}\ octahedronProj.normalize();}
-\DoxyCodeLine{00098\ \}}
-\DoxyCodeLine{00099\ }
-\DoxyCodeLine{00100\ \}\textcolor{comment}{//\ end\ namespace\ ph::math}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_vector2_8h}{Math/TVector2.h}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_vector3_8h}{Math/TVector3.h}}"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <Common/assertion.h>}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph_1_1math}{ph::math}}}
+\DoxyCodeLine{00009\ \{}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{namespace\ }detail}
+\DoxyCodeLine{00012\ \{}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00024\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00025\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{TVector2<T>}}\ \mbox{\hyperlink{namespaceph_1_1math_1_1detail_a56f26ac6998799fac4fe89ea1370f3f4}{octahedron\_diamond\_mirror}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{TVector2<T>}}\&\ point)}
+\DoxyCodeLine{00026\ \{}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{TVector2<T>}}\ diagonallyMirroredPoint(point.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_af3065a5fa872cdb3f2291a84824d5d59}{y}}(),\ point.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_a03c5e56839820da78b52d2db0281f065}{x}}());}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00030\ \textcolor{comment}{\ \ \ \ Note\ that\ in\ [1],\ it\ is\ calculated\ as}}
+\DoxyCodeLine{00031\ \textcolor{comment}{}}
+\DoxyCodeLine{00032\ \textcolor{comment}{\ \ \ \ \ \ \ \ return\ (1.0\ -\/\ abs(v.yx))\ *\ (v.xy\ >=\ 0.0\ ?\ 1.0\ :\ -\/1.0);}}
+\DoxyCodeLine{00033\ \textcolor{comment}{}}
+\DoxyCodeLine{00034\ \textcolor{comment}{\ \ \ \ which\ translate\ to\ the\ following:}}
+\DoxyCodeLine{00035\ \textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{comment}{//\ Basically\ mirror\ and\ flip\ along\ various\ axes}}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordflow}{return}\ diagonallyMirroredPoint.\mbox{\hyperlink{classph_1_1math_1_1_t_vector_n_base_a9dc304b7c2933c68133bf76c8683b4d2}{abs}}().complement()\ *\ }
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{TVector2<T>}}(point.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_a03c5e56839820da78b52d2db0281f065}{x}}()\ >=\ 0.0f\ ?\ 1.0f\ :\ -\/1.0f,\ point.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_af3065a5fa872cdb3f2291a84824d5d59}{y}}()\ >=\ 0.0f\ ?\ 1.0f\ :\ -\/1.0f);}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00041\ \textcolor{comment}{\ \ \ \ However,\ that\ seems\ overly\ complexed.\ Here\ I\ derived\ a\ simpler\ equivalent.\ It\ is\ worth\ noting\ that}}
+\DoxyCodeLine{00042\ \textcolor{comment}{\ \ \ \ my\ variant\ is\ likely\ inferior\ as\ the\ paper\ [2]\ uses\ the\ same\ formulation\ as\ in\ [1].\ They\ use\ only}}
+\DoxyCodeLine{00043\ \textcolor{comment}{\ \ \ \ sign\ changes\ and\ complements\ to\ achieve\ the\ mirror,\ and\ should\ be\ robust\ (no\ seams\ due\ to\ quantization}}
+\DoxyCodeLine{00044\ \textcolor{comment}{\ \ \ \ errors;\ mine's\ uses\ arithmetic\ on\ the\ coordinates\ which\ can\ cause\ problems\ I\ guess).\ }}
+\DoxyCodeLine{00045\ \textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{comment}{/*return\ diagonallyMirroredPoint\ +\ }}
+\DoxyCodeLine{00047\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ TVector2<T>(point.x()\ >=\ 0\ ?\ 1\ :\ -\/1,\ point.y()\ >=\ 0\ ?\ 1\ :\ -\/1);*/}}
+\DoxyCodeLine{00048\ \}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \}\textcolor{comment}{//\ end\ namespace\ detail}}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \textcolor{comment}{//\ TODO:\ precise\ version\ of\ the\ encoding\ (see\ [2])}}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00058\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00059\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{TVector2<T>}}\ \mbox{\hyperlink{namespaceph_1_1math_a726764d140f2eb38f51cca01a6e0740a}{octahedron\_unit\_vector\_encode}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{TVector3<T>}}\&\ unitVec)}
+\DoxyCodeLine{00060\ \{}
+\DoxyCodeLine{00061\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{TVector3<T>}}\ octahedronProj\ =\ unitVec\ /\ unitVec.\mbox{\hyperlink{classph_1_1math_1_1_t_vector_n_base_a9dc304b7c2933c68133bf76c8683b4d2}{abs}}().sum();}
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keywordflow}{if}(octahedronProj.\mbox{\hyperlink{classph_1_1math_1_1_t_vector3_a34d51b9c12196175c8ad04c2cd9c59ec}{z}}()\ <\ 0)}
+\DoxyCodeLine{00063\ \ \ \ \ \{}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{TVector2<T>}}\ mirroredXYProj\ =\ \mbox{\hyperlink{namespaceph_1_1math_1_1detail_a56f26ac6998799fac4fe89ea1370f3f4}{detail::octahedron\_diamond\_mirror}}(\mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{TVector2<T>}}(octahedronProj.\mbox{\hyperlink{classph_1_1math_1_1_t_vector3_a8d0eb557cecca2a3e07326c409b2c16b}{x}}(),\ octahedronProj.\mbox{\hyperlink{classph_1_1math_1_1_t_vector3_a0a5f0880f6b82a8519416ca9a987818b}{y}}()));}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ octahedronProj.\mbox{\hyperlink{classph_1_1math_1_1_t_vector3_a8d0eb557cecca2a3e07326c409b2c16b}{x}}()\ =\ mirroredXYProj.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_a03c5e56839820da78b52d2db0281f065}{x}}();}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ octahedronProj.\mbox{\hyperlink{classph_1_1math_1_1_t_vector3_a0a5f0880f6b82a8519416ca9a987818b}{y}}()\ =\ mirroredXYProj.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_af3065a5fa872cdb3f2291a84824d5d59}{y}}();}
+\DoxyCodeLine{00067\ \ \ \ \ \}}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{TVector2<T>}}(octahedronProj.\mbox{\hyperlink{classph_1_1math_1_1_t_vector3_a8d0eb557cecca2a3e07326c409b2c16b}{x}}(),\ octahedronProj.\mbox{\hyperlink{classph_1_1math_1_1_t_vector3_a0a5f0880f6b82a8519416ca9a987818b}{y}}())\ *\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(0.5)\ +\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(0.5);}
+\DoxyCodeLine{00070\ \}}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00076\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00077\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{TVector3<T>}}\ \mbox{\hyperlink{namespaceph_1_1math_a97853fb83b95a1bd4eb7c30cfce31938}{octahedron\_unit\_vector\_decode}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{TVector2<T>}}\&\ encodedVal)}
+\DoxyCodeLine{00078\ \{}
+\DoxyCodeLine{00079\ \ \ \ \ PH\_ASSERT\_IN\_RANGE\_INCLUSIVE(encodedVal.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_a03c5e56839820da78b52d2db0281f065}{x}}(),\ 0,\ 1);}
+\DoxyCodeLine{00080\ \ \ \ \ PH\_ASSERT\_IN\_RANGE\_INCLUSIVE(encodedVal.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_af3065a5fa872cdb3f2291a84824d5d59}{y}}(),\ 0,\ 1);}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{comment}{//\ Note\ that\ https://knarkowicz.wordpress.com/2014/04/16/octahedron-\/normal-\/vector-\/encoding/}}
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{comment}{//\ provides\ an\ alternative\ approach\ that\ is\ faster\ on\ GPU.}}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{TVector2<T>}}\ expandedEncodedVal\ =\ encodedVal\ *\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(2)\ -\/\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(1);}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{TVector3<T>}}\ octahedronProj(}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ expandedEncodedVal.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_a03c5e56839820da78b52d2db0281f065}{x}}(),}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ expandedEncodedVal.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_af3065a5fa872cdb3f2291a84824d5d59}{y}}(),}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(1)\ -\/\ expandedEncodedVal.\mbox{\hyperlink{classph_1_1math_1_1_t_vector_n_base_a9dc304b7c2933c68133bf76c8683b4d2}{abs}}().sum());}
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keywordflow}{if}(octahedronProj.\mbox{\hyperlink{classph_1_1math_1_1_t_vector3_a34d51b9c12196175c8ad04c2cd9c59ec}{z}}()\ <\ 0)}
+\DoxyCodeLine{00092\ \ \ \ \ \{}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{TVector2<T>}}\ mirroredXYProj\ =\ \mbox{\hyperlink{namespaceph_1_1math_1_1detail_a56f26ac6998799fac4fe89ea1370f3f4}{detail::octahedron\_diamond\_mirror}}(\mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{TVector2<T>}}(octahedronProj.\mbox{\hyperlink{classph_1_1math_1_1_t_vector3_a8d0eb557cecca2a3e07326c409b2c16b}{x}}(),\ octahedronProj.\mbox{\hyperlink{classph_1_1math_1_1_t_vector3_a0a5f0880f6b82a8519416ca9a987818b}{y}}()));}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ octahedronProj.\mbox{\hyperlink{classph_1_1math_1_1_t_vector3_a8d0eb557cecca2a3e07326c409b2c16b}{x}}()\ =\ mirroredXYProj.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_a03c5e56839820da78b52d2db0281f065}{x}}();}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ octahedronProj.\mbox{\hyperlink{classph_1_1math_1_1_t_vector3_a0a5f0880f6b82a8519416ca9a987818b}{y}}()\ =\ mirroredXYProj.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_af3065a5fa872cdb3f2291a84824d5d59}{y}}();}
+\DoxyCodeLine{00096\ \ \ \ \ \}}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keywordflow}{return}\ octahedronProj.\mbox{\hyperlink{classph_1_1math_1_1_t_vector_n_base_a83faa5cec9beeb81bb58af4a8b1d13b1}{normalize}}();}
+\DoxyCodeLine{00099\ \}}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \}\textcolor{comment}{//\ end\ namespace\ ph::math}}
 
 \end{DoxyCode}

@@ -1,32 +1,61 @@
 \doxysection{Exr\+File\+Writer.\+h}
-\hypertarget{_exr_file_writer_8h_source}{}\label{_exr_file_writer_8h_source}\index{Source/DataIO/ExrFileWriter.h@{Source/DataIO/ExrFileWriter.h}}
-
+\hypertarget{_exr_file_writer_8h_source}{}\label{_exr_file_writer_8h_source}\index{Source/DataIO/EXR/ExrFileWriter.h@{Source/DataIO/EXR/ExrFileWriter.h}}
+\mbox{\hyperlink{_exr_file_writer_8h}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
 \DoxyCodeLine{00002\ }
-\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}DataIO/FileSystem/Path.h"{}}}
-\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Frame/TFrame.h"{}}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_path_8h}{DataIO/FileSystem/Path.h}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{frame__fwd_8h}{Frame/frame\_fwd.h}}"{}}}
 \DoxyCodeLine{00005\ }
-\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <string\_view>}}
 \DoxyCodeLine{00007\ }
 \DoxyCodeLine{00008\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
 \DoxyCodeLine{00009\ \{}
 \DoxyCodeLine{00010\ }
-\DoxyCodeLine{00011\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_exr_file_writer}{ExrFileWriter}}}
-\DoxyCodeLine{00012\ \{}
-\DoxyCodeLine{00013\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classph_1_1_exr_file_writer}{ExrFileWriter}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_alt_path}{Path}}\&\ filePath);}
-\DoxyCodeLine{00015\ }
-\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keywordtype}{bool}\ save(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_t_frame}{HdrRgbFrame}}\&\ frame);}
-\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keywordtype}{bool}\ saveHighPrecision(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_t_frame}{HdrRgbFrame}}\&\ frame);}
-\DoxyCodeLine{00018\ }
-\DoxyCodeLine{00019\ \ \ \ \ \textcolor{comment}{//\ HACK}}
-\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keywordtype}{bool}\ save(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_t_frame}{HdrRgbFrame}}\&\ frame,\ std::string\&\ byteBuffer);}
+\DoxyCodeLine{00011\ \textcolor{keyword}{class\ }ByteBuffer;}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_exr_file_writer}{ExrFileWriter}}}
+\DoxyCodeLine{00014\ \{}
+\DoxyCodeLine{00015\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00020\ \ \ \ \ \mbox{\hyperlink{classph_1_1_exr_file_writer_a099dbfd60cd1c59911992c831b13cf1e}{ExrFileWriter}}();}
 \DoxyCodeLine{00021\ }
-\DoxyCodeLine{00022\ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00023\ \ \ \ \ \mbox{\hyperlink{classph_1_1_alt_path}{Path}}\ m\_filePath;}
-\DoxyCodeLine{00024\ \};}
-\DoxyCodeLine{00025\ }
-\DoxyCodeLine{00026\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classph_1_1_exr_file_writer_a099dbfd60cd1c59911992c831b13cf1e}{ExrFileWriter}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_alt_path}{Path}}\&\ filePath);}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_exr_file_writer_a6045b6ebf8bc97d5aeb46d0af23478ab}{save}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_t_frame}{HdrRgbFrame}}\&\ frame);}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_exr_file_writer_ad786ab9804c437feb6ee1ba94f937c64}{saveHighPrecision}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_t_frame}{HdrRgbFrame}}\&\ frame);}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_exr_file_writer_a5951185f6d37aee45680b9b0cc219fbc}{saveToFilesystem}}(}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_t_frame}{HdrRgbFrame}}\&\ frame,}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ saveInHighPrecision\ =\ \textcolor{keyword}{false},}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ std::string\_view\ redChannelName\ =\ \textcolor{stringliteral}{"{}R"{}},}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ std::string\_view\ greenChannelName\ =\ \textcolor{stringliteral}{"{}G"{}},}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ std::string\_view\ blueChannelName\ =\ \textcolor{stringliteral}{"{}B"{}},}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ std::string\_view\ alphaChannelName\ =\ \textcolor{stringliteral}{"{}"{}},}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceph_a616994a6a9ee59cfcdc213954e5d71eb}{HdrComponent}}\ alphaValue\ =\ 1);}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_exr_file_writer_ae95d45eb27b513290d8098f68d6def1a}{saveToMemory}}(}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_t_frame}{HdrRgbFrame}}\&\ frame,\ }
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_byte_buffer}{ByteBuffer}}\&\ buffer,}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ std::string\_view\ redChannelName\ =\ \textcolor{stringliteral}{"{}R"{}},}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ std::string\_view\ greenChannelName\ =\ \textcolor{stringliteral}{"{}G"{}},}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ std::string\_view\ blueChannelName\ =\ \textcolor{stringliteral}{"{}B"{}},}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ std::string\_view\ alphaChannelName\ =\ \textcolor{stringliteral}{"{}"{}},}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceph_a616994a6a9ee59cfcdc213954e5d71eb}{HdrComponent}}\ alphaValue\ =\ 1);}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ saveStandaloneImageData(}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_alt_path}{Path}}\&\ filePath,}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_t_frame}{HdrRgbFrame}}\&\ frame,}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ saveInHighPrecision,}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ std::string\_view\ redChannelName,}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ std::string\_view\ greenChannelName,}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ std::string\_view\ blueChannelName,}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ std::string\_view\ alphaChannelName,}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceph_a616994a6a9ee59cfcdc213954e5d71eb}{HdrComponent}}\ alphaValue);}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \ \ \ \ \mbox{\hyperlink{classph_1_1_alt_path}{Path}}\ m\_filePath;}
+\DoxyCodeLine{00065\ \};}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
 
 \end{DoxyCode}

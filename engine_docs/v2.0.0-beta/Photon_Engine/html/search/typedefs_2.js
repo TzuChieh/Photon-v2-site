@@ -1,5 +1,8 @@
 var searchData=
 [
-  ['int8_0',['int8',['../d3/d5c/namespaceph.html#a74cecc41f8d4d0087f4c0a061e2651bd',1,'ph']]],
-  ['int8f_1',['int8f',['../d3/d5c/namespaceph.html#a8d46d2dae8be84655aac3cdecda0f2fb',1,'ph']]]
+  ['chromaticityvalues_0',['ChromaticityValues',['../d7/dac/namespaceph_1_1math.html#aaba86a71375d63a16a6b7927150ba809',1,'ph::math']]],
+  ['clock_1',['Clock',['../de/d6a/classph_1_1_timer.html#ae2bb5daae1dceed1a76a7a2463dad604',1,'ph::Timer']]],
+  ['colorvalue_2',['ColorValue',['../d7/dac/namespaceph_1_1math.html#a84faaa3dbf3717b679161cb477faaea0',1,'ph::math']]],
+  ['cooklevel_3',['CookLevel',['../d3/d5c/namespaceph.html#a9cc8f904685fe6dca8e9e438b908d550',1,'ph']]],
+  ['cookpriority_4',['CookPriority',['../d3/d5c/namespaceph.html#a5c6dfc49da309fdce5d9a1cf8cddc130',1,'ph']]]
 ];

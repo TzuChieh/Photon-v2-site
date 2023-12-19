@@ -11,9 +11,8 @@ var searchData=
   ['gradientimage_8',['GradientImage',['../d7/d7e/classph_1_1_gradient_image.html',1,'ph']]],
   ['grectangle_9',['GRectangle',['../d6/d70/classph_1_1_g_rectangle.html',1,'ph']]],
   ['gridscheduler_10',['GridScheduler',['../da/d39/classph_1_1_grid_scheduler.html',1,'ph']]],
-  ['groupedtimerecord_11',['GroupedTimeRecord',['../d8/dc7/structph_1_1_timer_stats_report_1_1_grouped_time_record.html',1,'ph::TimerStatsReport']]],
-  ['gsphere_12',['GSphere',['../dc/da7/classph_1_1_g_sphere.html',1,'ph']]],
-  ['gtriangle_13',['GTriangle',['../d1/de0/classph_1_1_g_triangle.html',1,'ph']]],
-  ['gtrianglemesh_14',['GTriangleMesh',['../db/db0/classph_1_1_g_triangle_mesh.html',1,'ph']]],
-  ['gwave_15',['GWave',['../d3/d0b/classph_1_1_g_wave.html',1,'ph']]]
+  ['gsphere_11',['GSphere',['../dc/da7/classph_1_1_g_sphere.html',1,'ph']]],
+  ['gtriangle_12',['GTriangle',['../d1/de0/classph_1_1_g_triangle.html',1,'ph']]],
+  ['gtrianglemesh_13',['GTriangleMesh',['../db/db0/classph_1_1_g_triangle_mesh.html',1,'ph']]],
+  ['gwave_14',['GWave',['../d3/d0b/classph_1_1_g_wave.html',1,'ph']]]
 ];

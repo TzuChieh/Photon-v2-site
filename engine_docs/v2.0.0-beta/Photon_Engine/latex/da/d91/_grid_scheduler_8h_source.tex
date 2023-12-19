@@ -1,171 +1,172 @@
 \doxysection{Grid\+Scheduler.\+h}
 \hypertarget{_grid_scheduler_8h_source}{}\label{_grid_scheduler_8h_source}\index{Source/Core/Scheduler/GridScheduler.h@{Source/Core/Scheduler/GridScheduler.h}}
-
+\mbox{\hyperlink{_grid_scheduler_8h}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
 \DoxyCodeLine{00002\ }
-\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Core/Scheduler/WorkScheduler.h"{}}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_work_scheduler_8h}{Core/Scheduler/WorkScheduler.h}}"{}}}
 \DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{math_8h}{Math/math.h}}"{}}}
-\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}Math/constant.h"{}}}
-\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}Common/assertion.h"{}}}
-\DoxyCodeLine{00007\ }
-\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <algorithm>}}
-\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <cmath>}}
-\DoxyCodeLine{00010\ }
-\DoxyCodeLine{00011\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
-\DoxyCodeLine{00012\ \{}
-\DoxyCodeLine{00013\ }
-\DoxyCodeLine{00014\ \textcolor{comment}{/*}}
-\DoxyCodeLine{00015\ \textcolor{comment}{\ \ \ \ Slice\ work\ region\ into\ rectangular\ cells\ with\ similar\ dimensions,\ each\ }}
-\DoxyCodeLine{00016\ \textcolor{comment}{\ \ \ \ region\ has\ complete\ depth.}}
-\DoxyCodeLine{00017\ \textcolor{comment}{*/}}
-\DoxyCodeLine{00018\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_grid_scheduler}{GridScheduler}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classph_1_1_work_scheduler}{WorkScheduler}}}
-\DoxyCodeLine{00019\ \{}
-\DoxyCodeLine{00020\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keyword}{enum\ class}\ EOrigin}
-\DoxyCodeLine{00022\ \ \ \ \ \{}
-\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ LOWER\_LEFT,}
-\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ LOWER\_RIGHT,}
-\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ UPPER\_LEFT,}
-\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ UPPER\_RIGHT}
-\DoxyCodeLine{00027\ \ \ \ \ \};}
-\DoxyCodeLine{00028\ }
-\DoxyCodeLine{00029\ \ \ \ \ \mbox{\hyperlink{classph_1_1_grid_scheduler}{GridScheduler}}();}
-\DoxyCodeLine{00030\ }
-\DoxyCodeLine{00031\ \ \ \ \ \mbox{\hyperlink{classph_1_1_grid_scheduler}{GridScheduler}}(}
-\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ std::size\_t\ \ \ \ \ \ \ \ \ \ \ \ \ numWorkers,}
-\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_work_unit}{WorkUnit}}\&\ \ \ \ \ \ \ \ \ totalWorkUnit);}
-\DoxyCodeLine{00034\ }
-\DoxyCodeLine{00035\ \ \ \ \ \mbox{\hyperlink{classph_1_1_grid_scheduler}{GridScheduler}}(}
-\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ std::size\_t\ \ \ \ \ \ \ \ \ \ \ \ \ numWorkers,}
-\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_work_unit}{WorkUnit}}\&\ \ \ \ \ \ \ \ \ totalWorkUnit,}
-\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{math::Vector2S}}\&\ \ \ numCells);}
-\DoxyCodeLine{00039\ }
-\DoxyCodeLine{00040\ \ \ \ \ \mbox{\hyperlink{classph_1_1_grid_scheduler}{GridScheduler}}(}
-\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ std::size\_t\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ numWorkers,\ }
-\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_work_unit}{WorkUnit}}\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ totalWorkUnit,}
-\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{math::Vector2S}}\&\ \ \ \ \ \ \ \ \ numCells,}
-\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ EOrigin\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ origin,}
-\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ math::constant::AxisIndexType\ prioriAxis);}
-\DoxyCodeLine{00046\ }
-\DoxyCodeLine{00047\ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00048\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{math::Vector2S}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_numCells;}
-\DoxyCodeLine{00049\ \ \ \ \ EOrigin\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_origin;}
-\DoxyCodeLine{00050\ \ \ \ \ math::constant::AxisIndexType\ m\_prioriAxis;}
-\DoxyCodeLine{00051\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{math::Vector2S}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_currentCell;}
-\DoxyCodeLine{00052\ }
-\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordtype}{void}\ scheduleOne(\mbox{\hyperlink{classph_1_1_work_unit}{WorkUnit}}*\ out\_workUnit)\ \textcolor{keyword}{override};}
-\DoxyCodeLine{00054\ \};}
-\DoxyCodeLine{00055\ }
-\DoxyCodeLine{00056\ \textcolor{comment}{//\ In-\/header\ Implementations:}}
-\DoxyCodeLine{00057\ }
-\DoxyCodeLine{00058\ \textcolor{keyword}{inline}\ GridScheduler::GridScheduler()\ :}
-\DoxyCodeLine{00059\ \ \ \ \ \mbox{\hyperlink{classph_1_1_work_scheduler}{WorkScheduler}}()}
-\DoxyCodeLine{00060\ \{\}}
-\DoxyCodeLine{00061\ }
-\DoxyCodeLine{00062\ \textcolor{keyword}{inline}\ GridScheduler::GridScheduler(}
-\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ numWorkers,}
-\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keyword}{const}\ WorkUnit\&\ \ \ totalWorkUnit)\ :\ }
-\DoxyCodeLine{00065\ }
-\DoxyCodeLine{00066\ \ \ \ \ GridScheduler(}
-\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ numWorkers,\ }
-\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ totalWorkUnit,}
-\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ math::Vector2S(}
-\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ static\_cast<std::size\_t>(}
-\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::ceil(math::\mbox{\hyperlink{namespaceph_1_1math_adb93254f78909d9fef4bc8d7326b7670}{fast\_sqrt}}(numWorkers\ *\ static\_cast<float>(totalWorkUnit.getAspectRatio())))),}
-\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ static\_cast<std::size\_t>(}
-\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::ceil(math::\mbox{\hyperlink{namespaceph_1_1math_adb93254f78909d9fef4bc8d7326b7670}{fast\_sqrt}}(numWorkers\ /\ static\_cast<float>(totalWorkUnit.getAspectRatio()))))))}
-\DoxyCodeLine{00074\ \{\}}
-\DoxyCodeLine{00075\ }
-\DoxyCodeLine{00076\ \textcolor{keyword}{inline}\ GridScheduler::GridScheduler(}
-\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ \ \ \ \ numWorkers,}
-\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keyword}{const}\ WorkUnit\&\ \ \ \ \ \ \ totalWorkUnit,}
-\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keyword}{const}\ math::Vector2S\&\ numCells)\ :}
-\DoxyCodeLine{00080\ }
-\DoxyCodeLine{00081\ \ \ \ \ GridScheduler(}
-\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ numWorkers,\ }
-\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ totalWorkUnit,\ }
-\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ numCells,}
-\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ EOrigin::LOWER\_LEFT,}
-\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ math::constant::X\_AXIS)}
-\DoxyCodeLine{00087\ \{\}}
-\DoxyCodeLine{00088\ }
-\DoxyCodeLine{00089\ \textcolor{keyword}{inline}\ GridScheduler::GridScheduler(}
-\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ numWorkers,}
-\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keyword}{const}\ WorkUnit\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ totalWorkUnit,}
-\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keyword}{const}\ math::Vector2S\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ numCells,}
-\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keyword}{const}\ EOrigin\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ origin,}
-\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keyword}{const}\ math::constant::AxisIndexType\ prioriAxis)\ :}
-\DoxyCodeLine{00095\ }
-\DoxyCodeLine{00096\ \ \ \ \ WorkScheduler(numWorkers,\ totalWorkUnit),}
-\DoxyCodeLine{00097\ }
-\DoxyCodeLine{00098\ \ \ \ \ m\_numCells\ \ \ (numCells),}
-\DoxyCodeLine{00099\ \ \ \ \ m\_origin\ \ \ \ \ (origin),}
-\DoxyCodeLine{00100\ \ \ \ \ m\_prioriAxis\ (prioriAxis),}
-\DoxyCodeLine{00101\ \ \ \ \ m\_currentCell(0,\ 0)}
-\DoxyCodeLine{00102\ \{\}}
-\DoxyCodeLine{00103\ }
-\DoxyCodeLine{00104\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ GridScheduler::scheduleOne(WorkUnit*\ \textcolor{keyword}{const}\ out\_workUnit)}
-\DoxyCodeLine{00105\ \{}
-\DoxyCodeLine{00106\ \ \ \ \ PH\_ASSERT(out\_workUnit);}
-\DoxyCodeLine{00107\ }
-\DoxyCodeLine{00108\ \ \ \ \ \textcolor{comment}{//\ Cell\ coordinates\ are\ always\ in\ the\ canonical\ Cartesian\ space.\ Mapping}}
-\DoxyCodeLine{00109\ \ \ \ \ \textcolor{comment}{//\ only\ performed\ on\ divided\ ranges.}}
-\DoxyCodeLine{00110\ }
-\DoxyCodeLine{00111\ \ \ \ \ \textcolor{keywordflow}{if}(m\_currentCell.x()\ <\ m\_numCells.x()\ \&\&\ m\_currentCell.y()\ <\ m\_numCells.y())}
-\DoxyCodeLine{00112\ \ \ \ \ \{}
-\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ totalWidth\ \ =\ m\_totalWorkUnit.getRegion().getWidth();}
-\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ totalHeight\ =\ m\_totalWorkUnit.getRegion().getHeight();}
-\DoxyCodeLine{00115\ }
-\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ sideRangeX\ =\ \mbox{\hyperlink{namespaceph_1_1math_a830bc8cab76b0720b0756fce21828b3f}{math::ith\_evenly\_divided\_range}}(}
-\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ m\_currentCell.x(),\ totalWidth,\ m\_numCells.x());}
-\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(m\_origin\ ==\ EOrigin::LOWER\_RIGHT\ ||\ m\_origin\ ==\ EOrigin::UPPER\_RIGHT)}
-\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ size\ =\ sideRangeX.second\ -\/\ sideRangeX.first;}
-\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ sideRangeX.first\ \ =\ totalWidth\ -\/\ sideRangeX.second;}
-\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ sideRangeX.second\ =\ sideRangeX.first\ +\ size;}
-\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00124\ }
-\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ sideRangeY\ =\ \mbox{\hyperlink{namespaceph_1_1math_a830bc8cab76b0720b0756fce21828b3f}{math::ith\_evenly\_divided\_range}}(}
-\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ m\_currentCell.y(),\ totalHeight,\ m\_numCells.y());}
-\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(m\_origin\ ==\ EOrigin::UPPER\_LEFT\ ||\ m\_origin\ ==\ EOrigin::UPPER\_RIGHT)}
-\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ size\ =\ sideRangeY.second\ -\/\ sideRangeY.first;}
-\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ sideRangeY.first\ \ =\ totalHeight\ -\/\ sideRangeY.second;}
-\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ sideRangeY.second\ =\ sideRangeY.first\ +\ size;}
-\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00133\ }
-\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ *out\_workUnit\ =\ WorkUnit(}
-\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ Region(}
-\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ math::TVector2<int64>(math::Vector2S(sideRangeX.first,\ sideRangeY.first))\ +\ m\_totalWorkUnit.getRegion().getMinVertex(),}
-\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ math::TVector2<int64>(math::Vector2S(sideRangeX.second,\ sideRangeY.second))\ +\ m\_totalWorkUnit.getRegion().getMinVertex()),}
-\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ m\_totalWorkUnit.getDepth());}
-\DoxyCodeLine{00139\ }
-\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(m\_prioriAxis\ ==\ math::constant::X\_AXIS)}
-\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ ++m\_currentCell.x();}
-\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(m\_currentCell.x()\ ==\ m\_numCells.x())}
-\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_currentCell.x()\ =\ 0;}
-\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ++m\_currentCell.y();}
-\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \ \ \ \ ++m\_currentCell.y();}
-\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(m\_currentCell.y()\ ==\ m\_numCells.y())}
-\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_currentCell.y()\ =\ 0;}
-\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ++m\_currentCell.x();}
-\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00158\ \ \ \ \ \}}
-\DoxyCodeLine{00159\ \ \ \ \ \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00160\ \ \ \ \ \{}
-\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ *out\_workUnit\ =\ WorkUnit();}
-\DoxyCodeLine{00162\ \ \ \ \ \}}
-\DoxyCodeLine{00163\ \}}
-\DoxyCodeLine{00164\ }
-\DoxyCodeLine{00165\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{constant_8h}{Math/constant.h}}"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <Common/assertion.h>}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <cmath>}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00013\ \{}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ \ \ \ Slice\ work\ region\ into\ rectangular\ cells\ with\ similar\ dimensions,\ each\ }}
+\DoxyCodeLine{00017\ \textcolor{comment}{\ \ \ \ region\ has\ complete\ depth.}}
+\DoxyCodeLine{00018\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00019\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_grid_scheduler}{GridScheduler}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classph_1_1_work_scheduler}{WorkScheduler}}}
+\DoxyCodeLine{00020\ \{}
+\DoxyCodeLine{00021\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keyword}{enum\ class}\ \mbox{\hyperlink{classph_1_1_grid_scheduler_a62143d34f0260721a1d597abb9afd04e}{EOrigin}}}
+\DoxyCodeLine{00023\ \ \ \ \ \{}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_grid_scheduler_a62143d34f0260721a1d597abb9afd04ea56052100a4c3a420907d2fc77f1227a8}{LOWER\_LEFT}},}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_grid_scheduler_a62143d34f0260721a1d597abb9afd04ea9434fe4878cd007b366fa72d3694f1b4}{LOWER\_RIGHT}},}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_grid_scheduler_a62143d34f0260721a1d597abb9afd04eac122adb2ef4ea606a12c5af1b8ca5319}{UPPER\_LEFT}},}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_grid_scheduler_a62143d34f0260721a1d597abb9afd04ea24cd25dbc37d130d0a94554e560ead06}{UPPER\_RIGHT}}}
+\DoxyCodeLine{00028\ \ \ \ \ \};}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \ \ \ \mbox{\hyperlink{classph_1_1_grid_scheduler_ab63e5b1365dffb17ef50eace2d60d161}{GridScheduler}}();}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \ \ \mbox{\hyperlink{classph_1_1_grid_scheduler_ab63e5b1365dffb17ef50eace2d60d161}{GridScheduler}}(}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ std::size\_t\ \ \ \ \ \ \ \ \ \ \ \ \ numWorkers,}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_work_unit}{WorkUnit}}\&\ \ \ \ \ \ \ \ \ totalWorkUnit);}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \ \ \mbox{\hyperlink{classph_1_1_grid_scheduler_ab63e5b1365dffb17ef50eace2d60d161}{GridScheduler}}(}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ std::size\_t\ \ \ \ \ \ \ \ \ \ \ \ \ numWorkers,}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_work_unit}{WorkUnit}}\&\ \ \ \ \ \ \ \ \ totalWorkUnit,}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{math::Vector2S}}\&\ \ \ numCells);}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \ \ \mbox{\hyperlink{classph_1_1_grid_scheduler_ab63e5b1365dffb17ef50eace2d60d161}{GridScheduler}}(}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ std::size\_t\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ numWorkers,\ }
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_work_unit}{WorkUnit}}\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ totalWorkUnit,}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{math::Vector2S}}\&\ \ \ \ \ \ \ \ \ numCells,}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_grid_scheduler_a62143d34f0260721a1d597abb9afd04e}{EOrigin}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ origin,}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceph_1_1math_1_1constant_ab7c3a75b519914e8d156f38c54a9a00c}{math::constant::AxisIndexType}}\ prioriAxis);}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00049\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{math::Vector2S}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_numCells;}
+\DoxyCodeLine{00050\ \ \ \ \ \mbox{\hyperlink{classph_1_1_grid_scheduler_a62143d34f0260721a1d597abb9afd04e}{EOrigin}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_origin;}
+\DoxyCodeLine{00051\ \ \ \ \ \mbox{\hyperlink{namespaceph_1_1math_1_1constant_ab7c3a75b519914e8d156f38c54a9a00c}{math::constant::AxisIndexType}}\ m\_prioriAxis;}
+\DoxyCodeLine{00052\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{math::Vector2S}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_currentCell;}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordtype}{void}\ scheduleOne(\mbox{\hyperlink{classph_1_1_work_unit}{WorkUnit}}*\ out\_workUnit)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00055\ \};}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \textcolor{comment}{//\ In-\/header\ Implementations:}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_grid_scheduler_ab63e5b1365dffb17ef50eace2d60d161}{GridScheduler::GridScheduler}}()\ :}
+\DoxyCodeLine{00060\ \ \ \ \ \mbox{\hyperlink{classph_1_1_work_scheduler}{WorkScheduler}}()}
+\DoxyCodeLine{00061\ \{\}}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_grid_scheduler_ab63e5b1365dffb17ef50eace2d60d161}{GridScheduler::GridScheduler}}(}
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ numWorkers,}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_work_unit}{WorkUnit}}\&\ \ \ totalWorkUnit)\ :\ }
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \ \ \ \mbox{\hyperlink{classph_1_1_grid_scheduler}{GridScheduler}}(}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ numWorkers,\ }
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ totalWorkUnit,}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ math::\mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{Vector2S}}(}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ static\_cast<\mbox{\hyperlink{namespacestd}{std}}::size\_t>(}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacestd}{std}}::ceil(math::\mbox{\hyperlink{namespaceph_1_1math_adb93254f78909d9fef4bc8d7326b7670}{fast\_sqrt}}(numWorkers\ *\ static\_cast<float>(totalWorkUnit.getAspectRatio())))),}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ static\_cast<\mbox{\hyperlink{namespacestd}{std}}::size\_t>(}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacestd}{std}}::ceil(math::\mbox{\hyperlink{namespaceph_1_1math_adb93254f78909d9fef4bc8d7326b7670}{fast\_sqrt}}(numWorkers\ /\ static\_cast<float>(totalWorkUnit.getAspectRatio()))))))}
+\DoxyCodeLine{00075\ \{\}}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_grid_scheduler_ab63e5b1365dffb17ef50eace2d60d161}{GridScheduler::GridScheduler}}(}
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ \ \ \ \ numWorkers,}
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_work_unit}{WorkUnit}}\&\ \ \ \ \ \ \ totalWorkUnit,}
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{math::Vector2S}}\&\ numCells)\ :}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \ \ \ \ \mbox{\hyperlink{classph_1_1_grid_scheduler}{GridScheduler}}(}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ numWorkers,\ }
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ totalWorkUnit,\ }
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ numCells,}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_grid_scheduler_a62143d34f0260721a1d597abb9afd04e}{EOrigin}}::LOWER\_LEFT,}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ math::constant::X\_AXIS)}
+\DoxyCodeLine{00088\ \{\}}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_grid_scheduler_ab63e5b1365dffb17ef50eace2d60d161}{GridScheduler::GridScheduler}}(}
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ numWorkers,}
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_work_unit}{WorkUnit}}\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ totalWorkUnit,}
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{math::Vector2S}}\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ numCells,}
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_grid_scheduler_a62143d34f0260721a1d597abb9afd04e}{EOrigin}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ origin,}
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_1_1math_1_1constant_ab7c3a75b519914e8d156f38c54a9a00c}{math::constant::AxisIndexType}}\ prioriAxis)\ :}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \ \ \ \ \mbox{\hyperlink{classph_1_1_work_scheduler}{WorkScheduler}}(numWorkers,\ totalWorkUnit),}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \ \ \ \ m\_numCells\ \ \ (numCells),}
+\DoxyCodeLine{00100\ \ \ \ \ m\_origin\ \ \ \ \ (origin),}
+\DoxyCodeLine{00101\ \ \ \ \ m\_prioriAxis\ (prioriAxis),}
+\DoxyCodeLine{00102\ \ \ \ \ m\_currentCell(0,\ 0)}
+\DoxyCodeLine{00103\ \{\}}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ GridScheduler::scheduleOne(\mbox{\hyperlink{classph_1_1_work_unit}{WorkUnit}}*\ \textcolor{keyword}{const}\ out\_workUnit)}
+\DoxyCodeLine{00106\ \{}
+\DoxyCodeLine{00107\ \ \ \ \ PH\_ASSERT(out\_workUnit);}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{comment}{//\ Cell\ coordinates\ are\ always\ in\ the\ canonical\ Cartesian\ space.\ Mapping}}
+\DoxyCodeLine{00110\ \ \ \ \ \textcolor{comment}{//\ only\ performed\ on\ divided\ ranges.}}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{keywordflow}{if}(m\_currentCell.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_a03c5e56839820da78b52d2db0281f065}{x}}()\ <\ m\_numCells.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_a03c5e56839820da78b52d2db0281f065}{x}}()\ \&\&\ m\_currentCell.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_af3065a5fa872cdb3f2291a84824d5d59}{y}}()\ <\ m\_numCells.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_af3065a5fa872cdb3f2291a84824d5d59}{y}}())}
+\DoxyCodeLine{00113\ \ \ \ \ \{}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ totalWidth\ \ =\ \mbox{\hyperlink{classph_1_1_work_scheduler_a4cd851df1c4ab76ec2b4c25cc2c6fabb}{m\_totalWorkUnit}}.\mbox{\hyperlink{classph_1_1_work_unit_a53dc72cbe5e24dca1167bf0190038700}{getRegion}}().\mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d_a2f69c95543fdfbfd75445ee866671e20}{getWidth}}();}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ totalHeight\ =\ \mbox{\hyperlink{classph_1_1_work_scheduler_a4cd851df1c4ab76ec2b4c25cc2c6fabb}{m\_totalWorkUnit}}.\mbox{\hyperlink{classph_1_1_work_unit_a53dc72cbe5e24dca1167bf0190038700}{getRegion}}().\mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d_a18723828439f5b7c9c8232e7485c59c7}{getHeight}}();}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ sideRangeX\ =\ \mbox{\hyperlink{namespaceph_1_1math_a830bc8cab76b0720b0756fce21828b3f}{math::ith\_evenly\_divided\_range}}(}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ m\_currentCell.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_a03c5e56839820da78b52d2db0281f065}{x}}(),\ totalWidth,\ m\_numCells.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_a03c5e56839820da78b52d2db0281f065}{x}}());}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(m\_origin\ ==\ \mbox{\hyperlink{classph_1_1_grid_scheduler_a62143d34f0260721a1d597abb9afd04ea9434fe4878cd007b366fa72d3694f1b4}{EOrigin::LOWER\_RIGHT}}\ ||\ m\_origin\ ==\ \mbox{\hyperlink{classph_1_1_grid_scheduler_a62143d34f0260721a1d597abb9afd04ea24cd25dbc37d130d0a94554e560ead06}{EOrigin::UPPER\_RIGHT}})}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ size\ =\ sideRangeX.second\ -\/\ sideRangeX.first;}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ sideRangeX.first\ \ =\ totalWidth\ -\/\ sideRangeX.second;}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ sideRangeX.second\ =\ sideRangeX.first\ +\ size;}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ sideRangeY\ =\ \mbox{\hyperlink{namespaceph_1_1math_a830bc8cab76b0720b0756fce21828b3f}{math::ith\_evenly\_divided\_range}}(}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ m\_currentCell.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_af3065a5fa872cdb3f2291a84824d5d59}{y}}(),\ totalHeight,\ m\_numCells.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_af3065a5fa872cdb3f2291a84824d5d59}{y}}());}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(m\_origin\ ==\ \mbox{\hyperlink{classph_1_1_grid_scheduler_a62143d34f0260721a1d597abb9afd04eac122adb2ef4ea606a12c5af1b8ca5319}{EOrigin::UPPER\_LEFT}}\ ||\ m\_origin\ ==\ \mbox{\hyperlink{classph_1_1_grid_scheduler_a62143d34f0260721a1d597abb9afd04ea24cd25dbc37d130d0a94554e560ead06}{EOrigin::UPPER\_RIGHT}})}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ size\ =\ sideRangeY.second\ -\/\ sideRangeY.first;}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ sideRangeY.first\ \ =\ totalHeight\ -\/\ sideRangeY.second;}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ sideRangeY.second\ =\ sideRangeY.first\ +\ size;}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ *out\_workUnit\ =\ WorkUnit(}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceph_a8fd64ba111f389ee0f7211828989cb36}{Region}}(}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ math::TVector2<int64>(\mbox{\hyperlink{namespaceph_1_1math_a086e8792ff86381dcfe5ddd3d5915a23}{math::Vector2S}}(sideRangeX.first,\ sideRangeY.first))\ +\ \mbox{\hyperlink{classph_1_1_work_scheduler_a4cd851df1c4ab76ec2b4c25cc2c6fabb}{m\_totalWorkUnit}}.\mbox{\hyperlink{classph_1_1_work_unit_a53dc72cbe5e24dca1167bf0190038700}{getRegion}}().\mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d_ac78db088c8023b3e555759eff399110b}{getMinVertex}}(),}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ math::TVector2<int64>(\mbox{\hyperlink{namespaceph_1_1math_a086e8792ff86381dcfe5ddd3d5915a23}{math::Vector2S}}(sideRangeX.second,\ sideRangeY.second))\ +\ \mbox{\hyperlink{classph_1_1_work_scheduler_a4cd851df1c4ab76ec2b4c25cc2c6fabb}{m\_totalWorkUnit}}.\mbox{\hyperlink{classph_1_1_work_unit_a53dc72cbe5e24dca1167bf0190038700}{getRegion}}().\mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d_ac78db088c8023b3e555759eff399110b}{getMinVertex}}()),}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_work_scheduler_a4cd851df1c4ab76ec2b4c25cc2c6fabb}{m\_totalWorkUnit}}.\mbox{\hyperlink{classph_1_1_work_unit_aec0b887d6fd90b599c0d507b63549ee8}{getDepth}}());}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(m\_prioriAxis\ ==\ \mbox{\hyperlink{namespaceph_1_1math_1_1constant_a700e65439fa95e5ea186c96d06614a47}{math::constant::X\_AXIS}})}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ ++m\_currentCell.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_a03c5e56839820da78b52d2db0281f065}{x}}();}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(m\_currentCell.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_a03c5e56839820da78b52d2db0281f065}{x}}()\ ==\ m\_numCells.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_a03c5e56839820da78b52d2db0281f065}{x}}())}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_currentCell.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_a03c5e56839820da78b52d2db0281f065}{x}}()\ =\ 0;}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ++m\_currentCell.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_af3065a5fa872cdb3f2291a84824d5d59}{y}}();}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \ \ \ \ ++m\_currentCell.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_af3065a5fa872cdb3f2291a84824d5d59}{y}}();}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(m\_currentCell.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_af3065a5fa872cdb3f2291a84824d5d59}{y}}()\ ==\ m\_numCells.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_af3065a5fa872cdb3f2291a84824d5d59}{y}}())}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_currentCell.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_af3065a5fa872cdb3f2291a84824d5d59}{y}}()\ =\ 0;}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ++m\_currentCell.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_a03c5e56839820da78b52d2db0281f065}{x}}();}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00159\ \ \ \ \ \}}
+\DoxyCodeLine{00160\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00161\ \ \ \ \ \{}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ *out\_workUnit\ =\ WorkUnit();}
+\DoxyCodeLine{00163\ \ \ \ \ \}}
+\DoxyCodeLine{00164\ \}}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00166\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
 
 \end{DoxyCode}

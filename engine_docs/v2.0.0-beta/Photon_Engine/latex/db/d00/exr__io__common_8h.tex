@@ -1,0 +1,28 @@
+\doxysection{Source/\+Data\+IO/\+EXR/exr\+\_\+io\+\_\+common.h File Reference}
+\hypertarget{exr__io__common_8h}{}\label{exr__io__common_8h}\index{Source/DataIO/EXR/exr\_io\_common.h@{Source/DataIO/EXR/exr\_io\_common.h}}
+
+
+IO functions and helpers for processing EXR files.  
+
+
+{\ttfamily \#include "{}Frame/frame\+\_\+fwd.\+h"{}}\newline
+{\ttfamily \#include "{}Common/\+Third\+Party/lib\+\_\+openexr.\+h"{}}\newline
+{\ttfamily \#include $<$array$>$}\newline
+{\ttfamily \#include $<$string\+\_\+view$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include "{}Data\+IO/\+EXR/exr\+\_\+io\+\_\+common.\+ipp"{}}\newline
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespaceph}{ph}}
+\begin{DoxyCompactList}\small\item\em The root for all renderer implementations. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+IO functions and helpers for processing EXR files. 
+
+Also contains helpers for using ILM\textquotesingle{}s Open\+EXR library for processing EXR files. The basic idea is that we provide pixel data in {\ttfamily TFrame}, then create {\ttfamily Imf\+::\+Header} and map frame data using {\ttfamily Imf\+::\+Frame\+Buffer}. Finally, pixel data is read/written to file using {\ttfamily Imf\+::\+Input\+File}/{\ttfamily Imf\+::\+Output\+File}. If the element type in {\ttfamily TFrame} does not match the precision we requested, then a conversion will be done (converting to a suitable {\ttfamily TFrame} on the fly, which incurs additional memory allocation).
+
+To simplify common usages, {\ttfamily TFrame} is assumed to contain the full data window. If a display-\/window only {\ttfamily TFrame} is desired, use {\ttfamily adjust\+\_\+frame\+\_\+to\+\_\+display\+\_\+window()}.
+
+Note that {\ttfamily Imf\+::\+Frame\+Buffer} and {\ttfamily Imf\+::\+Slice} do not own the specified data, they only reference it. The original pixel data (typically a {\ttfamily TFrame} here) must be kept alive during the output process. 

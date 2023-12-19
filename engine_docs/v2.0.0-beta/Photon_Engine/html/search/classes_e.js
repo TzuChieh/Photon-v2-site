@@ -7,7 +7,5 @@ var searchData=
   ['option_4',['Option',['../d6/da8/classph_1_1_option.html',1,'ph']]],
   ['orennayar_5',['OrenNayar',['../d3/dd0/classph_1_1_oren_nayar.html',1,'ph']]],
   ['orientedrasterobserver_6',['OrientedRasterObserver',['../da/d60/classph_1_1_oriented_raster_observer.html',1,'ph']]],
-  ['outofrangeexception_7',['OutOfRangeException',['../df/d3a/classph_1_1_out_of_range_exception.html',1,'ph']]],
-  ['output_8',['Output',['../d9/d69/classph_1_1_volume_distance_sample_1_1_output.html',1,'ph::VolumeDistanceSample']]],
-  ['overflowexception_9',['OverflowException',['../d7/d86/classph_1_1_overflow_exception.html',1,'ph']]]
+  ['output_7',['Output',['../d9/d69/classph_1_1_volume_distance_sample_1_1_output.html',1,'ph::VolumeDistanceSample']]]
 ];

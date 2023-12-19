@@ -1,9 +1,19 @@
 var classph_1_1_timer =
 [
+    [ "Clock", "de/d6a/classph_1_1_timer.html#ae2bb5daae1dceed1a76a7a2463dad604", null ],
+    [ "DefaultTimeUnit", "de/d6a/classph_1_1_timer.html#a2fe3706faa7cc4d82f249f9c7bc96635", null ],
+    [ "Timer", "de/d6a/classph_1_1_timer.html#a2e179383729f466d58d3c63534e8ebe8", null ],
     [ "accumulatedStart", "de/d6a/classph_1_1_timer.html#a5811024f54e638a9ec18e9eba32aacd9", null ],
     [ "getDelta", "de/d6a/classph_1_1_timer.html#a99b4f650346c6898aa6c756fdd0f7d8a", null ],
+    [ "getDeltaMs", "de/d6a/classph_1_1_timer.html#a3e613d6459224760593463ec04ab44f0", null ],
+    [ "getDeltaNs", "de/d6a/classph_1_1_timer.html#a122b27ecc98ea1742fc0085db4e35d89", null ],
+    [ "getDeltaS", "de/d6a/classph_1_1_timer.html#ac13d542715ae428881410094cd077d63", null ],
+    [ "getDeltaUs", "de/d6a/classph_1_1_timer.html#afe4300e855a501122ab10e95238e3195", null ],
     [ "markLap", "de/d6a/classph_1_1_timer.html#ad84461cff50c286d4a44ef65d3a1e194", null ],
+    [ "markLapMs", "de/d6a/classph_1_1_timer.html#aa79cda7db7c5dee3fa5b68aee860db3e", null ],
+    [ "markLapNs", "de/d6a/classph_1_1_timer.html#aa68095ee8a4c0dd08e5305e99ca8b991", null ],
     [ "markLapS", "de/d6a/classph_1_1_timer.html#a9d0fc873191692d7ee86537ae42b3a5d", null ],
+    [ "markLapUs", "de/d6a/classph_1_1_timer.html#a0e1c3502192c49db02b7b6aa46b876f1", null ],
     [ "peekLap", "de/d6a/classph_1_1_timer.html#ab341685b402bd3d10dd443fe4951f371", null ],
     [ "start", "de/d6a/classph_1_1_timer.html#aced04c0fd3c262cd90260c60116f6db1", null ],
     [ "stop", "de/d6a/classph_1_1_timer.html#a806b8e6c88e04cb4b6551838a54f6371", null ]

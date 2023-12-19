@@ -6,8 +6,7 @@ var searchData=
   ['hdrrgbfilm_3',['HdrRgbFilm',['../df/db0/classph_1_1_hdr_rgb_film.html',1,'ph']]],
   ['hdrrgbtexture2d_4',['HdrRgbTexture2D',['../d9/d93/classph_1_1_hdr_rgb_texture2_d.html',1,'ph']]],
   ['henyeygreenstein_5',['HenyeyGreenstein',['../dd/dbd/classph_1_1_henyey_greenstein.html',1,'ph']]],
-  ['heterogeneousstringhash_6',['HeterogeneousStringHash',['../d4/d5c/structph_1_1string__utils_1_1detail_1_1_heterogeneous_string_hash.html',1,'ph::string_utils::detail']]],
-  ['hitdetail_7',['HitDetail',['../d9/d1b/classph_1_1_hit_detail.html',1,'ph']]],
-  ['hitinfo_8',['HitInfo',['../d0/d50/classph_1_1_hit_info.html',1,'ph']]],
-  ['hitprobe_9',['HitProbe',['../df/d97/classph_1_1_hit_probe.html',1,'ph']]]
+  ['hitdetail_6',['HitDetail',['../d9/d1b/classph_1_1_hit_detail.html',1,'ph']]],
+  ['hitinfo_7',['HitInfo',['../d0/d50/classph_1_1_hit_info.html',1,'ph']]],
+  ['hitprobe_8',['HitProbe',['../df/d97/classph_1_1_hit_probe.html',1,'ph']]]
 ];

@@ -1,521 +1,522 @@
 \doxysection{TIndexed\+Point\+Kdtree.\+h}
 \hypertarget{_t_indexed_point_kdtree_8h_source}{}\label{_t_indexed_point_kdtree_8h_source}\index{Source/Math/Algorithm/IndexedKdtree/TIndexedPointKdtree.h@{Source/Math/Algorithm/IndexedKdtree/TIndexedPointKdtree.h}}
-
+\mbox{\hyperlink{_t_indexed_point_kdtree_8h}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
 \DoxyCodeLine{00002\ }
-\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Common/assertion.h"{}}}
-\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Math/TVector3.h"{}}}
-\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}Math/Algorithm/IndexedKdtree/TIndexedKdtreeNode.h"{}}}
-\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}Math/Geometry/TAABB3D.h"{}}}
-\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}Utility/utility.h"{}}}
-\DoxyCodeLine{00008\ }
-\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <vector>}}
-\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <utility>}}
-\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <cstddef>}}
-\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <algorithm>}}
-\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <array>}}
-\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <memory>}}
-\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <type\_traits>}}
-\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <limits>}}
-\DoxyCodeLine{00017\ }
-\DoxyCodeLine{00018\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph_1_1math}{ph::math}}}
-\DoxyCodeLine{00019\ \{}
-\DoxyCodeLine{00020\ }
-\DoxyCodeLine{00021\ \textcolor{comment}{//\ TODO:\ static\_assert\ for\ signature\ of\ PointCalculator}}
-\DoxyCodeLine{00022\ }
-\DoxyCodeLine{00023\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Item,\ \textcolor{keyword}{typename}\ Index,\ \textcolor{keyword}{typename}\ Po\textcolor{keywordtype}{int}Calculator>}
-\DoxyCodeLine{00024\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1math_1_1_t_indexed_point_kdtree}{TIndexedPointKdtree}}\ final}
-\DoxyCodeLine{00025\ \{}
-\DoxyCodeLine{00026\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classph_1_1math_1_1_t_indexed_kdtree_node}{Node}}\ =\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_kdtree_node}{TIndexedKdtreeNode<Index,\ false>}};}
-\DoxyCodeLine{00028\ }
-\DoxyCodeLine{00029\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_point_kdtree}{TIndexedPointKdtree}}(std::size\_t\ maxNodeItems,\ \textcolor{keyword}{const}\ PointCalculator\&\ pointCalculator);}
-\DoxyCodeLine{00030\ }
-\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordtype}{void}\ build(std::vector<Item>\ items);}
-\DoxyCodeLine{00032\ }
-\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordtype}{void}\ findWithinRange(}
-\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\&\ location,}
-\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ real\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ searchRadius,}
-\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ std::vector<Item>\&\ \ \ \ results)\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00037\ }
-\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{void}\ findNearest(}
-\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\&\ location,}
-\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ std::size\_t\ \ \ \ \ \ \ \ \ \ \ maxItems,}
-\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ std::vector<Item>\&\ \ \ \ results)\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00042\ }
-\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ ItemHandler>}
-\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordtype}{void}\ rangeTraversal(}
-\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\&\ location,}
-\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ real\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ squaredSearchRadius,}
-\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ ItemHandler\ \ \ \ \ \ \ \ \ \ \ itemHandler)\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00048\ }
-\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ ItemHandler>}
-\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordtype}{void}\ nearestTraversal(}
-\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\&\ location,}
-\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ real\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ initialSquaredSearchRadius,}
-\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ ItemHandler\ \ \ \ \ \ \ \ \ \ \ itemHandler)\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00054\ }
-\DoxyCodeLine{00055\ \ \ \ \ std::size\_t\ numItems()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00056\ }
-\DoxyCodeLine{00057\ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00058\ \ \ \ \ std::vector<Node>\ \ m\_nodeBuffer;}
-\DoxyCodeLine{00059\ \ \ \ \ std::vector<Item>\ \ m\_items;}
-\DoxyCodeLine{00060\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d}{math::AABB3D}}\ \ \ \ \ \ \ m\_rootAABB;}
-\DoxyCodeLine{00061\ \ \ \ \ std::size\_t\ \ \ \ \ \ \ \ m\_numNodes;}
-\DoxyCodeLine{00062\ \ \ \ \ std::size\_t\ \ \ \ \ \ \ \ m\_maxNodeItems;}
-\DoxyCodeLine{00063\ \ \ \ \ std::vector<Index>\ m\_indexBuffer;}
-\DoxyCodeLine{00064\ \ \ \ \ PointCalculator\ \ \ \ m\_pointCalculator;}
-\DoxyCodeLine{00065\ }
-\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keywordtype}{void}\ buildNodeRecursive(}
-\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ std::size\_t\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ nodeIndex,}
-\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d}{math::AABB3D}}\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ nodeAABB,}
-\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ Index*\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ nodeItemIndices,}
-\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ std::size\_t\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ numNodeItems,}
-\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::vector<math::Vector3R>\&\ itemPoints,}
-\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ std::size\_t\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ currentNodeDepth);}
-\DoxyCodeLine{00073\ }
-\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d}{math::AABB3D}}\ calcPointsAABB(}
-\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Index*\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pointIndices,\ }
-\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ std::size\_t\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ numPoints,\ }
-\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::vector<math::Vector3R>\&\ pointBuffer);}
-\DoxyCodeLine{00078\ \};}
-\DoxyCodeLine{00079\ }
-\DoxyCodeLine{00080\ \textcolor{comment}{//\ In-\/header\ Implementations:}}
-\DoxyCodeLine{00081\ }
-\DoxyCodeLine{00082\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Item,\ \textcolor{keyword}{typename}\ Index,\ \textcolor{keyword}{typename}\ Po\textcolor{keywordtype}{int}Calculator>}
-\DoxyCodeLine{00083\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_point_kdtree}{TIndexedPointKdtree<Item,\ Index,\ PointCalculator>::}}}
-\DoxyCodeLine{00084\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_point_kdtree}{\ \ \ \ TIndexedPointKdtree}}(\textcolor{keyword}{const}\ std::size\_t\ maxNodeItems,\ \textcolor{keyword}{const}\ PointCalculator\&\ pointCalculator)\ :}
-\DoxyCodeLine{00085\ }
-\DoxyCodeLine{00086\ \ \ \ \ m\_nodeBuffer\ \ \ \ \ (),}
-\DoxyCodeLine{00087\ \ \ \ \ m\_items\ \ \ \ \ \ \ \ \ \ (),}
-\DoxyCodeLine{00088\ \ \ \ \ m\_rootAABB\ \ \ \ \ \ \ (),}
-\DoxyCodeLine{00089\ \ \ \ \ m\_numNodes\ \ \ \ \ \ \ (0),}
-\DoxyCodeLine{00090\ \ \ \ \ m\_maxNodeItems\ \ \ (maxNodeItems),}
-\DoxyCodeLine{00091\ \ \ \ \ m\_indexBuffer\ \ \ \ (),}
-\DoxyCodeLine{00092\ \ \ \ \ m\_pointCalculator(pointCalculator)}
-\DoxyCodeLine{00093\ \{}
-\DoxyCodeLine{00094\ \ \ \ \ PH\_ASSERT\_GT(maxNodeItems,\ 0);}
-\DoxyCodeLine{00095\ \}}
-\DoxyCodeLine{00096\ }
-\DoxyCodeLine{00097\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Item,\ \textcolor{keyword}{typename}\ Index,\ \textcolor{keyword}{typename}\ Po\textcolor{keywordtype}{int}Calculator>}
-\DoxyCodeLine{00098\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_point_kdtree}{TIndexedPointKdtree<Item,\ Index,\ PointCalculator>::}}}
-\DoxyCodeLine{00099\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_point_kdtree}{\ \ \ \ build}}(std::vector<Item>\ items)}
-\DoxyCodeLine{00100\ \{}
-\DoxyCodeLine{00101\ \ \ \ \ m\_nodeBuffer.clear();}
-\DoxyCodeLine{00102\ \ \ \ \ m\_items\ \ \ \ =\ std::move(items);}
-\DoxyCodeLine{00103\ \ \ \ \ m\_rootAABB\ =\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d}{math::AABB3D}}();}
-\DoxyCodeLine{00104\ \ \ \ \ m\_numNodes\ =\ 0;}
-\DoxyCodeLine{00105\ \ \ \ \ m\_indexBuffer.clear();}
-\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keywordflow}{if}(m\_items.empty())}
-\DoxyCodeLine{00107\ \ \ \ \ \{}
-\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
-\DoxyCodeLine{00109\ \ \ \ \ \}}
-\DoxyCodeLine{00110\ }
-\DoxyCodeLine{00111\ \ \ \ \ std::vector<math::Vector3R>\ itemPoints(m\_items.size());}
-\DoxyCodeLine{00112\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ i\ =\ 0;\ i\ <\ m\_items.size();\ ++i)}
-\DoxyCodeLine{00113\ \ \ \ \ \{}
-\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ item\ =\ m\_items[i];}
-\DoxyCodeLine{00115\ }
-\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ math::Vector3R\&\ center\ =\ m\_pointCalculator(regular\_access(item));}
-\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ itemPoints[i]\ =\ center;}
-\DoxyCodeLine{00118\ \ \ \ \ \}}
-\DoxyCodeLine{00119\ }
-\DoxyCodeLine{00120\ \ \ \ \ std::unique\_ptr<Index[]>\ itemIndices(\textcolor{keyword}{new}\ Index[m\_items.size()]);}
-\DoxyCodeLine{00121\ }
-\DoxyCodeLine{00122\ \ \ \ \ PH\_ASSERT(m\_items.size()\ -\/\ 1\ <=\ std::numeric\_limits<Index>::max());}
-\DoxyCodeLine{00123\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ i\ =\ 0;\ i\ <\ m\_items.size();\ ++i)}
-\DoxyCodeLine{00124\ \ \ \ \ \{}
-\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ itemIndices[i]\ =\ \textcolor{keyword}{static\_cast<}Index\textcolor{keyword}{>}(i);}
-\DoxyCodeLine{00126\ \ \ \ \ \}}
-\DoxyCodeLine{00127\ }
-\DoxyCodeLine{00128\ \ \ \ \ m\_rootAABB\ =\ calcPointsAABB(itemIndices.get(),\ m\_items.size(),\ itemPoints);}
-\DoxyCodeLine{00129\ }
-\DoxyCodeLine{00130\ \ \ \ \ buildNodeRecursive(}
-\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ 0,}
-\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ m\_rootAABB,}
-\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ itemIndices.get(),}
-\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ m\_items.size(),}
-\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ itemPoints,}
-\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ 0);}
-\DoxyCodeLine{00137\ \}}
-\DoxyCodeLine{00138\ }
-\DoxyCodeLine{00139\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Item,\ \textcolor{keyword}{typename}\ Index,\ \textcolor{keyword}{typename}\ Po\textcolor{keywordtype}{int}Calculator>}
-\DoxyCodeLine{00140\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ TIndexedPointKdtree<Item,\ Index,\ PointCalculator>::}
-\DoxyCodeLine{00141\ \ \ \ \ findWithinRange(}
-\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ math::Vector3R\&\ location,}
-\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ real\ \ \ \ \ \ \ \ \ \ \ \ searchRadius,}
-\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ std::vector<Item>\&\ \ \ \ results)\textcolor{keyword}{\ const}}
-\DoxyCodeLine{00145\ \textcolor{keyword}{}\{}
-\DoxyCodeLine{00146\ \ \ \ \ PH\_ASSERT\_GT(m\_numNodes,\ 0);}
-\DoxyCodeLine{00147\ }
-\DoxyCodeLine{00148\ \ \ \ \ \textcolor{keyword}{const}\ real\ searchRadius2\ =\ searchRadius\ *\ searchRadius;}
-\DoxyCodeLine{00149\ }
-\DoxyCodeLine{00150\ \ \ \ \ rangeTraversal(}
-\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ location,\ }
-\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ searchRadius2,}
-\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ [\textcolor{keyword}{this},\ location,\ searchRadius2,\ \&results](\textcolor{keyword}{const}\ Item\&\ item)}
-\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ math::Vector3R\ itemPoint\ =\ m\_pointCalculator(item);}
-\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ real\ \ \ \ \ \ \ \ \ \ \ dist2\ \ \ \ \ =\ (itemPoint\ -\/\ location).lengthSquared();}
-\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(dist2\ <\ searchRadius2)}
-\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ results.push\_back(item);}
-\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \});}
-\DoxyCodeLine{00162\ \}}
-\DoxyCodeLine{00163\ }
-\DoxyCodeLine{00164\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Item,\ \textcolor{keyword}{typename}\ Index,\ \textcolor{keyword}{typename}\ Po\textcolor{keywordtype}{int}Calculator>}
-\DoxyCodeLine{00165\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ TIndexedPointKdtree<Item,\ Index,\ PointCalculator>::}
-\DoxyCodeLine{00166\ \ \ \ \ findNearest(}
-\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ math::Vector3R\&\ location,}
-\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ \ \ \ \ maxItems,}
-\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ std::vector<Item>\&\ \ \ \ results)\textcolor{keyword}{\ const}}
-\DoxyCodeLine{00170\ \textcolor{keyword}{}\{}
-\DoxyCodeLine{00171\ \ \ \ \ PH\_ASSERT\_GT(m\_numNodes,\ 0);}
-\DoxyCodeLine{00172\ \ \ \ \ PH\_ASSERT\_GT(maxItems,\ 0);}
-\DoxyCodeLine{00173\ }
-\DoxyCodeLine{00174\ \ \ \ \ \textcolor{comment}{//\ OPT:\ distance\ calculation\ can\ be\ cached}}
-\DoxyCodeLine{00175\ }
-\DoxyCodeLine{00176\ \ \ \ \ \textcolor{keyword}{auto}\ isACloserThanB\ =\ }
-\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ [\textcolor{keyword}{this},\ location](\textcolor{keyword}{const}\ Item\&\ itemA,\ \textcolor{keyword}{const}\ Item\&\ itemB)\ -\/>\ \textcolor{keywordtype}{bool}}
-\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (m\_pointCalculator(itemA)\ -\/\ location).lengthSquared()\ <\ }
-\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (m\_pointCalculator(itemB)\ -\/\ location).lengthSquared();}
-\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \};}
-\DoxyCodeLine{00182\ }
-\DoxyCodeLine{00183\ \ \ \ \ real\ \ \ \ \ \ \ \ searchRadius2\ =\ std::numeric\_limits<real>::max();}
-\DoxyCodeLine{00184\ \ \ \ \ std::size\_t\ numFoundItems\ =\ 0;}
-\DoxyCodeLine{00185\ \ \ \ \ \textcolor{keyword}{auto}\ handler\ =\ }
-\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ [\textcolor{keyword}{this},\ location,\ maxItems,\ \&searchRadius2,\ \&numFoundItems,\ \&isACloserThanB,\ \&results](\textcolor{keyword}{const}\ Item\&\ item)}
-\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*}}
-\DoxyCodeLine{00189\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ If\ k\ nearest\ neighbors\ are\ required\ and\ n\ items\ are\ processed}}
-\DoxyCodeLine{00190\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ by\ this\ handler,\ this\ handler\ (not\ including\ traversal)\ will}}
-\DoxyCodeLine{00191\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ take\ O(k\ +\ (n-\/k)*log(k))\ time\ in\ total.}}
-\DoxyCodeLine{00192\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ */}}
-\DoxyCodeLine{00193\ }
-\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ output\ buffer\ is\ not\ full,\ just\ insert\ the\ item}}
-\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(numFoundItems\ <\ maxItems)}
-\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ results.push\_back(item);}
-\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ numFoundItems++;}
-\DoxyCodeLine{00199\ }
-\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ once\ output\ buffer\ is\ full,\ make\ it\ a\ max\ heap}}
-\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(numFoundItems\ ==\ maxItems)}
-\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ this\ takes\ O(k)\ time}}
-\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::make\_heap(}
-\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ results.end()\ -\/\ maxItems,\ }
-\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ results.end(),\ }
-\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ isACloserThanB);}
-\DoxyCodeLine{00208\ }
-\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ the\ furthest\ one\ is\ at\ the\ max\ heap's\ root}}
-\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Item\&\ furthestItem\ =\ results[results.size()\ -\/\ maxItems];}
-\DoxyCodeLine{00211\ }
-\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ search\ radius\ can\ be\ shrunk\ in\ this\ case}}
-\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ searchRadius2\ =\ (m\_pointCalculator(furthestItem)\ -\/\ location).lengthSquared();}
-\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ last\ <maxItems>\ items\ in\ output\ buffer\ forms\ a\ max\ heap\ now}}
-\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ the\ furthest\ one\ is\ at\ the\ max\ heap's\ root}}
-\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Item\&\ furthestItem\ =\ results[results.size()\ -\/\ maxItems];}
-\DoxyCodeLine{00221\ }
-\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(isACloserThanB(item,\ furthestItem))}
-\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ remove\ furthest\ item,\ this\ takes\ O(log(k))\ time}}
-\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::pop\_heap(}
-\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ results.end()\ -\/\ maxItems,}
-\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ results.end(),}
-\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ isACloserThanB);}
-\DoxyCodeLine{00229\ }
-\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ results.back()\ =\ item;}
-\DoxyCodeLine{00231\ }
-\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ add\ new\ item,\ this\ takes\ O(log(k))\ time}}
-\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::push\_heap(}
-\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ results.end()\ -\/\ maxItems,}
-\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ results.end(),}
-\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ isACloserThanB);}
-\DoxyCodeLine{00237\ }
-\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ search\ radius\ can\ be\ shrunk\ in\ this\ case}}
-\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ searchRadius2\ =\ (m\_pointCalculator(furthestItem)\ -\/\ location).lengthSquared();}
-\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00242\ }
-\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ searchRadius2;}
-\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \};}
-\DoxyCodeLine{00245\ }
-\DoxyCodeLine{00246\ \ \ \ \ nearestTraversal(}
-\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ location,\ }
-\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ searchRadius2,}
-\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ handler);}
-\DoxyCodeLine{00250\ \}}
-\DoxyCodeLine{00251\ }
-\DoxyCodeLine{00252\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Item,\ \textcolor{keyword}{typename}\ Index,\ \textcolor{keyword}{typename}\ Po\textcolor{keywordtype}{int}Calculator>}
-\DoxyCodeLine{00253\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ ItemHandler>}
-\DoxyCodeLine{00254\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ TIndexedPointKdtree<Item,\ Index,\ PointCalculator>::}
-\DoxyCodeLine{00255\ \ \ \ \ rangeTraversal(}
-\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ math::Vector3R\&\ location,}
-\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ real\ \ \ \ \ \ \ \ \ \ \ \ squaredSearchRadius,}
-\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ ItemHandler\ \ \ \ \ \ \ \ \ \ \ itemHandler)\textcolor{keyword}{\ const}}
-\DoxyCodeLine{00259\ \textcolor{keyword}{}\{}
-\DoxyCodeLine{00260\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_invocable\_v<ItemHandler,\ Item>,}
-\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}ItemHandler\ must\ accept\ an\ item\ as\ input."{}});}
-\DoxyCodeLine{00262\ }
-\DoxyCodeLine{00263\ \ \ \ \ PH\_ASSERT\_GT(m\_numNodes,\ 0);}
-\DoxyCodeLine{00264\ \ \ \ \ PH\_ASSERT\_LE(squaredSearchRadius,\ std::numeric\_limits<real>::max());}
-\DoxyCodeLine{00265\ }
-\DoxyCodeLine{00266\ \ \ \ \ \textcolor{keyword}{constexpr}\ std::size\_t\ MAX\_STACK\_HEIGHT\ =\ 64;}
-\DoxyCodeLine{00267\ \ \ \ \ std::array<const\ Node*,\ MAX\_STACK\_HEIGHT>\ nodeStack;}
-\DoxyCodeLine{00268\ }
-\DoxyCodeLine{00269\ \ \ \ \ \textcolor{keyword}{const}\ Node*\ currentNode\ =\ \&(m\_nodeBuffer[0]);}
-\DoxyCodeLine{00270\ \ \ \ \ std::size\_t\ stackHeight\ =\ 0;}
-\DoxyCodeLine{00271\ \ \ \ \ \textcolor{keywordflow}{while}(\textcolor{keyword}{true})}
-\DoxyCodeLine{00272\ \ \ \ \ \{}
-\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ PH\_ASSERT(currentNode);}
-\DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!currentNode-\/>isLeaf())}
-\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \ splitAxis\ \ \ \ \ \ =\ currentNode-\/>splitAxisIndex();}
-\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ real\ splitPos\ \ \ \ \ \ \ =\ currentNode-\/>splitPos();}
-\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ real\ splitPlaneDiff\ =\ location[splitAxis]\ -\/\ splitPos;}
-\DoxyCodeLine{00279\ }
-\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Node*\ nearNode;}
-\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Node*\ farNode;}
-\DoxyCodeLine{00282\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(splitPlaneDiff\ <\ 0)}
-\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00284\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ nearNode\ =\ currentNode\ +\ 1;}
-\DoxyCodeLine{00285\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ farNode\ \ =\ \&(m\_nodeBuffer[currentNode-\/>positiveChildIndex()]);}
-\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00288\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00289\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ nearNode\ =\ \&(m\_nodeBuffer[currentNode-\/>positiveChildIndex()]);}
-\DoxyCodeLine{00290\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ farNode\ \ =\ currentNode\ +\ 1;}
-\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00292\ }
-\DoxyCodeLine{00293\ \ \ \ \ \ \ \ \ \ \ \ \ currentNode\ =\ nearNode;}
-\DoxyCodeLine{00294\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(squaredSearchRadius\ >=\ splitPlaneDiff\ *\ splitPlaneDiff)}
-\DoxyCodeLine{00295\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00296\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ PH\_ASSERT(stackHeight\ <\ MAX\_STACK\_HEIGHT);}
-\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ nodeStack[stackHeight++]\ =\ farNode;}
-\DoxyCodeLine{00298\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00299\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00300\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ current\ node\ is\ leaf}}
-\DoxyCodeLine{00301\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00302\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00303\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ numItems\ \ \ \ \ \ \ \ \ \ =\ currentNode-\/>numItems();}
-\DoxyCodeLine{00304\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ indexBufferOffset\ =\ currentNode-\/>indexBufferOffset();}
-\DoxyCodeLine{00305\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ i\ =\ 0;\ i\ <\ numItems;\ ++i)}
-\DoxyCodeLine{00306\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00307\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Index\ itemIndex\ =\ m\_indexBuffer[indexBufferOffset\ +\ i];}
-\DoxyCodeLine{00308\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Item\&\ item\ \ \ \ \ \ =\ m\_items[itemIndex];}
-\DoxyCodeLine{00309\ }
-\DoxyCodeLine{00310\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ itemHandler(item);}
-\DoxyCodeLine{00311\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00312\ }
-\DoxyCodeLine{00313\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(stackHeight\ >\ 0)}
-\DoxyCodeLine{00314\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00315\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ currentNode\ =\ nodeStack[-\/-\/stackHeight];}
-\DoxyCodeLine{00316\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00317\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00318\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00319\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
-\DoxyCodeLine{00320\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00321\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00322\ \ \ \ \ \}\textcolor{comment}{//\ end\ while\ stackHeight\ >\ 0}}
-\DoxyCodeLine{00323\ \}}
-\DoxyCodeLine{00324\ }
-\DoxyCodeLine{00325\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Item,\ \textcolor{keyword}{typename}\ Index,\ \textcolor{keyword}{typename}\ Po\textcolor{keywordtype}{int}Calculator>}
-\DoxyCodeLine{00326\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ ItemHandler>}
-\DoxyCodeLine{00327\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ TIndexedPointKdtree<Item,\ Index,\ PointCalculator>::}
-\DoxyCodeLine{00328\ \ \ \ \ nearestTraversal(}
-\DoxyCodeLine{00329\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ math::Vector3R\&\ location,}
-\DoxyCodeLine{00330\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ real\ \ \ \ \ \ \ \ \ \ \ \ initialSquaredSearchRadius,}
-\DoxyCodeLine{00331\ \ \ \ \ \ \ \ \ ItemHandler\ \ \ \ \ \ \ \ \ \ \ itemHandler)\textcolor{keyword}{\ const}}
-\DoxyCodeLine{00332\ \textcolor{keyword}{}\{}
-\DoxyCodeLine{00333\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_invocable\_v<ItemHandler,\ Item>,}
-\DoxyCodeLine{00334\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}ItemHandler\ must\ accept\ an\ item\ as\ input."{}});}
-\DoxyCodeLine{00335\ }
-\DoxyCodeLine{00336\ \ \ \ \ \textcolor{keyword}{using\ }Return\ =\ \textcolor{keyword}{decltype}(itemHandler(std::declval<Item>()));}
-\DoxyCodeLine{00337\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_same\_v<Return,\ real>,}
-\DoxyCodeLine{00338\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}ItemHandler\ must\ return\ an\ potentially\ shrunk\ squared\ search\ radius."{}});}
-\DoxyCodeLine{00339\ }
-\DoxyCodeLine{00340\ \ \ \ \ PH\_ASSERT\_GT(m\_numNodes,\ 0);}
-\DoxyCodeLine{00341\ \ \ \ \ PH\_ASSERT\_LE(initialSquaredSearchRadius,\ std::numeric\_limits<real>::max());}
-\DoxyCodeLine{00342\ }
-\DoxyCodeLine{00343\ \ \ \ \ \textcolor{keyword}{struct\ }NodeRecord}
-\DoxyCodeLine{00344\ \ \ \ \ \{}
-\DoxyCodeLine{00345\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Node*\ node;}
-\DoxyCodeLine{00346\ }
-\DoxyCodeLine{00347\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ value\ is\ zero\ for\ near\ nodes\ as\ they\ should\ not\ be\ skipped\ by\ distance\ test.}}
-\DoxyCodeLine{00348\ \ \ \ \ \ \ \ \ real\ \ \ \ \ \ \ \ parentSplitPlaneDiff2;}
-\DoxyCodeLine{00349\ \ \ \ \ \};}
-\DoxyCodeLine{00350\ }
-\DoxyCodeLine{00351\ \ \ \ \ \textcolor{keyword}{constexpr}\ std::size\_t\ MAX\_STACK\_HEIGHT\ =\ 64;}
-\DoxyCodeLine{00352\ \ \ \ \ std::array<NodeRecord,\ MAX\_STACK\_HEIGHT>\ nodeStack;}
-\DoxyCodeLine{00353\ }
-\DoxyCodeLine{00354\ \ \ \ \ NodeRecord\ \ currentNode\ \ \ \ =\ \{\&(m\_nodeBuffer[0]),\ 0\};}
-\DoxyCodeLine{00355\ \ \ \ \ std::size\_t\ stackHeight\ \ \ \ =\ 0;}
-\DoxyCodeLine{00356\ \ \ \ \ real\ \ \ \ \ \ \ \ currentRadius2\ =\ initialSquaredSearchRadius;}
-\DoxyCodeLine{00357\ \ \ \ \ \textcolor{keywordflow}{while}(\textcolor{keyword}{true})}
-\DoxyCodeLine{00358\ \ \ \ \ \{}
-\DoxyCodeLine{00359\ \ \ \ \ \ \ \ \ PH\_ASSERT(currentNode.node);}
-\DoxyCodeLine{00360\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!currentNode.node-\/>isLeaf())}
-\DoxyCodeLine{00361\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00362\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \ splitAxis\ \ \ \ \ \ =\ currentNode.node-\/>splitAxisIndex();}
-\DoxyCodeLine{00363\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ real\ splitPos\ \ \ \ \ \ \ =\ currentNode.node-\/>splitPos();}
-\DoxyCodeLine{00364\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ real\ splitPlaneDiff\ =\ location[splitAxis]\ -\/\ splitPos;}
-\DoxyCodeLine{00365\ }
-\DoxyCodeLine{00366\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Node*\ nearNode;}
-\DoxyCodeLine{00367\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Node*\ farNode;}
-\DoxyCodeLine{00368\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(splitPlaneDiff\ <\ 0)}
-\DoxyCodeLine{00369\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00370\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ nearNode\ =\ currentNode.node\ +\ 1;}
-\DoxyCodeLine{00371\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ farNode\ \ =\ \&(m\_nodeBuffer[currentNode.node-\/>positiveChildIndex()]);}
-\DoxyCodeLine{00372\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00373\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00374\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00375\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ nearNode\ =\ \&(m\_nodeBuffer[currentNode.node-\/>positiveChildIndex()]);}
-\DoxyCodeLine{00376\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ farNode\ \ =\ currentNode.node\ +\ 1;}
-\DoxyCodeLine{00377\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00378\ }
-\DoxyCodeLine{00379\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ real\ splitPlaneDiff2\ =\ splitPlaneDiff\ *\ splitPlaneDiff;}
-\DoxyCodeLine{00380\ }
-\DoxyCodeLine{00381\ \ \ \ \ \ \ \ \ \ \ \ \ currentNode\ =\ \{nearNode,\ 0\};}
-\DoxyCodeLine{00382\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(currentRadius2\ >=\ splitPlaneDiff2)}
-\DoxyCodeLine{00383\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00384\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ PH\_ASSERT(stackHeight\ <\ MAX\_STACK\_HEIGHT);}
-\DoxyCodeLine{00385\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ nodeStack[stackHeight++]\ =\ \{farNode,\ splitPlaneDiff2\};}
-\DoxyCodeLine{00386\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00387\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00388\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ current\ node\ is\ leaf}}
-\DoxyCodeLine{00389\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00390\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00391\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ For\ far\ nodes,\ they\ can\ be\ culled\ if\ radius\ has\ shrunk.}}
-\DoxyCodeLine{00392\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ For\ near\ nodes,\ they\ have\ <parentSplitPlaneDiff2>\ ==\ 0\ hence\ cannot\ be\ skipped.}}
-\DoxyCodeLine{00393\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(currentRadius2\ >=\ currentNode.parentSplitPlaneDiff2)}
-\DoxyCodeLine{00394\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00395\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ numItems\ \ \ \ \ \ \ \ \ \ =\ currentNode.node-\/>numItems();}
-\DoxyCodeLine{00396\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ indexBufferOffset\ =\ currentNode.node-\/>indexBufferOffset();}
-\DoxyCodeLine{00397\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ i\ =\ 0;\ i\ <\ numItems;\ ++i)}
-\DoxyCodeLine{00398\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00399\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Index\ itemIndex\ =\ m\_indexBuffer[indexBufferOffset\ +\ i];}
-\DoxyCodeLine{00400\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Item\&\ item\ \ \ \ \ \ =\ m\_items[itemIndex];}
-\DoxyCodeLine{00401\ }
-\DoxyCodeLine{00402\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ potentially\ reduce\ search\ radius}}
-\DoxyCodeLine{00403\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ real\ shrunkRadius2\ =\ itemHandler(item);}
-\DoxyCodeLine{00404\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ PH\_ASSERT\_LE(shrunkRadius2,\ currentRadius2);}
-\DoxyCodeLine{00405\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ currentRadius2\ =\ shrunkRadius2;}
-\DoxyCodeLine{00406\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00407\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00408\ }
-\DoxyCodeLine{00409\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(stackHeight\ >\ 0)}
-\DoxyCodeLine{00410\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00411\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ currentNode\ =\ nodeStack[-\/-\/stackHeight];}
-\DoxyCodeLine{00412\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00413\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00414\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00415\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
-\DoxyCodeLine{00416\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00417\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00418\ \ \ \ \ \}\textcolor{comment}{//\ end\ while\ stackHeight\ >\ 0}}
-\DoxyCodeLine{00419\ \}}
-\DoxyCodeLine{00420\ }
-\DoxyCodeLine{00421\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Item,\ \textcolor{keyword}{typename}\ Index,\ \textcolor{keyword}{typename}\ Po\textcolor{keywordtype}{int}Calculator>}
-\DoxyCodeLine{00422\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ TIndexedPointKdtree<Item,\ Index,\ PointCalculator>::}
-\DoxyCodeLine{00423\ \ \ \ \ buildNodeRecursive(}
-\DoxyCodeLine{00424\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ nodeIndex,}
-\DoxyCodeLine{00425\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ math::AABB3D\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ nodeAABB,}
-\DoxyCodeLine{00426\ \ \ \ \ \ \ \ \ Index*\ \textcolor{keyword}{const}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ nodeItemIndices,}
-\DoxyCodeLine{00427\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ numNodeItems,}
-\DoxyCodeLine{00428\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::vector<math::Vector3R>\&\ itemPoints,}
-\DoxyCodeLine{00429\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ currentNodeDepth)}
-\DoxyCodeLine{00430\ \{}
-\DoxyCodeLine{00431\ \ \ \ \ ++m\_numNodes;}
-\DoxyCodeLine{00432\ \ \ \ \ \textcolor{keywordflow}{if}(m\_numNodes\ >\ m\_nodeBuffer.size())}
-\DoxyCodeLine{00433\ \ \ \ \ \{}
-\DoxyCodeLine{00434\ \ \ \ \ \ \ \ \ m\_nodeBuffer.resize(m\_numNodes\ *\ 2);}
-\DoxyCodeLine{00435\ \ \ \ \ \}}
-\DoxyCodeLine{00436\ \ \ \ \ PH\_ASSERT(nodeIndex\ <\ m\_nodeBuffer.size());}
-\DoxyCodeLine{00437\ }
-\DoxyCodeLine{00438\ \ \ \ \ \textcolor{keywordflow}{if}(numNodeItems\ <=\ m\_maxNodeItems)}
-\DoxyCodeLine{00439\ \ \ \ \ \{}
-\DoxyCodeLine{00440\ \ \ \ \ \ \ \ \ m\_nodeBuffer[nodeIndex]\ =\ Node::makeLeaf(nodeItemIndices,\ numNodeItems,\ m\_indexBuffer);}
-\DoxyCodeLine{00441\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
-\DoxyCodeLine{00442\ \ \ \ \ \}}
-\DoxyCodeLine{00443\ }
-\DoxyCodeLine{00444\ \ \ \ \ \textcolor{keyword}{const}\ math::Vector3R\&\ nodeExtents\ =\ nodeAABB.getExtents();}
-\DoxyCodeLine{00445\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ \ \ \ \ \ \ \ \ \ \ \ splitAxis\ \ \ =\ nodeExtents.maxDimension();}
-\DoxyCodeLine{00446\ }
-\DoxyCodeLine{00447\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ midIndicesIndex\ =\ numNodeItems\ /\ 2;}
-\DoxyCodeLine{00448\ \ \ \ \ std::nth\_element(}
-\DoxyCodeLine{00449\ \ \ \ \ \ \ \ \ nodeItemIndices,\ }
-\DoxyCodeLine{00450\ \ \ \ \ \ \ \ \ nodeItemIndices\ +\ midIndicesIndex,}
-\DoxyCodeLine{00451\ \ \ \ \ \ \ \ \ nodeItemIndices\ +\ numNodeItems,\ }
-\DoxyCodeLine{00452\ \ \ \ \ \ \ \ \ [\&](\textcolor{keyword}{const}\ Index\&\ a,\ \textcolor{keyword}{const}\ Index\&\ b)\ -\/>\ \textcolor{keywordtype}{bool}}
-\DoxyCodeLine{00453\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00454\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ itemPoints[a][splitAxis]\ <\ itemPoints[b][splitAxis];}
-\DoxyCodeLine{00455\ \ \ \ \ \ \ \ \ \});}
-\DoxyCodeLine{00456\ }
-\DoxyCodeLine{00457\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ numNegativeItems\ =\ midIndicesIndex;}
-\DoxyCodeLine{00458\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ numPositiveItems\ =\ numNodeItems\ -\/\ midIndicesIndex;}
-\DoxyCodeLine{00459\ \ \ \ \ PH\_ASSERT(numNegativeItems\ +\ numPositiveItems\ >=\ 2);}
-\DoxyCodeLine{00460\ }
-\DoxyCodeLine{00461\ \ \ \ \ \textcolor{keyword}{const}\ real\ splitPos\ =\ itemPoints[nodeItemIndices[midIndicesIndex]][splitAxis];}
-\DoxyCodeLine{00462\ }
-\DoxyCodeLine{00463\ \ \ \ \ math::Vector3R\ splitPosMinVertex\ =\ nodeAABB.getMinVertex();}
-\DoxyCodeLine{00464\ \ \ \ \ math::Vector3R\ splitPosMaxVertex\ =\ nodeAABB.getMaxVertex();}
-\DoxyCodeLine{00465\ \ \ \ \ splitPosMinVertex[splitAxis]\ =\ splitPos;}
-\DoxyCodeLine{00466\ \ \ \ \ splitPosMaxVertex[splitAxis]\ =\ splitPos;}
-\DoxyCodeLine{00467\ \ \ \ \ \textcolor{keyword}{const}\ math::AABB3D\ negativeNodeAABB(nodeAABB.getMinVertex(),\ splitPosMaxVertex);}
-\DoxyCodeLine{00468\ \ \ \ \ \textcolor{keyword}{const}\ math::AABB3D\ positiveNodeAABB(splitPosMinVertex,\ nodeAABB.getMaxVertex());}
-\DoxyCodeLine{00469\ \ \ \ \ }
-\DoxyCodeLine{00470\ \ \ \ \ buildNodeRecursive(}
-\DoxyCodeLine{00471\ \ \ \ \ \ \ \ \ nodeIndex\ +\ 1,\ }
-\DoxyCodeLine{00472\ \ \ \ \ \ \ \ \ negativeNodeAABB,\ }
-\DoxyCodeLine{00473\ \ \ \ \ \ \ \ \ nodeItemIndices,}
-\DoxyCodeLine{00474\ \ \ \ \ \ \ \ \ numNegativeItems,}
-\DoxyCodeLine{00475\ \ \ \ \ \ \ \ \ itemPoints,}
-\DoxyCodeLine{00476\ \ \ \ \ \ \ \ \ currentNodeDepth\ +\ 1);}
-\DoxyCodeLine{00477\ }
-\DoxyCodeLine{00478\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ positiveChildIndex\ =\ m\_numNodes;}
-\DoxyCodeLine{00479\ \ \ \ \ m\_nodeBuffer[nodeIndex]\ =\ Node::makeInner(splitPos,\ splitAxis,\ positiveChildIndex);}
-\DoxyCodeLine{00480\ }
-\DoxyCodeLine{00481\ \ \ \ \ buildNodeRecursive(}
-\DoxyCodeLine{00482\ \ \ \ \ \ \ \ \ positiveChildIndex,}
-\DoxyCodeLine{00483\ \ \ \ \ \ \ \ \ positiveNodeAABB,}
-\DoxyCodeLine{00484\ \ \ \ \ \ \ \ \ nodeItemIndices\ +\ midIndicesIndex,}
-\DoxyCodeLine{00485\ \ \ \ \ \ \ \ \ numPositiveItems,}
-\DoxyCodeLine{00486\ \ \ \ \ \ \ \ \ itemPoints,}
-\DoxyCodeLine{00487\ \ \ \ \ \ \ \ \ currentNodeDepth\ +\ 1);}
-\DoxyCodeLine{00488\ \}}
-\DoxyCodeLine{00489\ }
-\DoxyCodeLine{00490\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Item,\ \textcolor{keyword}{typename}\ Index,\ \textcolor{keyword}{typename}\ Po\textcolor{keywordtype}{int}Calculator>}
-\DoxyCodeLine{00491\ \textcolor{keyword}{inline}\ std::size\_t\ TIndexedPointKdtree<Item,\ Index,\ PointCalculator>::}
-\DoxyCodeLine{00492\ \ \ \ \ numItems()\textcolor{keyword}{\ const}}
-\DoxyCodeLine{00493\ \textcolor{keyword}{}\{}
-\DoxyCodeLine{00494\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_items.size();}
-\DoxyCodeLine{00495\ \}}
-\DoxyCodeLine{00496\ }
-\DoxyCodeLine{00497\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Item,\ \textcolor{keyword}{typename}\ Index,\ \textcolor{keyword}{typename}\ Po\textcolor{keywordtype}{int}Calculator>}
-\DoxyCodeLine{00498\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ TIndexedPointKdtree<Item,\ Index,\ PointCalculator>::}
-\DoxyCodeLine{00499\ \ \ \ \ calcPointsAABB(}
-\DoxyCodeLine{00500\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Index*\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pointIndices,}
-\DoxyCodeLine{00501\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ numPoints,}
-\DoxyCodeLine{00502\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::vector<math::Vector3R>\&\ pointBuffer)}
-\DoxyCodeLine{00503\ \ \ \ \ -\/>\ math::AABB3D}
-\DoxyCodeLine{00504\ \{}
-\DoxyCodeLine{00505\ \ \ \ \ PH\_ASSERT(pointIndices\ \&\&\ numPoints\ >\ 0);}
-\DoxyCodeLine{00506\ }
-\DoxyCodeLine{00507\ \ \ \ \ math::AABB3D\ pointsAABB(pointBuffer[pointIndices[0]]);}
-\DoxyCodeLine{00508\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ i\ =\ 1;\ i\ <\ numPoints;\ ++i)}
-\DoxyCodeLine{00509\ \ \ \ \ \{}
-\DoxyCodeLine{00510\ \ \ \ \ \ \ \ \ pointsAABB.unionWith(pointBuffer[pointIndices[i]]);}
-\DoxyCodeLine{00511\ \ \ \ \ \}}
-\DoxyCodeLine{00512\ \ \ \ \ \textcolor{keywordflow}{return}\ pointsAABB;}
-\DoxyCodeLine{00513\ \}}
-\DoxyCodeLine{00514\ }
-\DoxyCodeLine{00515\ \}\textcolor{comment}{//\ end\ namespace\ ph::math}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_vector3_8h}{Math/TVector3.h}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_indexed_kdtree_node_8h}{Math/Algorithm/IndexedKdtree/TIndexedKdtreeNode.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_a_a_b_b3_d_8h}{Math/Geometry/TAABB3D.h}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{utility_8h}{Utility/utility.h}}"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <Common/assertion.h>}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <cstddef>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <array>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <type\_traits>}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <limits>}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph_1_1math}{ph::math}}}
+\DoxyCodeLine{00020\ \{}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{comment}{//\ TODO:\ static\_assert\ for\ signature\ of\ PointCalculator}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Item,\ \textcolor{keyword}{typename}\ Index,\ \textcolor{keyword}{typename}\ Po\textcolor{keywordtype}{int}Calculator>}
+\DoxyCodeLine{00025\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1math_1_1_t_indexed_point_kdtree}{TIndexedPointKdtree}}\ final}
+\DoxyCodeLine{00026\ \{}
+\DoxyCodeLine{00027\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classph_1_1math_1_1_t_indexed_kdtree_node}{Node}}\ =\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_kdtree_node}{TIndexedKdtreeNode<Index,\ false>}};}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_point_kdtree_a211b59cc5b1c8fb7892f954f95a43fc7}{TIndexedPointKdtree}}(std::size\_t\ maxNodeItems,\ \textcolor{keyword}{const}\ PointCalculator\&\ pointCalculator);}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_point_kdtree_a0bf5585ef40d30ab11a363d98a0e9b7c}{build}}(std::vector<Item>\ items);}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_point_kdtree_a62e63beeb0363b932338ace3c3c7dcb4}{findWithinRange}}(}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\&\ location,}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ real\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ searchRadius,}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ std::vector<Item>\&\ \ \ \ results)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_point_kdtree_ae5ca50caae33e316b0e911104b228402}{findNearest}}(}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\&\ location,}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ std::size\_t\ \ \ \ \ \ \ \ \ \ \ maxItems,}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ std::vector<Item>\&\ \ \ \ results)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ ItemHandler>}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_point_kdtree_a0764b4f7823627a72989d9af85d23a7b}{rangeTraversal}}(}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\&\ location,}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ real\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ squaredSearchRadius,}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ ItemHandler\ \ \ \ \ \ \ \ \ \ \ itemHandler)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ ItemHandler>}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_point_kdtree_a568e14f83e5ba397ceedfee1961754e0}{nearestTraversal}}(}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\&\ location,}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ real\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ initialSquaredSearchRadius,}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ ItemHandler\ \ \ \ \ \ \ \ \ \ \ itemHandler)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \ \ std::size\_t\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_point_kdtree_ad332e631b1471a84d63ca6fc65251be0}{numItems}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00059\ \ \ \ \ std::vector<Node>\ \ m\_nodeBuffer;}
+\DoxyCodeLine{00060\ \ \ \ \ std::vector<Item>\ \ m\_items;}
+\DoxyCodeLine{00061\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d}{math::AABB3D}}\ \ \ \ \ \ \ m\_rootAABB;}
+\DoxyCodeLine{00062\ \ \ \ \ std::size\_t\ \ \ \ \ \ \ \ m\_numNodes;}
+\DoxyCodeLine{00063\ \ \ \ \ std::size\_t\ \ \ \ \ \ \ \ m\_maxNodeItems;}
+\DoxyCodeLine{00064\ \ \ \ \ std::vector<Index>\ m\_indexBuffer;}
+\DoxyCodeLine{00065\ \ \ \ \ PointCalculator\ \ \ \ m\_pointCalculator;}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordtype}{void}\ buildNodeRecursive(}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ std::size\_t\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ nodeIndex,}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d}{math::AABB3D}}\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ nodeAABB,}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ Index*\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ nodeItemIndices,}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ std::size\_t\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ numNodeItems,}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::vector<math::Vector3R>\&\ itemPoints,}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ std::size\_t\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ currentNodeDepth);}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d}{math::AABB3D}}\ calcPointsAABB(}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Index*\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pointIndices,\ }
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ std::size\_t\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ numPoints,\ }
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::vector<math::Vector3R>\&\ pointBuffer);}
+\DoxyCodeLine{00079\ \};}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \textcolor{comment}{//\ In-\/header\ Implementations:}}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Item,\ \textcolor{keyword}{typename}\ Index,\ \textcolor{keyword}{typename}\ Po\textcolor{keywordtype}{int}Calculator>}
+\DoxyCodeLine{00084\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_point_kdtree_a211b59cc5b1c8fb7892f954f95a43fc7}{TIndexedPointKdtree<Item,\ Index,\ PointCalculator>::}}}
+\DoxyCodeLine{00085\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_point_kdtree_a211b59cc5b1c8fb7892f954f95a43fc7}{\ \ \ \ TIndexedPointKdtree}}(\textcolor{keyword}{const}\ std::size\_t\ maxNodeItems,\ \textcolor{keyword}{const}\ PointCalculator\&\ pointCalculator)\ :}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \ \ \ \ m\_nodeBuffer\ \ \ \ \ (),}
+\DoxyCodeLine{00088\ \ \ \ \ m\_items\ \ \ \ \ \ \ \ \ \ (),}
+\DoxyCodeLine{00089\ \ \ \ \ m\_rootAABB\ \ \ \ \ \ \ (),}
+\DoxyCodeLine{00090\ \ \ \ \ m\_numNodes\ \ \ \ \ \ \ (0),}
+\DoxyCodeLine{00091\ \ \ \ \ m\_maxNodeItems\ \ \ (maxNodeItems),}
+\DoxyCodeLine{00092\ \ \ \ \ m\_indexBuffer\ \ \ \ (),}
+\DoxyCodeLine{00093\ \ \ \ \ m\_pointCalculator(pointCalculator)}
+\DoxyCodeLine{00094\ \{}
+\DoxyCodeLine{00095\ \ \ \ \ PH\_ASSERT\_GT(maxNodeItems,\ 0);}
+\DoxyCodeLine{00096\ \}}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Item,\ \textcolor{keyword}{typename}\ Index,\ \textcolor{keyword}{typename}\ Po\textcolor{keywordtype}{int}Calculator>}
+\DoxyCodeLine{00099\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_point_kdtree_a0bf5585ef40d30ab11a363d98a0e9b7c}{TIndexedPointKdtree<Item,\ Index,\ PointCalculator>::}}}
+\DoxyCodeLine{00100\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_point_kdtree_a0bf5585ef40d30ab11a363d98a0e9b7c}{\ \ \ \ build}}(std::vector<Item>\ items)}
+\DoxyCodeLine{00101\ \{}
+\DoxyCodeLine{00102\ \ \ \ \ m\_nodeBuffer.clear();}
+\DoxyCodeLine{00103\ \ \ \ \ m\_items\ \ \ \ =\ std::move(items);}
+\DoxyCodeLine{00104\ \ \ \ \ m\_rootAABB\ =\ \mbox{\hyperlink{namespaceph_1_1math_a3edcdc1cc0792608777f3af5347b049d}{math::AABB3D}}();}
+\DoxyCodeLine{00105\ \ \ \ \ m\_numNodes\ =\ 0;}
+\DoxyCodeLine{00106\ \ \ \ \ m\_indexBuffer.clear();}
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{keywordflow}{if}(m\_items.empty())}
+\DoxyCodeLine{00108\ \ \ \ \ \{}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00110\ \ \ \ \ \}}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \ \ \ \ std::vector<math::Vector3R>\ itemPoints(m\_items.size());}
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ i\ =\ 0;\ i\ <\ m\_items.size();\ ++i)}
+\DoxyCodeLine{00114\ \ \ \ \ \{}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ item\ =\ m\_items[i];}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\&\ center\ =\ m\_pointCalculator(\mbox{\hyperlink{namespaceph_a088f88ce0c13cb136e0578ba5e45627d}{regular\_access}}(item));}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ itemPoints[i]\ =\ center;}
+\DoxyCodeLine{00119\ \ \ \ \ \}}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ \ \ \ \ std::unique\_ptr<Index[]>\ itemIndices(\textcolor{keyword}{new}\ Index[m\_items.size()]);}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00123\ \ \ \ \ PH\_ASSERT(m\_items.size()\ -\/\ 1\ <=\ std::numeric\_limits<Index>::max());}
+\DoxyCodeLine{00124\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ i\ =\ 0;\ i\ <\ m\_items.size();\ ++i)}
+\DoxyCodeLine{00125\ \ \ \ \ \{}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ itemIndices[i]\ =\ \textcolor{keyword}{static\_cast<}Index\textcolor{keyword}{>}(i);}
+\DoxyCodeLine{00127\ \ \ \ \ \}}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00129\ \ \ \ \ m\_rootAABB\ =\ calcPointsAABB(itemIndices.get(),\ m\_items.size(),\ itemPoints);}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ \ \ \ \ buildNodeRecursive(}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ 0,}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ m\_rootAABB,}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ itemIndices.get(),}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ m\_items.size(),}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ itemPoints,}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ 0);}
+\DoxyCodeLine{00138\ \}}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00140\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Item,\ \textcolor{keyword}{typename}\ Index,\ \textcolor{keyword}{typename}\ Po\textcolor{keywordtype}{int}Calculator>}
+\DoxyCodeLine{00141\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_point_kdtree_a62e63beeb0363b932338ace3c3c7dcb4}{TIndexedPointKdtree<Item,\ Index,\ PointCalculator>::}}}
+\DoxyCodeLine{00142\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_point_kdtree_a62e63beeb0363b932338ace3c3c7dcb4}{\ \ \ \ findWithinRange}}(}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\&\ location,}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ real\ \ \ \ \ \ \ \ \ \ \ \ searchRadius,}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ std::vector<Item>\&\ \ \ \ results)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00146\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00147\ \ \ \ \ PH\_ASSERT\_GT(m\_numNodes,\ 0);}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00149\ \ \ \ \ \textcolor{keyword}{const}\ real\ searchRadius2\ =\ searchRadius\ *\ searchRadius;}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00151\ \ \ \ \ rangeTraversal(}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ location,\ }
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ searchRadius2,}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ [\textcolor{keyword}{this},\ location,\ searchRadius2,\ \&results](\textcolor{keyword}{const}\ Item\&\ item)}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\ itemPoint\ =\ m\_pointCalculator(item);}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ real\ \ \ \ \ \ \ \ \ \ \ dist2\ \ \ \ \ =\ (itemPoint\ -\/\ location).lengthSquared();}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(dist2\ <\ searchRadius2)}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ results.push\_back(item);}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00163\ \}}
+\DoxyCodeLine{00164\ }
+\DoxyCodeLine{00165\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Item,\ \textcolor{keyword}{typename}\ Index,\ \textcolor{keyword}{typename}\ Po\textcolor{keywordtype}{int}Calculator>}
+\DoxyCodeLine{00166\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_point_kdtree_ae5ca50caae33e316b0e911104b228402}{TIndexedPointKdtree<Item,\ Index,\ PointCalculator>::}}}
+\DoxyCodeLine{00167\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_point_kdtree_ae5ca50caae33e316b0e911104b228402}{\ \ \ \ findNearest}}(}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\&\ location,}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ \ \ \ \ maxItems,}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ std::vector<Item>\&\ \ \ \ results)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00171\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00172\ \ \ \ \ PH\_ASSERT\_GT(m\_numNodes,\ 0);}
+\DoxyCodeLine{00173\ \ \ \ \ PH\_ASSERT\_GT(maxItems,\ 0);}
+\DoxyCodeLine{00174\ }
+\DoxyCodeLine{00175\ \ \ \ \ \textcolor{comment}{//\ OPT:\ distance\ calculation\ can\ be\ cached}}
+\DoxyCodeLine{00176\ }
+\DoxyCodeLine{00177\ \ \ \ \ \textcolor{keyword}{auto}\ isACloserThanB\ =\ }
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ [\textcolor{keyword}{this},\ location](\textcolor{keyword}{const}\ Item\&\ itemA,\ \textcolor{keyword}{const}\ Item\&\ itemB)\ -\/>\ \textcolor{keywordtype}{bool}}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (m\_pointCalculator(itemA)\ -\/\ location).lengthSquared()\ <\ }
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (m\_pointCalculator(itemB)\ -\/\ location).lengthSquared();}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00183\ }
+\DoxyCodeLine{00184\ \ \ \ \ real\ \ \ \ \ \ \ \ searchRadius2\ =\ std::numeric\_limits<real>::max();}
+\DoxyCodeLine{00185\ \ \ \ \ std::size\_t\ numFoundItems\ =\ 0;}
+\DoxyCodeLine{00186\ \ \ \ \ \textcolor{keyword}{auto}\ handler\ =\ }
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ [\textcolor{keyword}{this},\ location,\ maxItems,\ \&searchRadius2,\ \&numFoundItems,\ \&isACloserThanB,\ \&results](\textcolor{keyword}{const}\ Item\&\ item)}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00190\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ If\ k\ nearest\ neighbors\ are\ required\ and\ n\ items\ are\ processed}}
+\DoxyCodeLine{00191\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ by\ this\ handler,\ this\ handler\ (not\ including\ traversal)\ will}}
+\DoxyCodeLine{00192\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ take\ O(k\ +\ (n-\/k)*log(k))\ time\ in\ total.}}
+\DoxyCodeLine{00193\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00194\ }
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ output\ buffer\ is\ not\ full,\ just\ insert\ the\ item}}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(numFoundItems\ <\ maxItems)}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ results.push\_back(item);}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ numFoundItems++;}
+\DoxyCodeLine{00200\ }
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ once\ output\ buffer\ is\ full,\ make\ it\ a\ max\ heap}}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(numFoundItems\ ==\ maxItems)}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ this\ takes\ O(k)\ time}}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::make\_heap(}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ results.end()\ -\/\ maxItems,\ }
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ results.end(),\ }
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ isACloserThanB);}
+\DoxyCodeLine{00209\ }
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ the\ furthest\ one\ is\ at\ the\ max\ heap's\ root}}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Item\&\ furthestItem\ =\ results[results.size()\ -\/\ maxItems];}
+\DoxyCodeLine{00212\ }
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ search\ radius\ can\ be\ shrunk\ in\ this\ case}}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ searchRadius2\ =\ (m\_pointCalculator(furthestItem)\ -\/\ location).lengthSquared();}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ last\ <maxItems>\ items\ in\ output\ buffer\ forms\ a\ max\ heap\ now}}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ the\ furthest\ one\ is\ at\ the\ max\ heap's\ root}}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Item\&\ furthestItem\ =\ results[results.size()\ -\/\ maxItems];}
+\DoxyCodeLine{00222\ }
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(isACloserThanB(item,\ furthestItem))}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ remove\ furthest\ item,\ this\ takes\ O(log(k))\ time}}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::pop\_heap(}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ results.end()\ -\/\ maxItems,}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ results.end(),}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ isACloserThanB);}
+\DoxyCodeLine{00230\ }
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ results.back()\ =\ item;}
+\DoxyCodeLine{00232\ }
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ add\ new\ item,\ this\ takes\ O(log(k))\ time}}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::push\_heap(}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ results.end()\ -\/\ maxItems,}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ results.end(),}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ isACloserThanB);}
+\DoxyCodeLine{00238\ }
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ search\ radius\ can\ be\ shrunk\ in\ this\ case}}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ searchRadius2\ =\ (m\_pointCalculator(furthestItem)\ -\/\ location).lengthSquared();}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00243\ }
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ searchRadius2;}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00246\ }
+\DoxyCodeLine{00247\ \ \ \ \ nearestTraversal(}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ location,\ }
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ searchRadius2,}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ handler);}
+\DoxyCodeLine{00251\ \}}
+\DoxyCodeLine{00252\ }
+\DoxyCodeLine{00253\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Item,\ \textcolor{keyword}{typename}\ Index,\ \textcolor{keyword}{typename}\ Po\textcolor{keywordtype}{int}Calculator>}
+\DoxyCodeLine{00254\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ ItemHandler>}
+\DoxyCodeLine{00255\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_point_kdtree_a0764b4f7823627a72989d9af85d23a7b}{TIndexedPointKdtree<Item,\ Index,\ PointCalculator>::}}}
+\DoxyCodeLine{00256\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_point_kdtree_a0764b4f7823627a72989d9af85d23a7b}{\ \ \ \ rangeTraversal}}(}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\&\ location,}
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ real\ \ \ \ \ \ \ \ \ \ \ \ squaredSearchRadius,}
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ ItemHandler\ \ \ \ \ \ \ \ \ \ \ itemHandler)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00260\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00261\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_invocable\_v<ItemHandler,\ Item>,}
+\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}ItemHandler\ must\ accept\ an\ item\ as\ input."{}});}
+\DoxyCodeLine{00263\ }
+\DoxyCodeLine{00264\ \ \ \ \ PH\_ASSERT\_GT(m\_numNodes,\ 0);}
+\DoxyCodeLine{00265\ \ \ \ \ PH\_ASSERT\_LE(squaredSearchRadius,\ std::numeric\_limits<real>::max());}
+\DoxyCodeLine{00266\ }
+\DoxyCodeLine{00267\ \ \ \ \ \textcolor{keyword}{constexpr}\ std::size\_t\ MAX\_STACK\_HEIGHT\ =\ 64;}
+\DoxyCodeLine{00268\ \ \ \ \ std::array<const\ Node*,\ MAX\_STACK\_HEIGHT>\ nodeStack;}
+\DoxyCodeLine{00269\ }
+\DoxyCodeLine{00270\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_kdtree_node}{Node}}*\ currentNode\ =\ \&(m\_nodeBuffer[0]);}
+\DoxyCodeLine{00271\ \ \ \ \ std::size\_t\ stackHeight\ =\ 0;}
+\DoxyCodeLine{00272\ \ \ \ \ \textcolor{keywordflow}{while}(\textcolor{keyword}{true})}
+\DoxyCodeLine{00273\ \ \ \ \ \{}
+\DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ PH\_ASSERT(currentNode);}
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!currentNode-\/>\mbox{\hyperlink{classph_1_1math_1_1_t_indexed_kdtree_node_a1c23ae45d09daab8d726c9faaffdc60c}{isLeaf}}())}
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \ splitAxis\ \ \ \ \ \ =\ currentNode-\/>\mbox{\hyperlink{classph_1_1math_1_1_t_indexed_kdtree_node_a751eb1b8900850b1ea6f4b7af97270ec}{splitAxisIndex}}();}
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ real\ splitPos\ \ \ \ \ \ \ =\ currentNode-\/>\mbox{\hyperlink{classph_1_1math_1_1_t_indexed_kdtree_node_a9953f87c4a2775168a928b6d72c0cdd4}{splitPos}}();}
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ real\ splitPlaneDiff\ =\ location[splitAxis]\ -\/\ splitPos;}
+\DoxyCodeLine{00280\ }
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_kdtree_node}{Node}}*\ nearNode;}
+\DoxyCodeLine{00282\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_kdtree_node}{Node}}*\ farNode;}
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(splitPlaneDiff\ <\ 0)}
+\DoxyCodeLine{00284\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00285\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ nearNode\ =\ currentNode\ +\ 1;}
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ farNode\ \ =\ \&(m\_nodeBuffer[currentNode-\/>\mbox{\hyperlink{classph_1_1math_1_1_t_indexed_kdtree_node_a18ea605290d8f72b79ea11f819ee03c5}{positiveChildIndex}}()]);}
+\DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00288\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00289\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00290\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ nearNode\ =\ \&(m\_nodeBuffer[currentNode-\/>\mbox{\hyperlink{classph_1_1math_1_1_t_indexed_kdtree_node_a18ea605290d8f72b79ea11f819ee03c5}{positiveChildIndex}}()]);}
+\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ farNode\ \ =\ currentNode\ +\ 1;}
+\DoxyCodeLine{00292\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00293\ }
+\DoxyCodeLine{00294\ \ \ \ \ \ \ \ \ \ \ \ \ currentNode\ =\ nearNode;}
+\DoxyCodeLine{00295\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(squaredSearchRadius\ >=\ splitPlaneDiff\ *\ splitPlaneDiff)}
+\DoxyCodeLine{00296\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ PH\_ASSERT(stackHeight\ <\ MAX\_STACK\_HEIGHT);}
+\DoxyCodeLine{00298\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ nodeStack[stackHeight++]\ =\ farNode;}
+\DoxyCodeLine{00299\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00300\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00301\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ current\ node\ is\ leaf}}
+\DoxyCodeLine{00302\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00303\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00304\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ numItems\ \ \ \ \ \ \ \ \ \ =\ currentNode-\/>\mbox{\hyperlink{classph_1_1math_1_1_t_indexed_kdtree_node_a81e7c59b6e847996908707cd6d8d03a5}{numItems}}();}
+\DoxyCodeLine{00305\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ indexBufferOffset\ =\ currentNode-\/>\mbox{\hyperlink{classph_1_1math_1_1_t_indexed_kdtree_node_a5bc617d46dfd30f2db79662506aa0b8a}{indexBufferOffset}}();}
+\DoxyCodeLine{00306\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ i\ =\ 0;\ i\ <\ numItems;\ ++i)}
+\DoxyCodeLine{00307\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00308\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Index\ itemIndex\ =\ m\_indexBuffer[indexBufferOffset\ +\ i];}
+\DoxyCodeLine{00309\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Item\&\ item\ \ \ \ \ \ =\ m\_items[itemIndex];}
+\DoxyCodeLine{00310\ }
+\DoxyCodeLine{00311\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ itemHandler(item);}
+\DoxyCodeLine{00312\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00313\ }
+\DoxyCodeLine{00314\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(stackHeight\ >\ 0)}
+\DoxyCodeLine{00315\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00316\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ currentNode\ =\ nodeStack[-\/-\/stackHeight];}
+\DoxyCodeLine{00317\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00318\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00319\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00320\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00321\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00322\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00323\ \ \ \ \ \}\textcolor{comment}{//\ end\ while\ stackHeight\ >\ 0}}
+\DoxyCodeLine{00324\ \}}
+\DoxyCodeLine{00325\ }
+\DoxyCodeLine{00326\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Item,\ \textcolor{keyword}{typename}\ Index,\ \textcolor{keyword}{typename}\ Po\textcolor{keywordtype}{int}Calculator>}
+\DoxyCodeLine{00327\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ ItemHandler>}
+\DoxyCodeLine{00328\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_point_kdtree_a568e14f83e5ba397ceedfee1961754e0}{TIndexedPointKdtree<Item,\ Index,\ PointCalculator>::}}}
+\DoxyCodeLine{00329\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_point_kdtree_a568e14f83e5ba397ceedfee1961754e0}{\ \ \ \ nearestTraversal}}(}
+\DoxyCodeLine{00330\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\&\ location,}
+\DoxyCodeLine{00331\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ real\ \ \ \ \ \ \ \ \ \ \ \ initialSquaredSearchRadius,}
+\DoxyCodeLine{00332\ \ \ \ \ \ \ \ \ ItemHandler\ \ \ \ \ \ \ \ \ \ \ itemHandler)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00333\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00334\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_invocable\_v<ItemHandler,\ Item>,}
+\DoxyCodeLine{00335\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}ItemHandler\ must\ accept\ an\ item\ as\ input."{}});}
+\DoxyCodeLine{00336\ }
+\DoxyCodeLine{00337\ \ \ \ \ \textcolor{keyword}{using\ }Return\ =\ \textcolor{keyword}{decltype}(itemHandler(std::declval<Item>()));}
+\DoxyCodeLine{00338\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_same\_v<Return,\ real>,}
+\DoxyCodeLine{00339\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}ItemHandler\ must\ return\ an\ potentially\ shrunk\ squared\ search\ radius."{}});}
+\DoxyCodeLine{00340\ }
+\DoxyCodeLine{00341\ \ \ \ \ PH\_ASSERT\_GT(m\_numNodes,\ 0);}
+\DoxyCodeLine{00342\ \ \ \ \ PH\_ASSERT\_LE(initialSquaredSearchRadius,\ std::numeric\_limits<real>::max());}
+\DoxyCodeLine{00343\ }
+\DoxyCodeLine{00344\ \ \ \ \ \textcolor{keyword}{struct\ }NodeRecord}
+\DoxyCodeLine{00345\ \ \ \ \ \{}
+\DoxyCodeLine{00346\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_kdtree_node}{Node}}*\ node;}
+\DoxyCodeLine{00347\ }
+\DoxyCodeLine{00348\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ value\ is\ zero\ for\ near\ nodes\ as\ they\ should\ not\ be\ skipped\ by\ distance\ test.}}
+\DoxyCodeLine{00349\ \ \ \ \ \ \ \ \ real\ \ \ \ \ \ \ \ parentSplitPlaneDiff2;}
+\DoxyCodeLine{00350\ \ \ \ \ \};}
+\DoxyCodeLine{00351\ }
+\DoxyCodeLine{00352\ \ \ \ \ \textcolor{keyword}{constexpr}\ std::size\_t\ MAX\_STACK\_HEIGHT\ =\ 64;}
+\DoxyCodeLine{00353\ \ \ \ \ std::array<NodeRecord,\ MAX\_STACK\_HEIGHT>\ nodeStack;}
+\DoxyCodeLine{00354\ }
+\DoxyCodeLine{00355\ \ \ \ \ NodeRecord\ \ currentNode\ \ \ \ =\ \{\&(m\_nodeBuffer[0]),\ 0\};}
+\DoxyCodeLine{00356\ \ \ \ \ std::size\_t\ stackHeight\ \ \ \ =\ 0;}
+\DoxyCodeLine{00357\ \ \ \ \ real\ \ \ \ \ \ \ \ currentRadius2\ =\ initialSquaredSearchRadius;}
+\DoxyCodeLine{00358\ \ \ \ \ \textcolor{keywordflow}{while}(\textcolor{keyword}{true})}
+\DoxyCodeLine{00359\ \ \ \ \ \{}
+\DoxyCodeLine{00360\ \ \ \ \ \ \ \ \ PH\_ASSERT(currentNode.node);}
+\DoxyCodeLine{00361\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!currentNode.node-\/>isLeaf())}
+\DoxyCodeLine{00362\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00363\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \ splitAxis\ \ \ \ \ \ =\ currentNode.node-\/>splitAxisIndex();}
+\DoxyCodeLine{00364\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ real\ splitPos\ \ \ \ \ \ \ =\ currentNode.node-\/>splitPos();}
+\DoxyCodeLine{00365\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ real\ splitPlaneDiff\ =\ location[splitAxis]\ -\/\ splitPos;}
+\DoxyCodeLine{00366\ }
+\DoxyCodeLine{00367\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_kdtree_node}{Node}}*\ nearNode;}
+\DoxyCodeLine{00368\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_kdtree_node}{Node}}*\ farNode;}
+\DoxyCodeLine{00369\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(splitPlaneDiff\ <\ 0)}
+\DoxyCodeLine{00370\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00371\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ nearNode\ =\ currentNode.node\ +\ 1;}
+\DoxyCodeLine{00372\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ farNode\ \ =\ \&(m\_nodeBuffer[currentNode.node-\/>positiveChildIndex()]);}
+\DoxyCodeLine{00373\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00374\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00375\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00376\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ nearNode\ =\ \&(m\_nodeBuffer[currentNode.node-\/>positiveChildIndex()]);}
+\DoxyCodeLine{00377\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ farNode\ \ =\ currentNode.node\ +\ 1;}
+\DoxyCodeLine{00378\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00379\ }
+\DoxyCodeLine{00380\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ real\ splitPlaneDiff2\ =\ splitPlaneDiff\ *\ splitPlaneDiff;}
+\DoxyCodeLine{00381\ }
+\DoxyCodeLine{00382\ \ \ \ \ \ \ \ \ \ \ \ \ currentNode\ =\ \{nearNode,\ 0\};}
+\DoxyCodeLine{00383\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(currentRadius2\ >=\ splitPlaneDiff2)}
+\DoxyCodeLine{00384\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00385\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ PH\_ASSERT(stackHeight\ <\ MAX\_STACK\_HEIGHT);}
+\DoxyCodeLine{00386\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ nodeStack[stackHeight++]\ =\ \{farNode,\ splitPlaneDiff2\};}
+\DoxyCodeLine{00387\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00388\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00389\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ current\ node\ is\ leaf}}
+\DoxyCodeLine{00390\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00391\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00392\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ For\ far\ nodes,\ they\ can\ be\ culled\ if\ radius\ has\ shrunk.}}
+\DoxyCodeLine{00393\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ For\ near\ nodes,\ they\ have\ <parentSplitPlaneDiff2>\ ==\ 0\ hence\ cannot\ be\ skipped.}}
+\DoxyCodeLine{00394\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(currentRadius2\ >=\ currentNode.parentSplitPlaneDiff2)}
+\DoxyCodeLine{00395\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00396\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ numItems\ \ \ \ \ \ \ \ \ \ =\ currentNode.node-\/>numItems();}
+\DoxyCodeLine{00397\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ indexBufferOffset\ =\ currentNode.node-\/>indexBufferOffset();}
+\DoxyCodeLine{00398\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ i\ =\ 0;\ i\ <\ numItems;\ ++i)}
+\DoxyCodeLine{00399\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00400\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Index\ itemIndex\ =\ m\_indexBuffer[indexBufferOffset\ +\ i];}
+\DoxyCodeLine{00401\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Item\&\ item\ \ \ \ \ \ =\ m\_items[itemIndex];}
+\DoxyCodeLine{00402\ }
+\DoxyCodeLine{00403\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ potentially\ reduce\ search\ radius}}
+\DoxyCodeLine{00404\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ real\ shrunkRadius2\ =\ itemHandler(item);}
+\DoxyCodeLine{00405\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ PH\_ASSERT\_LE(shrunkRadius2,\ currentRadius2);}
+\DoxyCodeLine{00406\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ currentRadius2\ =\ shrunkRadius2;}
+\DoxyCodeLine{00407\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00408\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00409\ }
+\DoxyCodeLine{00410\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(stackHeight\ >\ 0)}
+\DoxyCodeLine{00411\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00412\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ currentNode\ =\ nodeStack[-\/-\/stackHeight];}
+\DoxyCodeLine{00413\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00414\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00415\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00416\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00417\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00418\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00419\ \ \ \ \ \}\textcolor{comment}{//\ end\ while\ stackHeight\ >\ 0}}
+\DoxyCodeLine{00420\ \}}
+\DoxyCodeLine{00421\ }
+\DoxyCodeLine{00422\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Item,\ \textcolor{keyword}{typename}\ Index,\ \textcolor{keyword}{typename}\ Po\textcolor{keywordtype}{int}Calculator>}
+\DoxyCodeLine{00423\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_point_kdtree}{TIndexedPointKdtree<Item,\ Index,\ PointCalculator>::}}}
+\DoxyCodeLine{00424\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_point_kdtree}{\ \ \ \ buildNodeRecursive}}(}
+\DoxyCodeLine{00425\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ nodeIndex,}
+\DoxyCodeLine{00426\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d}{math::AABB3D}}\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ nodeAABB,}
+\DoxyCodeLine{00427\ \ \ \ \ \ \ \ \ Index*\ \textcolor{keyword}{const}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ nodeItemIndices,}
+\DoxyCodeLine{00428\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ numNodeItems,}
+\DoxyCodeLine{00429\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::vector<math::Vector3R>\&\ itemPoints,}
+\DoxyCodeLine{00430\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ currentNodeDepth)}
+\DoxyCodeLine{00431\ \{}
+\DoxyCodeLine{00432\ \ \ \ \ ++m\_numNodes;}
+\DoxyCodeLine{00433\ \ \ \ \ \textcolor{keywordflow}{if}(m\_numNodes\ >\ m\_nodeBuffer.size())}
+\DoxyCodeLine{00434\ \ \ \ \ \{}
+\DoxyCodeLine{00435\ \ \ \ \ \ \ \ \ m\_nodeBuffer.resize(m\_numNodes\ *\ 2);}
+\DoxyCodeLine{00436\ \ \ \ \ \}}
+\DoxyCodeLine{00437\ \ \ \ \ PH\_ASSERT(nodeIndex\ <\ m\_nodeBuffer.size());}
+\DoxyCodeLine{00438\ }
+\DoxyCodeLine{00439\ \ \ \ \ \textcolor{keywordflow}{if}(numNodeItems\ <=\ m\_maxNodeItems)}
+\DoxyCodeLine{00440\ \ \ \ \ \{}
+\DoxyCodeLine{00441\ \ \ \ \ \ \ \ \ m\_nodeBuffer[nodeIndex]\ =\ Node::makeLeaf(nodeItemIndices,\ numNodeItems,\ m\_indexBuffer);}
+\DoxyCodeLine{00442\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00443\ \ \ \ \ \}}
+\DoxyCodeLine{00444\ }
+\DoxyCodeLine{00445\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_1_1math_abf8e1463b13d63dcdc46f0cb65e59c5a}{math::Vector3R}}\&\ nodeExtents\ =\ nodeAABB.\mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d_ae6a2cecea2f301839e76c1222672b99e}{getExtents}}();}
+\DoxyCodeLine{00446\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ \ \ \ \ \ \ \ \ \ \ \ splitAxis\ \ \ =\ nodeExtents.\mbox{\hyperlink{classph_1_1math_1_1_t_vector_n_base_ad68c91765bd85291c0ff2ba9c825e8e8}{maxDimension}}();}
+\DoxyCodeLine{00447\ }
+\DoxyCodeLine{00448\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ midIndicesIndex\ =\ numNodeItems\ /\ 2;}
+\DoxyCodeLine{00449\ \ \ \ \ std::nth\_element(}
+\DoxyCodeLine{00450\ \ \ \ \ \ \ \ \ nodeItemIndices,\ }
+\DoxyCodeLine{00451\ \ \ \ \ \ \ \ \ nodeItemIndices\ +\ midIndicesIndex,}
+\DoxyCodeLine{00452\ \ \ \ \ \ \ \ \ nodeItemIndices\ +\ numNodeItems,\ }
+\DoxyCodeLine{00453\ \ \ \ \ \ \ \ \ [\&](\textcolor{keyword}{const}\ Index\&\ a,\ \textcolor{keyword}{const}\ Index\&\ b)\ -\/>\ \textcolor{keywordtype}{bool}}
+\DoxyCodeLine{00454\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00455\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ itemPoints[a][splitAxis]\ <\ itemPoints[b][splitAxis];}
+\DoxyCodeLine{00456\ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00457\ }
+\DoxyCodeLine{00458\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ numNegativeItems\ =\ midIndicesIndex;}
+\DoxyCodeLine{00459\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ numPositiveItems\ =\ numNodeItems\ -\/\ midIndicesIndex;}
+\DoxyCodeLine{00460\ \ \ \ \ PH\_ASSERT(numNegativeItems\ +\ numPositiveItems\ >=\ 2);}
+\DoxyCodeLine{00461\ }
+\DoxyCodeLine{00462\ \ \ \ \ \textcolor{keyword}{const}\ real\ splitPos\ =\ itemPoints[nodeItemIndices[midIndicesIndex]][splitAxis];}
+\DoxyCodeLine{00463\ }
+\DoxyCodeLine{00464\ \ \ \ \ \mbox{\hyperlink{namespaceph_1_1math_abf8e1463b13d63dcdc46f0cb65e59c5a}{math::Vector3R}}\ splitPosMinVertex\ =\ nodeAABB.\mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d_af374aa4e2c99cf83c5324f7e5f376fec}{getMinVertex}}();}
+\DoxyCodeLine{00465\ \ \ \ \ \mbox{\hyperlink{namespaceph_1_1math_abf8e1463b13d63dcdc46f0cb65e59c5a}{math::Vector3R}}\ splitPosMaxVertex\ =\ nodeAABB.\mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d_a1c7cf27e2b7ecf50add7da77b78c5e3e}{getMaxVertex}}();}
+\DoxyCodeLine{00466\ \ \ \ \ splitPosMinVertex[splitAxis]\ =\ splitPos;}
+\DoxyCodeLine{00467\ \ \ \ \ splitPosMaxVertex[splitAxis]\ =\ splitPos;}
+\DoxyCodeLine{00468\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_1_1math_a3edcdc1cc0792608777f3af5347b049d}{math::AABB3D}}\ negativeNodeAABB(nodeAABB.\mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d_af374aa4e2c99cf83c5324f7e5f376fec}{getMinVertex}}(),\ splitPosMaxVertex);}
+\DoxyCodeLine{00469\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_1_1math_a3edcdc1cc0792608777f3af5347b049d}{math::AABB3D}}\ positiveNodeAABB(splitPosMinVertex,\ nodeAABB.\mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d_a1c7cf27e2b7ecf50add7da77b78c5e3e}{getMaxVertex}}());}
+\DoxyCodeLine{00470\ \ \ \ \ }
+\DoxyCodeLine{00471\ \ \ \ \ buildNodeRecursive(}
+\DoxyCodeLine{00472\ \ \ \ \ \ \ \ \ nodeIndex\ +\ 1,\ }
+\DoxyCodeLine{00473\ \ \ \ \ \ \ \ \ negativeNodeAABB,\ }
+\DoxyCodeLine{00474\ \ \ \ \ \ \ \ \ nodeItemIndices,}
+\DoxyCodeLine{00475\ \ \ \ \ \ \ \ \ numNegativeItems,}
+\DoxyCodeLine{00476\ \ \ \ \ \ \ \ \ itemPoints,}
+\DoxyCodeLine{00477\ \ \ \ \ \ \ \ \ currentNodeDepth\ +\ 1);}
+\DoxyCodeLine{00478\ }
+\DoxyCodeLine{00479\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ positiveChildIndex\ =\ m\_numNodes;}
+\DoxyCodeLine{00480\ \ \ \ \ m\_nodeBuffer[nodeIndex]\ =\ Node::makeInner(splitPos,\ splitAxis,\ positiveChildIndex);}
+\DoxyCodeLine{00481\ }
+\DoxyCodeLine{00482\ \ \ \ \ buildNodeRecursive(}
+\DoxyCodeLine{00483\ \ \ \ \ \ \ \ \ positiveChildIndex,}
+\DoxyCodeLine{00484\ \ \ \ \ \ \ \ \ positiveNodeAABB,}
+\DoxyCodeLine{00485\ \ \ \ \ \ \ \ \ nodeItemIndices\ +\ midIndicesIndex,}
+\DoxyCodeLine{00486\ \ \ \ \ \ \ \ \ numPositiveItems,}
+\DoxyCodeLine{00487\ \ \ \ \ \ \ \ \ itemPoints,}
+\DoxyCodeLine{00488\ \ \ \ \ \ \ \ \ currentNodeDepth\ +\ 1);}
+\DoxyCodeLine{00489\ \}}
+\DoxyCodeLine{00490\ }
+\DoxyCodeLine{00491\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Item,\ \textcolor{keyword}{typename}\ Index,\ \textcolor{keyword}{typename}\ Po\textcolor{keywordtype}{int}Calculator>}
+\DoxyCodeLine{00492\ \textcolor{keyword}{inline}\ std::size\_t\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_point_kdtree_ad332e631b1471a84d63ca6fc65251be0}{TIndexedPointKdtree<Item,\ Index,\ PointCalculator>::}}}
+\DoxyCodeLine{00493\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_point_kdtree_ad332e631b1471a84d63ca6fc65251be0}{\ \ \ \ numItems}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00494\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00495\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_items.size();}
+\DoxyCodeLine{00496\ \}}
+\DoxyCodeLine{00497\ }
+\DoxyCodeLine{00498\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Item,\ \textcolor{keyword}{typename}\ Index,\ \textcolor{keyword}{typename}\ Po\textcolor{keywordtype}{int}Calculator>}
+\DoxyCodeLine{00499\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_point_kdtree}{TIndexedPointKdtree<Item,\ Index,\ PointCalculator>::}}}
+\DoxyCodeLine{00500\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_point_kdtree}{\ \ \ \ calcPointsAABB}}(}
+\DoxyCodeLine{00501\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Index*\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pointIndices,}
+\DoxyCodeLine{00502\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ numPoints,}
+\DoxyCodeLine{00503\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::vector<math::Vector3R>\&\ pointBuffer)}
+\DoxyCodeLine{00504\ \ \ \ \ -\/>\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d}{math::AABB3D}}}
+\DoxyCodeLine{00505\ \{}
+\DoxyCodeLine{00506\ \ \ \ \ PH\_ASSERT(pointIndices\ \&\&\ numPoints\ >\ 0);}
+\DoxyCodeLine{00507\ }
+\DoxyCodeLine{00508\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d}{math::AABB3D}}\ pointsAABB(pointBuffer[pointIndices[0]]);}
+\DoxyCodeLine{00509\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ i\ =\ 1;\ i\ <\ numPoints;\ ++i)}
+\DoxyCodeLine{00510\ \ \ \ \ \{}
+\DoxyCodeLine{00511\ \ \ \ \ \ \ \ \ pointsAABB.unionWith(pointBuffer[pointIndices[i]]);}
+\DoxyCodeLine{00512\ \ \ \ \ \}}
+\DoxyCodeLine{00513\ \ \ \ \ \textcolor{keywordflow}{return}\ pointsAABB;}
+\DoxyCodeLine{00514\ \}}
+\DoxyCodeLine{00515\ }
+\DoxyCodeLine{00516\ \}\textcolor{comment}{//\ end\ namespace\ ph::math}}
 
 \end{DoxyCode}

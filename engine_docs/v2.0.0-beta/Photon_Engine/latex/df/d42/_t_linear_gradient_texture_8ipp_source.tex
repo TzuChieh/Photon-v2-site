@@ -1,91 +1,92 @@
 \doxysection{TLinear\+Gradient\+Texture.\+ipp}
 \hypertarget{_t_linear_gradient_texture_8ipp_source}{}\label{_t_linear_gradient_texture_8ipp_source}\index{Source/Core/Texture/TLinearGradientTexture.ipp@{Source/Core/Texture/TLinearGradientTexture.ipp}}
-
+\mbox{\hyperlink{_t_linear_gradient_texture_8ipp}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
 \DoxyCodeLine{00002\ }
-\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Core/Texture/TLinearGradientTexture.h"{}}}
-\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Common/assertion.h"{}}}
-\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}Core/Texture/SampleLocation.h"{}}}
-\DoxyCodeLine{00006\ }
-\DoxyCodeLine{00007\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
-\DoxyCodeLine{00008\ \{}
-\DoxyCodeLine{00009\ }
-\DoxyCodeLine{00010\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ OutputType>}
-\DoxyCodeLine{00011\ \textcolor{keyword}{inline}\ TLinearGradientTexture<OutputType>::TLinearGradientTexture(}
-\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keyword}{const}\ real\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ beginU,}
-\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keyword}{const}\ std::shared\_ptr<TTexture<OutputType>>\&\ beginTexture,}
-\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keyword}{const}\ real\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ endU,}
-\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keyword}{const}\ std::shared\_ptr<TTexture<OutputType>>\&\ endTexture)\ :}
-\DoxyCodeLine{00016\ }
-\DoxyCodeLine{00017\ \ \ \ \ TLinearGradientTexture(}
-\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \{beginU,\ 0,\ 0\},}
-\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ beginTexture,\ }
-\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \{endU,\ 0,\ 0\},}
-\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ endTexture)}
-\DoxyCodeLine{00022\ \{\}}
-\DoxyCodeLine{00023\ }
-\DoxyCodeLine{00024\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ OutputType>}
-\DoxyCodeLine{00025\ \textcolor{keyword}{inline}\ TLinearGradientTexture<OutputType>::TLinearGradientTexture(}
-\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{const}\ math::Vector2R\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ beginUV,}
-\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{const}\ std::shared\_ptr<TTexture<OutputType>>\&\ beginTexture,}
-\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{const}\ math::Vector2R\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ endUV,}
-\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{const}\ std::shared\_ptr<TTexture<OutputType>>\&\ endTexture)\ :}
-\DoxyCodeLine{00030\ }
-\DoxyCodeLine{00031\ \ \ \ \ TLinearGradientTexture(}
-\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \{beginUV.x,\ beginUV.y,\ 0\},}
-\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ beginTexture,\ }
-\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \{endUV.x,\ endUV.y,\ 0\},}
-\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ endTexture)}
-\DoxyCodeLine{00036\ \{\}}
-\DoxyCodeLine{00037\ }
-\DoxyCodeLine{00038\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ OutputType>}
-\DoxyCodeLine{00039\ \textcolor{keyword}{inline}\ TLinearGradientTexture<OutputType>::TLinearGradientTexture(}
-\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{const}\ math::Vector3R\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ beginUVW,}
-\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keyword}{const}\ std::shared\_ptr<TTexture<OutputType>>\&\ beginTexture,}
-\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keyword}{const}\ math::Vector3R\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ endUVW,}
-\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keyword}{const}\ std::shared\_ptr<TTexture<OutputType>>\&\ endTexture)\ :}
-\DoxyCodeLine{00044\ }
-\DoxyCodeLine{00045\ \ \ \ \ TTexture<OutputType>(),}
-\DoxyCodeLine{00046\ }
-\DoxyCodeLine{00047\ \ \ \ \ m\_beginUVW\ \ \ \ (beginUVW),}
-\DoxyCodeLine{00048\ \ \ \ \ m\_beginTexture(beginTexture),}
-\DoxyCodeLine{00049\ \ \ \ \ m\_endUVW\ \ \ \ \ \ (endUVW),}
-\DoxyCodeLine{00050\ \ \ \ \ m\_endTexture\ \ (endTexture)}
-\DoxyCodeLine{00051\ \{}
-\DoxyCodeLine{00052\ \ \ \ \ PH\_ASSERT(!beginUVW.isEqual(endUVW));}
-\DoxyCodeLine{00053\ \ \ \ \ PH\_ASSERT(beginTexture);}
-\DoxyCodeLine{00054\ \ \ \ \ PH\_ASSERT(endTexture);}
-\DoxyCodeLine{00055\ \}}
-\DoxyCodeLine{00056\ }
-\DoxyCodeLine{00057\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ OutputType>}
-\DoxyCodeLine{00058\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ TLinearGradientTexture<OutputType>::sample(\textcolor{keyword}{const}\ SampleLocation\&\ sampleLocation,\ OutputType*\ \textcolor{keyword}{const}\ out\_value)\textcolor{keyword}{\ const}}
-\DoxyCodeLine{00059\ \textcolor{keyword}{}\{}
-\DoxyCodeLine{00060\ \ \ \ \ PH\_ASSERT(out\_value);}
-\DoxyCodeLine{00061\ \ \ \ \ PH\_ASSERT(m\_beginTexture);}
-\DoxyCodeLine{00062\ \ \ \ \ PH\_ASSERT(m\_beginTexture.get()\ !=\ \textcolor{keyword}{this});}
-\DoxyCodeLine{00063\ \ \ \ \ PH\_ASSERT(m\_endTexture);}
-\DoxyCodeLine{00064\ \ \ \ \ PH\_ASSERT(m\_endTexture.get()\ !=\ \textcolor{keyword}{this});}
-\DoxyCodeLine{00065\ }
-\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ baseVec\ \ \ \ \ \ \ =\ m\_endUVW\ -\/\ m\_beginUVW;}
-\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keyword}{const}\ real\ baseLength\ \ \ \ =\ baseVec.length();}
-\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keyword}{const}\ real\ rcpBaseLength\ =\ 1.0\_r\ /\ baseLength;}
-\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ baseAxis\ \ \ \ \ \ =\ baseVec\ *\ rcpBaseLength;}
-\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ sampleVec\ \ \ \ \ =\ sampleLocation.uvw()\ -\/\ m\_beginUVW;}
-\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keyword}{const}\ real\ sampleLength\ \ =\ sampleVec.dot(baseAxis);}
-\DoxyCodeLine{00072\ }
-\DoxyCodeLine{00073\ \ \ \ \ \textcolor{comment}{//\ Lerp\ between\ endpoints}}
-\DoxyCodeLine{00074\ }
-\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keyword}{const}\ real\ beginRatio\ =\ (baseLength\ -\/\ sampleLength)\ *\ rcpBaseLength;}
-\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keyword}{const}\ real\ endRatio\ \ \ =\ sampleLength\ *\ rcpBaseLength;}
-\DoxyCodeLine{00077\ }
-\DoxyCodeLine{00078\ \ \ \ \ OutputType\ beginValue,\ endValue;}
-\DoxyCodeLine{00079\ \ \ \ \ m\_beginTexture-\/>sample(sampleLocation,\ \&beginValue);}
-\DoxyCodeLine{00080\ \ \ \ \ m\_endTexture-\/>sample(sampleLocation,\ \&endValue);}
-\DoxyCodeLine{00081\ }
-\DoxyCodeLine{00082\ \ \ \ \ *out\_value\ =\ beginValue\ *\ beginRatio\ +\ endValue\ *\ endRatio;}
-\DoxyCodeLine{00083\ \}}
-\DoxyCodeLine{00084\ }
-\DoxyCodeLine{00085\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_linear_gradient_texture_8h}{Core/Texture/TLinearGradientTexture.h}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_sample_location_8h}{Core/Texture/SampleLocation.h}}"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <Common/assertion.h>}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00009\ \{}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ OutputType>}
+\DoxyCodeLine{00012\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_t_linear_gradient_texture_aef573078878e60db096db34a8a675502}{TLinearGradientTexture<OutputType>::TLinearGradientTexture}}(}
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keyword}{const}\ real\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ beginU,}
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keyword}{const}\ std::shared\_ptr<\mbox{\hyperlink{classph_1_1_t_texture}{TTexture<OutputType>}}>\&\ beginTexture,}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keyword}{const}\ real\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ endU,}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keyword}{const}\ std::shared\_ptr<\mbox{\hyperlink{classph_1_1_t_texture}{TTexture<OutputType>}}>\&\ endTexture)\ :}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_linear_gradient_texture}{TLinearGradientTexture}}(}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \{beginU,\ 0,\ 0\},}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ beginTexture,\ }
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \{endU,\ 0,\ 0\},}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ endTexture)}
+\DoxyCodeLine{00023\ \{\}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ OutputType>}
+\DoxyCodeLine{00026\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_t_linear_gradient_texture_aef573078878e60db096db34a8a675502}{TLinearGradientTexture<OutputType>::TLinearGradientTexture}}(}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{math::Vector2R}}\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ beginUV,}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{const}\ std::shared\_ptr<\mbox{\hyperlink{classph_1_1_t_texture}{TTexture<OutputType>}}>\&\ beginTexture,}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{math::Vector2R}}\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ endUV,}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{const}\ std::shared\_ptr<\mbox{\hyperlink{classph_1_1_t_texture}{TTexture<OutputType>}}>\&\ endTexture)\ :}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_linear_gradient_texture}{TLinearGradientTexture}}(}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \{beginUV.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_a03c5e56839820da78b52d2db0281f065}{x}},\ beginUV.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_af3065a5fa872cdb3f2291a84824d5d59}{y}},\ 0\},}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ beginTexture,\ }
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \{endUV.x,\ endUV.y,\ 0\},}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ endTexture)}
+\DoxyCodeLine{00037\ \{\}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ OutputType>}
+\DoxyCodeLine{00040\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_t_linear_gradient_texture_aef573078878e60db096db34a8a675502}{TLinearGradientTexture<OutputType>::TLinearGradientTexture}}(}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ beginUVW,}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keyword}{const}\ std::shared\_ptr<\mbox{\hyperlink{classph_1_1_t_texture}{TTexture<OutputType>}}>\&\ beginTexture,}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ endUVW,}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keyword}{const}\ std::shared\_ptr<\mbox{\hyperlink{classph_1_1_t_texture}{TTexture<OutputType>}}>\&\ endTexture)\ :}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_texture}{TTexture}}<OutputType>(),}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \ \ m\_beginUVW\ \ \ \ (beginUVW),}
+\DoxyCodeLine{00049\ \ \ \ \ m\_beginTexture(beginTexture),}
+\DoxyCodeLine{00050\ \ \ \ \ m\_endUVW\ \ \ \ \ \ (endUVW),}
+\DoxyCodeLine{00051\ \ \ \ \ m\_endTexture\ \ (endTexture)}
+\DoxyCodeLine{00052\ \{}
+\DoxyCodeLine{00053\ \ \ \ \ PH\_ASSERT(!beginUVW.\mbox{\hyperlink{classph_1_1math_1_1_t_vector_n_base_adbc3c75c377dfa6e3e0cb236079c584a}{isEqual}}(endUVW));}
+\DoxyCodeLine{00054\ \ \ \ \ PH\_ASSERT(beginTexture);}
+\DoxyCodeLine{00055\ \ \ \ \ PH\_ASSERT(endTexture);}
+\DoxyCodeLine{00056\ \}}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ OutputType>}
+\DoxyCodeLine{00059\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_linear_gradient_texture_a8d465e253ae6657f145e301b7e6323d4}{TLinearGradientTexture<OutputType>::sample}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_sample_location}{SampleLocation}}\&\ sampleLocation,\ OutputType*\ \textcolor{keyword}{const}\ out\_value)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00060\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00061\ \ \ \ \ PH\_ASSERT(out\_value);}
+\DoxyCodeLine{00062\ \ \ \ \ PH\_ASSERT(m\_beginTexture);}
+\DoxyCodeLine{00063\ \ \ \ \ PH\_ASSERT(m\_beginTexture.get()\ !=\ \textcolor{keyword}{this});}
+\DoxyCodeLine{00064\ \ \ \ \ PH\_ASSERT(m\_endTexture);}
+\DoxyCodeLine{00065\ \ \ \ \ PH\_ASSERT(m\_endTexture.get()\ !=\ \textcolor{keyword}{this});}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ baseVec\ \ \ \ \ \ \ =\ m\_endUVW\ -\/\ m\_beginUVW;}
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keyword}{const}\ real\ baseLength\ \ \ \ =\ baseVec.length();}
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keyword}{const}\ real\ rcpBaseLength\ =\ 1.0\_r\ /\ baseLength;}
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ baseAxis\ \ \ \ \ \ =\ baseVec\ *\ rcpBaseLength;}
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ sampleVec\ \ \ \ \ =\ sampleLocation.\mbox{\hyperlink{classph_1_1_sample_location_ac351e93a5024f7425c723f5852bb24e7}{uvw}}()\ -\/\ m\_beginUVW;}
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keyword}{const}\ real\ sampleLength\ \ =\ sampleVec.\mbox{\hyperlink{classph_1_1math_1_1_t_vector_n_base_a798d064dc3ff4c11b536919418b2e2d5}{dot}}(baseAxis);}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{comment}{//\ Lerp\ between\ endpoints}}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keyword}{const}\ real\ beginRatio\ =\ (baseLength\ -\/\ sampleLength)\ *\ rcpBaseLength;}
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keyword}{const}\ real\ endRatio\ \ \ =\ sampleLength\ *\ rcpBaseLength;}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \ \ \ \ OutputType\ beginValue,\ endValue;}
+\DoxyCodeLine{00080\ \ \ \ \ m\_beginTexture-\/>sample(sampleLocation,\ \&beginValue);}
+\DoxyCodeLine{00081\ \ \ \ \ m\_endTexture-\/>sample(sampleLocation,\ \&endValue);}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \ \ \ \ *out\_value\ =\ beginValue\ *\ beginRatio\ +\ endValue\ *\ endRatio;}
+\DoxyCodeLine{00084\ \}}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
 
 \end{DoxyCode}

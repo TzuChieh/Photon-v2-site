@@ -1,6 +1,5 @@
 var hierarchy =
 [
-    [ "ph::detail::AlignedMemoryDeleter", "d1/d34/structph_1_1detail_1_1_aligned_memory_deleter.html", null ],
     [ "ph::AltPath", "d7/ddf/classph_1_1_alt_path.html", null ],
     [ "ph::ApiDatabase", "da/d99/classph_1_1_api_database.html", null ],
     [ "ph::ApiHelper", "dc/d3b/classph_1_1_api_helper.html", null ],
@@ -27,9 +26,7 @@ var hierarchy =
     [ "ph::BvhLinearNode", "df/d89/classph_1_1_bvh_linear_node.html", null ],
     [ "ph::BvhSahBucket", "d7/d75/classph_1_1_bvh_sah_bucket.html", null ],
     [ "ph::ByteBuffer", "db/d38/classph_1_1_byte_buffer.html", null ],
-    [ "ph::CommandLineArguments", "df/d70/classph_1_1_command_line_arguments.html", null ],
     [ "ph::ConductiveInterfaceInfo", "d9/daf/classph_1_1_conductive_interface_info.html", null ],
-    [ "ph::Config", "de/d94/classph_1_1_config.html", null ],
     [ "ph::CookedDataStorage", "dd/d7e/classph_1_1_cooked_data_storage.html", null ],
     [ "ph::CookedGeometry", "df/d2f/classph_1_1_cooked_geometry.html", null ],
     [ "ph::CookedMotion", "dd/d29/classph_1_1_cooked_motion.html", null ],
@@ -89,10 +86,8 @@ var hierarchy =
       ] ]
     ] ],
     [ "ph::FullRay", "db/db0/classph_1_1_full_ray.html", null ],
-    [ "ph::TimerStatsReport::GroupedTimeRecord", "d8/dc7/structph_1_1_timer_stats_report_1_1_grouped_time_record.html", null ],
     [ "std::hash< ph::math::TVector2< T > >", "d4/dad/structstd_1_1hash_3_01ph_1_1math_1_1_t_vector2_3_01_t_01_4_01_4.html", null ],
     [ "ph::HdrOperator", "dd/d87/classph_1_1_hdr_operator.html", null ],
-    [ "ph::string_utils::detail::HeterogeneousStringHash", "d4/d5c/structph_1_1string__utils_1_1detail_1_1_heterogeneous_string_hash.html", null ],
     [ "ph::HitDetail", "d9/d1b/classph_1_1_hit_detail.html", null ],
     [ "ph::HitInfo", "d0/d50/classph_1_1_hit_info.html", null ],
     [ "ph::HitProbe", "df/d97/classph_1_1_hit_probe.html", null ],
@@ -376,17 +371,6 @@ var hierarchy =
     [ "ph::KdtreeAABB", "da/de1/classph_1_1_kdtree_a_a_b_b.html", null ],
     [ "ph::KdtreeNode", "d8/d77/classph_1_1_kdtree_node.html", null ],
     [ "ph::LbLayer", "d3/dd9/classph_1_1_lb_layer.html", null ],
-    [ "ph::Logger", "d2/d90/classph_1_1_logger.html", null ],
-    [ "ph::LogGroup", "df/dfe/structph_1_1_log_group.html", null ],
-    [ "ph::LogGroups", "dc/de2/classph_1_1_log_groups.html", null ],
-    [ "std::logic_error", null, [
-      [ "ph::LogicalException", "dd/dac/classph_1_1_logical_exception.html", [
-        [ "ph::IllegalOperationException", "db/dec/classph_1_1_illegal_operation_exception.html", null ],
-        [ "ph::InvalidArgumentException", "d4/d55/classph_1_1_invalid_argument_exception.html", null ],
-        [ "ph::OutOfRangeException", "df/d3a/classph_1_1_out_of_range_exception.html", null ],
-        [ "ph::UninitializedObjectException", "de/d3a/classph_1_1_uninitialized_object_exception.html", null ]
-      ] ]
-    ] ],
     [ "ph::Microfacet", "d5/db3/classph_1_1_microfacet.html", [
       [ "ph::AnisoTrowbridgeReitz", "d8/d32/classph_1_1_aniso_trowbridge_reitz.html", null ],
       [ "ph::IsoBeckmann", "d1/d41/classph_1_1_iso_beckmann.html", null ],
@@ -405,6 +389,7 @@ var hierarchy =
     [ "ph::PeriodicSingleThreadExecutor", "d9/d2d/classph_1_1_periodic_single_thread_executor.html", null ],
     [ "ph::PfmFileWriter", "d5/dd4/classph_1_1_pfm_file_writer.html", null ],
     [ "ph::PictureData", "dd/d8d/classph_1_1_picture_data.html", null ],
+    [ "ph::PictureMeta", "d3/dd0/classph_1_1_picture_meta.html", null ],
     [ "ph::PixelBuffer2D", "d9/db1/classph_1_1_pixel_buffer2_d.html", [
       [ "ph::TFrameBuffer2D< T, N >", "d1/df2/classph_1_1_t_frame_buffer2_d.html", null ]
     ] ],
@@ -453,6 +438,7 @@ var hierarchy =
     [ "ph::RendererProxy", "d0/dd5/classph_1_1_renderer_proxy.html", null ],
     [ "ph::RenderObservationInfo", "dc/dae/classph_1_1_render_observation_info.html", null ],
     [ "ph::RenderProgress", "db/da3/classph_1_1_render_progress.html", null ],
+    [ "ph::RenderRegionStatus", "df/dad/classph_1_1_render_region_status.html", null ],
     [ "ph::RenderStats", "de/d70/classph_1_1_render_stats.html", null ],
     [ "ph::RenderWork", "d1/dd4/classph_1_1_render_work.html", [
       [ "ph::TRadianceEvaluationWork< FullPhoton >", "de/d38/classph_1_1_t_radiance_evaluation_work.html", [
@@ -466,25 +452,20 @@ var hierarchy =
     [ "ph::RenderWorker", "d5/da0/classph_1_1_render_worker.html", null ],
     [ "ph::ResourceIdentifier", "d7/d8e/classph_1_1_resource_identifier.html", null ],
     [ "ph::RoughnessToAlphaMapping", "db/d38/classph_1_1_roughness_to_alpha_mapping.html", null ],
-    [ "std::runtime_error", null, [
-      [ "ph::RuntimeException", "d2/dd1/classph_1_1_runtime_exception.html", [
-        [ "ph::CookException", "d4/dbc/classph_1_1_cook_exception.html", [
-          [ "ph::ActorCookException", "d1/d73/classph_1_1_actor_cook_exception.html", null ]
-        ] ],
-        [ "ph::IOException", "db/d5e/classph_1_1_i_o_exception.html", [
-          [ "ph::FileIOError", "d6/d6d/classph_1_1_file_i_o_error.html", null ],
-          [ "ph::FilesystemError", "d7/d1a/classph_1_1_filesystem_error.html", null ]
-        ] ],
-        [ "ph::NumericException", "d7/da9/classph_1_1_numeric_exception.html", [
-          [ "ph::OverflowException", "d7/d86/classph_1_1_overflow_exception.html", null ]
-        ] ],
-        [ "ph::SdlException", "d1/d79/classph_1_1_sdl_exception.html", [
-          [ "ph::SdlLoadError", "d5/d0b/classph_1_1_sdl_load_error.html", null ],
-          [ "ph::SdlSaveError", "d2/d24/classph_1_1_sdl_save_error.html", null ]
-        ] ],
-        [ "ph::math::MathException", "d3/d49/classph_1_1math_1_1_math_exception.html", [
-          [ "ph::math::ColorError", "d3/db0/classph_1_1math_1_1_color_error.html", null ]
-        ] ]
+    [ "RuntimeException", null, [
+      [ "ph::CookException", "d4/dbc/classph_1_1_cook_exception.html", [
+        [ "ph::ActorCookException", "d1/d73/classph_1_1_actor_cook_exception.html", null ]
+      ] ],
+      [ "ph::IOException", "db/d5e/classph_1_1_i_o_exception.html", [
+        [ "ph::FileIOError", "d6/d6d/classph_1_1_file_i_o_error.html", null ],
+        [ "ph::FilesystemError", "d7/d1a/classph_1_1_filesystem_error.html", null ]
+      ] ],
+      [ "ph::SdlException", "d1/d79/classph_1_1_sdl_exception.html", [
+        [ "ph::SdlLoadError", "d5/d0b/classph_1_1_sdl_load_error.html", null ],
+        [ "ph::SdlSaveError", "d2/d24/classph_1_1_sdl_save_error.html", null ]
+      ] ],
+      [ "ph::math::MathException", "d3/d49/classph_1_1math_1_1_math_exception.html", [
+        [ "ph::math::ColorError", "d3/db0/classph_1_1math_1_1_color_error.html", null ]
       ] ]
     ] ],
     [ "ph::RussianRoulette", "d2/d57/classph_1_1_russian_roulette.html", null ],
@@ -510,7 +491,6 @@ var hierarchy =
       [ "ph::HenyeyGreenstein", "dd/dbd/classph_1_1_henyey_greenstein.html", null ]
     ] ],
     [ "ph::Scene", "d6/d0d/classph_1_1_scene.html", null ],
-    [ "ph::detail::stats::ScopedTimer", "d1/d32/structph_1_1detail_1_1stats_1_1_scoped_timer.html", null ],
     [ "ph::SdlCommandGenerator", "d0/dba/classph_1_1_sdl_command_generator.html", [
       [ "ph::SdlSceneFileWriter", "d3/de3/classph_1_1_sdl_scene_file_writer.html", null ]
     ] ],
@@ -645,16 +625,16 @@ var hierarchy =
       [ "ph::math::TVectorNBase< TVectorN< T, N >, T, N >", "da/d31/classph_1_1math_1_1_t_vector_n_base.html", [
         [ "ph::math::TVectorN< T, N >", "dc/d37/classph_1_1math_1_1_t_vector_n.html", null ]
       ] ],
-      [ "ph::math::TVectorNBase< TVector2< int64 >, int64, 2 >", "da/d31/classph_1_1math_1_1_t_vector_n_base.html", null ],
       [ "ph::math::TVectorNBase< TVector2< uint32 >, uint32, 2 >", "da/d31/classph_1_1math_1_1_t_vector_n_base.html", null ],
+      [ "ph::math::TVectorNBase< TVector2< int64 >, int64, 2 >", "da/d31/classph_1_1math_1_1_t_vector_n_base.html", null ],
       [ "ph::math::TVectorNBase< TVector2< std::size_t >, std::size_t, 2 >", "da/d31/classph_1_1math_1_1_t_vector_n_base.html", null ],
       [ "ph::math::TVectorNBase< TVector2< real >, real, 2 >", "da/d31/classph_1_1math_1_1_t_vector_n_base.html", null ],
       [ "ph::math::TSpectrumBase< Derived, COLOR_SPACE, T, N >", "d7/dbb/classph_1_1math_1_1_t_spectrum_base.html", null ],
       [ "ph::math::TVectorNBase< Derived, T, N >", "da/d31/classph_1_1math_1_1_t_vector_n_base.html", [
         [ "ph::math::TVector2< float64 >", "db/dba/classph_1_1math_1_1_t_vector2.html", null ],
         [ "ph::math::TVector2< Element >", "db/dba/classph_1_1math_1_1_t_vector2.html", null ],
-        [ "ph::math::TVector2< int64 >", "db/dba/classph_1_1math_1_1_t_vector2.html", null ],
         [ "ph::math::TVector2< uint32 >", "db/dba/classph_1_1math_1_1_t_vector2.html", null ],
+        [ "ph::math::TVector2< int64 >", "db/dba/classph_1_1math_1_1_t_vector2.html", null ],
         [ "ph::math::TVector2< std::size_t >", "db/dba/classph_1_1math_1_1_t_vector2.html", null ],
         [ "ph::math::TVector2< real >", "db/dba/classph_1_1math_1_1_t_vector2.html", null ],
         [ "ph::math::TVector3< real >", "d4/d2c/classph_1_1math_1_1_t_vector3.html", null ]
@@ -688,6 +668,7 @@ var hierarchy =
     [ "ph::TArrayAsVector< std::unique_ptr< ph::TSdlOwnedField< StructType > >, PH_SDL_MAX_FIELDS >", "d1/dea/classph_1_1_t_array_as_vector.html", null ],
     [ "ph::TArrayAsVector< std::unique_ptr< TSdlOwnedField< Owner > >, PH_SDL_MAX_FIELDS >", "d1/dea/classph_1_1_t_array_as_vector.html", null ],
     [ "ph::TAtomicQuasiQueue< T >", "df/d4e/classph_1_1_t_atomic_quasi_queue.html", null ],
+    [ "ph::TAtomicQuasiQueue< ph::RenderRegionStatus >", "df/d4e/classph_1_1_t_atomic_quasi_queue.html", null ],
     [ "ph::math::TBasicTriangle< T >", "dc/db6/classph_1_1math_1_1_t_basic_triangle.html", [
       [ "ph::math::TWatertightTriangle< real >", "d9/d04/classph_1_1math_1_1_t_watertight_triangle.html", null ],
       [ "ph::math::TTriangle< T >", "d9/d93/classph_1_1math_1_1_t_triangle.html", null ],
@@ -727,11 +708,7 @@ var hierarchy =
     [ "ph::function_detail::TFunction< void(void), 0 >", "df/df5/classph_1_1function__detail_1_1_t_function.html", null ],
     [ "ph::math::THemisphere< T >", "da/de9/classph_1_1math_1_1_t_hemisphere.html", null ],
     [ "ph::Time", "d9/d27/classph_1_1_time.html", null ],
-    [ "ph::detail::stats::TimeCounter", "d4/dae/structph_1_1detail_1_1stats_1_1_time_counter.html", null ],
     [ "ph::Timer", "de/d6a/classph_1_1_timer.html", null ],
-    [ "ph::TimerStatsReport::TimeRecord", "dc/d81/structph_1_1_timer_stats_report_1_1_time_record.html", null ],
-    [ "ph::TimerStatsReport", "db/dc2/classph_1_1_timer_stats_report.html", null ],
-    [ "ph::Timestamp", "d9/d28/classph_1_1_timestamp.html", null ],
     [ "ph::math::TIndexedItemEndpoint< Index >", "d1/ddb/structph_1_1math_1_1_t_indexed_item_endpoint.html", null ],
     [ "ph::math::TIndexedKdtree< IndexToItem, ItemToAABB, Index >", "de/dbc/classph_1_1math_1_1_t_indexed_kdtree.html", null ],
     [ "ph::math::TIndexedKdtree< IndexedIntersectables, IntersectableAABBCalculator, uint32 >", "de/dbc/classph_1_1math_1_1_t_indexed_kdtree.html", null ],

@@ -1,107 +1,108 @@
 \doxysection{TSampling\+Film.\+ipp}
 \hypertarget{_t_sampling_film_8ipp_source}{}\label{_t_sampling_film_8ipp_source}\index{Source/Core/Filmic/TSamplingFilm.ipp@{Source/Core/Filmic/TSamplingFilm.ipp}}
-
+\mbox{\hyperlink{_t_sampling_film_8ipp}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#include\ "{}Core/Filmic/TSamplingFilm.h"{}}}
-\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ "{}Math/TVector3.h"{}}}
-\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Frame/TFrame.h"{}}}
-\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Math/Function/TConstant2D.h"{}}}
-\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}Math/Function/TGaussian2D.h"{}}}
-\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}Core/Filmic/SampleFilter.h"{}}}
-\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}Common/assertion.h"{}}}
-\DoxyCodeLine{00008\ }
-\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <cstddef>}}
-\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <iostream>}}
-\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <algorithm>}}
-\DoxyCodeLine{00012\ }
-\DoxyCodeLine{00013\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
-\DoxyCodeLine{00014\ \{}
-\DoxyCodeLine{00015\ }
-\DoxyCodeLine{00016\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Sample>}
-\DoxyCodeLine{00017\ \textcolor{keyword}{inline}\ TSamplingFilm<Sample>::TSamplingFilm(}
-\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keyword}{const}\ int64\ \ \ \ \ \ \ \ \ actualWidthPx,}
-\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keyword}{const}\ int64\ \ \ \ \ \ \ \ \ actualHeightPx,}
-\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keyword}{const}\ SampleFilter\&\ filter)\ :}
-\DoxyCodeLine{00021\ \ \ \ \ }
-\DoxyCodeLine{00022\ \ \ \ \ TSamplingFilm(}
-\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ actualWidthPx,\ }
-\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ actualHeightPx,}
-\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ math::TAABB2D<int64>(}
-\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \ \ \ \ math::TVector2<int64>(0,\ 0),}
-\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \ math::TVector2<int64>(actualWidthPx,\ actualHeightPx)),}
-\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ filter)}
-\DoxyCodeLine{00029\ \{\}}
-\DoxyCodeLine{00030\ }
-\DoxyCodeLine{00031\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Sample>}
-\DoxyCodeLine{00032\ \textcolor{keyword}{inline}\ TSamplingFilm<Sample>::TSamplingFilm(}
-\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keyword}{const}\ int64\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ actualWidthPx,}
-\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{const}\ int64\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ actualHeightPx,}
-\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{const}\ math::TAABB2D<int64>\&\ effectiveWindowPx,}
-\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{const}\ SampleFilter\&\ \ \ \ \ \ \ \ \ filter)\ :}
-\DoxyCodeLine{00037\ }
-\DoxyCodeLine{00038\ \ \ \ \ Film(}
-\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ actualWidthPx,}
-\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ actualHeightPx,}
-\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ effectiveWindowPx),}
-\DoxyCodeLine{00042\ }
-\DoxyCodeLine{00043\ \ \ \ \ m\_filter(filter)}
-\DoxyCodeLine{00044\ \{}
-\DoxyCodeLine{00045\ \ \ \ \ setSoftEdge(\textcolor{keyword}{true});}
-\DoxyCodeLine{00046\ }
-\DoxyCodeLine{00047\ \ \ \ \ PH\_ASSERT(!getSampleWindowPx().isEmpty());}
-\DoxyCodeLine{00048\ \}}
-\DoxyCodeLine{00049\ }
-\DoxyCodeLine{00050\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Sample>}
-\DoxyCodeLine{00051\ \textcolor{keyword}{inline}\ TSamplingFilm<Sample>::TSamplingFilm(TSamplingFilm\&\&\ other)\ :}
-\DoxyCodeLine{00052\ }
-\DoxyCodeLine{00053\ \ \ \ \ Film(std::move(other)),}
-\DoxyCodeLine{00054\ }
-\DoxyCodeLine{00055\ \ \ \ \ m\_filter\ \ \ \ \ \ \ \ (std::move(other.m\_filter)),}
-\DoxyCodeLine{00056\ \ \ \ \ m\_sampleWindowPx(std::move(other.m\_sampleWindowPx)),}
-\DoxyCodeLine{00057\ \ \ \ \ m\_useSoftEdge\ \ \ (other.m\_useSoftEdge)}
-\DoxyCodeLine{00058\ \{\}}
-\DoxyCodeLine{00059\ }
-\DoxyCodeLine{00060\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Sample>}
-\DoxyCodeLine{00061\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ TSamplingFilm<Sample>::setEffectiveWindowPx(\textcolor{keyword}{const}\ math::TAABB2D<int64>\&\ effectiveWindow)}
-\DoxyCodeLine{00062\ \{}
-\DoxyCodeLine{00063\ \ \ \ \ Film::setEffectiveWindowPx(effectiveWindow);}
-\DoxyCodeLine{00064\ }
-\DoxyCodeLine{00065\ \ \ \ \ updateSampleDimensions();}
-\DoxyCodeLine{00066\ \}}
-\DoxyCodeLine{00067\ }
-\DoxyCodeLine{00068\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Sample>}
-\DoxyCodeLine{00069\ \textcolor{keyword}{inline}\ TSamplingFilm<Sample>\&\ TSamplingFilm<Sample>::operator\ =\ (TSamplingFilm\&\&\ other)}
-\DoxyCodeLine{00070\ \{}
-\DoxyCodeLine{00071\ \ \ \ \ Film::operator\ =\ (std::move(other));}
-\DoxyCodeLine{00072\ }
-\DoxyCodeLine{00073\ \ \ \ \ m\_filter\ \ \ \ \ \ \ \ \ =\ std::move(other.m\_filter);}
-\DoxyCodeLine{00074\ \ \ \ \ m\_sampleWindowPx\ =\ std::move(other.m\_sampleWindowPx);}
-\DoxyCodeLine{00075\ \ \ \ \ m\_useSoftEdge\ \ \ \ =\ other.m\_useSoftEdge;}
-\DoxyCodeLine{00076\ }
-\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
-\DoxyCodeLine{00078\ \}}
-\DoxyCodeLine{00079\ }
-\DoxyCodeLine{00080\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Sample>}
-\DoxyCodeLine{00081\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ TSamplingFilm<Sample>::updateSampleDimensions()}
-\DoxyCodeLine{00082\ \{}
-\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keywordflow}{if}(m\_useSoftEdge)}
-\DoxyCodeLine{00084\ \ \ \ \ \{}
-\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ m\_sampleWindowPx\ =\ math::TAABB2D<float64>(}
-\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ math::TVector2<float64>(getEffectiveWindowPx().getMinVertex()).add(0.5).sub(m\_filter.getHalfSizePx()),}
-\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ math::TVector2<float64>(getEffectiveWindowPx().getMaxVertex()).sub(0.5).add(m\_filter.getHalfSizePx()));}
-\DoxyCodeLine{00088\ }
-\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(m\_sampleWindowPx.isEmpty())}
-\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}warning:\ at\ TSamplingFilm::updateSampleDimensions(),\ "{}}}
-\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}invalid\ sampling\ window\ detected"{}}\ <<\ std::endl;}
-\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00094\ \ \ \ \ \}}
-\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00096\ \ \ \ \ \{}
-\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ m\_sampleWindowPx\ =\ math::TAABB2D<float64>(getEffectiveWindowPx());}
-\DoxyCodeLine{00098\ \ \ \ \ \}}
-\DoxyCodeLine{00099\ \}}
-\DoxyCodeLine{00100\ }
-\DoxyCodeLine{00101\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_sampling_film_8h}{Core/Filmic/TSamplingFilm.h}}"{}}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_vector3_8h}{Math/TVector3.h}}"{}}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_frame_8h}{Frame/TFrame.h}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_constant2_d_8h}{Math/Function/TConstant2D.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_gaussian2_d_8h}{Math/Function/TGaussian2D.h}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_sample_filter_8h}{Core/Filmic/SampleFilter.h}}"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <Common/assertion.h>}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <cstddef>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00015\ \{}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Sample>}
+\DoxyCodeLine{00018\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_t_sampling_film_a0553b4a03944b4e63884579539fbe759}{TSamplingFilm<Sample>::TSamplingFilm}}(}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keyword}{const}\ int64\ \ \ \ \ \ \ \ \ actualWidthPx,}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keyword}{const}\ int64\ \ \ \ \ \ \ \ \ actualHeightPx,}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_sample_filter}{SampleFilter}}\&\ filter)\ :}
+\DoxyCodeLine{00022\ \ \ \ \ }
+\DoxyCodeLine{00023\ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_sampling_film}{TSamplingFilm}}(}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ actualWidthPx,\ }
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ actualHeightPx,}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ math::\mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d}{TAABB2D}}<int64>(}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \ math::\mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{TVector2}}<int64>(0,\ 0),}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ math::\mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{TVector2}}<int64>(actualWidthPx,\ actualHeightPx)),}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ filter)}
+\DoxyCodeLine{00030\ \{\}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Sample>}
+\DoxyCodeLine{00033\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_t_sampling_film}{TSamplingFilm<Sample>::TSamplingFilm}}(}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{const}\ int64\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ actualWidthPx,}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{const}\ int64\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ actualHeightPx,}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d}{math::TAABB2D<int64>}}\&\ effectiveWindowPx,}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_sample_filter}{SampleFilter}}\&\ \ \ \ \ \ \ \ \ filter)\ :}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \ \ \mbox{\hyperlink{classph_1_1_film}{Film}}(}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ actualWidthPx,}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ actualHeightPx,}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ effectiveWindowPx),}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ m\_filter(filter)}
+\DoxyCodeLine{00045\ \{}
+\DoxyCodeLine{00046\ \ \ \ \ setSoftEdge(\textcolor{keyword}{true});}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \ \ PH\_ASSERT(!getSampleWindowPx().isEmpty());}
+\DoxyCodeLine{00049\ \}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Sample>}
+\DoxyCodeLine{00052\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_t_sampling_film}{TSamplingFilm<Sample>::TSamplingFilm}}(\mbox{\hyperlink{classph_1_1_t_sampling_film}{TSamplingFilm}}\&\&\ other)\ :}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ \mbox{\hyperlink{classph_1_1_film}{Film}}(\mbox{\hyperlink{namespacestd}{std}}::move(other)),}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \ \ m\_filter\ \ \ \ \ \ \ \ (\mbox{\hyperlink{namespacestd}{std}}::move(other.m\_filter)),}
+\DoxyCodeLine{00057\ \ \ \ \ m\_sampleWindowPx(\mbox{\hyperlink{namespacestd}{std}}::move(other.m\_sampleWindowPx)),}
+\DoxyCodeLine{00058\ \ \ \ \ m\_useSoftEdge\ \ \ (other.m\_useSoftEdge)}
+\DoxyCodeLine{00059\ \{\}}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Sample>}
+\DoxyCodeLine{00062\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_sampling_film_aea4047228dec43fe7dcc33583c11694c}{TSamplingFilm<Sample>::setEffectiveWindowPx}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d}{math::TAABB2D<int64>}}\&\ effectiveWindow)}
+\DoxyCodeLine{00063\ \{}
+\DoxyCodeLine{00064\ \ \ \ \ \mbox{\hyperlink{classph_1_1_film_a1f5eafe4931d941bab0a16a153846fa0}{Film::setEffectiveWindowPx}}(effectiveWindow);}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ \ \ updateSampleDimensions();}
+\DoxyCodeLine{00067\ \}}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Sample>}
+\DoxyCodeLine{00070\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_t_sampling_film}{TSamplingFilm<Sample>}}\&\ \mbox{\hyperlink{classph_1_1_t_sampling_film_a61ed46d1675f0523a92dfc781ac76a4b}{TSamplingFilm<Sample>::operator\ =\ }}(\mbox{\hyperlink{classph_1_1_t_sampling_film}{TSamplingFilm}}\&\&\ other)}
+\DoxyCodeLine{00071\ \{}
+\DoxyCodeLine{00072\ \ \ \ \ \mbox{\hyperlink{classph_1_1_film_ae936151b40282cbcb50b17217e3f7ec4}{Film::operator\ =\ }}(std::move(other));}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ \ \ m\_filter\ \ \ \ \ \ \ \ \ =\ std::move(other.m\_filter);}
+\DoxyCodeLine{00075\ \ \ \ \ m\_sampleWindowPx\ =\ std::move(other.m\_sampleWindowPx);}
+\DoxyCodeLine{00076\ \ \ \ \ m\_useSoftEdge\ \ \ \ =\ other.m\_useSoftEdge;}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00079\ \}}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Sample>}
+\DoxyCodeLine{00082\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_sampling_film}{TSamplingFilm<Sample>::updateSampleDimensions}}()}
+\DoxyCodeLine{00083\ \{}
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keywordflow}{if}(m\_useSoftEdge)}
+\DoxyCodeLine{00085\ \ \ \ \ \{}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ m\_sampleWindowPx\ =\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d}{math::TAABB2D<float64>}}(}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{math::TVector2<float64>}}(getEffectiveWindowPx().getMinVertex()).add(0.5).sub(m\_filter.getHalfSizePx()),}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{math::TVector2<float64>}}(getEffectiveWindowPx().getMaxVertex()).sub(0.5).add(m\_filter.getHalfSizePx()));}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(m\_sampleWindowPx.isEmpty())}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}warning:\ at\ TSamplingFilm::updateSampleDimensions(),\ "{}}}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}invalid\ sampling\ window\ detected"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00095\ \ \ \ \ \}}
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00097\ \ \ \ \ \{}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ m\_sampleWindowPx\ =\ math::TAABB2D<float64>(getEffectiveWindowPx());}
+\DoxyCodeLine{00099\ \ \ \ \ \}}
+\DoxyCodeLine{00100\ \}}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
 
 \end{DoxyCode}

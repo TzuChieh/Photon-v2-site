@@ -1,0 +1,5 @@
+var classph_1_1_t_s_p_s_c_ring_buffer_1_1_producer_guard =
+[
+    [ "ProducerGuard", "dc/d5a/classph_1_1_t_s_p_s_c_ring_buffer_1_1_producer_guard.html#aa5a79ce891443f60632f7e88ba58c208", null ],
+    [ "~ProducerGuard", "dc/d5a/classph_1_1_t_s_p_s_c_ring_buffer_1_1_producer_guard.html#ac881ccadd0fc55e7b293c3241e5d9f88", null ]
+];

@@ -1,0 +1,22 @@
+\doxysection{ph\+::detail\+::CPermissive\+Implicit\+Lifetime Concept Reference}
+\hypertarget{conceptph_1_1detail_1_1_c_permissive_implicit_lifetime}{}\label{conceptph_1_1detail_1_1_c_permissive_implicit_lifetime}\index{ph::detail::CPermissiveImplicitLifetime@{ph::detail::CPermissiveImplicitLifetime}}
+\doxysubsection{Concept definition}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{\textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptph_1_1detail_1_1_c_permissive_implicit_lifetime}{ph::detail::CPermissiveImplicitLifetime}}\ =\ \ std::disjunction\_v<}
+\DoxyCodeLine{\ \ \ \ std::is\_scalar<T>,}
+\DoxyCodeLine{\ \ \ \ std::is\_array<T>,}
+\DoxyCodeLine{\ \ \ \ std::is\_aggregate<T>,}
+\DoxyCodeLine{\ \ \ \ std::conjunction<}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ std::is\_trivially\_destructible<T>,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ std::disjunction<}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ std::is\_trivially\_default\_constructible<T>,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ std::is\_trivially\_copy\_constructible<T>,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ std::is\_trivially\_move\_constructible<T>>>>}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Detailed Description}
+Test whether {\ttfamily T} is an implicit-\/lifetime type. This concept is not exactly {\ttfamily std\+::is\+\_\+implicit\+\_\+lifetime\+\_\+v}, it is slightly permissive in the sense that true implicit-\/lifetime type cannot have a user-\/provided destructor, and we are only testing if it is trivially destructible. See P2674\+R0 "{}\+A trait for implicit lifetime types"{} for more details. 

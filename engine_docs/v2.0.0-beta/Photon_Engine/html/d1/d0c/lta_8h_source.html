@@ -106,60 +106,69 @@ $(document).ready(function(){initNavTree('d1/d0c/lta_8h_source.html','../../'); 
   <div class="headertitle"><div class="title">lta.h</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
+<a href="../../d1/d0c/lta_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &quot;Common/primitive_type.h&quot;</span></div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;Math/TVector3.h&quot;</span></div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;Common/assertion.h&quot;</span></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;cmath&gt;</span></div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="keyword">namespace </span><a class="code hl_namespace" href="../../d3/d5c/namespaceph.html">ph</a></div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>{</div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="keyword">namespace </span>lta</div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>{</div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">/*</span></div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment">    Using shading normal for light transport algorithms is equivalent to using</span></div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment">    asymmetric BSDFs. This can lead to inconsistent results between regular </span></div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="comment">    and adjoint algorithms. This correction factor, when multiplied with BSDF,</span></div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="comment">    restores the symmetric condition of the BSDF during importance transport.</span></div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="comment"></span> </div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="comment">    &lt;Ns&gt;: shading normal</span></div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="comment">    &lt;Ng&gt;: geometry normal</span></div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="comment">    &lt;L&gt;:  direction of incident importance</span></div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="comment">    &lt;V&gt;:  direction of excitant importance</span></div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="comment"></span> </div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="comment">    Note that all vectors are expected to be in unit length and leaving </span></div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="comment">    the surface.</span></div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="comment"></span> </div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="comment">    References:</span></div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="comment"></span> </div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="comment">    Eric Veach, &quot;Non-symmetric Scattering in Light Transport Algorithms&quot;,</span></div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="comment">    Eurographics Rendering Workshop 1996 Proceedings.</span></div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="comment">*/</span></div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="keyword">inline</span> real importance_BSDF_Ns_corrector(</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <span class="keyword">const</span> math::Vector3R&amp; Ns,</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="keyword">const</span> math::Vector3R&amp; Ng,</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <span class="keyword">const</span> math::Vector3R&amp; L,</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="keyword">const</span> math::Vector3R&amp; V)</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>{</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    PH_ASSERT_GT(std::abs(Ns.dot(V) * Ng.dot(L)), 0.0_r);</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <span class="keywordflow">return</span> std::abs((Ns.dot(V) * Ng.dot(L)) / (Ng.dot(V) * Ns.dot(L)));</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>}</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>}<span class="comment">// end namespace lta</span></div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>}<span class="comment">// end namespace ph</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &quot;<a class="code" href="../../d5/d14/_t_vector3_8h.html">Math/TVector3.h</a>&quot;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;Common/assertion.h&gt;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;Common/primitive_type.h&gt;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;cmath&gt;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="keyword">namespace </span><a class="code hl_namespace" href="../../d3/d5c/namespaceph.html">ph</a></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>{</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="foldopen" id="foldopen00013" data-start="{" data-end="}">
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno"><a class="line" href="../../df/d32/namespaceph_1_1lta.html">   13</a></span><span class="keyword">namespace </span>lta</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>{</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment">    Using shading normal for light transport algorithms is equivalent to using</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="comment">    asymmetric BSDFs. This can lead to inconsistent results between regular </span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="comment">    and adjoint algorithms. This correction factor, when multiplied with BSDF,</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="comment">    restores the symmetric condition of the BSDF during importance transport.</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="comment"></span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="comment">    &lt;Ns&gt;: shading normal</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="comment">    &lt;Ng&gt;: geometry normal</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="comment">    &lt;L&gt;:  direction of incident importance</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="comment">    &lt;V&gt;:  direction of excitant importance</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="comment"></span> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="comment">    Note that all vectors are expected to be in unit length and leaving </span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="comment">    the surface.</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="comment"></span> </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="comment">    References:</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="comment"></span> </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="comment">    Eric Veach, &quot;Non-symmetric Scattering in Light Transport Algorithms&quot;,</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="comment">    Eurographics Rendering Workshop 1996 Proceedings.</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="comment">*/</span></div>
+<div class="foldopen" id="foldopen00035" data-start="{" data-end="}">
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="../../df/d32/namespaceph_1_1lta.html#a65b7cfd7f2d90bb06d8089d61ddbd164">   35</a></span><span class="keyword">inline</span> real <a class="code hl_function" href="../../df/d32/namespaceph_1_1lta.html#a65b7cfd7f2d90bb06d8089d61ddbd164">importance_BSDF_Ns_corrector</a>(</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="keyword">const</span> <a class="code hl_class" href="../../d4/d2c/classph_1_1math_1_1_t_vector3.html">math::Vector3R</a>&amp; Ns,</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <span class="keyword">const</span> <a class="code hl_class" href="../../d4/d2c/classph_1_1math_1_1_t_vector3.html">math::Vector3R</a>&amp; Ng,</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="keyword">const</span> <a class="code hl_class" href="../../d4/d2c/classph_1_1math_1_1_t_vector3.html">math::Vector3R</a>&amp; L,</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <span class="keyword">const</span> <a class="code hl_class" href="../../d4/d2c/classph_1_1math_1_1_t_vector3.html">math::Vector3R</a>&amp; V)</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>{</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    PH_ASSERT_GT(std::abs(Ns.<a class="code hl_function" href="../../da/d31/classph_1_1math_1_1_t_vector_n_base.html#a798d064dc3ff4c11b536919418b2e2d5">dot</a>(V) * Ng.<a class="code hl_function" href="../../da/d31/classph_1_1math_1_1_t_vector_n_base.html#a798d064dc3ff4c11b536919418b2e2d5">dot</a>(L)), 0.0_r);</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <span class="keywordflow">return</span> std::abs((Ns.<a class="code hl_function" href="../../da/d31/classph_1_1math_1_1_t_vector_n_base.html#a798d064dc3ff4c11b536919418b2e2d5">dot</a>(V) * Ng.<a class="code hl_function" href="../../da/d31/classph_1_1math_1_1_t_vector_n_base.html#a798d064dc3ff4c11b536919418b2e2d5">dot</a>(L)) / (Ng.<a class="code hl_function" href="../../da/d31/classph_1_1math_1_1_t_vector_n_base.html#a798d064dc3ff4c11b536919418b2e2d5">dot</a>(V) * Ns.<a class="code hl_function" href="../../da/d31/classph_1_1math_1_1_t_vector_n_base.html#a798d064dc3ff4c11b536919418b2e2d5">dot</a>(L)));</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>}</div>
+</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>}<span class="comment">// end namespace lta</span></div>
+</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>}<span class="comment">// end namespace ph</span></div>
+<div class="ttc" id="a_t_vector3_8h_html"><div class="ttname"><a href="../../d5/d14/_t_vector3_8h.html">TVector3.h</a></div></div>
+<div class="ttc" id="aclassph_1_1math_1_1_t_vector3_html"><div class="ttname"><a href="../../d4/d2c/classph_1_1math_1_1_t_vector3.html">ph::math::TVector3&lt; real &gt;</a></div></div>
+<div class="ttc" id="aclassph_1_1math_1_1_t_vector_n_base_html_a798d064dc3ff4c11b536919418b2e2d5"><div class="ttname"><a href="../../da/d31/classph_1_1math_1_1_t_vector_n_base.html#a798d064dc3ff4c11b536919418b2e2d5">ph::math::TVectorNBase::dot</a></div><div class="ttdeci">T dot(const Derived &amp;rhs) const</div><div class="ttdef"><b>Definition</b> TVectorNBase.ipp:14</div></div>
+<div class="ttc" id="anamespaceph_1_1lta_html_a65b7cfd7f2d90bb06d8089d61ddbd164"><div class="ttname"><a href="../../df/d32/namespaceph_1_1lta.html#a65b7cfd7f2d90bb06d8089d61ddbd164">ph::lta::importance_BSDF_Ns_corrector</a></div><div class="ttdeci">real importance_BSDF_Ns_corrector(const math::Vector3R &amp;Ns, const math::Vector3R &amp;Ng, const math::Vector3R &amp;L, const math::Vector3R &amp;V)</div><div class="ttdef"><b>Definition</b> lta.h:35</div></div>
 <div class="ttc" id="anamespaceph_html"><div class="ttname"><a href="../../d3/d5c/namespaceph.html">ph</a></div><div class="ttdoc">The root for all renderer implementations.</div><div class="ttdef"><b>Definition</b> EEngineProject.h:6</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="../../dir_74389ed8173ad57b461b9d623a1f3867.html">Source</a></li><li class="navelem"><a class="el" href="../../dir_1ad6433457b0067ef8f54a4fa85f5c9a.html">Core</a></li><li class="navelem"><a class="el" href="../../dir_78b4ff4e445ea9047687cfbfa621f54a.html">LTABuildingBlock</a></li><li class="navelem"><b>lta.h</b></li>
+    <li class="navelem"><a class="el" href="../../dir_74389ed8173ad57b461b9d623a1f3867.html">Source</a></li><li class="navelem"><a class="el" href="../../dir_1ad6433457b0067ef8f54a4fa85f5c9a.html">Core</a></li><li class="navelem"><a class="el" href="../../dir_78b4ff4e445ea9047687cfbfa621f54a.html">LTABuildingBlock</a></li><li class="navelem"><a class="el" href="../../d1/d0c/lta_8h.html">lta.h</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>

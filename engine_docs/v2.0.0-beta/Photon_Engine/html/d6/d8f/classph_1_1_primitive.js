@@ -5,5 +5,7 @@ var classph_1_1_primitive =
     [ "calcIntersectionDetail", "d6/d8f/classph_1_1_primitive.html#a52e6bbd53007fe29589759a4a051cd6a", null ],
     [ "calcPositionSamplePdfA", "d6/d8f/classph_1_1_primitive.html#a15b84cd1414c71ae2bfec519138b07c1", null ],
     [ "genPositionSample", "d6/d8f/classph_1_1_primitive.html#af3eafe37df21d948bb1571395060518c", null ],
-    [ "isIntersecting", "d6/d8f/classph_1_1_primitive.html#ae265b7076813fa1c9684f6b128447c91", null ]
+    [ "getMetadata", "d6/d8f/classph_1_1_primitive.html#a967b40614b286c46aed37e9cd81fec0e", null ],
+    [ "isIntersecting", "d6/d8f/classph_1_1_primitive.html#ae265b7076813fa1c9684f6b128447c91", null ],
+    [ "uvwToPosition", "d6/d8f/classph_1_1_primitive.html#a5f788c61aabe92e33a80524795c45cc5", null ]
 ];

@@ -1,240 +1,241 @@
 \doxysection{TSdl\+Reference.\+ipp}
 \hypertarget{_t_sdl_reference_8ipp_source}{}\label{_t_sdl_reference_8ipp_source}\index{Source/SDL/Introspect/TSdlReference.ipp@{Source/SDL/Introspect/TSdlReference.ipp}}
-
+\mbox{\hyperlink{_t_sdl_reference_8ipp}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
 \DoxyCodeLine{00002\ }
-\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}SDL/Introspect/TSdlReference.h"{}}}
-\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Common/assertion.h"{}}}
-\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}SDL/Introspect/SdlInputContext.h"{}}}
-\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}SDL/ISdlResource.h"{}}}
-\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}SDL/SceneDescription.h"{}}}
-\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}SDL/sdl\_exceptions.h"{}}}
-\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{sdl__helpers_8h}{SDL/sdl\_helpers.h}}"{}}}
-\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}Utility/string\_utils.h"{}}}
-\DoxyCodeLine{00011\ }
-\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <utility>}}
-\DoxyCodeLine{00013\ }
-\DoxyCodeLine{00014\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
-\DoxyCodeLine{00015\ \{}
-\DoxyCodeLine{00016\ }
-\DoxyCodeLine{00017\ \textcolor{keyword}{class\ }\mbox{\hyperlink{namespaceph_ada33bb2d4bc26b3ec1da2acb348ef4ebad9c6333623e6357515fcbf17be806273}{Geometry}};}
-\DoxyCodeLine{00018\ \textcolor{keyword}{class\ }\mbox{\hyperlink{namespaceph_ada33bb2d4bc26b3ec1da2acb348ef4ebad92a8333dd3ccb895cc65f7455b71206}{Material}};}
-\DoxyCodeLine{00019\ \textcolor{keyword}{class\ }MotionSource;}
-\DoxyCodeLine{00020\ \textcolor{keyword}{class\ }\mbox{\hyperlink{namespaceph_ada33bb2d4bc26b3ec1da2acb348ef4eba4cbb187bee11b3b06558284cd3e17d8d}{LightSource}};}
-\DoxyCodeLine{00021\ \textcolor{keyword}{class\ }\mbox{\hyperlink{namespaceph_ada33bb2d4bc26b3ec1da2acb348ef4eba1cc84619677de81ee6e44149845270a3}{Actor}};}
-\DoxyCodeLine{00022\ \textcolor{keyword}{class\ }\mbox{\hyperlink{namespaceph_ada33bb2d4bc26b3ec1da2acb348ef4ebabe53a0541a6d36f6ecb879fa2c584b08}{Image}};}
-\DoxyCodeLine{00023\ \textcolor{keyword}{class\ }\mbox{\hyperlink{namespaceph_ada33bb2d4bc26b3ec1da2acb348ef4eba3c61c04825dd7c0cc614b51840b0e433}{FrameProcessor}};}
-\DoxyCodeLine{00024\ \textcolor{keyword}{class\ }\mbox{\hyperlink{namespaceph_ada33bb2d4bc26b3ec1da2acb348ef4eba83d694b8b98b155b8817ac412c4d3e9c}{Observer}};}
-\DoxyCodeLine{00025\ \textcolor{keyword}{class\ }\mbox{\hyperlink{namespaceph_ada33bb2d4bc26b3ec1da2acb348ef4ebaba50656fda764a074dd26ab06d13b3d7}{SampleSource}};}
-\DoxyCodeLine{00026\ \textcolor{keyword}{class\ }\mbox{\hyperlink{namespaceph_ada33bb2d4bc26b3ec1da2acb348ef4eba246eb6da3962c4c606501926a42d0b71}{Visualizer}};}
-\DoxyCodeLine{00027\ \textcolor{keyword}{class\ }\mbox{\hyperlink{namespaceph_ada33bb2d4bc26b3ec1da2acb348ef4eba054b4f3ea543c990f6b125f41af6ebf7}{Option}};}
-\DoxyCodeLine{00028\ }
-\DoxyCodeLine{00029\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ \textcolor{keyword}{typename}\ Owner>}
-\DoxyCodeLine{00030\ \textcolor{keyword}{inline}\ TSdlReference<T,\ Owner>::TSdlReference(}
-\DoxyCodeLine{00031\ \ \ \ \ std::string\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ valueName,}
-\DoxyCodeLine{00032\ \ \ \ \ std::shared\_ptr<T>\ Owner::*\ const\ valuePtr)\ :}
-\DoxyCodeLine{00033\ }
-\DoxyCodeLine{00034\ \ \ \ \ TSdlOwnedField<Owner>(}
-\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ std::string(sdl::category\_to\_string(sdl::\mbox{\hyperlink{sdl__helpers_8h_a82df961475e33d5cbc1b5693d10d83c4}{category\_of}}<T>())),}
-\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ std::move(valueName)),}
-\DoxyCodeLine{00037\ }
-\DoxyCodeLine{00038\ \ \ \ \ m\_valuePtr(valuePtr)}
-\DoxyCodeLine{00039\ \{}
-\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_base\_of\_v<ISdlResource,\ T>,}
-\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}T\ must\ be\ a\ SDL\ resource\ (derive\ from\ ISdlResource)."{}});}
-\DoxyCodeLine{00042\ }
-\DoxyCodeLine{00043\ \ \ \ \ PH\_ASSERT(m\_valuePtr);}
-\DoxyCodeLine{00044\ \}}
-\DoxyCodeLine{00045\ }
-\DoxyCodeLine{00046\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ \textcolor{keyword}{typename}\ Owner>}
-\DoxyCodeLine{00047\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_sdl_reference}{TSdlReference<T,\ Owner>::ownedValueToDefault}}(Owner\&\ owner)\textcolor{keyword}{\ const}}
-\DoxyCodeLine{00048\ \textcolor{keyword}{}\{}
-\DoxyCodeLine{00049\ \ \ \ \ \textcolor{comment}{//\ Default\ value\ for\ a\ SDL\ resource\ defined\ as\ nullptr}}
-\DoxyCodeLine{00050\ \ \ \ \ setValueRef(owner,\ \textcolor{keyword}{nullptr});}
-\DoxyCodeLine{00051\ \}}
-\DoxyCodeLine{00052\ }
-\DoxyCodeLine{00053\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ \textcolor{keyword}{typename}\ Owner>}
-\DoxyCodeLine{00054\ \textcolor{keyword}{inline}\ std::string\ \mbox{\hyperlink{classph_1_1_t_sdl_reference}{TSdlReference<T,\ Owner>::valueToString}}(\textcolor{keyword}{const}\ Owner\&\ owner)\textcolor{keyword}{\ const}}
-\DoxyCodeLine{00055\ \textcolor{keyword}{}\{}
-\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordflow}{return}\ }
-\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}["{}}\ +\ std::string(sdl::category\_to\_string(sdl::category\_of<T>()))\ +\ \textcolor{stringliteral}{"{}\ ref:\ "{}}\ +}
-\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ std::string(getValueRef(owner)\ ?\ \textcolor{stringliteral}{"{}valid"{}}\ :\ \textcolor{stringliteral}{"{}empty"{}})\ +\ \textcolor{stringliteral}{"{}]"{}};}
-\DoxyCodeLine{00059\ \}}
-\DoxyCodeLine{00060\ }
-\DoxyCodeLine{00061\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ \textcolor{keyword}{typename}\ Owner>}
-\DoxyCodeLine{00062\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_sdl_reference}{TSdlReference<T,\ Owner>::ownedResources}}(}
-\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keyword}{const}\ Owner\&\ owner,}
-\DoxyCodeLine{00064\ \ \ \ \ std::vector<const\ ISdlResource*>\&\ out\_resources)\textcolor{keyword}{\ const}}
-\DoxyCodeLine{00065\ \textcolor{keyword}{}\{}
-\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keyword}{const}\ T*\ \textcolor{keyword}{const}\ storedResource\ =\ getValueRef(owner).get();}
-\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordflow}{if}(storedResource\ !=\ \textcolor{keyword}{nullptr})}
-\DoxyCodeLine{00068\ \ \ \ \ \{}
-\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ out\_resources.push\_back(storedResource);}
-\DoxyCodeLine{00070\ \ \ \ \ \}}
-\DoxyCodeLine{00071\ \}}
-\DoxyCodeLine{00072\ }
-\DoxyCodeLine{00073\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ \textcolor{keyword}{typename}\ Owner>}
-\DoxyCodeLine{00074\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_sdl_native_data}{SdlNativeData}}\ \mbox{\hyperlink{classph_1_1_t_sdl_reference}{TSdlReference<T,\ Owner>::ownedNativeData}}(Owner\&\ owner)\textcolor{keyword}{\ const}}
-\DoxyCodeLine{00075\ \textcolor{keyword}{}\{}
-\DoxyCodeLine{00076\ \ \ \ \ std::shared\_ptr<T>\&\ valueRef\ =\ owner.*m\_valuePtr;}
-\DoxyCodeLine{00077\ \ \ \ \ T*\ \textcolor{keyword}{const}\ originalDataPtr\ =\ valueRef.get();}
-\DoxyCodeLine{00078\ }
-\DoxyCodeLine{00079\ \ \ \ \ \textcolor{comment}{//\ Read-\/only\ for\ ordinary\ access\ to\ avoid\ accidental\ object\ slicing\ and\ other\ polymorphic}}
-\DoxyCodeLine{00080\ \ \ \ \ \textcolor{comment}{//\ assignment\ issues.\ User\ should\ use\ direct\ accessor\ for\ assignment.}}
-\DoxyCodeLine{00081\ \ \ \ \ \mbox{\hyperlink{classph_1_1_sdl_native_data}{SdlNativeData}}\ data\ =\ \mbox{\hyperlink{classph_1_1_sdl_native_data}{SdlNativeData}}(}
-\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ [originalDataPtr](std::size\_t\ elementIdx)\ -\/>\ \mbox{\hyperlink{classph_1_1_t_sdl_accessor_variant}{SdlGetterVariant}}}
-\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ originalDataPtr}
-\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ?\ SdlNativeData::permissiveElementGetter(originalDataPtr)}
-\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classph_1_1_t_sdl_any_instance}{SdlConstInstance}}\{\};}
-\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \});}
-\DoxyCodeLine{00088\ \ \ \ \ data.setDirectAccessor(\mbox{\hyperlink{classph_1_1_t_any_ptr}{AnyNonConstPtr}}(\&valueRef));}
-\DoxyCodeLine{00089\ \ \ \ \ data.\mbox{\hyperlink{classph_1_1_sdl_native_data_ac4ae3347b42cda22281f162b50afd205}{elementContainer}}\ =\ ESdlDataFormat::SharedPointer;}
-\DoxyCodeLine{00090\ \ \ \ \ data.\mbox{\hyperlink{classph_1_1_sdl_native_data_a82fcba9016c044594965ced726e61d3e}{elementType}}\ =\ sdl::resource\_type\_of<T>();}
-\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keywordflow}{return}\ data;}
-\DoxyCodeLine{00092\ \}}
-\DoxyCodeLine{00093\ }
-\DoxyCodeLine{00094\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ \textcolor{keyword}{typename}\ Owner>}
-\DoxyCodeLine{00095\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_sdl_reference}{TSdlReference<T,\ Owner>::setValueRef}}(Owner\&\ owner,\ std::shared\_ptr<T>\ value)\textcolor{keyword}{\ const}}
-\DoxyCodeLine{00096\ \textcolor{keyword}{}\{}
-\DoxyCodeLine{00097\ \ \ \ \ owner.*m\_valuePtr\ =\ std::move(value);}
-\DoxyCodeLine{00098\ \}}
-\DoxyCodeLine{00099\ }
-\DoxyCodeLine{00100\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ \textcolor{keyword}{typename}\ Owner>}
-\DoxyCodeLine{00101\ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ std::shared\_ptr<T>\&\ TSdlReference<T,\ Owner>::getValueRef(\textcolor{keyword}{const}\ Owner\&\ owner)\textcolor{keyword}{\ const}}
-\DoxyCodeLine{00102\ \textcolor{keyword}{}\{}
-\DoxyCodeLine{00103\ \ \ \ \ \textcolor{keywordflow}{return}\ owner.*m\_valuePtr;}
-\DoxyCodeLine{00104\ \}}
-\DoxyCodeLine{00105\ }
-\DoxyCodeLine{00106\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ \textcolor{keyword}{typename}\ Owner>}
-\DoxyCodeLine{00107\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_sdl_reference}{TSdlReference<T,\ Owner>::loadFromSdl}}(}
-\DoxyCodeLine{00108\ \ \ \ \ Owner\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ owner,}
-\DoxyCodeLine{00109\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_sdl_input_clause}{SdlInputClause}}\&\ \ clause,}
-\DoxyCodeLine{00110\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_sdl_input_context}{SdlInputContext}}\&\ ctx)\textcolor{keyword}{\ const}}
-\DoxyCodeLine{00111\ \textcolor{keyword}{}\{}
-\DoxyCodeLine{00112\ \ \ \ \ \textcolor{keywordflow}{try}}
-\DoxyCodeLine{00113\ \ \ \ \ \{}
-\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ setValueRef(owner,\ loadResource(clause,\ ctx));}
-\DoxyCodeLine{00115\ \ \ \ \ \}}
-\DoxyCodeLine{00116\ \ \ \ \ \textcolor{keywordflow}{catch}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_sdl_exception}{SdlException}}\&\ e)}
-\DoxyCodeLine{00117\ \ \ \ \ \{}
-\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \mbox{\hyperlink{classph_1_1_sdl_load_error}{SdlLoadError}}(}
-\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}unable\ to\ load\ resource\ on\ parsing\ reference\ "{}}\ +\ }
-\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ valueToString(owner)\ +\ \textcolor{stringliteral}{"{}\ -\/>\ "{}}\ +\ e.whatStr());}
-\DoxyCodeLine{00121\ \ \ \ \ \}}
-\DoxyCodeLine{00122\ \}}
-\DoxyCodeLine{00123\ }
-\DoxyCodeLine{00124\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ \textcolor{keyword}{typename}\ Owner>}
-\DoxyCodeLine{00125\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_sdl_reference}{TSdlReference<T,\ Owner>::saveToSdl}}(}
-\DoxyCodeLine{00126\ \ \ \ \ \textcolor{keyword}{const}\ Owner\&\ \ \ \ \ \ \ \ \ \ \ \ owner,}
-\DoxyCodeLine{00127\ \ \ \ \ \mbox{\hyperlink{classph_1_1_sdl_output_clause}{SdlOutputClause}}\&\ \ \ \ \ \ \ \ out\_clause,}
-\DoxyCodeLine{00128\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_sdl_output_context}{SdlOutputContext}}\&\ ctx)\textcolor{keyword}{\ const}}
-\DoxyCodeLine{00129\ \textcolor{keyword}{}\{}
-\DoxyCodeLine{00130\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ resource\ =\ getValueRef(owner);}
-\DoxyCodeLine{00131\ \ \ \ \ \textcolor{keywordflow}{if}(!resource)}
-\DoxyCodeLine{00132\ \ \ \ \ \{}
-\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ out\_clause.\mbox{\hyperlink{classph_1_1_sdl_output_clause_a8bd6ce2a952288003b3b7d085f375cb4}{isEmpty}}\ =\ \textcolor{keyword}{true};}
-\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
-\DoxyCodeLine{00135\ \ \ \ \ \}}
-\DoxyCodeLine{00136\ }
-\DoxyCodeLine{00137\ \ \ \ \ \textcolor{keywordflow}{try}}
-\DoxyCodeLine{00138\ \ \ \ \ \{}
-\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ resourceName\ =\ ctx.getDependencyResolver().\mbox{\hyperlink{classph_1_1_sdl_dependency_resolver_ad84960e08b7dee74b570af7d20a8fa2b}{getResourceName}}(resource.get());}
-\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(resourceName.empty())}
-\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \mbox{\hyperlink{classph_1_1_sdl_save_error}{SdlSaveError}}(}
-\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}resource\ name\ is\ not\ tracked\ by\ the\ reference\ resolver"{}});}
-\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00145\ }
-\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ out\_clause.\mbox{\hyperlink{classph_1_1_sdl_output_clause_adba64a887da2386b1c8f33e4fd52cace}{isReference}}\ =\ \textcolor{keyword}{true};}
-\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(string\_utils::has\_any\_of(resourceName,\ string\_utils::get\_whitespaces()))}
-\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \ \ out\_clause.\mbox{\hyperlink{classph_1_1_sdl_output_clause_a27625fd790a2cb49f0cfd9c113ddb5ea}{value}}\ =\ \textcolor{charliteral}{'"{}'};}
-\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \ \ \ \ out\_clause.\mbox{\hyperlink{classph_1_1_sdl_output_clause_a27625fd790a2cb49f0cfd9c113ddb5ea}{value}}\ +=\ resourceName;}
-\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \ \ \ \ out\_clause.\mbox{\hyperlink{classph_1_1_sdl_output_clause_a27625fd790a2cb49f0cfd9c113ddb5ea}{value}}\ +=\ \textcolor{charliteral}{'"{}'};}
-\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ out\_clause.\mbox{\hyperlink{classph_1_1_sdl_output_clause_a27625fd790a2cb49f0cfd9c113ddb5ea}{value}}\ =\ resourceName;}
-\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00157\ \ \ \ \ \}}
-\DoxyCodeLine{00158\ \ \ \ \ \textcolor{keywordflow}{catch}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_sdl_exception}{SdlException}}\&\ e)}
-\DoxyCodeLine{00159\ \ \ \ \ \{}
-\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \mbox{\hyperlink{classph_1_1_sdl_save_error}{SdlSaveError}}(}
-\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}unable\ to\ save\ resource\ reference\ "{}}\ +}
-\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \ \ \ \ valueToString(owner)\ +\ \textcolor{stringliteral}{"{}\ -\/>\ "{}}\ +\ e.whatStr());}
-\DoxyCodeLine{00163\ \ \ \ \ \}}
-\DoxyCodeLine{00164\ \}}
-\DoxyCodeLine{00165\ }
-\DoxyCodeLine{00166\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ \textcolor{keyword}{typename}\ Owner>}
-\DoxyCodeLine{00167\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ ResourceType>}
-\DoxyCodeLine{00168\ \textcolor{keyword}{inline}\ std::shared\_ptr<ResourceType>\ \mbox{\hyperlink{classph_1_1_t_sdl_reference}{TSdlReference<T,\ Owner>::loadResource}}(}
-\DoxyCodeLine{00169\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_sdl_input_clause}{SdlInputClause}}\&\ clause,}
-\DoxyCodeLine{00170\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_sdl_input_context}{SdlInputContext}}\&\ ctx)}
-\DoxyCodeLine{00171\ \{}
-\DoxyCodeLine{00172\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ referenceName\ =\ clause.\mbox{\hyperlink{classph_1_1_sdl_input_clause_a3a57fdbbab5543025ef072715c949c65}{value}};}
-\DoxyCodeLine{00173\ \ \ \ \ \textcolor{keywordflow}{if}(referenceName.empty())}
-\DoxyCodeLine{00174\ \ \ \ \ \{}
-\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \mbox{\hyperlink{classph_1_1_sdl_load_error}{SdlLoadError}}(}
-\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}reference\ name\ cannot\ be\ empty"{}});}
-\DoxyCodeLine{00177\ \ \ \ \ \}}
-\DoxyCodeLine{00178\ }
-\DoxyCodeLine{00179\ \ \ \ \ \textcolor{keywordflow}{if}(!ctx.\mbox{\hyperlink{classph_1_1_sdl_input_context_af5bc726581207603029b9252e7e32501}{getSrcReferences}}())}
-\DoxyCodeLine{00180\ \ \ \ \ \{}
-\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ throw\_formatted<SdlLoadError>(}
-\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}no\ target\ reference\ group\ specified"{}});}
-\DoxyCodeLine{00183\ \ \ \ \ \}}
-\DoxyCodeLine{00184\ }
-\DoxyCodeLine{00185\ \ \ \ \ \textcolor{comment}{//\ TODO:\ allow\ type\ mismatch?}}
-\DoxyCodeLine{00186\ \ \ \ \ \textcolor{keyword}{auto}\ resource\ =\ ctx.\mbox{\hyperlink{classph_1_1_sdl_input_context_af5bc726581207603029b9252e7e32501}{getSrcReferences}}()-\/>\mbox{\hyperlink{classph_1_1_i_sdl_reference_group_a18b922e4a8526b7c5f72701196a2c0be}{getTyped}}<ResourceType>(referenceName);}
-\DoxyCodeLine{00187\ \ \ \ \ \textcolor{keywordflow}{if}(!resource)}
-\DoxyCodeLine{00188\ \ \ \ \ \{}
-\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ throw\_formatted<SdlLoadError>(}
-\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}cannot\ find\ resource\ referenced\ by\ <\{\}>"{}},}
-\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \ \ \ \ referenceName);}
-\DoxyCodeLine{00192\ \ \ \ \ \}}
-\DoxyCodeLine{00193\ }
-\DoxyCodeLine{00194\ \ \ \ \ \textcolor{keywordflow}{return}\ resource;}
-\DoxyCodeLine{00195\ \}}
-\DoxyCodeLine{00196\ }
-\DoxyCodeLine{00197\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ \textcolor{keyword}{typename}\ Owner>}
-\DoxyCodeLine{00198\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ TSdlReference<T,\ Owner>::withImportance(\textcolor{keyword}{const}\ EFieldImportance\ importance)}
-\DoxyCodeLine{00199\ -\/>\ TSdlReference\&}
-\DoxyCodeLine{00200\ \{}
-\DoxyCodeLine{00201\ \ \ \ \ this-\/>setImportance(importance);}
-\DoxyCodeLine{00202\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
-\DoxyCodeLine{00203\ \}}
-\DoxyCodeLine{00204\ }
-\DoxyCodeLine{00205\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ \textcolor{keyword}{typename}\ Owner>}
-\DoxyCodeLine{00206\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ TSdlReference<T,\ Owner>::description(std::string\ descriptionStr)}
-\DoxyCodeLine{00207\ -\/>\ TSdlReference\&}
-\DoxyCodeLine{00208\ \{}
-\DoxyCodeLine{00209\ \ \ \ \ this-\/>setDescription(std::move(descriptionStr));}
-\DoxyCodeLine{00210\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
-\DoxyCodeLine{00211\ \}}
-\DoxyCodeLine{00212\ }
-\DoxyCodeLine{00213\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ \textcolor{keyword}{typename}\ Owner>}
-\DoxyCodeLine{00214\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ TSdlReference<T,\ Owner>::optional()}
-\DoxyCodeLine{00215\ -\/>\ TSdlReference\&}
-\DoxyCodeLine{00216\ \{}
-\DoxyCodeLine{00217\ \ \ \ \ \textcolor{keywordflow}{return}\ withImportance(EFieldImportance::Optional);}
-\DoxyCodeLine{00218\ \}}
-\DoxyCodeLine{00219\ }
-\DoxyCodeLine{00220\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ \textcolor{keyword}{typename}\ Owner>}
-\DoxyCodeLine{00221\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ TSdlReference<T,\ Owner>::niceToHave()}
-\DoxyCodeLine{00222\ -\/>\ TSdlReference\&}
-\DoxyCodeLine{00223\ \{}
-\DoxyCodeLine{00224\ \ \ \ \ \textcolor{keywordflow}{return}\ withImportance(EFieldImportance::NiceToHave);}
-\DoxyCodeLine{00225\ \}}
-\DoxyCodeLine{00226\ }
-\DoxyCodeLine{00227\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ \textcolor{keyword}{typename}\ Owner>}
-\DoxyCodeLine{00228\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ TSdlReference<T,\ Owner>::required()}
-\DoxyCodeLine{00229\ -\/>\ TSdlReference\&}
-\DoxyCodeLine{00230\ \{}
-\DoxyCodeLine{00231\ \ \ \ \ \textcolor{keywordflow}{return}\ withImportance(EFieldImportance::Required);}
-\DoxyCodeLine{00232\ \}}
-\DoxyCodeLine{00233\ }
-\DoxyCodeLine{00234\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_sdl_reference_8h}{SDL/Introspect/TSdlReference.h}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_sdl_input_context_8h}{SDL/Introspect/SdlInputContext.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_i_sdl_resource_8h}{SDL/ISdlResource.h}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_scene_description_8h}{SDL/SceneDescription.h}}"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{sdl__exceptions_8h}{SDL/sdl\_exceptions.h}}"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{sdl__helpers_8h}{SDL/sdl\_helpers.h}}"{}}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <Common/assertion.h>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <Utility/string\_utils.h>}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00016\ \{}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{class\ }\mbox{\hyperlink{namespaceph_ada33bb2d4bc26b3ec1da2acb348ef4ebad9c6333623e6357515fcbf17be806273}{Geometry}};}
+\DoxyCodeLine{00019\ \textcolor{keyword}{class\ }\mbox{\hyperlink{namespaceph_ada33bb2d4bc26b3ec1da2acb348ef4ebad92a8333dd3ccb895cc65f7455b71206}{Material}};}
+\DoxyCodeLine{00020\ \textcolor{keyword}{class\ }MotionSource;}
+\DoxyCodeLine{00021\ \textcolor{keyword}{class\ }\mbox{\hyperlink{namespaceph_ada33bb2d4bc26b3ec1da2acb348ef4eba4cbb187bee11b3b06558284cd3e17d8d}{LightSource}};}
+\DoxyCodeLine{00022\ \textcolor{keyword}{class\ }\mbox{\hyperlink{namespaceph_ada33bb2d4bc26b3ec1da2acb348ef4eba1cc84619677de81ee6e44149845270a3}{Actor}};}
+\DoxyCodeLine{00023\ \textcolor{keyword}{class\ }\mbox{\hyperlink{namespaceph_ada33bb2d4bc26b3ec1da2acb348ef4ebabe53a0541a6d36f6ecb879fa2c584b08}{Image}};}
+\DoxyCodeLine{00024\ \textcolor{keyword}{class\ }\mbox{\hyperlink{namespaceph_ada33bb2d4bc26b3ec1da2acb348ef4eba3c61c04825dd7c0cc614b51840b0e433}{FrameProcessor}};}
+\DoxyCodeLine{00025\ \textcolor{keyword}{class\ }\mbox{\hyperlink{namespaceph_ada33bb2d4bc26b3ec1da2acb348ef4eba83d694b8b98b155b8817ac412c4d3e9c}{Observer}};}
+\DoxyCodeLine{00026\ \textcolor{keyword}{class\ }\mbox{\hyperlink{namespaceph_ada33bb2d4bc26b3ec1da2acb348ef4ebaba50656fda764a074dd26ab06d13b3d7}{SampleSource}};}
+\DoxyCodeLine{00027\ \textcolor{keyword}{class\ }\mbox{\hyperlink{namespaceph_ada33bb2d4bc26b3ec1da2acb348ef4eba246eb6da3962c4c606501926a42d0b71}{Visualizer}};}
+\DoxyCodeLine{00028\ \textcolor{keyword}{class\ }\mbox{\hyperlink{namespaceph_ada33bb2d4bc26b3ec1da2acb348ef4eba054b4f3ea543c990f6b125f41af6ebf7}{Option}};}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ \textcolor{keyword}{typename}\ Owner>}
+\DoxyCodeLine{00031\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_t_sdl_reference_a840c5fdc21fb129882de6384c55848e4}{TSdlReference<T,\ Owner>::TSdlReference}}(}
+\DoxyCodeLine{00032\ \ \ \ \ std::string\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ valueName,}
+\DoxyCodeLine{00033\ \ \ \ \ std::shared\_ptr<T>\ Owner::*\ const\ valuePtr)\ :}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_sdl_owned_field}{TSdlOwnedField}}<Owner>(}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacestd}{std}}::string(sdl::category\_to\_string(sdl::category\_of<T>())),}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacestd}{std}}::move(valueName)),}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \ \ m\_valuePtr(valuePtr)}
+\DoxyCodeLine{00040\ \{}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_base\_of\_v<ISdlResource,\ T>,}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}T\ must\ be\ a\ SDL\ resource\ (derive\ from\ ISdlResource)."{}});}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_sdl_reference_a165eb0f913b33349d1603e70c5335c7c}{PH\_ASSERT}}(m\_valuePtr);}
+\DoxyCodeLine{00045\ \}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ \textcolor{keyword}{typename}\ Owner>}
+\DoxyCodeLine{00048\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_sdl_reference_a17269378da830243a27b3b20a01a685e}{TSdlReference<T,\ Owner>::ownedValueToDefault}}(Owner\&\ owner)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00049\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{comment}{//\ Default\ value\ for\ a\ SDL\ resource\ defined\ as\ nullptr}}
+\DoxyCodeLine{00051\ \ \ \ \ setValueRef(owner,\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00052\ \}}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ \textcolor{keyword}{typename}\ Owner>}
+\DoxyCodeLine{00055\ \textcolor{keyword}{inline}\ std::string\ \mbox{\hyperlink{classph_1_1_t_sdl_reference_a5764a127433be552fcb40e974c95c329}{TSdlReference<T,\ Owner>::valueToString}}(\textcolor{keyword}{const}\ Owner\&\ owner)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00056\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keywordflow}{return}\ }
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}["{}}\ +\ std::string(\mbox{\hyperlink{namespaceph_1_1sdl_a1ebba778e6cb2b1078321d70592b53f9}{sdl::category\_to\_string}}(sdl::category\_of<T>()))\ +\ \textcolor{stringliteral}{"{}\ ref:\ "{}}\ +}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ std::string(getValueRef(owner)\ ?\ \textcolor{stringliteral}{"{}valid"{}}\ :\ \textcolor{stringliteral}{"{}empty"{}})\ +\ \textcolor{stringliteral}{"{}]"{}};}
+\DoxyCodeLine{00060\ \}}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ \textcolor{keyword}{typename}\ Owner>}
+\DoxyCodeLine{00063\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_sdl_reference_abde378a01589e1c706d87920e24e4427}{TSdlReference<T,\ Owner>::ownedResources}}(}
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keyword}{const}\ Owner\&\ owner,}
+\DoxyCodeLine{00065\ \ \ \ \ std::vector<const\ ISdlResource*>\&\ out\_resources)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00066\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keyword}{const}\ T*\ \textcolor{keyword}{const}\ storedResource\ =\ getValueRef(owner).get();}
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keywordflow}{if}(storedResource\ !=\ \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{00069\ \ \ \ \ \{}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ out\_resources.push\_back(storedResource);}
+\DoxyCodeLine{00071\ \ \ \ \ \}}
+\DoxyCodeLine{00072\ \}}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ \textcolor{keyword}{typename}\ Owner>}
+\DoxyCodeLine{00075\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_sdl_native_data}{SdlNativeData}}\ \mbox{\hyperlink{classph_1_1_t_sdl_reference_a3f655da1144129c79ff1de6d4360d822}{TSdlReference<T,\ Owner>::ownedNativeData}}(Owner\&\ owner)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00076\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00077\ \ \ \ \ std::shared\_ptr<T>\&\ valueRef\ =\ owner.*m\_valuePtr;}
+\DoxyCodeLine{00078\ \ \ \ \ T*\ \textcolor{keyword}{const}\ originalDataPtr\ =\ valueRef.\mbox{\hyperlink{classph_1_1_sdl_native_data_ab9df6c61cddb77473d34e53c149f2feb}{get}}();}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{comment}{//\ Read-\/only\ for\ ordinary\ access\ to\ avoid\ accidental\ object\ slicing\ and\ other\ polymorphic}}
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{comment}{//\ assignment\ issues.\ User\ should\ use\ direct\ accessor\ for\ assignment.}}
+\DoxyCodeLine{00082\ \ \ \ \ \mbox{\hyperlink{classph_1_1_sdl_native_data}{SdlNativeData}}\ data\ =\ \mbox{\hyperlink{classph_1_1_sdl_native_data}{SdlNativeData}}(}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ [originalDataPtr](std::size\_t\ elementIdx)\ -\/>\ \mbox{\hyperlink{classph_1_1_t_sdl_accessor_variant}{SdlGetterVariant}}}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ originalDataPtr}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ?\ \mbox{\hyperlink{classph_1_1_sdl_native_data_a632f90a9950791b7c25f89293d3822d5}{SdlNativeData::permissiveElementGetter}}(originalDataPtr)}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classph_1_1_t_sdl_any_instance}{SdlConstInstance}}\{\};}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00089\ \ \ \ \ data.\mbox{\hyperlink{classph_1_1_sdl_native_data_a45dcc41c48399e519c4ae1bbedf3742c}{setDirectAccessor}}(\mbox{\hyperlink{namespaceph_a76393562caa22c28431e3d8da5706a2b}{AnyNonConstPtr}}(\&valueRef));}
+\DoxyCodeLine{00090\ \ \ \ \ data.\mbox{\hyperlink{classph_1_1_sdl_native_data_ac4ae3347b42cda22281f162b50afd205}{elementContainer}}\ =\ \mbox{\hyperlink{namespaceph_ace69f5c0a73308d2c88c512f8b70016eade28634b657af8f02ddc02770b583590}{ESdlDataFormat::SharedPointer}};}
+\DoxyCodeLine{00091\ \ \ \ \ data.\mbox{\hyperlink{classph_1_1_sdl_native_data_a82fcba9016c044594965ced726e61d3e}{elementType}}\ =\ sdl::resource\_type\_of<T>();}
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keywordflow}{return}\ data;}
+\DoxyCodeLine{00093\ \}}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ \textcolor{keyword}{typename}\ Owner>}
+\DoxyCodeLine{00096\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_sdl_reference_acf83e882fb49bb619a4c32839b6e17e4}{TSdlReference<T,\ Owner>::setValueRef}}(Owner\&\ owner,\ std::shared\_ptr<T>\ value)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00097\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00098\ \ \ \ \ owner.*m\_valuePtr\ =\ std::move(value);}
+\DoxyCodeLine{00099\ \}}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ \textcolor{keyword}{typename}\ Owner>}
+\DoxyCodeLine{00102\ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ std::shared\_ptr<T>\&\ \mbox{\hyperlink{classph_1_1_t_sdl_reference_a6e8bfebd43ac39ffa91847f58b86ae41}{TSdlReference<T,\ Owner>::getValueRef}}(\textcolor{keyword}{const}\ Owner\&\ owner)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00103\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00104\ \ \ \ \ \textcolor{keywordflow}{return}\ owner.*m\_valuePtr;}
+\DoxyCodeLine{00105\ \}}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ \textcolor{keyword}{typename}\ Owner>}
+\DoxyCodeLine{00108\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_sdl_reference_a3671c32593c06c0b47ee6a12a99305ca}{TSdlReference<T,\ Owner>::loadFromSdl}}(}
+\DoxyCodeLine{00109\ \ \ \ \ Owner\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ owner,}
+\DoxyCodeLine{00110\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_sdl_input_clause}{SdlInputClause}}\&\ \ clause,}
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_sdl_input_context}{SdlInputContext}}\&\ ctx)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00112\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00114\ \ \ \ \ \{}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ setValueRef(owner,\ loadResource(clause,\ ctx));}
+\DoxyCodeLine{00116\ \ \ \ \ \}}
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{keywordflow}{catch}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_sdl_exception}{SdlException}}\&\ e)}
+\DoxyCodeLine{00118\ \ \ \ \ \{}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \mbox{\hyperlink{classph_1_1_sdl_load_error}{SdlLoadError}}(}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}unable\ to\ load\ resource\ on\ parsing\ reference\ "{}}\ +\ }
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ valueToString(owner)\ +\ \textcolor{stringliteral}{"{}\ -\/>\ "{}}\ +\ e.whatStr());}
+\DoxyCodeLine{00122\ \ \ \ \ \}}
+\DoxyCodeLine{00123\ \}}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ \textcolor{keyword}{typename}\ Owner>}
+\DoxyCodeLine{00126\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_sdl_reference_ad52c13b2724cf8352bd765db2c6dea83}{TSdlReference<T,\ Owner>::saveToSdl}}(}
+\DoxyCodeLine{00127\ \ \ \ \ \textcolor{keyword}{const}\ Owner\&\ \ \ \ \ \ \ \ \ \ \ \ owner,}
+\DoxyCodeLine{00128\ \ \ \ \ \mbox{\hyperlink{classph_1_1_sdl_output_clause}{SdlOutputClause}}\&\ \ \ \ \ \ \ \ out\_clause,}
+\DoxyCodeLine{00129\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_sdl_output_context}{SdlOutputContext}}\&\ ctx)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00130\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00131\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ resource\ =\ getValueRef(owner);}
+\DoxyCodeLine{00132\ \ \ \ \ \textcolor{keywordflow}{if}(!resource)}
+\DoxyCodeLine{00133\ \ \ \ \ \{}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ out\_clause.\mbox{\hyperlink{classph_1_1_sdl_output_clause_a8bd6ce2a952288003b3b7d085f375cb4}{isEmpty}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00136\ \ \ \ \ \}}
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00138\ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00139\ \ \ \ \ \{}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ resourceName\ =\ ctx.\mbox{\hyperlink{classph_1_1_sdl_output_context_ac8c95338a18b271a7329ac1289d8ad37}{getDependencyResolver}}().\mbox{\hyperlink{classph_1_1_sdl_dependency_resolver_ad84960e08b7dee74b570af7d20a8fa2b}{getResourceName}}(resource.get());}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(resourceName.empty())}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \mbox{\hyperlink{classph_1_1_sdl_save_error}{SdlSaveError}}(}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}resource\ name\ is\ not\ tracked\ by\ the\ reference\ resolver"{}});}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ out\_clause.\mbox{\hyperlink{classph_1_1_sdl_output_clause_adba64a887da2386b1c8f33e4fd52cace}{isReference}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(string\_utils::has\_any\_of(resourceName,\ string\_utils::get\_whitespaces()))}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \ \ \ \ out\_clause.\mbox{\hyperlink{classph_1_1_sdl_output_clause_a27625fd790a2cb49f0cfd9c113ddb5ea}{value}}\ =\ \textcolor{charliteral}{'"{}'};}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \ \ \ \ out\_clause.\mbox{\hyperlink{classph_1_1_sdl_output_clause_a27625fd790a2cb49f0cfd9c113ddb5ea}{value}}\ +=\ resourceName;}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \ \ \ \ out\_clause.\mbox{\hyperlink{classph_1_1_sdl_output_clause_a27625fd790a2cb49f0cfd9c113ddb5ea}{value}}\ +=\ \textcolor{charliteral}{'"{}'};}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ out\_clause.\mbox{\hyperlink{classph_1_1_sdl_output_clause_a27625fd790a2cb49f0cfd9c113ddb5ea}{value}}\ =\ resourceName;}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00158\ \ \ \ \ \}}
+\DoxyCodeLine{00159\ \ \ \ \ \textcolor{keywordflow}{catch}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_sdl_exception}{SdlException}}\&\ e)}
+\DoxyCodeLine{00160\ \ \ \ \ \{}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \mbox{\hyperlink{classph_1_1_sdl_save_error}{SdlSaveError}}(}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}unable\ to\ save\ resource\ reference\ "{}}\ +}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \ \ \ \ valueToString(owner)\ +\ \textcolor{stringliteral}{"{}\ -\/>\ "{}}\ +\ e.whatStr());}
+\DoxyCodeLine{00164\ \ \ \ \ \}}
+\DoxyCodeLine{00165\ \}}
+\DoxyCodeLine{00166\ }
+\DoxyCodeLine{00167\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ \textcolor{keyword}{typename}\ Owner>}
+\DoxyCodeLine{00168\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ ResourceType>}
+\DoxyCodeLine{00169\ \textcolor{keyword}{inline}\ std::shared\_ptr<ResourceType>\ \mbox{\hyperlink{classph_1_1_t_sdl_reference_aafe57b9e31913a63cf33a7ce99b577c9}{TSdlReference<T,\ Owner>::loadResource}}(}
+\DoxyCodeLine{00170\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_sdl_input_clause}{SdlInputClause}}\&\ clause,}
+\DoxyCodeLine{00171\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_sdl_input_context}{SdlInputContext}}\&\ ctx)}
+\DoxyCodeLine{00172\ \{}
+\DoxyCodeLine{00173\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ referenceName\ =\ clause.\mbox{\hyperlink{classph_1_1_sdl_input_clause_a3a57fdbbab5543025ef072715c949c65}{value}};}
+\DoxyCodeLine{00174\ \ \ \ \ \textcolor{keywordflow}{if}(referenceName.empty())}
+\DoxyCodeLine{00175\ \ \ \ \ \{}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \mbox{\hyperlink{classph_1_1_sdl_load_error}{SdlLoadError}}(}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}reference\ name\ cannot\ be\ empty"{}});}
+\DoxyCodeLine{00178\ \ \ \ \ \}}
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00180\ \ \ \ \ \textcolor{keywordflow}{if}(!ctx.\mbox{\hyperlink{classph_1_1_sdl_input_context_af5bc726581207603029b9252e7e32501}{getSrcReferences}}())}
+\DoxyCodeLine{00181\ \ \ \ \ \{}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ throw\_formatted<SdlLoadError>(}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}no\ target\ reference\ group\ specified"{}});}
+\DoxyCodeLine{00184\ \ \ \ \ \}}
+\DoxyCodeLine{00185\ }
+\DoxyCodeLine{00186\ \ \ \ \ \textcolor{comment}{//\ TODO:\ allow\ type\ mismatch?}}
+\DoxyCodeLine{00187\ \ \ \ \ \textcolor{keyword}{auto}\ resource\ =\ ctx.\mbox{\hyperlink{classph_1_1_sdl_input_context_af5bc726581207603029b9252e7e32501}{getSrcReferences}}()-\/>\mbox{\hyperlink{classph_1_1_i_sdl_reference_group_a18b922e4a8526b7c5f72701196a2c0be}{getTyped}}<ResourceType>(referenceName);}
+\DoxyCodeLine{00188\ \ \ \ \ \textcolor{keywordflow}{if}(!resource)}
+\DoxyCodeLine{00189\ \ \ \ \ \{}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ throw\_formatted<SdlLoadError>(}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}cannot\ find\ resource\ referenced\ by\ <\{\}>"{}},}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \ \ \ \ referenceName);}
+\DoxyCodeLine{00193\ \ \ \ \ \}}
+\DoxyCodeLine{00194\ }
+\DoxyCodeLine{00195\ \ \ \ \ \textcolor{keywordflow}{return}\ resource;}
+\DoxyCodeLine{00196\ \}}
+\DoxyCodeLine{00197\ }
+\DoxyCodeLine{00198\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ \textcolor{keyword}{typename}\ Owner>}
+\DoxyCodeLine{00199\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1_t_sdl_reference_ab8690fb635d783635d9b47d44d8cccca}{TSdlReference<T,\ Owner>::withImportance}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_a3f81b078141211109d7e3b340d0525cc}{EFieldImportance}}\ importance)}
+\DoxyCodeLine{00200\ -\/>\ \mbox{\hyperlink{classph_1_1_t_sdl_reference}{TSdlReference}}\&}
+\DoxyCodeLine{00201\ \{}
+\DoxyCodeLine{00202\ \ \ \ \ this-\/>setImportance(importance);}
+\DoxyCodeLine{00203\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00204\ \}}
+\DoxyCodeLine{00205\ }
+\DoxyCodeLine{00206\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ \textcolor{keyword}{typename}\ Owner>}
+\DoxyCodeLine{00207\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1_t_sdl_reference_a9b5ab92135f8ef909e6a9c3d90bbdfce}{TSdlReference<T,\ Owner>::description}}(std::string\ descriptionStr)}
+\DoxyCodeLine{00208\ -\/>\ \mbox{\hyperlink{classph_1_1_t_sdl_reference}{TSdlReference}}\&}
+\DoxyCodeLine{00209\ \{}
+\DoxyCodeLine{00210\ \ \ \ \ this-\/>setDescription(std::move(descriptionStr));}
+\DoxyCodeLine{00211\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00212\ \}}
+\DoxyCodeLine{00213\ }
+\DoxyCodeLine{00214\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ \textcolor{keyword}{typename}\ Owner>}
+\DoxyCodeLine{00215\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1_t_sdl_reference_a165eb0f913b33349d1603e70c5335c7c}{TSdlReference<T,\ Owner>::optional}}()}
+\DoxyCodeLine{00216\ -\/>\ \mbox{\hyperlink{classph_1_1_t_sdl_reference}{TSdlReference}}\&}
+\DoxyCodeLine{00217\ \{}
+\DoxyCodeLine{00218\ \ \ \ \ \textcolor{keywordflow}{return}\ withImportance(\mbox{\hyperlink{namespaceph_a3f81b078141211109d7e3b340d0525ccaebb061953c0454b2c8ee7b0ac615ebcd}{EFieldImportance::Optional}});}
+\DoxyCodeLine{00219\ \}}
+\DoxyCodeLine{00220\ }
+\DoxyCodeLine{00221\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ \textcolor{keyword}{typename}\ Owner>}
+\DoxyCodeLine{00222\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1_t_sdl_reference_aaa507312c26e71cdf481ea782f2d2cc6}{TSdlReference<T,\ Owner>::niceToHave}}()}
+\DoxyCodeLine{00223\ -\/>\ \mbox{\hyperlink{classph_1_1_t_sdl_reference}{TSdlReference}}\&}
+\DoxyCodeLine{00224\ \{}
+\DoxyCodeLine{00225\ \ \ \ \ \textcolor{keywordflow}{return}\ withImportance(\mbox{\hyperlink{namespaceph_a3f81b078141211109d7e3b340d0525cca0cfbb34b0d0b5ecbec9383c0e7fd4337}{EFieldImportance::NiceToHave}});}
+\DoxyCodeLine{00226\ \}}
+\DoxyCodeLine{00227\ }
+\DoxyCodeLine{00228\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ \textcolor{keyword}{typename}\ Owner>}
+\DoxyCodeLine{00229\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1_t_sdl_reference_a3b692ac4831b423e078b1acbf2997352}{TSdlReference<T,\ Owner>::required}}()}
+\DoxyCodeLine{00230\ -\/>\ \mbox{\hyperlink{classph_1_1_t_sdl_reference}{TSdlReference}}\&}
+\DoxyCodeLine{00231\ \{}
+\DoxyCodeLine{00232\ \ \ \ \ \textcolor{keywordflow}{return}\ withImportance(\mbox{\hyperlink{namespaceph_a3f81b078141211109d7e3b340d0525ccab651efdb98a5d6bd2b3935d0c3f4a5e2}{EFieldImportance::Required}});}
+\DoxyCodeLine{00233\ \}}
+\DoxyCodeLine{00234\ }
+\DoxyCodeLine{00235\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
 
 \end{DoxyCode}

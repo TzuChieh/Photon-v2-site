@@ -1,108 +1,109 @@
 \doxysection{TSdl\+Real\+Array.\+h}
 \hypertarget{_t_sdl_real_array_8h_source}{}\label{_t_sdl_real_array_8h_source}\index{Source/SDL/Introspect/TSdlRealArray.h@{Source/SDL/Introspect/TSdlRealArray.h}}
-
+\mbox{\hyperlink{_t_sdl_real_array_8h}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
 \DoxyCodeLine{00002\ }
-\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}SDL/Introspect/TSdlValue.h"{}}}
-\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Common/primitive\_type.h"{}}}
-\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}Common/assertion.h"{}}}
-\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{sdl__helpers_8h}{SDL/sdl\_helpers.h}}"{}}}
-\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}SDL/SdlResourceLocator.h"{}}}
-\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}SDL/Introspect/SdlInputContext.h"{}}}
-\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{io__utils_8h}{DataIO/io\_utils.h}}"{}}}
-\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}DataIO/io\_exceptions.h"{}}}
-\DoxyCodeLine{00011\ }
-\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <type\_traits>}}
-\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <string>}}
-\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <vector>}}
-\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <utility>}}
-\DoxyCodeLine{00016\ }
-\DoxyCodeLine{00017\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
-\DoxyCodeLine{00018\ \{}
-\DoxyCodeLine{00019\ }
-\DoxyCodeLine{00020\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Owner,\ \textcolor{keyword}{typename}\ Element\ =\ real,\ \textcolor{keyword}{typename}\ SdlValueType\ =\ TSdlValue<std::vector<Element>,\ Owner>>}
-\DoxyCodeLine{00021\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_t_sdl_real_array}{TSdlRealArray}}\ :\ \textcolor{keyword}{public}\ SdlValueType}
-\DoxyCodeLine{00022\ \{}
-\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_base\_of\_v<TSdlAbstractValue<std::vector<Element>,\ Owner>,\ SdlValueType>,}
-\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}SdlValueType\ should\ be\ a\ subclass\ of\ TSdlAbstractValue."{}});}
-\DoxyCodeLine{00025\ }
-\DoxyCodeLine{00026\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ ValueType>}
-\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_t_sdl_real_array}{TSdlRealArray}}(std::string\ valueName,\ ValueType\ Owner::*\ \textcolor{keyword}{const}\ valuePtr)\ :}
-\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ SdlValueType(\textcolor{stringliteral}{"{}real-\/array"{}},\ std::move(valueName),\ valuePtr)}
-\DoxyCodeLine{00030\ \ \ \ \ \{\}}
-\DoxyCodeLine{00031\ }
-\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{inline}\ std::string\ valueAsString(\textcolor{keyword}{const}\ std::vector<Element>\&\ realArray)\textcolor{keyword}{\ const\ override}}
-\DoxyCodeLine{00033\ \textcolor{keyword}{\ \ \ \ }\{}
-\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}["{}}\ +\ std::to\_string(realArray.size())\ +\ \textcolor{stringliteral}{"{}\ real\ values...]"{}};}
-\DoxyCodeLine{00035\ \ \ \ \ \}}
-\DoxyCodeLine{00036\ }
-\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_sdl_native_data}{SdlNativeData}}\ \mbox{\hyperlink{classph_1_1_t_sdl_real_array_a85bbbd6cde85b0475b459d75bb583d23}{ownedNativeData}}(Owner\&\ owner)\textcolor{keyword}{\ const\ override}}
-\DoxyCodeLine{00038\ \textcolor{keyword}{\ \ \ \ }\{}
-\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ std::vector<Element>*\ \textcolor{keyword}{const}\ vec\ =\ this-\/>\mbox{\hyperlink{classph_1_1_t_sdl_value_a706565be62e0104124f619c27d9f924a}{getValue}}(owner);}
-\DoxyCodeLine{00040\ }
-\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_sdl_native_data}{SdlNativeData}}\ data;}
-\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(vec)}
-\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ Element*\ \textcolor{keyword}{const}\ vecData\ =\ vec-\/>data();}
-\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ data\ =\ \mbox{\hyperlink{classph_1_1_sdl_native_data}{SdlNativeData}}(}
-\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ [vecData](std::size\_t\ elementIdx)\ -\/>\ \mbox{\hyperlink{classph_1_1_t_sdl_accessor_variant}{SdlGetterVariant}}}
-\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1_sdl_native_data_a632f90a9950791b7c25f89293d3822d5}{SdlNativeData::permissiveElementGetter}}(\&(vecData[elementIdx]));}
-\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \},}
-\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ [vecData](std::size\_t\ elementIdx,\ \mbox{\hyperlink{classph_1_1_t_sdl_accessor_variant}{SdlSetterVariant}}\ input)\ -\/>\ \textcolor{keywordtype}{bool}}
-\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1_sdl_native_data_a035296228dfe6619da40577b68ecc3f0}{SdlNativeData::permissiveElementSetter}}(input,\ \&(vecData[elementIdx]));}
-\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \},}
-\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceph_a76393562caa22c28431e3d8da5706a2b}{AnyNonConstPtr}}(vec));}
-\DoxyCodeLine{00055\ }
-\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ data.\mbox{\hyperlink{classph_1_1_sdl_native_data_a31819f46d6bd68e7854be1efa3e1adfa}{numElements}}\ =\ vec-\/>size();}
-\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ data.\mbox{\hyperlink{classph_1_1_sdl_native_data_ac4ae3347b42cda22281f162b50afd205}{elementContainer}}\ =\ \mbox{\hyperlink{namespaceph_ace69f5c0a73308d2c88c512f8b70016ea57dea6f5039281b7fee517fc43bf3110}{ESdlDataFormat::Vector}};}
-\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ data.\mbox{\hyperlink{classph_1_1_sdl_native_data_a82fcba9016c044594965ced726e61d3e}{elementType}}\ =\ sdl::float\_type\_of<Element>();}
-\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ data;}
-\DoxyCodeLine{00061\ \ \ \ \ \}}
-\DoxyCodeLine{00062\ }
-\DoxyCodeLine{00063\ \textcolor{keyword}{protected}:}
-\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_sdl_real_array_a7f4009c1db7186f176fbc90f35f4d880}{loadFromSdl}}(}
-\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ Owner\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ owner,}
-\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_sdl_input_clause}{SdlInputClause}}\&\ \ clause,}
-\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_sdl_input_context}{SdlInputContext}}\&\ ctx)\textcolor{keyword}{\ const\ override}}
-\DoxyCodeLine{00068\ \textcolor{keyword}{\ \ \ \ }\{}
-\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(clause.\mbox{\hyperlink{classph_1_1_sdl_input_clause_a8da6abbcb9c670971ff62c1a64bf0f19}{isResourceIdentifier}}())}
-\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
-\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\ loadedSdlValue\ =\ io\_utils::load\_text(}
-\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_sdl_resource_locator}{SdlResourceLocator}}(ctx).toPath(clause.\mbox{\hyperlink{classph_1_1_sdl_input_clause_a3a57fdbbab5543025ef072715c949c65}{value}}));}
-\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>\mbox{\hyperlink{classph_1_1_t_sdl_value_a10a624c8ee21919ff7d95b5b67ac0746}{setValue}}(owner,\ sdl::load\_number\_array<Element>(loadedSdlValue));}
-\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_file_i_o_error}{FileIOError}}\&\ e)}
-\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \mbox{\hyperlink{classph_1_1_sdl_load_error}{SdlLoadError}}(\textcolor{stringliteral}{"{}on\ loading\ real\ array\ -\/>\ "{}}\ +\ e.whatStr());}
-\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>\mbox{\hyperlink{classph_1_1_t_sdl_value_a10a624c8ee21919ff7d95b5b67ac0746}{setValue}}(owner,\ sdl::load\_number\_array<Element>(clause.\mbox{\hyperlink{classph_1_1_sdl_input_clause_a3a57fdbbab5543025ef072715c949c65}{value}}));}
-\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00086\ \ \ \ \ \}}
-\DoxyCodeLine{00087\ }
-\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_sdl_real_array_a98fa2dd19f2ca19c8a4f9cc81751d378}{saveToSdl}}(}
-\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Owner\&\ \ \ \ \ \ \ \ \ \ \ \ owner,}
-\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_sdl_output_clause}{SdlOutputClause}}\&\ \ \ \ \ \ \ \ out\_clause,}
-\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_sdl_output_context}{SdlOutputContext}}\&\ ctx)\textcolor{keyword}{\ const\ override}}
-\DoxyCodeLine{00092\ \textcolor{keyword}{\ \ \ \ }\{}
-\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ TODO:\ optionally\ as\ file}}
-\DoxyCodeLine{00094\ }
-\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\textcolor{keyword}{const}\ std::vector<Element>*\ \textcolor{keyword}{const}\ numberArr\ =\ this-\/>\mbox{\hyperlink{classph_1_1_t_sdl_value_a2980df26bdcefcafa2a7b235db2adf58}{getConstValue}}(owner);\ numberArr)}
-\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ sdl::save\_number\_array<Element>(*numberArr,\ \&out\_clause.\mbox{\hyperlink{classph_1_1_sdl_output_clause_a27625fd790a2cb49f0cfd9c113ddb5ea}{value}});}
-\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00099\ \ \ \ \ \}}
-\DoxyCodeLine{00100\ \};}
-\DoxyCodeLine{00101\ }
-\DoxyCodeLine{00102\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_sdl_value_8h}{SDL/Introspect/TSdlValue.h}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{sdl__helpers_8h}{SDL/sdl\_helpers.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_sdl_resource_locator_8h}{SDL/SdlResourceLocator.h}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_sdl_input_context_8h}{SDL/Introspect/SdlInputContext.h}}"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{io__utils_8h}{DataIO/io\_utils.h}}"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{io__exceptions_8h}{DataIO/io\_exceptions.h}}"{}}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <Common/assertion.h>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <Common/primitive\_type.h>}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <type\_traits>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00019\ \{}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Owner,\ \textcolor{keyword}{typename}\ Element\ =\ real,\ \textcolor{keyword}{typename}\ SdlValueType\ =\ TSdlValue<std::vector<Element>,\ Owner>>}
+\DoxyCodeLine{00022\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_t_sdl_real_array}{TSdlRealArray}}\ :\ \textcolor{keyword}{public}\ SdlValueType}
+\DoxyCodeLine{00023\ \{}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_base\_of\_v<TSdlAbstractValue<std::vector<Element>,\ \mbox{\hyperlink{classph_1_1_t_sdl_value_a8bee7662ed734bc6b6a57594bf3db536}{Owner}}>,\ \mbox{\hyperlink{classph_1_1_t_sdl_value_a8bee7662ed734bc6b6a57594bf3db536}{SdlValueType}}>,}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}SdlValueType\ should\ be\ a\ subclass\ of\ TSdlAbstractValue."{}});}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ ValueType>}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_t_sdl_real_array_a18be4ea237f9a6b55a64ea4ed6515746}{TSdlRealArray}}(std::string\ \mbox{\hyperlink{classph_1_1_t_sdl_value_a8bee7662ed734bc6b6a57594bf3db536}{valueName}},\ \mbox{\hyperlink{classph_1_1_t_sdl_value_a8bee7662ed734bc6b6a57594bf3db536}{ValueType}}\ \mbox{\hyperlink{classph_1_1_t_sdl_value_a8bee7662ed734bc6b6a57594bf3db536}{Owner}}::*\ \mbox{\hyperlink{classph_1_1_t_sdl_value_a8bee7662ed734bc6b6a57594bf3db536}{const}}\ \mbox{\hyperlink{classph_1_1_t_sdl_value_a8bee7662ed734bc6b6a57594bf3db536}{valuePtr}})\ :}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_sdl_value_a8bee7662ed734bc6b6a57594bf3db536}{SdlValueType}}(\textcolor{stringliteral}{"{}real-\/array"{}},\ \mbox{\hyperlink{namespacestd}{std}}::\mbox{\hyperlink{classph_1_1_t_sdl_value_a8bee7662ed734bc6b6a57594bf3db536}{move}}(\mbox{\hyperlink{classph_1_1_t_sdl_value_a8bee7662ed734bc6b6a57594bf3db536}{valueName}}),\ \mbox{\hyperlink{classph_1_1_t_sdl_value_a8bee7662ed734bc6b6a57594bf3db536}{valuePtr}})}
+\DoxyCodeLine{00031\ \ \ \ \ \{\}}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keyword}{inline}\ std::string\ \mbox{\hyperlink{classph_1_1_t_sdl_real_array_a68eeb09067d116a2220d63566fc35112}{valueAsString}}(\textcolor{keyword}{const}\ std::vector<Element>\&\ \mbox{\hyperlink{classph_1_1_t_sdl_value_a8bee7662ed734bc6b6a57594bf3db536}{realArray}})\textcolor{keyword}{\ const\ override}}
+\DoxyCodeLine{00034\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}["{}}\ +\ std::to\_string(\mbox{\hyperlink{classph_1_1_t_sdl_value_a8bee7662ed734bc6b6a57594bf3db536}{realArray}}.size())\ +\ \textcolor{stringliteral}{"{}\ real\ values...]"{}};}
+\DoxyCodeLine{00036\ \ \ \ \ \}}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_sdl_native_data}{SdlNativeData}}\ \mbox{\hyperlink{classph_1_1_t_sdl_real_array_a85bbbd6cde85b0475b459d75bb583d23}{ownedNativeData}}(\mbox{\hyperlink{classph_1_1_t_sdl_value_a8bee7662ed734bc6b6a57594bf3db536}{Owner}}\&\ \mbox{\hyperlink{classph_1_1_t_sdl_value_a8bee7662ed734bc6b6a57594bf3db536}{owner}})\textcolor{keyword}{\ const\ override}}
+\DoxyCodeLine{00039\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ std::vector<Element>*\ \textcolor{keyword}{const}\ vec\ =\ this-\/>\mbox{\hyperlink{classph_1_1_t_sdl_value_a706565be62e0104124f619c27d9f924a}{getValue}}(owner);}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_sdl_native_data}{SdlNativeData}}\ \mbox{\hyperlink{classph_1_1_t_sdl_value_a8bee7662ed734bc6b6a57594bf3db536}{data}};}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(vec)}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ Element*\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_t_sdl_value_a8bee7662ed734bc6b6a57594bf3db536}{vecData}}\ =\ vec-\/>data();}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_sdl_value_a8bee7662ed734bc6b6a57594bf3db536}{data}}\ =\ \mbox{\hyperlink{classph_1_1_sdl_native_data}{SdlNativeData}}(}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ [\mbox{\hyperlink{classph_1_1_t_sdl_value_a8bee7662ed734bc6b6a57594bf3db536}{vecData}}](std::size\_t\ \mbox{\hyperlink{classph_1_1_t_sdl_value_a8bee7662ed734bc6b6a57594bf3db536}{elementIdx}})\ -\/>\ \mbox{\hyperlink{classph_1_1_t_sdl_accessor_variant}{SdlGetterVariant}}}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1_sdl_native_data_a632f90a9950791b7c25f89293d3822d5}{SdlNativeData::permissiveElementGetter}}(\&(\mbox{\hyperlink{classph_1_1_t_sdl_value_a8bee7662ed734bc6b6a57594bf3db536}{vecData}}[\mbox{\hyperlink{classph_1_1_t_sdl_value_a8bee7662ed734bc6b6a57594bf3db536}{elementIdx}}]));}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \},}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ [\mbox{\hyperlink{classph_1_1_t_sdl_value_a8bee7662ed734bc6b6a57594bf3db536}{vecData}}](std::size\_t\ \mbox{\hyperlink{classph_1_1_t_sdl_value_a8bee7662ed734bc6b6a57594bf3db536}{elementIdx}},\ \mbox{\hyperlink{classph_1_1_t_sdl_accessor_variant}{SdlSetterVariant}}\ \mbox{\hyperlink{classph_1_1_t_sdl_value_a8bee7662ed734bc6b6a57594bf3db536}{input}})\ -\/>\ \textcolor{keywordtype}{bool}}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1_sdl_native_data_a035296228dfe6619da40577b68ecc3f0}{SdlNativeData::permissiveElementSetter}}(\mbox{\hyperlink{classph_1_1_t_sdl_value_a8bee7662ed734bc6b6a57594bf3db536}{input}},\ \&(\mbox{\hyperlink{classph_1_1_t_sdl_value_a8bee7662ed734bc6b6a57594bf3db536}{vecData}}[\mbox{\hyperlink{classph_1_1_t_sdl_value_a8bee7662ed734bc6b6a57594bf3db536}{elementIdx}}]));}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \},}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceph_a76393562caa22c28431e3d8da5706a2b}{AnyNonConstPtr}}(vec));}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_sdl_value_a8bee7662ed734bc6b6a57594bf3db536}{data}}.numElements\ =\ vec-\/>size();}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_sdl_value_a8bee7662ed734bc6b6a57594bf3db536}{data}}.elementContainer\ =\ \mbox{\hyperlink{namespaceph_ace69f5c0a73308d2c88c512f8b70016ea57dea6f5039281b7fee517fc43bf3110}{ESdlDataFormat::Vector}};}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_sdl_value_a8bee7662ed734bc6b6a57594bf3db536}{data}}.elementType\ =\ sdl::float\_type\_of<Element>();}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1_t_sdl_value_a8bee7662ed734bc6b6a57594bf3db536}{data}};}
+\DoxyCodeLine{00062\ \ \ \ \ \}}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_sdl_real_array_a7f4009c1db7186f176fbc90f35f4d880}{loadFromSdl}}(}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_sdl_value_a8bee7662ed734bc6b6a57594bf3db536}{Owner}}\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_sdl_value_a8bee7662ed734bc6b6a57594bf3db536}{owner}},}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_sdl_input_clause}{SdlInputClause}}\&\ \ \mbox{\hyperlink{classph_1_1_t_sdl_value_a8bee7662ed734bc6b6a57594bf3db536}{clause}},}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_sdl_input_context}{SdlInputContext}}\&\ \mbox{\hyperlink{classph_1_1_t_sdl_value_a8bee7662ed734bc6b6a57594bf3db536}{ctx}})\textcolor{keyword}{\ const\ override}}
+\DoxyCodeLine{00069\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{classph_1_1_t_sdl_value_a8bee7662ed734bc6b6a57594bf3db536}{clause}}.isResourceIdentifier())}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \mbox{\hyperlink{classph_1_1_t_sdl_value_a8bee7662ed734bc6b6a57594bf3db536}{loadedSdlValue}}\ =\ \mbox{\hyperlink{namespaceph_1_1io__utils_a2e934957a32785a8dcd9a1a7a582e77d}{io\_utils::load\_text}}(}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_sdl_resource_locator}{SdlResourceLocator}}(\mbox{\hyperlink{classph_1_1_t_sdl_value_a8bee7662ed734bc6b6a57594bf3db536}{ctx}}).toPath(\mbox{\hyperlink{classph_1_1_t_sdl_value_a8bee7662ed734bc6b6a57594bf3db536}{clause}}.value));}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>\mbox{\hyperlink{classph_1_1_t_sdl_value_a10a624c8ee21919ff7d95b5b67ac0746}{setValue}}(owner,\ sdl::load\_number\_array<Element>(\mbox{\hyperlink{classph_1_1_t_sdl_value_a8bee7662ed734bc6b6a57594bf3db536}{loadedSdlValue}}));}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_file_i_o_error}{FileIOError}}\&\ \mbox{\hyperlink{classph_1_1_t_sdl_value_a8bee7662ed734bc6b6a57594bf3db536}{e}})}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \mbox{\hyperlink{classph_1_1_sdl_load_error}{SdlLoadError}}(\textcolor{stringliteral}{"{}on\ loading\ real\ array\ -\/>\ "{}}\ +\ \mbox{\hyperlink{classph_1_1_t_sdl_value_a8bee7662ed734bc6b6a57594bf3db536}{e}}.whatStr());}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>\mbox{\hyperlink{classph_1_1_t_sdl_value_a10a624c8ee21919ff7d95b5b67ac0746}{setValue}}(owner,\ sdl::load\_number\_array<Element>(\mbox{\hyperlink{classph_1_1_t_sdl_value_a8bee7662ed734bc6b6a57594bf3db536}{clause}}.value));}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00087\ \ \ \ \ \}}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_sdl_real_array_a98fa2dd19f2ca19c8a4f9cc81751d378}{saveToSdl}}(}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_t_sdl_value_a8bee7662ed734bc6b6a57594bf3db536}{Owner}}\&\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_sdl_value_a8bee7662ed734bc6b6a57594bf3db536}{owner}},}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_sdl_output_clause}{SdlOutputClause}}\&\ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_sdl_value_a8bee7662ed734bc6b6a57594bf3db536}{out\_clause}},}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_sdl_output_context}{SdlOutputContext}}\&\ \mbox{\hyperlink{classph_1_1_t_sdl_value_a8bee7662ed734bc6b6a57594bf3db536}{ctx}})\textcolor{keyword}{\ const\ override}}
+\DoxyCodeLine{00093\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ TODO:\ optionally\ as\ file}}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\textcolor{keyword}{const}\ std::vector<Element>*\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_t_sdl_value_a8bee7662ed734bc6b6a57594bf3db536}{numberArr}}\ =\ this-\/>\mbox{\hyperlink{classph_1_1_t_sdl_value_a2980df26bdcefcafa2a7b235db2adf58}{getConstValue}}(owner);\ \mbox{\hyperlink{classph_1_1_t_sdl_value_a8bee7662ed734bc6b6a57594bf3db536}{numberArr}})}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ sdl::save\_number\_array<Element>(*\mbox{\hyperlink{classph_1_1_t_sdl_value_a8bee7662ed734bc6b6a57594bf3db536}{numberArr}},\ \&\mbox{\hyperlink{classph_1_1_t_sdl_value_a8bee7662ed734bc6b6a57594bf3db536}{out\_clause}}.value);}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00100\ \ \ \ \ \}}
+\DoxyCodeLine{00101\ \};}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
 
 \end{DoxyCode}

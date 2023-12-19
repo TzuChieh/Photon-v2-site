@@ -1,0 +1,83 @@
+\doxysection{exr\+\_\+io\+\_\+common.\+h}
+\hypertarget{exr__io__common_8h_source}{}\label{exr__io__common_8h_source}\index{Source/DataIO/EXR/exr\_io\_common.h@{Source/DataIO/EXR/exr\_io\_common.h}}
+\mbox{\hyperlink{exr__io__common_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{frame__fwd_8h}{Frame/frame\_fwd.h}}"{}}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{lib__openexr_8h}{Common/ThirdParty/lib\_openexr.h}}"{}}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ <array>}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ <string\_view>}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}\ \{\ \textcolor{keyword}{class\ }\mbox{\hyperlink{namespaceph_ae48bbb68b1016066eb2bccde44b2806b}{Path}};\ \}}
+\DoxyCodeLine{00029\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}\ \{\ \textcolor{keyword}{class\ }ByteBuffer;\ \}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00032\ \{}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#if\ PH\_THIRD\_PARTY\_HAS\_OPENEXR}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00037\ \textcolor{keyword}{struct\ }TImfPixel\ final}
+\DoxyCodeLine{00038\ \{}
+\DoxyCodeLine{00039\ \ \ \ \ T\ r;}
+\DoxyCodeLine{00040\ \ \ \ \ T\ g;}
+\DoxyCodeLine{00041\ \ \ \ \ T\ b;}
+\DoxyCodeLine{00042\ \ \ \ \ T\ a;}
+\DoxyCodeLine{00043\ \};}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00046\ \textcolor{keywordtype}{void}\ copy\_frame\_to\_imf\_array(}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_aa6f64f0671c9673a00df0bd8567aeb78}{HdrRgbFrame}}\&\ frame,}
+\DoxyCodeLine{00048\ \ \ \ \ \mbox{\hyperlink{namespaceph_a616994a6a9ee59cfcdc213954e5d71eb}{HdrComponent}}\ alphaValue,}
+\DoxyCodeLine{00049\ \ \ \ \ Imf::Array2D<TImfPixel<T>>\&\ array2D);}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00052\ \textcolor{keywordtype}{void}\ create\_imf\_header\_for\_frame(}
+\DoxyCodeLine{00053\ \ \ \ \ Imf::Header\&\ header,}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keyword}{const}\ TFrame<T,\ N>\&\ frame,}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keyword}{const}\ std::array<std::string\_view,\ N>\&\ channelNames);}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00058\ \textcolor{keyword}{auto}\ find\_imf\_channels(}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keyword}{const}\ Imf::Header\&\ header,}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keyword}{const}\ std::array<std::string\_view,\ N>\&\ channelNames)}
+\DoxyCodeLine{00061\ -\/>\ std::array<const\ Imf::Channel*,\ N>;}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00066\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00067\ \textcolor{keywordtype}{void}\ map\_imf\_framebuffer\_to\_frame(}
+\DoxyCodeLine{00068\ \ \ \ \ Imf::FrameBuffer\&\ framebuffer,}
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keyword}{const}\ Imf::Header\&\ header,}
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keyword}{const}\ TFrame<T,\ N>\&\ frame,}
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keyword}{const}\ std::array<std::string\_view,\ N>\&\ channelNames);}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \textcolor{comment}{//template<typename\ T,\ std::size\_t\ N>}}
+\DoxyCodeLine{00074\ \textcolor{comment}{//void\ adjust\_frame\_to\_imf\_display\_window(}}
+\DoxyCodeLine{00075\ \textcolor{comment}{//\ \ TFrame<T,\ N>\&\ frame,\ }}
+\DoxyCodeLine{00076\ \textcolor{comment}{//\ \ const\ Imf::Header\&\ header);}}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \textcolor{keywordtype}{void}\ write\_imf\_framebuffer\_to\_filesystem(}
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keyword}{const}\ Imf::Header\&\ header,}
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keyword}{const}\ Imf::FrameBuffer\&\ framebuffer,}
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ numScanlines,}
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_ae48bbb68b1016066eb2bccde44b2806b}{Path}}\&\ filePath);}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \textcolor{keywordtype}{void}\ write\_imf\_framebuffer\_to\_memory(}
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keyword}{const}\ Imf::Header\&\ header,}
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keyword}{const}\ Imf::FrameBuffer\&\ framebuffer,}
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ numScanlines,}
+\DoxyCodeLine{00088\ \ \ \ \ ByteBuffer\&\ buffer);}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ std::string\ list\_all\_imf\_layers\_and\_channels(\textcolor{keyword}{const}\ Imf::Header\&\ header);}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00093\ \textcolor{comment}{//\ end\ PH\_THIRD\_PARTY\_HAS\_OPENEXR}}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{exr__io__common_8ipp}{DataIO/EXR/exr\_io\_common.ipp}}"{}}}
+
+\end{DoxyCode}

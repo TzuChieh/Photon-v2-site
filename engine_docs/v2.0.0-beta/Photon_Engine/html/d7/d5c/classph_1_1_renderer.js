@@ -1,10 +1,25 @@
 var classph_1_1_renderer =
 [
+    [ "Renderer", "d7/d5c/classph_1_1_renderer.html#a2aab5f8d048bff77320072e18f47b242", null ],
+    [ "~Renderer", "d7/d5c/classph_1_1_renderer.html#a904f3dc805728dd9efd002749acd6d63", null ],
+    [ "asyncIsRendering", "d7/d5c/classph_1_1_renderer.html#afb2a3475b769c3bf5b26f9cb0be5773c", null ],
+    [ "asyncIsUpdating", "d7/d5c/classph_1_1_renderer.html#a4a970abb912298c1357ff3cb55200c95", null ],
+    [ "asyncPeekFrame", "d7/d5c/classph_1_1_renderer.html#a31db03014d59cb1a0d4332db547232fc", null ],
+    [ "asyncPollMergedUpdatedRegions", "d7/d5c/classph_1_1_renderer.html#af01dfb5b621929945a5d47131cbe9222", null ],
+    [ "asyncPollUpdatedRegions", "d7/d5c/classph_1_1_renderer.html#a608a44e798226c1bdb591ccf3c1c4dd2", null ],
     [ "asyncQueryRenderProgress", "d7/d5c/classph_1_1_renderer.html#a3ff30b76619602fb84530ade1a73fd63", null ],
     [ "asyncQueryRenderStats", "d7/d5c/classph_1_1_renderer.html#a19e25bfd0d5b7e7230be357fd87ede24", null ],
+    [ "doRender", "d7/d5c/classph_1_1_renderer.html#afe4917775950e5d9945d3ed541022d2e", null ],
     [ "doUpdate", "d7/d5c/classph_1_1_renderer.html#a2f4189e1d2c699f7244146db1afdc578", null ],
+    [ "getCropWindowPx", "d7/d5c/classph_1_1_renderer.html#a20ada347f45d9c4b189a305f1a7c5345", null ],
     [ "getObservationInfo", "d7/d5c/classph_1_1_renderer.html#a1ba8678db34d73ece1540362f28a644d", null ],
+    [ "getRenderHeightPx", "d7/d5c/classph_1_1_renderer.html#a3839ef7de1541e84379f860835e7efb9", null ],
     [ "getRenderRegionPx", "d7/d5c/classph_1_1_renderer.html#a7b3f00f5396e7459541d951b49a2cacd", null ],
+    [ "getRenderWidthPx", "d7/d5c/classph_1_1_renderer.html#a54d949b61b12994ade05a3132f583dd3", null ],
     [ "getViewport", "d7/d5c/classph_1_1_renderer.html#a42d8776ecca1c73e0150583970f74749", null ],
-    [ "setNumWorkers", "d7/d5c/classph_1_1_renderer.html#acb94fca033ca3aa8b35a43b42385be87", null ]
+    [ "numWorkers", "d7/d5c/classph_1_1_renderer.html#aee3d015bf17aa93acab1bb833a5e77f5", null ],
+    [ "render", "d7/d5c/classph_1_1_renderer.html#adab549a4f26a5c8eb4d63d8bf514f936", null ],
+    [ "retrieveFrame", "d7/d5c/classph_1_1_renderer.html#aef6910299c203d3537f527067e3921b6", null ],
+    [ "setNumWorkers", "d7/d5c/classph_1_1_renderer.html#acb94fca033ca3aa8b35a43b42385be87", null ],
+    [ "update", "d7/d5c/classph_1_1_renderer.html#ae6d0f72c37ef4680e3e6399d10553b7c", null ]
 ];

@@ -1,20 +1,20 @@
 \doxysection{Memory\+Arena.\+h}
 \hypertarget{_memory_arena_8h_source}{}\label{_memory_arena_8h_source}\index{Source/Utility/MemoryArena.h@{Source/Utility/MemoryArena.h}}
-
+\mbox{\hyperlink{_memory_arena_8h}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
 \DoxyCodeLine{00002\ }
-\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Common/memory.h"{}}}
-\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Common/primitive\_type.h"{}}}
-\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}Utility/IMoveOnly.h"{}}}
-\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}Utility/TFunction.h"{}}}
-\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}Utility/TSpan.h"{}}}
-\DoxyCodeLine{00008\ }
-\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <cstddef>}}
-\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <vector>}}
-\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <utility>}}
-\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <memory>}}
-\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <type\_traits>}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_i_move_only_8h}{Utility/IMoveOnly.h}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_function_8h}{Utility/TFunction.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_span_8h}{Utility/TSpan.h}}"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <Common/primitive\_type.h>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <Common/memory.h>}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <cstddef>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <memory>}}
 \DoxyCodeLine{00014\ }
 \DoxyCodeLine{00015\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
 \DoxyCodeLine{00016\ \{}
@@ -27,94 +27,45 @@
 \DoxyCodeLine{00033\ \ \ \ \ \mbox{\hyperlink{classph_1_1_memory_arena_ae32d29cebf84d32ec9350c40b9e73f1f}{MemoryArena}}(std::size\_t\ blockSizeHintInBytes,\ std::size\_t\ numDefaultBlocks);}
 \DoxyCodeLine{00034\ \ \ \ \ }
 \DoxyCodeLine{00041\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_memory_arena_a99012d98c5cade451f9fe29f3cd923d2}{MemoryArena}}(\mbox{\hyperlink{classph_1_1_memory_arena}{MemoryArena}}\&\&\ other)\ =\ \textcolor{keywordflow}{default};}
-\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_memory_arena}{MemoryArena}}\&\ operator\ =\ (\mbox{\hyperlink{classph_1_1_memory_arena}{MemoryArena}}\&\&\ rhs)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_memory_arena}{MemoryArena}}\&\ \mbox{\hyperlink{classph_1_1_memory_arena_ad765fa0458b4904f984f271bc39e6006}{operator\ =\ }}(\mbox{\hyperlink{classph_1_1_memory_arena}{MemoryArena}}\&\&\ rhs)\ =\ \textcolor{keywordflow}{default};}
 \DoxyCodeLine{00044\ }
-\DoxyCodeLine{00045\ \ \ \ \ \mbox{\hyperlink{classph_1_1_memory_arena}{\string~MemoryArena}}();}
+\DoxyCodeLine{00045\ \ \ \ \ \mbox{\hyperlink{classph_1_1_memory_arena_a1f3aede513175179ee083d6727490eb1}{\string~MemoryArena}}();}
 \DoxyCodeLine{00046\ }
-\DoxyCodeLine{00055\ \ \ \ \ std::byte*\ \mbox{\hyperlink{classph_1_1_memory_arena_ac2bac8418034d3ef61afe18ac0dadb56}{allocRaw}}(std::size\_t\ numBytes,\ std::size\_t\ alignmentInBytes\ =\ \textcolor{keyword}{alignof}(std::max\_align\_t));}
-\DoxyCodeLine{00056\ }
-\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_memory_arena_af6abecb6a8f2eefcad52b5ae94bf9d37}{clear}}();}
-\DoxyCodeLine{00063\ }
-\DoxyCodeLine{00064\ \ \ \ \ std::size\_t\ numUsedBytes()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00065\ \ \ \ \ std::size\_t\ numAllocatedBytes()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00066\ \ \ \ \ std::size\_t\ getBlockSizeInBytes()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00067\ \ \ \ \ std::size\_t\ numAllocatedBlocks()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00068\ }
-\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keyword}{inline}\ T*\ \mbox{\hyperlink{classph_1_1_memory_arena_a0e98ed104db86e4a4223b2c75da243ee}{alloc}}()}
-\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \textcolor{keyword}{requires}\ std::is\_trivially\_destructible\_v<T>}
-\DoxyCodeLine{00078\ \ \ \ \ \{}
-\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{reinterpret\_cast<}T*\textcolor{keyword}{>}(\mbox{\hyperlink{classph_1_1_memory_arena_ac2bac8418034d3ef61afe18ac0dadb56}{allocRaw}}(\textcolor{keyword}{sizeof}(T),\ \textcolor{keyword}{alignof}(T)));}
-\DoxyCodeLine{00080\ \ \ \ \ \}}
+\DoxyCodeLine{00057\ \ \ \ \ std::byte*\ \mbox{\hyperlink{classph_1_1_memory_arena_ac2bac8418034d3ef61afe18ac0dadb56}{allocRaw}}(std::size\_t\ numBytes,\ std::size\_t\ alignmentInBytes\ =\ \textcolor{keyword}{alignof}(std::max\_align\_t));}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_memory_arena_af6abecb6a8f2eefcad52b5ae94bf9d37}{clear}}();}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ \ \ std::size\_t\ \mbox{\hyperlink{classph_1_1_memory_arena_a858ab23f78ca1408925399d762c1a099}{numUsedBytes}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00067\ \ \ \ \ std::size\_t\ \mbox{\hyperlink{classph_1_1_memory_arena_a5685321bae69b1f76c79a6791ed728ae}{numAllocatedBytes}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00068\ \ \ \ \ std::size\_t\ \mbox{\hyperlink{classph_1_1_memory_arena_a94ae20251ad363553c40e748d612f37d}{getBlockSizeInBytes}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00069\ \ \ \ \ std::size\_t\ \mbox{\hyperlink{classph_1_1_memory_arena_ac2724c03ce5ddaf13ff28c459792bf39}{numAllocatedBlocks}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00080\ \ \ \ \ T*\ \mbox{\hyperlink{classph_1_1_memory_arena_a66d50a2e115ca5baec8fd231f734971a}{alloc}}();}
 \DoxyCodeLine{00081\ }
-\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keyword}{inline}\ TSpan<T>\ \mbox{\hyperlink{classph_1_1_memory_arena_a9a2aa5cbf673d59ebe264110435ffab7}{allocArray}}(\textcolor{keyword}{const}\ std::size\_t\ arraySize)}
-\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \textcolor{keyword}{requires}\ std::is\_trivially\_destructible\_v<T>}
-\DoxyCodeLine{00091\ \ \ \ \ \{}
-\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ TSpan<T>(}
-\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{reinterpret\_cast<}T*\textcolor{keyword}{>}(\mbox{\hyperlink{classph_1_1_memory_arena_ac2bac8418034d3ef61afe18ac0dadb56}{allocRaw}}(\textcolor{keyword}{sizeof}(T)\ *\ arraySize,\ \textcolor{keyword}{alignof}(T))),\ }
-\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ arraySize);}
-\DoxyCodeLine{00095\ \ \ \ \ \}}
-\DoxyCodeLine{00096\ }
-\DoxyCodeLine{00104\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ \textcolor{keyword}{typename}...\ Args>}
-\DoxyCodeLine{00105\ \ \ \ \ \textcolor{keyword}{inline}\ T*\ \mbox{\hyperlink{classph_1_1_memory_arena_ad7ca52ec8bce133b7d04b18452551ef2}{make}}(Args\&\&...\ args)}
-\DoxyCodeLine{00106\ \ \ \ \ \{}
-\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(std::is\_trivially\_destructible\_v<T>)}
-\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::construct\_at(alloc<T>(),\ std::forward<Args>(args)...);}
-\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ T*\ \textcolor{keyword}{const}\ objPtr\ =\ std::construct\_at(}
-\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{reinterpret\_cast<}T*\textcolor{keyword}{>}(\mbox{\hyperlink{classph_1_1_memory_arena_ac2bac8418034d3ef61afe18ac0dadb56}{allocRaw}}(\textcolor{keyword}{sizeof}(T),\ \textcolor{keyword}{alignof}(T))),\ }
-\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::forward<Args>(args)...);}
-\DoxyCodeLine{00116\ }
-\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Record\ the\ dtor\ so\ we\ can\ call\ it\ later\ (on\ clear)}}
-\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ m\_dtorCallers.push\_back(}
-\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ [objPtr]()}
-\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ objPtr-\/>\string~T();}
-\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \});}
-\DoxyCodeLine{00123\ }
-\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ objPtr;}
-\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00126\ \ \ \ \ \}}
-\DoxyCodeLine{00127\ }
-\DoxyCodeLine{00128\ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00129\ \ \ \ \ std::vector<TAlignedMemoryUniquePtr<std::byte>>\ m\_blocks;}
-\DoxyCodeLine{00130\ }
-\DoxyCodeLine{00131\ \ \ \ \ std::size\_t\ m\_blockSizeInBytes;}
-\DoxyCodeLine{00132\ \ \ \ \ std::size\_t\ m\_currentBlockIdx;}
-\DoxyCodeLine{00133\ \ \ \ \ std::byte*\ \ m\_blockPtr;}
-\DoxyCodeLine{00134\ \ \ \ \ std::size\_t\ m\_remainingBytesInBlock;}
-\DoxyCodeLine{00135\ \ \ \ \ std::size\_t\ m\_numUsedBytes;}
-\DoxyCodeLine{00136\ }
-\DoxyCodeLine{00137\ \ \ \ \ \textcolor{comment}{//\ Destructors\ of\ non-\/trivially-\/copyable\ objects.\ Simply\ specify\ \`{}MIN\_SIZE\_HINT\ =\ 0`\ for\ }}
-\DoxyCodeLine{00138\ \ \ \ \ \textcolor{comment}{//\ smallest\ possible\ \`{}TFunction`;\ increase\ it\ if\ compilation\ failed\ (this\ is\ unlikely,\ }}
-\DoxyCodeLine{00139\ \ \ \ \ \textcolor{comment}{//\ should\ investigate\ first).}}
-\DoxyCodeLine{00140\ \ \ \ \ std::vector<\mbox{\hyperlink{classph_1_1function__detail_1_1_t_function}{TFunction}}<void(\textcolor{keywordtype}{void}),\ 0>>\ m\_dtorCallers;}
-\DoxyCodeLine{00141\ \};}
-\DoxyCodeLine{00142\ }
-\DoxyCodeLine{00143\ \textcolor{keyword}{inline}\ std::size\_t\ MemoryArena::numUsedBytes()\textcolor{keyword}{\ const}}
-\DoxyCodeLine{00144\ \textcolor{keyword}{}\{}
-\DoxyCodeLine{00145\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_numUsedBytes;}
-\DoxyCodeLine{00146\ \}}
-\DoxyCodeLine{00147\ }
-\DoxyCodeLine{00148\ \textcolor{keyword}{inline}\ std::size\_t\ MemoryArena::numAllocatedBytes()\textcolor{keyword}{\ const}}
-\DoxyCodeLine{00149\ \textcolor{keyword}{}\{}
-\DoxyCodeLine{00150\ \ \ \ \ \textcolor{keywordflow}{return}\ getBlockSizeInBytes()\ *\ numAllocatedBlocks();}
-\DoxyCodeLine{00151\ \}}
-\DoxyCodeLine{00152\ }
-\DoxyCodeLine{00153\ \textcolor{keyword}{inline}\ std::size\_t\ MemoryArena::getBlockSizeInBytes()\textcolor{keyword}{\ const}}
-\DoxyCodeLine{00154\ \textcolor{keyword}{}\{}
-\DoxyCodeLine{00155\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_blockSizeInBytes;}
-\DoxyCodeLine{00156\ \}}
-\DoxyCodeLine{00157\ }
-\DoxyCodeLine{00158\ \textcolor{keyword}{inline}\ std::size\_t\ MemoryArena::numAllocatedBlocks()\textcolor{keyword}{\ const}}
-\DoxyCodeLine{00159\ \textcolor{keyword}{}\{}
-\DoxyCodeLine{00160\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_blocks.size();}
-\DoxyCodeLine{00161\ \}}
-\DoxyCodeLine{00162\ }
-\DoxyCodeLine{00163\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00091\ \ \ \ \ \mbox{\hyperlink{namespaceph_a2842d596489b048e5875ec1bc0c5edb3}{TSpan<T>}}\ \mbox{\hyperlink{classph_1_1_memory_arena_a5b0c2b5fd02dd563ad70bf9c034457f1}{allocArray}}(\textcolor{keyword}{const}\ std::size\_t\ arraySize);}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ \textcolor{keyword}{typename}...\ Args>}
+\DoxyCodeLine{00101\ \ \ \ \ T*\ \mbox{\hyperlink{classph_1_1_memory_arena_ad7ca52ec8bce133b7d04b18452551ef2}{make}}(Args\&\&...\ args);}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00104\ \ \ \ \ std::vector<TAlignedMemoryUniquePtr<std::byte>>\ m\_blocks;}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \ \ \ \ std::size\_t\ m\_blockSizeInBytes;}
+\DoxyCodeLine{00107\ \ \ \ \ std::size\_t\ m\_currentBlockIdx;}
+\DoxyCodeLine{00108\ \ \ \ \ std::byte*\ \ m\_blockPtr;}
+\DoxyCodeLine{00109\ \ \ \ \ std::size\_t\ m\_remainingBytesInBlock;}
+\DoxyCodeLine{00110\ \ \ \ \ std::size\_t\ m\_numUsedBytes;}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{comment}{//\ Destructors\ of\ non-\/trivially-\/copyable\ objects.\ Simply\ specify\ \`{}MIN\_SIZE\_HINT\ =\ 0`\ for\ }}
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{comment}{//\ smallest\ possible\ \`{}TFunction`;\ increase\ it\ if\ compilation\ failed\ (this\ is\ unlikely,\ }}
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{comment}{//\ should\ investigate\ first).}}
+\DoxyCodeLine{00115\ \ \ \ \ std::vector<\mbox{\hyperlink{classph_1_1function__detail_1_1_t_function}{TFunction}}<void(\textcolor{keywordtype}{void}),\ 0>>\ m\_dtorCallers;}
+\DoxyCodeLine{00116\ \};}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_memory_arena_8ipp}{Utility/MemoryArena.ipp}}"{}}}
 
 \end{DoxyCode}

@@ -21,7 +21,7 @@ var searchData=
   ['scenedescription_18',['SceneDescription',['../../../Photon_Engine/html/d9/d8d/classph_1_1_scene_description.html',1,'ph']]],
   ['schlickapproxconductorfresnel_19',['SchlickApproxConductorFresnel',['../../../Photon_Engine/html/da/de4/classph_1_1_schlick_approx_conductor_fresnel.html',1,'ph']]],
   ['schlickapproxdielectricfresnel_20',['SchlickApproxDielectricFresnel',['../../../Photon_Engine/html/d3/d9c/classph_1_1_schlick_approx_dielectric_fresnel.html',1,'ph']]],
-  ['scopedtimer_21',['ScopedTimer',['../../../Photon_Engine/html/d1/d32/structph_1_1detail_1_1stats_1_1_scoped_timer.html',1,'ph::detail::stats']]],
+  ['scopedtimer_21',['ScopedTimer',['../../../Photon_Common/html/d1/d32/structph_1_1detail_1_1stats_1_1_scoped_timer.html',1,'ph::detail::stats']]],
   ['sdlclass_22',['SdlClass',['../../../Photon_Engine/html/db/d18/classph_1_1_sdl_class.html',1,'ph']]],
   ['sdlcommandgenerator_23',['SdlCommandGenerator',['../../../Photon_Engine/html/d0/dba/classph_1_1_sdl_command_generator.html',1,'ph']]],
   ['sdlcommandparser_24',['SdlCommandParser',['../../../Photon_Engine/html/df/dd9/classph_1_1_sdl_command_parser.html',1,'ph']]],

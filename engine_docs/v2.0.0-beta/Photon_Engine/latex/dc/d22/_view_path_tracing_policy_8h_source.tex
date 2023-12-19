@@ -1,133 +1,134 @@
 \doxysection{View\+Path\+Tracing\+Policy.\+h}
 \hypertarget{_view_path_tracing_policy_8h_source}{}\label{_view_path_tracing_policy_8h_source}\index{Source/Core/Renderer/PM/ViewPathTracingPolicy.h@{Source/Core/Renderer/PM/ViewPathTracingPolicy.h}}
-
+\mbox{\hyperlink{_view_path_tracing_policy_8h}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
 \DoxyCodeLine{00002\ }
-\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Core/SurfaceBehavior/surface\_optics\_fwd.h"{}}}
-\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Common/assertion.h"{}}}
-\DoxyCodeLine{00005\ }
-\DoxyCodeLine{00006\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
-\DoxyCodeLine{00007\ \{}
-\DoxyCodeLine{00008\ }
-\DoxyCodeLine{00009\ \textcolor{comment}{/*}}
-\DoxyCodeLine{00010\ \textcolor{comment}{\ \ \ \ Directives\ on\ how\ to\ trace\ the\ next\ path.}}
-\DoxyCodeLine{00011\ \textcolor{comment}{*/}}
-\DoxyCodeLine{00012\ \textcolor{keyword}{enum\ class}\ EViewPathSampleMode}
-\DoxyCodeLine{00013\ \{}
-\DoxyCodeLine{00014\ \ \ \ \ \textcolor{comment}{//\ Keep\ tracing\ current\ path.}}
-\DoxyCodeLine{00015\ \ \ \ \ SINGLE\_PATH,}
-\DoxyCodeLine{00016\ }
-\DoxyCodeLine{00017\ \ \ \ \ \textcolor{comment}{//\ Trace\ a\ different\ path\ for\ each\ elemental.}}
-\DoxyCodeLine{00018\ \ \ \ \ ELEMENTAL\_BRANCH}
-\DoxyCodeLine{00019\ \};}
-\DoxyCodeLine{00020\ }
-\DoxyCodeLine{00021\ \textcolor{comment}{/*}}
-\DoxyCodeLine{00022\ \textcolor{comment}{\ \ \ \ Specifying\ and\ querying\ policies\ for\ tracing\ view\ path.}}
-\DoxyCodeLine{00023\ \textcolor{comment}{*/}}
-\DoxyCodeLine{00024\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_view_path_tracing_policy}{ViewPathTracingPolicy}}}
-\DoxyCodeLine{00025\ \{}
-\DoxyCodeLine{00026\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00027\ \ \ \ \ \mbox{\hyperlink{classph_1_1_view_path_tracing_policy}{ViewPathTracingPolicy}}();}
-\DoxyCodeLine{00028\ }
-\DoxyCodeLine{00029\ \ \ \ \ \textcolor{comment}{//\ Kills\ the\ path.}}
-\DoxyCodeLine{00030\ \ \ \ \ \mbox{\hyperlink{classph_1_1_view_path_tracing_policy}{ViewPathTracingPolicy}}\&\ kill();}
-\DoxyCodeLine{00031\ }
-\DoxyCodeLine{00032\ \ \ \ \ \textcolor{comment}{//\ Use\ russian\ roulette\ to\ kill\ the\ path.}}
-\DoxyCodeLine{00033\ \ \ \ \ \mbox{\hyperlink{classph_1_1_view_path_tracing_policy}{ViewPathTracingPolicy}}\&\ useRussianRoulette(\textcolor{keywordtype}{bool}\ useRR);}
-\DoxyCodeLine{00034\ }
-\DoxyCodeLine{00035\ \ \ \ \ \textcolor{comment}{//\ Effectively\ as\ specifying\ EViewPathSampleMode::SINGLE\_PATH.\ It\ is\ also}}
-\DoxyCodeLine{00036\ \ \ \ \ \textcolor{comment}{//\ possible\ to\ specify\ the\ desired\ elemental\ for\ tracing\ the\ path.}}
-\DoxyCodeLine{00037\ \ \ \ \ \mbox{\hyperlink{classph_1_1_view_path_tracing_policy}{ViewPathTracingPolicy}}\&\ traceSinglePathFor(SurfaceElemental\ elemental);}
-\DoxyCodeLine{00038\ }
-\DoxyCodeLine{00039\ \ \ \ \ \textcolor{comment}{//\ Effectively\ as\ specifying\ EViewPathSampleMode::ELEMENTAL\_BRANCH.\ It\ is\ }}
-\DoxyCodeLine{00040\ \ \ \ \ \textcolor{comment}{//\ also\ possible\ to\ select\ target\ phenomena\ for\ tracing.\ Path\ will\ not\ be}}
-\DoxyCodeLine{00041\ \ \ \ \ \textcolor{comment}{//\ traced\ if\ the\ elemental's\ phenomenon\ is\ not\ one\ of\ the\ targets.}}
-\DoxyCodeLine{00042\ \ \ \ \ \mbox{\hyperlink{classph_1_1_view_path_tracing_policy}{ViewPathTracingPolicy}}\&\ traceBranchedPathFor(\mbox{\hyperlink{classph_1_1_t_bit_flags}{SurfacePhenomena}}\ phenomena);}
-\DoxyCodeLine{00043\ }
-\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordtype}{bool}\ isKilled()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordtype}{bool}\ useRussianRoulette()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00046\ \ \ \ \ EViewPathSampleMode\ getSampleMode()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00047\ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_bit_flags}{SurfacePhenomena}}\ getTargetPhenomena()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00048\ \ \ \ \ SurfaceElemental\ getTargetElemental()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00049\ }
-\DoxyCodeLine{00050\ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_isKilled;}
-\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_useRussianRoulette;}
-\DoxyCodeLine{00053\ \ \ \ \ EViewPathSampleMode\ m\_sampleMode;}
-\DoxyCodeLine{00054\ \ \ \ \ SurfaceElemental\ \ \ \ m\_targetElemental;}
-\DoxyCodeLine{00055\ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_bit_flags}{SurfacePhenomena}}\ \ \ \ m\_targetPhenomena;}
-\DoxyCodeLine{00056\ \};}
-\DoxyCodeLine{00057\ }
-\DoxyCodeLine{00058\ \textcolor{comment}{//\ In-\/header\ Implementations:}}
-\DoxyCodeLine{00059\ }
-\DoxyCodeLine{00060\ \textcolor{keyword}{inline}\ ViewPathTracingPolicy::ViewPathTracingPolicy()\ :\ }
-\DoxyCodeLine{00061\ \ \ \ \ m\_isKilled(false),}
-\DoxyCodeLine{00062\ \ \ \ \ m\_useRussianRoulette(true),}
-\DoxyCodeLine{00063\ \ \ \ \ m\_sampleMode(EViewPathSampleMode::SINGLE\_PATH),}
-\DoxyCodeLine{00064\ \ \ \ \ m\_targetElemental(ALL\_ELEMENTALS),}
-\DoxyCodeLine{00065\ \ \ \ \ m\_targetPhenomena()}
-\DoxyCodeLine{00066\ \{\}}
-\DoxyCodeLine{00067\ }
-\DoxyCodeLine{00068\ \textcolor{keyword}{inline}\ ViewPathTracingPolicy\&\ ViewPathTracingPolicy::kill()}
-\DoxyCodeLine{00069\ \{}
-\DoxyCodeLine{00070\ \ \ \ \ m\_isKilled\ =\ \textcolor{keyword}{true};}
-\DoxyCodeLine{00071\ }
-\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
-\DoxyCodeLine{00073\ \}}
-\DoxyCodeLine{00074\ }
-\DoxyCodeLine{00075\ \textcolor{keyword}{inline}\ ViewPathTracingPolicy\&\ ViewPathTracingPolicy::useRussianRoulette(\textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ useRR)}
-\DoxyCodeLine{00076\ \{}
-\DoxyCodeLine{00077\ \ \ \ \ m\_useRussianRoulette\ =\ useRR;}
-\DoxyCodeLine{00078\ }
-\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
-\DoxyCodeLine{00080\ \}}
-\DoxyCodeLine{00081\ }
-\DoxyCodeLine{00082\ \textcolor{keyword}{inline}\ ViewPathTracingPolicy\&\ ViewPathTracingPolicy::traceSinglePathFor(\textcolor{keyword}{const}\ SurfaceElemental\ elemental)}
-\DoxyCodeLine{00083\ \{}
-\DoxyCodeLine{00084\ \ \ \ \ m\_sampleMode\ \ \ \ \ \ =\ EViewPathSampleMode::SINGLE\_PATH;}
-\DoxyCodeLine{00085\ \ \ \ \ m\_targetElemental\ =\ elemental;}
-\DoxyCodeLine{00086\ }
-\DoxyCodeLine{00087\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
-\DoxyCodeLine{00088\ \}}
-\DoxyCodeLine{00089\ }
-\DoxyCodeLine{00090\ \textcolor{keyword}{inline}\ ViewPathTracingPolicy\&\ ViewPathTracingPolicy::traceBranchedPathFor(\textcolor{keyword}{const}\ SurfacePhenomena\ phenomena)}
-\DoxyCodeLine{00091\ \{}
-\DoxyCodeLine{00092\ \ \ \ \ m\_sampleMode\ \ \ \ \ \ =\ EViewPathSampleMode::ELEMENTAL\_BRANCH;}
-\DoxyCodeLine{00093\ \ \ \ \ m\_targetPhenomena\ =\ phenomena;}
-\DoxyCodeLine{00094\ }
-\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
-\DoxyCodeLine{00096\ \}}
-\DoxyCodeLine{00097\ }
-\DoxyCodeLine{00098\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ ViewPathTracingPolicy::useRussianRoulette()\textcolor{keyword}{\ const}}
-\DoxyCodeLine{00099\ \textcolor{keyword}{}\{}
-\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_useRussianRoulette;}
-\DoxyCodeLine{00101\ \}}
-\DoxyCodeLine{00102\ }
-\DoxyCodeLine{00103\ \textcolor{keyword}{inline}\ EViewPathSampleMode\ ViewPathTracingPolicy::getSampleMode()\textcolor{keyword}{\ const}}
-\DoxyCodeLine{00104\ \textcolor{keyword}{}\{}
-\DoxyCodeLine{00105\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_sampleMode;}
-\DoxyCodeLine{00106\ \}}
-\DoxyCodeLine{00107\ }
-\DoxyCodeLine{00108\ \textcolor{keyword}{inline}\ SurfaceElemental\ ViewPathTracingPolicy::getTargetElemental()\textcolor{keyword}{\ const}}
-\DoxyCodeLine{00109\ \textcolor{keyword}{}\{}
-\DoxyCodeLine{00110\ \ \ \ \ PH\_ASSERT(m\_sampleMode\ ==\ EViewPathSampleMode::SINGLE\_PATH);}
-\DoxyCodeLine{00111\ }
-\DoxyCodeLine{00112\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_targetElemental;}
-\DoxyCodeLine{00113\ \}}
-\DoxyCodeLine{00114\ }
-\DoxyCodeLine{00115\ \textcolor{keyword}{inline}\ SurfacePhenomena\ ViewPathTracingPolicy::getTargetPhenomena()\textcolor{keyword}{\ const}}
-\DoxyCodeLine{00116\ \textcolor{keyword}{}\{}
-\DoxyCodeLine{00117\ \ \ \ \ PH\_ASSERT(m\_sampleMode\ ==\ EViewPathSampleMode::ELEMENTAL\_BRANCH);}
-\DoxyCodeLine{00118\ }
-\DoxyCodeLine{00119\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_targetPhenomena;}
-\DoxyCodeLine{00120\ \}}
-\DoxyCodeLine{00121\ }
-\DoxyCodeLine{00122\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ ViewPathTracingPolicy::isKilled()\textcolor{keyword}{\ const}}
-\DoxyCodeLine{00123\ \textcolor{keyword}{}\{}
-\DoxyCodeLine{00124\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_isKilled;}
-\DoxyCodeLine{00125\ \}}
-\DoxyCodeLine{00126\ }
-\DoxyCodeLine{00127\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{surface__optics__fwd_8h}{Core/SurfaceBehavior/surface\_optics\_fwd.h}}"{}}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <Common/assertion.h>}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00008\ \{}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00011\ \textcolor{comment}{\ \ \ \ Directives\ on\ how\ to\ trace\ the\ next\ path.}}
+\DoxyCodeLine{00012\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00013\ \textcolor{keyword}{enum\ class}\ \mbox{\hyperlink{namespaceph_a57656cbaf1b805ac50daee0f84abc13d}{EViewPathSampleMode}}}
+\DoxyCodeLine{00014\ \{}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{comment}{//\ Keep\ tracing\ current\ path.}}
+\DoxyCodeLine{00016\ \ \ \ \ \mbox{\hyperlink{namespaceph_a57656cbaf1b805ac50daee0f84abc13dae551fdb982de2ae3a35872a320aa5414}{SINGLE\_PATH}},}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{comment}{//\ Trace\ a\ different\ path\ for\ each\ elemental.}}
+\DoxyCodeLine{00019\ \ \ \ \ \mbox{\hyperlink{namespaceph_a57656cbaf1b805ac50daee0f84abc13daea01f6133eb19425bf95938d40a1ce09}{ELEMENTAL\_BRANCH}}}
+\DoxyCodeLine{00020\ \};}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00023\ \textcolor{comment}{\ \ \ \ Specifying\ and\ querying\ policies\ for\ tracing\ view\ path.}}
+\DoxyCodeLine{00024\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00025\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_view_path_tracing_policy}{ViewPathTracingPolicy}}}
+\DoxyCodeLine{00026\ \{}
+\DoxyCodeLine{00027\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00028\ \ \ \ \ \mbox{\hyperlink{classph_1_1_view_path_tracing_policy_a0eabc2761ed152200cd15e1abe53b4af}{ViewPathTracingPolicy}}();}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{comment}{//\ Kills\ the\ path.}}
+\DoxyCodeLine{00031\ \ \ \ \ \mbox{\hyperlink{classph_1_1_view_path_tracing_policy}{ViewPathTracingPolicy}}\&\ \mbox{\hyperlink{classph_1_1_view_path_tracing_policy_a271c1f9cf115af124dd6a36f911768d0}{kill}}();}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{comment}{//\ Use\ russian\ roulette\ to\ kill\ the\ path.}}
+\DoxyCodeLine{00034\ \ \ \ \ \mbox{\hyperlink{classph_1_1_view_path_tracing_policy}{ViewPathTracingPolicy}}\&\ \mbox{\hyperlink{classph_1_1_view_path_tracing_policy_a684665c719dc381218eeeccf83beba67}{useRussianRoulette}}(\textcolor{keywordtype}{bool}\ useRR);}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{comment}{//\ Effectively\ as\ specifying\ EViewPathSampleMode::SINGLE\_PATH.\ It\ is\ also}}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{comment}{//\ possible\ to\ specify\ the\ desired\ elemental\ for\ tracing\ the\ path.}}
+\DoxyCodeLine{00038\ \ \ \ \ \mbox{\hyperlink{classph_1_1_view_path_tracing_policy}{ViewPathTracingPolicy}}\&\ \mbox{\hyperlink{classph_1_1_view_path_tracing_policy_aade4ebce75c46a604628867583946571}{traceSinglePathFor}}(\mbox{\hyperlink{namespaceph_a9f3a5422acf386b99ae9712b13d55952}{SurfaceElemental}}\ elemental);}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{comment}{//\ Effectively\ as\ specifying\ EViewPathSampleMode::ELEMENTAL\_BRANCH.\ It\ is\ }}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{comment}{//\ also\ possible\ to\ select\ target\ phenomena\ for\ tracing.\ Path\ will\ not\ be}}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{comment}{//\ traced\ if\ the\ elemental's\ phenomenon\ is\ not\ one\ of\ the\ targets.}}
+\DoxyCodeLine{00043\ \ \ \ \ \mbox{\hyperlink{classph_1_1_view_path_tracing_policy}{ViewPathTracingPolicy}}\&\ \mbox{\hyperlink{classph_1_1_view_path_tracing_policy_a5fa214d57f82aaa1c9663f0fa1a591c9}{traceBranchedPathFor}}(\mbox{\hyperlink{classph_1_1_t_bit_flags}{SurfacePhenomena}}\ phenomena);}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_view_path_tracing_policy_a7b4e826d1a0753dd6ffb3a9c1bba7827}{isKilled}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_view_path_tracing_policy_a684665c719dc381218eeeccf83beba67}{useRussianRoulette}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00047\ \ \ \ \ \mbox{\hyperlink{namespaceph_a57656cbaf1b805ac50daee0f84abc13d}{EViewPathSampleMode}}\ \mbox{\hyperlink{classph_1_1_view_path_tracing_policy_ac5208883abdf4cf14b48511aee702b32}{getSampleMode}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00048\ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_bit_flags}{SurfacePhenomena}}\ \mbox{\hyperlink{classph_1_1_view_path_tracing_policy_a029f4b685132ac330ffa4ba7f3e23c51}{getTargetPhenomena}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00049\ \ \ \ \ \mbox{\hyperlink{namespaceph_a9f3a5422acf386b99ae9712b13d55952}{SurfaceElemental}}\ \mbox{\hyperlink{classph_1_1_view_path_tracing_policy_a58900bfaa323772346b35e307399a319}{getTargetElemental}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_isKilled;}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_useRussianRoulette;}
+\DoxyCodeLine{00054\ \ \ \ \ \mbox{\hyperlink{namespaceph_a57656cbaf1b805ac50daee0f84abc13d}{EViewPathSampleMode}}\ m\_sampleMode;}
+\DoxyCodeLine{00055\ \ \ \ \ \mbox{\hyperlink{namespaceph_a9f3a5422acf386b99ae9712b13d55952}{SurfaceElemental}}\ \ \ \ m\_targetElemental;}
+\DoxyCodeLine{00056\ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_bit_flags}{SurfacePhenomena}}\ \ \ \ m\_targetPhenomena;}
+\DoxyCodeLine{00057\ \};}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \textcolor{comment}{//\ In-\/header\ Implementations:}}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_view_path_tracing_policy_a0eabc2761ed152200cd15e1abe53b4af}{ViewPathTracingPolicy::ViewPathTracingPolicy}}()\ :\ }
+\DoxyCodeLine{00062\ \ \ \ \ m\_isKilled(false),}
+\DoxyCodeLine{00063\ \ \ \ \ m\_useRussianRoulette(true),}
+\DoxyCodeLine{00064\ \ \ \ \ m\_sampleMode(\mbox{\hyperlink{namespaceph_a57656cbaf1b805ac50daee0f84abc13d}{EViewPathSampleMode}}::\mbox{\hyperlink{namespaceph_a57656cbaf1b805ac50daee0f84abc13dae551fdb982de2ae3a35872a320aa5414}{SINGLE\_PATH}}),}
+\DoxyCodeLine{00065\ \ \ \ \ m\_targetElemental(\mbox{\hyperlink{namespaceph_a6def4537451eb39524dc16ba6f987bfe}{ALL\_ELEMENTALS}}),}
+\DoxyCodeLine{00066\ \ \ \ \ m\_targetPhenomena()}
+\DoxyCodeLine{00067\ \{\}}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_view_path_tracing_policy}{ViewPathTracingPolicy}}\&\ \mbox{\hyperlink{classph_1_1_view_path_tracing_policy_a271c1f9cf115af124dd6a36f911768d0}{ViewPathTracingPolicy::kill}}()}
+\DoxyCodeLine{00070\ \{}
+\DoxyCodeLine{00071\ \ \ \ \ m\_isKilled\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00074\ \}}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_view_path_tracing_policy}{ViewPathTracingPolicy}}\&\ \mbox{\hyperlink{classph_1_1_view_path_tracing_policy_a684665c719dc381218eeeccf83beba67}{ViewPathTracingPolicy::useRussianRoulette}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ useRR)}
+\DoxyCodeLine{00077\ \{}
+\DoxyCodeLine{00078\ \ \ \ \ m\_useRussianRoulette\ =\ useRR;}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00081\ \}}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_view_path_tracing_policy}{ViewPathTracingPolicy}}\&\ \mbox{\hyperlink{classph_1_1_view_path_tracing_policy_aade4ebce75c46a604628867583946571}{ViewPathTracingPolicy::traceSinglePathFor}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_a9f3a5422acf386b99ae9712b13d55952}{SurfaceElemental}}\ elemental)}
+\DoxyCodeLine{00084\ \{}
+\DoxyCodeLine{00085\ \ \ \ \ m\_sampleMode\ \ \ \ \ \ =\ \mbox{\hyperlink{namespaceph_a57656cbaf1b805ac50daee0f84abc13dae551fdb982de2ae3a35872a320aa5414}{EViewPathSampleMode::SINGLE\_PATH}};}
+\DoxyCodeLine{00086\ \ \ \ \ m\_targetElemental\ =\ elemental;}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00089\ \}}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_view_path_tracing_policy}{ViewPathTracingPolicy}}\&\ \mbox{\hyperlink{classph_1_1_view_path_tracing_policy_a5fa214d57f82aaa1c9663f0fa1a591c9}{ViewPathTracingPolicy::traceBranchedPathFor}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_t_bit_flags}{SurfacePhenomena}}\ phenomena)}
+\DoxyCodeLine{00092\ \{}
+\DoxyCodeLine{00093\ \ \ \ \ m\_sampleMode\ \ \ \ \ \ =\ \mbox{\hyperlink{namespaceph_a57656cbaf1b805ac50daee0f84abc13daea01f6133eb19425bf95938d40a1ce09}{EViewPathSampleMode::ELEMENTAL\_BRANCH}};}
+\DoxyCodeLine{00094\ \ \ \ \ m\_targetPhenomena\ =\ phenomena;}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00097\ \}}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_view_path_tracing_policy_a684665c719dc381218eeeccf83beba67}{ViewPathTracingPolicy::useRussianRoulette}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00100\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_useRussianRoulette;}
+\DoxyCodeLine{00102\ \}}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{namespaceph_a57656cbaf1b805ac50daee0f84abc13d}{EViewPathSampleMode}}\ \mbox{\hyperlink{classph_1_1_view_path_tracing_policy_ac5208883abdf4cf14b48511aee702b32}{ViewPathTracingPolicy::getSampleMode}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00105\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_sampleMode;}
+\DoxyCodeLine{00107\ \}}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00109\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{namespaceph_a9f3a5422acf386b99ae9712b13d55952}{SurfaceElemental}}\ \mbox{\hyperlink{classph_1_1_view_path_tracing_policy_a58900bfaa323772346b35e307399a319}{ViewPathTracingPolicy::getTargetElemental}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00110\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00111\ \ \ \ \ PH\_ASSERT(m\_sampleMode\ ==\ \mbox{\hyperlink{namespaceph_a57656cbaf1b805ac50daee0f84abc13dae551fdb982de2ae3a35872a320aa5414}{EViewPathSampleMode::SINGLE\_PATH}});}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_targetElemental;}
+\DoxyCodeLine{00114\ \}}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00116\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_t_bit_flags}{SurfacePhenomena}}\ \mbox{\hyperlink{classph_1_1_view_path_tracing_policy_a029f4b685132ac330ffa4ba7f3e23c51}{ViewPathTracingPolicy::getTargetPhenomena}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00117\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00118\ \ \ \ \ PH\_ASSERT(m\_sampleMode\ ==\ \mbox{\hyperlink{namespaceph_a57656cbaf1b805ac50daee0f84abc13daea01f6133eb19425bf95938d40a1ce09}{EViewPathSampleMode::ELEMENTAL\_BRANCH}});}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_targetPhenomena;}
+\DoxyCodeLine{00121\ \}}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00123\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_view_path_tracing_policy_a7b4e826d1a0753dd6ffb3a9c1bba7827}{ViewPathTracingPolicy::isKilled}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00124\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00125\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_isKilled;}
+\DoxyCodeLine{00126\ \}}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
 
 \end{DoxyCode}

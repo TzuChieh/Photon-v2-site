@@ -12,13 +12,13 @@ Blockable version of the {\ttfamily \doxylink{classph_1_1_t_atomic_quasi_queue}{
 \doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\Hypertarget{classph_1_1_t_blockable_atomic_quasi_queue_a5f47601b7414d4b1e5584614f229d8b0}\label{classph_1_1_t_blockable_atomic_quasi_queue_a5f47601b7414d4b1e5584614f229d8b0} 
-{\bfseries TBlockable\+Atomic\+Quasi\+Queue} (std\+::size\+\_\+t initial\+Capacity)
+\mbox{\hyperlink{classph_1_1_t_blockable_atomic_quasi_queue_ab6f61f4c07efc1d1ae4c425d2f2665eb}{TBlockable\+Atomic\+Quasi\+Queue}} ()
+\item 
+\mbox{\hyperlink{classph_1_1_t_blockable_atomic_quasi_queue_a5f47601b7414d4b1e5584614f229d8b0}{TBlockable\+Atomic\+Quasi\+Queue}} (std\+::size\+\_\+t initial\+Capacity)
 \item 
 {\footnotesize template$<$typename U $>$ }\\void \mbox{\hyperlink{classph_1_1_t_blockable_atomic_quasi_queue_abb085a43e7de1339fbad15365b08c36d}{enqueue}} (U \&\&item)
 \begin{DoxyCompactList}\small\item\em Enqueue an item. Allocate memory if required. Basic aquire-\/release semantics are guaranteed. This ensures that all the effects of work done by a thread before it enqueues an item will be visible on another thread after it dequeues that item. See \doxylink{classph_1_1_t_blockable_atomic_quasi_queue_abccaa60269a3e0824eb94588f7fa4657}{try\+Dequeue(\+T\texorpdfstring{$\ast$}{*})} for how to ensure the item can be dequeued on another thread. \end{DoxyCompactList}\item 
-\Hypertarget{classph_1_1_t_blockable_atomic_quasi_queue_a9837d99ddb32b7317f47de7a4174338a}\label{classph_1_1_t_blockable_atomic_quasi_queue_a9837d99ddb32b7317f47de7a4174338a} 
-{\footnotesize template$<$std\+::input\+\_\+iterator Iterator$>$ }\\void {\bfseries enqueue\+Bulk} (Iterator first\+Item, std\+::size\+\_\+t num\+Items)
+{\footnotesize template$<$std\+::input\+\_\+iterator Iterator$>$ }\\void \mbox{\hyperlink{classph_1_1_t_blockable_atomic_quasi_queue_a9837d99ddb32b7317f47de7a4174338a}{enqueue\+Bulk}} (Iterator first\+Item, std\+::size\+\_\+t num\+Items)
 \begin{DoxyCompactList}\small\item\em Enqueue multiple items at once. Similar to {\ttfamily enqueue(1)}. Use {\ttfamily std\+::make\+\_\+move\+\_\+iterator} if the items should be moved instead of copied. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename U $>$ }\\bool \mbox{\hyperlink{classph_1_1_t_blockable_atomic_quasi_queue_a1ac97cfcc51484bfd428b4db46e01d81}{try\+Enqueue}} (U \&\&item)
 \begin{DoxyCompactList}\small\item\em Try to enqueue an item. Never allocate memory. \end{DoxyCompactList}\item 
@@ -26,8 +26,7 @@ bool \mbox{\hyperlink{classph_1_1_t_blockable_atomic_quasi_queue_abccaa60269a3e0
 \begin{DoxyCompactList}\small\item\em Try to dequeue an item. While there is no contention, dequeue fails if there is no item or the memory effect of enqueue is not visible. Dequeue can also fail spuriously if there is another consumer (under contention). To guarantee all enqueued items eventually got dequeued, memory effects must be made visible to the dequeuing threads. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classph_1_1_t_blockable_atomic_quasi_queue_ab61d3af1feee2ebefd2ab5e7f90ddd79}{wait\+Dequeue}} (T \texorpdfstring{$\ast$}{*}out\+\_\+item)
 \begin{DoxyCompactList}\small\item\em Blocks the current thread until there is something to dequeue. \end{DoxyCompactList}\item 
-\Hypertarget{classph_1_1_t_blockable_atomic_quasi_queue_ae0004e99fc958f152e3bffd2af2589f7}\label{classph_1_1_t_blockable_atomic_quasi_queue_ae0004e99fc958f152e3bffd2af2589f7} 
-{\footnotesize template$<$std\+::output\+\_\+iterator$<$ T $>$ Iterator$>$ }\\std\+::size\+\_\+t {\bfseries wait\+Dequeue\+Bulk} (Iterator out\+\_\+first\+Item, std\+::size\+\_\+t num\+Items)
+{\footnotesize template$<$std\+::output\+\_\+iterator$<$ T $>$ Iterator$>$ }\\std\+::size\+\_\+t \mbox{\hyperlink{classph_1_1_t_blockable_atomic_quasi_queue_ae0004e99fc958f152e3bffd2af2589f7}{wait\+Dequeue\+Bulk}} (Iterator out\+\_\+first\+Item, std\+::size\+\_\+t num\+Items)
 \item 
 std\+::size\+\_\+t \mbox{\hyperlink{classph_1_1_t_blockable_atomic_quasi_queue_abdd8f48f70e35b29c73cbef59ea5b9b3}{estimated\+Size}} () const
 \begin{DoxyCompactList}\small\item\em Approximated size of the queue. \end{DoxyCompactList}\end{DoxyCompactItemize}
@@ -37,6 +36,23 @@ std\+::size\+\_\+t \mbox{\hyperlink{classph_1_1_t_blockable_atomic_quasi_queue_a
 \subsubsection*{template$<$typename T$>$\newline
 class ph\+::\+TBlockable\+Atomic\+Quasi\+Queue$<$ T $>$}
 Blockable version of the {\ttfamily \doxylink{classph_1_1_t_atomic_quasi_queue}{TAtomic\+Quasi\+Queue}}. For single-\/thread uses, it is a FIFO queue. For multi-\/thread uses, it is {\itshape mostly} a FIFO queue. Specifically, items put in by a given producer will all come out in the same order (FIFO). But there is no coordination between items from other producers--two items put in by two different producers will come out in an undefined order relative to each other (the interleaving between different streams of items from different producers is undefined, even with external synchronization). It is possible some items will starve in the queue if more items are enqueued than dequeued. Guarantees aquire-\/release semantics for items that are enqueued/dequeued. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classph_1_1_t_blockable_atomic_quasi_queue_ab6f61f4c07efc1d1ae4c425d2f2665eb}\label{classph_1_1_t_blockable_atomic_quasi_queue_ab6f61f4c07efc1d1ae4c425d2f2665eb} 
+\index{ph::TBlockableAtomicQuasiQueue$<$ T $>$@{ph::TBlockableAtomicQuasiQueue$<$ T $>$}!TBlockableAtomicQuasiQueue@{TBlockableAtomicQuasiQueue}}
+\index{TBlockableAtomicQuasiQueue@{TBlockableAtomicQuasiQueue}!ph::TBlockableAtomicQuasiQueue$<$ T $>$@{ph::TBlockableAtomicQuasiQueue$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{TBlockableAtomicQuasiQueue()}{TBlockableAtomicQuasiQueue()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\mbox{\hyperlink{classph_1_1_t_blockable_atomic_quasi_queue}{ph\+::\+TBlockable\+Atomic\+Quasi\+Queue}}$<$ T $>$\+::\+TBlockable\+Atomic\+Quasi\+Queue (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classph_1_1_t_blockable_atomic_quasi_queue_a5f47601b7414d4b1e5584614f229d8b0}\label{classph_1_1_t_blockable_atomic_quasi_queue_a5f47601b7414d4b1e5584614f229d8b0} 
+\index{ph::TBlockableAtomicQuasiQueue$<$ T $>$@{ph::TBlockableAtomicQuasiQueue$<$ T $>$}!TBlockableAtomicQuasiQueue@{TBlockableAtomicQuasiQueue}}
+\index{TBlockableAtomicQuasiQueue@{TBlockableAtomicQuasiQueue}!ph::TBlockableAtomicQuasiQueue$<$ T $>$@{ph::TBlockableAtomicQuasiQueue$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{TBlockableAtomicQuasiQueue()}{TBlockableAtomicQuasiQueue()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\mbox{\hyperlink{classph_1_1_t_blockable_atomic_quasi_queue}{ph\+::\+TBlockable\+Atomic\+Quasi\+Queue}}$<$ T $>$\+::\+TBlockable\+Atomic\+Quasi\+Queue (\begin{DoxyParamCaption}\item[{std\+::size\+\_\+t}]{initial\+Capacity }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+
 
 \doxysubsection{Member Function Documentation}
 \Hypertarget{classph_1_1_t_blockable_atomic_quasi_queue_abb085a43e7de1339fbad15365b08c36d}\label{classph_1_1_t_blockable_atomic_quasi_queue_abb085a43e7de1339fbad15365b08c36d} 
@@ -54,6 +70,18 @@ Enqueue an item. Allocate memory if required. Basic aquire-\/release semantics a
 \begin{DoxyNote}{Note}
 Thread-\/safe. 
 \end{DoxyNote}
+\Hypertarget{classph_1_1_t_blockable_atomic_quasi_queue_a9837d99ddb32b7317f47de7a4174338a}\label{classph_1_1_t_blockable_atomic_quasi_queue_a9837d99ddb32b7317f47de7a4174338a} 
+\index{ph::TBlockableAtomicQuasiQueue$<$ T $>$@{ph::TBlockableAtomicQuasiQueue$<$ T $>$}!enqueueBulk@{enqueueBulk}}
+\index{enqueueBulk@{enqueueBulk}!ph::TBlockableAtomicQuasiQueue$<$ T $>$@{ph::TBlockableAtomicQuasiQueue$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{enqueueBulk()}{enqueueBulk()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+template$<$std\+::input\+\_\+iterator Iterator$>$ \\
+void \mbox{\hyperlink{classph_1_1_t_blockable_atomic_quasi_queue}{ph\+::\+TBlockable\+Atomic\+Quasi\+Queue}}$<$ T $>$\+::enqueue\+Bulk (\begin{DoxyParamCaption}\item[{Iterator}]{first\+Item,  }\item[{std\+::size\+\_\+t}]{num\+Items }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Enqueue multiple items at once. Similar to {\ttfamily enqueue(1)}. Use {\ttfamily std\+::make\+\_\+move\+\_\+iterator} if the items should be moved instead of copied. 
+
 \Hypertarget{classph_1_1_t_blockable_atomic_quasi_queue_abdd8f48f70e35b29c73cbef59ea5b9b3}\label{classph_1_1_t_blockable_atomic_quasi_queue_abdd8f48f70e35b29c73cbef59ea5b9b3} 
 \index{ph::TBlockableAtomicQuasiQueue$<$ T $>$@{ph::TBlockableAtomicQuasiQueue$<$ T $>$}!estimatedSize@{estimatedSize}}
 \index{estimatedSize@{estimatedSize}!ph::TBlockableAtomicQuasiQueue$<$ T $>$@{ph::TBlockableAtomicQuasiQueue$<$ T $>$}}
@@ -120,9 +148,17 @@ Blocks the current thread until there is something to dequeue.
 \begin{DoxyNote}{Note}
 Thread-\/safe. 
 \end{DoxyNote}
+\Hypertarget{classph_1_1_t_blockable_atomic_quasi_queue_ae0004e99fc958f152e3bffd2af2589f7}\label{classph_1_1_t_blockable_atomic_quasi_queue_ae0004e99fc958f152e3bffd2af2589f7} 
+\index{ph::TBlockableAtomicQuasiQueue$<$ T $>$@{ph::TBlockableAtomicQuasiQueue$<$ T $>$}!waitDequeueBulk@{waitDequeueBulk}}
+\index{waitDequeueBulk@{waitDequeueBulk}!ph::TBlockableAtomicQuasiQueue$<$ T $>$@{ph::TBlockableAtomicQuasiQueue$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{waitDequeueBulk()}{waitDequeueBulk()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+template$<$std\+::output\+\_\+iterator$<$ T $>$ Iterator$>$ \\
+std\+::size\+\_\+t \mbox{\hyperlink{classph_1_1_t_blockable_atomic_quasi_queue}{ph\+::\+TBlockable\+Atomic\+Quasi\+Queue}}$<$ T $>$\+::wait\+Dequeue\+Bulk (\begin{DoxyParamCaption}\item[{Iterator}]{out\+\_\+first\+Item,  }\item[{std\+::size\+\_\+t}]{num\+Items }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-Source/\+Utility/\+Concurrent/TBlockable\+Atomic\+Quasi\+Queue.\+h\item 
-Source/\+Utility/\+Concurrent/TBlockable\+Atomic\+Quasi\+Queue.\+ipp\end{DoxyCompactItemize}
+Source/\+Utility/\+Concurrent/\mbox{\hyperlink{_t_blockable_atomic_quasi_queue_8h}{TBlockable\+Atomic\+Quasi\+Queue.\+h}}\item 
+Source/\+Utility/\+Concurrent/\mbox{\hyperlink{_t_blockable_atomic_quasi_queue_8ipp}{TBlockable\+Atomic\+Quasi\+Queue.\+ipp}}\end{DoxyCompactItemize}

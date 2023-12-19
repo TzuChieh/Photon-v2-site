@@ -1,155 +1,156 @@
 \doxysection{TPiecewise\+Linear1\+D.\+h}
 \hypertarget{_t_piecewise_linear1_d_8h_source}{}\label{_t_piecewise_linear1_d_8h_source}\index{Source/Math/Function/TPiecewiseLinear1D.h@{Source/Math/Function/TPiecewiseLinear1D.h}}
-
+\mbox{\hyperlink{_t_piecewise_linear1_d_8h}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
 \DoxyCodeLine{00002\ }
-\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Math/TVector2.h"{}}}
-\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Common/assertion.h"{}}}
-\DoxyCodeLine{00005\ }
-\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <vector>}}
-\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <algorithm>}}
-\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <functional>}}
-\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <iterator>}}
-\DoxyCodeLine{00010\ }
-\DoxyCodeLine{00011\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph_1_1math}{ph::math}}}
-\DoxyCodeLine{00012\ \{}
-\DoxyCodeLine{00013\ \ \ \ \ }
-\DoxyCodeLine{00014\ \textcolor{comment}{//\ A\ class\ defining\ a\ piecewise\ linear\ function,\ where\ points\ (x,\ y)\ are}}
-\DoxyCodeLine{00015\ \textcolor{comment}{//\ connected\ by\ straight\ lines;\ function\ values\ between\ two\ nearby\ points\ }}
-\DoxyCodeLine{00016\ \textcolor{comment}{//\ are\ evaluated\ by\ linearly\ interpolating\ their\ y-\/coordinates.\ Function\ }}
-\DoxyCodeLine{00017\ \textcolor{comment}{//\ values\ beyond\ the\ domain\ of\ specified\ x\ coordinates\ are\ evaluated\ with\ }}
-\DoxyCodeLine{00018\ \textcolor{comment}{//\ its\ nearest\ point's\ y\ value.\ If\ the\ function\ have\ got\ no\ points,\ }}
-\DoxyCodeLine{00019\ \textcolor{comment}{//\ evaluation\ results\ in\ zero\ no\ matter\ the\ inputs.}}
-\DoxyCodeLine{00020\ \textcolor{comment}{//\ }}
-\DoxyCodeLine{00021\ \textcolor{comment}{//\ Notice\ that\ update()\ must\ be\ called\ before\ feeding\ this\ function\ into\ }}
-\DoxyCodeLine{00022\ \textcolor{comment}{//\ any\ other\ methods.}}
-\DoxyCodeLine{00023\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00024\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1math_1_1_t_piecewise_linear1_d}{TPiecewiseLinear1D}}\ final}
-\DoxyCodeLine{00025\ \{}
-\DoxyCodeLine{00026\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00027\ \ \ \ \ \textcolor{comment}{//\ Evaluates\ function\ value\ at\ <x>.}}
-\DoxyCodeLine{00028\ \ \ \ \ T\ evaluate(T\ x)\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00029\ }
-\DoxyCodeLine{00030\ \ \ \ \ \textcolor{comment}{//\ Evaluates\ function\ value\ at\ <x>\ by\ linearly\ interpolating\ two\ points.}}
-\DoxyCodeLine{00031\ \ \ \ \ \textcolor{comment}{//\ Note\ that\ the\ two\ points\ may\ not\ be\ neighbors.}}
-\DoxyCodeLine{00032\ \ \ \ \ T\ evaluate(T\ x,\ std::size\_t\ p0Index,\ std::size\_t\ p1Index)\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00033\ }
-\DoxyCodeLine{00034\ \ \ \ \ \textcolor{comment}{//\ TODO:\ eliminate\ the\ need\ for\ update}}
-\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordtype}{void}\ update();}
-\DoxyCodeLine{00036\ \ \ \ \ }
-\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordtype}{void}\ addPoint(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{TVector2<T>}}\&\ point);}
-\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{void}\ addPoints(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_piecewise_linear1_d}{TPiecewiseLinear1D}}\&\ points);}
-\DoxyCodeLine{00039\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_piecewise_linear1_d}{TPiecewiseLinear1D}}\ getMirrored(T\ pivotX)\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00040\ \ \ \ \ std::size\_t\ numPoints()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00041\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{TVector2<T>}}\ getPoint(std::size\_t\ pointIndex)\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00042\ \ \ \ \ std::string\ toString()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00043\ }
-\DoxyCodeLine{00044\ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00045\ \ \ \ \ std::vector<TVector2<T>>\ m\_points;}
-\DoxyCodeLine{00046\ }
-\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ pointDomainComparator(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{TVector2<T>}}\&\ pA,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{TVector2<T>}}\&\ pB);}
-\DoxyCodeLine{00048\ \};}
-\DoxyCodeLine{00049\ }
-\DoxyCodeLine{00050\ \textcolor{comment}{//\ implementations:}}
-\DoxyCodeLine{00051\ }
-\DoxyCodeLine{00052\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00053\ \textcolor{keyword}{inline}\ T\ \mbox{\hyperlink{classph_1_1math_1_1_t_piecewise_linear1_d}{TPiecewiseLinear1D<T>::evaluate}}(\textcolor{keyword}{const}\ T\ x)\textcolor{keyword}{\ const}}
-\DoxyCodeLine{00054\ \textcolor{keyword}{}\{}
-\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordflow}{if}(m\_points.empty())}
-\DoxyCodeLine{00056\ \ \ \ \ \{}
-\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
-\DoxyCodeLine{00058\ \ \ \ \ \}}
-\DoxyCodeLine{00059\ }
-\DoxyCodeLine{00060\ \ \ \ \ \textcolor{comment}{//\ handling\ out-\/of-\/domain\ situation}}
-\DoxyCodeLine{00061\ \ \ \ \ \textcolor{comment}{//\ (this\ also\ handles\ if\ there's\ only\ 1\ unique\ point)}}
-\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keywordflow}{if}\ \ \ \ \ (x\ <=\ m\_points.front().x())\ \textcolor{keywordflow}{return}\ m\_points.front().y();}
-\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(x\ >=\ m\_points.back().x())\ \ \textcolor{keywordflow}{return}\ m\_points.back().y();}
-\DoxyCodeLine{00064\ }
-\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ result\ =\ std::lower\_bound(m\_points.begin(),\ m\_points.end(),\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{TVector2<T>}}(x),\ }
-\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&TPiecewiseLinear1D::pointDomainComparator);}
-\DoxyCodeLine{00067\ \ \ \ \ PH\_ASSERT(result\ !=\ m\_points.begin()\ \&\&\ result\ !=\ m\_points.end());}
-\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ i1\ =\ result\ -\/\ m\_points.begin();}
-\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ i0\ =\ i1\ -\/\ 1;}
-\DoxyCodeLine{00070\ }
-\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keywordflow}{return}\ evaluate(x,\ i0,\ i1);}
-\DoxyCodeLine{00072\ \}}
-\DoxyCodeLine{00073\ }
-\DoxyCodeLine{00074\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00075\ \textcolor{keyword}{inline}\ T\ TPiecewiseLinear1D<T>::evaluate(\textcolor{keyword}{const}\ T\ x,\ }
-\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ p0Index,\ }
-\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ p1Index)\textcolor{keyword}{\ const}}
-\DoxyCodeLine{00078\ \textcolor{keyword}{}\{}
-\DoxyCodeLine{00079\ \ \ \ \ PH\_ASSERT(p0Index\ <\ m\_points.size()\ \&\&\ p1Index\ <\ m\_points.size());}
-\DoxyCodeLine{00080\ }
-\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keyword}{const}\ TVector2<T>\&\ p0\ =\ m\_points[p0Index];}
-\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keyword}{const}\ TVector2<T>\&\ p1\ =\ m\_points[p1Index];}
-\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keywordflow}{return}\ p0.x()\ !=\ p1.x()\ ?\ (x\ -\/\ p0.x())\ /\ (p1.x()\ -\/\ p0.x())\ *\ (p1.y()\ -\/\ p0.y())\ +\ p0.y()}
-\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ (p0.y()\ +\ p1.y())\ /\ 2;}
-\DoxyCodeLine{00085\ \}}
-\DoxyCodeLine{00086\ }
-\DoxyCodeLine{00087\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00088\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ TPiecewiseLinear1D<T>::update()}
-\DoxyCodeLine{00089\ \{}
-\DoxyCodeLine{00090\ \ \ \ \ std::stable\_sort(m\_points.begin(),\ m\_points.end(),\ }
-\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&TPiecewiseLinear1D::pointDomainComparator);}
-\DoxyCodeLine{00092\ \}}
-\DoxyCodeLine{00093\ }
-\DoxyCodeLine{00094\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00095\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ TPiecewiseLinear1D<T>::addPoint(\textcolor{keyword}{const}\ TVector2<T>\&\ point)}
-\DoxyCodeLine{00096\ \{}
-\DoxyCodeLine{00097\ \ \ \ \ m\_points.push\_back(point);}
-\DoxyCodeLine{00098\ \}}
-\DoxyCodeLine{00099\ }
-\DoxyCodeLine{00100\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00101\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ TPiecewiseLinear1D<T>::addPoints(\textcolor{keyword}{const}\ TPiecewiseLinear1D\&\ points)}
-\DoxyCodeLine{00102\ \{}
-\DoxyCodeLine{00103\ \ \ \ \ m\_points.insert(std::end(m\_points),\ }
-\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::begin(points.m\_points),\ std::end(points.m\_points));}
-\DoxyCodeLine{00105\ \}}
-\DoxyCodeLine{00106\ }
-\DoxyCodeLine{00107\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00108\ \textcolor{keyword}{inline}\ TPiecewiseLinear1D<T>\ TPiecewiseLinear1D<T>::getMirrored(\textcolor{keyword}{const}\ T\ pivotX)\textcolor{keyword}{\ const}}
-\DoxyCodeLine{00109\ \textcolor{keyword}{}\{}
-\DoxyCodeLine{00110\ \ \ \ \ TPiecewiseLinear1D\ mirrored;}
-\DoxyCodeLine{00111\ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ point\ :\ m\_points)}
-\DoxyCodeLine{00112\ \ \ \ \ \{}
-\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ mirrored.addPoint(\{\textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(2)\ *\ pivotX\ -\/\ point.x(),\ point.y()\});}
-\DoxyCodeLine{00114\ \ \ \ \ \}}
-\DoxyCodeLine{00115\ \ \ \ \ mirrored.update();}
-\DoxyCodeLine{00116\ \ \ \ \ \textcolor{keywordflow}{return}\ mirrored;}
-\DoxyCodeLine{00117\ \}}
-\DoxyCodeLine{00118\ }
-\DoxyCodeLine{00119\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00120\ \textcolor{keyword}{inline}\ std::size\_t\ TPiecewiseLinear1D<T>::numPoints()\textcolor{keyword}{\ const}}
-\DoxyCodeLine{00121\ \textcolor{keyword}{}\{}
-\DoxyCodeLine{00122\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_points.size();}
-\DoxyCodeLine{00123\ \}}
-\DoxyCodeLine{00124\ }
-\DoxyCodeLine{00125\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00126\ \textcolor{keyword}{inline}\ TVector2<T>\ TPiecewiseLinear1D<T>::getPoint(\textcolor{keyword}{const}\ std::size\_t\ pointIndex)\textcolor{keyword}{\ const}}
-\DoxyCodeLine{00127\ \textcolor{keyword}{}\{}
-\DoxyCodeLine{00128\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_points[pointIndex];}
-\DoxyCodeLine{00129\ \}}
-\DoxyCodeLine{00130\ }
-\DoxyCodeLine{00131\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00132\ \textcolor{keyword}{inline}\ std::string\ TPiecewiseLinear1D<T>::toString()\textcolor{keyword}{\ const}}
-\DoxyCodeLine{00133\ \textcolor{keyword}{}\{}
-\DoxyCodeLine{00134\ \ \ \ \ std::string\ result(\textcolor{stringliteral}{"{}piecewise\ linear\ function,\ composed\ of\ following\ points:\ "{}});}
-\DoxyCodeLine{00135\ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ point\ :\ m\_points)}
-\DoxyCodeLine{00136\ \ \ \ \ \{}
-\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ result\ +=\ point.toString();}
-\DoxyCodeLine{00138\ \ \ \ \ \}}
-\DoxyCodeLine{00139\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
-\DoxyCodeLine{00140\ \}}
-\DoxyCodeLine{00141\ }
-\DoxyCodeLine{00142\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00143\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ TPiecewiseLinear1D<T>::pointDomainComparator(\textcolor{keyword}{const}\ TVector2<T>\&\ pA,\ }
-\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ TVector2<T>\&\ pB)}
-\DoxyCodeLine{00145\ \{}
-\DoxyCodeLine{00146\ \ \ \ \ \textcolor{keywordflow}{return}\ pA.x()\ <\ pB.x();}
-\DoxyCodeLine{00147\ \}}
-\DoxyCodeLine{00148\ }
-\DoxyCodeLine{00149\ \}\textcolor{comment}{//\ end\ namespace\ ph::math}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_vector2_8h}{Math/TVector2.h}}"{}}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <Common/assertion.h>}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <functional>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <iterator>}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph_1_1math}{ph::math}}}
+\DoxyCodeLine{00013\ \{}
+\DoxyCodeLine{00014\ \ \ \ \ }
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ A\ class\ defining\ a\ piecewise\ linear\ function,\ where\ points\ (x,\ y)\ are}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ connected\ by\ straight\ lines;\ function\ values\ between\ two\ nearby\ points\ }}
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ are\ evaluated\ by\ linearly\ interpolating\ their\ y-\/coordinates.\ Function\ }}
+\DoxyCodeLine{00018\ \textcolor{comment}{//\ values\ beyond\ the\ domain\ of\ specified\ x\ coordinates\ are\ evaluated\ with\ }}
+\DoxyCodeLine{00019\ \textcolor{comment}{//\ its\ nearest\ point's\ y\ value.\ If\ the\ function\ have\ got\ no\ points,\ }}
+\DoxyCodeLine{00020\ \textcolor{comment}{//\ evaluation\ results\ in\ zero\ no\ matter\ the\ inputs.}}
+\DoxyCodeLine{00021\ \textcolor{comment}{//\ }}
+\DoxyCodeLine{00022\ \textcolor{comment}{//\ Notice\ that\ update()\ must\ be\ called\ before\ feeding\ this\ function\ into\ }}
+\DoxyCodeLine{00023\ \textcolor{comment}{//\ any\ other\ methods.}}
+\DoxyCodeLine{00024\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00025\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1math_1_1_t_piecewise_linear1_d}{TPiecewiseLinear1D}}\ final}
+\DoxyCodeLine{00026\ \{}
+\DoxyCodeLine{00027\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{comment}{//\ Evaluates\ function\ value\ at\ <x>.}}
+\DoxyCodeLine{00029\ \ \ \ \ T\ \mbox{\hyperlink{classph_1_1math_1_1_t_piecewise_linear1_d_a8e74a0f7a6910dd44c3d5507557069f6}{evaluate}}(T\ x)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{comment}{//\ Evaluates\ function\ value\ at\ <x>\ by\ linearly\ interpolating\ two\ points.}}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{comment}{//\ Note\ that\ the\ two\ points\ may\ not\ be\ neighbors.}}
+\DoxyCodeLine{00033\ \ \ \ \ T\ \mbox{\hyperlink{classph_1_1math_1_1_t_piecewise_linear1_d_a8e74a0f7a6910dd44c3d5507557069f6}{evaluate}}(T\ x,\ std::size\_t\ p0Index,\ std::size\_t\ p1Index)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{comment}{//\ TODO:\ eliminate\ the\ need\ for\ update}}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1math_1_1_t_piecewise_linear1_d_ab3b2f276770ac4f78b431898ae09f19a}{update}}();}
+\DoxyCodeLine{00037\ \ \ \ \ }
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1math_1_1_t_piecewise_linear1_d_a900f062ef46bf61b68036b2f1c06b58f}{addPoint}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{TVector2<T>}}\&\ point);}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1math_1_1_t_piecewise_linear1_d_aeed5f091ab9faa9d9df9537097cdeef2}{addPoints}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_piecewise_linear1_d}{TPiecewiseLinear1D}}\&\ points);}
+\DoxyCodeLine{00040\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_piecewise_linear1_d}{TPiecewiseLinear1D}}\ \mbox{\hyperlink{classph_1_1math_1_1_t_piecewise_linear1_d_a0b73cfe791859fd54c24c0ed25bedf1c}{getMirrored}}(T\ pivotX)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00041\ \ \ \ \ std::size\_t\ \mbox{\hyperlink{classph_1_1math_1_1_t_piecewise_linear1_d_a8501285b1a8d319e8e457f239753d2cd}{numPoints}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00042\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{TVector2<T>}}\ \mbox{\hyperlink{classph_1_1math_1_1_t_piecewise_linear1_d_a1fa2e5877aefb34509c5778b1ecc706d}{getPoint}}(std::size\_t\ pointIndex)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00043\ \ \ \ \ std::string\ \mbox{\hyperlink{classph_1_1math_1_1_t_piecewise_linear1_d_a967ee947d266f43ef8eae4488e92f49a}{toString}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00046\ \ \ \ \ std::vector<TVector2<T>>\ m\_points;}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ pointDomainComparator(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{TVector2<T>}}\&\ pA,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{TVector2<T>}}\&\ pB);}
+\DoxyCodeLine{00049\ \};}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \textcolor{comment}{//\ implementations:}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00054\ \textcolor{keyword}{inline}\ T\ \mbox{\hyperlink{classph_1_1math_1_1_t_piecewise_linear1_d_a8e74a0f7a6910dd44c3d5507557069f6}{TPiecewiseLinear1D<T>::evaluate}}(\textcolor{keyword}{const}\ T\ x)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00055\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordflow}{if}(m\_points.empty())}
+\DoxyCodeLine{00057\ \ \ \ \ \{}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00059\ \ \ \ \ \}}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{comment}{//\ handling\ out-\/of-\/domain\ situation}}
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{comment}{//\ (this\ also\ handles\ if\ there's\ only\ 1\ unique\ point)}}
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keywordflow}{if}\ \ \ \ \ (x\ <=\ m\_points.front().x())\ \textcolor{keywordflow}{return}\ m\_points.front().y();}
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(x\ >=\ m\_points.back().x())\ \ \textcolor{keywordflow}{return}\ m\_points.back().y();}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ result\ =\ std::lower\_bound(m\_points.begin(),\ m\_points.end(),\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{TVector2<T>}}(x),\ }
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&TPiecewiseLinear1D::pointDomainComparator);}
+\DoxyCodeLine{00068\ \ \ \ \ PH\_ASSERT(result\ !=\ m\_points.begin()\ \&\&\ result\ !=\ m\_points.end());}
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ i1\ =\ result\ -\/\ m\_points.begin();}
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ i0\ =\ i1\ -\/\ 1;}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordflow}{return}\ evaluate(x,\ i0,\ i1);}
+\DoxyCodeLine{00073\ \}}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00076\ \textcolor{keyword}{inline}\ T\ \mbox{\hyperlink{classph_1_1math_1_1_t_piecewise_linear1_d_a8e74a0f7a6910dd44c3d5507557069f6}{TPiecewiseLinear1D<T>::evaluate}}(\textcolor{keyword}{const}\ T\ x,\ }
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ p0Index,\ }
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ p1Index)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00079\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00080\ \ \ \ \ PH\_ASSERT(p0Index\ <\ m\_points.size()\ \&\&\ p1Index\ <\ m\_points.size());}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{TVector2<T>}}\&\ p0\ =\ m\_points[p0Index];}
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{TVector2<T>}}\&\ p1\ =\ m\_points[p1Index];}
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keywordflow}{return}\ p0.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_a03c5e56839820da78b52d2db0281f065}{x}}()\ !=\ p1.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_a03c5e56839820da78b52d2db0281f065}{x}}()\ ?\ (x\ -\/\ p0.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_a03c5e56839820da78b52d2db0281f065}{x}}())\ /\ (p1.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_a03c5e56839820da78b52d2db0281f065}{x}}()\ -\/\ p0.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_a03c5e56839820da78b52d2db0281f065}{x}}())\ *\ (p1.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_af3065a5fa872cdb3f2291a84824d5d59}{y}}()\ -\/\ p0.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_af3065a5fa872cdb3f2291a84824d5d59}{y}}())\ +\ p0.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_af3065a5fa872cdb3f2291a84824d5d59}{y}}()}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ (p0.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_af3065a5fa872cdb3f2291a84824d5d59}{y}}()\ +\ p1.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_af3065a5fa872cdb3f2291a84824d5d59}{y}}())\ /\ 2;}
+\DoxyCodeLine{00086\ \}}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00089\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1math_1_1_t_piecewise_linear1_d_ab3b2f276770ac4f78b431898ae09f19a}{TPiecewiseLinear1D<T>::update}}()}
+\DoxyCodeLine{00090\ \{}
+\DoxyCodeLine{00091\ \ \ \ \ std::stable\_sort(m\_points.begin(),\ m\_points.end(),\ }
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&TPiecewiseLinear1D::pointDomainComparator);}
+\DoxyCodeLine{00093\ \}}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00096\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1math_1_1_t_piecewise_linear1_d_a900f062ef46bf61b68036b2f1c06b58f}{TPiecewiseLinear1D<T>::addPoint}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{TVector2<T>}}\&\ point)}
+\DoxyCodeLine{00097\ \{}
+\DoxyCodeLine{00098\ \ \ \ \ m\_points.push\_back(point);}
+\DoxyCodeLine{00099\ \}}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00102\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1math_1_1_t_piecewise_linear1_d_aeed5f091ab9faa9d9df9537097cdeef2}{TPiecewiseLinear1D<T>::addPoints}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_piecewise_linear1_d}{TPiecewiseLinear1D}}\&\ points)}
+\DoxyCodeLine{00103\ \{}
+\DoxyCodeLine{00104\ \ \ \ \ m\_points.insert(std::end(m\_points),\ }
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::begin(points.m\_points),\ std::end(points.m\_points));}
+\DoxyCodeLine{00106\ \}}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00109\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1math_1_1_t_piecewise_linear1_d}{TPiecewiseLinear1D<T>}}\ \mbox{\hyperlink{classph_1_1math_1_1_t_piecewise_linear1_d_a0b73cfe791859fd54c24c0ed25bedf1c}{TPiecewiseLinear1D<T>::getMirrored}}(\textcolor{keyword}{const}\ T\ pivotX)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00110\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00111\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_piecewise_linear1_d}{TPiecewiseLinear1D}}\ mirrored;}
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ point\ :\ m\_points)}
+\DoxyCodeLine{00113\ \ \ \ \ \{}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ mirrored.\mbox{\hyperlink{classph_1_1math_1_1_t_piecewise_linear1_d_a900f062ef46bf61b68036b2f1c06b58f}{addPoint}}(\{\textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(2)\ *\ pivotX\ -\/\ point.x(),\ point.y()\});}
+\DoxyCodeLine{00115\ \ \ \ \ \}}
+\DoxyCodeLine{00116\ \ \ \ \ mirrored.\mbox{\hyperlink{classph_1_1math_1_1_t_piecewise_linear1_d_ab3b2f276770ac4f78b431898ae09f19a}{update}}();}
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{keywordflow}{return}\ mirrored;}
+\DoxyCodeLine{00118\ \}}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00121\ \textcolor{keyword}{inline}\ std::size\_t\ \mbox{\hyperlink{classph_1_1math_1_1_t_piecewise_linear1_d_a8501285b1a8d319e8e457f239753d2cd}{TPiecewiseLinear1D<T>::numPoints}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00122\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00123\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_points.size();}
+\DoxyCodeLine{00124\ \}}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00126\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00127\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{TVector2<T>}}\ \mbox{\hyperlink{classph_1_1math_1_1_t_piecewise_linear1_d_a1fa2e5877aefb34509c5778b1ecc706d}{TPiecewiseLinear1D<T>::getPoint}}(\textcolor{keyword}{const}\ std::size\_t\ pointIndex)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00128\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00129\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_points[pointIndex];}
+\DoxyCodeLine{00130\ \}}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00132\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00133\ \textcolor{keyword}{inline}\ std::string\ \mbox{\hyperlink{classph_1_1math_1_1_t_piecewise_linear1_d_a967ee947d266f43ef8eae4488e92f49a}{TPiecewiseLinear1D<T>::toString}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00134\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00135\ \ \ \ \ std::string\ result(\textcolor{stringliteral}{"{}piecewise\ linear\ function,\ composed\ of\ following\ points:\ "{}});}
+\DoxyCodeLine{00136\ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ point\ :\ m\_points)}
+\DoxyCodeLine{00137\ \ \ \ \ \{}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ result\ +=\ point.toString();}
+\DoxyCodeLine{00139\ \ \ \ \ \}}
+\DoxyCodeLine{00140\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00141\ \}}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00143\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00144\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1math_1_1_t_piecewise_linear1_d}{TPiecewiseLinear1D<T>::pointDomainComparator}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{TVector2<T>}}\&\ pA,\ }
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{TVector2<T>}}\&\ pB)}
+\DoxyCodeLine{00146\ \{}
+\DoxyCodeLine{00147\ \ \ \ \ \textcolor{keywordflow}{return}\ pA.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_a03c5e56839820da78b52d2db0281f065}{x}}()\ <\ pB.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_a03c5e56839820da78b52d2db0281f065}{x}}();}
+\DoxyCodeLine{00148\ \}}
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00150\ \}\textcolor{comment}{//\ end\ namespace\ ph::math}}
 
 \end{DoxyCode}

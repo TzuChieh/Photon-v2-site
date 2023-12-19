@@ -1,14 +1,31 @@
 var classph_1_1_t_sdl_owner_class =
 [
+    [ "OwnerType", "da/de4/classph_1_1_t_sdl_owner_class.html#a6a7ae406483f6acb9753978067165bac", null ],
+    [ "TSdlOwnerClass", "da/de4/classph_1_1_t_sdl_owner_class.html#a56a7cf7c60df98b0f7958898257151ff", null ],
+    [ "addField", "da/de4/classph_1_1_t_sdl_owner_class.html#a6b4cf50218461ccd568eccb87a8ace35", null ],
+    [ "addField", "da/de4/classph_1_1_t_sdl_owner_class.html#a265e375c1fb7ae75c5e89f9c78c19e47", null ],
     [ "addFunction", "da/de4/classph_1_1_t_sdl_owner_class.html#ab9321b51f838c424e04abd546b28b79c", null ],
+    [ "addFunction", "da/de4/classph_1_1_t_sdl_owner_class.html#ad9b2aa80ba551717f402956439073b96", null ],
+    [ "addStruct", "da/de4/classph_1_1_t_sdl_owner_class.html#a9a8faa0d0f08b28235ad83b8f79a285a", null ],
+    [ "addStruct", "da/de4/classph_1_1_t_sdl_owner_class.html#a2e6b8b3f5a20af737fa53392be1b2395", null ],
+    [ "addStruct", "da/de4/classph_1_1_t_sdl_owner_class.html#a463db4ed5deba7a7bc865b5f667f4778", null ],
+    [ "addStruct", "da/de4/classph_1_1_t_sdl_owner_class.html#a1046da2b3983393e3e52902442ba79c7", null ],
     [ "allowCreateFromClass", "da/de4/classph_1_1_t_sdl_owner_class.html#a5981e83bbf50e724728155754f89badc", null ],
+    [ "allowCreateFromClass", "da/de4/classph_1_1_t_sdl_owner_class.html#a4442a8e40663d4f43d05c016af8d3be2", null ],
     [ "baseOn", "da/de4/classph_1_1_t_sdl_owner_class.html#a8b4f89761ee386cfa73a01ee21be48c6", null ],
+    [ "call", "da/de4/classph_1_1_t_sdl_owner_class.html#a6272e3c7cbd3b5b6d3ac5f2db03c8ab2", null ],
+    [ "createResource", "da/de4/classph_1_1_t_sdl_owner_class.html#a3045ee607dfd901242ee1e6990ac75b6", null ],
+    [ "description", "da/de4/classph_1_1_t_sdl_owner_class.html#a6ae857dd32691cd531c228a86332c674", null ],
+    [ "docName", "da/de4/classph_1_1_t_sdl_owner_class.html#a2fa9def4a3eaffe13e9b032be0abfe55", null ],
     [ "getField", "da/de4/classph_1_1_t_sdl_owner_class.html#a5d0fad2a5f682b624dc410992a4a6e32", null ],
+    [ "getFunction", "da/de4/classph_1_1_t_sdl_owner_class.html#ada8e0ce801b13a159f80bcbee5992e76", null ],
+    [ "getOwnedField", "da/de4/classph_1_1_t_sdl_owner_class.html#a10054cf45110204663ff9cdc16f11a18", null ],
     [ "initDefaultResource", "da/de4/classph_1_1_t_sdl_owner_class.html#a0b8b40cd627e33c5986f1e262b3519c9", null ],
     [ "initResource", "da/de4/classph_1_1_t_sdl_owner_class.html#a5594a36d254f62132602c513c59600e8", null ],
     [ "loadFieldsFromSdl", "da/de4/classph_1_1_t_sdl_owner_class.html#a51bc4455366694517ec859032d195bac", null ],
     [ "numFields", "da/de4/classph_1_1_t_sdl_owner_class.html#ac7bc33c1b0e44216ff3dce62ade8bf8c", null ],
     [ "numFunctions", "da/de4/classph_1_1_t_sdl_owner_class.html#adae015ec780de787b5de939f68cea748", null ],
     [ "referencedResources", "da/de4/classph_1_1_t_sdl_owner_class.html#a131d2dec7086d7248c1559f6f05aed43", null ],
-    [ "saveFieldsToSdl", "da/de4/classph_1_1_t_sdl_owner_class.html#aab29c8c7ddf724df47309f471c25d685", null ]
+    [ "saveFieldsToSdl", "da/de4/classph_1_1_t_sdl_owner_class.html#aab29c8c7ddf724df47309f471c25d685", null ],
+    [ "saveResource", "da/de4/classph_1_1_t_sdl_owner_class.html#a042b1eaf8d0ac9947cff1c33441e3d1c", null ]
 ];

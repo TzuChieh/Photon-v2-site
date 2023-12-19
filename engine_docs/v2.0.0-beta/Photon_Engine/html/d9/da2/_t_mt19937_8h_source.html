@@ -106,68 +106,80 @@ $(document).ready(function(){initNavTree('d9/da2/_t_mt19937_8h_source.html','../
   <div class="headertitle"><div class="title">TMt19937.h</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
+<a href="../../d9/da2/_t_mt19937_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &quot;Math/Random/TUniformRandomBitGenerator.h&quot;</span></div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;Common/primitive_type.h&quot;</span></div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;random&gt;</span></div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;type_traits&gt;</span></div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="keyword">namespace </span><a class="code hl_namespace" href="../../d7/dac/namespaceph_1_1math.html">ph::math</a></div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>{</div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> Bits&gt;</div>
-<div class="foldopen" id="foldopen00015" data-start="{" data-end="};">
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="../../d7/df8/classph_1_1math_1_1_t_mt19937.html">   15</a></span><span class="keyword">class </span><a class="code hl_class" href="../../d7/df8/classph_1_1math_1_1_t_mt19937.html">TMt19937</a> final : <span class="keyword">public</span> <a class="code hl_class" href="../../d3/d54/classph_1_1math_1_1_t_uniform_random_bit_generator.html">TUniformRandomBitGenerator</a>&lt;TMt19937&lt;Bits&gt;, Bits&gt;</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>{</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    <span class="keyword">static_assert</span>(std::is_same_v&lt;Bits, uint32&gt; || std::is_same_v&lt;Bits, uint64&gt;,</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>        <span class="stringliteral">&quot;Supports only `uint32` and `uint64` bits types.&quot;</span>);</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    PH_DEFINE_INLINE_RULE_OF_5_MEMBERS(<a class="code hl_class" href="../../d7/df8/classph_1_1math_1_1_t_mt19937.html">TMt19937</a>);</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <span class="keyword">explicit</span> <a class="code hl_class" href="../../d7/df8/classph_1_1math_1_1_t_mt19937.html">TMt19937</a>(Bits seed);</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    Bits impl_generate();</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <span class="keywordtype">void</span> impl_jumpAhead(uint64 distance);</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <span class="comment">// There are 32 &amp; 64 bit versions, select the one based on `BitsT`</span></div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <span class="keyword">using </span>StdGeneratorType = std::conditional_t&lt;std::is_same_v&lt;Bits, uint32&gt;,</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>        std::mt19937, std::mt19937_64&gt;;</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    StdGeneratorType m_generator;</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>};</div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &quot;<a class="code" href="../../d3/d4b/_t_uniform_random_bit_generator_8h.html">Math/Random/TUniformRandomBitGenerator.h</a>&quot;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;Common/primitive_type.h&gt;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;random&gt;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;type_traits&gt;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="keyword">namespace </span><a class="code hl_namespace" href="../../d7/dac/namespaceph_1_1math.html">ph::math</a></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>{</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> Bits&gt;</div>
+<div class="foldopen" id="foldopen00016" data-start="{" data-end="};">
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="../../d7/df8/classph_1_1math_1_1_t_mt19937.html">   16</a></span><span class="keyword">class </span><a class="code hl_class" href="../../d7/df8/classph_1_1math_1_1_t_mt19937.html">TMt19937</a> final : <span class="keyword">public</span> <a class="code hl_class" href="../../d3/d54/classph_1_1math_1_1_t_uniform_random_bit_generator.html">TUniformRandomBitGenerator</a>&lt;TMt19937&lt;Bits&gt;, Bits&gt;</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>{</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <span class="keyword">static_assert</span>(std::is_same_v&lt;Bits, uint32&gt; || std::is_same_v&lt;Bits, uint64&gt;,</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>        <span class="stringliteral">&quot;Supports only `uint32` and `uint64` bits types.&quot;</span>);</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="../../d7/df8/classph_1_1math_1_1_t_mt19937.html#a87d335531478f803b751c6130daaa664">   22</a></span>    <a class="code hl_function" href="../../d7/df8/classph_1_1math_1_1_t_mt19937.html#a87d335531478f803b751c6130daaa664">PH_DEFINE_INLINE_RULE_OF_5_MEMBERS</a>(<a class="code hl_class" href="../../d7/df8/classph_1_1math_1_1_t_mt19937.html">TMt19937</a>);</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    <span class="keyword">explicit</span> <a class="code hl_class" href="../../d7/df8/classph_1_1math_1_1_t_mt19937.html">TMt19937</a>(Bits seed);</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    Bits <a class="code hl_function" href="../../d7/df8/classph_1_1math_1_1_t_mt19937.html#a698d8fbaec1e505659f345394c9d9c79">impl_generate</a>();</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="../../d7/df8/classph_1_1math_1_1_t_mt19937.html#a43a95e344cc3dfb17ae393b10394a70a">impl_jumpAhead</a>(uint64 distance);</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <span class="comment">// There are 32 &amp; 64 bit versions, select the one based on `BitsT`</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <span class="keyword">using </span>StdGeneratorType = std::conditional_t&lt;std::is_same_v&lt;Bits, uint32&gt;,</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>        std::mt19937, std::mt19937_64&gt;;</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    StdGeneratorType m_generator;</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>};</div>
 </div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> Bits&gt;</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="keyword">inline</span> <a class="code hl_class" href="../../d7/df8/classph_1_1math_1_1_t_mt19937.html">TMt19937&lt;Bits&gt;::TMt19937</a>(<span class="keyword">const</span> Bits seed)</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    : m_generator(seed)</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>{}</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> Bits&gt;</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="keyword">inline</span> Bits <a class="code hl_class" href="../../d7/df8/classph_1_1math_1_1_t_mt19937.html">TMt19937&lt;Bits&gt;::impl_generate</a>()</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>{</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <span class="keywordflow">return</span> <span class="keyword">static_cast&lt;</span>Bits<span class="keyword">&gt;</span>(m_generator());</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>}</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> Bits&gt;</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="keyword">inline</span> <span class="keywordtype">void</span> TMt19937&lt;Bits&gt;::impl_jumpAhead(<span class="keyword">const</span> uint64 distance)</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>{</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    m_generator.discard(distance);</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>}</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>}<span class="comment">// end namespace ph::math</span></div>
-<div class="ttc" id="aclassph_1_1math_1_1_t_mt19937_html"><div class="ttname"><a href="../../d7/df8/classph_1_1math_1_1_t_mt19937.html">ph::math::TMt19937</a></div><div class="ttdoc">Standard Mersenne Twister generator.</div><div class="ttdef"><b>Definition</b> TMt19937.h:16</div></div>
-<div class="ttc" id="aclassph_1_1math_1_1_t_uniform_random_bit_generator_html"><div class="ttname"><a href="../../d3/d54/classph_1_1math_1_1_t_uniform_random_bit_generator.html">ph::math::TUniformRandomBitGenerator</a></div><div class="ttdef"><b>Definition</b> TUniformRandomBitGenerator.h:27</div></div>
-<div class="ttc" id="anamespaceph_1_1math_html"><div class="ttname"><a href="../../d7/dac/namespaceph_1_1math.html">ph::math</a></div><div class="ttdoc">Math functions and utilities.</div><div class="ttdef"><b>Definition</b> TransformInfo.h:9</div></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> Bits&gt;</div>
+<div class="foldopen" id="foldopen00038" data-start="{" data-end="}">
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="../../d7/df8/classph_1_1math_1_1_t_mt19937.html#ab80072d812b5f9a3847d83b48d556259">   38</a></span><span class="keyword">inline</span> <a class="code hl_function" href="../../d7/df8/classph_1_1math_1_1_t_mt19937.html#ab80072d812b5f9a3847d83b48d556259">TMt19937&lt;Bits&gt;::TMt19937</a>(<span class="keyword">const</span> Bits seed)</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    : m_generator(seed)</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>{}</div>
+</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> Bits&gt;</div>
+<div class="foldopen" id="foldopen00043" data-start="{" data-end="}">
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="../../d7/df8/classph_1_1math_1_1_t_mt19937.html#a698d8fbaec1e505659f345394c9d9c79">   43</a></span><span class="keyword">inline</span> Bits <a class="code hl_function" href="../../d7/df8/classph_1_1math_1_1_t_mt19937.html#a698d8fbaec1e505659f345394c9d9c79">TMt19937&lt;Bits&gt;::impl_generate</a>()</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>{</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <span class="keywordflow">return</span> <span class="keyword">static_cast&lt;</span>Bits<span class="keyword">&gt;</span>(m_generator());</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>}</div>
+</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> Bits&gt;</div>
+<div class="foldopen" id="foldopen00049" data-start="{" data-end="}">
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="../../d7/df8/classph_1_1math_1_1_t_mt19937.html#a43a95e344cc3dfb17ae393b10394a70a">   49</a></span><span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="../../d7/df8/classph_1_1math_1_1_t_mt19937.html#a43a95e344cc3dfb17ae393b10394a70a">TMt19937&lt;Bits&gt;::impl_jumpAhead</a>(<span class="keyword">const</span> uint64 distance)</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>{</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    m_generator.discard(distance);</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>}</div>
+</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>}<span class="comment">// end namespace ph::math</span></div>
+<div class="ttc" id="a_t_uniform_random_bit_generator_8h_html"><div class="ttname"><a href="../../d3/d4b/_t_uniform_random_bit_generator_8h.html">TUniformRandomBitGenerator.h</a></div></div>
+<div class="ttc" id="aclassph_1_1math_1_1_t_mt19937_html"><div class="ttname"><a href="../../d7/df8/classph_1_1math_1_1_t_mt19937.html">ph::math::TMt19937</a></div><div class="ttdoc">Standard Mersenne Twister generator.</div><div class="ttdef"><b>Definition</b> TMt19937.h:17</div></div>
+<div class="ttc" id="aclassph_1_1math_1_1_t_mt19937_html_a43a95e344cc3dfb17ae393b10394a70a"><div class="ttname"><a href="../../d7/df8/classph_1_1math_1_1_t_mt19937.html#a43a95e344cc3dfb17ae393b10394a70a">ph::math::TMt19937::impl_jumpAhead</a></div><div class="ttdeci">void impl_jumpAhead(uint64 distance)</div><div class="ttdef"><b>Definition</b> TMt19937.h:49</div></div>
+<div class="ttc" id="aclassph_1_1math_1_1_t_mt19937_html_a698d8fbaec1e505659f345394c9d9c79"><div class="ttname"><a href="../../d7/df8/classph_1_1math_1_1_t_mt19937.html#a698d8fbaec1e505659f345394c9d9c79">ph::math::TMt19937::impl_generate</a></div><div class="ttdeci">Bits impl_generate()</div><div class="ttdef"><b>Definition</b> TMt19937.h:43</div></div>
+<div class="ttc" id="aclassph_1_1math_1_1_t_mt19937_html_a87d335531478f803b751c6130daaa664"><div class="ttname"><a href="../../d7/df8/classph_1_1math_1_1_t_mt19937.html#a87d335531478f803b751c6130daaa664">ph::math::TMt19937::PH_DEFINE_INLINE_RULE_OF_5_MEMBERS</a></div><div class="ttdeci">PH_DEFINE_INLINE_RULE_OF_5_MEMBERS(TMt19937)</div></div>
+<div class="ttc" id="aclassph_1_1math_1_1_t_mt19937_html_ab80072d812b5f9a3847d83b48d556259"><div class="ttname"><a href="../../d7/df8/classph_1_1math_1_1_t_mt19937.html#ab80072d812b5f9a3847d83b48d556259">ph::math::TMt19937::TMt19937</a></div><div class="ttdeci">TMt19937(Bits seed)</div><div class="ttdef"><b>Definition</b> TMt19937.h:38</div></div>
+<div class="ttc" id="aclassph_1_1math_1_1_t_uniform_random_bit_generator_html"><div class="ttname"><a href="../../d3/d54/classph_1_1math_1_1_t_uniform_random_bit_generator.html">ph::math::TUniformRandomBitGenerator</a></div><div class="ttdef"><b>Definition</b> TUniformRandomBitGenerator.h:28</div></div>
+<div class="ttc" id="anamespaceph_1_1math_html"><div class="ttname"><a href="../../d7/dac/namespaceph_1_1math.html">ph::math</a></div><div class="ttdoc">Math functions and utilities.</div><div class="ttdef"><b>Definition</b> TransformInfo.h:10</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="../../dir_74389ed8173ad57b461b9d623a1f3867.html">Source</a></li><li class="navelem"><a class="el" href="../../dir_e11b0d151eb01caf664c9344ba74d0cd.html">Math</a></li><li class="navelem"><a class="el" href="../../dir_e0f368b0cd72167b319eeb7fe17a1217.html">Random</a></li><li class="navelem"><b>TMt19937.h</b></li>
+    <li class="navelem"><a class="el" href="../../dir_74389ed8173ad57b461b9d623a1f3867.html">Source</a></li><li class="navelem"><a class="el" href="../../dir_e11b0d151eb01caf664c9344ba74d0cd.html">Math</a></li><li class="navelem"><a class="el" href="../../dir_e0f368b0cd72167b319eeb7fe17a1217.html">Random</a></li><li class="navelem"><a class="el" href="../../d9/da2/_t_mt19937_8h.html">TMt19937.h</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>

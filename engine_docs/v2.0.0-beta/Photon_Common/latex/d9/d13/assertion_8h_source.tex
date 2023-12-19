@@ -1,0 +1,96 @@
+\doxysection{assertion.\+h}
+\hypertarget{assertion_8h_source}{}\label{assertion_8h_source}\index{Include/Common/assertion.h@{Include/Common/assertion.h}}
+\mbox{\hyperlink{assertion_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{config_8h}{Common/config.h}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{utility_8h}{Common/utility.h}}"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph_1_1detail}{ph::detail}}}
+\DoxyCodeLine{00009\ \{}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespaceph_1_1detail_a1e235d766376bc6db0c81e8b2515bc84}{output\_assertion\_message}}(}
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keyword}{const}\ std::string\&\ filename,}
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keyword}{const}\ std::string\&\ lineNumber,}
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keyword}{const}\ std::string\&\ condition,}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keyword}{const}\ std::string\&\ message);}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespaceph_1_1detail_afb2c097abc4ae73683151fc3a4497ba4}{on\_assertion\_failed}}();}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \}\textcolor{comment}{//\ end\ namespace\ ph::detail}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#if\ PH\_DEBUG}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\ \ \ \ \#define\ PH\_ASSERT\_MSG(condition,\ failMessage)\(\backslash\)}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ do\(\backslash\)}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \{\(\backslash\)}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ if(!(condition))\(\backslash\)}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \{\(\backslash\)}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ::ph::detail::output\_assertion\_message(\(\backslash\)}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::string(\_\_FILE\_\_),\(\backslash\)}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::to\_string(\_\_LINE\_\_),\(\backslash\)}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::string(\#condition),\(\backslash\)}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::string((failMessage)));\(\backslash\)}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ::ph::detail::on\_assertion\_failed();\(\backslash\)}}
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \}\(\backslash\)}}
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \}\ while(0)}}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\ \ \ \ \#define\ PH\_INTERNAL\_RANGE\_MSG(value,\ lowerBound,\ upperBound,\ lowerBoundSymbol,\ upperBoundSymbol)\(\backslash\)}}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ (std::string(\#value)\ +\ "{}\ =\ "{}\ +\ std::to\_string(value)\ +\ "{},\ asserted\ to\ be\ in\ range\ =\ "{}\ +\ \(\backslash\)}}
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ lowerBoundSymbol\ +\ std::to\_string(lowerBound)\ +\ "{},\ "{}\ +\ std::to\_string(upperBound)\ +\ upperBoundSymbol)}}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\ \ \ \ \#define\ PH\_ASSERT\_MSG(condition,\ message)\ PH\_NO\_OP()}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\ \ \ \ \#define\ PH\_INTERNAL\_RANGE\_MSG(value,\ lowerBound,\ upperBound,\ lowerBoundSymbol,\ upperBoundSymbol)\ PH\_NO\_OP()}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#define\ PH\_ASSERT(condition)\(\backslash\)}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\ \ \ \ PH\_ASSERT\_MSG(condition,\ "{}"{})}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#define\ PH\_ASSERT\_UNREACHABLE\_SECTION()\(\backslash\)}}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\ \ \ \ PH\_ASSERT\_MSG(false,\ "{}executing\ supposedly\ unreachable\ code"{})}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#define\ PH\_ASSERT\_EQ(a,\ b)\(\backslash\)}}
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\ \ \ \ PH\_ASSERT\_MSG(a\ ==\ b,\ std::string(\#a)\ +\ "{}\ =\ "{}\ +\ std::to\_string(a)\ +\ "{},\ "{}\ +\ \#b\ +\ "{}\ =\ "{}\ +\ std::to\_string(b))}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\#define\ PH\_ASSERT\_NE(a,\ b)\(\backslash\)}}
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\ \ \ \ PH\_ASSERT\_MSG(a\ !=\ b,\ std::string(\#a)\ +\ "{}\ =\ "{}\ +\ std::to\_string(a)\ +\ "{},\ "{}\ +\ \#b\ +\ "{}\ =\ "{}\ +\ std::to\_string(b))}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\#define\ PH\_ASSERT\_GT(a,\ b)\(\backslash\)}}
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\ \ \ \ PH\_ASSERT\_MSG(a\ >\ b,\ std::string(\#a)\ +\ "{}\ =\ "{}\ +\ std::to\_string(a)\ +\ "{},\ "{}\ +\ \#b\ +\ "{}\ =\ "{}\ +\ std::to\_string(b))}}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#define\ PH\_ASSERT\_LT(a,\ b)\(\backslash\)}}
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\ \ \ \ PH\_ASSERT\_MSG(a\ <\ b,\ std::string(\#a)\ +\ "{}\ =\ "{}\ +\ std::to\_string(a)\ +\ "{},\ "{}\ +\ \#b\ +\ "{}\ =\ "{}\ +\ std::to\_string(b))}}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \textcolor{preprocessor}{\#define\ PH\_ASSERT\_GE(a,\ b)\(\backslash\)}}
+\DoxyCodeLine{00066\ \textcolor{preprocessor}{\ \ \ \ PH\_ASSERT\_MSG(a\ >=\ b,\ std::string(\#a)\ +\ "{}\ =\ "{}\ +\ std::to\_string(a)\ +\ "{},\ "{}\ +\ \#b\ +\ "{}\ =\ "{}\ +\ std::to\_string(b))}}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \textcolor{preprocessor}{\#define\ PH\_ASSERT\_LE(a,\ b)\(\backslash\)}}
+\DoxyCodeLine{00069\ \textcolor{preprocessor}{\ \ \ \ PH\_ASSERT\_MSG(a\ <=\ b,\ std::string(\#a)\ +\ "{}\ =\ "{}\ +\ std::to\_string(a)\ +\ "{},\ "{}\ +\ \#b\ +\ "{}\ =\ "{}\ +\ std::to\_string(b))}}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00073\ \textcolor{preprocessor}{\#define\ PH\_ASSERT\_IN\_RANGE(value,\ begin,\ end)\(\backslash\)}}
+\DoxyCodeLine{00074\ \textcolor{preprocessor}{\ \ \ \ PH\_ASSERT\_MSG(begin\ <=\ value\ \&\&\ value\ <\ end,\ PH\_INTERNAL\_RANGE\_MSG(value,\ begin,\ end,\ "{}["{},\ "{})"{}))}}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00078\ \textcolor{preprocessor}{\#define\ PH\_ASSERT\_IN\_RANGE\_INCLUSIVE(value,\ lowerBound,\ upperBound)\(\backslash\)}}
+\DoxyCodeLine{00079\ \textcolor{preprocessor}{\ \ \ \ PH\_ASSERT\_MSG(lowerBound\ <=\ value\ \&\&\ value\ <=\ upperBound,\ PH\_INTERNAL\_RANGE\_MSG(value,\ lowerBound,\ upperBound,\ "{}["{},\ "{}]"{}))}}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00083\ \textcolor{preprocessor}{\#define\ PH\_ASSERT\_IN\_RANGE\_EXCLUSIVE(value,\ lowerBound,\ upperBound)\(\backslash\)}}
+\DoxyCodeLine{00084\ \textcolor{preprocessor}{\ \ \ \ PH\_ASSERT\_MSG(lowerBound\ <\ value\ \&\&\ value\ <\ upperBound,\ PH\_INTERNAL\_RANGE\_MSG(value,\ lowerBound,\ upperBound,\ "{}("{},\ "{})"{}))}}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph_1_1detail}{ph::detail}}}
+\DoxyCodeLine{00088\ \{}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00091\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespaceph_1_1detail_a3057abc356dc47c98586193297b10313}{DEPENDENT\_FALSE}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \}\textcolor{comment}{//\ end\ namespace\ ph::detail}}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \textcolor{preprocessor}{\#define\ PH\_STATIC\_ASSERT\_DEPENDENT\_FALSE(DependentType,\ message)\(\backslash\)}}
+\DoxyCodeLine{00096\ \textcolor{preprocessor}{\ \ \ \ static\_assert(::ph::detail::DEPENDENT\_FALSE<DependentType>,\ \#message)}}
+
+\end{DoxyCode}

@@ -7,6 +7,8 @@ var classph_1_1_t_s_p_s_c_executor =
     [ "getId", "dd/d32/classph_1_1_t_s_p_s_c_executor.html#a7dd7b547217281c83d117359584375b1", null ],
     [ "hasStarted", "dd/d32/classph_1_1_t_s_p_s_c_executor.html#ac550b3718b38d56f5684e1ea546ee7d2", null ],
     [ "requestTermination", "dd/d32/classph_1_1_t_s_p_s_c_executor.html#a52bee5c6bbc09397af7f73ef55969c93", null ],
+    [ "setOnConsumerStart", "dd/d32/classph_1_1_t_s_p_s_c_executor.html#a3352d75b6451c17a0093f81900597d3f", null ],
+    [ "setOnConsumerTerminate", "dd/d32/classph_1_1_t_s_p_s_c_executor.html#ae1ccd9b88d8123367b8a194ee2a0d79d", null ],
     [ "setWorkProcessor", "dd/d32/classph_1_1_t_s_p_s_c_executor.html#aff408fe833f82bb136083d0e62ff8592", null ],
     [ "start", "dd/d32/classph_1_1_t_s_p_s_c_executor.html#a0d4416821710b9c3c01b9798376a9f4e", null ],
     [ "waitAllWorks", "dd/d32/classph_1_1_t_s_p_s_c_executor.html#a75b1bd75567ccb5adcd30bdd592b42ce", null ],

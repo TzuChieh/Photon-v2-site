@@ -1,131 +1,132 @@
 \doxysection{TSdl\+Brute\+Force\+Field\+Set.\+h}
 \hypertarget{_t_sdl_brute_force_field_set_8h_source}{}\label{_t_sdl_brute_force_field_set_8h_source}\index{Source/SDL/Introspect/TSdlBruteForceFieldSet.h@{Source/SDL/Introspect/TSdlBruteForceFieldSet.h}}
-
+\mbox{\hyperlink{_t_sdl_brute_force_field_set_8h}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
 \DoxyCodeLine{00002\ }
-\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}SDL/Introspect/SdlField.h"{}}}
-\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Common/assertion.h"{}}}
-\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}Utility/TArrayAsVector.h"{}}}
-\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}Common/config.h"{}}}
-\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}Utility/IMoveOnly.h"{}}}
-\DoxyCodeLine{00008\ }
-\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <cstddef>}}
-\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <type\_traits>}}
-\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <array>}}
-\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <memory>}}
-\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <string\_view>}}
-\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <optional>}}
-\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <utility>}}
-\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <string>}}
-\DoxyCodeLine{00017\ }
-\DoxyCodeLine{00018\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
-\DoxyCodeLine{00019\ \{}
-\DoxyCodeLine{00020\ }
-\DoxyCodeLine{00021\ \textcolor{comment}{//\ TODO:\ trie\ or\ unordered\_map\ variant}}
-\DoxyCodeLine{00022\ \textcolor{comment}{//\ TODO:\ add\ a\ field\ set\ concept}}
-\DoxyCodeLine{00023\ }
-\DoxyCodeLine{00029\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ BaseFieldType,\ std::\textcolor{keywordtype}{size\_t}\ MAX\_FIELDS\ =\ PH\_SDL\_MAX\_FIELDS>}
-\DoxyCodeLine{00030\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_t_sdl_brute_force_field_set}{TSdlBruteForceFieldSet}}\ final\ :\ \textcolor{keyword}{private}\ \mbox{\hyperlink{classph_1_1_i_move_only}{IMoveOnly}}}
-\DoxyCodeLine{00031\ \{}
-\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_base\_of\_v<SdlField,\ BaseFieldType>,}
-\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Field\ type\ must\ derive\ from\ SdlField."{}});}
-\DoxyCodeLine{00034\ }
-\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ OtherBaseFieldType,\ std::\textcolor{keywordtype}{size\_t}\ OTHER\_MAX\_FIELDS>}
-\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_t_sdl_brute_force_field_set}{TSdlBruteForceFieldSet}};}
-\DoxyCodeLine{00037\ }
-\DoxyCodeLine{00038\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{using\ }FieldType\ =\ BaseFieldType;}
-\DoxyCodeLine{00040\ }
-\DoxyCodeLine{00041\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keyword}{inline}\ std::size\_t\ numFields()\textcolor{keyword}{\ const}}
-\DoxyCodeLine{00043\ \textcolor{keyword}{\ \ \ \ }\{}
-\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_fields.size();}
-\DoxyCodeLine{00045\ \ \ \ \ \}}
-\DoxyCodeLine{00046\ }
-\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ BaseFieldType*\ getField(\textcolor{keyword}{const}\ std::size\_t\ index)\textcolor{keyword}{\ const}}
-\DoxyCodeLine{00048\ \textcolor{keyword}{\ \ \ \ }\{}
-\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ index\ <\ m\_fields.size()\ ?\ \&(*this)[index]\ :\ \textcolor{keyword}{nullptr};}
-\DoxyCodeLine{00050\ \ \ \ \ \}}
-\DoxyCodeLine{00051\ }
-\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ addField(T\ field)}
-\DoxyCodeLine{00054\ \ \ \ \ -\/>\ \mbox{\hyperlink{classph_1_1_t_sdl_brute_force_field_set}{TSdlBruteForceFieldSet}}\&}
-\DoxyCodeLine{00055\ \ \ \ \ \{}
-\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(canAddField(field))}
-\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ m\_fields.pushBack(std::make\_unique<T>(std::move(field)));}
-\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00060\ }
-\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
-\DoxyCodeLine{00062\ \ \ \ \ \}}
-\DoxyCodeLine{00063\ }
-\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ OtherBaseFieldType,\ std::\textcolor{keywordtype}{size\_t}\ OTHER\_MAX\_FIELDS>}
-\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ addFields(\mbox{\hyperlink{classph_1_1_t_sdl_brute_force_field_set}{TSdlBruteForceFieldSet<OtherBaseFieldType,\ OTHER\_MAX\_FIELDS>}}\ fields)}
-\DoxyCodeLine{00066\ \ \ \ \ -\/>\ \mbox{\hyperlink{classph_1_1_t_sdl_brute_force_field_set}{TSdlBruteForceFieldSet}}\&}
-\DoxyCodeLine{00067\ \ \ \ \ \{}
-\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_base\_of\_v<BaseFieldType,\ OtherBaseFieldType>,}
-\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Incoming\ field\ type\ must\ derive\ from\ the\ field\ type\ that\ this\ set\ stores."{}});}
-\DoxyCodeLine{00070\ }
-\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ i\ =\ 0;\ i\ <\ fields.numFields();\ ++i)}
-\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!canAddField(fields[i]))}
-\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
-\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00077\ }
-\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ m\_fields.pushBack(std::move(fields.m\_fields[i]));}
-\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00080\ }
-\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
-\DoxyCodeLine{00082\ \ \ \ \ \}}
-\DoxyCodeLine{00083\ }
-\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keyword}{inline}\ std::optional<std::size\_t>\ findFieldIndex(}
-\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\_view\ typeName,}
-\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\_view\ fieldName)\textcolor{keyword}{\ const}}
-\DoxyCodeLine{00087\ \textcolor{keyword}{\ \ \ \ }\{}
-\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ PH\_ASSERT(!typeName.empty());}
-\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ PH\_ASSERT(!fieldName.empty());}
-\DoxyCodeLine{00090\ }
-\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ i\ =\ 0;\ i\ <\ m\_fields.size();\ ++i)}
-\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ field\ =\ m\_fields[i];}
-\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(typeName\ ==\ field-\/>getTypeName()\ \&\&\ fieldName\ ==\ field-\/>getFieldName())}
-\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ i;}
-\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::nullopt;}
-\DoxyCodeLine{00100\ \ \ \ \ \}}
-\DoxyCodeLine{00101\ }
-\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ BaseFieldType\&\ operator\ []\ (\textcolor{keyword}{const}\ std::size\_t\ index)\textcolor{keyword}{\ const}}
-\DoxyCodeLine{00103\ \textcolor{keyword}{\ \ \ \ }\{}
-\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *(m\_fields[index]);}
-\DoxyCodeLine{00105\ \ \ \ \ \}}
-\DoxyCodeLine{00106\ }
-\DoxyCodeLine{00107\ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00108\ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_array_as_vector}{TArrayAsVector<std::unique\_ptr<BaseFieldType>}},\ MAX\_FIELDS>\ m\_fields;}
-\DoxyCodeLine{00109\ }
-\DoxyCodeLine{00110\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00111\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ canAddField(\textcolor{keyword}{const}\ T\&\ field)}
-\DoxyCodeLine{00112\ \ \ \ \ \{}
-\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_base\_of\_v<BaseFieldType,\ T>,}
-\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Cannot\ add\ a\ field\ that\ is\ not\ derived\ from\ the\ field\ type\ of\ the\ set."{}});}
-\DoxyCodeLine{00115\ }
-\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ isFieldUnique\ =\ !findFieldIndex(field.getTypeName(),\ field.getFieldName());}
-\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ hasMoreSpace\ \ =\ !m\_fields.isFull();}
-\DoxyCodeLine{00118\ }
-\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ PH\_ASSERT\_MSG(isFieldUnique,}
-\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}field\ set\ already\ contains\ field\ <"{}}\ +\ field.genPrettyName()\ +\ \textcolor{stringliteral}{"{}>"{}});}
-\DoxyCodeLine{00121\ }
-\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ PH\_ASSERT\_MSG(hasMoreSpace,}
-\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}field\ set\ is\ full,\ consider\ increase\ its\ size\ "{}}}
-\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}(>\ "{}}\ +\ std::to\_string(m\_fields.size())\ +\ \textcolor{stringliteral}{"{})"{}});}
-\DoxyCodeLine{00125\ }
-\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ isFieldUnique\ \&\&\ hasMoreSpace;}
-\DoxyCodeLine{00127\ \ \ \ \ \}}
-\DoxyCodeLine{00128\ \};}
-\DoxyCodeLine{00129\ }
-\DoxyCodeLine{00130\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_sdl_field_8h}{SDL/Introspect/SdlField.h}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_array_as_vector_8h}{Utility/TArrayAsVector.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_i_move_only_8h}{Utility/IMoveOnly.h}}"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <Common/assertion.h>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <Common/config.h>}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <cstddef>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <type\_traits>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <array>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <string\_view>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <optional>}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00020\ \{}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{comment}{//\ TODO:\ trie\ or\ unordered\_map\ variant}}
+\DoxyCodeLine{00023\ \textcolor{comment}{//\ TODO:\ add\ a\ field\ set\ concept}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00030\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ BaseFieldType,\ std::\textcolor{keywordtype}{size\_t}\ MAX\_FIELDS\ =\ PH\_SDL\_MAX\_FIELDS>}
+\DoxyCodeLine{00031\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_t_sdl_brute_force_field_set}{TSdlBruteForceFieldSet}}\ final\ :\ \textcolor{keyword}{private}\ \mbox{\hyperlink{classph_1_1_i_move_only}{IMoveOnly}}}
+\DoxyCodeLine{00032\ \{}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_base\_of\_v<SdlField,\ BaseFieldType>,}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Field\ type\ must\ derive\ from\ SdlField."{}});}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ OtherBaseFieldType,\ std::\textcolor{keywordtype}{size\_t}\ OTHER\_MAX\_FIELDS>}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_t_sdl_brute_force_field_set}{TSdlBruteForceFieldSet}};}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classph_1_1_t_sdl_brute_force_field_set_a87808b70ef6a69d7db13986205bb3e25}{FieldType}}\ =\ BaseFieldType;}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keyword}{inline}\ std::size\_t\ \mbox{\hyperlink{classph_1_1_t_sdl_brute_force_field_set_a654ed198169274c357fda43c20ba8e51}{numFields}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00044\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_fields.size();}
+\DoxyCodeLine{00046\ \ \ \ \ \}}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ BaseFieldType*\ \mbox{\hyperlink{classph_1_1_t_sdl_brute_force_field_set_ae60f0a96ae9b1e2c48e04f31a3e93453}{getField}}(\textcolor{keyword}{const}\ std::size\_t\ index)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00049\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ index\ <\ m\_fields.size()\ ?\ \&(*this)[index]\ :\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00051\ \ \ \ \ \}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1_t_sdl_brute_force_field_set_ac4be67154288e58c9585dced7c0fcb96}{addField}}(T\ field)}
+\DoxyCodeLine{00055\ \ \ \ \ -\/>\ \mbox{\hyperlink{classph_1_1_t_sdl_brute_force_field_set}{TSdlBruteForceFieldSet}}\&}
+\DoxyCodeLine{00056\ \ \ \ \ \{}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(canAddField(field))}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ m\_fields.pushBack(std::make\_unique<T>(std::move(field)));}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00063\ \ \ \ \ \}}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ OtherBaseFieldType,\ std::\textcolor{keywordtype}{size\_t}\ OTHER\_MAX\_FIELDS>}
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1_t_sdl_brute_force_field_set_a83616d63b9e0ae8c289f53aad935a2a4}{addFields}}(\mbox{\hyperlink{classph_1_1_t_sdl_brute_force_field_set}{TSdlBruteForceFieldSet<OtherBaseFieldType,\ OTHER\_MAX\_FIELDS>}}\ fields)}
+\DoxyCodeLine{00067\ \ \ \ \ -\/>\ \mbox{\hyperlink{classph_1_1_t_sdl_brute_force_field_set}{TSdlBruteForceFieldSet}}\&}
+\DoxyCodeLine{00068\ \ \ \ \ \{}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_base\_of\_v<BaseFieldType,\ OtherBaseFieldType>,}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Incoming\ field\ type\ must\ derive\ from\ the\ field\ type\ that\ this\ set\ stores."{}});}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ i\ =\ 0;\ i\ <\ fields.numFields();\ ++i)}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!canAddField(fields[i]))}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ m\_fields.pushBack(std::move(fields.m\_fields[i]));}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00083\ \ \ \ \ \}}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keyword}{inline}\ std::optional<std::size\_t>\ \mbox{\hyperlink{classph_1_1_t_sdl_brute_force_field_set_a5c220fb0c1fb5ad9336ea7ca33b9dc67}{findFieldIndex}}(}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\_view\ typeName,}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\_view\ fieldName)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00088\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ PH\_ASSERT(!typeName.empty());}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ PH\_ASSERT(!fieldName.empty());}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ i\ =\ 0;\ i\ <\ m\_fields.size();\ ++i)}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ field\ =\ m\_fields[i];}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(typeName\ ==\ field-\/>getTypeName()\ \&\&\ fieldName\ ==\ field-\/>getFieldName())}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ i;}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::nullopt;}
+\DoxyCodeLine{00101\ \ \ \ \ \}}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ BaseFieldType\&\ \mbox{\hyperlink{classph_1_1_t_sdl_brute_force_field_set_ae5150eb0d3e2661598dde4283676d744}{operator\ []\ }}(\textcolor{keyword}{const}\ std::size\_t\ index)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00104\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *(m\_fields[index]);}
+\DoxyCodeLine{00106\ \ \ \ \ \}}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00109\ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_array_as_vector}{TArrayAsVector<std::unique\_ptr<BaseFieldType>}},\ MAX\_FIELDS>\ m\_fields;}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ canAddField(\textcolor{keyword}{const}\ T\&\ field)}
+\DoxyCodeLine{00113\ \ \ \ \ \{}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_base\_of\_v<BaseFieldType,\ T>,}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Cannot\ add\ a\ field\ that\ is\ not\ derived\ from\ the\ field\ type\ of\ the\ set."{}});}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ isFieldUnique\ =\ !\mbox{\hyperlink{classph_1_1_t_sdl_brute_force_field_set_a5c220fb0c1fb5ad9336ea7ca33b9dc67}{findFieldIndex}}(field.getTypeName(),\ field.getFieldName());}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ hasMoreSpace\ \ =\ !m\_fields.\mbox{\hyperlink{classph_1_1_t_array_as_vector_a9f739577b326e09bbefff664c4bb685d}{isFull}}();}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ PH\_ASSERT\_MSG(isFieldUnique,}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}field\ set\ already\ contains\ field\ <"{}}\ +\ field.genPrettyName()\ +\ \textcolor{stringliteral}{"{}>"{}});}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ PH\_ASSERT\_MSG(hasMoreSpace,}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}field\ set\ is\ full,\ consider\ increase\ its\ size\ "{}}}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}(>\ "{}}\ +\ std::to\_string(m\_fields.\mbox{\hyperlink{classph_1_1_t_array_as_vector_a8d09d275189844d82189e4a0e0834cb9}{size}}())\ +\ \textcolor{stringliteral}{"{})"{}});}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ isFieldUnique\ \&\&\ hasMoreSpace;}
+\DoxyCodeLine{00128\ \ \ \ \ \}}
+\DoxyCodeLine{00129\ \};}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
 
 \end{DoxyCode}

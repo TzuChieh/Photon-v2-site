@@ -1,158 +1,159 @@
 \doxysection{Ies\+File.\+h}
 \hypertarget{_ies_file_8h_source}{}\label{_ies_file_8h_source}\index{Source/DataIO/Data/IesFile.h@{Source/DataIO/Data/IesFile.h}}
-
+\mbox{\hyperlink{_ies_file_8h}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
 \DoxyCodeLine{00002\ }
-\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}DataIO/FileSystem/Path.h"{}}}
-\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Common/primitive\_type.h"{}}}
-\DoxyCodeLine{00005\ }
-\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <vector>}}
-\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <string>}}
-\DoxyCodeLine{00008\ }
-\DoxyCodeLine{00009\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
-\DoxyCodeLine{00010\ \{}
-\DoxyCodeLine{00011\ }
-\DoxyCodeLine{00012\ \textcolor{comment}{/*}}
-\DoxyCodeLine{00013\ \textcolor{comment}{\ \ \ \ A\ low-\/level\ class\ that\ parses\ an\ IES\ photometric\ data\ file\ and\ provides\ }}
-\DoxyCodeLine{00014\ \textcolor{comment}{\ \ \ \ convenient\ methods\ for\ file\ content\ accessing.}}
-\DoxyCodeLine{00015\ \textcolor{comment}{}}
-\DoxyCodeLine{00016\ \textcolor{comment}{\ \ \ \ Reference:\ http://lumen.iee.put.poznan.pl/kw/iesna.txt}}
-\DoxyCodeLine{00017\ \textcolor{comment}{*/}}
-\DoxyCodeLine{00018\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_ies_file}{IesFile}}\ final}
-\DoxyCodeLine{00019\ \{}
-\DoxyCodeLine{00020\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keyword}{enum\ class}\ EIesFileType}
-\DoxyCodeLine{00022\ \ \ \ \ \{}
-\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ Unknown\ =\ 0,}
-\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ LM\_63\_1986,}
-\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ LM\_63\_1991,}
-\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ LM\_63\_1995,}
-\DoxyCodeLine{00027\ \ \ \ \ \};}
-\DoxyCodeLine{00028\ }
-\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{enum\ class}\ EPhotometricWebType}
-\DoxyCodeLine{00030\ \ \ \ \ \{}
-\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*}}
-\DoxyCodeLine{00032\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ Type\ A\ photometry\ is\ normally\ used\ for\ automotive\ headlights\ and\ signal}}
-\DoxyCodeLine{00033\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ lights.\ The\ polar\ axis\ of\ the\ luminaire\ coincides\ with\ the\ major\ axis}}
-\DoxyCodeLine{00034\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ (length)\ of\ the\ luminaire,\ and\ the\ 0-\/180\ degree\ photometric\ plane}}
-\DoxyCodeLine{00035\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ coinicides\ with\ the\ luminaire's\ vertical\ axis.}}
-\DoxyCodeLine{00036\ \textcolor{comment}{\ \ \ \ \ \ \ \ */}}
-\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ A,\ }
-\DoxyCodeLine{00038\ }
-\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*}}
-\DoxyCodeLine{00040\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ Type\ B\ photometry\ is\ normally\ used\ for\ adjustable\ outdoor\ area\ and\ sports}}
-\DoxyCodeLine{00041\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ lighting\ luminaires.\ The\ polar\ axis\ of\ the\ luminaire\ coincides\ with\ the}}
-\DoxyCodeLine{00042\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ minor\ axis\ (width)\ of\ the\ luminaire,\ and\ the\ 0-\/180\ degree\ photometric}}
-\DoxyCodeLine{00043\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ plane\ coinicides\ with\ the\ luminaire's\ vertical\ axis.}}
-\DoxyCodeLine{00044\ \textcolor{comment}{\ \ \ \ \ \ \ \ */}}
-\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ B,\ }
-\DoxyCodeLine{00046\ }
-\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*}}
-\DoxyCodeLine{00048\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ Type\ C\ photometry\ is\ normally\ used\ for\ architectural\ and\ roadway}}
-\DoxyCodeLine{00049\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ luminaires.\ The\ polar\ axis\ of\ the\ photometric\ web\ coincides\ with\ the}}
-\DoxyCodeLine{00050\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ vertical\ axis\ of\ the\ luminaire,\ and\ the\ 0-\/180\ degree\ photometric\ plane}}
-\DoxyCodeLine{00051\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ coincides\ with\ the\ luminaire's\ major\ axis\ (length).}}
-\DoxyCodeLine{00052\ \textcolor{comment}{\ \ \ \ \ \ \ \ */}}
-\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ C}
-\DoxyCodeLine{00054\ \ \ \ \ \};}
-\DoxyCodeLine{00055\ }
-\DoxyCodeLine{00056\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classph_1_1_ies_file}{IesFile}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_alt_path}{Path}}\&\ iesFilePath);}
-\DoxyCodeLine{00058\ }
-\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordtype}{bool}\ load();}
-\DoxyCodeLine{00060\ }
-\DoxyCodeLine{00061\ \ \ \ \ std::string\ getFilename()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00062\ }
-\DoxyCodeLine{00063\ \ \ \ \ \textcolor{comment}{//\ Retrieving\ file\ contents.}}
-\DoxyCodeLine{00064\ }
-\DoxyCodeLine{00065\ \ \ \ \ \textcolor{comment}{//\ Gets\ the\ type\ of\ this\ IES\ file.}}
-\DoxyCodeLine{00066\ \ \ \ \ \textcolor{comment}{//}}
-\DoxyCodeLine{00067\ \ \ \ \ EIesFileType\ getIesFileType()\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const};}
-\DoxyCodeLine{00068\ }
-\DoxyCodeLine{00069\ \ \ \ \ \textcolor{comment}{//\ Gets\ the\ test\ report\ number\ and\ laboratory\ for\ the\ IES\ file.}}
-\DoxyCodeLine{00070\ \ \ \ \ \textcolor{comment}{//}}
-\DoxyCodeLine{00071\ \ \ \ \ std::string\ \ getTestInfo()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const};}
-\DoxyCodeLine{00072\ }
-\DoxyCodeLine{00073\ \ \ \ \ std::string\ \ getLuminaireManufacturer()\ \ \textcolor{keyword}{const};}
-\DoxyCodeLine{00074\ \ \ \ \ std::string\ \ getLuminaireCatalogNumber()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00075\ \ \ \ \ std::string\ \ getLuminaireDescription()\ \ \ \textcolor{keyword}{const};}
-\DoxyCodeLine{00076\ \ \ \ \ std::string\ \ getLampCatalogNumber()\ \ \ \ \ \ \textcolor{keyword}{const};}
-\DoxyCodeLine{00077\ \ \ \ \ std::string\ \ getLampDescription()\ \ \ \ \ \ \ \ \textcolor{keyword}{const};}
-\DoxyCodeLine{00078\ }
-\DoxyCodeLine{00079\ \ \ \ \ \textcolor{comment}{//\ Gets\ descriptions\ that\ are\ not\ categorized\ by\ the\ parser.}}
-\DoxyCodeLine{00080\ \ \ \ \ \textcolor{comment}{//}}
-\DoxyCodeLine{00081\ \ \ \ \ std::string\ \ getUncategorizedInfo()\ \ \ \ \ \ \textcolor{keyword}{const};}
-\DoxyCodeLine{00082\ }
-\DoxyCodeLine{00083\ \ \ \ \ uint32\ \ \ \ \ \ \ \ \ \ \ \ \ \ getNumLamps()\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const};}
-\DoxyCodeLine{00084\ \ \ \ \ real\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ getLumensPerLamp()\ \ \ \ \ \ \ \textcolor{keyword}{const};}
-\DoxyCodeLine{00085\ \ \ \ \ real\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ getCandelaMultiplier()\ \ \ \textcolor{keyword}{const};}
-\DoxyCodeLine{00086\ \ \ \ \ uint32\ \ \ \ \ \ \ \ \ \ \ \ \ \ getNumVerticalAngles()\ \ \ \textcolor{keyword}{const};}
-\DoxyCodeLine{00087\ \ \ \ \ uint32\ \ \ \ \ \ \ \ \ \ \ \ \ \ getNumHorizontalAngles()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00088\ \ \ \ \ EPhotometricWebType\ getPhotometricWebType()\ \ \textcolor{keyword}{const};}
-\DoxyCodeLine{00089\ }
-\DoxyCodeLine{00090\ \ \ \ \ std::vector<real>\ \ \ \ \ \ \ \ \ \ \ \ \ \ getVerticalAngles()\ \ \ \textcolor{keyword}{const};}
-\DoxyCodeLine{00091\ \ \ \ \ std::vector<real>\ \ \ \ \ \ \ \ \ \ \ \ \ \ getHorizontalAngles()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00092\ }
-\DoxyCodeLine{00093\ \ \ \ \ \textcolor{comment}{//\ Candela\ values\ stored\ as\ data[horizontal-\/index][vertical-\/index].}}
-\DoxyCodeLine{00094\ \ \ \ \ \textcolor{comment}{//}}
-\DoxyCodeLine{00095\ \ \ \ \ std::vector<std::vector<real>>\ getCandelaValues()\ \ \ \ \textcolor{keyword}{const};}
-\DoxyCodeLine{00096\ }
-\DoxyCodeLine{00097\ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00098\ \ \ \ \ \mbox{\hyperlink{classph_1_1_alt_path}{Path}}\ m\_path;}
-\DoxyCodeLine{00099\ }
-\DoxyCodeLine{00100\ \ \ \ \ EIesFileType\ m\_iesFileType;}
-\DoxyCodeLine{00101\ }
-\DoxyCodeLine{00102\ \ \ \ \ \textcolor{comment}{//\ file\ descriptions\ (labels/keywords\ in\ the\ file)}}
-\DoxyCodeLine{00103\ \ \ \ \ \textcolor{comment}{//}}
-\DoxyCodeLine{00104\ \ \ \ \ std::string\ m\_testInfo;}
-\DoxyCodeLine{00105\ \ \ \ \ std::string\ m\_luminaireManufacturer;}
-\DoxyCodeLine{00106\ \ \ \ \ std::string\ m\_luminaireCatalogNumber;}
-\DoxyCodeLine{00107\ \ \ \ \ std::string\ m\_luminaireDescription;}
-\DoxyCodeLine{00108\ \ \ \ \ std::string\ m\_lampCatalogNumber;}
-\DoxyCodeLine{00109\ \ \ \ \ std::string\ m\_lampDescription;}
-\DoxyCodeLine{00110\ \ \ \ \ std::string\ m\_uncategorizedInfo;}
-\DoxyCodeLine{00111\ }
-\DoxyCodeLine{00112\ \ \ \ \ \textcolor{comment}{//\ type\ of\ tilt\ information}}
-\DoxyCodeLine{00113\ \ \ \ \ \textcolor{comment}{//}}
-\DoxyCodeLine{00114\ \ \ \ \ std::string\ m\_tilt;}
-\DoxyCodeLine{00115\ }
-\DoxyCodeLine{00116\ \ \ \ \ \textcolor{comment}{//\ first\ line\ of\ metadata\ for\ the\ IES\ file\ (metadata\ 1)}}
-\DoxyCodeLine{00117\ \ \ \ \ \textcolor{comment}{//}}
-\DoxyCodeLine{00118\ \ \ \ \ uint32\ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_numLamps;}
-\DoxyCodeLine{00119\ \ \ \ \ real\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_lumensPerLamp;}
-\DoxyCodeLine{00120\ \ \ \ \ real\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_candelaMultiplier;}
-\DoxyCodeLine{00121\ \ \ \ \ uint32\ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_numVerticalAngles;}
-\DoxyCodeLine{00122\ \ \ \ \ uint32\ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_numHorizontalAngles;}
-\DoxyCodeLine{00123\ \ \ \ \ EPhotometricWebType\ m\_webType;}
-\DoxyCodeLine{00124\ \ \ \ \ real\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_luminaireOpeningArea;}
-\DoxyCodeLine{00125\ }
-\DoxyCodeLine{00126\ \ \ \ \ \textcolor{comment}{//\ second\ line\ of\ metadata\ for\ the\ IES\ file\ (metadata\ 2)}}
-\DoxyCodeLine{00127\ \ \ \ \ \textcolor{comment}{//}}
-\DoxyCodeLine{00128\ \ \ \ \ real\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_ballastFactor;}
-\DoxyCodeLine{00129\ \ \ \ \ real\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_ballastLampPhotometricFactor;}
-\DoxyCodeLine{00130\ \ \ \ \ real\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_inputWatts;}
-\DoxyCodeLine{00131\ }
-\DoxyCodeLine{00132\ \ \ \ \ \textcolor{comment}{//\ lighting\ data}}
-\DoxyCodeLine{00133\ \ \ \ \ \textcolor{comment}{//}}
-\DoxyCodeLine{00134\ \ \ \ \ std::vector<real>\ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_verticalAngles;}
-\DoxyCodeLine{00135\ \ \ \ \ std::vector<real>\ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_horizontalAngles;}
-\DoxyCodeLine{00136\ \ \ \ \ std::vector<std::vector<real>>\ m\_candelaValues;}
-\DoxyCodeLine{00137\ }
-\DoxyCodeLine{00138\ \ \ \ \ \textcolor{keywordtype}{bool}\ parse(\textcolor{keyword}{const}\ std::vector<char>\&\ data);}
-\DoxyCodeLine{00139\ \ \ \ \ std::size\_t\ parseFileType(\textcolor{keyword}{const}\ std::vector<std::string>\&\ lines,\ std::size\_t\ currentLine);}
-\DoxyCodeLine{00140\ \ \ \ \ std::size\_t\ parseLabelsAndKeywords(\textcolor{keyword}{const}\ std::vector<std::string>\&\ lines,\ std::size\_t\ currentLine);}
-\DoxyCodeLine{00141\ \ \ \ \ std::size\_t\ parseTiltLine(\textcolor{keyword}{const}\ std::vector<std::string>\&\ lines,\ std::size\_t\ currentLine);}
-\DoxyCodeLine{00142\ \ \ \ \ std::size\_t\ parseTiltData(\textcolor{keyword}{const}\ std::vector<std::string>\&\ lines,\ std::size\_t\ currentLine);}
-\DoxyCodeLine{00143\ \ \ \ \ std::size\_t\ parseMetadata1(\textcolor{keyword}{const}\ std::vector<std::string>\&\ lines,\ std::size\_t\ currentLine);}
-\DoxyCodeLine{00144\ \ \ \ \ std::size\_t\ parseMetadata2(\textcolor{keyword}{const}\ std::vector<std::string>\&\ lines,\ std::size\_t\ currentLine);}
-\DoxyCodeLine{00145\ \ \ \ \ std::size\_t\ parseAngles(\textcolor{keyword}{const}\ std::vector<std::string>\&\ lines,\ std::size\_t\ currentLine);}
-\DoxyCodeLine{00146\ \ \ \ \ std::size\_t\ parseCandelaValues(\textcolor{keyword}{const}\ std::vector<std::string>\&\ lines,\ std::size\_t\ currentLine);}
-\DoxyCodeLine{00147\ }
-\DoxyCodeLine{00148\ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00149\ \ \ \ \ \textcolor{keyword}{static}\ std::vector<std::string>\ retrieveLines(\textcolor{keyword}{const}\ std::vector<char>\&\ data);}
-\DoxyCodeLine{00150\ \};}
-\DoxyCodeLine{00151\ }
-\DoxyCodeLine{00152\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_path_8h}{DataIO/FileSystem/Path.h}}"{}}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <Common/primitive\_type.h>}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00011\ \{}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ \ \ \ A\ low-\/level\ class\ that\ parses\ an\ IES\ photometric\ data\ file\ and\ provides\ }}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ \ \ \ convenient\ methods\ for\ file\ content\ accessing.}}
+\DoxyCodeLine{00016\ \textcolor{comment}{}}
+\DoxyCodeLine{00017\ \textcolor{comment}{\ \ \ \ Reference:\ http://lumen.iee.put.poznan.pl/kw/iesna.txt}}
+\DoxyCodeLine{00018\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00019\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_ies_file}{IesFile}}\ final}
+\DoxyCodeLine{00020\ \{}
+\DoxyCodeLine{00021\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keyword}{enum\ class}\ \mbox{\hyperlink{classph_1_1_ies_file_a90f6227147b3673129122672f0d586b5}{EIesFileType}}}
+\DoxyCodeLine{00023\ \ \ \ \ \{}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_ies_file_a90f6227147b3673129122672f0d586b5a88183b946cc5f0e8c96b2e66e1c74a7e}{Unknown}}\ =\ 0,}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_ies_file_a90f6227147b3673129122672f0d586b5af29bf828c44fdb68f115739c25acc383}{LM\_63\_1986}},}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_ies_file_a90f6227147b3673129122672f0d586b5a7d0a68ead8c17ccbf0e9513488ec2819}{LM\_63\_1991}},}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_ies_file_a90f6227147b3673129122672f0d586b5ae4ea047d1131fd1471abe632dab881a9}{LM\_63\_1995}},}
+\DoxyCodeLine{00028\ \ \ \ \ \};}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{enum\ class}\ \mbox{\hyperlink{classph_1_1_ies_file_aad491b64ff23f630764f05db028a2f67}{EPhotometricWebType}}}
+\DoxyCodeLine{00031\ \ \ \ \ \{}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00033\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ Type\ A\ photometry\ is\ normally\ used\ for\ automotive\ headlights\ and\ signal}}
+\DoxyCodeLine{00034\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ lights.\ The\ polar\ axis\ of\ the\ luminaire\ coincides\ with\ the\ major\ axis}}
+\DoxyCodeLine{00035\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ (length)\ of\ the\ luminaire,\ and\ the\ 0-\/180\ degree\ photometric\ plane}}
+\DoxyCodeLine{00036\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ coinicides\ with\ the\ luminaire's\ vertical\ axis.}}
+\DoxyCodeLine{00037\ \textcolor{comment}{\ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_ies_file_aad491b64ff23f630764f05db028a2f67a7fc56270e7a70fa81a5935b72eacbe29}{A}},\ }
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00041\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ Type\ B\ photometry\ is\ normally\ used\ for\ adjustable\ outdoor\ area\ and\ sports}}
+\DoxyCodeLine{00042\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ lighting\ luminaires.\ The\ polar\ axis\ of\ the\ luminaire\ coincides\ with\ the}}
+\DoxyCodeLine{00043\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ minor\ axis\ (width)\ of\ the\ luminaire,\ and\ the\ 0-\/180\ degree\ photometric}}
+\DoxyCodeLine{00044\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ plane\ coinicides\ with\ the\ luminaire's\ vertical\ axis.}}
+\DoxyCodeLine{00045\ \textcolor{comment}{\ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_ies_file_aad491b64ff23f630764f05db028a2f67a9d5ed678fe57bcca610140957afab571}{B}},\ }
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00049\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ Type\ C\ photometry\ is\ normally\ used\ for\ architectural\ and\ roadway}}
+\DoxyCodeLine{00050\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ luminaires.\ The\ polar\ axis\ of\ the\ photometric\ web\ coincides\ with\ the}}
+\DoxyCodeLine{00051\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ vertical\ axis\ of\ the\ luminaire,\ and\ the\ 0-\/180\ degree\ photometric\ plane}}
+\DoxyCodeLine{00052\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ coincides\ with\ the\ luminaire's\ major\ axis\ (length).}}
+\DoxyCodeLine{00053\ \textcolor{comment}{\ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_ies_file_aad491b64ff23f630764f05db028a2f67a0d61f8370cad1d412f80b84d143e1257}{C}}}
+\DoxyCodeLine{00055\ \ \ \ \ \};}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classph_1_1_ies_file}{IesFile}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_alt_path}{Path}}\&\ iesFilePath);}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_ies_file_ae09e4bad3f50fae0dbff6d224081ef50}{load}}();}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \ \ std::string\ \mbox{\hyperlink{classph_1_1_ies_file_a5099f088902831ab421c2b2106b3d9cd}{getFilename}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{comment}{//\ Retrieving\ file\ contents.}}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{comment}{//\ Gets\ the\ type\ of\ this\ IES\ file.}}
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00068\ \ \ \ \ \mbox{\hyperlink{classph_1_1_ies_file_a90f6227147b3673129122672f0d586b5}{EIesFileType}}\ \mbox{\hyperlink{classph_1_1_ies_file_a52972de3dc8d684073a885b3ef08987b}{getIesFileType}}()\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const};}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{comment}{//\ Gets\ the\ test\ report\ number\ and\ laboratory\ for\ the\ IES\ file.}}
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00072\ \ \ \ \ std::string\ \ \mbox{\hyperlink{classph_1_1_ies_file_a537cea65da9d73a78bdb736d1f301232}{getTestInfo}}()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const};}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ \ \ std::string\ \ \mbox{\hyperlink{classph_1_1_ies_file_a9ff00b999a4f5fc5637f28a664ed2e12}{getLuminaireManufacturer}}()\ \ \textcolor{keyword}{const};}
+\DoxyCodeLine{00075\ \ \ \ \ std::string\ \ \mbox{\hyperlink{classph_1_1_ies_file_a7cc3dc4df28a9a89d47adca05bcce553}{getLuminaireCatalogNumber}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00076\ \ \ \ \ std::string\ \ \mbox{\hyperlink{classph_1_1_ies_file_a00abc4f7d214b4959727a53387c3927e}{getLuminaireDescription}}()\ \ \ \textcolor{keyword}{const};}
+\DoxyCodeLine{00077\ \ \ \ \ std::string\ \ \mbox{\hyperlink{classph_1_1_ies_file_a47e6084ee149abda564f2044a3ddecaa}{getLampCatalogNumber}}()\ \ \ \ \ \ \textcolor{keyword}{const};}
+\DoxyCodeLine{00078\ \ \ \ \ std::string\ \ \mbox{\hyperlink{classph_1_1_ies_file_a6ac9b5fc2d5aa7ca063ad73f2fc8f7ec}{getLampDescription}}()\ \ \ \ \ \ \ \ \textcolor{keyword}{const};}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{comment}{//\ Gets\ descriptions\ that\ are\ not\ categorized\ by\ the\ parser.}}
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00082\ \ \ \ \ std::string\ \ \mbox{\hyperlink{classph_1_1_ies_file_ad6482ac5d252f78f41316253ff93a019}{getUncategorizedInfo}}()\ \ \ \ \ \ \textcolor{keyword}{const};}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \ \ \ \ uint32\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_ies_file_aec2aa7c26b8a0223705ef6163543e44e}{getNumLamps}}()\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const};}
+\DoxyCodeLine{00085\ \ \ \ \ real\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_ies_file_ad62db14a2ee068b59cb3cca11e2d6666}{getLumensPerLamp}}()\ \ \ \ \ \ \ \textcolor{keyword}{const};}
+\DoxyCodeLine{00086\ \ \ \ \ real\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_ies_file_ab5c1bc5dc91d58f545b5df7b2ff5029e}{getCandelaMultiplier}}()\ \ \ \textcolor{keyword}{const};}
+\DoxyCodeLine{00087\ \ \ \ \ uint32\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_ies_file_a0e205351104a1de2ebb72d68e92ee60c}{getNumVerticalAngles}}()\ \ \ \textcolor{keyword}{const};}
+\DoxyCodeLine{00088\ \ \ \ \ uint32\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_ies_file_af91d31e620384cb97505a929f28683fd}{getNumHorizontalAngles}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00089\ \ \ \ \ \mbox{\hyperlink{classph_1_1_ies_file_aad491b64ff23f630764f05db028a2f67}{EPhotometricWebType}}\ \mbox{\hyperlink{classph_1_1_ies_file_a0f02ab6bf9f1297d2297949f8116b63f}{getPhotometricWebType}}()\ \ \textcolor{keyword}{const};}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \ \ \ \ std::vector<real>\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_ies_file_a56be3ea3acaa5e84883b683f8188b309}{getVerticalAngles}}()\ \ \ \textcolor{keyword}{const};}
+\DoxyCodeLine{00092\ \ \ \ \ std::vector<real>\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_ies_file_ac88a76a1b077ce726999a3e9f61161e6}{getHorizontalAngles}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{comment}{//\ Candela\ values\ stored\ as\ data[horizontal-\/index][vertical-\/index].}}
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00096\ \ \ \ \ std::vector<std::vector<real>>\ \mbox{\hyperlink{classph_1_1_ies_file_aa3073fbdaca8d3aeaee3b76831531bcf}{getCandelaValues}}()\ \ \ \ \textcolor{keyword}{const};}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00099\ \ \ \ \ \mbox{\hyperlink{classph_1_1_alt_path}{Path}}\ m\_path;}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \ \ \ \ \mbox{\hyperlink{classph_1_1_ies_file_a90f6227147b3673129122672f0d586b5}{EIesFileType}}\ m\_iesFileType;}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{comment}{//\ file\ descriptions\ (labels/keywords\ in\ the\ file)}}
+\DoxyCodeLine{00104\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00105\ \ \ \ \ std::string\ m\_testInfo;}
+\DoxyCodeLine{00106\ \ \ \ \ std::string\ m\_luminaireManufacturer;}
+\DoxyCodeLine{00107\ \ \ \ \ std::string\ m\_luminaireCatalogNumber;}
+\DoxyCodeLine{00108\ \ \ \ \ std::string\ m\_luminaireDescription;}
+\DoxyCodeLine{00109\ \ \ \ \ std::string\ m\_lampCatalogNumber;}
+\DoxyCodeLine{00110\ \ \ \ \ std::string\ m\_lampDescription;}
+\DoxyCodeLine{00111\ \ \ \ \ std::string\ m\_uncategorizedInfo;}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{comment}{//\ type\ of\ tilt\ information}}
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00115\ \ \ \ \ std::string\ m\_tilt;}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{comment}{//\ first\ line\ of\ metadata\ for\ the\ IES\ file\ (metadata\ 1)}}
+\DoxyCodeLine{00118\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00119\ \ \ \ \ uint32\ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_numLamps;}
+\DoxyCodeLine{00120\ \ \ \ \ real\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_lumensPerLamp;}
+\DoxyCodeLine{00121\ \ \ \ \ real\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_candelaMultiplier;}
+\DoxyCodeLine{00122\ \ \ \ \ uint32\ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_numVerticalAngles;}
+\DoxyCodeLine{00123\ \ \ \ \ uint32\ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_numHorizontalAngles;}
+\DoxyCodeLine{00124\ \ \ \ \ \mbox{\hyperlink{classph_1_1_ies_file_aad491b64ff23f630764f05db028a2f67}{EPhotometricWebType}}\ m\_webType;}
+\DoxyCodeLine{00125\ \ \ \ \ real\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_luminaireOpeningArea;}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00127\ \ \ \ \ \textcolor{comment}{//\ second\ line\ of\ metadata\ for\ the\ IES\ file\ (metadata\ 2)}}
+\DoxyCodeLine{00128\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00129\ \ \ \ \ real\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_ballastFactor;}
+\DoxyCodeLine{00130\ \ \ \ \ real\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_ballastLampPhotometricFactor;}
+\DoxyCodeLine{00131\ \ \ \ \ real\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_inputWatts;}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00133\ \ \ \ \ \textcolor{comment}{//\ lighting\ data}}
+\DoxyCodeLine{00134\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00135\ \ \ \ \ std::vector<real>\ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_verticalAngles;}
+\DoxyCodeLine{00136\ \ \ \ \ std::vector<real>\ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_horizontalAngles;}
+\DoxyCodeLine{00137\ \ \ \ \ std::vector<std::vector<real>>\ m\_candelaValues;}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00139\ \ \ \ \ \textcolor{keywordtype}{bool}\ parse(\textcolor{keyword}{const}\ std::vector<char>\&\ data);}
+\DoxyCodeLine{00140\ \ \ \ \ std::size\_t\ parseFileType(\textcolor{keyword}{const}\ std::vector<std::string>\&\ lines,\ std::size\_t\ currentLine);}
+\DoxyCodeLine{00141\ \ \ \ \ std::size\_t\ parseLabelsAndKeywords(\textcolor{keyword}{const}\ std::vector<std::string>\&\ lines,\ std::size\_t\ currentLine);}
+\DoxyCodeLine{00142\ \ \ \ \ std::size\_t\ parseTiltLine(\textcolor{keyword}{const}\ std::vector<std::string>\&\ lines,\ std::size\_t\ currentLine);}
+\DoxyCodeLine{00143\ \ \ \ \ std::size\_t\ parseTiltData(\textcolor{keyword}{const}\ std::vector<std::string>\&\ lines,\ std::size\_t\ currentLine);}
+\DoxyCodeLine{00144\ \ \ \ \ std::size\_t\ parseMetadata1(\textcolor{keyword}{const}\ std::vector<std::string>\&\ lines,\ std::size\_t\ currentLine);}
+\DoxyCodeLine{00145\ \ \ \ \ std::size\_t\ parseMetadata2(\textcolor{keyword}{const}\ std::vector<std::string>\&\ lines,\ std::size\_t\ currentLine);}
+\DoxyCodeLine{00146\ \ \ \ \ std::size\_t\ parseAngles(\textcolor{keyword}{const}\ std::vector<std::string>\&\ lines,\ std::size\_t\ currentLine);}
+\DoxyCodeLine{00147\ \ \ \ \ std::size\_t\ parseCandelaValues(\textcolor{keyword}{const}\ std::vector<std::string>\&\ lines,\ std::size\_t\ currentLine);}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00149\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00150\ \ \ \ \ \textcolor{keyword}{static}\ std::vector<std::string>\ retrieveLines(\textcolor{keyword}{const}\ std::vector<char>\&\ data);}
+\DoxyCodeLine{00151\ \};}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00153\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
 
 \end{DoxyCode}

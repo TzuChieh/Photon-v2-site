@@ -1,11 +1,11 @@
 var concepts =
 [
     [ "ph", "d3/d5c/namespaceph.html", [
-      [ "detail", null, [
+      [ "detail", "d8/d29/namespaceph_1_1detail.html", [
         [ "CPrimitiveMetaGetter", "db/db0/conceptph_1_1detail_1_1_c_primitive_meta_getter.html", null ],
         [ "CPrimitiveGetter", "d5/d7c/conceptph_1_1detail_1_1_c_primitive_getter.html", null ]
       ] ],
-      [ "frame_detail", null, [
+      [ "frame_detail", "d1/dc8/namespaceph_1_1frame__detail.html", [
         [ "CIsGetPixelOp", "dd/d09/conceptph_1_1frame__detail_1_1_c_is_get_pixel_op.html", null ],
         [ "CIsGetPixelWithCoordsOp", "db/d79/conceptph_1_1frame__detail_1_1_c_is_get_pixel_with_coords_op.html", null ],
         [ "CIsSetPixelOp", "df/d39/conceptph_1_1frame__detail_1_1_c_is_set_pixel_op.html", null ],
@@ -13,12 +13,12 @@ var concepts =
         [ "CIsGetAndSetPixelOp", "dd/d03/conceptph_1_1frame__detail_1_1_c_is_get_and_set_pixel_op.html", null ],
         [ "CIsGetAndSetPixelWithCoordsOp", "d4/d52/conceptph_1_1frame__detail_1_1_c_is_get_and_set_pixel_with_coords_op.html", null ]
       ] ],
-      [ "function_detail", null, [
+      [ "function_detail", "dc/d2b/namespaceph_1_1function__detail.html", [
         [ "CFreeFunctionForm", "d2/d9a/conceptph_1_1function__detail_1_1_c_free_function_form.html", null ],
         [ "CConstCallableMethodForm", "da/d31/conceptph_1_1function__detail_1_1_c_const_callable_method_form.html", null ],
         [ "CNonConstCallableMethodForm", "db/d90/conceptph_1_1function__detail_1_1_c_non_const_callable_method_form.html", null ],
         [ "CEmptyFunctorForm", "d0/d53/conceptph_1_1function__detail_1_1_c_empty_functor_form.html", null ],
-        [ "CNonEmptyTrivialFunctorForm", "dd/d76/conceptph_1_1function__detail_1_1_c_non_empty_trivial_functor_form.html", null ]
+        [ "CNonEmptyFunctorForm", "de/d83/conceptph_1_1function__detail_1_1_c_non_empty_functor_form.html", null ]
       ] ],
       [ "math", "d7/dac/namespaceph_1_1math.html", [
         [ "CItemSegmentIntersectionTesterVanilla", "d4/dca/conceptph_1_1math_1_1_c_item_segment_intersection_tester_vanilla.html", null ],
@@ -36,10 +36,7 @@ var concepts =
         [ "CColorSpaceDefinition", "d1/d4b/conceptph_1_1math_1_1_c_color_space_definition.html", null ],
         [ "CURBG", "d1/d82/conceptph_1_1math_1_1_c_u_r_b_g.html", null ]
       ] ],
-      [ "string_utils", null, [
-        [ "CHasToString", "d6/def/conceptph_1_1string__utils_1_1_c_has_to_string.html", null ]
-      ] ],
-      [ "texfunc", null, [
+      [ "texfunc", "da/de9/namespaceph_1_1texfunc.html", [
         [ "CBinaryOperator", "d4/d2a/conceptph_1_1texfunc_1_1_c_binary_operator.html", null ],
         [ "CUnaryOperator", "db/d00/conceptph_1_1texfunc_1_1_c_unary_operator.html", null ]
       ] ],
@@ -51,7 +48,6 @@ var concepts =
       [ "CHasSdlEnumDefinition", "da/d65/conceptph_1_1_c_has_sdl_enum_definition.html", null ],
       [ "CSdlInstance", "de/df7/conceptph_1_1_c_sdl_instance.html", null ],
       [ "CSdlStructSupportsInitToDefault", "d7/d4d/conceptph_1_1_c_sdl_struct_supports_init_to_default.html", null ],
-      [ "CPhotonException", "df/d54/conceptph_1_1_c_photon_exception.html", null ],
       [ "CCanAdd", "da/da8/conceptph_1_1_c_can_add.html", null ],
       [ "CCanMultiply", "de/dd8/conceptph_1_1_c_can_multiply.html", null ],
       [ "CSubscriptable", "d9/d29/conceptph_1_1_c_subscriptable.html", null ],

@@ -1,143 +1,144 @@
 \doxysection{TSdl\+General\+Enum.\+h}
 \hypertarget{_t_sdl_general_enum_8h_source}{}\label{_t_sdl_general_enum_8h_source}\index{Source/SDL/Introspect/TSdlGeneralEnum.h@{Source/SDL/Introspect/TSdlGeneralEnum.h}}
-
+\mbox{\hyperlink{_t_sdl_general_enum_8h}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
 \DoxyCodeLine{00002\ }
-\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}SDL/Introspect/SdlEnum.h"{}}}
-\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Utility/TArrayAsVector.h"{}}}
-\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}Common/assertion.h"{}}}
-\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}SDL/sdl\_exceptions.h"{}}}
-\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}Utility/utility.h"{}}}
-\DoxyCodeLine{00008\ }
-\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <type\_traits>}}
-\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <string>}}
-\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <string\_view>}}
-\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <cstddef>}}
-\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <utility>}}
-\DoxyCodeLine{00014\ }
-\DoxyCodeLine{00015\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
-\DoxyCodeLine{00016\ \{}
-\DoxyCodeLine{00017\ }
-\DoxyCodeLine{00023\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ InEnumType,\ std::\textcolor{keywordtype}{size\_t}\ MAX\_ENTRIES\ =\ 64>}
-\DoxyCodeLine{00024\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_t_sdl_general_enum}{TSdlGeneralEnum}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classph_1_1_sdl_enum}{SdlEnum}}}
-\DoxyCodeLine{00025\ \{}
-\DoxyCodeLine{00026\ \ \ \ \ \textcolor{comment}{//\ TODO:\ how\ the\ mapping\ is\ done\ should\ be\ a\ template\ param}}
-\DoxyCodeLine{00027\ \ \ \ \ \textcolor{comment}{//\ TODO:\ can\ have\ other\ kinds\ of\ enum\ such\ as\ TSdlFlagEnum}}
-\DoxyCodeLine{00028\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{using\ }EnumType\ =\ InEnumType;}
-\DoxyCodeLine{00030\ }
-\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_enum\_v<EnumType>,}
-\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}EnumType\ must\ be\ a\ C++\ enum.\ Currently\ it\ is\ not."{}});}
-\DoxyCodeLine{00033\ }
-\DoxyCodeLine{00034\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classph_1_1_t_sdl_general_enum}{TSdlGeneralEnum}}(std::string\ name)\ :}
-\DoxyCodeLine{00036\ }
-\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_sdl_enum}{SdlEnum}}(std::move(name)),}
-\DoxyCodeLine{00038\ }
-\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ m\_nameBuffer(),}
-\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ m\_entries()}
-\DoxyCodeLine{00041\ \ \ \ \ \{\}}
-\DoxyCodeLine{00042\ }
-\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{structph_1_1_sdl_enum_1_1_t_entry}{Entry}}\ getEntry(\textcolor{keyword}{const}\ std::size\_t\ entryIndex)\textcolor{keyword}{\ const\ override}}
-\DoxyCodeLine{00044\ \textcolor{keyword}{\ \ \ \ }\{}
-\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }EntryValueType\ =\ \textcolor{keyword}{decltype}(std::declval<Entry>().value);}
-\DoxyCodeLine{00046\ }
-\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structph_1_1_sdl_enum_1_1_t_entry}{TEntry<EnumType>}}\ entry\ =\ getTypedEntry(entryIndex);}
-\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \{entry.name,\ \textcolor{keyword}{static\_cast<}EntryValueType\textcolor{keyword}{>}(entry.value)\};}
-\DoxyCodeLine{00049\ \ \ \ \ \}}
-\DoxyCodeLine{00050\ }
-\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keyword}{inline}\ std::size\_t\ numEntries()\textcolor{keyword}{\ const\ override}}
-\DoxyCodeLine{00052\ \textcolor{keyword}{\ \ \ \ }\{}
-\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_entries.size();}
-\DoxyCodeLine{00054\ \ \ \ \ \}}
-\DoxyCodeLine{00055\ }
-\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_t_sdl_general_enum}{TSdlGeneralEnum}}\&\ addEntry(}
-\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ EnumType\ \ \ \ \ \ \ \ \ enumValue,\ }
-\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\_view\ valueName,}
-\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ std::string\ \ \ \ \ \ \ \ \ \ \ \ description\ =\ \textcolor{stringliteral}{"{}"{}})}
-\DoxyCodeLine{00060\ \ \ \ \ \{}
-\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ PH\_ASSERT\_MSG(!m\_entries.isFull(),}
-\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}No\ space\ for\ more\ entries;\ increase\ MAX\_ENTRIES\ parameter\ for\ this\ enum."{}});}
-\DoxyCodeLine{00063\ }
-\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ BasicEnumEntry\ entry;}
-\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ entry.nameIndex\ =\ m\_nameBuffer.size();}
-\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ entry.nameSize\ \ =\ valueName.size();}
-\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ entry.value\ \ \ \ \ =\ enumValue;}
-\DoxyCodeLine{00068\ }
-\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ m\_nameBuffer.append(valueName);}
-\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ PH\_ASSERT\_EQ(entry.nameIndex\ +\ entry.nameSize,\ m\_nameBuffer.size());}
-\DoxyCodeLine{00071\ }
-\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ entryIndex\ =\ m\_entries.size();}
-\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ m\_entries.pushBack(entry);}
-\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ setEntryDescription(entryIndex,\ std::move(description));}
-\DoxyCodeLine{00075\ }
-\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
-\DoxyCodeLine{00077\ \ \ \ \ \}}
-\DoxyCodeLine{00078\ }
-\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{structph_1_1_sdl_enum_1_1_t_entry}{TEntry<EnumType>}}\ getTypedEntry(\textcolor{keyword}{const}\ std::size\_t\ entryIndex)\textcolor{keyword}{\ const}}
-\DoxyCodeLine{00080\ \textcolor{keyword}{\ \ \ \ }\{}
-\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ BasicEnumEntry\&\ basicEntry\ =\ m\_entries[entryIndex];}
-\DoxyCodeLine{00082\ }
-\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\_view\ entryName(}
-\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ m\_nameBuffer.data()\ +\ basicEntry.nameIndex,}
-\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ basicEntry.nameSize);}
-\DoxyCodeLine{00086\ }
-\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \{entryName,\ basicEntry.value\};}
-\DoxyCodeLine{00088\ \ \ \ \ \}}
-\DoxyCodeLine{00089\ }
-\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{structph_1_1_sdl_enum_1_1_t_entry}{TEntry<EnumType>}}\ \mbox{\hyperlink{classph_1_1_t_sdl_general_enum_aee950db12882c299081d419573508aff}{getTypedEntry}}(\textcolor{keyword}{const}\ std::string\_view\ entryName)\textcolor{keyword}{\ const}}
-\DoxyCodeLine{00096\ \textcolor{keyword}{\ \ \ \ }\{}
-\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Brute-\/force\ search\ for\ matched\ enum\ entry\ name}}
-\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ entryIdx\ =\ 0;\ entryIdx\ <\ m\_entries.size();\ ++entryIdx)}
-\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structph_1_1_sdl_enum_1_1_t_entry}{TEntry<EnumType>}}\ entry\ =\ getTypedEntry(entryIdx);}
-\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(entry.name\ ==\ entryName)}
-\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ entry;}
-\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00106\ }
-\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \mbox{\hyperlink{classph_1_1_sdl_load_error}{SdlLoadError}}(\textcolor{stringliteral}{"{}use\ of\ invalid\ enum\ entry\ name\ <"{}}\ +\ std::string(entryName)\ +\ \textcolor{stringliteral}{"{}>"{}});}
-\DoxyCodeLine{00108\ \ \ \ \ \}}
-\DoxyCodeLine{00109\ }
-\DoxyCodeLine{00115\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{structph_1_1_sdl_enum_1_1_t_entry}{TEntry<EnumType>}}\ \mbox{\hyperlink{classph_1_1_t_sdl_general_enum_addf21463214a80777e6e8582e7988f00}{getTypedEntry}}(\textcolor{keyword}{const}\ EnumType\ enumValue)\textcolor{keyword}{\ const}}
-\DoxyCodeLine{00116\ \textcolor{keyword}{\ \ \ \ }\{}
-\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Brute-\/force\ search\ for\ matched\ enum\ entry\ value}}
-\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ entryIdx\ =\ 0;\ entryIdx\ <\ m\_entries.size();\ ++entryIdx)}
-\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structph_1_1_sdl_enum_1_1_t_entry}{TEntry<EnumType>}}\ entry\ =\ getTypedEntry(entryIdx);}
-\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(entry.value\ ==\ enumValue)}
-\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ entry;}
-\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00126\ }
-\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \mbox{\hyperlink{classph_1_1_sdl_load_error}{SdlLoadError}}(\textcolor{stringliteral}{"{}use\ of\ invalid\ enum\ value:\ "{}}\ +\ enum\_to\_string(enumValue));}
-\DoxyCodeLine{00128\ \ \ \ \ \}}
-\DoxyCodeLine{00129\ }
-\DoxyCodeLine{00130\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_t_sdl_general_enum}{TSdlGeneralEnum}}\&\ description(std::string\ descriptionStr)}
-\DoxyCodeLine{00131\ \ \ \ \ \{}
-\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ setDescription(std::move(descriptionStr));}
-\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
-\DoxyCodeLine{00134\ \ \ \ \ \}}
-\DoxyCodeLine{00135\ }
-\DoxyCodeLine{00136\ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00137\ \ \ \ \ \textcolor{keyword}{struct\ }BasicEnumEntry}
-\DoxyCodeLine{00138\ \ \ \ \ \{}
-\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ std::size\_t\ nameIndex;}
-\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ std::size\_t\ nameSize;}
-\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ EnumType\ \ \ \ value;}
-\DoxyCodeLine{00142\ }
-\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ BasicEnumEntry()\ :}
-\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ nameIndex(0),\ nameSize(0),\ value(static\_cast<EnumType>(0))}
-\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \{\}}
-\DoxyCodeLine{00146\ \ \ \ \ \};}
-\DoxyCodeLine{00147\ }
-\DoxyCodeLine{00148\ \ \ \ \ std::string\ m\_nameBuffer;}
-\DoxyCodeLine{00149\ \ \ \ \ TArrayAsVector<BasicEnumEntry,\ MAX\_ENTRIES>\ m\_entries;}
-\DoxyCodeLine{00150\ \};}
-\DoxyCodeLine{00151\ }
-\DoxyCodeLine{00152\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_sdl_enum_8h}{SDL/Introspect/SdlEnum.h}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_array_as_vector_8h}{Utility/TArrayAsVector.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{sdl__exceptions_8h}{SDL/sdl\_exceptions.h}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{utility_8h}{Utility/utility.h}}"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <Common/assertion.h>}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <type\_traits>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <string\_view>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <cstddef>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00017\ \{}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00024\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ InEnumType,\ std::\textcolor{keywordtype}{size\_t}\ MAX\_ENTRIES\ =\ 64>}
+\DoxyCodeLine{00025\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_t_sdl_general_enum}{TSdlGeneralEnum}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classph_1_1_sdl_enum}{SdlEnum}}}
+\DoxyCodeLine{00026\ \{}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{comment}{//\ TODO:\ how\ the\ mapping\ is\ done\ should\ be\ a\ template\ param}}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{comment}{//\ TODO:\ can\ have\ other\ kinds\ of\ enum\ such\ as\ TSdlFlagEnum}}
+\DoxyCodeLine{00029\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classph_1_1_t_sdl_general_enum_a714d3895935a01b657ebeb63c08a9404}{EnumType}}\ =\ InEnumType;}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_enum\_v<EnumType>,}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}EnumType\ must\ be\ a\ C++\ enum.\ Currently\ it\ is\ not."{}});}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classph_1_1_t_sdl_general_enum_a4fcc78641003284c6cb86964361f1340}{TSdlGeneralEnum}}(std::string\ name)\ :}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_sdl_enum}{SdlEnum}}(\mbox{\hyperlink{namespacestd}{std}}::move(name)),}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ m\_nameBuffer(),}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ m\_entries()}
+\DoxyCodeLine{00042\ \ \ \ \ \{\}}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{structph_1_1_sdl_enum_1_1_t_entry}{Entry}}\ \mbox{\hyperlink{classph_1_1_t_sdl_general_enum_ab101bc00a421bdfde5daed8059e8fc3c}{getEntry}}(\textcolor{keyword}{const}\ std::size\_t\ entryIndex)\textcolor{keyword}{\ const\ override}}
+\DoxyCodeLine{00045\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }EntryValueType\ =\ \textcolor{keyword}{decltype}(std::declval<Entry>().value);}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structph_1_1_sdl_enum_1_1_t_entry}{TEntry<EnumType>}}\ entry\ =\ \mbox{\hyperlink{classph_1_1_t_sdl_general_enum_a68e1d861b93fd28d8134559b21b14c37}{getTypedEntry}}(entryIndex);}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \{entry.\mbox{\hyperlink{structph_1_1_sdl_enum_1_1_t_entry_ae5f9af021146bc92ee750bf22684671c}{name}},\ \textcolor{keyword}{static\_cast<}EntryValueType\textcolor{keyword}{>}(entry.\mbox{\hyperlink{structph_1_1_sdl_enum_1_1_t_entry_a41b26b019a97fbdd6b317601c98919fa}{value}})\};}
+\DoxyCodeLine{00050\ \ \ \ \ \}}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keyword}{inline}\ std::size\_t\ \mbox{\hyperlink{classph_1_1_t_sdl_general_enum_ac5376c1b963a76abd60bcc5a30ab0e69}{numEntries}}()\textcolor{keyword}{\ const\ override}}
+\DoxyCodeLine{00053\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_entries.size();}
+\DoxyCodeLine{00055\ \ \ \ \ \}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_t_sdl_general_enum}{TSdlGeneralEnum}}\&\ \mbox{\hyperlink{classph_1_1_t_sdl_general_enum_a88fdafb3ffa9afe6e6a95e0f65db3132}{addEntry}}(}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_t_sdl_general_enum_a714d3895935a01b657ebeb63c08a9404}{EnumType}}\ \ \ \ \ \ \ \ \ enumValue,\ }
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\_view\ valueName,}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ std::string\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_sdl_general_enum_a222451544ae5b11e3634e89492017fba}{description}}\ =\ \textcolor{stringliteral}{"{}"{}})}
+\DoxyCodeLine{00061\ \ \ \ \ \{}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ PH\_ASSERT\_MSG(!m\_entries.isFull(),}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}No\ space\ for\ more\ entries;\ increase\ MAX\_ENTRIES\ parameter\ for\ this\ enum."{}});}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ BasicEnumEntry\ entry;}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ entry.nameIndex\ =\ m\_nameBuffer.size();}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ entry.nameSize\ \ =\ valueName.size();}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ entry.value\ \ \ \ \ =\ enumValue;}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ m\_nameBuffer.append(valueName);}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ PH\_ASSERT\_EQ(entry.nameIndex\ +\ entry.nameSize,\ m\_nameBuffer.size());}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ entryIndex\ =\ m\_entries.size();}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ m\_entries.pushBack(entry);}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_sdl_enum_ac1ecb358ee5919da013529790c1d26b8}{setEntryDescription}}(entryIndex,\ std::move(\mbox{\hyperlink{classph_1_1_t_sdl_general_enum_a222451544ae5b11e3634e89492017fba}{description}}));}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00078\ \ \ \ \ \}}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{structph_1_1_sdl_enum_1_1_t_entry}{TEntry<EnumType>}}\ \mbox{\hyperlink{classph_1_1_t_sdl_general_enum_a68e1d861b93fd28d8134559b21b14c37}{getTypedEntry}}(\textcolor{keyword}{const}\ std::size\_t\ entryIndex)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00081\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ BasicEnumEntry\&\ basicEntry\ =\ m\_entries[entryIndex];}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\_view\ entryName(}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ m\_nameBuffer.data()\ +\ basicEntry.nameIndex,}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ basicEntry.nameSize);}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \{entryName,\ basicEntry.value\};}
+\DoxyCodeLine{00089\ \ \ \ \ \}}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{structph_1_1_sdl_enum_1_1_t_entry}{TEntry<EnumType>}}\ \mbox{\hyperlink{classph_1_1_t_sdl_general_enum_aee950db12882c299081d419573508aff}{getTypedEntry}}(\textcolor{keyword}{const}\ std::string\_view\ entryName)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00097\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Brute-\/force\ search\ for\ matched\ enum\ entry\ name}}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ entryIdx\ =\ 0;\ entryIdx\ <\ m\_entries.size();\ ++entryIdx)}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structph_1_1_sdl_enum_1_1_t_entry}{TEntry<EnumType>}}\ entry\ =\ \mbox{\hyperlink{classph_1_1_t_sdl_general_enum_a68e1d861b93fd28d8134559b21b14c37}{getTypedEntry}}(entryIdx);}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(entry.\mbox{\hyperlink{structph_1_1_sdl_enum_1_1_t_entry_ae5f9af021146bc92ee750bf22684671c}{name}}\ ==\ entryName)}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ entry;}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \mbox{\hyperlink{classph_1_1_sdl_load_error}{SdlLoadError}}(\textcolor{stringliteral}{"{}use\ of\ invalid\ enum\ entry\ name\ <"{}}\ +\ std::string(entryName)\ +\ \textcolor{stringliteral}{"{}>"{}});}
+\DoxyCodeLine{00109\ \ \ \ \ \}}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00116\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{structph_1_1_sdl_enum_1_1_t_entry}{TEntry<EnumType>}}\ \mbox{\hyperlink{classph_1_1_t_sdl_general_enum_addf21463214a80777e6e8582e7988f00}{getTypedEntry}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_t_sdl_general_enum_a714d3895935a01b657ebeb63c08a9404}{EnumType}}\ enumValue)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00117\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Brute-\/force\ search\ for\ matched\ enum\ entry\ value}}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ entryIdx\ =\ 0;\ entryIdx\ <\ m\_entries.size();\ ++entryIdx)}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structph_1_1_sdl_enum_1_1_t_entry}{TEntry<EnumType>}}\ entry\ =\ \mbox{\hyperlink{classph_1_1_t_sdl_general_enum_a68e1d861b93fd28d8134559b21b14c37}{getTypedEntry}}(entryIdx);}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(entry.\mbox{\hyperlink{structph_1_1_sdl_enum_1_1_t_entry_a41b26b019a97fbdd6b317601c98919fa}{value}}\ ==\ enumValue)}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ entry;}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \mbox{\hyperlink{classph_1_1_sdl_load_error}{SdlLoadError}}(\textcolor{stringliteral}{"{}use\ of\ invalid\ enum\ value:\ "{}}\ +\ \mbox{\hyperlink{namespaceph_a2e8e601f93efff74360a027ba59d4232}{enum\_to\_string}}(enumValue));}
+\DoxyCodeLine{00129\ \ \ \ \ \}}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_t_sdl_general_enum}{TSdlGeneralEnum}}\&\ \mbox{\hyperlink{classph_1_1_t_sdl_general_enum_a222451544ae5b11e3634e89492017fba}{description}}(std::string\ descriptionStr)}
+\DoxyCodeLine{00132\ \ \ \ \ \{}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_sdl_enum_a9c1ecf1eb5d0726e1b81dd69e37b9c8d}{setDescription}}(std::move(descriptionStr));}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00135\ \ \ \ \ \}}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00137\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00138\ \ \ \ \ \textcolor{keyword}{struct\ }BasicEnumEntry}
+\DoxyCodeLine{00139\ \ \ \ \ \{}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ std::size\_t\ nameIndex;}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ std::size\_t\ nameSize;}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_sdl_general_enum_a714d3895935a01b657ebeb63c08a9404}{EnumType}}\ \ \ \ value;}
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ BasicEnumEntry()\ :}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ nameIndex(0),\ nameSize(0),\ value(static\_cast<\mbox{\hyperlink{classph_1_1_t_sdl_general_enum_a714d3895935a01b657ebeb63c08a9404}{EnumType}}>(0))}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \{\}}
+\DoxyCodeLine{00147\ \ \ \ \ \};}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00149\ \ \ \ \ std::string\ m\_nameBuffer;}
+\DoxyCodeLine{00150\ \ \ \ \ TArrayAsVector<BasicEnumEntry,\ MAX\_ENTRIES>\ m\_entries;}
+\DoxyCodeLine{00151\ \};}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00153\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
 
 \end{DoxyCode}

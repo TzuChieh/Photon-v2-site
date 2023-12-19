@@ -1,220 +1,223 @@
 \doxysection{TView\+Path\+Tracing\+Work.\+ipp}
 \hypertarget{_t_view_path_tracing_work_8ipp_source}{}\label{_t_view_path_tracing_work_8ipp_source}\index{Source/Core/Renderer/PM/TViewPathTracingWork.ipp@{Source/Core/Renderer/PM/TViewPathTracingWork.ipp}}
-
+\mbox{\hyperlink{_t_view_path_tracing_work_8ipp}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
 \DoxyCodeLine{00002\ }
-\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Core/Renderer/PM/TViewPathTracingWork.h"{}}}
-\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}World/Scene.h"{}}}
-\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}Core/Receiver/Receiver.h"{}}}
-\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}Core/SampleGenerator/SampleGenerator.h"{}}}
-\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}Common/assertion.h"{}}}
-\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}Core/Ray.h"{}}}
-\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}Core/HitDetail.h"{}}}
-\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}Core/HitProbe.h"{}}}
-\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}Core/SurfaceHit.h"{}}}
-\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}Core/Intersectable/Primitive.h"{}}}
-\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}Core/Intersectable/PrimitiveMetadata.h"{}}}
-\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ "{}Core/SurfaceBehavior/SurfaceBehavior.h"{}}}
-\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ "{}Core/SurfaceBehavior/SurfaceOptics.h"{}}}
-\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ "{}Core/LTABuildingBlock/SurfaceTracer.h"{}}}
-\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ "{}Core/LTABuildingBlock/RussianRoulette.h"{}}}
-\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ "{}Math/Geometry/TAABB2D.h"{}}}
-\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ "{}Core/SurfaceBehavior/BsdfQueryContext.h"{}}}
-\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ "{}Core/SurfaceBehavior/BsdfSampleQuery.h"{}}}
-\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}Math/Random/sample.h"{}}}
-\DoxyCodeLine{00022\ }
-\DoxyCodeLine{00023\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
-\DoxyCodeLine{00024\ \{}
-\DoxyCodeLine{00025\ }
-\DoxyCodeLine{00026\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ ViewPathHandler>}
-\DoxyCodeLine{00027\ \textcolor{keyword}{inline}\ TViewPathTracingWork<ViewPathHandler>::TViewPathTracingWork(}
-\DoxyCodeLine{00028\ }
-\DoxyCodeLine{00029\ \ \ \ \ ViewPathHandler*\ \textcolor{keyword}{const}\ handler,}
-\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{const}\ Scene*\ \textcolor{keyword}{const}\ scene,}
-\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{const}\ Receiver*\ \textcolor{keyword}{const}\ receiver,}
-\DoxyCodeLine{00032\ \ \ \ \ SampleGenerator*\ sampleGenerator,}
-\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keyword}{const}\ Region\&\ rasterRegion)\ :}
-\DoxyCodeLine{00034\ }
-\DoxyCodeLine{00035\ \ \ \ \ m\_handler(handler),}
-\DoxyCodeLine{00036\ \ \ \ \ m\_scene(scene),}
-\DoxyCodeLine{00037\ \ \ \ \ m\_receiver(receiver),}
-\DoxyCodeLine{00038\ \ \ \ \ m\_sampleGenerator(sampleGenerator),}
-\DoxyCodeLine{00039\ \ \ \ \ m\_rasterRegion(rasterRegion)}
-\DoxyCodeLine{00040\ \{\}}
-\DoxyCodeLine{00041\ }
-\DoxyCodeLine{00042\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ ViewPathHandler>}
-\DoxyCodeLine{00043\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ TViewPathTracingWork<ViewPathHandler>::doWork()}
-\DoxyCodeLine{00044\ \{}
-\DoxyCodeLine{00045\ \ \ \ \ PH\_ASSERT(m\_handler);}
-\DoxyCodeLine{00046\ }
-\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ rasterSampleHandle\ =\ m\_sampleGenerator-\/>declareStageND(}
-\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ 2,}
-\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ m\_rasterRegion.getArea(),}
-\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \{static\_cast<std::size\_t>(m\_rasterRegion.getWidth()),\ static\_cast<std::size\_t>(m\_rasterRegion.getHeight())\});}
-\DoxyCodeLine{00051\ }
-\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ raySampleHandle\ =\ m\_sampleGenerator-\/>declareStageND(2,\ m\_rasterRegion.getArea());}
-\DoxyCodeLine{00053\ }
-\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keyword}{const}\ math::TAABB2D<float64>\ rRegion(m\_rasterRegion);}
-\DoxyCodeLine{00055\ }
-\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordflow}{while}(m\_sampleGenerator-\/>prepareSampleBatch())}
-\DoxyCodeLine{00057\ \ \ \ \ \{}
-\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ rasterSamples\ =\ m\_sampleGenerator-\/>getSamplesND(rasterSampleHandle);}
-\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ raySamples\ =\ m\_sampleGenerator-\/>getSamplesND(raySampleHandle);}
-\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ i\ =\ 0;\ i\ <\ rasterSamples.numSamples();\ ++i)}
-\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ TODO:\ use\ TArithmeticArray\ directly}}
-\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ rasterCoord\ =\ rRegion.sampleToSurface(math::sample\_cast<float64>(rasterSamples.template\ get<2>(i)));}
-\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ SampleFlow\ sampleFlow\ =\ raySamples.readSampleAsFlow();}
-\DoxyCodeLine{00066\ }
-\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ Ray\ tracingRay;}
-\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ quantityWeight\ =\ m\_receiver-\/>receiveRay(rasterCoord,\ \&tracingRay);}
-\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ tracingRay.reverse();}
-\DoxyCodeLine{00070\ }
-\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ math::Spectrum\ pathThroughput(quantityWeight);}
-\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!m\_handler-\/>onReceiverSampleStart(rasterCoord,\ pathThroughput))}
-\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_handler-\/>onReceiverSampleEnd();}
-\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
-\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00077\ }
-\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ traceViewPath(}
-\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tracingRay,\ }
-\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pathThroughput,\ }
-\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0,}
-\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sampleFlow);}
-\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ m\_handler-\/>onReceiverSampleEnd();}
-\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \}\textcolor{comment}{//\ end\ for\ single\ sample}}
-\DoxyCodeLine{00086\ }
-\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ m\_handler-\/>onSampleBatchFinished();}
-\DoxyCodeLine{00088\ \ \ \ \ \}\textcolor{comment}{//\ end\ while\ single\ sample\ batch}}
-\DoxyCodeLine{00089\ \}}
-\DoxyCodeLine{00090\ }
-\DoxyCodeLine{00091\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ ViewPathHandler>}
-\DoxyCodeLine{00092\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ TViewPathTracingWork<ViewPathHandler>::traceViewPath(}
-\DoxyCodeLine{00093\ \ \ \ \ Ray\ \ \ \ \ \ \ \ \ \ \ \ tracingRay,}
-\DoxyCodeLine{00094\ \ \ \ \ math::Spectrum\ pathThroughput,}
-\DoxyCodeLine{00095\ \ \ \ \ std::size\_t\ \ \ \ pathLength,}
-\DoxyCodeLine{00096\ \ \ \ \ SampleFlow\&\ \ \ \ sampleFlow)}
-\DoxyCodeLine{00097\ \{\ \ \ }
-\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keyword}{const}\ SurfaceTracer\ surfaceTracer(m\_scene);}
-\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keywordflow}{while}(\textcolor{keyword}{true})}
-\DoxyCodeLine{00100\ \ \ \ \ \{}
-\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ SurfaceHit\ surfaceHit;}
-\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!surfaceTracer.traceNextSurface(tracingRay,\ BsdfQueryContext().sidedness,\ \&surfaceHit))}
-\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
-\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00106\ }
-\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ ++pathLength;}
-\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ ViewPathTracingPolicy\&\ policy\ =\ m\_handler-\/>onPathHitSurface(pathLength,\ surfaceHit,\ pathThroughput);}
-\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(policy.isKilled())}
-\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
-\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00113\ }
-\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ FIXME:\ reversed\ then\ assigned\ again\ later\ seems\ to\ be\ dangerous,\ state\ is\ unclear}}
-\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ tracingRay.reverse();}
-\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ math::Vector3R\ V\ =\ tracingRay.getDirection();}
-\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ math::Vector3R\ N\ =\ surfaceHit.getShadingNormal();}
-\DoxyCodeLine{00118\ }
-\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(policy.getSampleMode()\ ==\ EViewPathSampleMode::SINGLE\_PATH)}
-\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ BsdfSampleQuery\ bsdfSample(BsdfQueryContext(policy.getTargetElemental(),\ ETransport::RADIANCE,\ ESidednessPolicy::STRICT));}
-\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ bsdfSample.inputs.set(surfaceHit,\ V);}
-\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ Ray\ sampledRay;}
-\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!surfaceTracer.doBsdfSample(bsdfSample,\ sampleFlow,\ \&sampledRay))}
-\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
-\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00128\ }
-\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ pathThroughput.mulLocal(bsdfSample.outputs.pdfAppliedBsdf);}
-\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ pathThroughput.mulLocal(N.absDot(bsdfSample.outputs.L));}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_view_path_tracing_work_8h}{Core/Renderer/PM/TViewPathTracingWork.h}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_scene_8h}{World/Scene.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_receiver_8h}{Core/Receiver/Receiver.h}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_sample_generator_8h}{Core/SampleGenerator/SampleGenerator.h}}"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_ray_8h}{Core/Ray.h}}"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_hit_detail_8h}{Core/HitDetail.h}}"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_hit_probe_8h}{Core/HitProbe.h}}"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_surface_hit_8h}{Core/SurfaceHit.h}}"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_primitive_8h}{Core/Intersectable/Primitive.h}}"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_primitive_metadata_8h}{Core/Intersectable/PrimitiveMetadata.h}}"{}}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_surface_behavior_8h}{Core/SurfaceBehavior/SurfaceBehavior.h}}"{}}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_surface_optics_8h}{Core/SurfaceBehavior/SurfaceOptics.h}}"{}}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_surface_tracer_8h}{Core/LTABuildingBlock/SurfaceTracer.h}}"{}}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_russian_roulette_8h}{Core/LTABuildingBlock/RussianRoulette.h}}"{}}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_a_a_b_b2_d_8h}{Math/Geometry/TAABB2D.h}}"{}}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_bsdf_query_context_8h}{Core/SurfaceBehavior/BsdfQueryContext.h}}"{}}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_bsdf_sample_query_8h}{Core/SurfaceBehavior/BsdfSampleQuery.h}}"{}}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_math_2_random_2_sample_8h}{Math/Random/sample.h}}"{}}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ <Common/assertion.h>}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ <Common/profiling.h>}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00026\ \{}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ ViewPathHandler>}
+\DoxyCodeLine{00029\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_t_view_path_tracing_work_a289607de844c6d57d244a8acf178aa6b}{TViewPathTracingWork<ViewPathHandler>::TViewPathTracingWork}}(}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \ \ ViewPathHandler*\ \textcolor{keyword}{const}\ handler,}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_scene}{Scene}}*\ \textcolor{keyword}{const}\ scene,}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_receiver}{Receiver}}*\ \textcolor{keyword}{const}\ receiver,}
+\DoxyCodeLine{00034\ \ \ \ \ \mbox{\hyperlink{classph_1_1_sample_generator}{SampleGenerator}}*\ sampleGenerator,}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d}{Region}}\&\ rasterRegion)\ :}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \ \ m\_handler(handler),}
+\DoxyCodeLine{00038\ \ \ \ \ m\_scene(scene),}
+\DoxyCodeLine{00039\ \ \ \ \ m\_receiver(receiver),}
+\DoxyCodeLine{00040\ \ \ \ \ m\_sampleGenerator(sampleGenerator),}
+\DoxyCodeLine{00041\ \ \ \ \ m\_rasterRegion(rasterRegion)}
+\DoxyCodeLine{00042\ \{\}}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ ViewPathHandler>}
+\DoxyCodeLine{00045\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_view_path_tracing_work}{TViewPathTracingWork<ViewPathHandler>::doWork}}()}
+\DoxyCodeLine{00046\ \{}
+\DoxyCodeLine{00047\ \ \ \ \ PH\_PROFILE\_SCOPE();}
+\DoxyCodeLine{00048\ \ \ \ \ PH\_ASSERT(m\_handler);}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ rasterSampleHandle\ =\ m\_sampleGenerator-\/>declareStageND(}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ 2,}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ m\_rasterRegion.getArea(),}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \{static\_cast<std::size\_t>(m\_rasterRegion.getWidth()),\ static\_cast<std::size\_t>(m\_rasterRegion.getHeight())\});}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ raySampleHandle\ =\ m\_sampleGenerator-\/>declareStageND(2,\ m\_rasterRegion.getArea());}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d}{math::TAABB2D<float64>}}\ rRegion(m\_rasterRegion);}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordflow}{while}(m\_sampleGenerator-\/>prepareSampleBatch())}
+\DoxyCodeLine{00060\ \ \ \ \ \{}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ rasterSamples\ =\ m\_sampleGenerator-\/>getSamplesND(rasterSampleHandle);}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ raySamples\ =\ m\_sampleGenerator-\/>getSamplesND(raySampleHandle);}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ i\ =\ 0;\ i\ <\ rasterSamples.numSamples();\ ++i)}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ TODO:\ use\ TArithmeticArray\ directly}}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ rasterCoord\ =\ rRegion.sampleToSurface(math::sample\_cast<float64>(rasterSamples.template\ get<2>(i)));}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_sample_flow}{SampleFlow}}\ sampleFlow\ =\ raySamples.readSampleAsFlow();}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_ray}{Ray}}\ tracingRay;}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ quantityWeight\ =\ m\_receiver-\/>receiveRay(rasterCoord,\ \&tracingRay);}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ tracingRay.\mbox{\hyperlink{classph_1_1_ray_abfcb423ffa8767e5160e8c81a0be9db8}{reverse}}();}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_spectrum}{math::Spectrum}}\ pathThroughput(quantityWeight);}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!m\_handler-\/>onReceiverSampleStart(rasterCoord,\ pathThroughput))}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_handler-\/>onReceiverSampleEnd();}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ traceViewPath(}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tracingRay,\ }
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pathThroughput,\ }
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0,}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sampleFlow);}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ m\_handler-\/>onReceiverSampleEnd();}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \}\textcolor{comment}{//\ end\ for\ single\ sample}}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ m\_handler-\/>onSampleBatchFinished();}
+\DoxyCodeLine{00091\ \ \ \ \ \}\textcolor{comment}{//\ end\ while\ single\ sample\ batch}}
+\DoxyCodeLine{00092\ \}}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ ViewPathHandler>}
+\DoxyCodeLine{00095\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ TViewPathTracingWork<ViewPathHandler>::traceViewPath(}
+\DoxyCodeLine{00096\ \ \ \ \ Ray\ \ \ \ \ \ \ \ \ \ \ \ tracingRay,}
+\DoxyCodeLine{00097\ \ \ \ \ \mbox{\hyperlink{namespaceph_1_1math_a42275285cd99065c86ce22761ccaab91}{math::Spectrum}}\ pathThroughput,}
+\DoxyCodeLine{00098\ \ \ \ \ std::size\_t\ \ \ \ pathLength,}
+\DoxyCodeLine{00099\ \ \ \ \ SampleFlow\&\ \ \ \ sampleFlow)}
+\DoxyCodeLine{00100\ \{\ \ \ }
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{keyword}{const}\ SurfaceTracer\ surfaceTracer(m\_scene);}
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keywordflow}{while}(\textcolor{keyword}{true})}
+\DoxyCodeLine{00103\ \ \ \ \ \{}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ SurfaceHit\ surfaceHit;}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!surfaceTracer.traceNextSurface(tracingRay,\ BsdfQueryContext().sidedness,\ \&surfaceHit))}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ ++pathLength;}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ ViewPathTracingPolicy\&\ policy\ =\ m\_handler-\/>onPathHitSurface(pathLength,\ surfaceHit,\ pathThroughput);}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(policy.isKilled())}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ FIXME:\ reversed\ then\ assigned\ again\ later\ seems\ to\ be\ dangerous,\ state\ is\ unclear}}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ tracingRay.reverse();}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_1_1math_abf8e1463b13d63dcdc46f0cb65e59c5a}{math::Vector3R}}\ V\ =\ tracingRay.getDirection();}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_1_1math_abf8e1463b13d63dcdc46f0cb65e59c5a}{math::Vector3R}}\ N\ =\ surfaceHit.getShadingNormal();}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(policy.getSampleMode()\ ==\ \mbox{\hyperlink{namespaceph_a57656cbaf1b805ac50daee0f84abc13dae551fdb982de2ae3a35872a320aa5414}{EViewPathSampleMode::SINGLE\_PATH}})}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ BsdfSampleQuery\ bsdfSample(BsdfQueryContext(policy.getTargetElemental(),\ \mbox{\hyperlink{namespaceph_a77d951ca57b4e319e083ebddd4695213a11ddd116a724531f18090168bc0fddcb}{ETransport::RADIANCE}},\ \mbox{\hyperlink{namespaceph_ab7ef8f11c7d7bffec2c1fbd554ab9e78a4c50b1af679a751969aaad2881a34bef}{ESidednessPolicy::STRICT}}));}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ bsdfSample.inputs.set(surfaceHit,\ V);}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ Ray\ sampledRay;}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!surfaceTracer.doBsdfSample(bsdfSample,\ sampleFlow,\ \&sampledRay))}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
 \DoxyCodeLine{00131\ }
-\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(policy.useRussianRoulette())}
-\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ math::Spectrum\ weightedThroughput;}
-\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(RussianRoulette::surviveOnLuminance(pathThroughput,\ sampleFlow,\ \&weightedThroughput))}
-\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pathThroughput\ =\ weightedThroughput;}
-\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
-\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00144\ }
-\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ tracingRay\ =\ sampledRay;}
-\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \ \ traceElementallyBranchedPath(policy,\ V,\ N,\ surfaceHit,\ pathThroughput,\ pathLength,\ sampleFlow);}
-\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
-\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00152\ \ \ \ \ \}\textcolor{comment}{//\ end\ while\ true}}
-\DoxyCodeLine{00153\ \}}
-\DoxyCodeLine{00154\ }
-\DoxyCodeLine{00155\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ ViewPathHandler>}
-\DoxyCodeLine{00156\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ TViewPathTracingWork<ViewPathHandler>::traceElementallyBranchedPath(}
-\DoxyCodeLine{00157\ \ \ \ \ \textcolor{keyword}{const}\ ViewPathTracingPolicy\&\ policy,}
-\DoxyCodeLine{00158\ \ \ \ \ \textcolor{keyword}{const}\ math::Vector3R\&\ V,}
-\DoxyCodeLine{00159\ \ \ \ \ \textcolor{keyword}{const}\ math::Vector3R\&\ N,}
-\DoxyCodeLine{00160\ \ \ \ \ \textcolor{keyword}{const}\ SurfaceHit\&\ surfaceHit,}
-\DoxyCodeLine{00161\ \ \ \ \ \textcolor{keyword}{const}\ math::Spectrum\&\ pathThroughput,}
-\DoxyCodeLine{00162\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ pathLength,}
-\DoxyCodeLine{00163\ \ \ \ \ SampleFlow\&\ sampleFlow)}
-\DoxyCodeLine{00164\ \{}
-\DoxyCodeLine{00165\ \ \ \ \ PH\_ASSERT(policy.getSampleMode()\ ==\ EViewPathSampleMode::ELEMENTAL\_BRANCH);}
-\DoxyCodeLine{00166\ }
-\DoxyCodeLine{00167\ \ \ \ \ \textcolor{keyword}{const}\ SurfaceTracer\ surfaceTracer(m\_scene);}
-\DoxyCodeLine{00168\ }
-\DoxyCodeLine{00169\ \ \ \ \ \textcolor{keyword}{const}\ PrimitiveMetadata*\ metadata\ \ \ \ \ \ =\ surfaceHit.getDetail().getPrimitive()-\/>getMetadata();}
-\DoxyCodeLine{00170\ \ \ \ \ \textcolor{keyword}{const}\ SurfaceOptics*\ \ \ \ \ surfaceOptics\ =\ metadata-\/>getSurface().getOptics();}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ pathThroughput.mulLocal(bsdfSample.outputs.pdfAppliedBsdf);}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \ \ pathThroughput.mulLocal(N.absDot(bsdfSample.outputs.L));}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(policy.useRussianRoulette())}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceph_1_1math_a42275285cd99065c86ce22761ccaab91}{math::Spectrum}}\ weightedThroughput;}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{classph_1_1_russian_roulette_a81f3df6572664153baf4323995583c23}{RussianRoulette::surviveOnLuminance}}(pathThroughput,\ sampleFlow,\ \&weightedThroughput))}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pathThroughput\ =\ weightedThroughput;}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \ \ \ \ tracingRay\ =\ sampledRay;}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \ \ \ \ traceElementallyBranchedPath(policy,\ V,\ N,\ surfaceHit,\ pathThroughput,\ pathLength,\ sampleFlow);}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00155\ \ \ \ \ \}\textcolor{comment}{//\ end\ while\ true}}
+\DoxyCodeLine{00156\ \}}
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00158\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ ViewPathHandler>}
+\DoxyCodeLine{00159\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ TViewPathTracingWork<ViewPathHandler>::traceElementallyBranchedPath(}
+\DoxyCodeLine{00160\ \ \ \ \ \textcolor{keyword}{const}\ ViewPathTracingPolicy\&\ policy,}
+\DoxyCodeLine{00161\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_1_1math_abf8e1463b13d63dcdc46f0cb65e59c5a}{math::Vector3R}}\&\ V,}
+\DoxyCodeLine{00162\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_1_1math_abf8e1463b13d63dcdc46f0cb65e59c5a}{math::Vector3R}}\&\ N,}
+\DoxyCodeLine{00163\ \ \ \ \ \textcolor{keyword}{const}\ SurfaceHit\&\ surfaceHit,}
+\DoxyCodeLine{00164\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_1_1math_a42275285cd99065c86ce22761ccaab91}{math::Spectrum}}\&\ pathThroughput,}
+\DoxyCodeLine{00165\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ pathLength,}
+\DoxyCodeLine{00166\ \ \ \ \ SampleFlow\&\ sampleFlow)}
+\DoxyCodeLine{00167\ \{}
+\DoxyCodeLine{00168\ \ \ \ \ PH\_ASSERT(policy.getSampleMode()\ ==\ \mbox{\hyperlink{namespaceph_a57656cbaf1b805ac50daee0f84abc13daea01f6133eb19425bf95938d40a1ce09}{EViewPathSampleMode::ELEMENTAL\_BRANCH}});}
+\DoxyCodeLine{00169\ }
+\DoxyCodeLine{00170\ \ \ \ \ \textcolor{keyword}{const}\ SurfaceTracer\ surfaceTracer(m\_scene);}
 \DoxyCodeLine{00171\ }
-\DoxyCodeLine{00172\ \ \ \ \ \textcolor{keyword}{const}\ SurfacePhenomena\ targetPhenomena\ =\ policy.getTargetPhenomena();}
-\DoxyCodeLine{00173\ \ \ \ \ \textcolor{keywordflow}{for}(SurfaceElemental\ i\ =\ 0;\ i\ <\ surfaceOptics-\/>numElementals();\ ++i)}
-\DoxyCodeLine{00174\ \ \ \ \ \{}
-\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(targetPhenomena.hasNone(\{surfaceOptics-\/>getPhenomenonOf(i)\}))}
-\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
-\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00179\ }
-\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ BsdfSampleQuery\ sample(BsdfQueryContext(i,\ ETransport::RADIANCE,\ ESidednessPolicy::STRICT));}
-\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ sample.inputs.set(surfaceHit,\ V);}
+\DoxyCodeLine{00172\ \ \ \ \ \textcolor{keyword}{const}\ PrimitiveMetadata*\ metadata\ \ \ \ \ \ =\ surfaceHit.getDetail().getPrimitive()-\/>getMetadata();}
+\DoxyCodeLine{00173\ \ \ \ \ \textcolor{keyword}{const}\ SurfaceOptics*\ \ \ \ \ surfaceOptics\ =\ metadata-\/>getSurface().getOptics();}
+\DoxyCodeLine{00174\ }
+\DoxyCodeLine{00175\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_a368541bcb08772c8f877aa56743f51a6}{SurfacePhenomena}}\ targetPhenomena\ =\ policy.getTargetPhenomena();}
+\DoxyCodeLine{00176\ \ \ \ \ \textcolor{keywordflow}{for}(\mbox{\hyperlink{namespaceph_a9f3a5422acf386b99ae9712b13d55952}{SurfaceElemental}}\ i\ =\ 0;\ i\ <\ surfaceOptics-\/>numElementals();\ ++i)}
+\DoxyCodeLine{00177\ \ \ \ \ \{}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(targetPhenomena.hasNone(\{surfaceOptics-\/>getPhenomenonOf(i)\}))}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \}}
 \DoxyCodeLine{00182\ }
-\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ Ray\ sampledRay;}
-\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!surfaceTracer.doBsdfSample(sample,\ sampleFlow,\ \&sampledRay))}
-\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
-\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00188\ }
-\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ math::Spectrum\ elementalPathThroughput(pathThroughput);}
-\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ elementalPathThroughput.mulLocal(sample.outputs.pdfAppliedBsdf);}
-\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ elementalPathThroughput.mulLocal(N.absDot(sampledRay.getDirection()));}
-\DoxyCodeLine{00192\ }
-\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(policy.useRussianRoulette())}
-\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \ \ \ \ math::Spectrum\ weightedThroughput;}
-\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(RussianRoulette::surviveOnLuminance(elementalPathThroughput,\ sampleFlow,\ \&weightedThroughput))}
-\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ elementalPathThroughput\ =\ weightedThroughput;}
-\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
-\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00205\ }
-\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ traceViewPath(}
-\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \ \ \ \ sampledRay,}
-\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \ \ \ \ elementalPathThroughput,}
-\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \ \ \ \ pathLength,}
-\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \ \ \ \ sampleFlow);}
-\DoxyCodeLine{00211\ \ \ \ \ \}\textcolor{comment}{//\ end\ for\ each\ phenomenon}}
-\DoxyCodeLine{00212\ \}}
-\DoxyCodeLine{00213\ }
-\DoxyCodeLine{00214\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ BsdfSampleQuery\ sample(BsdfQueryContext(i,\ \mbox{\hyperlink{namespaceph_a77d951ca57b4e319e083ebddd4695213a11ddd116a724531f18090168bc0fddcb}{ETransport::RADIANCE}},\ \mbox{\hyperlink{namespaceph_ab7ef8f11c7d7bffec2c1fbd554ab9e78a4c50b1af679a751969aaad2881a34bef}{ESidednessPolicy::STRICT}}));}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ sample.inputs.set(surfaceHit,\ V);}
+\DoxyCodeLine{00185\ }
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ Ray\ sampledRay;}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!surfaceTracer.doBsdfSample(sample,\ sampleFlow,\ \&sampledRay))}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00191\ }
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceph_1_1math_a42275285cd99065c86ce22761ccaab91}{math::Spectrum}}\ elementalPathThroughput(pathThroughput);}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ elementalPathThroughput.mulLocal(sample.outputs.pdfAppliedBsdf);}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ elementalPathThroughput.mulLocal(N.absDot(sampledRay.getDirection()));}
+\DoxyCodeLine{00195\ }
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(policy.useRussianRoulette())}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceph_1_1math_a42275285cd99065c86ce22761ccaab91}{math::Spectrum}}\ weightedThroughput;}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{classph_1_1_russian_roulette_a81f3df6572664153baf4323995583c23}{RussianRoulette::surviveOnLuminance}}(elementalPathThroughput,\ sampleFlow,\ \&weightedThroughput))}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ elementalPathThroughput\ =\ weightedThroughput;}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00208\ }
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ traceViewPath(}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \ \ \ \ sampledRay,}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \ \ \ \ elementalPathThroughput,}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \ \ \ \ pathLength,}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \ \ \ \ sampleFlow);}
+\DoxyCodeLine{00214\ \ \ \ \ \}\textcolor{comment}{//\ end\ for\ each\ phenomenon}}
+\DoxyCodeLine{00215\ \}}
+\DoxyCodeLine{00216\ }
+\DoxyCodeLine{00217\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
 
 \end{DoxyCode}

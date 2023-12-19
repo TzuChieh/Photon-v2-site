@@ -11,8 +11,10 @@ var classph_1_1math_1_1_t_a_a_b_b3_d =
     [ "getMinVertex", "d6/d74/classph_1_1math_1_1_t_a_a_b_b3_d.html#af374aa4e2c99cf83c5324f7e5f376fec", null ],
     [ "getSplitted", "d6/d74/classph_1_1math_1_1_t_a_a_b_b3_d.html#aea05a658d36d416c1d04a6916a3f71f9", null ],
     [ "getSurfaceArea", "d6/d74/classph_1_1math_1_1_t_a_a_b_b3_d.html#a87a7e69b389f32ab59a020d816379314", null ],
+    [ "getTranslated", "d6/d74/classph_1_1math_1_1_t_a_a_b_b3_d.html#ab1a9510b332616e8d8987c3af36ffa54", null ],
     [ "getVertices", "d6/d74/classph_1_1math_1_1_t_a_a_b_b3_d.html#a930e7c02892bf2f36fc1365faa792a0b", null ],
     [ "getVolume", "d6/d74/classph_1_1math_1_1_t_a_a_b_b3_d.html#aa76a56ac613aae72e1c6d11195f22e6e", null ],
+    [ "isEmpty", "d6/d74/classph_1_1math_1_1_t_a_a_b_b3_d.html#a50070e02e92810a2bbe305688a7eb786", null ],
     [ "isEqual", "d6/d74/classph_1_1math_1_1_t_a_a_b_b3_d.html#a05d186af1327a74800ee66583c86dc42", null ],
     [ "isFiniteVolume", "d6/d74/classph_1_1math_1_1_t_a_a_b_b3_d.html#ad2c67dc332b7422cc9fc9f9de643f2aa", null ],
     [ "isIntersectingVolume", "d6/d74/classph_1_1math_1_1_t_a_a_b_b3_d.html#ae61d6511772599873df40f790bd15347", null ],
@@ -23,6 +25,7 @@ var classph_1_1math_1_1_t_a_a_b_b3_d =
     [ "setMinVertex", "d6/d74/classph_1_1math_1_1_t_a_a_b_b3_d.html#a7b4f6009133871cbefc62bf0f2597fcd", null ],
     [ "setVertices", "d6/d74/classph_1_1math_1_1_t_a_a_b_b3_d.html#ab2d377fcfdd1eaf166ffad753742fb8e", null ],
     [ "toString", "d6/d74/classph_1_1math_1_1_t_a_a_b_b3_d.html#ac987283dd6180a0accc11bb284885de6", null ],
+    [ "translate", "d6/d74/classph_1_1math_1_1_t_a_a_b_b3_d.html#acf1d827e2e68aa0e6e7bd9372b6968b8", null ],
     [ "unionWith", "d6/d74/classph_1_1math_1_1_t_a_a_b_b3_d.html#a14473a59e33504a3ac1503796c421a78", null ],
     [ "unionWith", "d6/d74/classph_1_1math_1_1_t_a_a_b_b3_d.html#a049853e5af78ae6658644c197c7b5c8f", null ]
 ];

@@ -1,223 +1,224 @@
 \doxysection{VPMRadiance\+Evaluator.\+h}
 \hypertarget{_v_p_m_radiance_evaluator_8h_source}{}\label{_v_p_m_radiance_evaluator_8h_source}\index{Source/Core/Renderer/PM/VPMRadianceEvaluator.h@{Source/Core/Renderer/PM/VPMRadianceEvaluator.h}}
-
+\mbox{\hyperlink{_v_p_m_radiance_evaluator_8h}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
 \DoxyCodeLine{00002\ }
-\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Common/primitive\_type.h"{}}}
-\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Common/assertion.h"{}}}
-\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}Core/Renderer/PM/TViewPathHandler.h"{}}}
-\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}Core/Renderer/PM/TPhotonMap.h"{}}}
-\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}Core/Renderer/PM/FullPhoton.h"{}}}
-\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}Core/Filmic/HdrRgbFilm.h"{}}}
-\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}Core/Intersectable/Primitive.h"{}}}
-\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}Core/Intersectable/PrimitiveMetadata.h"{}}}
-\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}Core/SurfaceBehavior/SurfaceBehavior.h"{}}}
-\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}Core/SurfaceBehavior/SurfaceOptics.h"{}}}
-\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}Core/SurfaceHit.h"{}}}
-\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ "{}Core/Emitter/Emitter.h"{}}}
-\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ "{}Core/Renderer/PM/PMRenderer.h"{}}}
-\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ "{}Core/LTABuildingBlock/SurfaceTracer.h"{}}}
-\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ "{}Core/LTABuildingBlock/lta.h"{}}}
-\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ "{}Core/SurfaceBehavior/BsdfQueryContext.h"{}}}
-\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ "{}Core/SurfaceBehavior/BsdfEvalQuery.h"{}}}
-\DoxyCodeLine{00020\ }
-\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ <vector>}}
-\DoxyCodeLine{00022\ }
-\DoxyCodeLine{00023\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
-\DoxyCodeLine{00024\ \{}
-\DoxyCodeLine{00025\ }
-\DoxyCodeLine{00026\ \textcolor{keyword}{class\ }Scene;}
-\DoxyCodeLine{00027\ \textcolor{keyword}{class\ }SampleGenerator;}
-\DoxyCodeLine{00028\ \textcolor{keyword}{class\ }PMStatistics;}
-\DoxyCodeLine{00029\ \textcolor{keyword}{class\ }PMRenderer;}
-\DoxyCodeLine{00030\ }
-\DoxyCodeLine{00031\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_v_p_m_radiance_evaluator}{VPMRadianceEvaluator}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classph_1_1_t_view_path_handler}{TViewPathHandler}}<VPMRadianceEvaluator>}
-\DoxyCodeLine{00032\ \{}
-\DoxyCodeLine{00033\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00034\ \ \ \ \ \mbox{\hyperlink{classph_1_1_v_p_m_radiance_evaluator}{VPMRadianceEvaluator}}(}
-\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_point_kdtree}{TPhotonMap<FullPhoton>}}*\ photonMap,}
-\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ std::size\_t\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ numPhotonPaths,}
-\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_hdr_rgb_film}{HdrRgbFilm}}*\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ film,}
-\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_scene}{Scene}}*\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ scene);}
-\DoxyCodeLine{00039\ }
-\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordtype}{bool}\ impl\_onReceiverSampleStart(}
-\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{math::Vector2D}}\&\ rasterCoord,}
-\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_spectrum}{math::Spectrum}}\&\ pathThroughput);}
-\DoxyCodeLine{00043\ }
-\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keyword}{auto}\ impl\_onPathHitSurface(}
-\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ std::size\_t\ \ \ \ \ \ \ \ \ \ \ pathLength,}
-\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_surface_hit}{SurfaceHit}}\&\ \ \ \ \ surfaceHit,}
-\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_spectrum}{math::Spectrum}}\&\ pathThroughput)\ -\/>\ \mbox{\hyperlink{classph_1_1_view_path_tracing_policy}{ViewPathTracingPolicy}};}
-\DoxyCodeLine{00048\ }
-\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordtype}{void}\ impl\_onReceiverSampleEnd();}
-\DoxyCodeLine{00050\ }
-\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordtype}{void}\ impl\_onSampleBatchFinished();}
-\DoxyCodeLine{00052\ }
-\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordtype}{void}\ setPMStatistics(\mbox{\hyperlink{classph_1_1_p_m_statistics}{PMStatistics}}*\ statistics);}
-\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordtype}{void}\ setPMRenderer(\mbox{\hyperlink{classph_1_1_p_m_renderer}{PMRenderer}}*\ renderer);}
-\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordtype}{void}\ setKernelRadius(real\ radius);}
-\DoxyCodeLine{00056\ }
-\DoxyCodeLine{00057\ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_point_kdtree}{TPhotonMap<FullPhoton>}}*\ m\_photonMap;}
-\DoxyCodeLine{00059\ \ \ \ \ std::size\_t\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_numPhotonPaths;}
-\DoxyCodeLine{00060\ \ \ \ \ \mbox{\hyperlink{classph_1_1_hdr_rgb_film}{HdrRgbFilm}}*\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_film;}
-\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_scene}{Scene}}*\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_scene;}
-\DoxyCodeLine{00062\ }
-\DoxyCodeLine{00063\ \ \ \ \ real\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_kernelRadius;}
-\DoxyCodeLine{00064\ \ \ \ \ \mbox{\hyperlink{classph_1_1_p_m_statistics}{PMStatistics}}*\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_statistics;}
-\DoxyCodeLine{00065\ \ \ \ \ \mbox{\hyperlink{classph_1_1_p_m_renderer}{PMRenderer}}*\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_renderer;}
-\DoxyCodeLine{00066\ }
-\DoxyCodeLine{00067\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{math::Vector2D}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_rasterCoord;}
-\DoxyCodeLine{00068\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_spectrum}{math::Spectrum}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_sampledRadiance;}
-\DoxyCodeLine{00069\ \ \ \ \ std::vector<FullPhoton>\ \ \ \ \ \ \ m\_photonCache;}
-\DoxyCodeLine{00070\ \};}
-\DoxyCodeLine{00071\ }
-\DoxyCodeLine{00072\ \textcolor{comment}{//\ In-\/header\ Implementations:}}
-\DoxyCodeLine{00073\ }
-\DoxyCodeLine{00074\ \textcolor{keyword}{inline}\ VPMRadianceEvaluator::VPMRadianceEvaluator(}
-\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_point_kdtree}{TPhotonMap<FullPhoton>}}*\ photonMap,}
-\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ \ \ \ \ \ \ \ \ \ \ \ \ numPhotonPaths,}
-\DoxyCodeLine{00077\ \ \ \ \ \mbox{\hyperlink{classph_1_1_hdr_rgb_film}{HdrRgbFilm}}*\ \textcolor{keyword}{const}\ \ \ \ \ \ \ \ \ \ \ \ \ film,}
-\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_scene}{Scene}}*\ \textcolor{keyword}{const}\ \ \ \ \ \ \ \ \ \ \ \ scene)\ :}
-\DoxyCodeLine{00079\ }
-\DoxyCodeLine{00080\ \ \ \ \ m\_photonMap(photonMap),}
-\DoxyCodeLine{00081\ \ \ \ \ m\_numPhotonPaths(numPhotonPaths),}
-\DoxyCodeLine{00082\ \ \ \ \ m\_film(film),}
-\DoxyCodeLine{00083\ \ \ \ \ m\_scene(scene)}
-\DoxyCodeLine{00084\ \{}
-\DoxyCodeLine{00085\ \ \ \ \ PH\_ASSERT(photonMap);}
-\DoxyCodeLine{00086\ \ \ \ \ PH\_ASSERT(film);}
-\DoxyCodeLine{00087\ \ \ \ \ PH\_ASSERT\_GT(numPhotonPaths,\ 0);}
-\DoxyCodeLine{00088\ }
-\DoxyCodeLine{00089\ \ \ \ \ setPMStatistics(\textcolor{keyword}{nullptr});}
-\DoxyCodeLine{00090\ \ \ \ \ setPMRenderer(\textcolor{keyword}{nullptr});}
-\DoxyCodeLine{00091\ \ \ \ \ setKernelRadius(0.1\_r);}
-\DoxyCodeLine{00092\ }
-\DoxyCodeLine{00093\ \ \ \ \ m\_film-\/>clear();}
-\DoxyCodeLine{00094\ \}}
-\DoxyCodeLine{00095\ }
-\DoxyCodeLine{00096\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ VPMRadianceEvaluator::impl\_onReceiverSampleStart(}
-\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keyword}{const}\ math::Vector2D\&\ rasterCoord,}
-\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keyword}{const}\ math::Spectrum\&\ pathThroughput)}
-\DoxyCodeLine{00099\ \{}
-\DoxyCodeLine{00100\ \ \ \ \ m\_rasterCoord\ =\ rasterCoord;}
-\DoxyCodeLine{00101\ \ \ \ \ m\_sampledRadiance.setColorValues(0);}
-\DoxyCodeLine{00102\ }
-\DoxyCodeLine{00103\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
-\DoxyCodeLine{00104\ \}}
-\DoxyCodeLine{00105\ }
-\DoxyCodeLine{00106\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ VPMRadianceEvaluator::impl\_onPathHitSurface(}
-\DoxyCodeLine{00107\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ \ \ \ \ pathLength,}
-\DoxyCodeLine{00108\ \ \ \ \ \textcolor{keyword}{const}\ SurfaceHit\&\ \ \ \ \ surfaceHit,}
-\DoxyCodeLine{00109\ \ \ \ \ \textcolor{keyword}{const}\ math::Spectrum\&\ pathThroughput)\ -\/>\ ViewPathTracingPolicy}
-\DoxyCodeLine{00110\ \{}
-\DoxyCodeLine{00111\ \ \ \ \ \textcolor{comment}{//\ TODO:\ remove\ hardcoded\ max\ path\ length}}
-\DoxyCodeLine{00112\ \ \ \ \ \textcolor{keyword}{constexpr}\ std::size\_t\ MAX\_PATH\_LENGTH\ =\ 5;}
-\DoxyCodeLine{00113\ }
-\DoxyCodeLine{00114\ \ \ \ \ PH\_ASSERT\_GE(pathLength,\ 1);}
-\DoxyCodeLine{00115\ }
-\DoxyCodeLine{00116\ \ \ \ \ \textcolor{keyword}{const}\ BsdfQueryContext\ bsdfContext(ALL\_ELEMENTALS,\ ETransport::IMPORTANCE,\ ESidednessPolicy::STRICT);}
-\DoxyCodeLine{00117\ \ \ \ \ \textcolor{keyword}{const}\ PrimitiveMetadata*\ \textcolor{keyword}{const}\ metadata\ \ \ \ \ \ =\ surfaceHit.getDetail().getPrimitive()-\/>getMetadata();}
-\DoxyCodeLine{00118\ \ \ \ \ \textcolor{keyword}{const}\ SurfaceOptics*\ \textcolor{keyword}{const}\ \ \ \ \ surfaceOptics\ =\ metadata-\/>getSurface().getOptics();}
-\DoxyCodeLine{00119\ }
-\DoxyCodeLine{00120\ \ \ \ \ \textcolor{keywordflow}{if}(metadata-\/>getSurface().getEmitter())}
-\DoxyCodeLine{00121\ \ \ \ \ \{}
-\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ math::Spectrum\ viewPathRadiance;}
-\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ metadata-\/>getSurface().getEmitter()-\/>evalEmittedRadiance(surfaceHit,\ \&viewPathRadiance);}
-\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ m\_sampledRadiance.addLocal(pathThroughput\ *\ viewPathRadiance);}
-\DoxyCodeLine{00125\ \ \ \ \ \}}
-\DoxyCodeLine{00126\ }
-\DoxyCodeLine{00127\ \ \ \ \ \textcolor{comment}{//\ FIXME:\ properly\ handle\ delta\ optics\ (mixed\ case)}}
-\DoxyCodeLine{00128\ }
-\DoxyCodeLine{00129\ \ \ \ \ \textcolor{keywordflow}{if}(pathLength\ <\ MAX\_PATH\_LENGTH\ \&\&\ surfaceOptics-\/>getAllPhenomena().hasAny(\{}
-\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ ESurfacePhenomenon::DELTA\_REFLECTION,}
-\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ ESurfacePhenomenon::DELTA\_TRANSMISSION\}))}
-\DoxyCodeLine{00132\ \ \ \ \ \{}
-\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ViewPathTracingPolicy().}
-\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ traceBranchedPathFor(SurfacePhenomena(\{}
-\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ESurfacePhenomenon::DELTA\_REFLECTION,}
-\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ESurfacePhenomenon::DELTA\_TRANSMISSION\})).}
-\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ useRussianRoulette(\textcolor{keyword}{false});}
-\DoxyCodeLine{00138\ \ \ \ \ \}}
-\DoxyCodeLine{00139\ }
-\DoxyCodeLine{00140\ \ \ \ \ PH\_ASSERT\_LE(pathLength,\ MAX\_PATH\_LENGTH);}
-\DoxyCodeLine{00141\ }
-\DoxyCodeLine{00142\ \ \ \ \ m\_photonCache.clear();}
-\DoxyCodeLine{00143\ \ \ \ \ m\_photonMap-\/>findWithinRange(surfaceHit.getPosition(),\ m\_kernelRadius,\ m\_photonCache);}
-\DoxyCodeLine{00144\ }
-\DoxyCodeLine{00145\ \ \ \ \ \textcolor{keyword}{const}\ SurfaceTracer\ surfaceTracer(m\_scene);}
-\DoxyCodeLine{00146\ }
-\DoxyCodeLine{00147\ \ \ \ \ \textcolor{keyword}{const}\ math::Vector3R\ L\ \ =\ surfaceHit.getIncidentRay().getDirection().mul(-\/1);}
-\DoxyCodeLine{00148\ \ \ \ \ \textcolor{keyword}{const}\ math::Vector3R\ Ns\ =\ surfaceHit.getShadingNormal();}
-\DoxyCodeLine{00149\ \ \ \ \ \textcolor{keyword}{const}\ math::Vector3R\ Ng\ =\ surfaceHit.getGeometryNormal();}
-\DoxyCodeLine{00150\ }
-\DoxyCodeLine{00151\ \ \ \ \ BsdfEvalQuery\ \ bsdfEval(bsdfContext);}
-\DoxyCodeLine{00152\ \ \ \ \ math::Spectrum\ radiance(0);}
-\DoxyCodeLine{00153\ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ photon\ :\ m\_photonCache)}
-\DoxyCodeLine{00154\ \ \ \ \ \{}
-\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ math::Vector3R\ V\ =\ photon.get<EPhotonData::FROM\_DIR>();}
-\DoxyCodeLine{00156\ }
-\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ bsdfEval.inputs.set(surfaceHit,\ L,\ V);}
-\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!surfaceTracer.doBsdfEvaluation(bsdfEval))}
-\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
-\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00162\ }
-\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ math::Spectrum\ throughput(pathThroughput);}
-\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ throughput.mulLocal(bsdfEval.outputs.bsdf);}
-\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ throughput.mulLocal(lta::importance\_BSDF\_Ns\_corrector(Ns,\ Ng,\ L,\ V));}
-\DoxyCodeLine{00166\ }
-\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ radiance.addLocal(throughput\ *\ photon.get<EPhotonData::THROUGHPUT\_RADIANCE>());}
-\DoxyCodeLine{00168\ \ \ \ \ \}}
-\DoxyCodeLine{00169\ }
-\DoxyCodeLine{00170\ \ \ \ \ \textcolor{comment}{//\ OPT:\ cache}}
-\DoxyCodeLine{00171\ \ \ \ \ \textcolor{keyword}{const}\ real\ kernelArea\ =\ m\_kernelRadius\ *\ m\_kernelRadius\ *\ math::constant::pi<real>;}
-\DoxyCodeLine{00172\ \ \ \ \ \textcolor{keyword}{const}\ real\ radianceMultiplier\ =\ 1.0\_r\ /\ (kernelArea\ *\ \textcolor{keyword}{static\_cast<}real\textcolor{keyword}{>}(m\_numPhotonPaths));}
-\DoxyCodeLine{00173\ }
-\DoxyCodeLine{00174\ \ \ \ \ radiance.mulLocal(radianceMultiplier);}
-\DoxyCodeLine{00175\ }
-\DoxyCodeLine{00176\ \ \ \ \ m\_sampledRadiance.addLocal(radiance);}
-\DoxyCodeLine{00177\ }
-\DoxyCodeLine{00178\ \ \ \ \ \textcolor{keywordflow}{return}\ ViewPathTracingPolicy().kill();}
-\DoxyCodeLine{00179\ \}}
-\DoxyCodeLine{00180\ }
-\DoxyCodeLine{00181\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ VPMRadianceEvaluator::impl\_onReceiverSampleEnd()}
-\DoxyCodeLine{00182\ \{}
-\DoxyCodeLine{00183\ \ \ \ \ m\_film-\/>addSample(m\_rasterCoord.x(),\ m\_rasterCoord.y(),\ m\_sampledRadiance);}
-\DoxyCodeLine{00184\ \}}
-\DoxyCodeLine{00185\ }
-\DoxyCodeLine{00186\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ VPMRadianceEvaluator::impl\_onSampleBatchFinished()}
-\DoxyCodeLine{00187\ \{}
-\DoxyCodeLine{00188\ \ \ \ \ \textcolor{keywordflow}{if}(m\_statistics)}
-\DoxyCodeLine{00189\ \ \ \ \ \{}
-\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ m\_statistics-\/>asyncIncrementNumIterations();}
-\DoxyCodeLine{00191\ \ \ \ \ \}}
-\DoxyCodeLine{00192\ }
-\DoxyCodeLine{00193\ \ \ \ \ \textcolor{keywordflow}{if}(m\_renderer)}
-\DoxyCodeLine{00194\ \ \ \ \ \{}
-\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ m\_renderer-\/>asyncMergeFilm(*m\_film);}
-\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ m\_film-\/>clear();}
-\DoxyCodeLine{00197\ \ \ \ \ \}}
-\DoxyCodeLine{00198\ \}}
-\DoxyCodeLine{00199\ }
-\DoxyCodeLine{00200\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ VPMRadianceEvaluator::setPMStatistics(PMStatistics*\ \textcolor{keyword}{const}\ statistics)}
-\DoxyCodeLine{00201\ \{}
-\DoxyCodeLine{00202\ \ \ \ \ m\_statistics\ =\ statistics;}
-\DoxyCodeLine{00203\ \}}
-\DoxyCodeLine{00204\ }
-\DoxyCodeLine{00205\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ VPMRadianceEvaluator::setPMRenderer(PMRenderer*\ \textcolor{keyword}{const}\ renderer)}
-\DoxyCodeLine{00206\ \{}
-\DoxyCodeLine{00207\ \ \ \ \ m\_renderer\ =\ renderer;}
-\DoxyCodeLine{00208\ \}}
-\DoxyCodeLine{00209\ }
-\DoxyCodeLine{00210\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ VPMRadianceEvaluator::setKernelRadius(\textcolor{keyword}{const}\ real\ radius)}
-\DoxyCodeLine{00211\ \{}
-\DoxyCodeLine{00212\ \ \ \ \ PH\_ASSERT\_GT(radius,\ 0.0\_r);}
-\DoxyCodeLine{00213\ }
-\DoxyCodeLine{00214\ \ \ \ \ m\_kernelRadius\ =\ radius;}
-\DoxyCodeLine{00215\ \}}
-\DoxyCodeLine{00216\ }
-\DoxyCodeLine{00217\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_view_path_handler_8h}{Core/Renderer/PM/TViewPathHandler.h}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_photon_map_8h}{Core/Renderer/PM/TPhotonMap.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_full_photon_8h}{Core/Renderer/PM/FullPhoton.h}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_hdr_rgb_film_8h}{Core/Filmic/HdrRgbFilm.h}}"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_primitive_8h}{Core/Intersectable/Primitive.h}}"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_primitive_metadata_8h}{Core/Intersectable/PrimitiveMetadata.h}}"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_surface_behavior_8h}{Core/SurfaceBehavior/SurfaceBehavior.h}}"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_surface_optics_8h}{Core/SurfaceBehavior/SurfaceOptics.h}}"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_surface_hit_8h}{Core/SurfaceHit.h}}"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_emitter_8h}{Core/Emitter/Emitter.h}}"{}}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_p_m_renderer_8h}{Core/Renderer/PM/PMRenderer.h}}"{}}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_surface_tracer_8h}{Core/LTABuildingBlock/SurfaceTracer.h}}"{}}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{lta_8h}{Core/LTABuildingBlock/lta.h}}"{}}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_bsdf_query_context_8h}{Core/SurfaceBehavior/BsdfQueryContext.h}}"{}}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_bsdf_eval_query_8h}{Core/SurfaceBehavior/BsdfEvalQuery.h}}"{}}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ <Common/assertion.h>}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ <Common/primitive\_type.h>}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00025\ \{}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{keyword}{class\ }Scene;}
+\DoxyCodeLine{00028\ \textcolor{keyword}{class\ }SampleGenerator;}
+\DoxyCodeLine{00029\ \textcolor{keyword}{class\ }PMStatistics;}
+\DoxyCodeLine{00030\ \textcolor{keyword}{class\ }PMRenderer;}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_v_p_m_radiance_evaluator}{VPMRadianceEvaluator}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classph_1_1_t_view_path_handler}{TViewPathHandler}}<VPMRadianceEvaluator>}
+\DoxyCodeLine{00033\ \{}
+\DoxyCodeLine{00034\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00035\ \ \ \ \ \mbox{\hyperlink{classph_1_1_v_p_m_radiance_evaluator}{VPMRadianceEvaluator}}(}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_point_kdtree}{TPhotonMap<FullPhoton>}}*\ photonMap,}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ std::size\_t\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ numPhotonPaths,}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_hdr_rgb_film}{HdrRgbFilm}}*\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ film,}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_scene}{Scene}}*\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ scene);}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_v_p_m_radiance_evaluator_a4e3c6f62729423f1a6a447a59d65224b}{impl\_onReceiverSampleStart}}(}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{math::Vector2D}}\&\ rasterCoord,}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_spectrum}{math::Spectrum}}\&\ pathThroughput);}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1_v_p_m_radiance_evaluator_ad38c6cb759a246ff6a27353dc5255513}{impl\_onPathHitSurface}}(}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ std::size\_t\ \ \ \ \ \ \ \ \ \ \ pathLength,}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_surface_hit}{SurfaceHit}}\&\ \ \ \ \ surfaceHit,}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_spectrum}{math::Spectrum}}\&\ pathThroughput)\ -\/>\ \mbox{\hyperlink{classph_1_1_view_path_tracing_policy}{ViewPathTracingPolicy}};}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_v_p_m_radiance_evaluator_a54f172a5bfd56f1f4f333f85c02d2cd7}{impl\_onReceiverSampleEnd}}();}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_v_p_m_radiance_evaluator_a5a93057db82faea4ad9eda50804ca2ac}{impl\_onSampleBatchFinished}}();}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_v_p_m_radiance_evaluator_a1a87b39c27fd93486d0401293bdbc08a}{setPMStatistics}}(\mbox{\hyperlink{classph_1_1_p_m_statistics}{PMStatistics}}*\ statistics);}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_v_p_m_radiance_evaluator_af821d68e6ee1dae07a4c5eb2a168fd4c}{setPMRenderer}}(\mbox{\hyperlink{classph_1_1_p_m_renderer}{PMRenderer}}*\ renderer);}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_v_p_m_radiance_evaluator_a595bd8b34c622bca5b03e5df71881d7f}{setKernelRadius}}(real\ radius);}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_point_kdtree}{TPhotonMap<FullPhoton>}}*\ m\_photonMap;}
+\DoxyCodeLine{00060\ \ \ \ \ std::size\_t\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_numPhotonPaths;}
+\DoxyCodeLine{00061\ \ \ \ \ \mbox{\hyperlink{classph_1_1_hdr_rgb_film}{HdrRgbFilm}}*\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_film;}
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_scene}{Scene}}*\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_scene;}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \ \ \ \ real\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_kernelRadius;}
+\DoxyCodeLine{00065\ \ \ \ \ \mbox{\hyperlink{classph_1_1_p_m_statistics}{PMStatistics}}*\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_statistics;}
+\DoxyCodeLine{00066\ \ \ \ \ \mbox{\hyperlink{classph_1_1_p_m_renderer}{PMRenderer}}*\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_renderer;}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{math::Vector2D}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_rasterCoord;}
+\DoxyCodeLine{00069\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_spectrum}{math::Spectrum}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_sampledRadiance;}
+\DoxyCodeLine{00070\ \ \ \ \ std::vector<FullPhoton>\ \ \ \ \ \ \ m\_photonCache;}
+\DoxyCodeLine{00071\ \};}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \textcolor{comment}{//\ In-\/header\ Implementations:}}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_v_p_m_radiance_evaluator_a370bee424d0fcb8854fa86ed9b15a55c}{VPMRadianceEvaluator::VPMRadianceEvaluator}}(}
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_point_kdtree}{TPhotonMap<FullPhoton>}}*\ photonMap,}
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ \ \ \ \ \ \ \ \ \ \ \ \ numPhotonPaths,}
+\DoxyCodeLine{00078\ \ \ \ \ \mbox{\hyperlink{classph_1_1_hdr_rgb_film}{HdrRgbFilm}}*\ \textcolor{keyword}{const}\ \ \ \ \ \ \ \ \ \ \ \ \ film,}
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_scene}{Scene}}*\ \textcolor{keyword}{const}\ \ \ \ \ \ \ \ \ \ \ \ scene)\ :}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ \ \ m\_photonMap(photonMap),}
+\DoxyCodeLine{00082\ \ \ \ \ m\_numPhotonPaths(numPhotonPaths),}
+\DoxyCodeLine{00083\ \ \ \ \ m\_film(film),}
+\DoxyCodeLine{00084\ \ \ \ \ m\_scene(scene)}
+\DoxyCodeLine{00085\ \{}
+\DoxyCodeLine{00086\ \ \ \ \ PH\_ASSERT(photonMap);}
+\DoxyCodeLine{00087\ \ \ \ \ PH\_ASSERT(film);}
+\DoxyCodeLine{00088\ \ \ \ \ PH\_ASSERT\_GT(numPhotonPaths,\ 0);}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \ \ \ \ \mbox{\hyperlink{classph_1_1_v_p_m_radiance_evaluator_a1a87b39c27fd93486d0401293bdbc08a}{setPMStatistics}}(\textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00091\ \ \ \ \ \mbox{\hyperlink{classph_1_1_v_p_m_radiance_evaluator_af821d68e6ee1dae07a4c5eb2a168fd4c}{setPMRenderer}}(\textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00092\ \ \ \ \ \mbox{\hyperlink{classph_1_1_v_p_m_radiance_evaluator_a595bd8b34c622bca5b03e5df71881d7f}{setKernelRadius}}(0.1\_r);}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \ \ \ \ m\_film-\/>\mbox{\hyperlink{classph_1_1_hdr_rgb_film_a8506b4f8262b426c5390cac4c5fa64ac}{clear}}();}
+\DoxyCodeLine{00095\ \}}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_v_p_m_radiance_evaluator_a4e3c6f62729423f1a6a447a59d65224b}{VPMRadianceEvaluator::impl\_onReceiverSampleStart}}(}
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{math::Vector2D}}\&\ rasterCoord,}
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_spectrum}{math::Spectrum}}\&\ pathThroughput)}
+\DoxyCodeLine{00100\ \{}
+\DoxyCodeLine{00101\ \ \ \ \ m\_rasterCoord\ =\ rasterCoord;}
+\DoxyCodeLine{00102\ \ \ \ \ m\_sampledRadiance.\mbox{\hyperlink{classph_1_1math_1_1_t_spectrum_base_af58432a65fc463fe653700d1736dfc2a}{setColorValues}}(0);}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00105\ \}}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1_v_p_m_radiance_evaluator_ad38c6cb759a246ff6a27353dc5255513}{VPMRadianceEvaluator::impl\_onPathHitSurface}}(}
+\DoxyCodeLine{00108\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ \ \ \ \ pathLength,}
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_surface_hit}{SurfaceHit}}\&\ \ \ \ \ surfaceHit,}
+\DoxyCodeLine{00110\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_spectrum}{math::Spectrum}}\&\ pathThroughput)\ -\/>\ \mbox{\hyperlink{classph_1_1_view_path_tracing_policy}{ViewPathTracingPolicy}}}
+\DoxyCodeLine{00111\ \{}
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{comment}{//\ TODO:\ remove\ hardcoded\ max\ path\ length}}
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{keyword}{constexpr}\ std::size\_t\ MAX\_PATH\_LENGTH\ =\ 5;}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ \ \ \ \ PH\_ASSERT\_GE(pathLength,\ 1);}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_bsdf_query_context}{BsdfQueryContext}}\ bsdfContext(\mbox{\hyperlink{namespaceph_a6def4537451eb39524dc16ba6f987bfe}{ALL\_ELEMENTALS}},\ \mbox{\hyperlink{namespaceph_a77d951ca57b4e319e083ebddd4695213aa8bf103ce6d1fcb1af7013857b1beee6}{ETransport::IMPORTANCE}},\ \mbox{\hyperlink{namespaceph_ab7ef8f11c7d7bffec2c1fbd554ab9e78a4c50b1af679a751969aaad2881a34bef}{ESidednessPolicy::STRICT}});}
+\DoxyCodeLine{00118\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_primitive_metadata}{PrimitiveMetadata}}*\ \textcolor{keyword}{const}\ metadata\ \ \ \ \ \ =\ surfaceHit.getDetail().getPrimitive()-\/>getMetadata();}
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_surface_optics}{SurfaceOptics}}*\ \textcolor{keyword}{const}\ \ \ \ \ surfaceOptics\ =\ metadata-\/>\mbox{\hyperlink{classph_1_1_primitive_metadata_aa1de761e2aba6c2e38782234fb84c729}{getSurface}}().\mbox{\hyperlink{classph_1_1_surface_behavior_a06ac41f6b5ced55e9c6dbd42de755a87}{getOptics}}();}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ \ \ \ \ \textcolor{keywordflow}{if}(metadata-\/>\mbox{\hyperlink{classph_1_1_primitive_metadata_aa1de761e2aba6c2e38782234fb84c729}{getSurface}}().\mbox{\hyperlink{classph_1_1_surface_behavior_afcd71b27cb7fb1042923227bcd29fbd7}{getEmitter}}())}
+\DoxyCodeLine{00122\ \ \ \ \ \{}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_spectrum}{math::Spectrum}}\ viewPathRadiance;}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ metadata-\/>\mbox{\hyperlink{classph_1_1_primitive_metadata_aa1de761e2aba6c2e38782234fb84c729}{getSurface}}().\mbox{\hyperlink{classph_1_1_surface_behavior_afcd71b27cb7fb1042923227bcd29fbd7}{getEmitter}}()-\/>\mbox{\hyperlink{classph_1_1_emitter_a411feaf012b6fde9b14c995e0f146c99}{evalEmittedRadiance}}(surfaceHit,\ \&viewPathRadiance);}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ m\_sampledRadiance.addLocal(pathThroughput\ *\ viewPathRadiance);}
+\DoxyCodeLine{00126\ \ \ \ \ \}}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \ \ \ \ \textcolor{comment}{//\ FIXME:\ properly\ handle\ delta\ optics\ (mixed\ case)}}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ \ \ \ \ \textcolor{keywordflow}{if}(pathLength\ <\ MAX\_PATH\_LENGTH\ \&\&\ surfaceOptics-\/>getAllPhenomena().hasAny(\{}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceph_a596116c16341de64c97b20395d758456a8aae1f9200b02a17e6d07e6e503bb0d3}{ESurfacePhenomenon::DELTA\_REFLECTION}},}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceph_a596116c16341de64c97b20395d758456a362e423eb291bcb0fef5887867eaab19}{ESurfacePhenomenon::DELTA\_TRANSMISSION}}\}))}
+\DoxyCodeLine{00133\ \ \ \ \ \{}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1_view_path_tracing_policy}{ViewPathTracingPolicy}}().}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ traceBranchedPathFor(\mbox{\hyperlink{namespaceph_a368541bcb08772c8f877aa56743f51a6}{SurfacePhenomena}}(\{}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceph_a596116c16341de64c97b20395d758456a8aae1f9200b02a17e6d07e6e503bb0d3}{ESurfacePhenomenon::DELTA\_REFLECTION}},}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceph_a596116c16341de64c97b20395d758456a362e423eb291bcb0fef5887867eaab19}{ESurfacePhenomenon::DELTA\_TRANSMISSION}}\})).}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ useRussianRoulette(\textcolor{keyword}{false});}
+\DoxyCodeLine{00139\ \ \ \ \ \}}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00141\ \ \ \ \ PH\_ASSERT\_LE(pathLength,\ MAX\_PATH\_LENGTH);}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00143\ \ \ \ \ m\_photonCache.clear();}
+\DoxyCodeLine{00144\ \ \ \ \ m\_photonMap-\/>findWithinRange(surfaceHit.getPosition(),\ m\_kernelRadius,\ m\_photonCache);}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00146\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_surface_tracer}{SurfaceTracer}}\ surfaceTracer(m\_scene);}
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00148\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\ L\ \ =\ surfaceHit.getIncidentRay().getDirection().\mbox{\hyperlink{classph_1_1math_1_1_t_vector_n_base_a15602e64861b8d4b90033e87b168b846}{mul}}(-\/1);}
+\DoxyCodeLine{00149\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\ Ns\ =\ surfaceHit.getShadingNormal();}
+\DoxyCodeLine{00150\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\ Ng\ =\ surfaceHit.getGeometryNormal();}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00152\ \ \ \ \ \mbox{\hyperlink{classph_1_1_bsdf_eval_query}{BsdfEvalQuery}}\ \ bsdfEval(bsdfContext);}
+\DoxyCodeLine{00153\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_spectrum}{math::Spectrum}}\ radiance(0);}
+\DoxyCodeLine{00154\ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ photon\ :\ m\_photonCache)}
+\DoxyCodeLine{00155\ \ \ \ \ \{}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\ V\ =\ photon.get<\mbox{\hyperlink{namespaceph_a2f105bf7a6233cdb646a691b6055d71da12c8d7f2b9404a7bc90c587d38488dfa}{EPhotonData::FROM\_DIR}}>();}
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ bsdfEval.\mbox{\hyperlink{classph_1_1_bsdf_eval_query_a131b546e65d9b273d7c95acef12b6b62}{inputs}}.\mbox{\hyperlink{classph_1_1_bsdf_eval_input_a7658fd1af64fe58a5cc83b7c301f33bb}{set}}(surfaceHit,\ L,\ V);}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!surfaceTracer.\mbox{\hyperlink{classph_1_1_surface_tracer_a0a3a624ab60abac6864c77cc8a8482a9}{doBsdfEvaluation}}(bsdfEval))}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_spectrum}{math::Spectrum}}\ throughput(pathThroughput);}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ throughput.\mbox{\hyperlink{classph_1_1math_1_1_t_spectrum_base_ab2c2c0e821a2752db5eab046a8b945a3}{mulLocal}}(bsdfEval.\mbox{\hyperlink{classph_1_1_bsdf_eval_query_a8b919e7e55a87dee8c6a382e5f8817d6}{outputs}}.\mbox{\hyperlink{classph_1_1_bsdf_eval_output_a3cffc91dc77a021e9dfe79fad051cede}{bsdf}});}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ throughput.\mbox{\hyperlink{classph_1_1math_1_1_t_spectrum_base_ab2c2c0e821a2752db5eab046a8b945a3}{mulLocal}}(\mbox{\hyperlink{namespaceph_1_1lta_a65b7cfd7f2d90bb06d8089d61ddbd164}{lta::importance\_BSDF\_Ns\_corrector}}(Ns,\ Ng,\ L,\ V));}
+\DoxyCodeLine{00167\ }
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ radiance.\mbox{\hyperlink{classph_1_1math_1_1_t_spectrum_base_a87644527c2610a09cee0bcf0f2fb92e9}{addLocal}}(throughput\ *\ photon.get<\mbox{\hyperlink{namespaceph_a2f105bf7a6233cdb646a691b6055d71da95e89296fd3d9a10375c497dde9d227f}{EPhotonData::THROUGHPUT\_RADIANCE}}>());}
+\DoxyCodeLine{00169\ \ \ \ \ \}}
+\DoxyCodeLine{00170\ }
+\DoxyCodeLine{00171\ \ \ \ \ \textcolor{comment}{//\ OPT:\ cache}}
+\DoxyCodeLine{00172\ \ \ \ \ \textcolor{keyword}{const}\ real\ kernelArea\ =\ m\_kernelRadius\ *\ m\_kernelRadius\ *\ math::constant::pi<real>;}
+\DoxyCodeLine{00173\ \ \ \ \ \textcolor{keyword}{const}\ real\ radianceMultiplier\ =\ 1.0\_r\ /\ (kernelArea\ *\ \textcolor{keyword}{static\_cast<}real\textcolor{keyword}{>}(m\_numPhotonPaths));}
+\DoxyCodeLine{00174\ }
+\DoxyCodeLine{00175\ \ \ \ \ radiance.\mbox{\hyperlink{classph_1_1math_1_1_t_spectrum_base_ab2c2c0e821a2752db5eab046a8b945a3}{mulLocal}}(radianceMultiplier);}
+\DoxyCodeLine{00176\ }
+\DoxyCodeLine{00177\ \ \ \ \ m\_sampledRadiance.addLocal(radiance);}
+\DoxyCodeLine{00178\ }
+\DoxyCodeLine{00179\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1_view_path_tracing_policy}{ViewPathTracingPolicy}}().\mbox{\hyperlink{classph_1_1_view_path_tracing_policy_a271c1f9cf115af124dd6a36f911768d0}{kill}}();}
+\DoxyCodeLine{00180\ \}}
+\DoxyCodeLine{00181\ }
+\DoxyCodeLine{00182\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_v_p_m_radiance_evaluator_a54f172a5bfd56f1f4f333f85c02d2cd7}{VPMRadianceEvaluator::impl\_onReceiverSampleEnd}}()}
+\DoxyCodeLine{00183\ \{}
+\DoxyCodeLine{00184\ \ \ \ \ m\_film-\/>\mbox{\hyperlink{classph_1_1_hdr_rgb_film_a8dc01c31bc3ef88da6346f108bd432d3}{addSample}}(m\_rasterCoord.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_a03c5e56839820da78b52d2db0281f065}{x}}(),\ m\_rasterCoord.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_af3065a5fa872cdb3f2291a84824d5d59}{y}}(),\ m\_sampledRadiance);}
+\DoxyCodeLine{00185\ \}}
+\DoxyCodeLine{00186\ }
+\DoxyCodeLine{00187\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_v_p_m_radiance_evaluator_a5a93057db82faea4ad9eda50804ca2ac}{VPMRadianceEvaluator::impl\_onSampleBatchFinished}}()}
+\DoxyCodeLine{00188\ \{}
+\DoxyCodeLine{00189\ \ \ \ \ \textcolor{keywordflow}{if}(m\_statistics)}
+\DoxyCodeLine{00190\ \ \ \ \ \{}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ m\_statistics-\/>\mbox{\hyperlink{classph_1_1_p_m_statistics_a12081cebff2284059e5bc5830ff475ab}{asyncIncrementNumIterations}}();}
+\DoxyCodeLine{00192\ \ \ \ \ \}}
+\DoxyCodeLine{00193\ }
+\DoxyCodeLine{00194\ \ \ \ \ \textcolor{keywordflow}{if}(m\_renderer)}
+\DoxyCodeLine{00195\ \ \ \ \ \{}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ m\_renderer-\/>\mbox{\hyperlink{classph_1_1_p_m_renderer_a2ed6bd64bb9ed2f26580e799fbaf29d0}{asyncMergeFilm}}(*m\_film);}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ m\_film-\/>\mbox{\hyperlink{classph_1_1_hdr_rgb_film_a8506b4f8262b426c5390cac4c5fa64ac}{clear}}();}
+\DoxyCodeLine{00198\ \ \ \ \ \}}
+\DoxyCodeLine{00199\ \}}
+\DoxyCodeLine{00200\ }
+\DoxyCodeLine{00201\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_v_p_m_radiance_evaluator_a1a87b39c27fd93486d0401293bdbc08a}{VPMRadianceEvaluator::setPMStatistics}}(\mbox{\hyperlink{classph_1_1_p_m_statistics}{PMStatistics}}*\ \textcolor{keyword}{const}\ statistics)}
+\DoxyCodeLine{00202\ \{}
+\DoxyCodeLine{00203\ \ \ \ \ m\_statistics\ =\ statistics;}
+\DoxyCodeLine{00204\ \}}
+\DoxyCodeLine{00205\ }
+\DoxyCodeLine{00206\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_v_p_m_radiance_evaluator_af821d68e6ee1dae07a4c5eb2a168fd4c}{VPMRadianceEvaluator::setPMRenderer}}(\mbox{\hyperlink{classph_1_1_p_m_renderer}{PMRenderer}}*\ \textcolor{keyword}{const}\ renderer)}
+\DoxyCodeLine{00207\ \{}
+\DoxyCodeLine{00208\ \ \ \ \ m\_renderer\ =\ renderer;}
+\DoxyCodeLine{00209\ \}}
+\DoxyCodeLine{00210\ }
+\DoxyCodeLine{00211\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_v_p_m_radiance_evaluator_a595bd8b34c622bca5b03e5df71881d7f}{VPMRadianceEvaluator::setKernelRadius}}(\textcolor{keyword}{const}\ real\ radius)}
+\DoxyCodeLine{00212\ \{}
+\DoxyCodeLine{00213\ \ \ \ \ PH\_ASSERT\_GT(radius,\ 0.0\_r);}
+\DoxyCodeLine{00214\ }
+\DoxyCodeLine{00215\ \ \ \ \ m\_kernelRadius\ =\ radius;}
+\DoxyCodeLine{00216\ \}}
+\DoxyCodeLine{00217\ }
+\DoxyCodeLine{00218\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
 
 \end{DoxyCode}

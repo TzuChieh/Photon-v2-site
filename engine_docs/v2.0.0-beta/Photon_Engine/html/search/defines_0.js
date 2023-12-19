@@ -1,8 +1,8 @@
 var searchData=
 [
-  ['ph_5fdeclare_5flog_5fgroup_0',['PH_DECLARE_LOG_GROUP',['../d5/d77/logging_8h.html#acc337adfdbc7ea775f7f7d6102ce855a',1,'logging.h']]],
-  ['ph_5fdefine_5fexternal_5flog_5fgroup_1',['PH_DEFINE_EXTERNAL_LOG_GROUP',['../d5/d77/logging_8h.html#a6f3ae1815da4078262e15d5edae54cb5',1,'logging.h']]],
-  ['ph_5fdefine_5finternal_5flog_5fgroup_2',['PH_DEFINE_INTERNAL_LOG_GROUP',['../d5/d77/logging_8h.html#a6a03b0efb173a94d3565b34e7f591dad',1,'logging.h']]],
-  ['ph_5fdefine_5flog_5fgroup_3',['PH_DEFINE_LOG_GROUP',['../d5/d77/logging_8h.html#ade513aa53ccd4f6c88462e55c1ba0112',1,'logging.h']]],
-  ['ph_5flog_5fdebug_5fstring_4',['ph_log_debug_string',['../d5/d77/logging_8h.html#a26ecf67970e012988963f807a4902eda',1,'PH_LOG_DEBUG_STRING:&#160;logging.h'],['../d5/d77/logging_8h.html#a26ecf67970e012988963f807a4902eda',1,'PH_LOG_DEBUG_STRING:&#160;logging.h']]]
+  ['kdtree_5fnum_5faxes_0',['KDTREE_NUM_AXES',['../d8/d1f/kdtree__core_8h.html#ab8325ef0375c96a0484b29bb03387ff1',1,'kdtree_core.h']]],
+  ['kdtree_5funknown_5faxis_1',['KDTREE_UNKNOWN_AXIS',['../d8/d1f/kdtree__core_8h.html#ab189da3bc41c43bb74482ac8b4ba42fc',1,'kdtree_core.h']]],
+  ['kdtree_5fx_5faxis_2',['KDTREE_X_AXIS',['../d8/d1f/kdtree__core_8h.html#a46200bc8b907feaea9ebb2397d43912d',1,'kdtree_core.h']]],
+  ['kdtree_5fy_5faxis_3',['KDTREE_Y_AXIS',['../d8/d1f/kdtree__core_8h.html#ac9bf7685180d4110345df6d7b7df7b35',1,'kdtree_core.h']]],
+  ['kdtree_5fz_5faxis_4',['KDTREE_Z_AXIS',['../d8/d1f/kdtree__core_8h.html#aaa6999fd1c0db9d54e86fbc220abca0c',1,'kdtree_core.h']]]
 ];

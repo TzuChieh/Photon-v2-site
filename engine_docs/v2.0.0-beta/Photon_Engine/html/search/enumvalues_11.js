@@ -1,4 +1,28 @@
 var searchData=
 [
-  ['xyzscaling_0',['XYZScaling',['../d7/dac/namespaceph_1_1math.html#aeb6d400f8c4f85be266ab51b3cd65951a3fd49dab43044bf83a81e5e7ab067402',1,'ph::math']]]
+  ['r_0',['R',['../d1/d5d/namespaceph_1_1pixel__texture.html#a3b167f72734af6e016a66878c539bd9dae1e1d3d40573127e9ee0480caf1283d6',1,'ph::pixel_texture']]],
+  ['radiance_1',['RADIANCE',['../d3/d5c/namespaceph.html#a77d951ca57b4e319e083ebddd4695213a11ddd116a724531f18090168bc0fddcb',1,'ph']]],
+  ['radius_2',['RADIUS',['../d3/d5c/namespaceph.html#a7d646adaf4c44ccfcbbe787120a7cb1fa5c6d0ec312d680ed011756648c9e96ea',1,'ph']]],
+  ['raster_5fcoord_3',['RASTER_COORD',['../d3/d5c/namespaceph.html#a7d646adaf4c44ccfcbbe787120a7cb1fa414657d9a739c0346bb75f628537f4fb',1,'ph']]],
+  ['raw_4',['RAW',['../d7/dac/namespaceph_1_1math.html#a821af6da20aaed56cc09ad440633d067a633d6abff0a3fc22404347728d195059',1,'ph::math']]],
+  ['real_5',['REAL',['../de/d70/classph_1_1_render_stats.html#a4c503028ad70f971c5f2726472708554a8cf125b0e31559ba75a9d9b4f818a554',1,'ph::RenderStats']]],
+  ['ref_5factor_6',['Ref_Actor',['../d3/d5c/namespaceph.html#aee9d551563491bc7930c4ca21e22204bad9bad7a78004290b75b7e614b273807e',1,'ph']]],
+  ['ref_5fframeprocessor_7',['Ref_FrameProcessor',['../d3/d5c/namespaceph.html#aee9d551563491bc7930c4ca21e22204ba5a81d2b7ba0d731c083d2528a88be222',1,'ph']]],
+  ['ref_5fgeometry_8',['Ref_Geometry',['../d3/d5c/namespaceph.html#aee9d551563491bc7930c4ca21e22204ba7b77aed5146529c3116a67b97c3a3ee3',1,'ph']]],
+  ['ref_5fimage_9',['Ref_Image',['../d3/d5c/namespaceph.html#aee9d551563491bc7930c4ca21e22204baefde95994b59471d0a11721ea557c049',1,'ph']]],
+  ['ref_5flightsource_10',['Ref_LightSource',['../d3/d5c/namespaceph.html#aee9d551563491bc7930c4ca21e22204ba82ffa509a63f0d2c294e6de3ccc31573',1,'ph']]],
+  ['ref_5fmaterial_11',['Ref_Material',['../d3/d5c/namespaceph.html#aee9d551563491bc7930c4ca21e22204ba4bd225eceaf89433e0bc847a60b185da',1,'ph']]],
+  ['ref_5fmotion_12',['Ref_Motion',['../d3/d5c/namespaceph.html#aee9d551563491bc7930c4ca21e22204bae532102d42b963b65896f61673c0709b',1,'ph']]],
+  ['ref_5fobject_13',['Ref_Object',['../d3/d5c/namespaceph.html#aee9d551563491bc7930c4ca21e22204bad490977845b37e83c7e2cd129f414134',1,'ph']]],
+  ['ref_5fobserver_14',['Ref_Observer',['../d3/d5c/namespaceph.html#aee9d551563491bc7930c4ca21e22204bab85c12598381f8f8b8e512f4dcf5e916',1,'ph']]],
+  ['ref_5foption_15',['Ref_Option',['../d3/d5c/namespaceph.html#aee9d551563491bc7930c4ca21e22204ba4963cade08bc6dd93e303ddb29991261',1,'ph']]],
+  ['ref_5fsamplesource_16',['Ref_SampleSource',['../d3/d5c/namespaceph.html#aee9d551563491bc7930c4ca21e22204baa417aeca7536fb7779b3017d4a2bee91',1,'ph']]],
+  ['ref_5fvisualizer_17',['Ref_Visualizer',['../d3/d5c/namespaceph.html#aee9d551563491bc7930c4ca21e22204baddf30737283494e0c82660063013c290',1,'ph']]],
+  ['removal_18',['Removal',['../d3/d5c/namespaceph.html#a748a9a96952018f789a076563beb0eeaaad7dcd0ec48cd500746a3e9ef80c0a9b',1,'ph']]],
+  ['repeat_19',['repeat',['../d3/d5c/namespaceph.html#a688ddbdef5155c5446bd8547de456e02a5be68175be14dfaa080165456c2e9555',1,'ph::REPEAT'],['../d3/d5c/namespaceph.html#af0c6de5f0cbfd30ac84f7b0af8529b55a7020426cfb0a204051be4b3053d2acc8',1,'ph::Repeat'],['../d1/d5d/namespaceph_1_1pixel__texture.html#a5dcb3306aae58b27f6458054da3413c2a7020426cfb0a204051be4b3053d2acc8',1,'ph::pixel_texture::Repeat']]],
+  ['required_20',['Required',['../d3/d5c/namespaceph.html#a3f81b078141211109d7e3b340d0525ccab651efdb98a5d6bd2b3935d0c3f4a5e2',1,'ph']]],
+  ['resourceidentifier_21',['ResourceIdentifier',['../d3/d5c/namespaceph.html#ada33bb2d4bc26b3ec1da2acb348ef4ebaeb222d153d13a436ed254a8eabc42700',1,'ph']]],
+  ['rg_22',['RG',['../d1/d5d/namespaceph_1_1pixel__texture.html#a3b167f72734af6e016a66878c539bd9dabac953e88f6d79514b0b6fc42eb6f3b7',1,'ph::pixel_texture']]],
+  ['rgb_23',['RGB',['../d1/d5d/namespaceph_1_1pixel__texture.html#a3b167f72734af6e016a66878c539bd9da889574aebacda6bfd3e534e2b49b8028',1,'ph::pixel_texture']]],
+  ['rgba_24',['RGBA',['../d1/d5d/namespaceph_1_1pixel__texture.html#a3b167f72734af6e016a66878c539bd9daea3495a278957dc58165e48a8945469f',1,'ph::pixel_texture']]]
 ];

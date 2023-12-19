@@ -106,138 +106,182 @@ $(document).ready(function(){initNavTree('dd/d0d/_t_sdl_method_8ipp_source.html'
   <div class="headertitle"><div class="title">TSdlMethod.ipp</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
+<a href="../../dd/d0d/_t_sdl_method_8ipp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &quot;SDL/Introspect/TSdlMethod.h&quot;</span></div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;Common/assertion.h&quot;</span></div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;SDL/SdlInputClauses.h&quot;</span></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;SDL/Introspect/SdlInputContext.h&quot;</span></div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;SDL/Introspect/field_set_op.h&quot;</span></div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;SDL/SceneDescription.h&quot;</span></div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &quot;SDL/sdl_exceptions.h&quot;</span></div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;utility&gt;</span></div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="keyword">namespace </span><a class="code hl_namespace" href="../../d3/d5c/namespaceph.html">ph</a></div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>{</div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> MethodStruct, <span class="keyword">typename</span> TargetType&gt;</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="keyword">inline</span> TSdlMethod&lt;MethodStruct, TargetType&gt;::TSdlMethod(std::string name) :</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    SdlFunction(std::move(name))</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>{}</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> MethodStruct, <span class="keyword">typename</span> TargetType&gt;</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="keyword">inline</span> <span class="keywordtype">void</span> TSdlMethod&lt;MethodStruct, TargetType&gt;::call(</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    ISdlResource*          resource,</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    SdlInputClauses&amp;       clauses,</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <span class="keyword">const</span> SdlInputContext&amp; ctx)<span class="keyword"> const</span></div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="keyword"></span>{</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <span class="keywordflow">if</span>(!resource)</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    {</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>        <span class="keywordflow">throw</span> SdlLoadError(</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>            <span class="stringliteral">&quot;cannot call SDL method without target resource &quot;</span></div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>            <span class="stringliteral">&quot;(&quot;</span> + ctx.genPrettySrcClassName() + <span class="stringliteral">&quot;)&quot;</span>);</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    }</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <span class="keyword">auto</span> <span class="keyword">const</span> targetRes = <span class="keyword">dynamic_cast&lt;</span>TargetType*<span class="keyword">&gt;</span>(resource);</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <span class="keywordflow">if</span>(!targetRes)</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    {</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        <span class="keywordflow">throw</span> SdlLoadError(</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>            <span class="stringliteral">&quot;type cast error: target resource is not owned by &quot;</span></div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>            <span class="stringliteral">&quot;SDL class &lt;&quot;</span> + ctx.genPrettySrcClassName() + <span class="stringliteral">&quot;&gt;&quot;</span>);</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    }</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    PH_ASSERT(targetRes);</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    callMethod(*targetRes, clauses, ctx);</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>}</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> MethodStruct, <span class="keyword">typename</span> TargetType&gt;</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="keyword">inline</span> <span class="keywordtype">void</span> TSdlMethod&lt;MethodStruct, TargetType&gt;::callMethod(</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    TargetType&amp;            targetType, </div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    SdlInputClauses&amp;       clauses,</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <span class="keyword">const</span> SdlInputContext&amp; ctx)<span class="keyword"> const</span></div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span><span class="keyword"></span>{</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    <span class="keyword">static_assert</span>(!std::is_abstract_v&lt;MethodStruct&gt; &amp;&amp; std::is_default_constructible_v&lt;MethodStruct&gt;,</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        <span class="stringliteral">&quot;MethodStruct must be non-abstract and default-constructible.&quot;</span>);</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <span class="keyword">static_assert</span>(std::is_invocable_v&lt;MethodStruct, TargetType&amp;&gt;,</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>        <span class="stringliteral">&quot;MethodStruct must contain an operator() that can take a TargetType instance.&quot;</span>);</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    MethodStruct methodStructObj;</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    loadParameters(</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>        methodStructObj,</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>        clauses,</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>        ctx);</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    methodStructObj(targetType);</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>}</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> MethodStruct, <span class="keyword">typename</span> TargetType&gt;</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span><span class="keyword">inline</span> <span class="keywordtype">void</span> TSdlMethod&lt;MethodStruct, TargetType&gt;::loadParameters(</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    MethodStruct&amp;          parameterStruct,</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    SdlInputClauses&amp;       clauses,</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    <span class="keyword">const</span> SdlInputContext&amp; ctx)<span class="keyword"> const</span></div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span><span class="keyword"></span>{</div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    field_set_op::load_fields_from_sdl(</div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>        parameterStruct,</div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>        m_fields,</div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>        clauses,</div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>        ctx,</div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>        [](std::string noticeMsg, EFieldImportance importance)</div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>        {</div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>            <span class="keywordflow">if</span>(importance == EFieldImportance::Optional || importance == EFieldImportance::NiceToHave)</div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>            {</div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>                PH_LOG_STRING(SdlFunction, noticeMsg);</div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>            }</div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>            <span class="keywordflow">else</span></div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>            {</div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>                PH_LOG_WARNING_STRING(SdlFunction, noticeMsg);</div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>            }</div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>        });</div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>}</div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> MethodStruct, <span class="keyword">typename</span> TargetType&gt;</div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span><span class="keyword">inline</span> std::size_t TSdlMethod&lt;MethodStruct, TargetType&gt;::numParams()<span class="keyword"> const</span></div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span><span class="keyword"></span>{</div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    <span class="keywordflow">return</span> m_fields.numFields();</div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>}</div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span> </div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> MethodStruct, <span class="keyword">typename</span> TargetType&gt;</div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span><span class="keyword">inline</span> <span class="keyword">const</span> SdlField* TSdlMethod&lt;MethodStruct, TargetType&gt;::getParam(<span class="keyword">const</span> std::size_t index)<span class="keyword"> const</span></div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span><span class="keyword"></span>{</div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    <span class="keywordflow">return</span> m_fields.getField(index);</div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>}</div>
-<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span> </div>
-<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> MethodStruct, <span class="keyword">typename</span> TargetType&gt;</div>
-<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span><span class="keyword">inline</span> <span class="keyword">auto</span> TSdlMethod&lt;MethodStruct, TargetType&gt;::addParam(T sdlField)</div>
-<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    -&gt; TSdlMethod&amp;</div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>{</div>
-<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    <span class="comment">// More restrictions on the type of T may be imposed by FieldSet</span></div>
-<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    <span class="keyword">static_assert</span>(std::is_base_of_v&lt;SdlField, T&gt;,</div>
-<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>        <span class="stringliteral">&quot;T is not a SdlField thus cannot be added.&quot;</span>);</div>
-<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span> </div>
-<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    m_fields.addField(std::move(sdlField));</div>
-<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span> </div>
-<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>    <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
-<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>}</div>
-<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span> </div>
-<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> MethodStruct, <span class="keyword">typename</span> TargetType&gt;</div>
-<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span><span class="keyword">inline</span> <span class="keyword">auto</span> TSdlMethod&lt;MethodStruct, TargetType&gt;::description(std::string descriptionStr)</div>
-<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    -&gt; TSdlMethod&amp;</div>
-<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>{</div>
-<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>    setDescription(std::move(descriptionStr));</div>
-<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
-<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>}</div>
-<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span> </div>
-<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>}<span class="comment">// end namespace ph</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &quot;<a class="code" href="../../d8/d53/_t_sdl_method_8h.html">SDL/Introspect/TSdlMethod.h</a>&quot;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="../../de/def/_sdl_input_clauses_8h.html">SDL/SdlInputClauses.h</a>&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="../../da/d58/_sdl_input_context_8h.html">SDL/Introspect/SdlInputContext.h</a>&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;<a class="code" href="../../dc/d8b/field__set__op_8h.html">SDL/Introspect/field_set_op.h</a>&quot;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;<a class="code" href="../../d0/dee/_scene_description_8h.html">SDL/SceneDescription.h</a>&quot;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;<a class="code" href="../../d1/dc2/sdl__exceptions_8h.html">SDL/sdl_exceptions.h</a>&quot;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;Common/assertion.h&gt;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;utility&gt;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="keyword">namespace </span><a class="code hl_namespace" href="../../d3/d5c/namespaceph.html">ph</a></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>{</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> MethodStruct, <span class="keyword">typename</span> TargetType&gt;</div>
+<div class="foldopen" id="foldopen00018" data-start="{" data-end="}">
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="../../db/da4/classph_1_1_t_sdl_method.html#ae363dfe72186bd55e5862683e4ca3757">   18</a></span><span class="keyword">inline</span> <a class="code hl_function" href="../../db/da4/classph_1_1_t_sdl_method.html#ae363dfe72186bd55e5862683e4ca3757">TSdlMethod&lt;MethodStruct, TargetType&gt;::TSdlMethod</a>(std::string name) :</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    <a class="code hl_class" href="../../d1/dc5/classph_1_1_sdl_function.html">SdlFunction</a>(<a class="code hl_namespace" href="../../d8/dcc/namespacestd.html">std</a>::move(name))</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>{}</div>
+</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> MethodStruct, <span class="keyword">typename</span> TargetType&gt;</div>
+<div class="foldopen" id="foldopen00023" data-start="{" data-end="}">
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="../../db/da4/classph_1_1_t_sdl_method.html#a10b614755e5c11deda44baffac85d6af">   23</a></span><span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="../../db/da4/classph_1_1_t_sdl_method.html#a10b614755e5c11deda44baffac85d6af">TSdlMethod&lt;MethodStruct, TargetType&gt;::call</a>(</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    <a class="code hl_class" href="../../d3/df7/classph_1_1_i_sdl_resource.html">ISdlResource</a>*          resource,</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <a class="code hl_class" href="../../de/d9b/classph_1_1_sdl_input_clauses.html">SdlInputClauses</a>&amp;       clauses,</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <span class="keyword">const</span> <a class="code hl_class" href="../../d2/de3/classph_1_1_sdl_input_context.html">SdlInputContext</a>&amp; ctx)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="keyword"></span>{</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    <span class="keywordflow">if</span>(!resource)</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    {</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>        <span class="keywordflow">throw</span> <a class="code hl_class" href="../../d5/d0b/classph_1_1_sdl_load_error.html">SdlLoadError</a>(</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>            <span class="stringliteral">&quot;cannot call SDL method without target resource &quot;</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>            <span class="stringliteral">&quot;(&quot;</span> + ctx.<a class="code hl_function" href="../../dc/da7/classph_1_1_sdl_i_o_context.html#a1c1c2c49c727cd53dd35f037eb2db9c8">genPrettySrcClassName</a>() + <span class="stringliteral">&quot;)&quot;</span>);</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    }</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <span class="keyword">auto</span> <span class="keyword">const</span> targetRes = <span class="keyword">dynamic_cast&lt;</span>TargetType*<span class="keyword">&gt;</span>(resource);</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="keywordflow">if</span>(!targetRes)</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    {</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>        <span class="keywordflow">throw</span> <a class="code hl_class" href="../../d5/d0b/classph_1_1_sdl_load_error.html">SdlLoadError</a>(</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>            <span class="stringliteral">&quot;type cast error: target resource is not owned by &quot;</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>            <span class="stringliteral">&quot;SDL class &lt;&quot;</span> + ctx.<a class="code hl_function" href="../../dc/da7/classph_1_1_sdl_i_o_context.html#a1c1c2c49c727cd53dd35f037eb2db9c8">genPrettySrcClassName</a>() + <span class="stringliteral">&quot;&gt;&quot;</span>);</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    }</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    PH_ASSERT(targetRes);</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    callMethod(*targetRes, clauses, ctx);</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>}</div>
+</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> MethodStruct, <span class="keyword">typename</span> TargetType&gt;</div>
+<div class="foldopen" id="foldopen00048" data-start="{" data-end="}">
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="../../db/da4/classph_1_1_t_sdl_method.html#a53519efb611453272cee1b8b50902655">   48</a></span><span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="../../db/da4/classph_1_1_t_sdl_method.html#a53519efb611453272cee1b8b50902655">TSdlMethod&lt;MethodStruct, TargetType&gt;::callMethod</a>(</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    TargetType&amp;            targetType, </div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <a class="code hl_class" href="../../de/d9b/classph_1_1_sdl_input_clauses.html">SdlInputClauses</a>&amp;       clauses,</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <span class="keyword">const</span> <a class="code hl_class" href="../../d2/de3/classph_1_1_sdl_input_context.html">SdlInputContext</a>&amp; ctx)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="keyword"></span>{</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <span class="keyword">static_assert</span>(!std::is_abstract_v&lt;MethodStruct&gt; &amp;&amp; std::is_default_constructible_v&lt;MethodStruct&gt;,</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>        <span class="stringliteral">&quot;MethodStruct must be non-abstract and default-constructible.&quot;</span>);</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    <span class="keyword">static_assert</span>(std::is_invocable_v&lt;MethodStruct, TargetType&amp;&gt;,</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>        <span class="stringliteral">&quot;MethodStruct must contain an operator() that can take a TargetType instance.&quot;</span>);</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    MethodStruct methodStructObj;</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    loadParameters(</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>        methodStructObj,</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>        clauses,</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>        ctx);</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    methodStructObj(targetType);</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>}</div>
+</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> MethodStruct, <span class="keyword">typename</span> TargetType&gt;</div>
+<div class="foldopen" id="foldopen00069" data-start="{" data-end="}">
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="../../db/da4/classph_1_1_t_sdl_method.html#ae8b18bdf89b3337551be88e2addf177f">   69</a></span><span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="../../db/da4/classph_1_1_t_sdl_method.html#ae8b18bdf89b3337551be88e2addf177f">TSdlMethod&lt;MethodStruct, TargetType&gt;::loadParameters</a>(</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    MethodStruct&amp;          parameterStruct,</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    <a class="code hl_class" href="../../de/d9b/classph_1_1_sdl_input_clauses.html">SdlInputClauses</a>&amp;       clauses,</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    <span class="keyword">const</span> <a class="code hl_class" href="../../d2/de3/classph_1_1_sdl_input_context.html">SdlInputContext</a>&amp; ctx)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span><span class="keyword"></span>{</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    <a class="code hl_function" href="../../d2/d96/namespaceph_1_1field__set__op.html#a79ed90f2437a8f2caf1a958dffd9d4c1">field_set_op::load_fields_from_sdl</a>(</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>        parameterStruct,</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>        m_fields,</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>        clauses,</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>        ctx,</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>        [](std::string noticeMsg, <a class="code hl_enumeration" href="../../d3/d5c/namespaceph.html#a3f81b078141211109d7e3b340d0525cc">EFieldImportance</a> importance)</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>        {</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>            <span class="keywordflow">if</span>(importance == <a class="code hl_enumvalue" href="../../d3/d5c/namespaceph.html#a3f81b078141211109d7e3b340d0525ccaebb061953c0454b2c8ee7b0ac615ebcd">EFieldImportance::Optional</a> || importance == <a class="code hl_enumvalue" href="../../d3/d5c/namespaceph.html#a3f81b078141211109d7e3b340d0525cca0cfbb34b0d0b5ecbec9383c0e7fd4337">EFieldImportance::NiceToHave</a>)</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>            {</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>                PH_LOG_STRING(<a class="code hl_class" href="../../d1/dc5/classph_1_1_sdl_function.html">SdlFunction</a>, noticeMsg);</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>            }</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>            <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>            {</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>                PH_LOG_WARNING_STRING(<a class="code hl_class" href="../../d1/dc5/classph_1_1_sdl_function.html">SdlFunction</a>, noticeMsg);</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>            }</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>        });</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>}</div>
+</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span> </div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> MethodStruct, <span class="keyword">typename</span> TargetType&gt;</div>
+<div class="foldopen" id="foldopen00093" data-start="{" data-end="}">
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno"><a class="line" href="../../db/da4/classph_1_1_t_sdl_method.html#a5044f7b08619f6262172a532f25feff7">   93</a></span><span class="keyword">inline</span> std::size_t <a class="code hl_function" href="../../db/da4/classph_1_1_t_sdl_method.html#a5044f7b08619f6262172a532f25feff7">TSdlMethod&lt;MethodStruct, TargetType&gt;::numParams</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span><span class="keyword"></span>{</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    <span class="keywordflow">return</span> m_fields.numFields();</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>}</div>
+</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span> </div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> MethodStruct, <span class="keyword">typename</span> TargetType&gt;</div>
+<div class="foldopen" id="foldopen00099" data-start="{" data-end="}">
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno"><a class="line" href="../../db/da4/classph_1_1_t_sdl_method.html#a1ecf4719f6f20a351a4d082e7cb5ce45">   99</a></span><span class="keyword">inline</span> <span class="keyword">const</span> <a class="code hl_class" href="../../de/d4f/classph_1_1_sdl_field.html">SdlField</a>* <a class="code hl_function" href="../../db/da4/classph_1_1_t_sdl_method.html#a1ecf4719f6f20a351a4d082e7cb5ce45">TSdlMethod&lt;MethodStruct, TargetType&gt;::getParam</a>(<span class="keyword">const</span> std::size_t index)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span><span class="keyword"></span>{</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    <span class="keywordflow">return</span> m_fields.getField(index);</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>}</div>
+</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span> </div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> MethodStruct, <span class="keyword">typename</span> TargetType&gt;</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="foldopen" id="foldopen00106" data-start="{" data-end="}">
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno"><a class="line" href="../../db/da4/classph_1_1_t_sdl_method.html#a7a040c56992ed0f0a85c62a6badb0d4a">  106</a></span><span class="keyword">inline</span> <span class="keyword">auto</span> <a class="code hl_function" href="../../db/da4/classph_1_1_t_sdl_method.html#aef5ab81bebf20c55c2502681d10251fb">TSdlMethod&lt;MethodStruct, TargetType&gt;::addParam</a>(T sdlField)</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    -&gt; <a class="code hl_class" href="../../db/da4/classph_1_1_t_sdl_method.html">TSdlMethod</a>&amp;</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>{</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    <span class="comment">// More restrictions on the type of T may be imposed by FieldSet</span></div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    <span class="keyword">static_assert</span>(std::is_base_of_v&lt;SdlField, T&gt;,</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>        <span class="stringliteral">&quot;T is not a SdlField thus cannot be added.&quot;</span>);</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span> </div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    m_fields.addField(std::move(sdlField));</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span> </div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>    <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>}</div>
+</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span> </div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> MethodStruct, <span class="keyword">typename</span> TargetType&gt;</div>
+<div class="foldopen" id="foldopen00119" data-start="{" data-end="}">
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno"><a class="line" href="../../db/da4/classph_1_1_t_sdl_method.html#ac1d2374d13aa4561a4772d6be3c26e40">  119</a></span><span class="keyword">inline</span> <span class="keyword">auto</span> <a class="code hl_function" href="../../db/da4/classph_1_1_t_sdl_method.html#ac1d2374d13aa4561a4772d6be3c26e40">TSdlMethod&lt;MethodStruct, TargetType&gt;::description</a>(std::string descriptionStr)</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>    -&gt; <a class="code hl_class" href="../../db/da4/classph_1_1_t_sdl_method.html">TSdlMethod</a>&amp;</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>{</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    setDescription(std::move(descriptionStr));</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>    <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>}</div>
+</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span> </div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>}<span class="comment">// end namespace ph</span></div>
+<div class="ttc" id="a_scene_description_8h_html"><div class="ttname"><a href="../../d0/dee/_scene_description_8h.html">SceneDescription.h</a></div></div>
+<div class="ttc" id="a_sdl_input_clauses_8h_html"><div class="ttname"><a href="../../de/def/_sdl_input_clauses_8h.html">SdlInputClauses.h</a></div></div>
+<div class="ttc" id="a_sdl_input_context_8h_html"><div class="ttname"><a href="../../da/d58/_sdl_input_context_8h.html">SdlInputContext.h</a></div></div>
+<div class="ttc" id="a_t_sdl_method_8h_html"><div class="ttname"><a href="../../d8/d53/_t_sdl_method_8h.html">TSdlMethod.h</a></div></div>
+<div class="ttc" id="aclassph_1_1_i_sdl_resource_html"><div class="ttname"><a href="../../d3/df7/classph_1_1_i_sdl_resource.html">ph::ISdlResource</a></div><div class="ttdoc">Interface for all SDL resource.</div><div class="ttdef"><b>Definition</b> ISdlResource.h:22</div></div>
+<div class="ttc" id="aclassph_1_1_sdl_field_html"><div class="ttname"><a href="../../de/d4f/classph_1_1_sdl_field.html">ph::SdlField</a></div><div class="ttdef"><b>Definition</b> SdlField.h:19</div></div>
+<div class="ttc" id="aclassph_1_1_sdl_function_html"><div class="ttname"><a href="../../d1/dc5/classph_1_1_sdl_function.html">ph::SdlFunction</a></div><div class="ttdef"><b>Definition</b> SdlFunction.h:18</div></div>
+<div class="ttc" id="aclassph_1_1_sdl_i_o_context_html_a1c1c2c49c727cd53dd35f037eb2db9c8"><div class="ttname"><a href="../../dc/da7/classph_1_1_sdl_i_o_context.html#a1c1c2c49c727cd53dd35f037eb2db9c8">ph::SdlIOContext::genPrettySrcClassName</a></div><div class="ttdeci">std::string genPrettySrcClassName() const</div><div class="ttdef"><b>Definition</b> SdlIOContext.cpp:7</div></div>
+<div class="ttc" id="aclassph_1_1_sdl_input_clauses_html"><div class="ttname"><a href="../../de/d9b/classph_1_1_sdl_input_clauses.html">ph::SdlInputClauses</a></div><div class="ttdef"><b>Definition</b> SdlInputClauses.h:16</div></div>
+<div class="ttc" id="aclassph_1_1_sdl_input_context_html"><div class="ttname"><a href="../../d2/de3/classph_1_1_sdl_input_context.html">ph::SdlInputContext</a></div><div class="ttdoc">Data that SDL input process can rely on.</div><div class="ttdef"><b>Definition</b> SdlInputContext.h:19</div></div>
+<div class="ttc" id="aclassph_1_1_sdl_load_error_html"><div class="ttname"><a href="../../d5/d0b/classph_1_1_sdl_load_error.html">ph::SdlLoadError</a></div><div class="ttdoc">Error on the SDL input process.</div><div class="ttdef"><b>Definition</b> sdl_exceptions.h:22</div></div>
+<div class="ttc" id="aclassph_1_1_t_sdl_method_html"><div class="ttname"><a href="../../db/da4/classph_1_1_t_sdl_method.html">ph::TSdlMethod</a></div><div class="ttdoc">SDL binding type for a canonical SDL method.</div><div class="ttdef"><b>Definition</b> TSdlMethod.h:25</div></div>
+<div class="ttc" id="aclassph_1_1_t_sdl_method_html_a10b614755e5c11deda44baffac85d6af"><div class="ttname"><a href="../../db/da4/classph_1_1_t_sdl_method.html#a10b614755e5c11deda44baffac85d6af">ph::TSdlMethod::call</a></div><div class="ttdeci">void call(ISdlResource *resource, SdlInputClauses &amp;clauses, const SdlInputContext &amp;ctx) const override</div><div class="ttdef"><b>Definition</b> TSdlMethod.ipp:23</div></div>
+<div class="ttc" id="aclassph_1_1_t_sdl_method_html_a1ecf4719f6f20a351a4d082e7cb5ce45"><div class="ttname"><a href="../../db/da4/classph_1_1_t_sdl_method.html#a1ecf4719f6f20a351a4d082e7cb5ce45">ph::TSdlMethod::getParam</a></div><div class="ttdeci">const SdlField * getParam(std::size_t index) const override</div><div class="ttdef"><b>Definition</b> TSdlMethod.ipp:99</div></div>
+<div class="ttc" id="aclassph_1_1_t_sdl_method_html_a5044f7b08619f6262172a532f25feff7"><div class="ttname"><a href="../../db/da4/classph_1_1_t_sdl_method.html#a5044f7b08619f6262172a532f25feff7">ph::TSdlMethod::numParams</a></div><div class="ttdeci">std::size_t numParams() const override</div><div class="ttdef"><b>Definition</b> TSdlMethod.ipp:93</div></div>
+<div class="ttc" id="aclassph_1_1_t_sdl_method_html_a53519efb611453272cee1b8b50902655"><div class="ttname"><a href="../../db/da4/classph_1_1_t_sdl_method.html#a53519efb611453272cee1b8b50902655">ph::TSdlMethod::callMethod</a></div><div class="ttdeci">void callMethod(TargetType &amp;targetType, SdlInputClauses &amp;clauses, const SdlInputContext &amp;ctx) const</div><div class="ttdef"><b>Definition</b> TSdlMethod.ipp:48</div></div>
+<div class="ttc" id="aclassph_1_1_t_sdl_method_html_ac1d2374d13aa4561a4772d6be3c26e40"><div class="ttname"><a href="../../db/da4/classph_1_1_t_sdl_method.html#ac1d2374d13aa4561a4772d6be3c26e40">ph::TSdlMethod::description</a></div><div class="ttdeci">auto description(std::string descriptionStr) -&gt; TSdlMethod &amp;</div><div class="ttdef"><b>Definition</b> TSdlMethod.ipp:119</div></div>
+<div class="ttc" id="aclassph_1_1_t_sdl_method_html_ae363dfe72186bd55e5862683e4ca3757"><div class="ttname"><a href="../../db/da4/classph_1_1_t_sdl_method.html#ae363dfe72186bd55e5862683e4ca3757">ph::TSdlMethod::TSdlMethod</a></div><div class="ttdeci">TSdlMethod(std::string name)</div><div class="ttdef"><b>Definition</b> TSdlMethod.ipp:18</div></div>
+<div class="ttc" id="aclassph_1_1_t_sdl_method_html_ae8b18bdf89b3337551be88e2addf177f"><div class="ttname"><a href="../../db/da4/classph_1_1_t_sdl_method.html#ae8b18bdf89b3337551be88e2addf177f">ph::TSdlMethod::loadParameters</a></div><div class="ttdeci">void loadParameters(MethodStruct &amp;parameterStruct, SdlInputClauses &amp;clauses, const SdlInputContext &amp;ctx) const</div><div class="ttdef"><b>Definition</b> TSdlMethod.ipp:69</div></div>
+<div class="ttc" id="aclassph_1_1_t_sdl_method_html_aef5ab81bebf20c55c2502681d10251fb"><div class="ttname"><a href="../../db/da4/classph_1_1_t_sdl_method.html#aef5ab81bebf20c55c2502681d10251fb">ph::TSdlMethod::addParam</a></div><div class="ttdeci">TSdlMethod &amp; addParam(T sdlField)</div></div>
+<div class="ttc" id="afield__set__op_8h_html"><div class="ttname"><a href="../../dc/d8b/field__set__op_8h.html">field_set_op.h</a></div></div>
+<div class="ttc" id="anamespaceph_1_1field__set__op_html_a79ed90f2437a8f2caf1a958dffd9d4c1"><div class="ttname"><a href="../../d2/d96/namespaceph_1_1field__set__op.html#a79ed90f2437a8f2caf1a958dffd9d4c1">ph::field_set_op::load_fields_from_sdl</a></div><div class="ttdeci">void load_fields_from_sdl(Owner &amp;owner, FieldSet &amp;fieldSet, SdlInputClauses &amp;clauses, const SdlInputContext &amp;ctx, NoticeReceiver noticeReceiver=NoOpNoticeReceiver())</div><div class="ttdef"><b>Definition</b> field_set_op.ipp:21</div></div>
 <div class="ttc" id="anamespaceph_html"><div class="ttname"><a href="../../d3/d5c/namespaceph.html">ph</a></div><div class="ttdoc">The root for all renderer implementations.</div><div class="ttdef"><b>Definition</b> EEngineProject.h:6</div></div>
+<div class="ttc" id="anamespaceph_html_a3f81b078141211109d7e3b340d0525cc"><div class="ttname"><a href="../../d3/d5c/namespaceph.html#a3f81b078141211109d7e3b340d0525cc">ph::EFieldImportance</a></div><div class="ttdeci">EFieldImportance</div><div class="ttdef"><b>Definition</b> EFieldImportance.h:7</div></div>
+<div class="ttc" id="anamespaceph_html_a3f81b078141211109d7e3b340d0525cca0cfbb34b0d0b5ecbec9383c0e7fd4337"><div class="ttname"><a href="../../d3/d5c/namespaceph.html#a3f81b078141211109d7e3b340d0525cca0cfbb34b0d0b5ecbec9383c0e7fd4337">ph::EFieldImportance::NiceToHave</a></div><div class="ttdeci">@ NiceToHave</div></div>
+<div class="ttc" id="anamespaceph_html_a3f81b078141211109d7e3b340d0525ccaebb061953c0454b2c8ee7b0ac615ebcd"><div class="ttname"><a href="../../d3/d5c/namespaceph.html#a3f81b078141211109d7e3b340d0525ccaebb061953c0454b2c8ee7b0ac615ebcd">ph::EFieldImportance::Optional</a></div><div class="ttdeci">@ Optional</div></div>
+<div class="ttc" id="anamespacestd_html"><div class="ttname"><a href="../../d8/dcc/namespacestd.html">std</a></div><div class="ttdef"><b>Definition</b> TAABB2D.h:88</div></div>
+<div class="ttc" id="asdl__exceptions_8h_html"><div class="ttname"><a href="../../d1/dc2/sdl__exceptions_8h.html">sdl_exceptions.h</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="../../dir_74389ed8173ad57b461b9d623a1f3867.html">Source</a></li><li class="navelem"><a class="el" href="../../dir_ca73bdeb90f10aea418aa39a2307d7f8.html">SDL</a></li><li class="navelem"><a class="el" href="../../dir_9263546c05a53c824c3cf12d70c7aee4.html">Introspect</a></li><li class="navelem"><b>TSdlMethod.ipp</b></li>
+    <li class="navelem"><a class="el" href="../../dir_74389ed8173ad57b461b9d623a1f3867.html">Source</a></li><li class="navelem"><a class="el" href="../../dir_ca73bdeb90f10aea418aa39a2307d7f8.html">SDL</a></li><li class="navelem"><a class="el" href="../../dir_9263546c05a53c824c3cf12d70c7aee4.html">Introspect</a></li><li class="navelem"><a class="el" href="../../dd/d0d/_t_sdl_method_8ipp.html">TSdlMethod.ipp</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>

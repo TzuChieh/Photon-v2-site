@@ -1,163 +1,164 @@
 \doxysection{Spiral\+Scheduler.\+h}
 \hypertarget{_spiral_scheduler_8h_source}{}\label{_spiral_scheduler_8h_source}\index{Source/Core/Scheduler/SpiralScheduler.h@{Source/Core/Scheduler/SpiralScheduler.h}}
-
+\mbox{\hyperlink{_spiral_scheduler_8h}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
 \DoxyCodeLine{00002\ }
-\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Core/Scheduler/WorkScheduler.h"{}}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_work_scheduler_8h}{Core/Scheduler/WorkScheduler.h}}"{}}}
 \DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{math_8h}{Math/math.h}}"{}}}
-\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}Common/assertion.h"{}}}
-\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}Math/TVector2.h"{}}}
-\DoxyCodeLine{00007\ }
-\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <algorithm>}}
-\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <cmath>}}
-\DoxyCodeLine{00010\ }
-\DoxyCodeLine{00011\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
-\DoxyCodeLine{00012\ \{}
-\DoxyCodeLine{00013\ }
-\DoxyCodeLine{00014\ \textcolor{comment}{/*}}
-\DoxyCodeLine{00015\ \textcolor{comment}{\ \ \ \ Divide\ work\ region\ into\ rectangles,\ each\ rectangle\ has\ the\ complete\ depth.\ }}
-\DoxyCodeLine{00016\ \textcolor{comment}{\ \ \ \ The\ order\ of\ each\ scheduled\ rectangle\ forms\ a\ spiral\ shape\ originating}}
-\DoxyCodeLine{00017\ \textcolor{comment}{\ \ \ \ from\ the\ center.}}
-\DoxyCodeLine{00018\ \textcolor{comment}{*/}}
-\DoxyCodeLine{00019\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_spiral_scheduler}{SpiralScheduler}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classph_1_1_work_scheduler}{WorkScheduler}}}
-\DoxyCodeLine{00020\ \{}
-\DoxyCodeLine{00021\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00022\ \ \ \ \ \mbox{\hyperlink{classph_1_1_spiral_scheduler}{SpiralScheduler}}();}
-\DoxyCodeLine{00023\ }
-\DoxyCodeLine{00024\ \ \ \ \ \mbox{\hyperlink{classph_1_1_spiral_scheduler}{SpiralScheduler}}(}
-\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ std::size\_t\ \ \ \ \ numWorkers,\ }
-\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_work_unit}{WorkUnit}}\&\ totalWorkUnit,}
-\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ std::size\_t\ \ \ \ \ tileSize);}
-\DoxyCodeLine{00028\ }
-\DoxyCodeLine{00029\ \ \ \ \ \mbox{\hyperlink{classph_1_1_spiral_scheduler}{SpiralScheduler}}(}
-\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ std::size\_t\ \ \ \ \ \ \ \ \ \ \ numWorkers,}
-\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_work_unit}{WorkUnit}}\&\ \ \ \ \ \ \ totalWorkUnit,}
-\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{math::Vector2S}}\&\ tileSize);}
-\DoxyCodeLine{00033\ }
-\DoxyCodeLine{00034\ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{enum\ class}\ EFacing}
-\DoxyCodeLine{00036\ \ \ \ \ \{}
-\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ POSITIVE\_X,}
-\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ POSITIVE\_Y,}
-\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ NEGATIVE\_X,}
-\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ NEGATIVE\_Y}
-\DoxyCodeLine{00041\ \ \ \ \ \};}
-\DoxyCodeLine{00042\ }
-\DoxyCodeLine{00043\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{math::TVector2<int64>}}\ m\_headSize;}
-\DoxyCodeLine{00044\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{math::TVector2<int64>}}\ m\_headPos;}
-\DoxyCodeLine{00045\ \ \ \ \ EFacing\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_headFacing;}
-\DoxyCodeLine{00046\ \ \ \ \ std::size\_t\ \ \ \ \ \ \ \ \ \ \ m\_currentCycles;}
-\DoxyCodeLine{00047\ \ \ \ \ std::size\_t\ \ \ \ \ \ \ \ \ \ \ m\_currentSteps;}
-\DoxyCodeLine{00048\ }
-\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordtype}{void}\ scheduleOne(\mbox{\hyperlink{classph_1_1_work_unit}{WorkUnit}}*\ out\_workUnit)\ \textcolor{keyword}{override};}
-\DoxyCodeLine{00050\ \};}
-\DoxyCodeLine{00051\ }
-\DoxyCodeLine{00052\ \textcolor{comment}{//\ In-\/header\ Implementations:}}
-\DoxyCodeLine{00053\ }
-\DoxyCodeLine{00054\ \textcolor{keyword}{inline}\ SpiralScheduler::SpiralScheduler()\ :}
-\DoxyCodeLine{00055\ \ \ \ \ \mbox{\hyperlink{classph_1_1_work_scheduler}{WorkScheduler}}()}
-\DoxyCodeLine{00056\ \{\}}
-\DoxyCodeLine{00057\ }
-\DoxyCodeLine{00058\ \textcolor{keyword}{inline}\ SpiralScheduler::SpiralScheduler(}
-\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ numWorkers,}
-\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keyword}{const}\ WorkUnit\&\ \ \ totalWorkUnit,}
-\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ tileSize)\ :}
-\DoxyCodeLine{00062\ }
-\DoxyCodeLine{00063\ \ \ \ \ SpiralScheduler(}
-\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ numWorkers,\ }
-\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ totalWorkUnit,\ }
-\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ math::Vector2S(tileSize,\ tileSize))}
-\DoxyCodeLine{00067\ \{\}}
-\DoxyCodeLine{00068\ }
-\DoxyCodeLine{00069\ \textcolor{keyword}{inline}\ SpiralScheduler::SpiralScheduler(}
-\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ \ \ \ \ numWorkers,}
-\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keyword}{const}\ WorkUnit\&\ \ \ \ \ \ \ totalWorkUnit,}
-\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keyword}{const}\ math::Vector2S\&\ tileSize)\ :}
-\DoxyCodeLine{00073\ }
-\DoxyCodeLine{00074\ \ \ \ \ WorkScheduler(numWorkers,\ totalWorkUnit),}
-\DoxyCodeLine{00075\ }
-\DoxyCodeLine{00076\ \ \ \ \ m\_headSize\ \ \ \ \ (tileSize),}
-\DoxyCodeLine{00077\ \ \ \ \ m\_headPos\ \ \ \ \ \ (totalWorkUnit.getRegion().getCenter().sub(m\_headSize\ /\ 2)),}
-\DoxyCodeLine{00078\ \ \ \ \ m\_headFacing\ \ \ (EFacing::POSITIVE\_X),}
-\DoxyCodeLine{00079\ \ \ \ \ m\_currentCycles(0),}
-\DoxyCodeLine{00080\ \ \ \ \ m\_currentSteps\ (0)}
-\DoxyCodeLine{00081\ \{\}}
-\DoxyCodeLine{00082\ }
-\DoxyCodeLine{00083\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ SpiralScheduler::scheduleOne(WorkUnit*\ \textcolor{keyword}{const}\ out\_workUnit)}
-\DoxyCodeLine{00084\ \{}
-\DoxyCodeLine{00085\ \ \ \ \ PH\_ASSERT(out\_workUnit);}
-\DoxyCodeLine{00086\ }
-\DoxyCodeLine{00087\ \ \ \ \ Region\ headRegion(m\_headPos,\ m\_headPos.add(m\_headSize));}
-\DoxyCodeLine{00088\ \ \ \ \ headRegion.intersectWith(m\_totalWorkUnit.getRegion());}
-\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keywordflow}{if}(headRegion.isArea())}
-\DoxyCodeLine{00090\ \ \ \ \ \{}
-\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ *out\_workUnit\ =\ WorkUnit(headRegion,\ m\_totalWorkUnit.getDepth());}
-\DoxyCodeLine{00092\ \ \ \ \ \}}
-\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00094\ \ \ \ \ \{}
-\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ *out\_workUnit\ =\ WorkUnit();}
-\DoxyCodeLine{00096\ \ \ \ \ \}}
-\DoxyCodeLine{00097\ }
-\DoxyCodeLine{00098\ \ \ \ \ \textcolor{comment}{//\ prepare\ for\ next\ head\ region}}
-\DoxyCodeLine{00099\ }
-\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ maxSteps\ =\ m\_currentCycles\ *\ 2;}
-\DoxyCodeLine{00101\ }
-\DoxyCodeLine{00102\ \ \ \ \ ++m\_currentSteps;}
-\DoxyCodeLine{00103\ \ \ \ \ \textcolor{keywordflow}{switch}(m\_headFacing)}
-\DoxyCodeLine{00104\ \ \ \ \ \{}
-\DoxyCodeLine{00105\ \ \ \ \ \textcolor{comment}{//\ advancing\ to\ next\ cycle\ is\ only\ possible\ in\ this\ direction}}
-\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keywordflow}{case}\ EFacing::POSITIVE\_X:}
-\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ m\_headPos.x()\ +=\ m\_headSize.x();}
-\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(m\_currentSteps\ >=\ maxSteps)}
-\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ m\_headFacing\ =\ EFacing::POSITIVE\_Y;}
-\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ m\_currentSteps\ =\ 0;}
-\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ ++m\_currentCycles;}
-\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
-\DoxyCodeLine{00115\ }
-\DoxyCodeLine{00116\ \ \ \ \ \textcolor{keywordflow}{case}\ EFacing::POSITIVE\_Y:}
-\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(m\_currentSteps\ <\ maxSteps)}
-\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ m\_headPos.y()\ +=\ m\_headSize.y();}
-\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ m\_headPos.x()\ -\/=\ m\_headSize.x();}
-\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ m\_headFacing\ =\ EFacing::NEGATIVE\_X;}
-\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ m\_currentSteps\ =\ 0;}
-\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
-\DoxyCodeLine{00128\ }
-\DoxyCodeLine{00129\ \ \ \ \ \textcolor{keywordflow}{case}\ EFacing::NEGATIVE\_X:}
-\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(m\_currentSteps\ <\ maxSteps)}
-\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ m\_headPos.x()\ -\/=\ m\_headSize.x();}
-\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ m\_headPos.y()\ -\/=\ m\_headSize.y();}
-\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ m\_headFacing\ =\ EFacing::NEGATIVE\_Y;}
-\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ m\_currentSteps\ =\ 0;}
-\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
-\DoxyCodeLine{00141\ }
-\DoxyCodeLine{00142\ \ \ \ \ \textcolor{keywordflow}{case}\ EFacing::NEGATIVE\_Y:}
-\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(m\_currentSteps\ <\ maxSteps)}
-\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ m\_headPos.y()\ -\/=\ m\_headSize.y();}
-\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \ \ m\_headPos.x()\ +=\ m\_headSize.x();}
-\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \ \ \ \ m\_headFacing\ =\ EFacing::POSITIVE\_X;}
-\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \ \ \ \ m\_currentSteps\ =\ 0;}
-\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
-\DoxyCodeLine{00154\ \ \ \ \ \}}
-\DoxyCodeLine{00155\ \}}
-\DoxyCodeLine{00156\ }
-\DoxyCodeLine{00157\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_vector2_8h}{Math/TVector2.h}}"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <Common/assertion.h>}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <cmath>}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00013\ \{}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ \ \ \ Divide\ work\ region\ into\ rectangles,\ each\ rectangle\ has\ the\ complete\ depth.\ }}
+\DoxyCodeLine{00017\ \textcolor{comment}{\ \ \ \ The\ order\ of\ each\ scheduled\ rectangle\ forms\ a\ spiral\ shape\ originating}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ \ \ \ from\ the\ center.}}
+\DoxyCodeLine{00019\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00020\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_spiral_scheduler}{SpiralScheduler}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classph_1_1_work_scheduler}{WorkScheduler}}}
+\DoxyCodeLine{00021\ \{}
+\DoxyCodeLine{00022\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00023\ \ \ \ \ \mbox{\hyperlink{classph_1_1_spiral_scheduler_a0e6afb053239e847c859cf55daedd516}{SpiralScheduler}}();}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \ \ \ \ \mbox{\hyperlink{classph_1_1_spiral_scheduler_a0e6afb053239e847c859cf55daedd516}{SpiralScheduler}}(}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ std::size\_t\ \ \ \ \ numWorkers,\ }
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_work_unit}{WorkUnit}}\&\ totalWorkUnit,}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ std::size\_t\ \ \ \ \ tileSize);}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \ \ \ \mbox{\hyperlink{classph_1_1_spiral_scheduler_a0e6afb053239e847c859cf55daedd516}{SpiralScheduler}}(}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ std::size\_t\ \ \ \ \ \ \ \ \ \ \ numWorkers,}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_work_unit}{WorkUnit}}\&\ \ \ \ \ \ \ totalWorkUnit,}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{math::Vector2S}}\&\ tileSize);}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{enum\ class}\ EFacing}
+\DoxyCodeLine{00037\ \ \ \ \ \{}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ POSITIVE\_X,}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ POSITIVE\_Y,}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ NEGATIVE\_X,}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ NEGATIVE\_Y}
+\DoxyCodeLine{00042\ \ \ \ \ \};}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{math::TVector2<int64>}}\ m\_headSize;}
+\DoxyCodeLine{00045\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{math::TVector2<int64>}}\ m\_headPos;}
+\DoxyCodeLine{00046\ \ \ \ \ EFacing\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_headFacing;}
+\DoxyCodeLine{00047\ \ \ \ \ std::size\_t\ \ \ \ \ \ \ \ \ \ \ m\_currentCycles;}
+\DoxyCodeLine{00048\ \ \ \ \ std::size\_t\ \ \ \ \ \ \ \ \ \ \ m\_currentSteps;}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordtype}{void}\ scheduleOne(\mbox{\hyperlink{classph_1_1_work_unit}{WorkUnit}}*\ out\_workUnit)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00051\ \};}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \textcolor{comment}{//\ In-\/header\ Implementations:}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_spiral_scheduler_a0e6afb053239e847c859cf55daedd516}{SpiralScheduler::SpiralScheduler}}()\ :}
+\DoxyCodeLine{00056\ \ \ \ \ \mbox{\hyperlink{classph_1_1_work_scheduler}{WorkScheduler}}()}
+\DoxyCodeLine{00057\ \{\}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_spiral_scheduler_a0e6afb053239e847c859cf55daedd516}{SpiralScheduler::SpiralScheduler}}(}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ numWorkers,}
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_work_unit}{WorkUnit}}\&\ \ \ totalWorkUnit,}
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ tileSize)\ :}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \ \ \ \ \mbox{\hyperlink{classph_1_1_spiral_scheduler}{SpiralScheduler}}(}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ numWorkers,\ }
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ totalWorkUnit,\ }
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ math::\mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{Vector2S}}(tileSize,\ tileSize))}
+\DoxyCodeLine{00068\ \{\}}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_spiral_scheduler_a0e6afb053239e847c859cf55daedd516}{SpiralScheduler::SpiralScheduler}}(}
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ \ \ \ \ numWorkers,}
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_work_unit}{WorkUnit}}\&\ \ \ \ \ \ \ totalWorkUnit,}
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{math::Vector2S}}\&\ tileSize)\ :}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \ \ \ \ \mbox{\hyperlink{classph_1_1_work_scheduler}{WorkScheduler}}(numWorkers,\ totalWorkUnit),}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \ \ \ \ m\_headSize\ \ \ \ \ (tileSize),}
+\DoxyCodeLine{00078\ \ \ \ \ m\_headPos\ \ \ \ \ \ (totalWorkUnit.getRegion().getCenter().sub(m\_headSize\ /\ 2)),}
+\DoxyCodeLine{00079\ \ \ \ \ m\_headFacing\ \ \ (EFacing::POSITIVE\_X),}
+\DoxyCodeLine{00080\ \ \ \ \ m\_currentCycles(0),}
+\DoxyCodeLine{00081\ \ \ \ \ m\_currentSteps\ (0)}
+\DoxyCodeLine{00082\ \{\}}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ SpiralScheduler::scheduleOne(\mbox{\hyperlink{classph_1_1_work_unit}{WorkUnit}}*\ \textcolor{keyword}{const}\ out\_workUnit)}
+\DoxyCodeLine{00085\ \{}
+\DoxyCodeLine{00086\ \ \ \ \ PH\_ASSERT(out\_workUnit);}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d}{Region}}\ headRegion(m\_headPos,\ m\_headPos.\mbox{\hyperlink{classph_1_1math_1_1_t_vector_n_base_ad58cdb9489c07d271045fb770b461eed}{add}}(m\_headSize));}
+\DoxyCodeLine{00089\ \ \ \ \ headRegion.intersectWith(\mbox{\hyperlink{classph_1_1_work_scheduler_a4cd851df1c4ab76ec2b4c25cc2c6fabb}{m\_totalWorkUnit}}.\mbox{\hyperlink{classph_1_1_work_unit_a53dc72cbe5e24dca1167bf0190038700}{getRegion}}());}
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keywordflow}{if}(headRegion.isArea())}
+\DoxyCodeLine{00091\ \ \ \ \ \{}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ *out\_workUnit\ =\ \mbox{\hyperlink{classph_1_1_work_unit}{WorkUnit}}(headRegion,\ \mbox{\hyperlink{classph_1_1_work_scheduler_a4cd851df1c4ab76ec2b4c25cc2c6fabb}{m\_totalWorkUnit}}.\mbox{\hyperlink{classph_1_1_work_unit_aec0b887d6fd90b599c0d507b63549ee8}{getDepth}}());}
+\DoxyCodeLine{00093\ \ \ \ \ \}}
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00095\ \ \ \ \ \{}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ *out\_workUnit\ =\ WorkUnit();}
+\DoxyCodeLine{00097\ \ \ \ \ \}}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{comment}{//\ prepare\ for\ next\ head\ region}}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ maxSteps\ =\ m\_currentCycles\ *\ 2;}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \ \ \ \ ++m\_currentSteps;}
+\DoxyCodeLine{00104\ \ \ \ \ \textcolor{keywordflow}{switch}(m\_headFacing)}
+\DoxyCodeLine{00105\ \ \ \ \ \{}
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{comment}{//\ advancing\ to\ next\ cycle\ is\ only\ possible\ in\ this\ direction}}
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{keywordflow}{case}\ EFacing::POSITIVE\_X:}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ m\_headPos.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_a03c5e56839820da78b52d2db0281f065}{x}}()\ +=\ m\_headSize.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_a03c5e56839820da78b52d2db0281f065}{x}}();}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(m\_currentSteps\ >=\ maxSteps)}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ m\_headFacing\ =\ EFacing::POSITIVE\_Y;}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ m\_currentSteps\ =\ 0;}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ ++m\_currentCycles;}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{keywordflow}{case}\ EFacing::POSITIVE\_Y:}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(m\_currentSteps\ <\ maxSteps)}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ m\_headPos.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_af3065a5fa872cdb3f2291a84824d5d59}{y}}()\ +=\ m\_headSize.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_af3065a5fa872cdb3f2291a84824d5d59}{y}}();}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ m\_headPos.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_a03c5e56839820da78b52d2db0281f065}{x}}()\ -\/=\ m\_headSize.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_a03c5e56839820da78b52d2db0281f065}{x}}();}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ m\_headFacing\ =\ EFacing::NEGATIVE\_X;}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ m\_currentSteps\ =\ 0;}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ \ \ \ \ \textcolor{keywordflow}{case}\ EFacing::NEGATIVE\_X:}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(m\_currentSteps\ <\ maxSteps)}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \ \ m\_headPos.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_a03c5e56839820da78b52d2db0281f065}{x}}()\ -\/=\ m\_headSize.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_a03c5e56839820da78b52d2db0281f065}{x}}();}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ m\_headPos.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_af3065a5fa872cdb3f2291a84824d5d59}{y}}()\ -\/=\ m\_headSize.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_af3065a5fa872cdb3f2291a84824d5d59}{y}}();}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ m\_headFacing\ =\ EFacing::NEGATIVE\_Y;}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ m\_currentSteps\ =\ 0;}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00143\ \ \ \ \ \textcolor{keywordflow}{case}\ EFacing::NEGATIVE\_Y:}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(m\_currentSteps\ <\ maxSteps)}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ m\_headPos.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_af3065a5fa872cdb3f2291a84824d5d59}{y}}()\ -\/=\ m\_headSize.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_af3065a5fa872cdb3f2291a84824d5d59}{y}}();}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \ \ \ \ m\_headPos.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_a03c5e56839820da78b52d2db0281f065}{x}}()\ +=\ m\_headSize.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_a03c5e56839820da78b52d2db0281f065}{x}}();}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \ \ \ \ m\_headFacing\ =\ EFacing::POSITIVE\_X;}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \ \ \ \ m\_currentSteps\ =\ 0;}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00155\ \ \ \ \ \}}
+\DoxyCodeLine{00156\ \}}
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00158\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
 
 \end{DoxyCode}

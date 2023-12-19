@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['ph_5fc_5fcore_2eh_0',['ph_c_core.h',['../d9/d61/ph__c__core_8h.html',1,'']]]
+  ['api_5fhelpers_2ecpp_0',['api_helpers.cpp',['../dc/d57/api__helpers_8cpp.html',1,'']]],
+  ['api_5fhelpers_2eh_1',['api_helpers.h',['../dc/deb/api__helpers_8h.html',1,'']]],
+  ['api_5fhelpers_2eipp_2',['api_helpers.ipp',['../dd/d61/api__helpers_8ipp.html',1,'']]]
 ];

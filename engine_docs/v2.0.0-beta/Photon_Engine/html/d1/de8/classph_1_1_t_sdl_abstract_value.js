@@ -1,5 +1,7 @@
 var classph_1_1_t_sdl_abstract_value =
 [
+    [ "TSdlAbstractValue", "d1/de8/classph_1_1_t_sdl_abstract_value.html#ad906545a624880c6b73a3cb33338fd2c", null ],
+    [ "TSdlAbstractValue", "d1/de8/classph_1_1_t_sdl_abstract_value.html#ac06073bb0c9f0f35d259dd0d9a3c4a2b", null ],
     [ "getConstValue", "d1/de8/classph_1_1_t_sdl_abstract_value.html#a7c1f2866bb456c30a9a767f75d4ec3a4", null ],
     [ "getValue", "d1/de8/classph_1_1_t_sdl_abstract_value.html#a71eb27a0c108f1b9522debd765a15d60", null ],
     [ "loadFromSdl", "d1/de8/classph_1_1_t_sdl_abstract_value.html#ad2346c39a0eaac51ae8e9da8a2bcd4e2", null ],

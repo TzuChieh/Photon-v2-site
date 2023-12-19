@@ -1,0 +1,304 @@
+\doxysection{Include/\+Common/logging.h File Reference}
+\hypertarget{logging_8h}{}\label{logging_8h}\index{Include/Common/logging.h@{Include/Common/logging.h}}
+
+
+Logging functions.  
+
+
+{\ttfamily \#include "{}Common/\+Log/logger\+\_\+fwd.\+h"{}}\newline
+{\ttfamily \#include "{}Common/\+Log/\+ELog\+Level.\+h"{}}\newline
+{\ttfamily \#include "{}Common/config.\+h"{}}\newline
+{\ttfamily \#include "{}Common/utility.\+h"{}}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$cstddef$>$}\newline
+{\ttfamily \#include $<$format$>$}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structph_1_1_log_group}{ph\+::\+Log\+Group}}
+\item 
+class \mbox{\hyperlink{classph_1_1_log_groups}{ph\+::\+Log\+Groups}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespaceph}{ph}}
+\begin{DoxyCompactList}\small\item\em The root for all renderer implementations. \end{DoxyCompactList}\item 
+namespace \mbox{\hyperlink{namespaceph_1_1detail}{ph\+::detail}}
+\begin{DoxyCompactList}\small\item\em Implementation detail mainly for internal usages. \end{DoxyCompactList}\item 
+namespace \mbox{\hyperlink{namespaceph_1_1detail_1_1core__logging}{ph\+::detail\+::core\+\_\+logging}}
+\begin{DoxyCompactList}\small\item\em Core logging functionalities. Most logs will output information (logs) via a main logger, which we refer to as "{}core logger"{}. This namespace contains implementation details for core logging functionalities. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{logging_8h_acc337adfdbc7ea775f7f7d6102ce855a}{PH\+\_\+\+DECLARE\+\_\+\+LOG\+\_\+\+GROUP}}(group\+Name)~ \mbox{\hyperlink{classph_1_1_logger}{\+::ph\+::\+Logger}}\& internal\+\_\+impl\+\_\+logger\+\_\+access\+\_\+\#\#group\+Name()
+\begin{DoxyCompactList}\small\item\em Declares a logger. The logger should be defined using {\ttfamily \doxylink{logging_8h_ade513aa53ccd4f6c88462e55c1ba0112}{PH\+\_\+\+DEFINE\+\_\+\+LOG\+\_\+\+GROUP()}} somewhere in the source (preferably in a .cpp file). \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{logging_8h_ade513aa53ccd4f6c88462e55c1ba0112}{PH\+\_\+\+DEFINE\+\_\+\+LOG\+\_\+\+GROUP}}(group\+Name,  category)
+\begin{DoxyCompactList}\small\item\em Defines a logger. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{logging_8h_af5f0e8b82ee8cfe085d28411dea4aa0d}{PH\+\_\+\+DEFINE\+\_\+\+INLINE\+\_\+\+LOG\+\_\+\+GROUP}}(group\+Name,  category)
+\item 
+\#define \mbox{\hyperlink{logging_8h_a6a03b0efb173a94d3565b34e7f591dad}{PH\+\_\+\+DEFINE\+\_\+\+INTERNAL\+\_\+\+LOG\+\_\+\+GROUP}}(group\+Name,  category)
+\begin{DoxyCompactList}\small\item\em Defines a logger that is private to a .cpp file. Can only appear one time in a translation unit, preferably in a .cpp file. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{logging_8h_a6f3ae1815da4078262e15d5edae54cb5}{PH\+\_\+\+DEFINE\+\_\+\+EXTERNAL\+\_\+\+LOG\+\_\+\+GROUP}}(group\+Name,  category)~\mbox{\hyperlink{logging_8h_af5f0e8b82ee8cfe085d28411dea4aa0d}{PH\+\_\+\+DEFINE\+\_\+\+INLINE\+\_\+\+LOG\+\_\+\+GROUP}}(group\+Name, category)
+\begin{DoxyCompactList}\small\item\em Defines a public logger in a header file. The logger will be usable anywhere that includes the header file containing this call. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{logging_8h_aba568fdf4b66df91577b279d2b500005}{PH\+\_\+\+LOG\+\_\+\+RAW\+\_\+\+STRING\+\_\+\+TO\+\_\+\+CORE\+\_\+\+LOGGER}}(group\+Name,  log\+Level,  raw\+String)
+\item 
+\#define \mbox{\hyperlink{logging_8h_a9dda73828c91f0863513b273cb831307}{PH\+\_\+\+LOG\+\_\+\+FORMAT\+\_\+\+STRING\+\_\+\+TO\+\_\+\+CORE\+\_\+\+LOGGER}}(group\+Name,  log\+Level,  format\+String, ...)
+\item 
+\#define \mbox{\hyperlink{logging_8h_af93c4efd5574f776bbfdd030d0eb1cb1}{PH\+\_\+\+LOG\+\_\+\+STRING}}(group\+Name,  raw\+String)~\mbox{\hyperlink{logging_8h_aba568fdf4b66df91577b279d2b500005}{PH\+\_\+\+LOG\+\_\+\+RAW\+\_\+\+STRING\+\_\+\+TO\+\_\+\+CORE\+\_\+\+LOGGER}}(group\+Name, \mbox{\hyperlink{namespaceph_af3d9a169aefd59566a65991df5db6dbda3b0649c72650c313a357338dcdfb64ec}{\+::ph\+::\+ELog\+Level\+::\+Note}}, raw\+String)
+\item 
+\#define \mbox{\hyperlink{logging_8h_ac6712cb5a47adb976fd6c135de0d8a82}{PH\+\_\+\+LOG}}(group\+Name,  format\+String, ...)~\mbox{\hyperlink{logging_8h_a9dda73828c91f0863513b273cb831307}{PH\+\_\+\+LOG\+\_\+\+FORMAT\+\_\+\+STRING\+\_\+\+TO\+\_\+\+CORE\+\_\+\+LOGGER}}(group\+Name, \mbox{\hyperlink{namespaceph_af3d9a169aefd59566a65991df5db6dbda3b0649c72650c313a357338dcdfb64ec}{\+::ph\+::\+ELog\+Level\+::\+Note}}, format\+String, \+\_\+\+\_\+\+VA\+\_\+\+ARGS\+\_\+\+\_\+)
+\item 
+\#define \mbox{\hyperlink{logging_8h_a5832a352e23606ab39f3445a946fba11}{PH\+\_\+\+LOG\+\_\+\+WARNING\+\_\+\+STRING}}(group\+Name,  raw\+String)~\mbox{\hyperlink{logging_8h_aba568fdf4b66df91577b279d2b500005}{PH\+\_\+\+LOG\+\_\+\+RAW\+\_\+\+STRING\+\_\+\+TO\+\_\+\+CORE\+\_\+\+LOGGER}}(group\+Name, \mbox{\hyperlink{namespaceph_af3d9a169aefd59566a65991df5db6dbda0eaadb4fcb48a0a0ed7bc9868be9fbaa}{\+::ph\+::\+ELog\+Level\+::\+Warning}}, raw\+String)
+\item 
+\#define \mbox{\hyperlink{logging_8h_a290098d3658028db348eddf93addb233}{PH\+\_\+\+LOG\+\_\+\+WARNING}}(group\+Name,  format\+String, ...)~\mbox{\hyperlink{logging_8h_a9dda73828c91f0863513b273cb831307}{PH\+\_\+\+LOG\+\_\+\+FORMAT\+\_\+\+STRING\+\_\+\+TO\+\_\+\+CORE\+\_\+\+LOGGER}}(group\+Name, \mbox{\hyperlink{namespaceph_af3d9a169aefd59566a65991df5db6dbda0eaadb4fcb48a0a0ed7bc9868be9fbaa}{\+::ph\+::\+ELog\+Level\+::\+Warning}}, format\+String, \+\_\+\+\_\+\+VA\+\_\+\+ARGS\+\_\+\+\_\+)
+\item 
+\#define \mbox{\hyperlink{logging_8h_a4dec88b36814d7ff09d895d52c2613f6}{PH\+\_\+\+LOG\+\_\+\+ERROR\+\_\+\+STRING}}(group\+Name,  raw\+String)~\mbox{\hyperlink{logging_8h_aba568fdf4b66df91577b279d2b500005}{PH\+\_\+\+LOG\+\_\+\+RAW\+\_\+\+STRING\+\_\+\+TO\+\_\+\+CORE\+\_\+\+LOGGER}}(group\+Name, \mbox{\hyperlink{namespaceph_af3d9a169aefd59566a65991df5db6dbda902b0d55fddef6f8d651fe1035b7d4bd}{\+::ph\+::\+ELog\+Level\+::\+Error}}, raw\+String)
+\item 
+\#define \mbox{\hyperlink{logging_8h_a9795478f6e12b51c53a4b9379c626c0a}{PH\+\_\+\+LOG\+\_\+\+ERROR}}(group\+Name,  format\+String, ...)~\mbox{\hyperlink{logging_8h_a9dda73828c91f0863513b273cb831307}{PH\+\_\+\+LOG\+\_\+\+FORMAT\+\_\+\+STRING\+\_\+\+TO\+\_\+\+CORE\+\_\+\+LOGGER}}(group\+Name, \mbox{\hyperlink{namespaceph_af3d9a169aefd59566a65991df5db6dbda902b0d55fddef6f8d651fe1035b7d4bd}{\+::ph\+::\+ELog\+Level\+::\+Error}}, format\+String, \+\_\+\+\_\+\+VA\+\_\+\+ARGS\+\_\+\+\_\+)
+\end{DoxyCompactItemize}
+\textbf{ }\par
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{logging_8h_a26ecf67970e012988963f807a4902eda}{PH\+\_\+\+LOG\+\_\+\+DEBUG\+\_\+\+STRING}}(group\+Name,  raw\+String)~\mbox{\hyperlink{utility_8h_a58d6d0664e5c76c51ebd57905e76eca7}{PH\+\_\+\+NO\+\_\+\+OP}}()
+\begin{DoxyCompactList}\small\item\em A set of helper utility macros to log using Photon renderer\textquotesingle{}s default log group. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{logging_8h_a99ce7f36f3df758be2ab0941f75c75c9}{PH\+\_\+\+LOG\+\_\+\+DEBUG}}(group\+Name,  format\+String, ...)~\mbox{\hyperlink{utility_8h_a58d6d0664e5c76c51ebd57905e76eca7}{PH\+\_\+\+NO\+\_\+\+OP}}()
+\item 
+\#define \mbox{\hyperlink{logging_8h_a26ecf67970e012988963f807a4902eda}{PH\+\_\+\+LOG\+\_\+\+DEBUG\+\_\+\+STRING}}(group\+Name,  raw\+String)~\mbox{\hyperlink{utility_8h_a58d6d0664e5c76c51ebd57905e76eca7}{PH\+\_\+\+NO\+\_\+\+OP}}()
+\begin{DoxyCompactList}\small\item\em A set of helper utility macros to log using Photon renderer\textquotesingle{}s default log group. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{logging_8h_a99ce7f36f3df758be2ab0941f75c75c9}{PH\+\_\+\+LOG\+\_\+\+DEBUG}}(group\+Name,  format\+String, ...)~\mbox{\hyperlink{utility_8h_a58d6d0664e5c76c51ebd57905e76eca7}{PH\+\_\+\+NO\+\_\+\+OP}}()
+\item 
+\#define \mbox{\hyperlink{logging_8h_af3b02a5e28c3079993e6318dd3799d60}{PH\+\_\+\+DEFAULT\+\_\+\+LOG}}(format\+String, ...)~\mbox{\hyperlink{logging_8h_ac6712cb5a47adb976fd6c135de0d8a82}{PH\+\_\+\+LOG}}(Photon\+Renderer, format\+String, \+\_\+\+\_\+\+VA\+\_\+\+ARGS\+\_\+\+\_\+)
+\item 
+\#define \mbox{\hyperlink{logging_8h_ac03412669414e11ea5a58c0f0b02973b}{PH\+\_\+\+DEFAULT\+\_\+\+LOG\+\_\+\+STRING}}(raw\+String)~\mbox{\hyperlink{logging_8h_af93c4efd5574f776bbfdd030d0eb1cb1}{PH\+\_\+\+LOG\+\_\+\+STRING}}(Photon\+Renderer, raw\+String)
+\item 
+\#define \mbox{\hyperlink{logging_8h_adc040d5be9b1d3b037ca2db8ee4faeef}{PH\+\_\+\+DEFAULT\+\_\+\+LOG\+\_\+\+WARNING}}(format\+String, ...)~\mbox{\hyperlink{logging_8h_a290098d3658028db348eddf93addb233}{PH\+\_\+\+LOG\+\_\+\+WARNING}}(Photon\+Renderer, format\+String, \+\_\+\+\_\+\+VA\+\_\+\+ARGS\+\_\+\+\_\+)
+\item 
+\#define \mbox{\hyperlink{logging_8h_a3b02547c5bd71b7c74dade7de7af6c05}{PH\+\_\+\+DEFAULT\+\_\+\+LOG\+\_\+\+WARNING\+\_\+\+STRING}}(raw\+String)~\mbox{\hyperlink{logging_8h_a5832a352e23606ab39f3445a946fba11}{PH\+\_\+\+LOG\+\_\+\+WARNING\+\_\+\+STRING}}(Photon\+Renderer, raw\+String)
+\item 
+\#define \mbox{\hyperlink{logging_8h_af6ce37e03c7b301b78809420ba70eded}{PH\+\_\+\+DEFAULT\+\_\+\+LOG\+\_\+\+ERROR}}(format\+String, ...)~\mbox{\hyperlink{logging_8h_a9795478f6e12b51c53a4b9379c626c0a}{PH\+\_\+\+LOG\+\_\+\+ERROR}}(Photon\+Renderer, format\+String, \+\_\+\+\_\+\+VA\+\_\+\+ARGS\+\_\+\+\_\+)
+\item 
+\#define \mbox{\hyperlink{logging_8h_a4db49dc1773b6ad90f2a0a3c8a9dffd1}{PH\+\_\+\+DEFAULT\+\_\+\+LOG\+\_\+\+ERROR\+\_\+\+STRING}}(raw\+String)~\mbox{\hyperlink{logging_8h_a4dec88b36814d7ff09d895d52c2613f6}{PH\+\_\+\+LOG\+\_\+\+ERROR\+\_\+\+STRING}}(Photon\+Renderer, raw\+String)
+\end{DoxyCompactItemize}
+
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classph_1_1_log_groups}{Log\+Groups}} \mbox{\hyperlink{namespaceph_a8ac9672b2a124ec6bca30533b76654ce}{ph\+::get\+\_\+core\+\_\+log\+\_\+groups}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Logging functions. 
+
+Note on loggers\+: All logging functionalities are thread-\/safe when accessed via pre-\/defined macros. It is not advisible to log in class dtor, especially for static instances. Also make sure not to call any logging functions when the logger is not initialized. 
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{logging_8h_acc337adfdbc7ea775f7f7d6102ce855a}\label{logging_8h_acc337adfdbc7ea775f7f7d6102ce855a} 
+\index{logging.h@{logging.h}!PH\_DECLARE\_LOG\_GROUP@{PH\_DECLARE\_LOG\_GROUP}}
+\index{PH\_DECLARE\_LOG\_GROUP@{PH\_DECLARE\_LOG\_GROUP}!logging.h@{logging.h}}
+\doxysubsubsection{\texorpdfstring{PH\_DECLARE\_LOG\_GROUP}{PH\_DECLARE\_LOG\_GROUP}}
+{\footnotesize\ttfamily \#define PH\+\_\+\+DECLARE\+\_\+\+LOG\+\_\+\+GROUP(\begin{DoxyParamCaption}\item[{}]{group\+Name }\end{DoxyParamCaption})~ \mbox{\hyperlink{classph_1_1_logger}{\+::ph\+::\+Logger}}\& internal\+\_\+impl\+\_\+logger\+\_\+access\+\_\+\#\#group\+Name()}
+
+
+
+Declares a logger. The logger should be defined using {\ttfamily \doxylink{logging_8h_ade513aa53ccd4f6c88462e55c1ba0112}{PH\+\_\+\+DEFINE\+\_\+\+LOG\+\_\+\+GROUP()}} somewhere in the source (preferably in a .cpp file). 
+
+\Hypertarget{logging_8h_af3b02a5e28c3079993e6318dd3799d60}\label{logging_8h_af3b02a5e28c3079993e6318dd3799d60} 
+\index{logging.h@{logging.h}!PH\_DEFAULT\_LOG@{PH\_DEFAULT\_LOG}}
+\index{PH\_DEFAULT\_LOG@{PH\_DEFAULT\_LOG}!logging.h@{logging.h}}
+\doxysubsubsection{\texorpdfstring{PH\_DEFAULT\_LOG}{PH\_DEFAULT\_LOG}}
+{\footnotesize\ttfamily \#define PH\+\_\+\+DEFAULT\+\_\+\+LOG(\begin{DoxyParamCaption}\item[{}]{format\+String,  }\item[{}]{... }\end{DoxyParamCaption})~\mbox{\hyperlink{logging_8h_ac6712cb5a47adb976fd6c135de0d8a82}{PH\+\_\+\+LOG}}(Photon\+Renderer, format\+String, \+\_\+\+\_\+\+VA\+\_\+\+ARGS\+\_\+\+\_\+)}
+
+\Hypertarget{logging_8h_af6ce37e03c7b301b78809420ba70eded}\label{logging_8h_af6ce37e03c7b301b78809420ba70eded} 
+\index{logging.h@{logging.h}!PH\_DEFAULT\_LOG\_ERROR@{PH\_DEFAULT\_LOG\_ERROR}}
+\index{PH\_DEFAULT\_LOG\_ERROR@{PH\_DEFAULT\_LOG\_ERROR}!logging.h@{logging.h}}
+\doxysubsubsection{\texorpdfstring{PH\_DEFAULT\_LOG\_ERROR}{PH\_DEFAULT\_LOG\_ERROR}}
+{\footnotesize\ttfamily \#define PH\+\_\+\+DEFAULT\+\_\+\+LOG\+\_\+\+ERROR(\begin{DoxyParamCaption}\item[{}]{format\+String,  }\item[{}]{... }\end{DoxyParamCaption})~\mbox{\hyperlink{logging_8h_a9795478f6e12b51c53a4b9379c626c0a}{PH\+\_\+\+LOG\+\_\+\+ERROR}}(Photon\+Renderer, format\+String, \+\_\+\+\_\+\+VA\+\_\+\+ARGS\+\_\+\+\_\+)}
+
+\Hypertarget{logging_8h_a4db49dc1773b6ad90f2a0a3c8a9dffd1}\label{logging_8h_a4db49dc1773b6ad90f2a0a3c8a9dffd1} 
+\index{logging.h@{logging.h}!PH\_DEFAULT\_LOG\_ERROR\_STRING@{PH\_DEFAULT\_LOG\_ERROR\_STRING}}
+\index{PH\_DEFAULT\_LOG\_ERROR\_STRING@{PH\_DEFAULT\_LOG\_ERROR\_STRING}!logging.h@{logging.h}}
+\doxysubsubsection{\texorpdfstring{PH\_DEFAULT\_LOG\_ERROR\_STRING}{PH\_DEFAULT\_LOG\_ERROR\_STRING}}
+{\footnotesize\ttfamily \#define PH\+\_\+\+DEFAULT\+\_\+\+LOG\+\_\+\+ERROR\+\_\+\+STRING(\begin{DoxyParamCaption}\item[{}]{raw\+String }\end{DoxyParamCaption})~\mbox{\hyperlink{logging_8h_a4dec88b36814d7ff09d895d52c2613f6}{PH\+\_\+\+LOG\+\_\+\+ERROR\+\_\+\+STRING}}(Photon\+Renderer, raw\+String)}
+
+\Hypertarget{logging_8h_ac03412669414e11ea5a58c0f0b02973b}\label{logging_8h_ac03412669414e11ea5a58c0f0b02973b} 
+\index{logging.h@{logging.h}!PH\_DEFAULT\_LOG\_STRING@{PH\_DEFAULT\_LOG\_STRING}}
+\index{PH\_DEFAULT\_LOG\_STRING@{PH\_DEFAULT\_LOG\_STRING}!logging.h@{logging.h}}
+\doxysubsubsection{\texorpdfstring{PH\_DEFAULT\_LOG\_STRING}{PH\_DEFAULT\_LOG\_STRING}}
+{\footnotesize\ttfamily \#define PH\+\_\+\+DEFAULT\+\_\+\+LOG\+\_\+\+STRING(\begin{DoxyParamCaption}\item[{}]{raw\+String }\end{DoxyParamCaption})~\mbox{\hyperlink{logging_8h_af93c4efd5574f776bbfdd030d0eb1cb1}{PH\+\_\+\+LOG\+\_\+\+STRING}}(Photon\+Renderer, raw\+String)}
+
+\Hypertarget{logging_8h_adc040d5be9b1d3b037ca2db8ee4faeef}\label{logging_8h_adc040d5be9b1d3b037ca2db8ee4faeef} 
+\index{logging.h@{logging.h}!PH\_DEFAULT\_LOG\_WARNING@{PH\_DEFAULT\_LOG\_WARNING}}
+\index{PH\_DEFAULT\_LOG\_WARNING@{PH\_DEFAULT\_LOG\_WARNING}!logging.h@{logging.h}}
+\doxysubsubsection{\texorpdfstring{PH\_DEFAULT\_LOG\_WARNING}{PH\_DEFAULT\_LOG\_WARNING}}
+{\footnotesize\ttfamily \#define PH\+\_\+\+DEFAULT\+\_\+\+LOG\+\_\+\+WARNING(\begin{DoxyParamCaption}\item[{}]{format\+String,  }\item[{}]{... }\end{DoxyParamCaption})~\mbox{\hyperlink{logging_8h_a290098d3658028db348eddf93addb233}{PH\+\_\+\+LOG\+\_\+\+WARNING}}(Photon\+Renderer, format\+String, \+\_\+\+\_\+\+VA\+\_\+\+ARGS\+\_\+\+\_\+)}
+
+\Hypertarget{logging_8h_a3b02547c5bd71b7c74dade7de7af6c05}\label{logging_8h_a3b02547c5bd71b7c74dade7de7af6c05} 
+\index{logging.h@{logging.h}!PH\_DEFAULT\_LOG\_WARNING\_STRING@{PH\_DEFAULT\_LOG\_WARNING\_STRING}}
+\index{PH\_DEFAULT\_LOG\_WARNING\_STRING@{PH\_DEFAULT\_LOG\_WARNING\_STRING}!logging.h@{logging.h}}
+\doxysubsubsection{\texorpdfstring{PH\_DEFAULT\_LOG\_WARNING\_STRING}{PH\_DEFAULT\_LOG\_WARNING\_STRING}}
+{\footnotesize\ttfamily \#define PH\+\_\+\+DEFAULT\+\_\+\+LOG\+\_\+\+WARNING\+\_\+\+STRING(\begin{DoxyParamCaption}\item[{}]{raw\+String }\end{DoxyParamCaption})~\mbox{\hyperlink{logging_8h_a5832a352e23606ab39f3445a946fba11}{PH\+\_\+\+LOG\+\_\+\+WARNING\+\_\+\+STRING}}(Photon\+Renderer, raw\+String)}
+
+\Hypertarget{logging_8h_a6f3ae1815da4078262e15d5edae54cb5}\label{logging_8h_a6f3ae1815da4078262e15d5edae54cb5} 
+\index{logging.h@{logging.h}!PH\_DEFINE\_EXTERNAL\_LOG\_GROUP@{PH\_DEFINE\_EXTERNAL\_LOG\_GROUP}}
+\index{PH\_DEFINE\_EXTERNAL\_LOG\_GROUP@{PH\_DEFINE\_EXTERNAL\_LOG\_GROUP}!logging.h@{logging.h}}
+\doxysubsubsection{\texorpdfstring{PH\_DEFINE\_EXTERNAL\_LOG\_GROUP}{PH\_DEFINE\_EXTERNAL\_LOG\_GROUP}}
+{\footnotesize\ttfamily \#define PH\+\_\+\+DEFINE\+\_\+\+EXTERNAL\+\_\+\+LOG\+\_\+\+GROUP(\begin{DoxyParamCaption}\item[{}]{group\+Name,  }\item[{}]{category }\end{DoxyParamCaption})~\mbox{\hyperlink{logging_8h_af5f0e8b82ee8cfe085d28411dea4aa0d}{PH\+\_\+\+DEFINE\+\_\+\+INLINE\+\_\+\+LOG\+\_\+\+GROUP}}(group\+Name, category)}
+
+
+
+Defines a public logger in a header file. The logger will be usable anywhere that includes the header file containing this call. 
+
+\Hypertarget{logging_8h_af5f0e8b82ee8cfe085d28411dea4aa0d}\label{logging_8h_af5f0e8b82ee8cfe085d28411dea4aa0d} 
+\index{logging.h@{logging.h}!PH\_DEFINE\_INLINE\_LOG\_GROUP@{PH\_DEFINE\_INLINE\_LOG\_GROUP}}
+\index{PH\_DEFINE\_INLINE\_LOG\_GROUP@{PH\_DEFINE\_INLINE\_LOG\_GROUP}!logging.h@{logging.h}}
+\doxysubsubsection{\texorpdfstring{PH\_DEFINE\_INLINE\_LOG\_GROUP}{PH\_DEFINE\_INLINE\_LOG\_GROUP}}
+{\footnotesize\ttfamily \#define PH\+\_\+\+DEFINE\+\_\+\+INLINE\+\_\+\+LOG\+\_\+\+GROUP(\begin{DoxyParamCaption}\item[{}]{group\+Name,  }\item[{}]{category }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ inline\ ::ph::Logger\&\ internal\_impl\_logger\_access\_\#\#groupName()\(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \{\(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ std::size\_t\ logGroupIndex\ =\ ::ph::detail::core\_logging::add\_log\_group(\#groupName,\ \#category);\(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ return\ ::ph::detail::core\_logging::get\_logger();\(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{logging_8h_a6a03b0efb173a94d3565b34e7f591dad}\label{logging_8h_a6a03b0efb173a94d3565b34e7f591dad} 
+\index{logging.h@{logging.h}!PH\_DEFINE\_INTERNAL\_LOG\_GROUP@{PH\_DEFINE\_INTERNAL\_LOG\_GROUP}}
+\index{PH\_DEFINE\_INTERNAL\_LOG\_GROUP@{PH\_DEFINE\_INTERNAL\_LOG\_GROUP}!logging.h@{logging.h}}
+\doxysubsubsection{\texorpdfstring{PH\_DEFINE\_INTERNAL\_LOG\_GROUP}{PH\_DEFINE\_INTERNAL\_LOG\_GROUP}}
+{\footnotesize\ttfamily \#define PH\+\_\+\+DEFINE\+\_\+\+INTERNAL\+\_\+\+LOG\+\_\+\+GROUP(\begin{DoxyParamCaption}\item[{}]{group\+Name,  }\item[{}]{category }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{namespace}\(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \{\(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ PH\_DEFINE\_INLINE\_LOG\_GROUP(groupName,\ category);\(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Defines a logger that is private to a .cpp file. Can only appear one time in a translation unit, preferably in a .cpp file. 
+
+\Hypertarget{logging_8h_ade513aa53ccd4f6c88462e55c1ba0112}\label{logging_8h_ade513aa53ccd4f6c88462e55c1ba0112} 
+\index{logging.h@{logging.h}!PH\_DEFINE\_LOG\_GROUP@{PH\_DEFINE\_LOG\_GROUP}}
+\index{PH\_DEFINE\_LOG\_GROUP@{PH\_DEFINE\_LOG\_GROUP}!logging.h@{logging.h}}
+\doxysubsubsection{\texorpdfstring{PH\_DEFINE\_LOG\_GROUP}{PH\_DEFINE\_LOG\_GROUP}}
+{\footnotesize\ttfamily \#define PH\+\_\+\+DEFINE\+\_\+\+LOG\+\_\+\+GROUP(\begin{DoxyParamCaption}\item[{}]{group\+Name,  }\item[{}]{category }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{classph_1_1_logger}{::ph::Logger}}\&\ internal\_impl\_logger\_access\_\#\#groupName()\(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \{\(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ std::size\_t\ logGroupIndex\ =\ ::ph::detail::core\_logging::add\_log\_group(\#groupName,\ \#category);\(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ return\ ::ph::detail::core\_logging::get\_logger();\(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Defines a logger. 
+
+\Hypertarget{logging_8h_ac6712cb5a47adb976fd6c135de0d8a82}\label{logging_8h_ac6712cb5a47adb976fd6c135de0d8a82} 
+\index{logging.h@{logging.h}!PH\_LOG@{PH\_LOG}}
+\index{PH\_LOG@{PH\_LOG}!logging.h@{logging.h}}
+\doxysubsubsection{\texorpdfstring{PH\_LOG}{PH\_LOG}}
+{\footnotesize\ttfamily \#define PH\+\_\+\+LOG(\begin{DoxyParamCaption}\item[{}]{group\+Name,  }\item[{}]{format\+String,  }\item[{}]{... }\end{DoxyParamCaption})~\mbox{\hyperlink{logging_8h_a9dda73828c91f0863513b273cb831307}{PH\+\_\+\+LOG\+\_\+\+FORMAT\+\_\+\+STRING\+\_\+\+TO\+\_\+\+CORE\+\_\+\+LOGGER}}(group\+Name, \mbox{\hyperlink{namespaceph_af3d9a169aefd59566a65991df5db6dbda3b0649c72650c313a357338dcdfb64ec}{\+::ph\+::\+ELog\+Level\+::\+Note}}, format\+String, \+\_\+\+\_\+\+VA\+\_\+\+ARGS\+\_\+\+\_\+)}
+
+\Hypertarget{logging_8h_a99ce7f36f3df758be2ab0941f75c75c9}\label{logging_8h_a99ce7f36f3df758be2ab0941f75c75c9} 
+\index{logging.h@{logging.h}!PH\_LOG\_DEBUG@{PH\_LOG\_DEBUG}}
+\index{PH\_LOG\_DEBUG@{PH\_LOG\_DEBUG}!logging.h@{logging.h}}
+\doxysubsubsection{\texorpdfstring{PH\_LOG\_DEBUG}{PH\_LOG\_DEBUG}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \#define PH\+\_\+\+LOG\+\_\+\+DEBUG(\begin{DoxyParamCaption}\item[{}]{group\+Name,  }\item[{}]{format\+String,  }\item[{}]{... }\end{DoxyParamCaption})~\mbox{\hyperlink{utility_8h_a58d6d0664e5c76c51ebd57905e76eca7}{PH\+\_\+\+NO\+\_\+\+OP}}()}
+
+\Hypertarget{logging_8h_a99ce7f36f3df758be2ab0941f75c75c9}\label{logging_8h_a99ce7f36f3df758be2ab0941f75c75c9} 
+\index{logging.h@{logging.h}!PH\_LOG\_DEBUG@{PH\_LOG\_DEBUG}}
+\index{PH\_LOG\_DEBUG@{PH\_LOG\_DEBUG}!logging.h@{logging.h}}
+\doxysubsubsection{\texorpdfstring{PH\_LOG\_DEBUG}{PH\_LOG\_DEBUG}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \#define PH\+\_\+\+LOG\+\_\+\+DEBUG(\begin{DoxyParamCaption}\item[{}]{group\+Name,  }\item[{}]{format\+String,  }\item[{}]{... }\end{DoxyParamCaption})~\mbox{\hyperlink{utility_8h_a58d6d0664e5c76c51ebd57905e76eca7}{PH\+\_\+\+NO\+\_\+\+OP}}()}
+
+\Hypertarget{logging_8h_a26ecf67970e012988963f807a4902eda}\label{logging_8h_a26ecf67970e012988963f807a4902eda} 
+\index{logging.h@{logging.h}!PH\_LOG\_DEBUG\_STRING@{PH\_LOG\_DEBUG\_STRING}}
+\index{PH\_LOG\_DEBUG\_STRING@{PH\_LOG\_DEBUG\_STRING}!logging.h@{logging.h}}
+\doxysubsubsection{\texorpdfstring{PH\_LOG\_DEBUG\_STRING}{PH\_LOG\_DEBUG\_STRING}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \#define PH\+\_\+\+LOG\+\_\+\+DEBUG\+\_\+\+STRING(\begin{DoxyParamCaption}\item[{}]{group\+Name,  }\item[{}]{raw\+String }\end{DoxyParamCaption})~\mbox{\hyperlink{utility_8h_a58d6d0664e5c76c51ebd57905e76eca7}{PH\+\_\+\+NO\+\_\+\+OP}}()}
+
+
+
+A set of helper utility macros to log using Photon renderer\textquotesingle{}s default log group. 
+
+\Hypertarget{logging_8h_a26ecf67970e012988963f807a4902eda}\label{logging_8h_a26ecf67970e012988963f807a4902eda} 
+\index{logging.h@{logging.h}!PH\_LOG\_DEBUG\_STRING@{PH\_LOG\_DEBUG\_STRING}}
+\index{PH\_LOG\_DEBUG\_STRING@{PH\_LOG\_DEBUG\_STRING}!logging.h@{logging.h}}
+\doxysubsubsection{\texorpdfstring{PH\_LOG\_DEBUG\_STRING}{PH\_LOG\_DEBUG\_STRING}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \#define PH\+\_\+\+LOG\+\_\+\+DEBUG\+\_\+\+STRING(\begin{DoxyParamCaption}\item[{}]{group\+Name,  }\item[{}]{raw\+String }\end{DoxyParamCaption})~\mbox{\hyperlink{utility_8h_a58d6d0664e5c76c51ebd57905e76eca7}{PH\+\_\+\+NO\+\_\+\+OP}}()}
+
+
+
+A set of helper utility macros to log using Photon renderer\textquotesingle{}s default log group. 
+
+\Hypertarget{logging_8h_a9795478f6e12b51c53a4b9379c626c0a}\label{logging_8h_a9795478f6e12b51c53a4b9379c626c0a} 
+\index{logging.h@{logging.h}!PH\_LOG\_ERROR@{PH\_LOG\_ERROR}}
+\index{PH\_LOG\_ERROR@{PH\_LOG\_ERROR}!logging.h@{logging.h}}
+\doxysubsubsection{\texorpdfstring{PH\_LOG\_ERROR}{PH\_LOG\_ERROR}}
+{\footnotesize\ttfamily \#define PH\+\_\+\+LOG\+\_\+\+ERROR(\begin{DoxyParamCaption}\item[{}]{group\+Name,  }\item[{}]{format\+String,  }\item[{}]{... }\end{DoxyParamCaption})~\mbox{\hyperlink{logging_8h_a9dda73828c91f0863513b273cb831307}{PH\+\_\+\+LOG\+\_\+\+FORMAT\+\_\+\+STRING\+\_\+\+TO\+\_\+\+CORE\+\_\+\+LOGGER}}(group\+Name, \mbox{\hyperlink{namespaceph_af3d9a169aefd59566a65991df5db6dbda902b0d55fddef6f8d651fe1035b7d4bd}{\+::ph\+::\+ELog\+Level\+::\+Error}}, format\+String, \+\_\+\+\_\+\+VA\+\_\+\+ARGS\+\_\+\+\_\+)}
+
+\Hypertarget{logging_8h_a4dec88b36814d7ff09d895d52c2613f6}\label{logging_8h_a4dec88b36814d7ff09d895d52c2613f6} 
+\index{logging.h@{logging.h}!PH\_LOG\_ERROR\_STRING@{PH\_LOG\_ERROR\_STRING}}
+\index{PH\_LOG\_ERROR\_STRING@{PH\_LOG\_ERROR\_STRING}!logging.h@{logging.h}}
+\doxysubsubsection{\texorpdfstring{PH\_LOG\_ERROR\_STRING}{PH\_LOG\_ERROR\_STRING}}
+{\footnotesize\ttfamily \#define PH\+\_\+\+LOG\+\_\+\+ERROR\+\_\+\+STRING(\begin{DoxyParamCaption}\item[{}]{group\+Name,  }\item[{}]{raw\+String }\end{DoxyParamCaption})~\mbox{\hyperlink{logging_8h_aba568fdf4b66df91577b279d2b500005}{PH\+\_\+\+LOG\+\_\+\+RAW\+\_\+\+STRING\+\_\+\+TO\+\_\+\+CORE\+\_\+\+LOGGER}}(group\+Name, \mbox{\hyperlink{namespaceph_af3d9a169aefd59566a65991df5db6dbda902b0d55fddef6f8d651fe1035b7d4bd}{\+::ph\+::\+ELog\+Level\+::\+Error}}, raw\+String)}
+
+\Hypertarget{logging_8h_a9dda73828c91f0863513b273cb831307}\label{logging_8h_a9dda73828c91f0863513b273cb831307} 
+\index{logging.h@{logging.h}!PH\_LOG\_FORMAT\_STRING\_TO\_CORE\_LOGGER@{PH\_LOG\_FORMAT\_STRING\_TO\_CORE\_LOGGER}}
+\index{PH\_LOG\_FORMAT\_STRING\_TO\_CORE\_LOGGER@{PH\_LOG\_FORMAT\_STRING\_TO\_CORE\_LOGGER}!logging.h@{logging.h}}
+\doxysubsubsection{\texorpdfstring{PH\_LOG\_FORMAT\_STRING\_TO\_CORE\_LOGGER}{PH\_LOG\_FORMAT\_STRING\_TO\_CORE\_LOGGER}}
+{\footnotesize\ttfamily \#define PH\+\_\+\+LOG\+\_\+\+FORMAT\+\_\+\+STRING\+\_\+\+TO\+\_\+\+CORE\+\_\+\+LOGGER(\begin{DoxyParamCaption}\item[{}]{group\+Name,  }\item[{}]{log\+Level,  }\item[{}]{format\+String,  }\item[{}]{... }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{logging_8h_aba568fdf4b66df91577b279d2b500005}{PH\_LOG\_RAW\_STRING\_TO\_CORE\_LOGGER}}(\(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ groupName,\(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ logLevel,\(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ std::format(formatString\ \_\_VA\_OPT\_\_(,)\ \_\_VA\_ARGS\_\_))}
+
+\end{DoxyCode}
+\Hypertarget{logging_8h_aba568fdf4b66df91577b279d2b500005}\label{logging_8h_aba568fdf4b66df91577b279d2b500005} 
+\index{logging.h@{logging.h}!PH\_LOG\_RAW\_STRING\_TO\_CORE\_LOGGER@{PH\_LOG\_RAW\_STRING\_TO\_CORE\_LOGGER}}
+\index{PH\_LOG\_RAW\_STRING\_TO\_CORE\_LOGGER@{PH\_LOG\_RAW\_STRING\_TO\_CORE\_LOGGER}!logging.h@{logging.h}}
+\doxysubsubsection{\texorpdfstring{PH\_LOG\_RAW\_STRING\_TO\_CORE\_LOGGER}{PH\_LOG\_RAW\_STRING\_TO\_CORE\_LOGGER}}
+{\footnotesize\ttfamily \#define PH\+\_\+\+LOG\+\_\+\+RAW\+\_\+\+STRING\+\_\+\+TO\+\_\+\+CORE\+\_\+\+LOGGER(\begin{DoxyParamCaption}\item[{}]{group\+Name,  }\item[{}]{log\+Level,  }\item[{}]{raw\+String }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ ::ph::detail::core\_logging::log\_to\_logger(\(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ internal\_impl\_logger\_access\_\#\#groupName(),\(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \#groupName,\(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ logLevel,\(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ rawString)}
+
+\end{DoxyCode}
+\Hypertarget{logging_8h_af93c4efd5574f776bbfdd030d0eb1cb1}\label{logging_8h_af93c4efd5574f776bbfdd030d0eb1cb1} 
+\index{logging.h@{logging.h}!PH\_LOG\_STRING@{PH\_LOG\_STRING}}
+\index{PH\_LOG\_STRING@{PH\_LOG\_STRING}!logging.h@{logging.h}}
+\doxysubsubsection{\texorpdfstring{PH\_LOG\_STRING}{PH\_LOG\_STRING}}
+{\footnotesize\ttfamily \#define PH\+\_\+\+LOG\+\_\+\+STRING(\begin{DoxyParamCaption}\item[{}]{group\+Name,  }\item[{}]{raw\+String }\end{DoxyParamCaption})~\mbox{\hyperlink{logging_8h_aba568fdf4b66df91577b279d2b500005}{PH\+\_\+\+LOG\+\_\+\+RAW\+\_\+\+STRING\+\_\+\+TO\+\_\+\+CORE\+\_\+\+LOGGER}}(group\+Name, \mbox{\hyperlink{namespaceph_af3d9a169aefd59566a65991df5db6dbda3b0649c72650c313a357338dcdfb64ec}{\+::ph\+::\+ELog\+Level\+::\+Note}}, raw\+String)}
+
+\Hypertarget{logging_8h_a290098d3658028db348eddf93addb233}\label{logging_8h_a290098d3658028db348eddf93addb233} 
+\index{logging.h@{logging.h}!PH\_LOG\_WARNING@{PH\_LOG\_WARNING}}
+\index{PH\_LOG\_WARNING@{PH\_LOG\_WARNING}!logging.h@{logging.h}}
+\doxysubsubsection{\texorpdfstring{PH\_LOG\_WARNING}{PH\_LOG\_WARNING}}
+{\footnotesize\ttfamily \#define PH\+\_\+\+LOG\+\_\+\+WARNING(\begin{DoxyParamCaption}\item[{}]{group\+Name,  }\item[{}]{format\+String,  }\item[{}]{... }\end{DoxyParamCaption})~\mbox{\hyperlink{logging_8h_a9dda73828c91f0863513b273cb831307}{PH\+\_\+\+LOG\+\_\+\+FORMAT\+\_\+\+STRING\+\_\+\+TO\+\_\+\+CORE\+\_\+\+LOGGER}}(group\+Name, \mbox{\hyperlink{namespaceph_af3d9a169aefd59566a65991df5db6dbda0eaadb4fcb48a0a0ed7bc9868be9fbaa}{\+::ph\+::\+ELog\+Level\+::\+Warning}}, format\+String, \+\_\+\+\_\+\+VA\+\_\+\+ARGS\+\_\+\+\_\+)}
+
+\Hypertarget{logging_8h_a5832a352e23606ab39f3445a946fba11}\label{logging_8h_a5832a352e23606ab39f3445a946fba11} 
+\index{logging.h@{logging.h}!PH\_LOG\_WARNING\_STRING@{PH\_LOG\_WARNING\_STRING}}
+\index{PH\_LOG\_WARNING\_STRING@{PH\_LOG\_WARNING\_STRING}!logging.h@{logging.h}}
+\doxysubsubsection{\texorpdfstring{PH\_LOG\_WARNING\_STRING}{PH\_LOG\_WARNING\_STRING}}
+{\footnotesize\ttfamily \#define PH\+\_\+\+LOG\+\_\+\+WARNING\+\_\+\+STRING(\begin{DoxyParamCaption}\item[{}]{group\+Name,  }\item[{}]{raw\+String }\end{DoxyParamCaption})~\mbox{\hyperlink{logging_8h_aba568fdf4b66df91577b279d2b500005}{PH\+\_\+\+LOG\+\_\+\+RAW\+\_\+\+STRING\+\_\+\+TO\+\_\+\+CORE\+\_\+\+LOGGER}}(group\+Name, \mbox{\hyperlink{namespaceph_af3d9a169aefd59566a65991df5db6dbda0eaadb4fcb48a0a0ed7bc9868be9fbaa}{\+::ph\+::\+ELog\+Level\+::\+Warning}}, raw\+String)}
+

@@ -1,79 +1,80 @@
 \doxysection{TAnalytical\+Integrator1\+D.\+ipp}
 \hypertarget{_t_analytical_integrator1_d_8ipp_source}{}\label{_t_analytical_integrator1_d_8ipp_source}\index{Source/Math/Solver/TAnalyticalIntegrator1D.ipp@{Source/Math/Solver/TAnalyticalIntegrator1D.ipp}}
-
+\mbox{\hyperlink{_t_analytical_integrator1_d_8ipp}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#include\ "{}Math/Solver/TAnalyticalIntegrator1D.h"{}}}
-\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ "{}Common/assertion.h"{}}}
-\DoxyCodeLine{00003\ }
-\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <algorithm>}}
-\DoxyCodeLine{00005\ }
-\DoxyCodeLine{00006\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph_1_1math}{ph::math}}}
-\DoxyCodeLine{00007\ \{}
-\DoxyCodeLine{00008\ }
-\DoxyCodeLine{00009\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00010\ TAnalyticalIntegrator1D<T>::TAnalyticalIntegrator1D()\ :\ }
-\DoxyCodeLine{00011\ \ \ \ \ TAnalyticalIntegrator1D(0,\ 0)}
-\DoxyCodeLine{00012\ \{\}}
-\DoxyCodeLine{00013\ \ \ \ \ }
-\DoxyCodeLine{00014\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00015\ TAnalyticalIntegrator1D<T>::TAnalyticalIntegrator1D(\textcolor{keyword}{const}\ T\ x0,\ \textcolor{keyword}{const}\ T\ x1)\ :}
-\DoxyCodeLine{00016\ \ \ \ \ m\_x0(0),\ m\_x1(0)}
-\DoxyCodeLine{00017\ \{}
-\DoxyCodeLine{00018\ \ \ \ \ setIntegrationDomain(x0,\ x1);}
-\DoxyCodeLine{00019\ \}}
-\DoxyCodeLine{00020\ }
-\DoxyCodeLine{00021\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00022\ T\ TAnalyticalIntegrator1D<T>::integrate(\textcolor{keyword}{const}\ TPiecewiseLinear1D<T>\&\ func)\textcolor{keyword}{\ const}}
-\DoxyCodeLine{00023\ \textcolor{keyword}{}\{}
-\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordflow}{if}(func.numPoints()\ ==\ 0)}
-\DoxyCodeLine{00025\ \ \ \ \ \{}
-\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
-\DoxyCodeLine{00027\ \ \ \ \ \}}
-\DoxyCodeLine{00028\ }
-\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{const}\ TVector2<T>\&\ p0\ =\ func.getPoint(0);}
-\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{const}\ TVector2<T>\&\ pN\ =\ func.getPoint(func.numPoints()\ -\/\ 1);}
-\DoxyCodeLine{00031\ }
-\DoxyCodeLine{00032\ \ \ \ \ \textcolor{comment}{//\ while\ there's\ only\ 1\ point,\ or\ the\ integration\ domain\ }}
-\DoxyCodeLine{00033\ \ \ \ \ \textcolor{comment}{//\ does\ not\ intersect\ with\ [p0.x,\ pN.x]}}
-\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordflow}{if}(func.numPoints()\ ==\ 1)\ \textcolor{keywordflow}{return}\ (m\_x1\ -\/\ m\_x0)\ *\ p0.y();}
-\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordflow}{if}(m\_x1\ <\ p0.x())\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (m\_x1\ -\/\ m\_x0)\ *\ p0.y();}
-\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordflow}{if}(m\_x0\ >\ pN.x())\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (m\_x1\ -\/\ m\_x0)\ *\ pN.y();}
-\DoxyCodeLine{00037\ }
-\DoxyCodeLine{00038\ \ \ \ \ T\ sum\ =\ 0;}
-\DoxyCodeLine{00039\ }
-\DoxyCodeLine{00040\ \ \ \ \ \textcolor{comment}{//\ possibly\ add\ rectangular\ regions\ where\ x\ <=\ p0.x\ and\ x\ =>\ pN.x}}
-\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordflow}{if}(m\_x0\ <=\ p0.x())\ sum\ +=\ (p0.x()\ -\/\ m\_x0)\ *\ p0.y();}
-\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordflow}{if}(m\_x1\ >=\ pN.x())\ sum\ +=\ (m\_x1\ -\/\ pN.x())\ *\ pN.y();}
-\DoxyCodeLine{00043\ }
-\DoxyCodeLine{00044\ \ \ \ \ \textcolor{comment}{//\ possibly\ add\ trapezoidal\ regions\ where\ x\ >\ p0.x\ and\ x\ <\ pN.x}}
-\DoxyCodeLine{00045\ \ \ \ \ \textcolor{comment}{//\ TODO:\ can\ be\ optimized\ by\ better\ finding\ point\ index\ from\ func\ (given\ x,\ find\ previous/next\ index?)}}
-\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ i\ =\ 0;\ i\ <\ func.numPoints()\ -\/\ 1;\ i++)}
-\DoxyCodeLine{00047\ \ \ \ \ \{}
-\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ intersecting\ integration\ domain\ with\ region's\ domain}}
-\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ p0\ =\ func.getPoint(i);}
-\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ p1\ =\ func.getPoint(i\ +\ 1);}
-\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ T\ x0\ =\ std::max(m\_x0,\ p0.x());}
-\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ T\ x1\ =\ std::min(m\_x1,\ p1.x());}
-\DoxyCodeLine{00053\ }
-\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ calculate\ the\ area\ of\ the\ trapezoid\ only\ if\ the\ intersection\ is\ valid}}
-\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(x0\ <\ x1)}
-\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ sum\ +=\ (func.evaluate(x0,\ i,\ i\ +\ 1)\ +\ func.evaluate(x1,\ i,\ i\ +\ 1))\ *\ (x1\ -\/\ x0)\ /\ 2;}
-\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00059\ \ \ \ \ \}}
-\DoxyCodeLine{00060\ }
-\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordflow}{return}\ sum;}
-\DoxyCodeLine{00062\ \}}
-\DoxyCodeLine{00063\ }
-\DoxyCodeLine{00064\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00065\ \textcolor{keywordtype}{void}\ TAnalyticalIntegrator1D<T>::setIntegrationDomain(\textcolor{keyword}{const}\ T\ x0,\ \textcolor{keyword}{const}\ T\ x1)}
-\DoxyCodeLine{00066\ \{}
-\DoxyCodeLine{00067\ \ \ \ \ PH\_ASSERT(x1\ >=\ x0);}
-\DoxyCodeLine{00068\ }
-\DoxyCodeLine{00069\ \ \ \ \ m\_x0\ =\ x0;}
-\DoxyCodeLine{00070\ \ \ \ \ m\_x1\ =\ x1;}
-\DoxyCodeLine{00071\ \}}
-\DoxyCodeLine{00072\ }
-\DoxyCodeLine{00073\ \}\textcolor{comment}{//\ end\ namespace\ ph::math}}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_analytical_integrator1_d_8h}{Math/Solver/TAnalyticalIntegrator1D.h}}"{}}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <Common/assertion.h>}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph_1_1math}{ph::math}}}
+\DoxyCodeLine{00008\ \{}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00011\ \mbox{\hyperlink{classph_1_1math_1_1_t_analytical_integrator1_d_af83e9085af9b80d0be00bdc8996361fb}{TAnalyticalIntegrator1D<T>::TAnalyticalIntegrator1D}}()\ :\ }
+\DoxyCodeLine{00012\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_analytical_integrator1_d}{TAnalyticalIntegrator1D}}(0,\ 0)}
+\DoxyCodeLine{00013\ \{\}}
+\DoxyCodeLine{00014\ \ \ \ \ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00016\ \mbox{\hyperlink{classph_1_1math_1_1_t_analytical_integrator1_d_af83e9085af9b80d0be00bdc8996361fb}{TAnalyticalIntegrator1D<T>::TAnalyticalIntegrator1D}}(\textcolor{keyword}{const}\ T\ x0,\ \textcolor{keyword}{const}\ T\ x1)\ :}
+\DoxyCodeLine{00017\ \ \ \ \ m\_x0(0),\ m\_x1(0)}
+\DoxyCodeLine{00018\ \{}
+\DoxyCodeLine{00019\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_analytical_integrator1_d_af105708b622bbd3d435e2e39b93f26d2}{setIntegrationDomain}}(x0,\ x1);}
+\DoxyCodeLine{00020\ \}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00023\ T\ \mbox{\hyperlink{classph_1_1math_1_1_t_analytical_integrator1_d_a83f0ae866579450c8d6ce3df1938d76c}{TAnalyticalIntegrator1D<T>::integrate}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_piecewise_linear1_d}{TPiecewiseLinear1D<T>}}\&\ func)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00024\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordflow}{if}(func.\mbox{\hyperlink{classph_1_1math_1_1_t_piecewise_linear1_d_a8501285b1a8d319e8e457f239753d2cd}{numPoints}}()\ ==\ 0)}
+\DoxyCodeLine{00026\ \ \ \ \ \{}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00028\ \ \ \ \ \}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{TVector2<T>}}\&\ p0\ =\ func.\mbox{\hyperlink{classph_1_1math_1_1_t_piecewise_linear1_d_a1fa2e5877aefb34509c5778b1ecc706d}{getPoint}}(0);}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{TVector2<T>}}\&\ pN\ =\ func.\mbox{\hyperlink{classph_1_1math_1_1_t_piecewise_linear1_d_a1fa2e5877aefb34509c5778b1ecc706d}{getPoint}}(func.\mbox{\hyperlink{classph_1_1math_1_1_t_piecewise_linear1_d_a8501285b1a8d319e8e457f239753d2cd}{numPoints}}()\ -\/\ 1);}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{comment}{//\ while\ there's\ only\ 1\ point,\ or\ the\ integration\ domain\ }}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{comment}{//\ does\ not\ intersect\ with\ [p0.x,\ pN.x]}}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordflow}{if}(func.\mbox{\hyperlink{classph_1_1math_1_1_t_piecewise_linear1_d_a8501285b1a8d319e8e457f239753d2cd}{numPoints}}()\ ==\ 1)\ \textcolor{keywordflow}{return}\ (m\_x1\ -\/\ m\_x0)\ *\ p0.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_af3065a5fa872cdb3f2291a84824d5d59}{y}}();}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordflow}{if}(m\_x1\ <\ p0.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_a03c5e56839820da78b52d2db0281f065}{x}}())\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (m\_x1\ -\/\ m\_x0)\ *\ p0.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_af3065a5fa872cdb3f2291a84824d5d59}{y}}();}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordflow}{if}(m\_x0\ >\ pN.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_a03c5e56839820da78b52d2db0281f065}{x}}())\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (m\_x1\ -\/\ m\_x0)\ *\ pN.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_af3065a5fa872cdb3f2291a84824d5d59}{y}}();}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \ \ T\ sum\ =\ 0;}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{comment}{//\ possibly\ add\ rectangular\ regions\ where\ x\ <=\ p0.x\ and\ x\ =>\ pN.x}}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordflow}{if}(m\_x0\ <=\ p0.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_a03c5e56839820da78b52d2db0281f065}{x}}())\ sum\ +=\ (p0.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_a03c5e56839820da78b52d2db0281f065}{x}}()\ -\/\ m\_x0)\ *\ p0.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_af3065a5fa872cdb3f2291a84824d5d59}{y}}();}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordflow}{if}(m\_x1\ >=\ pN.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_a03c5e56839820da78b52d2db0281f065}{x}}())\ sum\ +=\ (m\_x1\ -\/\ pN.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_a03c5e56839820da78b52d2db0281f065}{x}}())\ *\ pN.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_af3065a5fa872cdb3f2291a84824d5d59}{y}}();}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{comment}{//\ possibly\ add\ trapezoidal\ regions\ where\ x\ >\ p0.x\ and\ x\ <\ pN.x}}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{comment}{//\ TODO:\ can\ be\ optimized\ by\ better\ finding\ point\ index\ from\ func\ (given\ x,\ find\ previous/next\ index?)}}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ i\ =\ 0;\ i\ <\ func.\mbox{\hyperlink{classph_1_1math_1_1_t_piecewise_linear1_d_a8501285b1a8d319e8e457f239753d2cd}{numPoints}}()\ -\/\ 1;\ i++)}
+\DoxyCodeLine{00048\ \ \ \ \ \{}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ intersecting\ integration\ domain\ with\ region's\ domain}}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ p0\ =\ func.\mbox{\hyperlink{classph_1_1math_1_1_t_piecewise_linear1_d_a1fa2e5877aefb34509c5778b1ecc706d}{getPoint}}(i);}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ p1\ =\ func.\mbox{\hyperlink{classph_1_1math_1_1_t_piecewise_linear1_d_a1fa2e5877aefb34509c5778b1ecc706d}{getPoint}}(i\ +\ 1);}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ T\ x0\ =\ std::max(m\_x0,\ p0.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_a03c5e56839820da78b52d2db0281f065}{x}}());}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ T\ x1\ =\ std::min(m\_x1,\ p1.x());}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ calculate\ the\ area\ of\ the\ trapezoid\ only\ if\ the\ intersection\ is\ valid}}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(x0\ <\ x1)}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ sum\ +=\ (func.\mbox{\hyperlink{classph_1_1math_1_1_t_piecewise_linear1_d_a8e74a0f7a6910dd44c3d5507557069f6}{evaluate}}(x0,\ i,\ i\ +\ 1)\ +\ func.\mbox{\hyperlink{classph_1_1math_1_1_t_piecewise_linear1_d_a8e74a0f7a6910dd44c3d5507557069f6}{evaluate}}(x1,\ i,\ i\ +\ 1))\ *\ (x1\ -\/\ x0)\ /\ 2;}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00060\ \ \ \ \ \}}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keywordflow}{return}\ sum;}
+\DoxyCodeLine{00063\ \}}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00066\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1math_1_1_t_analytical_integrator1_d_af105708b622bbd3d435e2e39b93f26d2}{TAnalyticalIntegrator1D<T>::setIntegrationDomain}}(\textcolor{keyword}{const}\ T\ x0,\ \textcolor{keyword}{const}\ T\ x1)}
+\DoxyCodeLine{00067\ \{}
+\DoxyCodeLine{00068\ \ \ \ \ PH\_ASSERT(x1\ >=\ x0);}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ \ \ m\_x0\ =\ x0;}
+\DoxyCodeLine{00071\ \ \ \ \ m\_x1\ =\ x1;}
+\DoxyCodeLine{00072\ \}}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \}\textcolor{comment}{//\ end\ namespace\ ph::math}}
 
 \end{DoxyCode}

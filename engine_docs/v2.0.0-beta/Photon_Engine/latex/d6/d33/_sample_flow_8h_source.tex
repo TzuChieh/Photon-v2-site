@@ -1,134 +1,135 @@
 \doxysection{Sample\+Flow.\+h}
 \hypertarget{_sample_flow_8h_source}{}\label{_sample_flow_8h_source}\index{Source/Core/SampleGenerator/SampleFlow.h@{Source/Core/SampleGenerator/SampleFlow.h}}
-
+\mbox{\hyperlink{_sample_flow_8h}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
 \DoxyCodeLine{00002\ }
-\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Common/primitive\_type.h"{}}}
-\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Common/assertion.h"{}}}
-\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}Math/Random.h"{}}}
-\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}Math/Random/sample.h"{}}}
-\DoxyCodeLine{00007\ }
-\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <cstddef>}}
-\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <array>}}
-\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <optional>}}
-\DoxyCodeLine{00011\ }
-\DoxyCodeLine{00012\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
-\DoxyCodeLine{00013\ \{}
-\DoxyCodeLine{00014\ }
-\DoxyCodeLine{00015\ \textcolor{comment}{//\ TODO:\ test}}
-\DoxyCodeLine{00016\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_sample_flow}{SampleFlow}}\ final}
-\DoxyCodeLine{00017\ \{}
-\DoxyCodeLine{00018\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00019\ \ \ \ \ \mbox{\hyperlink{classph_1_1_sample_flow}{SampleFlow}}();}
-\DoxyCodeLine{00020\ \ \ \ \ \mbox{\hyperlink{classph_1_1_sample_flow}{SampleFlow}}(\textcolor{keyword}{const}\ real*\ savedDims,\ std::size\_t\ numSavedDims);}
-\DoxyCodeLine{00021\ }
-\DoxyCodeLine{00022\ \ \ \ \ real\ flow1D();}
-\DoxyCodeLine{00023\ \ \ \ \ std::array<real,\ 2>\ flow2D();}
-\DoxyCodeLine{00024\ \ \ \ \ std::array<real,\ 3>\ flow3D();}
-\DoxyCodeLine{00025\ }
-\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N>}
-\DoxyCodeLine{00027\ \ \ \ \ std::array<real,\ N>\ flowND();}
-\DoxyCodeLine{00028\ }
-\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordtype}{bool}\ pick(real\ pickProbability);}
-\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keywordtype}{bool}\ unflowedPick(real\ pickProbability);}
-\DoxyCodeLine{00031\ }
-\DoxyCodeLine{00032\ \ \ \ \ \textcolor{comment}{//\ TODO:\ non-\/const\ is\ intentional\ for\ future\ sample\ recording}}
-\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordtype}{bool}\ randomPick(real\ pickProbability);}
-\DoxyCodeLine{00034\ }
-\DoxyCodeLine{00035\ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{const}\ real*\ \ \ \ \ \ \ \ \ m\_savedDims;}
-\DoxyCodeLine{00037\ \ \ \ \ std::size\_t\ \ \ \ \ \ \ \ \ m\_numSavedDims;}
-\DoxyCodeLine{00038\ \ \ \ \ std::size\_t\ \ \ \ \ \ \ \ \ m\_numReadDims;}
-\DoxyCodeLine{00039\ \ \ \ \ std::optional<real>\ m\_partiallyUsedDim;}
-\DoxyCodeLine{00040\ }
-\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordtype}{bool}\ hasMoreToRead()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00042\ \ \ \ \ real\ load1D();}
-\DoxyCodeLine{00043\ \};}
-\DoxyCodeLine{00044\ }
-\DoxyCodeLine{00045\ \textcolor{comment}{//\ In-\/header\ Implementations:}}
-\DoxyCodeLine{00046\ }
-\DoxyCodeLine{00047\ \textcolor{keyword}{inline}\ SampleFlow::SampleFlow()\ :}
-\DoxyCodeLine{00048\ \ \ \ \ m\_savedDims\ \ \ \ \ \ \ (nullptr),}
-\DoxyCodeLine{00049\ \ \ \ \ m\_numSavedDims\ \ \ \ (0),}
-\DoxyCodeLine{00050\ \ \ \ \ m\_numReadDims\ \ \ \ \ (0),}
-\DoxyCodeLine{00051\ \ \ \ \ m\_partiallyUsedDim()}
-\DoxyCodeLine{00052\ \{\}}
-\DoxyCodeLine{00053\ }
-\DoxyCodeLine{00054\ \textcolor{keyword}{inline}\ SampleFlow::SampleFlow(\textcolor{keyword}{const}\ real*\ \textcolor{keyword}{const}\ savedDims,\ \textcolor{keyword}{const}\ std::size\_t\ numSavedDims)\ :}
-\DoxyCodeLine{00055\ \ \ \ \ m\_savedDims\ \ \ \ \ \ \ (savedDims),}
-\DoxyCodeLine{00056\ \ \ \ \ m\_numSavedDims\ \ \ \ (numSavedDims),}
-\DoxyCodeLine{00057\ \ \ \ \ m\_numReadDims\ \ \ \ \ (0),}
-\DoxyCodeLine{00058\ \ \ \ \ m\_partiallyUsedDim()}
-\DoxyCodeLine{00059\ \{}
-\DoxyCodeLine{00060\ \ \ \ \ PH\_ASSERT(savedDims);}
-\DoxyCodeLine{00061\ \}}
-\DoxyCodeLine{00062\ }
-\DoxyCodeLine{00063\ \textcolor{keyword}{inline}\ real\ SampleFlow::flow1D()}
-\DoxyCodeLine{00064\ \{}
-\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordflow}{return}\ flowND<1>()[0];}
-\DoxyCodeLine{00066\ \}}
-\DoxyCodeLine{00067\ }
-\DoxyCodeLine{00068\ \textcolor{keyword}{inline}\ std::array<real,\ 2>\ SampleFlow::flow2D()}
-\DoxyCodeLine{00069\ \{}
-\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keywordflow}{return}\ flowND<2>();}
-\DoxyCodeLine{00071\ \}}
-\DoxyCodeLine{00072\ }
-\DoxyCodeLine{00073\ \textcolor{keyword}{inline}\ std::array<real,\ 3>\ SampleFlow::flow3D()}
-\DoxyCodeLine{00074\ \{}
-\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keywordflow}{return}\ flowND<3>();}
-\DoxyCodeLine{00076\ \}}
-\DoxyCodeLine{00077\ }
-\DoxyCodeLine{00078\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N>}
-\DoxyCodeLine{00079\ \textcolor{keyword}{inline}\ std::array<real,\ N>\ SampleFlow::flowND()}
-\DoxyCodeLine{00080\ \{}
-\DoxyCodeLine{00081\ \ \ \ \ std::array<real,\ N>\ sample;}
-\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ i\ =\ 0;\ i\ <\ N;\ ++i)}
-\DoxyCodeLine{00083\ \ \ \ \ \{}
-\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ sample[i]\ =\ load1D();}
-\DoxyCodeLine{00085\ \ \ \ \ \}}
-\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keywordflow}{return}\ sample;}
-\DoxyCodeLine{00087\ \}}
-\DoxyCodeLine{00088\ }
-\DoxyCodeLine{00089\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ SampleFlow::pick(\textcolor{keyword}{const}\ real\ pickProbability)}
-\DoxyCodeLine{00090\ \{}
-\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keywordflow}{return}\ math::pick(pickProbability,\ load1D());}
-\DoxyCodeLine{00092\ \}}
-\DoxyCodeLine{00093\ }
-\DoxyCodeLine{00094\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ SampleFlow::unflowedPick(\textcolor{keyword}{const}\ real\ pickProbability)}
-\DoxyCodeLine{00095\ \{}
-\DoxyCodeLine{00096\ \ \ \ \ real\ dimValue\ =\ load1D();}
-\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ isPicked\ =\ math::reused\_pick(pickProbability,\ dimValue);}
-\DoxyCodeLine{00098\ }
-\DoxyCodeLine{00099\ \ \ \ \ PH\_ASSERT(!m\_partiallyUsedDim.has\_value());}
-\DoxyCodeLine{00100\ \ \ \ \ m\_partiallyUsedDim\ =\ dimValue;}
-\DoxyCodeLine{00101\ }
-\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keywordflow}{return}\ isPicked;}
-\DoxyCodeLine{00103\ \}}
-\DoxyCodeLine{00104\ }
-\DoxyCodeLine{00105\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ SampleFlow::randomPick(\textcolor{keyword}{const}\ real\ pickProbability)}
-\DoxyCodeLine{00106\ \{}
-\DoxyCodeLine{00107\ \ \ \ \ \textcolor{keywordflow}{return}\ math::pick(pickProbability,\ math::Random::genUniformReal\_i0\_e1());}
-\DoxyCodeLine{00108\ \}}
-\DoxyCodeLine{00109\ }
-\DoxyCodeLine{00110\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ SampleFlow::hasMoreToRead()\textcolor{keyword}{\ const}}
-\DoxyCodeLine{00111\ \textcolor{keyword}{}\{}
-\DoxyCodeLine{00112\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_numReadDims\ <\ m\_numSavedDims;}
-\DoxyCodeLine{00113\ \}}
-\DoxyCodeLine{00114\ }
-\DoxyCodeLine{00115\ \textcolor{keyword}{inline}\ real\ SampleFlow::load1D()}
-\DoxyCodeLine{00116\ \{}
-\DoxyCodeLine{00117\ \ \ \ \ \textcolor{keywordflow}{if}(m\_partiallyUsedDim.has\_value())}
-\DoxyCodeLine{00118\ \ \ \ \ \{}
-\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ real\ dimValue\ =\ m\_partiallyUsedDim.value();}
-\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ m\_partiallyUsedDim.reset();}
-\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ dimValue;}
-\DoxyCodeLine{00122\ \ \ \ \ \}}
-\DoxyCodeLine{00123\ }
-\DoxyCodeLine{00124\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_savedDims\ \&\&\ hasMoreToRead()\ ?}
-\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ m\_savedDims[m\_numReadDims++]\ :\ math::Random::genUniformReal\_i0\_e1();}
-\DoxyCodeLine{00126\ \}}
-\DoxyCodeLine{00127\ }
-\DoxyCodeLine{00128\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_random_8h}{Math/Random.h}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_math_2_random_2_sample_8h}{Math/Random/sample.h}}"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <Common/assertion.h>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <Common/primitive\_type.h>}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <cstddef>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <array>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <optional>}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00014\ \{}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ TODO:\ test}}
+\DoxyCodeLine{00017\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_sample_flow}{SampleFlow}}\ final}
+\DoxyCodeLine{00018\ \{}
+\DoxyCodeLine{00019\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00020\ \ \ \ \ \mbox{\hyperlink{classph_1_1_sample_flow_a94be81c7a51b48a808f83e6ce839d01a}{SampleFlow}}();}
+\DoxyCodeLine{00021\ \ \ \ \ \mbox{\hyperlink{classph_1_1_sample_flow_a94be81c7a51b48a808f83e6ce839d01a}{SampleFlow}}(\textcolor{keyword}{const}\ real*\ savedDims,\ std::size\_t\ numSavedDims);}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ \ \ real\ \mbox{\hyperlink{classph_1_1_sample_flow_a8d93ef2d1e1d131e8c735e2224d3dd00}{flow1D}}();}
+\DoxyCodeLine{00024\ \ \ \ \ std::array<real,\ 2>\ \mbox{\hyperlink{classph_1_1_sample_flow_ac3501b945b12110b55ddc41e31134c5a}{flow2D}}();}
+\DoxyCodeLine{00025\ \ \ \ \ std::array<real,\ 3>\ \mbox{\hyperlink{classph_1_1_sample_flow_a62272ab3edcfd6d0a073a6945de03e90}{flow3D}}();}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00028\ \ \ \ \ std::array<real,\ N>\ \mbox{\hyperlink{classph_1_1_sample_flow_a2f72c899dcaa55221eaa6f161fbafee0}{flowND}}();}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_sample_flow_a1ee7d8902ff81c8acbbb948709178644}{pick}}(real\ pickProbability);}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_sample_flow_afc150517d79595beb57e792dcb3d1e0f}{unflowedPick}}(real\ pickProbability);}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{comment}{//\ TODO:\ non-\/const\ is\ intentional\ for\ future\ sample\ recording}}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_sample_flow_a0b209bcee911034f60602561f7fbe284}{randomPick}}(real\ pickProbability);}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keyword}{const}\ real*\ \ \ \ \ \ \ \ \ m\_savedDims;}
+\DoxyCodeLine{00038\ \ \ \ \ std::size\_t\ \ \ \ \ \ \ \ \ m\_numSavedDims;}
+\DoxyCodeLine{00039\ \ \ \ \ std::size\_t\ \ \ \ \ \ \ \ \ m\_numReadDims;}
+\DoxyCodeLine{00040\ \ \ \ \ std::optional<real>\ m\_partiallyUsedDim;}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordtype}{bool}\ hasMoreToRead()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00043\ \ \ \ \ real\ load1D();}
+\DoxyCodeLine{00044\ \};}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \textcolor{comment}{//\ In-\/header\ Implementations:}}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_sample_flow_a94be81c7a51b48a808f83e6ce839d01a}{SampleFlow::SampleFlow}}()\ :}
+\DoxyCodeLine{00049\ \ \ \ \ m\_savedDims\ \ \ \ \ \ \ (nullptr),}
+\DoxyCodeLine{00050\ \ \ \ \ m\_numSavedDims\ \ \ \ (0),}
+\DoxyCodeLine{00051\ \ \ \ \ m\_numReadDims\ \ \ \ \ (0),}
+\DoxyCodeLine{00052\ \ \ \ \ m\_partiallyUsedDim()}
+\DoxyCodeLine{00053\ \{\}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_sample_flow_a94be81c7a51b48a808f83e6ce839d01a}{SampleFlow::SampleFlow}}(\textcolor{keyword}{const}\ real*\ \textcolor{keyword}{const}\ savedDims,\ \textcolor{keyword}{const}\ std::size\_t\ numSavedDims)\ :}
+\DoxyCodeLine{00056\ \ \ \ \ m\_savedDims\ \ \ \ \ \ \ (savedDims),}
+\DoxyCodeLine{00057\ \ \ \ \ m\_numSavedDims\ \ \ \ (numSavedDims),}
+\DoxyCodeLine{00058\ \ \ \ \ m\_numReadDims\ \ \ \ \ (0),}
+\DoxyCodeLine{00059\ \ \ \ \ m\_partiallyUsedDim()}
+\DoxyCodeLine{00060\ \{}
+\DoxyCodeLine{00061\ \ \ \ \ PH\_ASSERT(savedDims);}
+\DoxyCodeLine{00062\ \}}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \textcolor{keyword}{inline}\ real\ \mbox{\hyperlink{classph_1_1_sample_flow_a8d93ef2d1e1d131e8c735e2224d3dd00}{SampleFlow::flow1D}}()}
+\DoxyCodeLine{00065\ \{}
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keywordflow}{return}\ flowND<1>()[0];}
+\DoxyCodeLine{00067\ \}}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \textcolor{keyword}{inline}\ std::array<real,\ 2>\ \mbox{\hyperlink{classph_1_1_sample_flow_ac3501b945b12110b55ddc41e31134c5a}{SampleFlow::flow2D}}()}
+\DoxyCodeLine{00070\ \{}
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keywordflow}{return}\ flowND<2>();}
+\DoxyCodeLine{00072\ \}}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \textcolor{keyword}{inline}\ std::array<real,\ 3>\ \mbox{\hyperlink{classph_1_1_sample_flow_a62272ab3edcfd6d0a073a6945de03e90}{SampleFlow::flow3D}}()}
+\DoxyCodeLine{00075\ \{}
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keywordflow}{return}\ flowND<3>();}
+\DoxyCodeLine{00077\ \}}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00080\ \textcolor{keyword}{inline}\ std::array<real,\ N>\ \mbox{\hyperlink{classph_1_1_sample_flow_a2f72c899dcaa55221eaa6f161fbafee0}{SampleFlow::flowND}}()}
+\DoxyCodeLine{00081\ \{}
+\DoxyCodeLine{00082\ \ \ \ \ std::array<real,\ N>\ sample;}
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ i\ =\ 0;\ i\ <\ N;\ ++i)}
+\DoxyCodeLine{00084\ \ \ \ \ \{}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ sample[i]\ =\ load1D();}
+\DoxyCodeLine{00086\ \ \ \ \ \}}
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{keywordflow}{return}\ sample;}
+\DoxyCodeLine{00088\ \}}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_sample_flow_a1ee7d8902ff81c8acbbb948709178644}{SampleFlow::pick}}(\textcolor{keyword}{const}\ real\ pickProbability)}
+\DoxyCodeLine{00091\ \{}
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespaceph_1_1math_a85eb3c66273614f6751cba5c227ee7df}{math::pick}}(pickProbability,\ load1D());}
+\DoxyCodeLine{00093\ \}}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_sample_flow_afc150517d79595beb57e792dcb3d1e0f}{SampleFlow::unflowedPick}}(\textcolor{keyword}{const}\ real\ pickProbability)}
+\DoxyCodeLine{00096\ \{}
+\DoxyCodeLine{00097\ \ \ \ \ real\ dimValue\ =\ load1D();}
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ isPicked\ =\ \mbox{\hyperlink{namespaceph_1_1math_ae25c59a2b1c21e3de88ce32499d3fa2f}{math::reused\_pick}}(pickProbability,\ dimValue);}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \ \ \ \ PH\_ASSERT(!m\_partiallyUsedDim.has\_value());}
+\DoxyCodeLine{00101\ \ \ \ \ m\_partiallyUsedDim\ =\ dimValue;}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{keywordflow}{return}\ isPicked;}
+\DoxyCodeLine{00104\ \}}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_sample_flow_a0b209bcee911034f60602561f7fbe284}{SampleFlow::randomPick}}(\textcolor{keyword}{const}\ real\ pickProbability)}
+\DoxyCodeLine{00107\ \{}
+\DoxyCodeLine{00108\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespaceph_1_1math_a85eb3c66273614f6751cba5c227ee7df}{math::pick}}(pickProbability,\ \mbox{\hyperlink{classph_1_1math_1_1_random_a3a6997e06a6b12bc125e4c27a218908e}{math::Random::genUniformReal\_i0\_e1}}());}
+\DoxyCodeLine{00109\ \}}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ SampleFlow::hasMoreToRead()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00112\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_numReadDims\ <\ m\_numSavedDims;}
+\DoxyCodeLine{00114\ \}}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00116\ \textcolor{keyword}{inline}\ real\ SampleFlow::load1D()}
+\DoxyCodeLine{00117\ \{}
+\DoxyCodeLine{00118\ \ \ \ \ \textcolor{keywordflow}{if}(m\_partiallyUsedDim.has\_value())}
+\DoxyCodeLine{00119\ \ \ \ \ \{}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ real\ dimValue\ =\ m\_partiallyUsedDim.value();}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ m\_partiallyUsedDim.reset();}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ dimValue;}
+\DoxyCodeLine{00123\ \ \ \ \ \}}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_savedDims\ \&\&\ hasMoreToRead()\ ?}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ m\_savedDims[m\_numReadDims++]\ :\ \mbox{\hyperlink{classph_1_1math_1_1_random_a3a6997e06a6b12bc125e4c27a218908e}{math::Random::genUniformReal\_i0\_e1}}();}
+\DoxyCodeLine{00127\ \}}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00129\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
 
 \end{DoxyCode}

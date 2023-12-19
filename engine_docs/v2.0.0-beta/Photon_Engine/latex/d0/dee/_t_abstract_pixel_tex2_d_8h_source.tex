@@ -1,108 +1,109 @@
 \doxysection{TAbstract\+Pixel\+Tex2\+D.\+h}
 \hypertarget{_t_abstract_pixel_tex2_d_8h_source}{}\label{_t_abstract_pixel_tex2_d_8h_source}\index{Source/Core/Texture/TAbstractPixelTex2D.h@{Source/Core/Texture/TAbstractPixelTex2D.h}}
-
+\mbox{\hyperlink{_t_abstract_pixel_tex2_d_8h}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
 \DoxyCodeLine{00002\ }
-\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Core/Texture/TTexture.h"{}}}
-\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Common/assertion.h"{}}}
-\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{math_8h}{Math/math.h}}"{}}}
-\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}Core/Texture/SampleLocation.h"{}}}
-\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}Core/Texture/TTexPixel.h"{}}}
-\DoxyCodeLine{00008\ }
-\DoxyCodeLine{00009\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
-\DoxyCodeLine{00010\ \{}
-\DoxyCodeLine{00011\ }
-\DoxyCodeLine{00012\ \textcolor{keyword}{enum\ class}\ ETexWrapMode}
-\DoxyCodeLine{00013\ \{}
-\DoxyCodeLine{00014\ \ \ \ \ REPEAT,}
-\DoxyCodeLine{00015\ \ \ \ \ CLAMP\_TO\_EDGE}
-\DoxyCodeLine{00016\ \};}
-\DoxyCodeLine{00017\ }
-\DoxyCodeLine{00018\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
-\DoxyCodeLine{00019\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_t_abstract_pixel_tex2_d}{TAbstractPixelTex2D}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classph_1_1_t_texture}{TTexture}}<TTexPixel<T,\ N>>}
-\DoxyCodeLine{00020\ \{}
-\DoxyCodeLine{00021\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_t_abstract_pixel_tex2_d}{TAbstractPixelTex2D}}()\ :}
-\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_abstract_pixel_tex2_d}{TAbstractPixelTex2D}}(1,\ 1)}
-\DoxyCodeLine{00024\ \ \ \ \ \{\}}
-\DoxyCodeLine{00025\ }
-\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_t_abstract_pixel_tex2_d}{TAbstractPixelTex2D}}(\textcolor{keyword}{const}\ uint32\ widthPx,\ \textcolor{keyword}{const}\ uint32\ heightPx)\ :}
-\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_texture}{TTexture<TTexPixel<T,\ N>}}>(),}
-\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ m\_wrapMode(ETexWrapMode::REPEAT)}
-\DoxyCodeLine{00029\ \ \ \ \ \{}
-\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ setWidthPx(widthPx);}
-\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ setHeightPx(heightPx);}
-\DoxyCodeLine{00032\ \ \ \ \ \}}
-\DoxyCodeLine{00033\ }
-\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordtype}{void}\ sample(}
-\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_sample_location}{SampleLocation}}\&\ sampleLocation,\ }
-\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_arithmetic_array}{TTexPixel<T,\ N>}}*\ \ \ \ \ \ out\_value)\ \textcolor{keyword}{const\ override}\ =\ 0;}
-\DoxyCodeLine{00037\ }
-\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keyword}{inline}\ uint32\ \ \ \ \ \ \ getWidthPx()\textcolor{keyword}{\ const\ \ \ \ }\{\ \textcolor{keywordflow}{return}\ m\_widthPx;\ \ \ \ \}}
-\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{inline}\ uint32\ \ \ \ \ \ \ getHeightPx()\textcolor{keyword}{\ const\ \ \ }\{\ \textcolor{keywordflow}{return}\ m\_heightPx;\ \ \ \}}
-\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{inline}\ float64\ \ \ \ \ \ getTexelSizeU()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ m\_texelSizeU;\ \}}
-\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keyword}{inline}\ float64\ \ \ \ \ \ getTexelSizeV()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ m\_texelSizeV;\ \}}
-\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keyword}{inline}\ ETexWrapMode\ getWrapMode()\textcolor{keyword}{\ const\ \ \ }\{\ \textcolor{keywordflow}{return}\ m\_wrapMode;\ \ \ \}}
-\DoxyCodeLine{00043\ }
-\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ setWrapMode(\textcolor{keyword}{const}\ ETexWrapMode\ mode)}
-\DoxyCodeLine{00045\ \ \ \ \ \{}
-\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ m\_wrapMode\ =\ mode;}
-\DoxyCodeLine{00047\ \ \ \ \ \}}
-\DoxyCodeLine{00048\ }
-\DoxyCodeLine{00049\ \textcolor{keyword}{protected}:}
-\DoxyCodeLine{00050\ \ \ \ \ \textcolor{comment}{//\ Normalizing\ (u,\ v)\ coordinates\ to\ [0,\ 1]\ according\ to\ wrapping\ mode.}}
-\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ normalizeUV(\textcolor{keyword}{const}\ float64\ u,\ \textcolor{keyword}{const}\ float64\ v,\ }
-\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ float64*\ \textcolor{keyword}{const}\ out\_u,\ float64*\ \textcolor{keyword}{const}\ out\_v)\textcolor{keyword}{\ const}}
-\DoxyCodeLine{00053\ \textcolor{keyword}{\ \ \ \ }\{}
-\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}(m\_wrapMode)}
-\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ ETexWrapMode::REPEAT:}
-\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ float64\ fu\ =\ \mbox{\hyperlink{namespaceph_1_1math_a9460c87b6dab3097ee4d084d9b59a604}{math::fractional\_part}}(u);}
-\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ float64\ fv\ =\ \mbox{\hyperlink{namespaceph_1_1math_a9460c87b6dab3097ee4d084d9b59a604}{math::fractional\_part}}(v);}
-\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ *out\_u\ =\ fu\ >=\ 0.0\ ?\ fu\ :\ fu\ +\ 1.0;}
-\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ *out\_v\ =\ fv\ >=\ 0.0\ ?\ fv\ :\ fv\ +\ 1.0;}
-\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
-\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ ETexWrapMode::CLAMP\_TO\_EDGE:}
-\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ *out\_u\ =\ \mbox{\hyperlink{namespaceph_1_1math_a9e5d8a7a977115813ceeba3f0c00cbdb}{math::clamp}}(u,\ 0.0,\ 1.0);}
-\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ *out\_v\ =\ \mbox{\hyperlink{namespaceph_1_1math_a9e5d8a7a977115813ceeba3f0c00cbdb}{math::clamp}}(v,\ 0.0,\ 1.0);}
-\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
-\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{default}:}
-\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ PH\_ASSERT\_UNREACHABLE\_SECTION();}
-\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00073\ }
-\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ PH\_ASSERT(*out\_u\ >=\ 0.0\ \&\&\ *out\_u\ <=\ 1.0\ \&\&\ }
-\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *out\_v\ >=\ 0.0\ \&\&\ *out\_v\ <=\ 1.0);}
-\DoxyCodeLine{00076\ \ \ \ \ \}}
-\DoxyCodeLine{00077\ }
-\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ setWidthPx(\textcolor{keyword}{const}\ uint32\ widthPx)}
-\DoxyCodeLine{00079\ \ \ \ \ \{}
-\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ PH\_ASSERT(widthPx\ >\ 0);}
-\DoxyCodeLine{00081\ }
-\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ m\_widthPx\ \ \ \ =\ widthPx;}
-\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ m\_texelSizeU\ =\ 1.0\ /\ widthPx;}
-\DoxyCodeLine{00084\ \ \ \ \ \}}
-\DoxyCodeLine{00085\ }
-\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ setHeightPx(\textcolor{keyword}{const}\ uint32\ heightPx)}
-\DoxyCodeLine{00087\ \ \ \ \ \{}
-\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ PH\_ASSERT(heightPx\ >\ 0);}
-\DoxyCodeLine{00089\ }
-\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ m\_heightPx\ \ \ =\ heightPx;}
-\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ m\_texelSizeV\ =\ 1.0\ /\ heightPx;}
-\DoxyCodeLine{00092\ \ \ \ \ \}}
-\DoxyCodeLine{00093\ }
-\DoxyCodeLine{00094\ \textcolor{keyword}{protected}:}
-\DoxyCodeLine{00095\ \ \ \ \ uint32\ \ \ \ \ \ \ m\_widthPx;}
-\DoxyCodeLine{00096\ \ \ \ \ uint32\ \ \ \ \ \ \ m\_heightPx;}
-\DoxyCodeLine{00097\ \ \ \ \ float64\ \ \ \ \ \ m\_texelSizeU;}
-\DoxyCodeLine{00098\ \ \ \ \ float64\ \ \ \ \ \ m\_texelSizeV;}
-\DoxyCodeLine{00099\ \ \ \ \ ETexWrapMode\ m\_wrapMode;}
-\DoxyCodeLine{00100\ \};}
-\DoxyCodeLine{00101\ }
-\DoxyCodeLine{00102\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_texture_8h}{Core/Texture/TTexture.h}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{math_8h}{Math/math.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_sample_location_8h}{Core/Texture/SampleLocation.h}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_tex_pixel_8h}{Core/Texture/TTexPixel.h}}"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <Common/assertion.h>}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00011\ \{}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{enum\ class}\ \mbox{\hyperlink{namespaceph_a688ddbdef5155c5446bd8547de456e02}{ETexWrapMode}}}
+\DoxyCodeLine{00014\ \{}
+\DoxyCodeLine{00015\ \ \ \ \ \mbox{\hyperlink{namespaceph_a688ddbdef5155c5446bd8547de456e02a5be68175be14dfaa080165456c2e9555}{REPEAT}},}
+\DoxyCodeLine{00016\ \ \ \ \ \mbox{\hyperlink{namespaceph_a688ddbdef5155c5446bd8547de456e02aca305cdc5d749d643055111218063f26}{CLAMP\_TO\_EDGE}}}
+\DoxyCodeLine{00017\ \};}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00020\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_t_abstract_pixel_tex2_d}{TAbstractPixelTex2D}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classph_1_1_t_texture}{TTexture}}<TTexPixel<T,\ N>>}
+\DoxyCodeLine{00021\ \{}
+\DoxyCodeLine{00022\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_t_abstract_pixel_tex2_d_a4a7ae3e11ee9f8e1af9d1656cb375c8d}{TAbstractPixelTex2D}}()\ :}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_abstract_pixel_tex2_d}{TAbstractPixelTex2D}}(1,\ 1)}
+\DoxyCodeLine{00025\ \ \ \ \ \{\}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_t_abstract_pixel_tex2_d_af8e8ebdf934a8c30980ca3b7f142f811}{TAbstractPixelTex2D}}(\textcolor{keyword}{const}\ uint32\ widthPx,\ \textcolor{keyword}{const}\ uint32\ heightPx)\ :}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_texture}{TTexture}}<\mbox{\hyperlink{classph_1_1math_1_1_t_arithmetic_array}{TTexPixel}}<T,\ N>>(),}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_abstract_pixel_tex2_d_a6a96f8b72808310a4fd237be120a33e1}{m\_wrapMode}}(\mbox{\hyperlink{namespaceph_a688ddbdef5155c5446bd8547de456e02}{ETexWrapMode}}::\mbox{\hyperlink{namespaceph_a688ddbdef5155c5446bd8547de456e02a5be68175be14dfaa080165456c2e9555}{REPEAT}})}
+\DoxyCodeLine{00030\ \ \ \ \ \{}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_abstract_pixel_tex2_d_a4e7d23dbfd642cc35cc5943fc9a66c79}{setWidthPx}}(widthPx);}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_abstract_pixel_tex2_d_a9f2ab06dfd1e4641a162cc1f38898c94}{setHeightPx}}(heightPx);}
+\DoxyCodeLine{00033\ \ \ \ \ \}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_abstract_pixel_tex2_d_a45566c5326881031bf4ffc77526da925}{sample}}(}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_sample_location}{SampleLocation}}\&\ sampleLocation,\ }
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_arithmetic_array}{TTexPixel<T,\ N>}}*\ \ \ \ \ \ out\_value)\ \textcolor{keyword}{const\ override}\ =\ 0;}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{inline}\ uint32\ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_abstract_pixel_tex2_d_a497f6bc3e9c4def7639d62a067b4b2b7}{getWidthPx}}()\textcolor{keyword}{\ const\ \ \ \ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1_t_abstract_pixel_tex2_d_a4b0bf6e54023e7191a1ff88ed22d9dc5}{m\_widthPx}};\ \ \ \ \}}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{inline}\ uint32\ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_abstract_pixel_tex2_d_a6916d58f929e1a3e0e1ec7712da6a1a3}{getHeightPx}}()\textcolor{keyword}{\ const\ \ \ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1_t_abstract_pixel_tex2_d_adde47378b3ad446c12bb09da1c274c0a}{m\_heightPx}};\ \ \ \}}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keyword}{inline}\ float64\ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_abstract_pixel_tex2_d_a840741da611032a14c115abfdb3c7a1f}{getTexelSizeU}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1_t_abstract_pixel_tex2_d_a8cf229025a9b5499764e421e6e85c19e}{m\_texelSizeU}};\ \}}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keyword}{inline}\ float64\ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_abstract_pixel_tex2_d_a04a81e5579d8b1f1b32203f983e6239a}{getTexelSizeV}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1_t_abstract_pixel_tex2_d_a26209859704aca8334d660ada05dac2d}{m\_texelSizeV}};\ \}}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{namespaceph_a688ddbdef5155c5446bd8547de456e02}{ETexWrapMode}}\ \mbox{\hyperlink{classph_1_1_t_abstract_pixel_tex2_d_ad662f7c709f40fe0a97837e4b069e5cf}{getWrapMode}}()\textcolor{keyword}{\ const\ \ \ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1_t_abstract_pixel_tex2_d_a6a96f8b72808310a4fd237be120a33e1}{m\_wrapMode}};\ \ \ \}}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_abstract_pixel_tex2_d_a3b9a3d0eb15e4a301457d912d849088b}{setWrapMode}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_a688ddbdef5155c5446bd8547de456e02}{ETexWrapMode}}\ mode)}
+\DoxyCodeLine{00046\ \ \ \ \ \{}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_abstract_pixel_tex2_d_a6a96f8b72808310a4fd237be120a33e1}{m\_wrapMode}}\ =\ mode;}
+\DoxyCodeLine{00048\ \ \ \ \ \}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{comment}{//\ Normalizing\ (u,\ v)\ coordinates\ to\ [0,\ 1]\ according\ to\ wrapping\ mode.}}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_abstract_pixel_tex2_d_aef26a9364d7e3304333adb9a11fda94b}{normalizeUV}}(\textcolor{keyword}{const}\ float64\ u,\ \textcolor{keyword}{const}\ float64\ v,\ }
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ float64*\ \textcolor{keyword}{const}\ out\_u,\ float64*\ \textcolor{keyword}{const}\ out\_v)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00054\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}(\mbox{\hyperlink{classph_1_1_t_abstract_pixel_tex2_d_a6a96f8b72808310a4fd237be120a33e1}{m\_wrapMode}})}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespaceph_a688ddbdef5155c5446bd8547de456e02a5be68175be14dfaa080165456c2e9555}{ETexWrapMode::REPEAT}}:}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ float64\ fu\ =\ \mbox{\hyperlink{namespaceph_1_1math_a9460c87b6dab3097ee4d084d9b59a604}{math::fractional\_part}}(u);}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ float64\ fv\ =\ \mbox{\hyperlink{namespaceph_1_1math_a9460c87b6dab3097ee4d084d9b59a604}{math::fractional\_part}}(v);}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ *out\_u\ =\ fu\ >=\ 0.0\ ?\ fu\ :\ fu\ +\ 1.0;}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ *out\_v\ =\ fv\ >=\ 0.0\ ?\ fv\ :\ fv\ +\ 1.0;}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespaceph_a688ddbdef5155c5446bd8547de456e02aca305cdc5d749d643055111218063f26}{ETexWrapMode::CLAMP\_TO\_EDGE}}:}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ *out\_u\ =\ \mbox{\hyperlink{namespaceph_1_1math_a9e5d8a7a977115813ceeba3f0c00cbdb}{math::clamp}}(u,\ 0.0,\ 1.0);}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ *out\_v\ =\ \mbox{\hyperlink{namespaceph_1_1math_a9e5d8a7a977115813ceeba3f0c00cbdb}{math::clamp}}(v,\ 0.0,\ 1.0);}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ PH\_ASSERT\_UNREACHABLE\_SECTION();}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ PH\_ASSERT(*out\_u\ >=\ 0.0\ \&\&\ *out\_u\ <=\ 1.0\ \&\&\ }
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *out\_v\ >=\ 0.0\ \&\&\ *out\_v\ <=\ 1.0);}
+\DoxyCodeLine{00077\ \ \ \ \ \}}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_abstract_pixel_tex2_d_a4e7d23dbfd642cc35cc5943fc9a66c79}{setWidthPx}}(\textcolor{keyword}{const}\ uint32\ widthPx)}
+\DoxyCodeLine{00080\ \ \ \ \ \{}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ PH\_ASSERT(widthPx\ >\ 0);}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_abstract_pixel_tex2_d_a4b0bf6e54023e7191a1ff88ed22d9dc5}{m\_widthPx}}\ \ \ \ =\ widthPx;}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_abstract_pixel_tex2_d_a8cf229025a9b5499764e421e6e85c19e}{m\_texelSizeU}}\ =\ 1.0\ /\ widthPx;}
+\DoxyCodeLine{00085\ \ \ \ \ \}}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_abstract_pixel_tex2_d_a9f2ab06dfd1e4641a162cc1f38898c94}{setHeightPx}}(\textcolor{keyword}{const}\ uint32\ heightPx)}
+\DoxyCodeLine{00088\ \ \ \ \ \{}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ PH\_ASSERT(heightPx\ >\ 0);}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_abstract_pixel_tex2_d_adde47378b3ad446c12bb09da1c274c0a}{m\_heightPx}}\ \ \ =\ heightPx;}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_abstract_pixel_tex2_d_a26209859704aca8334d660ada05dac2d}{m\_texelSizeV}}\ =\ 1.0\ /\ heightPx;}
+\DoxyCodeLine{00093\ \ \ \ \ \}}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00096\ \ \ \ \ uint32\ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_abstract_pixel_tex2_d_a4b0bf6e54023e7191a1ff88ed22d9dc5}{m\_widthPx}};}
+\DoxyCodeLine{00097\ \ \ \ \ uint32\ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_abstract_pixel_tex2_d_adde47378b3ad446c12bb09da1c274c0a}{m\_heightPx}};}
+\DoxyCodeLine{00098\ \ \ \ \ float64\ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_abstract_pixel_tex2_d_a8cf229025a9b5499764e421e6e85c19e}{m\_texelSizeU}};}
+\DoxyCodeLine{00099\ \ \ \ \ float64\ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_abstract_pixel_tex2_d_a26209859704aca8334d660ada05dac2d}{m\_texelSizeV}};}
+\DoxyCodeLine{00100\ \ \ \ \ \mbox{\hyperlink{namespaceph_a688ddbdef5155c5446bd8547de456e02}{ETexWrapMode}}\ \mbox{\hyperlink{classph_1_1_t_abstract_pixel_tex2_d_a6a96f8b72808310a4fd237be120a33e1}{m\_wrapMode}};}
+\DoxyCodeLine{00101\ \};}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
 
 \end{DoxyCode}

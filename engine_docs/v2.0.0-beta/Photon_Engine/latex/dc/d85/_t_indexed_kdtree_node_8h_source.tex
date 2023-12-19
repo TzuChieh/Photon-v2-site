@@ -1,251 +1,252 @@
 \doxysection{TIndexed\+Kdtree\+Node.\+h}
 \hypertarget{_t_indexed_kdtree_node_8h_source}{}\label{_t_indexed_kdtree_node_8h_source}\index{Source/Math/Algorithm/IndexedKdtree/TIndexedKdtreeNode.h@{Source/Math/Algorithm/IndexedKdtree/TIndexedKdtreeNode.h}}
-
+\mbox{\hyperlink{_t_indexed_kdtree_node_8h}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
 \DoxyCodeLine{00002\ }
-\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Common/primitive\_type.h"{}}}
-\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Common/assertion.h"{}}}
-\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}Math/constant.h"{}}}
-\DoxyCodeLine{00006\ }
-\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <cstddef>}}
-\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <vector>}}
-\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <limits>}}
-\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <cmath>}}
-\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <climits>}}
-\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <type\_traits>}}
-\DoxyCodeLine{00013\ }
-\DoxyCodeLine{00014\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph_1_1math}{ph::math}}}
-\DoxyCodeLine{00015\ \{}
-\DoxyCodeLine{00016\ }
-\DoxyCodeLine{00017\ \textcolor{comment}{/*}}
-\DoxyCodeLine{00018\ \textcolor{comment}{\ \ \ \ An\ indexed\ kD-\/tree\ node\ with\ compacted\ memory\ layout\ without\ regarding}}
-\DoxyCodeLine{00019\ \textcolor{comment}{\ \ \ \ alignment\ issues.}}
-\DoxyCodeLine{00020\ \textcolor{comment}{*/}}
-\DoxyCodeLine{00021\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Index,\ \textcolor{keywordtype}{bool}\ USE\_SINGLE\_ITEM\_OPT\ =\ true>}
-\DoxyCodeLine{00022\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1math_1_1_t_indexed_kdtree_node}{TIndexedKdtreeNode}}\ final}
-\DoxyCodeLine{00023\ \{}
-\DoxyCodeLine{00024\ \ \ \ \ \textcolor{comment}{//\ TODO:\ add\ constants\ for\ max\ allowed\ items\ and\ index}}
-\DoxyCodeLine{00025\ }
-\DoxyCodeLine{00026\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_kdtree_node}{TIndexedKdtreeNode}}\ makeInner(}
-\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ real\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ splitPos,}
-\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ math::constant::AxisIndexType\ splitAxisIndex,}
-\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ std::size\_t\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ positiveChildIndex);}
-\DoxyCodeLine{00031\ }
-\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_kdtree_node}{TIndexedKdtreeNode}}\ makeLeaf(}
-\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ Index\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ index,}
-\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ std::size\_t\ \ \ \ \ \ \ \ \ numItems);}
-\DoxyCodeLine{00035\ }
-\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_kdtree_node}{TIndexedKdtreeNode}}\ makeLeaf(}
-\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Index*\ \ \ \ \ \ \ \ itemIndices,}
-\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ std::size\_t\ \ \ \ \ \ \ \ \ numItems,}
-\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ std::vector<Index>\&\ indexBuffer);}
-\DoxyCodeLine{00040\ }
-\DoxyCodeLine{00041\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_kdtree_node}{TIndexedKdtreeNode}}();}
-\DoxyCodeLine{00042\ }
-\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordtype}{bool}\ isLeaf()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00044\ \ \ \ \ std::size\_t\ positiveChildIndex()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00045\ \ \ \ \ std::size\_t\ numItems()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00046\ \ \ \ \ real\ splitPos()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordtype}{int}\ splitAxisIndex()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00048\ \ \ \ \ std::size\_t\ index()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00049\ \ \ \ \ std::size\_t\ singleItemDirectIndex()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00050\ \ \ \ \ std::size\_t\ indexBufferOffset()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00051\ }
-\DoxyCodeLine{00052\ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{static}\ std::size\_t\ NUM\_U1\_NUMBER\_BITS\ =\ \textcolor{keyword}{sizeof}(Index)\ *\ CHAR\_BIT\ -\/\ 2;}
-\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{static}\ std::size\_t\ MAX\_U1\_NUMBER\ \ \ \ \ \ =\ (std::size\_t(1)\ <<\ (NUM\_U1\_NUMBER\_BITS\ -\/\ 1))\ -\/\ 1;}
-\DoxyCodeLine{00055\ }
-\DoxyCodeLine{00056\ \ \ \ \ \textcolor{comment}{/*}}
-\DoxyCodeLine{00057\ \textcolor{comment}{\ \ \ \ \ \ \ \ For\ inner\ nodes:\ Splitting\ position\ <splitPos>\ along\ the\ axis\ of\ }}
-\DoxyCodeLine{00058\ \textcolor{comment}{\ \ \ \ \ \ \ \ splitting\ is\ stored.}}
-\DoxyCodeLine{00059\ \textcolor{comment}{\ \ \ \ \ \ \ \ }}
-\DoxyCodeLine{00060\ \textcolor{comment}{\ \ \ \ \ \ \ \ For\ leaf\ nodes:\ \ An\ index\ value\ for\ accessing\ item\ is\ stored\ in\ <index>.}}
-\DoxyCodeLine{00061\ \textcolor{comment}{\ \ \ \ */}}
-\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keyword}{union}}
-\DoxyCodeLine{00063\ \ \ \ \ \{}
-\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ real\ \ u0\_splitPos;}
-\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ Index\ u0\_index;}
-\DoxyCodeLine{00066\ \ \ \ \ \};}
-\DoxyCodeLine{00067\ }
-\DoxyCodeLine{00068\ \ \ \ \ \textcolor{comment}{/*}}
-\DoxyCodeLine{00069\ \textcolor{comment}{\ \ \ \ \ \ \ \ Assuming\ Index\ type\ has\ N\ bits,\ we\ divide\ it\ into\ two\ parts:\ }}
-\DoxyCodeLine{00070\ \textcolor{comment}{\ \ \ \ \ \ \ \ [N\ -\/\ 2\ bits][2\ bits].\ The\ [2\ bits]\ part\ <flags>\ has\ the\ following\ meaning}}
-\DoxyCodeLine{00071\ \textcolor{comment}{}}
-\DoxyCodeLine{00072\ \textcolor{comment}{\ \ \ \ \ \ \ \ 0b00:\ splitting\ axis\ is\ X\ //\ indicates\ this\ node\ is\ inner}}
-\DoxyCodeLine{00073\ \textcolor{comment}{\ \ \ \ \ \ \ \ 0b01:\ splitting\ axis\ is\ Y\ //}}
-\DoxyCodeLine{00074\ \textcolor{comment}{\ \ \ \ \ \ \ \ 0b10:\ splitting\ axis\ is\ Z\ //}}
-\DoxyCodeLine{00075\ \textcolor{comment}{\ \ \ \ \ \ \ \ 0b11:\ this\ node\ is\ leaf}}
-\DoxyCodeLine{00076\ \textcolor{comment}{}}
-\DoxyCodeLine{00077\ \textcolor{comment}{\ \ \ \ \ \ \ \ For\ inner\ nodes,\ <positiveChildIndex>\ is\ stored\ in\ the\ upper\ [N\ -\/\ 2\ bits].}}
-\DoxyCodeLine{00078\ \textcolor{comment}{\ \ \ \ \ \ \ \ For\ leaf\ nodes,\ <numItems>\ is\ stored\ in\ the\ upper\ [N\ -\/\ 2\ bits]\ instead.\ }}
-\DoxyCodeLine{00079\ \textcolor{comment}{\ \ \ \ */}}
-\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keyword}{union}}
-\DoxyCodeLine{00081\ \ \ \ \ \{}
-\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ Index\ u1\_flags;}
-\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ Index\ u1\_numItems;}
-\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ Index\ u1\_positiveChildIndex;}
-\DoxyCodeLine{00085\ \ \ \ \ \};}
-\DoxyCodeLine{00086\ \};}
-\DoxyCodeLine{00087\ }
-\DoxyCodeLine{00088\ \textcolor{comment}{//\ In-\/header\ Implementations:}}
-\DoxyCodeLine{00089\ }
-\DoxyCodeLine{00090\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Index,\ \textcolor{keywordtype}{bool}\ USE\_SINGLE\_ITEM\_OPT>}
-\DoxyCodeLine{00091\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_kdtree_node}{TIndexedKdtreeNode<Index,\ USE\_SINGLE\_ITEM\_OPT>::}}}
-\DoxyCodeLine{00092\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_kdtree_node}{\ \ \ \ TIndexedKdtreeNode}}()\ =\ \textcolor{keywordflow}{default};}
-\DoxyCodeLine{00093\ }
-\DoxyCodeLine{00094\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Index,\ \textcolor{keywordtype}{bool}\ USE\_SINGLE\_ITEM\_OPT>}
-\DoxyCodeLine{00095\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_kdtree_node}{TIndexedKdtreeNode<Index,\ USE\_SINGLE\_ITEM\_OPT>::}}}
-\DoxyCodeLine{00096\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_kdtree_node}{\ \ \ \ makeInner}}(}
-\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ real\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ splitPos,}
-\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ math::constant::AxisIndexType\ splitAxisIndex,}
-\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ rightChildIndex)\ -\/>\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_kdtree_node}{TIndexedKdtreeNode}}}
-\DoxyCodeLine{00100\ \{}
-\DoxyCodeLine{00101\ \ \ \ \ PH\_ASSERT(}
-\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ (!std::isnan(splitPos)\ \&\&\ !std::isinf(splitPos))\ \&\&}
-\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ (0\ <=\ splitAxisIndex\ \&\&\ splitAxisIndex\ <=\ 2)\ \ \ \ \ \&\&}
-\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ (rightChildIndex\ <=\ MAX\_U1\_NUMBER));}
-\DoxyCodeLine{00105\ }
-\DoxyCodeLine{00106\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_kdtree_node}{TIndexedKdtreeNode}}\ node;}
-\DoxyCodeLine{00107\ }
-\DoxyCodeLine{00108\ \ \ \ \ node.u0\_splitPos\ =\ splitPos;}
-\DoxyCodeLine{00109\ }
-\DoxyCodeLine{00110\ \ \ \ \ \textcolor{keyword}{const}\ Index\ shiftedIndex\ =\ \textcolor{keyword}{static\_cast<}Index\textcolor{keyword}{>}(rightChildIndex\ <<\ 2);}
-\DoxyCodeLine{00111\ \ \ \ \ node.u1\_flags\ =\ \textcolor{keyword}{static\_cast<}Index\textcolor{keyword}{>}(splitAxisIndex);}
-\DoxyCodeLine{00112\ \ \ \ \ node.u1\_positiveChildIndex\ |=\ shiftedIndex;}
-\DoxyCodeLine{00113\ }
-\DoxyCodeLine{00114\ \ \ \ \ \textcolor{keywordflow}{return}\ node;}
-\DoxyCodeLine{00115\ \}}
-\DoxyCodeLine{00116\ }
-\DoxyCodeLine{00117\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Index,\ \textcolor{keywordtype}{bool}\ USE\_SINGLE\_ITEM\_OPT>}
-\DoxyCodeLine{00118\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_kdtree_node}{TIndexedKdtreeNode<Index,\ USE\_SINGLE\_ITEM\_OPT>::}}}
-\DoxyCodeLine{00119\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_kdtree_node}{\ \ \ \ makeLeaf}}(}
-\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Index\ \ \ \ \ \ \ index,}
-\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ numItems)\ -\/>\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_kdtree_node}{TIndexedKdtreeNode}}}
-\DoxyCodeLine{00122\ \{}
-\DoxyCodeLine{00123\ \ \ \ \ PH\_ASSERT(numItems\ <=\ MAX\_U1\_NUMBER);}
-\DoxyCodeLine{00124\ }
-\DoxyCodeLine{00125\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_kdtree_node}{TIndexedKdtreeNode}}\ node;}
-\DoxyCodeLine{00126\ }
-\DoxyCodeLine{00127\ \ \ \ \ \textcolor{keyword}{const}\ Index\ shiftedNumItems\ =\ \textcolor{keyword}{static\_cast<}Index\textcolor{keyword}{>}(numItems\ <<\ 2);}
-\DoxyCodeLine{00128\ \ \ \ \ node.u1\_flags\ =\ 0b11;}
-\DoxyCodeLine{00129\ \ \ \ \ node.u1\_numItems\ |=\ shiftedNumItems;}
-\DoxyCodeLine{00130\ }
-\DoxyCodeLine{00131\ \ \ \ \ node.u0\_index\ =\ index;}
-\DoxyCodeLine{00132\ }
-\DoxyCodeLine{00133\ \ \ \ \ \textcolor{keywordflow}{return}\ node;}
-\DoxyCodeLine{00134\ \}}
-\DoxyCodeLine{00135\ }
-\DoxyCodeLine{00136\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Index,\ \textcolor{keywordtype}{bool}\ USE\_SINGLE\_ITEM\_OPT>}
-\DoxyCodeLine{00137\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ TIndexedKdtreeNode<Index,\ USE\_SINGLE\_ITEM\_OPT>::}
-\DoxyCodeLine{00138\ \ \ \ \ makeLeaf(}
-\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Index*\ \textcolor{keyword}{const}\ \ itemIndices,}
-\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ \ \ numItems,}
-\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ std::vector<Index>\&\ indexBuffer)\ -\/>\ TIndexedKdtreeNode}
-\DoxyCodeLine{00142\ \{}
-\DoxyCodeLine{00143\ \ \ \ \ PH\_ASSERT(itemIndices\ \&\&\ numItems\ <=\ MAX\_U1\_NUMBER);}
-\DoxyCodeLine{00144\ }
-\DoxyCodeLine{00145\ \ \ \ \ \textcolor{keywordflow}{if}(!(USE\_SINGLE\_ITEM\_OPT\ \&\&\ numItems\ ==\ 1))}
-\DoxyCodeLine{00146\ \ \ \ \ \{}
-\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ For\ leaf\ nodes\ we\ directly\ store\ index\ offset\ value\ in\ <u0>.\ If\ Index\ is\ signed\ type,\ }}
-\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ value\ conversion\ from\ negative\ Index\ back\ to\ std::size\_t\ can\ mess\ up\ the\ stored\ bits.\ }}
-\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ So\ here\ we\ make\ sure\ that\ we\ will\ not\ overflow\ Index.}}
-\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ OPT:\ try\ to\ find\ an\ efficient\ way\ to\ make\ use\ of\ the\ sign\ bit\ for\ storing\ index}}
-\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ PH\_ASSERT(indexBuffer.size()\ <=\ \textcolor{keyword}{static\_cast<}std::size\_t\textcolor{keyword}{>}(std::numeric\_limits<Index>::max()));}
-\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Index\ indexBufferOffset\ =\ \textcolor{keyword}{static\_cast<}Index\textcolor{keyword}{>}(indexBuffer.size());}
-\DoxyCodeLine{00153\ }
-\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ i\ =\ 0;\ i\ <\ numItems;\ ++i)}
-\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ indexBuffer.push\_back(itemIndices[i]);}
-\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00158\ }
-\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ makeLeaf(indexBufferOffset,\ numItems);}
-\DoxyCodeLine{00160\ \ \ \ \ \}}
-\DoxyCodeLine{00161\ \ \ \ \ \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00162\ \ \ \ \ \{}
-\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ makeLeaf(itemIndices[0],\ numItems);}
-\DoxyCodeLine{00164\ \ \ \ \ \}}
-\DoxyCodeLine{00165\ \}}
-\DoxyCodeLine{00166\ }
-\DoxyCodeLine{00167\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Index,\ \textcolor{keywordtype}{bool}\ USE\_SINGLE\_ITEM\_OPT>}
-\DoxyCodeLine{00168\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ TIndexedKdtreeNode<Index,\ USE\_SINGLE\_ITEM\_OPT>::}
-\DoxyCodeLine{00169\ \ \ \ \ isLeaf()\ const\ -\/>\ \textcolor{keywordtype}{bool}}
-\DoxyCodeLine{00170\ \{}
-\DoxyCodeLine{00171\ \ \ \ \ \textcolor{keywordflow}{return}\ (u1\_flags\ \&\ 0b11)\ ==\ 0b11;}
-\DoxyCodeLine{00172\ \}}
-\DoxyCodeLine{00173\ }
-\DoxyCodeLine{00174\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Index,\ \textcolor{keywordtype}{bool}\ USE\_SINGLE\_ITEM\_OPT>}
-\DoxyCodeLine{00175\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ TIndexedKdtreeNode<Index,\ USE\_SINGLE\_ITEM\_OPT>::}
-\DoxyCodeLine{00176\ \ \ \ \ positiveChildIndex()\ const\ -\/>\ std::\textcolor{keywordtype}{size\_t}}
-\DoxyCodeLine{00177\ \{}
-\DoxyCodeLine{00178\ \ \ \ \ PH\_ASSERT(!isLeaf());}
-\DoxyCodeLine{00179\ }
-\DoxyCodeLine{00180\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}std::size\_t\textcolor{keyword}{>}(u1\_positiveChildIndex\ >>\ 2);}
-\DoxyCodeLine{00181\ \}}
-\DoxyCodeLine{00182\ }
-\DoxyCodeLine{00183\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Index,\ \textcolor{keywordtype}{bool}\ USE\_SINGLE\_ITEM\_OPT>}
-\DoxyCodeLine{00184\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ TIndexedKdtreeNode<Index,\ USE\_SINGLE\_ITEM\_OPT>::}
-\DoxyCodeLine{00185\ \ \ \ \ numItems()\ const\ -\/>\ std::\textcolor{keywordtype}{size\_t}}
-\DoxyCodeLine{00186\ \{}
-\DoxyCodeLine{00187\ \ \ \ \ PH\_ASSERT(isLeaf());}
-\DoxyCodeLine{00188\ }
-\DoxyCodeLine{00189\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}std::size\_t\textcolor{keyword}{>}(u1\_numItems\ >>\ 2);}
-\DoxyCodeLine{00190\ \}}
-\DoxyCodeLine{00191\ }
-\DoxyCodeLine{00192\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Index,\ \textcolor{keywordtype}{bool}\ USE\_SINGLE\_ITEM\_OPT>}
-\DoxyCodeLine{00193\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ TIndexedKdtreeNode<Index,\ USE\_SINGLE\_ITEM\_OPT>::}
-\DoxyCodeLine{00194\ \ \ \ \ splitPos()\ const\ -\/>\ real}
-\DoxyCodeLine{00195\ \{}
-\DoxyCodeLine{00196\ \ \ \ \ PH\_ASSERT(!isLeaf());}
-\DoxyCodeLine{00197\ }
-\DoxyCodeLine{00198\ \ \ \ \ \textcolor{keywordflow}{return}\ u0\_splitPos;}
-\DoxyCodeLine{00199\ \}}
-\DoxyCodeLine{00200\ }
-\DoxyCodeLine{00201\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Index,\ \textcolor{keywordtype}{bool}\ USE\_SINGLE\_ITEM\_OPT>}
-\DoxyCodeLine{00202\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ TIndexedKdtreeNode<Index,\ USE\_SINGLE\_ITEM\_OPT>::}
-\DoxyCodeLine{00203\ \ \ \ \ splitAxisIndex()\ const\ -\/>\ \textcolor{keywordtype}{int}}
-\DoxyCodeLine{00204\ \{}
-\DoxyCodeLine{00205\ \ \ \ \ PH\_ASSERT(!isLeaf());}
-\DoxyCodeLine{00206\ }
-\DoxyCodeLine{00207\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(u1\_flags\ \&\ 0b11);}
-\DoxyCodeLine{00208\ \}}
-\DoxyCodeLine{00209\ }
-\DoxyCodeLine{00210\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Index,\ \textcolor{keywordtype}{bool}\ USE\_SINGLE\_ITEM\_OPT>}
-\DoxyCodeLine{00211\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ TIndexedKdtreeNode<Index,\ USE\_SINGLE\_ITEM\_OPT>::}
-\DoxyCodeLine{00212\ \ \ \ \ index()\ const\ -\/>\ std::\textcolor{keywordtype}{size\_t}}
-\DoxyCodeLine{00213\ \{}
-\DoxyCodeLine{00214\ \ \ \ \ PH\_ASSERT(isLeaf());}
-\DoxyCodeLine{00215\ }
-\DoxyCodeLine{00216\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}std::size\_t\textcolor{keyword}{>}(u0\_index);}
-\DoxyCodeLine{00217\ \}}
-\DoxyCodeLine{00218\ }
-\DoxyCodeLine{00219\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Index,\ \textcolor{keywordtype}{bool}\ USE\_SINGLE\_ITEM\_OPT>}
-\DoxyCodeLine{00220\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ TIndexedKdtreeNode<Index,\ USE\_SINGLE\_ITEM\_OPT>::}
-\DoxyCodeLine{00221\ \ \ \ \ singleItemDirectIndex()\ const\ -\/>\ std::\textcolor{keywordtype}{size\_t}}
-\DoxyCodeLine{00222\ \{}
-\DoxyCodeLine{00223\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(USE\_SINGLE\_ITEM\_OPT)}
-\DoxyCodeLine{00224\ \ \ \ \ \{}
-\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ PH\_ASSERT(USE\_SINGLE\_ITEM\_OPT\ \&\&\ numItems()\ ==\ 1);}
-\DoxyCodeLine{00226\ }
-\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ index();}
-\DoxyCodeLine{00228\ \ \ \ \ \}}
-\DoxyCodeLine{00229\ \ \ \ \ \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00230\ \ \ \ \ \{}
-\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ PH\_ASSERT\_UNREACHABLE\_SECTION();}
-\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::size\_t(-\/1);}
-\DoxyCodeLine{00233\ \ \ \ \ \}}
-\DoxyCodeLine{00234\ \}}
-\DoxyCodeLine{00235\ }
-\DoxyCodeLine{00236\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Index,\ \textcolor{keywordtype}{bool}\ USE\_SINGLE\_ITEM\_OPT>}
-\DoxyCodeLine{00237\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ TIndexedKdtreeNode<Index,\ USE\_SINGLE\_ITEM\_OPT>::}
-\DoxyCodeLine{00238\ \ \ \ \ indexBufferOffset()\ const\ -\/>\ std::\textcolor{keywordtype}{size\_t}}
-\DoxyCodeLine{00239\ \{}
-\DoxyCodeLine{00240\ \ \ \ \ PH\_ASSERT(!(USE\_SINGLE\_ITEM\_OPT\ \&\&\ numItems()\ ==\ 1));}
-\DoxyCodeLine{00241\ }
-\DoxyCodeLine{00242\ \ \ \ \ \textcolor{keywordflow}{return}\ index();}
-\DoxyCodeLine{00243\ \}}
-\DoxyCodeLine{00244\ }
-\DoxyCodeLine{00245\ \}\textcolor{comment}{//\ end\ namespace\ ph::math}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{constant_8h}{Math/constant.h}}"{}}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <Common/assertion.h>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <Common/primitive\_type.h>}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <cstddef>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <limits>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <cmath>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <climits>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <type\_traits>}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph_1_1math}{ph::math}}}
+\DoxyCodeLine{00016\ \{}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00019\ \textcolor{comment}{\ \ \ \ An\ indexed\ kD-\/tree\ node\ with\ compacted\ memory\ layout\ without\ regarding}}
+\DoxyCodeLine{00020\ \textcolor{comment}{\ \ \ \ alignment\ issues.}}
+\DoxyCodeLine{00021\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00022\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Index,\ \textcolor{keywordtype}{bool}\ USE\_SINGLE\_ITEM\_OPT\ =\ true>}
+\DoxyCodeLine{00023\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1math_1_1_t_indexed_kdtree_node}{TIndexedKdtreeNode}}\ final}
+\DoxyCodeLine{00024\ \{}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{comment}{//\ TODO:\ add\ constants\ for\ max\ allowed\ items\ and\ index}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_kdtree_node}{TIndexedKdtreeNode}}\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_kdtree_node_a513252ecccd5c64951324c1b903c328d}{makeInner}}(}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ real\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_kdtree_node_a9953f87c4a2775168a928b6d72c0cdd4}{splitPos}},}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceph_1_1math_1_1constant_ab7c3a75b519914e8d156f38c54a9a00c}{math::constant::AxisIndexType}}\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_kdtree_node_a751eb1b8900850b1ea6f4b7af97270ec}{splitAxisIndex}},}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ std::size\_t\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_kdtree_node_a18ea605290d8f72b79ea11f819ee03c5}{positiveChildIndex}});}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_kdtree_node}{TIndexedKdtreeNode}}\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_kdtree_node_a9b0c5244b76fc2335d8d680e618abb6c}{makeLeaf}}(}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ Index\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_kdtree_node_a16d603e46b03148759c5c160222a7902}{index}},}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ std::size\_t\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_kdtree_node_a81e7c59b6e847996908707cd6d8d03a5}{numItems}});}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_kdtree_node}{TIndexedKdtreeNode}}\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_kdtree_node_a9b0c5244b76fc2335d8d680e618abb6c}{makeLeaf}}(}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Index*\ \ \ \ \ \ \ \ itemIndices,}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ std::size\_t\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_kdtree_node_a81e7c59b6e847996908707cd6d8d03a5}{numItems}},}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ std::vector<Index>\&\ indexBuffer);}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_kdtree_node_a5d7ebff4287add2e364ea0221dd28aa6}{TIndexedKdtreeNode}}();}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_kdtree_node_a1c23ae45d09daab8d726c9faaffdc60c}{isLeaf}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00045\ \ \ \ \ std::size\_t\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_kdtree_node_a18ea605290d8f72b79ea11f819ee03c5}{positiveChildIndex}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00046\ \ \ \ \ std::size\_t\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_kdtree_node_a81e7c59b6e847996908707cd6d8d03a5}{numItems}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00047\ \ \ \ \ real\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_kdtree_node_a9953f87c4a2775168a928b6d72c0cdd4}{splitPos}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_kdtree_node_a751eb1b8900850b1ea6f4b7af97270ec}{splitAxisIndex}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00049\ \ \ \ \ std::size\_t\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_kdtree_node_a16d603e46b03148759c5c160222a7902}{index}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00050\ \ \ \ \ std::size\_t\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_kdtree_node_a8b2d0afc453237b40cf8575c963336f3}{singleItemDirectIndex}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00051\ \ \ \ \ std::size\_t\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_kdtree_node_a5bc617d46dfd30f2db79662506aa0b8a}{indexBufferOffset}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{static}\ std::size\_t\ NUM\_U1\_NUMBER\_BITS\ =\ \textcolor{keyword}{sizeof}(Index)\ *\ CHAR\_BIT\ -\/\ 2;}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{static}\ std::size\_t\ MAX\_U1\_NUMBER\ \ \ \ \ \ =\ (std::size\_t(1)\ <<\ (NUM\_U1\_NUMBER\_BITS\ -\/\ 1))\ -\/\ 1;}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00058\ \textcolor{comment}{\ \ \ \ \ \ \ \ For\ inner\ nodes:\ Splitting\ position\ <splitPos>\ along\ the\ axis\ of\ }}
+\DoxyCodeLine{00059\ \textcolor{comment}{\ \ \ \ \ \ \ \ splitting\ is\ stored.}}
+\DoxyCodeLine{00060\ \textcolor{comment}{\ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{00061\ \textcolor{comment}{\ \ \ \ \ \ \ \ For\ leaf\ nodes:\ \ An\ index\ value\ for\ accessing\ item\ is\ stored\ in\ <index>.}}
+\DoxyCodeLine{00062\ \textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keyword}{union}}
+\DoxyCodeLine{00064\ \ \ \ \ \{}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ real\ \ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_kdtree_node_ae41e6e4af858606df3d5b08fb0335957}{u0\_splitPos}};}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ Index\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_kdtree_node_a469cb8b792cb4fb1a5e8d47b264df886}{u0\_index}};}
+\DoxyCodeLine{00067\ \ \ \ \ \};}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00070\ \textcolor{comment}{\ \ \ \ \ \ \ \ Assuming\ Index\ type\ has\ N\ bits,\ we\ divide\ it\ into\ two\ parts:\ }}
+\DoxyCodeLine{00071\ \textcolor{comment}{\ \ \ \ \ \ \ \ [N\ -\/\ 2\ bits][2\ bits].\ The\ [2\ bits]\ part\ <flags>\ has\ the\ following\ meaning}}
+\DoxyCodeLine{00072\ \textcolor{comment}{}}
+\DoxyCodeLine{00073\ \textcolor{comment}{\ \ \ \ \ \ \ \ 0b00:\ splitting\ axis\ is\ X\ //\ indicates\ this\ node\ is\ inner}}
+\DoxyCodeLine{00074\ \textcolor{comment}{\ \ \ \ \ \ \ \ 0b01:\ splitting\ axis\ is\ Y\ //}}
+\DoxyCodeLine{00075\ \textcolor{comment}{\ \ \ \ \ \ \ \ 0b10:\ splitting\ axis\ is\ Z\ //}}
+\DoxyCodeLine{00076\ \textcolor{comment}{\ \ \ \ \ \ \ \ 0b11:\ this\ node\ is\ leaf}}
+\DoxyCodeLine{00077\ \textcolor{comment}{}}
+\DoxyCodeLine{00078\ \textcolor{comment}{\ \ \ \ \ \ \ \ For\ inner\ nodes,\ <positiveChildIndex>\ is\ stored\ in\ the\ upper\ [N\ -\/\ 2\ bits].}}
+\DoxyCodeLine{00079\ \textcolor{comment}{\ \ \ \ \ \ \ \ For\ leaf\ nodes,\ <numItems>\ is\ stored\ in\ the\ upper\ [N\ -\/\ 2\ bits]\ instead.\ }}
+\DoxyCodeLine{00080\ \textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keyword}{union}}
+\DoxyCodeLine{00082\ \ \ \ \ \{}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ Index\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_kdtree_node_acc17332ce5825165f3720007c8f5acc8}{u1\_flags}};}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ Index\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_kdtree_node_ae1fe3f240606e24811633f5fb2c3a8a6}{u1\_numItems}};}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ Index\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_kdtree_node_ad2349dd670554434eb9fc57cbd1947d8}{u1\_positiveChildIndex}};}
+\DoxyCodeLine{00086\ \ \ \ \ \};}
+\DoxyCodeLine{00087\ \};}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \textcolor{comment}{//\ In-\/header\ Implementations:}}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Index,\ \textcolor{keywordtype}{bool}\ USE\_SINGLE\_ITEM\_OPT>}
+\DoxyCodeLine{00092\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_kdtree_node_a5d7ebff4287add2e364ea0221dd28aa6}{TIndexedKdtreeNode<Index,\ USE\_SINGLE\_ITEM\_OPT>::}}}
+\DoxyCodeLine{00093\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_kdtree_node_a5d7ebff4287add2e364ea0221dd28aa6}{\ \ \ \ TIndexedKdtreeNode}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Index,\ \textcolor{keywordtype}{bool}\ USE\_SINGLE\_ITEM\_OPT>}
+\DoxyCodeLine{00096\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_kdtree_node_a513252ecccd5c64951324c1b903c328d}{TIndexedKdtreeNode<Index,\ USE\_SINGLE\_ITEM\_OPT>::}}}
+\DoxyCodeLine{00097\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_kdtree_node_a513252ecccd5c64951324c1b903c328d}{\ \ \ \ makeInner}}(}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ real\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ splitPos,}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_1_1math_1_1constant_ab7c3a75b519914e8d156f38c54a9a00c}{math::constant::AxisIndexType}}\ splitAxisIndex,}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ rightChildIndex)\ -\/>\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_kdtree_node}{TIndexedKdtreeNode}}}
+\DoxyCodeLine{00101\ \{}
+\DoxyCodeLine{00102\ \ \ \ \ PH\_ASSERT(}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ (!std::isnan(splitPos)\ \&\&\ !std::isinf(splitPos))\ \&\&}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ (0\ <=\ splitAxisIndex\ \&\&\ splitAxisIndex\ <=\ 2)\ \ \ \ \ \&\&}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ (rightChildIndex\ <=\ MAX\_U1\_NUMBER));}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_kdtree_node}{TIndexedKdtreeNode}}\ node;}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00109\ \ \ \ \ node.\mbox{\hyperlink{classph_1_1math_1_1_t_indexed_kdtree_node_ae41e6e4af858606df3d5b08fb0335957}{u0\_splitPos}}\ =\ splitPos;}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{keyword}{const}\ Index\ shiftedIndex\ =\ \textcolor{keyword}{static\_cast<}Index\textcolor{keyword}{>}(rightChildIndex\ <<\ 2);}
+\DoxyCodeLine{00112\ \ \ \ \ node.\mbox{\hyperlink{classph_1_1math_1_1_t_indexed_kdtree_node_acc17332ce5825165f3720007c8f5acc8}{u1\_flags}}\ =\ \textcolor{keyword}{static\_cast<}Index\textcolor{keyword}{>}(splitAxisIndex);}
+\DoxyCodeLine{00113\ \ \ \ \ node.\mbox{\hyperlink{classph_1_1math_1_1_t_indexed_kdtree_node_ad2349dd670554434eb9fc57cbd1947d8}{u1\_positiveChildIndex}}\ |=\ shiftedIndex;}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{keywordflow}{return}\ node;}
+\DoxyCodeLine{00116\ \}}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Index,\ \textcolor{keywordtype}{bool}\ USE\_SINGLE\_ITEM\_OPT>}
+\DoxyCodeLine{00119\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_kdtree_node_a9b0c5244b76fc2335d8d680e618abb6c}{TIndexedKdtreeNode<Index,\ USE\_SINGLE\_ITEM\_OPT>::}}}
+\DoxyCodeLine{00120\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_kdtree_node_a9b0c5244b76fc2335d8d680e618abb6c}{\ \ \ \ makeLeaf}}(}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Index\ \ \ \ \ \ \ index,}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ numItems)\ -\/>\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_kdtree_node}{TIndexedKdtreeNode}}}
+\DoxyCodeLine{00123\ \{}
+\DoxyCodeLine{00124\ \ \ \ \ PH\_ASSERT(numItems\ <=\ MAX\_U1\_NUMBER);}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00126\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_kdtree_node}{TIndexedKdtreeNode}}\ node;}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \ \ \ \ \textcolor{keyword}{const}\ Index\ shiftedNumItems\ =\ \textcolor{keyword}{static\_cast<}Index\textcolor{keyword}{>}(numItems\ <<\ 2);}
+\DoxyCodeLine{00129\ \ \ \ \ node.\mbox{\hyperlink{classph_1_1math_1_1_t_indexed_kdtree_node_acc17332ce5825165f3720007c8f5acc8}{u1\_flags}}\ =\ 0b11;}
+\DoxyCodeLine{00130\ \ \ \ \ node.\mbox{\hyperlink{classph_1_1math_1_1_t_indexed_kdtree_node_ae1fe3f240606e24811633f5fb2c3a8a6}{u1\_numItems}}\ |=\ shiftedNumItems;}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00132\ \ \ \ \ node.\mbox{\hyperlink{classph_1_1math_1_1_t_indexed_kdtree_node_a469cb8b792cb4fb1a5e8d47b264df886}{u0\_index}}\ =\ index;}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00134\ \ \ \ \ \textcolor{keywordflow}{return}\ node;}
+\DoxyCodeLine{00135\ \}}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00137\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Index,\ \textcolor{keywordtype}{bool}\ USE\_SINGLE\_ITEM\_OPT>}
+\DoxyCodeLine{00138\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_kdtree_node_a9b0c5244b76fc2335d8d680e618abb6c}{TIndexedKdtreeNode<Index,\ USE\_SINGLE\_ITEM\_OPT>::}}}
+\DoxyCodeLine{00139\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_kdtree_node_a9b0c5244b76fc2335d8d680e618abb6c}{\ \ \ \ makeLeaf}}(}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Index*\ \textcolor{keyword}{const}\ \ itemIndices,}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ \ \ numItems,}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ std::vector<Index>\&\ indexBuffer)\ -\/>\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_kdtree_node}{TIndexedKdtreeNode}}}
+\DoxyCodeLine{00143\ \{}
+\DoxyCodeLine{00144\ \ \ \ \ PH\_ASSERT(itemIndices\ \&\&\ numItems\ <=\ MAX\_U1\_NUMBER);}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00146\ \ \ \ \ \textcolor{keywordflow}{if}(!(USE\_SINGLE\_ITEM\_OPT\ \&\&\ numItems\ ==\ 1))}
+\DoxyCodeLine{00147\ \ \ \ \ \{}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ For\ leaf\ nodes\ we\ directly\ store\ index\ offset\ value\ in\ <u0>.\ If\ Index\ is\ signed\ type,\ }}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ value\ conversion\ from\ negative\ Index\ back\ to\ std::size\_t\ can\ mess\ up\ the\ stored\ bits.\ }}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ So\ here\ we\ make\ sure\ that\ we\ will\ not\ overflow\ Index.}}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ OPT:\ try\ to\ find\ an\ efficient\ way\ to\ make\ use\ of\ the\ sign\ bit\ for\ storing\ index}}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ PH\_ASSERT(indexBuffer.size()\ <=\ \textcolor{keyword}{static\_cast<}std::size\_t\textcolor{keyword}{>}(std::numeric\_limits<Index>::max()));}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Index\ indexBufferOffset\ =\ \textcolor{keyword}{static\_cast<}Index\textcolor{keyword}{>}(indexBuffer.size());}
+\DoxyCodeLine{00154\ }
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ i\ =\ 0;\ i\ <\ numItems;\ ++i)}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ indexBuffer.push\_back(itemIndices[i]);}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ makeLeaf(indexBufferOffset,\ numItems);}
+\DoxyCodeLine{00161\ \ \ \ \ \}}
+\DoxyCodeLine{00162\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00163\ \ \ \ \ \{}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ makeLeaf(itemIndices[0],\ numItems);}
+\DoxyCodeLine{00165\ \ \ \ \ \}}
+\DoxyCodeLine{00166\ \}}
+\DoxyCodeLine{00167\ }
+\DoxyCodeLine{00168\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Index,\ \textcolor{keywordtype}{bool}\ USE\_SINGLE\_ITEM\_OPT>}
+\DoxyCodeLine{00169\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_kdtree_node_a1c23ae45d09daab8d726c9faaffdc60c}{TIndexedKdtreeNode<Index,\ USE\_SINGLE\_ITEM\_OPT>::}}}
+\DoxyCodeLine{00170\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_kdtree_node_a1c23ae45d09daab8d726c9faaffdc60c}{\ \ \ \ isLeaf}}()\ const\ -\/>\ \textcolor{keywordtype}{bool}}
+\DoxyCodeLine{00171\ \{}
+\DoxyCodeLine{00172\ \ \ \ \ \textcolor{keywordflow}{return}\ (u1\_flags\ \&\ 0b11)\ ==\ 0b11;}
+\DoxyCodeLine{00173\ \}}
+\DoxyCodeLine{00174\ }
+\DoxyCodeLine{00175\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Index,\ \textcolor{keywordtype}{bool}\ USE\_SINGLE\_ITEM\_OPT>}
+\DoxyCodeLine{00176\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_kdtree_node_a18ea605290d8f72b79ea11f819ee03c5}{TIndexedKdtreeNode<Index,\ USE\_SINGLE\_ITEM\_OPT>::}}}
+\DoxyCodeLine{00177\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_kdtree_node_a18ea605290d8f72b79ea11f819ee03c5}{\ \ \ \ positiveChildIndex}}()\ const\ -\/>\ \mbox{\hyperlink{namespacestd}{std}}::\textcolor{keywordtype}{size\_t}}
+\DoxyCodeLine{00178\ \{}
+\DoxyCodeLine{00179\ \ \ \ \ PH\_ASSERT(!isLeaf());}
+\DoxyCodeLine{00180\ }
+\DoxyCodeLine{00181\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}std::size\_t\textcolor{keyword}{>}(u1\_positiveChildIndex\ >>\ 2);}
+\DoxyCodeLine{00182\ \}}
+\DoxyCodeLine{00183\ }
+\DoxyCodeLine{00184\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Index,\ \textcolor{keywordtype}{bool}\ USE\_SINGLE\_ITEM\_OPT>}
+\DoxyCodeLine{00185\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_kdtree_node_a81e7c59b6e847996908707cd6d8d03a5}{TIndexedKdtreeNode<Index,\ USE\_SINGLE\_ITEM\_OPT>::}}}
+\DoxyCodeLine{00186\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_kdtree_node_a81e7c59b6e847996908707cd6d8d03a5}{\ \ \ \ numItems}}()\ const\ -\/>\ \mbox{\hyperlink{namespacestd}{std}}::\textcolor{keywordtype}{size\_t}}
+\DoxyCodeLine{00187\ \{}
+\DoxyCodeLine{00188\ \ \ \ \ PH\_ASSERT(isLeaf());}
+\DoxyCodeLine{00189\ }
+\DoxyCodeLine{00190\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}std::size\_t\textcolor{keyword}{>}(u1\_numItems\ >>\ 2);}
+\DoxyCodeLine{00191\ \}}
+\DoxyCodeLine{00192\ }
+\DoxyCodeLine{00193\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Index,\ \textcolor{keywordtype}{bool}\ USE\_SINGLE\_ITEM\_OPT>}
+\DoxyCodeLine{00194\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_kdtree_node_a9953f87c4a2775168a928b6d72c0cdd4}{TIndexedKdtreeNode<Index,\ USE\_SINGLE\_ITEM\_OPT>::}}}
+\DoxyCodeLine{00195\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_kdtree_node_a9953f87c4a2775168a928b6d72c0cdd4}{\ \ \ \ splitPos}}()\ const\ -\/>\ real}
+\DoxyCodeLine{00196\ \{}
+\DoxyCodeLine{00197\ \ \ \ \ PH\_ASSERT(!isLeaf());}
+\DoxyCodeLine{00198\ }
+\DoxyCodeLine{00199\ \ \ \ \ \textcolor{keywordflow}{return}\ u0\_splitPos;}
+\DoxyCodeLine{00200\ \}}
+\DoxyCodeLine{00201\ }
+\DoxyCodeLine{00202\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Index,\ \textcolor{keywordtype}{bool}\ USE\_SINGLE\_ITEM\_OPT>}
+\DoxyCodeLine{00203\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_kdtree_node_a751eb1b8900850b1ea6f4b7af97270ec}{TIndexedKdtreeNode<Index,\ USE\_SINGLE\_ITEM\_OPT>::}}}
+\DoxyCodeLine{00204\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_kdtree_node_a751eb1b8900850b1ea6f4b7af97270ec}{\ \ \ \ splitAxisIndex}}()\ const\ -\/>\ \textcolor{keywordtype}{int}}
+\DoxyCodeLine{00205\ \{}
+\DoxyCodeLine{00206\ \ \ \ \ PH\_ASSERT(!isLeaf());}
+\DoxyCodeLine{00207\ }
+\DoxyCodeLine{00208\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(u1\_flags\ \&\ 0b11);}
+\DoxyCodeLine{00209\ \}}
+\DoxyCodeLine{00210\ }
+\DoxyCodeLine{00211\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Index,\ \textcolor{keywordtype}{bool}\ USE\_SINGLE\_ITEM\_OPT>}
+\DoxyCodeLine{00212\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_kdtree_node_a16d603e46b03148759c5c160222a7902}{TIndexedKdtreeNode<Index,\ USE\_SINGLE\_ITEM\_OPT>::}}}
+\DoxyCodeLine{00213\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_kdtree_node_a16d603e46b03148759c5c160222a7902}{\ \ \ \ index}}()\ const\ -\/>\ \mbox{\hyperlink{namespacestd}{std}}::\textcolor{keywordtype}{size\_t}}
+\DoxyCodeLine{00214\ \{}
+\DoxyCodeLine{00215\ \ \ \ \ PH\_ASSERT(isLeaf());}
+\DoxyCodeLine{00216\ }
+\DoxyCodeLine{00217\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}std::size\_t\textcolor{keyword}{>}(u0\_index);}
+\DoxyCodeLine{00218\ \}}
+\DoxyCodeLine{00219\ }
+\DoxyCodeLine{00220\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Index,\ \textcolor{keywordtype}{bool}\ USE\_SINGLE\_ITEM\_OPT>}
+\DoxyCodeLine{00221\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_kdtree_node_a8b2d0afc453237b40cf8575c963336f3}{TIndexedKdtreeNode<Index,\ USE\_SINGLE\_ITEM\_OPT>::}}}
+\DoxyCodeLine{00222\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_kdtree_node_a8b2d0afc453237b40cf8575c963336f3}{\ \ \ \ singleItemDirectIndex}}()\ const\ -\/>\ \mbox{\hyperlink{namespacestd}{std}}::\textcolor{keywordtype}{size\_t}}
+\DoxyCodeLine{00223\ \{}
+\DoxyCodeLine{00224\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(USE\_SINGLE\_ITEM\_OPT)}
+\DoxyCodeLine{00225\ \ \ \ \ \{}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ PH\_ASSERT(USE\_SINGLE\_ITEM\_OPT\ \&\&\ numItems()\ ==\ 1);}
+\DoxyCodeLine{00227\ }
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ index();}
+\DoxyCodeLine{00229\ \ \ \ \ \}}
+\DoxyCodeLine{00230\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00231\ \ \ \ \ \{}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ PH\_ASSERT\_UNREACHABLE\_SECTION();}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::size\_t(-\/1);}
+\DoxyCodeLine{00234\ \ \ \ \ \}}
+\DoxyCodeLine{00235\ \}}
+\DoxyCodeLine{00236\ }
+\DoxyCodeLine{00237\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Index,\ \textcolor{keywordtype}{bool}\ USE\_SINGLE\_ITEM\_OPT>}
+\DoxyCodeLine{00238\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_kdtree_node_a5bc617d46dfd30f2db79662506aa0b8a}{TIndexedKdtreeNode<Index,\ USE\_SINGLE\_ITEM\_OPT>::}}}
+\DoxyCodeLine{00239\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_kdtree_node_a5bc617d46dfd30f2db79662506aa0b8a}{\ \ \ \ indexBufferOffset}}()\ const\ -\/>\ \mbox{\hyperlink{namespacestd}{std}}::\textcolor{keywordtype}{size\_t}}
+\DoxyCodeLine{00240\ \{}
+\DoxyCodeLine{00241\ \ \ \ \ PH\_ASSERT(!(USE\_SINGLE\_ITEM\_OPT\ \&\&\ numItems()\ ==\ 1));}
+\DoxyCodeLine{00242\ }
+\DoxyCodeLine{00243\ \ \ \ \ \textcolor{keywordflow}{return}\ index();}
+\DoxyCodeLine{00244\ \}}
+\DoxyCodeLine{00245\ }
+\DoxyCodeLine{00246\ \}\textcolor{comment}{//\ end\ namespace\ ph::math}}
 
 \end{DoxyCode}
