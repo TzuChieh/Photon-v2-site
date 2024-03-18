@@ -13,7 +13,9 @@ var classph_1_1math_1_1_t_arithmetic_array_base =
     [ "begin", "dc/d3e/classph_1_1math_1_1_t_arithmetic_array_base.html#af4c04c18027c589965c28283c400a878", null ],
     [ "begin", "dc/d3e/classph_1_1math_1_1_t_arithmetic_array_base.html#a10350fd399635b3d1ece36d85b9143bd", null ],
     [ "ceil", "dc/d3e/classph_1_1math_1_1_t_arithmetic_array_base.html#aedee759eab6d4ba1fc96b4a110298baa", null ],
+    [ "clamp", "dc/d3e/classph_1_1math_1_1_t_arithmetic_array_base.html#ab3ac183e2e33046262b612399e4c402b", null ],
     [ "clamp", "dc/d3e/classph_1_1math_1_1_t_arithmetic_array_base.html#a7b50e0448ed7cc40e01ee77aed1ed0ac", null ],
+    [ "clampLocal", "dc/d3e/classph_1_1math_1_1_t_arithmetic_array_base.html#a4535032412a9de38c30eb5308b1d9769", null ],
     [ "clampLocal", "dc/d3e/classph_1_1math_1_1_t_arithmetic_array_base.html#ad2b8a87560ab65188ec7a7795eb4179d", null ],
     [ "complement", "dc/d3e/classph_1_1math_1_1_t_arithmetic_array_base.html#a49a3930581705ba2c88558e3e301410f", null ],
     [ "complementLocal", "dc/d3e/classph_1_1math_1_1_t_arithmetic_array_base.html#aee07bdd2bf6ad2a8fc6cccf2d9214c5d", null ],
@@ -89,7 +91,9 @@ var classph_1_1math_1_1_t_arithmetic_array_base =
     [ "subLocal", "dc/d3e/classph_1_1math_1_1_t_arithmetic_array_base.html#a19a4b20333481455ebb44e0b3f708dc0", null ],
     [ "sum", "dc/d3e/classph_1_1math_1_1_t_arithmetic_array_base.html#a12dea26c2cb7371796c0bbdc06d8a6e9", null ],
     [ "toArray", "dc/d3e/classph_1_1math_1_1_t_arithmetic_array_base.html#a4fc4de014adb7946df69ce2ca873d78c", null ],
+    [ "toSpan", "dc/d3e/classph_1_1math_1_1_t_arithmetic_array_base.html#ab31fa7a608a3b3330e39351c0e7acf9e", null ],
     [ "toString", "dc/d3e/classph_1_1math_1_1_t_arithmetic_array_base.html#a945f66ed8e65964d232f259b223debd1", null ],
     [ "toVector", "dc/d3e/classph_1_1math_1_1_t_arithmetic_array_base.html#a423d2b7e2c2207fdad5cdc3e027d3caf", null ],
+    [ "toView", "dc/d3e/classph_1_1math_1_1_t_arithmetic_array_base.html#a5acfe2ab947966811c66ec6241f7c723", null ],
     [ "m", "dc/d3e/classph_1_1math_1_1_t_arithmetic_array_base.html#a3da28ca9690edd63fd4536e2f01b5b14", null ]
 ];

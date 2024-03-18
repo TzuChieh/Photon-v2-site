@@ -1,0 +1,370 @@
+\doxysection{TTrivial\+Item\+Pool.\+h}
+\hypertarget{_t_trivial_item_pool_8h_source}{}\label{_t_trivial_item_pool_8h_source}\index{Source/EditorCore/Storage/TTrivialItemPool.h@{Source/EditorCore/Storage/TTrivialItemPool.h}}
+\mbox{\hyperlink{_t_trivial_item_pool_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_item_pool_interface_8h}{EditorCore/Storage/TItemPoolInterface.h}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_editor_core_2_storage_2fwd_8h}{EditorCore/Storage/fwd.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_handle_dispatcher_8h}{EditorCore/Storage/THandleDispatcher.h}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_weak_handle_8h}{EditorCore/Storage/TWeakHandle.h}}"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <Common/assertion.h>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <Common/memory.h>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <Common/os.h>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <Common/math\_basics.h>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <Common/exception.h>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <Common/config.h>}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <cstddef>}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <type\_traits>}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <limits>}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ <numeric>}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ <new>}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph_1_1editor}{ph::editor}}}
+\DoxyCodeLine{00026\ \{}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00048\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Item,\ CHandleDispatcher\ Dispatcher\ =\ THandleDispatcher<TWeakHandle<Item>>>}
+\DoxyCodeLine{00049\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1editor_1_1_t_trivial_item_pool}{TTrivialItemPool}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classph_1_1editor_1_1_t_item_pool_interface}{TItemPoolInterface}}<Item,\ typename\ Dispatcher::HandleType>}
+\DoxyCodeLine{00050\ \{}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{comment}{//\ For\ us\ to\ omit\ item\ validity\ tracking-\/-\/we\ always\ start\ item\ lifetime\ after\ allocation}}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_default\_constructible\_v<Item>,}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Item\ must\ be\ default\ constructible."{}});}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{comment}{//\ For\ us\ to\ grow\ the\ pool}}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_move\_constructible\_v<Item>,}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Item\ must\ be\ move\ constructible."{}});}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{comment}{//\ For\ us\ to\ omit\ destruction}}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_trivially\_destructible\_v<Item>,}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Item\ must\ be\ trivially\ destructible."{}});}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{comment}{//\ TODO:\ optimize\ item\ copy\ when\ we\ have\ std::is\_implicit\_lifetime}}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classph_1_1editor_1_1_t_trivial_item_pool_ad52544e0256e1d734d5201a4dadb8b9a}{HandleType}}\ =\ \textcolor{keyword}{typename}\ Dispatcher::HandleType;}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keyword}{using\ }Index\ =\ \textcolor{keyword}{typename}\ HandleType::IndexType;}
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keyword}{using\ }Generation\ =\ \textcolor{keyword}{typename}\ HandleType::GenerationType;}
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keyword}{using\ }NonConstItem\ =\ std::remove\_const\_t<Item>;}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00074\ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1_t_trivial_item_pool_a73a7bf764e91e70dd8746cbd8756b7cf}{TTrivialItemPool}}()}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ :\ m\_storageMemory()}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ ,\ m\_generations()}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ ,\ m\_dispatcher()}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ ,\ m\_numItems(0)}
+\DoxyCodeLine{00079\ \ \ \ \ \{\}}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1_t_trivial_item_pool_a8aa7b6326bdd60826a8f4a6bc6f875d1}{TTrivialItemPool}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1editor_1_1_t_trivial_item_pool}{TTrivialItemPool}}\&\ other)}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \textcolor{keyword}{requires}\ std::is\_copy\_constructible\_v<Item>\ \&\&\ }
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::is\_copy\_constructible\_v<Dispatcher>}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ :\ m\_storageMemory()}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ ,\ m\_generations()}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ ,\ m\_dispatcher(other.m\_dispatcher)}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ ,\ m\_numItems(other.m\_numItems)}
+\DoxyCodeLine{00089\ \ \ \ \ \{}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ grow(other.capacity());}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Copy\ all\ items\ (they\ are\ either\ created\ by\ user\ or\ default-\/constructed)}}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(Index\ i\ =\ 0;\ i\ <\ other.capacity();\ ++i)}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ std::construct\_at(}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ getItemPtrDirectly(m\_storageMemory,\ i),}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *getItemPtr(other.m\_storageMemory,\ i));}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Copied\ after\ storage,\ since\ capacity\ is\ determined\ from\ \`{}m\_generations`}}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ m\_generations\ =\ other.m\_generations;}
+\DoxyCodeLine{00102\ \ \ \ \ \}}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1_t_trivial_item_pool_a012c6468b736ec2b82246b5e22bad9a2}{TTrivialItemPool}}(\mbox{\hyperlink{classph_1_1editor_1_1_t_trivial_item_pool}{TTrivialItemPool}}\&\&\ other)\ noexcept}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classph_1_1editor_1_1_t_trivial_item_pool_a73a7bf764e91e70dd8746cbd8756b7cf}{TTrivialItemPool}}()}
+\DoxyCodeLine{00106\ \ \ \ \ \{}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1_t_trivial_item_pool_a0fd602a94cb5516559806953998da43f}{swap}}(*\textcolor{keyword}{this},\ other);}
+\DoxyCodeLine{00108\ \ \ \ \ \}}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1_t_trivial_item_pool}{TTrivialItemPool}}\&\ \mbox{\hyperlink{classph_1_1editor_1_1_t_trivial_item_pool_a7f82e58bea624711eb853fe2e1d434e4}{operator\ =\ }}(\mbox{\hyperlink{classph_1_1editor_1_1_t_trivial_item_pool}{TTrivialItemPool}}\ rhs)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00111\ \ \ \ \ \{}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1_t_trivial_item_pool_a0fd602a94cb5516559806953998da43f}{swap}}(*\textcolor{keyword}{this},\ rhs);}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00115\ \ \ \ \ \}}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1_t_trivial_item_pool_abc59c4e35083c60946e62faa707ef32d}{\string~TTrivialItemPool}}()\ \textcolor{keyword}{override}\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ \ \ \ \ Item*\ \mbox{\hyperlink{classph_1_1editor_1_1_t_trivial_item_pool_aa1fa8d9b9604ba08ce59a6754b459966}{accessItem}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1editor_1_1_t_trivial_item_pool_ad52544e0256e1d734d5201a4dadb8b9a}{HandleType}}\&\ handle)\textcolor{keyword}{\ override}}
+\DoxyCodeLine{00120\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1editor_1_1_t_trivial_item_pool_a68c3a0debbb74c3958c5df3ffe1f1187}{get}}(handle);}
+\DoxyCodeLine{00122\ \ \ \ \ \}}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00124\ \ \ \ \ \textcolor{keyword}{const}\ Item*\ \mbox{\hyperlink{classph_1_1editor_1_1_t_trivial_item_pool_adcd891c395984a6c93b670435287cac3}{viewItem}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1editor_1_1_t_trivial_item_pool_ad52544e0256e1d734d5201a4dadb8b9a}{HandleType}}\&\ handle)\textcolor{keyword}{\ const\ override}}
+\DoxyCodeLine{00125\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1editor_1_1_t_trivial_item_pool_a68c3a0debbb74c3958c5df3ffe1f1187}{get}}(handle);}
+\DoxyCodeLine{00127\ \ \ \ \ \}}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00134\ \ \ \ \ [[nodiscard]]}
+\DoxyCodeLine{00135\ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1_t_trivial_item_pool_ad52544e0256e1d734d5201a4dadb8b9a}{HandleType}}\ \mbox{\hyperlink{classph_1_1editor_1_1_t_trivial_item_pool_a54e6fa471e834840bdc20cd034e881e1}{add}}(Item\ item)}
+\DoxyCodeLine{00136\ \ \ \ \ \{}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1editor_1_1_t_trivial_item_pool_ab638c452f24940d0d2010cf9282286a2}{createAt}}(\mbox{\hyperlink{classph_1_1editor_1_1_t_trivial_item_pool_a4d3c8b775e04b9a6e7f1e9df96e730a5}{dispatchOneHandle}}(),\ std::move(item));}
+\DoxyCodeLine{00138\ \ \ \ \ \}}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00143\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1_t_trivial_item_pool_a26f03cc5eb2c12706219ac84826d7790}{remove}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1editor_1_1_t_trivial_item_pool_ad52544e0256e1d734d5201a4dadb8b9a}{HandleType}}\&\ handle)}
+\DoxyCodeLine{00144\ \ \ \ \ \{}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1_t_trivial_item_pool_a8bb7368b5a8cf1c8928cc0b456254b88}{returnOneHandle}}(\mbox{\hyperlink{classph_1_1editor_1_1_t_trivial_item_pool_aa3342c1b9e65e3381d0b07da55962cf2}{removeAt}}(handle));}
+\DoxyCodeLine{00146\ \ \ \ \ \}}
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00152\ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1_t_trivial_item_pool_ad52544e0256e1d734d5201a4dadb8b9a}{HandleType}}\ \mbox{\hyperlink{classph_1_1editor_1_1_t_trivial_item_pool_ab638c452f24940d0d2010cf9282286a2}{createAt}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1editor_1_1_t_trivial_item_pool_ad52544e0256e1d734d5201a4dadb8b9a}{HandleType}}\&\ handle,\ Item\ item)}
+\DoxyCodeLine{00153\ \ \ \ \ \{}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ initialGeneration\ =\ HandleType::nextGeneration(HandleType::INVALID\_GENERATION);}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1editor_1_1_t_trivial_item_pool_a18a8ecb2e1a7cfd8fa587b44347e1b28}{isEmpty}}\ =\ handle.isEmpty();}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ isInvalidOutOfBound\ =\ handle.getIndex()\ >=\ \mbox{\hyperlink{classph_1_1editor_1_1_t_trivial_item_pool_aa8a0fa9d2494fa6a5f163209b58b5f2b}{capacity}}()\ \&\&\ handle.getGeneration()\ !=\ initialGeneration;}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ isStale\ =\ handle.getIndex()\ <\ \mbox{\hyperlink{classph_1_1editor_1_1_t_trivial_item_pool_aa8a0fa9d2494fa6a5f163209b58b5f2b}{capacity}}()\ \&\&\ !\mbox{\hyperlink{classph_1_1editor_1_1_t_trivial_item_pool_ad316b0ec6a6cde27c2ca67e5fb5d71e5}{isFresh}}(handle);}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{classph_1_1editor_1_1_t_trivial_item_pool_a18a8ecb2e1a7cfd8fa587b44347e1b28}{isEmpty}}\ ||\ isInvalidOutOfBound\ ||\ isStale)}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \ \ \ \ throw\_formatted<IllegalOperationException>(}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}creating\ trivial\ item\ with\ bad\ handle\ \{\}"{}},\ handle);}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00164\ }
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Potentially\ create\ new\ storage\ space}}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Index\ itemIdx\ =\ handle.getIndex();}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(itemIdx\ >=\ \mbox{\hyperlink{classph_1_1editor_1_1_t_trivial_item_pool_aa8a0fa9d2494fa6a5f163209b58b5f2b}{capacity}}())}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{classph_1_1editor_1_1_t_trivial_item_pool_aa8a0fa9d2494fa6a5f163209b58b5f2b}{capacity}}()\ ==\ \mbox{\hyperlink{classph_1_1editor_1_1_t_trivial_item_pool_a539be6dddc08a2506f7fded2c4cf86e5}{maxCapacity}}())}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ throw\_formatted<OverflowException>(}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Storage\ size\ will\ exceed\ the\ maximum\ amount\ Index\ type\ can\ hold\ (max=\{\})"{}},}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1_t_trivial_item_pool_a539be6dddc08a2506f7fded2c4cf86e5}{maxCapacity}}());}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00175\ }
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \ \ \ PH\_ASSERT\_LT(itemIdx,\ \mbox{\hyperlink{classph_1_1editor_1_1_t_trivial_item_pool_a539be6dddc08a2506f7fded2c4cf86e5}{maxCapacity}}());}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Index\ newCapacity\ =\ std::max(nextCapacity(\mbox{\hyperlink{classph_1_1editor_1_1_t_trivial_item_pool_aa8a0fa9d2494fa6a5f163209b58b5f2b}{capacity}}()),\ itemIdx\ +\ 1);}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \ \ \ \ grow(newCapacity);}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00180\ }
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ At\ this\ point,\ storage\ size\ must\ have\ been\ grown\ to\ cover\ \`{}itemIdx`}}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ PH\_ASSERT\_LT(itemIdx,\ m\_generations.size());}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ PH\_ASSERT(\mbox{\hyperlink{classph_1_1editor_1_1_t_trivial_item_pool_ad316b0ec6a6cde27c2ca67e5fb5d71e5}{isFresh}}(handle));}
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ No\ need\ for\ storing\ the\ returned\ pointer\ nor\ using\ \`{}std::launder()`\ on\ each\ use\ for\ most}}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ cases\ (same\ object\ type\ with\ exactly\ the\ same\ storage\ location),\ see\ C++\ standard\ [basic.life]}}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ section\ 8\ (https://timsong-\/cpp.github.io/cppwp/basic.life\#8).}}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ std::construct\_at(getItemPtrDirectly(m\_storageMemory,\ itemIdx),\ std::move(item));}
+\DoxyCodeLine{00189\ }
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ ++m\_numItems;}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ handle;}
+\DoxyCodeLine{00192\ \ \ \ \ \}}
+\DoxyCodeLine{00193\ }
+\DoxyCodeLine{00200\ \ \ \ \ [[nodiscard]]}
+\DoxyCodeLine{00201\ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1_t_trivial_item_pool_ad52544e0256e1d734d5201a4dadb8b9a}{HandleType}}\ \mbox{\hyperlink{classph_1_1editor_1_1_t_trivial_item_pool_aa3342c1b9e65e3381d0b07da55962cf2}{removeAt}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1editor_1_1_t_trivial_item_pool_ad52544e0256e1d734d5201a4dadb8b9a}{HandleType}}\&\ handle)}
+\DoxyCodeLine{00202\ \ \ \ \ \{}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!\mbox{\hyperlink{classph_1_1editor_1_1_t_trivial_item_pool_ad316b0ec6a6cde27c2ca67e5fb5d71e5}{isFresh}}(handle))}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \ \ \ \ throw\_formatted<IllegalOperationException>(}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}removing\ trivial\ item\ with\ stale\ handle\ \{\}"{}},\ handle);}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00208\ }
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Index\ itemIdx\ =\ handle.getIndex();}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ PH\_ASSERT\_LT(itemIdx,\ \mbox{\hyperlink{classph_1_1editor_1_1_t_trivial_item_pool_aa8a0fa9d2494fa6a5f163209b58b5f2b}{capacity}}());}
+\DoxyCodeLine{00211\ }
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calling\ dtor\ is\ not\ necessary\ as\ we\ are\ dealing\ with\ trivially\ destructible\ objects}}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_trivially\_destructible\_v<Item>);}
+\DoxyCodeLine{00214\ }
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Instead,\ we\ clear\ it\ by\ default\ constructing\ a\ new\ instance}}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ std::construct\_at(getItemPtr(m\_storageMemory,\ itemIdx));}
+\DoxyCodeLine{00217\ }
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Generation\ newGeneration\ =\ HandleType::nextGeneration(handle.getGeneration());}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ m\_generations[itemIdx]\ =\ newGeneration;}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ -\/-\/m\_numItems;}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1editor_1_1_t_trivial_item_pool_ad52544e0256e1d734d5201a4dadb8b9a}{HandleType}}(handle.getIndex(),\ newGeneration);}
+\DoxyCodeLine{00222\ \ \ \ \ \}}
+\DoxyCodeLine{00223\ }
+\DoxyCodeLine{00227\ \ \ \ \ [[nodiscard]]}
+\DoxyCodeLine{00228\ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1_t_trivial_item_pool_ad52544e0256e1d734d5201a4dadb8b9a}{HandleType}}\ \mbox{\hyperlink{classph_1_1editor_1_1_t_trivial_item_pool_a4d3c8b775e04b9a6e7f1e9df96e730a5}{dispatchOneHandle}}()}
+\DoxyCodeLine{00229\ \ \ \ \ \{}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Note:\ call\ the\ dispatcher\ without\ touching\ internal\ states,\ as\ this\ method\ may\ be\ called}}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ with\ a\ different\ policy\ (e.g.,\ from\ a\ different\ thread,\ depending\ on\ the\ dispatcher\ used)}}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_dispatcher.dispatchOne();}
+\DoxyCodeLine{00233\ \ \ \ \ \}}
+\DoxyCodeLine{00234\ }
+\DoxyCodeLine{00238\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1_t_trivial_item_pool_a8bb7368b5a8cf1c8928cc0b456254b88}{returnOneHandle}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1editor_1_1_t_trivial_item_pool_ad52544e0256e1d734d5201a4dadb8b9a}{HandleType}}\&\ handle)}
+\DoxyCodeLine{00239\ \ \ \ \ \{}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Note:\ call\ the\ dispatcher\ without\ touching\ internal\ states,\ as\ this\ method\ may\ be\ called}}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ with\ a\ different\ policy\ (e.g.,\ from\ a\ different\ thread,\ depending\ on\ the\ dispatcher\ used)}}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ m\_dispatcher.returnOne(handle);}
+\DoxyCodeLine{00243\ \ \ \ \ \}}
+\DoxyCodeLine{00244\ }
+\DoxyCodeLine{00251\ \ \ \ \ Item*\ \mbox{\hyperlink{classph_1_1editor_1_1_t_trivial_item_pool_a68c3a0debbb74c3958c5df3ffe1f1187}{get}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1editor_1_1_t_trivial_item_pool_ad52544e0256e1d734d5201a4dadb8b9a}{HandleType}}\&\ handle)}
+\DoxyCodeLine{00252\ \ \ \ \ \{}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1editor_1_1_t_trivial_item_pool_ad316b0ec6a6cde27c2ca67e5fb5d71e5}{isFresh}}(handle)\ ?\ getItemPtr(m\_storageMemory,\ handle.getIndex())\ :\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00254\ \ \ \ \ \}}
+\DoxyCodeLine{00255\ }
+\DoxyCodeLine{00262\ \ \ \ \ \textcolor{keyword}{const}\ Item*\ \mbox{\hyperlink{classph_1_1editor_1_1_t_trivial_item_pool_ad31ddae1f0997c4d9df78dbd81413f40}{get}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1editor_1_1_t_trivial_item_pool_ad52544e0256e1d734d5201a4dadb8b9a}{HandleType}}\&\ handle)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00263\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1editor_1_1_t_trivial_item_pool_ad316b0ec6a6cde27c2ca67e5fb5d71e5}{isFresh}}(handle)\ ?\ getItemPtr(m\_storageMemory,\ handle.getIndex())\ :\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00265\ \ \ \ \ \}}
+\DoxyCodeLine{00266\ }
+\DoxyCodeLine{00267\ \ \ \ \ Index\ \mbox{\hyperlink{classph_1_1editor_1_1_t_trivial_item_pool_a445bae6a83f2ffe0e99679f8292c9441}{numItems}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00268\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ PH\_ASSERT\_LE(m\_numItems,\ \mbox{\hyperlink{classph_1_1editor_1_1_t_trivial_item_pool_aa8a0fa9d2494fa6a5f163209b58b5f2b}{capacity}}());}
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_numItems;}
+\DoxyCodeLine{00271\ \ \ \ \ \}}
+\DoxyCodeLine{00272\ }
+\DoxyCodeLine{00273\ \ \ \ \ Index\ \mbox{\hyperlink{classph_1_1editor_1_1_t_trivial_item_pool_abf3e7fdfefabdcf25bf67a017961c5aa}{numFreeSpace}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00274\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ PH\_ASSERT\_LE(m\_numItems,\ \mbox{\hyperlink{classph_1_1editor_1_1_t_trivial_item_pool_aa8a0fa9d2494fa6a5f163209b58b5f2b}{capacity}}());}
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1editor_1_1_t_trivial_item_pool_aa8a0fa9d2494fa6a5f163209b58b5f2b}{capacity}}()\ -\/\ m\_numItems;}
+\DoxyCodeLine{00277\ \ \ \ \ \}}
+\DoxyCodeLine{00278\ }
+\DoxyCodeLine{00279\ \ \ \ \ Index\ \mbox{\hyperlink{classph_1_1editor_1_1_t_trivial_item_pool_aa8a0fa9d2494fa6a5f163209b58b5f2b}{capacity}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00280\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ PH\_ASSERT\_LE(m\_generations.size(),\ \mbox{\hyperlink{classph_1_1editor_1_1_t_trivial_item_pool_a539be6dddc08a2506f7fded2c4cf86e5}{maxCapacity}}());}
+\DoxyCodeLine{00282\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}Index\textcolor{keyword}{>}(m\_generations.size());}
+\DoxyCodeLine{00283\ \ \ \ \ \}}
+\DoxyCodeLine{00284\ }
+\DoxyCodeLine{00288\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1editor_1_1_t_trivial_item_pool_a18a8ecb2e1a7cfd8fa587b44347e1b28}{isEmpty}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00289\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00290\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1editor_1_1_t_trivial_item_pool_a445bae6a83f2ffe0e99679f8292c9441}{numItems}}()\ ==\ 0;}
+\DoxyCodeLine{00291\ \ \ \ \ \}}
+\DoxyCodeLine{00292\ }
+\DoxyCodeLine{00297\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1editor_1_1_t_trivial_item_pool_ad316b0ec6a6cde27c2ca67e5fb5d71e5}{isFresh}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1editor_1_1_t_trivial_item_pool_ad52544e0256e1d734d5201a4dadb8b9a}{HandleType}}\&\ handle)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00298\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00299\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ handle.getIndex()\ <\ m\_generations.size()\ \&\&}
+\DoxyCodeLine{00300\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ handle.getGeneration()\ ==\ m\_generations[handle.getIndex()];}
+\DoxyCodeLine{00301\ \ \ \ \ \}}
+\DoxyCodeLine{00302\ }
+\DoxyCodeLine{00308\ \ \ \ \ Item\&\ \mbox{\hyperlink{classph_1_1editor_1_1_t_trivial_item_pool_a6485666e3664f5fc6fd6f4d712ff0293}{operator\ []\ }}(\textcolor{keyword}{const}\ std::size\_t\ index)}
+\DoxyCodeLine{00309\ \ \ \ \ \{}
+\DoxyCodeLine{00310\ \ \ \ \ \ \ \ \ PH\_ASSERT\_LT(index,\ m\_generations.size());}
+\DoxyCodeLine{00311\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *getItemPtr(m\_storageMemory,\ index);}
+\DoxyCodeLine{00312\ \ \ \ \ \}}
+\DoxyCodeLine{00313\ }
+\DoxyCodeLine{00314\ \ \ \ \ \textcolor{keyword}{const}\ Item\&\ \mbox{\hyperlink{classph_1_1editor_1_1_t_trivial_item_pool_a6485666e3664f5fc6fd6f4d712ff0293}{operator\ []\ }}(\textcolor{keyword}{const}\ std::size\_t\ index)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00315\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00316\ \ \ \ \ \ \ \ \ PH\_ASSERT\_LT(index,\ m\_generations.size());}
+\DoxyCodeLine{00317\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *getItemPtr(m\_storageMemory,\ index);}
+\DoxyCodeLine{00318\ \ \ \ \ \}}
+\DoxyCodeLine{00320\ }
+\DoxyCodeLine{00321\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ Index\ \mbox{\hyperlink{classph_1_1editor_1_1_t_trivial_item_pool_a539be6dddc08a2506f7fded2c4cf86e5}{maxCapacity}}()}
+\DoxyCodeLine{00322\ \ \ \ \ \{}
+\DoxyCodeLine{00323\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::numeric\_limits<Index>::max();}
+\DoxyCodeLine{00324\ \ \ \ \ \}}
+\DoxyCodeLine{00325\ }
+\DoxyCodeLine{00326\ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1_t_trivial_item_pool_a0fd602a94cb5516559806953998da43f}{swap}}(\mbox{\hyperlink{classph_1_1editor_1_1_t_trivial_item_pool}{TTrivialItemPool}}\&\ first,\ \mbox{\hyperlink{classph_1_1editor_1_1_t_trivial_item_pool}{TTrivialItemPool}}\&\ second)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00327\ \ \ \ \ \{}
+\DoxyCodeLine{00328\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Enable\ ADL}}
+\DoxyCodeLine{00329\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }std::swap;}
+\DoxyCodeLine{00330\ }
+\DoxyCodeLine{00331\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1_t_trivial_item_pool_a0fd602a94cb5516559806953998da43f}{swap}}(first.m\_storageMemory,\ second.m\_storageMemory);}
+\DoxyCodeLine{00332\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1_t_trivial_item_pool_a0fd602a94cb5516559806953998da43f}{swap}}(first.m\_generations,\ second.m\_generations);}
+\DoxyCodeLine{00333\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1_t_trivial_item_pool_a0fd602a94cb5516559806953998da43f}{swap}}(first.m\_dispatcher,\ second.m\_dispatcher);}
+\DoxyCodeLine{00334\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1_t_trivial_item_pool_a0fd602a94cb5516559806953998da43f}{swap}}(first.m\_numItems,\ second.m\_numItems);}
+\DoxyCodeLine{00335\ \ \ \ \ \}}
+\DoxyCodeLine{00336\ }
+\DoxyCodeLine{00337\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00338\ \ \ \ \ \textcolor{keywordtype}{void}\ grow(\textcolor{keyword}{const}\ Index\ newCapacity)}
+\DoxyCodeLine{00339\ \ \ \ \ \{}
+\DoxyCodeLine{00340\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Index\ oldCapacity\ =\ \mbox{\hyperlink{classph_1_1editor_1_1_t_trivial_item_pool_aa8a0fa9d2494fa6a5f163209b58b5f2b}{capacity}}();}
+\DoxyCodeLine{00341\ \ \ \ \ \ \ \ \ PH\_ASSERT\_GT(newCapacity,\ oldCapacity);}
+\DoxyCodeLine{00342\ }
+\DoxyCodeLine{00343\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ requiredMemorySize\ =\ newCapacity\ *\ \textcolor{keyword}{sizeof}(NonConstItem);}
+\DoxyCodeLine{00344\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ alignmentSize\ =\ std::lcm(\textcolor{keyword}{alignof}(NonConstItem),\ os::get\_L1\_cache\_line\_size\_in\_bytes());}
+\DoxyCodeLine{00345\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ totalMemorySize\ =\ math::next\_multiple(requiredMemorySize,\ alignmentSize);}
+\DoxyCodeLine{00346\ }
+\DoxyCodeLine{00347\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Create\ new\ item\ storage\ and\ move\ items\ over}}
+\DoxyCodeLine{00348\ }
+\DoxyCodeLine{00349\ \ \ \ \ \ \ \ \ TAlignedMemoryUniquePtr<NonConstItem>\ newStorageMemory\ =}
+\DoxyCodeLine{00350\ \ \ \ \ \ \ \ \ \ \ \ \ make\_aligned\_memory<NonConstItem>(totalMemorySize,\ alignmentSize);}
+\DoxyCodeLine{00351\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!newStorageMemory)}
+\DoxyCodeLine{00352\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00353\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::bad\_alloc\{\};}
+\DoxyCodeLine{00354\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00355\ }
+\DoxyCodeLine{00356\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Copying/moving\ all\ items\ to\ new\ storage.\ No\ need\ (and\ no\ means)\ to\ check\ items\ from\ the}}
+\DoxyCodeLine{00357\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ old\ storage\ are\ valid-\/-\/they\ are\ either\ created\ by\ user\ or\ default-\/constructed\ when\ their}}
+\DoxyCodeLine{00358\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ storage\ was\ first\ allocated.}}
+\DoxyCodeLine{00359\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(Index\ i\ =\ 0;\ i\ <\ oldCapacity;\ ++i)}
+\DoxyCodeLine{00360\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00361\ \ \ \ \ \ \ \ \ \ \ \ \ std::construct\_at(}
+\DoxyCodeLine{00362\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ getItemPtrDirectly(newStorageMemory,\ i),}
+\DoxyCodeLine{00363\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::move(*getItemPtr(m\_storageMemory,\ i)));}
+\DoxyCodeLine{00364\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00365\ }
+\DoxyCodeLine{00366\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Set\ newly\ created\ storage\ space\ to\ default\ values,\ since\ accessing\ items\ before\ their}}
+\DoxyCodeLine{00367\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ construction\ is\ explicitly\ stated\ to\ behave\ like\ they\ are\ default-\/constructed.\ Another\ reason}}
+\DoxyCodeLine{00368\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ is\ that\ \`{}Item`\ may\ not\ be\ an\ implicit-\/lifetime\ class,\ so\ C++20's\ Implicit\ Object\ Creation}}
+\DoxyCodeLine{00369\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ cannot\ be\ relied\ upon\ (item\ lifetime\ may\ not\ begin\ unless\ placement\ new\ is\ used).}}
+\DoxyCodeLine{00370\ \ \ \ \ \ \ \ \ std::uninitialized\_default\_construct\_n(}
+\DoxyCodeLine{00371\ \ \ \ \ \ \ \ \ \ \ \ \ getItemPtrDirectly(newStorageMemory,\ oldCapacity),}
+\DoxyCodeLine{00372\ \ \ \ \ \ \ \ \ \ \ \ \ newCapacity\ -\/\ oldCapacity);}
+\DoxyCodeLine{00373\ }
+\DoxyCodeLine{00374\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Extend\ generation\ records\ to\ cover\ new\ storage\ spaces}}
+\DoxyCodeLine{00375\ \ \ \ \ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ initialGeneration\ =\ HandleType::nextGeneration(HandleType::INVALID\_GENERATION);}
+\DoxyCodeLine{00376\ \ \ \ \ \ \ \ \ m\_generations.resize(newCapacity,\ initialGeneration);}
+\DoxyCodeLine{00377\ }
+\DoxyCodeLine{00378\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Finally,\ get\ rid\ of\ the\ old\ item\ storage}}
+\DoxyCodeLine{00379\ \ \ \ \ \ \ \ \ m\_storageMemory\ =\ std::move(newStorageMemory);}
+\DoxyCodeLine{00380\ \ \ \ \ \}}
+\DoxyCodeLine{00381\ }
+\DoxyCodeLine{00386\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{auto}\ getItemPtr(}
+\DoxyCodeLine{00387\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ TAlignedMemoryUniquePtr<NonConstItem>\&\ storage,\ }
+\DoxyCodeLine{00388\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ index)}
+\DoxyCodeLine{00389\ \ \ \ \ -\/>\ NonConstItem*}
+\DoxyCodeLine{00390\ \ \ \ \ \{}
+\DoxyCodeLine{00391\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ \`{}Item`\ is\ const\ qualified,\ laundering\ is\ required\ to\ prevent\ aggressive\ constant\ folding.}}
+\DoxyCodeLine{00392\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ See\ [basic.life]\ section\ 8.3\ (https://timsong-\/cpp.github.io/cppwp/basic.life\#8.3).}}
+\DoxyCodeLine{00393\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ vvv\ currently\ not\ required\ as\ we\ are\ storing\ \`{}NonConstItem`}}
+\DoxyCodeLine{00394\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(\textcolor{comment}{/*\ std::is\_const\_v<Item>\ ||\ */}\ PH\_STRICT\_OBJECT\_LIFETIME)}
+\DoxyCodeLine{00395\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00396\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ UB\ if\ pointed-\/to\ object\ not\ within\ its\ lifetime}}
+\DoxyCodeLine{00397\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::launder(getItemPtrDirectly(storage,\ index));}
+\DoxyCodeLine{00398\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00399\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ We\ do\ not\ need\ to\ launder\ even\ if\ \`{}Item`\ contains\ const\ or\ reference\ members.\ See}}
+\DoxyCodeLine{00400\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ https://stackoverflow.com/questions/62642542/were-\/all-\/implementations-\/of-\/stdvector-\/non-\/portable-\/before-\/stdlaunder}}
+\DoxyCodeLine{00401\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00402\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00403\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ getItemPtrDirectly(storage,\ index);}
+\DoxyCodeLine{00404\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00405\ \ \ \ \ \}}
+\DoxyCodeLine{00406\ }
+\DoxyCodeLine{00407\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{auto}\ getItemPtrDirectly(}
+\DoxyCodeLine{00408\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ TAlignedMemoryUniquePtr<NonConstItem>\&\ storage,\ }
+\DoxyCodeLine{00409\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ index)}
+\DoxyCodeLine{00410\ \ \ \ \ -\/>\ NonConstItem*}
+\DoxyCodeLine{00411\ \ \ \ \ \{}
+\DoxyCodeLine{00412\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ storage.get()\ +\ index;}
+\DoxyCodeLine{00413\ \ \ \ \ \}}
+\DoxyCodeLine{00414\ }
+\DoxyCodeLine{00415\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ Index\ nextCapacity(\textcolor{keyword}{const}\ Index\ currentCapacity)}
+\DoxyCodeLine{00416\ \ \ \ \ \{}
+\DoxyCodeLine{00417\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Effective\ growth\ rate\ k\ =\ 1.5}}
+\DoxyCodeLine{00418\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Index\ oldCapacity\ =\ currentCapacity;}
+\DoxyCodeLine{00419\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Index\ additionalCapacity\ =\ oldCapacity\ /\ 2\ +\ 1;}
+\DoxyCodeLine{00420\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Index\ newCapacity\ =\ (\mbox{\hyperlink{classph_1_1editor_1_1_t_trivial_item_pool_a539be6dddc08a2506f7fded2c4cf86e5}{maxCapacity}}()\ -\/\ oldCapacity\ >=\ additionalCapacity)}
+\DoxyCodeLine{00421\ \ \ \ \ \ \ \ \ \ \ \ \ ?\ oldCapacity\ +\ additionalCapacity\ :\ \mbox{\hyperlink{classph_1_1editor_1_1_t_trivial_item_pool_a539be6dddc08a2506f7fded2c4cf86e5}{maxCapacity}}();}
+\DoxyCodeLine{00422\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ newCapacity;}
+\DoxyCodeLine{00423\ \ \ \ \ \}}
+\DoxyCodeLine{00424\ }
+\DoxyCodeLine{00425\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00426\ \ \ \ \ \textcolor{comment}{//\ LWG\ 3870\ forbids\ \`{}std::construct\_at`\ to\ modify/create\ const\ objects.\ We\ store\ all\ items}}
+\DoxyCodeLine{00427\ \ \ \ \ \textcolor{comment}{//\ as\ \`{}NonConstItem`\ and\ rely\ on\ implicit\ casts\ to\ const\ if\ required.\ This\ seems\ to\ be\ a\ weaker}}
+\DoxyCodeLine{00428\ \ \ \ \ \textcolor{comment}{//\ part\ of\ the\ standard\ and\ supporting\ const\ storage\ does\ not\ worth\ the\ risk\ of\ UB\ for\ now.}}
+\DoxyCodeLine{00429\ \ \ \ \ \textcolor{comment}{//\ See\ \`{}getItemPtr()`\ for\ more\ important\ things\ to\ know\ for\ supporting\ const\ items.}}
+\DoxyCodeLine{00430\ \ \ \ \ TAlignedMemoryUniquePtr<NonConstItem>\ m\_storageMemory;}
+\DoxyCodeLine{00431\ }
+\DoxyCodeLine{00432\ \ \ \ \ std::vector<Generation>\ m\_generations;}
+\DoxyCodeLine{00433\ \ \ \ \ Dispatcher\ m\_dispatcher;}
+\DoxyCodeLine{00434\ \ \ \ \ Index\ m\_numItems;}
+\DoxyCodeLine{00435\ \};}
+\DoxyCodeLine{00436\ }
+\DoxyCodeLine{00437\ \}\textcolor{comment}{//\ end\ namespace\ ph::editor}}
+
+\end{DoxyCode}

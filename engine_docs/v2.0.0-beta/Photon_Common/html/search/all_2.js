@@ -13,10 +13,9 @@ var searchData=
   ['config_10',['Config',['../de/d94/classph_1_1_config.html',1,'ph']]],
   ['config_2ecpp_11',['config.cpp',['../df/d59/config_8cpp.html',1,'']]],
   ['config_2eh_12',['config.h',['../db/d16/config_8h.html',1,'']]],
-  ['core_5fresource_5fdirectory_13',['CORE_RESOURCE_DIRECTORY',['../de/d94/classph_1_1_config.html#a789485dad5333101a5f24e892132e3fb',1,'ph::Config']]],
-  ['count_14',['count',['../d4/dae/structph_1_1detail_1_1stats_1_1_time_counter.html#af66670948d29000c8ca200926bcef9ae',1,'ph::detail::stats::TimeCounter::count'],['../dc/d81/structph_1_1_timer_stats_report_1_1_time_record.html#a9d14e6083784d773bf3211ed63c44386',1,'ph::TimerStatsReport::TimeRecord::count'],['../d8/dc7/structph_1_1_timer_stats_report_1_1_grouped_time_record.html#a769048b745768f80da2682ffb2bc0cca',1,'ph::TimerStatsReport::GroupedTimeRecord::count']]],
-  ['counter_15',['counter',['../d1/d32/structph_1_1detail_1_1stats_1_1_scoped_timer.html#a7289a8f4cf729cc1bd83e779ca6ab9aa',1,'ph::detail::stats::ScopedTimer']]],
-  ['cut_5fends_16',['cut_ends',['../da/d3e/namespaceph_1_1string__utils.html#acf3002d33a3e83703b6339c3f7498a84',1,'ph::string_utils']]],
-  ['cut_5fhead_17',['cut_head',['../da/d3e/namespaceph_1_1string__utils.html#a9c2bcc67e48025ac25d858e2ab1dad9f',1,'ph::string_utils']]],
-  ['cut_5ftail_18',['cut_tail',['../da/d3e/namespaceph_1_1string__utils.html#aa6a55db1a3744e229f772719f2078f45',1,'ph::string_utils']]]
+  ['count_13',['count',['../d4/dae/structph_1_1detail_1_1stats_1_1_time_counter.html#af66670948d29000c8ca200926bcef9ae',1,'ph::detail::stats::TimeCounter::count'],['../dc/d81/structph_1_1_timer_stats_report_1_1_time_record.html#a9d14e6083784d773bf3211ed63c44386',1,'ph::TimerStatsReport::TimeRecord::count'],['../d8/dc7/structph_1_1_timer_stats_report_1_1_grouped_time_record.html#a769048b745768f80da2682ffb2bc0cca',1,'ph::TimerStatsReport::GroupedTimeRecord::count']]],
+  ['counter_14',['counter',['../d1/d32/structph_1_1detail_1_1stats_1_1_scoped_timer.html#a7289a8f4cf729cc1bd83e779ca6ab9aa',1,'ph::detail::stats::ScopedTimer']]],
+  ['cut_5fends_15',['cut_ends',['../da/d3e/namespaceph_1_1string__utils.html#acf3002d33a3e83703b6339c3f7498a84',1,'ph::string_utils']]],
+  ['cut_5fhead_16',['cut_head',['../da/d3e/namespaceph_1_1string__utils.html#a9c2bcc67e48025ac25d858e2ab1dad9f',1,'ph::string_utils']]],
+  ['cut_5ftail_17',['cut_tail',['../da/d3e/namespaceph_1_1string__utils.html#aa6a55db1a3744e229f772719f2078f45',1,'ph::string_utils']]]
 ];

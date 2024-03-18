@@ -1,0 +1,90 @@
+\doxysection{Opengl\+Framebuffer.\+h}
+\hypertarget{_opengl_framebuffer_8h_source}{}\label{_opengl_framebuffer_8h_source}\index{Source/RenderCore/OpenGL/OpenglFramebuffer.h@{Source/RenderCore/OpenGL/OpenglFramebuffer.h}}
+\mbox{\hyperlink{_opengl_framebuffer_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{ghi__fwd_8h}{RenderCore/ghi\_fwd.h}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{ghi__enums_8h}{RenderCore/ghi\_enums.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{opengl__enums_8h}{RenderCore/OpenGL/opengl\_enums.h}}"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{glad2_8h}{ThirdParty/glad2.h}}"{}}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <Common/primitive\_type.h>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <Math/TVector4.h>}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <array>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph_1_1editor_1_1ghi}{ph::editor::ghi}}}
+\DoxyCodeLine{00016\ \{}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{class\ }OpenglTexture;}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1editor_1_1ghi_1_1_opengl_color_attachment}{OpenglColorAttachment}}\ final}
+\DoxyCodeLine{00021\ \{}
+\DoxyCodeLine{00022\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00023\ \ \ \ \ GLenum\ \mbox{\hyperlink{classph_1_1editor_1_1ghi_1_1_opengl_color_attachment_ab509bb950aee19d1fc3706a9022e208b}{internalFormat}}\ =\ GL\_NONE;}
+\DoxyCodeLine{00024\ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1_t_weak_handle}{TextureHandle}}\ \mbox{\hyperlink{classph_1_1editor_1_1ghi_1_1_opengl_color_attachment_a901e341865271047170201bd51524f98}{handle}};}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1editor_1_1ghi_1_1_opengl_color_attachment_ad97399130a57904b616a4aa7858a41b4}{isAttached}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00027\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ !\mbox{\hyperlink{classph_1_1editor_1_1ghi_1_1_opengl_color_attachment_a901e341865271047170201bd51524f98}{handle}}.\mbox{\hyperlink{classph_1_1editor_1_1_t_weak_handle_acf14e17313b3ac14dbcb28571f4ce263}{isEmpty}}();}
+\DoxyCodeLine{00029\ \ \ \ \ \}}
+\DoxyCodeLine{00030\ \};}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1editor_1_1ghi_1_1_opengl_depth_stencil_attachment}{OpenglDepthStencilAttachment}}\ final}
+\DoxyCodeLine{00033\ \{}
+\DoxyCodeLine{00034\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00035\ \ \ \ \ GLenum\ \mbox{\hyperlink{classph_1_1editor_1_1ghi_1_1_opengl_depth_stencil_attachment_aaf6b9984a324b2bef5c1bbbe0dbb5136}{internalFormat}}\ =\ GL\_NONE;}
+\DoxyCodeLine{00036\ \ \ \ \ GLenum\ \mbox{\hyperlink{classph_1_1editor_1_1ghi_1_1_opengl_depth_stencil_attachment_a7c4ffb4ace2233fb10ebb5b5b4860cb0}{attachmentType}}\ =\ GL\_NONE;}
+\DoxyCodeLine{00037\ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1_t_weak_handle}{TextureHandle}}\ \mbox{\hyperlink{classph_1_1editor_1_1ghi_1_1_opengl_depth_stencil_attachment_a0ae9764b0aac882e16d702c82c27719e}{handle}};}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1editor_1_1ghi_1_1_opengl_depth_stencil_attachment_a3f1f1c9018c6a92108fc54371af6c26d}{isAttached}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00040\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ !\mbox{\hyperlink{classph_1_1editor_1_1ghi_1_1_opengl_depth_stencil_attachment_a0ae9764b0aac882e16d702c82c27719e}{handle}}.\mbox{\hyperlink{classph_1_1editor_1_1_t_weak_handle_acf14e17313b3ac14dbcb28571f4ce263}{isEmpty}}();}
+\DoxyCodeLine{00042\ \ \ \ \ \}}
+\DoxyCodeLine{00043\ \};}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1editor_1_1ghi_1_1_opengl_framebuffer}{OpenglFramebuffer}}\ final}
+\DoxyCodeLine{00046\ \{}
+\DoxyCodeLine{00047\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{comment}{//\ Can\ actually\ allow\ more.\ Standard\ requires\ at\ least\ 8\ (which\ should\ be\ enough\ for\ most\ use\ cases).}}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ GLuint\ \mbox{\hyperlink{classph_1_1editor_1_1ghi_1_1_opengl_framebuffer_a09c3bb1822bfecb32eacaf31c4774e6b}{MAX\_COLOR\_ATTACHMENTS}}\ =\ 8;}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \ \ GLuint\ \mbox{\hyperlink{classph_1_1editor_1_1ghi_1_1_opengl_framebuffer_a673f90f7383b13f391653c8838668470}{framebufferID}}\ =\ 0;}
+\DoxyCodeLine{00052\ \ \ \ \ GLsizei\ \mbox{\hyperlink{classph_1_1editor_1_1ghi_1_1_opengl_framebuffer_aec760e00175a6caa8b5d2ba3a0561dd8}{widthPx}}\ =\ 0;}
+\DoxyCodeLine{00053\ \ \ \ \ GLsizei\ \mbox{\hyperlink{classph_1_1editor_1_1ghi_1_1_opengl_framebuffer_a1b207f467929e94d261b584e8d631f88}{heightPx}}\ =\ 0;}
+\DoxyCodeLine{00054\ \ \ \ \ GLsizei\ \mbox{\hyperlink{classph_1_1editor_1_1ghi_1_1_opengl_framebuffer_ae5cba7e91dd5b4217c004c472fdf31e3}{numSamples}}\ =\ 1;}
+\DoxyCodeLine{00055\ \ \ \ \ std::array<OpenglColorAttachment,\ MAX\_COLOR\_ATTACHMENTS>\ \mbox{\hyperlink{classph_1_1editor_1_1ghi_1_1_opengl_framebuffer_a2d4a2759625997b163d08af887167aed}{colorAttachments}};}
+\DoxyCodeLine{00056\ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1ghi_1_1_opengl_depth_stencil_attachment}{OpenglDepthStencilAttachment}}\ \mbox{\hyperlink{classph_1_1editor_1_1ghi_1_1_opengl_framebuffer_a6acdd0470e43145adeef6939267e9f10}{depthStencilAttachment}};}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1ghi_1_1_opengl_framebuffer_a7b00843a42a0c7e898a07b4ea3b5d43e}{createBuffer}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1editor_1_1ghi_1_1_framebuffer_desc}{FramebufferDesc}}\&\ desc);}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1ghi_1_1_opengl_framebuffer_a99c88fd3145b1315faf1f0f78b159b7a}{attachColor}}(}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ uint32\ attachmentIdx,}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1editor_1_1ghi_1_1_opengl_texture}{OpenglTexture}}\&\ colorTexture,\ }
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1_t_weak_handle}{TextureHandle}}\ handle);}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1ghi_1_1_opengl_framebuffer_a8c6461b57b948b185fd804b93ad22000}{attachDepthStencil}}(}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1editor_1_1ghi_1_1_opengl_texture}{OpenglTexture}}\&\ depthStencilTexture,}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1_t_weak_handle}{TextureHandle}}\ handle);}
+\DoxyCodeLine{00068\ \ \ \ \ }
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1ghi_1_1_opengl_framebuffer_a67109be162f4aa06db996338c14d4239}{bind}}();}
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1ghi_1_1_opengl_framebuffer_ade288a6ad3ffa53ba3ad377ca82343b5}{unbind}}();}
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1ghi_1_1_opengl_framebuffer_ae66e349524f923adaca25fd741549954}{clearColor}}(uint32\ attachmentIdx,\ \textcolor{keyword}{const}\ math::Vector4F\&\ color);}
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1ghi_1_1_opengl_framebuffer_aba04ec720a96a32ca782752d4f14e8e3}{clearDepthStencil}}(float32\ depth,\ uint8\ stencil);}
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1ghi_1_1_opengl_framebuffer_af88c89645116ff3cd603a056fd4c0c0f}{destroy}}();}
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1editor_1_1ghi_1_1_opengl_framebuffer_a371fba176f97435f9e9851a7128d6082}{checkCompleteness}}();}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1editor_1_1ghi_1_1_opengl_framebuffer_a8a40f45c0070c72318e35cbe48248872}{hasResource}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keywordtype}{void}\ createDeviceColorTexture(uint32\ attachmentIndex);}
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keywordtype}{void}\ createDeviceDepthStencilTexture();}
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keyword}{static}\ std::string\ getFramebufferStatusInfo(GLuint\ \mbox{\hyperlink{classph_1_1editor_1_1ghi_1_1_opengl_framebuffer_a673f90f7383b13f391653c8838668470}{framebufferID}});}
+\DoxyCodeLine{00082\ \};}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \}\textcolor{comment}{//\ end\ namespace\ ph::editor::ghi}}
+
+\end{DoxyCode}

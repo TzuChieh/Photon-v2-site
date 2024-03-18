@@ -1,0 +1,88 @@
+\doxysection{THandle\+Dispatcher.\+h}
+\hypertarget{_t_handle_dispatcher_8h_source}{}\label{_t_handle_dispatcher_8h_source}\index{Source/EditorCore/Storage/THandleDispatcher.h@{Source/EditorCore/Storage/THandleDispatcher.h}}
+\mbox{\hyperlink{_t_handle_dispatcher_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_editor_core_2_storage_2fwd_8h}{EditorCore/Storage/fwd.h}}"{}}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <Utility/Concurrent/TAtomicQuasiQueue.h>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <Common/assertion.h>}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <queue>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph_1_1editor}{ph::editor}}}
+\DoxyCodeLine{00012\ \{}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{template}<CWeakHandle\ Handle>}
+\DoxyCodeLine{00017\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1editor_1_1_t_handle_dispatcher}{THandleDispatcher}}\ final}
+\DoxyCodeLine{00018\ \{}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keyword}{using\ }Index\ =\ \textcolor{keyword}{typename}\ Handle::IndexType;}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keyword}{using\ }Generation\ =\ \textcolor{keyword}{typename}\ Handle::GenerationType;}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classph_1_1editor_1_1_t_handle_dispatcher_a20071aebd6f1a58be14787efe255dddd}{HandleType}}\ =\ Handle;}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1editor_1_1_t_handle_dispatcher_a97f52aa832bdfc43851f90a75ed51c39}{THandleDispatcher}}()}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ :\ m\_handles()}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ ,\ m\_nextNewIdx(0)}
+\DoxyCodeLine{00028\ \ \ \ \ \{\}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1editor_1_1_t_handle_dispatcher_a5c759dc5050bad351393ec8b8c28bdf4}{THandleDispatcher}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1editor_1_1_t_handle_dispatcher}{THandleDispatcher}}\&\ other)}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ :\ m\_handles(other.m\_handles)}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ ,\ m\_nextNewIdx(other.m\_nextNewIdx)}
+\DoxyCodeLine{00033\ \ \ \ \ \{\}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1editor_1_1_t_handle_dispatcher_a2f34658c4f695fa15c2775e835554ad9}{THandleDispatcher}}(\mbox{\hyperlink{classph_1_1editor_1_1_t_handle_dispatcher}{THandleDispatcher}}\&\&\ other)\ noexcept}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classph_1_1editor_1_1_t_handle_dispatcher_a97f52aa832bdfc43851f90a75ed51c39}{THandleDispatcher}}()}
+\DoxyCodeLine{00037\ \ \ \ \ \{}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1_t_handle_dispatcher_a9f88e75b6b93527f4c330419ccde7271}{swap}}(*\textcolor{keyword}{this},\ other);}
+\DoxyCodeLine{00039\ \ \ \ \ \}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1editor_1_1_t_handle_dispatcher}{THandleDispatcher}}\&\ \mbox{\hyperlink{classph_1_1editor_1_1_t_handle_dispatcher_a4da0b5d894a65c9a6e21e035c5b672b2}{operator\ =\ }}(\mbox{\hyperlink{classph_1_1editor_1_1_t_handle_dispatcher}{THandleDispatcher}}\ rhs)}
+\DoxyCodeLine{00042\ \ \ \ \ \{}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1_t_handle_dispatcher_a9f88e75b6b93527f4c330419ccde7271}{swap}}(*\textcolor{keyword}{this},\ rhs);}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00046\ \ \ \ \ \}}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00050\ \ \ \ \ [[nodiscard]]}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keyword}{inline}\ Handle\ \mbox{\hyperlink{classph_1_1editor_1_1_t_handle_dispatcher_a23342ff24fc376e07e4df214baf739f5}{dispatchOne}}()}
+\DoxyCodeLine{00052\ \ \ \ \ \{}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!m\_handles.empty())}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ Handle\ handle\ =\ m\_handles.front();}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ m\_handles.pop();}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ handle;}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Create\ new\ handle\ if\ we\ cannot\ obtain\ an\ existing\ one}}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ initialGeneration\ =\ Handle::nextGeneration(Handle::INVALID\_GENERATION);}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Index\ newIdx\ =\ m\_nextNewIdx++;}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Handle(newIdx,\ initialGeneration);}
+\DoxyCodeLine{00064\ \ \ \ \ \}}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1_t_handle_dispatcher_adb9a240c35f9984fba7c18fe8e039546}{returnOne}}(\textcolor{keyword}{const}\ Handle\&\ handle)}
+\DoxyCodeLine{00069\ \ \ \ \ \{}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ PH\_ASSERT(handle);}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ m\_handles.push(handle);}
+\DoxyCodeLine{00072\ \ \ \ \ \}}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{friend}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1_t_handle_dispatcher_a9f88e75b6b93527f4c330419ccde7271}{swap}}(\mbox{\hyperlink{classph_1_1editor_1_1_t_handle_dispatcher}{THandleDispatcher}}\&\ first,\ \mbox{\hyperlink{classph_1_1editor_1_1_t_handle_dispatcher}{THandleDispatcher}}\&\ second)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00075\ \ \ \ \ \{}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Enable\ ADL}}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }std::swap;}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1_t_handle_dispatcher_a9f88e75b6b93527f4c330419ccde7271}{swap}}(first.m\_handles,\ second.m\_handles);}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1_t_handle_dispatcher_a9f88e75b6b93527f4c330419ccde7271}{swap}}(first.m\_nextNewIdx,\ second.m\_nextNewIdx);}
+\DoxyCodeLine{00081\ \ \ \ \ \}}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00084\ \ \ \ \ std::queue<Handle>\ m\_handles;}
+\DoxyCodeLine{00085\ \ \ \ \ Index\ m\_nextNewIdx;}
+\DoxyCodeLine{00086\ \};}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \}\textcolor{comment}{//\ end\ namespace\ ph::editor}}
+
+\end{DoxyCode}

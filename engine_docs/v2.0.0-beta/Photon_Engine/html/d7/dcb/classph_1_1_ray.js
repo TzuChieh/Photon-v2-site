@@ -2,6 +2,7 @@ var classph_1_1_ray =
 [
     [ "Ray", "d7/dcb/classph_1_1_ray.html#acc4ae06bcab2383fe046414c784c64bc", null ],
     [ "Ray", "d7/dcb/classph_1_1_ray.html#acf0cd9409398cc7d318231c239aa8617", null ],
+    [ "Ray", "d7/dcb/classph_1_1_ray.html#a45c48bdb8cbeddad8674c529bd49f785", null ],
     [ "Ray", "d7/dcb/classph_1_1_ray.html#a1c32c56775a6f812f5c99d915ecb0e41", null ],
     [ "Ray", "d7/dcb/classph_1_1_ray.html#aae31ad84ba93ccf22afc0471fb48f095", null ],
     [ "Ray", "d7/dcb/classph_1_1_ray.html#a5f466849ea3948c5c4cd6994dc2376b2", null ],

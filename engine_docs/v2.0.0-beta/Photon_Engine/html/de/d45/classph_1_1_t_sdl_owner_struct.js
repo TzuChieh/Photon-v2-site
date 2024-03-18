@@ -11,6 +11,10 @@ var classph_1_1_t_sdl_owner_struct =
     [ "description", "de/d45/classph_1_1_t_sdl_owner_struct.html#a744ca68d5ac640c74318370297a546f1", null ],
     [ "getField", "de/d45/classph_1_1_t_sdl_owner_struct.html#ae96324fb421f8462b09d704456e251c0", null ],
     [ "getFields", "de/d45/classph_1_1_t_sdl_owner_struct.html#a8820075fcff582f27a61c65a368e9b00", null ],
+    [ "initDefaultObject", "de/d45/classph_1_1_t_sdl_owner_struct.html#a7547935d012a2f946e11d9e47b453f6f", null ],
     [ "initDefaultStruct", "de/d45/classph_1_1_t_sdl_owner_struct.html#ab127262a8d4c504adba1e202613b46c8", null ],
-    [ "numFields", "de/d45/classph_1_1_t_sdl_owner_struct.html#a67e1f78fd7f25bc8a2f4564cef384eb3", null ]
+    [ "initObject", "de/d45/classph_1_1_t_sdl_owner_struct.html#a44b870f3e37c9351c308dad29ccfcbe5", null ],
+    [ "numFields", "de/d45/classph_1_1_t_sdl_owner_struct.html#a67e1f78fd7f25bc8a2f4564cef384eb3", null ],
+    [ "referencedResources", "de/d45/classph_1_1_t_sdl_owner_struct.html#a2ebf69633ef31fcdb3c8dd3e80768583", null ],
+    [ "saveObject", "de/d45/classph_1_1_t_sdl_owner_struct.html#a08c61eee7cb5424a7c9e66d6f09f272f", null ]
 ];

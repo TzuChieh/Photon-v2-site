@@ -8,5 +8,6 @@ var classph_1_1_math_image =
     [ "setInputImage1", "d7/da5/classph_1_1_math_image.html#a19fd5f9adafbe6a97f83608b57217a87", null ],
     [ "setOperandImage", "d7/da5/classph_1_1_math_image.html#a7ef56fe3cc6dd14652574caf7112515d", null ],
     [ "setOperation", "d7/da5/classph_1_1_math_image.html#a2c2f401f6acec6fd3aff53093643ccfa", null ],
-    [ "setScalarInput", "d7/da5/classph_1_1_math_image.html#a36c6705878bbb9c08de3a8a0992db735", null ]
+    [ "setScalarInput0", "d7/da5/classph_1_1_math_image.html#a217393725bfee7a9015333b1800705da", null ],
+    [ "setScalarInput1", "d7/da5/classph_1_1_math_image.html#a1f551c0d6d271408ba17a62eeb059351", null ]
 ];

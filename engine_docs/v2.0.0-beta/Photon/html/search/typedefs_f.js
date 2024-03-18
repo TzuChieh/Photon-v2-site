@@ -1,7 +1,8 @@
 var searchData=
 [
-  ['radiancetexture_0',['RadianceTexture',['../../../Photon_Engine/html/d9/d36/classph_1_1_lat_long_env_emitter.html#a0816dcc7af83b8c9cadbc0f8f0928e27',1,'ph::LatLongEnvEmitter']]],
-  ['real_1',['real',['../../../Photon_Common/html/d3/d5c/namespaceph.html#a3ba32f2df019222294218945d30b3363',1,'ph']]],
-  ['realtype_2',['RealType',['../../../Photon_Engine/html/de/d70/classph_1_1_render_stats.html#a81b6621c0560e0efe5ddd1cbf9b070f3',1,'ph::RenderStats']]],
-  ['region_3',['region',['../../../Photon_Engine/html/d0/dd5/classph_1_1_renderer_proxy.html#a4fca3c7b73563f49b15a00120cc57680',1,'ph::RendererProxy::Region'],['../../../Photon_Engine/html/d3/d5c/namespaceph.html#a8fd64ba111f389ee0f7211828989cb36',1,'ph::Region']]]
+  ['quaterniond_0',['QuaternionD',['../../../Photon_Engine/html/d7/dac/namespaceph_1_1math.html#aad5661543f5f387fad5f89d74974139b',1,'ph::math']]],
+  ['quaternionf_1',['QuaternionF',['../../../Photon_Engine/html/d7/dac/namespaceph_1_1math.html#a5f6bf2c1726afc62a8be2e8097e2217d',1,'ph::math']]],
+  ['quaternionr_2',['QuaternionR',['../../../Photon_Engine/html/d7/dac/namespaceph_1_1math.html#a789624425545505142a31fb4f8c6d05e',1,'ph::math']]],
+  ['query_3',['query',['../../../Photon_EditorLib/html/de/df6/namespaceph_1_1editor_1_1ghi.html#acb1edcb546a7559430a4816df21909a0',1,'ph::editor::ghi::Query'],['../../../Photon_EditorLib/html/d1/d70/namespaceph_1_1editor_1_1render.html#a3aa8cad669676c560802a9fc7ff7c760',1,'ph::editor::render::Query']]],
+  ['queryperformer_4',['queryperformer',['../../../Photon_EditorLib/html/de/df6/namespaceph_1_1editor_1_1ghi.html#a5e0d96e303480c241bcbe358ef6deba8',1,'ph::editor::ghi::QueryPerformer'],['../../../Photon_EditorLib/html/d1/d70/namespaceph_1_1editor_1_1render.html#aa75add3684de96f9dce4a01743de2032',1,'ph::editor::render::QueryPerformer']]]
 ];

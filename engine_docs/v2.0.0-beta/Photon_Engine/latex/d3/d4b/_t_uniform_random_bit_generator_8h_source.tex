@@ -12,149 +12,150 @@
 \DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <bit>}}
 \DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <climits>}}
 \DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <type\_traits>}}
-\DoxyCodeLine{00011\ }
-\DoxyCodeLine{00012\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph_1_1math}{ph::math}}}
-\DoxyCodeLine{00013\ \{}
-\DoxyCodeLine{00014\ \ \ \ \ }
-\DoxyCodeLine{00015\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00016\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptph_1_1math_1_1_c_u_r_b_g}{CURBG}}\ =\ \textcolor{keyword}{requires}\ (T\ instance)}
-\DoxyCodeLine{00017\ \{}
-\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keyword}{typename}\ T::BitsType;}
-\DoxyCodeLine{00019\ \ \ \ \ instance.generate();}
-\DoxyCodeLine{00020\ \ \ \ \ instance.template\ generate<uint64>();}
-\DoxyCodeLine{00021\ \ \ \ \ instance.generateSample();}
-\DoxyCodeLine{00022\ \ \ \ \ instance.template\ generateSample<float64,\ uint64>();}
-\DoxyCodeLine{00023\ \ \ \ \ \{\ instance.jumpAhead(uint64\{\})\ \}\ -\/>\ std::same\_as<void>;}
-\DoxyCodeLine{00024\ \};}
-\DoxyCodeLine{00025\ }
-\DoxyCodeLine{00026\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ Bits>}
-\DoxyCodeLine{00027\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1math_1_1_t_uniform_random_bit_generator}{TUniformRandomBitGenerator}}}
-\DoxyCodeLine{00028\ \{}
-\DoxyCodeLine{00029\ \ \ \ \ \textcolor{comment}{//\ Safer\ for\ bit\ operations\ (custom\ types\ are\ explicitly\ allowed).}}
-\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_unsigned\_v<Bits>\ ||\ std::is\_class\_v<Bits>);}
-\DoxyCodeLine{00031\ }
-\DoxyCodeLine{00032\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classph_1_1math_1_1_t_uniform_random_bit_generator_aa13f29ce389f9ca6923db6d57c321f28}{BitsType}}\ =\ Bits;}
-\DoxyCodeLine{00034\ }
-\DoxyCodeLine{00035\ \ \ \ \ Bits\ \mbox{\hyperlink{classph_1_1math_1_1_t_uniform_random_bit_generator_a7d80a8039331e2598bcf810f040c34d3}{generate}}();}
-\DoxyCodeLine{00036\ }
-\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ TargetBits>}
-\DoxyCodeLine{00038\ \ \ \ \ TargetBits\ \mbox{\hyperlink{classph_1_1math_1_1_t_uniform_random_bit_generator_a17426cbcd7f907353f69c8fd221ea613}{generate}}();}
-\DoxyCodeLine{00039\ }
-\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ TargetSample\ =\ real,\ \textcolor{keyword}{typename}\ SourceBits\ =\ Bits>}
-\DoxyCodeLine{00041\ \ \ \ \ TargetSample\ \mbox{\hyperlink{classph_1_1math_1_1_t_uniform_random_bit_generator_a4f41fd59f45b3ffa4c0b87aaac2b4110}{generateSample}}();}
-\DoxyCodeLine{00042\ }
-\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1math_1_1_t_uniform_random_bit_generator_a5625f2352734462e59bb9b8e1312415a}{jumpAhead}}(uint64\ distance);}
-\DoxyCodeLine{00047\ }
-\DoxyCodeLine{00048\ \textcolor{comment}{//\ Hide\ special\ members\ as\ this\ class\ is\ not\ intended\ to\ be\ used\ polymorphically.}}
-\DoxyCodeLine{00049\ \textcolor{comment}{//\ It\ is\ derived\ class's\ choice\ to\ expose\ them\ (by\ defining\ them\ in\ public)\ or\ not.}}
-\DoxyCodeLine{00050\ \textcolor{keyword}{protected}:}
-\DoxyCodeLine{00051\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_uniform_random_bit_generator_a1d1b134b34b60f96bf2249be367d377f}{PH\_DEFINE\_INLINE\_RULE\_OF\_5\_MEMBERS}}(\mbox{\hyperlink{classph_1_1math_1_1_t_uniform_random_bit_generator}{TUniformRandomBitGenerator}});}
-\DoxyCodeLine{00052\ \};}
-\DoxyCodeLine{00053\ }
-\DoxyCodeLine{00054\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ Bits>}
-\DoxyCodeLine{00055\ \textcolor{keyword}{inline}\ Bits\ \mbox{\hyperlink{classph_1_1math_1_1_t_uniform_random_bit_generator_a7d80a8039331e2598bcf810f040c34d3}{TUniformRandomBitGenerator<Derived,\ Bits>::generate}}()}
-\DoxyCodeLine{00056\ \{}
-\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keyword}{static\_assert}(\textcolor{keyword}{requires}\ (Derived\ derived)}
-\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ derived.impl\_generate()\ \}\ -\/>\ std::same\_as<Bits>;}
-\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \},}
-\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Uniform\ random\ bit\ generator\ must\ implement\ \`{}impl\_generate()\ -\/>\ Bits`."{}});}
-\DoxyCodeLine{00062\ }
-\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}Derived\&\textcolor{keyword}{>}(*this).impl\_generate();}
-\DoxyCodeLine{00064\ \}}
-\DoxyCodeLine{00065\ }
-\DoxyCodeLine{00066\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ Bits>}
-\DoxyCodeLine{00067\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ TargetBits>}
-\DoxyCodeLine{00068\ \textcolor{keyword}{inline}\ TargetBits\ \mbox{\hyperlink{classph_1_1math_1_1_t_uniform_random_bit_generator_a7d80a8039331e2598bcf810f040c34d3}{TUniformRandomBitGenerator<Derived,\ Bits>::generate}}()}
-\DoxyCodeLine{00069\ \{}
-\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keyword}{static\_assert}(CHAR\_BIT\ ==\ 8);}
-\DoxyCodeLine{00071\ }
-\DoxyCodeLine{00072\ \ \ \ \ \textcolor{comment}{//\ Safer\ for\ bit\ operations\ (custom\ types\ are\ explicitly\ allowed).}}
-\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_unsigned\_v<TargetBits>\ ||\ std::is\_class\_v<TargetBits>);}
-\DoxyCodeLine{00074\ }
-\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(std::is\_unsigned\_v<TargetBits>)}
-\DoxyCodeLine{00076\ \ \ \ \ \{}
-\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ bitsSize\ =\ \textcolor{keyword}{sizeof}(Bits);}
-\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ targetBitsSize\ =\ \textcolor{keyword}{sizeof}(TargetBits);}
-\DoxyCodeLine{00079\ }
-\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(targetBitsSize\ ==\ bitsSize)}
-\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ bitwise\_cast<TargetBits>(generate());}
-\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(targetBitsSize\ ==\ 8\ \&\&\ bitsSize\ ==\ 4)}
-\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Generate\ 8-\/byte\ bits\ by\ combining\ two\ 4-\/byte\ bits}}
-\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ uint64\ lower4B\ =\ bitwise\_cast<uint32>(generate());}
-\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ uint64\ higher4B\ =\ bitwise\_cast<uint32>(generate())\ <<\ 32;}
-\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ bitwise\_cast<TargetBits>(higher4B\ |\ lower4B);}
-\DoxyCodeLine{00090\ }
-\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Note:\ combining\ 2\ \`{}uint32`\ like\ this\ may\ not\ yield\ as\ good\ result\ as\ using\ 2\ separate}}
-\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ generators\ (with\ different\ state\ and\ sequence).}}
-\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(targetBitsSize\ ==\ 4\ \&\&\ bitsSize\ ==\ 8)}
-\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Just\ to\ make\ sure\ the\ cast\ will\ truncate\ \`{}uint64`}}
-\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_assert}(\textcolor{keyword}{static\_cast<}uint32\textcolor{keyword}{>}(uint64(0xABCD'ABCD'0000'0000)\ >>\ 32)\ ==\ 0xABCD'ABCD);}
-\DoxyCodeLine{00098\ }
-\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Generate\ 4-\/byte\ bits\ by\ using\ the\ higher\ 4-\/byte\ in\ 8-\/byte\ bits}}
-\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ full8B\ =\ bitwise\_cast<uint64>(generate());}
-\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ bitwise\_cast<TargetBits>(\textcolor{keyword}{static\_cast<}uint32\textcolor{keyword}{>}(full8B\ >>\ 32));}
-\DoxyCodeLine{00102\ }
-\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Note:\ generally\ higher\ bits\ may\ be\ of\ better\ quality}}
-\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00105\ \ \ \ \ \}}
-\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00107\ \ \ \ \ \{}
-\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ PH\_STATIC\_ASSERT\_DEPENDENT\_FALSE(Derived,}
-\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}No\ existing\ implementation\ can\ do\ \`{}Bits`\ -\/>\ \`{}TargetBits`."{}});}
-\DoxyCodeLine{00110\ \ \ \ \ \}}
-\DoxyCodeLine{00111\ \}}
-\DoxyCodeLine{00112\ }
-\DoxyCodeLine{00113\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ Bits>}
-\DoxyCodeLine{00114\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ TargetSample,\ \textcolor{keyword}{typename}\ SourceBits>}
-\DoxyCodeLine{00115\ \textcolor{keyword}{inline}\ TargetSample\ \mbox{\hyperlink{classph_1_1math_1_1_t_uniform_random_bit_generator_a4f41fd59f45b3ffa4c0b87aaac2b4110}{TUniformRandomBitGenerator<Derived,\ Bits>::generateSample}}()}
-\DoxyCodeLine{00116\ \{}
-\DoxyCodeLine{00117\ \ \ \ \ \textcolor{keyword}{static\_assert}(CHAR\_BIT\ ==\ 8);}
-\DoxyCodeLine{00118\ }
-\DoxyCodeLine{00119\ \ \ \ \ \textcolor{comment}{//\ Safer\ for\ bit\ operations\ (custom\ types\ are\ explicitly\ allowed).}}
-\DoxyCodeLine{00120\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_unsigned\_v<SourceBits>\ ||\ std::is\_class\_v<SourceBits>);}
-\DoxyCodeLine{00121\ }
-\DoxyCodeLine{00122\ \ \ \ \ \textcolor{comment}{//\ Samples\ must\ be\ within\ [0,\ 1],\ makes\ no\ sense\ for\ using\ integral\ types}}
-\DoxyCodeLine{00123\ \ \ \ \ \textcolor{comment}{//\ (custom\ types\ are\ explicitly\ allowed).}}
-\DoxyCodeLine{00124\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_floating\_point\_v<TargetSample>\ ||\ std::is\_class\_v<TargetSample>);}
-\DoxyCodeLine{00125\ }
-\DoxyCodeLine{00126\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(std::is\_same\_v<SourceBits,\ uint32>)}
-\DoxyCodeLine{00127\ \ \ \ \ \{}
-\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ TargetSample\ sample\ =\ generate<SourceBits>()\ *\ TargetSample(0x1p-\/32);}
-\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ PH\_ASSERT\_IN\_RANGE\_INCLUSIVE(sample,\ TargetSample(0.0),\ TargetSample(1.0));}
-\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ sample;}
-\DoxyCodeLine{00131\ \ \ \ \ \}}
-\DoxyCodeLine{00132\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(std::is\_same\_v<SourceBits,\ uint64>)}
-\DoxyCodeLine{00133\ \ \ \ \ \{}
-\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ TargetSample\ sample\ =\ generate<SourceBits>()\ *\ TargetSample(0x1p-\/64);}
-\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ PH\_ASSERT\_IN\_RANGE\_INCLUSIVE(sample,\ TargetSample(0.0),\ TargetSample(1.0));}
-\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ sample;}
-\DoxyCodeLine{00137\ \ \ \ \ \}}
-\DoxyCodeLine{00138\ \ \ \ \ \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00139\ \ \ \ \ \{}
-\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ PH\_STATIC\_ASSERT\_DEPENDENT\_FALSE(Derived,}
-\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}No\ existing\ implementation\ can\ do\ \`{}SourceBits`\ -\/>\ \`{}TargetSample`."{}});}
-\DoxyCodeLine{00142\ \ \ \ \ \}}
-\DoxyCodeLine{00143\ \}}
-\DoxyCodeLine{00144\ }
-\DoxyCodeLine{00145\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ Bits>}
-\DoxyCodeLine{00146\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1math_1_1_t_uniform_random_bit_generator_a5625f2352734462e59bb9b8e1312415a}{TUniformRandomBitGenerator<Derived,\ Bits>::jumpAhead}}(\textcolor{keyword}{const}\ uint64\ distance)}
-\DoxyCodeLine{00147\ \{}
-\DoxyCodeLine{00148\ \ \ \ \ \textcolor{keyword}{static\_assert}(\textcolor{keyword}{requires}\ (Derived\ derived)}
-\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ derived.impl\_jumpAhead(uint64\{\})\}\ -\/>\ std::same\_as<void>;}
-\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \},}
-\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Uniform\ random\ bit\ generator\ must\ implement\ \`{}impl\_jumpAhead(uint64\ distance)\ -\/>\ void`."{}});}
-\DoxyCodeLine{00153\ }
-\DoxyCodeLine{00154\ \ \ \ \ \textcolor{keyword}{static\_cast<}Derived\&\textcolor{keyword}{>}(*this).impl\_jumpAhead(distance);}
-\DoxyCodeLine{00155\ \}}
-\DoxyCodeLine{00156\ }
-\DoxyCodeLine{00157\ \}\textcolor{comment}{//\ end\ namespace\ ph::math}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph_1_1math}{ph::math}}}
+\DoxyCodeLine{00014\ \{}
+\DoxyCodeLine{00015\ \ \ \ \ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00017\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptph_1_1math_1_1_c_u_r_b_g}{CURBG}}\ =\ \textcolor{keyword}{requires}\ (T\ instance)}
+\DoxyCodeLine{00018\ \{}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keyword}{typename}\ T::BitsType;}
+\DoxyCodeLine{00020\ \ \ \ \ instance.generate();}
+\DoxyCodeLine{00021\ \ \ \ \ instance.template\ generate<uint64>();}
+\DoxyCodeLine{00022\ \ \ \ \ instance.generateSample();}
+\DoxyCodeLine{00023\ \ \ \ \ instance.template\ generateSample<float64,\ uint64>();}
+\DoxyCodeLine{00024\ \ \ \ \ \{\ instance.jumpAhead(uint64\{\})\ \}\ -\/>\ std::same\_as<void>;}
+\DoxyCodeLine{00025\ \};}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ Bits>}
+\DoxyCodeLine{00028\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1math_1_1_t_uniform_random_bit_generator}{TUniformRandomBitGenerator}}}
+\DoxyCodeLine{00029\ \{}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{comment}{//\ Safer\ for\ bit\ operations\ (custom\ types\ are\ explicitly\ allowed).}}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_unsigned\_v<Bits>\ ||\ std::is\_class\_v<Bits>);}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classph_1_1math_1_1_t_uniform_random_bit_generator_aa13f29ce389f9ca6923db6d57c321f28}{BitsType}}\ =\ Bits;}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \ \ Bits\ \mbox{\hyperlink{classph_1_1math_1_1_t_uniform_random_bit_generator_a7d80a8039331e2598bcf810f040c34d3}{generate}}();}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ TargetBits>}
+\DoxyCodeLine{00039\ \ \ \ \ TargetBits\ \mbox{\hyperlink{classph_1_1math_1_1_t_uniform_random_bit_generator_a17426cbcd7f907353f69c8fd221ea613}{generate}}();}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ TargetSample\ =\ real,\ \textcolor{keyword}{typename}\ SourceBits\ =\ Bits>}
+\DoxyCodeLine{00042\ \ \ \ \ TargetSample\ \mbox{\hyperlink{classph_1_1math_1_1_t_uniform_random_bit_generator_a4f41fd59f45b3ffa4c0b87aaac2b4110}{generateSample}}();}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1math_1_1_t_uniform_random_bit_generator_a5625f2352734462e59bb9b8e1312415a}{jumpAhead}}(uint64\ distance);}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \textcolor{comment}{//\ Hide\ special\ members\ as\ this\ class\ is\ not\ intended\ to\ be\ used\ polymorphically.}}
+\DoxyCodeLine{00050\ \textcolor{comment}{//\ It\ is\ derived\ class's\ choice\ to\ expose\ them\ (by\ defining\ them\ in\ public)\ or\ not.}}
+\DoxyCodeLine{00051\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00052\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_uniform_random_bit_generator_a1d1b134b34b60f96bf2249be367d377f}{PH\_DEFINE\_INLINE\_RULE\_OF\_5\_MEMBERS}}(\mbox{\hyperlink{classph_1_1math_1_1_t_uniform_random_bit_generator}{TUniformRandomBitGenerator}});}
+\DoxyCodeLine{00053\ \};}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ Bits>}
+\DoxyCodeLine{00056\ \textcolor{keyword}{inline}\ Bits\ \mbox{\hyperlink{classph_1_1math_1_1_t_uniform_random_bit_generator_a7d80a8039331e2598bcf810f040c34d3}{TUniformRandomBitGenerator<Derived,\ Bits>::generate}}()}
+\DoxyCodeLine{00057\ \{}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keyword}{static\_assert}(\textcolor{keyword}{requires}\ (Derived\ derived)}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ derived.impl\_generate()\ \}\ -\/>\ std::same\_as<Bits>;}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \},}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Uniform\ random\ bit\ generator\ must\ implement\ \`{}impl\_generate()\ -\/>\ Bits`."{}});}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}Derived\&\textcolor{keyword}{>}(*this).impl\_generate();}
+\DoxyCodeLine{00065\ \}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ Bits>}
+\DoxyCodeLine{00068\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ TargetBits>}
+\DoxyCodeLine{00069\ \textcolor{keyword}{inline}\ TargetBits\ \mbox{\hyperlink{classph_1_1math_1_1_t_uniform_random_bit_generator_a7d80a8039331e2598bcf810f040c34d3}{TUniformRandomBitGenerator<Derived,\ Bits>::generate}}()}
+\DoxyCodeLine{00070\ \{}
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keyword}{static\_assert}(CHAR\_BIT\ ==\ 8);}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{comment}{//\ Safer\ for\ bit\ operations\ (custom\ types\ are\ explicitly\ allowed).}}
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_unsigned\_v<TargetBits>\ ||\ std::is\_class\_v<TargetBits>);}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(std::is\_unsigned\_v<TargetBits>)}
+\DoxyCodeLine{00077\ \ \ \ \ \{}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ bitsSize\ =\ \textcolor{keyword}{sizeof}(Bits);}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ targetBitsSize\ =\ \textcolor{keyword}{sizeof}(TargetBits);}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(targetBitsSize\ ==\ bitsSize)}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ bitwise\_cast<TargetBits>(generate());}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(targetBitsSize\ ==\ 8\ \&\&\ bitsSize\ ==\ 4)}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Generate\ 8-\/byte\ bits\ by\ combining\ two\ 4-\/byte\ bits}}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ lower4B\ =\ bitwise\_cast<uint32>(generate());}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ higher4B\ =\ bitwise\_cast<uint32>(generate());}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ bitwise\_cast<TargetBits>((\textcolor{keyword}{static\_cast<}uint64\textcolor{keyword}{>}(higher4B)\ <<\ 32)\ |\ lower4B);}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Note:\ combining\ 2\ \`{}uint32`\ like\ this\ may\ not\ yield\ as\ good\ result\ as\ using\ 2\ separate}}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ generators\ (with\ different\ state\ and\ sequence).}}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(targetBitsSize\ ==\ 4\ \&\&\ bitsSize\ ==\ 8)}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Just\ to\ make\ sure\ the\ cast\ will\ truncate\ \`{}uint64`}}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_assert}(\textcolor{keyword}{static\_cast<}uint32\textcolor{keyword}{>}(uint64(0xABCD'ABCD'0000'0000)\ >>\ 32)\ ==\ 0xABCD'ABCD);}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Generate\ 4-\/byte\ bits\ by\ using\ the\ higher\ 4-\/byte\ in\ 8-\/byte\ bits}}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ full8B\ =\ bitwise\_cast<uint64>(generate());}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ bitwise\_cast<TargetBits>(\textcolor{keyword}{static\_cast<}uint32\textcolor{keyword}{>}(full8B\ >>\ 32));}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Note:\ generally\ higher\ bits\ may\ be\ of\ better\ quality}}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00106\ \ \ \ \ \}}
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00108\ \ \ \ \ \{}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ PH\_STATIC\_ASSERT\_DEPENDENT\_FALSE(Derived,}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}No\ existing\ implementation\ can\ do\ \`{}Bits`\ -\/>\ \`{}TargetBits`."{}});}
+\DoxyCodeLine{00111\ \ \ \ \ \}}
+\DoxyCodeLine{00112\ \}}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ Bits>}
+\DoxyCodeLine{00115\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ TargetSample,\ \textcolor{keyword}{typename}\ SourceBits>}
+\DoxyCodeLine{00116\ \textcolor{keyword}{inline}\ TargetSample\ \mbox{\hyperlink{classph_1_1math_1_1_t_uniform_random_bit_generator_a4f41fd59f45b3ffa4c0b87aaac2b4110}{TUniformRandomBitGenerator<Derived,\ Bits>::generateSample}}()}
+\DoxyCodeLine{00117\ \{}
+\DoxyCodeLine{00118\ \ \ \ \ \textcolor{keyword}{static\_assert}(CHAR\_BIT\ ==\ 8);}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \ \ \ \ \textcolor{comment}{//\ Safer\ for\ bit\ operations\ (custom\ types\ are\ explicitly\ allowed).}}
+\DoxyCodeLine{00121\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_unsigned\_v<SourceBits>\ ||\ std::is\_class\_v<SourceBits>);}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00123\ \ \ \ \ \textcolor{comment}{//\ Samples\ must\ be\ within\ [0,\ 1],\ makes\ no\ sense\ for\ using\ integral\ types}}
+\DoxyCodeLine{00124\ \ \ \ \ \textcolor{comment}{//\ (custom\ types\ are\ explicitly\ allowed).}}
+\DoxyCodeLine{00125\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_floating\_point\_v<TargetSample>\ ||\ std::is\_class\_v<TargetSample>);}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00127\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(std::is\_same\_v<SourceBits,\ uint32>)}
+\DoxyCodeLine{00128\ \ \ \ \ \{}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ TargetSample\ sample\ =\ generate<SourceBits>()\ *\ TargetSample(0x1p-\/32);}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ PH\_ASSERT\_IN\_RANGE\_INCLUSIVE(sample,\ TargetSample(0.0),\ TargetSample(1.0));}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ sample;}
+\DoxyCodeLine{00132\ \ \ \ \ \}}
+\DoxyCodeLine{00133\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(std::is\_same\_v<SourceBits,\ uint64>)}
+\DoxyCodeLine{00134\ \ \ \ \ \{}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ TargetSample\ sample\ =\ generate<SourceBits>()\ *\ TargetSample(0x1p-\/64);}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ PH\_ASSERT\_IN\_RANGE\_INCLUSIVE(sample,\ TargetSample(0.0),\ TargetSample(1.0));}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ sample;}
+\DoxyCodeLine{00138\ \ \ \ \ \}}
+\DoxyCodeLine{00139\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00140\ \ \ \ \ \{}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ PH\_STATIC\_ASSERT\_DEPENDENT\_FALSE(Derived,}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}No\ existing\ implementation\ can\ do\ \`{}SourceBits`\ -\/>\ \`{}TargetSample`."{}});}
+\DoxyCodeLine{00143\ \ \ \ \ \}}
+\DoxyCodeLine{00144\ \}}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00146\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ Bits>}
+\DoxyCodeLine{00147\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1math_1_1_t_uniform_random_bit_generator_a5625f2352734462e59bb9b8e1312415a}{TUniformRandomBitGenerator<Derived,\ Bits>::jumpAhead}}(\textcolor{keyword}{const}\ uint64\ distance)}
+\DoxyCodeLine{00148\ \{}
+\DoxyCodeLine{00149\ \ \ \ \ \textcolor{keyword}{static\_assert}(\textcolor{keyword}{requires}\ (Derived\ derived)}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ derived.impl\_jumpAhead(std::declval<uint64>())\}\ -\/>\ std::same\_as<void>;}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \},}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Uniform\ random\ bit\ generator\ must\ implement\ \`{}impl\_jumpAhead(uint64\ distance)\ -\/>\ void`."{}});}
+\DoxyCodeLine{00154\ }
+\DoxyCodeLine{00155\ \ \ \ \ \textcolor{keyword}{static\_cast<}Derived\&\textcolor{keyword}{>}(*this).impl\_jumpAhead(distance);}
+\DoxyCodeLine{00156\ \}}
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00158\ \}\textcolor{comment}{//\ end\ namespace\ ph::math}}
 
 \end{DoxyCode}

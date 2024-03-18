@@ -20,10 +20,11 @@ var searchData=
   ['ph_3a_3amath_3a_3aradical_5finverse_5fdetail_17',['radical_inverse_detail',['../db/d0d/namespaceph_1_1math_1_1radical__inverse__detail.html',1,'ph::math']]],
   ['ph_3a_3amath_3a_3aspectral_5fdata_18',['spectral_data',['../db/d0a/namespaceph_1_1math_1_1spectral__data.html',1,'ph::math']]],
   ['ph_3a_3amath_3a_3atable_19',['table',['../d4/d7a/namespaceph_1_1math_1_1table.html',1,'ph::math']]],
-  ['ph_3a_3apixel_5fbuffer_20',['pixel_buffer',['../d5/dfe/namespaceph_1_1pixel__buffer.html',1,'ph']]],
-  ['ph_3a_3apixel_5ftexture_21',['pixel_texture',['../d1/d5d/namespaceph_1_1pixel__texture.html',1,'ph']]],
-  ['ph_3a_3asdl_22',['sdl',['../d3/dc3/namespaceph_1_1sdl.html',1,'ph']]],
-  ['ph_3a_3asdl_3a_3adetail_23',['detail',['../d8/df7/namespaceph_1_1sdl_1_1detail.html',1,'ph::sdl']]],
-  ['ph_3a_3asdl_5fparser_24',['sdl_parser',['../d0/d12/namespaceph_1_1sdl__parser.html',1,'ph']]],
-  ['ph_3a_3atexfunc_25',['texfunc',['../da/de9/namespaceph_1_1texfunc.html',1,'ph']]]
+  ['ph_3a_3amath_3a_3atable_3a_3adetail_20',['detail',['../dd/d7d/namespaceph_1_1math_1_1table_1_1detail.html',1,'ph::math::table']]],
+  ['ph_3a_3apixel_5fbuffer_21',['pixel_buffer',['../d5/dfe/namespaceph_1_1pixel__buffer.html',1,'ph']]],
+  ['ph_3a_3apixel_5ftexture_22',['pixel_texture',['../d1/d5d/namespaceph_1_1pixel__texture.html',1,'ph']]],
+  ['ph_3a_3asdl_23',['sdl',['../d3/dc3/namespaceph_1_1sdl.html',1,'ph']]],
+  ['ph_3a_3asdl_3a_3adetail_24',['detail',['../d8/df7/namespaceph_1_1sdl_1_1detail.html',1,'ph::sdl']]],
+  ['ph_3a_3asdl_5fparser_25',['sdl_parser',['../d0/d12/namespaceph_1_1sdl__parser.html',1,'ph']]],
+  ['ph_3a_3atexfunc_26',['texfunc',['../da/de9/namespaceph_1_1texfunc.html',1,'ph']]]
 ];

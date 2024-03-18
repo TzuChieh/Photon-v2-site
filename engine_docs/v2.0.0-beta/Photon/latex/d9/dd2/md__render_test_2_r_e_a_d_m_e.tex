@@ -1,0 +1,26 @@
+\chapter{Photon Render Test}
+\hypertarget{md__render_test_2_r_e_a_d_m_e}{}\label{md__render_test_2_r_e_a_d_m_e}\index{Photon Render Test@{Photon Render Test}}
+\label{md__render_test_2_r_e_a_d_m_e_autotoc_md20}%
+\Hypertarget{md__render_test_2_r_e_a_d_m_e_autotoc_md20}%
+ This directory ({\ttfamily ./\+Main/\+Render\+Test/}) contains the primary end-\/to-\/end tests for Photon renderer. {\bfseries{Do not run the test directly in this directory.}} After setup (by running the setup script in project root), the test will be installed to the build directory and you can run it from there. As always, use the build directory as the working directory when running tests.
+
+In the build directory, you can run tests using
+
+\begin{quote}
+pytest ./\+Render\+Test/ \end{quote}
+or run and produce a markdown report with
+
+\begin{quote}
+python ./\+Render\+Test/run\+\_\+and\+\_\+report.py \end{quote}
+\hypertarget{md__render_test_2_r_e_a_d_m_e_autotoc_md21}{}\doxysection{\texorpdfstring{Parallel Test Execution}{Parallel Test Execution}}\label{md__render_test_2_r_e_a_d_m_e_autotoc_md21}
+Most tests already utilizes threading provided by Photon itself. However, tests run by {\ttfamily pytest} is sequential by default. You can install the {\ttfamily pytest-\/xdist} plugin ({\ttfamily pip install pytest-\/xdist}) and run tests across multiple CPUs. For example, to run tests using 20 CPUs, you can execute the following command\+:
+
+\begin{quote}
+python ./\+Render\+Test/run\+\_\+and\+\_\+report.py -\/n 20 \end{quote}
+\hypertarget{md__render_test_2_r_e_a_d_m_e_autotoc_md22}{}\doxysection{\texorpdfstring{Run Specified Tests Only}{Run Specified Tests Only}}\label{md__render_test_2_r_e_a_d_m_e_autotoc_md22}
+You can use the keyword expressions provided by pytest. For example, to run {\ttfamily test\+\_\+fullscreen\+\_\+unit\+\_\+radiance}, you can use
+
+\begin{quote}
+python ./\+Render\+Test/run\+\_\+and\+\_\+report.py -\/k unit\+\_\+radiance \end{quote}
+\hypertarget{md__render_test_2_r_e_a_d_m_e_autotoc_md23}{}\doxysection{\texorpdfstring{Writing New Tests}{Writing New Tests}}\label{md__render_test_2_r_e_a_d_m_e_autotoc_md23}
+If you do not follow the pattern of existing tests, please keep in mind that the tests can run in parallel (e.\+g., using {\ttfamily xdist}). All tests must be written in a thread-\/safe and process-\/safe way. 

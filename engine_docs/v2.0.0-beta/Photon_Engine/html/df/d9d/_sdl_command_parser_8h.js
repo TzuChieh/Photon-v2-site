@@ -8,6 +8,7 @@ var _sdl_command_parser_8h =
       [ "Removal", "df/d9d/_sdl_command_parser_8h.html#a748a9a96952018f789a076563beb0eeaaad7dcd0ec48cd500746a3e9ef80c0a9b", null ],
       [ "Update", "df/d9d/_sdl_command_parser_8h.html#a748a9a96952018f789a076563beb0eeaa06933067aafd48425d67bcb01bba5cb6", null ],
       [ "Execution", "df/d9d/_sdl_command_parser_8h.html#a748a9a96952018f789a076563beb0eeaa8f44785c8c19412c5b6611db30984514", null ],
+      [ "NamedDataPacket", "df/d9d/_sdl_command_parser_8h.html#a748a9a96952018f789a076563beb0eeaa2e33bf520f9ef0c0a06294f6cf6dd3d4", null ],
       [ "Phantom", "df/d9d/_sdl_command_parser_8h.html#a748a9a96952018f789a076563beb0eeaaf0a43d6e5eea19af337a176e9836acdd", null ]
     ] ]
 ];

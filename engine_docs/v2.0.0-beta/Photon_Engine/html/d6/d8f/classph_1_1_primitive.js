@@ -2,10 +2,11 @@ var classph_1_1_primitive =
 [
     [ "calcAABB", "d6/d8f/classph_1_1_primitive.html#af5e204e52b0ad4779a6cd888495a248d", null ],
     [ "calcExtendedArea", "d6/d8f/classph_1_1_primitive.html#a2c352873161e8bab85ddb4a86eb489c8", null ],
-    [ "calcIntersectionDetail", "d6/d8f/classph_1_1_primitive.html#a52e6bbd53007fe29589759a4a051cd6a", null ],
-    [ "calcPositionSamplePdfA", "d6/d8f/classph_1_1_primitive.html#a15b84cd1414c71ae2bfec519138b07c1", null ],
-    [ "genPositionSample", "d6/d8f/classph_1_1_primitive.html#af3eafe37df21d948bb1571395060518c", null ],
+    [ "calcHitDetail", "d6/d8f/classph_1_1_primitive.html#a68c3a4877450bbc0bf0230558b1bbb67", null ],
+    [ "calcPosSamplePdfA", "d6/d8f/classph_1_1_primitive.html#a2f4f082548c743ffe1ed80fdc9f060b9", null ],
+    [ "genPosSample", "d6/d8f/classph_1_1_primitive.html#adf10fb27ccbff49031a7ad82b19f1417", null ],
     [ "getMetadata", "d6/d8f/classph_1_1_primitive.html#a967b40614b286c46aed37e9cd81fec0e", null ],
     [ "isIntersecting", "d6/d8f/classph_1_1_primitive.html#ae265b7076813fa1c9684f6b128447c91", null ],
+    [ "reintersect", "d6/d8f/classph_1_1_primitive.html#a9ab017656ee45d0df91922f3f4f94ff9", null ],
     [ "uvwToPosition", "d6/d8f/classph_1_1_primitive.html#a5f788c61aabe92e33a80524795c45cc5", null ]
 ];

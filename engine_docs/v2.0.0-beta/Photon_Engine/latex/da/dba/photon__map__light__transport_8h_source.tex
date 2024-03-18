@@ -1,0 +1,239 @@
+\doxysection{photon\+\_\+map\+\_\+light\+\_\+transport.\+h}
+\hypertarget{photon__map__light__transport_8h_source}{}\label{photon__map__light__transport_8h_source}\index{Source/Core/Renderer/PM/photon\_map\_light\_transport.h@{Source/Core/Renderer/PM/photon\_map\_light\_transport.h}}
+\mbox{\hyperlink{photon__map__light__transport_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_photon_8h}{Core/Renderer/PM/TPhoton.h}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_photon_map_8h}{Core/Renderer/PM/TPhotonMap.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_p_m_common_params_8h}{Core/Renderer/PM/PMCommonParams.h}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_sidedness_agreement_8h}{Core/LTA/SidednessAgreement.h}}"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_russian_roulette_8h}{Core/LTA/RussianRoulette.h}}"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_direct_light_estimator_8h}{Core/LTA/TDirectLightEstimator.h}}"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_indirect_light_estimator_8h}{Core/LTA/TIndirectLightEstimator.h}}"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_surface_hit_8h}{Core/SurfaceHit.h}}"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_primitive_8h}{Core/Intersection/Primitive.h}}"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_primitive_metadata_8h}{Core/Intersection/PrimitiveMetadata.h}}"{}}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_emitter_8h}{Core/Emitter/Emitter.h}}"{}}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_surface_behavior_8h}{Core/SurfaceBehavior/SurfaceBehavior.h}}"{}}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_surface_optics_8h}{Core/SurfaceBehavior/SurfaceOptics.h}}"{}}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_bsdf_sample_query_8h}{Core/SurfaceBehavior/BsdfSampleQuery.h}}"{}}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_vector3_8h}{Math/TVector3.h}}"{}}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_spectrum_8h}{Math/Color/Spectrum.h}}"{}}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ <Common/assertion.h>}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ <Common/primitive\_type.h>}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ <cstddef>}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ <limits>}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}\ \{\ \textcolor{keyword}{class\ }Scene;\ \}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00030\ \{}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00036\ \textcolor{keyword}{template}<CPhoton\ Photon>}
+\DoxyCodeLine{00037\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespaceph_ab9d4b27758a195a566ee213c1f41f96f}{accept\_photon\_by\_surface\_topology}}(}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keyword}{const}\ Photon\&\ photon,}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\&\ Ng,}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\&\ Ns,}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\&\ L,}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\&\ V,}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1lta_1_1_sidedness_agreement}{lta::SidednessAgreement}}\&\ sidedness)}
+\DoxyCodeLine{00044\ \{}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(Photon::template\ has<EPhotonData::GeometryNormal>())}
+\DoxyCodeLine{00046\ \ \ \ \ \{}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\ photonNg\ =\ photon.template\ get<EPhotonData::GeometryNormal>();}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(photonNg.\mbox{\hyperlink{classph_1_1math_1_1_t_vector_n_base_a798d064dc3ff4c11b536919418b2e2d5}{dot}}(Ng)\ <\ 0.1\_r\ ||\ \textcolor{comment}{//\ \string~>\ 84.26\ deg}}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ photonNg.\mbox{\hyperlink{classph_1_1math_1_1_t_vector_n_base_a798d064dc3ff4c11b536919418b2e2d5}{dot}}(Ns)\ <\ 0.2\_r\ ||\ \textcolor{comment}{//\ \string~>\ 78.46\ deg}}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ !sidedness.\mbox{\hyperlink{classph_1_1lta_1_1_sidedness_agreement_a4809b47dbbc175c835fad756b0f4fdbb}{isSidednessAgreed}}(photonNg,\ Ns,\ V)\ ||}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ !sidedness.\mbox{\hyperlink{classph_1_1lta_1_1_sidedness_agreement_a4809b47dbbc175c835fad756b0f4fdbb}{isSidednessAgreed}}(photonNg,\ Ns,\ L))}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00055\ \ \ \ \ \}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00058\ \}}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00073\ \textcolor{keyword}{template}<CPhoton\ Photon>}
+\DoxyCodeLine{00074\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_spectrum}{math::Spectrum}}\ \mbox{\hyperlink{namespaceph_a7bddcd600f81212f4e8ff4071dc640b7}{estimate\_certainly\_lost\_energy}}(}
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ \ \ \ \ \ \ \ \ \ \ \ \ viewPathLength,}
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_surface_hit}{SurfaceHit}}\&\ \ \ \ \ \ \ \ \ \ \ \ \ X,}
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_spectrum}{math::Spectrum}}\&\ \ \ \ \ \ \ \ \ viewPathThroughput,}
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_t_photon_map_info}{TPhotonMapInfo<Photon>}}\&\ photonMapInfo,}
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_scene}{Scene}}*\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ scene,}
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ \ \ \ \ \ \ \ \ \ \ \ \ minFullPathLength\ =\ 1,}
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ \ \ \ \ \ \ \ \ \ \ \ \ maxFullPathLength\ =\ \mbox{\hyperlink{classph_1_1_p_m_common_params_add7ec0cd3fbcd49279d13ef7a77f4b57}{PMCommonParams::DEFAULT\_MAX\_PATH\_LENGTH}})}
+\DoxyCodeLine{00082\ \{}
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keyword}{using\ }DirectLight\ =\ \mbox{\hyperlink{classph_1_1lta_1_1_t_direct_light_estimator}{lta::TDirectLightEstimator<lta::ESidednessPolicy::Strict>}};}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_spectrum}{math::Spectrum}}\ lostEnergy(0);}
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keywordflow}{if}(!X.\mbox{\hyperlink{classph_1_1_surface_hit_a75da2f51e2142ca3e24859620965333c}{getSurfaceOptics}}())}
+\DoxyCodeLine{00087\ \ \ \ \ \{}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ lostEnergy;}
+\DoxyCodeLine{00089\ \ \ \ \ \}}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \ \ \ \ PH\_ASSERT\_GE(viewPathLength,\ 1);}
+\DoxyCodeLine{00092\ \ \ \ \ PH\_ASSERT\_GE(minFullPathLength,\ 1);}
+\DoxyCodeLine{00093\ \ \ \ \ PH\_ASSERT\_LE(minFullPathLength,\ maxFullPathLength);}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{comment}{//\ Cannot\ have\ path\ length\ =\ 1\ lighting\ using\ only\ photon\ map-\/-\/when\ we\ use\ a\ photon\ map,\ it\ is}}
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{comment}{//\ at\ least\ path\ length\ =\ 2\ (can\ be\ even\ longer\ depending\ on\ the\ settings)}}
+\DoxyCodeLine{00097\ \ \ \ \ }
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{comment}{//\ Never\ contain\ 0-\/bounce\ photons}}
+\DoxyCodeLine{00099\ \ \ \ \ PH\_ASSERT\_GE(photonMapInfo.\mbox{\hyperlink{classph_1_1_t_photon_map_info_a48f21b98fbc3ae4fdec7b319665150f8}{minPathLength}},\ 1);}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{comment}{//\ Path\ length\ =\ 1\ (0-\/bounce)\ lighting\ via\ path\ tracing\ (directly\ sample\ radiance)}}
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keywordflow}{if}(viewPathLength\ ==\ 1\ \&\&\ X.\mbox{\hyperlink{classph_1_1_surface_hit_a65af3adb7f79bb7f6ac996983af46e73}{getSurfaceEmitter}}()\ \&\&\ minFullPathLength\ ==\ 1)}
+\DoxyCodeLine{00103\ \ \ \ \ \{}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ PH\_ASSERT\_IN\_RANGE\_INCLUSIVE(viewPathLength,\ minFullPathLength,\ maxFullPathLength);}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_spectrum}{math::Spectrum}}\ viewRadiance;}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ X.\mbox{\hyperlink{classph_1_1_surface_hit_a65af3adb7f79bb7f6ac996983af46e73}{getSurfaceEmitter}}()-\/>\mbox{\hyperlink{classph_1_1_emitter_a411feaf012b6fde9b14c995e0f146c99}{evalEmittedRadiance}}(X,\ \&viewRadiance);}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ lostEnergy\ +=\ viewPathThroughput\ *\ viewRadiance;}
+\DoxyCodeLine{00109\ \ \ \ \ \}}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{comment}{//\ +1\ as\ when\ we\ merge\ view\ path\ with\ photon\ path,\ path\ length\ is\ at\ least\ increased\ by\ 1}}
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ minPathLengthWithPhotonMap\ =\ photonMapInfo.\mbox{\hyperlink{classph_1_1_t_photon_map_info_a48f21b98fbc3ae4fdec7b319665150f8}{minPathLength}}\ +\ 1;}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{comment}{//\ If\ we\ can\ **never**\ construct\ the\ path\ length\ from\ photon\ map,\ use\ path\ tracing}}
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{keywordflow}{if}(viewPathLength\ +\ 1\ <\ minPathLengthWithPhotonMap\ \&\&\ }
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ minFullPathLength\ <=\ viewPathLength\ +\ 1\ \&\&\ viewPathLength\ +\ 1\ <=\ maxFullPathLength)}
+\DoxyCodeLine{00117\ \ \ \ \ \{}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_bsdf_sample_query}{BsdfSampleQuery}}\ bsdfSample;}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ bsdfSample.\mbox{\hyperlink{classph_1_1_bsdf_sample_query_a15de1880de1bfef9ac195e1f7c072164}{inputs}}.\mbox{\hyperlink{classph_1_1_bsdf_sample_input_ac45066366eca9aa0f45e4fd92273608e}{set}}(X,\ -\/X.\mbox{\hyperlink{classph_1_1_surface_hit_a61d656616db630197f8b06093705fba6}{getIncidentRay}}().\mbox{\hyperlink{classph_1_1_ray_a3f62b201c0015a647611282280130b52}{getDirection}}());}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_spectrum}{math::Spectrum}}\ viewRadiance;}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_sample_flow}{SampleFlow}}\ randomFlow;}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(DirectLight\{scene\}.bsdfSamplePathWithNee(}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ bsdfSample,}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ randomFlow,}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ \&viewRadiance))}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ lostEnergy\ +=\ viewPathThroughput\ *\ viewRadiance;}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00130\ \ \ \ \ \}}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00132\ \ \ \ \ \textcolor{keywordflow}{return}\ lostEnergy;}
+\DoxyCodeLine{00133\ \}}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00150\ \textcolor{keyword}{template}<CPhoton\ Photon>}
+\DoxyCodeLine{00151\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_spectrum}{math::Spectrum}}\ \mbox{\hyperlink{namespaceph_a4157e74ef0b3f83ee81fb342f3cdb0b8}{estimate\_lost\_energy\_for\_extending}}(}
+\DoxyCodeLine{00152\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ \ \ \ \ \ \ \ \ \ \ \ \ viewPathLength,}
+\DoxyCodeLine{00153\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_surface_hit}{SurfaceHit}}\&\ \ \ \ \ \ \ \ \ \ \ \ \ X,}
+\DoxyCodeLine{00154\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_spectrum}{math::Spectrum}}\&\ \ \ \ \ \ \ \ \ viewPathThroughput,}
+\DoxyCodeLine{00155\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_t_photon_map_info}{TPhotonMapInfo<Photon>}}\&\ photonMapInfo,}
+\DoxyCodeLine{00156\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_scene}{Scene}}*\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ scene,}
+\DoxyCodeLine{00157\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ \ \ \ \ \ \ \ \ \ \ \ \ minFullPathLength\ =\ 1,}
+\DoxyCodeLine{00158\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ \ \ \ \ \ \ \ \ \ \ \ \ maxFullPathLength\ =\ \mbox{\hyperlink{classph_1_1_p_m_common_params_add7ec0cd3fbcd49279d13ef7a77f4b57}{PMCommonParams::DEFAULT\_MAX\_PATH\_LENGTH}})}
+\DoxyCodeLine{00159\ \{}
+\DoxyCodeLine{00160\ \ \ \ \ \textcolor{keyword}{using\ }IndirectLight\ =\ \mbox{\hyperlink{classph_1_1lta_1_1_t_indirect_light_estimator}{lta::TIndirectLightEstimator<lta::ESidednessPolicy::Strict>}};}
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00162\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_spectrum}{math::Spectrum}}\ lostEnergy(0);}
+\DoxyCodeLine{00163\ \ \ \ \ \textcolor{keywordflow}{if}(!X.\mbox{\hyperlink{classph_1_1_surface_hit_a75da2f51e2142ca3e24859620965333c}{getSurfaceOptics}}())}
+\DoxyCodeLine{00164\ \ \ \ \ \{}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ lostEnergy;}
+\DoxyCodeLine{00166\ \ \ \ \ \}}
+\DoxyCodeLine{00167\ }
+\DoxyCodeLine{00168\ \ \ \ \ PH\_ASSERT\_GE(viewPathLength,\ 1);}
+\DoxyCodeLine{00169\ \ \ \ \ PH\_ASSERT\_GE(minFullPathLength,\ 1);}
+\DoxyCodeLine{00170\ \ \ \ \ PH\_ASSERT\_LE(minFullPathLength,\ maxFullPathLength);}
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00172\ \ \ \ \ \textcolor{comment}{//\ Cannot\ have\ path\ length\ =\ 1\ lighting\ using\ only\ photon\ map-\/-\/when\ we\ use\ a\ photon\ map,\ it\ is}}
+\DoxyCodeLine{00173\ \ \ \ \ \textcolor{comment}{//\ at\ least\ path\ length\ =\ 2\ (can\ be\ even\ longer\ depending\ on\ the\ settings)}}
+\DoxyCodeLine{00174\ \ \ \ \ }
+\DoxyCodeLine{00175\ \ \ \ \ \textcolor{comment}{//\ Never\ contain\ 0-\/bounce\ photons}}
+\DoxyCodeLine{00176\ \ \ \ \ PH\_ASSERT\_GE(photonMapInfo.\mbox{\hyperlink{classph_1_1_t_photon_map_info_a48f21b98fbc3ae4fdec7b319665150f8}{minPathLength}},\ 1);}
+\DoxyCodeLine{00177\ }
+\DoxyCodeLine{00178\ \ \ \ \ \textcolor{comment}{//\ If\ we\ extend\ the\ view\ path\ length\ from\ N\ (current)\ to\ N\ +\ 1,\ this\ means\ we\ are\ not\ using\ photon}}
+\DoxyCodeLine{00179\ \ \ \ \ \textcolor{comment}{//\ map\ to\ approximate\ lighting\ for\ path\ length\ =\ N'\ =\ \`{}N\ +\ photonMapInfo.minPathLength`.}}
+\DoxyCodeLine{00180\ \ \ \ \ \textcolor{comment}{//\ We\ will\ lose\ energy\ for\ path\ length\ =\ N'\ if\ we\ do\ nothing.\ Here\ we\ use\ path\ tracing\ to}}
+\DoxyCodeLine{00181\ \ \ \ \ \textcolor{comment}{//\ find\ the\ energy\ that\ would\ otherwise\ be\ lost.}}
+\DoxyCodeLine{00182\ \ \ \ \ \textcolor{keywordflow}{if}(minFullPathLength\ <=\ viewPathLength\ +\ photonMapInfo.\mbox{\hyperlink{classph_1_1_t_photon_map_info_a48f21b98fbc3ae4fdec7b319665150f8}{minPathLength}}\ \&\&}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ viewPathLength\ +\ photonMapInfo.\mbox{\hyperlink{classph_1_1_t_photon_map_info_a48f21b98fbc3ae4fdec7b319665150f8}{minPathLength}}\ <=\ maxFullPathLength)}
+\DoxyCodeLine{00184\ \ \ \ \ \{}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_spectrum}{math::Spectrum}}\ viewRadiance;}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_sample_flow}{SampleFlow}}\ randomFlow;}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(IndirectLight\{scene\}.bsdfSamplePathWithNee(}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \ \ \ \ X,\ }
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ randomFlow,}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \ \ \ \ photonMapInfo.\mbox{\hyperlink{classph_1_1_t_photon_map_info_a48f21b98fbc3ae4fdec7b319665150f8}{minPathLength}},\textcolor{comment}{//\ we\ are\ already\ on\ view\ path\ of\ length\ N}}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1lta_1_1_russian_roulette}{lta::RussianRoulette}}\{\},}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \ \ \ \ \&viewRadiance,}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \ \ \ \ 1,\textcolor{comment}{//\ \`{}X`\ is\ likely\ a\ delta\ or\ glossy\ surface,\ delay\ RR\ slightly}}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \ \ \ \ viewPathThroughput))}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \ \ \ \ lostEnergy\ +=\ viewRadiance;}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00198\ \ \ \ \ \}}
+\DoxyCodeLine{00199\ }
+\DoxyCodeLine{00200\ \ \ \ \ \textcolor{keywordflow}{return}\ lostEnergy;}
+\DoxyCodeLine{00201\ \}}
+\DoxyCodeLine{00202\ }
+\DoxyCodeLine{00217\ \textcolor{keyword}{template}<CPhoton\ Photon>}
+\DoxyCodeLine{00218\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_spectrum}{math::Spectrum}}\ \mbox{\hyperlink{namespaceph_a45199b25a540099512e7209137092fdf}{estimate\_lost\_energy\_for\_merging}}(}
+\DoxyCodeLine{00219\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ \ \ \ \ \ \ \ \ \ \ \ \ viewPathLength,}
+\DoxyCodeLine{00220\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_surface_hit}{SurfaceHit}}\&\ \ \ \ \ \ \ \ \ \ \ \ \ X,}
+\DoxyCodeLine{00221\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_spectrum}{math::Spectrum}}\&\ \ \ \ \ \ \ \ \ viewPathThroughput,}
+\DoxyCodeLine{00222\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_t_photon_map_info}{TPhotonMapInfo<Photon>}}\&\ photonMapInfo,}
+\DoxyCodeLine{00223\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_scene}{Scene}}*\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ scene,}
+\DoxyCodeLine{00224\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ \ \ \ \ \ \ \ \ \ \ \ \ minFullPathLength\ =\ 1,}
+\DoxyCodeLine{00225\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ \ \ \ \ \ \ \ \ \ \ \ \ maxFullPathLength\ =\ \mbox{\hyperlink{classph_1_1_p_m_common_params_add7ec0cd3fbcd49279d13ef7a77f4b57}{PMCommonParams::DEFAULT\_MAX\_PATH\_LENGTH}})}
+\DoxyCodeLine{00226\ \{}
+\DoxyCodeLine{00227\ \ \ \ \ \textcolor{keyword}{using\ }IndirectLight\ =\ \mbox{\hyperlink{classph_1_1lta_1_1_t_indirect_light_estimator}{lta::TIndirectLightEstimator<lta::ESidednessPolicy::Strict>}};}
+\DoxyCodeLine{00228\ }
+\DoxyCodeLine{00229\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_spectrum}{math::Spectrum}}\ lostEnergy(0);}
+\DoxyCodeLine{00230\ \ \ \ \ \textcolor{keywordflow}{if}(!X.\mbox{\hyperlink{classph_1_1_surface_hit_a75da2f51e2142ca3e24859620965333c}{getSurfaceOptics}}())}
+\DoxyCodeLine{00231\ \ \ \ \ \{}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ lostEnergy;}
+\DoxyCodeLine{00233\ \ \ \ \ \}}
+\DoxyCodeLine{00234\ }
+\DoxyCodeLine{00235\ \ \ \ \ PH\_ASSERT\_GE(viewPathLength,\ 1);}
+\DoxyCodeLine{00236\ \ \ \ \ PH\_ASSERT\_GE(minFullPathLength,\ 1);}
+\DoxyCodeLine{00237\ \ \ \ \ PH\_ASSERT\_LE(minFullPathLength,\ maxFullPathLength);}
+\DoxyCodeLine{00238\ }
+\DoxyCodeLine{00239\ \ \ \ \ \textcolor{comment}{//\ Never\ contain\ 0-\/bounce\ photons}}
+\DoxyCodeLine{00240\ \ \ \ \ PH\_ASSERT\_GE(photonMapInfo.\mbox{\hyperlink{classph_1_1_t_photon_map_info_a48f21b98fbc3ae4fdec7b319665150f8}{minPathLength}},\ 1);}
+\DoxyCodeLine{00241\ }
+\DoxyCodeLine{00242\ \ \ \ \ \textcolor{comment}{//\ For\ path\ length\ =\ N\ (current),\ we\ can\ construct\ light\ transport\ path\ lengths\ with\ photon\ map,}}
+\DoxyCodeLine{00243\ \ \ \ \ \textcolor{comment}{//\ all\ at\ once,\ for\ the\ range\ [N\_min,\ N\_max]\ =\ }}
+\DoxyCodeLine{00244\ \ \ \ \ \textcolor{comment}{//\ [`N\ +\ photonMapInfo.minPathLength`,\ \`{}N\ +\ photonMapInfo.maxPathLength`].}}
+\DoxyCodeLine{00245\ \ \ \ \ \textcolor{comment}{//\ For\ path\ lengths\ <\ N\_min,\ they\ should\ be\ accounted\ for\ by\ \`{}estimate\_lost\_energy\_for\_extend()`}}
+\DoxyCodeLine{00246\ \ \ \ \ \textcolor{comment}{//\ already.\ For\ all\ path\ lengths\ >\ N\_max,\ use\ path\ tracing,\ which\ is\ done\ below:}}
+\DoxyCodeLine{00247\ }
+\DoxyCodeLine{00248\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ minLostFullPathLength\ =\ viewPathLength\ +\ photonMapInfo.\mbox{\hyperlink{classph_1_1_t_photon_map_info_ab7590812266c3a9bde7c41112b46624a}{maxPathLength}}\ +\ 1;}
+\DoxyCodeLine{00249\ }
+\DoxyCodeLine{00250\ \ \ \ \ \textcolor{comment}{//\ Will\ also\ skip\ this\ if\ it\ is\ practically\ infinite\ number\ of\ bounces\ already}}
+\DoxyCodeLine{00251\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ isAlreadyEnoughBounces\ =\ }
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ minLostFullPathLength\ >\ \mbox{\hyperlink{classph_1_1_p_m_common_params_add7ec0cd3fbcd49279d13ef7a77f4b57}{PMCommonParams::DEFAULT\_MAX\_PATH\_LENGTH}};}
+\DoxyCodeLine{00253\ }
+\DoxyCodeLine{00254\ \ \ \ \ \textcolor{keywordflow}{if}(!isAlreadyEnoughBounces\ \&\&\ minLostFullPathLength\ <=\ maxFullPathLength)}
+\DoxyCodeLine{00255\ \ \ \ \ \{}
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ minLostFullPathLengthClipped\ =\ std::max(}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \ \ \ \ minFullPathLength,\ minLostFullPathLength);}
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ PH\_ASSERT\_GE(minLostFullPathLengthClipped,\ viewPathLength);}
+\DoxyCodeLine{00259\ }
+\DoxyCodeLine{00260\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_spectrum}{math::Spectrum}}\ viewRadiance;}
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_sample_flow}{SampleFlow}}\ randomFlow;}
+\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(IndirectLight\{scene\}.bsdfSamplePathWithNee(}
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ \ \ \ \ X,\ }
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ \ \ \ \ randomFlow,}
+\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ \ \ \ \ minLostFullPathLengthClipped\ -\/\ viewPathLength,\textcolor{comment}{//\ we\ are\ already\ on\ view\ path\ of\ length\ N}}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \ \ \ \ std::numeric\_limits<std::size\_t>::max(),}
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1lta_1_1_russian_roulette}{lta::RussianRoulette}}\{\},}
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ \ \ \ \ \&viewRadiance,}
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ \ \ \ \ 0,\textcolor{comment}{//\ the\ path\ length\ is\ likely\ long\ already,\ do\ RR\ immediately}}
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ \ \ \ \ viewPathThroughput))}
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ \ \ \ \ lostEnergy\ +=\ viewRadiance;}
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00274\ \ \ \ \ \}}
+\DoxyCodeLine{00275\ }
+\DoxyCodeLine{00276\ \ \ \ \ \textcolor{keywordflow}{return}\ lostEnergy;}
+\DoxyCodeLine{00277\ \}}
+\DoxyCodeLine{00278\ }
+\DoxyCodeLine{00279\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+
+\end{DoxyCode}

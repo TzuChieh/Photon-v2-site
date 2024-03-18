@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['widthpx_0',['widthPx',['../df/d6c/struct_ph_frame_region_info.html#aa966083e50de13e58e1f15085d8ad077',1,'PhFrameRegionInfo']]]
+  ['totalwork_0',['totalWork',['../d2/d1e/struct_ph_render_progress.html#a9405ed3c9e10c4248858e8fde7df196b',1,'PhRenderProgress']]]
 ];

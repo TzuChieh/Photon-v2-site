@@ -1,0 +1,58 @@
+\doxysection{Imgui\+Editor\+Offline\+Task\+Manager.\+h}
+\hypertarget{_imgui_editor_offline_task_manager_8h_source}{}\label{_imgui_editor_offline_task_manager_8h_source}\index{Source/Render/Imgui/Editor/ImguiEditorOfflineTaskManager.h@{Source/Render/Imgui/Editor/ImguiEditorOfflineTaskManager.h}}
+\mbox{\hyperlink{_imgui_editor_offline_task_manager_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_offline_render_stats_8h}{Render/Renderer/OfflineRenderStats.h}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_offline_render_peek_8h}{Render/Renderer/OfflineRenderPeek.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_imgui_editor_panel_8h}{Render/Imgui/ImguiEditorPanel.h}}"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <cstddef>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph_1_1editor_1_1render}{ph::editor::render}}\ \{\ \textcolor{keyword}{class\ }OfflineRenderer;\ \}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph_1_1editor}{ph::editor}}}
+\DoxyCodeLine{00014\ \{}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{class\ }ImguiEditorUIProxy;}
+\DoxyCodeLine{00017\ \textcolor{keyword}{class\ }DesignerScene;}
+\DoxyCodeLine{00018\ \textcolor{keyword}{class\ }RenderAgent;}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1editor_1_1_imgui_editor_offline_task_manager}{ImguiEditorOfflineTaskManager}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classph_1_1editor_1_1_imgui_editor_panel}{ImguiEditorPanel}}}
+\DoxyCodeLine{00021\ \{}
+\DoxyCodeLine{00022\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classph_1_1editor_1_1_imgui_editor_offline_task_manager}{ImguiEditorOfflineTaskManager}}(\mbox{\hyperlink{classph_1_1editor_1_1_imgui_editor_u_i_proxy}{ImguiEditorUIProxy}}\ editorUI);}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1_imgui_editor_offline_task_manager_a6b74c347455eccaa76b184ad68fc8908}{buildWindow}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ windowIdName,\ \textcolor{keywordtype}{bool}*\ isOpening)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1editor_1_1_imgui_editor_offline_task_manager_aaee026b7f7e40dece4cb0faadac5883b}{getAttributes}}()\ \textcolor{keyword}{const}\ -\/>\ \mbox{\hyperlink{structph_1_1editor_1_1_imgui_editor_panel_1_1_attributes}{Attributes}}\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordtype}{void}\ buildTaskInfoContent(\mbox{\hyperlink{classph_1_1editor_1_1_designer_scene}{DesignerScene}}*\ scene);}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keywordtype}{void}\ buildTaskDetailContent();}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{struct\ }TaskInfo}
+\DoxyCodeLine{00033\ \ \ \ \ \{}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1_render_agent}{RenderAgent}}*\ agent\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1render_1_1_offline_renderer}{render::OfflineRenderer}}*\ renderer\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ std::string\ outputImageName;}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceph_1_1editor_1_1render_a3ea760721ac29671bda1a0cad241b243}{render::EOfflineRenderStage}}\ stage\ =\ \mbox{\hyperlink{namespaceph_1_1editor_1_1render_a3ea760721ac29671bda1a0cad241b243a2dbec34a65724db94f81e8533ee18192}{render::EOfflineRenderStage::Standby}};}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1render_1_1_offline_render_stats}{render::OfflineRenderStats}}\ stats;}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1render_1_1_offline_render_peek}{render::OfflineRenderPeek}}\ peek;}
+\DoxyCodeLine{00045\ \ \ \ \ \};}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ std::vector<TaskInfo>\ m\_taskInfos;}
+\DoxyCodeLine{00048\ \ \ \ \ std::size\_t\ m\_numValidTaskInfos;}
+\DoxyCodeLine{00049\ \ \ \ \ std::size\_t\ m\_selectedTaskInfoIdx;}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordtype}{bool}\ m\_enableStopRender;}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordtype}{bool}\ m\_enableRenderPreview;}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordtype}{bool}\ m\_indicateUpdatedRegions;}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordtype}{bool}\ m\_autoSyncImageView;}
+\DoxyCodeLine{00054\ \};}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \}\textcolor{comment}{//\ end\ namespace\ ph::editor}}
+
+\end{DoxyCode}

@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['quaterniond_0',['QuaternionD',['../d7/dac/namespaceph_1_1math.html#aad5661543f5f387fad5f89d74974139b',1,'ph::math']]],
-  ['quaternionf_1',['QuaternionF',['../d7/dac/namespaceph_1_1math.html#a5f6bf2c1726afc62a8be2e8097e2217d',1,'ph::math']]],
-  ['quaternionr_2',['QuaternionR',['../d7/dac/namespaceph_1_1math.html#a789624425545505142a31fb4f8c6d05e',1,'ph::math']]]
+  ['radiancetexture_0',['RadianceTexture',['../d9/d36/classph_1_1_lat_long_env_emitter.html#a0816dcc7af83b8c9cadbc0f8f0928e27',1,'ph::LatLongEnvEmitter']]],
+  ['realtype_1',['RealType',['../de/d70/classph_1_1_render_stats.html#a81b6621c0560e0efe5ddd1cbf9b070f3',1,'ph::RenderStats']]],
+  ['region_2',['region',['../d0/dd5/classph_1_1_renderer_proxy.html#a4fca3c7b73563f49b15a00120cc57680',1,'ph::RendererProxy::Region'],['../d3/d5c/namespaceph.html#a8fd64ba111f389ee0f7211828989cb36',1,'ph::Region']]]
 ];

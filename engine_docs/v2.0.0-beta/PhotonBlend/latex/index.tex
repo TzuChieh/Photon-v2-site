@@ -7,12 +7,58 @@
 The folder named {\ttfamily Photon\+Blend} is a Blender add-\/on for Photon. {\bfseries{We support only Blender 2.\+92 and higher}}. Please follow standard Blender add-\/on installation procedure to install it.\hypertarget{index_autotoc_md1}{}\doxysection{\texorpdfstring{Features}{Features}}\label{index_autotoc_md1}
 
 \begin{DoxyItemize}
-\item Exporting scenes to Photon\textquotesingle{}s scene description format
-\item Manipulating materials implemented in Photon with shader nodes
+\item Export scenes to Photon\textquotesingle{}s scene description format
+\item Manipulate Photon materials with shader nodes
 \item Physically meaningful input parameters
+\item Preview and perform final render directly in Blender
 \end{DoxyItemize}\hypertarget{index_autotoc_md2}{}\doxysection{\texorpdfstring{Development}{Development}}\label{index_autotoc_md2}
 
 \begin{DoxyItemize}
 \item It can be useful to have \href{https://github.com/nutti/fake-bpy-module}{\texttt{ fake bpy modules}} around so that {\ttfamily import bpy} and its equivalent no longer trigger errors in your IDE (and autocomplete is now possible).
-\item By enabling {\ttfamily Edit \texorpdfstring{$>$}{>} Preferences \texorpdfstring{$>$}{>} Interface \texorpdfstring{$>$}{>} Developer Extras} and {\ttfamily Python Tooltips}, you gain more information for developer from Blender\textquotesingle{}s UI. 
+\item By enabling {\ttfamily Edit \texorpdfstring{$>$}{>} Preferences \texorpdfstring{$>$}{>} Interface \texorpdfstring{$>$}{>} Developer Extras} and {\ttfamily Python Tooltips}, you gain more information for developer from Blender\textquotesingle{}s UI.
+\item To avoid opening Blender console manually everytime on startup, pass {\ttfamily -\/con} to the Blender executable.
+\end{DoxyItemize}\hypertarget{index_autotoc_md3}{}\doxysubsection{\texorpdfstring{Notes on $<$tt$>$bpy.\+types.\+Enum\+Property$<$/tt$>$}{Notes on <tt>bpy.types.EnumProperty</tt>}}\label{index_autotoc_md3}
+When defining enum entries, you {\bfseries{must}} specify a number for it. The number are unique value used as the identifier for the entry (stored in file data). If you do not do this, the original .blend file will break (by using wrong or invalid value) when entries are added/reordered/renamed. The following is a {\bfseries{wrong}} example\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{items\ =\ [}
+\DoxyCodeLine{\ \ \ \ (\textcolor{stringliteral}{'entry'},\ \textcolor{stringliteral}{"{}Entry"{}},\ \textcolor{stringliteral}{"{}Hello\ entry!"{}}),}
+\DoxyCodeLine{\ \ \ \ (\textcolor{stringliteral}{'entry2'},\ \textcolor{stringliteral}{"{}Entry\ 2"{}},\ \textcolor{stringliteral}{"{}Hello\ entry\ 2!"{}}),}
+\DoxyCodeLine{]}
+
+\end{DoxyCode}
+
+
+Please always use the following form (numbers are specified in the end, and should not be changed to keep the integrity of old .blend files)\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{items\ =\ [}
+\DoxyCodeLine{\ \ \ \ (\textcolor{stringliteral}{'entry'},\ \textcolor{stringliteral}{"{}Entry"{}},\ \textcolor{stringliteral}{"{}Hello\ entry!"{}},\ 0),}
+\DoxyCodeLine{\ \ \ \ (\textcolor{stringliteral}{'entry2'},\ \textcolor{stringliteral}{"{}Entry\ 2"{}},\ \textcolor{stringliteral}{"{}Hello\ entry\ 2!"{}},\ 1),}
+\DoxyCodeLine{]}
+
+\end{DoxyCode}
+\hypertarget{index_autotoc_md4}{}\doxysection{\texorpdfstring{Troubleshooting}{Troubleshooting}}\label{index_autotoc_md4}
+
+\begin{DoxyItemize}
+\item Exported scene is different or missing some data.
+\begin{DoxyItemize}
+\item If you are exporting via {\ttfamily File -\/\texorpdfstring{$>$}{>} Export -\/\texorpdfstring{$>$}{>} Photon Scene (.p2)}, try using the {\ttfamily Render to .p2} render engine to export instead. Unfortunately Blender currently does not support getting a depsgraph with `depsgraph.\+mode == \textquotesingle{}RENDER'{\ttfamily (except the one passed to}bpy.\+types.\+Render\+Engine{\ttfamily by Blender). This will cause the exporter to export in}VIEWPORT{\ttfamily mode, and many settings such as subdivision modifiers will not apply their}RENDER{\ttfamily mode settings. The exporter still attempts to enhance this part by trying to automatically adjust object settings to match the one used for final rendering (or what the user specifies), but chances are that some parts are still missing/different. The}Render to .p2{\ttfamily render engine export scenes in}RENDER\`{} mode by default. See \href{https://devtalk.blender.org/t/get-render-dependency-graph/12164}{\texttt{ Get "{}Render"{} dependency graph}} for a related discussion.
+\end{DoxyItemize}
+\item The render is completely black.
+\begin{DoxyItemize}
+\item Go to {\ttfamily Window -\/\texorpdfstring{$>$}{>} Toggle System Console} and see if there is message like "{}\+Warning\+: reading render result\+: expected channel "{}XXX"{} not found"{}. If so, then it is due to we are not fully supporting Blender\textquotesingle{}s layer system yet. Please change the view layer\textquotesingle{}s name to its default (View\+Layer) for now.
+\end{DoxyItemize}
+\item Camera view does not match what I see from the viewport.
+\begin{DoxyItemize}
+\item Select the camera, set the property {\ttfamily Camera -\/\texorpdfstring{$>$}{>} Sensor Fit} to {\ttfamily Horizontal} and see if that works for you. When the rendering has lower aspect ratio (e.\+g., height \texorpdfstring{$>$}{>} width), {\ttfamily Auto} sensor fit seems to interpolating between vertical and horizontal sensor size/\+FoV. I have yet figured out how the actual interpolation is done.
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{index_autotoc_md5}{}\doxysection{\texorpdfstring{Known Issues}{Known Issues}}\label{index_autotoc_md5}
+\hypertarget{index_autotoc_md6}{}\doxysubsection{\texorpdfstring{Blender 3.\+6.\+5}{Blender 3.6.5}}\label{index_autotoc_md6}
+
+\begin{DoxyItemize}
+\item {\ttfamily File -\/\texorpdfstring{$>$}{>} Export -\/\texorpdfstring{$>$}{>} Photon Scene (.p2)} may omit a newly created material\textquotesingle{}s node tree, resulting in a fallback material being used. Using fake user for the material or saving and reopening the .blend file seem to work. A better alternative is to use the {\ttfamily Render to .p2} render engine to export. This seems to have something to do with the depsgraph {\ttfamily VIEWPORT} \& {\ttfamily RENDER} mode issue, {\ttfamily VIEWPORT} depsgraph does not evaluate a newly created material\textquotesingle{}s node tree.
+\item Render to .p2 output empty (black) frames to output folder ({\ttfamily Output Properties -\/\texorpdfstring{$>$}{>} Output -\/\texorpdfstring{$>$}{>} Output Path}, defaults to {\ttfamily /tmp/}) no matter the render engine setting ({\ttfamily bl\+\_\+use\+\_\+image\+\_\+save = False}). You may want to manually remove those files from time to time. 
 \end{DoxyItemize}

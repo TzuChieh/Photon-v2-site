@@ -4,59 +4,95 @@
 \begin{DoxyCode}{0}
 \DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
 \DoxyCodeLine{00002\ }
-\DoxyCodeLine{00003\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
-\DoxyCodeLine{00004\ \{}
-\DoxyCodeLine{00005\ }
-\DoxyCodeLine{00006\ \textcolor{keyword}{enum\ class}\ \mbox{\hyperlink{namespaceph_a2f105bf7a6233cdb646a691b6055d71d}{EPhotonData}}}
-\DoxyCodeLine{00007\ \{}
-\DoxyCodeLine{00008\ \ \ \ \ \mbox{\hyperlink{namespaceph_a2f105bf7a6233cdb646a691b6055d71da95e89296fd3d9a10375c497dde9d227f}{THROUGHPUT\_RADIANCE}},}
-\DoxyCodeLine{00009\ \ \ \ \ \mbox{\hyperlink{namespaceph_a11c9affc6f83fcc2a03443c050b0224ba90b4ba73224408e82ade8a072a3712c1}{POSITION}},}
-\DoxyCodeLine{00010\ \ \ \ \ \mbox{\hyperlink{namespaceph_a2f105bf7a6233cdb646a691b6055d71da12c8d7f2b9404a7bc90c587d38488dfa}{FROM\_DIR}}}
-\DoxyCodeLine{00011\ \};}
-\DoxyCodeLine{00012\ }
-\DoxyCodeLine{00013\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived>}
-\DoxyCodeLine{00014\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_t_photon}{TPhoton}}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{utility_8h}{Utility/utility.h}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{traits_8h}{Utility/traits.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_vector3_8h}{Math/TVector3.h}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_sidedness_agreement_8h}{Core/LTA/SidednessAgreement.h}}"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <type\_traits>}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00012\ \{}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{enum\ class}\ \mbox{\hyperlink{namespaceph_a2f105bf7a6233cdb646a691b6055d71d}{EPhotonData}}}
 \DoxyCodeLine{00015\ \{}
-\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keyword}{friend}\ Derived;}
-\DoxyCodeLine{00017\ }
-\DoxyCodeLine{00018\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keyword}{template}<EPhotonData\ TYPE>}
-\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_t_photon_a30ae0588690f0591d4af517d4accc364}{has}}();}
-\DoxyCodeLine{00021\ }
-\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keyword}{template}<EPhotonData\ TYPE>}
-\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keyword}{decltype}(\textcolor{keyword}{auto})\ \mbox{\hyperlink{classph_1_1_t_photon_a67cdf0761f2cdf469ba047291503d1d1}{get}}()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00024\ }
-\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{template}<EPhotonData\ TYPE,\ \textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_photon_a69541eaf3793e156941a75969229ff3a}{set}}(\textcolor{keyword}{const}\ T\&\ value);}
-\DoxyCodeLine{00027\ }
-\DoxyCodeLine{00028\ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00029\ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_photon}{TPhoton}}()\ =\ \textcolor{keywordflow}{default};}
-\DoxyCodeLine{00030\ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_photon}{\string~TPhoton}}()\ =\ \textcolor{keywordflow}{default};}
-\DoxyCodeLine{00031\ \};}
-\DoxyCodeLine{00032\ }
-\DoxyCodeLine{00033\ \textcolor{comment}{//\ In-\/header\ Implementations:}}
+\DoxyCodeLine{00016\ \ \ \ \ \mbox{\hyperlink{namespaceph_a2f105bf7a6233cdb646a691b6055d71da41fafd368452a2128ac8bdc3934d4cb5}{ThroughputRadiance}},}
+\DoxyCodeLine{00017\ \ \ \ \ \mbox{\hyperlink{namespaceph_a2f105bf7a6233cdb646a691b6055d71da52f5e0bc3859bc5f5e25130b6c7e8881}{Position}},}
+\DoxyCodeLine{00018\ \ \ \ \ \mbox{\hyperlink{namespaceph_a2f105bf7a6233cdb646a691b6055d71daee99ad64c489a5fa63f46f42f78e37e2}{FromDir}},}
+\DoxyCodeLine{00019\ \ \ \ \ \mbox{\hyperlink{namespaceph_a2f105bf7a6233cdb646a691b6055d71da551879a34d6ed879f4716e33d7b1cd92}{GeometryNormal}},}
+\DoxyCodeLine{00020\ \ \ \ \ \mbox{\hyperlink{namespaceph_a2f105bf7a6233cdb646a691b6055d71da1a383a1c74749bfaaabb286b854b2f4c}{PathLength}}}
+\DoxyCodeLine{00021\ \};}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00024\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptph_1_1_c_photon}{CPhoton}}\ =\ std::is\_trivially\_copyable\_v<T>\ \&\&\ \textcolor{keyword}{requires}}
+\DoxyCodeLine{00025\ \{}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{typename}\ T::PMPhotonTag;}
+\DoxyCodeLine{00027\ \};}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived>}
+\DoxyCodeLine{00030\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_t_photon}{TPhoton}}}
+\DoxyCodeLine{00031\ \{}
+\DoxyCodeLine{00032\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classph_1_1_t_photon_aa8c4dd712ed2fd4fb64e2552bcffc265}{PMPhotonTag}}\ =\ void;}
 \DoxyCodeLine{00034\ }
-\DoxyCodeLine{00035\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived>}
-\DoxyCodeLine{00036\ \textcolor{keyword}{template}<EPhotonData\ TYPE>}
-\DoxyCodeLine{00037\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_t_photon_a30ae0588690f0591d4af517d4accc364}{TPhoton<Derived>::has}}()}
-\DoxyCodeLine{00038\ \{}
-\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordflow}{return}\ Derived::template\ impl\_has<TYPE>();}
-\DoxyCodeLine{00040\ \}}
-\DoxyCodeLine{00041\ }
-\DoxyCodeLine{00042\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived>}
-\DoxyCodeLine{00043\ \textcolor{keyword}{template}<EPhotonData\ TYPE>}
-\DoxyCodeLine{00044\ \textcolor{keyword}{inline}\ \textcolor{keyword}{decltype}(\textcolor{keyword}{auto})\ \mbox{\hyperlink{classph_1_1_t_photon}{TPhoton<Derived>::get}}()\ \textcolor{keyword}{const}}
-\DoxyCodeLine{00045\ \{}
-\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}\textcolor{keyword}{const\ }Derived\&\textcolor{keyword}{>}(*this).template\ impl\_get<TYPE>();}
-\DoxyCodeLine{00047\ \}}
-\DoxyCodeLine{00048\ }
-\DoxyCodeLine{00049\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived>}
-\DoxyCodeLine{00050\ \textcolor{keyword}{template}<EPhotonData\ TYPE,\ \textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00051\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_photon_a69541eaf3793e156941a75969229ff3a}{TPhoton<Derived>::set}}(\textcolor{keyword}{const}\ T\&\ value)}
-\DoxyCodeLine{00052\ \{}
-\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keyword}{static\_cast<}Derived\&\textcolor{keyword}{>}(*this).template\ impl\_set<TYPE>(value);}
-\DoxyCodeLine{00054\ \}}
-\DoxyCodeLine{00055\ }
-\DoxyCodeLine{00056\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{template}<EPhotonData\ TYPE>}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_t_photon_a30ae0588690f0591d4af517d4accc364}{has}}();}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keyword}{template}<EPhotonData\ TYPE>}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{decltype}(\textcolor{keyword}{auto})\ \mbox{\hyperlink{classph_1_1_t_photon_a67cdf0761f2cdf469ba047291503d1d1}{get}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keyword}{template}<EPhotonData\ TYPE,\ \textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_photon_a69541eaf3793e156941a75969229ff3a}{set}}(\textcolor{keyword}{const}\ T\&\ value);}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{comment}{//\ Hide\ special\ members\ as\ this\ class\ is\ not\ intended\ to\ be\ used\ polymorphically.}}
+\DoxyCodeLine{00045\ \textcolor{comment}{//\ It\ is\ derived\ class's\ choice\ to\ expose\ them\ (by\ defining\ them\ in\ public)\ or\ not.}}
+\DoxyCodeLine{00046\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00047\ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_photon_a73b398353042d9e1e9978cf785633634}{PH\_DEFINE\_INLINE\_RULE\_OF\_5\_MEMBERS}}(\mbox{\hyperlink{classph_1_1_t_photon}{TPhoton}});}
+\DoxyCodeLine{00048\ \};}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived>}
+\DoxyCodeLine{00051\ \textcolor{keyword}{template}<EPhotonData\ TYPE>}
+\DoxyCodeLine{00052\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_t_photon_a30ae0588690f0591d4af517d4accc364}{TPhoton<Derived>::has}}()}
+\DoxyCodeLine{00053\ \{}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keyword}{static\_assert}(\textcolor{keyword}{requires}}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ Derived::template\ impl\_has<TYPE>()\ \}\ -\/>\ \mbox{\hyperlink{conceptph_1_1_c_same}{CSame<bool>}};}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \},}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}A\ photon\ mapping\ photon\ type\ must\ implement\ a\ static\ method\ callable\ as\ "{}}}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}\`{}impl\_has<EPhotonData\{\}>()\ -\/>\ bool`."{}});}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordflow}{return}\ Derived::template\ impl\_has<TYPE>();}
+\DoxyCodeLine{00062\ \}}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived>}
+\DoxyCodeLine{00065\ \textcolor{keyword}{template}<EPhotonData\ TYPE>}
+\DoxyCodeLine{00066\ \textcolor{keyword}{inline}\ \textcolor{keyword}{decltype}(\textcolor{keyword}{auto})\ \mbox{\hyperlink{classph_1_1_t_photon}{TPhoton<Derived>::get}}()\ \textcolor{keyword}{const}}
+\DoxyCodeLine{00067\ \{}
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keyword}{static\_assert}(\textcolor{keyword}{requires}\ (\textcolor{keyword}{const}\ Derived\ derived)}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ derived.template\ impl\_get<TYPE>()\ \}\ -\/>\ \mbox{\hyperlink{conceptph_1_1_c_not_same}{CNotSame<void>}};}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \},}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}A\ photon\ mapping\ photon\ type\ must\ implement\ a\ method\ callable\ as\ "{}}}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}\`{}impl\_get<EPhotonData\{\}>()\ const\ -\/>\ (any\ type)`."{}});}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}\textcolor{keyword}{const\ }Derived\&\textcolor{keyword}{>}(*this).template\ impl\_get<TYPE>();}
+\DoxyCodeLine{00076\ \}}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived>}
+\DoxyCodeLine{00079\ \textcolor{keyword}{template}<EPhotonData\ TYPE,\ \textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00080\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_photon_a69541eaf3793e156941a75969229ff3a}{TPhoton<Derived>::set}}(\textcolor{keyword}{const}\ T\&\ value)}
+\DoxyCodeLine{00081\ \{}
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keyword}{static\_assert}(\textcolor{keyword}{requires}\ (Derived\ derived,\ T\ value)}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ derived.template\ impl\_set<TYPE>(value)\ \}\ -\/>\ \mbox{\hyperlink{conceptph_1_1_c_same}{CSame<void>}};}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \},}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}A\ photon\ mapping\ photon\ type\ must\ implement\ a\ method\ callable\ as\ "{}}}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}\`{}impl\_set<EPhotonData\{\},\ T\{\}>(T\{\})\ -\/>\ void`."{}});}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keyword}{static\_cast<}Derived\&\textcolor{keyword}{>}(*this).template\ impl\_set<TYPE>(value);}
+\DoxyCodeLine{00090\ \}}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
 
 \end{DoxyCode}

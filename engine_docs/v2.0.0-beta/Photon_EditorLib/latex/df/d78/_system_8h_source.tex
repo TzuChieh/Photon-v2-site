@@ -1,0 +1,133 @@
+\doxysection{System.\+h}
+\hypertarget{_system_8h_source}{}\label{_system_8h_source}\index{Source/Render/System.h@{Source/Render/System.h}}
+\mbox{\hyperlink{_system_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_scene_8h}{Render/Scene.h}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_render_thread_update_context_8h}{Render/RenderThreadUpdateContext.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_concurrent_query_manager_8h}{EditorCore/Query/TConcurrentQueryManager.h}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_query_2query__basics_8h}{Render/Query/query\_basics.h}}"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <Common/assertion.h>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <Utility/INoCopyAndMove.h>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <Utility/TUniquePtrVector.h>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <Utility/Concurrent/TSPSCExecutor.h>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <Utility/TSpan.h>}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <cstddef>}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <functional>}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph_1_1editor_1_1ghi}{ph::editor::ghi}}\ \{\ \textcolor{keyword}{class\ }GraphicsContext;\ \}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph_1_1editor_1_1render}{ph::editor::render}}}
+\DoxyCodeLine{00023\ \{}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1editor_1_1render_1_1_system}{System}}\ final\ :\ \textcolor{keyword}{private}\ INoCopyAndMove}
+\DoxyCodeLine{00026\ \{}
+\DoxyCodeLine{00027\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classph_1_1editor_1_1render_1_1_system_a4cc27d5a2bddf93c9fab0364391e3740}{FileReadingWork}}\ =\ std::function<void(\textcolor{keywordtype}{void})>;}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1_render_thread_update_context}{RenderThreadUpdateContext}}\ \mbox{\hyperlink{classph_1_1editor_1_1render_1_1_system_a9d99b47e5c3999f8b3f501b4add161aa}{updateCtx}};}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classph_1_1editor_1_1render_1_1_system}{System}}(\mbox{\hyperlink{classph_1_1editor_1_1ghi_1_1_graphics_context}{ghi::GraphicsContext}}\&\ graphicsCtx);}
+\DoxyCodeLine{00033\ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1render_1_1_system_a0423ca0990ce0aa8c3f4a5751931a1e4}{\string~System}}();}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1render_1_1_system_a82b6c388c3648e03c61fe5c9a38a9626}{addScene}}(std::unique\_ptr<Scene>\ scene);}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1render_1_1_system_a97f92c714e130b9321faf9c465e60993}{removeScene}}(\mbox{\hyperlink{classph_1_1editor_1_1render_1_1_scene}{Scene}}*\ scene);}
+\DoxyCodeLine{00037\ \ \ \ \ TSpan<Scene*>\ \mbox{\hyperlink{classph_1_1editor_1_1render_1_1_system_a3921dd0c06e97539149e8303aca8a57b}{getScenes}}();}
+\DoxyCodeLine{00038\ \ \ \ \ TSpan<Scene*>\ \mbox{\hyperlink{classph_1_1editor_1_1render_1_1_system_acf4881395735ed5ce52d59ae2718d7ac}{getRemovingScenes}}();}
+\DoxyCodeLine{00039\ \ \ \ \ TSpan<Scene*>\ \mbox{\hyperlink{classph_1_1editor_1_1render_1_1_system_a244e9ee48c3542b30e05bbba009863a1}{getRemovedScenes}}();}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1render_1_1_system_a8a9b48f9e7fcadd25267a6e38331085f}{addFileReadingWork}}(\mbox{\hyperlink{classph_1_1editor_1_1render_1_1_system_a4cc27d5a2bddf93c9fab0364391e3740}{FileReadingWork}}\ work);}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1render_1_1_system_aadfd286385e7b3bf8ccb0c9f58b92f3a}{addQuery}}(\mbox{\hyperlink{classph_1_1editor_1_1_t_query}{Query}}\ query);}
+\DoxyCodeLine{00047\ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1ghi_1_1_graphics_context}{ghi::GraphicsContext}}\&\ \mbox{\hyperlink{classph_1_1editor_1_1render_1_1_system_aea769113b15d22ac0255b910068b873c}{getGraphicsContext}}();}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1editor_1_1render_1_1_system_controller}{SystemController}};}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordtype}{void}\ waitAllFileReadingWorks();}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordtype}{void}\ processQueries();}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordtype}{void}\ clearRemovingScenes();}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordtype}{void}\ clearRemovedScenes();}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00058\ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1ghi_1_1_graphics_context}{ghi::GraphicsContext}}\&\ m\_graphicsCtx;}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ TUniquePtrVector<Scene>\ m\_sceneStorage;}
+\DoxyCodeLine{00061\ \ \ \ \ std::vector<Scene*>\ m\_scenes;}
+\DoxyCodeLine{00062\ \ \ \ \ std::vector<Scene*>\ m\_removingScenes;}
+\DoxyCodeLine{00063\ \ \ \ \ std::vector<Scene*>\ m\_removedScenes;}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ \ \ TSPSCExecutor<FileReadingWork>\ m\_fileReadingThread;}
+\DoxyCodeLine{00066\ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1_t_concurrent_query_manager}{TConcurrentQueryManager<System>}}\ m\_queryManager;}
+\DoxyCodeLine{00067\ \};}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \textcolor{keyword}{inline}\ TSpan<Scene*>\ \mbox{\hyperlink{classph_1_1editor_1_1render_1_1_system_a3921dd0c06e97539149e8303aca8a57b}{System::getScenes}}()}
+\DoxyCodeLine{00070\ \{}
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_scenes;}
+\DoxyCodeLine{00072\ \}}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \textcolor{keyword}{inline}\ TSpan<Scene*>\ \mbox{\hyperlink{classph_1_1editor_1_1render_1_1_system_acf4881395735ed5ce52d59ae2718d7ac}{System::getRemovingScenes}}()}
+\DoxyCodeLine{00075\ \{}
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_removingScenes;}
+\DoxyCodeLine{00077\ \}}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \textcolor{keyword}{inline}\ TSpan<Scene*>\ \mbox{\hyperlink{classph_1_1editor_1_1render_1_1_system_a244e9ee48c3542b30e05bbba009863a1}{System::getRemovedScenes}}()}
+\DoxyCodeLine{00080\ \{}
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_removedScenes;}
+\DoxyCodeLine{00082\ \}}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1render_1_1_system_aadfd286385e7b3bf8ccb0c9f58b92f3a}{System::addQuery}}(\mbox{\hyperlink{classph_1_1editor_1_1_t_query}{Query}}\ query)}
+\DoxyCodeLine{00085\ \{}
+\DoxyCodeLine{00086\ \ \ \ \ m\_queryManager.addQuery(std::move(query));}
+\DoxyCodeLine{00087\ \}}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1editor_1_1ghi_1_1_graphics_context}{ghi::GraphicsContext}}\&\ \mbox{\hyperlink{classph_1_1editor_1_1render_1_1_system_aea769113b15d22ac0255b910068b873c}{System::getGraphicsContext}}()}
+\DoxyCodeLine{00090\ \{}
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_graphicsCtx;}
+\DoxyCodeLine{00092\ \}}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1editor_1_1render_1_1_system_controller}{SystemController}}\ final\ :\ \textcolor{keyword}{private}\ INoCopyAndMove}
+\DoxyCodeLine{00095\ \{}
+\DoxyCodeLine{00096\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classph_1_1editor_1_1render_1_1_system_controller_acd55426a1c15f9bbc45f583952586ec9}{SystemController}}(\mbox{\hyperlink{classph_1_1editor_1_1render_1_1_system}{System}}\&\ sys)}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ :\ m\_sys(sys)}
+\DoxyCodeLine{00099\ \ \ \ \ \{\}}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1render_1_1_system_controller_a47ad8a5499c75fd39f53c817537f84ac}{waitAllFileReadingWorks}}()}
+\DoxyCodeLine{00102\ \ \ \ \ \{}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ m\_sys.waitAllFileReadingWorks();}
+\DoxyCodeLine{00104\ \ \ \ \ \}}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1render_1_1_system_controller_adeb4b3bffbe124d41e07cecfe1eca743}{processQueries}}()}
+\DoxyCodeLine{00107\ \ \ \ \ \{}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ m\_sys.processQueries();}
+\DoxyCodeLine{00109\ \ \ \ \ \}}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1render_1_1_system_controller_a28c9acd2d2bc2878474a37b3a86bfb86}{clearRemovingScenes}}()}
+\DoxyCodeLine{00112\ \ \ \ \ \{}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ m\_sys.clearRemovingScenes();}
+\DoxyCodeLine{00114\ \ \ \ \ \}}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00116\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1render_1_1_system_controller_a46ca001e3df710c870b54dd5dff1f5c1}{clearRemovedScenes}}()}
+\DoxyCodeLine{00117\ \ \ \ \ \{}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ m\_sys.clearRemovedScenes();}
+\DoxyCodeLine{00119\ \ \ \ \ \}}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1render_1_1_system}{System}}*\ \mbox{\hyperlink{classph_1_1editor_1_1render_1_1_system_controller_a6213c407480ed991f4738acdbc1b9c32}{operator\ -\/>\ }}()}
+\DoxyCodeLine{00122\ \ \ \ \ \{}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \&m\_sys;}
+\DoxyCodeLine{00124\ \ \ \ \ \}}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00126\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00127\ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1render_1_1_system}{System}}\&\ m\_sys;}
+\DoxyCodeLine{00128\ \};}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ \}\textcolor{comment}{//\ end\ namespace\ ph::editor::render}}
+
+\end{DoxyCode}

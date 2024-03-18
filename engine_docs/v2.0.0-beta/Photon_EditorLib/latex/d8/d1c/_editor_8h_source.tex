@@ -1,0 +1,166 @@
+\doxysection{Editor.\+h}
+\hypertarget{_editor_8h_source}{}\label{_editor_8h_source}\index{Source/App/Editor.h@{Source/App/Editor.h}}
+\mbox{\hyperlink{_editor_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_class_event_dispatcher_8h}{EditorCore/TClassEventDispatcher.h}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_key_pressed_event_8h}{EditorCore/Event/KeyPressedEvent.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_key_released_event_8h}{EditorCore/Event/KeyReleasedEvent.h}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_display_framebuffer_resized_event_8h}{EditorCore/Event/DisplayFramebufferResizedEvent.h}}"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_scene_framebuffer_resized_event_8h}{EditorCore/Event/SceneFramebufferResizedEvent.h}}"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_display_closed_event_8h}{EditorCore/Event/DisplayClosedEvent.h}}"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_display_focus_changed_event_8h}{EditorCore/Event/DisplayFocusChangedEvent.h}}"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_app_module_action_event_8h}{EditorCore/Event/AppModuleActionEvent.h}}"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_designer_scene_added_event_8h}{App/Event/DesignerSceneAddedEvent.h}}"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_designer_scene_removal_event_8h}{App/Event/DesignerSceneRemovalEvent.h}}"{}}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_active_designer_scene_changed_event_8h}{App/Event/ActiveDesignerSceneChangedEvent.h}}"{}}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_editor_event_queue_8h}{App/EditorEventQueue.h}}"{}}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_help_menu_8h}{App/HelpMenu/HelpMenu.h}}"{}}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_dimension_hints_8h}{App/Misc/DimensionHints.h}}"{}}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_editor_stats_8h}{App/Misc/EditorStats.h}}"{}}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_file_system_explorer_8h}{EditorCore/FileSystemExplorer.h}}"{}}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_edit_context_8h}{App/EditContext.h}}"{}}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_edit_context_updated_event_8h}{App/Event/EditContextUpdatedEvent.h}}"{}}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ <Common/assertion.h>}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ <Common/primitive\_type.h>}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ <Utility/TFunction.h>}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ <Utility/TUniquePtrVector.h>}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ <Utility/INoCopyAndMove.h>}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#include\ <cstddef>}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#include\ <list>}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}\ \{\ \textcolor{keyword}{class\ }Path;\ \}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph_1_1editor}{ph::editor}}}
+\DoxyCodeLine{00036\ \{}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \textcolor{keyword}{class\ }DesignerScene;}
+\DoxyCodeLine{00039\ \textcolor{keyword}{class\ }MainThreadUpdateContext;}
+\DoxyCodeLine{00040\ \textcolor{keyword}{class\ }MainThreadRenderUpdateContext;}
+\DoxyCodeLine{00041\ \textcolor{keyword}{class\ }RenderThreadCaller;}
+\DoxyCodeLine{00042\ \textcolor{keyword}{class\ }EditorSettings;}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1editor_1_1_editor}{Editor}}\ final\ :\ \textcolor{keyword}{private}\ INoCopyAndMove}
+\DoxyCodeLine{00045\ \{}
+\DoxyCodeLine{00046\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00047\ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1_help_menu}{HelpMenu}}\ \mbox{\hyperlink{classph_1_1editor_1_1_editor_afe792e575a0b4bda895107966b5aea4c}{helpMenu}};}
+\DoxyCodeLine{00048\ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1_dimension_hints}{DimensionHints}}\ \mbox{\hyperlink{classph_1_1editor_1_1_editor_a0f7529c3ec17972e717fd28d993a7df3}{dimensionHints}};}
+\DoxyCodeLine{00049\ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1_editor_stats}{EditorStats}}\ \mbox{\hyperlink{classph_1_1editor_1_1_editor_a7de6a9177c7dec321da8842f2e5dc73e}{editorStats}};}
+\DoxyCodeLine{00050\ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1_file_system_explorer}{FileSystemExplorer}}\ \mbox{\hyperlink{classph_1_1editor_1_1_editor_aafbc164b45369eb2e359066830e59820}{fileExplorer}};}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1_editor_a2a6176d4476e0a1c3138067440240fd2}{Editor}}();}
+\DoxyCodeLine{00053\ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1_editor_ab2a908c9dcd64f237d89fbc931353cc5}{\string~Editor}}();}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1_editor_ab796ad49fa01a52d1b7dfc7c46ea91e3}{start}}();}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1_editor_a7774c73c9f316fc0aea508239ced8261}{update}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1editor_1_1_main_thread_update_context}{MainThreadUpdateContext}}\&\ ctx);}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1_editor_a8edf792b58ae3f6054dd8b85ace36e74}{renderUpdate}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1editor_1_1_main_thread_render_update_context}{MainThreadRenderUpdateContext}}\&\ ctx);}
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1_editor_ae7a718d6dded252ef4789d3fb37da2ae}{createRenderCommands}}(\mbox{\hyperlink{classph_1_1editor_1_1_render_thread_caller}{RenderThreadCaller}}\&\ caller);}
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1_editor_a71fecca3e5dcee46640d880c1c75571b}{beforeUpdateStage}}();}
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1_editor_a3725e2a36f8bee6648dbc93f20621864}{afterUpdateStage}}();}
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1_editor_a622ece150e95964c2ec82212ccc9ade9}{beforeRenderStage}}();}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1_editor_a70952a79a9f4c37c987a1f98ebb30531}{afterRenderStage}}();}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1_editor_a171ba26685256dbf08bf21a58493f5f8}{stop}}();}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1_editor_a5f192caed88d83e1de5b57f6258d32b1}{renderCleanup}}(\mbox{\hyperlink{classph_1_1editor_1_1_render_thread_caller}{RenderThreadCaller}}\&\ caller);}
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1_editor_aa33e0492269449330db7233372770f67}{cleanup}}();}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00078\ \ \ \ \ std::size\_t\ \mbox{\hyperlink{classph_1_1editor_1_1_editor_a0263028025e048c26344179b3948d37a}{createScene}}(\textcolor{keyword}{const}\ Path\&\ workingDirectory,\ \textcolor{keyword}{const}\ std::string\&\ name\ =\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \ \ \ \ std::size\_t\ \mbox{\hyperlink{classph_1_1editor_1_1_editor_ac43f47958b82c898fec3cb5ace41554a}{createSceneFromDescription}}(}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Path\&\ workingDirectory,}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Path\&\ sceneDescription,}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\&\ name\ =\ \textcolor{stringliteral}{"{}"{}},}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\&\ descName\ =\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00089\ \ \ \ \ std::size\_t\ \mbox{\hyperlink{classph_1_1editor_1_1_editor_afa487d835e734c5e3930585f1333f2bb}{loadScene}}(\textcolor{keyword}{const}\ Path\&\ sceneFile);}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1_editor_a07661a40f8c902553450a45b2f0a2394}{saveScene}}();}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1_editor_a07661a40f8c902553450a45b2f0a2394}{saveScene}}(std::size\_t\ sceneIndex);}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1_designer_scene}{DesignerScene}}*\ \mbox{\hyperlink{classph_1_1editor_1_1_editor_a18c9a62aa16405456be609163b928438}{getScene}}(std::size\_t\ sceneIndex)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00100\ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1_designer_scene}{DesignerScene}}*\ \mbox{\hyperlink{classph_1_1editor_1_1_editor_ac9972e900dd7d60f748e590e4ebea4d3}{getActiveScene}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1_editor_acefa33ef071f8e04485949f06f7ee826}{setActiveScene}}(std::size\_t\ sceneIndex);}
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1_editor_a786f85563e11ca9c2039f911c42b9725}{removeScene}}(std::size\_t\ sceneIndex);}
+\DoxyCodeLine{00103\ \ \ \ \ std::size\_t\ \mbox{\hyperlink{classph_1_1editor_1_1_editor_afec012ab6db09287fc78e0ccc5f8d98c}{numScenes}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00110\ \ \ \ \ std::size\_t\ \mbox{\hyperlink{classph_1_1editor_1_1_editor_a64161a096e0b82ad465b9e09bd83524b}{getSceneIndex}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1editor_1_1_designer_scene}{DesignerScene}}*\ scene)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1_edit_context}{EditContext}}\ \mbox{\hyperlink{classph_1_1editor_1_1_editor_aaf8d0a96fee2492ce17a3752d89241c8}{getEditContext}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ std::size\_t\ \mbox{\hyperlink{classph_1_1editor_1_1_editor_aaf4542ee16650a3d9cbffe7d91191dd3}{nullSceneIndex}}();}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00116\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{keyword}{struct\ }PendingRemovalScene}
+\DoxyCodeLine{00118\ \ \ \ \ \{}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ std::unique\_ptr<DesignerScene>\ scene;}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ hasRenderCleanupDone\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ hasCleanupDone\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00122\ \ \ \ \ \};}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00124\ \ \ \ \ TUniquePtrVector<DesignerScene>\ m\_scenes;}
+\DoxyCodeLine{00125\ \ \ \ \ std::list<PendingRemovalScene>\ m\_removingScenes;}
+\DoxyCodeLine{00126\ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1_designer_scene}{DesignerScene}}*\ m\_activeScene\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00127\ \ \ \ \ \textcolor{keywordtype}{bool}\ m\_isActiveScenePaused\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00132\ \ \ \ \ std::size\_t\ newScene();}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00134\ \ \ \ \ \textcolor{keywordtype}{void}\ loadDefaultScene();}
+\DoxyCodeLine{00135\ \ \ \ \ \textcolor{keywordtype}{void}\ cleanupRemovingScenes();}
+\DoxyCodeLine{00136\ \ \ \ \ \textcolor{keywordtype}{void}\ renderCleanupRemovingScenes(\mbox{\hyperlink{classph_1_1editor_1_1_render_thread_caller}{RenderThreadCaller}}\&\ caller);}
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00138\ \textcolor{comment}{//\ Event\ System}}
+\DoxyCodeLine{00139\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00140\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ EventType>}
+\DoxyCodeLine{00141\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classph_1_1editor_1_1_t_class_event_dispatcher}{TEditorEventDispatcher}}\ =\ \mbox{\hyperlink{classph_1_1editor_1_1_t_class_event_dispatcher}{TClassEventDispatcher<EventType,\ Editor>}};}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00160\ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1_t_class_event_dispatcher}{TEditorEventDispatcher<KeyPressedEvent>}}\ \mbox{\hyperlink{classph_1_1editor_1_1_editor_a46afb74598164cafa7f85201bf2e3ab7}{onKeyPressed}};}
+\DoxyCodeLine{00161\ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1_t_class_event_dispatcher}{TEditorEventDispatcher<KeyReleasedEvent>}}\ \mbox{\hyperlink{classph_1_1editor_1_1_editor_aec93ecefdb71cfc35e518633d3a9e76c}{onKeyReleased}};}
+\DoxyCodeLine{00162\ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1_t_class_event_dispatcher}{TEditorEventDispatcher<DisplayFramebufferResizedEvent>}}\ \mbox{\hyperlink{classph_1_1editor_1_1_editor_a8ace247cefa9b9998fdbd61fa086d45c}{onDisplayFramebufferResized}};}
+\DoxyCodeLine{00163\ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1_t_class_event_dispatcher}{TEditorEventDispatcher<SceneFramebufferResizedEvent>}}\ \mbox{\hyperlink{classph_1_1editor_1_1_editor_a0239a745cd87c27682c1ad9c2ee9c4fe}{onSceneFramebufferResized}};}
+\DoxyCodeLine{00164\ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1_t_class_event_dispatcher}{TEditorEventDispatcher<DisplayClosedEvent>}}\ \mbox{\hyperlink{classph_1_1editor_1_1_editor_a3b74dc79334ff890d7de8106e1b4f99d}{onDisplayClosed}};}
+\DoxyCodeLine{00165\ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1_t_class_event_dispatcher}{TEditorEventDispatcher<DisplayFocusChangedEvent>}}\ \mbox{\hyperlink{classph_1_1editor_1_1_editor_ac98586861750ef2846ea78ebef237df3}{onDisplayFocusChanged}};}
+\DoxyCodeLine{00166\ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1_t_class_event_dispatcher}{TEditorEventDispatcher<AppModuleActionEvent>}}\ \mbox{\hyperlink{classph_1_1editor_1_1_editor_aab4c3d4a45ffcfb82bac429779565dab}{onAppModuleAction}};}
+\DoxyCodeLine{00167\ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1_t_class_event_dispatcher}{TEditorEventDispatcher<EditContextUpdatedEvent>}}\ \mbox{\hyperlink{classph_1_1editor_1_1_editor_af572b35695c8e354183b825f3e82ce1c}{onEditContextUpdated}};}
+\DoxyCodeLine{00168\ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1_t_class_event_dispatcher}{TEditorEventDispatcher<DesignerSceneAddedEvent>}}\ \mbox{\hyperlink{classph_1_1editor_1_1_editor_ad5111bd7af24be5ee91b8b2d62b524bf}{onDesignerSceneAdded}};}
+\DoxyCodeLine{00169\ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1_t_class_event_dispatcher}{TEditorEventDispatcher<DesignerSceneRemovalEvent>}}\ \mbox{\hyperlink{classph_1_1editor_1_1_editor_a7b9ecc41944d197cbada2f9cdfc8d237}{onDesignerSceneRemoval}};}
+\DoxyCodeLine{00170\ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1_t_class_event_dispatcher}{TEditorEventDispatcher<ActiveDesignerSceneChangedEvent>}}\ \mbox{\hyperlink{classph_1_1editor_1_1_editor_a04f4b7e0879456d6522079fefc2954fa}{onActiveDesignerSceneChanged}};}
+\DoxyCodeLine{00172\ }
+\DoxyCodeLine{00178\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ EventType>}
+\DoxyCodeLine{00179\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1_editor_a98d48eaf368f548f883f744fd39198e9}{postEvent}}(\textcolor{keyword}{const}\ EventType\&\ e,\ \mbox{\hyperlink{classph_1_1editor_1_1_t_class_event_dispatcher}{TEditorEventDispatcher<EventType>}}\&\ eventDispatcher);}
+\DoxyCodeLine{00180\ }
+\DoxyCodeLine{00181\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00182\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ EventType>}
+\DoxyCodeLine{00183\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ dispatchPostedEventToListeners(}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ EventType\&\ e,\ }
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1_t_class_event_dispatcher}{TEditorEventDispatcher<EventType>}}\&\ eventDispatcher);}
+\DoxyCodeLine{00186\ }
+\DoxyCodeLine{00187\ \ \ \ \ \textcolor{keywordtype}{void}\ flushAllEvents();}
+\DoxyCodeLine{00188\ }
+\DoxyCodeLine{00189\ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1_editor_event_queue}{EditorEventQueue}}\ m\_eventPostQueue;}
+\DoxyCodeLine{00190\ }
+\DoxyCodeLine{00191\ \ \ \ \ \textcolor{comment}{//\ TODO:\ may\ require\ obj/entity\ add/remove\ event\ queue\ to\ support\ concurrent\ event\ }}
+\DoxyCodeLine{00192\ \ \ \ \ \textcolor{comment}{//\ (to\ avoid\ invalidating\ Listener\ on\ addListener())}}
+\DoxyCodeLine{00193\ \textcolor{comment}{//\ End\ Event\ System}}
+\DoxyCodeLine{00194\ }
+\DoxyCodeLine{00195\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00196\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1_editor_a61c1040225cf8d5415a7e12f8a2f74f8}{loadSettings}}(\textcolor{keyword}{const}\ Path\&\ settingsFile);}
+\DoxyCodeLine{00197\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1_editor_a578e8edca528491b8e0e6ba9106cb179}{saveSettings}}(\textcolor{keyword}{const}\ Path\&\ settingsFile)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00198\ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1_editor_settings}{EditorSettings}}\&\ \mbox{\hyperlink{classph_1_1editor_1_1_editor_a205aa832fdd57f58cfe1d15a1fac9453}{getSettings}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00199\ }
+\DoxyCodeLine{00200\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00201\ \ \ \ \ std::shared\_ptr<EditorSettings>\ m\_settings;}
+\DoxyCodeLine{00202\ \};}
+\DoxyCodeLine{00203\ }
+\DoxyCodeLine{00204\ \}\textcolor{comment}{//\ end\ namespace\ ph::editor}}
+\DoxyCodeLine{00205\ }
+\DoxyCodeLine{00206\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_editor_8ipp}{App/Editor.ipp}}"{}}}
+
+\end{DoxyCode}

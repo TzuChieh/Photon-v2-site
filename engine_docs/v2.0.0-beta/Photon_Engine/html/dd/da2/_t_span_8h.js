@@ -1,5 +1,5 @@
 var _t_span_8h =
 [
-    [ "TSpan", "dd/da2/_t_span_8h.html#a2842d596489b048e5875ec1bc0c5edb3", null ],
-    [ "TSpanView", "dd/da2/_t_span_8h.html#aef9e26e2a4f42469befa033923b033bf", null ]
+    [ "TSpan", "dd/da2/_t_span_8h.html#ac5bb03de153dde37c41cddcbfd29596c", null ],
+    [ "TSpanView", "dd/da2/_t_span_8h.html#a6a9059902c5cb72738a2fcfc46614989", null ]
 ];

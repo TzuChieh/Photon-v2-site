@@ -1,5 +1,6 @@
 var classph_1_1_sdl_input_clauses =
 [
+    [ "add", "de/d9b/classph_1_1_sdl_input_clauses.html#a877f0dd5cf1e0c86444d83f349f59af2", null ],
     [ "add", "de/d9b/classph_1_1_sdl_input_clauses.html#a2a340c050dec770d9305ae46a9298b84", null ],
     [ "add", "de/d9b/classph_1_1_sdl_input_clauses.html#a3c388d5c296e736eb8a4938f49e39604", null ],
     [ "add", "de/d9b/classph_1_1_sdl_input_clauses.html#a1caa400fbe934f9a94b81ffae2f6d59d", null ],

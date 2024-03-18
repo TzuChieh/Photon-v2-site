@@ -7,5 +7,6 @@ var _sdl_command_parser_8cpp =
     [ "PH_DEFINE_INTERNAL_TIMER_STAT", "d3/d59/_sdl_command_parser_8cpp.html#a39a1acc3c2aefe2e42b5fe57bbbdcf2b", null ],
     [ "PH_DEFINE_INTERNAL_TIMER_STAT", "d3/d59/_sdl_command_parser_8cpp.html#a1d138698add606a394a34b724892e4c0", null ],
     [ "PH_DEFINE_INTERNAL_TIMER_STAT", "d3/d59/_sdl_command_parser_8cpp.html#aaf68bb5c0404d3e4e8320e2dd87b9d46", null ],
-    [ "PH_DEFINE_INTERNAL_TIMER_STAT", "d3/d59/_sdl_command_parser_8cpp.html#a3cc1fd5bbce43496f09580fd6bd449b1", null ]
+    [ "PH_DEFINE_INTERNAL_TIMER_STAT", "d3/d59/_sdl_command_parser_8cpp.html#a3cc1fd5bbce43496f09580fd6bd449b1", null ],
+    [ "PH_DEFINE_INTERNAL_TIMER_STAT", "d3/d59/_sdl_command_parser_8cpp.html#a112aed18b3ffd9bfa444ad4345b19498", null ]
 ];

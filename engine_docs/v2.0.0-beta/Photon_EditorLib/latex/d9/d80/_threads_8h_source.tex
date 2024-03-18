@@ -1,0 +1,72 @@
+\doxysection{Threads.\+h}
+\hypertarget{_threads_8h_source}{}\label{_threads_8h_source}\index{Source/EditorCore/Thread/Threads.h@{Source/EditorCore/Thread/Threads.h}}
+\mbox{\hyperlink{_threads_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <Utility/IUninstantiable.h>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <Common/assertion.h>}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <thread>}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph_1_1editor}{ph::editor}}}
+\DoxyCodeLine{00009\ \{}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{class\ }RenderThread;}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1editor_1_1_threads}{Threads}}\ final\ :\ \textcolor{keyword}{private}\ IUninstantiable}
+\DoxyCodeLine{00014\ \{}
+\DoxyCodeLine{00015\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1editor_1_1_threads_ac1104757e2cde2ed896ebdd8a401cbfc}{isOnMainThread}}();}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1editor_1_1_threads_a2ea2ffe931b8cfe31eaeb719c28227b1}{isOnRenderThread}}();}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classph_1_1editor_1_1_render_thread}{RenderThread}}\&\ \mbox{\hyperlink{classph_1_1editor_1_1_threads_af6fdd60e9a7ad4e94842247103d294d9}{getRenderThread}}();}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1editor_1_1_program}{Program}};}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1editor_1_1_application}{Application}};}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ setMainThreadID(std::thread::id\ threadID);}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ setRenderThread(\mbox{\hyperlink{classph_1_1editor_1_1_render_thread}{RenderThread}}*\ threadID);}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{static}\ std::thread::id\ mainThreadID;}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{static}\ std::thread::id\ renderThreadID;}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classph_1_1editor_1_1_render_thread}{RenderThread}}*\ renderThread;}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \textcolor{comment}{//\ Global\ }}
+\DoxyCodeLine{00044\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00045\ \};}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1editor_1_1_threads_ac1104757e2cde2ed896ebdd8a401cbfc}{Threads::isOnMainThread}}()}
+\DoxyCodeLine{00048\ \{}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{comment}{//\ Generally\ should\ not\ happen.\ Except\ being\ called\ outside\ the\ editor's\ domain\ which\ should\ be\ avoided.}}
+\DoxyCodeLine{00050\ \ \ \ \ PH\_ASSERT(mainThreadID\ !=\ std::thread::id\{\});}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordflow}{return}\ std::this\_thread::get\_id()\ ==\ mainThreadID;}
+\DoxyCodeLine{00053\ \}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1editor_1_1_threads_a2ea2ffe931b8cfe31eaeb719c28227b1}{Threads::isOnRenderThread}}()}
+\DoxyCodeLine{00056\ \{}
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{comment}{//\ May\ fail\ if\ called\ before\ the\ render\ thread\ has\ been\ properly\ initialized.}}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{comment}{//\ This\ can\ happen\ if\ some\ routine\ is\ attempting\ to\ use\ rendering\ functionalities\ before}}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{comment}{//\ the\ application\ starts\ running.}}
+\DoxyCodeLine{00060\ \ \ \ \ PH\_ASSERT(renderThreadID\ !=\ std::thread::id\{\});}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keywordflow}{return}\ std::this\_thread::get\_id()\ ==\ renderThreadID;}
+\DoxyCodeLine{00063\ \}}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1editor_1_1_render_thread}{RenderThread}}\&\ \mbox{\hyperlink{classph_1_1editor_1_1_threads_af6fdd60e9a7ad4e94842247103d294d9}{Threads::getRenderThread}}()}
+\DoxyCodeLine{00066\ \{}
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{comment}{//\ May\ fail\ if\ called\ before\ the\ render\ thread\ has\ been\ properly\ initialized.}}
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{comment}{//\ This\ can\ happen\ if\ some\ routine\ is\ attempting\ to\ use\ rendering\ functionalities\ before}}
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{comment}{//\ the\ application\ starts\ running.}}
+\DoxyCodeLine{00070\ \ \ \ \ PH\_ASSERT(renderThreadID\ !=\ std::thread::id\{\});}
+\DoxyCodeLine{00071\ \ \ \ \ PH\_ASSERT(renderThread);}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordflow}{return}\ *renderThread;}
+\DoxyCodeLine{00074\ \}}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \}\textcolor{comment}{//\ end\ namespace\ ph::editor}}
+
+\end{DoxyCode}

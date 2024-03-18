@@ -22,5 +22,6 @@ var searchData=
   ['trim_19',['trim',['../da/d3e/namespaceph_1_1string__utils.html#a83615f1191b1894d0835561f1b00114a',1,'ph::string_utils']]],
   ['trim_5fhead_20',['trim_head',['../da/d3e/namespaceph_1_1string__utils.html#a478905d7b7b8b2280da4f5826fcb9b8e',1,'ph::string_utils']]],
   ['trim_5ftail_21',['trim_tail',['../da/d3e/namespaceph_1_1string__utils.html#a5b56d343bb1503290badafa76ca49963',1,'ph::string_utils']]],
-  ['tstdunorderedstringmap_22',['TStdUnorderedStringMap',['../da/d3e/namespaceph_1_1string__utils.html#a879191a4c3e8b6a0648be7a609bbf036',1,'ph::string_utils']]]
+  ['tstdunorderedstringmap_22',['TStdUnorderedStringMap',['../d3/d5c/namespaceph.html#ac837148000ded601032a44ed7ae37761',1,'ph']]],
+  ['tstdunorderedstringmap_2eh_23',['TStdUnorderedStringMap.h',['../da/d08/_t_std_unordered_string_map_8h.html',1,'']]]
 ];

@@ -4,7 +4,7 @@ var hierarchy =
     [ "ph::CommandLineArguments", "df/d70/classph_1_1_command_line_arguments.html", null ],
     [ "ph::Config", "de/d94/classph_1_1_config.html", null ],
     [ "ph::TimerStatsReport::GroupedTimeRecord", "d8/dc7/structph_1_1_timer_stats_report_1_1_grouped_time_record.html", null ],
-    [ "ph::string_utils::detail::HeterogeneousStringHash", "d4/d5c/structph_1_1string__utils_1_1detail_1_1_heterogeneous_string_hash.html", null ],
+    [ "ph::detail::HeterogeneousStringHash", "d3/d9e/structph_1_1detail_1_1_heterogeneous_string_hash.html", null ],
     [ "ph::Logger", "d2/d90/classph_1_1_logger.html", null ],
     [ "ph::LogGroup", "df/dfe/structph_1_1_log_group.html", null ],
     [ "ph::LogGroups", "dc/de2/classph_1_1_log_groups.html", null ],

@@ -29,5 +29,5 @@ var searchData=
   ['rigidtransform_26',['RigidTransform',['../df/dfd/classph_1_1math_1_1_rigid_transform.html',1,'ph::math']]],
   ['roughnesstoalphamapping_27',['RoughnessToAlphaMapping',['../db/d38/classph_1_1_roughness_to_alpha_mapping.html',1,'ph']]],
   ['runtimesamplesource_28',['RuntimeSampleSource',['../d4/d18/classph_1_1_runtime_sample_source.html',1,'ph']]],
-  ['russianroulette_29',['RussianRoulette',['../d2/d57/classph_1_1_russian_roulette.html',1,'ph']]]
+  ['russianroulette_29',['RussianRoulette',['../df/d4f/classph_1_1lta_1_1_russian_roulette.html',1,'ph::lta']]]
 ];

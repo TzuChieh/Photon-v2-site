@@ -1,6 +1,5 @@
 var classph_1_1_path_tracing_visualizer =
 [
-    [ "PathTracingVisualizer", "db/d8d/classph_1_1_path_tracing_visualizer.html#a1b1393529b8a96e290590ec407887614", null ],
     [ "cook", "db/d8d/classph_1_1_path_tracing_visualizer.html#a5eac0c53c6a39304f1e65bb1e1a8f07b", null ],
     [ "getEstimator", "db/d8d/classph_1_1_path_tracing_visualizer.html#ae9cdd943969d90c63df7e333fe565a39", null ],
     [ "getSampleFilter", "db/d8d/classph_1_1_path_tracing_visualizer.html#a93fe68357f82f44177053c98a6db6222", null ],

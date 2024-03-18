@@ -9,12 +9,15 @@ Miscellaneous math utilities.
 {\ttfamily \#include "{}Math/math\+\_\+fwd.\+h"{}}\newline
 {\ttfamily \#include "{}Math/math\+\_\+table.\+h"{}}\newline
 {\ttfamily \#include "{}Utility/utility.\+h"{}}\newline
+{\ttfamily \#include "{}Utility/traits.\+h"{}}\newline
+{\ttfamily \#include "{}Utility/\+TSpan.\+h"{}}\newline
 {\ttfamily \#include $<$Common/assertion.\+h$>$}\newline
 {\ttfamily \#include $<$Common/primitive\+\_\+type.\+h$>$}\newline
 {\ttfamily \#include $<$Common/compiler.\+h$>$}\newline
 {\ttfamily \#include $<$Common/math\+\_\+basics.\+h$>$}\newline
 {\ttfamily \#include $<$cmath$>$}\newline
 {\ttfamily \#include $<$algorithm$>$}\newline
+{\ttfamily \#include $<$numeric$>$}\newline
 {\ttfamily \#include $<$type\+\_\+traits$>$}\newline
 {\ttfamily \#include $<$utility$>$}\newline
 {\ttfamily \#include $<$limits$>$}\newline
@@ -24,6 +27,7 @@ Miscellaneous math utilities.
 {\ttfamily \#include $<$climits$>$}\newline
 {\ttfamily \#include $<$bit$>$}\newline
 {\ttfamily \#include $<$concepts$>$}\newline
+{\ttfamily \#include "{}Math/math.\+ipp"{}}\newline
 \doxysubsubsection*{Namespaces}
 \begin{DoxyCompactItemize}
 \item 
@@ -53,17 +57,17 @@ uint32 \mbox{\hyperlink{namespaceph_1_1math_a2dd1eb154bffce7df042dbdd88aa161b}{p
 {\footnotesize template$<$typename T $>$ }\\T \mbox{\hyperlink{namespaceph_1_1math_aef693a3af48988419e383d739b935a4b}{ph\+::math\+::log2\+\_\+floor}} (const T value)
 \begin{DoxyCompactList}\small\item\em Calculate a positive number\textquotesingle{}s base 2 logarithm (floored). \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename T , std\+::enable\+\_\+if\+\_\+t$<$ std\+::is\+\_\+floating\+\_\+point\+\_\+v$<$ T $>$, int $>$  = 0$>$ }\\T \mbox{\hyperlink{namespaceph_1_1math_a9460c87b6dab3097ee4d084d9b59a604}{ph\+::math\+::fractional\+\_\+part}} (const T value)
-\begin{DoxyCompactList}\small\item\em Retrieve the fractional part of {\ttfamily value} (with the sign unchanged). \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Retrieve the fractional part of {\ttfamily value} (with the sign unchanged). The result is not guaranteed to be the same as the bit representation of 
+
+\textquotesingle{}s fractional part. The result is undefined if input value is NaN or +-\/Inf. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename T , std\+::enable\+\_\+if\+\_\+t$<$ std\+::is\+\_\+integral\+\_\+v$<$ T $>$, int $>$  = 0$>$ }\\T \mbox{\hyperlink{namespaceph_1_1math_a48cf078fd719072dfc9c27d67a730c3c}{ph\+::math\+::wrap}} (T value, const T lower\+Bound, const T upper\+Bound)
-\begin{DoxyCompactList}\small\item\em Wraps an integer around \mbox{[}lower-\/bound, upper-\/bound\mbox{]}. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Wraps an integer around \mbox{[}lower-\/bound, upper-\/bound\mbox{]}. For example, given a bound \mbox{[}-\/1, 2\mbox{]}, 3 will be wrapped to -\/1. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename T $>$ }\\bool \mbox{\hyperlink{namespaceph_1_1math_a3d787dce79dfdd2614927831c40ab231}{ph\+::math\+::is\+\_\+even}} (const T value)
 \begin{DoxyCompactList}\small\item\em Checks if a number is even. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename T $>$ }\\bool \mbox{\hyperlink{namespaceph_1_1math_a00dacdca0d6501e4506f1e80350c6529}{ph\+::math\+::is\+\_\+odd}} (const T value)
 \begin{DoxyCompactList}\small\item\em Checks if a number is odd. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{namespaceph_1_1math_a885a24bd55e37b45410ec47a89bfb55e}{ph\+::math\+::is\+\_\+same\+\_\+hemisphere}} (const \mbox{\hyperlink{namespaceph_1_1math_abf8e1463b13d63dcdc46f0cb65e59c5a}{Vector3R}} \&vector, const \mbox{\hyperlink{namespaceph_1_1math_abf8e1463b13d63dcdc46f0cb65e59c5a}{Vector3R}} \&N)
 \item 
-{\footnotesize template$<$typename T $>$ }\\T \mbox{\hyperlink{namespaceph_1_1math_a536816208c239c8b2e217d70d5ec5d08}{ph\+::math\+::product}} (const std\+::vector$<$ T $>$ \&values)
-\begin{DoxyCompactList}\small\item\em Multiplies all values together within a container. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename Number\+Type $>$ }\\constexpr Number\+Type \mbox{\hyperlink{namespaceph_1_1math_adb4811e9be6e476d37c2db92e3d5a17a}{ph\+::math\+::bytes\+\_\+to\+\_\+\+KiB}} (const std\+::size\+\_\+t num\+Bytes)
 \item 
 {\footnotesize template$<$typename Number\+Type $>$ }\\constexpr Number\+Type \mbox{\hyperlink{namespaceph_1_1math_a510bcaf07562b67f8897a55701399305}{ph\+::math\+::bytes\+\_\+to\+\_\+\+MiB}} (const std\+::size\+\_\+t num\+Bytes)
@@ -99,6 +103,26 @@ void \mbox{\hyperlink{namespaceph_1_1math_a996b8aaa152f5e58eea616b7340f7659}{ph\
 \textbf{ }\par
 \begin{DoxyCompactItemize}
 \item 
+{\footnotesize template$<$typename T , std\+::size\+\_\+t N$>$ }\\T \mbox{\hyperlink{namespaceph_1_1math_a423ca1404e587fb97e03569f02f95861}{ph\+::math\+::summation}} (const std\+::array$<$ T, N $>$ \&values, T initial\+Value=0)
+\begin{DoxyCompactList}\small\item\em Sum all values within a container together. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\T \mbox{\hyperlink{namespaceph_1_1math_aafd95c335ca3cea8382e4664fcb2e071}{ph\+::math\+::summation}} (const std\+::vector$<$ T $>$ \&values, T initial\+Value=0)
+\item 
+{\footnotesize template$<$typename T , std\+::size\+\_\+t EXTENT = std\+::dynamic\+\_\+extent$>$ }\\T \mbox{\hyperlink{namespaceph_1_1math_a49a2a687b51def083e81e22e8aadd871}{ph\+::math\+::summation}} (\mbox{\hyperlink{namespaceph_a6a9059902c5cb72738a2fcfc46614989}{TSpan\+View}}$<$ T, EXTENT $>$ values, T initial\+Value=0)
+\end{DoxyCompactItemize}
+
+\textbf{ }\par
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename T , std\+::size\+\_\+t N$>$ }\\T \mbox{\hyperlink{namespaceph_1_1math_a688dbf6563c86608204cf755dc0be5cd}{ph\+::math\+::product}} (const std\+::array$<$ T, N $>$ \&values, T initial\+Value=1)
+\begin{DoxyCompactList}\small\item\em Multiplies all values within a container together. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\T \mbox{\hyperlink{namespaceph_1_1math_af88ea36316f4e3c2a63d8ff7342e3038}{ph\+::math\+::product}} (const std\+::vector$<$ T $>$ \&values, T initial\+Value=1)
+\item 
+{\footnotesize template$<$typename T , std\+::size\+\_\+t EXTENT = std\+::dynamic\+\_\+extent$>$ }\\T \mbox{\hyperlink{namespaceph_1_1math_a46cc1344fc73d1e20da595d6e62bbb57}{ph\+::math\+::product}} (\mbox{\hyperlink{namespaceph_a6a9059902c5cb72738a2fcfc46614989}{TSpan\+View}}$<$ T, EXTENT $>$ values, T initial\+Value=1)
+\end{DoxyCompactItemize}
+
+\textbf{ }\par
+\begin{DoxyCompactItemize}
+\item 
 {\footnotesize template$<$std\+::unsigned\+\_\+integral UInt\+Type$>$ }\\UInt\+Type \mbox{\hyperlink{namespaceph_1_1math_a7c44afb09e2610c07148d4b1120e4614}{ph\+::math\+::flag\+\_\+bit}} (const UInt\+Type bit\+Idx)
 \begin{DoxyCompactList}\small\item\em Set a single bit to 1, others remain 0. LSB has the bit index 0. \end{DoxyCompactList}\item 
 {\footnotesize template$<$std\+::unsigned\+\_\+integral UInt\+Type, UInt\+Type BIT\+\_\+\+IDX$>$ }\\consteval UInt\+Type \mbox{\hyperlink{namespaceph_1_1math_a00c7265b62195ee8215d3a07ee97d8a6}{ph\+::math\+::flag\+\_\+bit}} ()
@@ -111,6 +135,56 @@ uint16 \mbox{\hyperlink{namespaceph_1_1math_a91780ac8e52ddfdd3f0314cc36b882c2}{p
 \begin{DoxyCompactList}\small\item\em Convert a 32-\/bit float to 16-\/bit representation. \end{DoxyCompactList}\item 
 float32 \mbox{\hyperlink{namespaceph_1_1math_a050fd048afd360173b15c10a05c21f7c}{ph\+::math\+::fp16\+\_\+bits\+\_\+to\+\_\+fp32}} (const uint16 fp16\+Bits)
 \begin{DoxyCompactList}\small\item\em Convert a 16-\/bit representation back to 32-\/bit float. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+\textbf{ }\par
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename T , std\+::size\+\_\+t N$>$ }\\T \mbox{\hyperlink{namespaceph_1_1math_a5e1143174acd6afb8b6c9be755307c4b}{ph\+::math\+::length}} (const std\+::array$<$ T, N $>$ \&vec)
+\begin{DoxyCompactList}\small\item\em Treating input values as a vector and calculates its length. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\T \mbox{\hyperlink{namespaceph_1_1math_abd30caa18de616eaa04f98f75a8c9753}{ph\+::math\+::length}} (const std\+::vector$<$ T $>$ \&vec)
+\item 
+{\footnotesize template$<$typename T , std\+::size\+\_\+t EXTENT = std\+::dynamic\+\_\+extent$>$ }\\T \mbox{\hyperlink{namespaceph_1_1math_a7ff2861977711d396858e5b6aef1436c}{ph\+::math\+::length}} (\mbox{\hyperlink{namespaceph_a6a9059902c5cb72738a2fcfc46614989}{TSpan\+View}}$<$ T, EXTENT $>$ vec)
+\end{DoxyCompactItemize}
+
+\textbf{ }\par
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename T , std\+::size\+\_\+t N$>$ }\\T \mbox{\hyperlink{namespaceph_1_1math_a271473c0e491fe4c7c0cb02fcfa88bb0}{ph\+::math\+::length\+\_\+squared}} (const std\+::array$<$ T, N $>$ \&vec)
+\begin{DoxyCompactList}\small\item\em Treating input values as a vector and calculates its squared length. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\T \mbox{\hyperlink{namespaceph_1_1math_a0a1c02f0fa48517a643a221c4200dc1e}{ph\+::math\+::length\+\_\+squared}} (const std\+::vector$<$ T $>$ \&vec)
+\item 
+{\footnotesize template$<$typename T , std\+::size\+\_\+t EXTENT = std\+::dynamic\+\_\+extent$>$ }\\T \mbox{\hyperlink{namespaceph_1_1math_a4d686d16a731cfaf96c02424b9215798}{ph\+::math\+::length\+\_\+squared}} (\mbox{\hyperlink{namespaceph_a6a9059902c5cb72738a2fcfc46614989}{TSpan\+View}}$<$ T, EXTENT $>$ vec)
+\end{DoxyCompactItemize}
+
+\textbf{ }\par
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename T , std\+::size\+\_\+t N$>$ }\\T \mbox{\hyperlink{namespaceph_1_1math_a4ff51da9284135e078f892589a4816cc}{ph\+::math\+::p\+\_\+norm}} (const std\+::array$<$ T, N $>$ \&vec)
+\begin{DoxyCompactList}\small\item\em Treating input values as a vector and calculates its p-\/norm. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\T \mbox{\hyperlink{namespaceph_1_1math_a2f4af840af27b7877140cb250d0b2cba}{ph\+::math\+::p\+\_\+norm}} (const std\+::vector$<$ T $>$ \&vec)
+\item 
+{\footnotesize template$<$std\+::size\+\_\+t P, typename T , std\+::size\+\_\+t EXTENT = std\+::dynamic\+\_\+extent$>$ }\\T \mbox{\hyperlink{namespaceph_1_1math_a41e68b91f571234574a62deddcf6b47e}{ph\+::math\+::p\+\_\+norm}} (\mbox{\hyperlink{namespaceph_a6a9059902c5cb72738a2fcfc46614989}{TSpan\+View}}$<$ T, EXTENT $>$ vec)
+\end{DoxyCompactItemize}
+
+\textbf{ }\par
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename T , std\+::size\+\_\+t N$>$ }\\void \mbox{\hyperlink{namespaceph_1_1math_a4f0591b11fba7210f6dd38cfbbcbc9f7}{ph\+::math\+::normalize}} (std\+::array$<$ T, N $>$ \&vec)
+\begin{DoxyCompactList}\small\item\em Treating input values as a vector and normalize it. Notice that normalizing a integer typed vector will result in 0-\/vector most of the time. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\void \mbox{\hyperlink{namespaceph_1_1math_a3cf4f52c15a3def1081a81e736a7a4f8}{ph\+::math\+::normalize}} (std\+::vector$<$ T $>$ \&vec)
+\item 
+{\footnotesize template$<$typename T , std\+::size\+\_\+t EXTENT = std\+::dynamic\+\_\+extent$>$ }\\void \mbox{\hyperlink{namespaceph_1_1math_a82c62fe543155f8ea8d4fa031f8f3d85}{ph\+::math\+::normalize}} (\mbox{\hyperlink{namespaceph_ac5bb03de153dde37c41cddcbfd29596c}{TSpan}}$<$ T, EXTENT $>$ vec)
+\end{DoxyCompactItemize}
+
+\textbf{ }\par
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename T , std\+::size\+\_\+t N$>$ }\\T \mbox{\hyperlink{namespaceph_1_1math_a03f8a077523cb1f8d667a39529300e98}{ph\+::math\+::dot\+\_\+product}} (const std\+::array$<$ T, N $>$ \&vecA, const std\+::array$<$ T, N $>$ \&vecB)
+\begin{DoxyCompactList}\small\item\em Treating input values as vectors and calculates their dot product. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\T \mbox{\hyperlink{namespaceph_1_1math_a1338f031a910337ae964bb3bc4ac6fe1}{ph\+::math\+::dot\+\_\+product}} (const std\+::vector$<$ T $>$ \&vecA, const std\+::vector$<$ T $>$ \&vecB)
+\item 
+{\footnotesize template$<$typename T , std\+::size\+\_\+t EXTENT = std\+::dynamic\+\_\+extent$>$ }\\T \mbox{\hyperlink{namespaceph_1_1math_a8bee0579f0647a84c49161d6ae0dba6f}{ph\+::math\+::dot\+\_\+product}} (\mbox{\hyperlink{namespaceph_a6a9059902c5cb72738a2fcfc46614989}{TSpan\+View}}$<$ T, EXTENT $>$ vecA, \mbox{\hyperlink{namespaceph_a6a9059902c5cb72738a2fcfc46614989}{TSpan\+View}}$<$ T, EXTENT $>$ vecB)
+\end{DoxyCompactItemize}
 
 
 

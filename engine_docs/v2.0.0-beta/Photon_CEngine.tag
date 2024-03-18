@@ -88,9 +88,9 @@
     </member>
     <member kind="function">
       <type>PH_API void</type>
-      <name>phConfigCoreResourceDirectory</name>
+      <name>phConfigRendererResourceDirectory</name>
       <anchorfile>d9/d61/ph__c__core_8h.html</anchorfile>
-      <anchor>a5c51be5f556eba09e692aa57d1533558</anchor>
+      <anchor>a2a1eeb033c25471ce563cecdf9a37688</anchor>
       <arglist>(const PhChar *directory)</arglist>
     </member>
     <member kind="function">
@@ -277,16 +277,23 @@
     </member>
     <member kind="function">
       <type>PH_API void</type>
-      <name>phAsyncGetRendererStatistics</name>
+      <name>phAsyncGetRenderProgress</name>
       <anchorfile>d9/d61/ph__c__core_8h.html</anchorfile>
-      <anchor>a513c256056fdb3502e66b51856b216b1</anchor>
+      <anchor>ad28c0de541448aa532f975a45e6cf160</anchor>
+      <arglist>(PhUInt64 engineId, PhRenderProgress *out_progress)</arglist>
+    </member>
+    <member kind="function">
+      <type>PH_API void</type>
+      <name>phAsyncGetRenderStatistics</name>
+      <anchorfile>d9/d61/ph__c__core_8h.html</anchorfile>
+      <anchor>a10e21d4a120b62b6ca7c4e81bf61cc8e</anchor>
       <arglist>(PhUInt64 engineId, PhFloat32 *out_percentageProgress, PhFloat32 *out_samplesPerSecond)</arglist>
     </member>
     <member kind="function">
       <type>PH_API void</type>
-      <name>phAsyncGetRendererState</name>
+      <name>phAsyncGetRenderState</name>
       <anchorfile>d9/d61/ph__c__core_8h.html</anchorfile>
-      <anchor>ab236224980a44f1a3d4b6b3c5e1d5183</anchor>
+      <anchor>a89f3b0dfef24324d081c79a150048b6a</anchor>
       <arglist>(PhUInt64 engineId, struct PHRenderState *out_state)</arglist>
     </member>
     <member kind="function">
@@ -300,35 +307,36 @@
       <type>PH_API PhSize</type>
       <name>phAsyncPollUpdatedFrameRegions</name>
       <anchorfile>d9/d61/ph__c__core_8h.html</anchorfile>
-      <anchor>a58f0469a1e4a677b5f409ebc35ef5548</anchor>
-      <arglist>(PhUInt64 engineId, PhUInt64 bufferId, PhFrameRegionInfo **out_regionInfosPtr)</arglist>
+      <anchor>a193d614c7c612ed875da7b6c2370cd4e</anchor>
+      <arglist>(PhUInt64 engineId, PhUInt64 bufferId, PhFrameRegionInfo *out_regionInfos, PhSize maxRegionInfos)</arglist>
     </member>
     <member kind="function">
       <type>PH_API PhSize</type>
       <name>phAsyncPollMergedUpdatedFrameRegions</name>
       <anchorfile>d9/d61/ph__c__core_8h.html</anchorfile>
-      <anchor>a3e907759acf1a6e8dc96f7a13b6cc0bf</anchor>
-      <arglist>(PhUInt64 engineId, PhUInt64 bufferId, PhSize mergeSize, PhFrameRegionInfo **out_regionInfosPtr)</arglist>
+      <anchor>a8ac6f03e2f436305485b5584416a957e</anchor>
+      <arglist>(PhUInt64 engineId, PhUInt64 bufferId, PhSize mergeSize, PhFrameRegionInfo *out_regionInfos, PhSize maxRegionInfos)</arglist>
     </member>
     <member kind="function">
       <type>PH_API void</type>
       <name>phAsyncPeekFrame</name>
       <anchorfile>d9/d61/ph__c__core_8h.html</anchorfile>
-      <anchor>acdf1c4877da0bb476b4a7924bb047538</anchor>
-      <arglist>(PhUInt64 engineId, PhUInt64 channelIndex, PhUInt32 xPx, PhUInt32 yPx, PhUInt32 widthPx, PhUInt32 heightPx, PhUInt64 frameId)</arglist>
+      <anchor>ae665de187dac1ad78247f7874f2816c1</anchor>
+      <arglist>(PhUInt64 engineId, PhUInt64 layerIndex, PhUInt32 xPx, PhUInt32 yPx, PhUInt32 widthPx, PhUInt32 heightPx, PhUInt64 frameId)</arglist>
     </member>
     <member kind="function">
       <type>PH_API void</type>
       <name>phAsyncPeekFrameRaw</name>
       <anchorfile>d9/d61/ph__c__core_8h.html</anchorfile>
-      <anchor>a8ce57166fa6320eb86e4353570be5c26</anchor>
-      <arglist>(PhUInt64 engineId, PhUInt64 channelIndex, PhUInt32 xPx, PhUInt32 yPx, PhUInt32 widthPx, PhUInt32 heightPx, PhUInt64 frameId)</arglist>
+      <anchor>a800bf71aae903fd81d78987ed528ccf9</anchor>
+      <arglist>(PhUInt64 engineId, PhUInt64 layerIndex, PhUInt32 xPx, PhUInt32 yPx, PhUInt32 widthPx, PhUInt32 heightPx, PhUInt64 frameId)</arglist>
     </member>
   </compound>
   <compound kind="file">
     <name>ph_c_core_types.h</name>
     <path>Include/</path>
     <filename>d2/d10/ph__c__core__types_8h.html</filename>
+    <class kind="struct">PhRenderProgress</class>
     <class kind="struct">PhFrameRegionInfo</class>
     <class kind="struct">PhFrameSaveInfo</class>
     <member kind="define">
@@ -455,6 +463,13 @@
       <name>PhFrameRegionStatus</name>
       <anchorfile>d2/d10/ph__c__core__types_8h.html</anchorfile>
       <anchor>a74bf0741bb312fc0b646405a3641c102</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>struct PhRenderProgress</type>
+      <name>PhRenderProgress</name>
+      <anchorfile>d2/d10/ph__c__core__types_8h.html</anchorfile>
+      <anchor>a990a71ea2522bb22b81aa21dfe14b178</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
@@ -602,9 +617,9 @@
     </member>
     <member kind="function">
       <type>void</type>
-      <name>phConfigCoreResourceDirectory</name>
+      <name>phConfigRendererResourceDirectory</name>
       <anchorfile>de/d69/ph__c__core_8cpp.html</anchorfile>
-      <anchor>a040f22e302d6bce7d090f70b424f7c65</anchor>
+      <anchor>a88c4d632f5ad99836cf643dee647d214</anchor>
       <arglist>(const PhChar *const directory)</arglist>
     </member>
     <member kind="function">
@@ -763,16 +778,23 @@
     </member>
     <member kind="function">
       <type>void</type>
-      <name>phAsyncGetRendererStatistics</name>
+      <name>phAsyncGetRenderProgress</name>
       <anchorfile>de/d69/ph__c__core_8cpp.html</anchorfile>
-      <anchor>a97e787e1a41ccda85c55e1b7056f2f0c</anchor>
+      <anchor>a0b900bd6d3ddf3e3393ab5867d7f03bb</anchor>
+      <arglist>(PhUInt64 engineId, PhRenderProgress *out_progress)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>phAsyncGetRenderStatistics</name>
+      <anchorfile>de/d69/ph__c__core_8cpp.html</anchorfile>
+      <anchor>a472f5fed7ab19a1d49ff5eaaad0cf71c</anchor>
       <arglist>(const PhUInt64 engineId, PhFloat32 *const out_percentageProgress, PhFloat32 *const out_samplesPerSecond)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
-      <name>phAsyncGetRendererState</name>
+      <name>phAsyncGetRenderState</name>
       <anchorfile>de/d69/ph__c__core_8cpp.html</anchorfile>
-      <anchor>a75c767157b61870afc50424c7fbdb80e</anchor>
+      <anchor>a40e001fbb57323e8e70254d9bcd3d96e</anchor>
       <arglist>(const PhUInt64 engineId, struct PHRenderState *const out_state)</arglist>
     </member>
     <member kind="function">
@@ -786,29 +808,29 @@
       <type>PhSize</type>
       <name>phAsyncPollUpdatedFrameRegions</name>
       <anchorfile>de/d69/ph__c__core_8cpp.html</anchorfile>
-      <anchor>a8b9796f55ff635eda7b0cccf94876daa</anchor>
-      <arglist>(PhUInt64 engineId, PhUInt64 bufferId, PhFrameRegionInfo **out_regionInfosPtr)</arglist>
+      <anchor>a25288cc02c5dc5e9ab84db7c17fea384</anchor>
+      <arglist>(PhUInt64 engineId, PhUInt64 bufferId, PhFrameRegionInfo *out_regionInfos, PhSize maxRegionInfos)</arglist>
     </member>
     <member kind="function">
       <type>PhSize</type>
       <name>phAsyncPollMergedUpdatedFrameRegions</name>
       <anchorfile>de/d69/ph__c__core_8cpp.html</anchorfile>
-      <anchor>ade77a3d6d867953d2dbc6413703fa0c1</anchor>
-      <arglist>(PhUInt64 engineId, PhUInt64 bufferId, PhSize mergeSize, PhFrameRegionInfo **out_regionInfosPtr)</arglist>
+      <anchor>af2b9007329c1162707e711ed259168ad</anchor>
+      <arglist>(PhUInt64 engineId, PhUInt64 bufferId, PhSize mergeSize, PhFrameRegionInfo *out_regionInfos, PhSize maxRegionInfos)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>phAsyncPeekFrame</name>
       <anchorfile>de/d69/ph__c__core_8cpp.html</anchorfile>
-      <anchor>a67f2c808cd92969f9ef1596683abb17a</anchor>
-      <arglist>(const PhUInt64 engineId, const PhUInt64 channelIndex, const PhUInt32 xPx, const PhUInt32 yPx, const PhUInt32 widthPx, const PhUInt32 heightPx, const PhUInt64 frameId)</arglist>
+      <anchor>a190ee833692257794e0783f59827c519</anchor>
+      <arglist>(PhUInt64 engineId, PhUInt64 layerIndex, PhUInt32 xPx, PhUInt32 yPx, PhUInt32 widthPx, PhUInt32 heightPx, PhUInt64 frameId)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>phAsyncPeekFrameRaw</name>
       <anchorfile>de/d69/ph__c__core_8cpp.html</anchorfile>
-      <anchor>af3bd5f6fff2b4d01a900d47f87aa9aa0</anchor>
-      <arglist>(const PhUInt64 engineId, const PhUInt64 channelIndex, const PhUInt32 xPx, const PhUInt32 yPx, const PhUInt32 widthPx, const PhUInt32 heightPx, const PhUInt64 frameId)</arglist>
+      <anchor>aa0427b1cd1db88e3870dd2acc282c838</anchor>
+      <arglist>(PhUInt64 engineId, PhUInt64 layerIndex, PhUInt32 xPx, PhUInt32 yPx, PhUInt32 widthPx, PhUInt32 heightPx, PhUInt64 frameId)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
@@ -929,6 +951,31 @@
     </member>
   </compound>
   <compound kind="struct">
+    <name>PhRenderProgress</name>
+    <filename>d2/d1e/struct_ph_render_progress.html</filename>
+    <member kind="variable">
+      <type>PhUInt64</type>
+      <name>totalWork</name>
+      <anchorfile>d2/d1e/struct_ph_render_progress.html</anchorfile>
+      <anchor>a9405ed3c9e10c4248858e8fde7df196b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>PhUInt64</type>
+      <name>workDone</name>
+      <anchorfile>d2/d1e/struct_ph_render_progress.html</anchorfile>
+      <anchor>ae78ce9af64c9f1222838018b1786eec9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>PhUInt64</type>
+      <name>elapsedMs</name>
+      <anchorfile>d2/d1e/struct_ph_render_progress.html</anchorfile>
+      <anchor>abbb3a0a62f2e4e3f7740aa796fddf159</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="struct">
     <name>PHRenderState</name>
     <filename>d2/d5e/struct_p_h_render_state.html</filename>
     <member kind="variable">
@@ -957,11 +1004,32 @@
       <arglist>(const PhFrameSaveInfo &amp;saveInfo)</arglist>
     </member>
     <member kind="function">
-      <type>T *</type>
+      <type>bool</type>
+      <name>is_reversing_bytes_needed</name>
+      <anchorfile>d3/d5c/namespaceph.html</anchorfile>
+      <anchor>a85401491c33ec4d8215dcfb4d08afd82</anchor>
+      <arglist>(PhEndian desiredEndianness)</arglist>
+    </member>
+    <member kind="function">
+      <type>PhFrameRegionStatus</type>
+      <name>to_frame_region_status</name>
+      <anchorfile>d3/d5c/namespaceph.html</anchorfile>
+      <anchor>a7b0a42a38b5cf76c8ec0b211b198bfcd</anchor>
+      <arglist>(ERegionStatus regionStatus)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>to_frame_region_info</name>
+      <anchorfile>d3/d5c/namespaceph.html</anchorfile>
+      <anchor>a7d7179ae0ecf06ed4433c05f40ffe7ee</anchor>
+      <arglist>(const RenderRegionStatus &amp;regionStatus, PhFrameRegionInfo *out_regionInfo)</arglist>
+    </member>
+    <member kind="function">
+      <type>TSpan&lt; T &gt;</type>
       <name>make_array_from_buffer</name>
       <anchorfile>d3/d5c/namespaceph.html</anchorfile>
-      <anchor>a3060621822f1210660139fa081efbc64</anchor>
-      <arglist>(std::size_t arraySize, ByteBuffer &amp;buffer)</arglist>
+      <anchor>abb7062a8160fbc4426c3b40370c5dd63</anchor>
+      <arglist>(std::size_t numArrayElements, ByteBuffer &amp;buffer, bool allowBufferGrowth=false)</arglist>
     </member>
   </compound>
   <compound kind="page">

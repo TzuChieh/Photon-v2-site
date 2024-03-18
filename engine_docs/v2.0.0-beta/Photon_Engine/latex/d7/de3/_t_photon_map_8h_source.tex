@@ -6,29 +6,136 @@
 \DoxyCodeLine{00002\ }
 \DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_indexed_point_kdtree_8h}{Math/Algorithm/IndexedKdtree/TIndexedPointKdtree.h}}"{}}}
 \DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_photon_8h}{Core/Renderer/PM/TPhoton.h}}"{}}}
-\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_vector3_8h}{Math/TVector3.h}}"{}}}
-\DoxyCodeLine{00006\ }
-\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <type\_traits>}}
-\DoxyCodeLine{00008\ }
-\DoxyCodeLine{00009\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
-\DoxyCodeLine{00010\ \{}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_p_m_common_params_8h}{Core/Renderer/PM/PMCommonParams.h}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_vector3_8h}{Math/TVector3.h}}"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <Common/assertion.h>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <Common/primitive\_type.h>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <Common/logging.h>}}
 \DoxyCodeLine{00011\ }
-\DoxyCodeLine{00012\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Photon>}
-\DoxyCodeLine{00013\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structph_1_1_t_photon_center_calculator}{TPhotonCenterCalculator}}}
-\DoxyCodeLine{00014\ \{}
-\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_base\_of\_v<TPhoton<Photon>,\ Photon>);}
-\DoxyCodeLine{00016\ }
-\DoxyCodeLine{00017\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\ \mbox{\hyperlink{structph_1_1_t_photon_center_calculator_a7e83f265d88370d0c9d5e76b5eeeed8c}{operator\ ()\ }}(\textcolor{keyword}{const}\ Photon\&\ photon)\textcolor{keyword}{\ const}}
-\DoxyCodeLine{00018\ \textcolor{keyword}{\ \ \ \ }\{}
-\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_assert}(Photon::template\ has<EPhotonData::POSITION>());}
-\DoxyCodeLine{00020\ }
-\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ photon.template\ get<EPhotonData::POSITION>();}
-\DoxyCodeLine{00022\ \ \ \ \ \}}
-\DoxyCodeLine{00023\ \};}
-\DoxyCodeLine{00024\ }
-\DoxyCodeLine{00025\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Photon>}
-\DoxyCodeLine{00026\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classph_1_1math_1_1_t_indexed_point_kdtree}{TPhotonMap}}\ =\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_point_kdtree}{math::TIndexedPointKdtree<Photon,\ int,\ TPhotonCenterCalculator<Photon>}}>;}
-\DoxyCodeLine{00027\ }
-\DoxyCodeLine{00028\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <cstddef>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <type\_traits>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00017\ \{}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{template}<CPhoton\ Photon>}
+\DoxyCodeLine{00023\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_t_photon_map_info}{TPhotonMapInfo}}\ final}
+\DoxyCodeLine{00024\ \{}
+\DoxyCodeLine{00025\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00026\ \ \ \ \ std::size\_t\ \mbox{\hyperlink{classph_1_1_t_photon_map_info_a6bd624d5ce1ea3912f5bf779258be1cc}{numPaths}}\ =\ 0;}
+\DoxyCodeLine{00027\ \ \ \ \ uint32\ \mbox{\hyperlink{classph_1_1_t_photon_map_info_a48f21b98fbc3ae4fdec7b319665150f8}{minPathLength}}\ =\ 1;}
+\DoxyCodeLine{00028\ \ \ \ \ uint32\ \mbox{\hyperlink{classph_1_1_t_photon_map_info_ab7590812266c3a9bde7c41112b46624a}{maxPathLength}}\ =\ \mbox{\hyperlink{classph_1_1_p_m_common_params_add7ec0cd3fbcd49279d13ef7a77f4b57}{PMCommonParams::DEFAULT\_MAX\_PATH\_LENGTH}};}
+\DoxyCodeLine{00029\ \};}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00033\ \textcolor{keyword}{template}}
+\DoxyCodeLine{00034\ <}
+\DoxyCodeLine{00035\ \ \ \ \ \mbox{\hyperlink{conceptph_1_1_c_photon}{CPhoton}}\ Photon,\ }
+\DoxyCodeLine{00036\ \ \ \ \ \mbox{\hyperlink{conceptph_1_1math_1_1_c_indexed_point_kdtree_item_storage}{math::CIndexedPointKdtreeItemStorage<Photon>}}\ PhotonStorage\ =\ std::vector<Photon>}
+\DoxyCodeLine{00037\ >}
+\DoxyCodeLine{00038\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_t_photon_map}{TPhotonMap}}\ final}
+\DoxyCodeLine{00039\ \{}
+\DoxyCodeLine{00040\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structph_1_1_t_photon_map_1_1_photon_center_calculator}{PhotonCenterCalculator}}}
+\DoxyCodeLine{00042\ \ \ \ \ \{}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_base\_of\_v<TPhoton<Photon>,\ Photon>);}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\ \mbox{\hyperlink{structph_1_1_t_photon_map_1_1_photon_center_calculator_aa6572dbf71d37b5ea4600b1c8d71b42b}{operator\ ()\ }}(\textcolor{keyword}{const}\ Photon\&\ photon)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00046\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_assert}(Photon::template\ has<EPhotonData::Position>());}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ photon.template\ get<EPhotonData::Position>();}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00051\ \ \ \ \ \};}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classph_1_1math_1_1_t_indexed_point_kdtree}{MapType}}\ =\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_point_kdtree}{math::TIndexedPointKdtree<Photon,\ int,\ PhotonCenterCalculator,\ PhotonStorage>}};}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{structph_1_1math_1_1_t_indexed_point_kdtree_1_1_build_cache}{BuildCacheType}}\ =\ \mbox{\hyperlink{structph_1_1math_1_1_t_indexed_point_kdtree_1_1_build_cache}{MapType::BuildCache}};}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_point_kdtree}{MapType}}\ \mbox{\hyperlink{classph_1_1_t_photon_map_a66dd13a81bfd185475ac9f0286845c3e}{map}}\ =\ \mbox{\hyperlink{classph_1_1_t_photon_map_ab4ca9b65cc8b68363e679daf4f42cd00}{MapType}}(2,\ \mbox{\hyperlink{structph_1_1_t_photon_map_1_1_photon_center_calculator}{PhotonCenterCalculator}}\{\});}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00060\ \ \ \ \ std::size\_t\ \mbox{\hyperlink{classph_1_1_t_photon_map_af49e3490bed1be375c532f11fb7cc1a5}{numPaths}}\ =\ 0;}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00065\ \ \ \ \ uint32\ \mbox{\hyperlink{classph_1_1_t_photon_map_a1fc838f70a895e9af14a33d8773aafad}{minPathLength}}\ =\ 1;}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00070\ \ \ \ \ uint32\ \mbox{\hyperlink{classph_1_1_t_photon_map_a064e7a9f4019a5a5444b058e80e8666a}{maxPathLength}}\ =\ \mbox{\hyperlink{classph_1_1_p_m_common_params_add7ec0cd3fbcd49279d13ef7a77f4b57}{PMCommonParams::DEFAULT\_MAX\_PATH\_LENGTH}};}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_t_photon_map_a5453753b482eb0f0ff7f3693da6423a1}{canContribute}}(}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ viewPathLength,}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ minFullPathLength,}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ maxFullPathLength)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00082\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ PH\_ASSERT\_LE(minFullPathLength,\ maxFullPathLength);}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ minFullPathLengthFromMap\ =\ viewPathLength\ +\ \mbox{\hyperlink{classph_1_1_t_photon_map_a1fc838f70a895e9af14a33d8773aafad}{minPathLength}};}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ maxFullPathLengthFromMap\ =\ viewPathLength\ +\ \mbox{\hyperlink{classph_1_1_t_photon_map_a064e7a9f4019a5a5444b058e80e8666a}{maxPathLength}};}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ maxFullPathLength\ >=\ minFullPathLengthFromMap\ \&\&\ }
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ minFullPathLength\ <=\ maxFullPathLengthFromMap;}
+\DoxyCodeLine{00088\ \ \ \ \ \}}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_photon_map_aa855988bc09c1f02a9df5e0ff5405081}{find}}(}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\&\ position,}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ real\ \ \ \ \ \ \ \ \ \ \ \ kernelRadius,}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ std::vector<Photon>\&\ \ photons)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00096\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_photon_map_a66dd13a81bfd185475ac9f0286845c3e}{map}}.\mbox{\hyperlink{classph_1_1math_1_1_t_indexed_point_kdtree_a41e6c17d09ed35c19f67ea6c95945608}{findWithinRange}}(position,\ kernelRadius,\ photons);}
+\DoxyCodeLine{00098\ \ \ \ \ \}}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_photon_map_aeb1056a57f8778dc4950985ab5c1e4fb}{find}}(}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\&\ position,}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ real\ \ \ \ \ \ \ \ \ \ \ \ kernelRadius,}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ \ \ \ \ viewPathLength,}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ \ \ \ \ minFullPathLength,}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ \ \ \ \ maxFullPathLength,}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ std::vector<Photon>\&\ \ photons)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00110\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!\mbox{\hyperlink{classph_1_1_t_photon_map_a5453753b482eb0f0ff7f3693da6423a1}{canContribute}}(viewPathLength,\ minFullPathLength,\ maxFullPathLength))}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(Photon::template\ has<EPhotonData::PathLength>())}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ kernelRadius2\ =\ kernelRadius\ *\ kernelRadius;}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_photon_map_a66dd13a81bfd185475ac9f0286845c3e}{map}}.\mbox{\hyperlink{classph_1_1math_1_1_t_indexed_point_kdtree_a7ca842bdeb4e15322673024b8f17a3e3}{rangeTraversal}}(}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ position,}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ kernelRadius2,}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ [}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{this},\ kernelRadius2,\ viewPathLength,\ minFullPathLength,\ maxFullPathLength,\ }
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&position,\ \&photons}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ]}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ Photon\&\ photon)}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ pos\ \ \ \ \ \ \ \ \ =\ \mbox{\hyperlink{structph_1_1_t_photon_map_1_1_photon_center_calculator}{PhotonCenterCalculator}}\{\}(photon);}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ dist2\ \ \ \ \ \ \ =\ (pos\ -\/\ position).lengthSquared();}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ fullPathLen\ =\ viewPathLength\ +\ photon.template\ get<EPhotonData::PathLength>();}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(dist2\ <\ kernelRadius2\ \&\&\ }
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ minFullPathLength\ <=\ fullPathLen\ \&\&\ fullPathLen\ <=\ maxFullPathLength)}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ photons.push\_back(photon);}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ No\ path\ length\ available,\ this\ is\ an\ error.}}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ PH\_DEFAULT\_LOG(ErrorOnce,\ }
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}The\ photon\ type\ in\ this\ photon\ map\ contains\ no\ path\ length\ info.\ Cannot\ find\ "{}}}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}photon\ for\ the\ specified\ full\ path\ length\ in\ [\{\},\ \{\}].\ This\ photon\ map\ "{}}}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}contains\ path\ length\ in\ [\{\},\ \{\}]."{}},\ }
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ minFullPathLength,\ maxFullPathLength,\ \mbox{\hyperlink{classph_1_1_t_photon_map_a1fc838f70a895e9af14a33d8773aafad}{minPathLength}},\ \mbox{\hyperlink{classph_1_1_t_photon_map_a064e7a9f4019a5a5444b058e80e8666a}{maxPathLength}});}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00148\ \ \ \ \ \}}
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00150\ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_photon_map_info}{TPhotonMapInfo<Photon>}}\ \mbox{\hyperlink{classph_1_1_t_photon_map_a785a3af45e87a38581fb45283bc40c83}{getInfo}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00151\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \{}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \ \ \ \ .numPaths\ =\ \mbox{\hyperlink{classph_1_1_t_photon_map_af49e3490bed1be375c532f11fb7cc1a5}{numPaths}},}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ .minPathLength\ =\ \mbox{\hyperlink{classph_1_1_t_photon_map_a1fc838f70a895e9af14a33d8773aafad}{minPathLength}},}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ .maxPathLength\ =\ \mbox{\hyperlink{classph_1_1_t_photon_map_a064e7a9f4019a5a5444b058e80e8666a}{maxPathLength}}\};}
+\DoxyCodeLine{00156\ \ \ \ \ \}}
+\DoxyCodeLine{00157\ \};}
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00159\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
 
 \end{DoxyCode}

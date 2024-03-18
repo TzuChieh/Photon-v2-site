@@ -9,6 +9,7 @@ var constant_8h =
     [ "KiB", "dd/d17/constant_8h.html#aec2814da28a7c9f64c26e54b610e2004", null ],
     [ "MiB", "dd/d17/constant_8h.html#a49ad38be8f3ddda440960e50cb5376db", null ],
     [ "pi", "dd/d17/constant_8h.html#aeb217ecd643bb14c638c3d0457a031e0", null ],
+    [ "pi2", "dd/d17/constant_8h.html#a1de34fa3edf60d8404fbddd10aff51d6", null ],
     [ "PiB", "dd/d17/constant_8h.html#a6ada2c0aedc92f05b605e2fd6daf63e7", null ],
     [ "rcp_four_pi", "dd/d17/constant_8h.html#ad94737c754eba014b00baed9a4bacea3", null ],
     [ "rcp_pi", "dd/d17/constant_8h.html#a1bb40d89d819a550a57dbdb5bf950ae2", null ],

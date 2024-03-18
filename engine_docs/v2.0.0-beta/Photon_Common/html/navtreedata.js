@@ -25,6 +25,8 @@
 var NAVTREE =
 [
   [ "Photon Common Library", "index.html", [
+    [ "Home", "^https://tzuchieh.github.io/Photon-v2-site/engine_docs/v2.0.0-beta/Photon/html/index.html", null ],
+    [ "Components", "^https://tzuchieh.github.io/Photon-v2-site/engine_docs/v2.0.0-beta/Photon/html/db/d72/project_structure.html", null ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
       [ "Namespace Members", "namespacemembers.html", [
@@ -61,7 +63,7 @@ var NAVTREEINDEX =
 [
 "annotated.html",
 "d7/d86/classph_1_1_overflow_exception.html",
-"dc/d81/structph_1_1_timer_stats_report_1_1_time_record.html#a9d14e6083784d773bf3211ed63c44386"
+"dc/d18/memory_8h.html#a253bf081a0d8dfbd281bee15fdb76539"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

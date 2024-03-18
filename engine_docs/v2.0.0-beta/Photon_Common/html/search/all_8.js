@@ -11,8 +11,9 @@ var searchData=
   ['int8f_8',['int8f',['../d3/d5c/namespaceph.html#a8d46d2dae8be84655aac3cdecda0f2fb',1,'ph']]],
   ['integer_9',['integer',['../d3/d5c/namespaceph.html#ad5fdcae51975535d85a6983a9e92acb4',1,'ph']]],
   ['invalidargumentexception_10',['InvalidArgumentException',['../d4/d55/classph_1_1_invalid_argument_exception.html',1,'ph']]],
-  ['is_5fpower_5fof_5f2_11',['is_power_of_2',['../d7/dac/namespaceph_1_1math.html#a2db200d8e62c40799c3fff427b4d869d',1,'ph::math']]],
-  ['is_5ftransparent_12',['is_transparent',['../d4/d5c/structph_1_1string__utils_1_1detail_1_1_heterogeneous_string_hash.html#af7c2f6d7e57abb171435e3a4abab5234',1,'ph::string_utils::detail::HeterogeneousStringHash']]],
-  ['is_5fwhitespace_13',['is_whitespace',['../da/d3e/namespaceph_1_1string__utils.html#aa8acc1dcdc0da08cb51a586b8f820859',1,'ph::string_utils']]],
-  ['isempty_14',['isEmpty',['../df/d70/classph_1_1_command_line_arguments.html#a2cfafe062da10079f0e4ff597a8a8eb3',1,'ph::CommandLineArguments']]]
+  ['is_5fonce_11',['is_once',['../d3/d5c/namespaceph.html#ac799a130d027e2bd5811308361d8b9fc',1,'ph']]],
+  ['is_5fpower_5fof_5f2_12',['is_power_of_2',['../d7/dac/namespaceph_1_1math.html#a2db200d8e62c40799c3fff427b4d869d',1,'ph::math']]],
+  ['is_5ftransparent_13',['is_transparent',['../d3/d9e/structph_1_1detail_1_1_heterogeneous_string_hash.html#a6186c5b61990de5045674cedd0e26f04',1,'ph::detail::HeterogeneousStringHash']]],
+  ['is_5fwhitespace_14',['is_whitespace',['../da/d3e/namespaceph_1_1string__utils.html#aa8acc1dcdc0da08cb51a586b8f820859',1,'ph::string_utils']]],
+  ['isempty_15',['isEmpty',['../df/d70/classph_1_1_command_line_arguments.html#a2cfafe062da10079f0e4ff597a8a8eb3',1,'ph::CommandLineArguments']]]
 ];

@@ -35,6 +35,12 @@
     <namespace>ph::io_utils</namespace>
   </compound>
   <compound kind="file">
+    <name>namespace_ph_lta.dox</name>
+    <path>Documentation/</path>
+    <filename>d2/d91/namespace__ph__lta_8dox.html</filename>
+    <namespace>ph::lta</namespace>
+  </compound>
+  <compound kind="file">
     <name>namespace_ph_math.dox</name>
     <path>Documentation/</path>
     <filename>d6/d48/namespace__ph__math_8dox.html</filename>
@@ -50,7 +56,14 @@
     <name>EngineInitSettings.h</name>
     <path>Include/</path>
     <filename>d1/dd0/_engine_init_settings_8h.html</filename>
+    <includes id="df/d8e/_e_surface_refine_mode_8h" name="ESurfaceRefineMode.h" local="yes" import="no" module="no" objc="no">ESurfaceRefineMode.h</includes>
     <class kind="class">ph::EngineInitSettings</class>
+    <namespace>ph</namespace>
+  </compound>
+  <compound kind="file">
+    <name>ESurfaceRefineMode.h</name>
+    <path>Include/</path>
+    <filename>df/d8e/_e_surface_refine_mode_8h.html</filename>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
@@ -99,7 +112,7 @@
     <includes id="da/d27/_ideal_substance_8h" name="IdealSubstance.h" local="yes" import="no" module="no" objc="no">Actor/Material/IdealSubstance.h</includes>
     <includes id="d6/d83/_cooking_context_8h" name="CookingContext.h" local="yes" import="no" module="no" objc="no">World/Foundation/CookingContext.h</includes>
     <includes id="d8/dd2/_static_rigid_transform_8h" name="StaticRigidTransform.h" local="yes" import="no" module="no" objc="no">Math/Transform/StaticRigidTransform.h</includes>
-    <includes id="d3/d3c/_p_lat_long_env_sphere_8h" name="PLatLongEnvSphere.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/PLatLongEnvSphere.h</includes>
+    <includes id="d3/d3c/_p_lat_long_env_sphere_8h" name="PLatLongEnvSphere.h" local="yes" import="no" module="no" objc="no">Core/Intersection/PLatLongEnvSphere.h</includes>
     <includes id="df/d8e/_lat_long_env_emitter_8h" name="LatLongEnvEmitter.h" local="yes" import="no" module="no" objc="no">Core/Emitter/LatLongEnvEmitter.h</includes>
     <includes id="d9/d3f/_a_image_dome_8h" name="AImageDome.h" local="yes" import="no" module="no" objc="no">Actor/Dome/AImageDome.h</includes>
     <includes id="d2/d8a/_a_preetham_dome_8h" name="APreethamDome.h" local="yes" import="no" module="no" objc="no">Actor/Dome/APreethamDome.h</includes>
@@ -107,7 +120,7 @@
     <includes id="d4/db4/_cook_order_8h" name="CookOrder.h" local="yes" import="no" module="no" objc="no">World/Foundation/CookOrder.h</includes>
     <includes id="d9/dc4/_pre_cook_report_8h" name="PreCookReport.h" local="yes" import="no" module="no" objc="no">World/Foundation/PreCookReport.h</includes>
     <includes id="df/d3c/_cooked_resource_collection_8h" name="CookedResourceCollection.h" local="yes" import="no" module="no" objc="no">World/Foundation/CookedResourceCollection.h</includes>
-    <includes id="d1/daf/_t_meta_injection_primitive_8h" name="TMetaInjectionPrimitive.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/TMetaInjectionPrimitive.h</includes>
+    <includes id="d1/daf/_t_meta_injection_primitive_8h" name="TMetaInjectionPrimitive.h" local="yes" import="no" module="no" objc="no">Core/Intersection/TMetaInjectionPrimitive.h</includes>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
@@ -130,12 +143,13 @@
     <filename>d1/d2e/_a_model_8cpp.html</filename>
     <includes id="d6/dfc/_a_model_8h" name="AModel.h" local="yes" import="no" module="no" objc="no">Actor/AModel.h</includes>
     <includes id="df/db1/math_8h" name="math.h" local="yes" import="no" module="no" objc="no">Math/math.h</includes>
-    <includes id="d4/d5e/_primitive_metadata_8h" name="PrimitiveMetadata.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/PrimitiveMetadata.h</includes>
+    <includes id="d4/d5e/_primitive_metadata_8h" name="PrimitiveMetadata.h" local="yes" import="no" module="no" objc="no">Core/Intersection/PrimitiveMetadata.h</includes>
+    <includes id="dc/dfd/_transformed_intersectable_8h" name="TransformedIntersectable.h" local="yes" import="no" module="no" objc="no">Core/Intersection/TransformedIntersectable.h</includes>
+    <includes id="d1/daf/_t_meta_injection_primitive_8h" name="TMetaInjectionPrimitive.h" local="yes" import="no" module="no" objc="no">Core/Intersection/TMetaInjectionPrimitive.h</includes>
     <includes id="d2/dbc/_surface_behavior_8h" name="SurfaceBehavior.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/SurfaceBehavior.h</includes>
     <includes id="d7/db5/_transient_visual_element_8h" name="TransientVisualElement.h" local="yes" import="no" module="no" objc="no">World/Foundation/TransientVisualElement.h</includes>
     <includes id="df/ddb/_primitive_building_material_8h" name="PrimitiveBuildingMaterial.h" local="yes" import="no" module="no" objc="no">Actor/Geometry/PrimitiveBuildingMaterial.h</includes>
     <includes id="dd/dae/_static_affine_transform_8h" name="StaticAffineTransform.h" local="yes" import="no" module="no" objc="no">Math/Transform/StaticAffineTransform.h</includes>
-    <includes id="dc/dfd/_transformed_intersectable_8h" name="TransformedIntersectable.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/TransformedIntersectable.h</includes>
     <includes id="de/dbd/_core_2_quantity_2_time_8h" name="Time.h" local="yes" import="no" module="no" objc="no">Core/Quantity/Time.h</includes>
     <includes id="d7/dcc/_model_builder_8h" name="ModelBuilder.h" local="yes" import="no" module="no" objc="no">Actor/ModelBuilder.h</includes>
     <includes id="d9/dc4/_pre_cook_report_8h" name="PreCookReport.h" local="yes" import="no" module="no" objc="no">World/Foundation/PreCookReport.h</includes>
@@ -143,7 +157,6 @@
     <includes id="df/d3c/_cooked_resource_collection_8h" name="CookedResourceCollection.h" local="yes" import="no" module="no" objc="no">World/Foundation/CookedResourceCollection.h</includes>
     <includes id="dd/d00/_cooked_geometry_8h" name="CookedGeometry.h" local="yes" import="no" module="no" objc="no">World/Foundation/CookedGeometry.h</includes>
     <includes id="d4/d6b/_cooked_motion_8h" name="CookedMotion.h" local="yes" import="no" module="no" objc="no">World/Foundation/CookedMotion.h</includes>
-    <includes id="d1/daf/_t_meta_injection_primitive_8h" name="TMetaInjectionPrimitive.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/TMetaInjectionPrimitive.h</includes>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
@@ -164,18 +177,18 @@
     <filename>da/dff/_a_phantom_model_8cpp.html</filename>
     <includes id="d3/deb/_a_phantom_model_8h" name="APhantomModel.h" local="yes" import="no" module="no" objc="no">Actor/APhantomModel.h</includes>
     <includes id="df/db1/math_8h" name="math.h" local="yes" import="no" module="no" objc="no">Math/math.h</includes>
-    <includes id="d4/d5e/_primitive_metadata_8h" name="PrimitiveMetadata.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/PrimitiveMetadata.h</includes>
+    <includes id="d4/d5e/_primitive_metadata_8h" name="PrimitiveMetadata.h" local="yes" import="no" module="no" objc="no">Core/Intersection/PrimitiveMetadata.h</includes>
     <includes id="d9/d37/_actor_2_geometry_2_geometry_8h" name="Geometry.h" local="yes" import="no" module="no" objc="no">Actor/Geometry/Geometry.h</includes>
     <includes id="d3/d09/_material_8h" name="Material.h" local="yes" import="no" module="no" objc="no">Actor/Material/Material.h</includes>
     <includes id="d2/dbc/_surface_behavior_8h" name="SurfaceBehavior.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/SurfaceBehavior.h</includes>
     <includes id="d7/db5/_transient_visual_element_8h" name="TransientVisualElement.h" local="yes" import="no" module="no" objc="no">World/Foundation/TransientVisualElement.h</includes>
     <includes id="df/ddb/_primitive_building_material_8h" name="PrimitiveBuildingMaterial.h" local="yes" import="no" module="no" objc="no">Actor/Geometry/PrimitiveBuildingMaterial.h</includes>
-    <includes id="dc/dfd/_transformed_intersectable_8h" name="TransformedIntersectable.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/TransformedIntersectable.h</includes>
+    <includes id="dc/dfd/_transformed_intersectable_8h" name="TransformedIntersectable.h" local="yes" import="no" module="no" objc="no">Core/Intersection/TransformedIntersectable.h</includes>
     <includes id="d8/d29/_motion_source_8h" name="MotionSource.h" local="yes" import="no" module="no" objc="no">Actor/MotionSource/MotionSource.h</includes>
     <includes id="de/dbd/_core_2_quantity_2_time_8h" name="Time.h" local="yes" import="no" module="no" objc="no">Core/Quantity/Time.h</includes>
     <includes id="d7/dcc/_model_builder_8h" name="ModelBuilder.h" local="yes" import="no" module="no" objc="no">Actor/ModelBuilder.h</includes>
     <includes id="d6/d83/_cooking_context_8h" name="CookingContext.h" local="yes" import="no" module="no" objc="no">World/Foundation/CookingContext.h</includes>
-    <includes id="d2/d7c/_classic_bvh_intersector_8h" name="ClassicBvhIntersector.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/Bvh/ClassicBvhIntersector.h</includes>
+    <includes id="d2/d7c/_classic_bvh_intersector_8h" name="ClassicBvhIntersector.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Bvh/ClassicBvhIntersector.h</includes>
     <includes id="d4/db4/_cook_order_8h" name="CookOrder.h" local="yes" import="no" module="no" objc="no">World/Foundation/CookOrder.h</includes>
     <namespace>ph</namespace>
   </compound>
@@ -193,13 +206,13 @@
     <filename>d1/da8/_a_transformed_instance_8cpp.html</filename>
     <includes id="dd/dfa/_a_transformed_instance_8h" name="ATransformedInstance.h" local="yes" import="no" module="no" objc="no">Actor/ATransformedInstance.h</includes>
     <includes id="df/db1/math_8h" name="math.h" local="yes" import="no" module="no" objc="no">Math/math.h</includes>
-    <includes id="d4/d5e/_primitive_metadata_8h" name="PrimitiveMetadata.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/PrimitiveMetadata.h</includes>
+    <includes id="d4/d5e/_primitive_metadata_8h" name="PrimitiveMetadata.h" local="yes" import="no" module="no" objc="no">Core/Intersection/PrimitiveMetadata.h</includes>
     <includes id="d9/d37/_actor_2_geometry_2_geometry_8h" name="Geometry.h" local="yes" import="no" module="no" objc="no">Actor/Geometry/Geometry.h</includes>
     <includes id="d3/d09/_material_8h" name="Material.h" local="yes" import="no" module="no" objc="no">Actor/Material/Material.h</includes>
     <includes id="d2/dbc/_surface_behavior_8h" name="SurfaceBehavior.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/SurfaceBehavior.h</includes>
     <includes id="d7/db5/_transient_visual_element_8h" name="TransientVisualElement.h" local="yes" import="no" module="no" objc="no">World/Foundation/TransientVisualElement.h</includes>
     <includes id="df/ddb/_primitive_building_material_8h" name="PrimitiveBuildingMaterial.h" local="yes" import="no" module="no" objc="no">Actor/Geometry/PrimitiveBuildingMaterial.h</includes>
-    <includes id="dc/dfd/_transformed_intersectable_8h" name="TransformedIntersectable.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/TransformedIntersectable.h</includes>
+    <includes id="dc/dfd/_transformed_intersectable_8h" name="TransformedIntersectable.h" local="yes" import="no" module="no" objc="no">Core/Intersection/TransformedIntersectable.h</includes>
     <includes id="d8/d29/_motion_source_8h" name="MotionSource.h" local="yes" import="no" module="no" objc="no">Actor/MotionSource/MotionSource.h</includes>
     <includes id="de/dbd/_core_2_quantity_2_time_8h" name="Time.h" local="yes" import="no" module="no" objc="no">Core/Quantity/Time.h</includes>
     <includes id="d7/dcc/_model_builder_8h" name="ModelBuilder.h" local="yes" import="no" module="no" objc="no">Actor/ModelBuilder.h</includes>
@@ -292,9 +305,9 @@
     <path>Source/Actor/Geometry/</path>
     <filename>d1/d32/_g_cuboid_8cpp.html</filename>
     <includes id="d1/d8e/_g_cuboid_8h" name="GCuboid.h" local="yes" import="no" module="no" objc="no">Actor/Geometry/GCuboid.h</includes>
-    <includes id="d2/db2/_p_triangle_8h" name="PTriangle.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/PTriangle.h</includes>
+    <includes id="d4/d5e/_primitive_metadata_8h" name="PrimitiveMetadata.h" local="yes" import="no" module="no" objc="no">Core/Intersection/PrimitiveMetadata.h</includes>
+    <includes id="d2/db2/_p_triangle_8h" name="PTriangle.h" local="yes" import="no" module="no" objc="no">Core/Intersection/PTriangle.h</includes>
     <includes id="d5/d14/_t_vector3_8h" name="TVector3.h" local="yes" import="no" module="no" objc="no">Math/TVector3.h</includes>
-    <includes id="d4/d5e/_primitive_metadata_8h" name="PrimitiveMetadata.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/PrimitiveMetadata.h</includes>
     <includes id="d6/dfc/_a_model_8h" name="AModel.h" local="yes" import="no" module="no" objc="no">Actor/AModel.h</includes>
     <includes id="df/ddb/_primitive_building_material_8h" name="PrimitiveBuildingMaterial.h" local="yes" import="no" module="no" objc="no">Actor/Geometry/PrimitiveBuildingMaterial.h</includes>
     <includes id="df/db1/math_8h" name="math.h" local="yes" import="no" module="no" objc="no">Math/math.h</includes>
@@ -307,7 +320,7 @@
     <filename>d1/d8e/_g_cuboid_8h.html</filename>
     <includes id="d9/d37/_actor_2_geometry_2_geometry_8h" name="Geometry.h" local="yes" import="no" module="no" objc="no">Actor/Geometry/Geometry.h</includes>
     <includes id="d5/d14/_t_vector3_8h" name="TVector3.h" local="yes" import="no" module="no" objc="no">Math/TVector3.h</includes>
-    <includes id="d5/d1e/_t_a_a_b_b2_d_8h" name="TAABB2D.h" local="yes" import="no" module="no" objc="no">Math/Geometry/TAABB2D.h</includes>
+    <includes id="d4/dd8/_t_vector4_8h" name="TVector4.h" local="yes" import="no" module="no" objc="no">Math/TVector4.h</includes>
     <includes id="d7/d74/sdl__interface_8h" name="sdl_interface.h" local="yes" import="no" module="no" objc="no">SDL/sdl_interface.h</includes>
     <class kind="class">ph::GCuboid</class>
     <namespace>ph</namespace>
@@ -317,7 +330,7 @@
     <path>Source/Actor/Geometry/</path>
     <filename>d5/d86/_g_empty_8cpp.html</filename>
     <includes id="de/d21/_g_empty_8h" name="GEmpty.h" local="yes" import="no" module="no" objc="no">Actor/Geometry/GEmpty.h</includes>
-    <includes id="de/d6b/_p_empty_8h" name="PEmpty.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/PEmpty.h</includes>
+    <includes id="de/d6b/_p_empty_8h" name="PEmpty.h" local="yes" import="no" module="no" objc="no">Core/Intersection/PEmpty.h</includes>
     <includes id="df/ddb/_primitive_building_material_8h" name="PrimitiveBuildingMaterial.h" local="yes" import="no" module="no" objc="no">Actor/Geometry/PrimitiveBuildingMaterial.h</includes>
     <includes id="d6/d83/_cooking_context_8h" name="CookingContext.h" local="yes" import="no" module="no" objc="no">World/Foundation/CookingContext.h</includes>
     <includes id="df/d3c/_cooked_resource_collection_8h" name="CookedResourceCollection.h" local="yes" import="no" module="no" objc="no">World/Foundation/CookedResourceCollection.h</includes>
@@ -358,7 +371,7 @@
     <path>Source/Actor/Geometry/</path>
     <filename>d9/d37/_actor_2_geometry_2_geometry_8h.html</filename>
     <includes id="de/d2f/_t_sdl_resource_base_8h" name="TSdlResourceBase.h" local="yes" import="no" module="no" objc="no">SDL/TSdlResourceBase.h</includes>
-    <includes id="d7/df8/_primitive_8h" name="Primitive.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/Primitive.h</includes>
+    <includes id="d7/df8/_primitive_8h" name="Primitive.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Primitive.h</includes>
     <includes id="dd/dae/_static_affine_transform_8h" name="StaticAffineTransform.h" local="yes" import="no" module="no" objc="no">Math/Transform/StaticAffineTransform.h</includes>
     <includes id="d7/d74/sdl__interface_8h" name="sdl_interface.h" local="yes" import="no" module="no" objc="no">SDL/sdl_interface.h</includes>
     <class kind="class">ph::Geometry</class>
@@ -434,15 +447,15 @@
     <path>Source/Actor/Geometry/</path>
     <filename>d4/dfb/_g_ply_polygon_mesh_8cpp.html</filename>
     <includes id="d0/db0/_g_ply_polygon_mesh_8h" name="GPlyPolygonMesh.h" local="yes" import="no" module="no" objc="no">Actor/Geometry/GPlyPolygonMesh.h</includes>
-    <includes id="da/da3/_t_indexed_polygon_buffer_8h" name="TIndexedPolygonBuffer.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/DataStructure/TIndexedPolygonBuffer.h</includes>
     <includes id="d4/d03/exceptions_8h" name="exceptions.h" local="yes" import="no" module="no" objc="no">Actor/Basic/exceptions.h</includes>
     <includes id="d8/dd9/_ply_file_8h" name="PlyFile.h" local="yes" import="no" module="no" objc="no">DataIO/PlyFile.h</includes>
-    <includes id="da/dcc/_indexed_vertex_buffer_8h" name="IndexedVertexBuffer.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/DataStructure/IndexedVertexBuffer.h</includes>
-    <includes id="d1/ded/_indexed_u_int_buffer_8h" name="IndexedUIntBuffer.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/DataStructure/IndexedUIntBuffer.h</includes>
+    <includes id="da/da3/_t_indexed_polygon_buffer_8h" name="TIndexedPolygonBuffer.h" local="yes" import="no" module="no" objc="no">Core/Intersection/DataStructure/TIndexedPolygonBuffer.h</includes>
+    <includes id="da/dcc/_indexed_vertex_buffer_8h" name="IndexedVertexBuffer.h" local="yes" import="no" module="no" objc="no">Core/Intersection/DataStructure/IndexedVertexBuffer.h</includes>
+    <includes id="d1/ded/_indexed_u_int_buffer_8h" name="IndexedUIntBuffer.h" local="yes" import="no" module="no" objc="no">Core/Intersection/DataStructure/IndexedUIntBuffer.h</includes>
+    <includes id="d1/dad/_t_p_indexed_kd_tree_triangle_mesh_8h" name="TPIndexedKdTreeTriangleMesh.h" local="yes" import="no" module="no" objc="no">Core/Intersection/TPIndexedKdTreeTriangleMesh.h</includes>
     <includes id="dd/d00/_cooked_geometry_8h" name="CookedGeometry.h" local="yes" import="no" module="no" objc="no">World/Foundation/CookedGeometry.h</includes>
     <includes id="d6/d83/_cooking_context_8h" name="CookingContext.h" local="yes" import="no" module="no" objc="no">World/Foundation/CookingContext.h</includes>
     <includes id="df/d3c/_cooked_resource_collection_8h" name="CookedResourceCollection.h" local="yes" import="no" module="no" objc="no">World/Foundation/CookedResourceCollection.h</includes>
-    <includes id="d1/dad/_t_p_indexed_kd_tree_triangle_mesh_8h" name="TPIndexedKdTreeTriangleMesh.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/TPIndexedKdTreeTriangleMesh.h</includes>
     <includes id="df/db1/math_8h" name="math.h" local="yes" import="no" module="no" objc="no">Math/math.h</includes>
     <includes id="d5/d29/_timer_8h" name="Timer.h" local="yes" import="no" module="no" objc="no">Utility/Timer.h</includes>
     <namespace>ph</namespace>
@@ -454,7 +467,7 @@
     <includes id="d9/d37/_actor_2_geometry_2_geometry_8h" name="Geometry.h" local="yes" import="no" module="no" objc="no">Actor/Geometry/Geometry.h</includes>
     <includes id="d4/dc7/_resource_identifier_8h" name="ResourceIdentifier.h" local="yes" import="no" module="no" objc="no">DataIO/FileSystem/ResourceIdentifier.h</includes>
     <includes id="d7/d74/sdl__interface_8h" name="sdl_interface.h" local="yes" import="no" module="no" objc="no">SDL/sdl_interface.h</includes>
-    <includes id="d4/d8b/data__structure__fwd_8h" name="data_structure_fwd.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/data_structure_fwd.h</includes>
+    <includes id="d4/d8b/data__structure__fwd_8h" name="data_structure_fwd.h" local="yes" import="no" module="no" objc="no">Core/Intersection/data_structure_fwd.h</includes>
     <class kind="class">ph::GPlyPolygonMesh</class>
     <namespace>ph</namespace>
   </compound>
@@ -463,11 +476,11 @@
     <path>Source/Actor/Geometry/</path>
     <filename>de/db2/_g_rectangle_8cpp.html</filename>
     <includes id="d6/de0/_g_rectangle_8h" name="GRectangle.h" local="yes" import="no" module="no" objc="no">Actor/Geometry/GRectangle.h</includes>
-    <includes id="d2/db2/_p_triangle_8h" name="PTriangle.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/PTriangle.h</includes>
+    <includes id="d4/d5e/_primitive_metadata_8h" name="PrimitiveMetadata.h" local="yes" import="no" module="no" objc="no">Core/Intersection/PrimitiveMetadata.h</includes>
+    <includes id="d2/db2/_p_triangle_8h" name="PTriangle.h" local="yes" import="no" module="no" objc="no">Core/Intersection/PTriangle.h</includes>
     <includes id="d8/d1d/_g_triangle_mesh_8h" name="GTriangleMesh.h" local="yes" import="no" module="no" objc="no">Actor/Geometry/GTriangleMesh.h</includes>
     <includes id="d2/df2/_g_triangle_8h" name="GTriangle.h" local="yes" import="no" module="no" objc="no">Actor/Geometry/GTriangle.h</includes>
     <includes id="d5/d14/_t_vector3_8h" name="TVector3.h" local="yes" import="no" module="no" objc="no">Math/TVector3.h</includes>
-    <includes id="d4/d5e/_primitive_metadata_8h" name="PrimitiveMetadata.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/PrimitiveMetadata.h</includes>
     <includes id="df/ddb/_primitive_building_material_8h" name="PrimitiveBuildingMaterial.h" local="yes" import="no" module="no" objc="no">Actor/Geometry/PrimitiveBuildingMaterial.h</includes>
     <namespace>ph</namespace>
   </compound>
@@ -485,14 +498,14 @@
     <path>Source/Actor/Geometry/</path>
     <filename>db/d3f/_g_sphere_8cpp.html</filename>
     <includes id="d4/d17/_g_sphere_8h" name="GSphere.h" local="yes" import="no" module="no" objc="no">Actor/Geometry/GSphere.h</includes>
-    <includes id="d2/db2/_p_triangle_8h" name="PTriangle.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/PTriangle.h</includes>
+    <includes id="d4/d5e/_primitive_metadata_8h" name="PrimitiveMetadata.h" local="yes" import="no" module="no" objc="no">Core/Intersection/PrimitiveMetadata.h</includes>
+    <includes id="da/dd4/_p_lat_long01_sphere_8h" name="PLatLong01Sphere.h" local="yes" import="no" module="no" objc="no">Core/Intersection/PLatLong01Sphere.h</includes>
+    <includes id="d2/db2/_p_triangle_8h" name="PTriangle.h" local="yes" import="no" module="no" objc="no">Core/Intersection/PTriangle.h</includes>
     <includes id="d2/df2/_g_triangle_8h" name="GTriangle.h" local="yes" import="no" module="no" objc="no">Actor/Geometry/GTriangle.h</includes>
-    <includes id="d4/d5e/_primitive_metadata_8h" name="PrimitiveMetadata.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/PrimitiveMetadata.h</includes>
     <includes id="d9/d63/_t_sphere_8h" name="TSphere.h" local="yes" import="no" module="no" objc="no">Math/Geometry/TSphere.h</includes>
     <includes id="d6/dfc/_a_model_8h" name="AModel.h" local="yes" import="no" module="no" objc="no">Actor/AModel.h</includes>
     <includes id="df/ddb/_primitive_building_material_8h" name="PrimitiveBuildingMaterial.h" local="yes" import="no" module="no" objc="no">Actor/Geometry/PrimitiveBuildingMaterial.h</includes>
     <includes id="d8/d1d/_g_triangle_mesh_8h" name="GTriangleMesh.h" local="yes" import="no" module="no" objc="no">Actor/Geometry/GTriangleMesh.h</includes>
-    <includes id="da/dd4/_p_lat_long01_sphere_8h" name="PLatLong01Sphere.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/PLatLong01Sphere.h</includes>
     <includes id="d6/d83/_cooking_context_8h" name="CookingContext.h" local="yes" import="no" module="no" objc="no">World/Foundation/CookingContext.h</includes>
     <includes id="df/d3c/_cooked_resource_collection_8h" name="CookedResourceCollection.h" local="yes" import="no" module="no" objc="no">World/Foundation/CookedResourceCollection.h</includes>
     <includes id="dd/d00/_cooked_geometry_8h" name="CookedGeometry.h" local="yes" import="no" module="no" objc="no">World/Foundation/CookedGeometry.h</includes>
@@ -514,9 +527,9 @@
     <path>Source/Actor/Geometry/</path>
     <filename>d2/dc9/_g_triangle_8cpp.html</filename>
     <includes id="d2/df2/_g_triangle_8h" name="GTriangle.h" local="yes" import="no" module="no" objc="no">Actor/Geometry/GTriangle.h</includes>
-    <includes id="d2/db2/_p_triangle_8h" name="PTriangle.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/PTriangle.h</includes>
-    <includes id="d4/d5e/_primitive_metadata_8h" name="PrimitiveMetadata.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/PrimitiveMetadata.h</includes>
-    <includes id="d6/d2e/_uvw_mapper_8h" name="UvwMapper.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/UvwMapper/UvwMapper.h</includes>
+    <includes id="d4/d5e/_primitive_metadata_8h" name="PrimitiveMetadata.h" local="yes" import="no" module="no" objc="no">Core/Intersection/PrimitiveMetadata.h</includes>
+    <includes id="d2/db2/_p_triangle_8h" name="PTriangle.h" local="yes" import="no" module="no" objc="no">Core/Intersection/PTriangle.h</includes>
+    <includes id="d6/d2e/_uvw_mapper_8h" name="UvwMapper.h" local="yes" import="no" module="no" objc="no">Core/Intersection/UvwMapper/UvwMapper.h</includes>
     <includes id="d6/dfc/_a_model_8h" name="AModel.h" local="yes" import="no" module="no" objc="no">Actor/AModel.h</includes>
     <includes id="df/ddb/_primitive_building_material_8h" name="PrimitiveBuildingMaterial.h" local="yes" import="no" module="no" objc="no">Actor/Geometry/PrimitiveBuildingMaterial.h</includes>
     <includes id="df/db1/math_8h" name="math.h" local="yes" import="no" module="no" objc="no">Math/math.h</includes>
@@ -541,7 +554,7 @@
     <path>Source/Actor/Geometry/</path>
     <filename>d8/d7e/_g_triangle_mesh_8cpp.html</filename>
     <includes id="d8/d1d/_g_triangle_mesh_8h" name="GTriangleMesh.h" local="yes" import="no" module="no" objc="no">Actor/Geometry/GTriangleMesh.h</includes>
-    <includes id="d4/d5e/_primitive_metadata_8h" name="PrimitiveMetadata.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/PrimitiveMetadata.h</includes>
+    <includes id="d4/d5e/_primitive_metadata_8h" name="PrimitiveMetadata.h" local="yes" import="no" module="no" objc="no">Core/Intersection/PrimitiveMetadata.h</includes>
     <includes id="df/ddb/_primitive_building_material_8h" name="PrimitiveBuildingMaterial.h" local="yes" import="no" module="no" objc="no">Actor/Geometry/PrimitiveBuildingMaterial.h</includes>
     <includes id="d1/dc6/_geometry_soup_8h" name="GeometrySoup.h" local="yes" import="no" module="no" objc="no">Actor/Geometry/GeometrySoup.h</includes>
     <includes id="d4/d03/exceptions_8h" name="exceptions.h" local="yes" import="no" module="no" objc="no">Actor/Basic/exceptions.h</includes>
@@ -562,9 +575,9 @@
     <path>Source/Actor/Geometry/</path>
     <filename>da/d04/_g_wave_8cpp.html</filename>
     <includes id="dd/dd3/_g_wave_8h" name="GWave.h" local="yes" import="no" module="no" objc="no">Actor/Geometry/GWave.h</includes>
-    <includes id="d2/db2/_p_triangle_8h" name="PTriangle.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/PTriangle.h</includes>
+    <includes id="d4/d5e/_primitive_metadata_8h" name="PrimitiveMetadata.h" local="yes" import="no" module="no" objc="no">Core/Intersection/PrimitiveMetadata.h</includes>
+    <includes id="d2/db2/_p_triangle_8h" name="PTriangle.h" local="yes" import="no" module="no" objc="no">Core/Intersection/PTriangle.h</includes>
     <includes id="d5/d14/_t_vector3_8h" name="TVector3.h" local="yes" import="no" module="no" objc="no">Math/TVector3.h</includes>
-    <includes id="d4/d5e/_primitive_metadata_8h" name="PrimitiveMetadata.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/PrimitiveMetadata.h</includes>
     <includes id="df/ddb/_primitive_building_material_8h" name="PrimitiveBuildingMaterial.h" local="yes" import="no" module="no" objc="no">Actor/Geometry/PrimitiveBuildingMaterial.h</includes>
     <includes id="d6/d83/_cooking_context_8h" name="CookingContext.h" local="yes" import="no" module="no" objc="no">World/Foundation/CookingContext.h</includes>
     <includes id="df/d3c/_cooked_resource_collection_8h" name="CookedResourceCollection.h" local="yes" import="no" module="no" objc="no">World/Foundation/CookedResourceCollection.h</includes>
@@ -710,8 +723,10 @@
     <filename>d2/d4b/_math_image_8cpp.html</filename>
     <includes id="d8/df5/_math_image_8h" name="MathImage.h" local="yes" import="no" module="no" objc="no">Actor/Image/MathImage.h</includes>
     <includes id="d4/d03/exceptions_8h" name="exceptions.h" local="yes" import="no" module="no" objc="no">Actor/Basic/exceptions.h</includes>
+    <includes id="df/deb/constant__textures_8h" name="constant_textures.h" local="yes" import="no" module="no" objc="no">Core/Texture/constant_textures.h</includes>
     <includes id="dc/dae/unary__texture__operators_8h" name="unary_texture_operators.h" local="yes" import="no" module="no" objc="no">Core/Texture/Function/unary_texture_operators.h</includes>
     <includes id="d0/da8/binary__texture__operators_8h" name="binary_texture_operators.h" local="yes" import="no" module="no" objc="no">Core/Texture/Function/binary_texture_operators.h</includes>
+    <includes id="d6/db3/ternary__texture__operators_8h" name="ternary_texture_operators.h" local="yes" import="no" module="no" objc="no">Core/Texture/Function/ternary_texture_operators.h</includes>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
@@ -747,7 +762,7 @@
     <includes id="d7/d74/sdl__interface_8h" name="sdl_interface.h" local="yes" import="no" module="no" objc="no">SDL/sdl_interface.h</includes>
     <includes id="dd/d5c/pixel__texture__basics_8h" name="pixel_texture_basics.h" local="yes" import="no" module="no" objc="no">Core/Texture/Pixel/pixel_texture_basics.h</includes>
     <includes id="d4/d95/_pixel_buffer2_d_8h" name="PixelBuffer2D.h" local="yes" import="no" module="no" objc="no">Core/Texture/Pixel/PixelBuffer2D.h</includes>
-    <includes id="d7/d8d/color__enums_8h" name="color_enums.h" local="yes" import="no" module="no" objc="no">Math/Color/color_enums.h</includes>
+    <includes id="d6/d35/sdl__color__enums_8h" name="sdl_color_enums.h" local="yes" import="no" module="no" objc="no">Actor/SDLExtension/sdl_color_enums.h</includes>
     <class kind="class">ph::RasterFileImage</class>
     <namespace>ph</namespace>
   </compound>
@@ -814,6 +829,7 @@
     <includes id="d6/d83/_cooking_context_8h" name="CookingContext.h" local="yes" import="no" module="no" objc="no">World/Foundation/CookingContext.h</includes>
     <includes id="df/d3c/_cooked_resource_collection_8h" name="CookedResourceCollection.h" local="yes" import="no" module="no" objc="no">World/Foundation/CookedResourceCollection.h</includes>
     <includes id="df/deb/constant__textures_8h" name="constant_textures.h" local="yes" import="no" module="no" objc="no">Core/Texture/constant_textures.h</includes>
+    <includes id="da/d27/_ideal_substance_8h" name="IdealSubstance.h" local="yes" import="no" module="no" objc="no">Actor/Material/IdealSubstance.h</includes>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
@@ -833,19 +849,19 @@
     <filename>d7/d00/_a_geometric_light_8cpp.html</filename>
     <includes id="d2/dd6/_a_geometric_light_8h" name="AGeometricLight.h" local="yes" import="no" module="no" objc="no">Actor/Light/AGeometricLight.h</includes>
     <includes id="df/db1/math_8h" name="math.h" local="yes" import="no" module="no" objc="no">Math/math.h</includes>
-    <includes id="d4/d5e/_primitive_metadata_8h" name="PrimitiveMetadata.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/PrimitiveMetadata.h</includes>
     <includes id="d5/dd2/_matte_opaque_8h" name="MatteOpaque.h" local="yes" import="no" module="no" objc="no">Actor/Material/MatteOpaque.h</includes>
     <includes id="d7/db5/_transient_visual_element_8h" name="TransientVisualElement.h" local="yes" import="no" module="no" objc="no">World/Foundation/TransientVisualElement.h</includes>
     <includes id="df/ddb/_primitive_building_material_8h" name="PrimitiveBuildingMaterial.h" local="yes" import="no" module="no" objc="no">Actor/Geometry/PrimitiveBuildingMaterial.h</includes>
     <includes id="da/da6/_emitter_building_material_8h" name="EmitterBuildingMaterial.h" local="yes" import="no" module="no" objc="no">Actor/LightSource/EmitterBuildingMaterial.h</includes>
-    <includes id="dc/dfd/_transformed_intersectable_8h" name="TransformedIntersectable.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/TransformedIntersectable.h</includes>
-    <includes id="d0/d01/_transformed_primitive_8h" name="TransformedPrimitive.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/TransformedPrimitive.h</includes>
+    <includes id="d4/d5e/_primitive_metadata_8h" name="PrimitiveMetadata.h" local="yes" import="no" module="no" objc="no">Core/Intersection/PrimitiveMetadata.h</includes>
+    <includes id="dc/dfd/_transformed_intersectable_8h" name="TransformedIntersectable.h" local="yes" import="no" module="no" objc="no">Core/Intersection/TransformedIntersectable.h</includes>
+    <includes id="d0/d01/_transformed_primitive_8h" name="TransformedPrimitive.h" local="yes" import="no" module="no" objc="no">Core/Intersection/TransformedPrimitive.h</includes>
+    <includes id="d1/daf/_t_meta_injection_primitive_8h" name="TMetaInjectionPrimitive.h" local="yes" import="no" module="no" objc="no">Core/Intersection/TMetaInjectionPrimitive.h</includes>
     <includes id="dd/dae/_static_affine_transform_8h" name="StaticAffineTransform.h" local="yes" import="no" module="no" objc="no">Math/Transform/StaticAffineTransform.h</includes>
     <includes id="d8/dd2/_static_rigid_transform_8h" name="StaticRigidTransform.h" local="yes" import="no" module="no" objc="no">Math/Transform/StaticRigidTransform.h</includes>
     <includes id="d9/dc4/_pre_cook_report_8h" name="PreCookReport.h" local="yes" import="no" module="no" objc="no">World/Foundation/PreCookReport.h</includes>
     <includes id="d6/d83/_cooking_context_8h" name="CookingContext.h" local="yes" import="no" module="no" objc="no">World/Foundation/CookingContext.h</includes>
     <includes id="df/d3c/_cooked_resource_collection_8h" name="CookedResourceCollection.h" local="yes" import="no" module="no" objc="no">World/Foundation/CookedResourceCollection.h</includes>
-    <includes id="d1/daf/_t_meta_injection_primitive_8h" name="TMetaInjectionPrimitive.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/TMetaInjectionPrimitive.h</includes>
     <includes id="dc/d21/_diffuse_surface_emitter_8h" name="DiffuseSurfaceEmitter.h" local="yes" import="no" module="no" objc="no">Core/Emitter/DiffuseSurfaceEmitter.h</includes>
     <includes id="db/d36/_multi_diffuse_surface_emitter_8h" name="MultiDiffuseSurfaceEmitter.h" local="yes" import="no" module="no" objc="no">Core/Emitter/MultiDiffuseSurfaceEmitter.h</includes>
     <namespace>ph</namespace>
@@ -878,8 +894,8 @@
     <includes id="d2/d6d/_t_frame_buffer2_d_8h" name="TFrameBuffer2D.h" local="yes" import="no" module="no" objc="no">Core/Texture/Pixel/TFrameBuffer2D.h</includes>
     <includes id="d6/d88/_t_scalar_pixel_texture2_d_8h" name="TScalarPixelTexture2D.h" local="yes" import="no" module="no" objc="no">Core/Texture/Pixel/TScalarPixelTexture2D.h</includes>
     <includes id="dc/dae/unary__texture__operators_8h" name="unary_texture_operators.h" local="yes" import="no" module="no" objc="no">Core/Texture/Function/unary_texture_operators.h</includes>
-    <includes id="d4/d5e/_primitive_metadata_8h" name="PrimitiveMetadata.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/PrimitiveMetadata.h</includes>
-    <includes id="d1/daf/_t_meta_injection_primitive_8h" name="TMetaInjectionPrimitive.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/TMetaInjectionPrimitive.h</includes>
+    <includes id="d4/d5e/_primitive_metadata_8h" name="PrimitiveMetadata.h" local="yes" import="no" module="no" objc="no">Core/Intersection/PrimitiveMetadata.h</includes>
+    <includes id="d1/daf/_t_meta_injection_primitive_8h" name="TMetaInjectionPrimitive.h" local="yes" import="no" module="no" objc="no">Core/Intersection/TMetaInjectionPrimitive.h</includes>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
@@ -998,8 +1014,8 @@
     <includes id="da/da6/_emitter_building_material_8h" name="EmitterBuildingMaterial.h" local="yes" import="no" module="no" objc="no">Actor/LightSource/EmitterBuildingMaterial.h</includes>
     <includes id="dd/d0d/_rigid_transform_8h" name="RigidTransform.h" local="yes" import="no" module="no" objc="no">Math/Transform/RigidTransform.h</includes>
     <includes id="d8/dd2/_static_rigid_transform_8h" name="StaticRigidTransform.h" local="yes" import="no" module="no" objc="no">Math/Transform/StaticRigidTransform.h</includes>
-    <includes id="d0/d01/_transformed_primitive_8h" name="TransformedPrimitive.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/TransformedPrimitive.h</includes>
-    <includes id="d4/d5e/_primitive_metadata_8h" name="PrimitiveMetadata.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/PrimitiveMetadata.h</includes>
+    <includes id="d0/d01/_transformed_primitive_8h" name="TransformedPrimitive.h" local="yes" import="no" module="no" objc="no">Core/Intersection/TransformedPrimitive.h</includes>
+    <includes id="d4/d5e/_primitive_metadata_8h" name="PrimitiveMetadata.h" local="yes" import="no" module="no" objc="no">Core/Intersection/PrimitiveMetadata.h</includes>
     <includes id="dc/d21/_diffuse_surface_emitter_8h" name="DiffuseSurfaceEmitter.h" local="yes" import="no" module="no" objc="no">Core/Emitter/DiffuseSurfaceEmitter.h</includes>
     <includes id="db/d36/_multi_diffuse_surface_emitter_8h" name="MultiDiffuseSurfaceEmitter.h" local="yes" import="no" module="no" objc="no">Core/Emitter/MultiDiffuseSurfaceEmitter.h</includes>
     <includes id="dd/dec/_lambertian_diffuse_8h" name="LambertianDiffuse.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/SurfaceOptics/LambertianDiffuse.h</includes>
@@ -1036,8 +1052,8 @@
     <filename>d8/d75/_ies_attenuated_source_8cpp.html</filename>
     <includes id="d7/d4c/_ies_attenuated_source_8h" name="IesAttenuatedSource.h" local="yes" import="no" module="no" objc="no">Actor/LightSource/IesAttenuatedSource.h</includes>
     <includes id="db/df8/_ies_data_8h" name="IesData.h" local="yes" import="no" module="no" objc="no">DataIO/Data/IesData.h</includes>
-    <includes id="d4/d5e/_primitive_metadata_8h" name="PrimitiveMetadata.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/PrimitiveMetadata.h</includes>
-    <includes id="d8/d10/_primitive_channel_8h" name="PrimitiveChannel.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/PrimitiveChannel.h</includes>
+    <includes id="d4/d5e/_primitive_metadata_8h" name="PrimitiveMetadata.h" local="yes" import="no" module="no" objc="no">Core/Intersection/PrimitiveMetadata.h</includes>
+    <includes id="d8/d10/_primitive_channel_8h" name="PrimitiveChannel.h" local="yes" import="no" module="no" objc="no">Core/Intersection/PrimitiveChannel.h</includes>
     <includes id="df/d87/_t_frame_8h" name="TFrame.h" local="yes" import="no" module="no" objc="no">Frame/TFrame.h</includes>
     <includes id="d2/d6d/_t_frame_buffer2_d_8h" name="TFrameBuffer2D.h" local="yes" import="no" module="no" objc="no">Core/Texture/Pixel/TFrameBuffer2D.h</includes>
     <includes id="d6/d88/_t_scalar_pixel_texture2_d_8h" name="TScalarPixelTexture2D.h" local="yes" import="no" module="no" objc="no">Core/Texture/Pixel/TScalarPixelTexture2D.h</includes>
@@ -1095,8 +1111,8 @@
     <includes id="d5/d46/_constant_image_8h" name="ConstantImage.h" local="yes" import="no" module="no" objc="no">Actor/Image/ConstantImage.h</includes>
     <includes id="d6/d7d/_raster_file_image_8h" name="RasterFileImage.h" local="yes" import="no" module="no" objc="no">Actor/Image/RasterFileImage.h</includes>
     <includes id="db/d36/_multi_diffuse_surface_emitter_8h" name="MultiDiffuseSurfaceEmitter.h" local="yes" import="no" module="no" objc="no">Core/Emitter/MultiDiffuseSurfaceEmitter.h</includes>
-    <includes id="d4/d5e/_primitive_metadata_8h" name="PrimitiveMetadata.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/PrimitiveMetadata.h</includes>
-    <includes id="d7/df8/_primitive_8h" name="Primitive.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/Primitive.h</includes>
+    <includes id="d4/d5e/_primitive_metadata_8h" name="PrimitiveMetadata.h" local="yes" import="no" module="no" objc="no">Core/Intersection/PrimitiveMetadata.h</includes>
+    <includes id="d7/df8/_primitive_8h" name="Primitive.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Primitive.h</includes>
     <includes id="d5/dd2/_matte_opaque_8h" name="MatteOpaque.h" local="yes" import="no" module="no" objc="no">Actor/Material/MatteOpaque.h</includes>
     <includes id="d9/d37/_actor_2_geometry_2_geometry_8h" name="Geometry.h" local="yes" import="no" module="no" objc="no">Actor/Geometry/Geometry.h</includes>
     <namespace>ph</namespace>
@@ -1177,8 +1193,8 @@
     <path>Source/Actor/Material/</path>
     <filename>d3/dee/_abraded_opaque_8h.html</filename>
     <includes id="dd/d13/_surface_material_8h" name="SurfaceMaterial.h" local="yes" import="no" module="no" objc="no">Actor/Material/SurfaceMaterial.h</includes>
-    <includes id="de/d41/_conductive_interface_info_8h" name="ConductiveInterfaceInfo.h" local="yes" import="no" module="no" objc="no">Actor/Material/Utility/ConductiveInterfaceInfo.h</includes>
-    <includes id="d6/dcc/_microsurface_info_8h" name="MicrosurfaceInfo.h" local="yes" import="no" module="no" objc="no">Actor/Material/Utility/MicrosurfaceInfo.h</includes>
+    <includes id="de/d41/_conductive_interface_info_8h" name="ConductiveInterfaceInfo.h" local="yes" import="no" module="no" objc="no">Actor/Material/Component/ConductiveInterfaceInfo.h</includes>
+    <includes id="d6/dcc/_microsurface_info_8h" name="MicrosurfaceInfo.h" local="yes" import="no" module="no" objc="no">Actor/Material/Component/MicrosurfaceInfo.h</includes>
     <includes id="d7/d74/sdl__interface_8h" name="sdl_interface.h" local="yes" import="no" module="no" objc="no">SDL/sdl_interface.h</includes>
     <class kind="class">ph::AbradedOpaque</class>
     <namespace>ph</namespace>
@@ -1212,8 +1228,8 @@
     <path>Source/Actor/Material/</path>
     <filename>d9/dce/_abraded_translucent_8h.html</filename>
     <includes id="dd/d13/_surface_material_8h" name="SurfaceMaterial.h" local="yes" import="no" module="no" objc="no">Actor/Material/SurfaceMaterial.h</includes>
-    <includes id="db/dd2/_dielectric_interface_info_8h" name="DielectricInterfaceInfo.h" local="yes" import="no" module="no" objc="no">Actor/Material/Utility/DielectricInterfaceInfo.h</includes>
-    <includes id="d6/dcc/_microsurface_info_8h" name="MicrosurfaceInfo.h" local="yes" import="no" module="no" objc="no">Actor/Material/Utility/MicrosurfaceInfo.h</includes>
+    <includes id="db/dd2/_dielectric_interface_info_8h" name="DielectricInterfaceInfo.h" local="yes" import="no" module="no" objc="no">Actor/Material/Component/DielectricInterfaceInfo.h</includes>
+    <includes id="d6/dcc/_microsurface_info_8h" name="MicrosurfaceInfo.h" local="yes" import="no" module="no" objc="no">Actor/Material/Component/MicrosurfaceInfo.h</includes>
     <includes id="d7/d74/sdl__interface_8h" name="sdl_interface.h" local="yes" import="no" module="no" objc="no">SDL/sdl_interface.h</includes>
     <class kind="class">ph::AbradedTranslucent</class>
     <namespace>ph</namespace>
@@ -1240,13 +1256,129 @@
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
+    <name>Component.dox</name>
+    <path>Source/Actor/Material/Component/</path>
+    <filename>de/db5/_component_8dox.html</filename>
+  </compound>
+  <compound kind="file">
+    <name>ConductiveInterfaceInfo.cpp</name>
+    <path>Source/Actor/Material/Component/</path>
+    <filename>d7/d18/_conductive_interface_info_8cpp.html</filename>
+    <includes id="de/d41/_conductive_interface_info_8h" name="ConductiveInterfaceInfo.h" local="yes" import="no" module="no" objc="no">Actor/Material/Component/ConductiveInterfaceInfo.h</includes>
+    <includes id="d5/d51/_schlick_approx_conductor_fresnel_8h" name="SchlickApproxConductorFresnel.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/Property/SchlickApproxConductorFresnel.h</includes>
+    <includes id="d1/df4/_exact_conductor_fresnel_8h" name="ExactConductorFresnel.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/Property/ExactConductorFresnel.h</includes>
+    <namespace>ph</namespace>
+  </compound>
+  <compound kind="file">
+    <name>ConductiveInterfaceInfo.h</name>
+    <path>Source/Actor/Material/Component/</path>
+    <filename>de/d41/_conductive_interface_info_8h.html</filename>
+    <includes id="d3/df8/_spectrum_8h" name="Spectrum.h" local="yes" import="no" module="no" objc="no">Math/Color/Spectrum.h</includes>
+    <includes id="d3/dd8/_e_interface_fresnel_8h" name="EInterfaceFresnel.h" local="yes" import="no" module="no" objc="no">Actor/Material/Component/EInterfaceFresnel.h</includes>
+    <includes id="d0/de0/_t_sdl_spectrum_8h" name="TSdlSpectrum.h" local="yes" import="no" module="no" objc="no">Actor/SDLExtension/TSdlSpectrum.h</includes>
+    <class kind="class">ph::ConductiveInterfaceInfo</class>
+    <namespace>ph</namespace>
+  </compound>
+  <compound kind="file">
+    <name>DielectricInterfaceInfo.cpp</name>
+    <path>Source/Actor/Material/Component/</path>
+    <filename>d8/d24/_dielectric_interface_info_8cpp.html</filename>
+    <includes id="db/dd2/_dielectric_interface_info_8h" name="DielectricInterfaceInfo.h" local="yes" import="no" module="no" objc="no">Actor/Material/Component/DielectricInterfaceInfo.h</includes>
+    <includes id="dc/d28/_schlick_approx_dielectric_fresnel_8h" name="SchlickApproxDielectricFresnel.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/Property/SchlickApproxDielectricFresnel.h</includes>
+    <includes id="d4/d68/_exact_dielectric_fresnel_8h" name="ExactDielectricFresnel.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/Property/ExactDielectricFresnel.h</includes>
+    <namespace>ph</namespace>
+  </compound>
+  <compound kind="file">
+    <name>DielectricInterfaceInfo.h</name>
+    <path>Source/Actor/Material/Component/</path>
+    <filename>db/dd2/_dielectric_interface_info_8h.html</filename>
+    <includes id="d3/dd8/_e_interface_fresnel_8h" name="EInterfaceFresnel.h" local="yes" import="no" module="no" objc="no">Actor/Material/Component/EInterfaceFresnel.h</includes>
+    <includes id="d7/d74/sdl__interface_8h" name="sdl_interface.h" local="yes" import="no" module="no" objc="no">SDL/sdl_interface.h</includes>
+    <class kind="class">ph::DielectricInterfaceInfo</class>
+    <namespace>ph</namespace>
+  </compound>
+  <compound kind="file">
+    <name>EInterfaceFresnel.h</name>
+    <path>Source/Actor/Material/Component/</path>
+    <filename>d3/dd8/_e_interface_fresnel_8h.html</filename>
+    <includes id="d7/d74/sdl__interface_8h" name="sdl_interface.h" local="yes" import="no" module="no" objc="no">SDL/sdl_interface.h</includes>
+    <namespace>ph</namespace>
+  </compound>
+  <compound kind="file">
+    <name>EInterfaceMicrosurface.h</name>
+    <path>Source/Actor/Material/Component/</path>
+    <filename>dd/d36/_e_interface_microsurface_8h.html</filename>
+    <includes id="d7/d74/sdl__interface_8h" name="sdl_interface.h" local="yes" import="no" module="no" objc="no">SDL/sdl_interface.h</includes>
+    <namespace>ph</namespace>
+  </compound>
+  <compound kind="file">
+    <name>ERoughnessToAlpha.h</name>
+    <path>Source/Actor/Material/Component/</path>
+    <filename>d0/dba/_e_roughness_to_alpha_8h.html</filename>
+    <includes id="d7/d74/sdl__interface_8h" name="sdl_interface.h" local="yes" import="no" module="no" objc="no">SDL/sdl_interface.h</includes>
+    <namespace>ph</namespace>
+  </compound>
+  <compound kind="file">
+    <name>MacrosurfaceInfo.h</name>
+    <path>Source/Actor/Material/Component/</path>
+    <filename>d1/d8f/_macrosurface_info_8h.html</filename>
+  </compound>
+  <compound kind="file">
+    <name>MicrosurfaceInfo.cpp</name>
+    <path>Source/Actor/Material/Component/</path>
+    <filename>d9/dd0/_microsurface_info_8cpp.html</filename>
+    <includes id="d6/dcc/_microsurface_info_8h" name="MicrosurfaceInfo.h" local="yes" import="no" module="no" objc="no">Actor/Material/Component/MicrosurfaceInfo.h</includes>
+    <includes id="d8/db4/_roughness_to_alpha_mapping_8h" name="RoughnessToAlphaMapping.h" local="yes" import="no" module="no" objc="no">Actor/Material/Component/RoughnessToAlphaMapping.h</includes>
+    <includes id="d7/d66/_iso_trowbridge_reitz_constant_8h" name="IsoTrowbridgeReitzConstant.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/Property/IsoTrowbridgeReitzConstant.h</includes>
+    <includes id="d7/dac/_iso_beckmann_8h" name="IsoBeckmann.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/Property/IsoBeckmann.h</includes>
+    <includes id="d8/d16/_aniso_trowbridge_reitz_8h" name="AnisoTrowbridgeReitz.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/Property/AnisoTrowbridgeReitz.h</includes>
+    <namespace>ph</namespace>
+  </compound>
+  <compound kind="file">
+    <name>MicrosurfaceInfo.h</name>
+    <path>Source/Actor/Material/Component/</path>
+    <filename>d6/dcc/_microsurface_info_8h.html</filename>
+    <includes id="dd/d36/_e_interface_microsurface_8h" name="EInterfaceMicrosurface.h" local="yes" import="no" module="no" objc="no">Actor/Material/Component/EInterfaceMicrosurface.h</includes>
+    <includes id="d0/dba/_e_roughness_to_alpha_8h" name="ERoughnessToAlpha.h" local="yes" import="no" module="no" objc="no">Actor/Material/Component/ERoughnessToAlpha.h</includes>
+    <includes id="d7/d74/sdl__interface_8h" name="sdl_interface.h" local="yes" import="no" module="no" objc="no">SDL/sdl_interface.h</includes>
+    <class kind="class">ph::MicrosurfaceInfo</class>
+    <namespace>ph</namespace>
+  </compound>
+  <compound kind="file">
+    <name>RoughnessToAlphaMapping.h</name>
+    <path>Source/Actor/Material/Component/</path>
+    <filename>d8/db4/_roughness_to_alpha_mapping_8h.html</filename>
+    <includes id="d0/dba/_e_roughness_to_alpha_8h" name="ERoughnessToAlpha.h" local="yes" import="no" module="no" objc="no">Actor/Material/Component/ERoughnessToAlpha.h</includes>
+    <class kind="class">ph::RoughnessToAlphaMapping</class>
+    <namespace>ph</namespace>
+  </compound>
+  <compound kind="file">
+    <name>SurfaceLayerInfo.cpp</name>
+    <path>Source/Actor/Material/Component/</path>
+    <filename>d9/d8f/_surface_layer_info_8cpp.html</filename>
+    <includes id="d3/d6c/_surface_layer_info_8h" name="SurfaceLayerInfo.h" local="yes" import="no" module="no" objc="no">Actor/Material/Component/SurfaceLayerInfo.h</includes>
+    <namespace>ph</namespace>
+  </compound>
+  <compound kind="file">
+    <name>SurfaceLayerInfo.h</name>
+    <path>Source/Actor/Material/Component/</path>
+    <filename>d3/d6c/_surface_layer_info_8h.html</filename>
+    <includes id="d3/df8/_spectrum_8h" name="Spectrum.h" local="yes" import="no" module="no" objc="no">Math/Color/Spectrum.h</includes>
+    <includes id="d5/d14/_t_vector3_8h" name="TVector3.h" local="yes" import="no" module="no" objc="no">Math/TVector3.h</includes>
+    <includes id="d8/db4/_roughness_to_alpha_mapping_8h" name="RoughnessToAlphaMapping.h" local="yes" import="no" module="no" objc="no">Actor/Material/Component/RoughnessToAlphaMapping.h</includes>
+    <includes id="d7/d74/sdl__interface_8h" name="sdl_interface.h" local="yes" import="no" module="no" objc="no">SDL/sdl_interface.h</includes>
+    <includes id="d0/de0/_t_sdl_spectrum_8h" name="TSdlSpectrum.h" local="yes" import="no" module="no" objc="no">Actor/SDLExtension/TSdlSpectrum.h</includes>
+    <class kind="class">ph::SurfaceLayerInfo</class>
+    <namespace>ph</namespace>
+  </compound>
+  <compound kind="file">
     <name>FullMaterial.cpp</name>
     <path>Source/Actor/Material/</path>
     <filename>d2/d19/_full_material_8cpp.html</filename>
     <includes id="d9/dc8/_full_material_8h" name="FullMaterial.h" local="yes" import="no" module="no" objc="no">Actor/Material/FullMaterial.h</includes>
     <includes id="d2/dbc/_surface_behavior_8h" name="SurfaceBehavior.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/SurfaceBehavior.h</includes>
     <includes id="dd/d13/_surface_material_8h" name="SurfaceMaterial.h" local="yes" import="no" module="no" objc="no">Actor/Material/SurfaceMaterial.h</includes>
-    <includes id="d4/d5e/_primitive_metadata_8h" name="PrimitiveMetadata.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/PrimitiveMetadata.h</includes>
+    <includes id="d4/d5e/_primitive_metadata_8h" name="PrimitiveMetadata.h" local="yes" import="no" module="no" objc="no">Core/Intersection/PrimitiveMetadata.h</includes>
     <includes id="d9/d3a/_volume_material_8h" name="VolumeMaterial.h" local="yes" import="no" module="no" objc="no">Actor/Material/VolumeMaterial.h</includes>
     <namespace>ph</namespace>
   </compound>
@@ -1274,8 +1406,8 @@
     <includes id="dd/dc5/_ideal_dielectric_8h" name="IdealDielectric.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/SurfaceOptics/IdealDielectric.h</includes>
     <includes id="df/deb/constant__textures_8h" name="constant_textures.h" local="yes" import="no" module="no" objc="no">Core/Texture/constant_textures.h</includes>
     <includes id="d4/d03/exceptions_8h" name="exceptions.h" local="yes" import="no" module="no" objc="no">Actor/Basic/exceptions.h</includes>
-    <includes id="db/dd2/_dielectric_interface_info_8h" name="DielectricInterfaceInfo.h" local="yes" import="no" module="no" objc="no">Actor/Material/Utility/DielectricInterfaceInfo.h</includes>
-    <includes id="de/d41/_conductive_interface_info_8h" name="ConductiveInterfaceInfo.h" local="yes" import="no" module="no" objc="no">Actor/Material/Utility/ConductiveInterfaceInfo.h</includes>
+    <includes id="db/dd2/_dielectric_interface_info_8h" name="DielectricInterfaceInfo.h" local="yes" import="no" module="no" objc="no">Actor/Material/Component/DielectricInterfaceInfo.h</includes>
+    <includes id="de/d41/_conductive_interface_info_8h" name="ConductiveInterfaceInfo.h" local="yes" import="no" module="no" objc="no">Actor/Material/Component/ConductiveInterfaceInfo.h</includes>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
@@ -1286,7 +1418,7 @@
     <includes id="d3/df8/_spectrum_8h" name="Spectrum.h" local="yes" import="no" module="no" objc="no">Math/Color/Spectrum.h</includes>
     <includes id="d5/d14/_t_vector3_8h" name="TVector3.h" local="yes" import="no" module="no" objc="no">Math/TVector3.h</includes>
     <includes id="d7/d74/sdl__interface_8h" name="sdl_interface.h" local="yes" import="no" module="no" objc="no">SDL/sdl_interface.h</includes>
-    <includes id="d3/dd8/_e_interface_fresnel_8h" name="EInterfaceFresnel.h" local="yes" import="no" module="no" objc="no">Actor/Material/Utility/EInterfaceFresnel.h</includes>
+    <includes id="d3/dd8/_e_interface_fresnel_8h" name="EInterfaceFresnel.h" local="yes" import="no" module="no" objc="no">Actor/Material/Component/EInterfaceFresnel.h</includes>
     <includes id="d0/de0/_t_sdl_spectrum_8h" name="TSdlSpectrum.h" local="yes" import="no" module="no" objc="no">Actor/SDLExtension/TSdlSpectrum.h</includes>
     <class kind="class">ph::IdealSubstance</class>
     <namespace>ph</namespace>
@@ -1305,7 +1437,8 @@
     <path>Source/Actor/Material/</path>
     <filename>dd/da6/_layered_surface_8h.html</filename>
     <includes id="dd/d13/_surface_material_8h" name="SurfaceMaterial.h" local="yes" import="no" module="no" objc="no">Actor/Material/SurfaceMaterial.h</includes>
-    <includes id="d3/d6c/_surface_layer_info_8h" name="SurfaceLayerInfo.h" local="yes" import="no" module="no" objc="no">Actor/Material/Utility/SurfaceLayerInfo.h</includes>
+    <includes id="d3/d6c/_surface_layer_info_8h" name="SurfaceLayerInfo.h" local="yes" import="no" module="no" objc="no">Actor/Material/Component/SurfaceLayerInfo.h</includes>
+    <includes id="d7/d74/sdl__interface_8h" name="sdl_interface.h" local="yes" import="no" module="no" objc="no">SDL/sdl_interface.h</includes>
     <class kind="class">ph::LayeredSurface</class>
     <namespace>ph</namespace>
   </compound>
@@ -1361,7 +1494,7 @@
     <filename>d8/d3f/_surface_material_8cpp.html</filename>
     <includes id="dd/d13/_surface_material_8h" name="SurfaceMaterial.h" local="yes" import="no" module="no" objc="no">Actor/Material/SurfaceMaterial.h</includes>
     <includes id="d2/dbc/_surface_behavior_8h" name="SurfaceBehavior.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/SurfaceBehavior.h</includes>
-    <includes id="d4/d5e/_primitive_metadata_8h" name="PrimitiveMetadata.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/PrimitiveMetadata.h</includes>
+    <includes id="d4/d5e/_primitive_metadata_8h" name="PrimitiveMetadata.h" local="yes" import="no" module="no" objc="no">Core/Intersection/PrimitiveMetadata.h</includes>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
@@ -1397,121 +1530,6 @@
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
-    <name>ConductiveInterfaceInfo.cpp</name>
-    <path>Source/Actor/Material/Utility/</path>
-    <filename>d7/d18/_conductive_interface_info_8cpp.html</filename>
-    <includes id="de/d41/_conductive_interface_info_8h" name="ConductiveInterfaceInfo.h" local="yes" import="no" module="no" objc="no">Actor/Material/Utility/ConductiveInterfaceInfo.h</includes>
-    <includes id="d5/d51/_schlick_approx_conductor_fresnel_8h" name="SchlickApproxConductorFresnel.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/Property/SchlickApproxConductorFresnel.h</includes>
-    <includes id="d1/df4/_exact_conductor_fresnel_8h" name="ExactConductorFresnel.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/Property/ExactConductorFresnel.h</includes>
-    <namespace>ph</namespace>
-  </compound>
-  <compound kind="file">
-    <name>ConductiveInterfaceInfo.h</name>
-    <path>Source/Actor/Material/Utility/</path>
-    <filename>de/d41/_conductive_interface_info_8h.html</filename>
-    <includes id="d3/df8/_spectrum_8h" name="Spectrum.h" local="yes" import="no" module="no" objc="no">Math/Color/Spectrum.h</includes>
-    <includes id="d3/dd8/_e_interface_fresnel_8h" name="EInterfaceFresnel.h" local="yes" import="no" module="no" objc="no">Actor/Material/Utility/EInterfaceFresnel.h</includes>
-    <includes id="d0/de0/_t_sdl_spectrum_8h" name="TSdlSpectrum.h" local="yes" import="no" module="no" objc="no">Actor/SDLExtension/TSdlSpectrum.h</includes>
-    <class kind="class">ph::ConductiveInterfaceInfo</class>
-    <namespace>ph</namespace>
-  </compound>
-  <compound kind="file">
-    <name>DielectricInterfaceInfo.cpp</name>
-    <path>Source/Actor/Material/Utility/</path>
-    <filename>d8/d24/_dielectric_interface_info_8cpp.html</filename>
-    <includes id="db/dd2/_dielectric_interface_info_8h" name="DielectricInterfaceInfo.h" local="yes" import="no" module="no" objc="no">Actor/Material/Utility/DielectricInterfaceInfo.h</includes>
-    <includes id="dc/d28/_schlick_approx_dielectric_fresnel_8h" name="SchlickApproxDielectricFresnel.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/Property/SchlickApproxDielectricFresnel.h</includes>
-    <includes id="d4/d68/_exact_dielectric_fresnel_8h" name="ExactDielectricFresnel.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/Property/ExactDielectricFresnel.h</includes>
-    <namespace>ph</namespace>
-  </compound>
-  <compound kind="file">
-    <name>DielectricInterfaceInfo.h</name>
-    <path>Source/Actor/Material/Utility/</path>
-    <filename>db/dd2/_dielectric_interface_info_8h.html</filename>
-    <includes id="d3/dd8/_e_interface_fresnel_8h" name="EInterfaceFresnel.h" local="yes" import="no" module="no" objc="no">Actor/Material/Utility/EInterfaceFresnel.h</includes>
-    <includes id="d7/d74/sdl__interface_8h" name="sdl_interface.h" local="yes" import="no" module="no" objc="no">SDL/sdl_interface.h</includes>
-    <class kind="class">ph::DielectricInterfaceInfo</class>
-    <namespace>ph</namespace>
-  </compound>
-  <compound kind="file">
-    <name>EInterfaceFresnel.h</name>
-    <path>Source/Actor/Material/Utility/</path>
-    <filename>d3/dd8/_e_interface_fresnel_8h.html</filename>
-    <includes id="d7/d74/sdl__interface_8h" name="sdl_interface.h" local="yes" import="no" module="no" objc="no">SDL/sdl_interface.h</includes>
-    <namespace>ph</namespace>
-  </compound>
-  <compound kind="file">
-    <name>EInterfaceMicrosurface.h</name>
-    <path>Source/Actor/Material/Utility/</path>
-    <filename>dd/d36/_e_interface_microsurface_8h.html</filename>
-    <includes id="d7/d74/sdl__interface_8h" name="sdl_interface.h" local="yes" import="no" module="no" objc="no">SDL/sdl_interface.h</includes>
-    <namespace>ph</namespace>
-  </compound>
-  <compound kind="file">
-    <name>ERoughnessToAlpha.h</name>
-    <path>Source/Actor/Material/Utility/</path>
-    <filename>d0/dba/_e_roughness_to_alpha_8h.html</filename>
-    <includes id="d7/d74/sdl__interface_8h" name="sdl_interface.h" local="yes" import="no" module="no" objc="no">SDL/sdl_interface.h</includes>
-    <namespace>ph</namespace>
-  </compound>
-  <compound kind="file">
-    <name>MacrosurfaceInfo.h</name>
-    <path>Source/Actor/Material/Utility/</path>
-    <filename>d1/d8f/_macrosurface_info_8h.html</filename>
-  </compound>
-  <compound kind="file">
-    <name>MicrosurfaceInfo.cpp</name>
-    <path>Source/Actor/Material/Utility/</path>
-    <filename>d9/dd0/_microsurface_info_8cpp.html</filename>
-    <includes id="d6/dcc/_microsurface_info_8h" name="MicrosurfaceInfo.h" local="yes" import="no" module="no" objc="no">Actor/Material/Utility/MicrosurfaceInfo.h</includes>
-    <includes id="d8/db4/_roughness_to_alpha_mapping_8h" name="RoughnessToAlphaMapping.h" local="yes" import="no" module="no" objc="no">Actor/Material/Utility/RoughnessToAlphaMapping.h</includes>
-    <includes id="d7/d66/_iso_trowbridge_reitz_constant_8h" name="IsoTrowbridgeReitzConstant.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/Property/IsoTrowbridgeReitzConstant.h</includes>
-    <includes id="d7/dac/_iso_beckmann_8h" name="IsoBeckmann.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/Property/IsoBeckmann.h</includes>
-    <includes id="d8/d16/_aniso_trowbridge_reitz_8h" name="AnisoTrowbridgeReitz.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/Property/AnisoTrowbridgeReitz.h</includes>
-    <namespace>ph</namespace>
-  </compound>
-  <compound kind="file">
-    <name>MicrosurfaceInfo.h</name>
-    <path>Source/Actor/Material/Utility/</path>
-    <filename>d6/dcc/_microsurface_info_8h.html</filename>
-    <includes id="dd/d36/_e_interface_microsurface_8h" name="EInterfaceMicrosurface.h" local="yes" import="no" module="no" objc="no">Actor/Material/Utility/EInterfaceMicrosurface.h</includes>
-    <includes id="d0/dba/_e_roughness_to_alpha_8h" name="ERoughnessToAlpha.h" local="yes" import="no" module="no" objc="no">Actor/Material/Utility/ERoughnessToAlpha.h</includes>
-    <includes id="d7/d74/sdl__interface_8h" name="sdl_interface.h" local="yes" import="no" module="no" objc="no">SDL/sdl_interface.h</includes>
-    <class kind="class">ph::MicrosurfaceInfo</class>
-    <namespace>ph</namespace>
-  </compound>
-  <compound kind="file">
-    <name>RoughnessToAlphaMapping.h</name>
-    <path>Source/Actor/Material/Utility/</path>
-    <filename>d8/db4/_roughness_to_alpha_mapping_8h.html</filename>
-    <includes id="d0/dba/_e_roughness_to_alpha_8h" name="ERoughnessToAlpha.h" local="yes" import="no" module="no" objc="no">Actor/Material/Utility/ERoughnessToAlpha.h</includes>
-    <class kind="class">ph::RoughnessToAlphaMapping</class>
-    <namespace>ph</namespace>
-  </compound>
-  <compound kind="file">
-    <name>SurfaceLayerInfo.cpp</name>
-    <path>Source/Actor/Material/Utility/</path>
-    <filename>d9/d8f/_surface_layer_info_8cpp.html</filename>
-    <includes id="d3/d6c/_surface_layer_info_8h" name="SurfaceLayerInfo.h" local="yes" import="no" module="no" objc="no">Actor/Material/Utility/SurfaceLayerInfo.h</includes>
-    <namespace>ph</namespace>
-  </compound>
-  <compound kind="file">
-    <name>SurfaceLayerInfo.h</name>
-    <path>Source/Actor/Material/Utility/</path>
-    <filename>d3/d6c/_surface_layer_info_8h.html</filename>
-    <includes id="d3/df8/_spectrum_8h" name="Spectrum.h" local="yes" import="no" module="no" objc="no">Math/Color/Spectrum.h</includes>
-    <includes id="d5/d14/_t_vector3_8h" name="TVector3.h" local="yes" import="no" module="no" objc="no">Math/TVector3.h</includes>
-    <includes id="d8/db4/_roughness_to_alpha_mapping_8h" name="RoughnessToAlphaMapping.h" local="yes" import="no" module="no" objc="no">Actor/Material/Utility/RoughnessToAlphaMapping.h</includes>
-    <includes id="d7/d74/sdl__interface_8h" name="sdl_interface.h" local="yes" import="no" module="no" objc="no">SDL/sdl_interface.h</includes>
-    <class kind="class">ph::SurfaceLayerInfo</class>
-    <namespace>ph</namespace>
-  </compound>
-  <compound kind="file">
-    <name>Utility.dox</name>
-    <path>Source/Actor/Material/Utility/</path>
-    <filename>db/d97/_utility_8dox.html</filename>
-  </compound>
-  <compound kind="file">
     <name>VAbsorptionOnly.cpp</name>
     <path>Source/Actor/Material/Volume/</path>
     <filename>d5/df3/_v_absorption_only_8cpp.html</filename>
@@ -1536,7 +1554,7 @@
     <path>Source/Actor/Material/</path>
     <filename>df/d81/_volume_material_8cpp.html</filename>
     <includes id="dd/dbf/_v_absorption_only_8h" name="VAbsorptionOnly.h" local="yes" import="no" module="no" objc="no">Actor/Material/Volume/VAbsorptionOnly.h</includes>
-    <includes id="d4/d5e/_primitive_metadata_8h" name="PrimitiveMetadata.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/PrimitiveMetadata.h</includes>
+    <includes id="d4/d5e/_primitive_metadata_8h" name="PrimitiveMetadata.h" local="yes" import="no" module="no" objc="no">Core/Intersection/PrimitiveMetadata.h</includes>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
@@ -1554,7 +1572,7 @@
     <includes id="d7/dcc/_model_builder_8h" name="ModelBuilder.h" local="yes" import="no" module="no" objc="no">Actor/ModelBuilder.h</includes>
     <includes id="d7/db5/_transient_visual_element_8h" name="TransientVisualElement.h" local="yes" import="no" module="no" objc="no">World/Foundation/TransientVisualElement.h</includes>
     <includes id="d6/d83/_cooking_context_8h" name="CookingContext.h" local="yes" import="no" module="no" objc="no">World/Foundation/CookingContext.h</includes>
-    <includes id="dc/dfd/_transformed_intersectable_8h" name="TransformedIntersectable.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/TransformedIntersectable.h</includes>
+    <includes id="dc/dfd/_transformed_intersectable_8h" name="TransformedIntersectable.h" local="yes" import="no" module="no" objc="no">Core/Intersection/TransformedIntersectable.h</includes>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
@@ -1562,8 +1580,8 @@
     <path>Source/Actor/</path>
     <filename>d7/dcc/_model_builder_8h.html</filename>
     <includes id="d7/d31/_i_move_only_8h" name="IMoveOnly.h" local="yes" import="no" module="no" objc="no">Utility/IMoveOnly.h</includes>
-    <includes id="d7/d3f/_intersectable_8h" name="Intersectable.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/Intersectable.h</includes>
-    <includes id="d4/d5e/_primitive_metadata_8h" name="PrimitiveMetadata.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/PrimitiveMetadata.h</includes>
+    <includes id="d7/d3f/_intersectable_8h" name="Intersectable.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Intersectable.h</includes>
+    <includes id="d4/d5e/_primitive_metadata_8h" name="PrimitiveMetadata.h" local="yes" import="no" module="no" objc="no">Core/Intersection/PrimitiveMetadata.h</includes>
     <includes id="db/d56/_transform_8h" name="Transform.h" local="yes" import="no" module="no" objc="no">Math/Transform/Transform.h</includes>
     <includes id="d7/db5/_transient_visual_element_8h" name="TransientVisualElement.h" local="yes" import="no" module="no" objc="no">World/Foundation/TransientVisualElement.h</includes>
     <namespace>ph</namespace>
@@ -1789,6 +1807,8 @@
     <includes id="de/df6/init__and__exit_8h" name="init_and_exit.h" local="yes" import="no" module="no" objc="no">Api/init_and_exit.h</includes>
     <includes id="d3/d43/_api_database_8h" name="ApiDatabase.h" local="yes" import="no" module="no" objc="no">Api/ApiDatabase.h</includes>
     <includes id="d1/de1/io__utils_8h" name="io_utils.h" local="yes" import="no" module="no" objc="no">DataIO/io_utils.h</includes>
+    <includes id="d3/da4/_surface_hit_refinery_8h" name="SurfaceHitRefinery.h" local="yes" import="no" module="no" objc="no">Core/LTA/SurfaceHitRefinery.h</includes>
+    <includes id="d1/def/_deterministic_seeder_8h" name="DeterministicSeeder.h" local="yes" import="no" module="no" objc="no">Math/Random/DeterministicSeeder.h</includes>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
@@ -1867,6 +1887,7 @@
     <includes id="d0/d02/_a_rectangle_light_8h" name="ARectangleLight.h" local="yes" import="no" module="no" objc="no">Actor/Light/ARectangleLight.h</includes>
     <includes id="d7/d69/_a_sphere_light_8h" name="ASphereLight.h" local="yes" import="no" module="no" objc="no">Actor/Light/ASphereLight.h</includes>
     <includes id="d0/d02/_a_ies_attenuated_light_8h" name="AIesAttenuatedLight.h" local="yes" import="no" module="no" objc="no">Actor/Light/AIesAttenuatedLight.h</includes>
+    <includes id="db/d66/sdl__halton__randomization__types_8h" name="sdl_halton_randomization_types.h" local="yes" import="no" module="no" objc="no">EngineEnv/SampleSource/sdl_halton_randomization_types.h</includes>
     <includes id="d0/db2/sdl__accelerator__type_8h" name="sdl_accelerator_type.h" local="yes" import="no" module="no" objc="no">EngineEnv/sdl_accelerator_type.h</includes>
     <includes id="d6/dda/sdl__ray__energy__estimator__type_8h" name="sdl_ray_energy_estimator_type.h" local="yes" import="no" module="no" objc="no">EngineEnv/Visualizer/sdl_ray_energy_estimator_type.h</includes>
     <includes id="d8/d5b/sdl__sample__filter__type_8h" name="sdl_sample_filter_type.h" local="yes" import="no" module="no" objc="no">EngineEnv/Visualizer/sdl_sample_filter_type.h</includes>
@@ -1874,9 +1895,9 @@
     <includes id="d4/d54/sdl__photon__mapping__mode_8h" name="sdl_photon_mapping_mode.h" local="yes" import="no" module="no" objc="no">EngineEnv/Visualizer/sdl_photon_mapping_mode.h</includes>
     <includes id="d9/db7/sdl__image__enums_8h" name="sdl_image_enums.h" local="yes" import="no" module="no" objc="no">Actor/Image/sdl_image_enums.h</includes>
     <includes id="d6/d35/sdl__color__enums_8h" name="sdl_color_enums.h" local="yes" import="no" module="no" objc="no">Actor/SDLExtension/sdl_color_enums.h</includes>
-    <includes id="d3/dd8/_e_interface_fresnel_8h" name="EInterfaceFresnel.h" local="yes" import="no" module="no" objc="no">Actor/Material/Utility/EInterfaceFresnel.h</includes>
-    <includes id="dd/d36/_e_interface_microsurface_8h" name="EInterfaceMicrosurface.h" local="yes" import="no" module="no" objc="no">Actor/Material/Utility/EInterfaceMicrosurface.h</includes>
-    <includes id="d0/dba/_e_roughness_to_alpha_8h" name="ERoughnessToAlpha.h" local="yes" import="no" module="no" objc="no">Actor/Material/Utility/ERoughnessToAlpha.h</includes>
+    <includes id="d3/dd8/_e_interface_fresnel_8h" name="EInterfaceFresnel.h" local="yes" import="no" module="no" objc="no">Actor/Material/Component/EInterfaceFresnel.h</includes>
+    <includes id="dd/d36/_e_interface_microsurface_8h" name="EInterfaceMicrosurface.h" local="yes" import="no" module="no" objc="no">Actor/Material/Component/EInterfaceMicrosurface.h</includes>
+    <includes id="d0/dba/_e_roughness_to_alpha_8h" name="ERoughnessToAlpha.h" local="yes" import="no" module="no" objc="no">Actor/Material/Component/ERoughnessToAlpha.h</includes>
     <includes id="de/d20/sdl__picture__file__type_8h" name="sdl_picture_file_type.h" local="yes" import="no" module="no" objc="no">DataIO/sdl_picture_file_type.h</includes>
     <namespace>ph</namespace>
   </compound>
@@ -1947,6 +1968,11 @@
     </member>
   </compound>
   <compound kind="file">
+    <name>Core.dox</name>
+    <path>Source/Core/</path>
+    <filename>d0/d27/_core_8dox.html</filename>
+  </compound>
+  <compound kind="file">
     <name>ECoordSys.h</name>
     <path>Source/Core/</path>
     <filename>d5/d51/_e_coord_sys_8h.html</filename>
@@ -1960,17 +1986,23 @@
     <includes id="d5/d14/_t_vector3_8h" name="TVector3.h" local="yes" import="no" module="no" objc="no">Math/TVector3.h</includes>
     <includes id="d9/d37/_actor_2_geometry_2_geometry_8h" name="Geometry.h" local="yes" import="no" module="no" objc="no">Actor/Geometry/Geometry.h</includes>
     <includes id="df/deb/constant__textures_8h" name="constant_textures.h" local="yes" import="no" module="no" objc="no">Core/Texture/constant_textures.h</includes>
-    <includes id="d7/df8/_primitive_8h" name="Primitive.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/Primitive.h</includes>
-    <includes id="d4/d1a/_primitive_pos_sample_query_8h" name="PrimitivePosSampleQuery.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/Query/PrimitivePosSampleQuery.h</includes>
+    <includes id="d7/df8/_primitive_8h" name="Primitive.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Primitive.h</includes>
+    <includes id="d4/d1a/_primitive_pos_sample_query_8h" name="PrimitivePosSampleQuery.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Query/PrimitivePosSampleQuery.h</includes>
+    <includes id="d8/dfd/_primitive_pos_sample_pdf_query_8h" name="PrimitivePosSamplePdfQuery.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Query/PrimitivePosSamplePdfQuery.h</includes>
     <includes id="d1/d6b/_direct_energy_sample_query_8h" name="DirectEnergySampleQuery.h" local="yes" import="no" module="no" objc="no">Core/Emitter/Query/DirectEnergySampleQuery.h</includes>
+    <includes id="dd/dfe/_direct_energy_sample_pdf_query_8h" name="DirectEnergySamplePdfQuery.h" local="yes" import="no" module="no" objc="no">Core/Emitter/Query/DirectEnergySamplePdfQuery.h</includes>
+    <includes id="d5/de3/_energy_emission_sample_query_8h" name="EnergyEmissionSampleQuery.h" local="yes" import="no" module="no" objc="no">Core/Emitter/Query/EnergyEmissionSampleQuery.h</includes>
     <includes id="da/da9/_ray_8h" name="Ray.h" local="yes" import="no" module="no" objc="no">Core/Ray.h</includes>
-    <includes id="dd/d17/constant_8h" name="constant.h" local="yes" import="no" module="no" objc="no">Math/constant.h</includes>
+    <includes id="de/db3/_hit_probe_8h" name="HitProbe.h" local="yes" import="no" module="no" objc="no">Core/HitProbe.h</includes>
+    <includes id="d8/df3/_hit_detail_8h" name="HitDetail.h" local="yes" import="no" module="no" objc="no">Core/HitDetail.h</includes>
     <includes id="d6/def/_t_sampler_8h" name="TSampler.h" local="yes" import="no" module="no" objc="no">Core/Texture/TSampler.h</includes>
+    <includes id="dd/d17/constant_8h" name="constant.h" local="yes" import="no" module="no" objc="no">Math/constant.h</includes>
     <includes id="d3/df8/_spectrum_8h" name="Spectrum.h" local="yes" import="no" module="no" objc="no">Math/Color/Spectrum.h</includes>
     <includes id="dc/d71/_sample_location_8h" name="SampleLocation.h" local="yes" import="no" module="no" objc="no">Core/Texture/SampleLocation.h</includes>
     <includes id="d4/d8f/_t_hemisphere_8h" name="THemisphere.h" local="yes" import="no" module="no" objc="no">Math/Geometry/THemisphere.h</includes>
     <includes id="d7/d25/_t_orthonormal_basis3_8h" name="TOrthonormalBasis3.h" local="yes" import="no" module="no" objc="no">Math/TOrthonormalBasis3.h</includes>
     <includes id="d6/d33/_sample_flow_8h" name="SampleFlow.h" local="yes" import="no" module="no" objc="no">Core/SampleGenerator/SampleFlow.h</includes>
+    <includes id="d1/d0c/lta_8h" name="lta.h" local="yes" import="no" module="no" objc="no">Core/LTA/lta.h</includes>
     <includes id="d0/d28/spectral__samples_8h" name="spectral_samples.h" local="yes" import="no" module="no" objc="no">Math/Color/spectral_samples.h</includes>
     <includes id="d0/d99/color__spaces_8h" name="color_spaces.h" local="yes" import="no" module="no" objc="no">Math/Color/color_spaces.h</includes>
     <namespace>ph</namespace>
@@ -1996,7 +2028,6 @@
     <path>Source/Core/Emitter/</path>
     <filename>da/dc6/_emitter_8h.html</filename>
     <includes id="d8/da4/math__fwd_8h" name="math_fwd.h" local="yes" import="no" module="no" objc="no">Math/math_fwd.h</includes>
-    <includes id="db/d56/_transform_8h" name="Transform.h" local="yes" import="no" module="no" objc="no">Math/Transform/Transform.h</includes>
     <includes id="d3/df8/_spectrum_8h" name="Spectrum.h" local="yes" import="no" module="no" objc="no">Math/Color/Spectrum.h</includes>
     <class kind="class">ph::Emitter</class>
     <namespace>ph</namespace>
@@ -2009,7 +2040,12 @@
     <includes id="d6/d8a/_surface_hit_8h" name="SurfaceHit.h" local="yes" import="no" module="no" objc="no">Core/SurfaceHit.h</includes>
     <includes id="d6/def/_t_sampler_8h" name="TSampler.h" local="yes" import="no" module="no" objc="no">Core/Texture/TSampler.h</includes>
     <includes id="d1/d6b/_direct_energy_sample_query_8h" name="DirectEnergySampleQuery.h" local="yes" import="no" module="no" objc="no">Core/Emitter/Query/DirectEnergySampleQuery.h</includes>
-    <includes id="d3/d3c/_p_lat_long_env_sphere_8h" name="PLatLongEnvSphere.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/PLatLongEnvSphere.h</includes>
+    <includes id="dd/dfe/_direct_energy_sample_pdf_query_8h" name="DirectEnergySamplePdfQuery.h" local="yes" import="no" module="no" objc="no">Core/Emitter/Query/DirectEnergySamplePdfQuery.h</includes>
+    <includes id="d5/de3/_energy_emission_sample_query_8h" name="EnergyEmissionSampleQuery.h" local="yes" import="no" module="no" objc="no">Core/Emitter/Query/EnergyEmissionSampleQuery.h</includes>
+    <includes id="d4/d1a/_primitive_pos_sample_query_8h" name="PrimitivePosSampleQuery.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Query/PrimitivePosSampleQuery.h</includes>
+    <includes id="d8/dfd/_primitive_pos_sample_pdf_query_8h" name="PrimitivePosSamplePdfQuery.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Query/PrimitivePosSamplePdfQuery.h</includes>
+    <includes id="d3/d3c/_p_lat_long_env_sphere_8h" name="PLatLongEnvSphere.h" local="yes" import="no" module="no" objc="no">Core/Intersection/PLatLongEnvSphere.h</includes>
+    <includes id="d1/d0c/lta_8h" name="lta.h" local="yes" import="no" module="no" objc="no">Core/LTA/lta.h</includes>
     <includes id="dd/d17/constant_8h" name="constant.h" local="yes" import="no" module="no" objc="no">Math/constant.h</includes>
     <includes id="df/db1/math_8h" name="math.h" local="yes" import="no" module="no" objc="no">Math/math.h</includes>
     <includes id="d2/dba/_t_disk_8h" name="TDisk.h" local="yes" import="no" module="no" objc="no">Math/Geometry/TDisk.h</includes>
@@ -2034,12 +2070,14 @@
     <path>Source/Core/Emitter/</path>
     <filename>df/d41/_multi_diffuse_surface_emitter_8cpp.html</filename>
     <includes id="db/d36/_multi_diffuse_surface_emitter_8h" name="MultiDiffuseSurfaceEmitter.h" local="yes" import="no" module="no" objc="no">Core/Emitter/MultiDiffuseSurfaceEmitter.h</includes>
-    <includes id="d7/df8/_primitive_8h" name="Primitive.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/Primitive.h</includes>
+    <includes id="d7/df8/_primitive_8h" name="Primitive.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Primitive.h</includes>
     <includes id="d6/def/_t_sampler_8h" name="TSampler.h" local="yes" import="no" module="no" objc="no">Core/Texture/TSampler.h</includes>
     <includes id="d3/df8/_spectrum_8h" name="Spectrum.h" local="yes" import="no" module="no" objc="no">Math/Color/Spectrum.h</includes>
     <includes id="d4/d66/_t_texture_8h" name="TTexture.h" local="yes" import="no" module="no" objc="no">Core/Texture/TTexture.h</includes>
-    <includes id="d0/d80/_random_8h" name="Random.h" local="yes" import="no" module="no" objc="no">Math/Random.h</includes>
+    <includes id="d0/d80/_random_8h" name="Random.h" local="yes" import="no" module="no" objc="no">Math/Random/Random.h</includes>
     <includes id="d1/d6b/_direct_energy_sample_query_8h" name="DirectEnergySampleQuery.h" local="yes" import="no" module="no" objc="no">Core/Emitter/Query/DirectEnergySampleQuery.h</includes>
+    <includes id="dd/dfe/_direct_energy_sample_pdf_query_8h" name="DirectEnergySamplePdfQuery.h" local="yes" import="no" module="no" objc="no">Core/Emitter/Query/DirectEnergySamplePdfQuery.h</includes>
+    <includes id="d5/de3/_energy_emission_sample_query_8h" name="EnergyEmissionSampleQuery.h" local="yes" import="no" module="no" objc="no">Core/Emitter/Query/EnergyEmissionSampleQuery.h</includes>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
@@ -2056,10 +2094,11 @@
     <path>Source/Core/Emitter/</path>
     <filename>d9/d16/_omni_modulated_emitter_8cpp.html</filename>
     <includes id="dd/d53/_omni_modulated_emitter_8h" name="OmniModulatedEmitter.h" local="yes" import="no" module="no" objc="no">Core/Emitter/OmniModulatedEmitter.h</includes>
-    <includes id="d4/d5e/_primitive_metadata_8h" name="PrimitiveMetadata.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/PrimitiveMetadata.h</includes>
+    <includes id="d4/d5e/_primitive_metadata_8h" name="PrimitiveMetadata.h" local="yes" import="no" module="no" objc="no">Core/Intersection/PrimitiveMetadata.h</includes>
     <includes id="d6/d8a/_surface_hit_8h" name="SurfaceHit.h" local="yes" import="no" module="no" objc="no">Core/SurfaceHit.h</includes>
     <includes id="d6/def/_t_sampler_8h" name="TSampler.h" local="yes" import="no" module="no" objc="no">Core/Texture/TSampler.h</includes>
     <includes id="d1/d6b/_direct_energy_sample_query_8h" name="DirectEnergySampleQuery.h" local="yes" import="no" module="no" objc="no">Core/Emitter/Query/DirectEnergySampleQuery.h</includes>
+    <includes id="d5/de3/_energy_emission_sample_query_8h" name="EnergyEmissionSampleQuery.h" local="yes" import="no" module="no" objc="no">Core/Emitter/Query/EnergyEmissionSampleQuery.h</includes>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
@@ -2068,8 +2107,23 @@
     <filename>dd/d53/_omni_modulated_emitter_8h.html</filename>
     <includes id="da/dc6/_emitter_8h" name="Emitter.h" local="yes" import="no" module="no" objc="no">Core/Emitter/Emitter.h</includes>
     <includes id="d4/d66/_t_texture_8h" name="TTexture.h" local="yes" import="no" module="no" objc="no">Core/Texture/TTexture.h</includes>
-    <includes id="d1/d36/_spherical_mapper_8h" name="SphericalMapper.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/UvwMapper/SphericalMapper.h</includes>
+    <includes id="d1/d36/_spherical_mapper_8h" name="SphericalMapper.h" local="yes" import="no" module="no" objc="no">Core/Intersection/UvwMapper/SphericalMapper.h</includes>
     <class kind="class">ph::OmniModulatedEmitter</class>
+    <namespace>ph</namespace>
+  </compound>
+  <compound kind="file">
+    <name>DirectEnergySamplePdfQuery.h</name>
+    <path>Source/Core/Emitter/Query/</path>
+    <filename>dd/dfe/_direct_energy_sample_pdf_query_8h.html</filename>
+    <includes id="d5/d14/_t_vector3_8h" name="TVector3.h" local="yes" import="no" module="no" objc="no">Math/TVector3.h</includes>
+    <includes id="da/da9/_ray_8h" name="Ray.h" local="yes" import="no" module="no" objc="no">Core/Ray.h</includes>
+    <includes id="de/dbd/_core_2_quantity_2_time_8h" name="Time.h" local="yes" import="no" module="no" objc="no">Core/Quantity/Time.h</includes>
+    <includes id="d8/df3/_hit_detail_8h" name="HitDetail.h" local="yes" import="no" module="no" objc="no">Core/HitDetail.h</includes>
+    <includes id="d6/d8a/_surface_hit_8h" name="SurfaceHit.h" local="yes" import="no" module="no" objc="no">Core/SurfaceHit.h</includes>
+    <includes id="d3/df8/_spectrum_8h" name="Spectrum.h" local="yes" import="no" module="no" objc="no">Math/Color/Spectrum.h</includes>
+    <class kind="class">ph::DirectEnergySamplePdfInput</class>
+    <class kind="class">ph::DirectEnergySamplePdfOutput</class>
+    <class kind="class">ph::DirectEnergySamplePdfQuery</class>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
@@ -2084,10 +2138,26 @@
     <path>Source/Core/Emitter/Query/</path>
     <filename>d1/d6b/_direct_energy_sample_query_8h.html</filename>
     <includes id="d5/d14/_t_vector3_8h" name="TVector3.h" local="yes" import="no" module="no" objc="no">Math/TVector3.h</includes>
+    <includes id="da/da9/_ray_8h" name="Ray.h" local="yes" import="no" module="no" objc="no">Core/Ray.h</includes>
+    <includes id="de/dbd/_core_2_quantity_2_time_8h" name="Time.h" local="yes" import="no" module="no" objc="no">Core/Quantity/Time.h</includes>
+    <includes id="d6/d8a/_surface_hit_8h" name="SurfaceHit.h" local="yes" import="no" module="no" objc="no">Core/SurfaceHit.h</includes>
     <includes id="d3/df8/_spectrum_8h" name="Spectrum.h" local="yes" import="no" module="no" objc="no">Math/Color/Spectrum.h</includes>
     <class kind="class">ph::DirectEnergySampleInput</class>
     <class kind="class">ph::DirectEnergySampleOutput</class>
     <class kind="class">ph::DirectEnergySampleQuery</class>
+    <namespace>ph</namespace>
+  </compound>
+  <compound kind="file">
+    <name>EnergyEmissionSampleQuery.h</name>
+    <path>Source/Core/Emitter/Query/</path>
+    <filename>d5/de3/_energy_emission_sample_query_8h.html</filename>
+    <includes id="d5/d14/_t_vector3_8h" name="TVector3.h" local="yes" import="no" module="no" objc="no">Math/TVector3.h</includes>
+    <includes id="da/da9/_ray_8h" name="Ray.h" local="yes" import="no" module="no" objc="no">Core/Ray.h</includes>
+    <includes id="de/dbd/_core_2_quantity_2_time_8h" name="Time.h" local="yes" import="no" module="no" objc="no">Core/Quantity/Time.h</includes>
+    <includes id="d3/df8/_spectrum_8h" name="Spectrum.h" local="yes" import="no" module="no" objc="no">Math/Color/Spectrum.h</includes>
+    <class kind="class">ph::EnergyEmissionSampleInput</class>
+    <class kind="class">ph::EnergyEmissionSampleOutput</class>
+    <class kind="class">ph::EnergyEmissionSampleQuery</class>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
@@ -2112,12 +2182,13 @@
     <filename>d1/d07/_e_s_power_favoring_8cpp.html</filename>
     <includes id="dd/d66/_e_s_power_favoring_8h" name="ESPowerFavoring.h" local="yes" import="no" module="no" objc="no">Core/Emitter/Sampler/ESPowerFavoring.h</includes>
     <includes id="d1/d6b/_direct_energy_sample_query_8h" name="DirectEnergySampleQuery.h" local="yes" import="no" module="no" objc="no">Core/Emitter/Query/DirectEnergySampleQuery.h</includes>
+    <includes id="dd/dfe/_direct_energy_sample_pdf_query_8h" name="DirectEnergySamplePdfQuery.h" local="yes" import="no" module="no" objc="no">Core/Emitter/Query/DirectEnergySamplePdfQuery.h</includes>
     <includes id="d5/d14/_t_vector3_8h" name="TVector3.h" local="yes" import="no" module="no" objc="no">Math/TVector3.h</includes>
     <includes id="d6/d8a/_surface_hit_8h" name="SurfaceHit.h" local="yes" import="no" module="no" objc="no">Core/SurfaceHit.h</includes>
-    <includes id="d7/df8/_primitive_8h" name="Primitive.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/Primitive.h</includes>
+    <includes id="d4/d5e/_primitive_metadata_8h" name="PrimitiveMetadata.h" local="yes" import="no" module="no" objc="no">Core/Intersection/PrimitiveMetadata.h</includes>
+    <includes id="d7/df8/_primitive_8h" name="Primitive.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Primitive.h</includes>
     <includes id="da/dc6/_emitter_8h" name="Emitter.h" local="yes" import="no" module="no" objc="no">Core/Emitter/Emitter.h</includes>
     <includes id="d6/d33/_sample_flow_8h" name="SampleFlow.h" local="yes" import="no" module="no" objc="no">Core/SampleGenerator/SampleFlow.h</includes>
-    <includes id="d4/d5e/_primitive_metadata_8h" name="PrimitiveMetadata.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/PrimitiveMetadata.h</includes>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
@@ -2134,14 +2205,14 @@
     <path>Source/Core/Emitter/Sampler/</path>
     <filename>de/d12/_e_s_uniform_random_8cpp.html</filename>
     <includes id="d0/d42/_e_s_uniform_random_8h" name="ESUniformRandom.h" local="yes" import="no" module="no" objc="no">Core/Emitter/Sampler/ESUniformRandom.h</includes>
-    <includes id="d0/d80/_random_8h" name="Random.h" local="yes" import="no" module="no" objc="no">Math/Random.h</includes>
     <includes id="d1/d6b/_direct_energy_sample_query_8h" name="DirectEnergySampleQuery.h" local="yes" import="no" module="no" objc="no">Core/Emitter/Query/DirectEnergySampleQuery.h</includes>
+    <includes id="dd/dfe/_direct_energy_sample_pdf_query_8h" name="DirectEnergySamplePdfQuery.h" local="yes" import="no" module="no" objc="no">Core/Emitter/Query/DirectEnergySamplePdfQuery.h</includes>
     <includes id="d5/d14/_t_vector3_8h" name="TVector3.h" local="yes" import="no" module="no" objc="no">Math/TVector3.h</includes>
     <includes id="d6/d8a/_surface_hit_8h" name="SurfaceHit.h" local="yes" import="no" module="no" objc="no">Core/SurfaceHit.h</includes>
-    <includes id="d7/df8/_primitive_8h" name="Primitive.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/Primitive.h</includes>
+    <includes id="d4/d5e/_primitive_metadata_8h" name="PrimitiveMetadata.h" local="yes" import="no" module="no" objc="no">Core/Intersection/PrimitiveMetadata.h</includes>
+    <includes id="d7/df8/_primitive_8h" name="Primitive.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Primitive.h</includes>
     <includes id="da/dc6/_emitter_8h" name="Emitter.h" local="yes" import="no" module="no" objc="no">Core/Emitter/Emitter.h</includes>
     <includes id="d6/d33/_sample_flow_8h" name="SampleFlow.h" local="yes" import="no" module="no" objc="no">Core/SampleGenerator/SampleFlow.h</includes>
-    <includes id="d4/d5e/_primitive_metadata_8h" name="PrimitiveMetadata.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/PrimitiveMetadata.h</includes>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
@@ -2160,7 +2231,10 @@
     <includes id="df/db1/math_8h" name="math.h" local="yes" import="no" module="no" objc="no">Math/math.h</includes>
     <includes id="d6/d8a/_surface_hit_8h" name="SurfaceHit.h" local="yes" import="no" module="no" objc="no">Core/SurfaceHit.h</includes>
     <includes id="d8/df3/_hit_detail_8h" name="HitDetail.h" local="yes" import="no" module="no" objc="no">Core/HitDetail.h</includes>
-    <includes id="d7/df8/_primitive_8h" name="Primitive.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/Primitive.h</includes>
+    <includes id="d7/df8/_primitive_8h" name="Primitive.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Primitive.h</includes>
+    <includes id="dd/dfe/_direct_energy_sample_pdf_query_8h" name="DirectEnergySamplePdfQuery.h" local="yes" import="no" module="no" objc="no">Core/Emitter/Query/DirectEnergySamplePdfQuery.h</includes>
+    <includes id="d8/dfd/_primitive_pos_sample_pdf_query_8h" name="PrimitivePosSamplePdfQuery.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Query/PrimitivePosSamplePdfQuery.h</includes>
+    <includes id="d1/d0c/lta_8h" name="lta.h" local="yes" import="no" module="no" objc="no">Core/LTA/lta.h</includes>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
@@ -2224,32 +2298,27 @@
     <path>Source/Core/Estimator/</path>
     <filename>d7/de6/_b_n_e_e_p_t_estimator_8cpp.html</filename>
     <includes id="d3/d5c/_b_n_e_e_p_t_estimator_8h" name="BNEEPTEstimator.h" local="yes" import="no" module="no" objc="no">Core/Estimator/BNEEPTEstimator.h</includes>
+    <includes id="d2/d97/_integrand_8h" name="Integrand.h" local="yes" import="no" module="no" objc="no">Core/Estimator/Integrand.h</includes>
     <includes id="da/da9/_ray_8h" name="Ray.h" local="yes" import="no" module="no" objc="no">Core/Ray.h</includes>
     <includes id="de/d56/_scene_8h" name="Scene.h" local="yes" import="no" module="no" objc="no">World/Scene.h</includes>
     <includes id="d5/d14/_t_vector3_8h" name="TVector3.h" local="yes" import="no" module="no" objc="no">Math/TVector3.h</includes>
     <includes id="d8/df3/_hit_detail_8h" name="HitDetail.h" local="yes" import="no" module="no" objc="no">Core/HitDetail.h</includes>
     <includes id="d2/dbc/_surface_behavior_8h" name="SurfaceBehavior.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/SurfaceBehavior.h</includes>
     <includes id="d6/dcb/_surface_optics_8h" name="SurfaceOptics.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/SurfaceOptics.h</includes>
-    <includes id="d7/df8/_primitive_8h" name="Primitive.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/Primitive.h</includes>
-    <includes id="d4/d5e/_primitive_metadata_8h" name="PrimitiveMetadata.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/PrimitiveMetadata.h</includes>
+    <includes id="d7/df8/_primitive_8h" name="Primitive.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Primitive.h</includes>
+    <includes id="d4/d5e/_primitive_metadata_8h" name="PrimitiveMetadata.h" local="yes" import="no" module="no" objc="no">Core/Intersection/PrimitiveMetadata.h</includes>
     <includes id="df/db1/math_8h" name="math.h" local="yes" import="no" module="no" objc="no">Math/math.h</includes>
     <includes id="dd/dff/_bsdf_query_context_8h" name="BsdfQueryContext.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/BsdfQueryContext.h</includes>
     <includes id="db/d2d/_bsdf_eval_query_8h" name="BsdfEvalQuery.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/BsdfEvalQuery.h</includes>
     <includes id="db/df0/_bsdf_sample_query_8h" name="BsdfSampleQuery.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/BsdfSampleQuery.h</includes>
     <includes id="d7/d2c/_bsdf_pdf_query_8h" name="BsdfPdfQuery.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/BsdfPdfQuery.h</includes>
     <includes id="d3/df8/_spectrum_8h" name="Spectrum.h" local="yes" import="no" module="no" objc="no">Math/Color/Spectrum.h</includes>
-    <includes id="df/d95/_t_mis_8h" name="TMis.h" local="yes" import="no" module="no" objc="no">Core/LTABuildingBlock/TMis.h</includes>
-    <includes id="da/da6/_t_direct_light_estimator_8h" name="TDirectLightEstimator.h" local="yes" import="no" module="no" objc="no">Core/LTABuildingBlock/TDirectLightEstimator.h</includes>
-    <includes id="d1/dc0/_russian_roulette_8h" name="RussianRoulette.h" local="yes" import="no" module="no" objc="no">Core/LTABuildingBlock/RussianRoulette.h</includes>
-    <includes id="d2/d97/_integrand_8h" name="Integrand.h" local="yes" import="no" module="no" objc="no">Core/Estimator/Integrand.h</includes>
+    <includes id="df/d95/_t_mis_8h" name="TMis.h" local="yes" import="no" module="no" objc="no">Core/LTA/TMis.h</includes>
+    <includes id="da/da6/_t_direct_light_estimator_8h" name="TDirectLightEstimator.h" local="yes" import="no" module="no" objc="no">Core/LTA/TDirectLightEstimator.h</includes>
+    <includes id="d1/dc0/_russian_roulette_8h" name="RussianRoulette.h" local="yes" import="no" module="no" objc="no">Core/LTA/RussianRoulette.h</includes>
+    <includes id="db/d8d/_surface_tracer_8h" name="SurfaceTracer.h" local="yes" import="no" module="no" objc="no">Core/LTA/SurfaceTracer.h</includes>
+    <includes id="d1/d6b/_direct_energy_sample_query_8h" name="DirectEnergySampleQuery.h" local="yes" import="no" module="no" objc="no">Core/Emitter/Query/DirectEnergySampleQuery.h</includes>
     <namespace>ph</namespace>
-    <member kind="define">
-      <type>#define</type>
-      <name>RAY_DELTA_DIST</name>
-      <anchorfile>d7/de6/_b_n_e_e_p_t_estimator_8cpp.html</anchorfile>
-      <anchor>a889850cefc92062037b4628dcd1a2b0b</anchor>
-      <arglist></arglist>
-    </member>
     <member kind="define">
       <type>#define</type>
       <name>MAX_RAY_BOUNCES</name>
@@ -2275,14 +2344,14 @@
     <includes id="da/da9/_ray_8h" name="Ray.h" local="yes" import="no" module="no" objc="no">Core/Ray.h</includes>
     <includes id="d8/df3/_hit_detail_8h" name="HitDetail.h" local="yes" import="no" module="no" objc="no">Core/HitDetail.h</includes>
     <includes id="d6/d8a/_surface_hit_8h" name="SurfaceHit.h" local="yes" import="no" module="no" objc="no">Core/SurfaceHit.h</includes>
-    <includes id="d4/d5e/_primitive_metadata_8h" name="PrimitiveMetadata.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/PrimitiveMetadata.h</includes>
+    <includes id="d4/d5e/_primitive_metadata_8h" name="PrimitiveMetadata.h" local="yes" import="no" module="no" objc="no">Core/Intersection/PrimitiveMetadata.h</includes>
+    <includes id="d7/df8/_primitive_8h" name="Primitive.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Primitive.h</includes>
     <includes id="d2/dbc/_surface_behavior_8h" name="SurfaceBehavior.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/SurfaceBehavior.h</includes>
     <includes id="d6/dcb/_surface_optics_8h" name="SurfaceOptics.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/SurfaceOptics.h</includes>
-    <includes id="d7/df8/_primitive_8h" name="Primitive.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/Primitive.h</includes>
     <includes id="da/dc6/_emitter_8h" name="Emitter.h" local="yes" import="no" module="no" objc="no">Core/Emitter/Emitter.h</includes>
     <includes id="db/df0/_bsdf_sample_query_8h" name="BsdfSampleQuery.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/BsdfSampleQuery.h</includes>
     <includes id="d3/df8/_spectrum_8h" name="Spectrum.h" local="yes" import="no" module="no" objc="no">Math/Color/Spectrum.h</includes>
-    <includes id="db/d8d/_surface_tracer_8h" name="SurfaceTracer.h" local="yes" import="no" module="no" objc="no">Core/LTABuildingBlock/SurfaceTracer.h</includes>
+    <includes id="db/d8d/_surface_tracer_8h" name="SurfaceTracer.h" local="yes" import="no" module="no" objc="no">Core/LTA/SurfaceTracer.h</includes>
     <includes id="d5/d14/_t_vector3_8h" name="TVector3.h" local="yes" import="no" module="no" objc="no">Math/TVector3.h</includes>
     <includes id="d2/d97/_integrand_8h" name="Integrand.h" local="yes" import="no" module="no" objc="no">Core/Estimator/Integrand.h</includes>
     <namespace>ph</namespace>
@@ -2303,17 +2372,17 @@
     <includes id="da/da9/_ray_8h" name="Ray.h" local="yes" import="no" module="no" objc="no">Core/Ray.h</includes>
     <includes id="d8/df3/_hit_detail_8h" name="HitDetail.h" local="yes" import="no" module="no" objc="no">Core/HitDetail.h</includes>
     <includes id="d6/d8a/_surface_hit_8h" name="SurfaceHit.h" local="yes" import="no" module="no" objc="no">Core/SurfaceHit.h</includes>
-    <includes id="d4/d5e/_primitive_metadata_8h" name="PrimitiveMetadata.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/PrimitiveMetadata.h</includes>
+    <includes id="d4/d5e/_primitive_metadata_8h" name="PrimitiveMetadata.h" local="yes" import="no" module="no" objc="no">Core/Intersection/PrimitiveMetadata.h</includes>
+    <includes id="d7/df8/_primitive_8h" name="Primitive.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Primitive.h</includes>
     <includes id="d2/dbc/_surface_behavior_8h" name="SurfaceBehavior.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/SurfaceBehavior.h</includes>
     <includes id="d6/dcb/_surface_optics_8h" name="SurfaceOptics.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/SurfaceOptics.h</includes>
-    <includes id="d7/df8/_primitive_8h" name="Primitive.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/Primitive.h</includes>
     <includes id="da/dc6/_emitter_8h" name="Emitter.h" local="yes" import="no" module="no" objc="no">Core/Emitter/Emitter.h</includes>
     <includes id="dd/dff/_bsdf_query_context_8h" name="BsdfQueryContext.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/BsdfQueryContext.h</includes>
     <includes id="db/df0/_bsdf_sample_query_8h" name="BsdfSampleQuery.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/BsdfSampleQuery.h</includes>
     <includes id="d3/df8/_spectrum_8h" name="Spectrum.h" local="yes" import="no" module="no" objc="no">Math/Color/Spectrum.h</includes>
-    <includes id="d0/d5d/_pt_volumetric_estimator_8h" name="PtVolumetricEstimator.h" local="yes" import="no" module="no" objc="no">Core/LTABuildingBlock/PtVolumetricEstimator.h</includes>
-    <includes id="db/d8d/_surface_tracer_8h" name="SurfaceTracer.h" local="yes" import="no" module="no" objc="no">Core/LTABuildingBlock/SurfaceTracer.h</includes>
-    <includes id="d1/dc0/_russian_roulette_8h" name="RussianRoulette.h" local="yes" import="no" module="no" objc="no">Core/LTABuildingBlock/RussianRoulette.h</includes>
+    <includes id="d0/d5d/_pt_volumetric_estimator_8h" name="PtVolumetricEstimator.h" local="yes" import="no" module="no" objc="no">Core/LTA/PtVolumetricEstimator.h</includes>
+    <includes id="db/d8d/_surface_tracer_8h" name="SurfaceTracer.h" local="yes" import="no" module="no" objc="no">Core/LTA/SurfaceTracer.h</includes>
+    <includes id="d1/dc0/_russian_roulette_8h" name="RussianRoulette.h" local="yes" import="no" module="no" objc="no">Core/LTA/RussianRoulette.h</includes>
     <includes id="d5/d14/_t_vector3_8h" name="TVector3.h" local="yes" import="no" module="no" objc="no">Math/TVector3.h</includes>
     <includes id="d2/d97/_integrand_8h" name="Integrand.h" local="yes" import="no" module="no" objc="no">Core/Estimator/Integrand.h</includes>
     <namespace>ph</namespace>
@@ -2422,7 +2491,6 @@
     <includes id="de/db3/_hit_probe_8h" name="HitProbe.h" local="yes" import="no" module="no" objc="no">Core/HitProbe.h</includes>
     <includes id="de/d56/_scene_8h" name="Scene.h" local="yes" import="no" module="no" objc="no">World/Scene.h</includes>
     <includes id="d4/d8f/_t_hemisphere_8h" name="THemisphere.h" local="yes" import="no" module="no" objc="no">Math/Geometry/THemisphere.h</includes>
-    <includes id="d0/d80/_random_8h" name="Random.h" local="yes" import="no" module="no" objc="no">Math/Random.h</includes>
     <includes id="dd/d17/constant_8h" name="constant.h" local="yes" import="no" module="no" objc="no">Math/constant.h</includes>
     <namespace>ph</namespace>
   </compound>
@@ -2448,6 +2516,14 @@
     <filename>d6/d5b/_t_i_ray_estimator_8h.html</filename>
     <includes id="d9/d4a/_t_estimation_array_8h" name="TEstimationArray.h" local="yes" import="no" module="no" objc="no">Core/Estimator/TEstimationArray.h</includes>
     <class kind="class">ph::TIRayEstimator</class>
+    <namespace>ph</namespace>
+  </compound>
+  <compound kind="file">
+    <name>FaceTopology.h</name>
+    <path>Source/Core/</path>
+    <filename>d6/da8/_face_topology_8h.html</filename>
+    <includes id="df/db1/math_8h" name="math.h" local="yes" import="no" module="no" objc="no">Math/math.h</includes>
+    <includes id="d7/d2d/_t_bit_flags_8h" name="TBitFlags.h" local="yes" import="no" module="no" objc="no">Utility/TBitFlags.h</includes>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
@@ -2486,7 +2562,6 @@
     <includes id="d4/dd3/_sample_filter_8h" name="SampleFilter.h" local="yes" import="no" module="no" objc="no">Core/Filmic/SampleFilter.h</includes>
     <includes id="d3/dd2/_t_constant2_d_8h" name="TConstant2D.h" local="yes" import="no" module="no" objc="no">Math/Function/TConstant2D.h</includes>
     <includes id="d8/d17/_t_gaussian2_d_8h" name="TGaussian2D.h" local="yes" import="no" module="no" objc="no">Math/Function/TGaussian2D.h</includes>
-    <includes id="d7/dc2/_sample_filters_8h" name="SampleFilters.h" local="yes" import="no" module="no" objc="no">Core/Filmic/SampleFilters.h</includes>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
@@ -2505,6 +2580,10 @@
     <path>Source/Core/Filmic/</path>
     <filename>d0/d3f/_sample_filter_8cpp.html</filename>
     <includes id="d4/dd3/_sample_filter_8h" name="SampleFilter.h" local="yes" import="no" module="no" objc="no">Core/Filmic/SampleFilter.h</includes>
+    <includes id="d3/dd2/_t_constant2_d_8h" name="TConstant2D.h" local="yes" import="no" module="no" objc="no">Math/Function/TConstant2D.h</includes>
+    <includes id="d8/d17/_t_gaussian2_d_8h" name="TGaussian2D.h" local="yes" import="no" module="no" objc="no">Math/Function/TGaussian2D.h</includes>
+    <includes id="df/d68/_t_mitchell_netravali_cubic2_d_8h" name="TMitchellNetravaliCubic2D.h" local="yes" import="no" module="no" objc="no">Math/Function/TMitchellNetravaliCubic2D.h</includes>
+    <includes id="d4/dfc/_t_blackman_harris2_d_8h" name="TBlackmanHarris2D.h" local="yes" import="no" module="no" objc="no">Math/Function/TBlackmanHarris2D.h</includes>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
@@ -2514,25 +2593,6 @@
     <includes id="d0/deb/_t_math_function2_d_8h" name="TMathFunction2D.h" local="yes" import="no" module="no" objc="no">Math/Function/TMathFunction2D.h</includes>
     <includes id="d9/dfb/_t_vector2_8h" name="TVector2.h" local="yes" import="no" module="no" objc="no">Math/TVector2.h</includes>
     <class kind="class">ph::SampleFilter</class>
-    <namespace>ph</namespace>
-  </compound>
-  <compound kind="file">
-    <name>SampleFilters.cpp</name>
-    <path>Source/Core/Filmic/</path>
-    <filename>d5/d34/_sample_filters_8cpp.html</filename>
-    <includes id="d7/dc2/_sample_filters_8h" name="SampleFilters.h" local="yes" import="no" module="no" objc="no">Core/Filmic/SampleFilters.h</includes>
-    <includes id="d3/dd2/_t_constant2_d_8h" name="TConstant2D.h" local="yes" import="no" module="no" objc="no">Math/Function/TConstant2D.h</includes>
-    <includes id="d8/d17/_t_gaussian2_d_8h" name="TGaussian2D.h" local="yes" import="no" module="no" objc="no">Math/Function/TGaussian2D.h</includes>
-    <includes id="d9/d30/_t_m_n_cubic2_d_8h" name="TMNCubic2D.h" local="yes" import="no" module="no" objc="no">Math/Function/TMNCubic2D.h</includes>
-    <includes id="d4/dfc/_t_blackman_harris2_d_8h" name="TBlackmanHarris2D.h" local="yes" import="no" module="no" objc="no">Math/Function/TBlackmanHarris2D.h</includes>
-    <namespace>ph</namespace>
-  </compound>
-  <compound kind="file">
-    <name>SampleFilters.h</name>
-    <path>Source/Core/Filmic/</path>
-    <filename>d7/dc2/_sample_filters_8h.html</filename>
-    <includes id="d4/dd3/_sample_filter_8h" name="SampleFilter.h" local="yes" import="no" module="no" objc="no">Core/Filmic/SampleFilter.h</includes>
-    <class kind="class">ph::SampleFilters</class>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
@@ -2613,6 +2673,8 @@
     <includes id="df/db1/math_8h" name="math.h" local="yes" import="no" module="no" objc="no">Math/math.h</includes>
     <includes id="d5/d51/_e_coord_sys_8h" name="ECoordSys.h" local="yes" import="no" module="no" objc="no">Core/ECoordSys.h</includes>
     <includes id="df/db4/_hit_info_8h" name="HitInfo.h" local="yes" import="no" module="no" objc="no">Core/HitInfo.h</includes>
+    <includes id="d6/da8/_face_topology_8h" name="FaceTopology.h" local="yes" import="no" module="no" objc="no">Core/FaceTopology.h</includes>
+    <includes id="d5/d47/utility_8h" name="utility.h" local="yes" import="no" module="no" objc="no">Utility/utility.h</includes>
     <class kind="class">ph::HitDetail</class>
     <namespace>ph</namespace>
   </compound>
@@ -2639,46 +2701,46 @@
     <path>Source/Core/</path>
     <filename>de/d20/_hit_probe_8cpp.html</filename>
     <includes id="de/db3/_hit_probe_8h" name="HitProbe.h" local="yes" import="no" module="no" objc="no">Core/HitProbe.h</includes>
-    <includes id="d7/d3f/_intersectable_8h" name="Intersectable.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/Intersectable.h</includes>
+    <includes id="d4/d5e/_primitive_metadata_8h" name="PrimitiveMetadata.h" local="yes" import="no" module="no" objc="no">Core/Intersection/PrimitiveMetadata.h</includes>
+    <includes id="d7/d3f/_intersectable_8h" name="Intersectable.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Intersectable.h</includes>
     <includes id="d8/df3/_hit_detail_8h" name="HitDetail.h" local="yes" import="no" module="no" objc="no">Core/HitDetail.h</includes>
-    <includes id="d4/d5e/_primitive_metadata_8h" name="PrimitiveMetadata.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/PrimitiveMetadata.h</includes>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
     <name>HitProbe.h</name>
     <path>Source/Core/</path>
     <filename>de/db3/_hit_probe_8h.html</filename>
-    <includes id="dd/d8c/_t_array_as_stack_8h" name="TArrayAsStack.h" local="yes" import="no" module="no" objc="no">Utility/TArrayAsStack.h</includes>
+    <includes id="d9/de5/_t_array_stack_8h" name="TArrayStack.h" local="yes" import="no" module="no" objc="no">Utility/TArrayStack.h</includes>
     <includes id="d5/d14/_t_vector3_8h" name="TVector3.h" local="yes" import="no" module="no" objc="no">Math/TVector3.h</includes>
     <class kind="class">ph::HitProbe</class>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
     <name>BruteForceIntersector.cpp</name>
-    <path>Source/Core/Intersectable/</path>
+    <path>Source/Core/Intersection/</path>
     <filename>d5/d7a/_brute_force_intersector_8cpp.html</filename>
-    <includes id="de/d94/_brute_force_intersector_8h" name="BruteForceIntersector.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/BruteForceIntersector.h</includes>
+    <includes id="de/d94/_brute_force_intersector_8h" name="BruteForceIntersector.h" local="yes" import="no" module="no" objc="no">Core/Intersection/BruteForceIntersector.h</includes>
+    <includes id="d7/d3f/_intersectable_8h" name="Intersectable.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Intersectable.h</includes>
     <includes id="de/db3/_hit_probe_8h" name="HitProbe.h" local="yes" import="no" module="no" objc="no">Core/HitProbe.h</includes>
     <includes id="da/da9/_ray_8h" name="Ray.h" local="yes" import="no" module="no" objc="no">Core/Ray.h</includes>
-    <includes id="d7/d3f/_intersectable_8h" name="Intersectable.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/Intersectable.h</includes>
     <includes id="d1/d26/_t_a_a_b_b3_d_8h" name="TAABB3D.h" local="yes" import="no" module="no" objc="no">Math/Geometry/TAABB3D.h</includes>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
     <name>BruteForceIntersector.h</name>
-    <path>Source/Core/Intersectable/</path>
+    <path>Source/Core/Intersection/</path>
     <filename>de/d94/_brute_force_intersector_8h.html</filename>
-    <includes id="d8/d9f/_intersector_8h" name="Intersector.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/Intersector.h</includes>
+    <includes id="d8/d9f/_intersector_8h" name="Intersector.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Intersector.h</includes>
     <class kind="class">ph::BruteForceIntersector</class>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
     <name>BvhBuilder.cpp</name>
-    <path>Source/Core/Intersectable/Bvh/</path>
+    <path>Source/Core/Intersection/Bvh/</path>
     <filename>d3/d2a/_bvh_builder_8cpp.html</filename>
-    <includes id="d7/d16/_bvh_builder_8h" name="BvhBuilder.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/Bvh/BvhBuilder.h</includes>
-    <includes id="d3/ddb/_bvh_info_node_8h" name="BvhInfoNode.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/Bvh/BvhInfoNode.h</includes>
-    <includes id="d7/d3f/_intersectable_8h" name="Intersectable.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/Intersectable.h</includes>
+    <includes id="d7/d16/_bvh_builder_8h" name="BvhBuilder.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Bvh/BvhBuilder.h</includes>
+    <includes id="d3/ddb/_bvh_info_node_8h" name="BvhInfoNode.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Bvh/BvhInfoNode.h</includes>
+    <includes id="d7/d3f/_intersectable_8h" name="Intersectable.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Intersectable.h</includes>
     <includes id="d5/d14/_t_vector3_8h" name="TVector3.h" local="yes" import="no" module="no" objc="no">Math/TVector3.h</includes>
     <includes id="d1/d26/_t_a_a_b_b3_d_8h" name="TAABB3D.h" local="yes" import="no" module="no" objc="no">Math/Geometry/TAABB3D.h</includes>
     <class kind="class">ph::BvhSahBucket</class>
@@ -2686,11 +2748,11 @@
   </compound>
   <compound kind="file">
     <name>BvhBuilder.h</name>
-    <path>Source/Core/Intersectable/Bvh/</path>
+    <path>Source/Core/Intersection/Bvh/</path>
     <filename>d7/d16/_bvh_builder_8h.html</filename>
-    <includes id="d1/de5/_e_bvh_type_8h" name="EBvhType.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/Bvh/EBvhType.h</includes>
-    <includes id="dd/d68/_bvh_intersectable_info_8h" name="BvhIntersectableInfo.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/Bvh/BvhIntersectableInfo.h</includes>
-    <includes id="d0/dcd/_bvh_linear_node_8h" name="BvhLinearNode.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/Bvh/BvhLinearNode.h</includes>
+    <includes id="d1/de5/_e_bvh_type_8h" name="EBvhType.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Bvh/EBvhType.h</includes>
+    <includes id="dd/d68/_bvh_intersectable_info_8h" name="BvhIntersectableInfo.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Bvh/BvhIntersectableInfo.h</includes>
+    <includes id="d0/dcd/_bvh_linear_node_8h" name="BvhLinearNode.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Bvh/BvhLinearNode.h</includes>
     <includes id="d1/d26/_t_a_a_b_b3_d_8h" name="TAABB3D.h" local="yes" import="no" module="no" objc="no">Math/Geometry/TAABB3D.h</includes>
     <includes id="dd/da2/_t_span_8h" name="TSpan.h" local="yes" import="no" module="no" objc="no">Utility/TSpan.h</includes>
     <class kind="class">ph::BvhBuilder</class>
@@ -2698,32 +2760,32 @@
   </compound>
   <compound kind="file">
     <name>BvhInfoNode.cpp</name>
-    <path>Source/Core/Intersectable/Bvh/</path>
+    <path>Source/Core/Intersection/Bvh/</path>
     <filename>d5/dbb/_bvh_info_node_8cpp.html</filename>
-    <includes id="d3/ddb/_bvh_info_node_8h" name="BvhInfoNode.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/Bvh/BvhInfoNode.h</includes>
+    <includes id="d3/ddb/_bvh_info_node_8h" name="BvhInfoNode.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Bvh/BvhInfoNode.h</includes>
     <includes id="df/db1/math_8h" name="math.h" local="yes" import="no" module="no" objc="no">Math/math.h</includes>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
     <name>BvhInfoNode.h</name>
-    <path>Source/Core/Intersectable/Bvh/</path>
+    <path>Source/Core/Intersection/Bvh/</path>
     <filename>d3/ddb/_bvh_info_node_8h.html</filename>
     <includes id="d1/d26/_t_a_a_b_b3_d_8h" name="TAABB3D.h" local="yes" import="no" module="no" objc="no">Math/Geometry/TAABB3D.h</includes>
-    <includes id="dd/d68/_bvh_intersectable_info_8h" name="BvhIntersectableInfo.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/Bvh/BvhIntersectableInfo.h</includes>
+    <includes id="dd/d68/_bvh_intersectable_info_8h" name="BvhIntersectableInfo.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Bvh/BvhIntersectableInfo.h</includes>
     <class kind="class">ph::BvhInfoNode</class>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
     <name>BvhIntersectableInfo.cpp</name>
-    <path>Source/Core/Intersectable/Bvh/</path>
+    <path>Source/Core/Intersection/Bvh/</path>
     <filename>da/d0d/_bvh_intersectable_info_8cpp.html</filename>
-    <includes id="dd/d68/_bvh_intersectable_info_8h" name="BvhIntersectableInfo.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/Bvh/BvhIntersectableInfo.h</includes>
-    <includes id="d7/d3f/_intersectable_8h" name="Intersectable.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/Intersectable.h</includes>
+    <includes id="dd/d68/_bvh_intersectable_info_8h" name="BvhIntersectableInfo.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Bvh/BvhIntersectableInfo.h</includes>
+    <includes id="d7/d3f/_intersectable_8h" name="Intersectable.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Intersectable.h</includes>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
     <name>BvhIntersectableInfo.h</name>
-    <path>Source/Core/Intersectable/Bvh/</path>
+    <path>Source/Core/Intersection/Bvh/</path>
     <filename>dd/d68/_bvh_intersectable_info_8h.html</filename>
     <includes id="d1/d26/_t_a_a_b_b3_d_8h" name="TAABB3D.h" local="yes" import="no" module="no" objc="no">Math/Geometry/TAABB3D.h</includes>
     <includes id="d5/d14/_t_vector3_8h" name="TVector3.h" local="yes" import="no" module="no" objc="no">Math/TVector3.h</includes>
@@ -2732,14 +2794,14 @@
   </compound>
   <compound kind="file">
     <name>BvhLinearNode.cpp</name>
-    <path>Source/Core/Intersectable/Bvh/</path>
+    <path>Source/Core/Intersection/Bvh/</path>
     <filename>d1/db9/_bvh_linear_node_8cpp.html</filename>
-    <includes id="d0/dcd/_bvh_linear_node_8h" name="BvhLinearNode.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/Bvh/BvhLinearNode.h</includes>
+    <includes id="d0/dcd/_bvh_linear_node_8h" name="BvhLinearNode.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Bvh/BvhLinearNode.h</includes>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
     <name>BvhLinearNode.h</name>
-    <path>Source/Core/Intersectable/Bvh/</path>
+    <path>Source/Core/Intersection/Bvh/</path>
     <filename>d0/dcd/_bvh_linear_node_8h.html</filename>
     <includes id="d1/d26/_t_a_a_b_b3_d_8h" name="TAABB3D.h" local="yes" import="no" module="no" objc="no">Math/Geometry/TAABB3D.h</includes>
     <class kind="class">ph::BvhLinearNode</class>
@@ -2747,56 +2809,56 @@
   </compound>
   <compound kind="file">
     <name>ClassicBvhIntersector.cpp</name>
-    <path>Source/Core/Intersectable/Bvh/</path>
+    <path>Source/Core/Intersection/Bvh/</path>
     <filename>d2/de2/_classic_bvh_intersector_8cpp.html</filename>
-    <includes id="d2/d7c/_classic_bvh_intersector_8h" name="ClassicBvhIntersector.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/Bvh/ClassicBvhIntersector.h</includes>
+    <includes id="d2/d7c/_classic_bvh_intersector_8h" name="ClassicBvhIntersector.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Bvh/ClassicBvhIntersector.h</includes>
     <includes id="de/db3/_hit_probe_8h" name="HitProbe.h" local="yes" import="no" module="no" objc="no">Core/HitProbe.h</includes>
     <includes id="da/da9/_ray_8h" name="Ray.h" local="yes" import="no" module="no" objc="no">Core/Ray.h</includes>
-    <includes id="d3/ddb/_bvh_info_node_8h" name="BvhInfoNode.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/Bvh/BvhInfoNode.h</includes>
-    <includes id="d7/d16/_bvh_builder_8h" name="BvhBuilder.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/Bvh/BvhBuilder.h</includes>
+    <includes id="d3/ddb/_bvh_info_node_8h" name="BvhInfoNode.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Bvh/BvhInfoNode.h</includes>
+    <includes id="d7/d16/_bvh_builder_8h" name="BvhBuilder.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Bvh/BvhBuilder.h</includes>
     <includes id="d1/d26/_t_a_a_b_b3_d_8h" name="TAABB3D.h" local="yes" import="no" module="no" objc="no">Math/Geometry/TAABB3D.h</includes>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
     <name>ClassicBvhIntersector.h</name>
-    <path>Source/Core/Intersectable/Bvh/</path>
+    <path>Source/Core/Intersection/Bvh/</path>
     <filename>d2/d7c/_classic_bvh_intersector_8h.html</filename>
-    <includes id="d8/d9f/_intersector_8h" name="Intersector.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/Intersector.h</includes>
-    <includes id="d0/dcd/_bvh_linear_node_8h" name="BvhLinearNode.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/Bvh/BvhLinearNode.h</includes>
+    <includes id="d8/d9f/_intersector_8h" name="Intersector.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Intersector.h</includes>
+    <includes id="d0/dcd/_bvh_linear_node_8h" name="BvhLinearNode.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Bvh/BvhLinearNode.h</includes>
     <class kind="class">ph::ClassicBvhIntersector</class>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
     <name>EBvhType.h</name>
-    <path>Source/Core/Intersectable/Bvh/</path>
+    <path>Source/Core/Intersection/Bvh/</path>
     <filename>d1/de5/_e_bvh_type_8h.html</filename>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
     <name>data_structure_fwd.h</name>
-    <path>Source/Core/Intersectable/</path>
+    <path>Source/Core/Intersection/</path>
     <filename>d4/d8b/data__structure__fwd_8h.html</filename>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
     <name>IndexedTriMesh.h</name>
-    <path>Source/Core/Intersectable/DataStructure/</path>
+    <path>Source/Core/Intersection/DataStructure/</path>
     <filename>dc/db7/_indexed_tri_mesh_8h.html</filename>
-    <includes id="d9/d12/_tri_face_8h" name="TriFace.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/DataStructure/TriFace.h</includes>
+    <includes id="d9/d12/_tri_face_8h" name="TriFace.h" local="yes" import="no" module="no" objc="no">Core/Intersection/DataStructure/TriFace.h</includes>
     <includes id="d5/d14/_t_vector3_8h" name="TVector3.h" local="yes" import="no" module="no" objc="no">Math/TVector3.h</includes>
     <class kind="class">ph::IndexedTriMesh</class>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
     <name>IndexedUIntBuffer.cpp</name>
-    <path>Source/Core/Intersectable/DataStructure/</path>
+    <path>Source/Core/Intersection/DataStructure/</path>
     <filename>d0/d79/_indexed_u_int_buffer_8cpp.html</filename>
-    <includes id="d1/ded/_indexed_u_int_buffer_8h" name="IndexedUIntBuffer.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/DataStructure/IndexedUIntBuffer.h</includes>
+    <includes id="d1/ded/_indexed_u_int_buffer_8h" name="IndexedUIntBuffer.h" local="yes" import="no" module="no" objc="no">Core/Intersection/DataStructure/IndexedUIntBuffer.h</includes>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
     <name>IndexedUIntBuffer.h</name>
-    <path>Source/Core/Intersectable/DataStructure/</path>
+    <path>Source/Core/Intersection/DataStructure/</path>
     <filename>d1/ded/_indexed_u_int_buffer_8h.html</filename>
     <includes id="df/db1/math_8h" name="math.h" local="yes" import="no" module="no" objc="no">Math/math.h</includes>
     <includes id="d5/d47/utility_8h" name="utility.h" local="yes" import="no" module="no" objc="no">Utility/utility.h</includes>
@@ -2805,9 +2867,9 @@
   </compound>
   <compound kind="file">
     <name>IndexedVertexBuffer.cpp</name>
-    <path>Source/Core/Intersectable/DataStructure/</path>
+    <path>Source/Core/Intersection/DataStructure/</path>
     <filename>d3/d02/_indexed_vertex_buffer_8cpp.html</filename>
-    <includes id="da/dcc/_indexed_vertex_buffer_8h" name="IndexedVertexBuffer.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/DataStructure/IndexedVertexBuffer.h</includes>
+    <includes id="da/dcc/_indexed_vertex_buffer_8h" name="IndexedVertexBuffer.h" local="yes" import="no" module="no" objc="no">Core/Intersection/DataStructure/IndexedVertexBuffer.h</includes>
     <includes id="df/db1/math_8h" name="math.h" local="yes" import="no" module="no" objc="no">Math/math.h</includes>
     <includes id="db/d5e/_math_2_geometry_2_geometry_8h" name="geometry.h" local="yes" import="no" module="no" objc="no">Math/Geometry/geometry.h</includes>
     <includes id="d9/dfb/_t_vector2_8h" name="TVector2.h" local="yes" import="no" module="no" objc="no">Math/TVector2.h</includes>
@@ -2815,7 +2877,7 @@
   </compound>
   <compound kind="file">
     <name>IndexedVertexBuffer.h</name>
-    <path>Source/Core/Intersectable/DataStructure/</path>
+    <path>Source/Core/Intersection/DataStructure/</path>
     <filename>da/dcc/_indexed_vertex_buffer_8h.html</filename>
     <includes id="d9/dfb/_t_vector2_8h" name="TVector2.h" local="yes" import="no" module="no" objc="no">Math/TVector2.h</includes>
     <includes id="d5/d14/_t_vector3_8h" name="TVector3.h" local="yes" import="no" module="no" objc="no">Math/TVector3.h</includes>
@@ -2826,42 +2888,42 @@
   </compound>
   <compound kind="file">
     <name>TAosTriMesh.h</name>
-    <path>Source/Core/Intersectable/DataStructure/</path>
+    <path>Source/Core/Intersection/DataStructure/</path>
     <filename>da/d15/_t_aos_tri_mesh_8h.html</filename>
-    <includes id="dc/db7/_indexed_tri_mesh_8h" name="IndexedTriMesh.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/DataStructure/IndexedTriMesh.h</includes>
-    <includes id="d1/d13/_t_aos_tri_mesh_8ipp" name="TAosTriMesh.ipp" local="yes" import="no" module="no" objc="no">Core/Intersectable/DataStructure/TAosTriMesh.ipp</includes>
+    <includes id="dc/db7/_indexed_tri_mesh_8h" name="IndexedTriMesh.h" local="yes" import="no" module="no" objc="no">Core/Intersection/DataStructure/IndexedTriMesh.h</includes>
+    <includes id="d1/d13/_t_aos_tri_mesh_8ipp" name="TAosTriMesh.ipp" local="yes" import="no" module="no" objc="no">Core/Intersection/DataStructure/TAosTriMesh.ipp</includes>
     <class kind="class">ph::TAosTriMesh</class>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
     <name>TAosTriMesh.ipp</name>
-    <path>Source/Core/Intersectable/DataStructure/</path>
+    <path>Source/Core/Intersection/DataStructure/</path>
     <filename>d1/d13/_t_aos_tri_mesh_8ipp.html</filename>
-    <includes id="da/d15/_t_aos_tri_mesh_8h" name="TAosTriMesh.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/DataStructure/TAosTriMesh.h</includes>
+    <includes id="da/d15/_t_aos_tri_mesh_8h" name="TAosTriMesh.h" local="yes" import="no" module="no" objc="no">Core/Intersection/DataStructure/TAosTriMesh.h</includes>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
     <name>TIndexedPolygonBuffer.h</name>
-    <path>Source/Core/Intersectable/DataStructure/</path>
+    <path>Source/Core/Intersection/DataStructure/</path>
     <filename>da/da3/_t_indexed_polygon_buffer_8h.html</filename>
-    <includes id="d4/d8b/data__structure__fwd_8h" name="data_structure_fwd.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/data_structure_fwd.h</includes>
-    <includes id="da/dcc/_indexed_vertex_buffer_8h" name="IndexedVertexBuffer.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/DataStructure/IndexedVertexBuffer.h</includes>
-    <includes id="d1/ded/_indexed_u_int_buffer_8h" name="IndexedUIntBuffer.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/DataStructure/IndexedUIntBuffer.h</includes>
+    <includes id="d4/d8b/data__structure__fwd_8h" name="data_structure_fwd.h" local="yes" import="no" module="no" objc="no">Core/Intersection/data_structure_fwd.h</includes>
+    <includes id="da/dcc/_indexed_vertex_buffer_8h" name="IndexedVertexBuffer.h" local="yes" import="no" module="no" objc="no">Core/Intersection/DataStructure/IndexedVertexBuffer.h</includes>
+    <includes id="d1/ded/_indexed_u_int_buffer_8h" name="IndexedUIntBuffer.h" local="yes" import="no" module="no" objc="no">Core/Intersection/DataStructure/IndexedUIntBuffer.h</includes>
     <includes id="d5/d14/_t_vector3_8h" name="TVector3.h" local="yes" import="no" module="no" objc="no">Math/TVector3.h</includes>
-    <includes id="da/d3f/_t_indexed_polygon_buffer_8ipp" name="TIndexedPolygonBuffer.ipp" local="yes" import="no" module="no" objc="no">Core/Intersectable/DataStructure/TIndexedPolygonBuffer.ipp</includes>
+    <includes id="da/d3f/_t_indexed_polygon_buffer_8ipp" name="TIndexedPolygonBuffer.ipp" local="yes" import="no" module="no" objc="no">Core/Intersection/DataStructure/TIndexedPolygonBuffer.ipp</includes>
     <class kind="class">ph::TIndexedPolygonBuffer</class>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
     <name>TIndexedPolygonBuffer.ipp</name>
-    <path>Source/Core/Intersectable/DataStructure/</path>
+    <path>Source/Core/Intersection/DataStructure/</path>
     <filename>da/d3f/_t_indexed_polygon_buffer_8ipp.html</filename>
-    <includes id="da/da3/_t_indexed_polygon_buffer_8h" name="TIndexedPolygonBuffer.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/DataStructure/TIndexedPolygonBuffer.h</includes>
+    <includes id="da/da3/_t_indexed_polygon_buffer_8h" name="TIndexedPolygonBuffer.h" local="yes" import="no" module="no" objc="no">Core/Intersection/DataStructure/TIndexedPolygonBuffer.h</includes>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
     <name>TriFace.h</name>
-    <path>Source/Core/Intersectable/DataStructure/</path>
+    <path>Source/Core/Intersection/DataStructure/</path>
     <filename>d9/d12/_tri_face_8h.html</filename>
     <includes id="d5/d14/_t_vector3_8h" name="TVector3.h" local="yes" import="no" module="no" objc="no">Math/TVector3.h</includes>
     <includes id="d9/dfb/_t_vector2_8h" name="TVector2.h" local="yes" import="no" module="no" objc="no">Math/TVector2.h</includes>
@@ -2870,16 +2932,16 @@
   </compound>
   <compound kind="file">
     <name>Intersectable.cpp</name>
-    <path>Source/Core/Intersectable/</path>
+    <path>Source/Core/Intersection/</path>
     <filename>d6/d63/_intersectable_8cpp.html</filename>
-    <includes id="d7/d3f/_intersectable_8h" name="Intersectable.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/Intersectable.h</includes>
+    <includes id="d7/d3f/_intersectable_8h" name="Intersectable.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Intersectable.h</includes>
     <includes id="d1/d26/_t_a_a_b_b3_d_8h" name="TAABB3D.h" local="yes" import="no" module="no" objc="no">Math/Geometry/TAABB3D.h</includes>
     <includes id="de/db3/_hit_probe_8h" name="HitProbe.h" local="yes" import="no" module="no" objc="no">Core/HitProbe.h</includes>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
     <name>Intersectable.h</name>
-    <path>Source/Core/Intersectable/</path>
+    <path>Source/Core/Intersection/</path>
     <filename>d7/d3f/_intersectable_8h.html</filename>
     <includes id="d1/d26/_t_a_a_b_b3_d_8h" name="TAABB3D.h" local="yes" import="no" module="no" objc="no">Math/Geometry/TAABB3D.h</includes>
     <class kind="class">ph::Intersectable</class>
@@ -2887,44 +2949,43 @@
   </compound>
   <compound kind="file">
     <name>Intersector.cpp</name>
-    <path>Source/Core/Intersectable/</path>
+    <path>Source/Core/Intersection/</path>
     <filename>da/dcc/_intersector_8cpp.html</filename>
-    <includes id="d8/d9f/_intersector_8h" name="Intersector.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/Intersector.h</includes>
+    <includes id="d8/d9f/_intersector_8h" name="Intersector.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Intersector.h</includes>
     <includes id="de/db3/_hit_probe_8h" name="HitProbe.h" local="yes" import="no" module="no" objc="no">Core/HitProbe.h</includes>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
     <name>Intersector.h</name>
-    <path>Source/Core/Intersectable/</path>
+    <path>Source/Core/Intersection/</path>
     <filename>d8/d9f/_intersector_8h.html</filename>
-    <includes id="d7/d3f/_intersectable_8h" name="Intersectable.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/Intersectable.h</includes>
+    <includes id="d7/d3f/_intersectable_8h" name="Intersectable.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Intersectable.h</includes>
     <includes id="dd/da2/_t_span_8h" name="TSpan.h" local="yes" import="no" module="no" objc="no">Utility/TSpan.h</includes>
     <class kind="class">ph::Intersector</class>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
     <name>TIndexedKdtreeIntersector.h</name>
-    <path>Source/Core/Intersectable/Intersector/</path>
+    <path>Source/Core/Intersection/Intersector/</path>
     <filename>d5/d70/_t_indexed_kdtree_intersector_8h.html</filename>
-    <includes id="d8/d9f/_intersector_8h" name="Intersector.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/Intersector.h</includes>
-    <includes id="d7/d3f/_intersectable_8h" name="Intersectable.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/Intersectable.h</includes>
+    <includes id="d8/d9f/_intersector_8h" name="Intersector.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Intersector.h</includes>
     <includes id="d9/d15/_t_indexed_kdtree_8h" name="TIndexedKdtree.h" local="yes" import="no" module="no" objc="no">Math/Algorithm/IndexedKdtree/TIndexedKdtree.h</includes>
-    <includes id="da/d1c/_t_indexed_kdtree_intersector_8ipp" name="TIndexedKdtreeIntersector.ipp" local="yes" import="no" module="no" objc="no">Core/Intersectable/Intersector/TIndexedKdtreeIntersector.ipp</includes>
+    <includes id="da/d1c/_t_indexed_kdtree_intersector_8ipp" name="TIndexedKdtreeIntersector.ipp" local="yes" import="no" module="no" objc="no">Core/Intersection/Intersector/TIndexedKdtreeIntersector.ipp</includes>
     <class kind="class">ph::TIndexedKdtreeIntersector</class>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
     <name>TIndexedKdtreeIntersector.ipp</name>
-    <path>Source/Core/Intersectable/Intersector/</path>
+    <path>Source/Core/Intersection/Intersector/</path>
     <filename>da/d1c/_t_indexed_kdtree_intersector_8ipp.html</filename>
-    <includes id="d5/d70/_t_indexed_kdtree_intersector_8h" name="TIndexedKdtreeIntersector.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/Intersector/TIndexedKdtreeIntersector.h</includes>
+    <includes id="d5/d70/_t_indexed_kdtree_intersector_8h" name="TIndexedKdtreeIntersector.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Intersector/TIndexedKdtreeIntersector.h</includes>
     <includes id="da/da9/_ray_8h" name="Ray.h" local="yes" import="no" module="no" objc="no">Core/Ray.h</includes>
     <includes id="de/db3/_hit_probe_8h" name="HitProbe.h" local="yes" import="no" module="no" objc="no">Core/HitProbe.h</includes>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
     <name>kdtree_core.h</name>
-    <path>Source/Core/Intersectable/Kdtree/</path>
+    <path>Source/Core/Intersection/Kdtree/</path>
     <filename>d8/d1f/kdtree__core_8h.html</filename>
     <namespace>ph</namespace>
     <member kind="define">
@@ -2965,67 +3026,67 @@
   </compound>
   <compound kind="file">
     <name>KdtreeAABB.cpp</name>
-    <path>Source/Core/Intersectable/Kdtree/</path>
+    <path>Source/Core/Intersection/Kdtree/</path>
     <filename>d5/d14/_kdtree_a_a_b_b_8cpp.html</filename>
-    <includes id="d0/de3/_kdtree_a_a_b_b_8h" name="KdtreeAABB.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/Kdtree/KdtreeAABB.h</includes>
+    <includes id="d0/de3/_kdtree_a_a_b_b_8h" name="KdtreeAABB.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Kdtree/KdtreeAABB.h</includes>
     <includes id="d5/d14/_t_vector3_8h" name="TVector3.h" local="yes" import="no" module="no" objc="no">Math/TVector3.h</includes>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
     <name>KdtreeAABB.h</name>
-    <path>Source/Core/Intersectable/Kdtree/</path>
+    <path>Source/Core/Intersection/Kdtree/</path>
     <filename>d0/de3/_kdtree_a_a_b_b_8h.html</filename>
     <includes id="d1/d26/_t_a_a_b_b3_d_8h" name="TAABB3D.h" local="yes" import="no" module="no" objc="no">Math/Geometry/TAABB3D.h</includes>
     <includes id="da/da9/_ray_8h" name="Ray.h" local="yes" import="no" module="no" objc="no">Core/Ray.h</includes>
-    <includes id="d8/d1f/kdtree__core_8h" name="kdtree_core.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/Kdtree/kdtree_core.h</includes>
+    <includes id="d8/d1f/kdtree__core_8h" name="kdtree_core.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Kdtree/kdtree_core.h</includes>
     <includes id="d8/da4/math__fwd_8h" name="math_fwd.h" local="yes" import="no" module="no" objc="no">Math/math_fwd.h</includes>
     <class kind="class">ph::KdtreeAABB</class>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
     <name>KdtreeIntersector.cpp</name>
-    <path>Source/Core/Intersectable/Kdtree/</path>
+    <path>Source/Core/Intersection/Kdtree/</path>
     <filename>d4/d10/_kdtree_intersector_8cpp.html</filename>
-    <includes id="dc/df0/_kdtree_intersector_8h" name="KdtreeIntersector.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/Kdtree/KdtreeIntersector.h</includes>
+    <includes id="dc/df0/_kdtree_intersector_8h" name="KdtreeIntersector.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Kdtree/KdtreeIntersector.h</includes>
     <includes id="dd/d47/_cooked_data_storage_8h" name="CookedDataStorage.h" local="yes" import="no" module="no" objc="no">World/Foundation/CookedDataStorage.h</includes>
     <includes id="de/db3/_hit_probe_8h" name="HitProbe.h" local="yes" import="no" module="no" objc="no">Core/HitProbe.h</includes>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
     <name>KdtreeIntersector.h</name>
-    <path>Source/Core/Intersectable/Kdtree/</path>
+    <path>Source/Core/Intersection/Kdtree/</path>
     <filename>dc/df0/_kdtree_intersector_8h.html</filename>
-    <includes id="d8/d9f/_intersector_8h" name="Intersector.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/Intersector.h</includes>
-    <includes id="dd/d77/_kdtree_node_8h" name="KdtreeNode.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/Kdtree/KdtreeNode.h</includes>
-    <includes id="d7/d3f/_intersectable_8h" name="Intersectable.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/Intersectable.h</includes>
+    <includes id="d8/d9f/_intersector_8h" name="Intersector.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Intersector.h</includes>
+    <includes id="dd/d77/_kdtree_node_8h" name="KdtreeNode.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Kdtree/KdtreeNode.h</includes>
+    <includes id="d7/d3f/_intersectable_8h" name="Intersectable.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Intersectable.h</includes>
     <class kind="class">ph::KdtreeIntersector</class>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
     <name>KdtreeNode.cpp</name>
-    <path>Source/Core/Intersectable/Kdtree/</path>
+    <path>Source/Core/Intersection/Kdtree/</path>
     <filename>d6/d3c/_kdtree_node_8cpp.html</filename>
-    <includes id="dd/d77/_kdtree_node_8h" name="KdtreeNode.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/Kdtree/KdtreeNode.h</includes>
+    <includes id="dd/d77/_kdtree_node_8h" name="KdtreeNode.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Kdtree/KdtreeNode.h</includes>
     <includes id="da/da9/_ray_8h" name="Ray.h" local="yes" import="no" module="no" objc="no">Core/Ray.h</includes>
     <includes id="de/db3/_hit_probe_8h" name="HitProbe.h" local="yes" import="no" module="no" objc="no">Core/HitProbe.h</includes>
-    <includes id="d7/d3f/_intersectable_8h" name="Intersectable.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/Intersectable.h</includes>
+    <includes id="d7/d3f/_intersectable_8h" name="Intersectable.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Intersectable.h</includes>
     <includes id="d5/d14/_t_vector3_8h" name="TVector3.h" local="yes" import="no" module="no" objc="no">Math/TVector3.h</includes>
     <class kind="class">ph::TestPoint</class>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
     <name>KdtreeNode.h</name>
-    <path>Source/Core/Intersectable/Kdtree/</path>
+    <path>Source/Core/Intersection/Kdtree/</path>
     <filename>dd/d77/_kdtree_node_8h.html</filename>
-    <includes id="d0/de3/_kdtree_a_a_b_b_8h" name="KdtreeAABB.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/Kdtree/KdtreeAABB.h</includes>
+    <includes id="d0/de3/_kdtree_a_a_b_b_8h" name="KdtreeAABB.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Kdtree/KdtreeAABB.h</includes>
     <class kind="class">ph::KdtreeNode</class>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
     <name>PBasicSphere.cpp</name>
-    <path>Source/Core/Intersectable/</path>
+    <path>Source/Core/Intersection/</path>
     <filename>d9/d00/_p_basic_sphere_8cpp.html</filename>
-    <includes id="d2/de7/_p_basic_sphere_8h" name="PBasicSphere.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/PBasicSphere.h</includes>
+    <includes id="d2/de7/_p_basic_sphere_8h" name="PBasicSphere.h" local="yes" import="no" module="no" objc="no">Core/Intersection/PBasicSphere.h</includes>
     <includes id="da/da9/_ray_8h" name="Ray.h" local="yes" import="no" module="no" objc="no">Core/Ray.h</includes>
     <includes id="de/db3/_hit_probe_8h" name="HitProbe.h" local="yes" import="no" module="no" objc="no">Core/HitProbe.h</includes>
     <includes id="d9/d63/_t_sphere_8h" name="TSphere.h" local="yes" import="no" module="no" objc="no">Math/Geometry/TSphere.h</includes>
@@ -3033,64 +3094,70 @@
   </compound>
   <compound kind="file">
     <name>PBasicSphere.h</name>
-    <path>Source/Core/Intersectable/</path>
+    <path>Source/Core/Intersection/</path>
     <filename>d2/de7/_p_basic_sphere_8h.html</filename>
-    <includes id="d7/df8/_primitive_8h" name="Primitive.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/Primitive.h</includes>
-    <includes id="d8/da4/math__fwd_8h" name="math_fwd.h" local="yes" import="no" module="no" objc="no">Math/math_fwd.h</includes>
+    <includes id="d7/df8/_primitive_8h" name="Primitive.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Primitive.h</includes>
+    <includes id="d5/d14/_t_vector3_8h" name="TVector3.h" local="yes" import="no" module="no" objc="no">Math/TVector3.h</includes>
     <class kind="class">ph::PBasicSphere</class>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
     <name>PEmpty.h</name>
-    <path>Source/Core/Intersectable/</path>
+    <path>Source/Core/Intersection/</path>
     <filename>de/d6b/_p_empty_8h.html</filename>
-    <includes id="d7/df8/_primitive_8h" name="Primitive.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/Primitive.h</includes>
+    <includes id="d7/df8/_primitive_8h" name="Primitive.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Primitive.h</includes>
     <includes id="d1/d26/_t_a_a_b_b3_d_8h" name="TAABB3D.h" local="yes" import="no" module="no" objc="no">Math/Geometry/TAABB3D.h</includes>
     <class kind="class">ph::PEmpty</class>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
     <name>PLatLong01Sphere.cpp</name>
-    <path>Source/Core/Intersectable/</path>
+    <path>Source/Core/Intersection/</path>
     <filename>d6/d3e/_p_lat_long01_sphere_8cpp.html</filename>
-    <includes id="da/dd4/_p_lat_long01_sphere_8h" name="PLatLong01Sphere.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/PLatLong01Sphere.h</includes>
+    <includes id="da/dd4/_p_lat_long01_sphere_8h" name="PLatLong01Sphere.h" local="yes" import="no" module="no" objc="no">Core/Intersection/PLatLong01Sphere.h</includes>
     <includes id="d5/d14/_t_vector3_8h" name="TVector3.h" local="yes" import="no" module="no" objc="no">Math/TVector3.h</includes>
     <includes id="da/da9/_ray_8h" name="Ray.h" local="yes" import="no" module="no" objc="no">Core/Ray.h</includes>
     <includes id="de/db3/_hit_probe_8h" name="HitProbe.h" local="yes" import="no" module="no" objc="no">Core/HitProbe.h</includes>
     <includes id="d8/df3/_hit_detail_8h" name="HitDetail.h" local="yes" import="no" module="no" objc="no">Core/HitDetail.h</includes>
     <includes id="d9/d63/_t_sphere_8h" name="TSphere.h" local="yes" import="no" module="no" objc="no">Math/Geometry/TSphere.h</includes>
     <includes id="d6/d33/_sample_flow_8h" name="SampleFlow.h" local="yes" import="no" module="no" objc="no">Core/SampleGenerator/SampleFlow.h</includes>
-    <includes id="d4/d1a/_primitive_pos_sample_query_8h" name="PrimitivePosSampleQuery.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/Query/PrimitivePosSampleQuery.h</includes>
+    <includes id="d4/d1a/_primitive_pos_sample_query_8h" name="PrimitivePosSampleQuery.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Query/PrimitivePosSampleQuery.h</includes>
+    <includes id="d8/dfd/_primitive_pos_sample_pdf_query_8h" name="PrimitivePosSamplePdfQuery.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Query/PrimitivePosSamplePdfQuery.h</includes>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
     <name>PLatLong01Sphere.h</name>
-    <path>Source/Core/Intersectable/</path>
+    <path>Source/Core/Intersection/</path>
     <filename>da/dd4/_p_lat_long01_sphere_8h.html</filename>
-    <includes id="d2/de7/_p_basic_sphere_8h" name="PBasicSphere.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/PBasicSphere.h</includes>
+    <includes id="d2/de7/_p_basic_sphere_8h" name="PBasicSphere.h" local="yes" import="no" module="no" objc="no">Core/Intersection/PBasicSphere.h</includes>
     <includes id="d8/da4/math__fwd_8h" name="math_fwd.h" local="yes" import="no" module="no" objc="no">Math/math_fwd.h</includes>
     <class kind="class">ph::PLatLong01Sphere</class>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
     <name>PLatLongEnvSphere.cpp</name>
-    <path>Source/Core/Intersectable/</path>
+    <path>Source/Core/Intersection/</path>
     <filename>d0/d66/_p_lat_long_env_sphere_8cpp.html</filename>
-    <includes id="d3/d3c/_p_lat_long_env_sphere_8h" name="PLatLongEnvSphere.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/PLatLongEnvSphere.h</includes>
+    <includes id="d3/d3c/_p_lat_long_env_sphere_8h" name="PLatLongEnvSphere.h" local="yes" import="no" module="no" objc="no">Core/Intersection/PLatLongEnvSphere.h</includes>
     <includes id="d5/d14/_t_vector3_8h" name="TVector3.h" local="yes" import="no" module="no" objc="no">Math/TVector3.h</includes>
     <includes id="da/da9/_ray_8h" name="Ray.h" local="yes" import="no" module="no" objc="no">Core/Ray.h</includes>
     <includes id="de/db3/_hit_probe_8h" name="HitProbe.h" local="yes" import="no" module="no" objc="no">Core/HitProbe.h</includes>
     <includes id="d8/df3/_hit_detail_8h" name="HitDetail.h" local="yes" import="no" module="no" objc="no">Core/HitDetail.h</includes>
     <includes id="d9/d63/_t_sphere_8h" name="TSphere.h" local="yes" import="no" module="no" objc="no">Math/Geometry/TSphere.h</includes>
+    <includes id="d4/d8f/_t_hemisphere_8h" name="THemisphere.h" local="yes" import="no" module="no" objc="no">Math/Geometry/THemisphere.h</includes>
     <includes id="df/d15/_t_line_segment_8h" name="TLineSegment.h" local="yes" import="no" module="no" objc="no">Math/Geometry/TLineSegment.h</includes>
-    <includes id="d4/d1a/_primitive_pos_sample_query_8h" name="PrimitivePosSampleQuery.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/Query/PrimitivePosSampleQuery.h</includes>
+    <includes id="d7/d25/_t_orthonormal_basis3_8h" name="TOrthonormalBasis3.h" local="yes" import="no" module="no" objc="no">Math/TOrthonormalBasis3.h</includes>
+    <includes id="dd/d17/constant_8h" name="constant.h" local="yes" import="no" module="no" objc="no">Math/constant.h</includes>
+    <includes id="d4/d1a/_primitive_pos_sample_query_8h" name="PrimitivePosSampleQuery.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Query/PrimitivePosSampleQuery.h</includes>
+    <includes id="d8/dfd/_primitive_pos_sample_pdf_query_8h" name="PrimitivePosSamplePdfQuery.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Query/PrimitivePosSamplePdfQuery.h</includes>
+    <includes id="d6/d33/_sample_flow_8h" name="SampleFlow.h" local="yes" import="no" module="no" objc="no">Core/SampleGenerator/SampleFlow.h</includes>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
     <name>PLatLongEnvSphere.h</name>
-    <path>Source/Core/Intersectable/</path>
+    <path>Source/Core/Intersection/</path>
     <filename>d3/d3c/_p_lat_long_env_sphere_8h.html</filename>
-    <includes id="d2/de7/_p_basic_sphere_8h" name="PBasicSphere.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/PBasicSphere.h</includes>
+    <includes id="d2/de7/_p_basic_sphere_8h" name="PBasicSphere.h" local="yes" import="no" module="no" objc="no">Core/Intersection/PBasicSphere.h</includes>
     <includes id="d9/dfb/_t_vector2_8h" name="TVector2.h" local="yes" import="no" module="no" objc="no">Math/TVector2.h</includes>
     <includes id="d5/d14/_t_vector3_8h" name="TVector3.h" local="yes" import="no" module="no" objc="no">Math/TVector3.h</includes>
     <includes id="d1/d26/_t_a_a_b_b3_d_8h" name="TAABB3D.h" local="yes" import="no" module="no" objc="no">Math/Geometry/TAABB3D.h</includes>
@@ -3100,17 +3167,18 @@
   </compound>
   <compound kind="file">
     <name>Primitive.cpp</name>
-    <path>Source/Core/Intersectable/</path>
+    <path>Source/Core/Intersection/</path>
     <filename>d4/d1e/_primitive_8cpp.html</filename>
-    <includes id="d7/df8/_primitive_8h" name="Primitive.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/Primitive.h</includes>
-    <includes id="d4/d1a/_primitive_pos_sample_query_8h" name="PrimitivePosSampleQuery.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/Query/PrimitivePosSampleQuery.h</includes>
+    <includes id="d7/df8/_primitive_8h" name="Primitive.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Primitive.h</includes>
+    <includes id="d4/d1a/_primitive_pos_sample_query_8h" name="PrimitivePosSampleQuery.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Query/PrimitivePosSampleQuery.h</includes>
+    <includes id="d8/dfd/_primitive_pos_sample_pdf_query_8h" name="PrimitivePosSamplePdfQuery.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Query/PrimitivePosSamplePdfQuery.h</includes>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
     <name>Primitive.h</name>
-    <path>Source/Core/Intersectable/</path>
+    <path>Source/Core/Intersection/</path>
     <filename>d7/df8/_primitive_8h.html</filename>
-    <includes id="d7/d3f/_intersectable_8h" name="Intersectable.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/Intersectable.h</includes>
+    <includes id="d7/d3f/_intersectable_8h" name="Intersectable.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Intersectable.h</includes>
     <includes id="d5/d14/_t_vector3_8h" name="TVector3.h" local="yes" import="no" module="no" objc="no">Math/TVector3.h</includes>
     <includes id="d1/d26/_t_a_a_b_b3_d_8h" name="TAABB3D.h" local="yes" import="no" module="no" objc="no">Math/Geometry/TAABB3D.h</includes>
     <class kind="class">ph::Primitive</class>
@@ -3118,51 +3186,52 @@
   </compound>
   <compound kind="file">
     <name>PrimitiveChannel.cpp</name>
-    <path>Source/Core/Intersectable/</path>
+    <path>Source/Core/Intersection/</path>
     <filename>d4/df5/_primitive_channel_8cpp.html</filename>
-    <includes id="d8/d10/_primitive_channel_8h" name="PrimitiveChannel.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/PrimitiveChannel.h</includes>
-    <includes id="d1/d36/_spherical_mapper_8h" name="SphericalMapper.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/UvwMapper/SphericalMapper.h</includes>
+    <includes id="d8/d10/_primitive_channel_8h" name="PrimitiveChannel.h" local="yes" import="no" module="no" objc="no">Core/Intersection/PrimitiveChannel.h</includes>
+    <includes id="d1/d36/_spherical_mapper_8h" name="SphericalMapper.h" local="yes" import="no" module="no" objc="no">Core/Intersection/UvwMapper/SphericalMapper.h</includes>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
     <name>PrimitiveChannel.h</name>
-    <path>Source/Core/Intersectable/</path>
+    <path>Source/Core/Intersection/</path>
     <filename>d8/d10/_primitive_channel_8h.html</filename>
-    <includes id="d6/d2e/_uvw_mapper_8h" name="UvwMapper.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/UvwMapper/UvwMapper.h</includes>
+    <includes id="d6/d2e/_uvw_mapper_8h" name="UvwMapper.h" local="yes" import="no" module="no" objc="no">Core/Intersection/UvwMapper/UvwMapper.h</includes>
     <class kind="class">ph::PrimitiveChannel</class>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
     <name>PrimitiveMetadata.cpp</name>
-    <path>Source/Core/Intersectable/</path>
+    <path>Source/Core/Intersection/</path>
     <filename>d2/d65/_primitive_metadata_8cpp.html</filename>
-    <includes id="d4/d5e/_primitive_metadata_8h" name="PrimitiveMetadata.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/PrimitiveMetadata.h</includes>
-    <includes id="d8/d10/_primitive_channel_8h" name="PrimitiveChannel.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/PrimitiveChannel.h</includes>
+    <includes id="d4/d5e/_primitive_metadata_8h" name="PrimitiveMetadata.h" local="yes" import="no" module="no" objc="no">Core/Intersection/PrimitiveMetadata.h</includes>
+    <includes id="d8/d10/_primitive_channel_8h" name="PrimitiveChannel.h" local="yes" import="no" module="no" objc="no">Core/Intersection/PrimitiveChannel.h</includes>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
     <name>PrimitiveMetadata.h</name>
-    <path>Source/Core/Intersectable/</path>
+    <path>Source/Core/Intersection/</path>
     <filename>d4/d5e/_primitive_metadata_8h.html</filename>
     <includes id="d2/dbc/_surface_behavior_8h" name="SurfaceBehavior.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/SurfaceBehavior.h</includes>
     <includes id="dd/dae/_static_affine_transform_8h" name="StaticAffineTransform.h" local="yes" import="no" module="no" objc="no">Math/Transform/StaticAffineTransform.h</includes>
-    <includes id="d6/d2e/_uvw_mapper_8h" name="UvwMapper.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/UvwMapper/UvwMapper.h</includes>
-    <includes id="d8/d10/_primitive_channel_8h" name="PrimitiveChannel.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/PrimitiveChannel.h</includes>
+    <includes id="d6/d2e/_uvw_mapper_8h" name="UvwMapper.h" local="yes" import="no" module="no" objc="no">Core/Intersection/UvwMapper/UvwMapper.h</includes>
+    <includes id="d8/d10/_primitive_channel_8h" name="PrimitiveChannel.h" local="yes" import="no" module="no" objc="no">Core/Intersection/PrimitiveChannel.h</includes>
     <includes id="d5/d40/_volume_behavior_8h" name="VolumeBehavior.h" local="yes" import="no" module="no" objc="no">Core/VolumeBehavior/VolumeBehavior.h</includes>
     <class kind="class">ph::PrimitiveMetadata</class>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
     <name>PTriangle.cpp</name>
-    <path>Source/Core/Intersectable/</path>
+    <path>Source/Core/Intersection/</path>
     <filename>d9/d9e/_p_triangle_8cpp.html</filename>
-    <includes id="d2/db2/_p_triangle_8h" name="PTriangle.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/PTriangle.h</includes>
+    <includes id="d2/db2/_p_triangle_8h" name="PTriangle.h" local="yes" import="no" module="no" objc="no">Core/Intersection/PTriangle.h</includes>
     <includes id="dd/dae/_static_affine_transform_8h" name="StaticAffineTransform.h" local="yes" import="no" module="no" objc="no">Math/Transform/StaticAffineTransform.h</includes>
     <includes id="da/da9/_ray_8h" name="Ray.h" local="yes" import="no" module="no" objc="no">Core/Ray.h</includes>
     <includes id="de/db3/_hit_probe_8h" name="HitProbe.h" local="yes" import="no" module="no" objc="no">Core/HitProbe.h</includes>
     <includes id="d8/df3/_hit_detail_8h" name="HitDetail.h" local="yes" import="no" module="no" objc="no">Core/HitDetail.h</includes>
     <includes id="d1/d26/_t_a_a_b_b3_d_8h" name="TAABB3D.h" local="yes" import="no" module="no" objc="no">Math/Geometry/TAABB3D.h</includes>
-    <includes id="d4/d1a/_primitive_pos_sample_query_8h" name="PrimitivePosSampleQuery.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/Query/PrimitivePosSampleQuery.h</includes>
+    <includes id="d4/d1a/_primitive_pos_sample_query_8h" name="PrimitivePosSampleQuery.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Query/PrimitivePosSampleQuery.h</includes>
+    <includes id="d8/dfd/_primitive_pos_sample_pdf_query_8h" name="PrimitivePosSamplePdfQuery.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Query/PrimitivePosSamplePdfQuery.h</includes>
     <includes id="d9/dfb/_t_vector2_8h" name="TVector2.h" local="yes" import="no" module="no" objc="no">Math/TVector2.h</includes>
     <includes id="df/db1/math_8h" name="math.h" local="yes" import="no" module="no" objc="no">Math/math.h</includes>
     <includes id="d6/d33/_sample_flow_8h" name="SampleFlow.h" local="yes" import="no" module="no" objc="no">Core/SampleGenerator/SampleFlow.h</includes>
@@ -3170,9 +3239,9 @@
   </compound>
   <compound kind="file">
     <name>PTriangle.h</name>
-    <path>Source/Core/Intersectable/</path>
+    <path>Source/Core/Intersection/</path>
     <filename>d2/db2/_p_triangle_8h.html</filename>
-    <includes id="d7/df8/_primitive_8h" name="Primitive.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/Primitive.h</includes>
+    <includes id="d7/df8/_primitive_8h" name="Primitive.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Primitive.h</includes>
     <includes id="d5/d14/_t_vector3_8h" name="TVector3.h" local="yes" import="no" module="no" objc="no">Math/TVector3.h</includes>
     <includes id="df/d85/_t_watertight_triangle_8h" name="TWatertightTriangle.h" local="yes" import="no" module="no" objc="no">Math/Geometry/TWatertightTriangle.h</includes>
     <class kind="class">ph::PTriangle</class>
@@ -3180,18 +3249,21 @@
   </compound>
   <compound kind="file">
     <name>PrimitivePosSamplePdfQuery.cpp</name>
-    <path>Source/Core/Intersectable/Query/</path>
+    <path>Source/Core/Intersection/Query/</path>
     <filename>dd/d89/_primitive_pos_sample_pdf_query_8cpp.html</filename>
-    <includes id="d8/dfd/_primitive_pos_sample_pdf_query_8h" name="PrimitivePosSamplePdfQuery.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/Query/PrimitivePosSamplePdfQuery.h</includes>
-    <includes id="d8/df3/_hit_detail_8h" name="HitDetail.h" local="yes" import="no" module="no" objc="no">Core/HitDetail.h</includes>
-    <includes id="d4/d1a/_primitive_pos_sample_query_8h" name="PrimitivePosSampleQuery.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/Query/PrimitivePosSampleQuery.h</includes>
+    <includes id="d8/dfd/_primitive_pos_sample_pdf_query_8h" name="PrimitivePosSamplePdfQuery.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Query/PrimitivePosSamplePdfQuery.h</includes>
+    <includes id="d4/d1a/_primitive_pos_sample_query_8h" name="PrimitivePosSampleQuery.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Query/PrimitivePosSampleQuery.h</includes>
+    <includes id="dd/dfe/_direct_energy_sample_pdf_query_8h" name="DirectEnergySamplePdfQuery.h" local="yes" import="no" module="no" objc="no">Core/Emitter/Query/DirectEnergySamplePdfQuery.h</includes>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
     <name>PrimitivePosSamplePdfQuery.h</name>
-    <path>Source/Core/Intersectable/Query/</path>
+    <path>Source/Core/Intersection/Query/</path>
     <filename>d8/dfd/_primitive_pos_sample_pdf_query_8h.html</filename>
     <includes id="d5/d14/_t_vector3_8h" name="TVector3.h" local="yes" import="no" module="no" objc="no">Math/TVector3.h</includes>
+    <includes id="da/da9/_ray_8h" name="Ray.h" local="yes" import="no" module="no" objc="no">Core/Ray.h</includes>
+    <includes id="d8/df3/_hit_detail_8h" name="HitDetail.h" local="yes" import="no" module="no" objc="no">Core/HitDetail.h</includes>
+    <includes id="d6/d8a/_surface_hit_8h" name="SurfaceHit.h" local="yes" import="no" module="no" objc="no">Core/SurfaceHit.h</includes>
     <class kind="class">ph::PrimitivePosSamplePdfInput</class>
     <class kind="class">ph::PrimitivePosSamplePdfOutput</class>
     <class kind="class">ph::PrimitivePosSamplePdfQuery</class>
@@ -3199,17 +3271,19 @@
   </compound>
   <compound kind="file">
     <name>PrimitivePosSampleQuery.cpp</name>
-    <path>Source/Core/Intersectable/Query/</path>
+    <path>Source/Core/Intersection/Query/</path>
     <filename>d7/d1a/_primitive_pos_sample_query_8cpp.html</filename>
-    <includes id="d4/d1a/_primitive_pos_sample_query_8h" name="PrimitivePosSampleQuery.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/Query/PrimitivePosSampleQuery.h</includes>
+    <includes id="d4/d1a/_primitive_pos_sample_query_8h" name="PrimitivePosSampleQuery.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Query/PrimitivePosSampleQuery.h</includes>
     <includes id="d8/df3/_hit_detail_8h" name="HitDetail.h" local="yes" import="no" module="no" objc="no">Core/HitDetail.h</includes>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
     <name>PrimitivePosSampleQuery.h</name>
-    <path>Source/Core/Intersectable/Query/</path>
+    <path>Source/Core/Intersection/Query/</path>
     <filename>d4/d1a/_primitive_pos_sample_query_8h.html</filename>
     <includes id="d5/d14/_t_vector3_8h" name="TVector3.h" local="yes" import="no" module="no" objc="no">Math/TVector3.h</includes>
+    <includes id="da/da9/_ray_8h" name="Ray.h" local="yes" import="no" module="no" objc="no">Core/Ray.h</includes>
+    <includes id="de/dbd/_core_2_quantity_2_time_8h" name="Time.h" local="yes" import="no" module="no" objc="no">Core/Quantity/Time.h</includes>
     <class kind="class">ph::PrimitivePosSampleInput</class>
     <class kind="class">ph::PrimitivePosSampleOutput</class>
     <class kind="class">ph::PrimitivePosSampleQuery</class>
@@ -3217,10 +3291,10 @@
   </compound>
   <compound kind="file">
     <name>TMetaInjectionPrimitive.h</name>
-    <path>Source/Core/Intersectable/</path>
+    <path>Source/Core/Intersection/</path>
     <filename>d1/daf/_t_meta_injection_primitive_8h.html</filename>
-    <includes id="d7/df8/_primitive_8h" name="Primitive.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/Primitive.h</includes>
-    <includes id="d4/d5e/_primitive_metadata_8h" name="PrimitiveMetadata.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/PrimitiveMetadata.h</includes>
+    <includes id="d7/df8/_primitive_8h" name="Primitive.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Primitive.h</includes>
+    <includes id="d4/d5e/_primitive_metadata_8h" name="PrimitiveMetadata.h" local="yes" import="no" module="no" objc="no">Core/Intersection/PrimitiveMetadata.h</includes>
     <includes id="de/db3/_hit_probe_8h" name="HitProbe.h" local="yes" import="no" module="no" objc="no">Core/HitProbe.h</includes>
     <includes id="dd/dff/traits_8h" name="traits.h" local="yes" import="no" module="no" objc="no">Utility/traits.h</includes>
     <class kind="struct">ph::ReferencedPrimitiveMetaGetter</class>
@@ -3235,47 +3309,45 @@
   </compound>
   <compound kind="file">
     <name>TPIndexedKdTreeTriangleMesh.h</name>
-    <path>Source/Core/Intersectable/</path>
+    <path>Source/Core/Intersection/</path>
     <filename>d1/dad/_t_p_indexed_kd_tree_triangle_mesh_8h.html</filename>
-    <includes id="d7/df8/_primitive_8h" name="Primitive.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/Primitive.h</includes>
-    <includes id="da/da3/_t_indexed_polygon_buffer_8h" name="TIndexedPolygonBuffer.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/DataStructure/TIndexedPolygonBuffer.h</includes>
+    <includes id="d7/df8/_primitive_8h" name="Primitive.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Primitive.h</includes>
+    <includes id="da/da3/_t_indexed_polygon_buffer_8h" name="TIndexedPolygonBuffer.h" local="yes" import="no" module="no" objc="no">Core/Intersection/DataStructure/TIndexedPolygonBuffer.h</includes>
     <includes id="d9/d15/_t_indexed_kdtree_8h" name="TIndexedKdtree.h" local="yes" import="no" module="no" objc="no">Math/Algorithm/IndexedKdtree/TIndexedKdtree.h</includes>
     <includes id="df/d85/_t_watertight_triangle_8h" name="TWatertightTriangle.h" local="yes" import="no" module="no" objc="no">Math/Geometry/TWatertightTriangle.h</includes>
-    <includes id="d5/da0/_t_p_indexed_kd_tree_triangle_mesh_8ipp" name="TPIndexedKdTreeTriangleMesh.ipp" local="yes" import="no" module="no" objc="no">Core/Intersectable/TPIndexedKdTreeTriangleMesh.ipp</includes>
+    <includes id="d5/da0/_t_p_indexed_kd_tree_triangle_mesh_8ipp" name="TPIndexedKdTreeTriangleMesh.ipp" local="yes" import="no" module="no" objc="no">Core/Intersection/TPIndexedKdTreeTriangleMesh.ipp</includes>
     <class kind="class">ph::TPIndexedKdTreeTriangleMesh</class>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
     <name>TPIndexedKdTreeTriangleMesh.ipp</name>
-    <path>Source/Core/Intersectable/</path>
+    <path>Source/Core/Intersection/</path>
     <filename>d5/da0/_t_p_indexed_kd_tree_triangle_mesh_8ipp.html</filename>
-    <includes id="d1/dad/_t_p_indexed_kd_tree_triangle_mesh_8h" name="TPIndexedKdTreeTriangleMesh.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/TPIndexedKdTreeTriangleMesh.h</includes>
+    <includes id="d1/dad/_t_p_indexed_kd_tree_triangle_mesh_8h" name="TPIndexedKdTreeTriangleMesh.h" local="yes" import="no" module="no" objc="no">Core/Intersection/TPIndexedKdTreeTriangleMesh.h</includes>
     <includes id="da/da9/_ray_8h" name="Ray.h" local="yes" import="no" module="no" objc="no">Core/Ray.h</includes>
     <includes id="de/db3/_hit_probe_8h" name="HitProbe.h" local="yes" import="no" module="no" objc="no">Core/HitProbe.h</includes>
     <includes id="d8/df3/_hit_detail_8h" name="HitDetail.h" local="yes" import="no" module="no" objc="no">Core/HitDetail.h</includes>
     <includes id="d5/d14/_t_vector3_8h" name="TVector3.h" local="yes" import="no" module="no" objc="no">Math/TVector3.h</includes>
-    <class kind="struct">ph::detail::TClosestHitProbeResult</class>
+    <includes id="d5/d47/utility_8h" name="utility.h" local="yes" import="no" module="no" objc="no">Utility/utility.h</includes>
     <namespace>ph</namespace>
-    <namespace>ph::detail</namespace>
   </compound>
   <compound kind="file">
     <name>TPKdTreeTriangleMesh.h</name>
-    <path>Source/Core/Intersectable/</path>
+    <path>Source/Core/Intersection/</path>
     <filename>d6/dd3/_t_p_kd_tree_triangle_mesh_8h.html</filename>
-    <includes id="d7/df8/_primitive_8h" name="Primitive.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/Primitive.h</includes>
-    <includes id="dc/db7/_indexed_tri_mesh_8h" name="IndexedTriMesh.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/DataStructure/IndexedTriMesh.h</includes>
-    <includes id="d7/d3f/_intersectable_8h" name="Intersectable.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/Intersectable.h</includes>
+    <includes id="d7/df8/_primitive_8h" name="Primitive.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Primitive.h</includes>
+    <includes id="dc/db7/_indexed_tri_mesh_8h" name="IndexedTriMesh.h" local="yes" import="no" module="no" objc="no">Core/Intersection/DataStructure/IndexedTriMesh.h</includes>
+    <includes id="d7/d3f/_intersectable_8h" name="Intersectable.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Intersectable.h</includes>
     <includes id="d9/d15/_t_indexed_kdtree_8h" name="TIndexedKdtree.h" local="yes" import="no" module="no" objc="no">Math/Algorithm/IndexedKdtree/TIndexedKdtree.h</includes>
     <includes id="df/d85/_t_watertight_triangle_8h" name="TWatertightTriangle.h" local="yes" import="no" module="no" objc="no">Math/Geometry/TWatertightTriangle.h</includes>
-    <includes id="db/df9/_t_p_kd_tree_triangle_mesh_8ipp" name="TPKdTreeTriangleMesh.ipp" local="yes" import="no" module="no" objc="no">Core/Intersectable/TPKdTreeTriangleMesh.ipp</includes>
-    <class kind="class">ph::TPKdTreeTriangleMesh</class>
+    <includes id="db/df9/_t_p_kd_tree_triangle_mesh_8ipp" name="TPKdTreeTriangleMesh.ipp" local="yes" import="no" module="no" objc="no">Core/Intersection/TPKdTreeTriangleMesh.ipp</includes>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
     <name>TPKdTreeTriangleMesh.ipp</name>
-    <path>Source/Core/Intersectable/</path>
+    <path>Source/Core/Intersection/</path>
     <filename>db/df9/_t_p_kd_tree_triangle_mesh_8ipp.html</filename>
-    <includes id="d6/dd3/_t_p_kd_tree_triangle_mesh_8h" name="TPKdTreeTriangleMesh.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/TPKdTreeTriangleMesh.h</includes>
+    <includes id="d6/dd3/_t_p_kd_tree_triangle_mesh_8h" name="TPKdTreeTriangleMesh.h" local="yes" import="no" module="no" objc="no">Core/Intersection/TPKdTreeTriangleMesh.h</includes>
     <includes id="da/da9/_ray_8h" name="Ray.h" local="yes" import="no" module="no" objc="no">Core/Ray.h</includes>
     <includes id="de/db3/_hit_probe_8h" name="HitProbe.h" local="yes" import="no" module="no" objc="no">Core/HitProbe.h</includes>
     <includes id="d5/d14/_t_vector3_8h" name="TVector3.h" local="yes" import="no" module="no" objc="no">Math/TVector3.h</includes>
@@ -3283,51 +3355,52 @@
   </compound>
   <compound kind="file">
     <name>TransformedIntersectable.cpp</name>
-    <path>Source/Core/Intersectable/</path>
+    <path>Source/Core/Intersection/</path>
     <filename>d7/d75/_transformed_intersectable_8cpp.html</filename>
-    <includes id="dc/dfd/_transformed_intersectable_8h" name="TransformedIntersectable.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/TransformedIntersectable.h</includes>
-    <includes id="da/da9/_ray_8h" name="Ray.h" local="yes" import="no" module="no" objc="no">Core/Ray.h</includes>
-    <includes id="d8/df3/_hit_detail_8h" name="HitDetail.h" local="yes" import="no" module="no" objc="no">Core/HitDetail.h</includes>
-    <includes id="de/db3/_hit_probe_8h" name="HitProbe.h" local="yes" import="no" module="no" objc="no">Core/HitProbe.h</includes>
+    <includes id="dc/dfd/_transformed_intersectable_8h" name="TransformedIntersectable.h" local="yes" import="no" module="no" objc="no">Core/Intersection/TransformedIntersectable.h</includes>
     <includes id="d1/d26/_t_a_a_b_b3_d_8h" name="TAABB3D.h" local="yes" import="no" module="no" objc="no">Math/Geometry/TAABB3D.h</includes>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
     <name>TransformedIntersectable.h</name>
-    <path>Source/Core/Intersectable/</path>
+    <path>Source/Core/Intersection/</path>
     <filename>dc/dfd/_transformed_intersectable_8h.html</filename>
-    <includes id="d7/d3f/_intersectable_8h" name="Intersectable.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/Intersectable.h</includes>
+    <includes id="d7/d3f/_intersectable_8h" name="Intersectable.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Intersectable.h</includes>
     <includes id="db/d56/_transform_8h" name="Transform.h" local="yes" import="no" module="no" objc="no">Math/Transform/Transform.h</includes>
+    <includes id="da/da9/_ray_8h" name="Ray.h" local="yes" import="no" module="no" objc="no">Core/Ray.h</includes>
+    <includes id="d8/df3/_hit_detail_8h" name="HitDetail.h" local="yes" import="no" module="no" objc="no">Core/HitDetail.h</includes>
+    <includes id="de/db3/_hit_probe_8h" name="HitProbe.h" local="yes" import="no" module="no" objc="no">Core/HitProbe.h</includes>
     <class kind="class">ph::TransformedIntersectable</class>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
     <name>TransformedPrimitive.cpp</name>
-    <path>Source/Core/Intersectable/</path>
+    <path>Source/Core/Intersection/</path>
     <filename>da/d0c/_transformed_primitive_8cpp.html</filename>
-    <includes id="d0/d01/_transformed_primitive_8h" name="TransformedPrimitive.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/TransformedPrimitive.h</includes>
-    <includes id="dd/d0d/_rigid_transform_8h" name="RigidTransform.h" local="yes" import="no" module="no" objc="no">Math/Transform/RigidTransform.h</includes>
-    <includes id="d4/d1a/_primitive_pos_sample_query_8h" name="PrimitivePosSampleQuery.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/Query/PrimitivePosSampleQuery.h</includes>
+    <includes id="d0/d01/_transformed_primitive_8h" name="TransformedPrimitive.h" local="yes" import="no" module="no" objc="no">Core/Intersection/TransformedPrimitive.h</includes>
+    <includes id="d4/d1a/_primitive_pos_sample_query_8h" name="PrimitivePosSampleQuery.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Query/PrimitivePosSampleQuery.h</includes>
+    <includes id="d8/dfd/_primitive_pos_sample_pdf_query_8h" name="PrimitivePosSamplePdfQuery.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Query/PrimitivePosSamplePdfQuery.h</includes>
     <includes id="d8/df3/_hit_detail_8h" name="HitDetail.h" local="yes" import="no" module="no" objc="no">Core/HitDetail.h</includes>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
     <name>TransformedPrimitive.h</name>
-    <path>Source/Core/Intersectable/</path>
+    <path>Source/Core/Intersection/</path>
     <filename>d0/d01/_transformed_primitive_8h.html</filename>
-    <includes id="d7/df8/_primitive_8h" name="Primitive.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/Primitive.h</includes>
-    <includes id="dc/dfd/_transformed_intersectable_8h" name="TransformedIntersectable.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/TransformedIntersectable.h</includes>
+    <includes id="d7/df8/_primitive_8h" name="Primitive.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Primitive.h</includes>
+    <includes id="dd/d0d/_rigid_transform_8h" name="RigidTransform.h" local="yes" import="no" module="no" objc="no">Math/Transform/RigidTransform.h</includes>
     <includes id="d8/df3/_hit_detail_8h" name="HitDetail.h" local="yes" import="no" module="no" objc="no">Core/HitDetail.h</includes>
     <includes id="de/db3/_hit_probe_8h" name="HitProbe.h" local="yes" import="no" module="no" objc="no">Core/HitProbe.h</includes>
+    <includes id="da/da9/_ray_8h" name="Ray.h" local="yes" import="no" module="no" objc="no">Core/Ray.h</includes>
     <class kind="class">ph::TransformedPrimitive</class>
     <namespace>ph</namespace>
     <namespace>ph::math</namespace>
   </compound>
   <compound kind="file">
     <name>SphericalMapper.cpp</name>
-    <path>Source/Core/Intersectable/UvwMapper/</path>
+    <path>Source/Core/Intersection/UvwMapper/</path>
     <filename>dd/da8/_spherical_mapper_8cpp.html</filename>
-    <includes id="d1/d36/_spherical_mapper_8h" name="SphericalMapper.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/UvwMapper/SphericalMapper.h</includes>
+    <includes id="d1/d36/_spherical_mapper_8h" name="SphericalMapper.h" local="yes" import="no" module="no" objc="no">Core/Intersection/UvwMapper/SphericalMapper.h</includes>
     <includes id="d5/d14/_t_vector3_8h" name="TVector3.h" local="yes" import="no" module="no" objc="no">Math/TVector3.h</includes>
     <includes id="df/db1/math_8h" name="math.h" local="yes" import="no" module="no" objc="no">Math/math.h</includes>
     <includes id="dd/d17/constant_8h" name="constant.h" local="yes" import="no" module="no" objc="no">Math/constant.h</includes>
@@ -3335,22 +3408,22 @@
   </compound>
   <compound kind="file">
     <name>SphericalMapper.h</name>
-    <path>Source/Core/Intersectable/UvwMapper/</path>
+    <path>Source/Core/Intersection/UvwMapper/</path>
     <filename>d1/d36/_spherical_mapper_8h.html</filename>
-    <includes id="d6/d2e/_uvw_mapper_8h" name="UvwMapper.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/UvwMapper/UvwMapper.h</includes>
+    <includes id="d6/d2e/_uvw_mapper_8h" name="UvwMapper.h" local="yes" import="no" module="no" objc="no">Core/Intersection/UvwMapper/UvwMapper.h</includes>
     <class kind="class">ph::SphericalMapper</class>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
     <name>UvwMapper.cpp</name>
-    <path>Source/Core/Intersectable/UvwMapper/</path>
+    <path>Source/Core/Intersection/UvwMapper/</path>
     <filename>d3/de4/_uvw_mapper_8cpp.html</filename>
-    <includes id="d6/d2e/_uvw_mapper_8h" name="UvwMapper.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/UvwMapper/UvwMapper.h</includes>
+    <includes id="d6/d2e/_uvw_mapper_8h" name="UvwMapper.h" local="yes" import="no" module="no" objc="no">Core/Intersection/UvwMapper/UvwMapper.h</includes>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
     <name>UvwMapper.h</name>
-    <path>Source/Core/Intersectable/UvwMapper/</path>
+    <path>Source/Core/Intersection/UvwMapper/</path>
     <filename>d6/d2e/_uvw_mapper_8h.html</filename>
     <includes id="d8/df3/_hit_detail_8h" name="HitDetail.h" local="yes" import="no" module="no" objc="no">Core/HitDetail.h</includes>
     <includes id="d5/d14/_t_vector3_8h" name="TVector3.h" local="yes" import="no" module="no" objc="no">Math/TVector3.h</includes>
@@ -3358,116 +3431,196 @@
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
+    <name>LTA.dox</name>
+    <path>Source/Core/LTA/</path>
+    <filename>d3/d84/_l_t_a_8dox.html</filename>
+  </compound>
+  <compound kind="file">
     <name>lta.h</name>
-    <path>Source/Core/LTABuildingBlock/</path>
+    <path>Source/Core/LTA/</path>
     <filename>d1/d0c/lta_8h.html</filename>
     <includes id="d5/d14/_t_vector3_8h" name="TVector3.h" local="yes" import="no" module="no" objc="no">Math/TVector3.h</includes>
+    <includes id="df/db1/math_8h" name="math.h" local="yes" import="no" module="no" objc="no">Math/math.h</includes>
     <namespace>ph</namespace>
     <namespace>ph::lta</namespace>
   </compound>
   <compound kind="file">
     <name>PtVolumetricEstimator.cpp</name>
-    <path>Source/Core/LTABuildingBlock/</path>
+    <path>Source/Core/LTA/</path>
     <filename>d7/dc7/_pt_volumetric_estimator_8cpp.html</filename>
-    <includes id="d0/d5d/_pt_volumetric_estimator_8h" name="PtVolumetricEstimator.h" local="yes" import="no" module="no" objc="no">Core/LTABuildingBlock/PtVolumetricEstimator.h</includes>
+    <includes id="d0/d5d/_pt_volumetric_estimator_8h" name="PtVolumetricEstimator.h" local="yes" import="no" module="no" objc="no">Core/LTA/PtVolumetricEstimator.h</includes>
     <includes id="d5/d14/_t_vector3_8h" name="TVector3.h" local="yes" import="no" module="no" objc="no">Math/TVector3.h</includes>
     <includes id="de/d56/_scene_8h" name="Scene.h" local="yes" import="no" module="no" objc="no">World/Scene.h</includes>
     <includes id="d6/d8a/_surface_hit_8h" name="SurfaceHit.h" local="yes" import="no" module="no" objc="no">Core/SurfaceHit.h</includes>
-    <includes id="d7/df8/_primitive_8h" name="Primitive.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/Primitive.h</includes>
-    <includes id="d4/d5e/_primitive_metadata_8h" name="PrimitiveMetadata.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/PrimitiveMetadata.h</includes>
+    <includes id="d7/df8/_primitive_8h" name="Primitive.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Primitive.h</includes>
+    <includes id="d4/d5e/_primitive_metadata_8h" name="PrimitiveMetadata.h" local="yes" import="no" module="no" objc="no">Core/Intersection/PrimitiveMetadata.h</includes>
     <includes id="d9/d79/_volume_optics_8h" name="VolumeOptics.h" local="yes" import="no" module="no" objc="no">Core/VolumeBehavior/VolumeOptics.h</includes>
     <includes id="d2/d1b/_volume_distance_sample_8h" name="VolumeDistanceSample.h" local="yes" import="no" module="no" objc="no">Core/VolumeBehavior/VolumeDistanceSample.h</includes>
     <namespace>ph</namespace>
+    <namespace>ph::lta</namespace>
   </compound>
   <compound kind="file">
     <name>PtVolumetricEstimator.h</name>
-    <path>Source/Core/LTABuildingBlock/</path>
+    <path>Source/Core/LTA/</path>
     <filename>d0/d5d/_pt_volumetric_estimator_8h.html</filename>
     <includes id="d8/da4/math__fwd_8h" name="math_fwd.h" local="yes" import="no" module="no" objc="no">Math/math_fwd.h</includes>
     <includes id="d3/df8/_spectrum_8h" name="Spectrum.h" local="yes" import="no" module="no" objc="no">Math/Color/Spectrum.h</includes>
-    <class kind="class">ph::PtVolumetricEstimator</class>
+    <class kind="class">ph::lta::PtVolumetricEstimator</class>
     <namespace>ph</namespace>
+    <namespace>ph::lta</namespace>
   </compound>
   <compound kind="file">
     <name>RussianRoulette.h</name>
-    <path>Source/Core/LTABuildingBlock/</path>
+    <path>Source/Core/LTA/</path>
     <filename>d1/dc0/_russian_roulette_8h.html</filename>
     <includes id="d3/df8/_spectrum_8h" name="Spectrum.h" local="yes" import="no" module="no" objc="no">Math/Color/Spectrum.h</includes>
     <includes id="df/db1/math_8h" name="math.h" local="yes" import="no" module="no" objc="no">Math/math.h</includes>
     <includes id="d6/d33/_sample_flow_8h" name="SampleFlow.h" local="yes" import="no" module="no" objc="no">Core/SampleGenerator/SampleFlow.h</includes>
-    <class kind="class">ph::RussianRoulette</class>
+    <class kind="class">ph::lta::RussianRoulette</class>
     <namespace>ph</namespace>
+    <namespace>ph::lta</namespace>
   </compound>
   <compound kind="file">
     <name>SenseEvent.h</name>
-    <path>Source/Core/LTABuildingBlock/</path>
+    <path>Source/Core/LTA/</path>
     <filename>de/dbd/_sense_event_8h.html</filename>
     <includes id="d5/d14/_t_vector3_8h" name="TVector3.h" local="yes" import="no" module="no" objc="no">Math/TVector3.h</includes>
-    <class kind="class">ph::SenseEvent</class>
+    <class kind="class">ph::lta::SenseEvent</class>
     <namespace>ph</namespace>
+    <namespace>ph::lta</namespace>
   </compound>
   <compound kind="file">
     <name>SidednessAgreement.h</name>
-    <path>Source/Core/LTABuildingBlock/</path>
+    <path>Source/Core/LTA/</path>
     <filename>da/d66/_sidedness_agreement_8h.html</filename>
     <includes id="d6/d8a/_surface_hit_8h" name="SurfaceHit.h" local="yes" import="no" module="no" objc="no">Core/SurfaceHit.h</includes>
     <includes id="d5/d14/_t_vector3_8h" name="TVector3.h" local="yes" import="no" module="no" objc="no">Math/TVector3.h</includes>
-    <class kind="class">ph::SidednessAgreement</class>
+    <class kind="class">ph::lta::SidednessAgreement</class>
     <namespace>ph</namespace>
+    <namespace>ph::lta</namespace>
+  </compound>
+  <compound kind="file">
+    <name>SurfaceHitRefinery.cpp</name>
+    <path>Source/Core/LTA/</path>
+    <filename>d9/de7/_surface_hit_refinery_8cpp.html</filename>
+    <includes id="d3/da4/_surface_hit_refinery_8h" name="SurfaceHitRefinery.h" local="yes" import="no" module="no" objc="no">Core/LTA/SurfaceHitRefinery.h</includes>
+    <includes id="d1/dd0/_engine_init_settings_8h" name="EngineInitSettings.h" local="yes" import="no" module="no" objc="no">EngineInitSettings.h</includes>
+    <namespace>ph</namespace>
+    <namespace>ph::lta</namespace>
+  </compound>
+  <compound kind="file">
+    <name>SurfaceHitRefinery.h</name>
+    <path>Source/Core/LTA/</path>
+    <filename>d3/da4/_surface_hit_refinery_8h.html</filename>
+    <includes id="d6/d8a/_surface_hit_8h" name="SurfaceHit.h" local="yes" import="no" module="no" objc="no">Core/SurfaceHit.h</includes>
+    <includes id="da/da9/_ray_8h" name="Ray.h" local="yes" import="no" module="no" objc="no">Core/Ray.h</includes>
+    <includes id="d5/d14/_t_vector3_8h" name="TVector3.h" local="yes" import="no" module="no" objc="no">Math/TVector3.h</includes>
+    <includes id="df/db1/math_8h" name="math.h" local="yes" import="no" module="no" objc="no">Math/math.h</includes>
+    <includes id="df/d8e/_e_surface_refine_mode_8h" name="ESurfaceRefineMode.h" local="yes" import="no" module="no" objc="no">ESurfaceRefineMode.h</includes>
+    <class kind="class">ph::lta::SurfaceHitRefinery</class>
+    <namespace>ph</namespace>
+    <namespace>ph::lta</namespace>
   </compound>
   <compound kind="file">
     <name>SurfaceTracer.h</name>
-    <path>Source/Core/LTABuildingBlock/</path>
+    <path>Source/Core/LTA/</path>
     <filename>db/d8d/_surface_tracer_8h.html</filename>
-    <includes id="d7/d31/_i_move_only_8h" name="IMoveOnly.h" local="yes" import="no" module="no" objc="no">Utility/IMoveOnly.h</includes>
     <includes id="de/d56/_scene_8h" name="Scene.h" local="yes" import="no" module="no" objc="no">World/Scene.h</includes>
     <includes id="de/db3/_hit_probe_8h" name="HitProbe.h" local="yes" import="no" module="no" objc="no">Core/HitProbe.h</includes>
     <includes id="d6/d8a/_surface_hit_8h" name="SurfaceHit.h" local="yes" import="no" module="no" objc="no">Core/SurfaceHit.h</includes>
-    <includes id="da/d66/_sidedness_agreement_8h" name="SidednessAgreement.h" local="yes" import="no" module="no" objc="no">Core/LTABuildingBlock/SidednessAgreement.h</includes>
+    <includes id="d1/d0c/lta_8h" name="lta.h" local="yes" import="no" module="no" objc="no">Core/LTA/lta.h</includes>
+    <includes id="da/d66/_sidedness_agreement_8h" name="SidednessAgreement.h" local="yes" import="no" module="no" objc="no">Core/LTA/SidednessAgreement.h</includes>
+    <includes id="d3/da4/_surface_hit_refinery_8h" name="SurfaceHitRefinery.h" local="yes" import="no" module="no" objc="no">Core/LTA/SurfaceHitRefinery.h</includes>
     <includes id="db/df0/_bsdf_sample_query_8h" name="BsdfSampleQuery.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/BsdfSampleQuery.h</includes>
     <includes id="db/d2d/_bsdf_eval_query_8h" name="BsdfEvalQuery.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/BsdfEvalQuery.h</includes>
     <includes id="d7/d2c/_bsdf_pdf_query_8h" name="BsdfPdfQuery.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/BsdfPdfQuery.h</includes>
     <includes id="da/da9/_ray_8h" name="Ray.h" local="yes" import="no" module="no" objc="no">Core/Ray.h</includes>
     <includes id="d5/d14/_t_vector3_8h" name="TVector3.h" local="yes" import="no" module="no" objc="no">Math/TVector3.h</includes>
-    <includes id="d7/df8/_primitive_8h" name="Primitive.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/Primitive.h</includes>
-    <includes id="d4/d5e/_primitive_metadata_8h" name="PrimitiveMetadata.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/PrimitiveMetadata.h</includes>
+    <includes id="d3/df8/_spectrum_8h" name="Spectrum.h" local="yes" import="no" module="no" objc="no">Math/Color/Spectrum.h</includes>
+    <includes id="d7/df8/_primitive_8h" name="Primitive.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Primitive.h</includes>
+    <includes id="d4/d5e/_primitive_metadata_8h" name="PrimitiveMetadata.h" local="yes" import="no" module="no" objc="no">Core/Intersection/PrimitiveMetadata.h</includes>
     <includes id="d2/dbc/_surface_behavior_8h" name="SurfaceBehavior.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/SurfaceBehavior.h</includes>
     <includes id="d6/dcb/_surface_optics_8h" name="SurfaceOptics.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/SurfaceOptics.h</includes>
-    <class kind="class">ph::SurfaceTracer</class>
+    <includes id="da/dc6/_emitter_8h" name="Emitter.h" local="yes" import="no" module="no" objc="no">Core/Emitter/Emitter.h</includes>
+    <class kind="class">ph::lta::SurfaceTracer</class>
     <namespace>ph</namespace>
+    <namespace>ph::lta</namespace>
   </compound>
   <compound kind="file">
     <name>TDirectLightEstimator.h</name>
-    <path>Source/Core/LTABuildingBlock/</path>
+    <path>Source/Core/LTA/</path>
     <filename>da/da6/_t_direct_light_estimator_8h.html</filename>
     <includes id="d8/da4/math__fwd_8h" name="math_fwd.h" local="yes" import="no" module="no" objc="no">Math/math_fwd.h</includes>
     <includes id="d3/df8/_spectrum_8h" name="Spectrum.h" local="yes" import="no" module="no" objc="no">Math/Color/Spectrum.h</includes>
-    <includes id="da/d66/_sidedness_agreement_8h" name="SidednessAgreement.h" local="yes" import="no" module="no" objc="no">Core/LTABuildingBlock/SidednessAgreement.h</includes>
-    <includes id="d1/dd7/_t_direct_light_estimator_8ipp" name="TDirectLightEstimator.ipp" local="yes" import="no" module="no" objc="no">Core/LTABuildingBlock/TDirectLightEstimator.ipp</includes>
-    <class kind="class">ph::TDirectLightEstimator</class>
+    <includes id="da/d66/_sidedness_agreement_8h" name="SidednessAgreement.h" local="yes" import="no" module="no" objc="no">Core/LTA/SidednessAgreement.h</includes>
+    <includes id="d1/dd7/_t_direct_light_estimator_8ipp" name="TDirectLightEstimator.ipp" local="yes" import="no" module="no" objc="no">Core/LTA/TDirectLightEstimator.ipp</includes>
+    <class kind="class">ph::lta::TDirectLightEstimator</class>
     <namespace>ph</namespace>
+    <namespace>ph::lta</namespace>
   </compound>
   <compound kind="file">
     <name>TDirectLightEstimator.ipp</name>
-    <path>Source/Core/LTABuildingBlock/</path>
+    <path>Source/Core/LTA/</path>
     <filename>d1/dd7/_t_direct_light_estimator_8ipp.html</filename>
-    <includes id="da/da6/_t_direct_light_estimator_8h" name="TDirectLightEstimator.h" local="yes" import="no" module="no" objc="no">Core/LTABuildingBlock/TDirectLightEstimator.h</includes>
-    <includes id="d5/d14/_t_vector3_8h" name="TVector3.h" local="yes" import="no" module="no" objc="no">Math/TVector3.h</includes>
+    <includes id="da/da6/_t_direct_light_estimator_8h" name="TDirectLightEstimator.h" local="yes" import="no" module="no" objc="no">Core/LTA/TDirectLightEstimator.h</includes>
     <includes id="de/d56/_scene_8h" name="Scene.h" local="yes" import="no" module="no" objc="no">World/Scene.h</includes>
+    <includes id="da/dc6/_emitter_8h" name="Emitter.h" local="yes" import="no" module="no" objc="no">Core/Emitter/Emitter.h</includes>
     <includes id="d1/d6b/_direct_energy_sample_query_8h" name="DirectEnergySampleQuery.h" local="yes" import="no" module="no" objc="no">Core/Emitter/Query/DirectEnergySampleQuery.h</includes>
+    <includes id="dd/dfe/_direct_energy_sample_pdf_query_8h" name="DirectEnergySamplePdfQuery.h" local="yes" import="no" module="no" objc="no">Core/Emitter/Query/DirectEnergySamplePdfQuery.h</includes>
     <includes id="d6/d8a/_surface_hit_8h" name="SurfaceHit.h" local="yes" import="no" module="no" objc="no">Core/SurfaceHit.h</includes>
-    <includes id="d4/d5e/_primitive_metadata_8h" name="PrimitiveMetadata.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/PrimitiveMetadata.h</includes>
+    <includes id="d7/df8/_primitive_8h" name="Primitive.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Primitive.h</includes>
+    <includes id="d4/d5e/_primitive_metadata_8h" name="PrimitiveMetadata.h" local="yes" import="no" module="no" objc="no">Core/Intersection/PrimitiveMetadata.h</includes>
     <includes id="d2/dbc/_surface_behavior_8h" name="SurfaceBehavior.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/SurfaceBehavior.h</includes>
+    <includes id="db/df0/_bsdf_sample_query_8h" name="BsdfSampleQuery.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/BsdfSampleQuery.h</includes>
+    <includes id="d7/d2c/_bsdf_pdf_query_8h" name="BsdfPdfQuery.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/BsdfPdfQuery.h</includes>
+    <includes id="db/d2d/_bsdf_eval_query_8h" name="BsdfEvalQuery.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/BsdfEvalQuery.h</includes>
+    <includes id="d6/dcb/_surface_optics_8h" name="SurfaceOptics.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/SurfaceOptics.h</includes>
+    <includes id="de/db3/_hit_probe_8h" name="HitProbe.h" local="yes" import="no" module="no" objc="no">Core/HitProbe.h</includes>
     <includes id="d8/df3/_hit_detail_8h" name="HitDetail.h" local="yes" import="no" module="no" objc="no">Core/HitDetail.h</includes>
-    <includes id="d7/df8/_primitive_8h" name="Primitive.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/Primitive.h</includes>
+    <includes id="da/da9/_ray_8h" name="Ray.h" local="yes" import="no" module="no" objc="no">Core/Ray.h</includes>
+    <includes id="d1/d0c/lta_8h" name="lta.h" local="yes" import="no" module="no" objc="no">Core/LTA/lta.h</includes>
+    <includes id="db/d8d/_surface_tracer_8h" name="SurfaceTracer.h" local="yes" import="no" module="no" objc="no">Core/LTA/SurfaceTracer.h</includes>
+    <includes id="df/d95/_t_mis_8h" name="TMis.h" local="yes" import="no" module="no" objc="no">Core/LTA/TMis.h</includes>
+    <includes id="d3/da4/_surface_hit_refinery_8h" name="SurfaceHitRefinery.h" local="yes" import="no" module="no" objc="no">Core/LTA/SurfaceHitRefinery.h</includes>
+    <includes id="d5/d14/_t_vector3_8h" name="TVector3.h" local="yes" import="no" module="no" objc="no">Math/TVector3.h</includes>
     <namespace>ph</namespace>
+    <namespace>ph::lta</namespace>
+  </compound>
+  <compound kind="file">
+    <name>TIndirectLightEstimator.h</name>
+    <path>Source/Core/LTA/</path>
+    <filename>d7/d16/_t_indirect_light_estimator_8h.html</filename>
+    <includes id="d8/da4/math__fwd_8h" name="math_fwd.h" local="yes" import="no" module="no" objc="no">Math/math_fwd.h</includes>
+    <includes id="d3/df8/_spectrum_8h" name="Spectrum.h" local="yes" import="no" module="no" objc="no">Math/Color/Spectrum.h</includes>
+    <includes id="da/d66/_sidedness_agreement_8h" name="SidednessAgreement.h" local="yes" import="no" module="no" objc="no">Core/LTA/SidednessAgreement.h</includes>
+    <includes id="d4/d84/_t_indirect_light_estimator_8ipp" name="TIndirectLightEstimator.ipp" local="yes" import="no" module="no" objc="no">Core/LTA/TIndirectLightEstimator.ipp</includes>
+    <class kind="class">ph::lta::TIndirectLightEstimator</class>
+    <namespace>ph</namespace>
+    <namespace>ph::lta</namespace>
+  </compound>
+  <compound kind="file">
+    <name>TIndirectLightEstimator.ipp</name>
+    <path>Source/Core/LTA/</path>
+    <filename>d4/d84/_t_indirect_light_estimator_8ipp.html</filename>
+    <includes id="d7/d16/_t_indirect_light_estimator_8h" name="TIndirectLightEstimator.h" local="yes" import="no" module="no" objc="no">Core/LTA/TIndirectLightEstimator.h</includes>
+    <includes id="da/da6/_t_direct_light_estimator_8h" name="TDirectLightEstimator.h" local="yes" import="no" module="no" objc="no">Core/LTA/TDirectLightEstimator.h</includes>
+    <includes id="d1/dc0/_russian_roulette_8h" name="RussianRoulette.h" local="yes" import="no" module="no" objc="no">Core/LTA/RussianRoulette.h</includes>
+    <includes id="db/d8d/_surface_tracer_8h" name="SurfaceTracer.h" local="yes" import="no" module="no" objc="no">Core/LTA/SurfaceTracer.h</includes>
+    <includes id="dd/dff/_bsdf_query_context_8h" name="BsdfQueryContext.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/BsdfQueryContext.h</includes>
+    <includes id="db/df0/_bsdf_sample_query_8h" name="BsdfSampleQuery.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/BsdfSampleQuery.h</includes>
+    <includes id="d6/d8a/_surface_hit_8h" name="SurfaceHit.h" local="yes" import="no" module="no" objc="no">Core/SurfaceHit.h</includes>
+    <includes id="da/da9/_ray_8h" name="Ray.h" local="yes" import="no" module="no" objc="no">Core/Ray.h</includes>
+    <includes id="d5/d14/_t_vector3_8h" name="TVector3.h" local="yes" import="no" module="no" objc="no">Math/TVector3.h</includes>
+    <namespace>ph</namespace>
+    <namespace>ph::lta</namespace>
   </compound>
   <compound kind="file">
     <name>TMis.h</name>
-    <path>Source/Core/LTABuildingBlock/</path>
+    <path>Source/Core/LTA/</path>
     <filename>df/d95/_t_mis_8h.html</filename>
-    <class kind="class">ph::TMis</class>
+    <class kind="class">ph::lta::TMis</class>
     <namespace>ph</namespace>
+    <namespace>ph::lta</namespace>
   </compound>
   <compound kind="file">
     <name>Time.h</name>
@@ -3526,7 +3679,7 @@
     <includes id="d8/d40/_pinhole_camera_8h" name="PinholeCamera.h" local="yes" import="no" module="no" objc="no">Core/Receiver/PinholeCamera.h</includes>
     <includes id="da/da9/_ray_8h" name="Ray.h" local="yes" import="no" module="no" objc="no">Core/Ray.h</includes>
     <includes id="df/db1/math_8h" name="math.h" local="yes" import="no" module="no" objc="no">Math/math.h</includes>
-    <includes id="d0/d80/_random_8h" name="Random.h" local="yes" import="no" module="no" objc="no">Math/Random.h</includes>
+    <includes id="d0/d80/_random_8h" name="Random.h" local="yes" import="no" module="no" objc="no">Math/Random/Random.h</includes>
     <includes id="db/d56/_transform_8h" name="Transform.h" local="yes" import="no" module="no" objc="no">Math/Transform/Transform.h</includes>
     <includes id="dd/d0d/_rigid_transform_8h" name="RigidTransform.h" local="yes" import="no" module="no" objc="no">Math/Transform/RigidTransform.h</includes>
     <namespace>ph</namespace>
@@ -3613,7 +3766,7 @@
     <includes id="da/da9/_ray_8h" name="Ray.h" local="yes" import="no" module="no" objc="no">Core/Ray.h</includes>
     <includes id="db/d56/_transform_8h" name="Transform.h" local="yes" import="no" module="no" objc="no">Math/Transform/Transform.h</includes>
     <includes id="dd/d0d/_rigid_transform_8h" name="RigidTransform.h" local="yes" import="no" module="no" objc="no">Math/Transform/RigidTransform.h</includes>
-    <includes id="d0/d80/_random_8h" name="Random.h" local="yes" import="no" module="no" objc="no">Math/Random.h</includes>
+    <includes id="d0/d80/_random_8h" name="Random.h" local="yes" import="no" module="no" objc="no">Math/Random/Random.h</includes>
     <includes id="d2/dba/_t_disk_8h" name="TDisk.h" local="yes" import="no" module="no" objc="no">Math/Geometry/TDisk.h</includes>
     <namespace>ph</namespace>
   </compound>
@@ -3635,7 +3788,6 @@
     <includes id="dd/d17/constant_8h" name="constant.h" local="yes" import="no" module="no" objc="no">Math/constant.h</includes>
     <includes id="dc/d3a/_sample_generator_8h" name="SampleGenerator.h" local="yes" import="no" module="no" objc="no">Core/SampleGenerator/SampleGenerator.h</includes>
     <includes id="d2/db7/_core_cooked_unit_8h" name="CoreCookedUnit.h" local="yes" import="no" module="no" objc="no">EngineEnv/CoreCookedUnit.h</includes>
-    <includes id="d5/dc2/_hdr_rgb_film_8h" name="HdrRgbFilm.h" local="yes" import="no" module="no" objc="no">Core/Filmic/HdrRgbFilm.h</includes>
     <includes id="d5/d33/_render_work_8h" name="RenderWork.h" local="yes" import="no" module="no" objc="no">Core/Renderer/RenderWork.h</includes>
     <includes id="d6/d19/_render_worker_8h" name="RenderWorker.h" local="yes" import="no" module="no" objc="no">Core/Renderer/RenderWorker.h</includes>
     <includes id="d9/d45/_renderer_proxy_8h" name="RendererProxy.h" local="yes" import="no" module="no" objc="no">Core/Renderer/RendererProxy.h</includes>
@@ -3659,7 +3811,7 @@
     <path>Source/Core/Renderer/Attribute/</path>
     <filename>db/d67/_attribute_renderer_8h.html</filename>
     <includes id="d3/da0/_renderer_8h" name="Renderer.h" local="yes" import="no" module="no" objc="no">Core/Renderer/Renderer.h</includes>
-    <includes id="d5/dc2/_hdr_rgb_film_8h" name="HdrRgbFilm.h" local="yes" import="no" module="no" objc="no">Core/Filmic/HdrRgbFilm.h</includes>
+    <includes id="d7/d8f/_vector3_film_8h" name="Vector3Film.h" local="yes" import="no" module="no" objc="no">Core/Filmic/Vector3Film.h</includes>
     <includes id="dd/d63/_receiver_sampling_work_8h" name="ReceiverSamplingWork.h" local="yes" import="no" module="no" objc="no">Core/Renderer/Sampling/ReceiverSamplingWork.h</includes>
     <includes id="da/d95/_t_receiver_measurement_estimator_8h" name="TReceiverMeasurementEstimator.h" local="yes" import="no" module="no" objc="no">Core/Renderer/Sampling/TReceiverMeasurementEstimator.h</includes>
     <includes id="de/d74/_work_scheduler_8h" name="WorkScheduler.h" local="yes" import="no" module="no" objc="no">Core/Scheduler/WorkScheduler.h</includes>
@@ -3689,18 +3841,13 @@
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
-    <name>EPMMode.h</name>
-    <path>Source/Core/Renderer/PM/</path>
-    <filename>d9/d99/_e_p_m_mode_8h.html</filename>
-    <namespace>ph</namespace>
-  </compound>
-  <compound kind="file">
     <name>FullPhoton.h</name>
     <path>Source/Core/Renderer/PM/</path>
     <filename>da/de6/_full_photon_8h.html</filename>
     <includes id="db/da6/_t_photon_8h" name="TPhoton.h" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/TPhoton.h</includes>
     <includes id="d3/df8/_spectrum_8h" name="Spectrum.h" local="yes" import="no" module="no" objc="no">Math/Color/Spectrum.h</includes>
     <includes id="d5/d14/_t_vector3_8h" name="TVector3.h" local="yes" import="no" module="no" objc="no">Math/TVector3.h</includes>
+    <includes id="d5/d47/utility_8h" name="utility.h" local="yes" import="no" module="no" objc="no">Utility/utility.h</includes>
     <class kind="class">ph::FullPhoton</class>
     <namespace>ph</namespace>
   </compound>
@@ -3717,81 +3864,171 @@
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
-    <name>PMRenderer.cpp</name>
+    <name>photon_map_light_transport.h</name>
     <path>Source/Core/Renderer/PM/</path>
-    <filename>de/dd0/_p_m_renderer_8cpp.html</filename>
-    <includes id="d3/dc1/_p_m_renderer_8h" name="PMRenderer.h" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/PMRenderer.h</includes>
-    <includes id="d7/dc2/_sample_filters_8h" name="SampleFilters.h" local="yes" import="no" module="no" objc="no">Core/Filmic/SampleFilters.h</includes>
-    <includes id="d2/db7/_core_cooked_unit_8h" name="CoreCookedUnit.h" local="yes" import="no" module="no" objc="no">EngineEnv/CoreCookedUnit.h</includes>
-    <includes id="dd/d05/_visual_world_8h" name="VisualWorld.h" local="yes" import="no" module="no" objc="no">World/VisualWorld.h</includes>
-    <includes id="d1/d9e/_t_view_path_tracing_work_8h" name="TViewPathTracingWork.h" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/TViewPathTracingWork.h</includes>
-    <includes id="d5/dac/_t_photon_mapping_work_8h" name="TPhotonMappingWork.h" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/TPhotonMappingWork.h</includes>
+    <filename>da/dba/photon__map__light__transport_8h.html</filename>
+    <includes id="db/da6/_t_photon_8h" name="TPhoton.h" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/TPhoton.h</includes>
     <includes id="d7/de3/_t_photon_map_8h" name="TPhotonMap.h" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/TPhotonMap.h</includes>
-    <includes id="d8/d0f/_v_p_m_radiance_evaluator_8h" name="VPMRadianceEvaluator.h" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/VPMRadianceEvaluator.h</includes>
-    <includes id="da/de6/_full_photon_8h" name="FullPhoton.h" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/FullPhoton.h</includes>
-    <includes id="da/d2f/_fixed_size_thread_pool_8h" name="FixedSizeThreadPool.h" local="yes" import="no" module="no" objc="no">Utility/Concurrent/FixedSizeThreadPool.h</includes>
-    <includes id="d8/de6/concurrent_8h" name="concurrent.h" local="yes" import="no" module="no" objc="no">Utility/Concurrent/concurrent.h</includes>
-    <includes id="db/d68/_p_p_m_radiance_evaluation_work_8h" name="PPMRadianceEvaluationWork.h" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/PPMRadianceEvaluationWork.h</includes>
-    <includes id="d1/d64/_full_viewpoint_8h" name="FullViewpoint.h" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/FullViewpoint.h</includes>
-    <includes id="d5/d29/_timer_8h" name="Timer.h" local="yes" import="no" module="no" objc="no">Utility/Timer.h</includes>
-    <includes id="d2/dc7/_t_p_p_m_viewpoint_collector_8h" name="TPPMViewpointCollector.h" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/TPPMViewpointCollector.h</includes>
-    <includes id="d4/dbc/_t_s_p_p_m_radiance_evaluator_8h" name="TSPPMRadianceEvaluator.h" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/TSPPMRadianceEvaluator.h</includes>
+    <includes id="df/da9/_p_m_common_params_8h" name="PMCommonParams.h" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/PMCommonParams.h</includes>
+    <includes id="da/d66/_sidedness_agreement_8h" name="SidednessAgreement.h" local="yes" import="no" module="no" objc="no">Core/LTA/SidednessAgreement.h</includes>
+    <includes id="d1/dc0/_russian_roulette_8h" name="RussianRoulette.h" local="yes" import="no" module="no" objc="no">Core/LTA/RussianRoulette.h</includes>
+    <includes id="da/da6/_t_direct_light_estimator_8h" name="TDirectLightEstimator.h" local="yes" import="no" module="no" objc="no">Core/LTA/TDirectLightEstimator.h</includes>
+    <includes id="d7/d16/_t_indirect_light_estimator_8h" name="TIndirectLightEstimator.h" local="yes" import="no" module="no" objc="no">Core/LTA/TIndirectLightEstimator.h</includes>
+    <includes id="d6/d8a/_surface_hit_8h" name="SurfaceHit.h" local="yes" import="no" module="no" objc="no">Core/SurfaceHit.h</includes>
+    <includes id="d7/df8/_primitive_8h" name="Primitive.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Primitive.h</includes>
+    <includes id="d4/d5e/_primitive_metadata_8h" name="PrimitiveMetadata.h" local="yes" import="no" module="no" objc="no">Core/Intersection/PrimitiveMetadata.h</includes>
+    <includes id="da/dc6/_emitter_8h" name="Emitter.h" local="yes" import="no" module="no" objc="no">Core/Emitter/Emitter.h</includes>
+    <includes id="d2/dbc/_surface_behavior_8h" name="SurfaceBehavior.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/SurfaceBehavior.h</includes>
+    <includes id="d6/dcb/_surface_optics_8h" name="SurfaceOptics.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/SurfaceOptics.h</includes>
+    <includes id="db/df0/_bsdf_sample_query_8h" name="BsdfSampleQuery.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/BsdfSampleQuery.h</includes>
+    <includes id="d5/d14/_t_vector3_8h" name="TVector3.h" local="yes" import="no" module="no" objc="no">Math/TVector3.h</includes>
+    <includes id="d3/df8/_spectrum_8h" name="Spectrum.h" local="yes" import="no" module="no" objc="no">Math/Color/Spectrum.h</includes>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
-    <name>PMRenderer.h</name>
+    <name>PMAtomicStatistics.h</name>
     <path>Source/Core/Renderer/PM/</path>
-    <filename>d3/dc1/_p_m_renderer_8h.html</filename>
+    <filename>d1/df7/_p_m_atomic_statistics_8h.html</filename>
+    <class kind="class">ph::PMAtomicStatistics</class>
+    <namespace>ph</namespace>
+  </compound>
+  <compound kind="file">
+    <name>PMCommonParams.h</name>
+    <path>Source/Core/Renderer/PM/</path>
+    <filename>df/da9/_p_m_common_params_8h.html</filename>
+    <class kind="class">ph::PMCommonParams</class>
+    <namespace>ph</namespace>
+  </compound>
+  <compound kind="file">
+    <name>PMRendererBase.cpp</name>
+    <path>Source/Core/Renderer/PM/</path>
+    <filename>d3/dab/_p_m_renderer_base_8cpp.html</filename>
+    <includes id="df/d3e/_p_m_renderer_base_8h" name="PMRendererBase.h" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/PMRendererBase.h</includes>
+    <includes id="dd/daa/_render_region_status_8h" name="RenderRegionStatus.h" local="yes" import="no" module="no" objc="no">Core/Renderer/RenderRegionStatus.h</includes>
+    <includes id="d2/db7/_core_cooked_unit_8h" name="CoreCookedUnit.h" local="yes" import="no" module="no" objc="no">EngineEnv/CoreCookedUnit.h</includes>
+    <includes id="dd/d05/_visual_world_8h" name="VisualWorld.h" local="yes" import="no" module="no" objc="no">World/VisualWorld.h</includes>
+    <namespace>ph</namespace>
+  </compound>
+  <compound kind="file">
+    <name>PMRendererBase.h</name>
+    <path>Source/Core/Renderer/PM/</path>
+    <filename>df/d3e/_p_m_renderer_base_8h.html</filename>
     <includes id="d3/da0/_renderer_8h" name="Renderer.h" local="yes" import="no" module="no" objc="no">Core/Renderer/Renderer.h</includes>
     <includes id="d5/dc2/_hdr_rgb_film_8h" name="HdrRgbFilm.h" local="yes" import="no" module="no" objc="no">Core/Filmic/HdrRgbFilm.h</includes>
     <includes id="d4/dd3/_sample_filter_8h" name="SampleFilter.h" local="yes" import="no" module="no" objc="no">Core/Filmic/SampleFilter.h</includes>
-    <includes id="d9/d99/_e_p_m_mode_8h" name="EPMMode.h" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/EPMMode.h</includes>
-    <includes id="d1/de6/_p_m_statistics_8h" name="PMStatistics.h" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/PMStatistics.h</includes>
-    <class kind="class">ph::PMRenderer</class>
+    <includes id="d1/df7/_p_m_atomic_statistics_8h" name="PMAtomicStatistics.h" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/PMAtomicStatistics.h</includes>
+    <includes id="df/da9/_p_m_common_params_8h" name="PMCommonParams.h" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/PMCommonParams.h</includes>
+    <includes id="da/d9d/_t_synchronized_8h" name="TSynchronized.h" local="yes" import="no" module="no" objc="no">Utility/Concurrent/TSynchronized.h</includes>
+    <class kind="class">ph::PMRendererBase</class>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
-    <name>PMStatistics.h</name>
+    <name>ProbabilisticProgressivePMRenderer.cpp</name>
     <path>Source/Core/Renderer/PM/</path>
-    <filename>d1/de6/_p_m_statistics_8h.html</filename>
-    <class kind="class">ph::PMStatistics</class>
-    <namespace>ph</namespace>
-  </compound>
-  <compound kind="file">
-    <name>PPMRadianceEvaluationWork.cpp</name>
-    <path>Source/Core/Renderer/PM/</path>
-    <filename>df/df4/_p_p_m_radiance_evaluation_work_8cpp.html</filename>
-    <includes id="db/d68/_p_p_m_radiance_evaluation_work_8h" name="PPMRadianceEvaluationWork.h" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/PPMRadianceEvaluationWork.h</includes>
-    <includes id="d7/df8/_primitive_8h" name="Primitive.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/Primitive.h</includes>
-    <includes id="d4/d5e/_primitive_metadata_8h" name="PrimitiveMetadata.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/PrimitiveMetadata.h</includes>
-    <includes id="d2/dbc/_surface_behavior_8h" name="SurfaceBehavior.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/SurfaceBehavior.h</includes>
-    <includes id="d6/dcb/_surface_optics_8h" name="SurfaceOptics.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/SurfaceOptics.h</includes>
-    <includes id="d6/d8a/_surface_hit_8h" name="SurfaceHit.h" local="yes" import="no" module="no" objc="no">Core/SurfaceHit.h</includes>
-    <includes id="d3/dc1/_p_m_renderer_8h" name="PMRenderer.h" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/PMRenderer.h</includes>
-    <includes id="da/dc6/_emitter_8h" name="Emitter.h" local="yes" import="no" module="no" objc="no">Core/Emitter/Emitter.h</includes>
-    <includes id="db/d8d/_surface_tracer_8h" name="SurfaceTracer.h" local="yes" import="no" module="no" objc="no">Core/LTABuildingBlock/SurfaceTracer.h</includes>
-    <includes id="d1/d0c/lta_8h" name="lta.h" local="yes" import="no" module="no" objc="no">Core/LTABuildingBlock/lta.h</includes>
-    <includes id="dd/dff/_bsdf_query_context_8h" name="BsdfQueryContext.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/BsdfQueryContext.h</includes>
-    <includes id="db/d2d/_bsdf_eval_query_8h" name="BsdfEvalQuery.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/BsdfEvalQuery.h</includes>
-    <namespace>ph</namespace>
-  </compound>
-  <compound kind="file">
-    <name>PPMRadianceEvaluationWork.h</name>
-    <path>Source/Core/Renderer/PM/</path>
-    <filename>db/d68/_p_p_m_radiance_evaluation_work_8h.html</filename>
-    <includes id="d8/d99/_t_radiance_evaluation_work_8h" name="TRadianceEvaluationWork.h" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/TRadianceEvaluationWork.h</includes>
-    <includes id="da/de6/_full_photon_8h" name="FullPhoton.h" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/FullPhoton.h</includes>
+    <filename>d6/d43/_probabilistic_progressive_p_m_renderer_8cpp.html</filename>
+    <includes id="d5/d81/_probabilistic_progressive_p_m_renderer_8h" name="ProbabilisticProgressivePMRenderer.h" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/ProbabilisticProgressivePMRenderer.h</includes>
     <includes id="d5/dc2/_hdr_rgb_film_8h" name="HdrRgbFilm.h" local="yes" import="no" module="no" objc="no">Core/Filmic/HdrRgbFilm.h</includes>
+    <includes id="d1/df7/_p_m_atomic_statistics_8h" name="PMAtomicStatistics.h" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/PMAtomicStatistics.h</includes>
+    <includes id="da/de6/_full_photon_8h" name="FullPhoton.h" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/FullPhoton.h</includes>
     <includes id="d1/d64/_full_viewpoint_8h" name="FullViewpoint.h" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/FullViewpoint.h</includes>
-    <class kind="class">ph::PPMRadianceEvaluationWork</class>
+    <includes id="dc/d0b/_t_photon_path_tracing_work_8h" name="TPhotonPathTracingWork.h" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/TPhotonPathTracingWork.h</includes>
+    <includes id="dc/d3a/_sample_generator_8h" name="SampleGenerator.h" local="yes" import="no" module="no" objc="no">Core/SampleGenerator/SampleGenerator.h</includes>
+    <includes id="d7/de3/_t_photon_map_8h" name="TPhotonMap.h" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/TPhotonMap.h</includes>
+    <includes id="d3/d82/_t_v_p_m_radiance_evaluator_8h" name="TVPMRadianceEvaluator.h" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/TVPMRadianceEvaluator.h</includes>
+    <includes id="d1/d9e/_t_view_path_tracing_work_8h" name="TViewPathTracingWork.h" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/TViewPathTracingWork.h</includes>
+    <includes id="d5/dfd/_render_observation_info_8h" name="RenderObservationInfo.h" local="yes" import="no" module="no" objc="no">Core/Renderer/RenderObservationInfo.h</includes>
+    <includes id="db/d82/_render_progress_8h" name="RenderProgress.h" local="yes" import="no" module="no" objc="no">Core/Renderer/RenderProgress.h</includes>
+    <includes id="d9/d95/_render_stats_8h" name="RenderStats.h" local="yes" import="no" module="no" objc="no">Core/Renderer/RenderStats.h</includes>
+    <includes id="df/db1/math_8h" name="math.h" local="yes" import="no" module="no" objc="no">Math/math.h</includes>
+    <includes id="dd/da2/_t_span_8h" name="TSpan.h" local="yes" import="no" module="no" objc="no">Utility/TSpan.h</includes>
+    <includes id="d8/de6/concurrent_8h" name="concurrent.h" local="yes" import="no" module="no" objc="no">Utility/Concurrent/concurrent.h</includes>
+    <includes id="da/d9d/_t_synchronized_8h" name="TSynchronized.h" local="yes" import="no" module="no" objc="no">Utility/Concurrent/TSynchronized.h</includes>
+    <includes id="d5/d29/_timer_8h" name="Timer.h" local="yes" import="no" module="no" objc="no">Utility/Timer.h</includes>
+    <namespace>ph</namespace>
+  </compound>
+  <compound kind="file">
+    <name>ProbabilisticProgressivePMRenderer.h</name>
+    <path>Source/Core/Renderer/PM/</path>
+    <filename>d5/d81/_probabilistic_progressive_p_m_renderer_8h.html</filename>
+    <includes id="df/d3e/_p_m_renderer_base_8h" name="PMRendererBase.h" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/PMRendererBase.h</includes>
+    <class kind="class">ph::ProbabilisticProgressivePMRenderer</class>
+    <namespace>ph</namespace>
+  </compound>
+  <compound kind="file">
+    <name>ProgressivePMRenderer.cpp</name>
+    <path>Source/Core/Renderer/PM/</path>
+    <filename>d1/d92/_progressive_p_m_renderer_8cpp.html</filename>
+    <includes id="d8/daf/_progressive_p_m_renderer_8h" name="ProgressivePMRenderer.h" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/ProgressivePMRenderer.h</includes>
+    <includes id="d5/dc2/_hdr_rgb_film_8h" name="HdrRgbFilm.h" local="yes" import="no" module="no" objc="no">Core/Filmic/HdrRgbFilm.h</includes>
+    <includes id="d1/df7/_p_m_atomic_statistics_8h" name="PMAtomicStatistics.h" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/PMAtomicStatistics.h</includes>
+    <includes id="da/de6/_full_photon_8h" name="FullPhoton.h" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/FullPhoton.h</includes>
+    <includes id="d1/d64/_full_viewpoint_8h" name="FullViewpoint.h" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/FullViewpoint.h</includes>
+    <includes id="dc/d0b/_t_photon_path_tracing_work_8h" name="TPhotonPathTracingWork.h" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/TPhotonPathTracingWork.h</includes>
+    <includes id="dc/d3a/_sample_generator_8h" name="SampleGenerator.h" local="yes" import="no" module="no" objc="no">Core/SampleGenerator/SampleGenerator.h</includes>
+    <includes id="d7/de3/_t_photon_map_8h" name="TPhotonMap.h" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/TPhotonMap.h</includes>
+    <includes id="d1/d9e/_t_view_path_tracing_work_8h" name="TViewPathTracingWork.h" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/TViewPathTracingWork.h</includes>
+    <includes id="d2/dc7/_t_p_p_m_viewpoint_collector_8h" name="TPPMViewpointCollector.h" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/TPPMViewpointCollector.h</includes>
+    <includes id="d2/de3/_t_p_p_m_radiance_evaluation_work_8h" name="TPPMRadianceEvaluationWork.h" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/TPPMRadianceEvaluationWork.h</includes>
+    <includes id="d5/dfd/_render_observation_info_8h" name="RenderObservationInfo.h" local="yes" import="no" module="no" objc="no">Core/Renderer/RenderObservationInfo.h</includes>
+    <includes id="db/d82/_render_progress_8h" name="RenderProgress.h" local="yes" import="no" module="no" objc="no">Core/Renderer/RenderProgress.h</includes>
+    <includes id="d9/d95/_render_stats_8h" name="RenderStats.h" local="yes" import="no" module="no" objc="no">Core/Renderer/RenderStats.h</includes>
+    <includes id="df/db1/math_8h" name="math.h" local="yes" import="no" module="no" objc="no">Math/math.h</includes>
+    <includes id="d8/de6/concurrent_8h" name="concurrent.h" local="yes" import="no" module="no" objc="no">Utility/Concurrent/concurrent.h</includes>
+    <includes id="da/d9d/_t_synchronized_8h" name="TSynchronized.h" local="yes" import="no" module="no" objc="no">Utility/Concurrent/TSynchronized.h</includes>
+    <includes id="d5/d29/_timer_8h" name="Timer.h" local="yes" import="no" module="no" objc="no">Utility/Timer.h</includes>
+    <namespace>ph</namespace>
+  </compound>
+  <compound kind="file">
+    <name>ProgressivePMRenderer.h</name>
+    <path>Source/Core/Renderer/PM/</path>
+    <filename>d8/daf/_progressive_p_m_renderer_8h.html</filename>
+    <includes id="df/d3e/_p_m_renderer_base_8h" name="PMRendererBase.h" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/PMRendererBase.h</includes>
+    <class kind="class">ph::ProgressivePMRenderer</class>
+    <namespace>ph</namespace>
+  </compound>
+  <compound kind="file">
+    <name>StochasticProgressivePMRenderer.cpp</name>
+    <path>Source/Core/Renderer/PM/</path>
+    <filename>dc/da8/_stochastic_progressive_p_m_renderer_8cpp.html</filename>
+    <includes id="da/d85/_stochastic_progressive_p_m_renderer_8h" name="StochasticProgressivePMRenderer.h" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/StochasticProgressivePMRenderer.h</includes>
+    <includes id="d5/dc2/_hdr_rgb_film_8h" name="HdrRgbFilm.h" local="yes" import="no" module="no" objc="no">Core/Filmic/HdrRgbFilm.h</includes>
+    <includes id="d1/df7/_p_m_atomic_statistics_8h" name="PMAtomicStatistics.h" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/PMAtomicStatistics.h</includes>
+    <includes id="da/de6/_full_photon_8h" name="FullPhoton.h" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/FullPhoton.h</includes>
+    <includes id="d1/d64/_full_viewpoint_8h" name="FullViewpoint.h" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/FullViewpoint.h</includes>
+    <includes id="dc/d0b/_t_photon_path_tracing_work_8h" name="TPhotonPathTracingWork.h" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/TPhotonPathTracingWork.h</includes>
+    <includes id="dc/d3a/_sample_generator_8h" name="SampleGenerator.h" local="yes" import="no" module="no" objc="no">Core/SampleGenerator/SampleGenerator.h</includes>
+    <includes id="d7/de3/_t_photon_map_8h" name="TPhotonMap.h" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/TPhotonMap.h</includes>
+    <includes id="d1/d9e/_t_view_path_tracing_work_8h" name="TViewPathTracingWork.h" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/TViewPathTracingWork.h</includes>
+    <includes id="d4/dbc/_t_s_p_p_m_radiance_evaluator_8h" name="TSPPMRadianceEvaluator.h" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/TSPPMRadianceEvaluator.h</includes>
+    <includes id="d5/dfd/_render_observation_info_8h" name="RenderObservationInfo.h" local="yes" import="no" module="no" objc="no">Core/Renderer/RenderObservationInfo.h</includes>
+    <includes id="db/d82/_render_progress_8h" name="RenderProgress.h" local="yes" import="no" module="no" objc="no">Core/Renderer/RenderProgress.h</includes>
+    <includes id="d9/d95/_render_stats_8h" name="RenderStats.h" local="yes" import="no" module="no" objc="no">Core/Renderer/RenderStats.h</includes>
+    <includes id="df/db1/math_8h" name="math.h" local="yes" import="no" module="no" objc="no">Math/math.h</includes>
+    <includes id="d8/de6/concurrent_8h" name="concurrent.h" local="yes" import="no" module="no" objc="no">Utility/Concurrent/concurrent.h</includes>
+    <includes id="da/d2f/_fixed_size_thread_pool_8h" name="FixedSizeThreadPool.h" local="yes" import="no" module="no" objc="no">Utility/Concurrent/FixedSizeThreadPool.h</includes>
+    <includes id="da/d9d/_t_synchronized_8h" name="TSynchronized.h" local="yes" import="no" module="no" objc="no">Utility/Concurrent/TSynchronized.h</includes>
+    <includes id="d5/d29/_timer_8h" name="Timer.h" local="yes" import="no" module="no" objc="no">Utility/Timer.h</includes>
+    <namespace>ph</namespace>
+  </compound>
+  <compound kind="file">
+    <name>StochasticProgressivePMRenderer.h</name>
+    <path>Source/Core/Renderer/PM/</path>
+    <filename>da/d85/_stochastic_progressive_p_m_renderer_8h.html</filename>
+    <includes id="df/d3e/_p_m_renderer_base_8h" name="PMRendererBase.h" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/PMRendererBase.h</includes>
+    <class kind="class">ph::StochasticProgressivePMRenderer</class>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
     <name>TPhoton.h</name>
     <path>Source/Core/Renderer/PM/</path>
     <filename>db/da6/_t_photon_8h.html</filename>
+    <includes id="d5/d47/utility_8h" name="utility.h" local="yes" import="no" module="no" objc="no">Utility/utility.h</includes>
+    <includes id="dd/dff/traits_8h" name="traits.h" local="yes" import="no" module="no" objc="no">Utility/traits.h</includes>
+    <includes id="d5/d14/_t_vector3_8h" name="TVector3.h" local="yes" import="no" module="no" objc="no">Math/TVector3.h</includes>
+    <includes id="da/d66/_sidedness_agreement_8h" name="SidednessAgreement.h" local="yes" import="no" module="no" objc="no">Core/LTA/SidednessAgreement.h</includes>
     <class kind="class">ph::TPhoton</class>
     <namespace>ph</namespace>
+    <concept>ph::CPhoton</concept>
   </compound>
   <compound kind="file">
     <name>TPhotonMap.h</name>
@@ -3799,43 +4036,82 @@
     <filename>d7/de3/_t_photon_map_8h.html</filename>
     <includes id="da/d45/_t_indexed_point_kdtree_8h" name="TIndexedPointKdtree.h" local="yes" import="no" module="no" objc="no">Math/Algorithm/IndexedKdtree/TIndexedPointKdtree.h</includes>
     <includes id="db/da6/_t_photon_8h" name="TPhoton.h" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/TPhoton.h</includes>
+    <includes id="df/da9/_p_m_common_params_8h" name="PMCommonParams.h" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/PMCommonParams.h</includes>
     <includes id="d5/d14/_t_vector3_8h" name="TVector3.h" local="yes" import="no" module="no" objc="no">Math/TVector3.h</includes>
-    <class kind="struct">ph::TPhotonCenterCalculator</class>
+    <class kind="class">ph::TPhotonMapInfo</class>
+    <class kind="class">ph::TPhotonMap</class>
+    <class kind="struct">ph::TPhotonMap::PhotonCenterCalculator</class>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
-    <name>TPhotonMappingWork.h</name>
+    <name>TPhotonPathTracingWork.h</name>
     <path>Source/Core/Renderer/PM/</path>
-    <filename>d5/dac/_t_photon_mapping_work_8h.html</filename>
+    <filename>dc/d0b/_t_photon_path_tracing_work_8h.html</filename>
     <includes id="d5/d33/_render_work_8h" name="RenderWork.h" local="yes" import="no" module="no" objc="no">Core/Renderer/RenderWork.h</includes>
     <includes id="db/da6/_t_photon_8h" name="TPhoton.h" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/TPhoton.h</includes>
-    <includes id="dc/d20/_t_photon_mapping_work_8ipp" name="TPhotonMappingWork.ipp" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/TPhotonMappingWork.ipp</includes>
-    <class kind="class">ph::TPhotonMappingWork</class>
+    <includes id="df/da9/_p_m_common_params_8h" name="PMCommonParams.h" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/PMCommonParams.h</includes>
+    <includes id="d3/df8/_spectrum_8h" name="Spectrum.h" local="yes" import="no" module="no" objc="no">Math/Color/Spectrum.h</includes>
+    <includes id="dd/da2/_t_span_8h" name="TSpan.h" local="yes" import="no" module="no" objc="no">Utility/TSpan.h</includes>
+    <includes id="d1/dda/_t_photon_path_tracing_work_8ipp" name="TPhotonPathTracingWork.ipp" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/TPhotonPathTracingWork.ipp</includes>
+    <class kind="class">ph::TPhotonPathTracingWork</class>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
-    <name>TPhotonMappingWork.ipp</name>
+    <name>TPhotonPathTracingWork.ipp</name>
     <path>Source/Core/Renderer/PM/</path>
-    <filename>dc/d20/_t_photon_mapping_work_8ipp.html</filename>
-    <includes id="d5/dac/_t_photon_mapping_work_8h" name="TPhotonMappingWork.h" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/TPhotonMappingWork.h</includes>
+    <filename>d1/dda/_t_photon_path_tracing_work_8ipp.html</filename>
+    <includes id="dc/d0b/_t_photon_path_tracing_work_8h" name="TPhotonPathTracingWork.h" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/TPhotonPathTracingWork.h</includes>
     <includes id="de/d56/_scene_8h" name="Scene.h" local="yes" import="no" module="no" objc="no">World/Scene.h</includes>
     <includes id="da/da6/_receiver_8h" name="Receiver.h" local="yes" import="no" module="no" objc="no">Core/Receiver/Receiver.h</includes>
     <includes id="dc/d3a/_sample_generator_8h" name="SampleGenerator.h" local="yes" import="no" module="no" objc="no">Core/SampleGenerator/SampleGenerator.h</includes>
     <includes id="da/da9/_ray_8h" name="Ray.h" local="yes" import="no" module="no" objc="no">Core/Ray.h</includes>
     <includes id="d2/dbc/_surface_behavior_8h" name="SurfaceBehavior.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/SurfaceBehavior.h</includes>
     <includes id="d6/dcb/_surface_optics_8h" name="SurfaceOptics.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/SurfaceOptics.h</includes>
-    <includes id="d7/df8/_primitive_8h" name="Primitive.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/Primitive.h</includes>
-    <includes id="d4/d5e/_primitive_metadata_8h" name="PrimitiveMetadata.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/PrimitiveMetadata.h</includes>
+    <includes id="d7/df8/_primitive_8h" name="Primitive.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Primitive.h</includes>
+    <includes id="d4/d5e/_primitive_metadata_8h" name="PrimitiveMetadata.h" local="yes" import="no" module="no" objc="no">Core/Intersection/PrimitiveMetadata.h</includes>
     <includes id="d6/d8a/_surface_hit_8h" name="SurfaceHit.h" local="yes" import="no" module="no" objc="no">Core/SurfaceHit.h</includes>
     <includes id="de/db3/_hit_probe_8h" name="HitProbe.h" local="yes" import="no" module="no" objc="no">Core/HitProbe.h</includes>
     <includes id="d8/df3/_hit_detail_8h" name="HitDetail.h" local="yes" import="no" module="no" objc="no">Core/HitDetail.h</includes>
-    <includes id="d0/d80/_random_8h" name="Random.h" local="yes" import="no" module="no" objc="no">Math/Random.h</includes>
-    <includes id="d1/dc0/_russian_roulette_8h" name="RussianRoulette.h" local="yes" import="no" module="no" objc="no">Core/LTABuildingBlock/RussianRoulette.h</includes>
+    <includes id="d1/dc0/_russian_roulette_8h" name="RussianRoulette.h" local="yes" import="no" module="no" objc="no">Core/LTA/RussianRoulette.h</includes>
     <includes id="d5/d29/_timer_8h" name="Timer.h" local="yes" import="no" module="no" objc="no">Utility/Timer.h</includes>
-    <includes id="d1/de6/_p_m_statistics_8h" name="PMStatistics.h" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/PMStatistics.h</includes>
-    <includes id="db/d8d/_surface_tracer_8h" name="SurfaceTracer.h" local="yes" import="no" module="no" objc="no">Core/LTABuildingBlock/SurfaceTracer.h</includes>
-    <includes id="d1/d0c/lta_8h" name="lta.h" local="yes" import="no" module="no" objc="no">Core/LTABuildingBlock/lta.h</includes>
+    <includes id="d1/df7/_p_m_atomic_statistics_8h" name="PMAtomicStatistics.h" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/PMAtomicStatistics.h</includes>
+    <includes id="db/d8d/_surface_tracer_8h" name="SurfaceTracer.h" local="yes" import="no" module="no" objc="no">Core/LTA/SurfaceTracer.h</includes>
+    <includes id="d1/d0c/lta_8h" name="lta.h" local="yes" import="no" module="no" objc="no">Core/LTA/lta.h</includes>
     <includes id="db/df0/_bsdf_sample_query_8h" name="BsdfSampleQuery.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/BsdfSampleQuery.h</includes>
+    <includes id="d5/de3/_energy_emission_sample_query_8h" name="EnergyEmissionSampleQuery.h" local="yes" import="no" module="no" objc="no">Core/Emitter/Query/EnergyEmissionSampleQuery.h</includes>
+    <namespace>ph</namespace>
+  </compound>
+  <compound kind="file">
+    <name>TPPMRadianceEvaluationWork.h</name>
+    <path>Source/Core/Renderer/PM/</path>
+    <filename>d2/de3/_t_p_p_m_radiance_evaluation_work_8h.html</filename>
+    <includes id="d7/de3/_t_photon_map_8h" name="TPhotonMap.h" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/TPhotonMap.h</includes>
+    <includes id="db/da6/_t_photon_8h" name="TPhoton.h" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/TPhoton.h</includes>
+    <includes id="dc/d2a/_t_viewpoint_8h" name="TViewpoint.h" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/TViewpoint.h</includes>
+    <includes id="d5/d33/_render_work_8h" name="RenderWork.h" local="yes" import="no" module="no" objc="no">Core/Renderer/RenderWork.h</includes>
+    <includes id="de/d25/_t_sampling_film_8h" name="TSamplingFilm.h" local="yes" import="no" module="no" objc="no">Core/Filmic/TSamplingFilm.h</includes>
+    <includes id="d3/df8/_spectrum_8h" name="Spectrum.h" local="yes" import="no" module="no" objc="no">Math/Color/Spectrum.h</includes>
+    <includes id="dd/da2/_t_span_8h" name="TSpan.h" local="yes" import="no" module="no" objc="no">Utility/TSpan.h</includes>
+    <includes id="d2/dc4/_t_p_p_m_radiance_evaluation_work_8ipp" name="TPPMRadianceEvaluationWork.ipp" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/TPPMRadianceEvaluationWork.ipp</includes>
+    <class kind="class">ph::TPPMRadianceEvaluationWork</class>
+    <namespace>ph</namespace>
+  </compound>
+  <compound kind="file">
+    <name>TPPMRadianceEvaluationWork.ipp</name>
+    <path>Source/Core/Renderer/PM/</path>
+    <filename>d2/dc4/_t_p_p_m_radiance_evaluation_work_8ipp.html</filename>
+    <includes id="d2/de3/_t_p_p_m_radiance_evaluation_work_8h" name="TPPMRadianceEvaluationWork.h" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/TPPMRadianceEvaluationWork.h</includes>
+    <includes id="d7/df8/_primitive_8h" name="Primitive.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Primitive.h</includes>
+    <includes id="d4/d5e/_primitive_metadata_8h" name="PrimitiveMetadata.h" local="yes" import="no" module="no" objc="no">Core/Intersection/PrimitiveMetadata.h</includes>
+    <includes id="d2/dbc/_surface_behavior_8h" name="SurfaceBehavior.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/SurfaceBehavior.h</includes>
+    <includes id="d6/dcb/_surface_optics_8h" name="SurfaceOptics.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/SurfaceOptics.h</includes>
+    <includes id="d6/d8a/_surface_hit_8h" name="SurfaceHit.h" local="yes" import="no" module="no" objc="no">Core/SurfaceHit.h</includes>
+    <includes id="da/dc6/_emitter_8h" name="Emitter.h" local="yes" import="no" module="no" objc="no">Core/Emitter/Emitter.h</includes>
+    <includes id="db/d8d/_surface_tracer_8h" name="SurfaceTracer.h" local="yes" import="no" module="no" objc="no">Core/LTA/SurfaceTracer.h</includes>
+    <includes id="d1/d0c/lta_8h" name="lta.h" local="yes" import="no" module="no" objc="no">Core/LTA/lta.h</includes>
+    <includes id="dd/dff/_bsdf_query_context_8h" name="BsdfQueryContext.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/BsdfQueryContext.h</includes>
+    <includes id="db/d2d/_bsdf_eval_query_8h" name="BsdfEvalQuery.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/BsdfEvalQuery.h</includes>
+    <includes id="da/dba/photon__map__light__transport_8h" name="photon_map_light_transport.h" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/photon_map_light_transport.h</includes>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
@@ -3844,44 +4120,12 @@
     <filename>d2/dc7/_t_p_p_m_viewpoint_collector_8h.html</filename>
     <includes id="d0/d64/_t_view_path_handler_8h" name="TViewPathHandler.h" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/TViewPathHandler.h</includes>
     <includes id="dc/d2a/_t_viewpoint_8h" name="TViewpoint.h" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/TViewpoint.h</includes>
-    <includes id="d6/d8a/_surface_hit_8h" name="SurfaceHit.h" local="yes" import="no" module="no" objc="no">Core/SurfaceHit.h</includes>
-    <includes id="d7/df8/_primitive_8h" name="Primitive.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/Primitive.h</includes>
-    <includes id="d4/d5e/_primitive_metadata_8h" name="PrimitiveMetadata.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/PrimitiveMetadata.h</includes>
-    <includes id="da/dc6/_emitter_8h" name="Emitter.h" local="yes" import="no" module="no" objc="no">Core/Emitter/Emitter.h</includes>
-    <includes id="d2/dbc/_surface_behavior_8h" name="SurfaceBehavior.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/SurfaceBehavior.h</includes>
-    <includes id="d6/dcb/_surface_optics_8h" name="SurfaceOptics.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/SurfaceOptics.h</includes>
-    <includes id="d0/d80/_random_8h" name="Random.h" local="yes" import="no" module="no" objc="no">Math/Random.h</includes>
-    <class kind="class">ph::TPPMViewpointCollector</class>
-    <namespace>ph</namespace>
-  </compound>
-  <compound kind="file">
-    <name>TRadianceEvaluationWork.h</name>
-    <path>Source/Core/Renderer/PM/</path>
-    <filename>d8/d99/_t_radiance_evaluation_work_8h.html</filename>
-    <includes id="d5/d33/_render_work_8h" name="RenderWork.h" local="yes" import="no" module="no" objc="no">Core/Renderer/RenderWork.h</includes>
-    <includes id="dc/d2a/_t_viewpoint_8h" name="TViewpoint.h" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/TViewpoint.h</includes>
-    <includes id="d5/dc2/_hdr_rgb_film_8h" name="HdrRgbFilm.h" local="yes" import="no" module="no" objc="no">Core/Filmic/HdrRgbFilm.h</includes>
     <includes id="db/da6/_t_photon_8h" name="TPhoton.h" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/TPhoton.h</includes>
-    <includes id="d7/de3/_t_photon_map_8h" name="TPhotonMap.h" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/TPhotonMap.h</includes>
-    <includes id="d3/df8/_spectrum_8h" name="Spectrum.h" local="yes" import="no" module="no" objc="no">Math/Color/Spectrum.h</includes>
-    <includes id="d8/da4/math__fwd_8h" name="math_fwd.h" local="yes" import="no" module="no" objc="no">Math/math_fwd.h</includes>
-    <includes id="d8/d53/_t_radiance_evaluation_work_8ipp" name="TRadianceEvaluationWork.ipp" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/TRadianceEvaluationWork.ipp</includes>
-    <class kind="class">ph::TRadianceEvaluationWork</class>
-    <namespace>ph</namespace>
-  </compound>
-  <compound kind="file">
-    <name>TRadianceEvaluationWork.ipp</name>
-    <path>Source/Core/Renderer/PM/</path>
-    <filename>d8/d53/_t_radiance_evaluation_work_8ipp.html</filename>
-    <includes id="d8/d99/_t_radiance_evaluation_work_8h" name="TRadianceEvaluationWork.h" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/TRadianceEvaluationWork.h</includes>
-    <includes id="dd/d17/constant_8h" name="constant.h" local="yes" import="no" module="no" objc="no">Math/constant.h</includes>
-    <includes id="d7/df8/_primitive_8h" name="Primitive.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/Primitive.h</includes>
-    <includes id="d4/d5e/_primitive_metadata_8h" name="PrimitiveMetadata.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/PrimitiveMetadata.h</includes>
-    <includes id="d2/dbc/_surface_behavior_8h" name="SurfaceBehavior.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/SurfaceBehavior.h</includes>
+    <includes id="d6/d8a/_surface_hit_8h" name="SurfaceHit.h" local="yes" import="no" module="no" objc="no">Core/SurfaceHit.h</includes>
     <includes id="d6/dcb/_surface_optics_8h" name="SurfaceOptics.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/SurfaceOptics.h</includes>
-    <includes id="db/d2d/_bsdf_eval_query_8h" name="BsdfEvalQuery.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/BsdfEvalQuery.h</includes>
-    <includes id="db/df0/_bsdf_sample_query_8h" name="BsdfSampleQuery.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/BsdfSampleQuery.h</includes>
-    <includes id="d7/d2c/_bsdf_pdf_query_8h" name="BsdfPdfQuery.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/BsdfPdfQuery.h</includes>
+    <includes id="d7/de3/_t_photon_map_8h" name="TPhotonMap.h" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/TPhotonMap.h</includes>
+    <includes id="da/dba/photon__map__light__transport_8h" name="photon_map_light_transport.h" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/photon_map_light_transport.h</includes>
+    <class kind="class">ph::TPPMViewpointCollector</class>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
@@ -3892,18 +4136,15 @@
     <includes id="dc/d2a/_t_viewpoint_8h" name="TViewpoint.h" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/TViewpoint.h</includes>
     <includes id="db/da6/_t_photon_8h" name="TPhoton.h" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/TPhoton.h</includes>
     <includes id="d6/d8a/_surface_hit_8h" name="SurfaceHit.h" local="yes" import="no" module="no" objc="no">Core/SurfaceHit.h</includes>
-    <includes id="d7/df8/_primitive_8h" name="Primitive.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/Primitive.h</includes>
-    <includes id="d4/d5e/_primitive_metadata_8h" name="PrimitiveMetadata.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/PrimitiveMetadata.h</includes>
-    <includes id="da/dc6/_emitter_8h" name="Emitter.h" local="yes" import="no" module="no" objc="no">Core/Emitter/Emitter.h</includes>
-    <includes id="d2/dbc/_surface_behavior_8h" name="SurfaceBehavior.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/SurfaceBehavior.h</includes>
     <includes id="d6/dcb/_surface_optics_8h" name="SurfaceOptics.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/SurfaceOptics.h</includes>
-    <includes id="d0/d80/_random_8h" name="Random.h" local="yes" import="no" module="no" objc="no">Math/Random.h</includes>
-    <includes id="de/d56/_scene_8h" name="Scene.h" local="yes" import="no" module="no" objc="no">World/Scene.h</includes>
-    <includes id="d5/dc2/_hdr_rgb_film_8h" name="HdrRgbFilm.h" local="yes" import="no" module="no" objc="no">Core/Filmic/HdrRgbFilm.h</includes>
-    <includes id="d7/de3/_t_photon_map_8h" name="TPhotonMap.h" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/TPhotonMap.h</includes>
     <includes id="df/db1/math_8h" name="math.h" local="yes" import="no" module="no" objc="no">Math/math.h</includes>
+    <includes id="d3/df8/_spectrum_8h" name="Spectrum.h" local="yes" import="no" module="no" objc="no">Math/Color/Spectrum.h</includes>
+    <includes id="de/d25/_t_sampling_film_8h" name="TSamplingFilm.h" local="yes" import="no" module="no" objc="no">Core/Filmic/TSamplingFilm.h</includes>
+    <includes id="d7/de3/_t_photon_map_8h" name="TPhotonMap.h" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/TPhotonMap.h</includes>
     <includes id="d0/db4/_region_8h" name="Region.h" local="yes" import="no" module="no" objc="no">Core/Scheduler/Region.h</includes>
     <includes id="db/d2d/_bsdf_eval_query_8h" name="BsdfEvalQuery.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/BsdfEvalQuery.h</includes>
+    <includes id="da/dba/photon__map__light__transport_8h" name="photon_map_light_transport.h" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/photon_map_light_transport.h</includes>
+    <includes id="dd/da2/_t_span_8h" name="TSpan.h" local="yes" import="no" module="no" objc="no">Utility/TSpan.h</includes>
     <class kind="class">ph::TSPPMRadianceEvaluator</class>
     <namespace>ph</namespace>
   </compound>
@@ -3915,8 +4156,11 @@
     <includes id="d9/dfb/_t_vector2_8h" name="TVector2.h" local="yes" import="no" module="no" objc="no">Math/TVector2.h</includes>
     <includes id="d3/df8/_spectrum_8h" name="Spectrum.h" local="yes" import="no" module="no" objc="no">Math/Color/Spectrum.h</includes>
     <includes id="dc/d22/_view_path_tracing_policy_8h" name="ViewPathTracingPolicy.h" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/ViewPathTracingPolicy.h</includes>
+    <includes id="d5/d47/utility_8h" name="utility.h" local="yes" import="no" module="no" objc="no">Utility/utility.h</includes>
+    <includes id="dd/dff/traits_8h" name="traits.h" local="yes" import="no" module="no" objc="no">Utility/traits.h</includes>
     <class kind="class">ph::TViewPathHandler</class>
     <namespace>ph</namespace>
+    <concept>ph::CViewPathHandler</concept>
   </compound>
   <compound kind="file">
     <name>TViewPathTracingWork.h</name>
@@ -3924,8 +4168,8 @@
     <filename>d1/d9e/_t_view_path_tracing_work_8h.html</filename>
     <includes id="d5/d33/_render_work_8h" name="RenderWork.h" local="yes" import="no" module="no" objc="no">Core/Renderer/RenderWork.h</includes>
     <includes id="d0/d64/_t_view_path_handler_8h" name="TViewPathHandler.h" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/TViewPathHandler.h</includes>
-    <includes id="d0/db4/_region_8h" name="Region.h" local="yes" import="no" module="no" objc="no">Core/Scheduler/Region.h</includes>
     <includes id="d9/dfb/_t_vector2_8h" name="TVector2.h" local="yes" import="no" module="no" objc="no">Math/TVector2.h</includes>
+    <includes id="d5/d1e/_t_a_a_b_b2_d_8h" name="TAABB2D.h" local="yes" import="no" module="no" objc="no">Math/Geometry/TAABB2D.h</includes>
     <includes id="d3/df8/_spectrum_8h" name="Spectrum.h" local="yes" import="no" module="no" objc="no">Math/Color/Spectrum.h</includes>
     <includes id="d0/d1c/_t_view_path_tracing_work_8ipp" name="TViewPathTracingWork.ipp" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/TViewPathTracingWork.ipp</includes>
     <class kind="class">ph::TViewPathTracingWork</class>
@@ -3943,15 +4187,16 @@
     <includes id="d8/df3/_hit_detail_8h" name="HitDetail.h" local="yes" import="no" module="no" objc="no">Core/HitDetail.h</includes>
     <includes id="de/db3/_hit_probe_8h" name="HitProbe.h" local="yes" import="no" module="no" objc="no">Core/HitProbe.h</includes>
     <includes id="d6/d8a/_surface_hit_8h" name="SurfaceHit.h" local="yes" import="no" module="no" objc="no">Core/SurfaceHit.h</includes>
-    <includes id="d7/df8/_primitive_8h" name="Primitive.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/Primitive.h</includes>
-    <includes id="d4/d5e/_primitive_metadata_8h" name="PrimitiveMetadata.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/PrimitiveMetadata.h</includes>
+    <includes id="d7/df8/_primitive_8h" name="Primitive.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Primitive.h</includes>
+    <includes id="d4/d5e/_primitive_metadata_8h" name="PrimitiveMetadata.h" local="yes" import="no" module="no" objc="no">Core/Intersection/PrimitiveMetadata.h</includes>
     <includes id="d2/dbc/_surface_behavior_8h" name="SurfaceBehavior.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/SurfaceBehavior.h</includes>
     <includes id="d6/dcb/_surface_optics_8h" name="SurfaceOptics.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/SurfaceOptics.h</includes>
-    <includes id="db/d8d/_surface_tracer_8h" name="SurfaceTracer.h" local="yes" import="no" module="no" objc="no">Core/LTABuildingBlock/SurfaceTracer.h</includes>
-    <includes id="d1/dc0/_russian_roulette_8h" name="RussianRoulette.h" local="yes" import="no" module="no" objc="no">Core/LTABuildingBlock/RussianRoulette.h</includes>
-    <includes id="d5/d1e/_t_a_a_b_b2_d_8h" name="TAABB2D.h" local="yes" import="no" module="no" objc="no">Math/Geometry/TAABB2D.h</includes>
+    <includes id="db/d8d/_surface_tracer_8h" name="SurfaceTracer.h" local="yes" import="no" module="no" objc="no">Core/LTA/SurfaceTracer.h</includes>
+    <includes id="d1/dc0/_russian_roulette_8h" name="RussianRoulette.h" local="yes" import="no" module="no" objc="no">Core/LTA/RussianRoulette.h</includes>
     <includes id="dd/dff/_bsdf_query_context_8h" name="BsdfQueryContext.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/BsdfQueryContext.h</includes>
     <includes id="db/df0/_bsdf_sample_query_8h" name="BsdfSampleQuery.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/BsdfSampleQuery.h</includes>
+    <includes id="d5/d1e/_t_a_a_b_b2_d_8h" name="TAABB2D.h" local="yes" import="no" module="no" objc="no">Math/Geometry/TAABB2D.h</includes>
+    <includes id="df/db1/math_8h" name="math.h" local="yes" import="no" module="no" objc="no">Math/math.h</includes>
     <includes id="d6/da6/_math_2_random_2_sample_8h" name="sample.h" local="yes" import="no" module="no" objc="no">Math/Random/sample.h</includes>
     <namespace>ph</namespace>
   </compound>
@@ -3959,7 +4204,57 @@
     <name>TViewpoint.h</name>
     <path>Source/Core/Renderer/PM/</path>
     <filename>dc/d2a/_t_viewpoint_8h.html</filename>
+    <includes id="d5/d47/utility_8h" name="utility.h" local="yes" import="no" module="no" objc="no">Utility/utility.h</includes>
+    <includes id="dd/dff/traits_8h" name="traits.h" local="yes" import="no" module="no" objc="no">Utility/traits.h</includes>
     <class kind="class">ph::TViewpoint</class>
+    <namespace>ph</namespace>
+    <concept>ph::CViewpoint</concept>
+  </compound>
+  <compound kind="file">
+    <name>TVPMRadianceEvaluator.h</name>
+    <path>Source/Core/Renderer/PM/</path>
+    <filename>d3/d82/_t_v_p_m_radiance_evaluator_8h.html</filename>
+    <includes id="d0/d64/_t_view_path_handler_8h" name="TViewPathHandler.h" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/TViewPathHandler.h</includes>
+    <includes id="d7/de3/_t_photon_map_8h" name="TPhotonMap.h" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/TPhotonMap.h</includes>
+    <includes id="db/da6/_t_photon_8h" name="TPhoton.h" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/TPhoton.h</includes>
+    <includes id="df/da9/_p_m_common_params_8h" name="PMCommonParams.h" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/PMCommonParams.h</includes>
+    <includes id="de/d25/_t_sampling_film_8h" name="TSamplingFilm.h" local="yes" import="no" module="no" objc="no">Core/Filmic/TSamplingFilm.h</includes>
+    <includes id="d6/dcb/_surface_optics_8h" name="SurfaceOptics.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/SurfaceOptics.h</includes>
+    <includes id="d6/d8a/_surface_hit_8h" name="SurfaceHit.h" local="yes" import="no" module="no" objc="no">Core/SurfaceHit.h</includes>
+    <includes id="dd/dff/_bsdf_query_context_8h" name="BsdfQueryContext.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/BsdfQueryContext.h</includes>
+    <includes id="db/d2d/_bsdf_eval_query_8h" name="BsdfEvalQuery.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/BsdfEvalQuery.h</includes>
+    <includes id="da/dba/photon__map__light__transport_8h" name="photon_map_light_transport.h" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/photon_map_light_transport.h</includes>
+    <includes id="d3/df8/_spectrum_8h" name="Spectrum.h" local="yes" import="no" module="no" objc="no">Math/Color/Spectrum.h</includes>
+    <class kind="class">ph::TVPMRadianceEvaluator</class>
+    <namespace>ph</namespace>
+  </compound>
+  <compound kind="file">
+    <name>VanillaPMRenderer.cpp</name>
+    <path>Source/Core/Renderer/PM/</path>
+    <filename>db/db6/_vanilla_p_m_renderer_8cpp.html</filename>
+    <includes id="df/def/_vanilla_p_m_renderer_8h" name="VanillaPMRenderer.h" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/VanillaPMRenderer.h</includes>
+    <includes id="d5/dc2/_hdr_rgb_film_8h" name="HdrRgbFilm.h" local="yes" import="no" module="no" objc="no">Core/Filmic/HdrRgbFilm.h</includes>
+    <includes id="d1/df7/_p_m_atomic_statistics_8h" name="PMAtomicStatistics.h" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/PMAtomicStatistics.h</includes>
+    <includes id="da/de6/_full_photon_8h" name="FullPhoton.h" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/FullPhoton.h</includes>
+    <includes id="dc/d0b/_t_photon_path_tracing_work_8h" name="TPhotonPathTracingWork.h" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/TPhotonPathTracingWork.h</includes>
+    <includes id="dc/d3a/_sample_generator_8h" name="SampleGenerator.h" local="yes" import="no" module="no" objc="no">Core/SampleGenerator/SampleGenerator.h</includes>
+    <includes id="d7/de3/_t_photon_map_8h" name="TPhotonMap.h" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/TPhotonMap.h</includes>
+    <includes id="d3/d82/_t_v_p_m_radiance_evaluator_8h" name="TVPMRadianceEvaluator.h" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/TVPMRadianceEvaluator.h</includes>
+    <includes id="d1/d9e/_t_view_path_tracing_work_8h" name="TViewPathTracingWork.h" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/TViewPathTracingWork.h</includes>
+    <includes id="d5/dfd/_render_observation_info_8h" name="RenderObservationInfo.h" local="yes" import="no" module="no" objc="no">Core/Renderer/RenderObservationInfo.h</includes>
+    <includes id="db/d82/_render_progress_8h" name="RenderProgress.h" local="yes" import="no" module="no" objc="no">Core/Renderer/RenderProgress.h</includes>
+    <includes id="d9/d95/_render_stats_8h" name="RenderStats.h" local="yes" import="no" module="no" objc="no">Core/Renderer/RenderStats.h</includes>
+    <includes id="df/db1/math_8h" name="math.h" local="yes" import="no" module="no" objc="no">Math/math.h</includes>
+    <includes id="d8/de6/concurrent_8h" name="concurrent.h" local="yes" import="no" module="no" objc="no">Utility/Concurrent/concurrent.h</includes>
+    <includes id="d5/d29/_timer_8h" name="Timer.h" local="yes" import="no" module="no" objc="no">Utility/Timer.h</includes>
+    <namespace>ph</namespace>
+  </compound>
+  <compound kind="file">
+    <name>VanillaPMRenderer.h</name>
+    <path>Source/Core/Renderer/PM/</path>
+    <filename>df/def/_vanilla_p_m_renderer_8h.html</filename>
+    <includes id="df/d3e/_p_m_renderer_base_8h" name="PMRendererBase.h" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/PMRendererBase.h</includes>
+    <class kind="class">ph::VanillaPMRenderer</class>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
@@ -3968,28 +4263,6 @@
     <filename>dc/d22/_view_path_tracing_policy_8h.html</filename>
     <includes id="d3/d5e/surface__optics__fwd_8h" name="surface_optics_fwd.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/surface_optics_fwd.h</includes>
     <class kind="class">ph::ViewPathTracingPolicy</class>
-    <namespace>ph</namespace>
-  </compound>
-  <compound kind="file">
-    <name>VPMRadianceEvaluator.h</name>
-    <path>Source/Core/Renderer/PM/</path>
-    <filename>d8/d0f/_v_p_m_radiance_evaluator_8h.html</filename>
-    <includes id="d0/d64/_t_view_path_handler_8h" name="TViewPathHandler.h" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/TViewPathHandler.h</includes>
-    <includes id="d7/de3/_t_photon_map_8h" name="TPhotonMap.h" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/TPhotonMap.h</includes>
-    <includes id="da/de6/_full_photon_8h" name="FullPhoton.h" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/FullPhoton.h</includes>
-    <includes id="d5/dc2/_hdr_rgb_film_8h" name="HdrRgbFilm.h" local="yes" import="no" module="no" objc="no">Core/Filmic/HdrRgbFilm.h</includes>
-    <includes id="d7/df8/_primitive_8h" name="Primitive.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/Primitive.h</includes>
-    <includes id="d4/d5e/_primitive_metadata_8h" name="PrimitiveMetadata.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/PrimitiveMetadata.h</includes>
-    <includes id="d2/dbc/_surface_behavior_8h" name="SurfaceBehavior.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/SurfaceBehavior.h</includes>
-    <includes id="d6/dcb/_surface_optics_8h" name="SurfaceOptics.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/SurfaceOptics.h</includes>
-    <includes id="d6/d8a/_surface_hit_8h" name="SurfaceHit.h" local="yes" import="no" module="no" objc="no">Core/SurfaceHit.h</includes>
-    <includes id="da/dc6/_emitter_8h" name="Emitter.h" local="yes" import="no" module="no" objc="no">Core/Emitter/Emitter.h</includes>
-    <includes id="d3/dc1/_p_m_renderer_8h" name="PMRenderer.h" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/PMRenderer.h</includes>
-    <includes id="db/d8d/_surface_tracer_8h" name="SurfaceTracer.h" local="yes" import="no" module="no" objc="no">Core/LTABuildingBlock/SurfaceTracer.h</includes>
-    <includes id="d1/d0c/lta_8h" name="lta.h" local="yes" import="no" module="no" objc="no">Core/LTABuildingBlock/lta.h</includes>
-    <includes id="dd/dff/_bsdf_query_context_8h" name="BsdfQueryContext.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/BsdfQueryContext.h</includes>
-    <includes id="db/d2d/_bsdf_eval_query_8h" name="BsdfEvalQuery.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/BsdfEvalQuery.h</includes>
-    <class kind="class">ph::VPMRadianceEvaluator</class>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
@@ -4255,7 +4528,6 @@
     <path>Source/Core/Renderer/Sampling/</path>
     <filename>d5/d4a/_sampling_renderer_8cpp.html</filename>
     <includes id="df/d50/_sampling_renderer_8h" name="SamplingRenderer.h" local="yes" import="no" module="no" objc="no">Core/Renderer/Sampling/SamplingRenderer.h</includes>
-    <includes id="d7/dc2/_sample_filters_8h" name="SampleFilters.h" local="yes" import="no" module="no" objc="no">Core/Filmic/SampleFilters.h</includes>
     <includes id="dd/d58/_b_v_p_t_estimator_8h" name="BVPTEstimator.h" local="yes" import="no" module="no" objc="no">Core/Estimator/BVPTEstimator.h</includes>
     <includes id="d3/d5c/_b_n_e_e_p_t_estimator_8h" name="BNEEPTEstimator.h" local="yes" import="no" module="no" objc="no">Core/Estimator/BNEEPTEstimator.h</includes>
     <includes id="dd/d38/_b_v_p_t_d_l_estimator_8h" name="BVPTDLEstimator.h" local="yes" import="no" module="no" objc="no">Core/Estimator/BVPTDLEstimator.h</includes>
@@ -4305,7 +4577,6 @@
     <includes id="da/d95/_t_receiver_measurement_estimator_8h" name="TReceiverMeasurementEstimator.h" local="yes" import="no" module="no" objc="no">Core/Renderer/Sampling/TReceiverMeasurementEstimator.h</includes>
     <includes id="d9/dfb/_t_vector2_8h" name="TVector2.h" local="yes" import="no" module="no" objc="no">Math/TVector2.h</includes>
     <includes id="da/da9/_ray_8h" name="Ray.h" local="yes" import="no" module="no" objc="no">Core/Ray.h</includes>
-    <includes id="d7/dc2/_sample_filters_8h" name="SampleFilters.h" local="yes" import="no" module="no" objc="no">Core/Filmic/SampleFilters.h</includes>
     <includes id="df/dde/_i_ray_energy_estimator_8h" name="IRayEnergyEstimator.h" local="yes" import="no" module="no" objc="no">Core/Estimator/IRayEnergyEstimator.h</includes>
     <namespace>ph</namespace>
   </compound>
@@ -4351,12 +4622,6 @@
     <namespace>ph::math</namespace>
   </compound>
   <compound kind="file">
-    <name>EHaltonPermutation.h</name>
-    <path>Source/Core/SampleGenerator/Halton/</path>
-    <filename>de/d77/_e_halton_permutation_8h.html</filename>
-    <namespace>ph</namespace>
-  </compound>
-  <compound kind="file">
     <name>halton.h</name>
     <path>Source/Core/SampleGenerator/Halton/</path>
     <filename>dc/d57/halton_8h.html</filename>
@@ -4365,8 +4630,10 @@
     <includes id="d6/d6b/math__table_8h" name="math_table.h" local="yes" import="no" module="no" objc="no">Math/math_table.h</includes>
     <includes id="d2/d27/radical__inverse_8h" name="radical_inverse.h" local="yes" import="no" module="no" objc="no">Math/Random/Quasi/radical_inverse.h</includes>
     <includes id="d3/d2f/shuffle_8h" name="shuffle.h" local="yes" import="no" module="no" objc="no">Math/Random/shuffle.h</includes>
+    <includes id="db/dfb/hash_8h" name="hash.h" local="yes" import="no" module="no" objc="no">Math/hash.h</includes>
     <class kind="class">ph::halton_detail::FixedPermuter</class>
     <class kind="class">ph::halton_detail::PerDigitPermuter</class>
+    <class kind="class">ph::halton_detail::OwenScrambledPermuter</class>
     <namespace>ph</namespace>
     <namespace>ph::halton_detail</namespace>
   </compound>
@@ -4376,6 +4643,12 @@
     <filename>d3/db9/halton__fwd_8h.html</filename>
     <namespace>ph</namespace>
     <namespace>ph::halton_detail</namespace>
+  </compound>
+  <compound kind="file">
+    <name>halton_randomization_enums.h</name>
+    <path>Source/Core/SampleGenerator/Halton/</path>
+    <filename>d5/dd6/halton__randomization__enums_8h.html</filename>
+    <namespace>ph</namespace>
   </compound>
   <compound kind="file">
     <name>RadicalInversePermutations.h</name>
@@ -4393,7 +4666,7 @@
     <name>SampleFlow.h</name>
     <path>Source/Core/SampleGenerator/</path>
     <filename>d6/d33/_sample_flow_8h.html</filename>
-    <includes id="d0/d80/_random_8h" name="Random.h" local="yes" import="no" module="no" objc="no">Math/Random.h</includes>
+    <includes id="d0/d80/_random_8h" name="Random.h" local="yes" import="no" module="no" objc="no">Math/Random/Random.h</includes>
     <includes id="d6/da6/_math_2_random_2_sample_8h" name="sample.h" local="yes" import="no" module="no" objc="no">Math/Random/sample.h</includes>
     <class kind="class">ph::SampleFlow</class>
     <namespace>ph</namespace>
@@ -4403,7 +4676,6 @@
     <path>Source/Core/SampleGenerator/</path>
     <filename>da/d17/_sample_generator_8cpp.html</filename>
     <includes id="dc/d3a/_sample_generator_8h" name="SampleGenerator.h" local="yes" import="no" module="no" objc="no">Core/SampleGenerator/SampleGenerator.h</includes>
-    <includes id="d0/d80/_random_8h" name="Random.h" local="yes" import="no" module="no" objc="no">Math/Random.h</includes>
     <includes id="de/d5a/_sample_context_8h" name="SampleContext.h" local="yes" import="no" module="no" objc="no">Core/SampleGenerator/SampleContext.h</includes>
     <namespace>ph</namespace>
   </compound>
@@ -4445,7 +4717,7 @@
     <path>Source/Core/SampleGenerator/</path>
     <filename>d1/d8e/_samples_n_d_stream_8h.html</filename>
     <includes id="d6/d33/_sample_flow_8h" name="SampleFlow.h" local="yes" import="no" module="no" objc="no">Core/SampleGenerator/SampleFlow.h</includes>
-    <includes id="d0/d80/_random_8h" name="Random.h" local="yes" import="no" module="no" objc="no">Math/Random.h</includes>
+    <includes id="d0/d80/_random_8h" name="Random.h" local="yes" import="no" module="no" objc="no">Math/Random/Random.h</includes>
     <class kind="class">ph::SamplesNDStream</class>
     <namespace>ph</namespace>
   </compound>
@@ -4474,7 +4746,8 @@
     <includes id="df/db1/math_8h" name="math.h" local="yes" import="no" module="no" objc="no">Math/math.h</includes>
     <includes id="dc/d57/halton_8h" name="halton.h" local="yes" import="no" module="no" objc="no">Core/SampleGenerator/Halton/halton.h</includes>
     <includes id="de/d5a/_sample_context_8h" name="SampleContext.h" local="yes" import="no" module="no" objc="no">Core/SampleGenerator/SampleContext.h</includes>
-    <includes id="d0/d80/_random_8h" name="Random.h" local="yes" import="no" module="no" objc="no">Math/Random.h</includes>
+    <includes id="d0/d80/_random_8h" name="Random.h" local="yes" import="no" module="no" objc="no">Math/Random/Random.h</includes>
+    <includes id="d6/d6b/math__table_8h" name="math_table.h" local="yes" import="no" module="no" objc="no">Math/math_table.h</includes>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
@@ -4482,8 +4755,9 @@
     <path>Source/Core/SampleGenerator/</path>
     <filename>da/da4/_s_g_halton_8h.html</filename>
     <includes id="dc/d3a/_sample_generator_8h" name="SampleGenerator.h" local="yes" import="no" module="no" objc="no">Core/SampleGenerator/SampleGenerator.h</includes>
-    <includes id="de/d77/_e_halton_permutation_8h" name="EHaltonPermutation.h" local="yes" import="no" module="no" objc="no">Core/SampleGenerator/Halton/EHaltonPermutation.h</includes>
+    <includes id="d5/dd6/halton__randomization__enums_8h" name="halton_randomization_enums.h" local="yes" import="no" module="no" objc="no">Core/SampleGenerator/Halton/halton_randomization_enums.h</includes>
     <includes id="d3/db9/halton__fwd_8h" name="halton_fwd.h" local="yes" import="no" module="no" objc="no">Core/SampleGenerator/Halton/halton_fwd.h</includes>
+    <includes id="dd/da2/_t_span_8h" name="TSpan.h" local="yes" import="no" module="no" objc="no">Utility/TSpan.h</includes>
     <class kind="class">ph::SGHalton</class>
     <namespace>ph</namespace>
   </compound>
@@ -4493,7 +4767,7 @@
     <filename>d1/d5b/_s_g_stratified_8cpp.html</filename>
     <includes id="d8/da6/_s_g_stratified_8h" name="SGStratified.h" local="yes" import="no" module="no" objc="no">Core/SampleGenerator/SGStratified.h</includes>
     <includes id="db/dfc/_core_2_sample_8h" name="Sample.h" local="yes" import="no" module="no" objc="no">Core/Sample.h</includes>
-    <includes id="d0/d80/_random_8h" name="Random.h" local="yes" import="no" module="no" objc="no">Math/Random.h</includes>
+    <includes id="d0/d80/_random_8h" name="Random.h" local="yes" import="no" module="no" objc="no">Math/Random/Random.h</includes>
     <includes id="d4/d4c/_samples_n_d_8h" name="SamplesND.h" local="yes" import="no" module="no" objc="no">Core/SampleGenerator/SamplesND.h</includes>
     <includes id="d9/dfb/_t_vector2_8h" name="TVector2.h" local="yes" import="no" module="no" objc="no">Math/TVector2.h</includes>
     <includes id="d0/d13/_sample_stage_reviser_8h" name="SampleStageReviser.h" local="yes" import="no" module="no" objc="no">Core/SampleGenerator/SampleStageReviser.h</includes>
@@ -4512,7 +4786,7 @@
     <path>Source/Core/SampleGenerator/</path>
     <filename>d2/dc5/_s_g_uniform_random_8cpp.html</filename>
     <includes id="d2/d4e/_s_g_uniform_random_8h" name="SGUniformRandom.h" local="yes" import="no" module="no" objc="no">Core/SampleGenerator/SGUniformRandom.h</includes>
-    <includes id="d0/d80/_random_8h" name="Random.h" local="yes" import="no" module="no" objc="no">Math/Random.h</includes>
+    <includes id="d0/d80/_random_8h" name="Random.h" local="yes" import="no" module="no" objc="no">Math/Random/Random.h</includes>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
@@ -4528,7 +4802,7 @@
     <path>Source/Core/SampleGenerator/</path>
     <filename>d6/dd0/_s_g_util_8cpp.html</filename>
     <includes id="d5/dd7/_s_g_util_8h" name="SGUtil.h" local="yes" import="no" module="no" objc="no">Core/SampleGenerator/SGUtil.h</includes>
-    <includes id="d0/d80/_random_8h" name="Random.h" local="yes" import="no" module="no" objc="no">Math/Random.h</includes>
+    <includes id="d0/d80/_random_8h" name="Random.h" local="yes" import="no" module="no" objc="no">Math/Random/Random.h</includes>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
@@ -4728,7 +5002,7 @@
     <path>Source/Core/SurfaceBehavior/</path>
     <filename>dd/dff/_bsdf_query_context_8h.html</filename>
     <includes id="d3/d5e/surface__optics__fwd_8h" name="surface_optics_fwd.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/surface_optics_fwd.h</includes>
-    <includes id="da/d66/_sidedness_agreement_8h" name="SidednessAgreement.h" local="yes" import="no" module="no" objc="no">Core/LTABuildingBlock/SidednessAgreement.h</includes>
+    <includes id="da/d66/_sidedness_agreement_8h" name="SidednessAgreement.h" local="yes" import="no" module="no" objc="no">Core/LTA/SidednessAgreement.h</includes>
     <class kind="class">ph::BsdfQueryContext</class>
     <namespace>ph</namespace>
   </compound>
@@ -4938,6 +5212,7 @@
     <name>surface_optics_fwd.h</name>
     <path>Source/Core/SurfaceBehavior/</path>
     <filename>d3/d5e/surface__optics__fwd_8h.html</filename>
+    <includes id="df/db1/math_8h" name="math.h" local="yes" import="no" module="no" objc="no">Math/math.h</includes>
     <includes id="d7/d2d/_t_bit_flags_8h" name="TBitFlags.h" local="yes" import="no" module="no" objc="no">Utility/TBitFlags.h</includes>
     <namespace>ph</namespace>
   </compound>
@@ -5005,7 +5280,7 @@
     <includes id="db/df0/_bsdf_sample_query_8h" name="BsdfSampleQuery.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/BsdfSampleQuery.h</includes>
     <includes id="d7/d2c/_bsdf_pdf_query_8h" name="BsdfPdfQuery.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/BsdfPdfQuery.h</includes>
     <includes id="d4/d68/_exact_dielectric_fresnel_8h" name="ExactDielectricFresnel.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/Property/ExactDielectricFresnel.h</includes>
-    <includes id="da/d66/_sidedness_agreement_8h" name="SidednessAgreement.h" local="yes" import="no" module="no" objc="no">Core/LTABuildingBlock/SidednessAgreement.h</includes>
+    <includes id="da/d66/_sidedness_agreement_8h" name="SidednessAgreement.h" local="yes" import="no" module="no" objc="no">Core/LTA/SidednessAgreement.h</includes>
     <includes id="df/deb/constant__textures_8h" name="constant_textures.h" local="yes" import="no" module="no" objc="no">Core/Texture/constant_textures.h</includes>
     <includes id="d6/def/_t_sampler_8h" name="TSampler.h" local="yes" import="no" module="no" objc="no">Core/Texture/TSampler.h</includes>
     <includes id="d6/d33/_sample_flow_8h" name="SampleFlow.h" local="yes" import="no" module="no" objc="no">Core/SampleGenerator/SampleFlow.h</includes>
@@ -5082,7 +5357,7 @@
     <includes id="dd/d17/constant_8h" name="constant.h" local="yes" import="no" module="no" objc="no">Math/constant.h</includes>
     <includes id="df/db1/math_8h" name="math.h" local="yes" import="no" module="no" objc="no">Math/math.h</includes>
     <includes id="d6/def/_t_sampler_8h" name="TSampler.h" local="yes" import="no" module="no" objc="no">Core/Texture/TSampler.h</includes>
-    <includes id="da/d66/_sidedness_agreement_8h" name="SidednessAgreement.h" local="yes" import="no" module="no" objc="no">Core/LTABuildingBlock/SidednessAgreement.h</includes>
+    <includes id="da/d66/_sidedness_agreement_8h" name="SidednessAgreement.h" local="yes" import="no" module="no" objc="no">Core/LTA/SidednessAgreement.h</includes>
     <includes id="d4/d8f/_t_hemisphere_8h" name="THemisphere.h" local="yes" import="no" module="no" objc="no">Math/Geometry/THemisphere.h</includes>
     <includes id="d7/d25/_t_orthonormal_basis3_8h" name="TOrthonormalBasis3.h" local="yes" import="no" module="no" objc="no">Math/TOrthonormalBasis3.h</includes>
     <includes id="d6/d33/_sample_flow_8h" name="SampleFlow.h" local="yes" import="no" module="no" objc="no">Core/SampleGenerator/SampleFlow.h</includes>
@@ -5143,11 +5418,11 @@
     <includes id="d9/d5a/_interface_statistics_8h" name="InterfaceStatistics.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/SurfaceOptics/LaurentBelcour/InterfaceStatistics.h</includes>
     <includes id="d0/d7b/_lb_layer_8h" name="LbLayer.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/SurfaceOptics/LaurentBelcour/LbLayer.h</includes>
     <includes id="d7/d66/_iso_trowbridge_reitz_constant_8h" name="IsoTrowbridgeReitzConstant.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/Property/IsoTrowbridgeReitzConstant.h</includes>
-    <includes id="da/d66/_sidedness_agreement_8h" name="SidednessAgreement.h" local="yes" import="no" module="no" objc="no">Core/LTABuildingBlock/SidednessAgreement.h</includes>
+    <includes id="da/d66/_sidedness_agreement_8h" name="SidednessAgreement.h" local="yes" import="no" module="no" objc="no">Core/LTA/SidednessAgreement.h</includes>
     <includes id="db/d2d/_bsdf_eval_query_8h" name="BsdfEvalQuery.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/BsdfEvalQuery.h</includes>
     <includes id="db/df0/_bsdf_sample_query_8h" name="BsdfSampleQuery.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/BsdfSampleQuery.h</includes>
     <includes id="d7/d2c/_bsdf_pdf_query_8h" name="BsdfPdfQuery.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/BsdfPdfQuery.h</includes>
-    <includes id="d0/d80/_random_8h" name="Random.h" local="yes" import="no" module="no" objc="no">Math/Random.h</includes>
+    <includes id="d0/d80/_random_8h" name="Random.h" local="yes" import="no" module="no" objc="no">Math/Random/Random.h</includes>
     <includes id="d6/d33/_sample_flow_8h" name="SampleFlow.h" local="yes" import="no" module="no" objc="no">Core/SampleGenerator/SampleFlow.h</includes>
     <namespace>ph</namespace>
   </compound>
@@ -5167,7 +5442,7 @@
     <filename>dd/d90/_table_f_g_d_8cpp.html</filename>
     <includes id="d4/d8e/_table_f_g_d_8h" name="TableFGD.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/SurfaceOptics/LaurentBelcour/TableFGD.h</includes>
     <includes id="df/db1/math_8h" name="math.h" local="yes" import="no" module="no" objc="no">Math/math.h</includes>
-    <includes id="d0/d80/_random_8h" name="Random.h" local="yes" import="no" module="no" objc="no">Math/Random.h</includes>
+    <includes id="d0/d80/_random_8h" name="Random.h" local="yes" import="no" module="no" objc="no">Math/Random/Random.h</includes>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
@@ -5186,7 +5461,7 @@
     <filename>da/d32/_table_t_i_r_8cpp.html</filename>
     <includes id="d5/d3e/_table_t_i_r_8h" name="TableTIR.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/SurfaceOptics/LaurentBelcour/TableTIR.h</includes>
     <includes id="df/db1/math_8h" name="math.h" local="yes" import="no" module="no" objc="no">Math/math.h</includes>
-    <includes id="d0/d80/_random_8h" name="Random.h" local="yes" import="no" module="no" objc="no">Math/Random.h</includes>
+    <includes id="d0/d80/_random_8h" name="Random.h" local="yes" import="no" module="no" objc="no">Math/Random/Random.h</includes>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
@@ -5268,7 +5543,7 @@
     <includes id="df/db1/math_8h" name="math.h" local="yes" import="no" module="no" objc="no">Math/math.h</includes>
     <includes id="d6/def/_t_sampler_8h" name="TSampler.h" local="yes" import="no" module="no" objc="no">Core/Texture/TSampler.h</includes>
     <includes id="df/deb/constant__textures_8h" name="constant_textures.h" local="yes" import="no" module="no" objc="no">Core/Texture/constant_textures.h</includes>
-    <includes id="da/d66/_sidedness_agreement_8h" name="SidednessAgreement.h" local="yes" import="no" module="no" objc="no">Core/LTABuildingBlock/SidednessAgreement.h</includes>
+    <includes id="da/d66/_sidedness_agreement_8h" name="SidednessAgreement.h" local="yes" import="no" module="no" objc="no">Core/LTA/SidednessAgreement.h</includes>
     <includes id="d4/d8f/_t_hemisphere_8h" name="THemisphere.h" local="yes" import="no" module="no" objc="no">Math/Geometry/THemisphere.h</includes>
     <includes id="d7/d25/_t_orthonormal_basis3_8h" name="TOrthonormalBasis3.h" local="yes" import="no" module="no" objc="no">Math/TOrthonormalBasis3.h</includes>
     <includes id="d6/d33/_sample_flow_8h" name="SampleFlow.h" local="yes" import="no" module="no" objc="no">Core/SampleGenerator/SampleFlow.h</includes>
@@ -5293,7 +5568,7 @@
     <includes id="db/df0/_bsdf_sample_query_8h" name="BsdfSampleQuery.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/BsdfSampleQuery.h</includes>
     <includes id="d7/d2c/_bsdf_pdf_query_8h" name="BsdfPdfQuery.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/BsdfPdfQuery.h</includes>
     <includes id="d4/d68/_exact_dielectric_fresnel_8h" name="ExactDielectricFresnel.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/Property/ExactDielectricFresnel.h</includes>
-    <includes id="da/d66/_sidedness_agreement_8h" name="SidednessAgreement.h" local="yes" import="no" module="no" objc="no">Core/LTABuildingBlock/SidednessAgreement.h</includes>
+    <includes id="da/d66/_sidedness_agreement_8h" name="SidednessAgreement.h" local="yes" import="no" module="no" objc="no">Core/LTA/SidednessAgreement.h</includes>
     <includes id="d6/def/_t_sampler_8h" name="TSampler.h" local="yes" import="no" module="no" objc="no">Core/Texture/TSampler.h</includes>
     <includes id="df/db1/math_8h" name="math.h" local="yes" import="no" module="no" objc="no">Math/math.h</includes>
     <includes id="d6/d33/_sample_flow_8h" name="SampleFlow.h" local="yes" import="no" module="no" objc="no">Core/SampleGenerator/SampleFlow.h</includes>
@@ -5323,7 +5598,7 @@
     <includes id="dd/d17/constant_8h" name="constant.h" local="yes" import="no" module="no" objc="no">Math/constant.h</includes>
     <includes id="df/db1/math_8h" name="math.h" local="yes" import="no" module="no" objc="no">Math/math.h</includes>
     <includes id="dc/dfb/_bsdf_helper_8h" name="BsdfHelper.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/BsdfHelper.h</includes>
-    <includes id="da/d66/_sidedness_agreement_8h" name="SidednessAgreement.h" local="yes" import="no" module="no" objc="no">Core/LTABuildingBlock/SidednessAgreement.h</includes>
+    <includes id="da/d66/_sidedness_agreement_8h" name="SidednessAgreement.h" local="yes" import="no" module="no" objc="no">Core/LTA/SidednessAgreement.h</includes>
     <includes id="d6/d33/_sample_flow_8h" name="SampleFlow.h" local="yes" import="no" module="no" objc="no">Core/SampleGenerator/SampleFlow.h</includes>
     <namespace>ph</namespace>
   </compound>
@@ -5342,19 +5617,22 @@
     <path>Source/Core/</path>
     <filename>df/d0a/_surface_hit_8cpp.html</filename>
     <includes id="d6/d8a/_surface_hit_8h" name="SurfaceHit.h" local="yes" import="no" module="no" objc="no">Core/SurfaceHit.h</includes>
-    <includes id="d4/d5e/_primitive_metadata_8h" name="PrimitiveMetadata.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/PrimitiveMetadata.h</includes>
-    <includes id="d7/df8/_primitive_8h" name="Primitive.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/Primitive.h</includes>
+    <includes id="d7/df8/_primitive_8h" name="Primitive.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Primitive.h</includes>
+    <includes id="d4/d5e/_primitive_metadata_8h" name="PrimitiveMetadata.h" local="yes" import="no" module="no" objc="no">Core/Intersection/PrimitiveMetadata.h</includes>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
     <name>SurfaceHit.h</name>
     <path>Source/Core/</path>
     <filename>d6/d8a/_surface_hit_8h.html</filename>
-    <includes id="d8/df3/_hit_detail_8h" name="HitDetail.h" local="yes" import="no" module="no" objc="no">Core/HitDetail.h</includes>
     <includes id="de/db3/_hit_probe_8h" name="HitProbe.h" local="yes" import="no" module="no" objc="no">Core/HitProbe.h</includes>
+    <includes id="d8/df3/_hit_detail_8h" name="HitDetail.h" local="yes" import="no" module="no" objc="no">Core/HitDetail.h</includes>
     <includes id="da/da9/_ray_8h" name="Ray.h" local="yes" import="no" module="no" objc="no">Core/Ray.h</includes>
+    <includes id="df/db1/math_8h" name="math.h" local="yes" import="no" module="no" objc="no">Math/math.h</includes>
+    <includes id="d7/d2d/_t_bit_flags_8h" name="TBitFlags.h" local="yes" import="no" module="no" objc="no">Utility/TBitFlags.h</includes>
     <class kind="class">ph::SurfaceHit</class>
     <namespace>ph</namespace>
+    <namespace>ph::detail</namespace>
   </compound>
   <compound kind="file">
     <name>constant_textures.h</name>
@@ -5380,11 +5658,29 @@
     <includes id="d3/df8/_spectrum_8h" name="Spectrum.h" local="yes" import="no" module="no" objc="no">Math/Color/Spectrum.h</includes>
     <includes id="d0/da9/_t_arithmetic_array_8h" name="TArithmeticArray.h" local="yes" import="no" module="no" objc="no">Math/TArithmeticArray.h</includes>
     <class kind="class">ph::texfunc::TAdd</class>
+    <class kind="class">ph::texfunc::TSubtract</class>
     <class kind="class">ph::texfunc::TMultiply</class>
+    <class kind="class">ph::texfunc::TDivide</class>
+    <class kind="class">ph::texfunc::TPower</class>
     <class kind="class">ph::TBinaryTextureOperator</class>
     <namespace>ph</namespace>
     <namespace>ph::texfunc</namespace>
     <concept>ph::texfunc::CBinaryOperator</concept>
+  </compound>
+  <compound kind="file">
+    <name>ternary_texture_operators.h</name>
+    <path>Source/Core/Texture/Function/</path>
+    <filename>d6/db3/ternary__texture__operators_8h.html</filename>
+    <includes id="d4/d66/_t_texture_8h" name="TTexture.h" local="yes" import="no" module="no" objc="no">Core/Texture/TTexture.h</includes>
+    <includes id="dc/d71/_sample_location_8h" name="SampleLocation.h" local="yes" import="no" module="no" objc="no">Core/Texture/SampleLocation.h</includes>
+    <includes id="dd/dff/traits_8h" name="traits.h" local="yes" import="no" module="no" objc="no">Utility/traits.h</includes>
+    <includes id="d3/df8/_spectrum_8h" name="Spectrum.h" local="yes" import="no" module="no" objc="no">Math/Color/Spectrum.h</includes>
+    <includes id="d0/da9/_t_arithmetic_array_8h" name="TArithmeticArray.h" local="yes" import="no" module="no" objc="no">Math/TArithmeticArray.h</includes>
+    <class kind="class">ph::texfunc::TClamp</class>
+    <class kind="class">ph::TTernaryTextureOperator</class>
+    <namespace>ph</namespace>
+    <namespace>ph::texfunc</namespace>
+    <concept>ph::texfunc::CTernaryOperator</concept>
   </compound>
   <compound kind="file">
     <name>texture_parametrics.h</name>
@@ -5401,13 +5697,16 @@
     <filename>dc/dae/unary__texture__operators_8h.html</filename>
     <includes id="d4/d66/_t_texture_8h" name="TTexture.h" local="yes" import="no" module="no" objc="no">Core/Texture/TTexture.h</includes>
     <includes id="dc/d71/_sample_location_8h" name="SampleLocation.h" local="yes" import="no" module="no" objc="no">Core/Texture/SampleLocation.h</includes>
+    <includes id="d0/da8/binary__texture__operators_8h" name="binary_texture_operators.h" local="yes" import="no" module="no" objc="no">Core/Texture/Function/binary_texture_operators.h</includes>
+    <includes id="d6/db3/ternary__texture__operators_8h" name="ternary_texture_operators.h" local="yes" import="no" module="no" objc="no">Core/Texture/Function/ternary_texture_operators.h</includes>
     <includes id="dd/dff/traits_8h" name="traits.h" local="yes" import="no" module="no" objc="no">Utility/traits.h</includes>
     <includes id="d3/df8/_spectrum_8h" name="Spectrum.h" local="yes" import="no" module="no" objc="no">Math/Color/Spectrum.h</includes>
     <includes id="d0/da9/_t_arithmetic_array_8h" name="TArithmeticArray.h" local="yes" import="no" module="no" objc="no">Math/TArithmeticArray.h</includes>
     <class kind="class">ph::texfunc::TDefaultConversion</class>
     <class kind="class">ph::texfunc::TScalarToSpectrum</class>
-    <class kind="class">ph::texfunc::TAddConstant</class>
-    <class kind="class">ph::texfunc::TMultiplyConstant</class>
+    <class kind="class">ph::texfunc::TAbsolute</class>
+    <class kind="class">ph::texfunc::TUnaryFromBinary</class>
+    <class kind="class">ph::texfunc::TUnaryFromTernary</class>
     <class kind="class">ph::TUnaryTextureOperator</class>
     <namespace>ph</namespace>
     <namespace>ph::texfunc</namespace>
@@ -5481,6 +5780,7 @@
     <filename>da/d72/_t_color_pixel_texture2_d_8h.html</filename>
     <includes id="db/dfa/_t_pixel_texture2_d_8h" name="TPixelTexture2D.h" local="yes" import="no" module="no" objc="no">Core/Texture/Pixel/TPixelTexture2D.h</includes>
     <includes id="dc/d71/_sample_location_8h" name="SampleLocation.h" local="yes" import="no" module="no" objc="no">Core/Texture/SampleLocation.h</includes>
+    <includes id="d5/d14/_t_vector3_8h" name="TVector3.h" local="yes" import="no" module="no" objc="no">Math/TVector3.h</includes>
     <includes id="d7/d8d/color__enums_8h" name="color_enums.h" local="yes" import="no" module="no" objc="no">Math/Color/color_enums.h</includes>
     <includes id="d0/d99/color__spaces_8h" name="color_spaces.h" local="yes" import="no" module="no" objc="no">Math/Color/color_spaces.h</includes>
     <includes id="d3/df8/_spectrum_8h" name="Spectrum.h" local="yes" import="no" module="no" objc="no">Math/Color/Spectrum.h</includes>
@@ -5620,7 +5920,6 @@
     <filename>dd/d83/_texture_loader_8cpp.html</filename>
     <includes id="d6/d11/_texture_loader_8h" name="TextureLoader.h" local="yes" import="no" module="no" objc="no">Core/Texture/TextureLoader.h</includes>
     <includes id="d4/de5/_ldr_rgb_texture2_d_8h" name="LdrRgbTexture2D.h" local="yes" import="no" module="no" objc="no">Core/Texture/LdrRgbTexture2D.h</includes>
-    <includes id="d0/d80/_random_8h" name="Random.h" local="yes" import="no" module="no" objc="no">Math/Random.h</includes>
     <includes id="d2/de8/lib__stb_8h" name="lib_stb.h" local="yes" import="no" module="no" objc="no">Common/ThirdParty/lib_stb.h</includes>
     <namespace>ph</namespace>
   </compound>
@@ -5840,7 +6139,6 @@
     <filename>da/dc3/_vo_homo_absorption_8cpp.html</filename>
     <includes id="d1/d98/_vo_homo_absorption_8h" name="VoHomoAbsorption.h" local="yes" import="no" module="no" objc="no">Core/VolumeBehavior/VolumeOptics/VoHomoAbsorption.h</includes>
     <includes id="d6/d3a/_bf_constant_8h" name="BfConstant.h" local="yes" import="no" module="no" objc="no">Core/VolumeBehavior/BlockFunction/BfConstant.h</includes>
-    <includes id="d0/d80/_random_8h" name="Random.h" local="yes" import="no" module="no" objc="no">Math/Random.h</includes>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
@@ -6567,6 +6865,7 @@
     <path>Source/EngineEnv/SampleSource/</path>
     <filename>d2/d7c/_halton_sample_source_8h.html</filename>
     <includes id="db/de6/_runtime_sample_source_8h" name="RuntimeSampleSource.h" local="yes" import="no" module="no" objc="no">EngineEnv/SampleSource/RuntimeSampleSource.h</includes>
+    <includes id="db/d66/sdl__halton__randomization__types_8h" name="sdl_halton_randomization_types.h" local="yes" import="no" module="no" objc="no">EngineEnv/SampleSource/sdl_halton_randomization_types.h</includes>
     <includes id="d7/d74/sdl__interface_8h" name="sdl_interface.h" local="yes" import="no" module="no" objc="no">SDL/sdl_interface.h</includes>
     <class kind="class">ph::HaltonSampleSource</class>
     <namespace>ph</namespace>
@@ -6587,6 +6886,14 @@
     <includes id="d5/d09/_core_sdl_resource_8h" name="CoreSdlResource.h" local="yes" import="no" module="no" objc="no">EngineEnv/CoreSdlResource.h</includes>
     <includes id="d7/d74/sdl__interface_8h" name="sdl_interface.h" local="yes" import="no" module="no" objc="no">SDL/sdl_interface.h</includes>
     <class kind="class">ph::SampleSource</class>
+    <namespace>ph</namespace>
+  </compound>
+  <compound kind="file">
+    <name>sdl_halton_randomization_types.h</name>
+    <path>Source/EngineEnv/SampleSource/</path>
+    <filename>db/d66/sdl__halton__randomization__types_8h.html</filename>
+    <includes id="d5/dd6/halton__randomization__enums_8h" name="halton_randomization_enums.h" local="yes" import="no" module="no" objc="no">Core/SampleGenerator/Halton/halton_randomization_enums.h</includes>
+    <includes id="d7/d74/sdl__interface_8h" name="sdl_interface.h" local="yes" import="no" module="no" objc="no">SDL/sdl_interface.h</includes>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
@@ -6695,7 +7002,7 @@
     <includes id="dd/d58/_b_v_p_t_estimator_8h" name="BVPTEstimator.h" local="yes" import="no" module="no" objc="no">Core/Estimator/BVPTEstimator.h</includes>
     <includes id="d3/d5c/_b_n_e_e_p_t_estimator_8h" name="BNEEPTEstimator.h" local="yes" import="no" module="no" objc="no">Core/Estimator/BNEEPTEstimator.h</includes>
     <includes id="dd/d38/_b_v_p_t_d_l_estimator_8h" name="BVPTDLEstimator.h" local="yes" import="no" module="no" objc="no">Core/Estimator/BVPTDLEstimator.h</includes>
-    <includes id="d7/dc2/_sample_filters_8h" name="SampleFilters.h" local="yes" import="no" module="no" objc="no">Core/Filmic/SampleFilters.h</includes>
+    <includes id="d4/dd3/_sample_filter_8h" name="SampleFilter.h" local="yes" import="no" module="no" objc="no">Core/Filmic/SampleFilter.h</includes>
     <includes id="d1/ddb/_equal_sampling_renderer_8h" name="EqualSamplingRenderer.h" local="yes" import="no" module="no" objc="no">Core/Renderer/Sampling/EqualSamplingRenderer.h</includes>
     <includes id="d7/d19/_viewport_8h" name="Viewport.h" local="yes" import="no" module="no" objc="no">Frame/Viewport.h</includes>
     <namespace>ph</namespace>
@@ -6711,7 +7018,6 @@
     <includes id="d0/dff/sdl__scheduler__type_8h" name="sdl_scheduler_type.h" local="yes" import="no" module="no" objc="no">EngineEnv/Visualizer/sdl_scheduler_type.h</includes>
     <includes id="d6/dda/sdl__ray__energy__estimator__type_8h" name="sdl_ray_energy_estimator_type.h" local="yes" import="no" module="no" objc="no">EngineEnv/Visualizer/sdl_ray_energy_estimator_type.h</includes>
     <includes id="d8/d5b/sdl__sample__filter__type_8h" name="sdl_sample_filter_type.h" local="yes" import="no" module="no" objc="no">EngineEnv/Visualizer/sdl_sample_filter_type.h</includes>
-    <includes id="d4/dd3/_sample_filter_8h" name="SampleFilter.h" local="yes" import="no" module="no" objc="no">Core/Filmic/SampleFilter.h</includes>
     <class kind="class">ph::PathTracingVisualizer</class>
     <namespace>ph</namespace>
   </compound>
@@ -6722,10 +7028,12 @@
     <includes id="d3/d54/_photon_mapping_visualizer_8h" name="PhotonMappingVisualizer.h" local="yes" import="no" module="no" objc="no">EngineEnv/Visualizer/PhotonMappingVisualizer.h</includes>
     <includes id="df/da3/_core_cooking_context_8h" name="CoreCookingContext.h" local="yes" import="no" module="no" objc="no">EngineEnv/CoreCookingContext.h</includes>
     <includes id="d2/db7/_core_cooked_unit_8h" name="CoreCookedUnit.h" local="yes" import="no" module="no" objc="no">EngineEnv/CoreCookedUnit.h</includes>
-    <includes id="d7/dc2/_sample_filters_8h" name="SampleFilters.h" local="yes" import="no" module="no" objc="no">Core/Filmic/SampleFilters.h</includes>
+    <includes id="d4/dd3/_sample_filter_8h" name="SampleFilter.h" local="yes" import="no" module="no" objc="no">Core/Filmic/SampleFilter.h</includes>
     <includes id="d7/d19/_viewport_8h" name="Viewport.h" local="yes" import="no" module="no" objc="no">Frame/Viewport.h</includes>
-    <includes id="d3/dc1/_p_m_renderer_8h" name="PMRenderer.h" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/PMRenderer.h</includes>
-    <includes id="d9/d99/_e_p_m_mode_8h" name="EPMMode.h" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/EPMMode.h</includes>
+    <includes id="df/def/_vanilla_p_m_renderer_8h" name="VanillaPMRenderer.h" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/VanillaPMRenderer.h</includes>
+    <includes id="d8/daf/_progressive_p_m_renderer_8h" name="ProgressivePMRenderer.h" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/ProgressivePMRenderer.h</includes>
+    <includes id="da/d85/_stochastic_progressive_p_m_renderer_8h" name="StochasticProgressivePMRenderer.h" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/StochasticProgressivePMRenderer.h</includes>
+    <includes id="d5/d81/_probabilistic_progressive_p_m_renderer_8h" name="ProbabilisticProgressivePMRenderer.h" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/ProbabilisticProgressivePMRenderer.h</includes>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
@@ -6738,7 +7046,7 @@
     <includes id="d7/d74/sdl__interface_8h" name="sdl_interface.h" local="yes" import="no" module="no" objc="no">SDL/sdl_interface.h</includes>
     <includes id="d4/d54/sdl__photon__mapping__mode_8h" name="sdl_photon_mapping_mode.h" local="yes" import="no" module="no" objc="no">EngineEnv/Visualizer/sdl_photon_mapping_mode.h</includes>
     <includes id="d8/d5b/sdl__sample__filter__type_8h" name="sdl_sample_filter_type.h" local="yes" import="no" module="no" objc="no">EngineEnv/Visualizer/sdl_sample_filter_type.h</includes>
-    <includes id="d4/dd3/_sample_filter_8h" name="SampleFilter.h" local="yes" import="no" module="no" objc="no">Core/Filmic/SampleFilter.h</includes>
+    <includes id="df/da9/_p_m_common_params_8h" name="PMCommonParams.h" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/PMCommonParams.h</includes>
     <class kind="class">ph::PhotonMappingVisualizer</class>
     <namespace>ph</namespace>
   </compound>
@@ -7047,12 +7355,12 @@
     <filename>d9/d15/_t_indexed_kdtree_8h.html</filename>
     <includes id="d1/d26/_t_a_a_b_b3_d_8h" name="TAABB3D.h" local="yes" import="no" module="no" objc="no">Math/Geometry/TAABB3D.h</includes>
     <includes id="dc/d85/_t_indexed_kdtree_node_8h" name="TIndexedKdtreeNode.h" local="yes" import="no" module="no" objc="no">Math/Algorithm/IndexedKdtree/TIndexedKdtreeNode.h</includes>
-    <includes id="d5/d47/utility_8h" name="utility.h" local="yes" import="no" module="no" objc="no">Utility/utility.h</includes>
     <includes id="d8/dcc/_t_indexed_item_endpoint_8h" name="TIndexedItemEndpoint.h" local="yes" import="no" module="no" objc="no">Math/Algorithm/IndexedKdtree/TIndexedItemEndpoint.h</includes>
     <includes id="da/da9/_ray_8h" name="Ray.h" local="yes" import="no" module="no" objc="no">Core/Ray.h</includes>
     <includes id="de/db3/_hit_probe_8h" name="HitProbe.h" local="yes" import="no" module="no" objc="no">Core/HitProbe.h</includes>
     <includes id="df/d15/_t_line_segment_8h" name="TLineSegment.h" local="yes" import="no" module="no" objc="no">Math/Geometry/TLineSegment.h</includes>
     <includes id="d7/d50/_indexed_kdtree_params_8h" name="IndexedKdtreeParams.h" local="yes" import="no" module="no" objc="no">Math/Algorithm/IndexedKdtree/IndexedKdtreeParams.h</includes>
+    <includes id="d5/d47/utility_8h" name="utility.h" local="yes" import="no" module="no" objc="no">Utility/utility.h</includes>
     <includes id="da/dee/_t_indexed_kdtree_8ipp" name="TIndexedKdtree.ipp" local="yes" import="no" module="no" objc="no">Math/Algorithm/IndexedKdtree/TIndexedKdtree.ipp</includes>
     <class kind="class">ph::math::TIndexedKdtree</class>
     <namespace>ph</namespace>
@@ -7074,6 +7382,7 @@
     <path>Source/Math/Algorithm/IndexedKdtree/</path>
     <filename>dc/d85/_t_indexed_kdtree_node_8h.html</filename>
     <includes id="dd/d17/constant_8h" name="constant.h" local="yes" import="no" module="no" objc="no">Math/constant.h</includes>
+    <includes id="dd/da2/_t_span_8h" name="TSpan.h" local="yes" import="no" module="no" objc="no">Utility/TSpan.h</includes>
     <class kind="class">ph::math::TIndexedKdtreeNode</class>
     <namespace>ph</namespace>
     <namespace>ph::math</namespace>
@@ -7085,10 +7394,13 @@
     <includes id="d5/d14/_t_vector3_8h" name="TVector3.h" local="yes" import="no" module="no" objc="no">Math/TVector3.h</includes>
     <includes id="dc/d85/_t_indexed_kdtree_node_8h" name="TIndexedKdtreeNode.h" local="yes" import="no" module="no" objc="no">Math/Algorithm/IndexedKdtree/TIndexedKdtreeNode.h</includes>
     <includes id="d1/d26/_t_a_a_b_b3_d_8h" name="TAABB3D.h" local="yes" import="no" module="no" objc="no">Math/Geometry/TAABB3D.h</includes>
+    <includes id="dd/da2/_t_span_8h" name="TSpan.h" local="yes" import="no" module="no" objc="no">Utility/TSpan.h</includes>
     <includes id="d5/d47/utility_8h" name="utility.h" local="yes" import="no" module="no" objc="no">Utility/utility.h</includes>
     <class kind="class">ph::math::TIndexedPointKdtree</class>
+    <class kind="struct">ph::math::TIndexedPointKdtree::BuildCache</class>
     <namespace>ph</namespace>
     <namespace>ph::math</namespace>
+    <concept>ph::math::CIndexedPointKdtreeItemStorage</concept>
   </compound>
   <compound kind="file">
     <name>TSortedNNResult.h</name>
@@ -7463,6 +7775,26 @@
     <namespace>ph::math</namespace>
   </compound>
   <compound kind="file">
+    <name>THeavisideStep2D.h</name>
+    <path>Source/Math/Function/</path>
+    <filename>d0/d1b/_t_heaviside_step2_d_8h.html</filename>
+    <includes id="d0/deb/_t_math_function2_d_8h" name="TMathFunction2D.h" local="yes" import="no" module="no" objc="no">Math/Function/TMathFunction2D.h</includes>
+    <includes id="d9/dfb/_t_vector2_8h" name="TVector2.h" local="yes" import="no" module="no" objc="no">Math/TVector2.h</includes>
+    <class kind="class">ph::math::THeavisideStep2D</class>
+    <namespace>ph</namespace>
+    <namespace>ph::math</namespace>
+  </compound>
+  <compound kind="file">
+    <name>TLinearGradient2D.h</name>
+    <path>Source/Math/Function/</path>
+    <filename>d0/d8d/_t_linear_gradient2_d_8h.html</filename>
+    <includes id="d0/deb/_t_math_function2_d_8h" name="TMathFunction2D.h" local="yes" import="no" module="no" objc="no">Math/Function/TMathFunction2D.h</includes>
+    <includes id="d9/dfb/_t_vector2_8h" name="TVector2.h" local="yes" import="no" module="no" objc="no">Math/TVector2.h</includes>
+    <class kind="class">ph::math::TLinearGradient2D</class>
+    <namespace>ph</namespace>
+    <namespace>ph::math</namespace>
+  </compound>
+  <compound kind="file">
     <name>TMathFunction2D.h</name>
     <path>Source/Math/Function/</path>
     <filename>d0/deb/_t_math_function2_d_8h.html</filename>
@@ -7471,11 +7803,11 @@
     <namespace>ph::math</namespace>
   </compound>
   <compound kind="file">
-    <name>TMNCubic2D.h</name>
+    <name>TMitchellNetravaliCubic2D.h</name>
     <path>Source/Math/Function/</path>
-    <filename>d9/d30/_t_m_n_cubic2_d_8h.html</filename>
+    <filename>df/d68/_t_mitchell_netravali_cubic2_d_8h.html</filename>
     <includes id="d0/deb/_t_math_function2_d_8h" name="TMathFunction2D.h" local="yes" import="no" module="no" objc="no">Math/Function/TMathFunction2D.h</includes>
-    <class kind="class">ph::math::TMNCubic2D</class>
+    <class kind="class">ph::math::TMitchellNetravaliCubic2D</class>
     <namespace>ph</namespace>
     <namespace>ph::math</namespace>
   </compound>
@@ -7494,6 +7826,7 @@
     <filename>de/d06/_t_arithmetic_array_base_8h.html</filename>
     <includes id="d8/da4/math__fwd_8h" name="math_fwd.h" local="yes" import="no" module="no" objc="no">Math/math_fwd.h</includes>
     <includes id="d5/d47/utility_8h" name="utility.h" local="yes" import="no" module="no" objc="no">Utility/utility.h</includes>
+    <includes id="dd/da2/_t_span_8h" name="TSpan.h" local="yes" import="no" module="no" objc="no">Utility/TSpan.h</includes>
     <includes id="d2/ddb/_t_arithmetic_array_base_8ipp" name="TArithmeticArrayBase.ipp" local="yes" import="no" module="no" objc="no">Math/General/TArithmeticArrayBase.ipp</includes>
     <class kind="class">ph::math::TArithmeticArrayBase</class>
     <namespace>ph</namespace>
@@ -7504,6 +7837,7 @@
     <path>Source/Math/General/</path>
     <filename>d2/ddb/_t_arithmetic_array_base_8ipp.html</filename>
     <includes id="de/d06/_t_arithmetic_array_base_8h" name="TArithmeticArrayBase.h" local="yes" import="no" module="no" objc="no">Math/General/TArithmeticArrayBase.h</includes>
+    <includes id="df/db1/math_8h" name="math.h" local="yes" import="no" module="no" objc="no">Math/math.h</includes>
     <namespace>ph</namespace>
     <namespace>ph::math</namespace>
   </compound>
@@ -7805,9 +8139,54 @@
     <includes id="d8/da4/math__fwd_8h" name="math_fwd.h" local="yes" import="no" module="no" objc="no">Math/math_fwd.h</includes>
     <includes id="d6/d6b/math__table_8h" name="math_table.h" local="yes" import="no" module="no" objc="no">Math/math_table.h</includes>
     <includes id="d5/d47/utility_8h" name="utility.h" local="yes" import="no" module="no" objc="no">Utility/utility.h</includes>
+    <includes id="dd/dff/traits_8h" name="traits.h" local="yes" import="no" module="no" objc="no">Utility/traits.h</includes>
+    <includes id="dd/da2/_t_span_8h" name="TSpan.h" local="yes" import="no" module="no" objc="no">Utility/TSpan.h</includes>
+    <includes id="d9/d06/math_8ipp" name="math.ipp" local="yes" import="no" module="no" objc="no">Math/math.ipp</includes>
     <namespace>ph</namespace>
     <namespace>ph::math</namespace>
     <member kind="function">
+      <type>T</type>
+      <name>summation</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a423ca1404e587fb97e03569f02f95861</anchor>
+      <arglist>(const std::array&lt; T, N &gt; &amp;values, T initialValue=0)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>summation</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>aafd95c335ca3cea8382e4664fcb2e071</anchor>
+      <arglist>(const std::vector&lt; T &gt; &amp;values, T initialValue=0)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>summation</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a49a2a687b51def083e81e22e8aadd871</anchor>
+      <arglist>(TSpanView&lt; T, EXTENT &gt; values, T initialValue=0)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>product</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a688dbf6563c86608204cf755dc0be5cd</anchor>
+      <arglist>(const std::array&lt; T, N &gt; &amp;values, T initialValue=1)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>product</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>af88ea36316f4e3c2a63d8ff7342e3038</anchor>
+      <arglist>(const std::vector&lt; T &gt; &amp;values, T initialValue=1)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>product</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a46cc1344fc73d1e20da595d6e62bbb57</anchor>
+      <arglist>(TSpanView&lt; T, EXTENT &gt; values, T initialValue=1)</arglist>
+    </member>
+    <member kind="function">
       <type>UIntType</type>
       <name>flag_bit</name>
       <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
@@ -7836,6 +8215,153 @@
       <arglist>(const uint16 fp16Bits)</arglist>
     </member>
     <member kind="function">
+      <type>T</type>
+      <name>length</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a5e1143174acd6afb8b6c9be755307c4b</anchor>
+      <arglist>(const std::array&lt; T, N &gt; &amp;vec)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>length</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>abd30caa18de616eaa04f98f75a8c9753</anchor>
+      <arglist>(const std::vector&lt; T &gt; &amp;vec)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>length</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a7ff2861977711d396858e5b6aef1436c</anchor>
+      <arglist>(TSpanView&lt; T, EXTENT &gt; vec)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>length_squared</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a271473c0e491fe4c7c0cb02fcfa88bb0</anchor>
+      <arglist>(const std::array&lt; T, N &gt; &amp;vec)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>length_squared</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a0a1c02f0fa48517a643a221c4200dc1e</anchor>
+      <arglist>(const std::vector&lt; T &gt; &amp;vec)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>length_squared</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a4d686d16a731cfaf96c02424b9215798</anchor>
+      <arglist>(TSpanView&lt; T, EXTENT &gt; vec)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>p_norm</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a4ff51da9284135e078f892589a4816cc</anchor>
+      <arglist>(const std::array&lt; T, N &gt; &amp;vec)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>p_norm</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a2f4af840af27b7877140cb250d0b2cba</anchor>
+      <arglist>(const std::vector&lt; T &gt; &amp;vec)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>p_norm</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a41e68b91f571234574a62deddcf6b47e</anchor>
+      <arglist>(TSpanView&lt; T, EXTENT &gt; vec)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>normalize</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a4f0591b11fba7210f6dd38cfbbcbc9f7</anchor>
+      <arglist>(std::array&lt; T, N &gt; &amp;vec)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>normalize</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a3cf4f52c15a3def1081a81e736a7a4f8</anchor>
+      <arglist>(std::vector&lt; T &gt; &amp;vec)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>normalize</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a82c62fe543155f8ea8d4fa031f8f3d85</anchor>
+      <arglist>(TSpan&lt; T, EXTENT &gt; vec)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>dot_product</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a03f8a077523cb1f8d667a39529300e98</anchor>
+      <arglist>(const std::array&lt; T, N &gt; &amp;vecA, const std::array&lt; T, N &gt; &amp;vecB)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>dot_product</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a1338f031a910337ae964bb3bc4ac6fe1</anchor>
+      <arglist>(const std::vector&lt; T &gt; &amp;vecA, const std::vector&lt; T &gt; &amp;vecB)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>dot_product</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a8bee0579f0647a84c49161d6ae0dba6f</anchor>
+      <arglist>(TSpanView&lt; T, EXTENT &gt; vecA, TSpanView&lt; T, EXTENT &gt; vecB)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>summation</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a423ca1404e587fb97e03569f02f95861</anchor>
+      <arglist>(const std::array&lt; T, N &gt; &amp;values, T initialValue=0)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>summation</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>aafd95c335ca3cea8382e4664fcb2e071</anchor>
+      <arglist>(const std::vector&lt; T &gt; &amp;values, T initialValue=0)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>summation</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a49a2a687b51def083e81e22e8aadd871</anchor>
+      <arglist>(TSpanView&lt; T, EXTENT &gt; values, T initialValue=0)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>product</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a688dbf6563c86608204cf755dc0be5cd</anchor>
+      <arglist>(const std::array&lt; T, N &gt; &amp;values, T initialValue=1)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>product</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>af88ea36316f4e3c2a63d8ff7342e3038</anchor>
+      <arglist>(const std::vector&lt; T &gt; &amp;values, T initialValue=1)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>product</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a46cc1344fc73d1e20da595d6e62bbb57</anchor>
+      <arglist>(TSpanView&lt; T, EXTENT &gt; values, T initialValue=1)</arglist>
+    </member>
+    <member kind="function">
       <type>UIntType</type>
       <name>flag_bit</name>
       <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
@@ -7862,6 +8388,413 @@
       <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
       <anchor>a050fd048afd360173b15c10a05c21f7c</anchor>
       <arglist>(const uint16 fp16Bits)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>length</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a5e1143174acd6afb8b6c9be755307c4b</anchor>
+      <arglist>(const std::array&lt; T, N &gt; &amp;vec)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>length</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>abd30caa18de616eaa04f98f75a8c9753</anchor>
+      <arglist>(const std::vector&lt; T &gt; &amp;vec)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>length</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a7ff2861977711d396858e5b6aef1436c</anchor>
+      <arglist>(TSpanView&lt; T, EXTENT &gt; vec)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>length_squared</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a271473c0e491fe4c7c0cb02fcfa88bb0</anchor>
+      <arglist>(const std::array&lt; T, N &gt; &amp;vec)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>length_squared</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a0a1c02f0fa48517a643a221c4200dc1e</anchor>
+      <arglist>(const std::vector&lt; T &gt; &amp;vec)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>length_squared</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a4d686d16a731cfaf96c02424b9215798</anchor>
+      <arglist>(TSpanView&lt; T, EXTENT &gt; vec)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>p_norm</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a4ff51da9284135e078f892589a4816cc</anchor>
+      <arglist>(const std::array&lt; T, N &gt; &amp;vec)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>p_norm</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a2f4af840af27b7877140cb250d0b2cba</anchor>
+      <arglist>(const std::vector&lt; T &gt; &amp;vec)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>p_norm</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a41e68b91f571234574a62deddcf6b47e</anchor>
+      <arglist>(TSpanView&lt; T, EXTENT &gt; vec)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>normalize</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a4f0591b11fba7210f6dd38cfbbcbc9f7</anchor>
+      <arglist>(std::array&lt; T, N &gt; &amp;vec)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>normalize</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a3cf4f52c15a3def1081a81e736a7a4f8</anchor>
+      <arglist>(std::vector&lt; T &gt; &amp;vec)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>normalize</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a82c62fe543155f8ea8d4fa031f8f3d85</anchor>
+      <arglist>(TSpan&lt; T, EXTENT &gt; vec)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>dot_product</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a03f8a077523cb1f8d667a39529300e98</anchor>
+      <arglist>(const std::array&lt; T, N &gt; &amp;vecA, const std::array&lt; T, N &gt; &amp;vecB)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>dot_product</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a1338f031a910337ae964bb3bc4ac6fe1</anchor>
+      <arglist>(const std::vector&lt; T &gt; &amp;vecA, const std::vector&lt; T &gt; &amp;vecB)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>dot_product</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a8bee0579f0647a84c49161d6ae0dba6f</anchor>
+      <arglist>(TSpanView&lt; T, EXTENT &gt; vecA, TSpanView&lt; T, EXTENT &gt; vecB)</arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>math.ipp</name>
+    <path>Source/Math/</path>
+    <filename>d9/d06/math_8ipp.html</filename>
+    <includes id="df/db1/math_8h" name="math.h" local="yes" import="no" module="no" objc="no">Math/math.h</includes>
+    <namespace>ph</namespace>
+    <namespace>ph::math</namespace>
+    <member kind="function">
+      <type>T</type>
+      <name>summation</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a423ca1404e587fb97e03569f02f95861</anchor>
+      <arglist>(const std::array&lt; T, N &gt; &amp;values, T initialValue=0)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>summation</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>aafd95c335ca3cea8382e4664fcb2e071</anchor>
+      <arglist>(const std::vector&lt; T &gt; &amp;values, T initialValue=0)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>summation</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a49a2a687b51def083e81e22e8aadd871</anchor>
+      <arglist>(TSpanView&lt; T, EXTENT &gt; values, T initialValue=0)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>product</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a688dbf6563c86608204cf755dc0be5cd</anchor>
+      <arglist>(const std::array&lt; T, N &gt; &amp;values, T initialValue=1)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>product</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>af88ea36316f4e3c2a63d8ff7342e3038</anchor>
+      <arglist>(const std::vector&lt; T &gt; &amp;values, T initialValue=1)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>product</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a46cc1344fc73d1e20da595d6e62bbb57</anchor>
+      <arglist>(TSpanView&lt; T, EXTENT &gt; values, T initialValue=1)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>length</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a5e1143174acd6afb8b6c9be755307c4b</anchor>
+      <arglist>(const std::array&lt; T, N &gt; &amp;vec)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>length</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>abd30caa18de616eaa04f98f75a8c9753</anchor>
+      <arglist>(const std::vector&lt; T &gt; &amp;vec)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>length</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a7ff2861977711d396858e5b6aef1436c</anchor>
+      <arglist>(TSpanView&lt; T, EXTENT &gt; vec)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>length_squared</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a271473c0e491fe4c7c0cb02fcfa88bb0</anchor>
+      <arglist>(const std::array&lt; T, N &gt; &amp;vec)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>length_squared</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a0a1c02f0fa48517a643a221c4200dc1e</anchor>
+      <arglist>(const std::vector&lt; T &gt; &amp;vec)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>length_squared</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a4d686d16a731cfaf96c02424b9215798</anchor>
+      <arglist>(TSpanView&lt; T, EXTENT &gt; vec)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>p_norm</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a4ff51da9284135e078f892589a4816cc</anchor>
+      <arglist>(const std::array&lt; T, N &gt; &amp;vec)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>p_norm</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a2f4af840af27b7877140cb250d0b2cba</anchor>
+      <arglist>(const std::vector&lt; T &gt; &amp;vec)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>p_norm</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a41e68b91f571234574a62deddcf6b47e</anchor>
+      <arglist>(TSpanView&lt; T, EXTENT &gt; vec)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>normalize</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a4f0591b11fba7210f6dd38cfbbcbc9f7</anchor>
+      <arglist>(std::array&lt; T, N &gt; &amp;vec)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>normalize</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a3cf4f52c15a3def1081a81e736a7a4f8</anchor>
+      <arglist>(std::vector&lt; T &gt; &amp;vec)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>normalize</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a82c62fe543155f8ea8d4fa031f8f3d85</anchor>
+      <arglist>(TSpan&lt; T, EXTENT &gt; vec)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>dot_product</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a03f8a077523cb1f8d667a39529300e98</anchor>
+      <arglist>(const std::array&lt; T, N &gt; &amp;vecA, const std::array&lt; T, N &gt; &amp;vecB)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>dot_product</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a1338f031a910337ae964bb3bc4ac6fe1</anchor>
+      <arglist>(const std::vector&lt; T &gt; &amp;vecA, const std::vector&lt; T &gt; &amp;vecB)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>dot_product</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a8bee0579f0647a84c49161d6ae0dba6f</anchor>
+      <arglist>(TSpanView&lt; T, EXTENT &gt; vecA, TSpanView&lt; T, EXTENT &gt; vecB)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>summation</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a423ca1404e587fb97e03569f02f95861</anchor>
+      <arglist>(const std::array&lt; T, N &gt; &amp;values, T initialValue=0)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>summation</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>aafd95c335ca3cea8382e4664fcb2e071</anchor>
+      <arglist>(const std::vector&lt; T &gt; &amp;values, T initialValue=0)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>summation</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a49a2a687b51def083e81e22e8aadd871</anchor>
+      <arglist>(TSpanView&lt; T, EXTENT &gt; values, T initialValue=0)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>product</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a688dbf6563c86608204cf755dc0be5cd</anchor>
+      <arglist>(const std::array&lt; T, N &gt; &amp;values, T initialValue=1)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>product</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>af88ea36316f4e3c2a63d8ff7342e3038</anchor>
+      <arglist>(const std::vector&lt; T &gt; &amp;values, T initialValue=1)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>product</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a46cc1344fc73d1e20da595d6e62bbb57</anchor>
+      <arglist>(TSpanView&lt; T, EXTENT &gt; values, T initialValue=1)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>length</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a5e1143174acd6afb8b6c9be755307c4b</anchor>
+      <arglist>(const std::array&lt; T, N &gt; &amp;vec)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>length</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>abd30caa18de616eaa04f98f75a8c9753</anchor>
+      <arglist>(const std::vector&lt; T &gt; &amp;vec)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>length</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a7ff2861977711d396858e5b6aef1436c</anchor>
+      <arglist>(TSpanView&lt; T, EXTENT &gt; vec)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>length_squared</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a271473c0e491fe4c7c0cb02fcfa88bb0</anchor>
+      <arglist>(const std::array&lt; T, N &gt; &amp;vec)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>length_squared</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a0a1c02f0fa48517a643a221c4200dc1e</anchor>
+      <arglist>(const std::vector&lt; T &gt; &amp;vec)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>length_squared</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a4d686d16a731cfaf96c02424b9215798</anchor>
+      <arglist>(TSpanView&lt; T, EXTENT &gt; vec)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>p_norm</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a4ff51da9284135e078f892589a4816cc</anchor>
+      <arglist>(const std::array&lt; T, N &gt; &amp;vec)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>p_norm</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a2f4af840af27b7877140cb250d0b2cba</anchor>
+      <arglist>(const std::vector&lt; T &gt; &amp;vec)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>p_norm</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a41e68b91f571234574a62deddcf6b47e</anchor>
+      <arglist>(TSpanView&lt; T, EXTENT &gt; vec)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>normalize</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a4f0591b11fba7210f6dd38cfbbcbc9f7</anchor>
+      <arglist>(std::array&lt; T, N &gt; &amp;vec)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>normalize</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a3cf4f52c15a3def1081a81e736a7a4f8</anchor>
+      <arglist>(std::vector&lt; T &gt; &amp;vec)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>normalize</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a82c62fe543155f8ea8d4fa031f8f3d85</anchor>
+      <arglist>(TSpan&lt; T, EXTENT &gt; vec)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>dot_product</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a03f8a077523cb1f8d667a39529300e98</anchor>
+      <arglist>(const std::array&lt; T, N &gt; &amp;vecA, const std::array&lt; T, N &gt; &amp;vecB)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>dot_product</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a1338f031a910337ae964bb3bc4ac6fe1</anchor>
+      <arglist>(const std::vector&lt; T &gt; &amp;vecA, const std::vector&lt; T &gt; &amp;vecB)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>dot_product</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a8bee0579f0647a84c49161d6ae0dba6f</anchor>
+      <arglist>(TSpanView&lt; T, EXTENT &gt; vecA, TSpanView&lt; T, EXTENT &gt; vecB)</arglist>
     </member>
   </compound>
   <compound kind="file">
@@ -7892,7 +8825,7 @@
     <namespace>ph</namespace>
     <namespace>ph::math</namespace>
     <namespace>ph::math::table</namespace>
-    <namespace>ph::math::detail</namespace>
+    <namespace>ph::math::table::detail</namespace>
   </compound>
   <compound kind="file">
     <name>black_body.h</name>
@@ -7904,24 +8837,12 @@
     <namespace>ph::math</namespace>
   </compound>
   <compound kind="file">
-    <name>Random.cpp</name>
-    <path>Source/Math/</path>
-    <filename>d9/d1e/_random_8cpp.html</filename>
-    <includes id="d0/d80/_random_8h" name="Random.h" local="yes" import="no" module="no" objc="no">Math/Random.h</includes>
-    <includes id="df/db1/math_8h" name="math.h" local="yes" import="no" module="no" objc="no">Math/math.h</includes>
+    <name>DeterministicSeeder.cpp</name>
+    <path>Source/Math/Random/</path>
+    <filename>db/db0/_deterministic_seeder_8cpp.html</filename>
     <includes id="d1/def/_deterministic_seeder_8h" name="DeterministicSeeder.h" local="yes" import="no" module="no" objc="no">Math/Random/DeterministicSeeder.h</includes>
-    <includes id="d9/da2/_t_mt19937_8h" name="TMt19937.h" local="yes" import="no" module="no" objc="no">Math/Random/TMt19937.h</includes>
-    <includes id="d4/d01/_pcg32_8h" name="Pcg32.h" local="yes" import="no" module="no" objc="no">Math/Random/Pcg32.h</includes>
-    <includes id="d2/db1/_pcg64_d_x_s_m_8h" name="Pcg64DXSM.h" local="yes" import="no" module="no" objc="no">Math/Random/Pcg64DXSM.h</includes>
-    <includes id="d2/dc0/_t_urbg32x2_8h" name="TUrbg32x2.h" local="yes" import="no" module="no" objc="no">Math/Random/TUrbg32x2.h</includes>
-    <namespace>ph</namespace>
-    <namespace>ph::math</namespace>
-  </compound>
-  <compound kind="file">
-    <name>Random.h</name>
-    <path>Source/Math/</path>
-    <filename>d0/d80/_random_8h.html</filename>
-    <class kind="class">ph::math::Random</class>
+    <includes id="d1/dd0/_engine_init_settings_8h" name="EngineInitSettings.h" local="yes" import="no" module="no" objc="no">EngineInitSettings.h</includes>
+    <includes id="d6/d6b/math__table_8h" name="math_table.h" local="yes" import="no" module="no" objc="no">Math/math_table.h</includes>
     <namespace>ph</namespace>
     <namespace>ph::math</namespace>
   </compound>
@@ -7982,10 +8903,41 @@
     <namespace>ph::math::radical_inverse_detail</namespace>
   </compound>
   <compound kind="file">
+    <name>Random.cpp</name>
+    <path>Source/Math/Random/</path>
+    <filename>d9/d1e/_random_8cpp.html</filename>
+    <includes id="d0/d80/_random_8h" name="Random.h" local="yes" import="no" module="no" objc="no">Math/Random/Random.h</includes>
+    <includes id="df/db1/math_8h" name="math.h" local="yes" import="no" module="no" objc="no">Math/math.h</includes>
+    <includes id="d1/def/_deterministic_seeder_8h" name="DeterministicSeeder.h" local="yes" import="no" module="no" objc="no">Math/Random/DeterministicSeeder.h</includes>
+    <includes id="d9/da2/_t_mt19937_8h" name="TMt19937.h" local="yes" import="no" module="no" objc="no">Math/Random/TMt19937.h</includes>
+    <includes id="d4/d01/_pcg32_8h" name="Pcg32.h" local="yes" import="no" module="no" objc="no">Math/Random/Pcg32.h</includes>
+    <includes id="d2/db1/_pcg64_d_x_s_m_8h" name="Pcg64DXSM.h" local="yes" import="no" module="no" objc="no">Math/Random/Pcg64DXSM.h</includes>
+    <includes id="d2/dc0/_t_urbg32x2_8h" name="TUrbg32x2.h" local="yes" import="no" module="no" objc="no">Math/Random/TUrbg32x2.h</includes>
+    <namespace>ph</namespace>
+    <namespace>ph::math</namespace>
+  </compound>
+  <compound kind="file">
+    <name>Random.h</name>
+    <path>Source/Math/Random/</path>
+    <filename>d0/d80/_random_8h.html</filename>
+    <includes id="d1/d2b/_random_8ipp" name="Random.ipp" local="yes" import="no" module="no" objc="no">Math/Random/Random.ipp</includes>
+    <class kind="class">ph::math::Random</class>
+    <namespace>ph</namespace>
+    <namespace>ph::math</namespace>
+  </compound>
+  <compound kind="file">
+    <name>Random.ipp</name>
+    <path>Source/Math/Random/</path>
+    <filename>d1/d2b/_random_8ipp.html</filename>
+    <includes id="d0/d80/_random_8h" name="Random.h" local="yes" import="no" module="no" objc="no">Math/Random/Random.h</includes>
+    <namespace>ph</namespace>
+    <namespace>ph::math</namespace>
+  </compound>
+  <compound kind="file">
     <name>shuffle.h</name>
     <path>Source/Math/Random/</path>
     <filename>d3/d2f/shuffle_8h.html</filename>
-    <includes id="d0/d80/_random_8h" name="Random.h" local="yes" import="no" module="no" objc="no">Math/Random.h</includes>
+    <includes id="d0/d80/_random_8h" name="Random.h" local="yes" import="no" module="no" objc="no">Math/Random/Random.h</includes>
     <class kind="struct">ph::math::detail::shuffle::StandardSwapper</class>
     <namespace>ph</namespace>
     <namespace>ph::math</namespace>
@@ -8195,7 +9147,9 @@
     <name>TQuaternion.h</name>
     <path>Source/Math/</path>
     <filename>d1/de6/_t_quaternion_8h.html</filename>
+    <includes id="de/d06/_t_arithmetic_array_base_8h" name="TArithmeticArrayBase.h" local="yes" import="no" module="no" objc="no">Math/General/TArithmeticArrayBase.h</includes>
     <includes id="d8/da4/math__fwd_8h" name="math_fwd.h" local="yes" import="no" module="no" objc="no">Math/math_fwd.h</includes>
+    <includes id="d5/d47/utility_8h" name="utility.h" local="yes" import="no" module="no" objc="no">Utility/utility.h</includes>
     <includes id="dd/dda/_t_quaternion_8ipp" name="TQuaternion.ipp" local="yes" import="no" module="no" objc="no">Math/TQuaternion.ipp</includes>
     <class kind="class">ph::math::TQuaternion</class>
     <namespace>ph</namespace>
@@ -8208,6 +9162,7 @@
     <includes id="d1/de6/_t_quaternion_8h" name="TQuaternion.h" local="yes" import="no" module="no" objc="no">Math/TQuaternion.h</includes>
     <includes id="d5/d14/_t_vector3_8h" name="TVector3.h" local="yes" import="no" module="no" objc="no">Math/TVector3.h</includes>
     <includes id="da/df6/_t_matrix4_8h" name="TMatrix4.h" local="yes" import="no" module="no" objc="no">Math/TMatrix4.h</includes>
+    <includes id="df/db1/math_8h" name="math.h" local="yes" import="no" module="no" objc="no">Math/math.h</includes>
     <namespace>ph</namespace>
     <namespace>ph::math</namespace>
   </compound>
@@ -8383,6 +9338,7 @@
     <includes id="d1/d20/_t_vector_n_base_8h" name="TVectorNBase.h" local="yes" import="no" module="no" objc="no">Math/General/TVectorNBase.h</includes>
     <includes id="d8/da4/math__fwd_8h" name="math_fwd.h" local="yes" import="no" module="no" objc="no">Math/math_fwd.h</includes>
     <includes id="dd/d17/constant_8h" name="constant.h" local="yes" import="no" module="no" objc="no">Math/constant.h</includes>
+    <includes id="d5/d47/utility_8h" name="utility.h" local="yes" import="no" module="no" objc="no">Utility/utility.h</includes>
     <includes id="de/d36/_t_vector4_8ipp" name="TVector4.ipp" local="yes" import="no" module="no" objc="no">Math/TVector4.ipp</includes>
     <class kind="class">ph::math::TVector4</class>
     <namespace>ph</namespace>
@@ -8532,6 +9488,7 @@
     <filename>d7/d6b/_sdl_i_o_context_8cpp.html</filename>
     <includes id="da/de0/_sdl_i_o_context_8h" name="SdlIOContext.h" local="yes" import="no" module="no" objc="no">SDL/Introspect/SdlIOContext.h</includes>
     <includes id="d7/d43/_sdl_class_8h" name="SdlClass.h" local="yes" import="no" module="no" objc="no">SDL/Introspect/SdlClass.h</includes>
+    <includes id="df/dcb/sdl__helpers_8h" name="sdl_helpers.h" local="yes" import="no" module="no" objc="no">SDL/sdl_helpers.h</includes>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
@@ -8539,7 +9496,6 @@
     <path>Source/SDL/Introspect/</path>
     <filename>da/de0/_sdl_i_o_context_8h.html</filename>
     <includes id="d8/d82/sdl__fwd_8h" name="sdl_fwd.h" local="yes" import="no" module="no" objc="no">SDL/sdl_fwd.h</includes>
-    <includes id="db/d36/_path_8h" name="Path.h" local="yes" import="no" module="no" objc="no">DataIO/FileSystem/Path.h</includes>
     <class kind="class">ph::SdlIOContext</class>
     <namespace>ph</namespace>
   </compound>
@@ -8567,12 +9523,19 @@
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
+    <name>SdlOutputContext.cpp</name>
+    <path>Source/SDL/Introspect/</path>
+    <filename>db/d84/_sdl_output_context_8cpp.html</filename>
+    <includes id="dc/d19/_sdl_output_context_8h" name="SdlOutputContext.h" local="yes" import="no" module="no" objc="no">SDL/Introspect/SdlOutputContext.h</includes>
+    <includes id="d3/dc4/_sdl_dependency_resolver_8h" name="SdlDependencyResolver.h" local="yes" import="no" module="no" objc="no">SDL/SdlDependencyResolver.h</includes>
+    <namespace>ph</namespace>
+  </compound>
+  <compound kind="file">
     <name>SdlOutputContext.h</name>
     <path>Source/SDL/Introspect/</path>
     <filename>dc/d19/_sdl_output_context_8h.html</filename>
     <includes id="da/de0/_sdl_i_o_context_8h" name="SdlIOContext.h" local="yes" import="no" module="no" objc="no">SDL/Introspect/SdlIOContext.h</includes>
-    <includes id="db/d36/_path_8h" name="Path.h" local="yes" import="no" module="no" objc="no">DataIO/FileSystem/Path.h</includes>
-    <includes id="d3/dc4/_sdl_dependency_resolver_8h" name="SdlDependencyResolver.h" local="yes" import="no" module="no" objc="no">SDL/SdlDependencyResolver.h</includes>
+    <includes id="d8/d82/sdl__fwd_8h" name="sdl_fwd.h" local="yes" import="no" module="no" objc="no">SDL/sdl_fwd.h</includes>
     <class kind="class">ph::SdlOutputContext</class>
     <namespace>ph</namespace>
   </compound>
@@ -8589,6 +9552,7 @@
     <filename>d1/d2d/_sdl_struct_8h.html</filename>
     <includes id="da/dee/_i_sdl_instantiable_8h" name="ISdlInstantiable.h" local="yes" import="no" module="no" objc="no">SDL/Introspect/ISdlInstantiable.h</includes>
     <includes id="d8/d82/sdl__fwd_8h" name="sdl_fwd.h" local="yes" import="no" module="no" objc="no">SDL/sdl_fwd.h</includes>
+    <includes id="d9/d71/_t_any_ptr_8h" name="TAnyPtr.h" local="yes" import="no" module="no" objc="no">Utility/TAnyPtr.h</includes>
     <class kind="class">ph::SdlStruct</class>
     <namespace>ph</namespace>
   </compound>
@@ -8642,7 +9606,7 @@
     <path>Source/SDL/Introspect/</path>
     <filename>d9/d81/_t_sdl_brute_force_field_set_8h.html</filename>
     <includes id="db/dbe/_sdl_field_8h" name="SdlField.h" local="yes" import="no" module="no" objc="no">SDL/Introspect/SdlField.h</includes>
-    <includes id="d6/dfd/_t_array_as_vector_8h" name="TArrayAsVector.h" local="yes" import="no" module="no" objc="no">Utility/TArrayAsVector.h</includes>
+    <includes id="d3/d11/_t_array_vector_8h" name="TArrayVector.h" local="yes" import="no" module="no" objc="no">Utility/TArrayVector.h</includes>
     <includes id="d7/d31/_i_move_only_8h" name="IMoveOnly.h" local="yes" import="no" module="no" objc="no">Utility/IMoveOnly.h</includes>
     <class kind="class">ph::TSdlBruteForceFieldSet</class>
     <namespace>ph</namespace>
@@ -8671,7 +9635,7 @@
     <path>Source/SDL/Introspect/</path>
     <filename>dc/da6/_t_sdl_general_enum_8h.html</filename>
     <includes id="dd/d35/_sdl_enum_8h" name="SdlEnum.h" local="yes" import="no" module="no" objc="no">SDL/Introspect/SdlEnum.h</includes>
-    <includes id="d6/dfd/_t_array_as_vector_8h" name="TArrayAsVector.h" local="yes" import="no" module="no" objc="no">Utility/TArrayAsVector.h</includes>
+    <includes id="d3/d11/_t_array_vector_8h" name="TArrayVector.h" local="yes" import="no" module="no" objc="no">Utility/TArrayVector.h</includes>
     <includes id="d1/dc2/sdl__exceptions_8h" name="sdl_exceptions.h" local="yes" import="no" module="no" objc="no">SDL/sdl_exceptions.h</includes>
     <includes id="d5/d47/utility_8h" name="utility.h" local="yes" import="no" module="no" objc="no">Utility/utility.h</includes>
     <class kind="class">ph::TSdlGeneralEnum</class>
@@ -8708,6 +9672,8 @@
     <includes id="dc/d8b/field__set__op_8h" name="field_set_op.h" local="yes" import="no" module="no" objc="no">SDL/Introspect/field_set_op.h</includes>
     <includes id="d0/dee/_scene_description_8h" name="SceneDescription.h" local="yes" import="no" module="no" objc="no">SDL/SceneDescription.h</includes>
     <includes id="d1/dc2/sdl__exceptions_8h" name="sdl_exceptions.h" local="yes" import="no" module="no" objc="no">SDL/sdl_exceptions.h</includes>
+    <includes id="d8/dda/sdl__traits_8h" name="sdl_traits.h" local="yes" import="no" module="no" objc="no">SDL/sdl_traits.h</includes>
+    <includes id="df/dcb/sdl__helpers_8h" name="sdl_helpers.h" local="yes" import="no" module="no" objc="no">SDL/sdl_helpers.h</includes>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
@@ -8768,7 +9734,7 @@
     <includes id="d8/d82/sdl__fwd_8h" name="sdl_fwd.h" local="yes" import="no" module="no" objc="no">SDL/sdl_fwd.h</includes>
     <includes id="dd/d1d/_t_sdl_owned_field_8h" name="TSdlOwnedField.h" local="yes" import="no" module="no" objc="no">SDL/Introspect/TSdlOwnedField.h</includes>
     <includes id="d9/d81/_t_sdl_brute_force_field_set_8h" name="TSdlBruteForceFieldSet.h" local="yes" import="no" module="no" objc="no">SDL/Introspect/TSdlBruteForceFieldSet.h</includes>
-    <includes id="d6/dfd/_t_array_as_vector_8h" name="TArrayAsVector.h" local="yes" import="no" module="no" objc="no">Utility/TArrayAsVector.h</includes>
+    <includes id="d3/d11/_t_array_vector_8h" name="TArrayVector.h" local="yes" import="no" module="no" objc="no">Utility/TArrayVector.h</includes>
     <includes id="df/d73/_t_sdl_owner_class_8ipp" name="TSdlOwnerClass.ipp" local="yes" import="no" module="no" objc="no">SDL/Introspect/TSdlOwnerClass.ipp</includes>
     <class kind="class">ph::TSdlOwnerClass</class>
     <namespace>ph</namespace>
@@ -8806,6 +9772,8 @@
     <includes id="d5/d39/_t_sdl_owner_struct_8h" name="TSdlOwnerStruct.h" local="yes" import="no" module="no" objc="no">SDL/Introspect/TSdlOwnerStruct.h</includes>
     <includes id="db/dbe/_sdl_field_8h" name="SdlField.h" local="yes" import="no" module="no" objc="no">SDL/Introspect/SdlField.h</includes>
     <includes id="d6/d21/_sdl_struct_field_stump_8h" name="SdlStructFieldStump.h" local="yes" import="no" module="no" objc="no">SDL/Introspect/SdlStructFieldStump.h</includes>
+    <includes id="dc/d8b/field__set__op_8h" name="field_set_op.h" local="yes" import="no" module="no" objc="no">SDL/Introspect/field_set_op.h</includes>
+    <includes id="d1/dc2/sdl__exceptions_8h" name="sdl_exceptions.h" local="yes" import="no" module="no" objc="no">SDL/sdl_exceptions.h</includes>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
@@ -8890,10 +9858,14 @@
     <filename>da/d7b/_t_sdl_reference_array_8ipp.html</filename>
     <includes id="d1/d71/_t_sdl_reference_array_8h" name="TSdlReferenceArray.h" local="yes" import="no" module="no" objc="no">SDL/Introspect/TSdlReferenceArray.h</includes>
     <includes id="da/d58/_sdl_input_context_8h" name="SdlInputContext.h" local="yes" import="no" module="no" objc="no">SDL/Introspect/SdlInputContext.h</includes>
+    <includes id="dc/d19/_sdl_output_context_8h" name="SdlOutputContext.h" local="yes" import="no" module="no" objc="no">SDL/Introspect/SdlOutputContext.h</includes>
+    <includes id="dc/d8d/_t_sdl_reference_8h" name="TSdlReference.h" local="yes" import="no" module="no" objc="no">SDL/Introspect/TSdlReference.h</includes>
+    <includes id="d3/dc4/_sdl_dependency_resolver_8h" name="SdlDependencyResolver.h" local="yes" import="no" module="no" objc="no">SDL/SdlDependencyResolver.h</includes>
     <includes id="d4/dca/_i_sdl_resource_8h" name="ISdlResource.h" local="yes" import="no" module="no" objc="no">SDL/ISdlResource.h</includes>
     <includes id="d0/dee/_scene_description_8h" name="SceneDescription.h" local="yes" import="no" module="no" objc="no">SDL/SceneDescription.h</includes>
     <includes id="d1/dc2/sdl__exceptions_8h" name="sdl_exceptions.h" local="yes" import="no" module="no" objc="no">SDL/sdl_exceptions.h</includes>
     <includes id="df/dcb/sdl__helpers_8h" name="sdl_helpers.h" local="yes" import="no" module="no" objc="no">SDL/sdl_helpers.h</includes>
+    <includes id="d9/d2a/sdl__parser_8h" name="sdl_parser.h" local="yes" import="no" module="no" objc="no">SDL/sdl_parser.h</includes>
     <includes id="d4/db9/_tokenizer_8h" name="Tokenizer.h" local="yes" import="no" module="no" objc="no">SDL/Tokenizer.h</includes>
     <namespace>ph</namespace>
   </compound>
@@ -8916,6 +9888,32 @@
     <filename>dd/daa/_t_sdl_string_8h.html</filename>
     <includes id="de/de4/_t_sdl_value_8h" name="TSdlValue.h" local="yes" import="no" module="no" objc="no">SDL/Introspect/TSdlValue.h</includes>
     <class kind="class">ph::TSdlString</class>
+    <namespace>ph</namespace>
+  </compound>
+  <compound kind="file">
+    <name>TSdlStructArray.h</name>
+    <path>Source/SDL/Introspect/</path>
+    <filename>d0/d73/_t_sdl_struct_array_8h.html</filename>
+    <includes id="dd/d1d/_t_sdl_owned_field_8h" name="TSdlOwnedField.h" local="yes" import="no" module="no" objc="no">SDL/Introspect/TSdlOwnedField.h</includes>
+    <includes id="d9/d21/_t_sdl_struct_array_8ipp" name="TSdlStructArray.ipp" local="yes" import="no" module="no" objc="no">SDL/Introspect/TSdlStructArray.ipp</includes>
+    <class kind="class">ph::TSdlStructArray</class>
+    <namespace>ph</namespace>
+  </compound>
+  <compound kind="file">
+    <name>TSdlStructArray.ipp</name>
+    <path>Source/SDL/Introspect/</path>
+    <filename>d9/d21/_t_sdl_struct_array_8ipp.html</filename>
+    <includes id="d9/d21/_t_sdl_struct_array_8ipp" name="TSdlStructArray.ipp" local="yes" import="no" module="no" objc="no">SDL/Introspect/TSdlStructArray.ipp</includes>
+    <includes id="da/d58/_sdl_input_context_8h" name="SdlInputContext.h" local="yes" import="no" module="no" objc="no">SDL/Introspect/SdlInputContext.h</includes>
+    <includes id="dc/d19/_sdl_output_context_8h" name="SdlOutputContext.h" local="yes" import="no" module="no" objc="no">SDL/Introspect/SdlOutputContext.h</includes>
+    <includes id="dd/db6/_i_sdl_data_packet_group_8h" name="ISdlDataPacketGroup.h" local="yes" import="no" module="no" objc="no">SDL/ISdlDataPacketGroup.h</includes>
+    <includes id="d8/d6a/_sdl_named_output_clauses_8h" name="SdlNamedOutputClauses.h" local="yes" import="no" module="no" objc="no">SDL/SdlNamedOutputClauses.h</includes>
+    <includes id="d1/d2d/_sdl_struct_8h" name="SdlStruct.h" local="yes" import="no" module="no" objc="no">SDL/Introspect/SdlStruct.h</includes>
+    <includes id="d1/dc2/sdl__exceptions_8h" name="sdl_exceptions.h" local="yes" import="no" module="no" objc="no">SDL/sdl_exceptions.h</includes>
+    <includes id="df/dcb/sdl__helpers_8h" name="sdl_helpers.h" local="yes" import="no" module="no" objc="no">SDL/sdl_helpers.h</includes>
+    <includes id="d8/dda/sdl__traits_8h" name="sdl_traits.h" local="yes" import="no" module="no" objc="no">SDL/sdl_traits.h</includes>
+    <includes id="d9/d2a/sdl__parser_8h" name="sdl_parser.h" local="yes" import="no" module="no" objc="no">SDL/sdl_parser.h</includes>
+    <includes id="d4/db9/_tokenizer_8h" name="Tokenizer.h" local="yes" import="no" module="no" objc="no">SDL/Tokenizer.h</includes>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
@@ -8969,12 +9967,32 @@
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
+    <name>TSdlVector4.h</name>
+    <path>Source/SDL/Introspect/</path>
+    <filename>da/d9c/_t_sdl_vector4_8h.html</filename>
+    <includes id="de/de4/_t_sdl_value_8h" name="TSdlValue.h" local="yes" import="no" module="no" objc="no">SDL/Introspect/TSdlValue.h</includes>
+    <includes id="d5/de1/_t_sdl_optional_value_8h" name="TSdlOptionalValue.h" local="yes" import="no" module="no" objc="no">SDL/Introspect/TSdlOptionalValue.h</includes>
+    <includes id="d4/dd8/_t_vector4_8h" name="TVector4.h" local="yes" import="no" module="no" objc="no">Math/TVector4.h</includes>
+    <includes id="df/dcb/sdl__helpers_8h" name="sdl_helpers.h" local="yes" import="no" module="no" objc="no">SDL/sdl_helpers.h</includes>
+    <class kind="class">ph::TSdlVector4</class>
+    <namespace>ph</namespace>
+  </compound>
+  <compound kind="file">
+    <name>ISdlDataPacketGroup.h</name>
+    <path>Source/SDL/</path>
+    <filename>dd/db6/_i_sdl_data_packet_group_8h.html</filename>
+    <includes id="d5/d47/utility_8h" name="utility.h" local="yes" import="no" module="no" objc="no">Utility/utility.h</includes>
+    <class kind="class">ph::ISdlDataPacketGroup</class>
+    <namespace>ph</namespace>
+  </compound>
+  <compound kind="file">
     <name>ISdlReferenceGroup.h</name>
     <path>Source/SDL/</path>
     <filename>d4/d76/_i_sdl_reference_group_8h.html</filename>
     <includes id="d4/dca/_i_sdl_resource_8h" name="ISdlResource.h" local="yes" import="no" module="no" objc="no">SDL/ISdlResource.h</includes>
     <includes id="df/dcb/sdl__helpers_8h" name="sdl_helpers.h" local="yes" import="no" module="no" objc="no">SDL/sdl_helpers.h</includes>
     <includes id="d1/dc2/sdl__exceptions_8h" name="sdl_exceptions.h" local="yes" import="no" module="no" objc="no">SDL/sdl_exceptions.h</includes>
+    <includes id="d5/d47/utility_8h" name="utility.h" local="yes" import="no" module="no" objc="no">Utility/utility.h</includes>
     <class kind="class">ph::ISdlReferenceGroup</class>
     <namespace>ph</namespace>
   </compound>
@@ -9081,16 +10099,11 @@
     <path>Source/SDL/</path>
     <filename>df/d82/sdl__helpers_8cpp.html</filename>
     <includes id="df/dcb/sdl__helpers_8h" name="sdl_helpers.h" local="yes" import="no" module="no" objc="no">SDL/sdl_helpers.h</includes>
-    <includes id="d5/d14/_t_vector3_8h" name="TVector3.h" local="yes" import="no" module="no" objc="no">Math/TVector3.h</includes>
-    <includes id="d1/de6/_t_quaternion_8h" name="TQuaternion.h" local="yes" import="no" module="no" objc="no">Math/TQuaternion.h</includes>
-    <includes id="d4/db9/_tokenizer_8h" name="Tokenizer.h" local="yes" import="no" module="no" objc="no">SDL/Tokenizer.h</includes>
-    <includes id="db/d36/_path_8h" name="Path.h" local="yes" import="no" module="no" objc="no">DataIO/FileSystem/Path.h</includes>
-    <includes id="dd/d5a/io__exceptions_8h" name="io_exceptions.h" local="yes" import="no" module="no" objc="no">DataIO/io_exceptions.h</includes>
     <includes id="d7/d43/_sdl_class_8h" name="SdlClass.h" local="yes" import="no" module="no" objc="no">SDL/Introspect/SdlClass.h</includes>
+    <includes id="d1/d2d/_sdl_struct_8h" name="SdlStruct.h" local="yes" import="no" module="no" objc="no">SDL/Introspect/SdlStruct.h</includes>
     <includes id="db/dbe/_sdl_field_8h" name="SdlField.h" local="yes" import="no" module="no" objc="no">SDL/Introspect/SdlField.h</includes>
     <includes id="dc/dc0/_sdl_function_8h" name="SdlFunction.h" local="yes" import="no" module="no" objc="no">SDL/Introspect/SdlFunction.h</includes>
     <includes id="dc/d32/_sdl_output_clause_8h" name="SdlOutputClause.h" local="yes" import="no" module="no" objc="no">SDL/SdlOutputClause.h</includes>
-    <includes id="d1/dc2/sdl__exceptions_8h" name="sdl_exceptions.h" local="yes" import="no" module="no" objc="no">SDL/sdl_exceptions.h</includes>
     <namespace>ph</namespace>
     <namespace>ph::sdl</namespace>
     <member kind="function">
@@ -9099,6 +10112,13 @@
       <anchorfile>d3/dc3/namespaceph_1_1sdl.html</anchorfile>
       <anchor>a16ba8b83316ce0f172ca13981e342faf</anchor>
       <arglist>(const SdlClass *clazz)</arglist>
+    </member>
+    <member kind="function">
+      <type>std::string</type>
+      <name>gen_pretty_name</name>
+      <anchorfile>d3/dc3/namespaceph_1_1sdl.html</anchorfile>
+      <anchor>aa46a7b173fbfb3a13b4f6de1a803ae30</anchor>
+      <arglist>(const SdlStruct *const ztruct)</arglist>
     </member>
     <member kind="function">
       <type>std::string</type>
@@ -9148,6 +10168,13 @@
       <anchorfile>d3/dc3/namespaceph_1_1sdl.html</anchorfile>
       <anchor>a16ba8b83316ce0f172ca13981e342faf</anchor>
       <arglist>(const SdlClass *clazz)</arglist>
+    </member>
+    <member kind="function">
+      <type>std::string</type>
+      <name>gen_pretty_name</name>
+      <anchorfile>d3/dc3/namespaceph_1_1sdl.html</anchorfile>
+      <anchor>aa46a7b173fbfb3a13b4f6de1a803ae30</anchor>
+      <arglist>(const SdlStruct *const ztruct)</arglist>
     </member>
     <member kind="function">
       <type>std::string</type>
@@ -9216,6 +10243,13 @@
       <type>std::string</type>
       <name>gen_pretty_name</name>
       <anchorfile>d3/dc3/namespaceph_1_1sdl.html</anchorfile>
+      <anchor>aa46a7b173fbfb3a13b4f6de1a803ae30</anchor>
+      <arglist>(const SdlStruct *const ztruct)</arglist>
+    </member>
+    <member kind="function">
+      <type>std::string</type>
+      <name>gen_pretty_name</name>
+      <anchorfile>d3/dc3/namespaceph_1_1sdl.html</anchorfile>
       <anchor>aa7230747349b1f9ad12fb50b2f9d66c8</anchor>
       <arglist>(const SdlField *const field)</arglist>
     </member>
@@ -9260,6 +10294,13 @@
       <anchorfile>d3/dc3/namespaceph_1_1sdl.html</anchorfile>
       <anchor>a16ba8b83316ce0f172ca13981e342faf</anchor>
       <arglist>(const SdlClass *clazz)</arglist>
+    </member>
+    <member kind="function">
+      <type>std::string</type>
+      <name>gen_pretty_name</name>
+      <anchorfile>d3/dc3/namespaceph_1_1sdl.html</anchorfile>
+      <anchor>aa46a7b173fbfb3a13b4f6de1a803ae30</anchor>
+      <arglist>(const SdlStruct *const ztruct)</arglist>
     </member>
     <member kind="function">
       <type>std::string</type>
@@ -9310,6 +10351,9 @@
     <filename>de/de3/sdl__helpers_8ipp.html</filename>
     <includes id="df/dcb/sdl__helpers_8h" name="sdl_helpers.h" local="yes" import="no" module="no" objc="no">SDL/sdl_helpers.h</includes>
     <includes id="d9/dfb/_t_vector2_8h" name="TVector2.h" local="yes" import="no" module="no" objc="no">Math/TVector2.h</includes>
+    <includes id="d5/d14/_t_vector3_8h" name="TVector3.h" local="yes" import="no" module="no" objc="no">Math/TVector3.h</includes>
+    <includes id="d4/dd8/_t_vector4_8h" name="TVector4.h" local="yes" import="no" module="no" objc="no">Math/TVector4.h</includes>
+    <includes id="d1/de6/_t_quaternion_8h" name="TQuaternion.h" local="yes" import="no" module="no" objc="no">Math/TQuaternion.h</includes>
     <includes id="d4/db9/_tokenizer_8h" name="Tokenizer.h" local="yes" import="no" module="no" objc="no">SDL/Tokenizer.h</includes>
     <includes id="d8/dda/sdl__traits_8h" name="sdl_traits.h" local="yes" import="no" module="no" objc="no">SDL/sdl_traits.h</includes>
     <includes id="d1/dc2/sdl__exceptions_8h" name="sdl_exceptions.h" local="yes" import="no" module="no" objc="no">SDL/sdl_exceptions.h</includes>
@@ -9337,6 +10381,7 @@
     <includes id="dd/daa/_t_sdl_string_8h" name="TSdlString.h" local="yes" import="no" module="no" objc="no">SDL/Introspect/TSdlString.h</includes>
     <includes id="d2/d6a/_t_sdl_vector2_8h" name="TSdlVector2.h" local="yes" import="no" module="no" objc="no">SDL/Introspect/TSdlVector2.h</includes>
     <includes id="df/d35/_t_sdl_vector3_8h" name="TSdlVector3.h" local="yes" import="no" module="no" objc="no">SDL/Introspect/TSdlVector3.h</includes>
+    <includes id="da/d9c/_t_sdl_vector4_8h" name="TSdlVector4.h" local="yes" import="no" module="no" objc="no">SDL/Introspect/TSdlVector4.h</includes>
     <includes id="d7/d55/_t_sdl_quaternion_8h" name="TSdlQuaternion.h" local="yes" import="no" module="no" objc="no">SDL/Introspect/TSdlQuaternion.h</includes>
     <includes id="d8/d60/_t_sdl_real_array_8h" name="TSdlRealArray.h" local="yes" import="no" module="no" objc="no">SDL/Introspect/TSdlRealArray.h</includes>
     <includes id="d3/d7a/_t_sdl_vector3_array_8h" name="TSdlVector3Array.h" local="yes" import="no" module="no" objc="no">SDL/Introspect/TSdlVector3Array.h</includes>
@@ -9345,6 +10390,7 @@
     <includes id="dc/dd8/_t_sdl_enum_field_8h" name="TSdlEnumField.h" local="yes" import="no" module="no" objc="no">SDL/Introspect/TSdlEnumField.h</includes>
     <includes id="d4/d32/_t_sdl_path_8h" name="TSdlPath.h" local="yes" import="no" module="no" objc="no">SDL/Introspect/TSdlPath.h</includes>
     <includes id="dd/d93/_t_sdl_resource_identifier_8h" name="TSdlResourceIdentifier.h" local="yes" import="no" module="no" objc="no">SDL/Introspect/TSdlResourceIdentifier.h</includes>
+    <includes id="d0/d73/_t_sdl_struct_array_8h" name="TSdlStructArray.h" local="yes" import="no" module="no" objc="no">SDL/Introspect/TSdlStructArray.h</includes>
     <includes id="d8/d53/_t_sdl_method_8h" name="TSdlMethod.h" local="yes" import="no" module="no" objc="no">SDL/Introspect/TSdlMethod.h</includes>
     <member kind="define">
       <type>#define</type>
@@ -9388,6 +10434,15 @@
     <name>sdl_parser.h</name>
     <path>Source/SDL/</path>
     <filename>d9/d2a/sdl__parser_8h.html</filename>
+    <includes id="de/d61/sdl__parser_8ipp" name="sdl_parser.ipp" local="yes" import="no" module="no" objc="no">SDL/sdl_parser.ipp</includes>
+    <namespace>ph</namespace>
+    <namespace>ph::sdl_parser</namespace>
+  </compound>
+  <compound kind="file">
+    <name>sdl_parser.ipp</name>
+    <path>Source/SDL/</path>
+    <filename>de/d61/sdl__parser_8ipp.html</filename>
+    <includes id="d9/d2a/sdl__parser_8h" name="sdl_parser.h" local="yes" import="no" module="no" objc="no">SDL/sdl_parser.h</includes>
     <namespace>ph</namespace>
     <namespace>ph::sdl_parser</namespace>
   </compound>
@@ -9419,6 +10474,7 @@
     <includes id="d1/dc2/sdl__exceptions_8h" name="sdl_exceptions.h" local="yes" import="no" module="no" objc="no">SDL/sdl_exceptions.h</includes>
     <includes id="de/d44/_sdl_output_clauses_8h" name="SdlOutputClauses.h" local="yes" import="no" module="no" objc="no">SDL/SdlOutputClauses.h</includes>
     <includes id="dd/d57/_sdl_inline_packet_interface_8h" name="SdlInlinePacketInterface.h" local="yes" import="no" module="no" objc="no">SDL/SdlInlinePacketInterface.h</includes>
+    <includes id="d8/d6a/_sdl_named_output_clauses_8h" name="SdlNamedOutputClauses.h" local="yes" import="no" module="no" objc="no">SDL/SdlNamedOutputClauses.h</includes>
     <includes id="d5/d11/_semantic_version_8h" name="SemanticVersion.h" local="yes" import="no" module="no" objc="no">Utility/SemanticVersion.h</includes>
     <namespace>ph</namespace>
   </compound>
@@ -9463,6 +10519,23 @@
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
+    <name>SdlDataPacketCollection.cpp</name>
+    <path>Source/SDL/</path>
+    <filename>d5/d3a/_sdl_data_packet_collection_8cpp.html</filename>
+    <includes id="d0/d1e/_sdl_data_packet_collection_8h" name="SdlDataPacketCollection.h" local="yes" import="no" module="no" objc="no">SDL/SdlDataPacketCollection.h</includes>
+    <includes id="d1/dc2/sdl__exceptions_8h" name="sdl_exceptions.h" local="yes" import="no" module="no" objc="no">SDL/sdl_exceptions.h</includes>
+    <namespace>ph</namespace>
+  </compound>
+  <compound kind="file">
+    <name>SdlDataPacketCollection.h</name>
+    <path>Source/SDL/</path>
+    <filename>d0/d1e/_sdl_data_packet_collection_8h.html</filename>
+    <includes id="dd/db6/_i_sdl_data_packet_group_8h" name="ISdlDataPacketGroup.h" local="yes" import="no" module="no" objc="no">SDL/ISdlDataPacketGroup.h</includes>
+    <includes id="de/def/_sdl_input_clauses_8h" name="SdlInputClauses.h" local="yes" import="no" module="no" objc="no">SDL/SdlInputClauses.h</includes>
+    <class kind="class">ph::SdlDataPacketCollection</class>
+    <namespace>ph</namespace>
+  </compound>
+  <compound kind="file">
     <name>SdlDataPacketInterface.cpp</name>
     <path>Source/SDL/</path>
     <filename>d2/d01/_sdl_data_packet_interface_8cpp.html</filename>
@@ -9504,6 +10577,8 @@
     <includes id="de/def/_sdl_input_clauses_8h" name="SdlInputClauses.h" local="yes" import="no" module="no" objc="no">SDL/SdlInputClauses.h</includes>
     <includes id="dc/d32/_sdl_output_clause_8h" name="SdlOutputClause.h" local="yes" import="no" module="no" objc="no">SDL/SdlOutputClause.h</includes>
     <includes id="de/d44/_sdl_output_clauses_8h" name="SdlOutputClauses.h" local="yes" import="no" module="no" objc="no">SDL/SdlOutputClauses.h</includes>
+    <includes id="da/d58/_sdl_input_context_8h" name="SdlInputContext.h" local="yes" import="no" module="no" objc="no">SDL/Introspect/SdlInputContext.h</includes>
+    <includes id="dd/db6/_i_sdl_data_packet_group_8h" name="ISdlDataPacketGroup.h" local="yes" import="no" module="no" objc="no">SDL/ISdlDataPacketGroup.h</includes>
     <includes id="d4/db9/_tokenizer_8h" name="Tokenizer.h" local="yes" import="no" module="no" objc="no">SDL/Tokenizer.h</includes>
     <includes id="d1/dc2/sdl__exceptions_8h" name="sdl_exceptions.h" local="yes" import="no" module="no" objc="no">SDL/sdl_exceptions.h</includes>
     <includes id="d9/d2a/sdl__parser_8h" name="sdl_parser.h" local="yes" import="no" module="no" objc="no">SDL/sdl_parser.h</includes>
@@ -9515,6 +10590,7 @@
     <filename>dd/d57/_sdl_inline_packet_interface_8h.html</filename>
     <includes id="df/d36/_sdl_data_packet_interface_8h" name="SdlDataPacketInterface.h" local="yes" import="no" module="no" objc="no">SDL/SdlDataPacketInterface.h</includes>
     <includes id="d8/d82/sdl__fwd_8h" name="sdl_fwd.h" local="yes" import="no" module="no" objc="no">SDL/sdl_fwd.h</includes>
+    <includes id="dd/da2/_t_span_8h" name="TSpan.h" local="yes" import="no" module="no" objc="no">Utility/TSpan.h</includes>
     <class kind="class">ph::SdlInlinePacketInterface</class>
     <namespace>ph</namespace>
   </compound>
@@ -9540,6 +10616,22 @@
     <filename>de/def/_sdl_input_clauses_8h.html</filename>
     <includes id="d6/d0f/_sdl_input_clause_8h" name="SdlInputClause.h" local="yes" import="no" module="no" objc="no">SDL/SdlInputClause.h</includes>
     <class kind="class">ph::SdlInputClauses</class>
+    <namespace>ph</namespace>
+  </compound>
+  <compound kind="file">
+    <name>SdlNamedOutputClauses.cpp</name>
+    <path>Source/SDL/</path>
+    <filename>dd/dc5/_sdl_named_output_clauses_8cpp.html</filename>
+    <includes id="d8/d6a/_sdl_named_output_clauses_8h" name="SdlNamedOutputClauses.h" local="yes" import="no" module="no" objc="no">SDL/SdlNamedOutputClauses.h</includes>
+    <includes id="d1/dc2/sdl__exceptions_8h" name="sdl_exceptions.h" local="yes" import="no" module="no" objc="no">SDL/sdl_exceptions.h</includes>
+    <namespace>ph</namespace>
+  </compound>
+  <compound kind="file">
+    <name>SdlNamedOutputClauses.h</name>
+    <path>Source/SDL/</path>
+    <filename>d8/d6a/_sdl_named_output_clauses_8h.html</filename>
+    <includes id="de/d44/_sdl_output_clauses_8h" name="SdlOutputClauses.h" local="yes" import="no" module="no" objc="no">SDL/SdlOutputClauses.h</includes>
+    <class kind="class">ph::SdlNamedOutputClauses</class>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
@@ -9622,6 +10714,7 @@
     <path>Source/SDL/</path>
     <filename>d2/da2/_sdl_scene_file_reader_8h.html</filename>
     <includes id="df/d9d/_sdl_command_parser_8h" name="SdlCommandParser.h" local="yes" import="no" module="no" objc="no">SDL/SdlCommandParser.h</includes>
+    <includes id="d0/d1e/_sdl_data_packet_collection_8h" name="SdlDataPacketCollection.h" local="yes" import="no" module="no" objc="no">SDL/SdlDataPacketCollection.h</includes>
     <includes id="db/d36/_path_8h" name="Path.h" local="yes" import="no" module="no" objc="no">DataIO/FileSystem/Path.h</includes>
     <class kind="class">ph::SdlSceneFileReader</class>
     <namespace>ph</namespace>
@@ -9647,6 +10740,7 @@
     <filename>da/dac/_sdl_scene_file_writer_8h.html</filename>
     <includes id="d2/d40/_sdl_command_generator_8h" name="SdlCommandGenerator.h" local="yes" import="no" module="no" objc="no">SDL/SdlCommandGenerator.h</includes>
     <includes id="d3/dc4/_sdl_dependency_resolver_8h" name="SdlDependencyResolver.h" local="yes" import="no" module="no" objc="no">SDL/SdlDependencyResolver.h</includes>
+    <includes id="d8/d6a/_sdl_named_output_clauses_8h" name="SdlNamedOutputClauses.h" local="yes" import="no" module="no" objc="no">SDL/SdlNamedOutputClauses.h</includes>
     <includes id="db/d36/_path_8h" name="Path.h" local="yes" import="no" module="no" objc="no">DataIO/FileSystem/Path.h</includes>
     <class kind="class">ph::SdlSceneFileWriter</class>
     <namespace>ph</namespace>
@@ -9749,10 +10843,18 @@
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
+    <name>concurrent.cpp</name>
+    <path>Source/Utility/Concurrent/</path>
+    <filename>d0/d79/concurrent_8cpp.html</filename>
+    <includes id="d8/de6/concurrent_8h" name="concurrent.h" local="yes" import="no" module="no" objc="no">Utility/Concurrent/concurrent.h</includes>
+    <includes id="da/d2f/_fixed_size_thread_pool_8h" name="FixedSizeThreadPool.h" local="yes" import="no" module="no" objc="no">Utility/Concurrent/FixedSizeThreadPool.h</includes>
+    <includes id="df/db1/math_8h" name="math.h" local="yes" import="no" module="no" objc="no">Math/math.h</includes>
+    <namespace>ph</namespace>
+  </compound>
+  <compound kind="file">
     <name>concurrent.h</name>
     <path>Source/Utility/Concurrent/</path>
     <filename>d8/de6/concurrent_8h.html</filename>
-    <includes id="df/db1/math_8h" name="math.h" local="yes" import="no" module="no" objc="no">Math/math.h</includes>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
@@ -9982,33 +11084,33 @@
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
-    <name>TArrayAsStack.h</name>
+    <name>TArrayStack.h</name>
     <path>Source/Utility/</path>
-    <filename>dd/d8c/_t_array_as_stack_8h.html</filename>
-    <includes id="d1/ded/_t_array_as_stack_8ipp" name="TArrayAsStack.ipp" local="yes" import="no" module="no" objc="no">Utility/TArrayAsStack.ipp</includes>
-    <class kind="class">ph::TArrayAsStack</class>
+    <filename>d9/de5/_t_array_stack_8h.html</filename>
+    <includes id="d7/d63/_t_array_stack_8ipp" name="TArrayStack.ipp" local="yes" import="no" module="no" objc="no">Utility/TArrayStack.ipp</includes>
+    <class kind="class">ph::TArrayStack</class>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
-    <name>TArrayAsStack.ipp</name>
+    <name>TArrayStack.ipp</name>
     <path>Source/Utility/</path>
-    <filename>d1/ded/_t_array_as_stack_8ipp.html</filename>
-    <includes id="dd/d8c/_t_array_as_stack_8h" name="TArrayAsStack.h" local="yes" import="no" module="no" objc="no">Utility/TArrayAsStack.h</includes>
+    <filename>d7/d63/_t_array_stack_8ipp.html</filename>
+    <includes id="d9/de5/_t_array_stack_8h" name="TArrayStack.h" local="yes" import="no" module="no" objc="no">Utility/TArrayStack.h</includes>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
-    <name>TArrayAsVector.h</name>
+    <name>TArrayVector.h</name>
     <path>Source/Utility/</path>
-    <filename>d6/dfd/_t_array_as_vector_8h.html</filename>
-    <includes id="d1/dbb/_t_array_as_vector_8ipp" name="TArrayAsVector.ipp" local="yes" import="no" module="no" objc="no">Utility/TArrayAsVector.ipp</includes>
-    <class kind="class">ph::TArrayAsVector</class>
+    <filename>d3/d11/_t_array_vector_8h.html</filename>
+    <includes id="dd/df8/_t_array_vector_8ipp" name="TArrayVector.ipp" local="yes" import="no" module="no" objc="no">Utility/TArrayVector.ipp</includes>
+    <class kind="class">ph::TArrayVector</class>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
-    <name>TArrayAsVector.ipp</name>
+    <name>TArrayVector.ipp</name>
     <path>Source/Utility/</path>
-    <filename>d1/dbb/_t_array_as_vector_8ipp.html</filename>
-    <includes id="d6/dfd/_t_array_as_vector_8h" name="TArrayAsVector.h" local="yes" import="no" module="no" objc="no">Utility/TArrayAsVector.h</includes>
+    <filename>dd/df8/_t_array_vector_8ipp.html</filename>
+    <includes id="d3/d11/_t_array_vector_8h" name="TArrayVector.h" local="yes" import="no" module="no" objc="no">Utility/TArrayVector.h</includes>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
@@ -10092,12 +11194,15 @@
     <class kind="struct">ph::IsBuildable&lt; Built, From, std::enable_if_t&lt; std::is_convertible_v&lt; From, Built &gt;||std::is_constructible_v&lt; Built, From &gt; &gt; &gt;</class>
     <namespace>ph</namespace>
     <concept>ph::CCanAdd</concept>
+    <concept>ph::CCanSubtract</concept>
     <concept>ph::CCanMultiply</concept>
+    <concept>ph::CCanDivide</concept>
     <concept>ph::CSubscriptable</concept>
     <concept>ph::CEnum</concept>
     <concept>ph::CEnumWithSizeInfo</concept>
     <concept>ph::CNumber</concept>
     <concept>ph::CSame</concept>
+    <concept>ph::CNotSame</concept>
     <concept>ph::CDerived</concept>
     <concept>ph::CBase</concept>
   </compound>
@@ -10218,8 +11323,8 @@
     <includes id="db/d83/_t_iterator_proxy_8h" name="TIteratorProxy.h" local="yes" import="no" module="no" objc="no">Utility/TIteratorProxy.h</includes>
     <includes id="d2/d04/_t_const_iterator_proxy_8h" name="TConstIteratorProxy.h" local="yes" import="no" module="no" objc="no">Utility/TConstIteratorProxy.h</includes>
     <includes id="d2/dbc/_surface_behavior_8h" name="SurfaceBehavior.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/SurfaceBehavior.h</includes>
-    <includes id="d7/d3f/_intersectable_8h" name="Intersectable.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/Intersectable.h</includes>
-    <includes id="d4/d5e/_primitive_metadata_8h" name="PrimitiveMetadata.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/PrimitiveMetadata.h</includes>
+    <includes id="d7/d3f/_intersectable_8h" name="Intersectable.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Intersectable.h</includes>
+    <includes id="d4/d5e/_primitive_metadata_8h" name="PrimitiveMetadata.h" local="yes" import="no" module="no" objc="no">Core/Intersection/PrimitiveMetadata.h</includes>
     <includes id="d7/db5/_transient_visual_element_8h" name="TransientVisualElement.h" local="yes" import="no" module="no" objc="no">World/Foundation/TransientVisualElement.h</includes>
     <includes id="db/d56/_transform_8h" name="Transform.h" local="yes" import="no" module="no" objc="no">Math/Transform/Transform.h</includes>
     <class kind="class">ph::CookedDataStorage</class>
@@ -10234,7 +11339,7 @@
     <name>CookedGeometry.h</name>
     <path>Source/World/Foundation/</path>
     <filename>dd/d00/_cooked_geometry_8h.html</filename>
-    <includes id="d4/d8b/data__structure__fwd_8h" name="data_structure_fwd.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/data_structure_fwd.h</includes>
+    <includes id="d4/d8b/data__structure__fwd_8h" name="data_structure_fwd.h" local="yes" import="no" module="no" objc="no">Core/Intersection/data_structure_fwd.h</includes>
     <class kind="class">ph::CookedGeometry</class>
     <namespace>ph</namespace>
   </compound>
@@ -10292,17 +11397,17 @@
     <filename>df/d3c/_cooked_resource_collection_8h.html</filename>
     <includes id="d7/dc6/_cooked_resource_collection_base_8h" name="CookedResourceCollectionBase.h" local="yes" import="no" module="no" objc="no">World/Foundation/CookedResourceCollectionBase.h</includes>
     <includes id="d0/d03/_t_unique_ptr_vector_8h" name="TUniquePtrVector.h" local="yes" import="no" module="no" objc="no">Utility/TUniquePtrVector.h</includes>
-    <includes id="d4/d5e/_primitive_metadata_8h" name="PrimitiveMetadata.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/PrimitiveMetadata.h</includes>
     <includes id="db/d56/_transform_8h" name="Transform.h" local="yes" import="no" module="no" objc="no">Math/Transform/Transform.h</includes>
     <includes id="dd/d00/_cooked_geometry_8h" name="CookedGeometry.h" local="yes" import="no" module="no" objc="no">World/Foundation/CookedGeometry.h</includes>
     <includes id="d4/d6b/_cooked_motion_8h" name="CookedMotion.h" local="yes" import="no" module="no" objc="no">World/Foundation/CookedMotion.h</includes>
     <includes id="da/d9d/_t_synchronized_8h" name="TSynchronized.h" local="yes" import="no" module="no" objc="no">Utility/Concurrent/TSynchronized.h</includes>
     <includes id="dd/dff/traits_8h" name="traits.h" local="yes" import="no" module="no" objc="no">Utility/traits.h</includes>
     <includes id="d0/d28/_sdl_resource_id_8h" name="SdlResourceId.h" local="yes" import="no" module="no" objc="no">SDL/SdlResourceId.h</includes>
-    <includes id="d7/d3f/_intersectable_8h" name="Intersectable.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/Intersectable.h</includes>
+    <includes id="d4/d5e/_primitive_metadata_8h" name="PrimitiveMetadata.h" local="yes" import="no" module="no" objc="no">Core/Intersection/PrimitiveMetadata.h</includes>
+    <includes id="d7/d3f/_intersectable_8h" name="Intersectable.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Intersectable.h</includes>
+    <includes id="da/da3/_t_indexed_polygon_buffer_8h" name="TIndexedPolygonBuffer.h" local="yes" import="no" module="no" objc="no">Core/Intersection/DataStructure/TIndexedPolygonBuffer.h</includes>
     <includes id="da/dc6/_emitter_8h" name="Emitter.h" local="yes" import="no" module="no" objc="no">Core/Emitter/Emitter.h</includes>
     <includes id="d9/da5/_cooked_named_resource_8h" name="CookedNamedResource.h" local="yes" import="no" module="no" objc="no">World/Foundation/CookedNamedResource.h</includes>
-    <includes id="da/da3/_t_indexed_polygon_buffer_8h" name="TIndexedPolygonBuffer.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/DataStructure/TIndexedPolygonBuffer.h</includes>
     <class kind="class">ph::CookedResourceCollection</class>
     <namespace>ph</namespace>
   </compound>
@@ -10407,14 +11512,14 @@
     <path>Source/World/Foundation/</path>
     <filename>dd/dee/_transient_visual_element_8cpp.html</filename>
     <includes id="d7/db5/_transient_visual_element_8h" name="TransientVisualElement.h" local="yes" import="no" module="no" objc="no">World/Foundation/TransientVisualElement.h</includes>
-    <includes id="d7/df8/_primitive_8h" name="Primitive.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/Primitive.h</includes>
+    <includes id="d7/df8/_primitive_8h" name="Primitive.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Primitive.h</includes>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
     <name>TransientVisualElement.h</name>
     <path>Source/World/Foundation/</path>
     <filename>d7/db5/_transient_visual_element_8h.html</filename>
-    <includes id="d7/d3f/_intersectable_8h" name="Intersectable.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/Intersectable.h</includes>
+    <includes id="d7/d3f/_intersectable_8h" name="Intersectable.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Intersectable.h</includes>
     <class kind="class">ph::TransientVisualElement</class>
     <namespace>ph</namespace>
   </compound>
@@ -10423,13 +11528,14 @@
     <path>Source/World/</path>
     <filename>d9/d44/_scene_8cpp.html</filename>
     <includes id="de/d56/_scene_8h" name="Scene.h" local="yes" import="no" module="no" objc="no">World/Scene.h</includes>
-    <includes id="d8/d9f/_intersector_8h" name="Intersector.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/Intersector.h</includes>
     <includes id="dc/d0d/_emitter_sampler_8h" name="EmitterSampler.h" local="yes" import="no" module="no" objc="no">Core/Emitter/Sampler/EmitterSampler.h</includes>
     <includes id="de/db3/_hit_probe_8h" name="HitProbe.h" local="yes" import="no" module="no" objc="no">Core/HitProbe.h</includes>
     <includes id="d8/df3/_hit_detail_8h" name="HitDetail.h" local="yes" import="no" module="no" objc="no">Core/HitDetail.h</includes>
     <includes id="da/da9/_ray_8h" name="Ray.h" local="yes" import="no" module="no" objc="no">Core/Ray.h</includes>
-    <includes id="d7/df8/_primitive_8h" name="Primitive.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/Primitive.h</includes>
+    <includes id="d8/d9f/_intersector_8h" name="Intersector.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Intersector.h</includes>
+    <includes id="d7/df8/_primitive_8h" name="Primitive.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Primitive.h</includes>
     <includes id="da/dc6/_emitter_8h" name="Emitter.h" local="yes" import="no" module="no" objc="no">Core/Emitter/Emitter.h</includes>
+    <includes id="d5/de3/_energy_emission_sample_query_8h" name="EnergyEmissionSampleQuery.h" local="yes" import="no" module="no" objc="no">Core/Emitter/Query/EnergyEmissionSampleQuery.h</includes>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
@@ -10452,11 +11558,11 @@
     <includes id="df/da3/_core_cooking_context_8h" name="CoreCookingContext.h" local="yes" import="no" module="no" objc="no">EngineEnv/CoreCookingContext.h</includes>
     <includes id="d2/db7/_core_cooked_unit_8h" name="CoreCookedUnit.h" local="yes" import="no" module="no" objc="no">EngineEnv/CoreCookedUnit.h</includes>
     <includes id="de/deb/_actor_8h" name="Actor.h" local="yes" import="no" module="no" objc="no">Actor/Actor.h</includes>
-    <includes id="de/d94/_brute_force_intersector_8h" name="BruteForceIntersector.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/BruteForceIntersector.h</includes>
-    <includes id="dc/df0/_kdtree_intersector_8h" name="KdtreeIntersector.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/Kdtree/KdtreeIntersector.h</includes>
+    <includes id="de/d94/_brute_force_intersector_8h" name="BruteForceIntersector.h" local="yes" import="no" module="no" objc="no">Core/Intersection/BruteForceIntersector.h</includes>
+    <includes id="d2/d7c/_classic_bvh_intersector_8h" name="ClassicBvhIntersector.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Bvh/ClassicBvhIntersector.h</includes>
+    <includes id="d5/d70/_t_indexed_kdtree_intersector_8h" name="TIndexedKdtreeIntersector.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Intersector/TIndexedKdtreeIntersector.h</includes>
+    <includes id="dc/df0/_kdtree_intersector_8h" name="KdtreeIntersector.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Kdtree/KdtreeIntersector.h</includes>
     <includes id="d0/d42/_e_s_uniform_random_8h" name="ESUniformRandom.h" local="yes" import="no" module="no" objc="no">Core/Emitter/Sampler/ESUniformRandom.h</includes>
-    <includes id="d2/d7c/_classic_bvh_intersector_8h" name="ClassicBvhIntersector.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/Bvh/ClassicBvhIntersector.h</includes>
-    <includes id="d5/d70/_t_indexed_kdtree_intersector_8h" name="TIndexedKdtreeIntersector.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/Intersector/TIndexedKdtreeIntersector.h</includes>
     <includes id="dd/d66/_e_s_power_favoring_8h" name="ESPowerFavoring.h" local="yes" import="no" module="no" objc="no">Core/Emitter/Sampler/ESPowerFavoring.h</includes>
     <includes id="d3/deb/_a_phantom_model_8h" name="APhantomModel.h" local="yes" import="no" module="no" objc="no">Actor/APhantomModel.h</includes>
     <includes id="d4/db4/_cook_order_8h" name="CookOrder.h" local="yes" import="no" module="no" objc="no">World/Foundation/CookOrder.h</includes>
@@ -10471,7 +11577,7 @@
     <includes id="d7/db5/_transient_visual_element_8h" name="TransientVisualElement.h" local="yes" import="no" module="no" objc="no">World/Foundation/TransientVisualElement.h</includes>
     <includes id="de/deb/_actor_8h" name="Actor.h" local="yes" import="no" module="no" objc="no">Actor/Actor.h</includes>
     <includes id="de/d56/_scene_8h" name="Scene.h" local="yes" import="no" module="no" objc="no">World/Scene.h</includes>
-    <includes id="d8/d9f/_intersector_8h" name="Intersector.h" local="yes" import="no" module="no" objc="no">Core/Intersectable/Intersector.h</includes>
+    <includes id="d8/d9f/_intersector_8h" name="Intersector.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Intersector.h</includes>
     <includes id="dc/d0d/_emitter_sampler_8h" name="EmitterSampler.h" local="yes" import="no" module="no" objc="no">Core/Emitter/Sampler/EmitterSampler.h</includes>
     <includes id="d1/d26/_t_a_a_b_b3_d_8h" name="TAABB3D.h" local="yes" import="no" module="no" objc="no">Math/Geometry/TAABB3D.h</includes>
     <includes id="d5/d14/_t_vector3_8h" name="TVector3.h" local="yes" import="no" module="no" objc="no">Math/TVector3.h</includes>
@@ -10499,6 +11605,13 @@
       <name>getGeometry</name>
       <anchorfile>dc/dcb/classph_1_1_a_area_light.html</anchorfile>
       <anchor>ad871706ea9b7689c1b48d2736622f9ab</anchor>
+      <arglist>(const CookingContext &amp;ctx) const override</arglist>
+    </member>
+    <member kind="function">
+      <type>std::shared_ptr&lt; Material &gt;</type>
+      <name>getMaterial</name>
+      <anchorfile>dc/dcb/classph_1_1_a_area_light.html</anchorfile>
+      <anchor>a159200dc4d48ff45e418e08ef7c70490</anchor>
       <arglist>(const CookingContext &amp;ctx) const override</arglist>
     </member>
     <member kind="function">
@@ -11873,44 +12986,65 @@
       <anchor>ad9f2d5013582b5db4ec080f327c7c61e</anchor>
       <arglist>(const SurfaceHit &amp;X, const math::Vector3R &amp;L, const math::Vector3R &amp;V)</arglist>
     </member>
-    <member kind="variable">
-      <type>SurfaceHit</type>
-      <name>X</name>
+    <member kind="function">
+      <type>const SurfaceHit &amp;</type>
+      <name>getX</name>
       <anchorfile>d5/d04/classph_1_1_bsdf_eval_input.html</anchorfile>
-      <anchor>a173fb12164d4aeff724224f607662239</anchor>
-      <arglist></arglist>
+      <anchor>a8af2de9378c303b7ee55855e264db563</anchor>
+      <arglist>() const</arglist>
     </member>
-    <member kind="variable">
-      <type>math::Vector3R</type>
-      <name>L</name>
+    <member kind="function">
+      <type>const math::Vector3R &amp;</type>
+      <name>getL</name>
       <anchorfile>d5/d04/classph_1_1_bsdf_eval_input.html</anchorfile>
-      <anchor>ab7cd2c15b5a8d5282537a3f2c5cfad8c</anchor>
-      <arglist></arglist>
+      <anchor>aca3c11ef4b486edabce9b06614da954c</anchor>
+      <arglist>() const</arglist>
     </member>
-    <member kind="variable">
-      <type>math::Vector3R</type>
-      <name>V</name>
+    <member kind="function">
+      <type>const math::Vector3R &amp;</type>
+      <name>getV</name>
       <anchorfile>d5/d04/classph_1_1_bsdf_eval_input.html</anchorfile>
-      <anchor>af240ea236a9b22a409559aa650505c88</anchor>
-      <arglist></arglist>
+      <anchor>ac4b7d7cadd383a09bed6eaf5dcd8057e</anchor>
+      <arglist>() const</arglist>
     </member>
   </compound>
   <compound kind="class">
     <name>ph::BsdfEvalOutput</name>
     <filename>d6/d7b/classph_1_1_bsdf_eval_output.html</filename>
     <member kind="function">
-      <type>bool</type>
-      <name>isGood</name>
+      <type>void</type>
+      <name>setBsdf</name>
       <anchorfile>d6/d7b/classph_1_1_bsdf_eval_output.html</anchorfile>
-      <anchor>ad8e6365b61b13132f94ebc8d6b2f7a6b</anchor>
+      <anchor>a8bedaa5b755929aae0a87153048a9141</anchor>
+      <arglist>(const math::Spectrum &amp;bsdf, bool inferMeasurabilityFromThis=true)</arglist>
+    </member>
+    <member kind="function">
+      <type>const math::Spectrum &amp;</type>
+      <name>getBsdf</name>
+      <anchorfile>d6/d7b/classph_1_1_bsdf_eval_output.html</anchorfile>
+      <anchor>a9b5b19d12d0c58ff9bcec5a756dd31c8</anchor>
       <arglist>() const</arglist>
     </member>
-    <member kind="variable">
-      <type>math::Spectrum</type>
-      <name>bsdf</name>
+    <member kind="function">
+      <type>bool</type>
+      <name>isMeasurable</name>
       <anchorfile>d6/d7b/classph_1_1_bsdf_eval_output.html</anchorfile>
-      <anchor>a3cffc91dc77a021e9dfe79fad051cede</anchor>
-      <arglist></arglist>
+      <anchor>ace890b849988082e9bd6bd88c6e3cebd</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setMeasurability</name>
+      <anchorfile>d6/d7b/classph_1_1_bsdf_eval_output.html</anchorfile>
+      <anchor>a764f7a87edbce87df81f3b396c4461dc</anchor>
+      <arglist>(bool measurability)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setMeasurability</name>
+      <anchorfile>d6/d7b/classph_1_1_bsdf_eval_output.html</anchorfile>
+      <anchor>a39b4da97dd35457898a36f7916dac75f</anchor>
+      <arglist>(const math::Spectrum &amp;reference)</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -11934,8 +13068,8 @@
       <type></type>
       <name>BsdfEvalQuery</name>
       <anchorfile>db/d96/classph_1_1_bsdf_eval_query.html</anchorfile>
-      <anchor>a5a6ec0114c7efd9c788d600d56badd76</anchor>
-      <arglist>()</arglist>
+      <anchor>a10ea2de1a3178164af1cc80c539b4c4e</anchor>
+      <arglist>()=default</arglist>
     </member>
     <member kind="function">
       <type></type>
@@ -11991,8 +13125,8 @@
       <type>void</type>
       <name>set</name>
       <anchorfile>d0/dd8/classph_1_1_bsdf_pdf_input.html</anchorfile>
-      <anchor>aad145be0fd619109d2a7c31e303f825d</anchor>
-      <arglist>(const BsdfEvalQuery &amp;eval)</arglist>
+      <anchor>a55b3d92039330bd313d58945f05abc86</anchor>
+      <arglist>(const BsdfEvalInput &amp;evalInput)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
@@ -12015,37 +13149,44 @@
       <anchor>a63eb9be05f49fe0c0200f5969fc7150b</anchor>
       <arglist>(const SurfaceHit &amp;X, const math::Vector3R &amp;L, const math::Vector3R &amp;V)</arglist>
     </member>
-    <member kind="variable">
-      <type>SurfaceHit</type>
-      <name>X</name>
+    <member kind="function">
+      <type>const SurfaceHit &amp;</type>
+      <name>getX</name>
       <anchorfile>d0/dd8/classph_1_1_bsdf_pdf_input.html</anchorfile>
-      <anchor>a08bcdd92c242a1d11b45115d51510123</anchor>
-      <arglist></arglist>
+      <anchor>a6841b514eb1d4468c3614811cab6c3ce</anchor>
+      <arglist>() const</arglist>
     </member>
-    <member kind="variable">
-      <type>math::Vector3R</type>
-      <name>L</name>
+    <member kind="function">
+      <type>const math::Vector3R &amp;</type>
+      <name>getL</name>
       <anchorfile>d0/dd8/classph_1_1_bsdf_pdf_input.html</anchorfile>
-      <anchor>a6c4369dc4b7268e20bf3195c24c05f7e</anchor>
-      <arglist></arglist>
+      <anchor>acae362def786247508639fdfb1b8ee7d</anchor>
+      <arglist>() const</arglist>
     </member>
-    <member kind="variable">
-      <type>math::Vector3R</type>
-      <name>V</name>
+    <member kind="function">
+      <type>const math::Vector3R &amp;</type>
+      <name>getV</name>
       <anchorfile>d0/dd8/classph_1_1_bsdf_pdf_input.html</anchorfile>
-      <anchor>a70de4792d970072514d82d9fc284ea3f</anchor>
-      <arglist></arglist>
+      <anchor>a604e7767c13ec37b1eba4e232603c3ac</anchor>
+      <arglist>() const</arglist>
     </member>
   </compound>
   <compound kind="class">
     <name>ph::BsdfPdfOutput</name>
     <filename>d8/d24/classph_1_1_bsdf_pdf_output.html</filename>
-    <member kind="variable">
-      <type>real</type>
-      <name>sampleDirPdfW</name>
+    <member kind="function">
+      <type>void</type>
+      <name>setSampleDirPdfW</name>
       <anchorfile>d8/d24/classph_1_1_bsdf_pdf_output.html</anchorfile>
-      <anchor>a756d1e7f71177f4061dabde77b1fcda5</anchor>
-      <arglist></arglist>
+      <anchor>a88edbc404c4d2f275da0a6804e926f00</anchor>
+      <arglist>(real pdfW)</arglist>
+    </member>
+    <member kind="function">
+      <type>real</type>
+      <name>getSampleDirPdfW</name>
+      <anchorfile>d8/d24/classph_1_1_bsdf_pdf_output.html</anchorfile>
+      <anchor>aabc2fcd76c880df7f82899a48a0c6623</anchor>
+      <arglist>() const</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -12069,8 +13210,8 @@
       <type></type>
       <name>BsdfPdfQuery</name>
       <anchorfile>db/d22/classph_1_1_bsdf_pdf_query.html</anchorfile>
-      <anchor>a9e80c8a3353aa40f6958882a4206c108</anchor>
-      <arglist>()</arglist>
+      <anchor>a386865d1b40d0147a8d339505774be40</anchor>
+      <arglist>()=default</arglist>
     </member>
     <member kind="function">
       <type></type>
@@ -12108,8 +13249,8 @@
       <type></type>
       <name>BsdfQueryContext</name>
       <anchorfile>dc/dfe/classph_1_1_bsdf_query_context.html</anchorfile>
-      <anchor>a4506aac9bfd13bc5ac6c958652501ec7</anchor>
-      <arglist>()</arglist>
+      <anchor>ae7a045bf248d98a6dabcc82b3cd75fa6</anchor>
+      <arglist>()=default</arglist>
     </member>
     <member kind="function">
       <type></type>
@@ -12122,8 +13263,15 @@
       <type></type>
       <name>BsdfQueryContext</name>
       <anchorfile>dc/dfe/classph_1_1_bsdf_query_context.html</anchorfile>
-      <anchor>aee5453ad82e47c214f5e8bae9d8148cf</anchor>
-      <arglist>(SurfaceElemental elemental, ETransport transport, ESidednessPolicy sidednessPolicy=ESidednessPolicy::STRICT)</arglist>
+      <anchor>a9a46a95e235014e67fb50af71c49e15f</anchor>
+      <arglist>(lta::ESidednessPolicy sidednessPolicy)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>BsdfQueryContext</name>
+      <anchorfile>dc/dfe/classph_1_1_bsdf_query_context.html</anchorfile>
+      <anchor>a7d7b88ad552956705c27d03e189bebf5</anchor>
+      <arglist>(SurfaceElemental elemental, ETransport transport, lta::ESidednessPolicy sidednessPolicy=lta::ESidednessPolicy::Strict)</arglist>
     </member>
     <member kind="variable">
       <type>SurfaceElemental</type>
@@ -12140,10 +13288,10 @@
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>SidednessAgreement</type>
+      <type>lta::SidednessAgreement</type>
       <name>sidedness</name>
       <anchorfile>dc/dfe/classph_1_1_bsdf_query_context.html</anchorfile>
-      <anchor>a4019270743658c949cc413403182f1e9</anchor>
+      <anchor>a196b7ca35f245baa24f992393707d0ea</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -12154,8 +13302,8 @@
       <type>void</type>
       <name>set</name>
       <anchorfile>d9/d9c/classph_1_1_bsdf_sample_input.html</anchorfile>
-      <anchor>a9b41f3524936e540fbc712bc46ab8086</anchor>
-      <arglist>(const BsdfEvalQuery &amp;eval)</arglist>
+      <anchor>ac45066366eca9aa0f45e4fd92273608e</anchor>
+      <arglist>(const BsdfEvalInput &amp;evalInput)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
@@ -12164,24 +13312,52 @@
       <anchor>a3e3b253d58d8c3bf44226f8699a400c1</anchor>
       <arglist>(const SurfaceHit &amp;X, const math::Vector3R &amp;V)</arglist>
     </member>
-    <member kind="variable">
-      <type>SurfaceHit</type>
-      <name>X</name>
+    <member kind="function">
+      <type>const SurfaceHit &amp;</type>
+      <name>getX</name>
       <anchorfile>d9/d9c/classph_1_1_bsdf_sample_input.html</anchorfile>
-      <anchor>af7fedff4c4025eebee0f918eaac000f6</anchor>
-      <arglist></arglist>
+      <anchor>a80e452c090e68a1448ebaf303140cf4d</anchor>
+      <arglist>() const</arglist>
     </member>
-    <member kind="variable">
-      <type>math::Vector3R</type>
-      <name>V</name>
+    <member kind="function">
+      <type>const math::Vector3R &amp;</type>
+      <name>getV</name>
       <anchorfile>d9/d9c/classph_1_1_bsdf_sample_input.html</anchorfile>
-      <anchor>ad1ef19ba8fc42f61ad398bc7b6561c86</anchor>
-      <arglist></arglist>
+      <anchor>a999434683795edf114b2705e869aba64</anchor>
+      <arglist>() const</arglist>
     </member>
   </compound>
   <compound kind="class">
     <name>ph::BsdfSampleOutput</name>
     <filename>d7/ded/classph_1_1_bsdf_sample_output.html</filename>
+    <member kind="function">
+      <type>void</type>
+      <name>setL</name>
+      <anchorfile>d7/ded/classph_1_1_bsdf_sample_output.html</anchorfile>
+      <anchor>a01f9a1a81a87562ee67ed8195389ba91</anchor>
+      <arglist>(const math::Vector3R &amp;L)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setPdfAppliedBsdf</name>
+      <anchorfile>d7/ded/classph_1_1_bsdf_sample_output.html</anchorfile>
+      <anchor>ad599c99a67978ba593c6511460f7bfdc</anchor>
+      <arglist>(const math::Spectrum &amp;pdfAppliedBsdf, bool inferMeasurabilityFromThis=true)</arglist>
+    </member>
+    <member kind="function">
+      <type>const math::Vector3R &amp;</type>
+      <name>getL</name>
+      <anchorfile>d7/ded/classph_1_1_bsdf_sample_output.html</anchorfile>
+      <anchor>a60ec597b8df470ac4c45a064fb1fd23c</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>const math::Spectrum &amp;</type>
+      <name>getPdfAppliedBsdf</name>
+      <anchorfile>d7/ded/classph_1_1_bsdf_sample_output.html</anchorfile>
+      <anchor>a13bb80a89a3b32551ab3cbc2995f0ec5</anchor>
+      <arglist>() const</arglist>
+    </member>
     <member kind="function">
       <type>bool</type>
       <name>isMeasurable</name>
@@ -12196,19 +13372,12 @@
       <anchor>a40fd24fddc782e7a6341979e3a4f6d23</anchor>
       <arglist>(bool measurability)</arglist>
     </member>
-    <member kind="variable">
-      <type>math::Vector3R</type>
-      <name>L</name>
+    <member kind="function">
+      <type>void</type>
+      <name>setMeasurability</name>
       <anchorfile>d7/ded/classph_1_1_bsdf_sample_output.html</anchorfile>
-      <anchor>a3b6bf50417a3d5c14ffa49ed470509a9</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>math::Spectrum</type>
-      <name>pdfAppliedBsdf</name>
-      <anchorfile>d7/ded/classph_1_1_bsdf_sample_output.html</anchorfile>
-      <anchor>a7e0df038901f25691c6ab05ca442e3b5</anchor>
-      <arglist></arglist>
+      <anchor>aa3e8dcb5e830b1bebe483aaddfc65c80</anchor>
+      <arglist>(const math::Spectrum &amp;reference)</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -12232,8 +13401,8 @@
       <type></type>
       <name>BsdfSampleQuery</name>
       <anchorfile>d9/d1b/classph_1_1_bsdf_sample_query.html</anchorfile>
-      <anchor>a0ebf456d939fd406967871c53b129f05</anchor>
-      <arglist>()</arglist>
+      <anchor>a3d81c1bbcd2fac224e5ff83640374c24</anchor>
+      <arglist>()=default</arglist>
     </member>
     <member kind="function">
       <type></type>
@@ -12261,6 +13430,24 @@
       <name>outputs</name>
       <anchorfile>d9/d1b/classph_1_1_bsdf_sample_query.html</anchorfile>
       <anchor>ae5f5dce90d4b33005528d3725d8f2ede</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="struct">
+    <name>ph::math::TIndexedPointKdtree::BuildCache</name>
+    <filename>de/dd1/structph_1_1math_1_1_t_indexed_point_kdtree_1_1_build_cache.html</filename>
+    <member kind="variable">
+      <type>std::vector&lt; Index &gt;</type>
+      <name>itemIndices</name>
+      <anchorfile>de/dd1/structph_1_1math_1_1_t_indexed_point_kdtree_1_1_build_cache.html</anchorfile>
+      <anchor>acbf9cce7daad29a2f010af575252fa6a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>std::vector&lt; math::Vector3R &gt;</type>
+      <name>itemPoints</name>
+      <anchorfile>de/dd1/structph_1_1math_1_1_t_indexed_point_kdtree_1_1_build_cache.html</anchorfile>
+      <anchor>a315e13a3b1033e8c494831485b8568ed</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -12690,6 +13877,13 @@
       <arglist>(std::size_t indexOfByte)</arglist>
     </member>
     <member kind="function">
+      <type>void</type>
+      <name>setNumBytes</name>
+      <anchorfile>db/d38/classph_1_1_byte_buffer.html</anchorfile>
+      <anchor>a7361e9325d17f33dc8981b09e1aff82b</anchor>
+      <arglist>(std::size_t numBytes)</arglist>
+    </member>
+    <member kind="function">
       <type>std::size_t</type>
       <name>getReadPosition</name>
       <anchorfile>db/d38/classph_1_1_byte_buffer.html</anchorfile>
@@ -12701,20 +13895,6 @@
       <name>getWritePosition</name>
       <anchorfile>db/d38/classph_1_1_byte_buffer.html</anchorfile>
       <anchor>a81317bbaff04fb76a0138328e9530a6e</anchor>
-      <arglist>() const</arglist>
-    </member>
-    <member kind="function">
-      <type>TSpan&lt; std::byte &gt;</type>
-      <name>getBytes</name>
-      <anchorfile>db/d38/classph_1_1_byte_buffer.html</anchorfile>
-      <anchor>a3effd0311d70548649781c780df1704e</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>TSpanView&lt; std::byte &gt;</type>
-      <name>getBytes</name>
-      <anchorfile>db/d38/classph_1_1_byte_buffer.html</anchorfile>
-      <anchor>a754ab95ac2feee30fd366b4350beee1b</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
@@ -12736,6 +13916,34 @@
       <name>hasMoreToRead</name>
       <anchorfile>db/d38/classph_1_1_byte_buffer.html</anchorfile>
       <anchor>a5429a08c3fbde247e36386731d618911</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>TSpan&lt; std::byte &gt;</type>
+      <name>getBytes</name>
+      <anchorfile>db/d38/classph_1_1_byte_buffer.html</anchorfile>
+      <anchor>a3effd0311d70548649781c780df1704e</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>TSpanView&lt; std::byte &gt;</type>
+      <name>getBytes</name>
+      <anchorfile>db/d38/classph_1_1_byte_buffer.html</anchorfile>
+      <anchor>a754ab95ac2feee30fd366b4350beee1b</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>TSpan&lt; std::byte &gt;</type>
+      <name>getBytes</name>
+      <anchorfile>db/d38/classph_1_1_byte_buffer.html</anchorfile>
+      <anchor>a3effd0311d70548649781c780df1704e</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>TSpanView&lt; std::byte &gt;</type>
+      <name>getBytes</name>
+      <anchorfile>db/d38/classph_1_1_byte_buffer.html</anchorfile>
+      <anchor>a754ab95ac2feee30fd366b4350beee1b</anchor>
       <arglist>() const</arglist>
     </member>
   </compound>
@@ -13114,15 +14322,8 @@
       <type></type>
       <name>ConductorFresnel</name>
       <anchorfile>d3/d63/classph_1_1_conductor_fresnel.html</anchorfile>
-      <anchor>a603efc6f8095b48d0455447b3a53b050</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>ConductorFresnel</name>
-      <anchorfile>d3/d63/classph_1_1_conductor_fresnel.html</anchorfile>
-      <anchor>a8e76c8496178c85c0a2047debaa31645</anchor>
-      <arglist>(real iorOuter, const math::Spectrum &amp;iorInnerN, const math::Spectrum &amp;iorInnerK)</arglist>
+      <anchor>a184948c3429b3f595afb0a7e84b16d9f</anchor>
+      <arglist>()=default</arglist>
     </member>
     <member kind="function" virtualness="pure">
       <type>void</type>
@@ -13130,27 +14331,6 @@
       <anchorfile>d3/d63/classph_1_1_conductor_fresnel.html</anchorfile>
       <anchor>a480338dc68356c887a5851f24a961f84</anchor>
       <arglist>(real cosThetaIncident, math::Spectrum *out_reflectance) const override=0</arglist>
-    </member>
-    <member kind="variable" protection="protected">
-      <type>real</type>
-      <name>m_iorOuter</name>
-      <anchorfile>d3/d63/classph_1_1_conductor_fresnel.html</anchorfile>
-      <anchor>a83b5a325ad262b1487cd509107722f7b</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="protected">
-      <type>math::Spectrum</type>
-      <name>m_iorInnerN</name>
-      <anchorfile>d3/d63/classph_1_1_conductor_fresnel.html</anchorfile>
-      <anchor>ac83c6efb039d43f400be9e333dcd9c5f</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="protected">
-      <type>math::Spectrum</type>
-      <name>m_iorInnerK</name>
-      <anchorfile>d3/d63/classph_1_1_conductor_fresnel.html</anchorfile>
-      <anchor>ac24c65a5525d76e47faa07a25b9ac3e5</anchor>
-      <arglist></arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -14140,6 +15320,13 @@
       <anchor>a9b8131a9f0a49ebda98fcfd76d935c47</anchor>
       <arglist>()</arglist>
     </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>init</name>
+      <anchorfile>d9/d17/classph_1_1math_1_1_deterministic_seeder.html</anchorfile>
+      <anchor>a8791cc9ce69f6d137d1d9e02d37c3441</anchor>
+      <arglist>(const EngineInitSettings &amp;settings)</arglist>
+    </member>
   </compound>
   <compound kind="class">
     <name>ph::DielectricFresnel</name>
@@ -14270,22 +15457,22 @@
       <type>void</type>
       <name>genDirectSample</name>
       <anchorfile>d8/d77/classph_1_1_diffuse_surface_emitter.html</anchorfile>
-      <anchor>a67b04f3a383e105ff0b1f8ed2345a6b4</anchor>
-      <arglist>(DirectEnergySampleQuery &amp;query, SampleFlow &amp;sampleFlow) const override</arglist>
+      <anchor>aa94f95f526e3662c3abfd37440ebe36e</anchor>
+      <arglist>(DirectEnergySampleQuery &amp;query, SampleFlow &amp;sampleFlow, HitProbe &amp;probe) const override</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>calcDirectSamplePdfW</name>
+      <anchorfile>d8/d77/classph_1_1_diffuse_surface_emitter.html</anchorfile>
+      <anchor>aa9c4de3ea34ecfe73110ead90eb81706</anchor>
+      <arglist>(DirectEnergySamplePdfQuery &amp;query, HitProbe &amp;probe) const override</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>emitRay</name>
       <anchorfile>d8/d77/classph_1_1_diffuse_surface_emitter.html</anchorfile>
-      <anchor>a12f00c73a1745b740dc3ac5af16b04a9</anchor>
-      <arglist>(SampleFlow &amp;sampleFlow, Ray *out_ray, math::Spectrum *out_Le, math::Vector3R *out_eN, real *out_pdfA, real *out_pdfW) const override</arglist>
-    </member>
-    <member kind="function">
-      <type>real</type>
-      <name>calcDirectSamplePdfW</name>
-      <anchorfile>d8/d77/classph_1_1_diffuse_surface_emitter.html</anchorfile>
-      <anchor>a533ce0681485e6c14a1a063744f3ed70</anchor>
-      <arglist>(const SurfaceHit &amp;emitPos, const math::Vector3R &amp;targetPos) const override</arglist>
+      <anchor>ad66e89e91c11e9022f097e608bf1d3dc</anchor>
+      <arglist>(EnergyEmissionSampleQuery &amp;query, SampleFlow &amp;sampleFlow, HitProbe &amp;probe) const override</arglist>
     </member>
     <member kind="function">
       <type>real</type>
@@ -14320,36 +15507,113 @@
     <name>ph::DirectEnergySampleInput</name>
     <filename>d8/d12/classph_1_1_direct_energy_sample_input.html</filename>
     <member kind="function">
-      <type></type>
-      <name>DirectEnergySampleInput</name>
-      <anchorfile>d8/d12/classph_1_1_direct_energy_sample_input.html</anchorfile>
-      <anchor>a9c2f9ab5630b7f3de6e126535b59cf1f</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
       <type>void</type>
       <name>set</name>
       <anchorfile>d8/d12/classph_1_1_direct_energy_sample_input.html</anchorfile>
-      <anchor>aa1bf628396d6292004ccbe35ac5751e6</anchor>
-      <arglist>(const math::Vector3R &amp;targetPos)</arglist>
+      <anchor>abaafdd7be43ef228a149b936f648780b</anchor>
+      <arglist>(const SurfaceHit &amp;X)</arglist>
     </member>
-    <member kind="variable">
-      <type>math::Vector3R</type>
-      <name>targetPos</name>
+    <member kind="function">
+      <type>const SurfaceHit &amp;</type>
+      <name>getX</name>
       <anchorfile>d8/d12/classph_1_1_direct_energy_sample_input.html</anchorfile>
-      <anchor>a8e1309a7ab7c486e69735101761b0d3c</anchor>
-      <arglist></arglist>
+      <anchor>a440d8c752151cb80858dc237dc97018a</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>math::Vector3R</type>
+      <name>getTargetPos</name>
+      <anchorfile>d8/d12/classph_1_1_direct_energy_sample_input.html</anchorfile>
+      <anchor>ae05a96052f869c0bc3b235bc205437df</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>const Time &amp;</type>
+      <name>getTime</name>
+      <anchorfile>d8/d12/classph_1_1_direct_energy_sample_input.html</anchorfile>
+      <anchor>a09860d31a4dbd5b7022b4ffef938664a</anchor>
+      <arglist>() const</arglist>
     </member>
   </compound>
   <compound kind="class">
     <name>ph::DirectEnergySampleOutput</name>
     <filename>de/df3/classph_1_1_direct_energy_sample_output.html</filename>
     <member kind="function">
-      <type></type>
-      <name>DirectEnergySampleOutput</name>
+      <type>void</type>
+      <name>setEmitPos</name>
       <anchorfile>de/df3/classph_1_1_direct_energy_sample_output.html</anchorfile>
-      <anchor>ad68d6611a0cd4aa3d11e2e9a0d3c5673</anchor>
+      <anchor>ac5d1ceb616b21ddcd95e917b96852ad6</anchor>
+      <arglist>(const math::Vector3R &amp;emitPos)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setEmittedEnergy</name>
+      <anchorfile>de/df3/classph_1_1_direct_energy_sample_output.html</anchorfile>
+      <anchor>a95533a830460d8be47a1495356d0b5db</anchor>
+      <arglist>(const math::Spectrum &amp;emittedEnergy)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setPdfW</name>
+      <anchorfile>de/df3/classph_1_1_direct_energy_sample_output.html</anchorfile>
+      <anchor>ae72a5714a32bd24b9554d77e4bebe189</anchor>
+      <arglist>(real pdfW)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setSrcPrimitive</name>
+      <anchorfile>de/df3/classph_1_1_direct_energy_sample_output.html</anchorfile>
+      <anchor>a75dd2f9fe2085ac8b56b9914ad9a362d</anchor>
+      <arglist>(const Primitive *srcPrimitive)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setObservationRay</name>
+      <anchorfile>de/df3/classph_1_1_direct_energy_sample_output.html</anchorfile>
+      <anchor>ab982376c5766c7bd037494d55895e413</anchor>
+      <arglist>(const Ray &amp;observationRay)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>invalidate</name>
+      <anchorfile>de/df3/classph_1_1_direct_energy_sample_output.html</anchorfile>
+      <anchor>a382c8d53bb332ba85f58723c12aa500d</anchor>
       <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>const math::Vector3R &amp;</type>
+      <name>getEmitPos</name>
+      <anchorfile>de/df3/classph_1_1_direct_energy_sample_output.html</anchorfile>
+      <anchor>acb04d6dd09beea81fe91eb6364f9e46f</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>const math::Spectrum &amp;</type>
+      <name>getEmittedEnergy</name>
+      <anchorfile>de/df3/classph_1_1_direct_energy_sample_output.html</anchorfile>
+      <anchor>a85b326c37338f6f2ce7aba6845aba775</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>real</type>
+      <name>getPdfW</name>
+      <anchorfile>de/df3/classph_1_1_direct_energy_sample_output.html</anchorfile>
+      <anchor>ae61929db70aebae0ad79b589830edbe7</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>const Primitive *</type>
+      <name>getSrcPrimitive</name>
+      <anchorfile>de/df3/classph_1_1_direct_energy_sample_output.html</anchorfile>
+      <anchor>a880b3a93758930fed5faaa4fbad074e1</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>const Ray &amp;</type>
+      <name>getObservationRay</name>
+      <anchorfile>de/df3/classph_1_1_direct_energy_sample_output.html</anchorfile>
+      <anchor>a8681008d7a7193dfdfa2e3daeedda11b</anchor>
+      <arglist>() const</arglist>
     </member>
     <member kind="function">
       <type></type>
@@ -14358,32 +15622,149 @@
       <anchor>ae76596fbae4d7400e8c3344145027d26</anchor>
       <arglist>() const</arglist>
     </member>
-    <member kind="variable">
+  </compound>
+  <compound kind="class">
+    <name>ph::DirectEnergySamplePdfInput</name>
+    <filename>d8/d4e/classph_1_1_direct_energy_sample_pdf_input.html</filename>
+    <member kind="function">
+      <type>void</type>
+      <name>set</name>
+      <anchorfile>d8/d4e/classph_1_1_direct_energy_sample_pdf_input.html</anchorfile>
+      <anchor>a16789c5f0ff1b07f333960a1b7dd786d</anchor>
+      <arglist>(const SurfaceHit &amp;X, const SurfaceHit &amp;Xe)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>set</name>
+      <anchorfile>d8/d4e/classph_1_1_direct_energy_sample_pdf_input.html</anchorfile>
+      <anchor>a62007c02026e97e0ad0bf0fab0136515</anchor>
+      <arglist>(const SurfaceHit &amp;X, const SurfaceHit &amp;Xe, const Ray &amp;observationRay)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>set</name>
+      <anchorfile>d8/d4e/classph_1_1_direct_energy_sample_pdf_input.html</anchorfile>
+      <anchor>af83069a6d7293ff95bf4bfd067cac87d</anchor>
+      <arglist>(const math::Vector3R &amp;targetPos, const SurfaceHit &amp;Xe, const Ray &amp;observationRay)</arglist>
+    </member>
+    <member kind="function">
+      <type>const math::Vector3R &amp;</type>
+      <name>getTargetPos</name>
+      <anchorfile>d8/d4e/classph_1_1_direct_energy_sample_pdf_input.html</anchorfile>
+      <anchor>af48f1556dbe967c81d4c0e5faeb7228f</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>const SurfaceHit &amp;</type>
+      <name>getXe</name>
+      <anchorfile>d8/d4e/classph_1_1_direct_energy_sample_pdf_input.html</anchorfile>
+      <anchor>ae195ea714bde7f5a9ae420bb2eec0e27</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>const Ray &amp;</type>
+      <name>getObservationRay</name>
+      <anchorfile>d8/d4e/classph_1_1_direct_energy_sample_pdf_input.html</anchorfile>
+      <anchor>a99d11be6bd0d22447720dfc9e7889940</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
       <type>math::Vector3R</type>
-      <name>emitPos</name>
-      <anchorfile>de/df3/classph_1_1_direct_energy_sample_output.html</anchorfile>
-      <anchor>a67b07abf7d0925f877fa27359e51e453</anchor>
-      <arglist></arglist>
+      <name>getEmitPos</name>
+      <anchorfile>d8/d4e/classph_1_1_direct_energy_sample_pdf_input.html</anchorfile>
+      <anchor>a09bc11cab7f4a36555a5bcd1ed0c3ec6</anchor>
+      <arglist>() const</arglist>
     </member>
-    <member kind="variable">
-      <type>math::Spectrum</type>
-      <name>radianceLe</name>
-      <anchorfile>de/df3/classph_1_1_direct_energy_sample_output.html</anchorfile>
-      <anchor>a9dd47b9c94ec51e1042b7ce750ad1440</anchor>
-      <arglist></arglist>
+    <member kind="function">
+      <type>math::Vector3R</type>
+      <name>getEmitPosNormal</name>
+      <anchorfile>d8/d4e/classph_1_1_direct_energy_sample_pdf_input.html</anchorfile>
+      <anchor>a414fcb4be9bfb115a05a942255cead41</anchor>
+      <arglist>() const</arglist>
     </member>
-    <member kind="variable">
-      <type>real</type>
-      <name>pdfW</name>
-      <anchorfile>de/df3/classph_1_1_direct_energy_sample_output.html</anchorfile>
-      <anchor>a12d06187bfa4d4b3b9b5ac6512e1480c</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
+    <member kind="function">
       <type>const Primitive *</type>
-      <name>srcPrimitive</name>
-      <anchorfile>de/df3/classph_1_1_direct_energy_sample_output.html</anchorfile>
-      <anchor>a8878b406eaddbe7ccd82ae156bd4ca63</anchor>
+      <name>getSrcPrimitive</name>
+      <anchorfile>d8/d4e/classph_1_1_direct_energy_sample_pdf_input.html</anchorfile>
+      <anchor>a3a65e1748bc725ad7897a27c430ec6f2</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>uint64</type>
+      <name>getSrcFaceID</name>
+      <anchorfile>d8/d4e/classph_1_1_direct_energy_sample_pdf_input.html</anchorfile>
+      <anchor>a1b07814e5d301c46415de9a5f110f788</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>const Time &amp;</type>
+      <name>getTime</name>
+      <anchorfile>d8/d4e/classph_1_1_direct_energy_sample_pdf_input.html</anchorfile>
+      <anchor>accaaf88554941232355b4e5e381a65ab</anchor>
+      <arglist>() const</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>ph::DirectEnergySamplePdfOutput</name>
+    <filename>de/ddc/classph_1_1_direct_energy_sample_pdf_output.html</filename>
+    <member kind="function">
+      <type>void</type>
+      <name>setPdfW</name>
+      <anchorfile>de/ddc/classph_1_1_direct_energy_sample_pdf_output.html</anchorfile>
+      <anchor>a1221cf9dbb404e427fd8384e23ffb3cd</anchor>
+      <arglist>(real pdfW)</arglist>
+    </member>
+    <member kind="function">
+      <type>real</type>
+      <name>getPdfW</name>
+      <anchorfile>de/ddc/classph_1_1_direct_energy_sample_pdf_output.html</anchorfile>
+      <anchor>aaa4cc1444407f172d69c25d4257341a9</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>operator bool</name>
+      <anchorfile>de/ddc/classph_1_1_direct_energy_sample_pdf_output.html</anchorfile>
+      <anchor>a88f098904beab2e8bfa65b162d343515</anchor>
+      <arglist>() const</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>ph::DirectEnergySamplePdfQuery</name>
+    <filename>d6/d19/classph_1_1_direct_energy_sample_pdf_query.html</filename>
+    <member kind="typedef">
+      <type>DirectEnergySamplePdfInput</type>
+      <name>Input</name>
+      <anchorfile>d6/d19/classph_1_1_direct_energy_sample_pdf_query.html</anchorfile>
+      <anchor>a1d94096dad4fd8b4fecb5aa0065c93a9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>DirectEnergySamplePdfOutput</type>
+      <name>Output</name>
+      <anchorfile>d6/d19/classph_1_1_direct_energy_sample_pdf_query.html</anchorfile>
+      <anchor>aea82594180842753d8da393dda92550c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>DirectEnergySamplePdfQuery</name>
+      <anchorfile>d6/d19/classph_1_1_direct_energy_sample_pdf_query.html</anchorfile>
+      <anchor>abdef53aad408f349cc9bf70be04b7021</anchor>
+      <arglist>()=default</arglist>
+    </member>
+    <member kind="variable">
+      <type>Input</type>
+      <name>inputs</name>
+      <anchorfile>d6/d19/classph_1_1_direct_energy_sample_pdf_query.html</anchorfile>
+      <anchor>ab38b3f9332b42243eb2b6c88f5be6ce3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>Output</type>
+      <name>outputs</name>
+      <anchorfile>d6/d19/classph_1_1_direct_energy_sample_pdf_query.html</anchorfile>
+      <anchor>a82ca50601454e81f87f9f869955e01e2</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -14408,21 +15789,35 @@
       <type></type>
       <name>DirectEnergySampleQuery</name>
       <anchorfile>d1/d85/classph_1_1_direct_energy_sample_query.html</anchorfile>
-      <anchor>a44ae3d0eeb139b594b7e02fa447e0f08</anchor>
-      <arglist>()</arglist>
+      <anchor>ad9b1e6bf3f29b7f6e4d37776f7e016b4</anchor>
+      <arglist>()=default</arglist>
+    </member>
+    <member kind="function">
+      <type>math::Vector3R</type>
+      <name>getTargetToEmit</name>
+      <anchorfile>d1/d85/classph_1_1_direct_energy_sample_query.html</anchorfile>
+      <anchor>a13ce8d83f4c30a09ab976a364ae44b9f</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>math::Vector3R</type>
+      <name>getEmitToTarget</name>
+      <anchorfile>d1/d85/classph_1_1_direct_energy_sample_query.html</anchorfile>
+      <anchor>a8ee082dfcdcb9cccecd59e4af977aa56</anchor>
+      <arglist>() const</arglist>
     </member>
     <member kind="variable">
       <type>Input</type>
-      <name>in</name>
+      <name>inputs</name>
       <anchorfile>d1/d85/classph_1_1_direct_energy_sample_query.html</anchorfile>
-      <anchor>a8404995417906e9cf77405675b80855b</anchor>
+      <anchor>ada947c45e95c3e9c8cdf3e3b0cd86604</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>Output</type>
-      <name>out</name>
+      <name>outputs</name>
       <anchorfile>d1/d85/classph_1_1_direct_energy_sample_query.html</anchorfile>
-      <anchor>afd932c008571b4d159a7bc33c4f22b04</anchor>
+      <anchor>a7451f8803ed4441da19fce6be3eaa009</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -14541,22 +15936,22 @@
       <type>virtual void</type>
       <name>genDirectSample</name>
       <anchorfile>d8/d58/classph_1_1_emitter.html</anchorfile>
-      <anchor>addba5b335270e563b176030b1f1fc2df</anchor>
-      <arglist>(DirectEnergySampleQuery &amp;query, SampleFlow &amp;sampleFlow) const =0</arglist>
+      <anchor>a60e69ba97f6c8bb9c2dbeffdacf81003</anchor>
+      <arglist>(DirectEnergySampleQuery &amp;query, SampleFlow &amp;sampleFlow, HitProbe &amp;probe) const =0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>calcDirectSamplePdfW</name>
+      <anchorfile>d8/d58/classph_1_1_emitter.html</anchorfile>
+      <anchor>afee2cb13b18f2a98cdc8f90cb63568c2</anchor>
+      <arglist>(DirectEnergySamplePdfQuery &amp;query, HitProbe &amp;probe) const =0</arglist>
     </member>
     <member kind="function" virtualness="pure">
       <type>virtual void</type>
       <name>emitRay</name>
       <anchorfile>d8/d58/classph_1_1_emitter.html</anchorfile>
-      <anchor>a5a54158fac4b9d7e18781edaece69841</anchor>
-      <arglist>(SampleFlow &amp;sampleFlow, Ray *out_ray, math::Spectrum *out_Le, math::Vector3R *out_eN, real *out_pdfA, real *out_pdfW) const =0</arglist>
-    </member>
-    <member kind="function" virtualness="pure">
-      <type>virtual real</type>
-      <name>calcDirectSamplePdfW</name>
-      <anchorfile>d8/d58/classph_1_1_emitter.html</anchorfile>
-      <anchor>a720aac6a2987dc6b21ad14dc70bb61f4</anchor>
-      <arglist>(const SurfaceHit &amp;emitPos, const math::Vector3R &amp;targetPos) const =0</arglist>
+      <anchor>a881607ad333e2d29e585055a73e8e244</anchor>
+      <arglist>(EnergyEmissionSampleQuery &amp;query, SampleFlow &amp;sampleFlow, HitProbe &amp;probe) const =0</arglist>
     </member>
     <member kind="function" virtualness="virtual">
       <type>virtual real</type>
@@ -14619,15 +16014,139 @@
       <type>virtual void</type>
       <name>genDirectSample</name>
       <anchorfile>dd/dd7/classph_1_1_emitter_sampler.html</anchorfile>
-      <anchor>a7caab7aff312e20d2ccb2cf75da72022</anchor>
-      <arglist>(DirectEnergySampleQuery &amp;query, SampleFlow &amp;sampleFlow) const =0</arglist>
+      <anchor>aa0f4fdb7d39958d2e8d1607c5d43a2ac</anchor>
+      <arglist>(DirectEnergySampleQuery &amp;query, SampleFlow &amp;sampleFlow, HitProbe &amp;probe) const =0</arglist>
     </member>
     <member kind="function" virtualness="pure">
-      <type>virtual real</type>
-      <name>calcDirectPdfW</name>
+      <type>virtual void</type>
+      <name>calcDirectSamplePdfW</name>
       <anchorfile>dd/dd7/classph_1_1_emitter_sampler.html</anchorfile>
-      <anchor>aed871fcf6b1e8f55c70aa64d539a9e88</anchor>
-      <arglist>(const SurfaceHit &amp;emitPos, const math::Vector3R &amp;targetPos) const =0</arglist>
+      <anchor>a3c77451f0b7094e55b769bf1d3166aab</anchor>
+      <arglist>(DirectEnergySamplePdfQuery &amp;query, HitProbe &amp;probe) const =0</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>ph::EnergyEmissionSampleInput</name>
+    <filename>d8/dc7/classph_1_1_energy_emission_sample_input.html</filename>
+    <member kind="function">
+      <type>void</type>
+      <name>set</name>
+      <anchorfile>d8/dc7/classph_1_1_energy_emission_sample_input.html</anchorfile>
+      <anchor>a9da69ffda6da1c54e0dfe5320867943d</anchor>
+      <arglist>(const Time &amp;time)</arglist>
+    </member>
+    <member kind="function">
+      <type>const Time &amp;</type>
+      <name>getTime</name>
+      <anchorfile>d8/dc7/classph_1_1_energy_emission_sample_input.html</anchorfile>
+      <anchor>a6546a71776b2fc9a38d707b12e3da4b2</anchor>
+      <arglist>() const</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>ph::EnergyEmissionSampleOutput</name>
+    <filename>d3/d28/classph_1_1_energy_emission_sample_output.html</filename>
+    <member kind="function">
+      <type>void</type>
+      <name>setPdf</name>
+      <anchorfile>d3/d28/classph_1_1_energy_emission_sample_output.html</anchorfile>
+      <anchor>a36761625e3b716128a1267a18c04431f</anchor>
+      <arglist>(real pdfA, real pdfW)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setEmittedRay</name>
+      <anchorfile>d3/d28/classph_1_1_energy_emission_sample_output.html</anchorfile>
+      <anchor>a9757f04267fecb64652c238b86bdc55a</anchor>
+      <arglist>(const Ray &amp;emittedRay)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setEmittedEnergy</name>
+      <anchorfile>d3/d28/classph_1_1_energy_emission_sample_output.html</anchorfile>
+      <anchor>a7adeb55b71e3c981bcb012510fd63192</anchor>
+      <arglist>(const math::Spectrum &amp;emittedEnergy)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>invalidate</name>
+      <anchorfile>d3/d28/classph_1_1_energy_emission_sample_output.html</anchorfile>
+      <anchor>af79b1d69e44792c60f918d29da17b40a</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>real</type>
+      <name>getPdfA</name>
+      <anchorfile>d3/d28/classph_1_1_energy_emission_sample_output.html</anchorfile>
+      <anchor>a66e722df9dba3adaafb2fcaf50723997</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>real</type>
+      <name>getPdfW</name>
+      <anchorfile>d3/d28/classph_1_1_energy_emission_sample_output.html</anchorfile>
+      <anchor>ab04844b33696671c058cdb19ca0f30a2</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>const Ray &amp;</type>
+      <name>getEmittedRay</name>
+      <anchorfile>d3/d28/classph_1_1_energy_emission_sample_output.html</anchorfile>
+      <anchor>ad5244cbd58dfaf3217db78f8beaf9a3c</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>const math::Spectrum &amp;</type>
+      <name>getEmittedEnergy</name>
+      <anchorfile>d3/d28/classph_1_1_energy_emission_sample_output.html</anchorfile>
+      <anchor>a016ba9642bd15cea35e7b0b391650894</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>operator bool</name>
+      <anchorfile>d3/d28/classph_1_1_energy_emission_sample_output.html</anchorfile>
+      <anchor>a67f3906a4ad9a79c4c2b07fbf2f1d840</anchor>
+      <arglist>() const</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>ph::EnergyEmissionSampleQuery</name>
+    <filename>d4/d48/classph_1_1_energy_emission_sample_query.html</filename>
+    <member kind="typedef">
+      <type>EnergyEmissionSampleInput</type>
+      <name>Input</name>
+      <anchorfile>d4/d48/classph_1_1_energy_emission_sample_query.html</anchorfile>
+      <anchor>a41da47dc482db7cc763113c8db25be56</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>EnergyEmissionSampleOutput</type>
+      <name>Output</name>
+      <anchorfile>d4/d48/classph_1_1_energy_emission_sample_query.html</anchorfile>
+      <anchor>a4355069afceebb91b698472d62a10529</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>EnergyEmissionSampleQuery</name>
+      <anchorfile>d4/d48/classph_1_1_energy_emission_sample_query.html</anchorfile>
+      <anchor>a2005119de6cc31d660f37c4e434fd659</anchor>
+      <arglist>()=default</arglist>
+    </member>
+    <member kind="variable">
+      <type>Input</type>
+      <name>inputs</name>
+      <anchorfile>d4/d48/classph_1_1_energy_emission_sample_query.html</anchorfile>
+      <anchor>a6e99295cce8bcb6123c819f02f7dbc1f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>Output</type>
+      <name>outputs</name>
+      <anchorfile>d4/d48/classph_1_1_energy_emission_sample_query.html</anchorfile>
+      <anchor>a5b8d0c7d126c7b43fad430a57d4ff405</anchor>
+      <arglist></arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -14728,6 +16247,48 @@
       <anchor>aecb241ac785258164149a69c5d94223c</anchor>
       <arglist></arglist>
     </member>
+    <member kind="variable">
+      <type>ESurfaceRefineMode</type>
+      <name>surfaceRefineMode</name>
+      <anchorfile>d4/d87/classph_1_1_engine_init_settings.html</anchorfile>
+      <anchor>aefb89ffa82c7c8ea40d494524f44469a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>real</type>
+      <name>selfIntersectDelta</name>
+      <anchorfile>d4/d87/classph_1_1_engine_init_settings.html</anchorfile>
+      <anchor>aa07aeaa40446f7891e07eaa6f79594df</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>std::size_t</type>
+      <name>numIterativeSurfaceRefinements</name>
+      <anchorfile>d4/d87/classph_1_1_engine_init_settings.html</anchorfile>
+      <anchor>abb5b1bf860fba944b863e15697cf57ec</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useRandomSeed</name>
+      <anchorfile>d4/d87/classph_1_1_engine_init_settings.html</anchorfile>
+      <anchor>a296c390e72e502b3ccbb20a6d46311a5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>uint32</type>
+      <name>fixedSeed</name>
+      <anchorfile>d4/d87/classph_1_1_engine_init_settings.html</anchorfile>
+      <anchor>ad11570c61f00c9912bd46bebacf4f8a0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>uint32</type>
+      <name>fixedSeedStep</name>
+      <anchorfile>d4/d87/classph_1_1_engine_init_settings.html</anchorfile>
+      <anchor>ab7d2b58af7ddc9137804435498dca72b</anchor>
+      <arglist></arglist>
+    </member>
   </compound>
   <compound kind="class">
     <name>ph::EqualSamplingRenderer</name>
@@ -14819,15 +16380,15 @@
       <type>void</type>
       <name>genDirectSample</name>
       <anchorfile>d8/de9/classph_1_1_e_s_power_favoring.html</anchorfile>
-      <anchor>a51fcfece4a5e9b9946aa75d5f67c3ec0</anchor>
-      <arglist>(DirectEnergySampleQuery &amp;query, SampleFlow &amp;sampleFlow) const override</arglist>
+      <anchor>af4faee8bc772130dda012291ad3712bb</anchor>
+      <arglist>(DirectEnergySampleQuery &amp;query, SampleFlow &amp;sampleFlow, HitProbe &amp;probe) const override</arglist>
     </member>
     <member kind="function">
-      <type>real</type>
-      <name>calcDirectPdfW</name>
+      <type>void</type>
+      <name>calcDirectSamplePdfW</name>
       <anchorfile>d8/de9/classph_1_1_e_s_power_favoring.html</anchorfile>
-      <anchor>a2d6694e24cd111b57108f8cc2d4152c7</anchor>
-      <arglist>(const SurfaceHit &amp;emitPos, const math::Vector3R &amp;targetPos) const override</arglist>
+      <anchor>ae0cc200961f5896fa776fd6356dc562e</anchor>
+      <arglist>(DirectEnergySamplePdfQuery &amp;query, HitProbe &amp;probe) const override</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -14852,15 +16413,15 @@
       <type>void</type>
       <name>genDirectSample</name>
       <anchorfile>d2/d1f/classph_1_1_e_s_uniform_random.html</anchorfile>
-      <anchor>a8c2ba78533196dabb320d5df65be18b0</anchor>
-      <arglist>(DirectEnergySampleQuery &amp;query, SampleFlow &amp;sampleFlow) const override</arglist>
+      <anchor>a5d051c071ddcdfd0479300be0404cb26</anchor>
+      <arglist>(DirectEnergySampleQuery &amp;query, SampleFlow &amp;sampleFlow, HitProbe &amp;probe) const override</arglist>
     </member>
     <member kind="function">
-      <type>real</type>
-      <name>calcDirectPdfW</name>
+      <type>void</type>
+      <name>calcDirectSamplePdfW</name>
       <anchorfile>d2/d1f/classph_1_1_e_s_uniform_random.html</anchorfile>
-      <anchor>aef23e62ba4d35519eab0f61e27dcd7be</anchor>
-      <arglist>(const SurfaceHit &amp;emitPos, const math::Vector3R &amp;targetPos) const override</arglist>
+      <anchor>a45a581d6984a8654f1b8b8374ce80415</anchor>
+      <arglist>(DirectEnergySamplePdfQuery &amp;query, HitProbe &amp;probe) const override</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -15120,8 +16681,8 @@
       <type></type>
       <name>Film</name>
       <anchorfile>d9/dcf/classph_1_1_film.html</anchorfile>
-      <anchor>ab6701e91936ac2544036894ebb7f0b64</anchor>
-      <arglist>()=default</arglist>
+      <anchor>a89bbffe1bd6ac0df487ddef591d3a274</anchor>
+      <arglist>()</arglist>
     </member>
     <member kind="function">
       <type></type>
@@ -15141,8 +16702,15 @@
       <type></type>
       <name>Film</name>
       <anchorfile>d9/dcf/classph_1_1_film.html</anchorfile>
-      <anchor>a12887fc285dc818ab03d2ba36cde29d4</anchor>
-      <arglist>(Film &amp;&amp;other)</arglist>
+      <anchor>acd1e4846e9d0bea0b3edf5f96c008b9a</anchor>
+      <arglist>(Film &amp;&amp;other)=default</arglist>
+    </member>
+    <member kind="function">
+      <type>Film &amp;</type>
+      <name>operator=</name>
+      <anchorfile>d9/dcf/classph_1_1_film.html</anchorfile>
+      <anchor>ab8cc1a256d94c8c4a664f6ac901f5d5c</anchor>
+      <arglist>(Film &amp;&amp;other)=default</arglist>
     </member>
     <member kind="function" virtualness="virtual">
       <type>virtual</type>
@@ -15207,13 +16775,6 @@
       <anchor>af4297a260e3571ba4c1f426f28dd042e</anchor>
       <arglist>() const</arglist>
     </member>
-    <member kind="function">
-      <type>Film &amp;</type>
-      <name>operator=</name>
-      <anchorfile>d9/dcf/classph_1_1_film.html</anchorfile>
-      <anchor>ae936151b40282cbcb50b17217e3f7ec4</anchor>
-      <arglist>(Film &amp;&amp;other)</arglist>
-    </member>
   </compound>
   <compound kind="class">
     <name>ph::FilteredInputStream</name>
@@ -15269,8 +16830,8 @@
       <type>uint64</type>
       <name>operator()</name>
       <anchorfile>d8/d13/classph_1_1halton__detail_1_1_fixed_permuter.html</anchorfile>
-      <anchor>afc9293bc68096238488cea901bb237e4</anchor>
-      <arglist>(const uint64 digit) const</arglist>
+      <anchor>ac6009be94ee82da2eebbe780edd34b55</anchor>
+      <arglist>(const uint64, const uint64 digit) const</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static PermutationTable</type>
@@ -15606,13 +17167,6 @@
     <name>ph::FrameVisualizer</name>
     <filename>d7/d72/classph_1_1_frame_visualizer.html</filename>
     <base>ph::Visualizer</base>
-    <member kind="function">
-      <type></type>
-      <name>FrameVisualizer</name>
-      <anchorfile>d7/d72/classph_1_1_frame_visualizer.html</anchorfile>
-      <anchor>a6d35034c1b255e57c7cdc5991bd03554</anchor>
-      <arglist>()=default</arglist>
-    </member>
     <member kind="function" virtualness="pure">
       <type>void</type>
       <name>cook</name>
@@ -15697,13 +17251,6 @@
     <name>ph::FullPhoton</name>
     <filename>d9/d85/classph_1_1_full_photon.html</filename>
     <base>TPhoton&lt; FullPhoton &gt;</base>
-    <member kind="function">
-      <type></type>
-      <name>FullPhoton</name>
-      <anchorfile>d9/d85/classph_1_1_full_photon.html</anchorfile>
-      <anchor>a4a122ed81c7484a8f631c03f3989c54e</anchor>
-      <arglist>()=default</arglist>
-    </member>
     <member kind="function">
       <type>decltype(auto)</type>
       <name>impl_get</name>
@@ -15869,48 +17416,6 @@
     <filename>d1/da4/classph_1_1_g_cuboid.html</filename>
     <base>ph::Geometry</base>
     <member kind="function">
-      <type></type>
-      <name>GCuboid</name>
-      <anchorfile>d1/da4/classph_1_1_g_cuboid.html</anchorfile>
-      <anchor>afd1bdf52e4391553b9b09d48217ccdbc</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>GCuboid</name>
-      <anchorfile>d1/da4/classph_1_1_g_cuboid.html</anchorfile>
-      <anchor>ae997b37e9831091c7b8cfc93cb28f7e5</anchor>
-      <arglist>(real sideLength)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>GCuboid</name>
-      <anchorfile>d1/da4/classph_1_1_g_cuboid.html</anchorfile>
-      <anchor>ac43ac21e6808fed26db7c7aa14eab70f</anchor>
-      <arglist>(real sideLength, const math::Vector3R &amp;offset)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>GCuboid</name>
-      <anchorfile>d1/da4/classph_1_1_g_cuboid.html</anchorfile>
-      <anchor>a01116aeda715b751ffa811e8b2e3f194</anchor>
-      <arglist>(real xLen, real yLen, real zLen)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>GCuboid</name>
-      <anchorfile>d1/da4/classph_1_1_g_cuboid.html</anchorfile>
-      <anchor>ac79be01ef757dd9b9d4f216e129a93a4</anchor>
-      <arglist>(const math::Vector3R &amp;minVertex, const math::Vector3R &amp;maxVertex)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>GCuboid</name>
-      <anchorfile>d1/da4/classph_1_1_g_cuboid.html</anchorfile>
-      <anchor>aa23ea859bd9c14945900d469ec24d19c</anchor>
-      <arglist>(real xLen, real yLen, real zLen, const math::Vector3R &amp;offset)</arglist>
-    </member>
-    <member kind="function">
       <type>void</type>
       <name>storeCooked</name>
       <anchorfile>d1/da4/classph_1_1_g_cuboid.html</anchorfile>
@@ -15930,6 +17435,41 @@
       <anchorfile>d1/da4/classph_1_1_g_cuboid.html</anchorfile>
       <anchor>ab9cec319937e4a6e0cd50cbea91a2f43</anchor>
       <arglist>() const override</arglist>
+    </member>
+    <member kind="function">
+      <type>GCuboid &amp;</type>
+      <name>setSize</name>
+      <anchorfile>d1/da4/classph_1_1_g_cuboid.html</anchorfile>
+      <anchor>ae5207855ddaa4a1a05b76759eec3b27a</anchor>
+      <arglist>(real sideLength)</arglist>
+    </member>
+    <member kind="function">
+      <type>GCuboid &amp;</type>
+      <name>setSize</name>
+      <anchorfile>d1/da4/classph_1_1_g_cuboid.html</anchorfile>
+      <anchor>a0fea6cf993a7eadad2a6810d4d28d5e8</anchor>
+      <arglist>(real xLen, real yLen, real zLen)</arglist>
+    </member>
+    <member kind="function">
+      <type>GCuboid &amp;</type>
+      <name>setSize</name>
+      <anchorfile>d1/da4/classph_1_1_g_cuboid.html</anchorfile>
+      <anchor>a14a01beb91fe34332f84c7abb1a62c73</anchor>
+      <arglist>(const math::Vector3R &amp;minVertex, const math::Vector3R &amp;maxVertex)</arglist>
+    </member>
+    <member kind="function">
+      <type>GCuboid &amp;</type>
+      <name>setSize</name>
+      <anchorfile>d1/da4/classph_1_1_g_cuboid.html</anchorfile>
+      <anchor>aa2caba96499d0651c325d3c7645ca90a</anchor>
+      <arglist>(real xLen, real yLen, real zLen, const math::Vector3R &amp;offset)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>PH_DEFINE_SDL_CLASS</name>
+      <anchorfile>d1/da4/classph_1_1_g_cuboid.html</anchorfile>
+      <anchor>a31204a0b7e71bd1b9034f33d98c98ebc</anchor>
+      <arglist>(TSdlOwnerClass&lt; GCuboid &gt;)</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -16566,13 +18106,6 @@
     <filename>dd/dee/classph_1_1_halton_sample_source.html</filename>
     <base>ph::RuntimeSampleSource</base>
     <member kind="function">
-      <type></type>
-      <name>HaltonSampleSource</name>
-      <anchorfile>dd/dee/classph_1_1_halton_sample_source.html</anchorfile>
-      <anchor>ac6c14b4590892414a7d5ad4d5bfe03d1</anchor>
-      <arglist>()=default</arglist>
-    </member>
-    <member kind="function">
       <type>void</type>
       <name>cook</name>
       <anchorfile>dd/dee/classph_1_1_halton_sample_source.html</anchorfile>
@@ -16636,18 +18169,18 @@
       <arglist>(int64 actualWidthPx, int64 actualHeightPx, const math::TAABB2D&lt; int64 &gt; &amp;effectiveWindowPx, const SampleFilter &amp;filter)</arglist>
     </member>
     <member kind="function">
-      <type></type>
-      <name>HdrRgbFilm</name>
-      <anchorfile>df/db0/classph_1_1_hdr_rgb_film.html</anchorfile>
-      <anchor>a34b57e9bff10c51fabfb5e773931b847</anchor>
-      <arglist>(HdrRgbFilm &amp;&amp;other)</arglist>
-    </member>
-    <member kind="function">
       <type>void</type>
       <name>addSample</name>
       <anchorfile>df/db0/classph_1_1_hdr_rgb_film.html</anchorfile>
-      <anchor>a8dc01c31bc3ef88da6346f108bd432d3</anchor>
-      <arglist>(float64 xPx, float64 yPx, const math::Spectrum &amp;spectrum) override</arglist>
+      <anchor>a6e689fab1b196d5f1b7b8419893db3c8</anchor>
+      <arglist>(float64 xPx, float64 yPx, const math::Spectrum &amp;sample) override</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setPixel</name>
+      <anchorfile>df/db0/classph_1_1_hdr_rgb_film.html</anchorfile>
+      <anchor>a6bca3156ec8fd7e22b4a585c742f99d0</anchor>
+      <arglist>(float64 xPx, float64 yPx, const math::Spectrum &amp;sample) override</arglist>
     </member>
     <member kind="function">
       <type>void</type>
@@ -16665,31 +18198,66 @@
     </member>
     <member kind="function">
       <type>void</type>
-      <name>addSample</name>
-      <anchorfile>df/db0/classph_1_1_hdr_rgb_film.html</anchorfile>
-      <anchor>a5acb7a315eb4237d9b673d907eaee0b9</anchor>
-      <arglist>(float64 xPx, float64 yPx, const math::Vector3R &amp;rgb)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
       <name>mergeWith</name>
       <anchorfile>df/db0/classph_1_1_hdr_rgb_film.html</anchorfile>
       <anchor>af463bb4b3b38cbecf3ad7180b6491024</anchor>
       <arglist>(const HdrRgbFilm &amp;other)</arglist>
     </member>
     <member kind="function">
-      <type>HdrRgbFilm &amp;</type>
-      <name>operator=</name>
+      <type>void</type>
+      <name>addRgbSample</name>
       <anchorfile>df/db0/classph_1_1_hdr_rgb_film.html</anchorfile>
-      <anchor>a7bd234fa9bd1486ac0b0ac3fb175a032</anchor>
-      <arglist>(HdrRgbFilm &amp;&amp;other)</arglist>
+      <anchor>ad62a5ac22b9835c623adfde9808108f5</anchor>
+      <arglist>(float64 xPx, float64 yPx, const math::Vector3R &amp;rgb)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
-      <name>setPixel</name>
+      <name>addRgbSample</name>
       <anchorfile>df/db0/classph_1_1_hdr_rgb_film.html</anchorfile>
-      <anchor>a2ad9f3e24e4e2a6d4367e141b5b43e25</anchor>
-      <arglist>(float64 xPx, float64 yPx, const math::Spectrum &amp;spectrum)</arglist>
+      <anchor>a9e5299edcaf599dc8c2830e84d2ac9a5</anchor>
+      <arglist>(float64 xPx, float64 yPx, const math::Vector3D &amp;rgb)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setRgbPixel</name>
+      <anchorfile>df/db0/classph_1_1_hdr_rgb_film.html</anchorfile>
+      <anchor>a1b9cbe363574fb0c554e28d8fcb0c70f</anchor>
+      <arglist>(float64 xPx, float64 yPx, const math::Vector3R &amp;rgb, float64 weight=1)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setRgbPixel</name>
+      <anchorfile>df/db0/classph_1_1_hdr_rgb_film.html</anchorfile>
+      <anchor>a69b1ca3a33bad823dcb590201b56b8d4</anchor>
+      <arglist>(float64 xPx, float64 yPx, const math::Vector3D &amp;rgb, float64 weight=1)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>addRgbSample</name>
+      <anchorfile>df/db0/classph_1_1_hdr_rgb_film.html</anchorfile>
+      <anchor>ad62a5ac22b9835c623adfde9808108f5</anchor>
+      <arglist>(float64 xPx, float64 yPx, const math::Vector3R &amp;rgb)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>addRgbSample</name>
+      <anchorfile>df/db0/classph_1_1_hdr_rgb_film.html</anchorfile>
+      <anchor>a9e5299edcaf599dc8c2830e84d2ac9a5</anchor>
+      <arglist>(float64 xPx, float64 yPx, const math::Vector3D &amp;rgb)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setRgbPixel</name>
+      <anchorfile>df/db0/classph_1_1_hdr_rgb_film.html</anchorfile>
+      <anchor>a1b9cbe363574fb0c554e28d8fcb0c70f</anchor>
+      <arglist>(float64 xPx, float64 yPx, const math::Vector3R &amp;rgb, float64 weight=1)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setRgbPixel</name>
+      <anchorfile>df/db0/classph_1_1_hdr_rgb_film.html</anchorfile>
+      <anchor>a69b1ca3a33bad823dcb590201b56b8d4</anchor>
+      <arglist>(float64 xPx, float64 yPx, const math::Vector3D &amp;rgb, float64 weight=1)</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -16765,8 +18333,8 @@
       <type>HitDetail &amp;</type>
       <name>setHitIntrinsics</name>
       <anchorfile>d9/d1b/classph_1_1_hit_detail.html</anchorfile>
-      <anchor>a62733ea5159ca39f24bf3a955468d2fb</anchor>
-      <arglist>(const Primitive *primitive, const math::Vector3R &amp;uvw, real rayT, std::size_t faceId=NO_FACE_ID)</arglist>
+      <anchor>ac65eefb38c426f807896dec82f2fb39c</anchor>
+      <arglist>(const Primitive *primitive, const math::Vector3R &amp;uvw, real rayT, uint64 faceID=NO_FACE_ID, FaceTopology faceTopology=FaceTopology(EFaceTopology::General))</arglist>
     </member>
     <member kind="function">
       <type>void</type>
@@ -16779,50 +18347,50 @@
       <type>math::Vector3R</type>
       <name>getPosition</name>
       <anchorfile>d9/d1b/classph_1_1_hit_detail.html</anchorfile>
-      <anchor>a4073145bfdb0a595d1d07ea718cb8793</anchor>
-      <arglist>(ECoordSys coordSys=ECoordSys::WORLD) const</arglist>
+      <anchor>ad3b7b47b289b386f503a922d5ee19f68</anchor>
+      <arglist>(ECoordSys coordSys=ECoordSys::World) const</arglist>
     </member>
     <member kind="function">
       <type>math::Vector3R</type>
       <name>getShadingNormal</name>
       <anchorfile>d9/d1b/classph_1_1_hit_detail.html</anchorfile>
-      <anchor>a7609ac04ffd5e3e1f3cd4137d0615567</anchor>
-      <arglist>(ECoordSys coordSys=ECoordSys::WORLD) const</arglist>
+      <anchor>a360bcdc67456930b7bcb54a919121bed</anchor>
+      <arglist>(ECoordSys coordSys=ECoordSys::World) const</arglist>
     </member>
     <member kind="function">
       <type>math::Vector3R</type>
       <name>getGeometryNormal</name>
       <anchorfile>d9/d1b/classph_1_1_hit_detail.html</anchorfile>
-      <anchor>a3220eea77d1d4592483b06d6bba8be9f</anchor>
-      <arglist>(ECoordSys coordSys=ECoordSys::WORLD) const</arglist>
+      <anchor>aeb2c56bef7db1ef1d68557405fbd814d</anchor>
+      <arglist>(ECoordSys coordSys=ECoordSys::World) const</arglist>
     </member>
     <member kind="function">
       <type>math::Vector3R</type>
       <name>getdPdU</name>
       <anchorfile>d9/d1b/classph_1_1_hit_detail.html</anchorfile>
-      <anchor>a1fdc7c562554156fb89f9b5a932efb1c</anchor>
-      <arglist>(ECoordSys coordSys=ECoordSys::WORLD) const</arglist>
+      <anchor>a2e84eaebe7bcaff3cf698080030c46ae</anchor>
+      <arglist>(ECoordSys coordSys=ECoordSys::World) const</arglist>
     </member>
     <member kind="function">
       <type>math::Vector3R</type>
       <name>getdPdV</name>
       <anchorfile>d9/d1b/classph_1_1_hit_detail.html</anchorfile>
-      <anchor>aaa74b402b8c676b48c2d388bee03f161</anchor>
-      <arglist>(ECoordSys coordSys=ECoordSys::WORLD) const</arglist>
+      <anchor>a1bd22707e56f6e21dd0c59215a6d5c1c</anchor>
+      <arglist>(ECoordSys coordSys=ECoordSys::World) const</arglist>
     </member>
     <member kind="function">
       <type>math::Vector3R</type>
       <name>getdNdU</name>
       <anchorfile>d9/d1b/classph_1_1_hit_detail.html</anchorfile>
-      <anchor>a854ae18185ea259388ef1dfeb04dda1d</anchor>
-      <arglist>(ECoordSys coordSys=ECoordSys::WORLD) const</arglist>
+      <anchor>a3d054b94d0226ff9900caca526503006</anchor>
+      <arglist>(ECoordSys coordSys=ECoordSys::World) const</arglist>
     </member>
     <member kind="function">
       <type>math::Vector3R</type>
       <name>getdNdV</name>
       <anchorfile>d9/d1b/classph_1_1_hit_detail.html</anchorfile>
-      <anchor>a673438bf61bd586a05f448b7fbabc5e4</anchor>
-      <arglist>(ECoordSys coordSys=ECoordSys::WORLD) const</arglist>
+      <anchor>acf23e61ff4a927e6f4fd43de85995bb4</anchor>
+      <arglist>(ECoordSys coordSys=ECoordSys::World) const</arglist>
     </member>
     <member kind="function">
       <type>math::Vector3R</type>
@@ -16835,15 +18403,15 @@
       <type>const math::Basis3R &amp;</type>
       <name>getGeometryBasis</name>
       <anchorfile>d9/d1b/classph_1_1_hit_detail.html</anchorfile>
-      <anchor>a0181e60aadc7272eb3b1c85adada6118</anchor>
-      <arglist>(ECoordSys coordSys=ECoordSys::WORLD) const</arglist>
+      <anchor>af111fd4020fd2627179c07fcd1fdff4b</anchor>
+      <arglist>(ECoordSys coordSys=ECoordSys::World) const</arglist>
     </member>
     <member kind="function">
       <type>const math::Basis3R &amp;</type>
       <name>getShadingBasis</name>
       <anchorfile>d9/d1b/classph_1_1_hit_detail.html</anchorfile>
-      <anchor>a5d51d84e20714a555e411c020072a7a6</anchor>
-      <arglist>(ECoordSys coordSys=ECoordSys::WORLD) const</arglist>
+      <anchor>a602780b72af64cb2cec5fd045523d354</anchor>
+      <arglist>(ECoordSys coordSys=ECoordSys::World) const</arglist>
     </member>
     <member kind="function">
       <type>real</type>
@@ -16853,10 +18421,17 @@
       <arglist>() const</arglist>
     </member>
     <member kind="function">
-      <type>std::size_t</type>
-      <name>getFaceId</name>
+      <type>uint64</type>
+      <name>getFaceID</name>
       <anchorfile>d9/d1b/classph_1_1_hit_detail.html</anchorfile>
-      <anchor>ac30fc4303574c7af0eaeea9eec373dc1</anchor>
+      <anchor>a3e60d6832e9a92c41e7c9114791ad039</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>FaceTopology</type>
+      <name>getFaceTopology</name>
+      <anchorfile>d9/d1b/classph_1_1_hit_detail.html</anchorfile>
+      <anchor>ab7fbef97f2b6f08e09e71d73a96966f8</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
@@ -16870,15 +18445,29 @@
       <type>const HitInfo &amp;</type>
       <name>getHitInfo</name>
       <anchorfile>d9/d1b/classph_1_1_hit_detail.html</anchorfile>
-      <anchor>aab82ae9640e16c49316ae5bd7a35dce2</anchor>
-      <arglist>(ECoordSys coordSys=ECoordSys::WORLD) const</arglist>
+      <anchor>aeb5a6edc287e88399235abb9456f9759</anchor>
+      <arglist>(ECoordSys coordSys=ECoordSys::World) const</arglist>
     </member>
     <member kind="function">
       <type>HitInfo &amp;</type>
       <name>getHitInfo</name>
       <anchorfile>d9/d1b/classph_1_1_hit_detail.html</anchorfile>
-      <anchor>a4373da404b85787111fc0960fd7a80b1</anchor>
-      <arglist>(ECoordSys coordSys=ECoordSys::WORLD)</arglist>
+      <anchor>af6e4d677ab0d5d3846484c60d8b252ea</anchor>
+      <arglist>(ECoordSys coordSys=ECoordSys::World)</arglist>
+    </member>
+    <member kind="function">
+      <type>std::pair&lt; real, real &gt;</type>
+      <name>getDistanceErrorFactors</name>
+      <anchorfile>d9/d1b/classph_1_1_hit_detail.html</anchorfile>
+      <anchor>a6f96409aecd12f20748727d0860d66c0</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setDistanceErrorFactors</name>
+      <anchorfile>d9/d1b/classph_1_1_hit_detail.html</anchorfile>
+      <anchor>a61a79e52716bc841b425fc96902b41c0</anchor>
+      <arglist>(real meanFactor, real maxFactor)</arglist>
     </member>
     <member kind="variable" static="yes">
       <type>static constexpr auto</type>
@@ -16995,10 +18584,24 @@
     </member>
     <member kind="function">
       <type>void</type>
-      <name>calcIntersectionDetail</name>
+      <name>calcHitDetail</name>
       <anchorfile>df/d97/classph_1_1_hit_probe.html</anchorfile>
-      <anchor>ad1d618361a24eee75f5deeaf542e52d2</anchor>
+      <anchor>ad9fced029478af18b44b5fa91c6cd3d4</anchor>
       <arglist>(const Ray &amp;ray, HitDetail *out_detail)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>calcFullHitDetail</name>
+      <anchorfile>df/d97/classph_1_1_hit_probe.html</anchorfile>
+      <anchor>a6f0d930a1230e62b71c8de1989eda579</anchor>
+      <arglist>(const Ray &amp;ray, HitDetail *out_detail)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>reintersect</name>
+      <anchorfile>df/d97/classph_1_1_hit_probe.html</anchorfile>
+      <anchor>a742e35ef23dc97258d91643f934bcda1</anchor>
+      <arglist>(const Ray &amp;ray, HitProbe &amp;probe, const Ray &amp;srcRay)</arglist>
     </member>
     <member kind="function">
       <type>bool</type>
@@ -17023,24 +18626,38 @@
     </member>
     <member kind="function">
       <type>void</type>
-      <name>popIntermediateHit</name>
+      <name>popHit</name>
       <anchorfile>df/d97/classph_1_1_hit_probe.html</anchorfile>
-      <anchor>ad1cb88165e5056705e79bdca7fad4910</anchor>
+      <anchor>a4c7120e462a6cc8e500bc8b2302c2989</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>replaceCurrentHitWith</name>
       <anchorfile>df/d97/classph_1_1_hit_probe.html</anchorfile>
-      <anchor>a14285ff4a74f9688445545c3125f035b</anchor>
-      <arglist>(const Intersectable *const newCurrentHit)</arglist>
+      <anchor>a8eb31aad8dd058a777c32affe176d03f</anchor>
+      <arglist>(const Intersectable *newCurrentHit)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>replaceBaseHitRayTWith</name>
+      <anchorfile>df/d97/classph_1_1_hit_probe.html</anchorfile>
+      <anchor>ad3158adf7c7d16eae01d8e94e3f49864</anchor>
+      <arglist>(real hitRayT)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>setChannel</name>
       <anchorfile>df/d97/classph_1_1_hit_probe.html</anchorfile>
-      <anchor>ac6f16e51dc4ae4e6ba09bed705b085f2</anchor>
-      <arglist>(const uint32 channel)</arglist>
+      <anchor>a7b03e889e00edbdcaa81b42097ef6261</anchor>
+      <arglist>(uint8 channel)</arglist>
+    </member>
+    <member kind="function">
+      <type>uint8</type>
+      <name>getChannel</name>
+      <anchorfile>df/d97/classph_1_1_hit_probe.html</anchorfile>
+      <anchor>a32daa2188765ffbaf5d44e81caf8d592</anchor>
+      <arglist>() const</arglist>
     </member>
     <member kind="function">
       <type>const Intersectable *</type>
@@ -17055,20 +18672,6 @@
       <anchorfile>df/d97/classph_1_1_hit_probe.html</anchorfile>
       <anchor>af9c96bd20f167c30fe8802524c563a21</anchor>
       <arglist>() const</arglist>
-    </member>
-    <member kind="function">
-      <type>uint32</type>
-      <name>getChannel</name>
-      <anchorfile>df/d97/classph_1_1_hit_probe.html</anchorfile>
-      <anchor>a1514e2125cde4bd20288ad95426893da</anchor>
-      <arglist>() const</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>clear</name>
-      <anchorfile>df/d97/classph_1_1_hit_probe.html</anchorfile>
-      <anchor>aa62d1132aeb88cf877ba0f6e0c277932</anchor>
-      <arglist>()</arglist>
     </member>
     <member kind="function">
       <type>void</type>
@@ -18374,10 +19977,17 @@
       <arglist>(const Ray &amp;ray, HitProbe &amp;probe) const =0</arglist>
     </member>
     <member kind="function" virtualness="pure">
-      <type>virtual void</type>
-      <name>calcIntersectionDetail</name>
+      <type>virtual bool</type>
+      <name>reintersect</name>
       <anchorfile>d9/d24/classph_1_1_intersectable.html</anchorfile>
-      <anchor>acde51d3d2292a0dd9c011dd9ad174bf2</anchor>
+      <anchor>a4d9858adbc05eabea428bca36a11cfad</anchor>
+      <arglist>(const Ray &amp;ray, HitProbe &amp;probe, const Ray &amp;srcRay, HitProbe &amp;srcProbe) const =0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>calcHitDetail</name>
+      <anchorfile>d9/d24/classph_1_1_intersectable.html</anchorfile>
+      <anchor>ad1df6e972a7cb71e2c0a99f28a80c810</anchor>
       <arglist>(const Ray &amp;ray, HitProbe &amp;probe, HitDetail *out_detail) const =0</arglist>
     </member>
     <member kind="function" virtualness="pure">
@@ -18428,10 +20038,17 @@
       <arglist>() const override=0</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
-      <name>calcIntersectionDetail</name>
+      <type>bool</type>
+      <name>reintersect</name>
       <anchorfile>db/d54/classph_1_1_intersector.html</anchorfile>
-      <anchor>aed0c4b35b8a7bd626f3938111106c81c</anchor>
+      <anchor>ae32d1fce4edbce37b1cf8cbab60a81e9</anchor>
+      <arglist>(const Ray &amp;ray, HitProbe &amp;probe, const Ray &amp;srcRay, HitProbe &amp;srcProbe) const override</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>calcHitDetail</name>
+      <anchorfile>db/d54/classph_1_1_intersector.html</anchorfile>
+      <anchor>a2491abaf0c5c0766137e460098804f20</anchor>
       <arglist>(const Ray &amp;ray, HitProbe &amp;probe, HitDetail *out_detail) const override</arglist>
     </member>
   </compound>
@@ -18660,6 +20277,31 @@
     <templarg>typename From</templarg>
   </compound>
   <compound kind="class">
+    <name>ph::ISdlDataPacketGroup</name>
+    <filename>d7/d21/classph_1_1_i_sdl_data_packet_group.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>PH_DEFINE_INLINE_RULE_OF_5_MEMBERS_NO_DTOR</name>
+      <anchorfile>d7/d21/classph_1_1_i_sdl_data_packet_group.html</anchorfile>
+      <anchor>a01677f0d52d191e080e62544d88d332e</anchor>
+      <arglist>(ISdlDataPacketGroup)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual</type>
+      <name>~ISdlDataPacketGroup</name>
+      <anchorfile>d7/d21/classph_1_1_i_sdl_data_packet_group.html</anchorfile>
+      <anchor>acedd0f73c299d7cc0de71f7585ed5a43</anchor>
+      <arglist>()=default</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual const SdlInputClauses *</type>
+      <name>get</name>
+      <anchorfile>d7/d21/classph_1_1_i_sdl_data_packet_group.html</anchorfile>
+      <anchor>a97504ec538a858d3489e1b95da5a80bf</anchor>
+      <arglist>(std::string_view packetName) const =0</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
     <name>ph::ISdlInstantiable</name>
     <filename>de/d21/classph_1_1_i_sdl_instantiable.html</filename>
     <member kind="function" virtualness="virtual">
@@ -18703,24 +20345,10 @@
     <filename>db/ddc/classph_1_1_i_sdl_reference_group.html</filename>
     <member kind="function">
       <type></type>
-      <name>ISdlReferenceGroup</name>
+      <name>PH_DEFINE_INLINE_RULE_OF_5_MEMBERS_NO_DTOR</name>
       <anchorfile>db/ddc/classph_1_1_i_sdl_reference_group.html</anchorfile>
-      <anchor>a412269b61fe750996d98c3fc371ebd09</anchor>
-      <arglist>()=default</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>ISdlReferenceGroup</name>
-      <anchorfile>db/ddc/classph_1_1_i_sdl_reference_group.html</anchorfile>
-      <anchor>a5deb81a6681caa070fca7a1af671dbbe</anchor>
-      <arglist>(const ISdlReferenceGroup &amp;other)=default</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>ISdlReferenceGroup</name>
-      <anchorfile>db/ddc/classph_1_1_i_sdl_reference_group.html</anchorfile>
-      <anchor>ad27d52085d612cc42ba67c393cbb94b2</anchor>
-      <arglist>(ISdlReferenceGroup &amp;&amp;other)=default</arglist>
+      <anchor>a5e82161b2a510601aa605b91f9c4c6ef</anchor>
+      <arglist>(ISdlReferenceGroup)</arglist>
     </member>
     <member kind="function" virtualness="virtual">
       <type>virtual</type>
@@ -18756,20 +20384,6 @@
       <anchorfile>db/ddc/classph_1_1_i_sdl_reference_group.html</anchorfile>
       <anchor>a001529f107c211ab73a13f71fa330887</anchor>
       <arglist>(std::string_view resourceName) const</arglist>
-    </member>
-    <member kind="function">
-      <type>ISdlReferenceGroup &amp;</type>
-      <name>operator=</name>
-      <anchorfile>db/ddc/classph_1_1_i_sdl_reference_group.html</anchorfile>
-      <anchor>ab0b4d434a33782dffd8dec36b5a76ffb</anchor>
-      <arglist>(const ISdlReferenceGroup &amp;rhs)=default</arglist>
-    </member>
-    <member kind="function">
-      <type>ISdlReferenceGroup &amp;</type>
-      <name>operator=</name>
-      <anchorfile>db/ddc/classph_1_1_i_sdl_reference_group.html</anchorfile>
-      <anchor>a876b488be15971cb622a00555973540c</anchor>
-      <arglist>(ISdlReferenceGroup &amp;&amp;rhs)=default</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -19269,22 +20883,22 @@
       <type>void</type>
       <name>genDirectSample</name>
       <anchorfile>d9/d36/classph_1_1_lat_long_env_emitter.html</anchorfile>
-      <anchor>a0d6b99e1c07d12badda70bb8bab09448</anchor>
-      <arglist>(DirectEnergySampleQuery &amp;query, SampleFlow &amp;sampleFlow) const override</arglist>
+      <anchor>a49815b90de753fd73ccee2a536b0a105</anchor>
+      <arglist>(DirectEnergySampleQuery &amp;query, SampleFlow &amp;sampleFlow, HitProbe &amp;probe) const override</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>calcDirectSamplePdfW</name>
+      <anchorfile>d9/d36/classph_1_1_lat_long_env_emitter.html</anchorfile>
+      <anchor>a3e2c56c10d5ffb7536c733bf70392fdb</anchor>
+      <arglist>(DirectEnergySamplePdfQuery &amp;query, HitProbe &amp;probe) const override</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>emitRay</name>
       <anchorfile>d9/d36/classph_1_1_lat_long_env_emitter.html</anchorfile>
-      <anchor>a28cb825aafcc8831b067829fe4c28d54</anchor>
-      <arglist>(SampleFlow &amp;sampleFlow, Ray *out_ray, math::Spectrum *out_Le, math::Vector3R *out_eN, real *out_pdfA, real *out_pdfW) const override</arglist>
-    </member>
-    <member kind="function">
-      <type>real</type>
-      <name>calcDirectSamplePdfW</name>
-      <anchorfile>d9/d36/classph_1_1_lat_long_env_emitter.html</anchorfile>
-      <anchor>a6ba7f298a8f4b55846e9bc383ff6d101</anchor>
-      <arglist>(const SurfaceHit &amp;emitPos, const math::Vector3R &amp;targetPos) const override</arglist>
+      <anchor>a63e8129086b791f0ccc44d0bc4a854d4</anchor>
+      <arglist>(EnergyEmissionSampleQuery &amp;query, SampleFlow &amp;sampleFlow, HitProbe &amp;probe) const override</arglist>
     </member>
     <member kind="function">
       <type>real</type>
@@ -19325,6 +20939,13 @@
       <anchorfile>d1/dda/classph_1_1_layered_surface.html</anchorfile>
       <anchor>a05a386e24d9151481077706a60f0a5a6</anchor>
       <arglist>(std::size_t layerIndex, const SurfaceLayerInfo &amp;layer)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>PH_DEFINE_SDL_CLASS</name>
+      <anchorfile>d1/dda/classph_1_1_layered_surface.html</anchorfile>
+      <anchor>ababfe256adfdc02cdc840c65091d8ebe</anchor>
+      <arglist>(TSdlOwnerClass&lt; LayeredSurface &gt;)</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -19653,9 +21274,16 @@
     </member>
     <member kind="function">
       <type>MathImage &amp;</type>
-      <name>setScalarInput</name>
+      <name>setScalarInput0</name>
       <anchorfile>d7/da5/classph_1_1_math_image.html</anchorfile>
-      <anchor>a36c6705878bbb9c08de3a8a0992db735</anchor>
+      <anchor>a217393725bfee7a9015333b1800705da</anchor>
+      <arglist>(float64 value)</arglist>
+    </member>
+    <member kind="function">
+      <type>MathImage &amp;</type>
+      <name>setScalarInput1</name>
+      <anchorfile>d7/da5/classph_1_1_math_image.html</anchorfile>
+      <anchor>a1f551c0d6d271408ba17a62eeb059351</anchor>
       <arglist>(float64 value)</arglist>
     </member>
     <member kind="function">
@@ -20189,22 +21817,22 @@
       <type>void</type>
       <name>genDirectSample</name>
       <anchorfile>dd/d54/classph_1_1_multi_diffuse_surface_emitter.html</anchorfile>
-      <anchor>a98fcd8ab6e7dfd79b3b61f39fdbefb67</anchor>
-      <arglist>(DirectEnergySampleQuery &amp;query, SampleFlow &amp;sampleFlow) const override</arglist>
+      <anchor>a4dff4973c169ea76c358896300f0af7a</anchor>
+      <arglist>(DirectEnergySampleQuery &amp;query, SampleFlow &amp;sampleFlow, HitProbe &amp;probe) const override</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>calcDirectSamplePdfW</name>
+      <anchorfile>dd/d54/classph_1_1_multi_diffuse_surface_emitter.html</anchorfile>
+      <anchor>a1dac052b57372bfb877bae89d59c2659</anchor>
+      <arglist>(DirectEnergySamplePdfQuery &amp;query, HitProbe &amp;probe) const override</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>emitRay</name>
       <anchorfile>dd/d54/classph_1_1_multi_diffuse_surface_emitter.html</anchorfile>
-      <anchor>accdb16501b72fc2f79725b362b3965d5</anchor>
-      <arglist>(SampleFlow &amp;sampleFlow, Ray *out_ray, math::Spectrum *out_Le, math::Vector3R *out_eN, real *out_pdfA, real *out_pdfW) const override</arglist>
-    </member>
-    <member kind="function">
-      <type>real</type>
-      <name>calcDirectSamplePdfW</name>
-      <anchorfile>dd/d54/classph_1_1_multi_diffuse_surface_emitter.html</anchorfile>
-      <anchor>a6fd46433f9b2bbc330e2d04b88535823</anchor>
-      <arglist>(const SurfaceHit &amp;emitPos, const math::Vector3R &amp;targetPos) const override</arglist>
+      <anchor>ab3bdf048c3231da935ed6d6260b592c8</anchor>
+      <arglist>(EnergyEmissionSampleQuery &amp;query, SampleFlow &amp;sampleFlow, HitProbe &amp;probe) const override</arglist>
     </member>
     <member kind="function">
       <type>real</type>
@@ -20395,22 +22023,22 @@
       <type>void</type>
       <name>genDirectSample</name>
       <anchorfile>dd/d5b/classph_1_1_omni_modulated_emitter.html</anchorfile>
-      <anchor>a448901b46e95b1919035206d8b9c26ad</anchor>
-      <arglist>(DirectEnergySampleQuery &amp;query, SampleFlow &amp;sampleFlow) const override</arglist>
+      <anchor>a96a5ee2101a12f84868fc174df7e8bc7</anchor>
+      <arglist>(DirectEnergySampleQuery &amp;query, SampleFlow &amp;sampleFlow, HitProbe &amp;probe) const override</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>calcDirectSamplePdfW</name>
+      <anchorfile>dd/d5b/classph_1_1_omni_modulated_emitter.html</anchorfile>
+      <anchor>a970f519023190cccddb580ec2e1b8f65</anchor>
+      <arglist>(DirectEnergySamplePdfQuery &amp;query, HitProbe &amp;probe) const override</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>emitRay</name>
       <anchorfile>dd/d5b/classph_1_1_omni_modulated_emitter.html</anchorfile>
-      <anchor>a8771115249f627fd3f4235043336982a</anchor>
-      <arglist>(SampleFlow &amp;sampleFlow, Ray *out_ray, math::Spectrum *out_Le, math::Vector3R *out_eN, real *out_pdfA, real *out_pdfW) const override</arglist>
-    </member>
-    <member kind="function">
-      <type>real</type>
-      <name>calcDirectSamplePdfW</name>
-      <anchorfile>dd/d5b/classph_1_1_omni_modulated_emitter.html</anchorfile>
-      <anchor>ab502f0cdafcbf5e610ec38b1e2b2ad34</anchor>
-      <arglist>(const SurfaceHit &amp;emitPos, const math::Vector3R &amp;targetPos) const override</arglist>
+      <anchor>a4db23e8afa8927255bbd7d080c13a6d4</anchor>
+      <arglist>(EnergyEmissionSampleQuery &amp;query, SampleFlow &amp;sampleFlow, HitProbe &amp;probe) const override</arglist>
     </member>
     <member kind="function">
       <type>real</type>
@@ -20578,6 +22206,24 @@
     </member>
   </compound>
   <compound kind="class">
+    <name>ph::halton_detail::OwenScrambledPermuter</name>
+    <filename>da/d44/classph_1_1halton__detail_1_1_owen_scrambled_permuter.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>OwenScrambledPermuter</name>
+      <anchorfile>da/d44/classph_1_1halton__detail_1_1_owen_scrambled_permuter.html</anchorfile>
+      <anchor>a16a26d3ef4a1008d63c5beb5565ec0c3</anchor>
+      <arglist>(const uint64 dimIndex)</arglist>
+    </member>
+    <member kind="function">
+      <type>uint64</type>
+      <name>operator()</name>
+      <anchorfile>da/d44/classph_1_1halton__detail_1_1_owen_scrambled_permuter.html</anchorfile>
+      <anchor>a4f3bf01762ec1d819a1bf450e1cadec8</anchor>
+      <arglist>(const uint64, const uint64 digit)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
     <name>ph::PartialRayEnergyEstimator</name>
     <filename>d1/df4/classph_1_1_partial_ray_energy_estimator.html</filename>
     <base>ph::IRayEnergyEstimator</base>
@@ -20628,13 +22274,6 @@
     <name>ph::PathTracingVisualizer</name>
     <filename>db/d8d/classph_1_1_path_tracing_visualizer.html</filename>
     <base>ph::FrameVisualizer</base>
-    <member kind="function">
-      <type></type>
-      <name>PathTracingVisualizer</name>
-      <anchorfile>db/d8d/classph_1_1_path_tracing_visualizer.html</anchorfile>
-      <anchor>a1b1393529b8a96e290590ec407887614</anchor>
-      <arglist>()=default</arglist>
-    </member>
     <member kind="function">
       <type>void</type>
       <name>cook</name>
@@ -20698,9 +22337,9 @@
     </member>
     <member kind="function" virtualness="pure">
       <type>void</type>
-      <name>calcIntersectionDetail</name>
+      <name>calcHitDetail</name>
       <anchorfile>d1/de1/classph_1_1_p_basic_sphere.html</anchorfile>
-      <anchor>aee378d7e90c0e9bcdc1f2a0aa891e7fa</anchor>
+      <anchor>a64585f20097b2180663ae8cf9c5a4680</anchor>
       <arglist>(const Ray &amp;ray, HitProbe &amp;probe, HitDetail *out_detail) const override=0</arglist>
     </member>
     <member kind="function">
@@ -20709,6 +22348,13 @@
       <anchorfile>d1/de1/classph_1_1_p_basic_sphere.html</anchorfile>
       <anchor>ac58e5139399fa72a41af4a5d823bd2b4</anchor>
       <arglist>(const Ray &amp;ray, HitProbe &amp;probe) const override</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>reintersect</name>
+      <anchorfile>d1/de1/classph_1_1_p_basic_sphere.html</anchorfile>
+      <anchor>a88cd7ce3f91b24aab35b8f68d8709f79</anchor>
+      <arglist>(const Ray &amp;ray, HitProbe &amp;probe, const Ray &amp;srcRay, HitProbe &amp;srcProbe) const override</arglist>
     </member>
     <member kind="function">
       <type>bool</type>
@@ -20744,6 +22390,13 @@
       <anchorfile>d1/de1/classph_1_1_p_basic_sphere.html</anchorfile>
       <anchor>aa2675061ad63cf60ccaa179586967613</anchor>
       <arglist>() const</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>auto</type>
+      <name>getRefinedSurfaceAndNormal</name>
+      <anchorfile>d1/de1/classph_1_1_p_basic_sphere.html</anchorfile>
+      <anchor>a88e559569a30f7cef6ca68036beb826c</anchor>
+      <arglist>(const math::Vector3R &amp;srcSurface) const -&gt; std::pair&lt; math::Vector3R, math::Vector3R &gt;</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -20892,17 +22545,24 @@
     </member>
     <member kind="function">
       <type>bool</type>
+      <name>reintersect</name>
+      <anchorfile>d8/d2f/classph_1_1_p_empty.html</anchorfile>
+      <anchor>a6011181810af58a79daeae876d686313</anchor>
+      <arglist>(const Ray &amp;ray, HitProbe &amp;probe, const Ray &amp;srcRay, HitProbe &amp;srcProbe) const override</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>calcHitDetail</name>
+      <anchorfile>d8/d2f/classph_1_1_p_empty.html</anchorfile>
+      <anchor>aafd23735b24df4f04e3cc70747d31833</anchor>
+      <arglist>(const Ray &amp;ray, HitProbe &amp;probe, HitDetail *out_detail) const override</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
       <name>isOccluding</name>
       <anchorfile>d8/d2f/classph_1_1_p_empty.html</anchorfile>
       <anchor>a43a6c5ff03bd9873730525907c99f192</anchor>
       <arglist>(const Ray &amp;ray) const override</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>calcIntersectionDetail</name>
-      <anchorfile>d8/d2f/classph_1_1_p_empty.html</anchorfile>
-      <anchor>a67f9723807ac1206f0932ff30a9914ab</anchor>
-      <arglist>(const Ray &amp;ray, HitProbe &amp;probe, HitDetail *out_detail) const override</arglist>
     </member>
     <member kind="function">
       <type>bool</type>
@@ -20933,8 +22593,8 @@
       <type>uint64</type>
       <name>operator()</name>
       <anchorfile>d4/daa/classph_1_1halton__detail_1_1_per_digit_permuter.html</anchorfile>
-      <anchor>afa8495698960b1ac0308c8ae15d5d5c2</anchor>
-      <arglist>(const uint64 digit)</arglist>
+      <anchor>ab885d4f7863d570cf87632ff4652c29a</anchor>
+      <arglist>(const uint64, const uint64 digit)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static PermutationTable</type>
@@ -21043,17 +22703,21 @@
       <arglist>(const HdrRgbFrame &amp;frame)</arglist>
     </member>
   </compound>
+  <compound kind="struct">
+    <name>ph::TPhotonMap::PhotonCenterCalculator</name>
+    <filename>d5/d49/structph_1_1_t_photon_map_1_1_photon_center_calculator.html</filename>
+    <member kind="function">
+      <type>math::Vector3R</type>
+      <name>operator()</name>
+      <anchorfile>d5/d49/structph_1_1_t_photon_map_1_1_photon_center_calculator.html</anchorfile>
+      <anchor>aa6572dbf71d37b5ea4600b1c8d71b42b</anchor>
+      <arglist>(const Photon &amp;photon) const</arglist>
+    </member>
+  </compound>
   <compound kind="class">
     <name>ph::PhotonMappingVisualizer</name>
     <filename>d2/d07/classph_1_1_photon_mapping_visualizer.html</filename>
     <base>ph::FrameVisualizer</base>
-    <member kind="function">
-      <type></type>
-      <name>PhotonMappingVisualizer</name>
-      <anchorfile>d2/d07/classph_1_1_photon_mapping_visualizer.html</anchorfile>
-      <anchor>ad68a98b60c45049349d6893ccf79fcef</anchor>
-      <arglist>()=default</arglist>
-    </member>
     <member kind="function">
       <type>void</type>
       <name>cook</name>
@@ -21090,10 +22754,10 @@
       <arglist>() const</arglist>
     </member>
     <member kind="function" protection="protected">
-      <type>std::unique_ptr&lt; IRayEnergyEstimator &gt;</type>
-      <name>makeEstimator</name>
+      <type>PMCommonParams</type>
+      <name>makeCommonParams</name>
       <anchorfile>d2/d07/classph_1_1_photon_mapping_visualizer.html</anchorfile>
-      <anchor>a3051e975276e31200fb81f17dfb92726</anchor>
+      <anchor>a63b2c73ee77801db7e35ae74f3b7426a</anchor>
       <arglist>() const</arglist>
     </member>
   </compound>
@@ -21574,24 +23238,24 @@
     </member>
     <member kind="function">
       <type>void</type>
-      <name>calcIntersectionDetail</name>
+      <name>calcHitDetail</name>
       <anchorfile>d1/d1c/classph_1_1_p_lat_long01_sphere.html</anchorfile>
-      <anchor>a5b31ec520700a9b9675e21d6c08899be</anchor>
+      <anchor>a55d9b187a9b6733dc4cf28c44ae75b87</anchor>
       <arglist>(const Ray &amp;ray, HitProbe &amp;probe, HitDetail *out_detail) const override</arglist>
     </member>
     <member kind="function">
-      <type>real</type>
-      <name>calcPositionSamplePdfA</name>
+      <type>void</type>
+      <name>genPosSample</name>
       <anchorfile>d1/d1c/classph_1_1_p_lat_long01_sphere.html</anchorfile>
-      <anchor>a58462e59a9fb513a93cbb746a41aa7c8</anchor>
-      <arglist>(const math::Vector3R &amp;position) const override</arglist>
+      <anchor>a7b66db41d9dc86758ff5dced2d0a1e97</anchor>
+      <arglist>(PrimitivePosSampleQuery &amp;query, SampleFlow &amp;sampleFlow, HitProbe &amp;probe) const override</arglist>
     </member>
     <member kind="function">
       <type>void</type>
-      <name>genPositionSample</name>
+      <name>calcPosSamplePdfA</name>
       <anchorfile>d1/d1c/classph_1_1_p_lat_long01_sphere.html</anchorfile>
-      <anchor>a39e5421e2868494ff62ebff13eb04853</anchor>
-      <arglist>(PrimitivePosSampleQuery &amp;query, SampleFlow &amp;sampleFlow) const override</arglist>
+      <anchor>aa4b2e82bf705059cd0790775198a0023</anchor>
+      <arglist>(PrimitivePosSamplePdfQuery &amp;query, HitProbe &amp;probe) const override</arglist>
     </member>
     <member kind="function">
       <type>math::Vector2R</type>
@@ -21635,9 +23299,9 @@
     </member>
     <member kind="function">
       <type>void</type>
-      <name>calcIntersectionDetail</name>
+      <name>calcHitDetail</name>
       <anchorfile>d1/df2/classph_1_1_p_lat_long_env_sphere.html</anchorfile>
-      <anchor>a7f50af07d7606bc9cfd22636cccaa796</anchor>
+      <anchor>a19903549b743c79401f6aeb8a690333a</anchor>
       <arglist>(const Ray &amp;ray, HitProbe &amp;probe, HitDetail *out_detail) const override</arglist>
     </member>
     <member kind="function">
@@ -21662,11 +23326,39 @@
       <arglist>() const override</arglist>
     </member>
     <member kind="function">
+      <type>void</type>
+      <name>genPosSampleWithObservationPos</name>
+      <anchorfile>d1/df2/classph_1_1_p_lat_long_env_sphere.html</anchorfile>
+      <anchor>af4f31d651dac7eb630d7edb0b82e4bbd</anchor>
+      <arglist>(const math::Vector2R &amp;latLong01, real latLong01Pdf, PrimitivePosSampleQuery &amp;query, HitProbe &amp;probe) const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>calcPosSamplePdfWithObservationPos</name>
+      <anchorfile>d1/df2/classph_1_1_p_lat_long_env_sphere.html</anchorfile>
+      <anchor>ad2e3e8485fdc877d377c04c5f5ede71a</anchor>
+      <arglist>(const math::Vector2R &amp;latLong01, real latLong01Pdf, PrimitivePosSamplePdfQuery &amp;query, HitProbe &amp;probe) const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>genPosSampleWithoutObservationPos</name>
+      <anchorfile>d1/df2/classph_1_1_p_lat_long_env_sphere.html</anchorfile>
+      <anchor>acdcd54ccd12934c5e629c73fab8d5ec2</anchor>
+      <arglist>(const math::Vector2R &amp;latLong01, real latLong01Pdf, PrimitivePosSampleQuery &amp;query, SampleFlow &amp;sampleFlow, HitProbe &amp;probe, math::Vector3R *out_unitObservationDir, real *out_pdfW) const</arglist>
+    </member>
+    <member kind="function">
       <type>bool</type>
       <name>latLong01ToSurface</name>
       <anchorfile>d1/df2/classph_1_1_p_lat_long_env_sphere.html</anchorfile>
-      <anchor>a23e820e6a5a22c8c784a380b7573a649</anchor>
-      <arglist>(const math::Vector2R &amp;latLong01, const math::Vector3R &amp;observationPos, math::Vector3R *out_surface) const</arglist>
+      <anchor>a37d92e8b6993df63f170135bb52bf1f9</anchor>
+      <arglist>(const math::Vector2R &amp;latLong01, const math::Vector3R &amp;observationPos, math::Vector3R *out_surface, math::Vector3R *out_unitObservationDir) const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>latLong01ToSurface</name>
+      <anchorfile>d1/df2/classph_1_1_p_lat_long_env_sphere.html</anchorfile>
+      <anchor>a2a70acd1480d2fd6ea656e840e5f09b9</anchor>
+      <arglist>(const math::Vector2R &amp;latLong01, const std::array&lt; real, 2 &gt; &amp;uniformSample, math::Vector3R *out_surface, math::Vector3R *out_unitObservationDir, real *out_pdfA) const</arglist>
     </member>
   </compound>
   <compound kind="struct">
@@ -22058,131 +23750,254 @@
     </member>
   </compound>
   <compound kind="class">
-    <name>ph::PMRenderer</name>
-    <filename>d3/dd8/classph_1_1_p_m_renderer.html</filename>
-    <base>ph::Renderer</base>
+    <name>ph::PMAtomicStatistics</name>
+    <filename>dd/d2a/classph_1_1_p_m_atomic_statistics.html</filename>
     <member kind="function">
       <type></type>
-      <name>PMRenderer</name>
-      <anchorfile>d3/dd8/classph_1_1_p_m_renderer.html</anchorfile>
-      <anchor>aba4387153cc7b554664130d8ffe90ac2</anchor>
-      <arglist>(EPMMode mode, uint64 numPhotons, uint64 numPasses, uint64 numSamplesPerPixel, real kernelRadius, Viewport viewport, SampleFilter filter, uint32 numWorkers)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>doUpdate</name>
-      <anchorfile>d3/dd8/classph_1_1_p_m_renderer.html</anchorfile>
-      <anchor>a04e41d8ae278d116bd02fd0a6f29953f</anchor>
-      <arglist>(const CoreCookedUnit &amp;cooked, const VisualWorld &amp;world) override</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>doRender</name>
-      <anchorfile>d3/dd8/classph_1_1_p_m_renderer.html</anchorfile>
-      <anchor>acc0e4e3f1ceb74a30e23499a0adec0e1</anchor>
-      <arglist>() override</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>retrieveFrame</name>
-      <anchorfile>d3/dd8/classph_1_1_p_m_renderer.html</anchorfile>
-      <anchor>a4cebe94dedfe38c0ad22a69c6f0b59f8</anchor>
-      <arglist>(std::size_t layerIndex, HdrRgbFrame &amp;out_frame) override</arglist>
-    </member>
-    <member kind="function">
-      <type>std::size_t</type>
-      <name>asyncPollUpdatedRegions</name>
-      <anchorfile>d3/dd8/classph_1_1_p_m_renderer.html</anchorfile>
-      <anchor>a68e98a55065d01ea60b6d1b873905d9e</anchor>
-      <arglist>(TSpan&lt; RenderRegionStatus &gt; out_regions) override</arglist>
-    </member>
-    <member kind="function">
-      <type>RenderStats</type>
-      <name>asyncQueryRenderStats</name>
-      <anchorfile>d3/dd8/classph_1_1_p_m_renderer.html</anchorfile>
-      <anchor>a32a9cf7f8422fe10e158cb1b2450c8dd</anchor>
-      <arglist>() override</arglist>
-    </member>
-    <member kind="function">
-      <type>RenderProgress</type>
-      <name>asyncQueryRenderProgress</name>
-      <anchorfile>d3/dd8/classph_1_1_p_m_renderer.html</anchorfile>
-      <anchor>a00f67164cbee4bc2c735c429d7e7d28a</anchor>
-      <arglist>() override</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>asyncPeekFrame</name>
-      <anchorfile>d3/dd8/classph_1_1_p_m_renderer.html</anchorfile>
-      <anchor>a585007f6d06dd68c1c7275f5859d7766</anchor>
-      <arglist>(std::size_t layerIndex, const Region &amp;region, HdrRgbFrame &amp;out_frame) override</arglist>
-    </member>
-    <member kind="function">
-      <type>RenderObservationInfo</type>
-      <name>getObservationInfo</name>
-      <anchorfile>d3/dd8/classph_1_1_p_m_renderer.html</anchorfile>
-      <anchor>ae9df75e2e3853ff9b26b33a1c2b77bf3</anchor>
-      <arglist>() const override</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>asyncMergeFilm</name>
-      <anchorfile>d3/dd8/classph_1_1_p_m_renderer.html</anchorfile>
-      <anchor>a2ed6bd64bb9ed2f26580e799fbaf29d0</anchor>
-      <arglist>(const HdrRgbFilm &amp;srcFilm)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>asyncReplaceFilm</name>
-      <anchorfile>d3/dd8/classph_1_1_p_m_renderer.html</anchorfile>
-      <anchor>ac3d51e003dd844c9d968defd2ecd0c94</anchor>
-      <arglist>(const HdrRgbFilm &amp;srcFilm)</arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>ph::PMStatistics</name>
-    <filename>df/dc1/classph_1_1_p_m_statistics.html</filename>
-    <member kind="function">
-      <type></type>
-      <name>PMStatistics</name>
-      <anchorfile>df/dc1/classph_1_1_p_m_statistics.html</anchorfile>
-      <anchor>a1e53d26028c39dd5e6500b1f008b4c62</anchor>
+      <name>PMAtomicStatistics</name>
+      <anchorfile>dd/d2a/classph_1_1_p_m_atomic_statistics.html</anchorfile>
+      <anchor>aecd58d909b99e614547a0ed952b64b65</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>zero</name>
-      <anchorfile>df/dc1/classph_1_1_p_m_statistics.html</anchorfile>
-      <anchor>a7476acbb12d46bea0944a6c8f570c880</anchor>
+      <anchorfile>dd/d2a/classph_1_1_p_m_atomic_statistics.html</anchorfile>
+      <anchor>a2e6ab8759fef548db549f7f59370714b</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
       <type>void</type>
-      <name>asyncAddNumTracedPhotons</name>
-      <anchorfile>df/dc1/classph_1_1_p_m_statistics.html</anchorfile>
-      <anchor>a31e6d88d67b055485c3db8e4a8e6852c</anchor>
+      <name>addNumTracedPhotons</name>
+      <anchorfile>dd/d2a/classph_1_1_p_m_atomic_statistics.html</anchorfile>
+      <anchor>a531759a5877e5352e0231b06ff01d963</anchor>
       <arglist>(std::size_t num)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
-      <name>asyncIncrementNumIterations</name>
-      <anchorfile>df/dc1/classph_1_1_p_m_statistics.html</anchorfile>
-      <anchor>a12081cebff2284059e5bc5830ff475ab</anchor>
+      <name>incrementNumProcessedSteps</name>
+      <anchorfile>dd/d2a/classph_1_1_p_m_atomic_statistics.html</anchorfile>
+      <anchor>a6b464ca71665f7f441da7d598d308430</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
       <type>std::size_t</type>
-      <name>asyncGetNumTracedPhotons</name>
-      <anchorfile>df/dc1/classph_1_1_p_m_statistics.html</anchorfile>
-      <anchor>a8b86be8ea1c2400a14fa0c701f552eef</anchor>
+      <name>numTracedPhotons</name>
+      <anchorfile>dd/d2a/classph_1_1_p_m_atomic_statistics.html</anchorfile>
+      <anchor>a68f2db2a39fe71387c96c4e554ff98fd</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
       <type>std::size_t</type>
-      <name>asyncGetNumIterations</name>
-      <anchorfile>df/dc1/classph_1_1_p_m_statistics.html</anchorfile>
-      <anchor>a213c2ef971c9130fe61ec7a146f80c93</anchor>
+      <name>numProcessedSteps</name>
+      <anchorfile>dd/d2a/classph_1_1_p_m_atomic_statistics.html</anchorfile>
+      <anchor>a4bcee044ab205d74bc3ce8ba316c0f22</anchor>
       <arglist>() const</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>ph::PMCommonParams</name>
+    <filename>d5/db0/classph_1_1_p_m_common_params.html</filename>
+    <member kind="variable">
+      <type>std::size_t</type>
+      <name>numPhotons</name>
+      <anchorfile>d5/db0/classph_1_1_p_m_common_params.html</anchorfile>
+      <anchor>a968be2f5a5c4e1eaad2d43f54a912c65</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>std::size_t</type>
+      <name>numPasses</name>
+      <anchorfile>d5/db0/classph_1_1_p_m_common_params.html</anchorfile>
+      <anchor>a2c2d4ce44fc11d2b7f1606ef5109e2f9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>std::size_t</type>
+      <name>numSamplesPerPixel</name>
+      <anchorfile>d5/db0/classph_1_1_p_m_common_params.html</anchorfile>
+      <anchor>ab4ab64abc18c0ff0bf7df38f462c0bf3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>real</type>
+      <name>kernelRadius</name>
+      <anchorfile>d5/db0/classph_1_1_p_m_common_params.html</anchorfile>
+      <anchor>a6f6ce6d2ba1faa173486f57649f67f99</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>uint32</type>
+      <name>minPhotonPathLength</name>
+      <anchorfile>d5/db0/classph_1_1_p_m_common_params.html</anchorfile>
+      <anchor>af4c882b6325ba8cf8d13266544a843b7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>uint32</type>
+      <name>maxPhotonPathLength</name>
+      <anchorfile>d5/db0/classph_1_1_p_m_common_params.html</anchorfile>
+      <anchor>a4e1b17694b07b42c36985325b265f52e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>real</type>
+      <name>alpha</name>
+      <anchorfile>d5/db0/classph_1_1_p_m_common_params.html</anchorfile>
+      <anchor>a8bec8052cefff4dfbafe8b69bbe4361d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>uint32</type>
+      <name>glossyMergeBeginLength</name>
+      <anchorfile>d5/db0/classph_1_1_p_m_common_params.html</anchorfile>
+      <anchor>a076d4d450f0a8c9c6481fb0bd337f069</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static constexpr uint32</type>
+      <name>DEFAULT_MAX_PATH_LENGTH</name>
+      <anchorfile>d5/db0/classph_1_1_p_m_common_params.html</anchorfile>
+      <anchor>add7ec0cd3fbcd49279d13ef7a77f4b57</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>ph::PMRendererBase</name>
+    <filename>d0/dfd/classph_1_1_p_m_renderer_base.html</filename>
+    <base>ph::Renderer</base>
+    <member kind="function">
+      <type></type>
+      <name>PMRendererBase</name>
+      <anchorfile>d0/dfd/classph_1_1_p_m_renderer_base.html</anchorfile>
+      <anchor>a8b015c806b8713273ba1e5c75579288f</anchor>
+      <arglist>(PMCommonParams commonParams, Viewport viewport, SampleFilter filter, uint32 numWorkers)</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>void</type>
+      <name>doRender</name>
+      <anchorfile>d0/dfd/classph_1_1_p_m_renderer_base.html</anchorfile>
+      <anchor>a7dde3a27b56e36524013e132a6f64a88</anchor>
+      <arglist>() override=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>void</type>
+      <name>retrieveFrame</name>
+      <anchorfile>d0/dfd/classph_1_1_p_m_renderer_base.html</anchorfile>
+      <anchor>acd65d5adb7540776476f1c37ae62da79</anchor>
+      <arglist>(std::size_t layerIndex, HdrRgbFrame &amp;out_frame) override=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>RenderStats</type>
+      <name>asyncQueryRenderStats</name>
+      <anchorfile>d0/dfd/classph_1_1_p_m_renderer_base.html</anchorfile>
+      <anchor>acf49f7971a70e0dea9d4d37da7453d19</anchor>
+      <arglist>() override=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>RenderProgress</type>
+      <name>asyncQueryRenderProgress</name>
+      <anchorfile>d0/dfd/classph_1_1_p_m_renderer_base.html</anchorfile>
+      <anchor>a88755057d524db3fd5a5fadb39238c40</anchor>
+      <arglist>() override=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>void</type>
+      <name>asyncPeekFrame</name>
+      <anchorfile>d0/dfd/classph_1_1_p_m_renderer_base.html</anchorfile>
+      <anchor>a997091436e8c756b17529c18ee300673</anchor>
+      <arglist>(std::size_t layerIndex, const Region &amp;region, HdrRgbFrame &amp;out_frame) override=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>RenderObservationInfo</type>
+      <name>getObservationInfo</name>
+      <anchorfile>d0/dfd/classph_1_1_p_m_renderer_base.html</anchorfile>
+      <anchor>a010fe894997881bb69fc84a2b7043d21</anchor>
+      <arglist>() const =0</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>doUpdate</name>
+      <anchorfile>d0/dfd/classph_1_1_p_m_renderer_base.html</anchorfile>
+      <anchor>a65a8832095f9febcaaac1589e6062948</anchor>
+      <arglist>(const CoreCookedUnit &amp;cooked, const VisualWorld &amp;world) override</arglist>
+    </member>
+    <member kind="function">
+      <type>std::size_t</type>
+      <name>asyncPollUpdatedRegions</name>
+      <anchorfile>d0/dfd/classph_1_1_p_m_renderer_base.html</anchorfile>
+      <anchor>a951e00b9107119f6415d0a625f1cf5ed</anchor>
+      <arglist>(TSpan&lt; RenderRegionStatus &gt; out_regions) override</arglist>
+    </member>
+    <member kind="function">
+      <type>const SampleFilter &amp;</type>
+      <name>getFilter</name>
+      <anchorfile>d0/dfd/classph_1_1_p_m_renderer_base.html</anchorfile>
+      <anchor>af600c58bbe37cff34302906a2a9dbdd0</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>const PMCommonParams &amp;</type>
+      <name>getCommonParams</name>
+      <anchorfile>d0/dfd/classph_1_1_p_m_renderer_base.html</anchorfile>
+      <anchor>acb973bb3c97276569d889395d1bc17d8</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>const Scene *</type>
+      <name>getScene</name>
+      <anchorfile>d0/dfd/classph_1_1_p_m_renderer_base.html</anchorfile>
+      <anchor>aabdb7e6e8fb6003e0de5996ff3e4622e</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>const Receiver *</type>
+      <name>getReceiver</name>
+      <anchorfile>d0/dfd/classph_1_1_p_m_renderer_base.html</anchorfile>
+      <anchor>a6c6fee711fafaf7e2210c836b989466d</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>const SampleGenerator *</type>
+      <name>getSampleGenerator</name>
+      <anchorfile>d0/dfd/classph_1_1_p_m_renderer_base.html</anchorfile>
+      <anchor>a77029782d043f1569cd0b235c61b0303</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>TSynchronized&lt; HdrRgbFilm &gt; &amp;</type>
+      <name>getPrimaryFilm</name>
+      <anchorfile>d0/dfd/classph_1_1_p_m_renderer_base.html</anchorfile>
+      <anchor>a7fcbefa7b0ef03b9217a912c1e54e998</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>PMAtomicStatistics &amp;</type>
+      <name>getStatistics</name>
+      <anchorfile>d0/dfd/classph_1_1_p_m_renderer_base.html</anchorfile>
+      <anchor>a773ed8cc02107fc1bd61c25c4d287c09</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>asyncDevelopPrimaryFilm</name>
+      <anchorfile>d0/dfd/classph_1_1_p_m_renderer_base.html</anchorfile>
+      <anchor>a234c12327545167df4b9600c12c777e8</anchor>
+      <arglist>(const Region &amp;region, HdrRgbFrame &amp;out_frame)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>asyncMergeToPrimaryFilm</name>
+      <anchorfile>d0/dfd/classph_1_1_p_m_renderer_base.html</anchorfile>
+      <anchor>a9a3c08f2d4315d4717e013031267fc58</anchor>
+      <arglist>(const HdrRgbFilm &amp;srcFilm)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>asyncReplacePrimaryFilm</name>
+      <anchorfile>d0/dfd/classph_1_1_p_m_renderer_base.html</anchorfile>
+      <anchor>a650d3a20d9872ecda95880883eb3df17</anchor>
+      <arglist>(const HdrRgbFilm &amp;srcFilm)</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -22223,32 +24038,6 @@
       <anchorfile>d3/dcd/classph_1_1_point_source.html</anchorfile>
       <anchor>aed24ea263ec5ea6d513fa297c3b0dc0b</anchor>
       <arglist>(TSdlOwnerClass&lt; PointSource &gt;)</arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>ph::PPMRadianceEvaluationWork</name>
-    <filename>de/d4d/classph_1_1_p_p_m_radiance_evaluation_work.html</filename>
-    <base>TRadianceEvaluationWork&lt; FullPhoton &gt;</base>
-    <member kind="function">
-      <type></type>
-      <name>PPMRadianceEvaluationWork</name>
-      <anchorfile>de/d4d/classph_1_1_p_p_m_radiance_evaluation_work.html</anchorfile>
-      <anchor>a5aa753913808b4740600970be7c441b7</anchor>
-      <arglist>(const TPhotonMap&lt; FullPhoton &gt; *photonMap, std::size_t numPhotonPaths, HdrRgbFilm *film, FullViewpoint *viewpoints, std::size_t numViewpoints, const Scene *scene)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>setPMStatistics</name>
-      <anchorfile>de/d4d/classph_1_1_p_p_m_radiance_evaluation_work.html</anchorfile>
-      <anchor>abefdff5cf8486e14ce2d095db248621b</anchor>
-      <arglist>(PMStatistics *statistics)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>setAlpha</name>
-      <anchorfile>de/d4d/classph_1_1_p_p_m_radiance_evaluation_work.html</anchorfile>
-      <anchor>a8d2fae193ae94dd0a5eab47cf194452a</anchor>
-      <arglist>(real alpha)</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -22347,10 +24136,17 @@
     </member>
     <member kind="function" virtualness="pure">
       <type>void</type>
-      <name>calcIntersectionDetail</name>
+      <name>calcHitDetail</name>
       <anchorfile>d6/d8f/classph_1_1_primitive.html</anchorfile>
-      <anchor>a52e6bbd53007fe29589759a4a051cd6a</anchor>
+      <anchor>a68c3a4877450bbc0bf0230558b1bbb67</anchor>
       <arglist>(const Ray &amp;ray, HitProbe &amp;probe, HitDetail *out_detail) const override=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>bool</type>
+      <name>reintersect</name>
+      <anchorfile>d6/d8f/classph_1_1_primitive.html</anchorfile>
+      <anchor>a9ab017656ee45d0df91922f3f4f94ff9</anchor>
+      <arglist>(const Ray &amp;ray, HitProbe &amp;probe, const Ray &amp;srcRay, HitProbe &amp;srcProbe) const override=0</arglist>
     </member>
     <member kind="function" virtualness="pure">
       <type>math::AABB3D</type>
@@ -22361,17 +24157,17 @@
     </member>
     <member kind="function" virtualness="virtual">
       <type>virtual void</type>
-      <name>genPositionSample</name>
+      <name>genPosSample</name>
       <anchorfile>d6/d8f/classph_1_1_primitive.html</anchorfile>
-      <anchor>af3eafe37df21d948bb1571395060518c</anchor>
-      <arglist>(PrimitivePosSampleQuery &amp;query, SampleFlow &amp;sampleFlow) const</arglist>
+      <anchor>adf10fb27ccbff49031a7ad82b19f1417</anchor>
+      <arglist>(PrimitivePosSampleQuery &amp;query, SampleFlow &amp;sampleFlow, HitProbe &amp;probe) const</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual real</type>
-      <name>calcPositionSamplePdfA</name>
+      <type>virtual void</type>
+      <name>calcPosSamplePdfA</name>
       <anchorfile>d6/d8f/classph_1_1_primitive.html</anchorfile>
-      <anchor>a15b84cd1414c71ae2bfec519138b07c1</anchor>
-      <arglist>(const math::Vector3R &amp;position) const</arglist>
+      <anchor>a2f4f082548c743ffe1ed80fdc9f060b9</anchor>
+      <arglist>(PrimitivePosSamplePdfQuery &amp;query, HitProbe &amp;probe) const</arglist>
     </member>
     <member kind="function" virtualness="virtual">
       <type>virtual real</type>
@@ -22449,25 +24245,25 @@
       <arglist>()</arglist>
     </member>
     <member kind="function">
-      <type>uint32</type>
+      <type>uint8</type>
       <name>addChannel</name>
       <anchorfile>d4/d77/classph_1_1_primitive_metadata.html</anchorfile>
-      <anchor>a2b717e31d736f9b0dafc25ca65d787fe</anchor>
+      <anchor>ae4671c35812d943d6ceff92dbe84ab6a</anchor>
       <arglist>(const PrimitiveChannel &amp;channel)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>setChannel</name>
       <anchorfile>d4/d77/classph_1_1_primitive_metadata.html</anchorfile>
-      <anchor>a80d2d0639d59edaebf6474be0b194129</anchor>
-      <arglist>(uint32 channelId, const PrimitiveChannel &amp;channel)</arglist>
+      <anchor>a9e212ed9b674085d8335ec01784bb98e</anchor>
+      <arglist>(uint8 channelId, PrimitiveChannel channel)</arglist>
     </member>
     <member kind="function">
       <type>const PrimitiveChannel &amp;</type>
       <name>getChannel</name>
       <anchorfile>d4/d77/classph_1_1_primitive_metadata.html</anchorfile>
-      <anchor>a2ce1367cba98d0ba3dbdc10fdbd4d679</anchor>
-      <arglist>(const uint32 channelId) const</arglist>
+      <anchor>a6c5a384d085d3ed16e9955efaf8b6b99</anchor>
+      <arglist>(uint8 channelId) const</arglist>
     </member>
     <member kind="function">
       <type>const PrimitiveChannel &amp;</type>
@@ -22480,8 +24276,8 @@
       <type>bool</type>
       <name>isChannelIdValid</name>
       <anchorfile>d4/d77/classph_1_1_primitive_metadata.html</anchorfile>
-      <anchor>af9931650facab653646603c48356a9bb</anchor>
-      <arglist>(const uint32 channelId) const</arglist>
+      <anchor>afa78416a23ecdf73d9bbcaf0a99d9685</anchor>
+      <arglist>(uint8 channelId) const</arglist>
     </member>
     <member kind="function">
       <type>SurfaceBehavior &amp;</type>
@@ -22526,33 +24322,103 @@
       <arglist>() const</arglist>
     </member>
     <member kind="variable" static="yes">
-      <type>static constexpr uint32</type>
+      <type>static constexpr auto</type>
       <name>INVALID_CHANNEL_ID</name>
       <anchorfile>d4/d77/classph_1_1_primitive_metadata.html</anchorfile>
-      <anchor>a548126069983f897f5d841c4bd1247e5</anchor>
+      <anchor>a4a71531bfd00b4b181d597c168629c8d</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
-      <type>static constexpr uint32</type>
+      <type>static constexpr auto</type>
       <name>DEFAULT_CHANNEL_ID</name>
       <anchorfile>d4/d77/classph_1_1_primitive_metadata.html</anchorfile>
-      <anchor>a6f9d3977c1d878caed6e55abce919f72</anchor>
+      <anchor>a89960b205df7a03bc03ae59362cff7c0</anchor>
       <arglist></arglist>
     </member>
   </compound>
   <compound kind="class">
     <name>ph::PrimitivePosSampleInput</name>
     <filename>db/d54/classph_1_1_primitive_pos_sample_input.html</filename>
+    <member kind="function">
+      <type>void</type>
+      <name>set</name>
+      <anchorfile>db/d54/classph_1_1_primitive_pos_sample_input.html</anchorfile>
+      <anchor>a18e90a43bab24edfe90f305b0d985ac6</anchor>
+      <arglist>(const Time &amp;time, const math::Vector3R &amp;observationPos)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>set</name>
+      <anchorfile>db/d54/classph_1_1_primitive_pos_sample_input.html</anchorfile>
+      <anchor>aed7a3c41814a94c71378a82f704a7c91</anchor>
+      <arglist>(const Time &amp;time)</arglist>
+    </member>
+    <member kind="function">
+      <type>const Time &amp;</type>
+      <name>getTime</name>
+      <anchorfile>db/d54/classph_1_1_primitive_pos_sample_input.html</anchorfile>
+      <anchor>a12a6b79543185375ba6e23ab4c0867b7</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>const std::optional&lt; math::Vector3R &gt; &amp;</type>
+      <name>getObservationPos</name>
+      <anchorfile>db/d54/classph_1_1_primitive_pos_sample_input.html</anchorfile>
+      <anchor>a994dd6f13e557e918e4365be616066f2</anchor>
+      <arglist>() const</arglist>
+    </member>
   </compound>
   <compound kind="class">
     <name>ph::PrimitivePosSampleOutput</name>
     <filename>db/dbc/classph_1_1_primitive_pos_sample_output.html</filename>
     <member kind="function">
-      <type></type>
-      <name>PrimitivePosSampleOutput</name>
+      <type>void</type>
+      <name>setPos</name>
       <anchorfile>db/dbc/classph_1_1_primitive_pos_sample_output.html</anchorfile>
-      <anchor>a6648798be65b704cae075243fe5d3e14</anchor>
+      <anchor>a24be04bcef7c8bd42d4cce6c5e539a0d</anchor>
+      <arglist>(const math::Vector3R &amp;pos)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setPdfA</name>
+      <anchorfile>db/dbc/classph_1_1_primitive_pos_sample_output.html</anchorfile>
+      <anchor>a7c7e2ed2c6d6ba7dffb8a83b2f51f3c1</anchor>
+      <arglist>(real pdfA)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setObservationRay</name>
+      <anchorfile>db/dbc/classph_1_1_primitive_pos_sample_output.html</anchorfile>
+      <anchor>ad24aadc0360bc6789b3fcd426142ff72</anchor>
+      <arglist>(const Ray &amp;observationRay)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>invalidate</name>
+      <anchorfile>db/dbc/classph_1_1_primitive_pos_sample_output.html</anchorfile>
+      <anchor>ac3fa0b07ae0db13c537d2bb240b2de5c</anchor>
       <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>const math::Vector3R &amp;</type>
+      <name>getPos</name>
+      <anchorfile>db/dbc/classph_1_1_primitive_pos_sample_output.html</anchorfile>
+      <anchor>ab3ef8309ee7d93b9d41eb9a99804e55d</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>real</type>
+      <name>getPdfA</name>
+      <anchorfile>db/dbc/classph_1_1_primitive_pos_sample_output.html</anchorfile>
+      <anchor>aabf309275e64401a9c61c0ccea346fdb</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>const Ray &amp;</type>
+      <name>getObservationRay</name>
+      <anchorfile>db/dbc/classph_1_1_primitive_pos_sample_output.html</anchorfile>
+      <anchor>a2223b2ae513f7bcd80d9e5811f6da8db</anchor>
+      <arglist>() const</arglist>
     </member>
     <member kind="function">
       <type></type>
@@ -22561,104 +24427,69 @@
       <anchor>ad8cc36e1ca031fbfb9a981a61b5c0495</anchor>
       <arglist>() const</arglist>
     </member>
-    <member kind="variable">
-      <type>math::Vector3R</type>
-      <name>position</name>
-      <anchorfile>db/dbc/classph_1_1_primitive_pos_sample_output.html</anchorfile>
-      <anchor>ac1ef8f6d49416dfd6a03f7b3e8c16134</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>math::Vector3R</type>
-      <name>normal</name>
-      <anchorfile>db/dbc/classph_1_1_primitive_pos_sample_output.html</anchorfile>
-      <anchor>ae04705921de0cd62b914f4f691a723d7</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>math::Vector3R</type>
-      <name>uvw</name>
-      <anchorfile>db/dbc/classph_1_1_primitive_pos_sample_output.html</anchorfile>
-      <anchor>ac12caf35d1ac3d69ecfa73440ea920fa</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>std::size_t</type>
-      <name>faceId</name>
-      <anchorfile>db/dbc/classph_1_1_primitive_pos_sample_output.html</anchorfile>
-      <anchor>a9b43e0927e6c68788abebc11d47dc018</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>real</type>
-      <name>pdfA</name>
-      <anchorfile>db/dbc/classph_1_1_primitive_pos_sample_output.html</anchorfile>
-      <anchor>ae51e081e5ff632b8a2a8ad78715e9d58</anchor>
-      <arglist></arglist>
-    </member>
   </compound>
   <compound kind="class">
     <name>ph::PrimitivePosSamplePdfInput</name>
     <filename>d4/d1a/classph_1_1_primitive_pos_sample_pdf_input.html</filename>
     <member kind="function">
-      <type></type>
-      <name>PrimitivePosSamplePdfInput</name>
+      <type>void</type>
+      <name>set</name>
       <anchorfile>d4/d1a/classph_1_1_primitive_pos_sample_pdf_input.html</anchorfile>
-      <anchor>ad3f0cae7186c271a7070c05f6f0537e7</anchor>
-      <arglist>()</arglist>
+      <anchor>a32c8046d119c4bd064e9ea8213dc5eff</anchor>
+      <arglist>(const PrimitivePosSampleOutput &amp;sampleOutput, const SurfaceHit &amp;X)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>set</name>
       <anchorfile>d4/d1a/classph_1_1_primitive_pos_sample_pdf_input.html</anchorfile>
-      <anchor>a0f7e8febe8aa0dbc4be8ed6b534fb14b</anchor>
-      <arglist>(const math::Vector3R &amp;position)</arglist>
+      <anchor>ae6dcb3bc611251b0653f66681661f152</anchor>
+      <arglist>(const DirectEnergySamplePdfInput &amp;pdfInput)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>set</name>
       <anchorfile>d4/d1a/classph_1_1_primitive_pos_sample_pdf_input.html</anchorfile>
-      <anchor>a1b572b166b8f2ca222e726d791c2cbd4</anchor>
-      <arglist>(const math::Vector3R &amp;position, std::size_t faceId)</arglist>
+      <anchor>aaf9e674ec41841e513e8ebf28d699812</anchor>
+      <arglist>(const math::Vector3R &amp;pos, const Ray &amp;observationRay, uint64 faceID)</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
-      <name>set</name>
+      <type>const math::Vector3R &amp;</type>
+      <name>getPos</name>
       <anchorfile>d4/d1a/classph_1_1_primitive_pos_sample_pdf_input.html</anchorfile>
-      <anchor>adbcca2745041e7a5ec743e51bd12133d</anchor>
-      <arglist>(const HitDetail &amp;detail)</arglist>
+      <anchor>a6383df9e942eae1104591e7f5f67ee45</anchor>
+      <arglist>() const</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
-      <name>set</name>
+      <type>const Ray &amp;</type>
+      <name>getObservationRay</name>
       <anchorfile>d4/d1a/classph_1_1_primitive_pos_sample_pdf_input.html</anchorfile>
-      <anchor>adb9c8fe7bad46e4ad5556e762bd1844b</anchor>
-      <arglist>(const PrimitivePosSampleQuery &amp;query)</arglist>
+      <anchor>a872d2e5ab445f3fd13b1f64f0f6d3d75</anchor>
+      <arglist>() const</arglist>
     </member>
-    <member kind="variable">
-      <type>math::Vector3R</type>
-      <name>position</name>
+    <member kind="function">
+      <type>uint64</type>
+      <name>getFaceID</name>
       <anchorfile>d4/d1a/classph_1_1_primitive_pos_sample_pdf_input.html</anchorfile>
-      <anchor>a4995cd243e50cf7742178c433ccbfc01</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>std::size_t</type>
-      <name>faceId</name>
-      <anchorfile>d4/d1a/classph_1_1_primitive_pos_sample_pdf_input.html</anchorfile>
-      <anchor>a2765c2a24c7caf97e9928f61000d52ed</anchor>
-      <arglist></arglist>
+      <anchor>a3c3b7686f752aa78e360e239fcaf4a3f</anchor>
+      <arglist>() const</arglist>
     </member>
   </compound>
   <compound kind="class">
     <name>ph::PrimitivePosSamplePdfOutput</name>
     <filename>dc/da9/classph_1_1_primitive_pos_sample_pdf_output.html</filename>
     <member kind="function">
-      <type></type>
-      <name>PrimitivePosSamplePdfOutput</name>
+      <type>void</type>
+      <name>setPdfA</name>
       <anchorfile>dc/da9/classph_1_1_primitive_pos_sample_pdf_output.html</anchorfile>
-      <anchor>af8910e98f0799408b08da5839a385bed</anchor>
-      <arglist>()</arglist>
+      <anchor>a4450147945a58a5e18ce1e0ac947b59d</anchor>
+      <arglist>(real pdfA)</arglist>
+    </member>
+    <member kind="function">
+      <type>real</type>
+      <name>getPdfA</name>
+      <anchorfile>dc/da9/classph_1_1_primitive_pos_sample_pdf_output.html</anchorfile>
+      <anchor>a8068b957dda5fb6afd553720e7a31bf2</anchor>
+      <arglist>() const</arglist>
     </member>
     <member kind="function">
       <type></type>
@@ -22666,13 +24497,6 @@
       <anchorfile>dc/da9/classph_1_1_primitive_pos_sample_pdf_output.html</anchorfile>
       <anchor>a2b11b7a355d392c9f3c1f33cfb23ac63</anchor>
       <arglist>() const</arglist>
-    </member>
-    <member kind="variable">
-      <type>real</type>
-      <name>pdfA</name>
-      <anchorfile>dc/da9/classph_1_1_primitive_pos_sample_pdf_output.html</anchorfile>
-      <anchor>a092f109fe7e13ae8e6fd4ee62c58056b</anchor>
-      <arglist></arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -22696,21 +24520,21 @@
       <type></type>
       <name>PrimitivePosSamplePdfQuery</name>
       <anchorfile>d2/def/classph_1_1_primitive_pos_sample_pdf_query.html</anchorfile>
-      <anchor>a569cff2426492a2f83634b006b6fab3c</anchor>
-      <arglist>()</arglist>
+      <anchor>a85d594135612048f0d223d9d7275eaa1</anchor>
+      <arglist>()=default</arglist>
     </member>
     <member kind="variable">
       <type>Input</type>
-      <name>in</name>
+      <name>inputs</name>
       <anchorfile>d2/def/classph_1_1_primitive_pos_sample_pdf_query.html</anchorfile>
-      <anchor>a6296e098f2444c374361d8884a9e7be7</anchor>
+      <anchor>ac44da9ec176c3a1df5fbbf5070a58726</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>Output</type>
-      <name>out</name>
+      <name>outputs</name>
       <anchorfile>d2/def/classph_1_1_primitive_pos_sample_pdf_query.html</anchorfile>
-      <anchor>ae945994fb71d27f9f12e63476e7224a5</anchor>
+      <anchor>a7514ad0899f189799b0a850375900015</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -22735,29 +24559,76 @@
       <type></type>
       <name>PrimitivePosSampleQuery</name>
       <anchorfile>da/d3e/classph_1_1_primitive_pos_sample_query.html</anchorfile>
-      <anchor>a0104106f53d81641f0d3c776259dbf14</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>setInvalidOutput</name>
-      <anchorfile>da/d3e/classph_1_1_primitive_pos_sample_query.html</anchorfile>
-      <anchor>a764b00fb26300180d8fc3eb34799931f</anchor>
-      <arglist>()</arglist>
+      <anchor>a768db17d3b7af75b1cdd5e0b54aa13e4</anchor>
+      <arglist>()=default</arglist>
     </member>
     <member kind="variable">
       <type>Input</type>
-      <name>in</name>
+      <name>inputs</name>
       <anchorfile>da/d3e/classph_1_1_primitive_pos_sample_query.html</anchorfile>
-      <anchor>a369a97179258da23932b754a10c45fcb</anchor>
+      <anchor>a6b13e0f42706441037fd30d02a3556b3</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>Output</type>
-      <name>out</name>
+      <name>outputs</name>
       <anchorfile>da/d3e/classph_1_1_primitive_pos_sample_query.html</anchorfile>
-      <anchor>ad14a77e21ff6dd274f6b749347fbe52c</anchor>
+      <anchor>aa928c0c2fe11ac0cf89473dcb38509da</anchor>
       <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>ph::ProbabilisticProgressivePMRenderer</name>
+    <filename>d3/d2d/classph_1_1_probabilistic_progressive_p_m_renderer.html</filename>
+    <base>ph::PMRendererBase</base>
+    <member kind="function">
+      <type></type>
+      <name>ProbabilisticProgressivePMRenderer</name>
+      <anchorfile>d3/d2d/classph_1_1_probabilistic_progressive_p_m_renderer.html</anchorfile>
+      <anchor>a890dba03151e3ca812c3ec132a3d0771</anchor>
+      <arglist>(PMCommonParams commonParams, Viewport viewport, SampleFilter filter, uint32 numWorkers)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>doRender</name>
+      <anchorfile>d3/d2d/classph_1_1_probabilistic_progressive_p_m_renderer.html</anchorfile>
+      <anchor>a4ffe096deec23bd3a76426eb25255c21</anchor>
+      <arglist>() override</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>retrieveFrame</name>
+      <anchorfile>d3/d2d/classph_1_1_probabilistic_progressive_p_m_renderer.html</anchorfile>
+      <anchor>a6ac4ec33606e785b9bca5c72156b6d9b</anchor>
+      <arglist>(std::size_t layerIndex, HdrRgbFrame &amp;out_frame) override</arglist>
+    </member>
+    <member kind="function">
+      <type>RenderStats</type>
+      <name>asyncQueryRenderStats</name>
+      <anchorfile>d3/d2d/classph_1_1_probabilistic_progressive_p_m_renderer.html</anchorfile>
+      <anchor>ad79d013d0404f3dba927daabf0a27122</anchor>
+      <arglist>() override</arglist>
+    </member>
+    <member kind="function">
+      <type>RenderProgress</type>
+      <name>asyncQueryRenderProgress</name>
+      <anchorfile>d3/d2d/classph_1_1_probabilistic_progressive_p_m_renderer.html</anchorfile>
+      <anchor>a4a571363087d5e629eb3f4c7bbe95228</anchor>
+      <arglist>() override</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>asyncPeekFrame</name>
+      <anchorfile>d3/d2d/classph_1_1_probabilistic_progressive_p_m_renderer.html</anchorfile>
+      <anchor>ad42dc9c2205f608416ec384a37b12df0</anchor>
+      <arglist>(std::size_t layerIndex, const Region &amp;region, HdrRgbFrame &amp;out_frame) override</arglist>
+    </member>
+    <member kind="function">
+      <type>RenderObservationInfo</type>
+      <name>getObservationInfo</name>
+      <anchorfile>d3/d2d/classph_1_1_probabilistic_progressive_p_m_renderer.html</anchorfile>
+      <anchor>ae6ed78ebb44af58f51eecb3f310fc69f</anchor>
+      <arglist>() const</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -22780,6 +24651,60 @@
     </member>
   </compound>
   <compound kind="class">
+    <name>ph::ProgressivePMRenderer</name>
+    <filename>d8/d86/classph_1_1_progressive_p_m_renderer.html</filename>
+    <base>ph::PMRendererBase</base>
+    <member kind="function">
+      <type></type>
+      <name>ProgressivePMRenderer</name>
+      <anchorfile>d8/d86/classph_1_1_progressive_p_m_renderer.html</anchorfile>
+      <anchor>a691ff2529433e6b2ea25f616dd43ed8f</anchor>
+      <arglist>(PMCommonParams commonParams, Viewport viewport, SampleFilter filter, uint32 numWorkers)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>doRender</name>
+      <anchorfile>d8/d86/classph_1_1_progressive_p_m_renderer.html</anchorfile>
+      <anchor>ae5d8b2f94d3e4b268df08a240dd2743b</anchor>
+      <arglist>() override</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>retrieveFrame</name>
+      <anchorfile>d8/d86/classph_1_1_progressive_p_m_renderer.html</anchorfile>
+      <anchor>a5faece552062809d4d6e3ad00e627518</anchor>
+      <arglist>(std::size_t layerIndex, HdrRgbFrame &amp;out_frame) override</arglist>
+    </member>
+    <member kind="function">
+      <type>RenderStats</type>
+      <name>asyncQueryRenderStats</name>
+      <anchorfile>d8/d86/classph_1_1_progressive_p_m_renderer.html</anchorfile>
+      <anchor>a39e941bd02782a6a3a9752f69321702f</anchor>
+      <arglist>() override</arglist>
+    </member>
+    <member kind="function">
+      <type>RenderProgress</type>
+      <name>asyncQueryRenderProgress</name>
+      <anchorfile>d8/d86/classph_1_1_progressive_p_m_renderer.html</anchorfile>
+      <anchor>a42ec0c43170decc1aa3593a6f37b07c4</anchor>
+      <arglist>() override</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>asyncPeekFrame</name>
+      <anchorfile>d8/d86/classph_1_1_progressive_p_m_renderer.html</anchorfile>
+      <anchor>ad51c9b9c393c274de490111258d3e042</anchor>
+      <arglist>(std::size_t layerIndex, const Region &amp;region, HdrRgbFrame &amp;out_frame) override</arglist>
+    </member>
+    <member kind="function">
+      <type>RenderObservationInfo</type>
+      <name>getObservationInfo</name>
+      <anchorfile>d8/d86/classph_1_1_progressive_p_m_renderer.html</anchorfile>
+      <anchor>ac58331a68ea0e0331558772a136e6684</anchor>
+      <arglist>() const</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
     <name>ph::PTriangle</name>
     <filename>d1/db4/classph_1_1_p_triangle.html</filename>
     <base>ph::Primitive</base>
@@ -22798,10 +24723,17 @@
       <arglist>(const Ray &amp;ray, HitProbe &amp;probe) const override</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
-      <name>calcIntersectionDetail</name>
+      <type>bool</type>
+      <name>reintersect</name>
       <anchorfile>d1/db4/classph_1_1_p_triangle.html</anchorfile>
-      <anchor>a44d612bfdbbcdc03c86b49d6e29fab8b</anchor>
+      <anchor>a864d6a50bb1f2a4b1be3253bf475b6ff</anchor>
+      <arglist>(const Ray &amp;ray, HitProbe &amp;probe, const Ray &amp;srcRay, HitProbe &amp;srcProbe) const override</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>calcHitDetail</name>
+      <anchorfile>d1/db4/classph_1_1_p_triangle.html</anchorfile>
+      <anchor>af51854a66ab313bd99caf88407ac2a37</anchor>
       <arglist>(const Ray &amp;ray, HitProbe &amp;probe, HitDetail *out_detail) const override</arglist>
     </member>
     <member kind="function">
@@ -22819,18 +24751,18 @@
       <arglist>() const override</arglist>
     </member>
     <member kind="function">
-      <type>real</type>
-      <name>calcPositionSamplePdfA</name>
+      <type>void</type>
+      <name>genPosSample</name>
       <anchorfile>d1/db4/classph_1_1_p_triangle.html</anchorfile>
-      <anchor>ac5f51903f0f1d95ebee299f28c6f3e4a</anchor>
-      <arglist>(const math::Vector3R &amp;position) const override</arglist>
+      <anchor>a551a73fc5c95f7c7f0384cecc663398b</anchor>
+      <arglist>(PrimitivePosSampleQuery &amp;query, SampleFlow &amp;sampleFlow, HitProbe &amp;probe) const override</arglist>
     </member>
     <member kind="function">
       <type>void</type>
-      <name>genPositionSample</name>
+      <name>calcPosSamplePdfA</name>
       <anchorfile>d1/db4/classph_1_1_p_triangle.html</anchorfile>
-      <anchor>a9fdb105a80341be7d012fc1dc6b89bd0</anchor>
-      <arglist>(PrimitivePosSampleQuery &amp;query, SampleFlow &amp;sampleFlow) const override</arglist>
+      <anchor>ae2742ff4e361c71241aeb4e3bb59138e</anchor>
+      <arglist>(PrimitivePosSamplePdfQuery &amp;query, HitProbe &amp;probe) const override</arglist>
     </member>
     <member kind="function">
       <type>real</type>
@@ -22904,13 +24836,13 @@
     </member>
   </compound>
   <compound kind="class">
-    <name>ph::PtVolumetricEstimator</name>
-    <filename>d6/d6f/classph_1_1_pt_volumetric_estimator.html</filename>
+    <name>ph::lta::PtVolumetricEstimator</name>
+    <filename>d4/d5e/classph_1_1lta_1_1_pt_volumetric_estimator.html</filename>
     <member kind="function" static="yes">
       <type>static void</type>
       <name>sample</name>
-      <anchorfile>d6/d6f/classph_1_1_pt_volumetric_estimator.html</anchorfile>
-      <anchor>a9cf3b9ea57b9a7330257624c63515a57</anchor>
+      <anchorfile>d4/d5e/classph_1_1lta_1_1_pt_volumetric_estimator.html</anchorfile>
+      <anchor>a6613fb074e21e4fbf1c59db95789368f</anchor>
       <arglist>(const Scene &amp;scene, const SurfaceHit &amp;Xs, const math::Vector3R &amp;L, SurfaceHit *out_Xe, math::Vector3R *out_V, math::Spectrum *out_weight, math::Spectrum *out_radiance)</arglist>
     </member>
   </compound>
@@ -22958,17 +24890,38 @@
     <filename>d8/dad/classph_1_1math_1_1_random.html</filename>
     <member kind="function" static="yes">
       <type>static real</type>
-      <name>genUniformReal_i0_e1</name>
+      <name>sample</name>
       <anchorfile>d8/dad/classph_1_1math_1_1_random.html</anchorfile>
-      <anchor>a3a6997e06a6b12bc125e4c27a218908e</anchor>
+      <anchor>a8b21fc3c3cbf0ac4363591caafdce8af</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static std::array&lt; T, N &gt;</type>
+      <name>sampleND</name>
+      <anchorfile>d8/dad/classph_1_1math_1_1_random.html</anchorfile>
+      <anchor>a01d8e76f7d478dd44f072a4bbb445a02</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static std::size_t</type>
-      <name>genUniformIndex_iL_eU</name>
+      <name>index</name>
       <anchorfile>d8/dad/classph_1_1math_1_1_random.html</anchorfile>
-      <anchor>ae29c7ae89413f29e49137d0747ed8e38</anchor>
+      <anchor>a264cb8fbbeb192e1a0d0763669eb965b</anchor>
       <arglist>(std::size_t lowerBound, std::size_t upperBound)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static uint32</type>
+      <name>bits32</name>
+      <anchorfile>d8/dad/classph_1_1math_1_1_random.html</anchorfile>
+      <anchor>ae4428eef0a5b46d46e25608b4cb60862</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static uint64</type>
+      <name>bits64</name>
+      <anchorfile>d8/dad/classph_1_1math_1_1_random.html</anchorfile>
+      <anchor>af1ab56a753447f8a8b960fec08ab7196</anchor>
+      <arglist>()</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -23126,13 +25079,6 @@
     <filename>db/d53/classph_1_1_raw_resource_collection.html</filename>
     <base>ph::ISdlReferenceGroup</base>
     <member kind="function">
-      <type></type>
-      <name>RawResourceCollection</name>
-      <anchorfile>db/d53/classph_1_1_raw_resource_collection.html</anchorfile>
-      <anchor>abc5e10fb582f87ee06f07ceb37a6b79a</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
       <type>std::shared_ptr&lt; ISdlResource &gt;</type>
       <name>get</name>
       <anchorfile>db/d53/classph_1_1_raw_resource_collection.html</anchorfile>
@@ -23219,6 +25165,13 @@
       <anchorfile>d7/dcb/classph_1_1_ray.html</anchorfile>
       <anchor>acf0cd9409398cc7d318231c239aa8617</anchor>
       <arglist>(const math::Vector3R &amp;origin, const math::Vector3R &amp;direction)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>Ray</name>
+      <anchorfile>d7/dcb/classph_1_1_ray.html</anchorfile>
+      <anchor>a45c48bdb8cbeddad8674c529bd49f785</anchor>
+      <arglist>(const math::Vector3R &amp;origin, const math::Vector3R &amp;direction, const Time &amp;time)</arglist>
     </member>
     <member kind="function">
       <type></type>
@@ -23585,8 +25538,8 @@
       <type></type>
       <name>ReceiverSamplingWork</name>
       <anchorfile>d1/dc2/classph_1_1_receiver_sampling_work.html</anchorfile>
-      <anchor>aa86cb4e76047bb533abb6e727a7a43dc</anchor>
-      <arglist>(ReceiverSamplingWork &amp;&amp;other)</arglist>
+      <anchor>aac128da23e89157ccade12b5d8d76dc5</anchor>
+      <arglist>(ReceiverSamplingWork &amp;&amp;other) noexcept</arglist>
     </member>
     <member kind="function">
       <type>SamplingStatistics</type>
@@ -23606,8 +25559,8 @@
       <type>void</type>
       <name>setSampleDimensions</name>
       <anchorfile>d1/dc2/classph_1_1_receiver_sampling_work.html</anchorfile>
-      <anchor>ae36f361e82b094ce98bdbcad791673df</anchor>
-      <arglist>(const math::TVector2&lt; int64 &gt; &amp;filmResPx, const math::TAABB2D&lt; float64 &gt; &amp;filmWindowPx, const math::TVector2&lt; int64 &gt; &amp;sampleResPx)</arglist>
+      <anchor>aac63a289aa082299da08593b685fd573</anchor>
+      <arglist>(const math::TVector2&lt; int64 &gt; &amp;rasterActualResPx, const math::TAABB2D&lt; float64 &gt; &amp;rasterSampleWindowPx, const math::TVector2&lt; int64 &gt; &amp;sampleRes)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
@@ -23641,8 +25594,8 @@
       <type>ReceiverSamplingWork &amp;</type>
       <name>operator=</name>
       <anchorfile>d1/dc2/classph_1_1_receiver_sampling_work.html</anchorfile>
-      <anchor>aa6bbc0cfac93cb13069971e6cf7c943a</anchor>
-      <arglist>(ReceiverSamplingWork &amp;&amp;other)</arglist>
+      <anchor>a4394cefe6d93cdb52ab3f0caeecd2abd</anchor>
+      <arglist>(ReceiverSamplingWork &amp;&amp;other) noexcept</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -24160,6 +26113,13 @@
     <filename>dc/dae/classph_1_1_render_observation_info.html</filename>
     <member kind="function">
       <type>void</type>
+      <name>setProgressTimeMeasurement</name>
+      <anchorfile>dc/dae/classph_1_1_render_observation_info.html</anchorfile>
+      <anchor>a4c31df5bed06ce2d1925a5734529026e</anchor>
+      <arglist>(const std::string &amp;measurement)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
       <name>setLayer</name>
       <anchorfile>dc/dae/classph_1_1_render_observation_info.html</anchorfile>
       <anchor>aeeab6c38dad502ad0b397d6c43839fc4</anchor>
@@ -24178,6 +26138,13 @@
       <anchorfile>dc/dae/classph_1_1_render_observation_info.html</anchorfile>
       <anchor>a4257034210eec7ab22ed77a4b4ed3e6a</anchor>
       <arglist>(std::size_t index, const std::string &amp;name)</arglist>
+    </member>
+    <member kind="function">
+      <type>std::string</type>
+      <name>getProgressTimeMeasurement</name>
+      <anchorfile>dc/dae/classph_1_1_render_observation_info.html</anchorfile>
+      <anchor>a31afc6340d1911de765ca3909fdb3cf5</anchor>
+      <arglist>() const</arglist>
     </member>
     <member kind="function">
       <type>std::string</type>
@@ -24721,13 +26688,6 @@
     <name>ph::RuntimeSampleSource</name>
     <filename>d4/d18/classph_1_1_runtime_sample_source.html</filename>
     <base>ph::SampleSource</base>
-    <member kind="function">
-      <type></type>
-      <name>RuntimeSampleSource</name>
-      <anchorfile>d4/d18/classph_1_1_runtime_sample_source.html</anchorfile>
-      <anchor>ae109a7edc0744bf37c157272e41a96c8</anchor>
-      <arglist>()=default</arglist>
-    </member>
     <member kind="function" virtualness="pure">
       <type>void</type>
       <name>cook</name>
@@ -24751,14 +26711,14 @@
     </member>
   </compound>
   <compound kind="class">
-    <name>ph::RussianRoulette</name>
-    <filename>d2/d57/classph_1_1_russian_roulette.html</filename>
-    <member kind="function" static="yes">
-      <type>static bool</type>
+    <name>ph::lta::RussianRoulette</name>
+    <filename>df/d4f/classph_1_1lta_1_1_russian_roulette.html</filename>
+    <member kind="function">
+      <type>bool</type>
       <name>surviveOnLuminance</name>
-      <anchorfile>d2/d57/classph_1_1_russian_roulette.html</anchorfile>
-      <anchor>a81f3df6572664153baf4323995583c23</anchor>
-      <arglist>(const math::Spectrum &amp;s, SampleFlow &amp;sampleFlow, math::Spectrum *const out_weightedS)</arglist>
+      <anchorfile>df/d4f/classph_1_1lta_1_1_russian_roulette.html</anchorfile>
+      <anchor>a23dbf1483999b91aa772ebb117e1dd91</anchor>
+      <arglist>(const math::Spectrum &amp;s, SampleFlow &amp;sampleFlow, math::Spectrum *const out_weightedS) const</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -24811,8 +26771,8 @@
       <type></type>
       <name>SampleFilter</name>
       <anchorfile>df/deb/classph_1_1_sample_filter.html</anchorfile>
-      <anchor>a2000939815d6da2ea657e2a26efea851</anchor>
-      <arglist>(const std::shared_ptr&lt; math::TMathFunction2D&lt; float64 &gt; &gt; &amp;filterFunc, float64 widthPx, float64 heightPx)</arglist>
+      <anchor>a6d3bb21206c3b96934426d22558c0390</anchor>
+      <arglist>(std::shared_ptr&lt; math::TMathFunction2D&lt; float64 &gt; &gt; filterFunc, float64 widthPx, float64 heightPx)</arglist>
     </member>
     <member kind="function">
       <type>float64</type>
@@ -24835,36 +26795,39 @@
       <anchor>a0b833204184d86a5fc3a9124bd3bbda5</anchor>
       <arglist>() const</arglist>
     </member>
-  </compound>
-  <compound kind="class">
-    <name>ph::SampleFilters</name>
-    <filename>dc/d49/classph_1_1_sample_filters.html</filename>
     <member kind="function" static="yes">
       <type>static SampleFilter</type>
-      <name>createBoxFilter</name>
-      <anchorfile>dc/d49/classph_1_1_sample_filters.html</anchorfile>
-      <anchor>a67df26fdb917aaf28fb72e9e5771dd0d</anchor>
+      <name>make</name>
+      <anchorfile>df/deb/classph_1_1_sample_filter.html</anchorfile>
+      <anchor>a529c9090ebd80148f913d6bffef4d334</anchor>
+      <arglist>(MathFunction func, float64 widthPx, float64 heightPx)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static SampleFilter</type>
+      <name>makeBox</name>
+      <anchorfile>df/deb/classph_1_1_sample_filter.html</anchorfile>
+      <anchor>ac434f0dc1a27a4bd57874313e60b682e</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static SampleFilter</type>
-      <name>createGaussianFilter</name>
-      <anchorfile>dc/d49/classph_1_1_sample_filters.html</anchorfile>
-      <anchor>a4642697e9ad8cae3604c7acde01fd737</anchor>
+      <name>makeGaussian</name>
+      <anchorfile>df/deb/classph_1_1_sample_filter.html</anchorfile>
+      <anchor>a0da7e87fde91ad71b1295e5777b4c8e1</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static SampleFilter</type>
-      <name>createMitchellNetravaliFilter</name>
-      <anchorfile>dc/d49/classph_1_1_sample_filters.html</anchorfile>
-      <anchor>a6cf8c75c607347237e2b3a9052777b8f</anchor>
+      <name>makeMitchellNetravali</name>
+      <anchorfile>df/deb/classph_1_1_sample_filter.html</anchorfile>
+      <anchor>a48eb29a4a2e15bddf6c55b19c67ee606</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static SampleFilter</type>
-      <name>createBlackmanHarrisFilter</name>
-      <anchorfile>dc/d49/classph_1_1_sample_filters.html</anchorfile>
-      <anchor>a4a769875d6a790d90560448fa9ee47c7</anchor>
+      <name>makeBlackmanHarris</name>
+      <anchorfile>df/deb/classph_1_1_sample_filter.html</anchorfile>
+      <anchor>aeb3bc508a027691e231a235355c9c893</anchor>
       <arglist>()</arglist>
     </member>
   </compound>
@@ -24929,9 +26892,9 @@
     </member>
     <member kind="function">
       <type>bool</type>
-      <name>randomPick</name>
+      <name>unflowedRandomPick</name>
       <anchorfile>dd/d93/classph_1_1_sample_flow.html</anchorfile>
-      <anchor>a0b209bcee911034f60602561f7fbe284</anchor>
+      <anchor>a4f580847a20e8fe7777480e97d0a756e</anchor>
       <arglist>(real pickProbability)</arglist>
     </member>
   </compound>
@@ -24956,7 +26919,21 @@
       <type>virtual</type>
       <name>~SampleGenerator</name>
       <anchorfile>d1/d22/classph_1_1_sample_generator.html</anchorfile>
-      <anchor>a7d598cfdc8af1ff1806689621df7f3bf</anchor>
+      <anchor>afca6e5af28e5f65be3bc83740c95967e</anchor>
+      <arglist>()=default</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual std::unique_ptr&lt; SampleGenerator &gt;</type>
+      <name>makeNewborn</name>
+      <anchorfile>d1/d22/classph_1_1_sample_generator.html</anchorfile>
+      <anchor>aa4f9f004fb02f33836562de91ce1fae2</anchor>
+      <arglist>(std::size_t numSampleBatches) const =0</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>rebirth</name>
+      <anchorfile>d1/d22/classph_1_1_sample_generator.html</anchorfile>
+      <anchor>a08d4fe62f9a5b30da204c7d66b586cc9</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
@@ -24965,13 +26942,6 @@
       <anchorfile>d1/d22/classph_1_1_sample_generator.html</anchorfile>
       <anchor>af3a0506e6f463c5a63d67c424e36304c</anchor>
       <arglist>(std::size_t numSplits, std::vector&lt; std::unique_ptr&lt; SampleGenerator &gt; &gt; &amp;out_sgs) const</arglist>
-    </member>
-    <member kind="function">
-      <type>std::unique_ptr&lt; SampleGenerator &gt;</type>
-      <name>genCopied</name>
-      <anchorfile>d1/d22/classph_1_1_sample_generator.html</anchorfile>
-      <anchor>ab604b30d5ec5b806f4c88c1fb782a409</anchor>
-      <arglist>(std::size_t numSampleBatches) const</arglist>
     </member>
     <member kind="function">
       <type>bool</type>
@@ -25037,6 +27007,27 @@
       <type></type>
       <name>SampleLocation</name>
       <anchorfile>d3/ddd/classph_1_1_sample_location.html</anchorfile>
+      <anchor>a92e18a6a01b8bd01fd4dba63642c57bb</anchor>
+      <arglist>(const SampleLocation &amp;other)</arglist>
+    </member>
+    <member kind="function">
+      <type>SampleLocation</type>
+      <name>getUvwScaled</name>
+      <anchorfile>d3/ddd/classph_1_1_sample_location.html</anchorfile>
+      <anchor>ae065a07c1334ef62d26ea969e2719833</anchor>
+      <arglist>(const math::Vector3R &amp;scale) const</arglist>
+    </member>
+    <member kind="function">
+      <type>math::EColorUsage</type>
+      <name>expectedUsage</name>
+      <anchorfile>d3/ddd/classph_1_1_sample_location.html</anchorfile>
+      <anchor>a3c1e3b216ab49235a5db3efd00a1f657</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>SampleLocation</name>
+      <anchorfile>d3/ddd/classph_1_1_sample_location.html</anchorfile>
       <anchor>a6030eddad404c15f486e4797051542eb</anchor>
       <arglist>(const math::Vector3R &amp;uvw, math::EColorUsage usage)</arglist>
     </member>
@@ -25060,13 +27051,6 @@
       <anchorfile>d3/ddd/classph_1_1_sample_location.html</anchorfile>
       <anchor>a10da5f1520375e4a32f0bb94ce43ac60</anchor>
       <arglist>(const HitDetail &amp;hit, math::EColorUsage usage)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>SampleLocation</name>
-      <anchorfile>d3/ddd/classph_1_1_sample_location.html</anchorfile>
-      <anchor>a92e18a6a01b8bd01fd4dba63642c57bb</anchor>
-      <arglist>(const SampleLocation &amp;other)</arglist>
     </member>
     <member kind="function">
       <type>math::Vector3R</type>
@@ -25097,18 +27081,60 @@
       <arglist>(const math::Vector2R &amp;uv)</arglist>
     </member>
     <member kind="function">
-      <type>SampleLocation</type>
-      <name>getUvwScaled</name>
+      <type></type>
+      <name>SampleLocation</name>
       <anchorfile>d3/ddd/classph_1_1_sample_location.html</anchorfile>
-      <anchor>ae065a07c1334ef62d26ea969e2719833</anchor>
-      <arglist>(const math::Vector3R &amp;scale) const</arglist>
+      <anchor>a6030eddad404c15f486e4797051542eb</anchor>
+      <arglist>(const math::Vector3R &amp;uvw, math::EColorUsage usage)</arglist>
     </member>
     <member kind="function">
-      <type>math::EColorUsage</type>
-      <name>expectedUsage</name>
+      <type></type>
+      <name>SampleLocation</name>
       <anchorfile>d3/ddd/classph_1_1_sample_location.html</anchorfile>
-      <anchor>a3c1e3b216ab49235a5db3efd00a1f657</anchor>
+      <anchor>a6f6ceeca85a086cd927175211bb16f08</anchor>
+      <arglist>(const math::Vector2R &amp;uv, math::EColorUsage usage)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>SampleLocation</name>
+      <anchorfile>d3/ddd/classph_1_1_sample_location.html</anchorfile>
+      <anchor>aa79c1e42885b757322b94e030908d7ca</anchor>
+      <arglist>(const HitDetail &amp;hit)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>SampleLocation</name>
+      <anchorfile>d3/ddd/classph_1_1_sample_location.html</anchorfile>
+      <anchor>a10da5f1520375e4a32f0bb94ce43ac60</anchor>
+      <arglist>(const HitDetail &amp;hit, math::EColorUsage usage)</arglist>
+    </member>
+    <member kind="function">
+      <type>math::Vector3R</type>
+      <name>uvw</name>
+      <anchorfile>d3/ddd/classph_1_1_sample_location.html</anchorfile>
+      <anchor>ac351e93a5024f7425c723f5852bb24e7</anchor>
       <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>math::Vector2R</type>
+      <name>uv</name>
+      <anchorfile>d3/ddd/classph_1_1_sample_location.html</anchorfile>
+      <anchor>a78193ae93dd235b9fedf79badf09be83</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setUvw</name>
+      <anchorfile>d3/ddd/classph_1_1_sample_location.html</anchorfile>
+      <anchor>a2df0afca02051e4af0160be384946a24</anchor>
+      <arglist>(const math::Vector3R &amp;uvw)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setUv</name>
+      <anchorfile>d3/ddd/classph_1_1_sample_location.html</anchorfile>
+      <anchor>a3bffe569a8ba58e6a9a49c084be582e1</anchor>
+      <arglist>(const math::Vector2R &amp;uv)</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -25316,13 +27342,6 @@
     <name>ph::SampleSource</name>
     <filename>d9/dee/classph_1_1_sample_source.html</filename>
     <base>ph::CoreSdlResource</base>
-    <member kind="function">
-      <type></type>
-      <name>SampleSource</name>
-      <anchorfile>d9/dee/classph_1_1_sample_source.html</anchorfile>
-      <anchor>af8eafab01e6d5410ef7682a60612a20f</anchor>
-      <arglist>()=default</arglist>
-    </member>
     <member kind="function" virtualness="pure">
       <type>void</type>
       <name>cook</name>
@@ -25734,22 +27753,22 @@
       <type>void</type>
       <name>genDirectSample</name>
       <anchorfile>d6/d0d/classph_1_1_scene.html</anchorfile>
-      <anchor>a174dc35371a76085e3387c6bd41a9ddc</anchor>
-      <arglist>(DirectEnergySampleQuery &amp;query, SampleFlow &amp;sampleFlow) const</arglist>
+      <anchor>ac0b56216b94458892cd258d19299bb9b</anchor>
+      <arglist>(DirectEnergySampleQuery &amp;query, SampleFlow &amp;sampleFlow, HitProbe &amp;probe) const</arglist>
     </member>
     <member kind="function">
-      <type>real</type>
-      <name>calcDirectPdfW</name>
+      <type>void</type>
+      <name>calcDirectSamplePdfW</name>
       <anchorfile>d6/d0d/classph_1_1_scene.html</anchorfile>
-      <anchor>a1a5ea87ed5b07e2e4be8982d1739f684</anchor>
-      <arglist>(const SurfaceHit &amp;emitPos, const math::Vector3R &amp;targetPos) const</arglist>
+      <anchor>a2fb9579e47fa677e64a740e8f46437ff</anchor>
+      <arglist>(DirectEnergySamplePdfQuery &amp;query, HitProbe &amp;probe) const</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>emitRay</name>
       <anchorfile>d6/d0d/classph_1_1_scene.html</anchorfile>
-      <anchor>a0dc91cf6ed7dd6d1c74a242d034bc1ce</anchor>
-      <arglist>(SampleFlow &amp;sampleFlow, Ray *out_ray, math::Spectrum *out_Le, math::Vector3R *out_eN, real *out_pdfA, real *out_pdfW) const</arglist>
+      <anchor>af4631dd4a0588a3d81851e5639620569</anchor>
+      <arglist>(EnergyEmissionSampleQuery &amp;query, SampleFlow &amp;sampleFlow, HitProbe &amp;probe) const</arglist>
     </member>
     <member kind="function">
       <type>void</type>
@@ -26099,10 +28118,17 @@
     </member>
     <member kind="function">
       <type>void</type>
-      <name>generateLoadCommand</name>
+      <name>generateResourceCommand</name>
       <anchorfile>d0/dba/classph_1_1_sdl_command_generator.html</anchorfile>
-      <anchor>a8041889012b17f9dc7dcbc5ecb66bf8f</anchor>
+      <anchor>a690fbb449f8563ce4d13894abfbd3236</anchor>
       <arglist>(const ISdlResource *resource, std::string_view resourceName)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>generateCachedNamedDataPacketCommand</name>
+      <anchorfile>d0/dba/classph_1_1_sdl_command_generator.html</anchorfile>
+      <anchor>abddebcc059d4244eba5f63b191958489</anchor>
+      <arglist>(const SdlNamedOutputClauses &amp;namedClauses)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
@@ -26308,8 +28334,8 @@
       <type>virtual void</type>
       <name>initResource</name>
       <anchorfile>df/dd9/classph_1_1_sdl_command_parser.html</anchorfile>
-      <anchor>a4bdff1a66b57339257eca786ea3d5632</anchor>
-      <arglist>(ISdlResource *resource, const SdlInputContext &amp;ctx, std::string_view resourceName, SdlInputClauses &amp;clauses, ESdlCommandType commandType)=0</arglist>
+      <anchor>a5b8a8c9f24675ea2f1ddc6fb388f4c38</anchor>
+      <arglist>(std::string_view resourceName, ISdlResource *resource, const SdlInputContext &amp;ctx, SdlInputClauses &amp;clauses, ESdlCommandType commandType)=0</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="pure">
       <type>virtual ISdlResource *</type>
@@ -26331,6 +28357,39 @@
       <anchorfile>df/dd9/classph_1_1_sdl_command_parser.html</anchorfile>
       <anchor>a7373a76f969aa919453a6e0e3ec29c18</anchor>
       <arglist>(const SemanticVersion &amp;version, const SdlInputContext &amp;ctx)=0</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="pure">
+      <type>virtual void</type>
+      <name>storeNamedDataPacket</name>
+      <anchorfile>df/dd9/classph_1_1_sdl_command_parser.html</anchorfile>
+      <anchor>a516347e9cf8fdf5430d5197ce7d4e8f7</anchor>
+      <arglist>(std::string_view packetName, const SdlInputClauses &amp;packet, const SdlInputContext &amp;ctx)=0</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>ph::SdlDataPacketCollection</name>
+    <filename>d9/d47/classph_1_1_sdl_data_packet_collection.html</filename>
+    <base>ph::ISdlDataPacketGroup</base>
+    <member kind="function">
+      <type>const SdlInputClauses *</type>
+      <name>get</name>
+      <anchorfile>d9/d47/classph_1_1_sdl_data_packet_collection.html</anchorfile>
+      <anchor>a43742a4581d131a5e9892f92822bcc96</anchor>
+      <arglist>(std::string_view packetName) const override</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>addUnique</name>
+      <anchorfile>d9/d47/classph_1_1_sdl_data_packet_collection.html</anchorfile>
+      <anchor>a04d1e15f5d1dbe74354fb6cb6f01012e</anchor>
+      <arglist>(SdlInputClauses packet, std::string_view packetName)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>addOrUpdate</name>
+      <anchorfile>d9/d47/classph_1_1_sdl_data_packet_collection.html</anchorfile>
+      <anchor>af761473859b056f405e25c5a5cfd7fb5</anchor>
+      <arglist>(SdlInputClauses packet, std::string_view packetName)</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -26390,10 +28449,10 @@
       <arglist>()</arglist>
     </member>
     <member kind="function">
-      <type>std::string</type>
+      <type>std::string_view</type>
       <name>getResourceName</name>
       <anchorfile>dd/d70/classph_1_1_sdl_dependency_resolver.html</anchorfile>
-      <anchor>ad84960e08b7dee74b570af7d20a8fa2b</anchor>
+      <anchor>a1956e285ccb13dff17bfb417b52fe3ba</anchor>
       <arglist>(const ISdlResource *resource) const</arglist>
     </member>
   </compound>
@@ -26788,10 +28847,10 @@
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>bool</type>
-      <name>isReference</name>
+      <type>ESdlClauseValue</type>
+      <name>valueType</name>
       <anchorfile>d7/ddd/classph_1_1_sdl_input_clause.html</anchorfile>
-      <anchor>a73102655a0cbe08933a4ee79130c93a8</anchor>
+      <anchor>ac6d842783c555da700a545d0239050be</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -26818,6 +28877,13 @@
       <anchorfile>de/d9b/classph_1_1_sdl_input_clauses.html</anchorfile>
       <anchor>a1caa400fbe934f9a94b81ffae2f6d59d</anchor>
       <arglist>(std::string type, std::string name, std::string value, std::string tag)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>add</name>
+      <anchorfile>de/d9b/classph_1_1_sdl_input_clauses.html</anchorfile>
+      <anchor>a877f0dd5cf1e0c86444d83f349f59af2</anchor>
+      <arglist>(const SdlInputClauses &amp;clauses)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
@@ -26877,28 +28943,28 @@
       <type></type>
       <name>SdlInputContext</name>
       <anchorfile>d2/de3/classph_1_1_sdl_input_context.html</anchorfile>
-      <anchor>a3551da03d3d05b5a8bdfde997e548665</anchor>
-      <arglist>(Path workingDirectory)</arglist>
+      <anchor>aaba4abeead5f7f5abcf11f8eb066d475</anchor>
+      <arglist>(const Path *workingDirectory, const SdlClass *srcClass=nullptr, const SdlStruct *srcStruct=nullptr)</arglist>
     </member>
     <member kind="function">
       <type></type>
       <name>SdlInputContext</name>
       <anchorfile>d2/de3/classph_1_1_sdl_input_context.html</anchorfile>
-      <anchor>ae2e63ab0b69526fbe1e4e7b9ab5f8cca</anchor>
-      <arglist>(Path workingDirectory, const SdlClass *srcClass)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>SdlInputContext</name>
-      <anchorfile>d2/de3/classph_1_1_sdl_input_context.html</anchorfile>
-      <anchor>a90f1e4f86d7140c9e6cd30bc98330b2e</anchor>
-      <arglist>(const ISdlReferenceGroup *srcReferences, Path workingDirectory, const SdlClass *srcClass)</arglist>
+      <anchor>a05db98a0fa5d3107257b9f8ea8eb3eda</anchor>
+      <arglist>(const ISdlReferenceGroup *srcResources, const ISdlDataPacketGroup *srcDataPackets, const Path *workingDirectory, const SdlClass *srcClass=nullptr, const SdlStruct *srcStruct=nullptr)</arglist>
     </member>
     <member kind="function">
       <type>const ISdlReferenceGroup *</type>
-      <name>getSrcReferences</name>
+      <name>getSrcResources</name>
       <anchorfile>d2/de3/classph_1_1_sdl_input_context.html</anchorfile>
-      <anchor>af5bc726581207603029b9252e7e32501</anchor>
+      <anchor>ad10a6db86e2a8cc7bf7099b4d9d3c85e</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>const ISdlDataPacketGroup *</type>
+      <name>getSrcDataPackets</name>
+      <anchorfile>d2/de3/classph_1_1_sdl_input_context.html</anchorfile>
+      <anchor>a9adc4b7a596c28a387058041f2ca96d3</anchor>
       <arglist>() const</arglist>
     </member>
   </compound>
@@ -26907,9 +28973,9 @@
     <filename>dc/da7/classph_1_1_sdl_i_o_context.html</filename>
     <member kind="function">
       <type>std::string</type>
-      <name>genPrettySrcClassName</name>
+      <name>genPrettySrcInfo</name>
       <anchorfile>dc/da7/classph_1_1_sdl_i_o_context.html</anchorfile>
-      <anchor>a1c1c2c49c727cd53dd35f037eb2db9c8</anchor>
+      <anchor>a0d0097ef3a8e3e652225996cd3a5167d</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
@@ -26927,11 +28993,25 @@
       <arglist>() const</arglist>
     </member>
     <member kind="function">
+      <type>const SdlStruct *</type>
+      <name>getSrcStruct</name>
+      <anchorfile>dc/da7/classph_1_1_sdl_i_o_context.html</anchorfile>
+      <anchor>af02706a0434a5c0f8a0f7a78f0145023</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
       <type>void</type>
       <name>setSrcClass</name>
       <anchorfile>dc/da7/classph_1_1_sdl_i_o_context.html</anchorfile>
       <anchor>abf3ad114f56f72da3856fd443145b0d3</anchor>
       <arglist>(const SdlClass *srcClass)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setSrcStruct</name>
+      <anchorfile>dc/da7/classph_1_1_sdl_i_o_context.html</anchorfile>
+      <anchor>a1280eb0ecf3116e275801a35a04f79a4</anchor>
+      <arglist>(const SdlStruct *srcStruct)</arglist>
     </member>
     <member kind="function" protection="protected">
       <type></type>
@@ -26944,22 +29024,8 @@
       <type></type>
       <name>SdlIOContext</name>
       <anchorfile>dc/da7/classph_1_1_sdl_i_o_context.html</anchorfile>
-      <anchor>a3941673ad307236361d2ab2b91f3484a</anchor>
-      <arglist>(Path workingDirectory)</arglist>
-    </member>
-    <member kind="function" protection="protected">
-      <type></type>
-      <name>SdlIOContext</name>
-      <anchorfile>dc/da7/classph_1_1_sdl_i_o_context.html</anchorfile>
-      <anchor>aca7acdd86547a432d5de2edefcb8a2ed</anchor>
-      <arglist>(Path workingDirectory, const SdlClass *srcClass)</arglist>
-    </member>
-    <member kind="function" protection="protected">
-      <type></type>
-      <name>~SdlIOContext</name>
-      <anchorfile>dc/da7/classph_1_1_sdl_i_o_context.html</anchorfile>
-      <anchor>aae362053f199dfbf5022607ce439c846</anchor>
-      <arglist>()=default</arglist>
+      <anchor>a5162c05e789864144b390ebc28dcd7f6</anchor>
+      <arglist>(const Path *workingDirectory, const SdlClass *srcClass=nullptr, const SdlStruct *srcStruct=nullptr)</arglist>
     </member>
     <member kind="function" protection="protected">
       <type></type>
@@ -26969,18 +29035,18 @@
       <arglist>(const SdlIOContext &amp;other)=default</arglist>
     </member>
     <member kind="function" protection="protected">
-      <type>SdlIOContext &amp;</type>
-      <name>operator=</name>
-      <anchorfile>dc/da7/classph_1_1_sdl_i_o_context.html</anchorfile>
-      <anchor>a3f1d3a03704903d995862e73f70d367e</anchor>
-      <arglist>(const SdlIOContext &amp;rhs)=default</arglist>
-    </member>
-    <member kind="function" protection="protected">
       <type></type>
       <name>SdlIOContext</name>
       <anchorfile>dc/da7/classph_1_1_sdl_i_o_context.html</anchorfile>
       <anchor>a9b31e756fc00ad61f1179de8a3394bee</anchor>
       <arglist>(SdlIOContext &amp;&amp;other)=default</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>SdlIOContext &amp;</type>
+      <name>operator=</name>
+      <anchorfile>dc/da7/classph_1_1_sdl_i_o_context.html</anchorfile>
+      <anchor>a3f1d3a03704903d995862e73f70d367e</anchor>
+      <arglist>(const SdlIOContext &amp;rhs)=default</arglist>
     </member>
     <member kind="function" protection="protected">
       <type>SdlIOContext &amp;</type>
@@ -27007,6 +29073,73 @@
       <anchorfile>d5/d0b/classph_1_1_sdl_load_error.html</anchorfile>
       <anchor>a65a1eacbaf4117263d108cbba1ff096e</anchor>
       <arglist>(const char *message)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>ph::SdlNamedOutputClauses</name>
+    <filename>d2/d78/classph_1_1_sdl_named_output_clauses.html</filename>
+    <member kind="function">
+      <type>void</type>
+      <name>addUnique</name>
+      <anchorfile>d2/d78/classph_1_1_sdl_named_output_clauses.html</anchorfile>
+      <anchor>a5ac7985ec3b4f70767c61eed8e0d70a8</anchor>
+      <arglist>(SdlOutputClauses clauses, std::string_view clausesName)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>addOrUpdate</name>
+      <anchorfile>d2/d78/classph_1_1_sdl_named_output_clauses.html</anchorfile>
+      <anchor>a2fddc6e23548f7ce07144353d6042932</anchor>
+      <arglist>(SdlOutputClauses clauses, std::string_view clausesName)</arglist>
+    </member>
+    <member kind="function">
+      <type>std::string_view</type>
+      <name>addOrUpdate</name>
+      <anchorfile>d2/d78/classph_1_1_sdl_named_output_clauses.html</anchorfile>
+      <anchor>addfd82a1958c31235cbadefa48f961a4</anchor>
+      <arglist>(SdlOutputClauses packet)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>clear</name>
+      <anchorfile>d2/d78/classph_1_1_sdl_named_output_clauses.html</anchorfile>
+      <anchor>a6a1ff7bf0013e24a57531e58b900bf15</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>std::size_t</type>
+      <name>numNamedOutputClauses</name>
+      <anchorfile>d2/d78/classph_1_1_sdl_named_output_clauses.html</anchorfile>
+      <anchor>af95929f4012211fa8d9d768fe58b8f4e</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>const std::string &amp;</type>
+      <name>getName</name>
+      <anchorfile>d2/d78/classph_1_1_sdl_named_output_clauses.html</anchorfile>
+      <anchor>afc0ab02a8c2d5d6f1607954252de9c08</anchor>
+      <arglist>(std::size_t index) const</arglist>
+    </member>
+    <member kind="function">
+      <type>const SdlOutputClauses &amp;</type>
+      <name>getOutputClauses</name>
+      <anchorfile>d2/d78/classph_1_1_sdl_named_output_clauses.html</anchorfile>
+      <anchor>a458ab9d0eef23901e10d1f7b19914e65</anchor>
+      <arglist>(std::size_t index) const</arglist>
+    </member>
+    <member kind="function">
+      <type>const std::string &amp;</type>
+      <name>getName</name>
+      <anchorfile>d2/d78/classph_1_1_sdl_named_output_clauses.html</anchorfile>
+      <anchor>afc0ab02a8c2d5d6f1607954252de9c08</anchor>
+      <arglist>(std::size_t index) const</arglist>
+    </member>
+    <member kind="function">
+      <type>const SdlOutputClauses &amp;</type>
+      <name>getOutputClauses</name>
+      <anchorfile>d2/d78/classph_1_1_sdl_named_output_clauses.html</anchorfile>
+      <anchor>a458ab9d0eef23901e10d1f7b19914e65</anchor>
+      <arglist>(std::size_t index) const</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -27248,6 +29381,13 @@
       <arglist></arglist>
     </member>
     <member kind="variable">
+      <type>ESdlClauseValue</type>
+      <name>valueType</name>
+      <anchorfile>dd/d11/classph_1_1_sdl_output_clause.html</anchorfile>
+      <anchor>ac70d706c010aded3a37a6cfe3d45af43</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
       <type>bool</type>
       <name>isEmpty</name>
       <anchorfile>dd/d11/classph_1_1_sdl_output_clause.html</anchorfile>
@@ -27256,9 +29396,9 @@
     </member>
     <member kind="variable">
       <type>bool</type>
-      <name>isReference</name>
+      <name>isUsingNamedOutputClauses</name>
       <anchorfile>dd/d11/classph_1_1_sdl_output_clause.html</anchorfile>
-      <anchor>adba64a887da2386b1c8f33e4fd52cace</anchor>
+      <anchor>a96c282840516c2e072ec8edf7a711849</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -27316,22 +29456,36 @@
       <type></type>
       <name>SdlOutputContext</name>
       <anchorfile>d3/d2c/classph_1_1_sdl_output_context.html</anchorfile>
-      <anchor>a57bb57e6f2d7a90306c6178039fc62bb</anchor>
-      <arglist>(Path workingDirectory)</arglist>
+      <anchor>a0fc5236d3fbee3f316e0d3230c138188</anchor>
+      <arglist>(const Path *workingDirectory, const SdlClass *srcClass=nullptr, const SdlStruct *srcStruct=nullptr)</arglist>
     </member>
     <member kind="function">
       <type></type>
       <name>SdlOutputContext</name>
       <anchorfile>d3/d2c/classph_1_1_sdl_output_context.html</anchorfile>
-      <anchor>a4fb92a2c1a313a3cc8162a9958d2889b</anchor>
-      <arglist>(const SdlDependencyResolver *dependencyResolver, Path workingDirectory, const SdlClass *srcClass)</arglist>
+      <anchor>a8e5243ae10ebb6cddb20abc5a19430c6</anchor>
+      <arglist>(const SdlDependencyResolver *dependencyResolver, SdlNamedOutputClauses *namedOutputClauses, const Path *workingDirectory, const SdlClass *srcClass=nullptr, const SdlStruct *srcStruct=nullptr)</arglist>
     </member>
     <member kind="function">
-      <type>const SdlDependencyResolver &amp;</type>
+      <type>const SdlDependencyResolver *</type>
       <name>getDependencyResolver</name>
       <anchorfile>d3/d2c/classph_1_1_sdl_output_context.html</anchorfile>
-      <anchor>ac8c95338a18b271a7329ac1289d8ad37</anchor>
+      <anchor>a392081b678fa1c44f2c9837e536f0ba7</anchor>
       <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>SdlNamedOutputClauses *</type>
+      <name>getNamedOutputClauses</name>
+      <anchorfile>d3/d2c/classph_1_1_sdl_output_context.html</anchorfile>
+      <anchor>ae91bcb6bb431844696a8754f2c6bd7d8</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>std::string_view</type>
+      <name>getResourceName</name>
+      <anchorfile>d3/d2c/classph_1_1_sdl_output_context.html</anchorfile>
+      <anchor>aa17963043f3dfd9b7fedc763277b0e6c</anchor>
+      <arglist>(const ISdlResource *resource) const</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -27617,8 +29771,8 @@
       <type>void</type>
       <name>initResource</name>
       <anchorfile>df/dd0/classph_1_1_sdl_scene_file_reader.html</anchorfile>
-      <anchor>a6e0f5d6b91c1d79e6d6616739916b4f8</anchor>
-      <arglist>(ISdlResource *resource, const SdlInputContext &amp;ctx, std::string_view resourceName, SdlInputClauses &amp;clauses, ESdlCommandType commandType) override</arglist>
+      <anchor>aa0ed5f16c3bb5a5007a45d2744a6a7b7</anchor>
+      <arglist>(std::string_view resourceName, ISdlResource *resource, const SdlInputContext &amp;ctx, SdlInputClauses &amp;clauses, ESdlCommandType commandType) override</arglist>
     </member>
     <member kind="function" protection="protected">
       <type>ISdlResource *</type>
@@ -27640,6 +29794,13 @@
       <anchorfile>df/dd0/classph_1_1_sdl_scene_file_reader.html</anchorfile>
       <anchor>a22f9f67a10dd68f660900cc2949b4fd1</anchor>
       <arglist>(const SemanticVersion &amp;version, const SdlInputContext &amp;ctx) override</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>storeNamedDataPacket</name>
+      <anchorfile>df/dd0/classph_1_1_sdl_scene_file_reader.html</anchorfile>
+      <anchor>a3b5c87cfd47b8aa6bac2d5b6763b5451</anchor>
+      <arglist>(std::string_view packetName, const SdlInputClauses &amp;packet, const SdlInputContext &amp;ctx) override</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -27666,13 +29827,6 @@
       <anchorfile>d3/de3/classph_1_1_sdl_scene_file_writer.html</anchorfile>
       <anchor>a23bcda1ca51644c4955f70f8be1e14bd</anchor>
       <arglist>(TSpanView&lt; const SdlClass * &gt; targetClasses, const Path &amp;sceneFile, const Path &amp;sceneWorkingDirectory)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>~SdlSceneFileWriter</name>
-      <anchorfile>d3/de3/classph_1_1_sdl_scene_file_writer.html</anchorfile>
-      <anchor>a32718e5f9924e02795c54001ef2beefc</anchor>
-      <arglist>() override</arglist>
     </member>
     <member kind="function">
       <type>void</type>
@@ -27729,18 +29883,46 @@
       <arglist>(std::string typeName)</arglist>
     </member>
     <member kind="function" virtualness="pure">
-      <type>virtual std::size_t</type>
-      <name>numFields</name>
+      <type>virtual void</type>
+      <name>initObject</name>
       <anchorfile>df/dcf/classph_1_1_sdl_struct.html</anchorfile>
-      <anchor>ad322ee7934f084c8c78b1f8effdf88ab</anchor>
-      <arglist>() const =0</arglist>
+      <anchor>a7fcfdca876d8940480aa7d4bc723d97e</anchor>
+      <arglist>(AnyNonConstPtr obj, SdlInputClauses &amp;clauses, const SdlInputContext &amp;ctx) const =0</arglist>
     </member>
     <member kind="function" virtualness="pure">
-      <type>virtual const SdlField *</type>
+      <type>virtual void</type>
+      <name>initDefaultObject</name>
+      <anchorfile>df/dcf/classph_1_1_sdl_struct.html</anchorfile>
+      <anchor>aa58fabd6845c3bb5b30e46d0d4ca05f6</anchor>
+      <arglist>(AnyNonConstPtr obj) const =0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>saveObject</name>
+      <anchorfile>df/dcf/classph_1_1_sdl_struct.html</anchorfile>
+      <anchor>a9ec5012b1997714aca42a8b24c72d248</anchor>
+      <arglist>(AnyConstPtr obj, SdlOutputClauses &amp;clauses, const SdlOutputContext &amp;ctx) const =0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>referencedResources</name>
+      <anchorfile>df/dcf/classph_1_1_sdl_struct.html</anchorfile>
+      <anchor>ab9c6f8a561193d8caf8f23fbbeee9fdd</anchor>
+      <arglist>(AnyConstPtr obj, std::vector&lt; const ISdlResource * &gt; &amp;out_resources) const =0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>std::size_t</type>
+      <name>numFields</name>
+      <anchorfile>df/dcf/classph_1_1_sdl_struct.html</anchorfile>
+      <anchor>a309d39dc56739aeffce345cd30de93f9</anchor>
+      <arglist>() const override=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>const SdlField *</type>
       <name>getField</name>
       <anchorfile>df/dcf/classph_1_1_sdl_struct.html</anchorfile>
-      <anchor>a94f5c406aa7d102b58989b9f6faa8da6</anchor>
-      <arglist>(std::size_t index) const =0</arglist>
+      <anchor>a5b019aaf4ffacb0f234b0ca2a6f25ee2</anchor>
+      <arglist>(std::size_t index) const override=0</arglist>
     </member>
     <member kind="function">
       <type>std::string_view</type>
@@ -27854,20 +30036,20 @@
     </member>
   </compound>
   <compound kind="class">
-    <name>ph::SenseEvent</name>
-    <filename>d6/db1/classph_1_1_sense_event.html</filename>
+    <name>ph::lta::SenseEvent</name>
+    <filename>d9/d7b/classph_1_1lta_1_1_sense_event.html</filename>
     <member kind="function">
       <type></type>
       <name>SenseEvent</name>
-      <anchorfile>d6/db1/classph_1_1_sense_event.html</anchorfile>
-      <anchor>a338b495fec8771028899efbe8ed29c16</anchor>
+      <anchorfile>d9/d7b/classph_1_1lta_1_1_sense_event.html</anchorfile>
+      <anchor>a7b98568a75c7fb2d83277c8b971b20a7</anchor>
       <arglist>(const Spectrum &amp;radiance)</arglist>
     </member>
     <member kind="variable">
       <type>Spectrum</type>
       <name>radiance</name>
-      <anchorfile>d6/db1/classph_1_1_sense_event.html</anchorfile>
-      <anchor>a39022bb92afdfe61a4718731326fbe93</anchor>
+      <anchorfile>d9/d7b/classph_1_1lta_1_1_sense_event.html</anchorfile>
+      <anchor>a68ada6e668854bf3ada2943b9affd82f</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -27879,15 +30061,15 @@
       <type></type>
       <name>SGHalton</name>
       <anchorfile>de/dc6/classph_1_1_s_g_halton.html</anchorfile>
-      <anchor>a0e18ee085dda9a019847c8b6216ce54d</anchor>
-      <arglist>(std::size_t numSamples)</arglist>
+      <anchor>afe2d7abb4cc25d995745da507596bcca</anchor>
+      <arglist>(std::size_t numSamples, EHaltonPermutation permutation, EHaltonSequence sequence)</arglist>
     </member>
     <member kind="function">
-      <type></type>
-      <name>SGHalton</name>
+      <type>std::unique_ptr&lt; SampleGenerator &gt;</type>
+      <name>makeNewborn</name>
       <anchorfile>de/dc6/classph_1_1_s_g_halton.html</anchorfile>
-      <anchor>a9a49b19b7b2b88fa4248e553021609a8</anchor>
-      <arglist>(std::size_t numSamples, EHaltonPermutation scheme)</arglist>
+      <anchor>a24e4d6d1065c51f15e7322a6837ec790</anchor>
+      <arglist>(std::size_t numSampleBatches) const override</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -27901,11 +30083,25 @@
       <anchor>a866ac9281e64a751c80ace753e61263c</anchor>
       <arglist>(std::size_t numSamples)</arglist>
     </member>
+    <member kind="function">
+      <type>std::unique_ptr&lt; SampleGenerator &gt;</type>
+      <name>makeNewborn</name>
+      <anchorfile>d0/de3/classph_1_1_s_g_stratified.html</anchorfile>
+      <anchor>a9de27f9f24ddca95dffa33e621f4aa2c</anchor>
+      <arglist>(std::size_t numSampleBatches) const override</arglist>
+    </member>
   </compound>
   <compound kind="class">
     <name>ph::SGUniformRandom</name>
     <filename>dc/dcc/classph_1_1_s_g_uniform_random.html</filename>
     <base>ph::SampleGenerator</base>
+    <member kind="function">
+      <type>std::unique_ptr&lt; SampleGenerator &gt;</type>
+      <name>makeNewborn</name>
+      <anchorfile>dc/dcc/classph_1_1_s_g_uniform_random.html</anchorfile>
+      <anchor>a8aee79da9d9b62e1530e43717632fd20</anchor>
+      <arglist>(std::size_t numSampleBatches) const override</arglist>
+    </member>
     <member kind="function">
       <type></type>
       <name>SampleGenerator</name>
@@ -27947,48 +30143,69 @@
     </member>
   </compound>
   <compound kind="class">
-    <name>ph::SidednessAgreement</name>
-    <filename>d8/df6/classph_1_1_sidedness_agreement.html</filename>
+    <name>ph::lta::SidednessAgreement</name>
+    <filename>db/d78/classph_1_1lta_1_1_sidedness_agreement.html</filename>
     <member kind="function">
       <type></type>
       <name>SidednessAgreement</name>
-      <anchorfile>d8/df6/classph_1_1_sidedness_agreement.html</anchorfile>
-      <anchor>a5085be407f14d87a236c1740d889ca3a</anchor>
+      <anchorfile>db/d78/classph_1_1lta_1_1_sidedness_agreement.html</anchorfile>
+      <anchor>ac0e8c203d2e47d3a162da1234cdf9491</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
       <type></type>
       <name>SidednessAgreement</name>
-      <anchorfile>d8/df6/classph_1_1_sidedness_agreement.html</anchorfile>
-      <anchor>acd601d02ca67645bd4a1457f5706401c</anchor>
+      <anchorfile>db/d78/classph_1_1lta_1_1_sidedness_agreement.html</anchorfile>
+      <anchor>af2ae2b97666a8da507465710f6d369f0</anchor>
       <arglist>(ESidednessPolicy policy)</arglist>
     </member>
     <member kind="function">
       <type>bool</type>
       <name>isSidednessAgreed</name>
-      <anchorfile>d8/df6/classph_1_1_sidedness_agreement.html</anchorfile>
-      <anchor>a9bb073e57776d8f441f74075ba1fbe66</anchor>
+      <anchorfile>db/d78/classph_1_1lta_1_1_sidedness_agreement.html</anchorfile>
+      <anchor>a4809b47dbbc175c835fad756b0f4fdbb</anchor>
+      <arglist>(const math::Vector3R &amp;Ng, const math::Vector3R &amp;Ns, const math::Vector3R &amp;vec) const</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>isSidednessAgreed</name>
+      <anchorfile>db/d78/classph_1_1lta_1_1_sidedness_agreement.html</anchorfile>
+      <anchor>a8e0e849f69ce5a80ab91264ec30bc1f4</anchor>
+      <arglist>(const SurfaceHit &amp;X, const math::Vector3R &amp;vec) const</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>isFrontHemisphere</name>
+      <anchorfile>db/d78/classph_1_1lta_1_1_sidedness_agreement.html</anchorfile>
+      <anchor>ae9eb27d25ecb4b106e5be529df936954</anchor>
+      <arglist>(const SurfaceHit &amp;X, const math::Vector3R &amp;vec) const</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>isBackHemisphere</name>
+      <anchorfile>db/d78/classph_1_1lta_1_1_sidedness_agreement.html</anchorfile>
+      <anchor>abf6dce86779607d83312c3e16046b87a</anchor>
       <arglist>(const SurfaceHit &amp;X, const math::Vector3R &amp;vec) const</arglist>
     </member>
     <member kind="function">
       <type>bool</type>
       <name>isSameHemisphere</name>
-      <anchorfile>d8/df6/classph_1_1_sidedness_agreement.html</anchorfile>
-      <anchor>afe4a997e51270ab9e7bcc2fc4ba76e47</anchor>
+      <anchorfile>db/d78/classph_1_1lta_1_1_sidedness_agreement.html</anchorfile>
+      <anchor>ae8b384b34f816cd2e27d19d22760d1b9</anchor>
       <arglist>(const SurfaceHit &amp;X, const math::Vector3R &amp;vecA, const math::Vector3R &amp;vecB) const</arglist>
     </member>
     <member kind="function">
       <type>bool</type>
       <name>isOppositeHemisphere</name>
-      <anchorfile>d8/df6/classph_1_1_sidedness_agreement.html</anchorfile>
-      <anchor>ad701c00e048675a1208f53a895e99fd5</anchor>
+      <anchorfile>db/d78/classph_1_1lta_1_1_sidedness_agreement.html</anchorfile>
+      <anchor>a3e01b9726c8757165985c92ba7bf10e1</anchor>
       <arglist>(const SurfaceHit &amp;X, const math::Vector3R &amp;vecA, const math::Vector3R &amp;vecB) const</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>adjustForSidednessAgreement</name>
-      <anchorfile>d8/df6/classph_1_1_sidedness_agreement.html</anchorfile>
-      <anchor>aaf14e63820d81c2aad99d7e0056c8377</anchor>
+      <anchorfile>db/d78/classph_1_1lta_1_1_sidedness_agreement.html</anchorfile>
+      <anchor>a20b532b150791b479245845ccea0eb98</anchor>
       <arglist>(SurfaceHit &amp;X) const</arglist>
     </member>
   </compound>
@@ -28303,6 +30520,20 @@
       <anchorfile>d6/dc7/classph_1_1math_1_1_static_affine_transform.html</anchorfile>
       <anchor>a4d12dca780fd890d6a9250c11aa9bc4b</anchor>
       <arglist>() const override</arglist>
+    </member>
+    <member kind="function">
+      <type>const math::Matrix4R &amp;</type>
+      <name>getTransformMatrix</name>
+      <anchorfile>d6/dc7/classph_1_1math_1_1_static_affine_transform.html</anchorfile>
+      <anchor>abff6a79b9b0925074c7a2258921323b9</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>const math::Matrix4R &amp;</type>
+      <name>getInversedTransformMatrix</name>
+      <anchorfile>d6/dc7/classph_1_1math_1_1_static_affine_transform.html</anchorfile>
+      <anchor>ae060ec076f0b1d44ba861be46b9a4491</anchor>
+      <arglist>() const</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static const StaticAffineTransform &amp;</type>
@@ -28697,16 +30928,63 @@
     </member>
   </compound>
   <compound kind="class">
+    <name>ph::StochasticProgressivePMRenderer</name>
+    <filename>d1/dbb/classph_1_1_stochastic_progressive_p_m_renderer.html</filename>
+    <base>ph::PMRendererBase</base>
+    <member kind="function">
+      <type></type>
+      <name>StochasticProgressivePMRenderer</name>
+      <anchorfile>d1/dbb/classph_1_1_stochastic_progressive_p_m_renderer.html</anchorfile>
+      <anchor>ac03940cd04252d66487a27b0178d8fa4</anchor>
+      <arglist>(PMCommonParams commonParams, Viewport viewport, SampleFilter filter, uint32 numWorkers)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>doRender</name>
+      <anchorfile>d1/dbb/classph_1_1_stochastic_progressive_p_m_renderer.html</anchorfile>
+      <anchor>ada976302dacfe70b4446359623362621</anchor>
+      <arglist>() override</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>retrieveFrame</name>
+      <anchorfile>d1/dbb/classph_1_1_stochastic_progressive_p_m_renderer.html</anchorfile>
+      <anchor>a43789f9b9bd902d11f7936ffa0797811</anchor>
+      <arglist>(std::size_t layerIndex, HdrRgbFrame &amp;out_frame) override</arglist>
+    </member>
+    <member kind="function">
+      <type>RenderStats</type>
+      <name>asyncQueryRenderStats</name>
+      <anchorfile>d1/dbb/classph_1_1_stochastic_progressive_p_m_renderer.html</anchorfile>
+      <anchor>a10b7b1bc86ef249fc0888fb088a4794d</anchor>
+      <arglist>() override</arglist>
+    </member>
+    <member kind="function">
+      <type>RenderProgress</type>
+      <name>asyncQueryRenderProgress</name>
+      <anchorfile>d1/dbb/classph_1_1_stochastic_progressive_p_m_renderer.html</anchorfile>
+      <anchor>aa43a8f5e2329ce718c7728cca486f7fc</anchor>
+      <arglist>() override</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>asyncPeekFrame</name>
+      <anchorfile>d1/dbb/classph_1_1_stochastic_progressive_p_m_renderer.html</anchorfile>
+      <anchor>a240b7a79191e6635a65997fa3f444779</anchor>
+      <arglist>(std::size_t layerIndex, const Region &amp;region, HdrRgbFrame &amp;out_frame) override</arglist>
+    </member>
+    <member kind="function">
+      <type>RenderObservationInfo</type>
+      <name>getObservationInfo</name>
+      <anchorfile>d1/dbb/classph_1_1_stochastic_progressive_p_m_renderer.html</anchorfile>
+      <anchor>af34358952d76a085b266490e1e5c3065</anchor>
+      <arglist>() const</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
     <name>ph::StratifiedSampleSource</name>
     <filename>d3/d3d/classph_1_1_stratified_sample_source.html</filename>
     <base>ph::RuntimeSampleSource</base>
-    <member kind="function">
-      <type></type>
-      <name>StratifiedSampleSource</name>
-      <anchorfile>d3/d3d/classph_1_1_stratified_sample_source.html</anchorfile>
-      <anchor>a835725ad8dcdf020c86c6a2a17457186</anchor>
-      <arglist>()=default</arglist>
-    </member>
     <member kind="function">
       <type>void</type>
       <name>cook</name>
@@ -28732,6 +31010,13 @@
       <anchorfile>d4/d8c/classph_1_1_stripe_scheduler.html</anchorfile>
       <anchor>a2d7cea70ec76e7e2707a0f4dfc04cd29</anchor>
       <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>StripeScheduler</name>
+      <anchorfile>d4/d8c/classph_1_1_stripe_scheduler.html</anchorfile>
+      <anchor>a56459c3909e5d831c10003159a7a75ad</anchor>
+      <arglist>(std::size_t numWorkers, const WorkUnit &amp;totalWorkUnit)</arglist>
     </member>
     <member kind="function">
       <type></type>
@@ -28835,22 +31120,22 @@
       <type>void</type>
       <name>genDirectSample</name>
       <anchorfile>d9/d06/classph_1_1_surface_emitter.html</anchorfile>
-      <anchor>a1d56c0bc1b87c85faa3b65ce78edd3d9</anchor>
-      <arglist>(DirectEnergySampleQuery &amp;query, SampleFlow &amp;sampleFlow) const override=0</arglist>
+      <anchor>ad96722ea5d7b2ff39fdc3a67d5e23107</anchor>
+      <arglist>(DirectEnergySampleQuery &amp;query, SampleFlow &amp;sampleFlow, HitProbe &amp;probe) const override=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>void</type>
+      <name>calcDirectSamplePdfW</name>
+      <anchorfile>d9/d06/classph_1_1_surface_emitter.html</anchorfile>
+      <anchor>a7b195e0362859e2da48c745b4e0ce9f2</anchor>
+      <arglist>(DirectEnergySamplePdfQuery &amp;query, HitProbe &amp;probe) const override=0</arglist>
     </member>
     <member kind="function" virtualness="pure">
       <type>void</type>
       <name>emitRay</name>
       <anchorfile>d9/d06/classph_1_1_surface_emitter.html</anchorfile>
-      <anchor>a4d776f829d65cd2c8c4c20c6f7234ece</anchor>
-      <arglist>(SampleFlow &amp;sampleFlow, Ray *out_ray, math::Spectrum *out_Le, math::Vector3R *out_eN, real *out_pdfA, real *out_pdfW) const override=0</arglist>
-    </member>
-    <member kind="function" virtualness="pure">
-      <type>real</type>
-      <name>calcDirectSamplePdfW</name>
-      <anchorfile>d9/d06/classph_1_1_surface_emitter.html</anchorfile>
-      <anchor>a8a28fccd15285d53fbee11798a905a28</anchor>
-      <arglist>(const SurfaceHit &amp;emitPos, const math::Vector3R &amp;targetPos) const override=0</arglist>
+      <anchor>ac6b565e044fd1b9c91d8e915828ff545</anchor>
+      <arglist>(EnergyEmissionSampleQuery &amp;query, SampleFlow &amp;sampleFlow, HitProbe &amp;probe) const override=0</arglist>
     </member>
     <member kind="function" virtualness="virtual">
       <type>virtual void</type>
@@ -28874,18 +31159,11 @@
       <arglist>(const math::Vector3R &amp;emitDirection, const math::Vector3R &amp;N) const</arglist>
     </member>
     <member kind="function" protection="protected">
-      <type>real</type>
-      <name>calcPdfW</name>
+      <type>void</type>
+      <name>calcDirectSamplePdfWForSingleSurface</name>
       <anchorfile>d9/d06/classph_1_1_surface_emitter.html</anchorfile>
-      <anchor>a9c9820a8a3568d0eb13aa026918f9140</anchor>
-      <arglist>(const SurfaceHit &amp;emitPos, const math::Vector3R &amp;targetPos) const</arglist>
-    </member>
-    <member kind="function" protection="protected">
-      <type>real</type>
-      <name>calcPdfW</name>
-      <anchorfile>d9/d06/classph_1_1_surface_emitter.html</anchorfile>
-      <anchor>a9a0b3458416197d0ca832ecbec530455</anchor>
-      <arglist>(const Primitive *emitSurface, const math::Vector3R &amp;emitPos, const math::Vector3R &amp;emitNormal, const math::Vector3R &amp;targetPos) const</arglist>
+      <anchor>ad1b88dc12fd9cd1aec6911f4306f1c71</anchor>
+      <arglist>(DirectEnergySamplePdfQuery &amp;query, HitProbe &amp;probe) const</arglist>
     </member>
     <member kind="variable" protection="protected">
       <type>bool</type>
@@ -28909,8 +31187,15 @@
       <type></type>
       <name>SurfaceHit</name>
       <anchorfile>d7/d2e/classph_1_1_surface_hit.html</anchorfile>
-      <anchor>ab147e438dab405ba7933a310a6dadb37</anchor>
-      <arglist>(const Ray &amp;incidentRay, const HitProbe &amp;probe)</arglist>
+      <anchor>a393617463f37bfddd19999087cd041bf</anchor>
+      <arglist>(const Ray &amp;ray, const HitProbe &amp;probe, SurfaceHitReason reason)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>SurfaceHit</name>
+      <anchorfile>d7/d2e/classph_1_1_surface_hit.html</anchorfile>
+      <anchor>af33842bb9b7ce580e258d736e2fe7e8d</anchor>
+      <arglist>(const Ray &amp;ray, const HitProbe &amp;probe, const HitDetail &amp;detail, SurfaceHitReason reason)</arglist>
     </member>
     <member kind="function">
       <type>SurfaceHit</type>
@@ -28918,6 +31203,13 @@
       <anchorfile>d7/d2e/classph_1_1_surface_hit.html</anchorfile>
       <anchor>a79b4cb19de425a2e4e73fe942c06bf0b</anchor>
       <arglist>(uint32 newChannel) const</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>reintersect</name>
+      <anchorfile>d7/d2e/classph_1_1_surface_hit.html</anchorfile>
+      <anchor>a15479d1cbec2a4e8ee67ca00ce5f0d75</anchor>
+      <arglist>(const Ray &amp;ray, HitProbe &amp;probe) const</arglist>
     </member>
     <member kind="function">
       <type>bool</type>
@@ -28948,10 +31240,31 @@
       <arglist>() const</arglist>
     </member>
     <member kind="function">
+      <type>SurfaceHitReason</type>
+      <name>getReason</name>
+      <anchorfile>d7/d2e/classph_1_1_surface_hit.html</anchorfile>
+      <anchor>ac3682ffd128991eba27bf658b07ddbd5</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>const Ray &amp;</type>
+      <name>getRay</name>
+      <anchorfile>d7/d2e/classph_1_1_surface_hit.html</anchorfile>
+      <anchor>a49a643c1fa327421d9e4fc665ad6982d</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
       <type>const Ray &amp;</type>
       <name>getIncidentRay</name>
       <anchorfile>d7/d2e/classph_1_1_surface_hit.html</anchorfile>
       <anchor>a61d656616db630197f8b06093705fba6</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>const Time &amp;</type>
+      <name>getTime</name>
+      <anchorfile>d7/d2e/classph_1_1_surface_hit.html</anchorfile>
+      <anchor>ac2cb393b2496e941c712c302fa1bdc78</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
@@ -28975,17 +31288,126 @@
       <anchor>a03950ddbe22d5c8bcf72c04306660f36</anchor>
       <arglist>() const</arglist>
     </member>
+    <member kind="function">
+      <type>const Emitter *</type>
+      <name>getSurfaceEmitter</name>
+      <anchorfile>d7/d2e/classph_1_1_surface_hit.html</anchorfile>
+      <anchor>a65af3adb7f79bb7f6ac996983af46e73</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>const SurfaceOptics *</type>
+      <name>getSurfaceOptics</name>
+      <anchorfile>d7/d2e/classph_1_1_surface_hit.html</anchorfile>
+      <anchor>a75da2f51e2142ca3e24859620965333c</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>const VolumeOptics *</type>
+      <name>getInteriorOptics</name>
+      <anchorfile>d7/d2e/classph_1_1_surface_hit.html</anchorfile>
+      <anchor>a92c607f245db419e4a49cae5e93c1544</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>const VolumeOptics *</type>
+      <name>getExteriorOptics</name>
+      <anchorfile>d7/d2e/classph_1_1_surface_hit.html</anchorfile>
+      <anchor>a373057cb0ae8ac7f32dee93e126eab8b</anchor>
+      <arglist>() const</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>ph::lta::SurfaceHitRefinery</name>
+    <filename>da/d9b/classph_1_1lta_1_1_surface_hit_refinery.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>SurfaceHitRefinery</name>
+      <anchorfile>da/d9b/classph_1_1lta_1_1_surface_hit_refinery.html</anchorfile>
+      <anchor>a75bc034d868dbd1e2dc59008c579a621</anchor>
+      <arglist>(const SurfaceHit &amp;X)</arglist>
+    </member>
+    <member kind="function">
+      <type>Ray</type>
+      <name>escape</name>
+      <anchorfile>da/d9b/classph_1_1lta_1_1_surface_hit_refinery.html</anchorfile>
+      <anchor>a463b3df2c8364f1dfad2057d52712a20</anchor>
+      <arglist>(const math::Vector3R &amp;dir) const</arglist>
+    </member>
+    <member kind="function">
+      <type>Ray</type>
+      <name>escapeManually</name>
+      <anchorfile>da/d9b/classph_1_1lta_1_1_surface_hit_refinery.html</anchorfile>
+      <anchor>a43af66d1e9329ea4b1618d9a23d79ba4</anchor>
+      <arglist>(const math::Vector3R &amp;dir, real delta=selfIntersectDelta()) const</arglist>
+    </member>
+    <member kind="function">
+      <type>Ray</type>
+      <name>escapeEmpirically</name>
+      <anchorfile>da/d9b/classph_1_1lta_1_1_surface_hit_refinery.html</anchorfile>
+      <anchor>abb31e47187595d2ba876e5c772367aa8</anchor>
+      <arglist>(const math::Vector3R &amp;dir) const</arglist>
+    </member>
+    <member kind="function">
+      <type>Ray</type>
+      <name>escapeIteratively</name>
+      <anchorfile>da/d9b/classph_1_1lta_1_1_surface_hit_refinery.html</anchorfile>
+      <anchor>a0d3ed9875f88c6d014f2051f13c2c3ef</anchor>
+      <arglist>(const math::Vector3R &amp;dir, std::size_t numIterations=numIterations()) const</arglist>
+    </member>
+    <member kind="function">
+      <type>std::optional&lt; Ray &gt;</type>
+      <name>tryEscape</name>
+      <anchorfile>da/d9b/classph_1_1lta_1_1_surface_hit_refinery.html</anchorfile>
+      <anchor>a3178568d8d14150884ba23fabacdf109</anchor>
+      <arglist>(const SurfaceHit &amp;X2) const</arglist>
+    </member>
+    <member kind="function">
+      <type>std::optional&lt; Ray &gt;</type>
+      <name>tryEscapeManually</name>
+      <anchorfile>da/d9b/classph_1_1lta_1_1_surface_hit_refinery.html</anchorfile>
+      <anchor>aa5035449fd9bfbf84082e2b14766df4e</anchor>
+      <arglist>(const SurfaceHit &amp;X2, real delta=selfIntersectDelta()) const</arglist>
+    </member>
+    <member kind="function">
+      <type>std::optional&lt; Ray &gt;</type>
+      <name>tryEscapeEmpirically</name>
+      <anchorfile>da/d9b/classph_1_1lta_1_1_surface_hit_refinery.html</anchorfile>
+      <anchor>a15a1f3d84398fe49270e40e006cfed01</anchor>
+      <arglist>(const SurfaceHit &amp;X2) const</arglist>
+    </member>
+    <member kind="function">
+      <type>std::optional&lt; Ray &gt;</type>
+      <name>tryEscapeIteratively</name>
+      <anchorfile>da/d9b/classph_1_1lta_1_1_surface_hit_refinery.html</anchorfile>
+      <anchor>a7fc66945eebeb48706fa6c3a976971ee</anchor>
+      <arglist>(const SurfaceHit &amp;X2, std::size_t numIterations=numIterations()) const</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>init</name>
+      <anchorfile>da/d9b/classph_1_1lta_1_1_surface_hit_refinery.html</anchorfile>
+      <anchor>af7678887d7a0952aac072cff4758b1bf</anchor>
+      <arglist>(const EngineInitSettings &amp;settings)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static real</type>
+      <name>selfIntersectDelta</name>
+      <anchorfile>da/d9b/classph_1_1lta_1_1_surface_hit_refinery.html</anchorfile>
+      <anchor>ad474ff65b38e1f61aedba63070d491d2</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static std::size_t</type>
+      <name>numIterations</name>
+      <anchorfile>da/d9b/classph_1_1lta_1_1_surface_hit_refinery.html</anchorfile>
+      <anchor>a34e330834b1e60f9094154957c31d4a1</anchor>
+      <arglist>()</arglist>
+    </member>
   </compound>
   <compound kind="class">
     <name>ph::SurfaceLayerInfo</name>
     <filename>d7/d2a/classph_1_1_surface_layer_info.html</filename>
-    <member kind="function">
-      <type></type>
-      <name>SurfaceLayerInfo</name>
-      <anchorfile>d7/d2a/classph_1_1_surface_layer_info.html</anchorfile>
-      <anchor>af249d8f7adec610b3c06c077a3adbd97</anchor>
-      <arglist>()</arglist>
-    </member>
     <member kind="function">
       <type>real</type>
       <name>getRoughness</name>
@@ -29042,6 +31464,13 @@
       <anchor>a6c9f260d3e1a3c733022a895b5eb8402</anchor>
       <arglist>() const</arglist>
     </member>
+    <member kind="function">
+      <type></type>
+      <name>PH_DEFINE_SDL_STRUCT</name>
+      <anchorfile>d7/d2a/classph_1_1_surface_layer_info.html</anchorfile>
+      <anchor>aed861c8fafea3ddb8f77069b87937e45</anchor>
+      <arglist>(TSdlOwnerStruct&lt; SurfaceLayerInfo &gt;)</arglist>
+    </member>
   </compound>
   <compound kind="class">
     <name>ph::SurfaceMaterial</name>
@@ -29083,8 +31512,8 @@
       <type>virtual</type>
       <name>~SurfaceOptics</name>
       <anchorfile>df/d8a/classph_1_1_surface_optics.html</anchorfile>
-      <anchor>ace2edf96d79a3ec3fc1b95316637ba64</anchor>
-      <arglist>()</arglist>
+      <anchor>abcb8d3358316d6ccc37ca40c03b6aaf6</anchor>
+      <arglist>()=default</arglist>
     </member>
     <member kind="function" virtualness="pure">
       <type>virtual ESurfacePhenomenon</type>
@@ -29158,43 +31587,70 @@
     </member>
   </compound>
   <compound kind="class">
-    <name>ph::SurfaceTracer</name>
-    <filename>d2/dce/classph_1_1_surface_tracer.html</filename>
-    <base protection="private">ph::IMoveOnly</base>
+    <name>ph::lta::SurfaceTracer</name>
+    <filename>db/d6c/classph_1_1lta_1_1_surface_tracer.html</filename>
     <member kind="function">
       <type></type>
       <name>SurfaceTracer</name>
-      <anchorfile>d2/dce/classph_1_1_surface_tracer.html</anchorfile>
-      <anchor>a1c57227d41a615b998f4c5d8e2546e8a</anchor>
+      <anchorfile>db/d6c/classph_1_1lta_1_1_surface_tracer.html</anchorfile>
+      <anchor>aeec2d81b1d7033b4893962361cab0675</anchor>
       <arglist>(const Scene *scene)</arglist>
     </member>
     <member kind="function">
       <type>bool</type>
       <name>traceNextSurface</name>
-      <anchorfile>d2/dce/classph_1_1_surface_tracer.html</anchorfile>
-      <anchor>a49cb61b1569526ebc37a0d4a1d7d73f3</anchor>
+      <anchorfile>db/d6c/classph_1_1lta_1_1_surface_tracer.html</anchorfile>
+      <anchor>afb4d1b70a391fb9f65752936dc4edbe3</anchor>
       <arglist>(const Ray &amp;ray, const SidednessAgreement &amp;sidedness, SurfaceHit *out_X) const</arglist>
     </member>
     <member kind="function">
       <type>bool</type>
+      <name>traceNextSurfaceFrom</name>
+      <anchorfile>db/d6c/classph_1_1lta_1_1_surface_tracer.html</anchorfile>
+      <anchor>a65191d2bc821e0d846227a5d4b65d164</anchor>
+      <arglist>(const SurfaceHit &amp;X, const Ray &amp;ray, const SidednessAgreement &amp;sidedness, SurfaceHit *out_X) const</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>bsdfSampleNextSurface</name>
+      <anchorfile>db/d6c/classph_1_1lta_1_1_surface_tracer.html</anchorfile>
+      <anchor>a72cb791283ca6b41d78666f7cd86680e</anchor>
+      <arglist>(BsdfSampleQuery &amp;bsdfSample, SampleFlow &amp;sampleFlow, SurfaceHit *out_X) const</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
       <name>doBsdfSample</name>
-      <anchorfile>d2/dce/classph_1_1_surface_tracer.html</anchorfile>
-      <anchor>a0bbf88faf676c251b3ae89d2df51b97f</anchor>
-      <arglist>(BsdfSampleQuery &amp;bsdfSample, SampleFlow &amp;sampleFlow, Ray *out_ray) const</arglist>
+      <anchorfile>db/d6c/classph_1_1lta_1_1_surface_tracer.html</anchorfile>
+      <anchor>aebd3c9cd7305d1092f2b1b3ec01cdf86</anchor>
+      <arglist>(BsdfSampleQuery &amp;bsdfSample, SampleFlow &amp;sampleFlow) const</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>doBsdfSample</name>
+      <anchorfile>db/d6c/classph_1_1lta_1_1_surface_tracer.html</anchorfile>
+      <anchor>ac18874203896036415c65e27ac06128b</anchor>
+      <arglist>(BsdfSampleQuery &amp;bsdfSample, SampleFlow &amp;sampleFlow, Ray *out_sampledRay) const</arglist>
     </member>
     <member kind="function">
       <type>bool</type>
       <name>doBsdfEvaluation</name>
-      <anchorfile>d2/dce/classph_1_1_surface_tracer.html</anchorfile>
-      <anchor>a0a3a624ab60abac6864c77cc8a8482a9</anchor>
+      <anchorfile>db/d6c/classph_1_1lta_1_1_surface_tracer.html</anchorfile>
+      <anchor>a54b19a97532cc7e70364750054f4b460</anchor>
       <arglist>(BsdfEvalQuery &amp;bsdfEval) const</arglist>
     </member>
     <member kind="function">
       <type>bool</type>
       <name>doBsdfPdfQuery</name>
-      <anchorfile>d2/dce/classph_1_1_surface_tracer.html</anchorfile>
-      <anchor>a1c9ab40820e749ead9ddd211bedf5c19</anchor>
+      <anchorfile>db/d6c/classph_1_1lta_1_1_surface_tracer.html</anchorfile>
+      <anchor>a3ecf82246725fa997fcaa3bf56d977bb</anchor>
       <arglist>(BsdfPdfQuery &amp;bsdfPdfQuery) const</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>sampleZeroBounceEmission</name>
+      <anchorfile>db/d6c/classph_1_1lta_1_1_surface_tracer.html</anchorfile>
+      <anchor>aa2621be637ce1c0642b22f0c4b7ff6e4</anchor>
+      <arglist>(const SurfaceHit &amp;Xe, const SidednessAgreement &amp;sidedness, math::Spectrum *out_Le) const</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -29745,6 +32201,13 @@
     </member>
     <member kind="function" static="yes">
       <type>static TAABB3D</type>
+      <name>makeEmpty</name>
+      <anchorfile>d6/d74/classph_1_1math_1_1_t_a_a_b_b3_d.html</anchorfile>
+      <anchor>acd1ef6d19364c61bd5d10e513ed8ad29</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static TAABB3D</type>
       <name>makeUnioned</name>
       <anchorfile>d6/d74/classph_1_1math_1_1_t_a_a_b_b3_d.html</anchorfile>
       <anchor>ab8a4a18e04cd0077c5ae1bdfdec3752c</anchor>
@@ -29792,6 +32255,19 @@
       <anchorfile>d0/da5/classph_1_1_table_t_i_r.html</anchorfile>
       <anchor>a9d483bd97936847d50e2991310934a2b</anchor>
       <arglist>(real cosWi, real alpha, real relIor) const</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>ph::texfunc::TAbsolute</name>
+    <filename>d0/dd8/classph_1_1texfunc_1_1_t_absolute.html</filename>
+    <templarg>typename InputType</templarg>
+    <templarg>typename OutputType</templarg>
+    <member kind="function">
+      <type>OutputType</type>
+      <name>operator()</name>
+      <anchorfile>d0/dd8/classph_1_1texfunc_1_1_t_absolute.html</anchorfile>
+      <anchor>a7146f2662d7ed726469b085869b192b5</anchor>
+      <arglist>(const InputType &amp;inputValue) const</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -29935,27 +32411,6 @@
     </member>
   </compound>
   <compound kind="class">
-    <name>ph::texfunc::TAddConstant</name>
-    <filename>d0/d20/classph_1_1texfunc_1_1_t_add_constant.html</filename>
-    <templarg>typename InputType</templarg>
-    <templarg>typename ConstantType</templarg>
-    <templarg>typename OutputType</templarg>
-    <member kind="function">
-      <type></type>
-      <name>TAddConstant</name>
-      <anchorfile>d0/d20/classph_1_1texfunc_1_1_t_add_constant.html</anchorfile>
-      <anchor>a403ac64ad55b44201df4b7a654a02b81</anchor>
-      <arglist>(ConstantType constant)</arglist>
-    </member>
-    <member kind="function">
-      <type>OutputType</type>
-      <name>operator()</name>
-      <anchorfile>d0/d20/classph_1_1texfunc_1_1_t_add_constant.html</anchorfile>
-      <anchor>a9c6e4c0ab5de7fb282e09565df4cfe05</anchor>
-      <arglist>(const InputType &amp;inputValue) const</arglist>
-    </member>
-  </compound>
-  <compound kind="class">
     <name>ph::math::TAnalyticalIntegrator1D</name>
     <filename>dd/ddf/classph_1_1math_1_1_t_analytical_integrator1_d.html</filename>
     <templarg>typename T</templarg>
@@ -30051,13 +32506,6 @@
       <name>get</name>
       <anchorfile>d1/d75/classph_1_1_t_any_ptr.html</anchorfile>
       <anchor>a175bbce5a54aed0ee8e8f81c6a324058</anchor>
-      <arglist>() const</arglist>
-    </member>
-    <member kind="function">
-      <type>const T *</type>
-      <name>getConst</name>
-      <anchorfile>d1/d75/classph_1_1_t_any_ptr.html</anchorfile>
-      <anchor>a1678a1083744b6c9826893e9464bcdc6</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
@@ -30417,20 +32865,6 @@
       <anchorfile>dc/d3e/classph_1_1math_1_1_t_arithmetic_array_base.html</anchorfile>
       <anchor>a54885af82b78ccf8ad4a74c85049da40</anchor>
       <arglist>()</arglist>
-    </member>
-    <member kind="function" protection="protected">
-      <type>Derived</type>
-      <name>clamp</name>
-      <anchorfile>dc/d3e/classph_1_1math_1_1_t_arithmetic_array_base.html</anchorfile>
-      <anchor>a7b50e0448ed7cc40e01ee77aed1ed0ac</anchor>
-      <arglist>(T lowerBound, T upperBound) const</arglist>
-    </member>
-    <member kind="function" protection="protected">
-      <type>Derived &amp;</type>
-      <name>clampLocal</name>
-      <anchorfile>dc/d3e/classph_1_1math_1_1_t_arithmetic_array_base.html</anchorfile>
-      <anchor>ad2b8a87560ab65188ec7a7795eb4179d</anchor>
-      <arglist>(T lowerBound, T upperBound)</arglist>
     </member>
     <member kind="function" protection="protected">
       <type>Derived</type>
@@ -30803,6 +33237,48 @@
       <anchor>a4fc4de014adb7946df69ce2ca873d78c</anchor>
       <arglist>() const</arglist>
     </member>
+    <member kind="function" protection="protected">
+      <type>TSpan&lt; T, N &gt;</type>
+      <name>toSpan</name>
+      <anchorfile>dc/d3e/classph_1_1math_1_1_t_arithmetic_array_base.html</anchorfile>
+      <anchor>ab31fa7a608a3b3330e39351c0e7acf9e</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>TSpanView&lt; T, N &gt;</type>
+      <name>toView</name>
+      <anchorfile>dc/d3e/classph_1_1math_1_1_t_arithmetic_array_base.html</anchorfile>
+      <anchor>a5acfe2ab947966811c66ec6241f7c723</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>Derived</type>
+      <name>clamp</name>
+      <anchorfile>dc/d3e/classph_1_1math_1_1_t_arithmetic_array_base.html</anchorfile>
+      <anchor>a7b50e0448ed7cc40e01ee77aed1ed0ac</anchor>
+      <arglist>(T lowerBound, T upperBound) const</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>Derived &amp;</type>
+      <name>clampLocal</name>
+      <anchorfile>dc/d3e/classph_1_1math_1_1_t_arithmetic_array_base.html</anchorfile>
+      <anchor>ad2b8a87560ab65188ec7a7795eb4179d</anchor>
+      <arglist>(T lowerBound, T upperBound)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>Derived</type>
+      <name>clamp</name>
+      <anchorfile>dc/d3e/classph_1_1math_1_1_t_arithmetic_array_base.html</anchorfile>
+      <anchor>ab3ac183e2e33046262b612399e4c402b</anchor>
+      <arglist>(const Derived &amp;lowerBound, const Derived &amp;upperBound) const</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>Derived &amp;</type>
+      <name>clampLocal</name>
+      <anchorfile>dc/d3e/classph_1_1math_1_1_t_arithmetic_array_base.html</anchorfile>
+      <anchor>a4535032412a9de38c30eb5308b1d9769</anchor>
+      <arglist>(const Derived &amp;lowerBound, const Derived &amp;upperBound)</arglist>
+    </member>
     <member kind="variable" protection="protected">
       <type>std::array&lt; T, N &gt;</type>
       <name>m</name>
@@ -30817,268 +33293,275 @@
       <anchor>acf85cb4e182f1c93672e6ff6793119d1</anchor>
       <arglist></arglist>
     </member>
+    <member kind="function" protection="protected">
+      <type>Derived</type>
+      <name>clamp</name>
+      <anchorfile>dc/d3e/classph_1_1math_1_1_t_arithmetic_array_base.html</anchorfile>
+      <anchor>a7b50e0448ed7cc40e01ee77aed1ed0ac</anchor>
+      <arglist>(T lowerBound, T upperBound) const</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>Derived &amp;</type>
+      <name>clampLocal</name>
+      <anchorfile>dc/d3e/classph_1_1math_1_1_t_arithmetic_array_base.html</anchorfile>
+      <anchor>ad2b8a87560ab65188ec7a7795eb4179d</anchor>
+      <arglist>(T lowerBound, T upperBound)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>Derived</type>
+      <name>clamp</name>
+      <anchorfile>dc/d3e/classph_1_1math_1_1_t_arithmetic_array_base.html</anchorfile>
+      <anchor>ab3ac183e2e33046262b612399e4c402b</anchor>
+      <arglist>(const Derived &amp;lowerBound, const Derived &amp;upperBound) const</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>Derived &amp;</type>
+      <name>clampLocal</name>
+      <anchorfile>dc/d3e/classph_1_1math_1_1_t_arithmetic_array_base.html</anchorfile>
+      <anchor>a4535032412a9de38c30eb5308b1d9769</anchor>
+      <arglist>(const Derived &amp;lowerBound, const Derived &amp;upperBound)</arglist>
+    </member>
   </compound>
   <compound kind="class">
-    <name>ph::TArrayAsStack</name>
-    <filename>d9/d2b/classph_1_1_t_array_as_stack.html</filename>
+    <name>ph::TArrayStack</name>
+    <filename>d9/d2f/classph_1_1_t_array_stack.html</filename>
     <templarg>typename T</templarg>
     <templarg>std::size_t N</templarg>
     <member kind="function">
       <type></type>
-      <name>TArrayAsStack</name>
-      <anchorfile>d9/d2b/classph_1_1_t_array_as_stack.html</anchorfile>
-      <anchor>a2ca8022ac254b8f5f8401ecd453e2851</anchor>
+      <name>TArrayStack</name>
+      <anchorfile>d9/d2f/classph_1_1_t_array_stack.html</anchorfile>
+      <anchor>ade80ed89008f9b8596cfc5ff4d57e4f6</anchor>
       <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>TArrayAsStack</name>
-      <anchorfile>d9/d2b/classph_1_1_t_array_as_stack.html</anchorfile>
-      <anchor>a180376c669309cb7800093900ecad14f</anchor>
-      <arglist>(const TArrayAsStack &amp;other)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>~TArrayAsStack</name>
-      <anchorfile>d9/d2b/classph_1_1_t_array_as_stack.html</anchorfile>
-      <anchor>a2404fea3efc01926478394b981c6067b</anchor>
-      <arglist>()=default</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>push</name>
-      <anchorfile>d9/d2b/classph_1_1_t_array_as_stack.html</anchorfile>
-      <anchor>a27326e816fb76356e997aacf6cbd6e5c</anchor>
+      <anchorfile>d9/d2f/classph_1_1_t_array_stack.html</anchorfile>
+      <anchor>a51868f681542a61cd2d194c70401e3d4</anchor>
       <arglist>(U &amp;&amp;item)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>pop</name>
-      <anchorfile>d9/d2b/classph_1_1_t_array_as_stack.html</anchorfile>
-      <anchor>a12e0229e5b45cdb161c7e653b6b7e730</anchor>
+      <anchorfile>d9/d2f/classph_1_1_t_array_stack.html</anchorfile>
+      <anchor>afbebdf469f1b9acfd39de1d07b602901</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
       <type>T &amp;</type>
       <name>top</name>
-      <anchorfile>d9/d2b/classph_1_1_t_array_as_stack.html</anchorfile>
-      <anchor>ab19487845d35c5b70f69f881a233b20b</anchor>
+      <anchorfile>d9/d2f/classph_1_1_t_array_stack.html</anchorfile>
+      <anchor>a72fa9c013874f5c283f294e30d1c605c</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
       <type>const T &amp;</type>
       <name>top</name>
-      <anchorfile>d9/d2b/classph_1_1_t_array_as_stack.html</anchorfile>
-      <anchor>ad536b5be993d746ed522ca952f557afb</anchor>
+      <anchorfile>d9/d2f/classph_1_1_t_array_stack.html</anchorfile>
+      <anchor>a3a1960539aecbe50fda38f3776760c79</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
       <type>std::size_t</type>
       <name>height</name>
-      <anchorfile>d9/d2b/classph_1_1_t_array_as_stack.html</anchorfile>
-      <anchor>a2a5902033126845066c108c3e3775322</anchor>
+      <anchorfile>d9/d2f/classph_1_1_t_array_stack.html</anchorfile>
+      <anchor>a82b1133db16ea86e616a0c3f06b7db1b</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>clear</name>
-      <anchorfile>d9/d2b/classph_1_1_t_array_as_stack.html</anchorfile>
-      <anchor>a4ad25c459ee3005e708abd1adae6fec6</anchor>
+      <anchorfile>d9/d2f/classph_1_1_t_array_stack.html</anchorfile>
+      <anchor>aaff99c6357e272849b6a887a62b14f7d</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
       <type>bool</type>
       <name>isEmpty</name>
-      <anchorfile>d9/d2b/classph_1_1_t_array_as_stack.html</anchorfile>
-      <anchor>a627b965ce12f59357a76857affd7ad40</anchor>
+      <anchorfile>d9/d2f/classph_1_1_t_array_stack.html</anchorfile>
+      <anchor>ab4973a77ae764dd2805a89440b2f13f9</anchor>
       <arglist>() const</arglist>
-    </member>
-    <member kind="function">
-      <type>TArrayAsStack &amp;</type>
-      <name>operator=</name>
-      <anchorfile>d9/d2b/classph_1_1_t_array_as_stack.html</anchorfile>
-      <anchor>af2fd68e55578c3acbd3ba014f3cf8a00</anchor>
-      <arglist>(const TArrayAsStack &amp;rhs)</arglist>
     </member>
     <member kind="function">
       <type>T &amp;</type>
       <name>operator[]</name>
-      <anchorfile>d9/d2b/classph_1_1_t_array_as_stack.html</anchorfile>
-      <anchor>a742bb0b6dc084eeb7ba56a03c23ced1f</anchor>
+      <anchorfile>d9/d2f/classph_1_1_t_array_stack.html</anchorfile>
+      <anchor>a88ed547362533e472b189dcf8aa2a1b6</anchor>
       <arglist>(std::size_t index)</arglist>
     </member>
     <member kind="function">
       <type>const T &amp;</type>
       <name>operator[]</name>
-      <anchorfile>d9/d2b/classph_1_1_t_array_as_stack.html</anchorfile>
-      <anchor>af679de123b09a6c8cfe32b7bc7d15923</anchor>
+      <anchorfile>d9/d2f/classph_1_1_t_array_stack.html</anchorfile>
+      <anchor>a8a6ab1f67611734400b12f36d0415af6</anchor>
       <arglist>(std::size_t index) const</arglist>
     </member>
   </compound>
   <compound kind="class">
-    <name>ph::TArrayAsVector</name>
-    <filename>d1/dea/classph_1_1_t_array_as_vector.html</filename>
+    <name>ph::TArrayVector</name>
+    <filename>dc/d2a/classph_1_1_t_array_vector.html</filename>
     <templarg>typename T</templarg>
     <templarg>std::size_t N</templarg>
     <member kind="function">
       <type></type>
-      <name>TArrayAsVector</name>
-      <anchorfile>d1/dea/classph_1_1_t_array_as_vector.html</anchorfile>
-      <anchor>a55a5f6281f834f9e5492b152bb51dce8</anchor>
+      <name>TArrayVector</name>
+      <anchorfile>dc/d2a/classph_1_1_t_array_vector.html</anchorfile>
+      <anchor>ab4d7821eba1f0e389397017932840b9c</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>pushBack</name>
-      <anchorfile>d1/dea/classph_1_1_t_array_as_vector.html</anchorfile>
-      <anchor>a411772d0a58a61cc7722892825153a46</anchor>
+      <anchorfile>dc/d2a/classph_1_1_t_array_vector.html</anchorfile>
+      <anchor>a42486f6804d992749805b2377bd67bcd</anchor>
       <arglist>(U &amp;&amp;item)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>popBack</name>
-      <anchorfile>d1/dea/classph_1_1_t_array_as_vector.html</anchorfile>
-      <anchor>a2370d37fcd3509b46e2629562c1507af</anchor>
+      <anchorfile>dc/d2a/classph_1_1_t_array_vector.html</anchorfile>
+      <anchor>acd9333e31b9c72810aa5e76ef7575577</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
       <type>T &amp;</type>
       <name>front</name>
-      <anchorfile>d1/dea/classph_1_1_t_array_as_vector.html</anchorfile>
-      <anchor>a9198ccbc834c896d49c00d5909d67340</anchor>
+      <anchorfile>dc/d2a/classph_1_1_t_array_vector.html</anchorfile>
+      <anchor>af2842837904c7cd77cb2dfdfe36331f1</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
       <type>const T &amp;</type>
       <name>front</name>
-      <anchorfile>d1/dea/classph_1_1_t_array_as_vector.html</anchorfile>
-      <anchor>ae491b4b043127bfce8c79e9bd26745ac</anchor>
+      <anchorfile>dc/d2a/classph_1_1_t_array_vector.html</anchorfile>
+      <anchor>ab8fa0fd778013ab3703bdb5694951ccd</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
       <type>T &amp;</type>
       <name>back</name>
-      <anchorfile>d1/dea/classph_1_1_t_array_as_vector.html</anchorfile>
-      <anchor>ab85d71e1112c168ed232def1d001af94</anchor>
+      <anchorfile>dc/d2a/classph_1_1_t_array_vector.html</anchorfile>
+      <anchor>a1eed5f94f0a0d41bdd9c019bc183002d</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
       <type>const T &amp;</type>
       <name>back</name>
-      <anchorfile>d1/dea/classph_1_1_t_array_as_vector.html</anchorfile>
-      <anchor>afa171ba4821f6791e1d4fe3f13b3759e</anchor>
+      <anchorfile>dc/d2a/classph_1_1_t_array_vector.html</anchorfile>
+      <anchor>a6df84e609038cc6d3fe7597b2eec40b7</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
       <type>std::size_t</type>
       <name>size</name>
-      <anchorfile>d1/dea/classph_1_1_t_array_as_vector.html</anchorfile>
-      <anchor>a8d09d275189844d82189e4a0e0834cb9</anchor>
+      <anchorfile>dc/d2a/classph_1_1_t_array_vector.html</anchorfile>
+      <anchor>a8f1bcc40e9ac3da6e6ec3aa5afe44994</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>clear</name>
-      <anchorfile>d1/dea/classph_1_1_t_array_as_vector.html</anchorfile>
-      <anchor>ac7b9183dabb6634963ceea8b77322339</anchor>
+      <anchorfile>dc/d2a/classph_1_1_t_array_vector.html</anchorfile>
+      <anchor>abb29fe02fed6b8bb42761265dcafc8a9</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
       <type>bool</type>
       <name>isEmpty</name>
-      <anchorfile>d1/dea/classph_1_1_t_array_as_vector.html</anchorfile>
-      <anchor>a0ee5129d7caf9fd929d49ca36fafee87</anchor>
+      <anchorfile>dc/d2a/classph_1_1_t_array_vector.html</anchorfile>
+      <anchor>a580d6a61e2f42f3407b14c30ef89945e</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
       <type>bool</type>
       <name>isFull</name>
-      <anchorfile>d1/dea/classph_1_1_t_array_as_vector.html</anchorfile>
-      <anchor>a9f739577b326e09bbefff664c4bb685d</anchor>
+      <anchorfile>dc/d2a/classph_1_1_t_array_vector.html</anchorfile>
+      <anchor>ad6e9d7690dc9b09cdb4e1092f246733f</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
       <type>T *</type>
       <name>get</name>
-      <anchorfile>d1/dea/classph_1_1_t_array_as_vector.html</anchorfile>
-      <anchor>a013558afa1665115a0d612d2b8e54a30</anchor>
+      <anchorfile>dc/d2a/classph_1_1_t_array_vector.html</anchorfile>
+      <anchor>ada14004485c6b40999f4306bcd762945</anchor>
       <arglist>(std::size_t index)</arglist>
     </member>
     <member kind="function">
       <type>const T *</type>
       <name>get</name>
-      <anchorfile>d1/dea/classph_1_1_t_array_as_vector.html</anchorfile>
-      <anchor>afd06211e766db10102366719141143e0</anchor>
+      <anchorfile>dc/d2a/classph_1_1_t_array_vector.html</anchorfile>
+      <anchor>aca8f318ee4ace6e809524227e19f3966</anchor>
       <arglist>(std::size_t index) const</arglist>
     </member>
     <member kind="function">
       <type>T &amp;</type>
       <name>operator[]</name>
-      <anchorfile>d1/dea/classph_1_1_t_array_as_vector.html</anchorfile>
-      <anchor>ada87207e5f18da79333be2ed07419a0a</anchor>
+      <anchorfile>dc/d2a/classph_1_1_t_array_vector.html</anchorfile>
+      <anchor>a46c4e44c46309e44cc65f6cce13e19b3</anchor>
       <arglist>(std::size_t index)</arglist>
     </member>
     <member kind="function">
       <type>const T &amp;</type>
       <name>operator[]</name>
-      <anchorfile>d1/dea/classph_1_1_t_array_as_vector.html</anchorfile>
-      <anchor>ad043e93e6b5978fbc2d89b7a611d2b31</anchor>
+      <anchorfile>dc/d2a/classph_1_1_t_array_vector.html</anchorfile>
+      <anchor>a033533265fccbb5a49f3bdec9e07b906</anchor>
       <arglist>(std::size_t index) const</arglist>
     </member>
     <member kind="function">
       <type>std::array&lt; T, N &gt;::iterator</type>
       <name>begin</name>
-      <anchorfile>d1/dea/classph_1_1_t_array_as_vector.html</anchorfile>
-      <anchor>a11ba6f5b41b2e561c4686b5b20c68745</anchor>
+      <anchorfile>dc/d2a/classph_1_1_t_array_vector.html</anchorfile>
+      <anchor>a13deafa11931332a38b4a68e75cf08ec</anchor>
       <arglist>() noexcept</arglist>
     </member>
     <member kind="function">
       <type>std::array&lt; T, N &gt;::const_iterator</type>
       <name>begin</name>
-      <anchorfile>d1/dea/classph_1_1_t_array_as_vector.html</anchorfile>
-      <anchor>a56c9a9f74ada8406fb6eb7ba2ddb2277</anchor>
+      <anchorfile>dc/d2a/classph_1_1_t_array_vector.html</anchorfile>
+      <anchor>aa740001a6964af9aab3f002fa6a6e8a5</anchor>
       <arglist>() const noexcept</arglist>
     </member>
     <member kind="function">
       <type>std::array&lt; T, N &gt;::iterator</type>
       <name>end</name>
-      <anchorfile>d1/dea/classph_1_1_t_array_as_vector.html</anchorfile>
-      <anchor>a44cc064e3a93fe1739689dd70fd812a2</anchor>
+      <anchorfile>dc/d2a/classph_1_1_t_array_vector.html</anchorfile>
+      <anchor>ad136d5d68330f40d7d2d93a2ef60872a</anchor>
       <arglist>() noexcept</arglist>
     </member>
     <member kind="function">
       <type>std::array&lt; T, N &gt;::const_iterator</type>
       <name>end</name>
-      <anchorfile>d1/dea/classph_1_1_t_array_as_vector.html</anchorfile>
-      <anchor>a9bd83ca57a09ad56856381cb133291b1</anchor>
+      <anchorfile>dc/d2a/classph_1_1_t_array_vector.html</anchorfile>
+      <anchor>add7c060faff29d171f6782d2a8f2c98b</anchor>
       <arglist>() const noexcept</arglist>
     </member>
     <member kind="function">
       <type>std::array&lt; T, N &gt;::iterator</type>
       <name>begin</name>
-      <anchorfile>d1/dea/classph_1_1_t_array_as_vector.html</anchorfile>
-      <anchor>a11ba6f5b41b2e561c4686b5b20c68745</anchor>
+      <anchorfile>dc/d2a/classph_1_1_t_array_vector.html</anchorfile>
+      <anchor>a13deafa11931332a38b4a68e75cf08ec</anchor>
       <arglist>() noexcept</arglist>
     </member>
     <member kind="function">
       <type>std::array&lt; T, N &gt;::const_iterator</type>
       <name>begin</name>
-      <anchorfile>d1/dea/classph_1_1_t_array_as_vector.html</anchorfile>
-      <anchor>a56c9a9f74ada8406fb6eb7ba2ddb2277</anchor>
+      <anchorfile>dc/d2a/classph_1_1_t_array_vector.html</anchorfile>
+      <anchor>aa740001a6964af9aab3f002fa6a6e8a5</anchor>
       <arglist>() const noexcept</arglist>
     </member>
     <member kind="function">
       <type>std::array&lt; T, N &gt;::iterator</type>
       <name>end</name>
-      <anchorfile>d1/dea/classph_1_1_t_array_as_vector.html</anchorfile>
-      <anchor>a44cc064e3a93fe1739689dd70fd812a2</anchor>
+      <anchorfile>dc/d2a/classph_1_1_t_array_vector.html</anchorfile>
+      <anchor>ad136d5d68330f40d7d2d93a2ef60872a</anchor>
       <arglist>() noexcept</arglist>
     </member>
     <member kind="function">
       <type>std::array&lt; T, N &gt;::const_iterator</type>
       <name>end</name>
-      <anchorfile>d1/dea/classph_1_1_t_array_as_vector.html</anchorfile>
-      <anchor>a9bd83ca57a09ad56856381cb133291b1</anchor>
+      <anchorfile>dc/d2a/classph_1_1_t_array_vector.html</anchorfile>
+      <anchor>add7c060faff29d171f6782d2a8f2c98b</anchor>
       <arglist>() const noexcept</arglist>
     </member>
   </compound>
@@ -31176,6 +33659,13 @@
       <arglist>() const</arglist>
     </member>
     <member kind="function">
+      <type>TVector3&lt; T &gt;</type>
+      <name>getCentroid</name>
+      <anchorfile>dc/db6/classph_1_1math_1_1_t_basic_triangle.html</anchorfile>
+      <anchor>a0c6c4a57ff528925082f340e47525d57</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
       <type>TAABB3D&lt; T &gt;</type>
       <name>getAABB</name>
       <anchorfile>dc/db6/classph_1_1math_1_1_t_basic_triangle.html</anchorfile>
@@ -31183,10 +33673,17 @@
       <arglist>() const</arglist>
     </member>
     <member kind="function">
-      <type>TVector3&lt; T &gt;</type>
-      <name>getFaceNormalSafe</name>
+      <type>T</type>
+      <name>getAspectRatio</name>
       <anchorfile>dc/db6/classph_1_1math_1_1_t_basic_triangle.html</anchorfile>
-      <anchor>a98d1d104cc446aee6b3e7eafeabf40ff</anchor>
+      <anchor>a1dfcd144b891189050377f5afaf85907</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>TVector3&lt; T &gt;</type>
+      <name>safeGetFaceNormal</name>
+      <anchorfile>dc/db6/classph_1_1math_1_1_t_basic_triangle.html</anchorfile>
+      <anchor>a7d8fe1ded33828e66b156f5379951707</anchor>
       <arglist>(const TVector3&lt; T &gt; &amp;failSafe={0, 1, 0}) const</arglist>
     </member>
     <member kind="function">
@@ -31352,164 +33849,206 @@
     <templarg>typename Value</templarg>
     <templarg>typename Input</templarg>
     <member kind="function">
-      <type></type>
+      <type>constexpr</type>
       <name>TBitFlags</name>
       <anchorfile>d5/d6d/classph_1_1_t_bit_flags.html</anchorfile>
-      <anchor>ad29c3d52290f70d7bf1ec43f73dee0dc</anchor>
+      <anchor>a86369f00e8eaa23eb7dbf4c678a759de</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
-      <type></type>
+      <type>constexpr</type>
       <name>TBitFlags</name>
       <anchorfile>d5/d6d/classph_1_1_t_bit_flags.html</anchorfile>
-      <anchor>a3e49f54412c037323c1ae1dbdd869615</anchor>
+      <anchor>aae54f988b01dd2f6d024d5d3c476dccb</anchor>
       <arglist>(const FlagsSet &amp;flagsSet)</arglist>
     </member>
     <member kind="function">
-      <type></type>
+      <type>constexpr</type>
       <name>TBitFlags</name>
       <anchorfile>d5/d6d/classph_1_1_t_bit_flags.html</anchorfile>
-      <anchor>a9b0b68d3eac0a2a583ac660658620d62</anchor>
+      <anchor>a0b928e01ac5241ff8d29fe6b65244c91</anchor>
+      <arglist>(Input flagsSet)</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr</type>
+      <name>TBitFlags</name>
+      <anchorfile>d5/d6d/classph_1_1_t_bit_flags.html</anchorfile>
+      <anchor>ac0c44eb6205bd6e53618a2c6ed7ac97b</anchor>
       <arglist>(const TBitFlags&lt; Value, OtherInput &gt; &amp;otherFlags)</arglist>
     </member>
     <member kind="function">
-      <type>TBitFlags &amp;</type>
+      <type>constexpr TBitFlags &amp;</type>
       <name>intersectWith</name>
       <anchorfile>d5/d6d/classph_1_1_t_bit_flags.html</anchorfile>
-      <anchor>aaa5c1e8f1f9bc304e99b0cd3404097d4</anchor>
+      <anchor>a6bf5bc3be83da9bb928e49384f19690c</anchor>
       <arglist>(const FlagsSet &amp;flagsSet)</arglist>
     </member>
     <member kind="function">
-      <type>bool</type>
+      <type>constexpr bool</type>
       <name>hasNone</name>
       <anchorfile>d5/d6d/classph_1_1_t_bit_flags.html</anchorfile>
-      <anchor>a8824aa4828fcfa7b01b15ac998b29428</anchor>
+      <anchor>a847a820da08c5b1d624bfa3c3c8bc96d</anchor>
       <arglist>(const FlagsSet &amp;flagsSet) const</arglist>
     </member>
     <member kind="function">
-      <type>bool</type>
+      <type>constexpr bool</type>
       <name>hasAny</name>
       <anchorfile>d5/d6d/classph_1_1_t_bit_flags.html</anchorfile>
-      <anchor>a735266389464361a7e7661dfa53a8c41</anchor>
+      <anchor>a7597f0560d17c6647429a0e07b38afb9</anchor>
       <arglist>(const FlagsSet &amp;flagsSet) const</arglist>
     </member>
     <member kind="function">
-      <type>bool</type>
+      <type>constexpr bool</type>
       <name>hasAll</name>
       <anchorfile>d5/d6d/classph_1_1_t_bit_flags.html</anchorfile>
-      <anchor>a8b0b27af09928343885a94b740f73f95</anchor>
+      <anchor>ac2ec09cf4f0be8de0c7b2746346a5d38</anchor>
       <arglist>(const FlagsSet &amp;flagsSet) const</arglist>
     </member>
     <member kind="function">
-      <type>bool</type>
+      <type>constexpr bool</type>
       <name>hasExactly</name>
       <anchorfile>d5/d6d/classph_1_1_t_bit_flags.html</anchorfile>
-      <anchor>a8f5c553a249648c2b376f7cd446dd4ab</anchor>
+      <anchor>a35e98dd171cbc7aecfc237e6d1621a12</anchor>
       <arglist>(const FlagsSet &amp;flagsSet) const</arglist>
     </member>
     <member kind="function">
-      <type>bool</type>
+      <type>constexpr bool</type>
+      <name>hasNone</name>
+      <anchorfile>d5/d6d/classph_1_1_t_bit_flags.html</anchorfile>
+      <anchor>adddc75d59578fde5ec0b9b207c61b886</anchor>
+      <arglist>(Input flagsSet) const</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr bool</type>
+      <name>hasAny</name>
+      <anchorfile>d5/d6d/classph_1_1_t_bit_flags.html</anchorfile>
+      <anchor>a9d51fbeb24d206d562a7b25e6fb172d4</anchor>
+      <arglist>(Input flagsSet) const</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr bool</type>
+      <name>hasAll</name>
+      <anchorfile>d5/d6d/classph_1_1_t_bit_flags.html</anchorfile>
+      <anchor>a5148fb5788c326fc09ccb77b1dd721d4</anchor>
+      <arglist>(Input flagsSet) const</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr bool</type>
+      <name>hasExactly</name>
+      <anchorfile>d5/d6d/classph_1_1_t_bit_flags.html</anchorfile>
+      <anchor>a5ba4996048242d57ef51e5761b996be2</anchor>
+      <arglist>(Input flagsSet) const</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr bool</type>
       <name>has</name>
       <anchorfile>d5/d6d/classph_1_1_t_bit_flags.html</anchorfile>
-      <anchor>a8d963b2803f6a6fbfac5118370d52be5</anchor>
+      <anchor>a481cf188f6423a3fb5ee717dcd70b004</anchor>
       <arglist>(Input singleFlag) const</arglist>
     </member>
     <member kind="function">
-      <type>bool</type>
+      <type>constexpr bool</type>
       <name>hasNo</name>
       <anchorfile>d5/d6d/classph_1_1_t_bit_flags.html</anchorfile>
-      <anchor>abcbba8dc5124d4199c4143ddfeaf646e</anchor>
+      <anchor>a7b26ef6fddc05eaa7c0f714f95408ef5</anchor>
       <arglist>(Input singleFlag) const</arglist>
     </member>
     <member kind="function">
-      <type>bool</type>
+      <type>constexpr bool</type>
       <name>isEmpty</name>
       <anchorfile>d5/d6d/classph_1_1_t_bit_flags.html</anchorfile>
-      <anchor>ac3cf4524aba7d49d8875b2bffcdf8a49</anchor>
+      <anchor>a531411ef1cf82e8ef943dffc29c717d4</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
-      <type>bool</type>
+      <type>constexpr bool</type>
       <name>isEqual</name>
       <anchorfile>d5/d6d/classph_1_1_t_bit_flags.html</anchorfile>
-      <anchor>a3a6d22043f9ada2b30c575d81b5f60fc</anchor>
+      <anchor>af3f1d3946cf1f7c51fbd3ea4f9a85f07</anchor>
       <arglist>(const TBitFlags &amp;other) const</arglist>
     </member>
     <member kind="function">
-      <type>Value</type>
+      <type>constexpr Value</type>
       <name>get</name>
       <anchorfile>d5/d6d/classph_1_1_t_bit_flags.html</anchorfile>
-      <anchor>a1c73a77c181a5eb9ecfefb814d28d371</anchor>
+      <anchor>ab53f36a437f9a8d88093465a34e3211a</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
-      <type>TBitFlags &amp;</type>
+      <type>constexpr TBitFlags &amp;</type>
       <name>set</name>
       <anchorfile>d5/d6d/classph_1_1_t_bit_flags.html</anchorfile>
-      <anchor>a42d183f8aebf345fa78eab61da92b105</anchor>
+      <anchor>a625ce3217f61b4a31bf1baf31c288c78</anchor>
       <arglist>(const FlagsSet &amp;flagsSet)</arglist>
     </member>
     <member kind="function">
-      <type>Input</type>
+      <type>constexpr TBitFlags &amp;</type>
+      <name>set</name>
+      <anchorfile>d5/d6d/classph_1_1_t_bit_flags.html</anchorfile>
+      <anchor>a73e3994603434b7ba54ff7263adf40b8</anchor>
+      <arglist>(Input flagsSet)</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr Input</type>
       <name>getEnum</name>
       <anchorfile>d5/d6d/classph_1_1_t_bit_flags.html</anchorfile>
-      <anchor>a7928f030772b0fc6ad53dfd167499952</anchor>
+      <anchor>ae26c371205805ff61da61cd97f72c9fc</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
-      <type>TBitFlags &amp;</type>
+      <type>constexpr TBitFlags &amp;</type>
       <name>unionWith</name>
       <anchorfile>d5/d6d/classph_1_1_t_bit_flags.html</anchorfile>
-      <anchor>ad60c78988e69b8643a22574c0fec9333</anchor>
+      <anchor>ad4ce784c31bc806c489e50a8429a9558</anchor>
       <arglist>(const FlagsSet &amp;flagsSet)</arglist>
     </member>
     <member kind="function">
-      <type>TBitFlags &amp;</type>
+      <type>constexpr TBitFlags &amp;</type>
       <name>unionWith</name>
       <anchorfile>d5/d6d/classph_1_1_t_bit_flags.html</anchorfile>
-      <anchor>a6a3360d675a2afb96b7a46f7f54b26e1</anchor>
+      <anchor>a9d45b49df1fcbf657d6340edeee07ebd</anchor>
       <arglist>(const TBitFlags &amp;flags)</arglist>
     </member>
     <member kind="function">
-      <type>TBitFlags &amp;</type>
+      <type>constexpr TBitFlags &amp;</type>
       <name>turnOn</name>
       <anchorfile>d5/d6d/classph_1_1_t_bit_flags.html</anchorfile>
-      <anchor>a1a17ddbf1c994f7478ed261aa47aab2a</anchor>
+      <anchor>ac60a0ae63f614b60cdfd2fe4b0dd8813</anchor>
       <arglist>(const FlagsSet &amp;flagsSet)</arglist>
     </member>
     <member kind="function">
-      <type>TBitFlags &amp;</type>
+      <type>constexpr TBitFlags &amp;</type>
       <name>turnOff</name>
       <anchorfile>d5/d6d/classph_1_1_t_bit_flags.html</anchorfile>
-      <anchor>a0199246bae2b73d25c72fed32bb25eed</anchor>
+      <anchor>a74cc47a64ac646560375a8bc262ceeb4</anchor>
       <arglist>(const FlagsSet &amp;flagsSet)</arglist>
     </member>
     <member kind="function">
-      <type>TBitFlags &amp;</type>
+      <type>constexpr TBitFlags &amp;</type>
       <name>unionWith</name>
       <anchorfile>d5/d6d/classph_1_1_t_bit_flags.html</anchorfile>
-      <anchor>ad60c78988e69b8643a22574c0fec9333</anchor>
+      <anchor>ad4ce784c31bc806c489e50a8429a9558</anchor>
       <arglist>(const FlagsSet &amp;flagsSet)</arglist>
     </member>
     <member kind="function">
-      <type>TBitFlags &amp;</type>
+      <type>constexpr TBitFlags &amp;</type>
       <name>unionWith</name>
       <anchorfile>d5/d6d/classph_1_1_t_bit_flags.html</anchorfile>
-      <anchor>a6a3360d675a2afb96b7a46f7f54b26e1</anchor>
+      <anchor>a9d45b49df1fcbf657d6340edeee07ebd</anchor>
       <arglist>(const TBitFlags &amp;flags)</arglist>
     </member>
     <member kind="function">
-      <type>TBitFlags &amp;</type>
+      <type>constexpr TBitFlags &amp;</type>
       <name>turnOn</name>
       <anchorfile>d5/d6d/classph_1_1_t_bit_flags.html</anchorfile>
-      <anchor>a1a17ddbf1c994f7478ed261aa47aab2a</anchor>
+      <anchor>ac60a0ae63f614b60cdfd2fe4b0dd8813</anchor>
       <arglist>(const FlagsSet &amp;flagsSet)</arglist>
     </member>
     <member kind="function">
-      <type>TBitFlags &amp;</type>
+      <type>constexpr TBitFlags &amp;</type>
       <name>turnOff</name>
       <anchorfile>d5/d6d/classph_1_1_t_bit_flags.html</anchorfile>
-      <anchor>a0199246bae2b73d25c72fed32bb25eed</anchor>
+      <anchor>a74cc47a64ac646560375a8bc262ceeb4</anchor>
       <arglist>(const FlagsSet &amp;flagsSet)</arglist>
     </member>
   </compound>
@@ -31517,7 +34056,7 @@
     <name>ph::math::TBlackmanHarris2D</name>
     <filename>d9/d71/classph_1_1math_1_1_t_blackman_harris2_d.html</filename>
     <templarg>typename Value</templarg>
-    <base>TMathFunction2D&lt; Value &gt;</base>
+    <base>ph::math::TMathFunction2D</base>
     <member kind="function">
       <type></type>
       <name>TBlackmanHarris2D</name>
@@ -31797,23 +34336,19 @@
       <arglist></arglist>
     </member>
   </compound>
-  <compound kind="struct">
-    <name>ph::detail::TClosestHitProbeResult</name>
-    <filename>d4/dc9/structph_1_1detail_1_1_t_closest_hit_probe_result.html</filename>
-    <templarg>typename Index</templarg>
-    <member kind="variable">
-      <type>math::Vector3R</type>
-      <name>bary</name>
-      <anchorfile>d4/dc9/structph_1_1detail_1_1_t_closest_hit_probe_result.html</anchorfile>
-      <anchor>a832d8b8c4d050da2e344c299e3e1eb99</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>Index</type>
-      <name>faceIndex</name>
-      <anchorfile>d4/dc9/structph_1_1detail_1_1_t_closest_hit_probe_result.html</anchorfile>
-      <anchor>a7ce2b809eccb1e83161bda61d04c9feb</anchor>
-      <arglist></arglist>
+  <compound kind="class">
+    <name>ph::texfunc::TClamp</name>
+    <filename>d4/d54/classph_1_1texfunc_1_1_t_clamp.html</filename>
+    <templarg>typename InputTypeA</templarg>
+    <templarg>typename InputTypeB</templarg>
+    <templarg>typename InputTypeC</templarg>
+    <templarg>typename OutputType</templarg>
+    <member kind="function">
+      <type>OutputType</type>
+      <name>operator()</name>
+      <anchorfile>d4/d54/classph_1_1texfunc_1_1_t_clamp.html</anchorfile>
+      <anchor>a920fcb5f611fbce0312c28874b150b1a</anchor>
+      <arglist>(const InputTypeA &amp;inputValueA, const InputTypeB &amp;inputValueB, const InputTypeC &amp;inputValueC) const</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -31848,6 +34383,20 @@
     <filename>d6/d92/classph_1_1math_1_1_t_color_space_definition.html</filename>
     <templarg>EColorSpace COLOR_SPACE</templarg>
     <templarg>typename T</templarg>
+    <member kind="function" static="yes">
+      <type>static consteval EColorSpace</type>
+      <name>getColorSpace</name>
+      <anchorfile>d6/d92/classph_1_1math_1_1_t_color_space_definition.html</anchorfile>
+      <anchor>a55d9eddcfddabf3ce0179e8f75b29682</anchor>
+      <arglist>() noexcept</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static consteval bool</type>
+      <name>isTristimulus</name>
+      <anchorfile>d6/d92/classph_1_1math_1_1_t_color_space_definition.html</anchorfile>
+      <anchor>a6b1a82a44f15be5641f746f5a69539b4</anchor>
+      <arglist>() noexcept</arglist>
+    </member>
   </compound>
   <compound kind="class">
     <name>ph::math::TColorSpaceDefinition&lt; EColorSpace::ACEScg, T &gt;</name>
@@ -32019,21 +34568,21 @@
   <compound kind="class">
     <name>ph::math::TConstant2D</name>
     <filename>d8/d6f/classph_1_1math_1_1_t_constant2_d.html</filename>
-    <templarg>typename ValueType</templarg>
+    <templarg>typename Value</templarg>
     <base>ph::math::TMathFunction2D</base>
     <member kind="function">
       <type></type>
       <name>TConstant2D</name>
       <anchorfile>d8/d6f/classph_1_1math_1_1_t_constant2_d.html</anchorfile>
-      <anchor>aa55a2e78c39a60b38a1d4c53cda69208</anchor>
-      <arglist>(ValueType constantValue)</arglist>
+      <anchor>abdfe5c231bd9781542a92d0378f8848f</anchor>
+      <arglist>(Value constantValue)</arglist>
     </member>
     <member kind="function">
-      <type>ValueType</type>
+      <type>Value</type>
       <name>evaluate</name>
       <anchorfile>d8/d6f/classph_1_1math_1_1_t_constant2_d.html</anchorfile>
-      <anchor>a5ab2907181ff3d13e0694942a8a99a8b</anchor>
-      <arglist>(ValueType x, ValueType y) const override</arglist>
+      <anchor>a202951a172dd14807a2d6fb98b9437c4</anchor>
+      <arglist>(Value x, Value y) const override</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -32309,29 +34858,50 @@
     </member>
   </compound>
   <compound kind="class">
-    <name>ph::TDirectLightEstimator</name>
-    <filename>dc/d82/classph_1_1_t_direct_light_estimator.html</filename>
+    <name>ph::lta::TDirectLightEstimator</name>
+    <filename>d4/dce/classph_1_1lta_1_1_t_direct_light_estimator.html</filename>
     <templarg>ESidednessPolicy POLICY</templarg>
     <member kind="function">
       <type></type>
       <name>TDirectLightEstimator</name>
-      <anchorfile>dc/d82/classph_1_1_t_direct_light_estimator.html</anchorfile>
-      <anchor>af7171a1deae58152387a84c60054d97d</anchor>
+      <anchorfile>d4/dce/classph_1_1lta_1_1_t_direct_light_estimator.html</anchorfile>
+      <anchor>a63a04ec0df7e6dc1b5095b10f317236c</anchor>
       <arglist>(const Scene *scene)</arglist>
     </member>
     <member kind="function">
       <type>bool</type>
-      <name>sample</name>
-      <anchorfile>dc/d82/classph_1_1_t_direct_light_estimator.html</anchorfile>
-      <anchor>a14c44518455d349c7f0a27005c49e59b</anchor>
-      <arglist>(const SurfaceHit &amp;X, const Time &amp;time, SampleFlow &amp;sampleFlow, math::Vector3R *out_L, real *out_pdfW, math::Spectrum *out_emittedRadiance)</arglist>
+      <name>bsdfSampleEmission</name>
+      <anchorfile>d4/dce/classph_1_1lta_1_1_t_direct_light_estimator.html</anchorfile>
+      <anchor>a245f268857c8bb9988e766c95d6406a5</anchor>
+      <arglist>(BsdfSampleQuery &amp;bsdfSample, SampleFlow &amp;sampleFlow, math::Spectrum *out_Le=nullptr, std::optional&lt; SurfaceHit &gt; *out_X=nullptr) const</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>neeSampleEmission</name>
+      <anchorfile>d4/dce/classph_1_1lta_1_1_t_direct_light_estimator.html</anchorfile>
+      <anchor>aaf17280d6b32cb7ae5037251523f5eaf</anchor>
+      <arglist>(DirectEnergySampleQuery &amp;directSample, SampleFlow &amp;sampleFlow, SurfaceHit *out_Xe=nullptr) const</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>bsdfSamplePathWithNee</name>
+      <anchorfile>d4/dce/classph_1_1lta_1_1_t_direct_light_estimator.html</anchorfile>
+      <anchor>a0ab62eb48b7793411c4c0d07d928734e</anchor>
+      <arglist>(BsdfSampleQuery &amp;bsdfSample, SampleFlow &amp;sampleFlow, math::Spectrum *out_Lo=nullptr, std::optional&lt; SurfaceHit &gt; *out_X=nullptr) const</arglist>
     </member>
     <member kind="function">
       <type>real</type>
-      <name>samplePdfWUnoccluded</name>
-      <anchorfile>dc/d82/classph_1_1_t_direct_light_estimator.html</anchorfile>
-      <anchor>a2957834000e7181cecd4d4a2ee4201c7</anchor>
-      <arglist>(const SurfaceHit &amp;X, const SurfaceHit &amp;Xe, const Time &amp;time)</arglist>
+      <name>neeSamplePdfWUnoccluded</name>
+      <anchorfile>d4/dce/classph_1_1lta_1_1_t_direct_light_estimator.html</anchorfile>
+      <anchor>ae264d6fc1c916e86aa96e788b6d8a9f6</anchor>
+      <arglist>(const SurfaceHit &amp;X, const SurfaceHit &amp;Xe) const</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>isNeeSamplable</name>
+      <anchorfile>d4/dce/classph_1_1lta_1_1_t_direct_light_estimator.html</anchorfile>
+      <anchor>a6fd335f50bce1a71748affc54b550d0f</anchor>
+      <arglist>(const SurfaceHit &amp;X) const</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -32400,6 +34970,27 @@
       <anchorfile>dc/d2c/classph_1_1math_1_1_t_disk.html</anchorfile>
       <anchor>ac8d0c1643e16f57571f56c25da18cfe2</anchor>
       <arglist>(const std::array&lt; T, 2 &gt; &amp;sample, T *out_pdfA, const TVector3&lt; T &gt; &amp;normal=TVector3&lt; T &gt;(0, 1, 0), const TVector3&lt; T &gt; &amp;offset=TVector3&lt; T &gt;(0)) const</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static TDisk</type>
+      <name>makeUnit</name>
+      <anchorfile>dc/d2c/classph_1_1math_1_1_t_disk.html</anchorfile>
+      <anchor>ab3d72b69108939bfb34399602a9fd895</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>ph::texfunc::TDivide</name>
+    <filename>d4/dd4/classph_1_1texfunc_1_1_t_divide.html</filename>
+    <templarg>typename InputTypeA</templarg>
+    <templarg>typename InputTypeB</templarg>
+    <templarg>typename OutputType</templarg>
+    <member kind="function">
+      <type>OutputType</type>
+      <name>operator()</name>
+      <anchorfile>d4/dd4/classph_1_1texfunc_1_1_t_divide.html</anchorfile>
+      <anchor>aff28def8dcb203505021d1b46b8229c5</anchor>
+      <arglist>(const InputTypeA &amp;inputValueA, const InputTypeB &amp;inputValueB) const</arglist>
     </member>
   </compound>
   <compound kind="struct">
@@ -32880,34 +35471,6 @@
     </member>
     <member kind="function">
       <type>void</type>
-      <name>forEachPixel</name>
-      <anchorfile>d0/d75/classph_1_1_t_frame.html</anchorfile>
-      <anchor>a413fc408c290db1fc546248b3fd98cae</anchor>
-      <arglist>(PerPixelOperation op)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>forEachPixel</name>
-      <anchorfile>d0/d75/classph_1_1_t_frame.html</anchorfile>
-      <anchor>af432c003884319df09e882e1645b6f01</anchor>
-      <arglist>(PerPixelOperation op) const</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>forEachPixel</name>
-      <anchorfile>d0/d75/classph_1_1_t_frame.html</anchorfile>
-      <anchor>ac54c3412d743f97faaec088735b9057e</anchor>
-      <arglist>(const math::TAABB2D&lt; uint32 &gt; &amp;region, PerPixelOperation op)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>forEachPixel</name>
-      <anchorfile>d0/d75/classph_1_1_t_frame.html</anchorfile>
-      <anchor>aa8f9c97f2eab90280c10a86755dcf2eb</anchor>
-      <arglist>(const math::TAABB2D&lt; uint32 &gt; &amp;region, PerPixelOperation op) const</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
       <name>setPixel</name>
       <anchorfile>d0/d75/classph_1_1_t_frame.html</anchorfile>
       <anchor>aaf66a8a2b44e5336c87a2ff31ede16dc</anchor>
@@ -32998,6 +35561,34 @@
       <arglist>(const U value)</arglist>
     </member>
     <member kind="function">
+      <type>void</type>
+      <name>forEachPixel</name>
+      <anchorfile>d0/d75/classph_1_1_t_frame.html</anchorfile>
+      <anchor>a413fc408c290db1fc546248b3fd98cae</anchor>
+      <arglist>(PerPixelOperation op)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>forEachPixel</name>
+      <anchorfile>d0/d75/classph_1_1_t_frame.html</anchorfile>
+      <anchor>af432c003884319df09e882e1645b6f01</anchor>
+      <arglist>(PerPixelOperation op) const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>forEachPixel</name>
+      <anchorfile>d0/d75/classph_1_1_t_frame.html</anchorfile>
+      <anchor>ac54c3412d743f97faaec088735b9057e</anchor>
+      <arglist>(const math::TAABB2D&lt; uint32 &gt; &amp;region, PerPixelOperation op)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>forEachPixel</name>
+      <anchorfile>d0/d75/classph_1_1_t_frame.html</anchorfile>
+      <anchor>aa8f9c97f2eab90280c10a86755dcf2eb</anchor>
+      <arglist>(const math::TAABB2D&lt; uint32 &gt; &amp;region, PerPixelOperation op) const</arglist>
+    </member>
+    <member kind="function">
       <type>TSpan&lt; T &gt;</type>
       <name>getPixelData</name>
       <anchorfile>d0/d75/classph_1_1_t_frame.html</anchorfile>
@@ -33017,6 +35608,34 @@
       <anchorfile>d0/d75/classph_1_1_t_frame.html</anchorfile>
       <anchor>a6ca527800362b03ad8744272194ee185</anchor>
       <arglist>(U value)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>forEachPixel</name>
+      <anchorfile>d0/d75/classph_1_1_t_frame.html</anchorfile>
+      <anchor>a413fc408c290db1fc546248b3fd98cae</anchor>
+      <arglist>(PerPixelOperation op)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>forEachPixel</name>
+      <anchorfile>d0/d75/classph_1_1_t_frame.html</anchorfile>
+      <anchor>af432c003884319df09e882e1645b6f01</anchor>
+      <arglist>(PerPixelOperation op) const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>forEachPixel</name>
+      <anchorfile>d0/d75/classph_1_1_t_frame.html</anchorfile>
+      <anchor>ac54c3412d743f97faaec088735b9057e</anchor>
+      <arglist>(const math::TAABB2D&lt; uint32 &gt; &amp;region, PerPixelOperation op)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>forEachPixel</name>
+      <anchorfile>d0/d75/classph_1_1_t_frame.html</anchorfile>
+      <anchor>aa8f9c97f2eab90280c10a86755dcf2eb</anchor>
+      <arglist>(const math::TAABB2D&lt; uint32 &gt; &amp;region, PerPixelOperation op) const</arglist>
     </member>
     <member kind="function">
       <type>TSpan&lt; T &gt;</type>
@@ -33238,28 +35857,62 @@
   <compound kind="class">
     <name>ph::math::TGaussian2D</name>
     <filename>d5/d85/classph_1_1math_1_1_t_gaussian2_d.html</filename>
-    <templarg>typename ValueType</templarg>
+    <templarg>typename Value</templarg>
     <base>ph::math::TMathFunction2D</base>
     <member kind="function">
       <type></type>
       <name>TGaussian2D</name>
       <anchorfile>d5/d85/classph_1_1math_1_1_t_gaussian2_d.html</anchorfile>
-      <anchor>ab8ac55a94335951f7dff50c7d5102d74</anchor>
-      <arglist>(ValueType sigmaX, ValueType sigmaY, ValueType amplitude)</arglist>
+      <anchor>a90f54b369f59280ac58f14f541d575b0</anchor>
+      <arglist>(Value sigmaX, Value sigmaY, Value amplitude)</arglist>
     </member>
     <member kind="function">
-      <type>ValueType</type>
+      <type>Value</type>
       <name>evaluate</name>
       <anchorfile>d5/d85/classph_1_1math_1_1_t_gaussian2_d.html</anchorfile>
-      <anchor>afdebc8300707f83334ae787cc5387e48</anchor>
-      <arglist>(ValueType x, ValueType y) const override</arglist>
+      <anchor>a94d6d722bbaa8451f35d3470ba2a59e9</anchor>
+      <arglist>(Value x, Value y) const override</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>setSubmergeAmount</name>
       <anchorfile>d5/d85/classph_1_1math_1_1_t_gaussian2_d.html</anchorfile>
-      <anchor>ae7c6df525f6631a9d136f3b01a412894</anchor>
-      <arglist>(ValueType amt)</arglist>
+      <anchor>ae3258bc331920a441285cb0ac720e044</anchor>
+      <arglist>(Value amt)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>ph::math::THeavisideStep2D</name>
+    <filename>d1/d85/classph_1_1math_1_1_t_heaviside_step2_d.html</filename>
+    <templarg>typename Value</templarg>
+    <base>ph::math::TMathFunction2D</base>
+    <member kind="function">
+      <type></type>
+      <name>THeavisideStep2D</name>
+      <anchorfile>d1/d85/classph_1_1math_1_1_t_heaviside_step2_d.html</anchorfile>
+      <anchor>afff55b1df77587ef76c474ac4c5e5098</anchor>
+      <arglist>(TVector2&lt; Value &gt; normal)</arglist>
+    </member>
+    <member kind="function">
+      <type>Value</type>
+      <name>evaluate</name>
+      <anchorfile>d1/d85/classph_1_1math_1_1_t_heaviside_step2_d.html</anchorfile>
+      <anchor>a86a36694b540c36a36ffd0e38e3b5383</anchor>
+      <arglist>(Value x, Value y) const override</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static auto</type>
+      <name>makeHorizontal</name>
+      <anchorfile>d1/d85/classph_1_1math_1_1_t_heaviside_step2_d.html</anchorfile>
+      <anchor>a9ca0baebc8c5206a32745de02e742701</anchor>
+      <arglist>() -&gt; THeavisideStep2D</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static auto</type>
+      <name>makeVertical</name>
+      <anchorfile>d1/d85/classph_1_1math_1_1_t_heaviside_step2_d.html</anchorfile>
+      <anchor>a429408b9aa4dcd6325ed388d051ab097</anchor>
+      <arglist>() -&gt; THeavisideStep2D</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -33461,6 +36114,20 @@
       <anchorfile>d9/d27/classph_1_1_time.html</anchorfile>
       <anchor>a89a250188bc9ad2b85a85dca3d20c79b</anchor>
       <arglist>(real absoluteS, real relativeS, real relativeT)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator==</name>
+      <anchorfile>d9/d27/classph_1_1_time.html</anchorfile>
+      <anchor>a54b3551978b9b906661a6b043d226218</anchor>
+      <arglist>(const Time &amp;other) const</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator!=</name>
+      <anchorfile>d9/d27/classph_1_1_time.html</anchorfile>
+      <anchor>acc75c117090ff3881c613412f1b526af</anchor>
+      <arglist>(const Time &amp;other) const</arglist>
     </member>
     <member kind="variable">
       <type>real</type>
@@ -33731,6 +36398,13 @@
       <arglist>() const</arglist>
     </member>
     <member kind="function">
+      <type>Item</type>
+      <name>getItem</name>
+      <anchorfile>de/dbc/classph_1_1math_1_1_t_indexed_kdtree.html</anchorfile>
+      <anchor>a0c575af1cc0d86cc29fd5c3a3c14b2c2</anchor>
+      <arglist>(std::size_t idx) const</arglist>
+    </member>
+    <member kind="function">
       <type>auto</type>
       <name>nearestTraversal</name>
       <anchorfile>de/dbc/classph_1_1math_1_1_t_indexed_kdtree.html</anchorfile>
@@ -33777,13 +36451,6 @@
     <filename>df/d64/classph_1_1math_1_1_t_indexed_kdtree_node.html</filename>
     <templarg>typename Index</templarg>
     <templarg>bool USE_SINGLE_ITEM_OPT</templarg>
-    <member kind="function">
-      <type></type>
-      <name>TIndexedKdtreeNode</name>
-      <anchorfile>df/d64/classph_1_1math_1_1_t_indexed_kdtree_node.html</anchorfile>
-      <anchor>a5d7ebff4287add2e364ea0221dd28aa6</anchor>
-      <arglist>()</arglist>
-    </member>
     <member kind="function">
       <type>bool</type>
       <name>isLeaf</name>
@@ -33858,8 +36525,8 @@
       <type>static TIndexedKdtreeNode</type>
       <name>makeLeaf</name>
       <anchorfile>df/d64/classph_1_1math_1_1_t_indexed_kdtree_node.html</anchorfile>
-      <anchor>ab3e729afb35566e0caff888ec2458cd7</anchor>
-      <arglist>(const Index *itemIndices, std::size_t numItems, std::vector&lt; Index &gt; &amp;indexBuffer)</arglist>
+      <anchor>a84df8869e7a95eb316f208fa28d33d32</anchor>
+      <arglist>(TSpanView&lt; Index &gt; itemIndices, std::vector&lt; Index &gt; &amp;indexBuffer)</arglist>
     </member>
     <member kind="variable">
       <type>real</type>
@@ -33903,60 +36570,62 @@
     <templarg>typename Item</templarg>
     <templarg>typename Index</templarg>
     <templarg>typename PointCalculator</templarg>
-    <member kind="typedef">
-      <type>TIndexedKdtreeNode&lt; Index, false &gt;</type>
-      <name>Node</name>
-      <anchorfile>d0/dc6/classph_1_1math_1_1_t_indexed_point_kdtree.html</anchorfile>
-      <anchor>a2ad6b74ca85a82c7704c3b162ca507ca</anchor>
-      <arglist></arglist>
-    </member>
+    <templarg>CIndexedPointKdtreeItemStorage&lt; Item &gt; ItemStorage</templarg>
+    <class kind="struct">ph::math::TIndexedPointKdtree::BuildCache</class>
     <member kind="function">
       <type></type>
       <name>TIndexedPointKdtree</name>
       <anchorfile>d0/dc6/classph_1_1math_1_1_t_indexed_point_kdtree.html</anchorfile>
-      <anchor>a211b59cc5b1c8fb7892f954f95a43fc7</anchor>
-      <arglist>(std::size_t maxNodeItems, const PointCalculator &amp;pointCalculator)</arglist>
+      <anchor>a39172a3e4409d3fa8a5d07dd00bc7769</anchor>
+      <arglist>(const std::size_t maxNodeItems, const PointCalculator &amp;pointCalculator)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>build</name>
       <anchorfile>d0/dc6/classph_1_1math_1_1_t_indexed_point_kdtree.html</anchorfile>
-      <anchor>a0bf5585ef40d30ab11a363d98a0e9b7c</anchor>
-      <arglist>(std::vector&lt; Item &gt; items)</arglist>
+      <anchor>aac4a7a12e85819b95c001619a9b9c8c5</anchor>
+      <arglist>(ItemStorage items)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>build</name>
+      <anchorfile>d0/dc6/classph_1_1math_1_1_t_indexed_point_kdtree.html</anchorfile>
+      <anchor>a576b57090a15285c069d4ef7e894b3c4</anchor>
+      <arglist>(ItemStorage items, BuildCache &amp;buildCache)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>findWithinRange</name>
       <anchorfile>d0/dc6/classph_1_1math_1_1_t_indexed_point_kdtree.html</anchorfile>
-      <anchor>a62e63beeb0363b932338ace3c3c7dcb4</anchor>
-      <arglist>(const math::Vector3R &amp;location, real searchRadius, std::vector&lt; Item &gt; &amp;results) const</arglist>
+      <anchor>a41e6c17d09ed35c19f67ea6c95945608</anchor>
+      <arglist>(const math::Vector3R &amp;location, const real searchRadius, std::vector&lt; Item &gt; &amp;results) const</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>findNearest</name>
       <anchorfile>d0/dc6/classph_1_1math_1_1_t_indexed_point_kdtree.html</anchorfile>
-      <anchor>ae5ca50caae33e316b0e911104b228402</anchor>
-      <arglist>(const math::Vector3R &amp;location, std::size_t maxItems, std::vector&lt; Item &gt; &amp;results) const</arglist>
+      <anchor>a9dc8273ea975dc31c69d16c1f52df536</anchor>
+      <arglist>(const math::Vector3R &amp;location, const std::size_t maxItems, std::vector&lt; Item &gt; &amp;results) const</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>rangeTraversal</name>
       <anchorfile>d0/dc6/classph_1_1math_1_1_t_indexed_point_kdtree.html</anchorfile>
-      <anchor>a0764b4f7823627a72989d9af85d23a7b</anchor>
-      <arglist>(const math::Vector3R &amp;location, real squaredSearchRadius, ItemHandler itemHandler) const</arglist>
+      <anchor>a7ca842bdeb4e15322673024b8f17a3e3</anchor>
+      <arglist>(const math::Vector3R &amp;location, const real squaredSearchRadius, ItemHandler itemHandler) const</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>nearestTraversal</name>
       <anchorfile>d0/dc6/classph_1_1math_1_1_t_indexed_point_kdtree.html</anchorfile>
-      <anchor>a568e14f83e5ba397ceedfee1961754e0</anchor>
-      <arglist>(const math::Vector3R &amp;location, real initialSquaredSearchRadius, ItemHandler itemHandler) const</arglist>
+      <anchor>aedee1c3e0d192cb2a793ddbf1c587713</anchor>
+      <arglist>(const math::Vector3R &amp;location, const real initialSquaredSearchRadius, ItemHandler itemHandler) const</arglist>
     </member>
     <member kind="function">
       <type>std::size_t</type>
       <name>numItems</name>
       <anchorfile>d0/dc6/classph_1_1math_1_1_t_indexed_point_kdtree.html</anchorfile>
-      <anchor>ad332e631b1471a84d63ca6fc65251be0</anchor>
+      <anchor>a6dbfe1039ac9d1bfd086ea29c38cb2b6</anchor>
       <arglist>() const</arglist>
     </member>
   </compound>
@@ -34090,6 +36759,32 @@
     <templarg>typename T</templarg>
   </compound>
   <compound kind="class">
+    <name>ph::lta::TIndirectLightEstimator</name>
+    <filename>d5/de1/classph_1_1lta_1_1_t_indirect_light_estimator.html</filename>
+    <templarg>ESidednessPolicy POLICY</templarg>
+    <member kind="function">
+      <type></type>
+      <name>TIndirectLightEstimator</name>
+      <anchorfile>d5/de1/classph_1_1lta_1_1_t_indirect_light_estimator.html</anchorfile>
+      <anchor>a844fe25c1d0a654a63de0f1bb5c60887</anchor>
+      <arglist>(const Scene *scene)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>bsdfSamplePathWithNee</name>
+      <anchorfile>d5/de1/classph_1_1lta_1_1_t_indirect_light_estimator.html</anchorfile>
+      <anchor>ab44f4355ef6b8bb149bb0ffa0ea754bb</anchor>
+      <arglist>(const SurfaceHit &amp;X, SampleFlow &amp;sampleFlow, std::size_t pathLength, const RussianRoulette &amp;rr, math::Spectrum *out_Lo=nullptr, std::size_t rrBeginPathLength=0, const math::Spectrum &amp;initialPathWeight=math::Spectrum(1)) const</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>bsdfSamplePathWithNee</name>
+      <anchorfile>d5/de1/classph_1_1lta_1_1_t_indirect_light_estimator.html</anchorfile>
+      <anchor>a98934261140aa3dbdf3d3e8288a33103</anchor>
+      <arglist>(const SurfaceHit &amp;X, SampleFlow &amp;sampleFlow, std::size_t minPathLength, std::size_t maxPathLength, const RussianRoulette &amp;rr, math::Spectrum *out_Lo=nullptr, std::size_t rrBeginPathLength=0, const math::Spectrum &amp;initialPathWeight=math::Spectrum(1)) const</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
     <name>ph::TIRayEstimator</name>
     <filename>d3/d9a/classph_1_1_t_i_ray_estimator.html</filename>
     <templarg>typename EstimationType</templarg>
@@ -34153,6 +36848,40 @@
       <anchorfile>da/d1c/classph_1_1_t_iterator_proxy.html</anchorfile>
       <anchor>adcfe980078d4ad9f21a2d84dbc59fc50</anchor>
       <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>ph::math::TLinearGradient2D</name>
+    <filename>d2/df1/classph_1_1math_1_1_t_linear_gradient2_d.html</filename>
+    <templarg>typename Value</templarg>
+    <base>ph::math::TMathFunction2D</base>
+    <member kind="function">
+      <type></type>
+      <name>TLinearGradient2D</name>
+      <anchorfile>d2/df1/classph_1_1math_1_1_t_linear_gradient2_d.html</anchorfile>
+      <anchor>ac59c61295b2d24e746836537a36e2b39</anchor>
+      <arglist>(TVector2&lt; Value &gt; direction, Value slope)</arglist>
+    </member>
+    <member kind="function">
+      <type>Value</type>
+      <name>evaluate</name>
+      <anchorfile>d2/df1/classph_1_1math_1_1_t_linear_gradient2_d.html</anchorfile>
+      <anchor>a0d1ea9d3ea79303be8336e0efc01fea6</anchor>
+      <arglist>(Value x, Value y) const override</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static auto</type>
+      <name>makeHorizontal</name>
+      <anchorfile>d2/df1/classph_1_1math_1_1_t_linear_gradient2_d.html</anchorfile>
+      <anchor>a3684798b550c669977f7c7630df91bd5</anchor>
+      <arglist>(Value slope) -&gt; TLinearGradient2D</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static auto</type>
+      <name>makeVertical</name>
+      <anchorfile>d2/df1/classph_1_1math_1_1_t_linear_gradient2_d.html</anchorfile>
+      <anchor>a4542b8ac84398c9509c4949cb3841492</anchor>
+      <arglist>(Value slope) -&gt; TLinearGradient2D</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -34379,20 +37108,20 @@
   <compound kind="class">
     <name>ph::math::TMathFunction2D</name>
     <filename>db/d60/classph_1_1math_1_1_t_math_function2_d.html</filename>
-    <templarg>typename ValueType</templarg>
+    <templarg>typename Value</templarg>
     <member kind="function" virtualness="virtual">
       <type>virtual</type>
       <name>~TMathFunction2D</name>
       <anchorfile>db/d60/classph_1_1math_1_1_t_math_function2_d.html</anchorfile>
-      <anchor>aa38f9647fb8066517e7b95ed236b4243</anchor>
+      <anchor>a500df07f982f7cbcbddba45a180bdb03</anchor>
       <arglist>()=default</arglist>
     </member>
     <member kind="function" virtualness="pure">
-      <type>virtual ValueType</type>
+      <type>virtual Value</type>
       <name>evaluate</name>
       <anchorfile>db/d60/classph_1_1math_1_1_t_math_function2_d.html</anchorfile>
-      <anchor>abc7a7d6d012a445f15ab5b3884b1bfcc</anchor>
-      <arglist>(ValueType x, ValueType y) const =0</arglist>
+      <anchor>a94c24929715a60f68c3cc6f729e53a3e</anchor>
+      <arglist>(Value x, Value y) const =0</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -34797,9 +37526,9 @@
     </member>
     <member kind="function" static="yes">
       <type>static TMatrix4</type>
-      <name>IDENTITY</name>
+      <name>makeIdentity</name>
       <anchorfile>d8/d48/classph_1_1math_1_1_t_matrix4.html</anchorfile>
-      <anchor>a84d1f14a828425a6ac124de54637d5fe</anchor>
+      <anchor>a0388c3328086d0889dcf78adcb978030</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="variable">
@@ -35062,10 +37791,17 @@
       <arglist>(const Ray &amp;ray, HitProbe &amp;probe) const override</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
-      <name>calcIntersectionDetail</name>
+      <type>bool</type>
+      <name>reintersect</name>
       <anchorfile>d8/d66/classph_1_1_t_meta_injection_primitive.html</anchorfile>
-      <anchor>a5c2404cdb3222de642d99c1a13461880</anchor>
+      <anchor>a627cd07c3fde34c0a7fc8b37656c7ba2</anchor>
+      <arglist>(const Ray &amp;ray, HitProbe &amp;probe, const Ray &amp;srcRay, HitProbe &amp;srcProbe) const override</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>calcHitDetail</name>
+      <anchorfile>d8/d66/classph_1_1_t_meta_injection_primitive.html</anchorfile>
+      <anchor>a275e560ef0b3107b4a956326eeb8740f</anchor>
       <arglist>(const Ray &amp;ray, HitProbe &amp;probe, HitDetail *const out_detail) const override</arglist>
     </member>
     <member kind="function">
@@ -35091,17 +37827,17 @@
     </member>
     <member kind="function">
       <type>void</type>
-      <name>genPositionSample</name>
+      <name>genPosSample</name>
       <anchorfile>d8/d66/classph_1_1_t_meta_injection_primitive.html</anchorfile>
-      <anchor>a378bea4fb6a87fa3cbabfe2ae659c440</anchor>
-      <arglist>(PrimitivePosSampleQuery &amp;query, SampleFlow &amp;sampleFlow) const override</arglist>
+      <anchor>a8c398e85e26f0ac242b52b8215dea775</anchor>
+      <arglist>(PrimitivePosSampleQuery &amp;query, SampleFlow &amp;sampleFlow, HitProbe &amp;probe) const override</arglist>
     </member>
     <member kind="function">
-      <type>real</type>
-      <name>calcPositionSamplePdfA</name>
+      <type>void</type>
+      <name>calcPosSamplePdfA</name>
       <anchorfile>d8/d66/classph_1_1_t_meta_injection_primitive.html</anchorfile>
-      <anchor>a5e5590ff91bbc65a77842d82d726eaf6</anchor>
-      <arglist>(const math::Vector3R &amp;position) const override</arglist>
+      <anchor>a25665086299fbbfa7e1d71b67e6e2b36</anchor>
+      <arglist>(PrimitivePosSamplePdfQuery &amp;query, HitProbe &amp;probe) const override</arglist>
     </member>
     <member kind="function">
       <type>real</type>
@@ -35189,35 +37925,35 @@
     </member>
   </compound>
   <compound kind="class">
-    <name>ph::TMis</name>
-    <filename>d0/dc5/classph_1_1_t_mis.html</filename>
+    <name>ph::lta::TMis</name>
+    <filename>dd/d85/classph_1_1lta_1_1_t_mis.html</filename>
     <templarg>EMisStyle STYLE</templarg>
     <member kind="function">
       <type>real</type>
       <name>weight</name>
-      <anchorfile>d0/dc5/classph_1_1_t_mis.html</anchorfile>
-      <anchor>abd3734fd732e5f54482a9e8652f44446</anchor>
+      <anchorfile>dd/d85/classph_1_1lta_1_1_t_mis.html</anchorfile>
+      <anchor>acd4456d4d455e606c2b635b2ec62014d</anchor>
       <arglist>(const real pdf0, const real pdf1) const</arglist>
     </member>
   </compound>
   <compound kind="class">
-    <name>ph::math::TMNCubic2D</name>
-    <filename>df/d1c/classph_1_1math_1_1_t_m_n_cubic2_d.html</filename>
-    <templarg>typename ValueType</templarg>
+    <name>ph::math::TMitchellNetravaliCubic2D</name>
+    <filename>d6/d48/classph_1_1math_1_1_t_mitchell_netravali_cubic2_d.html</filename>
+    <templarg>typename Value</templarg>
     <base>ph::math::TMathFunction2D</base>
     <member kind="function">
       <type></type>
-      <name>TMNCubic2D</name>
-      <anchorfile>df/d1c/classph_1_1math_1_1_t_m_n_cubic2_d.html</anchorfile>
-      <anchor>a7fb15058afff9a8d93032541503edb77</anchor>
-      <arglist>(ValueType b, ValueType c)</arglist>
+      <name>TMitchellNetravaliCubic2D</name>
+      <anchorfile>d6/d48/classph_1_1math_1_1_t_mitchell_netravali_cubic2_d.html</anchorfile>
+      <anchor>aa2a6b115833c5583747dcea48c23430c</anchor>
+      <arglist>(Value b, Value c)</arglist>
     </member>
     <member kind="function">
-      <type>ValueType</type>
+      <type>Value</type>
       <name>evaluate</name>
-      <anchorfile>df/d1c/classph_1_1math_1_1_t_m_n_cubic2_d.html</anchorfile>
-      <anchor>a02b36cd48ba460f6c5bbc9664e4284bf</anchor>
-      <arglist>(ValueType x, ValueType y) const override</arglist>
+      <anchorfile>d6/d48/classph_1_1math_1_1_t_mitchell_netravali_cubic2_d.html</anchorfile>
+      <anchor>a2e38ba2e72f6294c450a98e5b12f683d</anchor>
+      <arglist>(Value x, Value y) const override</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -35345,27 +38081,6 @@
     </member>
   </compound>
   <compound kind="class">
-    <name>ph::texfunc::TMultiplyConstant</name>
-    <filename>d9/d0a/classph_1_1texfunc_1_1_t_multiply_constant.html</filename>
-    <templarg>typename InputType</templarg>
-    <templarg>typename ConstantType</templarg>
-    <templarg>typename OutputType</templarg>
-    <member kind="function">
-      <type></type>
-      <name>TMultiplyConstant</name>
-      <anchorfile>d9/d0a/classph_1_1texfunc_1_1_t_multiply_constant.html</anchorfile>
-      <anchor>ad4f2ee9e0c3fef2742c68597660b70f1</anchor>
-      <arglist>(ConstantType constant)</arglist>
-    </member>
-    <member kind="function">
-      <type>OutputType</type>
-      <name>operator()</name>
-      <anchorfile>d9/d0a/classph_1_1texfunc_1_1_t_multiply_constant.html</anchorfile>
-      <anchor>a034606d6b83ddb4647d4eba03b41713a</anchor>
-      <arglist>(const InputType &amp;inputValue) const</arglist>
-    </member>
-  </compound>
-  <compound kind="class">
     <name>ph::TNearestPixelTex2D</name>
     <filename>db/daa/classph_1_1_t_nearest_pixel_tex2_d.html</filename>
     <templarg>typename T</templarg>
@@ -35473,13 +38188,6 @@
       <anchorfile>d8/de9/classph_1_1math_1_1_t_orthonormal_basis3.html</anchorfile>
       <anchor>af86f7b3c88091e0b527997392e7a2d4c</anchor>
       <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>TOrthonormalBasis3</name>
-      <anchorfile>d8/de9/classph_1_1math_1_1_t_orthonormal_basis3.html</anchorfile>
-      <anchor>a46496359b49b89fc1ef6b3eef5b7e95d</anchor>
-      <arglist>(const TOrthonormalBasis3 &amp;other)</arglist>
     </member>
     <member kind="function">
       <type></type>
@@ -35677,13 +38385,6 @@
       <anchor>a2da892795c848c0801eb782650117d3b</anchor>
       <arglist>() const</arglist>
     </member>
-    <member kind="function">
-      <type>TOrthonormalBasis3 &amp;</type>
-      <name>operator=</name>
-      <anchorfile>d8/de9/classph_1_1math_1_1_t_orthonormal_basis3.html</anchorfile>
-      <anchor>a7807befb0646362cc7dde0b86baf50b1</anchor>
-      <arglist>(const TOrthonormalBasis3 &amp;rhs)</arglist>
-    </member>
     <member kind="function" static="yes">
       <type>static TOrthonormalBasis3</type>
       <name>makeFromUnitY</name>
@@ -35696,6 +38397,13 @@
     <name>ph::TPhoton</name>
     <filename>d9/d60/classph_1_1_t_photon.html</filename>
     <templarg>typename Derived</templarg>
+    <member kind="typedef">
+      <type>void</type>
+      <name>PMPhotonTag</name>
+      <anchorfile>d9/d60/classph_1_1_t_photon.html</anchorfile>
+      <anchor>aa8c4dd712ed2fd4fb64e2552bcffc265</anchor>
+      <arglist></arglist>
+    </member>
     <member kind="function">
       <type>decltype(auto)</type>
       <name>get</name>
@@ -35717,37 +38425,142 @@
       <anchor>a30ae0588690f0591d4af517d4accc364</anchor>
       <arglist>()</arglist>
     </member>
-  </compound>
-  <compound kind="struct">
-    <name>ph::TPhotonCenterCalculator</name>
-    <filename>d3/df3/structph_1_1_t_photon_center_calculator.html</filename>
-    <templarg>typename Photon</templarg>
-    <member kind="function">
-      <type>math::Vector3R</type>
-      <name>operator()</name>
-      <anchorfile>d3/df3/structph_1_1_t_photon_center_calculator.html</anchorfile>
-      <anchor>a7e83f265d88370d0c9d5e76b5eeeed8c</anchor>
-      <arglist>(const Photon &amp;photon) const</arglist>
+    <member kind="function" protection="protected">
+      <type></type>
+      <name>PH_DEFINE_INLINE_RULE_OF_5_MEMBERS</name>
+      <anchorfile>d9/d60/classph_1_1_t_photon.html</anchorfile>
+      <anchor>a73b398353042d9e1e9978cf785633634</anchor>
+      <arglist>(TPhoton)</arglist>
     </member>
   </compound>
   <compound kind="class">
-    <name>ph::TPhotonMappingWork</name>
-    <filename>dc/d76/classph_1_1_t_photon_mapping_work.html</filename>
-    <templarg>typename Photon</templarg>
-    <base>ph::RenderWork</base>
+    <name>ph::TPhotonMap</name>
+    <filename>d9/d1f/classph_1_1_t_photon_map.html</filename>
+    <templarg>CPhoton Photon</templarg>
+    <templarg>math::CIndexedPointKdtreeItemStorage&lt; Photon &gt; PhotonStorage</templarg>
+    <class kind="struct">ph::TPhotonMap::PhotonCenterCalculator</class>
+    <member kind="typedef">
+      <type>math::TIndexedPointKdtree&lt; Photon, int, PhotonCenterCalculator, PhotonStorage &gt;</type>
+      <name>MapType</name>
+      <anchorfile>d9/d1f/classph_1_1_t_photon_map.html</anchorfile>
+      <anchor>ab4ca9b65cc8b68363e679daf4f42cd00</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>MapType::BuildCache</type>
+      <name>BuildCacheType</name>
+      <anchorfile>d9/d1f/classph_1_1_t_photon_map.html</anchorfile>
+      <anchor>af8f22c022faa7f72103c0d39cd9b4c4d</anchor>
+      <arglist></arglist>
+    </member>
     <member kind="function">
-      <type></type>
-      <name>TPhotonMappingWork</name>
-      <anchorfile>dc/d76/classph_1_1_t_photon_mapping_work.html</anchorfile>
-      <anchor>a2211a4e68ca4263eb78bc7c1150cb374</anchor>
-      <arglist>(const Scene *scene, const Receiver *receiver, SampleGenerator *sampleGenerator, Photon *photonBuffer, std::size_t numPhotons, std::size_t *out_numPhotonPaths)</arglist>
+      <type>bool</type>
+      <name>canContribute</name>
+      <anchorfile>d9/d1f/classph_1_1_t_photon_map.html</anchorfile>
+      <anchor>a5453753b482eb0f0ff7f3693da6423a1</anchor>
+      <arglist>(const std::size_t viewPathLength, const std::size_t minFullPathLength, const std::size_t maxFullPathLength) const</arglist>
     </member>
     <member kind="function">
       <type>void</type>
-      <name>setPMStatistics</name>
-      <anchorfile>dc/d76/classph_1_1_t_photon_mapping_work.html</anchorfile>
-      <anchor>a107f63e18ffbf2247c6d3db74da49925</anchor>
-      <arglist>(PMStatistics *statistics)</arglist>
+      <name>find</name>
+      <anchorfile>d9/d1f/classph_1_1_t_photon_map.html</anchorfile>
+      <anchor>aa855988bc09c1f02a9df5e0ff5405081</anchor>
+      <arglist>(const math::Vector3R &amp;position, const real kernelRadius, std::vector&lt; Photon &gt; &amp;photons) const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>find</name>
+      <anchorfile>d9/d1f/classph_1_1_t_photon_map.html</anchorfile>
+      <anchor>aeb1056a57f8778dc4950985ab5c1e4fb</anchor>
+      <arglist>(const math::Vector3R &amp;position, const real kernelRadius, const std::size_t viewPathLength, const std::size_t minFullPathLength, const std::size_t maxFullPathLength, std::vector&lt; Photon &gt; &amp;photons) const</arglist>
+    </member>
+    <member kind="function">
+      <type>TPhotonMapInfo&lt; Photon &gt;</type>
+      <name>getInfo</name>
+      <anchorfile>d9/d1f/classph_1_1_t_photon_map.html</anchorfile>
+      <anchor>a785a3af45e87a38581fb45283bc40c83</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="variable">
+      <type>MapType</type>
+      <name>map</name>
+      <anchorfile>d9/d1f/classph_1_1_t_photon_map.html</anchorfile>
+      <anchor>a66dd13a81bfd185475ac9f0286845c3e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>std::size_t</type>
+      <name>numPaths</name>
+      <anchorfile>d9/d1f/classph_1_1_t_photon_map.html</anchorfile>
+      <anchor>af49e3490bed1be375c532f11fb7cc1a5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>uint32</type>
+      <name>minPathLength</name>
+      <anchorfile>d9/d1f/classph_1_1_t_photon_map.html</anchorfile>
+      <anchor>a1fc838f70a895e9af14a33d8773aafad</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>uint32</type>
+      <name>maxPathLength</name>
+      <anchorfile>d9/d1f/classph_1_1_t_photon_map.html</anchorfile>
+      <anchor>a064e7a9f4019a5a5444b058e80e8666a</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>ph::TPhotonMapInfo</name>
+    <filename>df/d54/classph_1_1_t_photon_map_info.html</filename>
+    <templarg>CPhoton Photon</templarg>
+    <member kind="variable">
+      <type>std::size_t</type>
+      <name>numPaths</name>
+      <anchorfile>df/d54/classph_1_1_t_photon_map_info.html</anchorfile>
+      <anchor>a6bd624d5ce1ea3912f5bf779258be1cc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>uint32</type>
+      <name>minPathLength</name>
+      <anchorfile>df/d54/classph_1_1_t_photon_map_info.html</anchorfile>
+      <anchor>a48f21b98fbc3ae4fdec7b319665150f8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>uint32</type>
+      <name>maxPathLength</name>
+      <anchorfile>df/d54/classph_1_1_t_photon_map_info.html</anchorfile>
+      <anchor>ab7590812266c3a9bde7c41112b46624a</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>ph::TPhotonPathTracingWork</name>
+    <filename>d6/d54/classph_1_1_t_photon_path_tracing_work.html</filename>
+    <templarg>CPhoton Photon</templarg>
+    <base>ph::RenderWork</base>
+    <member kind="function">
+      <type></type>
+      <name>TPhotonPathTracingWork</name>
+      <anchorfile>d6/d54/classph_1_1_t_photon_path_tracing_work.html</anchorfile>
+      <anchor>a9227387742ef272f9ca11074471ddd53</anchor>
+      <arglist>(const Scene *scene, const Receiver *receiver, SampleGenerator *sampleGenerator, TSpan&lt; Photon &gt; photonBuffer, uint32 minPhotonPathLength=1, uint32 maxPhotonPathLength=PMCommonParams::DEFAULT_MAX_PATH_LENGTH)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setStatistics</name>
+      <anchorfile>d6/d54/classph_1_1_t_photon_path_tracing_work.html</anchorfile>
+      <anchor>a1f7b60472c8a764ec41aa2f8eac98d73</anchor>
+      <arglist>(PMAtomicStatistics *statistics)</arglist>
+    </member>
+    <member kind="function">
+      <type>std::size_t</type>
+      <name>numPhotonPaths</name>
+      <anchorfile>d6/d54/classph_1_1_t_photon_path_tracing_work.html</anchorfile>
+      <anchor>a8c55189d38a579a28bdae9add7e9d061</anchor>
+      <arglist>() const</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -35838,10 +38651,17 @@
       <arglist>(const Ray &amp;ray, HitProbe &amp;probe) const override</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
-      <name>calcIntersectionDetail</name>
+      <type>bool</type>
+      <name>reintersect</name>
       <anchorfile>d4/d4b/classph_1_1_t_p_indexed_kd_tree_triangle_mesh.html</anchorfile>
-      <anchor>a0a6770ef5267912ff05bb2f03016a3ff</anchor>
+      <anchor>a7eea33b4bb474af47833b13bf46ffb07</anchor>
+      <arglist>(const Ray &amp;ray, HitProbe &amp;probe, const Ray &amp;, HitProbe &amp;srcProbe) const override</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>calcHitDetail</name>
+      <anchorfile>d4/d4b/classph_1_1_t_p_indexed_kd_tree_triangle_mesh.html</anchorfile>
+      <anchor>a8d7837d923dbf4b2d2dcc73ca2ef22c3</anchor>
       <arglist>(const Ray &amp;ray, HitProbe &amp;probe, HitDetail *out_detail) const override</arglist>
     </member>
     <member kind="function">
@@ -36060,84 +38880,93 @@
     </member>
   </compound>
   <compound kind="class">
-    <name>ph::TPKdTreeTriangleMesh</name>
-    <filename>d4/d32/classph_1_1_t_p_kd_tree_triangle_mesh.html</filename>
-    <templarg>typename Index</templarg>
-    <base>ph::Primitive</base>
+    <name>ph::texfunc::TPower</name>
+    <filename>dc/d7a/classph_1_1texfunc_1_1_t_power.html</filename>
+    <templarg>typename InputTypeA</templarg>
+    <templarg>typename InputTypeB</templarg>
+    <templarg>typename OutputType</templarg>
+    <member kind="function">
+      <type>OutputType</type>
+      <name>operator()</name>
+      <anchorfile>dc/d7a/classph_1_1texfunc_1_1_t_power.html</anchorfile>
+      <anchor>a8cd80efe7cd5ff09f0218914d5bf2b76</anchor>
+      <arglist>(const InputTypeA &amp;inputValueA, const InputTypeB &amp;inputValueB) const</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>ph::TPPMRadianceEvaluationWork</name>
+    <filename>df/d25/classph_1_1_t_p_p_m_radiance_evaluation_work.html</filename>
+    <templarg>CPhoton Photon</templarg>
+    <templarg>CViewpoint Viewpoint</templarg>
+    <base>ph::RenderWork</base>
     <member kind="function">
       <type></type>
-      <name>TPKdTreeTriangleMesh</name>
-      <anchorfile>d4/d32/classph_1_1_t_p_kd_tree_triangle_mesh.html</anchorfile>
-      <anchor>ad421440bafd730085215e6ad49f91f4e</anchor>
-      <arglist>(const std::shared_ptr&lt; IndexedTriMesh &gt; &amp;triMesh, math::IndexedKdtreeParams params=math::IndexedKdtreeParams())</arglist>
-    </member>
-    <member kind="function">
-      <type>bool</type>
-      <name>isIntersecting</name>
-      <anchorfile>d4/d32/classph_1_1_t_p_kd_tree_triangle_mesh.html</anchorfile>
-      <anchor>af6cdbbf15712f4f48fe3935cff091b19</anchor>
-      <arglist>(const Ray &amp;ray, HitProbe &amp;probe) const override</arglist>
+      <name>TPPMRadianceEvaluationWork</name>
+      <anchorfile>df/d25/classph_1_1_t_p_p_m_radiance_evaluation_work.html</anchorfile>
+      <anchor>a474e8788833ac331d494db5a33ad3364</anchor>
+      <arglist>(TSpan&lt; Viewpoint &gt; viewpoints, const TPhotonMap&lt; Photon &gt; *photonMap, const Scene *scene, TSamplingFilm&lt; math::Spectrum &gt; *film, std::size_t totalPhotonPaths)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
-      <name>calcIntersectionDetail</name>
-      <anchorfile>d4/d32/classph_1_1_t_p_kd_tree_triangle_mesh.html</anchorfile>
-      <anchor>afcc2133fd23793a30cec5196d34e6424</anchor>
-      <arglist>(const Ray &amp;ray, HitProbe &amp;probe, HitDetail *out_detail) const override</arglist>
+      <name>setStatistics</name>
+      <anchorfile>df/d25/classph_1_1_t_p_p_m_radiance_evaluation_work.html</anchorfile>
+      <anchor>a2ae46f92a6dd10d842266f7cdd766156</anchor>
+      <arglist>(PMAtomicStatistics *statistics)</arglist>
     </member>
     <member kind="function">
-      <type>math::AABB3D</type>
-      <name>calcAABB</name>
-      <anchorfile>d4/d32/classph_1_1_t_p_kd_tree_triangle_mesh.html</anchorfile>
-      <anchor>a9cef27bda2c7f03f5763cf22bb54da8a</anchor>
-      <arglist>() const override</arglist>
+      <type>void</type>
+      <name>setAlpha</name>
+      <anchorfile>df/d25/classph_1_1_t_p_p_m_radiance_evaluation_work.html</anchorfile>
+      <anchor>aac24296fe3fa01227b5ad11cfc4b5eda</anchor>
+      <arglist>(real alpha)</arglist>
     </member>
   </compound>
   <compound kind="class">
     <name>ph::TPPMViewpointCollector</name>
     <filename>de/d34/classph_1_1_t_p_p_m_viewpoint_collector.html</filename>
-    <templarg>typename Viewpoint</templarg>
-    <base>TViewPathHandler&lt; TPPMViewpointCollector&lt; Viewpoint &gt; &gt;</base>
+    <templarg>CViewpoint Viewpoint</templarg>
+    <templarg>CPhoton Photon</templarg>
+    <base>TViewPathHandler&lt; TPPMViewpointCollector&lt; Viewpoint, Photon &gt; &gt;</base>
     <member kind="function">
       <type></type>
       <name>TPPMViewpointCollector</name>
       <anchorfile>de/d34/classph_1_1_t_p_p_m_viewpoint_collector.html</anchorfile>
-      <anchor>af611ba043077886196176a41d84f3332</anchor>
-      <arglist>(std::size_t maxViewpointDepth, real initialKernelRadius)</arglist>
+      <anchor>afebe3a31bde54bf32af10e87a054da9b</anchor>
+      <arglist>(std::size_t maxViewpointDepth, real initialKernelRadius, const TPhotonMapInfo&lt; Photon &gt; &amp;photonMapInfo, const Scene *scene)</arglist>
     </member>
     <member kind="function">
       <type>bool</type>
       <name>impl_onReceiverSampleStart</name>
       <anchorfile>de/d34/classph_1_1_t_p_p_m_viewpoint_collector.html</anchorfile>
-      <anchor>aa1ddf4230664c34b2878eaf3c7d2a0ef</anchor>
-      <arglist>(const math::Vector2D &amp;rasterCoord, const math::Spectrum &amp;pathThroughput)</arglist>
+      <anchor>aa1ef9f2b05c7b305449434eb1b0ef257</anchor>
+      <arglist>(const math::Vector2D &amp;rasterCoord, const math::Vector2S &amp;sampleIndex, const math::Spectrum &amp;pathThroughput)</arglist>
     </member>
     <member kind="function">
       <type>auto</type>
       <name>impl_onPathHitSurface</name>
       <anchorfile>de/d34/classph_1_1_t_p_p_m_viewpoint_collector.html</anchorfile>
-      <anchor>a07b77e91b524a9228d51c72b755cd46a</anchor>
+      <anchor>a90a9150c96bb720c49746dd113e50af9</anchor>
       <arglist>(std::size_t pathLength, const SurfaceHit &amp;surfaceHit, const math::Spectrum &amp;pathThroughput) -&gt; ViewPathTracingPolicy</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>impl_onReceiverSampleEnd</name>
       <anchorfile>de/d34/classph_1_1_t_p_p_m_viewpoint_collector.html</anchorfile>
-      <anchor>ae02807940bdfb329f3dc938c6e862db6</anchor>
+      <anchor>a7646b5b8b76fd3888d6312d5e2cca6a7</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>impl_onSampleBatchFinished</name>
       <anchorfile>de/d34/classph_1_1_t_p_p_m_viewpoint_collector.html</anchorfile>
-      <anchor>ab9e3e24e79100292ff633fc20c2196a9</anchor>
+      <anchor>aec25c41ab2a71984a5b597feb3490d7d</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
       <type>std::vector&lt; Viewpoint &gt;</type>
       <name>claimViewpoints</name>
       <anchorfile>de/d34/classph_1_1_t_p_p_m_viewpoint_collector.html</anchorfile>
-      <anchor>a1291f88a7835029fda907fcfffa3191c</anchor>
+      <anchor>ace36c608806ef17d756dc6f5ff8acc34</anchor>
       <arglist>()</arglist>
     </member>
   </compound>
@@ -36145,20 +38974,6 @@
     <name>ph::math::TPwcDistribution1D</name>
     <filename>d4/df4/classph_1_1math_1_1_t_pwc_distribution1_d.html</filename>
     <templarg>typename T</templarg>
-    <member kind="function">
-      <type></type>
-      <name>TPwcDistribution1D</name>
-      <anchorfile>d4/df4/classph_1_1math_1_1_t_pwc_distribution1_d.html</anchorfile>
-      <anchor>a48f641b884f7f78da2304f699eb79044</anchor>
-      <arglist>(T min, T max, const T *weights, std::size_t numWeights)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>TPwcDistribution1D</name>
-      <anchorfile>d4/df4/classph_1_1math_1_1_t_pwc_distribution1_d.html</anchorfile>
-      <anchor>a2b76a55405365348a97d549601e2e6f8</anchor>
-      <arglist>(T min, T max, const std::vector&lt; T &gt; &amp;weights)</arglist>
-    </member>
     <member kind="function">
       <type></type>
       <name>TPwcDistribution1D</name>
@@ -36172,27 +38987,6 @@
       <anchorfile>d4/df4/classph_1_1math_1_1_t_pwc_distribution1_d.html</anchorfile>
       <anchor>a55aa3452ddcef621ce8c58cc2b73bed0</anchor>
       <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>T</type>
-      <name>sampleContinuous</name>
-      <anchorfile>d4/df4/classph_1_1math_1_1_t_pwc_distribution1_d.html</anchorfile>
-      <anchor>a424f6079efb4540838580862e6a1f202</anchor>
-      <arglist>(T sample) const</arglist>
-    </member>
-    <member kind="function">
-      <type>T</type>
-      <name>sampleContinuous</name>
-      <anchorfile>d4/df4/classph_1_1math_1_1_t_pwc_distribution1_d.html</anchorfile>
-      <anchor>ae2352f7c6961456d421b0bf55483b833</anchor>
-      <arglist>(T sample, T *out_pdf) const</arglist>
-    </member>
-    <member kind="function">
-      <type>T</type>
-      <name>sampleContinuous</name>
-      <anchorfile>d4/df4/classph_1_1math_1_1_t_pwc_distribution1_d.html</anchorfile>
-      <anchor>ab28954a89ebf5cea3c7affe6d53be04c</anchor>
-      <arglist>(T sample, T *out_pdf, std::size_t *out_straddledColumn) const</arglist>
     </member>
     <member kind="function">
       <type>std::size_t</type>
@@ -36235,6 +39029,76 @@
       <anchorfile>d4/df4/classph_1_1math_1_1_t_pwc_distribution1_d.html</anchorfile>
       <anchor>a8d900f7c082be05d41b18655f7d56aec</anchor>
       <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>TPwcDistribution1D</name>
+      <anchorfile>d4/df4/classph_1_1math_1_1_t_pwc_distribution1_d.html</anchorfile>
+      <anchor>a48f641b884f7f78da2304f699eb79044</anchor>
+      <arglist>(T min, T max, const T *weights, std::size_t numWeights)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>TPwcDistribution1D</name>
+      <anchorfile>d4/df4/classph_1_1math_1_1_t_pwc_distribution1_d.html</anchorfile>
+      <anchor>a2b76a55405365348a97d549601e2e6f8</anchor>
+      <arglist>(T min, T max, const std::vector&lt; T &gt; &amp;weights)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>sampleContinuous</name>
+      <anchorfile>d4/df4/classph_1_1math_1_1_t_pwc_distribution1_d.html</anchorfile>
+      <anchor>a424f6079efb4540838580862e6a1f202</anchor>
+      <arglist>(T sample) const</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>sampleContinuous</name>
+      <anchorfile>d4/df4/classph_1_1math_1_1_t_pwc_distribution1_d.html</anchorfile>
+      <anchor>ae2352f7c6961456d421b0bf55483b833</anchor>
+      <arglist>(T sample, T *out_pdf) const</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>sampleContinuous</name>
+      <anchorfile>d4/df4/classph_1_1math_1_1_t_pwc_distribution1_d.html</anchorfile>
+      <anchor>ab28954a89ebf5cea3c7affe6d53be04c</anchor>
+      <arglist>(T sample, T *out_pdf, std::size_t *out_straddledColumn) const</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>TPwcDistribution1D</name>
+      <anchorfile>d4/df4/classph_1_1math_1_1_t_pwc_distribution1_d.html</anchorfile>
+      <anchor>a48f641b884f7f78da2304f699eb79044</anchor>
+      <arglist>(T min, T max, const T *weights, std::size_t numWeights)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>TPwcDistribution1D</name>
+      <anchorfile>d4/df4/classph_1_1math_1_1_t_pwc_distribution1_d.html</anchorfile>
+      <anchor>a2b76a55405365348a97d549601e2e6f8</anchor>
+      <arglist>(T min, T max, const std::vector&lt; T &gt; &amp;weights)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>sampleContinuous</name>
+      <anchorfile>d4/df4/classph_1_1math_1_1_t_pwc_distribution1_d.html</anchorfile>
+      <anchor>a424f6079efb4540838580862e6a1f202</anchor>
+      <arglist>(T sample) const</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>sampleContinuous</name>
+      <anchorfile>d4/df4/classph_1_1math_1_1_t_pwc_distribution1_d.html</anchorfile>
+      <anchor>ae2352f7c6961456d421b0bf55483b833</anchor>
+      <arglist>(T sample, T *out_pdf) const</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>sampleContinuous</name>
+      <anchorfile>d4/df4/classph_1_1math_1_1_t_pwc_distribution1_d.html</anchorfile>
+      <anchor>ab28954a89ebf5cea3c7affe6d53be04c</anchor>
+      <arglist>(T sample, T *out_pdf, std::size_t *out_straddledColumn) const</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -36281,40 +39145,20 @@
     <name>ph::math::TQuaternion</name>
     <filename>df/d4d/classph_1_1math_1_1_t_quaternion.html</filename>
     <templarg>typename T</templarg>
+    <base>TArithmeticArrayBase&lt; TQuaternion&lt; T &gt;, T, 4 &gt;</base>
     <member kind="function">
       <type></type>
-      <name>TQuaternion</name>
+      <name>PH_DEFINE_INLINE_RULE_OF_5_MEMBERS</name>
       <anchorfile>df/d4d/classph_1_1math_1_1_t_quaternion.html</anchorfile>
-      <anchor>a12f6227f3aeb1360f27084d226c673fc</anchor>
-      <arglist>()=default</arglist>
+      <anchor>a0934a5eb5d118f7b9f1b0af5f0496620</anchor>
+      <arglist>(TQuaternion)</arglist>
     </member>
     <member kind="function">
       <type></type>
       <name>TQuaternion</name>
       <anchorfile>df/d4d/classph_1_1math_1_1_t_quaternion.html</anchorfile>
-      <anchor>a10cdcd229cb51dfde842830cc7ae0ec8</anchor>
-      <arglist>(const TQuaternion &amp;other)=default</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>TQuaternion</name>
-      <anchorfile>df/d4d/classph_1_1math_1_1_t_quaternion.html</anchorfile>
-      <anchor>a0d1d23cd0def4e2ef58ad7df8ce1b42c</anchor>
-      <arglist>(T x, T y, T z, T w)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>TQuaternion</name>
-      <anchorfile>df/d4d/classph_1_1math_1_1_t_quaternion.html</anchorfile>
-      <anchor>abf83bfee495e7294fbf45066cc53d862</anchor>
-      <arglist>(const TVector3&lt; T &gt; &amp;normalizedAxis, T radians)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>TQuaternion</name>
-      <anchorfile>df/d4d/classph_1_1math_1_1_t_quaternion.html</anchorfile>
-      <anchor>a31316a7d7768c5a00b85a595196cbe87</anchor>
-      <arglist>(const TMatrix4&lt; T &gt; &amp;rotationMatrix)</arglist>
+      <anchor>acfd225f0f71c53bb803339633e293daf</anchor>
+      <arglist>(T vx, T vy, T vz, T vw)</arglist>
     </member>
     <member kind="function">
       <type></type>
@@ -36331,18 +39175,81 @@
       <arglist>(const std::array&lt; U, 4 &gt; &amp;xyzwValues)</arglist>
     </member>
     <member kind="function">
+      <type></type>
+      <name>TQuaternion</name>
+      <anchorfile>df/d4d/classph_1_1math_1_1_t_quaternion.html</anchorfile>
+      <anchor>abf83bfee495e7294fbf45066cc53d862</anchor>
+      <arglist>(const TVector3&lt; T &gt; &amp;normalizedAxis, T radians)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>TQuaternion</name>
+      <anchorfile>df/d4d/classph_1_1math_1_1_t_quaternion.html</anchorfile>
+      <anchor>a31316a7d7768c5a00b85a595196cbe87</anchor>
+      <arglist>(const TMatrix4&lt; T &gt; &amp;rotationMatrix)</arglist>
+    </member>
+    <member kind="function">
+      <type>T &amp;</type>
+      <name>x</name>
+      <anchorfile>df/d4d/classph_1_1math_1_1_t_quaternion.html</anchorfile>
+      <anchor>a42e5f6cce7ae854af3d9914d42638592</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>T &amp;</type>
+      <name>y</name>
+      <anchorfile>df/d4d/classph_1_1math_1_1_t_quaternion.html</anchorfile>
+      <anchor>afd8f8550878cb7282edd3693e73b3881</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>T &amp;</type>
+      <name>z</name>
+      <anchorfile>df/d4d/classph_1_1math_1_1_t_quaternion.html</anchorfile>
+      <anchor>a5e16c61bcbf975255080a6af6cdf8f01</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>T &amp;</type>
+      <name>w</name>
+      <anchorfile>df/d4d/classph_1_1math_1_1_t_quaternion.html</anchorfile>
+      <anchor>a60b4ac56bb3dcc403d8fcadc4843975f</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>const T &amp;</type>
+      <name>x</name>
+      <anchorfile>df/d4d/classph_1_1math_1_1_t_quaternion.html</anchorfile>
+      <anchor>a776558b5a6a05e8424fcd462d81757b2</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>const T &amp;</type>
+      <name>y</name>
+      <anchorfile>df/d4d/classph_1_1math_1_1_t_quaternion.html</anchorfile>
+      <anchor>a59c68e9eb3b5efde2291da7bbb070103</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>const T &amp;</type>
+      <name>z</name>
+      <anchorfile>df/d4d/classph_1_1math_1_1_t_quaternion.html</anchorfile>
+      <anchor>aa1a720fd75211c57f1d68618bb537f2e</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>const T &amp;</type>
+      <name>w</name>
+      <anchorfile>df/d4d/classph_1_1math_1_1_t_quaternion.html</anchorfile>
+      <anchor>a2e5c360aa3471e95972231793d7c23a4</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
       <type>TQuaternion</type>
       <name>mul</name>
       <anchorfile>df/d4d/classph_1_1math_1_1_t_quaternion.html</anchorfile>
       <anchor>ada3e29e3c0857d85b0cb5ac64914c0bd</anchor>
       <arglist>(const TVector3&lt; T &gt; &amp;xyz) const</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>mul</name>
-      <anchorfile>df/d4d/classph_1_1math_1_1_t_quaternion.html</anchorfile>
-      <anchor>a7ef94ebfbbf6de463849f196a141dc9d</anchor>
-      <arglist>(const TVector3&lt; T &gt; &amp;xyz, TQuaternion *out_result) const</arglist>
     </member>
     <member kind="function">
       <type>TQuaternion</type>
@@ -36394,13 +39301,6 @@
       <arglist>(const TQuaternion &amp;rhs) const</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
-      <name>mul</name>
-      <anchorfile>df/d4d/classph_1_1math_1_1_t_quaternion.html</anchorfile>
-      <anchor>adf629533c67fc417f177e139f40ca5f6</anchor>
-      <arglist>(const TQuaternion &amp;rhs, TQuaternion *out_result) const</arglist>
-    </member>
-    <member kind="function">
       <type>TQuaternion &amp;</type>
       <name>mulLocal</name>
       <anchorfile>df/d4d/classph_1_1math_1_1_t_quaternion.html</anchorfile>
@@ -36436,20 +39336,6 @@
       <arglist>(const TQuaternion &amp;rhs) const</arglist>
     </member>
     <member kind="function">
-      <type>TQuaternion &amp;</type>
-      <name>set</name>
-      <anchorfile>df/d4d/classph_1_1math_1_1_t_quaternion.html</anchorfile>
-      <anchor>a88fe53cce0ccf879f61b340d23297a6f</anchor>
-      <arglist>(T rhsX, T rhsY, T rhsZ, T rhsW)</arglist>
-    </member>
-    <member kind="function">
-      <type>TQuaternion &amp;</type>
-      <name>set</name>
-      <anchorfile>df/d4d/classph_1_1math_1_1_t_quaternion.html</anchorfile>
-      <anchor>a22451fa8abe4a7f8924a0b1a34a6d4a3</anchor>
-      <arglist>(const TQuaternion &amp;rhs)</arglist>
-    </member>
-    <member kind="function">
       <type>void</type>
       <name>setRot</name>
       <anchorfile>df/d4d/classph_1_1math_1_1_t_quaternion.html</anchorfile>
@@ -36463,102 +39349,12 @@
       <anchor>a243a9eb6bdd69710180ab6d631e06f92</anchor>
       <arglist>(TMatrix4&lt; T &gt; *out_result) const</arglist>
     </member>
-    <member kind="function">
-      <type>std::string</type>
-      <name>toString</name>
-      <anchorfile>df/d4d/classph_1_1math_1_1_t_quaternion.html</anchorfile>
-      <anchor>aaa52bed8ed09cd48b59f4cc97fa785ee</anchor>
-      <arglist>() const</arglist>
-    </member>
-    <member kind="function">
-      <type>bool</type>
-      <name>isEqual</name>
-      <anchorfile>df/d4d/classph_1_1math_1_1_t_quaternion.html</anchorfile>
-      <anchor>afe4166bfff85e5ff74921a438e475a56</anchor>
-      <arglist>(const TQuaternion &amp;other) const</arglist>
-    </member>
-    <member kind="function">
-      <type>bool</type>
-      <name>operator==</name>
-      <anchorfile>df/d4d/classph_1_1math_1_1_t_quaternion.html</anchorfile>
-      <anchor>a670b86c585d144c6ea85509b1f847a9e</anchor>
-      <arglist>(const TQuaternion &amp;rhs) const</arglist>
-    </member>
-    <member kind="function">
-      <type>bool</type>
-      <name>operator!=</name>
-      <anchorfile>df/d4d/classph_1_1math_1_1_t_quaternion.html</anchorfile>
-      <anchor>a23f5eaa3b0660ff276ec035c7c604c60</anchor>
-      <arglist>(const TQuaternion &amp;rhs) const</arglist>
-    </member>
     <member kind="function" static="yes">
       <type>static TQuaternion</type>
       <name>makeNoRotation</name>
       <anchorfile>df/d4d/classph_1_1math_1_1_t_quaternion.html</anchorfile>
       <anchor>ad8e7dfff6ce93849a2c9e7580ea3e631</anchor>
       <arglist>()</arglist>
-    </member>
-    <member kind="variable">
-      <type>T</type>
-      <name>x</name>
-      <anchorfile>df/d4d/classph_1_1math_1_1_t_quaternion.html</anchorfile>
-      <anchor>a7789ba770d8da13cd939f6e0ac99b01b</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>T</type>
-      <name>y</name>
-      <anchorfile>df/d4d/classph_1_1math_1_1_t_quaternion.html</anchorfile>
-      <anchor>aee4a46424ec6606248b381c8496215f4</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>T</type>
-      <name>z</name>
-      <anchorfile>df/d4d/classph_1_1math_1_1_t_quaternion.html</anchorfile>
-      <anchor>ae56fa3baa17963ba63237d70781b48ed</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>T</type>
-      <name>w</name>
-      <anchorfile>df/d4d/classph_1_1math_1_1_t_quaternion.html</anchorfile>
-      <anchor>ae272abfb41feb0c79553477e77f32e16</anchor>
-      <arglist></arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>ph::TRadianceEvaluationWork</name>
-    <filename>de/d38/classph_1_1_t_radiance_evaluation_work.html</filename>
-    <templarg>typename Photon</templarg>
-    <base>ph::RenderWork</base>
-    <member kind="function">
-      <type></type>
-      <name>TRadianceEvaluationWork</name>
-      <anchorfile>de/d38/classph_1_1_t_radiance_evaluation_work.html</anchorfile>
-      <anchor>a37f6c94986f4800a0f2ac9e5b659e8a7</anchor>
-      <arglist>(const TPhotonMap&lt; Photon &gt; *photonMap, std::size_t numPhotonPaths)</arglist>
-    </member>
-    <member kind="function">
-      <type>math::Spectrum</type>
-      <name>evaluateRadiance</name>
-      <anchorfile>de/d38/classph_1_1_t_radiance_evaluation_work.html</anchorfile>
-      <anchor>a6f4f48b07f9f912426fa0f2a796a0152</anchor>
-      <arglist>(const SurfaceHit &amp;location, const math::Vector3R &amp;excitant, real kernelRadius)</arglist>
-    </member>
-    <member kind="function" protection="protected">
-      <type>const TPhotonMap&lt; Photon &gt; *</type>
-      <name>getPhotonMap</name>
-      <anchorfile>de/d38/classph_1_1_t_radiance_evaluation_work.html</anchorfile>
-      <anchor>a9cbd61e40456da50cd14c6e7907d5665</anchor>
-      <arglist>() const</arglist>
-    </member>
-    <member kind="function" protection="protected">
-      <type>const std::size_t</type>
-      <name>numPhotonPaths</name>
-      <anchorfile>de/d38/classph_1_1_t_radiance_evaluation_work.html</anchorfile>
-      <anchor>ab18ef8adc170b5436ec233a179356301</anchor>
-      <arglist>() const</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -36664,22 +39460,15 @@
       <type></type>
       <name>TransformedIntersectable</name>
       <anchorfile>d4/dfa/classph_1_1_transformed_intersectable.html</anchorfile>
-      <anchor>a49fbd632750883ba9da215f3d72d365d</anchor>
-      <arglist>(const Intersectable *intersectable, const math::Transform *localToWorld, const math::Transform *worldToLocal)</arglist>
+      <anchor>a8ff415d1516b549bf29138ce58659cbf</anchor>
+      <arglist>()</arglist>
     </member>
     <member kind="function">
       <type></type>
       <name>TransformedIntersectable</name>
       <anchorfile>d4/dfa/classph_1_1_transformed_intersectable.html</anchorfile>
-      <anchor>a67ee995af9339421a06e7fb693ad163d</anchor>
-      <arglist>(const TransformedIntersectable &amp;other)</arglist>
-    </member>
-    <member kind="function">
-      <type>bool</type>
-      <name>isOccluding</name>
-      <anchorfile>d4/dfa/classph_1_1_transformed_intersectable.html</anchorfile>
-      <anchor>a8c8fa9657f7359d0daad6dd66f50d339</anchor>
-      <arglist>(const Ray &amp;ray) const override</arglist>
+      <anchor>a49fbd632750883ba9da215f3d72d365d</anchor>
+      <arglist>(const Intersectable *intersectable, const math::Transform *localToWorld, const math::Transform *worldToLocal)</arglist>
     </member>
     <member kind="function">
       <type>bool</type>
@@ -36689,11 +39478,25 @@
       <arglist>(const Ray &amp;ray, HitProbe &amp;probe) const override</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
-      <name>calcIntersectionDetail</name>
+      <type>bool</type>
+      <name>reintersect</name>
       <anchorfile>d4/dfa/classph_1_1_transformed_intersectable.html</anchorfile>
-      <anchor>aae56ef8dbd5085f1dc3c6637077c5a5f</anchor>
-      <arglist>(const Ray &amp;ray, HitProbe &amp;probe, HitDetail *out_detail) const override</arglist>
+      <anchor>aa23abfa0c9af5fd7c0a8d1bc1cac4b4f</anchor>
+      <arglist>(const Ray &amp;ray, HitProbe &amp;probe, const Ray &amp;srcRay, HitProbe &amp;srcProbe) const override</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>calcHitDetail</name>
+      <anchorfile>d4/dfa/classph_1_1_transformed_intersectable.html</anchorfile>
+      <anchor>ab55f9ed76bba72505c36be5c5c309205</anchor>
+      <arglist>(const Ray &amp;ray, HitProbe &amp;probe, HitDetail *const out_detail) const override</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>isOccluding</name>
+      <anchorfile>d4/dfa/classph_1_1_transformed_intersectable.html</anchorfile>
+      <anchor>a8c8fa9657f7359d0daad6dd66f50d339</anchor>
+      <arglist>(const Ray &amp;ray) const override</arglist>
     </member>
     <member kind="function">
       <type>bool</type>
@@ -36708,13 +39511,6 @@
       <anchorfile>d4/dfa/classph_1_1_transformed_intersectable.html</anchorfile>
       <anchor>afd1b64239cb06e04dea3d633c6954fdf</anchor>
       <arglist>() const override</arglist>
-    </member>
-    <member kind="function">
-      <type>TransformedIntersectable &amp;</type>
-      <name>operator=</name>
-      <anchorfile>d4/dfa/classph_1_1_transformed_intersectable.html</anchorfile>
-      <anchor>acc2b9414a83b0d73d4c322239afffe4f</anchor>
-      <arglist>(const TransformedIntersectable &amp;rhs)</arglist>
     </member>
     <member kind="variable" protection="protected">
       <type>const Intersectable *</type>
@@ -36764,10 +39560,17 @@
       <arglist>(const Ray &amp;ray, HitProbe &amp;probe) const override</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
-      <name>calcIntersectionDetail</name>
+      <type>bool</type>
+      <name>reintersect</name>
       <anchorfile>d2/dff/classph_1_1_transformed_primitive.html</anchorfile>
-      <anchor>a5d6b087a1bf1d860ce99e735611f29ea</anchor>
+      <anchor>a6be2d5ccf96ed0832c8916eb2cb258ca</anchor>
+      <arglist>(const Ray &amp;ray, HitProbe &amp;probe, const Ray &amp;srcRay, HitProbe &amp;srcProbe) const override</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>calcHitDetail</name>
+      <anchorfile>d2/dff/classph_1_1_transformed_primitive.html</anchorfile>
+      <anchor>ab34b5458d6a295369b7ff328fb479f64</anchor>
       <arglist>(const Ray &amp;ray, HitProbe &amp;probe, HitDetail *const out_detail) const override</arglist>
     </member>
     <member kind="function">
@@ -36785,18 +39588,18 @@
       <arglist>() const override</arglist>
     </member>
     <member kind="function">
-      <type>real</type>
-      <name>calcPositionSamplePdfA</name>
+      <type>void</type>
+      <name>genPosSample</name>
       <anchorfile>d2/dff/classph_1_1_transformed_primitive.html</anchorfile>
-      <anchor>aae87094afb5fe0dff78ab75ad02902b9</anchor>
-      <arglist>(const math::Vector3R &amp;position) const override</arglist>
+      <anchor>ac299d8e9d3e082465ccaf8f80a375695</anchor>
+      <arglist>(PrimitivePosSampleQuery &amp;query, SampleFlow &amp;sampleFlow, HitProbe &amp;probe) const override</arglist>
     </member>
     <member kind="function">
       <type>void</type>
-      <name>genPositionSample</name>
+      <name>calcPosSamplePdfA</name>
       <anchorfile>d2/dff/classph_1_1_transformed_primitive.html</anchorfile>
-      <anchor>aa92fe01bb17be4af74e0f8c3d9e4e67e</anchor>
-      <arglist>(PrimitivePosSampleQuery &amp;query, SampleFlow &amp;sampleFlow) const override</arglist>
+      <anchor>a07040bb60533c6a0282454290df26d08</anchor>
+      <arglist>(PrimitivePosSamplePdfQuery &amp;query, HitProbe &amp;probe) const override</arglist>
     </member>
     <member kind="function">
       <type>bool</type>
@@ -37570,18 +40373,18 @@
       <anchor>a33c56f0b5f45f5cbb41f0f7243052127</anchor>
       <arglist>(int64 actualWidthPx, int64 actualHeightPx, const math::TAABB2D&lt; int64 &gt; &amp;effectiveWindowPx, const SampleFilter &amp;filter)</arglist>
     </member>
-    <member kind="function">
-      <type></type>
-      <name>TSamplingFilm</name>
-      <anchorfile>de/d4d/classph_1_1_t_sampling_film.html</anchorfile>
-      <anchor>a9b2d156012853bbf13f53d3def1d48c9</anchor>
-      <arglist>(TSamplingFilm &amp;&amp;other)</arglist>
-    </member>
     <member kind="function" virtualness="pure">
       <type>virtual void</type>
       <name>addSample</name>
       <anchorfile>de/d4d/classph_1_1_t_sampling_film.html</anchorfile>
       <anchor>a661e59e3e38663aea46eac384ffbdf6a</anchor>
+      <arglist>(float64 xPx, float64 yPx, const Sample &amp;sample)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>setPixel</name>
+      <anchorfile>de/d4d/classph_1_1_t_sampling_film.html</anchorfile>
+      <anchor>a25ee16bbf7cccb59f25eecccbebc9309</anchor>
       <arglist>(float64 xPx, float64 yPx, const Sample &amp;sample)=0</arglist>
     </member>
     <member kind="function" virtualness="pure">
@@ -37602,8 +40405,8 @@
       <type>void</type>
       <name>setSoftEdge</name>
       <anchorfile>de/d4d/classph_1_1_t_sampling_film.html</anchorfile>
-      <anchor>af047eb189d426b42081ae262bf76f452</anchor>
-      <arglist>(bool useSoftEdge)</arglist>
+      <anchor>a379201ba7e3870a7f4c9c315631ad20a</anchor>
+      <arglist>(bool useSoftEdge, float32 softness=1.0f)</arglist>
     </member>
     <member kind="function">
       <type>math::TVector2&lt; float64 &gt;</type>
@@ -37635,17 +40438,10 @@
     </member>
     <member kind="function">
       <type>bool</type>
-      <name>isSoftEdge</name>
+      <name>isSoftEdged</name>
       <anchorfile>de/d4d/classph_1_1_t_sampling_film.html</anchorfile>
-      <anchor>ae1cbb89b5aadc4790d309f6be500267f</anchor>
+      <anchor>a6e56f532a54b42d6041aad95d8ae4806</anchor>
       <arglist>() const</arglist>
-    </member>
-    <member kind="function">
-      <type>TSamplingFilm &amp;</type>
-      <name>operator=</name>
-      <anchorfile>de/d4d/classph_1_1_t_sampling_film.html</anchorfile>
-      <anchor>a61ed46d1675f0523a92dfc781ac76a4b</anchor>
-      <arglist>(TSamplingFilm &amp;&amp;other)</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -37984,13 +40780,6 @@
       <arglist>() const</arglist>
     </member>
     <member kind="function">
-      <type>const auto *</type>
-      <name>getConst</name>
-      <anchorfile>dc/d35/classph_1_1_t_sdl_any_instance.html</anchorfile>
-      <anchor>ab8514fcfdfc6a906122501917215aa18</anchor>
-      <arglist>() const</arglist>
-    </member>
-    <member kind="function">
       <type>const SdlClass *</type>
       <name>getClass</name>
       <anchorfile>dc/d35/classph_1_1_t_sdl_any_instance.html</anchorfile>
@@ -38160,8 +40949,8 @@
       <type>EnumType</type>
       <name>operator[]</name>
       <anchorfile>d8/dfe/classph_1_1_t_sdl_enum.html</anchorfile>
-      <anchor>ac4afc9a2e23f2f8c7650cd5e359a5791</anchor>
-      <arglist>(const std::string_view entryName) const</arglist>
+      <anchor>ad4283338409ae03e8df86e38f2131eab</anchor>
+      <arglist>(std::string_view entryName) const</arglist>
     </member>
     <member kind="function">
       <type>std::string_view</type>
@@ -38693,8 +41482,8 @@
       <type>void</type>
       <name>saveResource</name>
       <anchorfile>da/de4/classph_1_1_t_sdl_owner_class.html</anchorfile>
-      <anchor>a042b1eaf8d0ac9947cff1c33441e3d1c</anchor>
-      <arglist>(const ISdlResource &amp;resource, SdlOutputClauses &amp;out_clauses, const SdlOutputContext &amp;ctx) const override</arglist>
+      <anchor>ac8e23c3ff4dc142192e6927e646714e5</anchor>
+      <arglist>(const ISdlResource &amp;resource, SdlOutputClauses &amp;clauses, const SdlOutputContext &amp;ctx) const override</arglist>
     </member>
     <member kind="function">
       <type>void</type>
@@ -38749,8 +41538,8 @@
       <type>void</type>
       <name>saveFieldsToSdl</name>
       <anchorfile>da/de4/classph_1_1_t_sdl_owner_class.html</anchorfile>
-      <anchor>aab29c8c7ddf724df47309f471c25d685</anchor>
-      <arglist>(const Owner &amp;owner, SdlOutputClauses &amp;out_clauses, const SdlOutputContext &amp;ctx) const</arglist>
+      <anchor>a50c9f219266ce8e41493b88768143a89</anchor>
+      <arglist>(const Owner &amp;owner, SdlOutputClauses &amp;clauses, const SdlOutputContext &amp;ctx) const</arglist>
     </member>
     <member kind="function">
       <type>const TSdlOwnedField&lt; Owner &gt; *</type>
@@ -38869,6 +41658,34 @@
       <anchorfile>de/d45/classph_1_1_t_sdl_owner_struct.html</anchorfile>
       <anchor>ab46ae4f7f6d2b8662bcc8b1d7aff4c6d</anchor>
       <arglist>(std::string name)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>initObject</name>
+      <anchorfile>de/d45/classph_1_1_t_sdl_owner_struct.html</anchorfile>
+      <anchor>a44b870f3e37c9351c308dad29ccfcbe5</anchor>
+      <arglist>(AnyNonConstPtr obj, SdlInputClauses &amp;clauses, const SdlInputContext &amp;ctx) const override</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>initDefaultObject</name>
+      <anchorfile>de/d45/classph_1_1_t_sdl_owner_struct.html</anchorfile>
+      <anchor>a7547935d012a2f946e11d9e47b453f6f</anchor>
+      <arglist>(AnyNonConstPtr obj) const override</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>saveObject</name>
+      <anchorfile>de/d45/classph_1_1_t_sdl_owner_struct.html</anchorfile>
+      <anchor>a08c61eee7cb5424a7c9e66d6f09f272f</anchor>
+      <arglist>(AnyConstPtr obj, SdlOutputClauses &amp;clauses, const SdlOutputContext &amp;ctx) const override</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>referencedResources</name>
+      <anchorfile>de/d45/classph_1_1_t_sdl_owner_struct.html</anchorfile>
+      <anchor>a2ebf69633ef31fcdb3c8dd3e80768583</anchor>
+      <arglist>(AnyConstPtr obj, std::vector&lt; const ISdlResource * &gt; &amp;out_resources) const override</arglist>
     </member>
     <member kind="function">
       <type>void</type>
@@ -39209,6 +42026,20 @@
       <anchor>a3b692ac4831b423e078b1acbf2997352</anchor>
       <arglist>()</arglist>
     </member>
+    <member kind="function" static="yes">
+      <type>static std::shared_ptr&lt; ResourceType &gt;</type>
+      <name>loadReference</name>
+      <anchorfile>d2/d5a/classph_1_1_t_sdl_reference.html</anchorfile>
+      <anchor>a2f7071609e0578c820572876d04fb0d7</anchor>
+      <arglist>(const SdlInputClause &amp;clause, const SdlInputContext &amp;ctx)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static std::shared_ptr&lt; ResourceType &gt;</type>
+      <name>loadReference</name>
+      <anchorfile>d2/d5a/classph_1_1_t_sdl_reference.html</anchorfile>
+      <anchor>a35363d48e0ba64aec5fd6013cb902156</anchor>
+      <arglist>(std::string_view referenceName, const SdlInputContext &amp;ctx)</arglist>
+    </member>
     <member kind="function" protection="protected">
       <type>void</type>
       <name>loadFromSdl</name>
@@ -39222,13 +42053,6 @@
       <anchorfile>d2/d5a/classph_1_1_t_sdl_reference.html</anchorfile>
       <anchor>ad52c13b2724cf8352bd765db2c6dea83</anchor>
       <arglist>(const Owner &amp;owner, SdlOutputClause &amp;out_clause, const SdlOutputContext &amp;ctx) const override</arglist>
-    </member>
-    <member kind="function" protection="protected" static="yes">
-      <type>static std::shared_ptr&lt; ResourceType &gt;</type>
-      <name>loadResource</name>
-      <anchorfile>d2/d5a/classph_1_1_t_sdl_reference.html</anchorfile>
-      <anchor>aafe57b9e31913a63cf33a7ce99b577c9</anchor>
-      <arglist>(const SdlInputClause &amp;clause, const SdlInputContext &amp;ctx)</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -39321,6 +42145,13 @@
       <anchor>ab21aa5c564472e4e0a53a7e7de518774</anchor>
       <arglist>()</arglist>
     </member>
+    <member kind="function" static="yes">
+      <type>static std::vector&lt; std::shared_ptr&lt; T &gt; &gt;</type>
+      <name>loadReferenceArray</name>
+      <anchorfile>d2/d7d/classph_1_1_t_sdl_reference_array.html</anchorfile>
+      <anchor>a0537c67f14016930be1107bf2bf933f8</anchor>
+      <arglist>(const SdlInputClause &amp;clause, const SdlInputContext &amp;ctx)</arglist>
+    </member>
     <member kind="function" protection="protected">
       <type>void</type>
       <name>loadFromSdl</name>
@@ -39334,20 +42165,6 @@
       <anchorfile>d2/d7d/classph_1_1_t_sdl_reference_array.html</anchorfile>
       <anchor>a5310538cad185e193f48ff27d859c32a</anchor>
       <arglist>(const Owner &amp;owner, SdlOutputClause &amp;out_clause, const SdlOutputContext &amp;ctx) const override</arglist>
-    </member>
-    <member kind="function" protection="protected" static="yes">
-      <type>static std::vector&lt; std::shared_ptr&lt; T &gt; &gt;</type>
-      <name>loadReferenceArray</name>
-      <anchorfile>d2/d7d/classph_1_1_t_sdl_reference_array.html</anchorfile>
-      <anchor>a0537c67f14016930be1107bf2bf933f8</anchor>
-      <arglist>(const SdlInputClause &amp;clause, const SdlInputContext &amp;ctx)</arglist>
-    </member>
-    <member kind="function" protection="protected" static="yes">
-      <type>static std::shared_ptr&lt; ResourceType &gt;</type>
-      <name>loadReference</name>
-      <anchorfile>d2/d7d/classph_1_1_t_sdl_reference_array.html</anchorfile>
-      <anchor>a254303bdf76afac5dc749e1f53fac7dc</anchor>
-      <arglist>(std::string_view referenceName, const SdlInputContext &amp;ctx)</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -39530,6 +42347,125 @@
       <anchorfile>d6/dd1/classph_1_1_t_sdl_string.html</anchorfile>
       <anchor>a78d2a5a2373d8ce25e124c1d61192736</anchor>
       <arglist>(const Owner &amp;owner, SdlOutputClause &amp;out_clause, const SdlOutputContext &amp;ctx) const override</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>ph::TSdlStructArray</name>
+    <filename>db/d9e/classph_1_1_t_sdl_struct_array.html</filename>
+    <templarg>typename Struct</templarg>
+    <templarg>typename Owner</templarg>
+    <base>ph::TSdlOwnedField</base>
+    <member kind="function">
+      <type></type>
+      <name>TSdlStructArray</name>
+      <anchorfile>db/d9e/classph_1_1_t_sdl_struct_array.html</anchorfile>
+      <anchor>a3eb24a397d285023f30b41eb52b91edb</anchor>
+      <arglist>(std::string valueName, std::vector&lt; Struct &gt; Owner::*const valuePtr)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>ownedValueToDefault</name>
+      <anchorfile>db/d9e/classph_1_1_t_sdl_struct_array.html</anchorfile>
+      <anchor>a3618e27f8fa971c4eafc79e10e5b3bd4</anchor>
+      <arglist>(Owner &amp;owner) const override</arglist>
+    </member>
+    <member kind="function">
+      <type>std::string</type>
+      <name>valueToString</name>
+      <anchorfile>db/d9e/classph_1_1_t_sdl_struct_array.html</anchorfile>
+      <anchor>aaf94dcd9a2d605e9298ca90bd451c6e2</anchor>
+      <arglist>(const Owner &amp;owner) const override</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>ownedResources</name>
+      <anchorfile>db/d9e/classph_1_1_t_sdl_struct_array.html</anchorfile>
+      <anchor>affae3a3be7e61eed8f6fb81f9ed1b2b8</anchor>
+      <arglist>(const Owner &amp;owner, std::vector&lt; const ISdlResource * &gt; &amp;out_resources) const override</arglist>
+    </member>
+    <member kind="function">
+      <type>SdlNativeData</type>
+      <name>ownedNativeData</name>
+      <anchorfile>db/d9e/classph_1_1_t_sdl_struct_array.html</anchorfile>
+      <anchor>a6d0dba37dcdb65deb71fd38c45b52652</anchor>
+      <arglist>(Owner &amp;owner) const override</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setValueVec</name>
+      <anchorfile>db/d9e/classph_1_1_t_sdl_struct_array.html</anchorfile>
+      <anchor>aef29a9456f390b83b68f7adbb82805de</anchor>
+      <arglist>(Owner &amp;owner, std::vector&lt; Struct &gt; value) const</arglist>
+    </member>
+    <member kind="function">
+      <type>const std::vector&lt; Struct &gt; &amp;</type>
+      <name>getValueVec</name>
+      <anchorfile>db/d9e/classph_1_1_t_sdl_struct_array.html</anchorfile>
+      <anchor>a46950da6849037b929d045f3a30e8285</anchor>
+      <arglist>(const Owner &amp;owner) const</arglist>
+    </member>
+    <member kind="function">
+      <type>TSdlStructArray &amp;</type>
+      <name>withImportance</name>
+      <anchorfile>db/d9e/classph_1_1_t_sdl_struct_array.html</anchorfile>
+      <anchor>a962b9f46a827ca420f90280e204eef11</anchor>
+      <arglist>(EFieldImportance importance)</arglist>
+    </member>
+    <member kind="function">
+      <type>TSdlStructArray &amp;</type>
+      <name>description</name>
+      <anchorfile>db/d9e/classph_1_1_t_sdl_struct_array.html</anchorfile>
+      <anchor>abece52f62ede370959dba24dbf8c9e05</anchor>
+      <arglist>(std::string descriptionStr)</arglist>
+    </member>
+    <member kind="function">
+      <type>TSdlStructArray &amp;</type>
+      <name>optional</name>
+      <anchorfile>db/d9e/classph_1_1_t_sdl_struct_array.html</anchorfile>
+      <anchor>a5a9fe5953289fa916bf339c7f0058dbc</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>TSdlStructArray &amp;</type>
+      <name>niceToHave</name>
+      <anchorfile>db/d9e/classph_1_1_t_sdl_struct_array.html</anchorfile>
+      <anchor>a4a0d1d2c5e910a6abc16f62ce15a9e50</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>TSdlStructArray &amp;</type>
+      <name>required</name>
+      <anchorfile>db/d9e/classph_1_1_t_sdl_struct_array.html</anchorfile>
+      <anchor>a5594e1bff029cb7963b5fa466c8af52a</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>loadFromSdl</name>
+      <anchorfile>db/d9e/classph_1_1_t_sdl_struct_array.html</anchorfile>
+      <anchor>a30b1900b3ab3615258b691490926f726</anchor>
+      <arglist>(Owner &amp;owner, const SdlInputClause &amp;clause, const SdlInputContext &amp;ctx) const override</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>saveToSdl</name>
+      <anchorfile>db/d9e/classph_1_1_t_sdl_struct_array.html</anchorfile>
+      <anchor>a2a790838b75a2f1bdc393833f0a235e5</anchor>
+      <arglist>(const Owner &amp;owner, SdlOutputClause &amp;out_clause, const SdlOutputContext &amp;ctx) const override</arglist>
+    </member>
+    <member kind="function" protection="protected" static="yes">
+      <type>static std::vector&lt; Struct &gt;</type>
+      <name>loadStructArray</name>
+      <anchorfile>db/d9e/classph_1_1_t_sdl_struct_array.html</anchorfile>
+      <anchor>a95948e741efc596f295de22ce4bd79f0</anchor>
+      <arglist>(const SdlInputClause &amp;clause, const SdlInputContext &amp;ctx)</arglist>
+    </member>
+    <member kind="function" protection="protected" static="yes">
+      <type>static Struct</type>
+      <name>loadStruct</name>
+      <anchorfile>db/d9e/classph_1_1_t_sdl_struct_array.html</anchorfile>
+      <anchor>a051d99fc944bde101816a480af62d2b7</anchor>
+      <arglist>(std::string_view packetName, const SdlInputContext &amp;ctx)</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -39804,6 +42740,49 @@
       <name>saveToSdl</name>
       <anchorfile>d9/d1c/classph_1_1_t_sdl_vector3_array.html</anchorfile>
       <anchor>a848c9c6b2ef12b34a5289f3961fd0f1c</anchor>
+      <arglist>(const Owner &amp;owner, SdlOutputClause &amp;out_clause, const SdlOutputContext &amp;ctx) const override</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>ph::TSdlVector4</name>
+    <filename>d8/da6/classph_1_1_t_sdl_vector4.html</filename>
+    <templarg>typename Owner</templarg>
+    <templarg>typename Element</templarg>
+    <templarg>typename SdlValueType</templarg>
+    <base>ph::TSdlValue</base>
+    <member kind="function">
+      <type></type>
+      <name>TSdlVector4</name>
+      <anchorfile>d8/da6/classph_1_1_t_sdl_vector4.html</anchorfile>
+      <anchor>ad9b3361a05a3d4d5a7782918eda37002</anchor>
+      <arglist>(std::string valueName, ValueType Owner::*const valuePtr)</arglist>
+    </member>
+    <member kind="function">
+      <type>std::string</type>
+      <name>valueAsString</name>
+      <anchorfile>d8/da6/classph_1_1_t_sdl_vector4.html</anchorfile>
+      <anchor>af70a004a04ac41e97e3c316082074de0</anchor>
+      <arglist>(const math::TVector4&lt; Element &gt; &amp;vec4) const override</arglist>
+    </member>
+    <member kind="function">
+      <type>SdlNativeData</type>
+      <name>ownedNativeData</name>
+      <anchorfile>d8/da6/classph_1_1_t_sdl_vector4.html</anchorfile>
+      <anchor>adecdec8c75a61cdf26a66a3a7cf3f443</anchor>
+      <arglist>(Owner &amp;owner) const override</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>loadFromSdl</name>
+      <anchorfile>d8/da6/classph_1_1_t_sdl_vector4.html</anchorfile>
+      <anchor>a84e4984b1f0ebcdc5480b155110a44f2</anchor>
+      <arglist>(Owner &amp;owner, const SdlInputClause &amp;clause, const SdlInputContext &amp;ctx) const override</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>saveToSdl</name>
+      <anchorfile>d8/da6/classph_1_1_t_sdl_vector4.html</anchorfile>
+      <anchor>ae7ec6c0ad32859ccd2e8f013941b02b4</anchor>
       <arglist>(const Owner &amp;owner, SdlOutputClause &amp;out_clause, const SdlOutputContext &amp;ctx) const override</arglist>
     </member>
   </compound>
@@ -40284,27 +43263,6 @@
     </member>
     <member kind="function">
       <type>Derived &amp;</type>
-      <name>setColorValues</name>
-      <anchorfile>d7/dbb/classph_1_1math_1_1_t_spectrum_base.html</anchorfile>
-      <anchor>af58432a65fc463fe653700d1736dfc2a</anchor>
-      <arglist>(const TRawColorValues&lt; T, N &gt; &amp;values)</arglist>
-    </member>
-    <member kind="function">
-      <type>Derived &amp;</type>
-      <name>setColorValues</name>
-      <anchorfile>d7/dbb/classph_1_1math_1_1_t_spectrum_base.html</anchorfile>
-      <anchor>ab55ac3e7a00df8e5dcf928f1b2f01546</anchor>
-      <arglist>(T rawColorValue)</arglist>
-    </member>
-    <member kind="function">
-      <type>const TRawColorValues&lt; T, N &gt; &amp;</type>
-      <name>getColorValues</name>
-      <anchorfile>d7/dbb/classph_1_1math_1_1_t_spectrum_base.html</anchorfile>
-      <anchor>a52a9f52ef8dc1e125266d8e492af633d</anchor>
-      <arglist>() const</arglist>
-    </member>
-    <member kind="function">
-      <type>Derived &amp;</type>
       <name>setTransformed</name>
       <anchorfile>d7/dbb/classph_1_1math_1_1_t_spectrum_base.html</anchorfile>
       <anchor>a0dcecb2f81e37f7f062e2520ce70a334</anchor>
@@ -40633,11 +43591,25 @@
       <arglist>(T lowerBound, T upperBound) const</arglist>
     </member>
     <member kind="function">
+      <type>Derived</type>
+      <name>clamp</name>
+      <anchorfile>d7/dbb/classph_1_1math_1_1_t_spectrum_base.html</anchorfile>
+      <anchor>ab3ac183e2e33046262b612399e4c402b</anchor>
+      <arglist>(const Derived &amp;lowerBound, const Derived &amp;upperBound) const</arglist>
+    </member>
+    <member kind="function">
       <type>Derived &amp;</type>
       <name>clampLocal</name>
       <anchorfile>d7/dbb/classph_1_1math_1_1_t_spectrum_base.html</anchorfile>
       <anchor>ad2b8a87560ab65188ec7a7795eb4179d</anchor>
       <arglist>(T lowerBound, T upperBound)</arglist>
+    </member>
+    <member kind="function">
+      <type>Derived &amp;</type>
+      <name>clampLocal</name>
+      <anchorfile>d7/dbb/classph_1_1math_1_1_t_spectrum_base.html</anchorfile>
+      <anchor>a4535032412a9de38c30eb5308b1d9769</anchor>
+      <arglist>(const Derived &amp;lowerBound, const Derived &amp;upperBound)</arglist>
     </member>
     <member kind="function">
       <type>Derived</type>
@@ -40835,6 +43807,27 @@
       <anchor>a423d2b7e2c2207fdad5cdc3e027d3caf</anchor>
       <arglist>() const</arglist>
     </member>
+    <member kind="function">
+      <type>Derived &amp;</type>
+      <name>setColorValues</name>
+      <anchorfile>d7/dbb/classph_1_1math_1_1_t_spectrum_base.html</anchorfile>
+      <anchor>af58432a65fc463fe653700d1736dfc2a</anchor>
+      <arglist>(const TRawColorValues&lt; T, N &gt; &amp;values)</arglist>
+    </member>
+    <member kind="function">
+      <type>Derived &amp;</type>
+      <name>setColorValues</name>
+      <anchorfile>d7/dbb/classph_1_1math_1_1_t_spectrum_base.html</anchorfile>
+      <anchor>ab55ac3e7a00df8e5dcf928f1b2f01546</anchor>
+      <arglist>(T rawColorValue)</arglist>
+    </member>
+    <member kind="function">
+      <type>const TRawColorValues&lt; T, N &gt; &amp;</type>
+      <name>getColorValues</name>
+      <anchorfile>d7/dbb/classph_1_1math_1_1_t_spectrum_base.html</anchorfile>
+      <anchor>a52a9f52ef8dc1e125266d8e492af633d</anchor>
+      <arglist>() const</arglist>
+    </member>
     <member kind="function" static="yes">
       <type>static consteval EColorSpace</type>
       <name>getColorSpace</name>
@@ -40862,6 +43855,27 @@
       <anchorfile>d7/dbb/classph_1_1math_1_1_t_spectrum_base.html</anchorfile>
       <anchor>a3da28ca9690edd63fd4536e2f01b5b14</anchor>
       <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>Derived &amp;</type>
+      <name>setColorValues</name>
+      <anchorfile>d7/dbb/classph_1_1math_1_1_t_spectrum_base.html</anchorfile>
+      <anchor>af58432a65fc463fe653700d1736dfc2a</anchor>
+      <arglist>(const TRawColorValues&lt; T, N &gt; &amp;values)</arglist>
+    </member>
+    <member kind="function">
+      <type>Derived &amp;</type>
+      <name>setColorValues</name>
+      <anchorfile>d7/dbb/classph_1_1math_1_1_t_spectrum_base.html</anchorfile>
+      <anchor>ab55ac3e7a00df8e5dcf928f1b2f01546</anchor>
+      <arglist>(T rawColorValue)</arglist>
+    </member>
+    <member kind="function">
+      <type>const TRawColorValues&lt; T, N &gt; &amp;</type>
+      <name>getColorValues</name>
+      <anchorfile>d7/dbb/classph_1_1math_1_1_t_spectrum_base.html</anchorfile>
+      <anchor>a52a9f52ef8dc1e125266d8e492af633d</anchor>
+      <arglist>() const</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -40898,6 +43912,13 @@
     </member>
     <member kind="function">
       <type>T</type>
+      <name>getRadius</name>
+      <anchorfile>d1/d5b/classph_1_1math_1_1_t_sphere.html</anchorfile>
+      <anchor>a90f7a64a81c28785f9cd7de6481b889e</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
       <name>getArea</name>
       <anchorfile>d1/d5b/classph_1_1math_1_1_t_sphere.html</anchorfile>
       <anchor>a40953921efc58de7d774bc4abf67e1a4</anchor>
@@ -40929,6 +43950,20 @@
       <name>sampleToSurfaceArchimedes</name>
       <anchorfile>d1/d5b/classph_1_1math_1_1_t_sphere.html</anchorfile>
       <anchor>ad537a29c901fd042f11cdddbedf03127</anchor>
+      <arglist>(const std::array&lt; T, 2 &gt; &amp;sample, T *out_pdfA) const</arglist>
+    </member>
+    <member kind="function">
+      <type>TVector3&lt; T &gt;</type>
+      <name>sampleToSurfaceAbsCosThetaWeighted</name>
+      <anchorfile>d1/d5b/classph_1_1math_1_1_t_sphere.html</anchorfile>
+      <anchor>ac8b370a7fefa900a990fe52bd7421c16</anchor>
+      <arglist>(const std::array&lt; T, 2 &gt; &amp;sample) const</arglist>
+    </member>
+    <member kind="function">
+      <type>TVector3&lt; T &gt;</type>
+      <name>sampleToSurfaceAbsCosThetaWeighted</name>
+      <anchorfile>d1/d5b/classph_1_1math_1_1_t_sphere.html</anchorfile>
+      <anchor>a7a859e32a5d4da54f12162ed9929cc8d</anchor>
       <arglist>(const std::array&lt; T, 2 &gt; &amp;sample, T *out_pdfA) const</arglist>
     </member>
     <member kind="function">
@@ -40991,22 +44026,22 @@
   <compound kind="class">
     <name>ph::TSPPMRadianceEvaluator</name>
     <filename>d2/d8d/classph_1_1_t_s_p_p_m_radiance_evaluator.html</filename>
-    <templarg>typename Viewpoint</templarg>
-    <templarg>typename Photon</templarg>
+    <templarg>CViewpoint Viewpoint</templarg>
+    <templarg>CPhoton Photon</templarg>
     <base>TViewPathHandler&lt; TSPPMRadianceEvaluator&lt; Viewpoint, Photon &gt; &gt;</base>
     <member kind="function">
       <type></type>
       <name>TSPPMRadianceEvaluator</name>
       <anchorfile>d2/d8d/classph_1_1_t_s_p_p_m_radiance_evaluator.html</anchorfile>
-      <anchor>afb348926dd0701d380c34f0437c5b393</anchor>
-      <arglist>(Viewpoint *viewpoints, std::size_t numViewpoints, const TPhotonMap&lt; Photon &gt; *photonMap, std::size_t numPhotonPaths, const Scene *scene, HdrRgbFilm *film, const Region &amp;filmRegion, std::size_t numSamplesPerPixel, std::size_t maxViewpointDepth)</arglist>
+      <anchor>af1af0a264a88247e83b7bfed3af379e4</anchor>
+      <arglist>(TSpan&lt; Viewpoint &gt; viewpoints, const TPhotonMap&lt; Photon &gt; *photonMap, const Scene *scene, TSamplingFilm&lt; math::Spectrum &gt; *film, const Region &amp;statisticsRegion, const math::TVector2&lt; int64 &gt; &amp;statisticsRes, std::size_t totalPhotonPaths, std::size_t numViewRadianceSamples)</arglist>
     </member>
     <member kind="function">
       <type>bool</type>
       <name>impl_onReceiverSampleStart</name>
       <anchorfile>d2/d8d/classph_1_1_t_s_p_p_m_radiance_evaluator.html</anchorfile>
-      <anchor>a4aba513c71a48dffd63a8e0e3f09c479</anchor>
-      <arglist>(const math::Vector2D &amp;rasterCoord, const math::Spectrum &amp;pathThroughput)</arglist>
+      <anchor>a11eb0c4763692879d4666cc1d00eb936</anchor>
+      <arglist>(const math::Vector2D &amp;rasterCoord, const math::Vector2S &amp;sampleIndex, const math::Spectrum &amp;pathThroughput)</arglist>
     </member>
     <member kind="function">
       <type>auto</type>
@@ -41650,6 +44685,20 @@
     </member>
   </compound>
   <compound kind="class">
+    <name>ph::texfunc::TSubtract</name>
+    <filename>d5/db1/classph_1_1texfunc_1_1_t_subtract.html</filename>
+    <templarg>typename InputTypeA</templarg>
+    <templarg>typename InputTypeB</templarg>
+    <templarg>typename OutputType</templarg>
+    <member kind="function">
+      <type>OutputType</type>
+      <name>operator()</name>
+      <anchorfile>d5/db1/classph_1_1texfunc_1_1_t_subtract.html</anchorfile>
+      <anchor>a37a2ae2b010381ca6765aed7c5e2f6f6</anchor>
+      <arglist>(const InputTypeA &amp;inputValueA, const InputTypeB &amp;inputValueB) const</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
     <name>ph::TSwizzledTexture</name>
     <filename>d7/d57/classph_1_1_t_swizzled_texture.html</filename>
     <templarg>typename InputT</templarg>
@@ -41690,6 +44739,58 @@
       <anchorfile>d7/d57/classph_1_1_t_swizzled_texture.html</anchorfile>
       <anchor>ace8f0408b85c72d1307ef8c6e1319b0c</anchor>
       <arglist>(const SampleLocation &amp;sampleLocation, OutputT *const out_value) const override</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>ph::TTernaryTextureOperator</name>
+    <filename>d1/d07/classph_1_1_t_ternary_texture_operator.html</filename>
+    <templarg>typename InputTypeA</templarg>
+    <templarg>typename InputTypeB</templarg>
+    <templarg>typename InputTypeC</templarg>
+    <templarg>typename OutputType</templarg>
+    <templarg>texfunc::CTernaryOperator&lt; InputTypeA, InputTypeB, InputTypeC, OutputType &gt; OperatorType</templarg>
+    <base>ph::TTexture</base>
+    <member kind="typedef">
+      <type>std::shared_ptr&lt; TTexture&lt; InputTypeA &gt; &gt;</type>
+      <name>InputTexResA</name>
+      <anchorfile>d1/d07/classph_1_1_t_ternary_texture_operator.html</anchorfile>
+      <anchor>a34bd6c3fbaac216991ddc6abaef319bd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>std::shared_ptr&lt; TTexture&lt; InputTypeB &gt; &gt;</type>
+      <name>InputTexResB</name>
+      <anchorfile>d1/d07/classph_1_1_t_ternary_texture_operator.html</anchorfile>
+      <anchor>a3df260a9fcfc06e26cb5a45652b3105a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>std::shared_ptr&lt; TTexture&lt; InputTypeC &gt; &gt;</type>
+      <name>InputTexResC</name>
+      <anchorfile>d1/d07/classph_1_1_t_ternary_texture_operator.html</anchorfile>
+      <anchor>a070cc190e5401532e44b581b57374cfa</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>TTernaryTextureOperator</name>
+      <anchorfile>d1/d07/classph_1_1_t_ternary_texture_operator.html</anchorfile>
+      <anchor>a61112118e8aa02b41c056eebad3ff2a6</anchor>
+      <arglist>(InputTexResA inputA, InputTexResB inputB, InputTexResC inputC)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>TTernaryTextureOperator</name>
+      <anchorfile>d1/d07/classph_1_1_t_ternary_texture_operator.html</anchorfile>
+      <anchor>a3fbb727d0391d3e377993362fe1da32d</anchor>
+      <arglist>(InputTexResA inputA, InputTexResB inputB, InputTexResC inputC, OperatorType op)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>sample</name>
+      <anchorfile>d1/d07/classph_1_1_t_ternary_texture_operator.html</anchorfile>
+      <anchor>a87c748fdba894a756b2ddfb9346a5185</anchor>
+      <arglist>(const SampleLocation &amp;sampleLocation, OutputType *const out_value) const override</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -41848,6 +44949,51 @@
       <anchorfile>d3/de0/classph_1_1math_1_1_t_tristimulus_spectrum.html</anchorfile>
       <anchor>ab148d378142e7250dbb36c07fa9e0077</anchor>
       <arglist>(const TTristimulusSpectrum&lt; COLOR_SPACE, U &gt; &amp;other)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>ph::texfunc::TUnaryFromBinary</name>
+    <filename>d7/d1f/classph_1_1texfunc_1_1_t_unary_from_binary.html</filename>
+    <templarg>typename InputType</templarg>
+    <templarg>typename ConstantType</templarg>
+    <templarg>typename OutputType</templarg>
+    <templarg>CBinaryOperator&lt; InputType, ConstantType, OutputType &gt; BinaryOperatorType</templarg>
+    <member kind="function">
+      <type></type>
+      <name>TUnaryFromBinary</name>
+      <anchorfile>d7/d1f/classph_1_1texfunc_1_1_t_unary_from_binary.html</anchorfile>
+      <anchor>a8625bc150e8b0d441e23d4341bc10549</anchor>
+      <arglist>(ConstantType constant)</arglist>
+    </member>
+    <member kind="function">
+      <type>OutputType</type>
+      <name>operator()</name>
+      <anchorfile>d7/d1f/classph_1_1texfunc_1_1_t_unary_from_binary.html</anchorfile>
+      <anchor>a4513c82732fa0e1313223aeffd2f693e</anchor>
+      <arglist>(const InputType &amp;inputValue) const</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>ph::texfunc::TUnaryFromTernary</name>
+    <filename>d0/d3d/classph_1_1texfunc_1_1_t_unary_from_ternary.html</filename>
+    <templarg>typename InputType</templarg>
+    <templarg>typename ConstantTypeA</templarg>
+    <templarg>typename ConstantTypeB</templarg>
+    <templarg>typename OutputType</templarg>
+    <templarg>CTernaryOperator&lt; InputType, ConstantTypeA, ConstantTypeB, OutputType &gt; TernaryOperatorType</templarg>
+    <member kind="function">
+      <type></type>
+      <name>TUnaryFromTernary</name>
+      <anchorfile>d0/d3d/classph_1_1texfunc_1_1_t_unary_from_ternary.html</anchorfile>
+      <anchor>a992a3286b779891841332440fea422a7</anchor>
+      <arglist>(ConstantTypeA constantA, ConstantTypeB constantB)</arglist>
+    </member>
+    <member kind="function">
+      <type>OutputType</type>
+      <name>operator()</name>
+      <anchorfile>d0/d3d/classph_1_1texfunc_1_1_t_unary_from_ternary.html</anchorfile>
+      <anchor>a4eeb25d300398a22fb6d97842facf219</anchor>
+      <arglist>(const InputType &amp;inputValue) const</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -42470,45 +45616,10 @@
     <base>TVectorNBase&lt; TVector4&lt; T &gt;, T, 4 &gt;</base>
     <member kind="function">
       <type></type>
-      <name>TVector4</name>
+      <name>PH_DEFINE_INLINE_RULE_OF_5_MEMBERS</name>
       <anchorfile>d7/d52/classph_1_1math_1_1_t_vector4.html</anchorfile>
-      <anchor>a92e650821e470c1717d21bf07ff6af06</anchor>
-      <arglist>()=default</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>TVector4</name>
-      <anchorfile>d7/d52/classph_1_1math_1_1_t_vector4.html</anchorfile>
-      <anchor>a9b01e763ec97c63cd4f5fa1fb3ed54fd</anchor>
-      <arglist>(const TVector4 &amp;other)=default</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>TVector4</name>
-      <anchorfile>d7/d52/classph_1_1math_1_1_t_vector4.html</anchorfile>
-      <anchor>a2b3e093b2190b05395d4a521f8f994d1</anchor>
-      <arglist>(TVector4 &amp;&amp;other)=default</arglist>
-    </member>
-    <member kind="function">
-      <type>TVector4 &amp;</type>
-      <name>operator=</name>
-      <anchorfile>d7/d52/classph_1_1math_1_1_t_vector4.html</anchorfile>
-      <anchor>a7946d9127db3f265026bd8832ce9038a</anchor>
-      <arglist>(const TVector4 &amp;rhs)=default</arglist>
-    </member>
-    <member kind="function">
-      <type>TVector4 &amp;</type>
-      <name>operator=</name>
-      <anchorfile>d7/d52/classph_1_1math_1_1_t_vector4.html</anchorfile>
-      <anchor>af5f3a2ee51fa8f56326b983b58988375</anchor>
-      <arglist>(TVector4 &amp;&amp;rhs)=default</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>~TVector4</name>
-      <anchorfile>d7/d52/classph_1_1math_1_1_t_vector4.html</anchorfile>
-      <anchor>ac36e08475531a1a09c96efeb24041143</anchor>
-      <arglist>()=default</arglist>
+      <anchor>ab5ae805c1ffffc74ffe31445b74781b8</anchor>
+      <arglist>(TVector4)</arglist>
     </member>
     <member kind="function">
       <type></type>
@@ -42744,17 +45855,10 @@
     </member>
     <member kind="function">
       <type>Derived</type>
-      <name>normalize</name>
+      <name>safeNormalize</name>
       <anchorfile>da/d31/classph_1_1math_1_1_t_vector_n_base.html</anchorfile>
-      <anchor>a83faa5cec9beeb81bb58af4a8b1d13b1</anchor>
-      <arglist>() const</arglist>
-    </member>
-    <member kind="function">
-      <type>Derived &amp;</type>
-      <name>normalizeLocal</name>
-      <anchorfile>da/d31/classph_1_1math_1_1_t_vector_n_base.html</anchorfile>
-      <anchor>a6266290d05c9bfe92d324e39f0c316fb</anchor>
-      <arglist>()</arglist>
+      <anchor>aa9a25a22f7889500a3b5ff3d817b1d3d</anchor>
+      <arglist>(const Derived &amp;fallback=Derived{}) const</arglist>
     </member>
     <member kind="function">
       <type>Derived</type>
@@ -42785,6 +45889,13 @@
       <arglist>() const</arglist>
     </member>
     <member kind="function">
+      <type>Derived</type>
+      <name>operator-</name>
+      <anchorfile>da/d31/classph_1_1math_1_1_t_vector_n_base.html</anchorfile>
+      <anchor>aca4b3d38136802c92e4872ffe526695a</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
       <type>auto</type>
       <name>negate</name>
       <anchorfile>da/d31/classph_1_1math_1_1_t_vector_n_base.html</anchorfile>
@@ -42797,6 +45908,13 @@
       <anchorfile>da/d31/classph_1_1math_1_1_t_vector_n_base.html</anchorfile>
       <anchor>af52afeeb4a5271c971468fd830eae289</anchor>
       <arglist>() -&gt; Derived &amp;</arglist>
+    </member>
+    <member kind="function">
+      <type>auto</type>
+      <name>operator-</name>
+      <anchorfile>da/d31/classph_1_1math_1_1_t_vector_n_base.html</anchorfile>
+      <anchor>aef98b3ffebf23a93abe97513e4413eb4</anchor>
+      <arglist>() const -&gt; Derived</arglist>
     </member>
     <member kind="function">
       <type>constexpr std::size_t</type>
@@ -43023,11 +46141,25 @@
       <arglist>(T lowerBound, T upperBound) const</arglist>
     </member>
     <member kind="function">
+      <type>Derived</type>
+      <name>clamp</name>
+      <anchorfile>da/d31/classph_1_1math_1_1_t_vector_n_base.html</anchorfile>
+      <anchor>ab3ac183e2e33046262b612399e4c402b</anchor>
+      <arglist>(const Derived &amp;lowerBound, const Derived &amp;upperBound) const</arglist>
+    </member>
+    <member kind="function">
       <type>Derived &amp;</type>
       <name>clampLocal</name>
       <anchorfile>da/d31/classph_1_1math_1_1_t_vector_n_base.html</anchorfile>
       <anchor>ad2b8a87560ab65188ec7a7795eb4179d</anchor>
       <arglist>(T lowerBound, T upperBound)</arglist>
+    </member>
+    <member kind="function">
+      <type>Derived &amp;</type>
+      <name>clampLocal</name>
+      <anchorfile>da/d31/classph_1_1math_1_1_t_vector_n_base.html</anchorfile>
+      <anchor>a4535032412a9de38c30eb5308b1d9769</anchor>
+      <arglist>(const Derived &amp;lowerBound, const Derived &amp;upperBound)</arglist>
     </member>
     <member kind="function">
       <type>Derived</type>
@@ -43087,6 +46219,13 @@
     </member>
     <member kind="function">
       <type>T</type>
+      <name>product</name>
+      <anchorfile>da/d31/classph_1_1math_1_1_t_vector_n_base.html</anchorfile>
+      <anchor>a5017418f0b8b2fd8b14dc9ec97dc8c5b</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
       <name>min</name>
       <anchorfile>da/d31/classph_1_1math_1_1_t_vector_n_base.html</anchorfile>
       <anchor>a9d7c74ed57f9eb3b148e93aa58acc93d</anchor>
@@ -43098,6 +46237,13 @@
       <anchorfile>da/d31/classph_1_1math_1_1_t_vector_n_base.html</anchorfile>
       <anchor>a306125f226763f667b339d227d629794</anchor>
       <arglist>(const Derived &amp;other) const</arglist>
+    </member>
+    <member kind="function">
+      <type>std::size_t</type>
+      <name>minIndex</name>
+      <anchorfile>da/d31/classph_1_1math_1_1_t_vector_n_base.html</anchorfile>
+      <anchor>abeff772645e1958b68435cc842ad52de</anchor>
+      <arglist>() const</arglist>
     </member>
     <member kind="function">
       <type>T</type>
@@ -43114,6 +46260,13 @@
       <arglist>(const Derived &amp;other) const</arglist>
     </member>
     <member kind="function">
+      <type>std::size_t</type>
+      <name>maxIndex</name>
+      <anchorfile>da/d31/classph_1_1math_1_1_t_vector_n_base.html</anchorfile>
+      <anchor>ab1777714ed85b2abc26115af89f039ef</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
       <type>Derived</type>
       <name>ceil</name>
       <anchorfile>da/d31/classph_1_1math_1_1_t_vector_n_base.html</anchorfile>
@@ -43125,13 +46278,6 @@
       <name>floor</name>
       <anchorfile>da/d31/classph_1_1math_1_1_t_vector_n_base.html</anchorfile>
       <anchor>a4c60bc682281c483ba904ec377038f17</anchor>
-      <arglist>() const</arglist>
-    </member>
-    <member kind="function">
-      <type>T</type>
-      <name>product</name>
-      <anchorfile>da/d31/classph_1_1math_1_1_t_vector_n_base.html</anchorfile>
-      <anchor>a5017418f0b8b2fd8b14dc9ec97dc8c5b</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
@@ -43253,6 +46399,34 @@
       <anchor>a4fc4de014adb7946df69ce2ca873d78c</anchor>
       <arglist>() const</arglist>
     </member>
+    <member kind="function">
+      <type>TSpan&lt; T, N &gt;</type>
+      <name>toSpan</name>
+      <anchorfile>da/d31/classph_1_1math_1_1_t_vector_n_base.html</anchorfile>
+      <anchor>ab31fa7a608a3b3330e39351c0e7acf9e</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>TSpanView&lt; T, N &gt;</type>
+      <name>toView</name>
+      <anchorfile>da/d31/classph_1_1math_1_1_t_vector_n_base.html</anchorfile>
+      <anchor>a5acfe2ab947966811c66ec6241f7c723</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>Derived</type>
+      <name>normalize</name>
+      <anchorfile>da/d31/classph_1_1math_1_1_t_vector_n_base.html</anchorfile>
+      <anchor>a83faa5cec9beeb81bb58af4a8b1d13b1</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>Derived &amp;</type>
+      <name>normalizeLocal</name>
+      <anchorfile>da/d31/classph_1_1math_1_1_t_vector_n_base.html</anchorfile>
+      <anchor>a6266290d05c9bfe92d324e39f0c316fb</anchor>
+      <arglist>()</arglist>
+    </member>
     <member kind="variable" static="yes">
       <type>static constexpr auto</type>
       <name>NUM_ELEMENTS</name>
@@ -43274,17 +46448,38 @@
       <anchor>a3da28ca9690edd63fd4536e2f01b5b14</anchor>
       <arglist></arglist>
     </member>
+    <member kind="function">
+      <type>Derived</type>
+      <name>normalize</name>
+      <anchorfile>da/d31/classph_1_1math_1_1_t_vector_n_base.html</anchorfile>
+      <anchor>a83faa5cec9beeb81bb58af4a8b1d13b1</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>Derived &amp;</type>
+      <name>normalizeLocal</name>
+      <anchorfile>da/d31/classph_1_1math_1_1_t_vector_n_base.html</anchorfile>
+      <anchor>a6266290d05c9bfe92d324e39f0c316fb</anchor>
+      <arglist>()</arglist>
+    </member>
   </compound>
   <compound kind="class">
     <name>ph::TViewPathHandler</name>
     <filename>d3/d1c/classph_1_1_t_view_path_handler.html</filename>
     <templarg>typename Derived</templarg>
+    <member kind="typedef">
+      <type>void</type>
+      <name>ViewPathHandlerTag</name>
+      <anchorfile>d3/d1c/classph_1_1_t_view_path_handler.html</anchorfile>
+      <anchor>a94118006857b7b66375b5dfe93330c42</anchor>
+      <arglist></arglist>
+    </member>
     <member kind="function">
       <type>bool</type>
       <name>onReceiverSampleStart</name>
       <anchorfile>d3/d1c/classph_1_1_t_view_path_handler.html</anchorfile>
-      <anchor>a345a68c3b5f0fab8211580444891cbc8</anchor>
-      <arglist>(const math::Vector2D &amp;rasterCoord, const math::Spectrum &amp;pathThroughput)</arglist>
+      <anchor>af2c06b953abe65d4daa3c6ce75e43a94</anchor>
+      <arglist>(const math::Vector2D &amp;rasterCoord, const math::Vector2S &amp;sampleIndex, const math::Spectrum &amp;pathThroughput)</arglist>
     </member>
     <member kind="function">
       <type>auto</type>
@@ -43307,24 +46502,45 @@
       <anchor>a15d46f6f742c2a61113000e29946179e</anchor>
       <arglist>()</arglist>
     </member>
+    <member kind="function" protection="protected">
+      <type></type>
+      <name>PH_DEFINE_INLINE_RULE_OF_5_MEMBERS</name>
+      <anchorfile>d3/d1c/classph_1_1_t_view_path_handler.html</anchorfile>
+      <anchor>aa792b617bdf9303db422ef7b686d5f18</anchor>
+      <arglist>(TViewPathHandler)</arglist>
+    </member>
   </compound>
   <compound kind="class">
     <name>ph::TViewPathTracingWork</name>
     <filename>d0/df4/classph_1_1_t_view_path_tracing_work.html</filename>
-    <templarg>typename ViewPathHandler</templarg>
+    <templarg>CViewPathHandler Handler</templarg>
     <base>ph::RenderWork</base>
     <member kind="function">
       <type></type>
       <name>TViewPathTracingWork</name>
       <anchorfile>d0/df4/classph_1_1_t_view_path_tracing_work.html</anchorfile>
-      <anchor>a289607de844c6d57d244a8acf178aa6b</anchor>
-      <arglist>(ViewPathHandler *handler, const Scene *scene, const Receiver *receiver, SampleGenerator *sampleGenerator, const Region &amp;rasterRegion)</arglist>
+      <anchor>a849ab12964ed1600be90ad650ab893b9</anchor>
+      <arglist>(Handler *handler, const Scene *scene, const Receiver *receiver, SampleGenerator *sampleGenerator, const math::TAABB2D&lt; float64 &gt; &amp;rasterSampleWindowPx, const math::TVector2&lt; int64 &gt; &amp;sampleRes)</arglist>
+    </member>
+    <member kind="function">
+      <type>const math::Vector2S &amp;</type>
+      <name>getSampleRes</name>
+      <anchorfile>d0/df4/classph_1_1_t_view_path_tracing_work.html</anchorfile>
+      <anchor>a981a93ad17e0b8686254cbf4a1f3718e</anchor>
+      <arglist>() const</arglist>
     </member>
   </compound>
   <compound kind="class">
     <name>ph::TViewpoint</name>
     <filename>d1/ded/classph_1_1_t_viewpoint.html</filename>
     <templarg>typename Derived</templarg>
+    <member kind="typedef">
+      <type>void</type>
+      <name>PMViewpointTag</name>
+      <anchorfile>d1/ded/classph_1_1_t_viewpoint.html</anchorfile>
+      <anchor>a6a223d079fc7327ea30bc52bfa837c81</anchor>
+      <arglist></arglist>
+    </member>
     <member kind="function">
       <type>decltype(auto)</type>
       <name>get</name>
@@ -43346,6 +46562,90 @@
       <anchor>ad7c4fb174e312457047e8983ebee9af5</anchor>
       <arglist>()</arglist>
     </member>
+    <member kind="function" protection="protected">
+      <type></type>
+      <name>PH_DEFINE_INLINE_RULE_OF_5_MEMBERS</name>
+      <anchorfile>d1/ded/classph_1_1_t_viewpoint.html</anchorfile>
+      <anchor>aef09597d6edc9ed3d6d9330ca4cbfc2e</anchor>
+      <arglist>(TViewpoint)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>ph::TVPMRadianceEvaluator</name>
+    <filename>d1/d70/classph_1_1_t_v_p_m_radiance_evaluator.html</filename>
+    <templarg>CPhoton Photon</templarg>
+    <templarg>typename PhotonMap</templarg>
+    <base>ph::TViewPathHandler</base>
+    <member kind="function">
+      <type></type>
+      <name>TVPMRadianceEvaluator</name>
+      <anchorfile>d1/d70/classph_1_1_t_v_p_m_radiance_evaluator.html</anchorfile>
+      <anchor>adba5a5177bf89372492205b3646c2636</anchor>
+      <arglist>(const PhotonMap *photonMap, const Scene *scene, TSamplingFilm&lt; math::Spectrum &gt; *film)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>impl_onReceiverSampleStart</name>
+      <anchorfile>d1/d70/classph_1_1_t_v_p_m_radiance_evaluator.html</anchorfile>
+      <anchor>a56dc75ebf56212ddc86173560c663bb3</anchor>
+      <arglist>(const math::Vector2D &amp;rasterCoord, const math::Vector2S &amp;sampleIndex, const math::Spectrum &amp;pathThroughput)</arglist>
+    </member>
+    <member kind="function">
+      <type>auto</type>
+      <name>impl_onPathHitSurface</name>
+      <anchorfile>d1/d70/classph_1_1_t_v_p_m_radiance_evaluator.html</anchorfile>
+      <anchor>ac8d7685d11ffc94a869f18ea2c6b3225</anchor>
+      <arglist>(std::size_t pathLength, const SurfaceHit &amp;surfaceHit, const math::Spectrum &amp;pathThroughput) -&gt; ViewPathTracingPolicy</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>impl_onReceiverSampleEnd</name>
+      <anchorfile>d1/d70/classph_1_1_t_v_p_m_radiance_evaluator.html</anchorfile>
+      <anchor>a1da5047b4b4643f131d24df62243e51a</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>impl_onSampleBatchFinished</name>
+      <anchorfile>d1/d70/classph_1_1_t_v_p_m_radiance_evaluator.html</anchorfile>
+      <anchor>ae89d6070084325410c9f3bab3963732a</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setStatistics</name>
+      <anchorfile>d1/d70/classph_1_1_t_v_p_m_radiance_evaluator.html</anchorfile>
+      <anchor>a6b3943b612086984a6ccfc0ce421d611</anchor>
+      <arglist>(PMAtomicStatistics *statistics)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setKernelRadius</name>
+      <anchorfile>d1/d70/classph_1_1_t_v_p_m_radiance_evaluator.html</anchorfile>
+      <anchor>a4aefe09fa566ec3cbaadfb42071d04be</anchor>
+      <arglist>(real radius)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setStochasticPathSampleBeginLength</name>
+      <anchorfile>d1/d70/classph_1_1_t_v_p_m_radiance_evaluator.html</anchorfile>
+      <anchor>a67fa95fabe1515d0baac86d8de644c7d</anchor>
+      <arglist>(std::size_t stochasticSampleBeginLength)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setFullPathLengthRange</name>
+      <anchorfile>d1/d70/classph_1_1_t_v_p_m_radiance_evaluator.html</anchorfile>
+      <anchor>abb0e73d102515410cedf7f35fd694925</anchor>
+      <arglist>(std::size_t minFullPathLength, std::size_t maxFullPathLength=PMCommonParams::DEFAULT_MAX_PATH_LENGTH)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setGlossyMergeBeginLength</name>
+      <anchorfile>d1/d70/classph_1_1_t_v_p_m_radiance_evaluator.html</anchorfile>
+      <anchor>ab2b908e1e0262ccc77b1e6dec9258c62</anchor>
+      <arglist>(uint32 glossyMergeBeginLength)</arglist>
+    </member>
   </compound>
   <compound kind="class">
     <name>ph::math::TWatertightTriangle</name>
@@ -43364,13 +46664,6 @@
     <name>ph::UniformRandomSampleSource</name>
     <filename>de/d36/classph_1_1_uniform_random_sample_source.html</filename>
     <base>ph::RuntimeSampleSource</base>
-    <member kind="function">
-      <type></type>
-      <name>UniformRandomSampleSource</name>
-      <anchorfile>de/d36/classph_1_1_uniform_random_sample_source.html</anchorfile>
-      <anchor>aeedd4aa2145b6d08cabcb77e05980790</anchor>
-      <arglist>()=default</arglist>
-    </member>
     <member kind="function">
       <type>void</type>
       <name>cook</name>
@@ -43459,6 +46752,60 @@
     </member>
   </compound>
   <compound kind="class">
+    <name>ph::VanillaPMRenderer</name>
+    <filename>db/d67/classph_1_1_vanilla_p_m_renderer.html</filename>
+    <base>ph::PMRendererBase</base>
+    <member kind="function">
+      <type></type>
+      <name>VanillaPMRenderer</name>
+      <anchorfile>db/d67/classph_1_1_vanilla_p_m_renderer.html</anchorfile>
+      <anchor>ab310c6eca41e3f7cdae1291bb4e8858c</anchor>
+      <arglist>(PMCommonParams commonParams, Viewport viewport, SampleFilter filter, uint32 numWorkers)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>doRender</name>
+      <anchorfile>db/d67/classph_1_1_vanilla_p_m_renderer.html</anchorfile>
+      <anchor>a24f069d31aa72ced984f4b31e85d373b</anchor>
+      <arglist>() override</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>retrieveFrame</name>
+      <anchorfile>db/d67/classph_1_1_vanilla_p_m_renderer.html</anchorfile>
+      <anchor>a667477ac61f2981d36ef4a728ca16345</anchor>
+      <arglist>(std::size_t layerIndex, HdrRgbFrame &amp;out_frame) override</arglist>
+    </member>
+    <member kind="function">
+      <type>RenderStats</type>
+      <name>asyncQueryRenderStats</name>
+      <anchorfile>db/d67/classph_1_1_vanilla_p_m_renderer.html</anchorfile>
+      <anchor>af4e7929d62870914e7a5a3db0fa4c5b9</anchor>
+      <arglist>() override</arglist>
+    </member>
+    <member kind="function">
+      <type>RenderProgress</type>
+      <name>asyncQueryRenderProgress</name>
+      <anchorfile>db/d67/classph_1_1_vanilla_p_m_renderer.html</anchorfile>
+      <anchor>a448cd4383ad88658b5e964e757e8342d</anchor>
+      <arglist>() override</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>asyncPeekFrame</name>
+      <anchorfile>db/d67/classph_1_1_vanilla_p_m_renderer.html</anchorfile>
+      <anchor>ab17937e01cf165c3fd33a3284ef82566</anchor>
+      <arglist>(std::size_t layerIndex, const Region &amp;region, HdrRgbFrame &amp;out_frame) override</arglist>
+    </member>
+    <member kind="function">
+      <type>RenderObservationInfo</type>
+      <name>getObservationInfo</name>
+      <anchorfile>db/d67/classph_1_1_vanilla_p_m_renderer.html</anchorfile>
+      <anchor>ad2afb7011642ab50e31de780504c8f4d</anchor>
+      <arglist>() const</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
     <name>ph::Vector3Film</name>
     <filename>d9/dee/classph_1_1_vector3_film.html</filename>
     <base>TSamplingFilm&lt; math::Vector3R &gt;</base>
@@ -43480,8 +46827,15 @@
       <type>void</type>
       <name>addSample</name>
       <anchorfile>d9/dee/classph_1_1_vector3_film.html</anchorfile>
-      <anchor>a176ee7b9e66c5c3d4b5988f9236e7495</anchor>
-      <arglist>(float64 xPx, float64 yPx, const math::Vector3R &amp;vec3) override</arglist>
+      <anchor>aab544e68d3225d318fbe0cd44e790219</anchor>
+      <arglist>(float64 xPx, float64 yPx, const math::Vector3R &amp;sample) override</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setPixel</name>
+      <anchorfile>d9/dee/classph_1_1_vector3_film.html</anchorfile>
+      <anchor>a19794a29b2da7f29f6d48341224cd0d4</anchor>
+      <arglist>(float64 xPx, float64 yPx, const math::Vector3R &amp;sample) override</arglist>
     </member>
     <member kind="function">
       <type>void</type>
@@ -43650,13 +47004,6 @@
     <name>ph::Visualizer</name>
     <filename>d3/d39/classph_1_1_visualizer.html</filename>
     <base>ph::CoreSdlResource</base>
-    <member kind="function">
-      <type></type>
-      <name>Visualizer</name>
-      <anchorfile>d3/d39/classph_1_1_visualizer.html</anchorfile>
-      <anchor>a2f8a9dc8a3ca14b910761a9d5ee97064</anchor>
-      <arglist>()=default</arglist>
-    </member>
     <member kind="function" virtualness="pure">
       <type>void</type>
       <name>cook</name>
@@ -43890,67 +47237,6 @@
       <anchorfile>d8/db9/classph_1_1_volume_optics.html</anchorfile>
       <anchor>a91b7acf2fb10f2e0d7b21aaf62f99a9c</anchor>
       <arglist>(VolumeDistanceSample &amp;sample) const</arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>ph::VPMRadianceEvaluator</name>
-    <filename>d3/d6e/classph_1_1_v_p_m_radiance_evaluator.html</filename>
-    <base>TViewPathHandler&lt; VPMRadianceEvaluator &gt;</base>
-    <member kind="function">
-      <type></type>
-      <name>VPMRadianceEvaluator</name>
-      <anchorfile>d3/d6e/classph_1_1_v_p_m_radiance_evaluator.html</anchorfile>
-      <anchor>a370bee424d0fcb8854fa86ed9b15a55c</anchor>
-      <arglist>(const TPhotonMap&lt; FullPhoton &gt; *photonMap, std::size_t numPhotonPaths, HdrRgbFilm *film, const Scene *scene)</arglist>
-    </member>
-    <member kind="function">
-      <type>bool</type>
-      <name>impl_onReceiverSampleStart</name>
-      <anchorfile>d3/d6e/classph_1_1_v_p_m_radiance_evaluator.html</anchorfile>
-      <anchor>a4e3c6f62729423f1a6a447a59d65224b</anchor>
-      <arglist>(const math::Vector2D &amp;rasterCoord, const math::Spectrum &amp;pathThroughput)</arglist>
-    </member>
-    <member kind="function">
-      <type>auto</type>
-      <name>impl_onPathHitSurface</name>
-      <anchorfile>d3/d6e/classph_1_1_v_p_m_radiance_evaluator.html</anchorfile>
-      <anchor>ad38c6cb759a246ff6a27353dc5255513</anchor>
-      <arglist>(std::size_t pathLength, const SurfaceHit &amp;surfaceHit, const math::Spectrum &amp;pathThroughput) -&gt; ViewPathTracingPolicy</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>impl_onReceiverSampleEnd</name>
-      <anchorfile>d3/d6e/classph_1_1_v_p_m_radiance_evaluator.html</anchorfile>
-      <anchor>a54f172a5bfd56f1f4f333f85c02d2cd7</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>impl_onSampleBatchFinished</name>
-      <anchorfile>d3/d6e/classph_1_1_v_p_m_radiance_evaluator.html</anchorfile>
-      <anchor>a5a93057db82faea4ad9eda50804ca2ac</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>setPMStatistics</name>
-      <anchorfile>d3/d6e/classph_1_1_v_p_m_radiance_evaluator.html</anchorfile>
-      <anchor>a1a87b39c27fd93486d0401293bdbc08a</anchor>
-      <arglist>(PMStatistics *statistics)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>setPMRenderer</name>
-      <anchorfile>d3/d6e/classph_1_1_v_p_m_radiance_evaluator.html</anchorfile>
-      <anchor>af821d68e6ee1dae07a4c5eb2a168fd4c</anchor>
-      <arglist>(PMRenderer *renderer)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>setKernelRadius</name>
-      <anchorfile>d3/d6e/classph_1_1_v_p_m_radiance_evaluator.html</anchorfile>
-      <anchor>a595bd8b34c622bca5b03e5df71881d7f</anchor>
-      <arglist>(real radius)</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -44289,8 +47575,16 @@
     <filename>da/da8/conceptph_1_1_c_can_add.html</filename>
   </compound>
   <compound kind="concept">
+    <name>ph::CCanDivide</name>
+    <filename>d1/df8/conceptph_1_1_c_can_divide.html</filename>
+  </compound>
+  <compound kind="concept">
     <name>ph::CCanMultiply</name>
     <filename>de/dd8/conceptph_1_1_c_can_multiply.html</filename>
+  </compound>
+  <compound kind="concept">
+    <name>ph::CCanSubtract</name>
+    <filename>d8/db9/conceptph_1_1_c_can_subtract.html</filename>
   </compound>
   <compound kind="concept">
     <name>ph::CDerived</name>
@@ -44325,8 +47619,16 @@
     <filename>d5/d96/conceptph_1_1_c_has_static_sdl_category_info.html</filename>
   </compound>
   <compound kind="concept">
+    <name>ph::CNotSame</name>
+    <filename>d4/de8/conceptph_1_1_c_not_same.html</filename>
+  </compound>
+  <compound kind="concept">
     <name>ph::CNumber</name>
     <filename>dc/d78/conceptph_1_1_c_number.html</filename>
+  </compound>
+  <compound kind="concept">
+    <name>ph::CPhoton</name>
+    <filename>dd/d0a/conceptph_1_1_c_photon.html</filename>
   </compound>
   <compound kind="concept">
     <name>ph::CSame</name>
@@ -44347,6 +47649,14 @@
   <compound kind="concept">
     <name>ph::CSubscriptable</name>
     <filename>d9/d29/conceptph_1_1_c_subscriptable.html</filename>
+  </compound>
+  <compound kind="concept">
+    <name>ph::CViewPathHandler</name>
+    <filename>de/db8/conceptph_1_1_c_view_path_handler.html</filename>
+  </compound>
+  <compound kind="concept">
+    <name>ph::CViewpoint</name>
+    <filename>d5/d75/conceptph_1_1_c_viewpoint.html</filename>
   </compound>
   <compound kind="concept">
     <name>ph::detail::CPrimitiveGetter</name>
@@ -44417,6 +47727,10 @@
     <filename>df/dea/conceptph_1_1math_1_1_c_has_color_space_properties.html</filename>
   </compound>
   <compound kind="concept">
+    <name>ph::math::CIndexedPointKdtreeItemStorage</name>
+    <filename>db/d1e/conceptph_1_1math_1_1_c_indexed_point_kdtree_item_storage.html</filename>
+  </compound>
+  <compound kind="concept">
     <name>ph::math::CItemSegmentIntersectionTester</name>
     <filename>d7/d6d/conceptph_1_1math_1_1_c_item_segment_intersection_tester.html</filename>
   </compound>
@@ -44459,6 +47773,10 @@
   <compound kind="concept">
     <name>ph::texfunc::CBinaryOperator</name>
     <filename>d4/d2a/conceptph_1_1texfunc_1_1_c_binary_operator.html</filename>
+  </compound>
+  <compound kind="concept">
+    <name>ph::texfunc::CTernaryOperator</name>
+    <filename>de/dfe/conceptph_1_1texfunc_1_1_c_ternary_operator.html</filename>
   </compound>
   <compound kind="concept">
     <name>ph::texfunc::CUnaryOperator</name>
@@ -44569,6 +47887,9 @@
     <class kind="class">ph::DiffuseSurfaceEmitter</class>
     <class kind="class">ph::DirectEnergySampleInput</class>
     <class kind="class">ph::DirectEnergySampleOutput</class>
+    <class kind="class">ph::DirectEnergySamplePdfInput</class>
+    <class kind="class">ph::DirectEnergySamplePdfOutput</class>
+    <class kind="class">ph::DirectEnergySamplePdfQuery</class>
     <class kind="class">ph::DirectEnergySampleQuery</class>
     <class kind="struct">ph::DomeRadianceFunctionInfo</class>
     <class kind="struct">ph::EmbeddedPrimitiveMetaGetter</class>
@@ -44576,6 +47897,9 @@
     <class kind="class">ph::Emitter</class>
     <class kind="class">ph::EmitterBuildingMaterial</class>
     <class kind="class">ph::EmitterSampler</class>
+    <class kind="class">ph::EnergyEmissionSampleInput</class>
+    <class kind="class">ph::EnergyEmissionSampleOutput</class>
+    <class kind="class">ph::EnergyEmissionSampleQuery</class>
     <class kind="class">ph::Engine</class>
     <class kind="class">ph::EngineInitSettings</class>
     <class kind="class">ph::EqualSamplingRenderer</class>
@@ -44656,6 +47980,7 @@
     <class kind="class">ph::IResourceIdentifierResolver</class>
     <class kind="struct">ph::IsBuildable</class>
     <class kind="struct">ph::IsBuildable&lt; Built, From, std::enable_if_t&lt; std::is_convertible_v&lt; From, Built &gt;||std::is_constructible_v&lt; Built, From &gt; &gt; &gt;</class>
+    <class kind="class">ph::ISdlDataPacketGroup</class>
     <class kind="class">ph::ISdlInstantiable</class>
     <class kind="class">ph::ISdlReferenceGroup</class>
     <class kind="class">ph::ISdlResource</class>
@@ -44719,10 +48044,10 @@
     <class kind="struct">ph::PlyProperty</class>
     <class kind="class">ph::PlyPropertyListValues</class>
     <class kind="class">ph::PlyPropertyValues</class>
-    <class kind="class">ph::PMRenderer</class>
-    <class kind="class">ph::PMStatistics</class>
+    <class kind="class">ph::PMAtomicStatistics</class>
+    <class kind="class">ph::PMCommonParams</class>
+    <class kind="class">ph::PMRendererBase</class>
     <class kind="class">ph::PointSource</class>
-    <class kind="class">ph::PPMRadianceEvaluationWork</class>
     <class kind="class">ph::PreCookReport</class>
     <class kind="class">ph::PreCookResourceCollectionProxy</class>
     <class kind="class">ph::PreethamTexture</class>
@@ -44736,8 +48061,9 @@
     <class kind="class">ph::PrimitivePosSamplePdfOutput</class>
     <class kind="class">ph::PrimitivePosSamplePdfQuery</class>
     <class kind="class">ph::PrimitivePosSampleQuery</class>
+    <class kind="class">ph::ProbabilisticProgressivePMRenderer</class>
+    <class kind="class">ph::ProgressivePMRenderer</class>
     <class kind="class">ph::PTriangle</class>
-    <class kind="class">ph::PtVolumetricEstimator</class>
     <class kind="class">ph::RadianceSensor</class>
     <class kind="class">ph::RasterFileImage</class>
     <class kind="class">ph::RasterImageBase</class>
@@ -44763,11 +48089,9 @@
     <class kind="class">ph::ResourceIdentifier</class>
     <class kind="class">ph::RoughnessToAlphaMapping</class>
     <class kind="class">ph::RuntimeSampleSource</class>
-    <class kind="class">ph::RussianRoulette</class>
     <class kind="class">ph::Sample</class>
     <class kind="class">ph::SampleContext</class>
     <class kind="class">ph::SampleFilter</class>
-    <class kind="class">ph::SampleFilters</class>
     <class kind="class">ph::SampleFlow</class>
     <class kind="class">ph::SampleGenerator</class>
     <class kind="class">ph::SampleLocation</class>
@@ -44788,6 +48112,7 @@
     <class kind="class">ph::SdlClass</class>
     <class kind="class">ph::SdlCommandGenerator</class>
     <class kind="class">ph::SdlCommandParser</class>
+    <class kind="class">ph::SdlDataPacketCollection</class>
     <class kind="class">ph::SdlDataPacketInterface</class>
     <class kind="class">ph::SdlDependencyResolver</class>
     <class kind="class">ph::SdlEnum</class>
@@ -44800,6 +48125,7 @@
     <class kind="class">ph::SdlInputContext</class>
     <class kind="class">ph::SdlIOContext</class>
     <class kind="class">ph::SdlLoadError</class>
+    <class kind="class">ph::SdlNamedOutputClauses</class>
     <class kind="class">ph::SdlNativeData</class>
     <class kind="class">ph::SdlOutputClause</class>
     <class kind="class">ph::SdlOutputClauses</class>
@@ -44812,12 +48138,10 @@
     <class kind="class">ph::SdlStruct</class>
     <class kind="class">ph::SdlStructFieldStump</class>
     <class kind="class">ph::SemanticVersion</class>
-    <class kind="class">ph::SenseEvent</class>
     <class kind="class">ph::SGHalton</class>
     <class kind="class">ph::SGStratified</class>
     <class kind="class">ph::SGUniformRandom</class>
     <class kind="class">ph::SGUtil</class>
-    <class kind="class">ph::SidednessAgreement</class>
     <class kind="class">ph::SingleFrameRenderSession</class>
     <class kind="class">ph::SingleLensObserver</class>
     <class kind="class">ph::SphereSource</class>
@@ -44827,6 +48151,7 @@
     <class kind="class">ph::Statistics</class>
     <class kind="class">ph::StdInputStream</class>
     <class kind="class">ph::StdOutputStream</class>
+    <class kind="class">ph::StochasticProgressivePMRenderer</class>
     <class kind="class">ph::StratifiedSampleSource</class>
     <class kind="class">ph::StripeScheduler</class>
     <class kind="class">ph::SurfaceAttributeEstimator</class>
@@ -44836,15 +48161,14 @@
     <class kind="class">ph::SurfaceLayerInfo</class>
     <class kind="class">ph::SurfaceMaterial</class>
     <class kind="class">ph::SurfaceOptics</class>
-    <class kind="class">ph::SurfaceTracer</class>
     <class kind="class">ph::SwizzledImage</class>
     <class kind="class">ph::TableFGD</class>
     <class kind="class">ph::TableTIR</class>
     <class kind="class">ph::TAbstractPixelTex2D</class>
     <class kind="class">ph::TAnyPtr</class>
     <class kind="class">ph::TAosTriMesh</class>
-    <class kind="class">ph::TArrayAsStack</class>
-    <class kind="class">ph::TArrayAsVector</class>
+    <class kind="class">ph::TArrayStack</class>
+    <class kind="class">ph::TArrayVector</class>
     <class kind="class">ph::TAtomicQuasiQueue</class>
     <class kind="class">ph::TBilinearPixelTex2D</class>
     <class kind="class">ph::TBinaryTextureOperator</class>
@@ -44856,7 +48180,6 @@
     <class kind="class">ph::TConstantTexture</class>
     <class kind="class">ph::TConstantTristimulusTexture</class>
     <class kind="class">ph::TConstIteratorProxy</class>
-    <class kind="class">ph::TDirectLightEstimator</class>
     <class kind="struct">ph::TEmbeddedPrimitiveGetter</class>
     <class kind="class">ph::TEstimationArray</class>
     <class kind="class">ph::TestPoint</class>
@@ -44880,7 +48203,6 @@
     <class kind="class">ph::TMergeableFilmProxy</class>
     <class kind="class">ph::TMetaInjectionPrimitive</class>
     <class kind="class">ph::TMipmap</class>
-    <class kind="class">ph::TMis</class>
     <class kind="class">ph::TMRSWResource</class>
     <class kind="class">ph::TNearestPixelTex2D</class>
     <class kind="struct">ph::TNonTypeTemplateArgDummy</class>
@@ -44888,14 +48210,14 @@
     <class kind="class">ph::Tokenizer</class>
     <class kind="class">ph::ToneMapper</class>
     <class kind="class">ph::TPhoton</class>
-    <class kind="struct">ph::TPhotonCenterCalculator</class>
-    <class kind="class">ph::TPhotonMappingWork</class>
+    <class kind="class">ph::TPhotonMap</class>
+    <class kind="class">ph::TPhotonMapInfo</class>
+    <class kind="class">ph::TPhotonPathTracingWork</class>
     <class kind="class">ph::TPIndexedKdTreeTriangleMesh</class>
     <class kind="class">ph::TPixelTex2D</class>
     <class kind="class">ph::TPixelTexture2D</class>
-    <class kind="class">ph::TPKdTreeTriangleMesh</class>
+    <class kind="class">ph::TPPMRadianceEvaluationWork</class>
     <class kind="class">ph::TPPMViewpointCollector</class>
-    <class kind="class">ph::TRadianceEvaluationWork</class>
     <class kind="class">ph::TransformedIntersectable</class>
     <class kind="class">ph::TransformedPrimitive</class>
     <class kind="class">ph::TransformInfo</class>
@@ -44937,10 +48259,12 @@
     <class kind="class">ph::TSdlResourceIdentifier</class>
     <class kind="class">ph::TSdlSpectrum</class>
     <class kind="class">ph::TSdlString</class>
+    <class kind="class">ph::TSdlStructArray</class>
     <class kind="class">ph::TSdlValue</class>
     <class kind="class">ph::TSdlVector2</class>
     <class kind="class">ph::TSdlVector3</class>
     <class kind="class">ph::TSdlVector3Array</class>
+    <class kind="class">ph::TSdlVector4</class>
     <class kind="class">ph::TSortedMap</class>
     <class kind="class">ph::TSortedVector</class>
     <class kind="class">ph::TSPPMRadianceEvaluator</class>
@@ -44950,6 +48274,7 @@
     <class kind="class">ph::TStackSentinel</class>
     <class kind="class">ph::TStepperReceiverMeasurementEstimator</class>
     <class kind="class">ph::TSwizzledTexture</class>
+    <class kind="class">ph::TTernaryTextureOperator</class>
     <class kind="class">ph::TTexture</class>
     <class kind="class">ph::TTrilinearPixelTex2D</class>
     <class kind="class">ph::TUnaryTextureOperator</class>
@@ -44957,9 +48282,11 @@
     <class kind="class">ph::TViewPathHandler</class>
     <class kind="class">ph::TViewPathTracingWork</class>
     <class kind="class">ph::TViewpoint</class>
+    <class kind="class">ph::TVPMRadianceEvaluator</class>
     <class kind="class">ph::UniformRandomSampleSource</class>
     <class kind="class">ph::UvwMapper</class>
     <class kind="class">ph::VAbsorptionOnly</class>
+    <class kind="class">ph::VanillaPMRenderer</class>
     <class kind="class">ph::Vector3Film</class>
     <class kind="class">ph::ViewPathTracingPolicy</class>
     <class kind="class">ph::Viewport</class>
@@ -44970,10 +48297,12 @@
     <class kind="class">ph::VolumeDistanceSample</class>
     <class kind="class">ph::VolumeMaterial</class>
     <class kind="class">ph::VolumeOptics</class>
-    <class kind="class">ph::VPMRadianceEvaluator</class>
     <class kind="class">ph::Workflow</class>
     <class kind="class">ph::WorkScheduler</class>
     <class kind="class">ph::WorkUnit</class>
+    <concept>ph::CPhoton</concept>
+    <concept>ph::CViewPathHandler</concept>
+    <concept>ph::CViewpoint</concept>
     <concept>ph::CSdlResource</concept>
     <concept>ph::CHasStaticSdlCategoryInfo</concept>
     <concept>ph::CHasSdlClassDefinition</concept>
@@ -44983,12 +48312,15 @@
     <concept>ph::CSdlInstance</concept>
     <concept>ph::CSdlStructSupportsInitToDefault</concept>
     <concept>ph::CCanAdd</concept>
+    <concept>ph::CCanSubtract</concept>
     <concept>ph::CCanMultiply</concept>
+    <concept>ph::CCanDivide</concept>
     <concept>ph::CSubscriptable</concept>
     <concept>ph::CEnum</concept>
     <concept>ph::CEnumWithSizeInfo</concept>
     <concept>ph::CNumber</concept>
     <concept>ph::CSame</concept>
+    <concept>ph::CNotSame</concept>
     <concept>ph::CDerived</concept>
     <concept>ph::CBase</concept>
     <member kind="typedef">
@@ -44996,6 +48328,13 @@
       <name>TSdlOptionalSpectrum</name>
       <anchorfile>d3/d5c/namespaceph.html</anchorfile>
       <anchor>a1832b639912fe8eeb94bf3703b2aa4a2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>TEnumFlags&lt; EFaceTopology &gt;</type>
+      <name>FaceTopology</name>
+      <anchorfile>d3/d5c/namespaceph.html</anchorfile>
+      <anchor>ae450afa019ad2f7529f95ac1d98a3c7d</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
@@ -45013,13 +48352,6 @@
       <arglist></arglist>
     </member>
     <member kind="typedef">
-      <type>math::TIndexedPointKdtree&lt; Photon, int, TPhotonCenterCalculator&lt; Photon &gt; &gt;</type>
-      <name>TPhotonMap</name>
-      <anchorfile>d3/d5c/namespaceph.html</anchorfile>
-      <anchor>aabd2922ed9fbc4763b49ec84230e8dd2</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="typedef">
       <type>math::TAABB2D&lt; int64 &gt;</type>
       <name>Region</name>
       <anchorfile>d3/d5c/namespaceph.html</anchorfile>
@@ -45027,10 +48359,10 @@
       <arglist></arglist>
     </member>
     <member kind="typedef">
-      <type>TBitFlags&lt; uint32, ESurfacePhenomenon &gt;</type>
+      <type>TEnumFlags&lt; ESurfacePhenomenon &gt;</type>
       <name>SurfacePhenomena</name>
       <anchorfile>d3/d5c/namespaceph.html</anchorfile>
-      <anchor>a368541bcb08772c8f877aa56743f51a6</anchor>
+      <anchor>aed18898381cecdbc0657b58e580ede3b</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
@@ -45038,6 +48370,13 @@
       <name>SurfaceElemental</name>
       <anchorfile>d3/d5c/namespaceph.html</anchorfile>
       <anchor>a9f3a5422acf386b99ae9712b13d55952</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>TEnumFlags&lt; ESurfaceHitReason &gt;</type>
+      <name>SurfaceHitReason</name>
+      <anchorfile>d3/d5c/namespaceph.html</anchorfile>
+      <anchor>a9c9572731969d1dad07fabb6342dddad</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
@@ -45356,6 +48695,13 @@
       <arglist></arglist>
     </member>
     <member kind="typedef">
+      <type>TSdlVector4&lt; Owner, Element, TSdlOptionalValue&lt; math::TVector4&lt; Element &gt;, Owner &gt; &gt;</type>
+      <name>TSdlOptionalVector4</name>
+      <anchorfile>d3/d5c/namespaceph.html</anchorfile>
+      <anchor>a33c96824a854dcf325e1a984de501c9b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
       <type>TSdlAnyInstance&lt; true &gt;</type>
       <name>SdlConstInstance</name>
       <anchorfile>d3/d5c/namespaceph.html</anchorfile>
@@ -45433,17 +48779,24 @@
       <arglist></arglist>
     </member>
     <member kind="typedef">
-      <type>std::span&lt; T, Extent &gt;</type>
-      <name>TSpan</name>
+      <type>decltype(std::declval&lt; Ts &gt;()[0])</type>
+      <name>TSubscriptedTypeOf</name>
       <anchorfile>d3/d5c/namespaceph.html</anchorfile>
-      <anchor>a2842d596489b048e5875ec1bc0c5edb3</anchor>
+      <anchor>a7f613f95513f47b92d35e0e4134d39c7</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
-      <type>std::span&lt; const T, Extent &gt;</type>
+      <type>std::span&lt; T, EXTENT &gt;</type>
+      <name>TSpan</name>
+      <anchorfile>d3/d5c/namespaceph.html</anchorfile>
+      <anchor>ac5bb03de153dde37c41cddcbfd29596c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>std::span&lt; const T, EXTENT &gt;</type>
       <name>TSpanView</name>
       <anchorfile>d3/d5c/namespaceph.html</anchorfile>
-      <anchor>aef9e26e2a4f42469befa033923b033bf</anchor>
+      <anchor>a6a9059902c5cb72738a2fcfc46614989</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
@@ -45474,6 +48827,18 @@
       <enumvalue file="d3/d5c/namespaceph.html" anchor="aff42ef94a4b6b6f5c793abc70beee644a344a7f427fb765610ef96eb7bce95257">Editor</enumvalue>
       <enumvalue file="d3/d5c/namespaceph.html" anchor="aff42ef94a4b6b6f5c793abc70beee644aaf3825c5cae546eeccf651ce17158920">EditorLib</enumvalue>
       <enumvalue file="d3/d5c/namespaceph.html" anchor="aff42ef94a4b6b6f5c793abc70beee644a895980a0ebcd15465d0cf980f8504c25">EditorTest</enumvalue>
+      <enumvalue file="d3/d5c/namespaceph.html" anchor="aff42ef94a4b6b6f5c793abc70beee644a69cc92a3d8f539741900e112e46963f8">IntersectError</enumvalue>
+    </member>
+    <member kind="enumeration">
+      <type></type>
+      <name>ESurfaceRefineMode</name>
+      <anchorfile>d3/d5c/namespaceph.html</anchorfile>
+      <anchor>a30265de866d1bbbd547fe9133e32e2ac</anchor>
+      <arglist></arglist>
+      <enumvalue file="d3/d5c/namespaceph.html" anchor="a30265de866d1bbbd547fe9133e32e2acae1ba155a9f2e8c3be94020eef32a0301">Manual</enumvalue>
+      <enumvalue file="d3/d5c/namespaceph.html" anchor="a30265de866d1bbbd547fe9133e32e2aca71dac3f0f562eb0fbbfdf1e456dfad3e">Empirical</enumvalue>
+      <enumvalue file="d3/d5c/namespaceph.html" anchor="a30265de866d1bbbd547fe9133e32e2aca701d2133d12ea3a960045f52be3d34b6">Iterative</enumvalue>
+      <enumvalue file="d3/d5c/namespaceph.html" anchor="a30265de866d1bbbd547fe9133e32e2aca7a1920d61156abc05a60135aefe8bc67">Default</enumvalue>
     </member>
     <member kind="enumeration">
       <type></type>
@@ -45482,7 +48847,12 @@
       <anchor>a57a17c5b6ec3b4a3672d77c819377fab</anchor>
       <arglist></arglist>
       <enumvalue file="d3/d5c/namespaceph.html" anchor="a57a17c5b6ec3b4a3672d77c819377fabaec211f7c20af43e742bf2570c3cb84f9">Add</enumvalue>
+      <enumvalue file="d3/d5c/namespaceph.html" anchor="a57a17c5b6ec3b4a3672d77c819377faba1d9baf077ee87921f57a8fe42d510b65">Subtract</enumvalue>
       <enumvalue file="d3/d5c/namespaceph.html" anchor="a57a17c5b6ec3b4a3672d77c819377fabae257376d913f3b53cbb4a9b19d770648">Multiply</enumvalue>
+      <enumvalue file="d3/d5c/namespaceph.html" anchor="a57a17c5b6ec3b4a3672d77c819377faba0b914e196182d02615487e9793ecff3d">Divide</enumvalue>
+      <enumvalue file="d3/d5c/namespaceph.html" anchor="a57a17c5b6ec3b4a3672d77c819377fabadd4fe0cc913f704600b97d1f5dd285de">Power</enumvalue>
+      <enumvalue file="d3/d5c/namespaceph.html" anchor="a57a17c5b6ec3b4a3672d77c819377fabab51ca26c6c89cfc9bec338f7a0d3e0c8">Absolute</enumvalue>
+      <enumvalue file="d3/d5c/namespaceph.html" anchor="a57a17c5b6ec3b4a3672d77c819377faba08825280e3f8137556325061ba67ff8c">Clamp</enumvalue>
     </member>
     <member kind="enumeration">
       <type></type>
@@ -45513,18 +48883,6 @@
       <anchor>aecddf825affa0d182e369460ebcd93ed</anchor>
       <arglist></arglist>
       <enumvalue file="d3/d5c/namespaceph.html" anchor="aecddf825affa0d182e369460ebcd93eda412cb411cecf9196f717d6bc9c272c62">Lerp</enumvalue>
-    </member>
-    <member kind="enumeration">
-      <type></type>
-      <name>EIdealSubstance</name>
-      <anchorfile>d3/d5c/namespaceph.html</anchorfile>
-      <anchor>a2aa26a9c11d0ea8479e4535a280a8f7e</anchor>
-      <arglist></arglist>
-      <enumvalue file="d3/d5c/namespaceph.html" anchor="a2aa26a9c11d0ea8479e4535a280a8f7ea59988751eea31359e0983b22e1531b70">Absorber</enumvalue>
-      <enumvalue file="d3/d5c/namespaceph.html" anchor="a2aa26a9c11d0ea8479e4535a280a8f7ea1af0f6884fdf4904994be2202a0f2ee6">DielectricReflector</enumvalue>
-      <enumvalue file="d3/d5c/namespaceph.html" anchor="a2aa26a9c11d0ea8479e4535a280a8f7ea3f21e5ccdd3297eea03afc7025b0eeed">MetallicReflector</enumvalue>
-      <enumvalue file="d3/d5c/namespaceph.html" anchor="a2aa26a9c11d0ea8479e4535a280a8f7ea39d6734cb0fef11456b9b52a03ed7a15">Transmitter</enumvalue>
-      <enumvalue file="d3/d5c/namespaceph.html" anchor="a2aa26a9c11d0ea8479e4535a280a8f7ea9d5ce2208818f6863beffd5f8834ca32">Dielectric</enumvalue>
     </member>
     <member kind="enumeration">
       <type></type>
@@ -45559,13 +48917,38 @@
     </member>
     <member kind="enumeration">
       <type></type>
+      <name>EIdealSubstance</name>
+      <anchorfile>d3/d5c/namespaceph.html</anchorfile>
+      <anchor>a2aa26a9c11d0ea8479e4535a280a8f7e</anchor>
+      <arglist></arglist>
+      <enumvalue file="d3/d5c/namespaceph.html" anchor="a2aa26a9c11d0ea8479e4535a280a8f7ea59988751eea31359e0983b22e1531b70">Absorber</enumvalue>
+      <enumvalue file="d3/d5c/namespaceph.html" anchor="a2aa26a9c11d0ea8479e4535a280a8f7ea1af0f6884fdf4904994be2202a0f2ee6">DielectricReflector</enumvalue>
+      <enumvalue file="d3/d5c/namespaceph.html" anchor="a2aa26a9c11d0ea8479e4535a280a8f7ea3f21e5ccdd3297eea03afc7025b0eeed">MetallicReflector</enumvalue>
+      <enumvalue file="d3/d5c/namespaceph.html" anchor="a2aa26a9c11d0ea8479e4535a280a8f7ea39d6734cb0fef11456b9b52a03ed7a15">Transmitter</enumvalue>
+      <enumvalue file="d3/d5c/namespaceph.html" anchor="a2aa26a9c11d0ea8479e4535a280a8f7ea9d5ce2208818f6863beffd5f8834ca32">Dielectric</enumvalue>
+    </member>
+    <member kind="enumeration">
+      <type></type>
       <name>ECoordSys</name>
       <anchorfile>d3/d5c/namespaceph.html</anchorfile>
       <anchor>a586c922092ae1fe5b4123bee53c9a404</anchor>
       <arglist></arglist>
-      <enumvalue file="d3/d5c/namespaceph.html" anchor="a586c922092ae1fe5b4123bee53c9a404a5289492cf082446ca4a6eec9f72f1ec3">WORLD</enumvalue>
-      <enumvalue file="d3/d5c/namespaceph.html" anchor="a586c922092ae1fe5b4123bee53c9a404a54b4c4075463b2e02cd69f5cd139b5b2">LOCAL</enumvalue>
-      <enumvalue file="d3/d5c/namespaceph.html" anchor="a586c922092ae1fe5b4123bee53c9a404a1d692822b3a86bcd069f067dbc9bea42">NUM_ELEMENTS</enumvalue>
+      <enumvalue file="d3/d5c/namespaceph.html" anchor="a586c922092ae1fe5b4123bee53c9a404af5a7924e621e84c9280a9a27e1bcb7f6">World</enumvalue>
+      <enumvalue file="d3/d5c/namespaceph.html" anchor="a586c922092ae1fe5b4123bee53c9a404a509820290d57f333403f490dde7316f4">Local</enumvalue>
+      <enumvalue file="d3/d5c/namespaceph.html" anchor="a586c922092ae1fe5b4123bee53c9a404a62e5cef85d46f1a5a2144d9fd463b79e">SIZE</enumvalue>
+    </member>
+    <member kind="enumeration">
+      <type></type>
+      <name>EFaceTopology</name>
+      <anchorfile>d3/d5c/namespaceph.html</anchorfile>
+      <anchor>a1dc2c49d4eab6261d803a5e3ec99dfb9</anchor>
+      <arglist></arglist>
+      <enumvalue file="d3/d5c/namespaceph.html" anchor="a1dc2c49d4eab6261d803a5e3ec99dfb9a0db377921f4ce762c62526131097968f">General</enumvalue>
+      <enumvalue file="d3/d5c/namespaceph.html" anchor="a1dc2c49d4eab6261d803a5e3ec99dfb9a93a097009b6443e711996c50b5354adf">Planar</enumvalue>
+      <enumvalue file="d3/d5c/namespaceph.html" anchor="a1dc2c49d4eab6261d803a5e3ec99dfb9a766cae017fab4bcc1d1e83fbb9af87c3">Convex</enumvalue>
+      <enumvalue file="d3/d5c/namespaceph.html" anchor="a1dc2c49d4eab6261d803a5e3ec99dfb9a1cb290ed5917afdbf2532bb2bf6f0192">Concave</enumvalue>
+      <enumvalue file="d3/d5c/namespaceph.html" anchor="a1dc2c49d4eab6261d803a5e3ec99dfb9a241f88afa7becb8633ca074c48e0d77c">Triangular</enumvalue>
+      <enumvalue file="d3/d5c/namespaceph.html" anchor="a1dc2c49d4eab6261d803a5e3ec99dfb9ab1aa854f21a681be6412a6df6340ab00">Quadrilateral</enumvalue>
     </member>
     <member kind="enumeration">
       <type></type>
@@ -45608,26 +48991,6 @@
     </member>
     <member kind="enumeration">
       <type></type>
-      <name>ESidednessPolicy</name>
-      <anchorfile>d3/d5c/namespaceph.html</anchorfile>
-      <anchor>ab7ef8f11c7d7bffec2c1fbd554ab9e78</anchor>
-      <arglist></arglist>
-      <enumvalue file="d3/d5c/namespaceph.html" anchor="ab7ef8f11c7d7bffec2c1fbd554ab9e78a2ec1cf0b202854255f0bdd4b11ac7960">DO_NOT_CARE</enumvalue>
-      <enumvalue file="d3/d5c/namespaceph.html" anchor="ab7ef8f11c7d7bffec2c1fbd554ab9e78a4c50b1af679a751969aaad2881a34bef">STRICT</enumvalue>
-      <enumvalue file="d3/d5c/namespaceph.html" anchor="ab7ef8f11c7d7bffec2c1fbd554ab9e78a2cf3de33d208726c4bd18487bd3fad7d">TRUST_GEOMETRY</enumvalue>
-      <enumvalue file="d3/d5c/namespaceph.html" anchor="ab7ef8f11c7d7bffec2c1fbd554ab9e78aceb105de371619f65bd05f7fabc77152">TRUST_SHADING</enumvalue>
-    </member>
-    <member kind="enumeration">
-      <type></type>
-      <name>EMisStyle</name>
-      <anchorfile>d3/d5c/namespaceph.html</anchorfile>
-      <anchor>ab9811191fad612c528234d06cda1c867</anchor>
-      <arglist></arglist>
-      <enumvalue file="d3/d5c/namespaceph.html" anchor="ab9811191fad612c528234d06cda1c867abd50bfdaa74e237144552ad497048642">BALANCE</enumvalue>
-      <enumvalue file="d3/d5c/namespaceph.html" anchor="ab9811191fad612c528234d06cda1c867ac9c9c146c630ca5ef9197c73c032f4a6">POWER</enumvalue>
-    </member>
-    <member kind="enumeration">
-      <type></type>
       <name>EAttribute</name>
       <anchorfile>d3/d5c/namespaceph.html</anchorfile>
       <anchor>a11c9affc6f83fcc2a03443c050b0224b</anchor>
@@ -45653,23 +49016,15 @@
     </member>
     <member kind="enumeration">
       <type></type>
-      <name>EPMMode</name>
-      <anchorfile>d3/d5c/namespaceph.html</anchorfile>
-      <anchor>ad7674596ce6a1ef31aa0ddbc9896126a</anchor>
-      <arglist></arglist>
-      <enumvalue file="d3/d5c/namespaceph.html" anchor="ad7674596ce6a1ef31aa0ddbc9896126aa7f9df4462ccfd5b474428c4478cb92db">VANILLA</enumvalue>
-      <enumvalue file="d3/d5c/namespaceph.html" anchor="ad7674596ce6a1ef31aa0ddbc9896126aa9bc5e7fe934fe08249e3aa2e0d3678ed">PROGRESSIVE</enumvalue>
-      <enumvalue file="d3/d5c/namespaceph.html" anchor="ad7674596ce6a1ef31aa0ddbc9896126aafe7f4794f918e9d11e6da7d2e99e2c0a">STOCHASTIC_PROGRESSIVE</enumvalue>
-    </member>
-    <member kind="enumeration">
-      <type></type>
       <name>EPhotonData</name>
       <anchorfile>d3/d5c/namespaceph.html</anchorfile>
       <anchor>a2f105bf7a6233cdb646a691b6055d71d</anchor>
       <arglist></arglist>
-      <enumvalue file="d3/d5c/namespaceph.html" anchor="a2f105bf7a6233cdb646a691b6055d71da95e89296fd3d9a10375c497dde9d227f">THROUGHPUT_RADIANCE</enumvalue>
-      <enumvalue file="d3/d5c/namespaceph.html" anchor="a2f105bf7a6233cdb646a691b6055d71da90b4ba73224408e82ade8a072a3712c1">POSITION</enumvalue>
-      <enumvalue file="d3/d5c/namespaceph.html" anchor="a2f105bf7a6233cdb646a691b6055d71da12c8d7f2b9404a7bc90c587d38488dfa">FROM_DIR</enumvalue>
+      <enumvalue file="d3/d5c/namespaceph.html" anchor="a2f105bf7a6233cdb646a691b6055d71da41fafd368452a2128ac8bdc3934d4cb5">ThroughputRadiance</enumvalue>
+      <enumvalue file="d3/d5c/namespaceph.html" anchor="a2f105bf7a6233cdb646a691b6055d71da52f5e0bc3859bc5f5e25130b6c7e8881">Position</enumvalue>
+      <enumvalue file="d3/d5c/namespaceph.html" anchor="a2f105bf7a6233cdb646a691b6055d71daee99ad64c489a5fa63f46f42f78e37e2">FromDir</enumvalue>
+      <enumvalue file="d3/d5c/namespaceph.html" anchor="a2f105bf7a6233cdb646a691b6055d71da551879a34d6ed879f4716e33d7b1cd92">GeometryNormal</enumvalue>
+      <enumvalue file="d3/d5c/namespaceph.html" anchor="a2f105bf7a6233cdb646a691b6055d71da1a383a1c74749bfaaabb286b854b2f4c">PathLength</enumvalue>
     </member>
     <member kind="enumeration">
       <type></type>
@@ -45677,14 +49032,14 @@
       <anchorfile>d3/d5c/namespaceph.html</anchorfile>
       <anchor>a7d646adaf4c44ccfcbbe787120a7cb1f</anchor>
       <arglist></arglist>
-      <enumvalue file="d3/d5c/namespaceph.html" anchor="a7d646adaf4c44ccfcbbe787120a7cb1fa98e1f022b0a334f93146fda9d3e0aa44">SURFACE_HIT</enumvalue>
-      <enumvalue file="d3/d5c/namespaceph.html" anchor="a7d646adaf4c44ccfcbbe787120a7cb1fa414657d9a739c0346bb75f628537f4fb">RASTER_COORD</enumvalue>
-      <enumvalue file="d3/d5c/namespaceph.html" anchor="a7d646adaf4c44ccfcbbe787120a7cb1fa5c6d0ec312d680ed011756648c9e96ea">RADIUS</enumvalue>
-      <enumvalue file="d3/d5c/namespaceph.html" anchor="a7d646adaf4c44ccfcbbe787120a7cb1fad826bfe266dab987b47a87e8228e4d29">NUM_PHOTONS</enumvalue>
-      <enumvalue file="d3/d5c/namespaceph.html" anchor="a7d646adaf4c44ccfcbbe787120a7cb1fa45abfcf7bda56c39bca80f4ce426fbf6">TAU</enumvalue>
-      <enumvalue file="d3/d5c/namespaceph.html" anchor="a7d646adaf4c44ccfcbbe787120a7cb1faa5926961c0dfc898c9bf88739d6241bd">VIEW_THROUGHPUT</enumvalue>
-      <enumvalue file="d3/d5c/namespaceph.html" anchor="a7d646adaf4c44ccfcbbe787120a7cb1faca0c94661502fdbb4fe524086ce66ea1">VIEW_DIR</enumvalue>
-      <enumvalue file="d3/d5c/namespaceph.html" anchor="a7d646adaf4c44ccfcbbe787120a7cb1fabc643b76f8014cc75f42b15b72338fd3">VIEW_RADIANCE</enumvalue>
+      <enumvalue file="d3/d5c/namespaceph.html" anchor="a7d646adaf4c44ccfcbbe787120a7cb1fa2eee368b673cbaedbb7a829562fa85d7">SurfaceHit</enumvalue>
+      <enumvalue file="d3/d5c/namespaceph.html" anchor="a7d646adaf4c44ccfcbbe787120a7cb1faa03022bf680492c4c7e9a0723ed7cd71">RasterCoord</enumvalue>
+      <enumvalue file="d3/d5c/namespaceph.html" anchor="a7d646adaf4c44ccfcbbe787120a7cb1fad1106ccca74e98877ed6d7890c70bb2c">Radius</enumvalue>
+      <enumvalue file="d3/d5c/namespaceph.html" anchor="a7d646adaf4c44ccfcbbe787120a7cb1fa119fba41118f04e03c5f46ff06b79da1">NumPhotons</enumvalue>
+      <enumvalue file="d3/d5c/namespaceph.html" anchor="a7d646adaf4c44ccfcbbe787120a7cb1faf3f155d55288e275dbad53d835b03757">Tau</enumvalue>
+      <enumvalue file="d3/d5c/namespaceph.html" anchor="a7d646adaf4c44ccfcbbe787120a7cb1fa0737ad937b6f497fd48cf5b484ed4c9b">ViewThroughput</enumvalue>
+      <enumvalue file="d3/d5c/namespaceph.html" anchor="a7d646adaf4c44ccfcbbe787120a7cb1fa19eec7ab9f3a463f76c6b158371b05c5">ViewDir</enumvalue>
+      <enumvalue file="d3/d5c/namespaceph.html" anchor="a7d646adaf4c44ccfcbbe787120a7cb1fa5aefb2b156a27259f3f640c349bf6f93">ViewRadiance</enumvalue>
     </member>
     <member kind="enumeration">
       <type></type>
@@ -45692,8 +49047,8 @@
       <anchorfile>d3/d5c/namespaceph.html</anchorfile>
       <anchor>a57656cbaf1b805ac50daee0f84abc13d</anchor>
       <arglist></arglist>
-      <enumvalue file="d3/d5c/namespaceph.html" anchor="a57656cbaf1b805ac50daee0f84abc13dae551fdb982de2ae3a35872a320aa5414">SINGLE_PATH</enumvalue>
-      <enumvalue file="d3/d5c/namespaceph.html" anchor="a57656cbaf1b805ac50daee0f84abc13daea01f6133eb19425bf95938d40a1ce09">ELEMENTAL_BRANCH</enumvalue>
+      <enumvalue file="d3/d5c/namespaceph.html" anchor="a57656cbaf1b805ac50daee0f84abc13da7f865686024b06cce3a9f086efe10b8e">SinglePath</enumvalue>
+      <enumvalue file="d3/d5c/namespaceph.html" anchor="a57656cbaf1b805ac50daee0f84abc13da7a4c3b54c3454e0dd272e21c3f4a4cdf">ElementalBranch</enumvalue>
     </member>
     <member kind="enumeration">
       <type></type>
@@ -45705,6 +49060,17 @@
       <enumvalue file="d3/d5c/namespaceph.html" anchor="a6f9cec199c98aceea98eb3ffbec5a13ba4457d440870ad6d42bab9082d9bf9b61">Fixed</enumvalue>
       <enumvalue file="d3/d5c/namespaceph.html" anchor="a6f9cec199c98aceea98eb3ffbec5a13badcb1cd0b41cbe56d7255fc7598503e86">PerDigit</enumvalue>
       <enumvalue file="d3/d5c/namespaceph.html" anchor="a6f9cec199c98aceea98eb3ffbec5a13baaf0bc706fca5c47970afe73c144fe6fd">Owen</enumvalue>
+    </member>
+    <member kind="enumeration">
+      <type></type>
+      <name>EHaltonSequence</name>
+      <anchorfile>d3/d5c/namespaceph.html</anchorfile>
+      <anchor>a8cbd49e3924f328a4384a500016945a2</anchor>
+      <arglist></arglist>
+      <enumvalue file="d3/d5c/namespaceph.html" anchor="a8cbd49e3924f328a4384a500016945a2a0a52da7a03a6de3beefe54f8c03ad80d">Original</enumvalue>
+      <enumvalue file="d3/d5c/namespaceph.html" anchor="a8cbd49e3924f328a4384a500016945a2ad0bf83bf5396b08b6435d781c969c228">Leap</enumvalue>
+      <enumvalue file="d3/d5c/namespaceph.html" anchor="a8cbd49e3924f328a4384a500016945a2accacf7f98607883290a38afb9b5b5428">RandomLeap</enumvalue>
+      <enumvalue file="d3/d5c/namespaceph.html" anchor="a8cbd49e3924f328a4384a500016945a2ac571ee7c6e4a91dc6a3bff6a54778b80">RandomStart</enumvalue>
     </member>
     <member kind="enumeration">
       <type></type>
@@ -45726,11 +49092,11 @@
       <anchorfile>d3/d5c/namespaceph.html</anchorfile>
       <anchor>a596116c16341de64c97b20395d758456</anchor>
       <arglist></arglist>
-      <enumvalue file="d3/d5c/namespaceph.html" anchor="a596116c16341de64c97b20395d758456a909db38cc4a1b6b18bc6828fa36ca0f4">DIFFUSE_REFLECTION</enumvalue>
-      <enumvalue file="d3/d5c/namespaceph.html" anchor="a596116c16341de64c97b20395d758456a8aae1f9200b02a17e6d07e6e503bb0d3">DELTA_REFLECTION</enumvalue>
-      <enumvalue file="d3/d5c/namespaceph.html" anchor="a596116c16341de64c97b20395d758456aa43c307c517a359f041a1b3b108e986f">GLOSSY_REFLECTION</enumvalue>
-      <enumvalue file="d3/d5c/namespaceph.html" anchor="a596116c16341de64c97b20395d758456a362e423eb291bcb0fef5887867eaab19">DELTA_TRANSMISSION</enumvalue>
-      <enumvalue file="d3/d5c/namespaceph.html" anchor="a596116c16341de64c97b20395d758456a28343d34ab135df0db2c914fc00c8a43">GLOSSY_TRANSMISSION</enumvalue>
+      <enumvalue file="d3/d5c/namespaceph.html" anchor="a596116c16341de64c97b20395d758456a96b6d5999da0dee7f6be9ed568bb11b3">DiffuseReflection</enumvalue>
+      <enumvalue file="d3/d5c/namespaceph.html" anchor="a596116c16341de64c97b20395d758456a6a08e398f84e0c348effb4341042b207">DeltaReflection</enumvalue>
+      <enumvalue file="d3/d5c/namespaceph.html" anchor="a596116c16341de64c97b20395d758456ac8e33f42e15c4d38920faff1dd1ca4e5">GlossyReflection</enumvalue>
+      <enumvalue file="d3/d5c/namespaceph.html" anchor="a596116c16341de64c97b20395d758456a1b72c07dc09193b5c23aec91a665a751">DeltaTransmission</enumvalue>
+      <enumvalue file="d3/d5c/namespaceph.html" anchor="a596116c16341de64c97b20395d758456abfc8a569b7687c064e61b4cf701cc0c8">GlossyTransmission</enumvalue>
     </member>
     <member kind="enumeration">
       <type></type>
@@ -45738,8 +49104,21 @@
       <anchorfile>d3/d5c/namespaceph.html</anchorfile>
       <anchor>a77d951ca57b4e319e083ebddd4695213</anchor>
       <arglist></arglist>
-      <enumvalue file="d3/d5c/namespaceph.html" anchor="a77d951ca57b4e319e083ebddd4695213a11ddd116a724531f18090168bc0fddcb">RADIANCE</enumvalue>
-      <enumvalue file="d3/d5c/namespaceph.html" anchor="a77d951ca57b4e319e083ebddd4695213aa8bf103ce6d1fcb1af7013857b1beee6">IMPORTANCE</enumvalue>
+      <enumvalue file="d3/d5c/namespaceph.html" anchor="a77d951ca57b4e319e083ebddd4695213a955d9ba35580bdcc7bed3f11736b0f76">Radiance</enumvalue>
+      <enumvalue file="d3/d5c/namespaceph.html" anchor="a77d951ca57b4e319e083ebddd4695213af0d806461f33568d758feb27d468352a">Importance</enumvalue>
+    </member>
+    <member kind="enumeration">
+      <type></type>
+      <name>ESurfaceHitReason</name>
+      <anchorfile>d3/d5c/namespaceph.html</anchorfile>
+      <anchor>a3624e7ffb99b556c1cf59f3bbfbc6afa</anchor>
+      <arglist></arglist>
+      <enumvalue file="d3/d5c/namespaceph.html" anchor="a3624e7ffb99b556c1cf59f3bbfbc6afaa4bbb8f967da6d1a610596d7257179c2b">Invalid</enumvalue>
+      <enumvalue file="d3/d5c/namespaceph.html" anchor="a3624e7ffb99b556c1cf59f3bbfbc6afaa88183b946cc5f0e8c96b2e66e1c74a7e">Unknown</enumvalue>
+      <enumvalue file="d3/d5c/namespaceph.html" anchor="a3624e7ffb99b556c1cf59f3bbfbc6afaad0fa933fa8c2bf79571c16d657ee0383">IncidentRay</enumvalue>
+      <enumvalue file="d3/d5c/namespaceph.html" anchor="a3624e7ffb99b556c1cf59f3bbfbc6afaa6ffca551d875be000c71d6ae0ceea16d">SampledPos</enumvalue>
+      <enumvalue file="d3/d5c/namespaceph.html" anchor="a3624e7ffb99b556c1cf59f3bbfbc6afaa1dffcca819566351b10a22017129b9d2">SampledDir</enumvalue>
+      <enumvalue file="d3/d5c/namespaceph.html" anchor="a3624e7ffb99b556c1cf59f3bbfbc6afaa60bb5154dab623db355be36cf93cfdf2">SampledPosDir</enumvalue>
     </member>
     <member kind="enumeration">
       <type></type>
@@ -45815,6 +49194,7 @@
       <enumvalue file="d3/d5c/namespaceph.html" anchor="acae1a4214e781895f3275c4923f42faaa7d3cf600bf044a1aaf9324807bd8d13e">Vanilla</enumvalue>
       <enumvalue file="d3/d5c/namespaceph.html" anchor="acae1a4214e781895f3275c4923f42faaa9712e73e86ea0fe944ca2ce3f9f7dd87">Progressive</enumvalue>
       <enumvalue file="d3/d5c/namespaceph.html" anchor="acae1a4214e781895f3275c4923f42faaaab0213436dd58e9f121285930cffbffc">StochasticProgressive</enumvalue>
+      <enumvalue file="d3/d5c/namespaceph.html" anchor="acae1a4214e781895f3275c4923f42faaa7fe29a6a6b41ec888830d5da5f36e948">ProbabilisticProgressive</enumvalue>
     </member>
     <member kind="enumeration">
       <type></type>
@@ -45868,6 +49248,7 @@
       <enumvalue file="d3/d5c/namespaceph.html" anchor="ace69f5c0a73308d2c88c512f8b70016ea66ba162102bbf6ae31b522aec561735e">Single</enumvalue>
       <enumvalue file="d3/d5c/namespaceph.html" anchor="ace69f5c0a73308d2c88c512f8b70016ea1bebc5ae2822f8e361fb0ce57b5e09e2">Vector2</enumvalue>
       <enumvalue file="d3/d5c/namespaceph.html" anchor="ace69f5c0a73308d2c88c512f8b70016ea02b4dab58bbc49e0851fb3fd8df520cc">Vector3</enumvalue>
+      <enumvalue file="d3/d5c/namespaceph.html" anchor="ace69f5c0a73308d2c88c512f8b70016eacf637ffa2663b40ae52857aa0bdb1ec3">Vector4</enumvalue>
       <enumvalue file="d3/d5c/namespaceph.html" anchor="ace69f5c0a73308d2c88c512f8b70016ea3743af167c53361d795405561faac2b2">Quaternion</enumvalue>
       <enumvalue file="d3/d5c/namespaceph.html" anchor="ace69f5c0a73308d2c88c512f8b70016ea57dea6f5039281b7fee517fc43bf3110">Vector</enumvalue>
       <enumvalue file="d3/d5c/namespaceph.html" anchor="ace69f5c0a73308d2c88c512f8b70016ea7decf65e5ac729bc6b05ea5973f82634">Vector2Vector</enumvalue>
@@ -45901,6 +49282,7 @@
       <enumvalue file="d3/d5c/namespaceph.html" anchor="ada33bb2d4bc26b3ec1da2acb348ef4ebaeb222d153d13a436ed254a8eabc42700">ResourceIdentifier</enumvalue>
       <enumvalue file="d3/d5c/namespaceph.html" anchor="ada33bb2d4bc26b3ec1da2acb348ef4ebac0d49cbee3b571a77b483aaceb20270f">Spectrum</enumvalue>
       <enumvalue file="d3/d5c/namespaceph.html" anchor="ada33bb2d4bc26b3ec1da2acb348ef4ebacf20423ed48998082c20099488a0917c">Enum</enumvalue>
+      <enumvalue file="d3/d5c/namespaceph.html" anchor="ada33bb2d4bc26b3ec1da2acb348ef4eba886ef5dbd655a6c97726d7091c6b173e">Struct</enumvalue>
       <enumvalue file="d3/d5c/namespaceph.html" anchor="ada33bb2d4bc26b3ec1da2acb348ef4ebad9c6333623e6357515fcbf17be806273">Geometry</enumvalue>
       <enumvalue file="d3/d5c/namespaceph.html" anchor="ada33bb2d4bc26b3ec1da2acb348ef4ebad92a8333dd3ccb895cc65f7455b71206">Material</enumvalue>
       <enumvalue file="d3/d5c/namespaceph.html" anchor="ada33bb2d4bc26b3ec1da2acb348ef4eba8226588f03da49b857e5ddf8c508dd2d">Motion</enumvalue>
@@ -45948,6 +49330,31 @@
     </member>
     <member kind="enumeration">
       <type></type>
+      <name>ESdlClauseValue</name>
+      <anchorfile>d3/d5c/namespaceph.html</anchorfile>
+      <anchor>a7669e02dae8904277fce9e122644856d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>General</name>
+      <anchorfile>d3/d5c/namespaceph.html</anchorfile>
+      <anchor>a7669e02dae8904277fce9e122644856da5897cb629fc4e569aa0aeb43fea64e21</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>PersistentTargetName</name>
+      <anchorfile>d3/d5c/namespaceph.html</anchorfile>
+      <anchor>a7669e02dae8904277fce9e122644856da1d475f8ff2d4f1ad18e81db0cc32a9b3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>CachedTargetName</name>
+      <anchorfile>d3/d5c/namespaceph.html</anchorfile>
+      <anchor>a7669e02dae8904277fce9e122644856daee520b374117a59f08d6677a179a20d9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumeration">
+      <type></type>
       <name>ESdlCommandType</name>
       <anchorfile>d3/d5c/namespaceph.html</anchorfile>
       <anchor>a748a9a96952018f789a076563beb0eea</anchor>
@@ -45958,6 +49365,7 @@
       <enumvalue file="d3/d5c/namespaceph.html" anchor="a748a9a96952018f789a076563beb0eeaaad7dcd0ec48cd500746a3e9ef80c0a9b">Removal</enumvalue>
       <enumvalue file="d3/d5c/namespaceph.html" anchor="a748a9a96952018f789a076563beb0eeaa06933067aafd48425d67bcb01bba5cb6">Update</enumvalue>
       <enumvalue file="d3/d5c/namespaceph.html" anchor="a748a9a96952018f789a076563beb0eeaa8f44785c8c19412c5b6611db30984514">Execution</enumvalue>
+      <enumvalue file="d3/d5c/namespaceph.html" anchor="a748a9a96952018f789a076563beb0eeaa2e33bf520f9ef0c0a06294f6cf6dd3d4">NamedDataPacket</enumvalue>
       <enumvalue file="d3/d5c/namespaceph.html" anchor="a748a9a96952018f789a076563beb0eeaaf0a43d6e5eea19af337a176e9836acdd">Phantom</enumvalue>
     </member>
     <member kind="enumeration">
@@ -46044,6 +49452,13 @@
       <name>get_resource_directory</name>
       <anchorfile>d3/d5c/namespaceph.html</anchorfile>
       <anchor>aa1a778265943c0debe5b5629b88232f2</anchor>
+      <arglist>(EEngineProject project)</arglist>
+    </member>
+    <member kind="function">
+      <type>Path</type>
+      <name>get_script_directory</name>
+      <anchorfile>d3/d5c/namespaceph.html</anchorfile>
+      <anchor>a08e937fb6acacf601e7a5e5d40818fd3</anchor>
       <arglist>(EEngineProject project)</arglist>
     </member>
     <member kind="function">
@@ -46197,27 +49612,6 @@
       <type></type>
       <name>PH_DEFINE_INTERNAL_LOG_GROUP</name>
       <anchorfile>d3/d5c/namespaceph.html</anchorfile>
-      <anchor>afe6136894b583cab28073b9d5dddaa12</anchor>
-      <arglist>(FullMaterial, Material)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>PH_DEFINE_INTERNAL_LOG_GROUP</name>
-      <anchorfile>d3/d5c/namespaceph.html</anchorfile>
-      <anchor>a3353eaba808a21be56eda6311cc4ede2</anchor>
-      <arglist>(IdealSubstance, Material)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>PH_DEFINE_SDL_ENUM</name>
-      <anchorfile>d3/d5c/namespaceph.html</anchorfile>
-      <anchor>a8a6fcea16f5c4888bd94adc8006fad9b</anchor>
-      <arglist>(TSdlGeneralEnum&lt; EIdealSubstance &gt;)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>PH_DEFINE_INTERNAL_LOG_GROUP</name>
-      <anchorfile>d3/d5c/namespaceph.html</anchorfile>
       <anchor>a5a269ea92e79d65f15f6f383e8b0e14e</anchor>
       <arglist>(ConductiveInterfaceInfo, BSDF)</arglist>
     </member>
@@ -46258,6 +49652,27 @@
     </member>
     <member kind="function">
       <type></type>
+      <name>PH_DEFINE_INTERNAL_LOG_GROUP</name>
+      <anchorfile>d3/d5c/namespaceph.html</anchorfile>
+      <anchor>afe6136894b583cab28073b9d5dddaa12</anchor>
+      <arglist>(FullMaterial, Material)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>PH_DEFINE_INTERNAL_LOG_GROUP</name>
+      <anchorfile>d3/d5c/namespaceph.html</anchorfile>
+      <anchor>a3353eaba808a21be56eda6311cc4ede2</anchor>
+      <arglist>(IdealSubstance, Material)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>PH_DEFINE_SDL_ENUM</name>
+      <anchorfile>d3/d5c/namespaceph.html</anchorfile>
+      <anchor>a8a6fcea16f5c4888bd94adc8006fad9b</anchor>
+      <arglist>(TSdlGeneralEnum&lt; EIdealSubstance &gt;)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
       <name>PH_DEFINE_SDL_ENUM</name>
       <anchorfile>d3/d5c/namespaceph.html</anchorfile>
       <anchor>a54b638edecc520a9be4e15dd15d97b7f</anchor>
@@ -46286,9 +49701,30 @@
     </member>
     <member kind="function">
       <type>bool</type>
+      <name>init_engine_core</name>
+      <anchorfile>d3/d5c/namespaceph.html</anchorfile>
+      <anchor>a88835ac567e5eb62c8e75d6161ded599</anchor>
+      <arglist>(const EngineInitSettings &amp;settings)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
       <name>init_engine_IO_infrastructure</name>
       <anchorfile>d3/d5c/namespaceph.html</anchorfile>
-      <anchor>aebdf17a4ddc6b5297952af30d1ca6e79</anchor>
+      <anchor>a899c29679777ed53118d557aa0e268ac</anchor>
+      <arglist>(const EngineInitSettings &amp;settings)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>after_engine_init</name>
+      <anchorfile>d3/d5c/namespaceph.html</anchorfile>
+      <anchor>a7c6ad024eb242dde37f585ec8dfb9455</anchor>
+      <arglist>(const EngineInitSettings &amp;settings)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>before_engine_exit</name>
+      <anchorfile>d3/d5c/namespaceph.html</anchorfile>
+      <anchor>aa5795c26f595a389514837de551d7dc7</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
@@ -46405,6 +49841,13 @@
     </member>
     <member kind="function">
       <type></type>
+      <name>PH_DEFINE_INLINE_ENUM_FLAG_OPERATORS</name>
+      <anchorfile>d3/d5c/namespaceph.html</anchorfile>
+      <anchor>a2a664f656f69f203a6328c8930e607d8</anchor>
+      <arglist>(EFaceTopology)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
       <name>PH_DEFINE_INTERNAL_LOG_GROUP</name>
       <anchorfile>d3/d5c/namespaceph.html</anchorfile>
       <anchor>a3c5521265a432f954dd4398f06370c20</anchor>
@@ -46439,18 +49882,46 @@
       <arglist>(AttributeRenderer, Renderer)</arglist>
     </member>
     <member kind="function">
-      <type></type>
-      <name>PH_DEFINE_INTERNAL_LOG_GROUP</name>
+      <type>bool</type>
+      <name>accept_photon_by_surface_topology</name>
       <anchorfile>d3/d5c/namespaceph.html</anchorfile>
-      <anchor>aa5a035987246ea05d8e59ce5eb098fd4</anchor>
-      <arglist>(PhotonMapRenderer, Renderer)</arglist>
+      <anchor>ab9d4b27758a195a566ee213c1f41f96f</anchor>
+      <arglist>(const Photon &amp;photon, const math::Vector3R &amp;Ng, const math::Vector3R &amp;Ns, const math::Vector3R &amp;L, const math::Vector3R &amp;V, const lta::SidednessAgreement &amp;sidedness)</arglist>
+    </member>
+    <member kind="function">
+      <type>math::Spectrum</type>
+      <name>estimate_certainly_lost_energy</name>
+      <anchorfile>d3/d5c/namespaceph.html</anchorfile>
+      <anchor>a7bddcd600f81212f4e8ff4071dc640b7</anchor>
+      <arglist>(const std::size_t viewPathLength, const SurfaceHit &amp;X, const math::Spectrum &amp;viewPathThroughput, const TPhotonMapInfo&lt; Photon &gt; &amp;photonMapInfo, const Scene *scene, const std::size_t minFullPathLength=1, const std::size_t maxFullPathLength=PMCommonParams::DEFAULT_MAX_PATH_LENGTH)</arglist>
+    </member>
+    <member kind="function">
+      <type>math::Spectrum</type>
+      <name>estimate_lost_energy_for_extending</name>
+      <anchorfile>d3/d5c/namespaceph.html</anchorfile>
+      <anchor>a4157e74ef0b3f83ee81fb342f3cdb0b8</anchor>
+      <arglist>(const std::size_t viewPathLength, const SurfaceHit &amp;X, const math::Spectrum &amp;viewPathThroughput, const TPhotonMapInfo&lt; Photon &gt; &amp;photonMapInfo, const Scene *scene, const std::size_t minFullPathLength=1, const std::size_t maxFullPathLength=PMCommonParams::DEFAULT_MAX_PATH_LENGTH)</arglist>
+    </member>
+    <member kind="function">
+      <type>math::Spectrum</type>
+      <name>estimate_lost_energy_for_merging</name>
+      <anchorfile>d3/d5c/namespaceph.html</anchorfile>
+      <anchor>a45199b25a540099512e7209137092fdf</anchor>
+      <arglist>(const std::size_t viewPathLength, const SurfaceHit &amp;X, const math::Spectrum &amp;viewPathThroughput, const TPhotonMapInfo&lt; Photon &gt; &amp;photonMapInfo, const Scene *scene, const std::size_t minFullPathLength=1, const std::size_t maxFullPathLength=PMCommonParams::DEFAULT_MAX_PATH_LENGTH)</arglist>
     </member>
     <member kind="function">
       <type></type>
-      <name>PH_DEFINE_INTERNAL_LOG_GROUP</name>
+      <name>PH_DEFINE_LOG_GROUP</name>
       <anchorfile>d3/d5c/namespaceph.html</anchorfile>
-      <anchor>a88495c88b5302be09d93243bbe30a995</anchor>
-      <arglist>(PPMRadianceEvaluationWork, PhotonMap)</arglist>
+      <anchor>a38dce708993529ab7ca465edcee8beb4</anchor>
+      <arglist>(PMRenderer, Renderer)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>PH_DECLARE_LOG_GROUP</name>
+      <anchorfile>d3/d5c/namespaceph.html</anchorfile>
+      <anchor>a816bf626d54388ef6a32ceec5da38dcb</anchor>
+      <arglist>(PMRenderer)</arglist>
     </member>
     <member kind="function">
       <type></type>
@@ -46468,6 +49939,13 @@
     </member>
     <member kind="function">
       <type></type>
+      <name>PH_DEFINE_INLINE_ENUM_FLAG_OPERATORS</name>
+      <anchorfile>d3/d5c/namespaceph.html</anchorfile>
+      <anchor>a0e94768bd94280304bcdd6840fcef7f7</anchor>
+      <arglist>(ESurfacePhenomenon)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
       <name>PH_DEFINE_EXTERNAL_LOG_GROUP</name>
       <anchorfile>d3/d5c/namespaceph.html</anchorfile>
       <anchor>a4a128256e0d0ed6f58830c7065c2245a</anchor>
@@ -46479,6 +49957,13 @@
       <anchorfile>d3/d5c/namespaceph.html</anchorfile>
       <anchor>a5a9b4a28e77e0964885aff0ac9522131</anchor>
       <arglist>(TableTIR, BSDF)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>PH_DEFINE_INLINE_ENUM_FLAG_OPERATORS</name>
+      <anchorfile>d3/d5c/namespaceph.html</anchorfile>
+      <anchor>ad4dde21b6fca2c67970845292bc452e0</anchor>
+      <arglist>(ESurfaceHitReason)</arglist>
     </member>
     <member kind="function">
       <type></type>
@@ -46577,6 +50062,20 @@
       <anchorfile>d3/d5c/namespaceph.html</anchorfile>
       <anchor>a5cd166648ba00d35ff8ae32d4fe4b88e</anchor>
       <arglist>(OrientedRasterObserver, Observer)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>PH_DEFINE_SDL_ENUM</name>
+      <anchorfile>d3/d5c/namespaceph.html</anchorfile>
+      <anchor>a2a6ff9a160785de1bcf95d44cdf48aaa</anchor>
+      <arglist>(TSdlGeneralEnum&lt; EHaltonPermutation &gt;)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>PH_DEFINE_SDL_ENUM</name>
+      <anchorfile>d3/d5c/namespaceph.html</anchorfile>
+      <anchor>a1e78bfaf7c40a41dbbb10fa7b8f8502e</anchor>
+      <arglist>(TSdlGeneralEnum&lt; EHaltonSequence &gt;)</arglist>
     </member>
     <member kind="function">
       <type></type>
@@ -46736,6 +50235,13 @@
       <type></type>
       <name>PH_DEFINE_INTERNAL_TIMER_STAT</name>
       <anchorfile>d3/d5c/namespaceph.html</anchorfile>
+      <anchor>a112aed18b3ffd9bfa444ad4345b19498</anchor>
+      <arglist>(ParseNamedDataPacketCommand, SdlCommandParser)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>PH_DEFINE_INTERNAL_TIMER_STAT</name>
+      <anchorfile>d3/d5c/namespaceph.html</anchorfile>
       <anchor>a2fff0d1e8022ed73c41d945c4604d3e4</anchor>
       <arglist>(GetCommandHeader, SdlCommandParser)</arglist>
     </member>
@@ -46757,8 +50263,22 @@
       <type></type>
       <name>PH_DEFINE_INTERNAL_LOG_GROUP</name>
       <anchorfile>d3/d5c/namespaceph.html</anchorfile>
+      <anchor>a754597b2508af77f22397ed2349b1991</anchor>
+      <arglist>(SdlDataPacketCollection, SDL)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>PH_DEFINE_INTERNAL_LOG_GROUP</name>
+      <anchorfile>d3/d5c/namespaceph.html</anchorfile>
       <anchor>ab01d1fb086019d8e7490fff9096406c0</anchor>
       <arglist>(SdlDependencyResolver, SDL)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>PH_DEFINE_INTERNAL_LOG_GROUP</name>
+      <anchorfile>d3/d5c/namespaceph.html</anchorfile>
+      <anchor>a05ffddfbcaf2980325dcd3481fdbb7fb</anchor>
+      <arglist>(SdlNamedOutputClauses, SDL)</arglist>
     </member>
     <member kind="function">
       <type>SdlResourceId</type>
@@ -46785,8 +50305,22 @@
       <type>void</type>
       <name>parallel_work</name>
       <anchorfile>d3/d5c/namespaceph.html</anchorfile>
-      <anchor>a24c686fb00834dfa25b4e3c8ac732d78</anchor>
-      <arglist>(const std::size_t totalWorkSize, const std::size_t numWorkers, const std::function&lt; void(std::size_t workerIdx, std::size_t workBegin, std::size_t workEnd) &gt; &amp;work)</arglist>
+      <anchor>a4bb82cb7d948a7f9feca7dffb744e02f</anchor>
+      <arglist>(const std::size_t numWorkers, std::function&lt; void(std::size_t workerIdx) &gt; work)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>parallel_work</name>
+      <anchorfile>d3/d5c/namespaceph.html</anchorfile>
+      <anchor>af97a91c8284655b7b30f7e815137585a</anchor>
+      <arglist>(const std::size_t totalWorkSize, const std::size_t numWorkers, std::function&lt; void(std::size_t workerIdx, std::size_t workBegin, std::size_t workEnd) &gt; work)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>parallel_work</name>
+      <anchorfile>d3/d5c/namespaceph.html</anchorfile>
+      <anchor>ae17e9e02b729060f7221d4fe9b9636b2</anchor>
+      <arglist>(FixedSizeThreadPool &amp;workers, const std::size_t totalWorkSize, std::function&lt; void(std::size_t workerIdx, std::size_t workBegin, std::size_t workEnd) &gt; work)</arglist>
     </member>
     <member kind="function">
       <type></type>
@@ -46915,10 +50449,24 @@
       <arglist>(UpdateLightSamplers, VisualWorld)</arglist>
     </member>
     <member kind="variable">
-      <type>constexpr SurfaceElemental</type>
-      <name>ALL_ELEMENTALS</name>
+      <type>constexpr ESurfacePhenomenon</type>
+      <name>ALL_SURFACE_PHENOMENA</name>
       <anchorfile>d3/d5c/namespaceph.html</anchorfile>
-      <anchor>a6def4537451eb39524dc16ba6f987bfe</anchor>
+      <anchor>aabe77df4e760c2bcfffe395279637254</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>constexpr ESurfacePhenomenon</type>
+      <name>DELTA_SURFACE_PHENOMENA</name>
+      <anchorfile>d3/d5c/namespaceph.html</anchorfile>
+      <anchor>a4fc648c9255debfc7f2fc587b7c017cc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>constexpr SurfaceElemental</type>
+      <name>ALL_SURFACE_ELEMENTALS</name>
+      <anchorfile>d3/d5c/namespaceph.html</anchorfile>
+      <anchor>ac2562eda4f90efe4267c1f774fd211bb</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
@@ -46961,9 +50509,15 @@
   <compound kind="namespace">
     <name>ph::detail</name>
     <filename>d8/d29/namespaceph_1_1detail.html</filename>
-    <class kind="struct">ph::detail::TClosestHitProbeResult</class>
     <concept>ph::detail::CPrimitiveMetaGetter</concept>
     <concept>ph::detail::CPrimitiveGetter</concept>
+    <member kind="typedef">
+      <type>uint8</type>
+      <name>SurfaceHitReasonIntType</name>
+      <anchorfile>d8/d29/namespaceph_1_1detail.html</anchorfile>
+      <anchor>ae888233f246cd4870d338cbef1f22e2a</anchor>
+      <arglist></arglist>
+    </member>
     <member kind="function">
       <type>std::shared_ptr&lt; ISdlResource &gt;</type>
       <name>load_single_resource</name>
@@ -46977,6 +50531,34 @@
       <anchorfile>d8/d29/namespaceph_1_1detail.html</anchorfile>
       <anchor>a5eb2dcf1450d496ce75711442c1d6051</anchor>
       <arglist>(const std::shared_ptr&lt; ISdlResource &gt; &amp;resource, const Path &amp;file)</arglist>
+    </member>
+    <member kind="variable">
+      <type>constexpr auto</type>
+      <name>shr_unknown_bits</name>
+      <anchorfile>d8/d29/namespaceph_1_1detail.html</anchorfile>
+      <anchor>ad6294352d5c32a45eb1386caccf76e01</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>constexpr auto</type>
+      <name>shr_incident_ray_bits</name>
+      <anchorfile>d8/d29/namespaceph_1_1detail.html</anchorfile>
+      <anchor>a119285860228c108c59da6358f651fe4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>constexpr auto</type>
+      <name>shr_sampled_pos_bits</name>
+      <anchorfile>d8/d29/namespaceph_1_1detail.html</anchorfile>
+      <anchor>a102fa6b0e28324bfd88f8cce244a27b3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>constexpr auto</type>
+      <name>shr_sampled_dir_bits</name>
+      <anchorfile>d8/d29/namespaceph_1_1detail.html</anchorfile>
+      <anchor>a75888fe8da875a22d86245dfcfc487d0</anchor>
+      <arglist></arglist>
     </member>
   </compound>
   <compound kind="namespace">
@@ -47073,6 +50655,7 @@
     <name>ph::halton_detail</name>
     <filename>d7/dd9/namespaceph_1_1halton__detail.html</filename>
     <class kind="class">ph::halton_detail::FixedPermuter</class>
+    <class kind="class">ph::halton_detail::OwenScrambledPermuter</class>
     <class kind="class">ph::halton_detail::PerDigitPermuter</class>
     <member kind="typedef">
       <type>uint16</type>
@@ -47099,15 +50682,15 @@
       <type>real</type>
       <name>radical_inverse</name>
       <anchorfile>d7/dd9/namespaceph_1_1halton__detail.html</anchorfile>
-      <anchor>a0ac50b45d9b91d5649f0f53752b1bc42</anchor>
-      <arglist>(const std::size_t dimIndex, const uint64 value)</arglist>
+      <anchor>a9b7e2b2e2de1a123d98f894c6a643fc9</anchor>
+      <arglist>(const uint64 dimIndex, const uint64 value)</arglist>
     </member>
     <member kind="function">
       <type>real</type>
       <name>radical_inverse_permuted</name>
       <anchorfile>d7/dd9/namespaceph_1_1halton__detail.html</anchorfile>
-      <anchor>a1ce2bec00c40c4980e582c2827412ed5</anchor>
-      <arglist>(const std::size_t dimIndex, const uint64 value, DigitPermuter permuter)</arglist>
+      <anchor>aa86d64f308daaafd7a78bc87ee5d97bf</anchor>
+      <arglist>(const uint64 dimIndex, const uint64 value, DigitPermuter permuter)</arglist>
     </member>
     <member kind="variable">
       <type>constexpr std::size_t</type>
@@ -47304,12 +50887,69 @@
   <compound kind="namespace">
     <name>ph::lta</name>
     <filename>df/d32/namespaceph_1_1lta.html</filename>
+    <class kind="class">ph::lta::PtVolumetricEstimator</class>
+    <class kind="class">ph::lta::RussianRoulette</class>
+    <class kind="class">ph::lta::SenseEvent</class>
+    <class kind="class">ph::lta::SidednessAgreement</class>
+    <class kind="class">ph::lta::SurfaceHitRefinery</class>
+    <class kind="class">ph::lta::SurfaceTracer</class>
+    <class kind="class">ph::lta::TDirectLightEstimator</class>
+    <class kind="class">ph::lta::TIndirectLightEstimator</class>
+    <class kind="class">ph::lta::TMis</class>
+    <member kind="enumeration">
+      <type></type>
+      <name>ESidednessPolicy</name>
+      <anchorfile>df/d32/namespaceph_1_1lta.html</anchorfile>
+      <anchor>a1d33ee239cb49375e222139a0fe1c17d</anchor>
+      <arglist></arglist>
+      <enumvalue file="df/d32/namespaceph_1_1lta.html" anchor="a1d33ee239cb49375e222139a0fe1c17dae9bfe1a1271065147039d9a297a4c785">DoNotCare</enumvalue>
+      <enumvalue file="df/d32/namespaceph_1_1lta.html" anchor="a1d33ee239cb49375e222139a0fe1c17da2e979835dd62324f5bfe217449ba4974">Strict</enumvalue>
+      <enumvalue file="df/d32/namespaceph_1_1lta.html" anchor="a1d33ee239cb49375e222139a0fe1c17da4a2e14f37fb676f4c83b874ddeaf35e3">TrustGeometry</enumvalue>
+      <enumvalue file="df/d32/namespaceph_1_1lta.html" anchor="a1d33ee239cb49375e222139a0fe1c17dab6e0902c88f013423a338605519edaf4">TrustShading</enumvalue>
+    </member>
+    <member kind="enumeration">
+      <type></type>
+      <name>EMisStyle</name>
+      <anchorfile>df/d32/namespaceph_1_1lta.html</anchorfile>
+      <anchor>a61430bac8f881a2704ade2e078883195</anchor>
+      <arglist></arglist>
+      <enumvalue file="df/d32/namespaceph_1_1lta.html" anchor="a61430bac8f881a2704ade2e078883195a99a808d8d16122d70e44bd7f709d30fb">Balance</enumvalue>
+      <enumvalue file="df/d32/namespaceph_1_1lta.html" anchor="a61430bac8f881a2704ade2e078883195add4fe0cc913f704600b97d1f5dd285de">Power</enumvalue>
+    </member>
+    <member kind="function">
+      <type>real</type>
+      <name>pdfA_to_pdfW</name>
+      <anchorfile>df/d32/namespaceph_1_1lta.html</anchorfile>
+      <anchor>a90b17b807b0048a147f97ee48bbaa6bd</anchor>
+      <arglist>(const real pdfA, const math::Vector3R &amp;dAPosToTargetPos, const math::Vector3R &amp;dANormal)</arglist>
+    </member>
+    <member kind="function">
+      <type>real</type>
+      <name>importance_scatter_Ns_corrector</name>
+      <anchorfile>df/d32/namespaceph_1_1lta.html</anchorfile>
+      <anchor>a1669152400e7fb4f968fae1a6211cc2c</anchor>
+      <arglist>(const math::Vector3R &amp;Ns, const math::Vector3R &amp;Ng, const math::Vector3R &amp;L, const math::Vector3R &amp;V)</arglist>
+    </member>
     <member kind="function">
       <type>real</type>
       <name>importance_BSDF_Ns_corrector</name>
       <anchorfile>df/d32/namespaceph_1_1lta.html</anchorfile>
-      <anchor>a65b7cfd7f2d90bb06d8089d61ddbd164</anchor>
+      <anchor>af768ce875381b972a702a221c9800a50</anchor>
+      <arglist>(const math::Vector3R &amp;Ns, const math::Vector3R &amp;Ng, const math::Vector3R &amp;V)</arglist>
+    </member>
+    <member kind="function">
+      <type>real</type>
+      <name>tamed_importance_scatter_Ns_corrector</name>
+      <anchorfile>df/d32/namespaceph_1_1lta.html</anchorfile>
+      <anchor>ab2afad625c810a9f23c2d71d9c07031f</anchor>
       <arglist>(const math::Vector3R &amp;Ns, const math::Vector3R &amp;Ng, const math::Vector3R &amp;L, const math::Vector3R &amp;V)</arglist>
+    </member>
+    <member kind="function">
+      <type>real</type>
+      <name>tamed_importance_BSDF_Ns_corrector</name>
+      <anchorfile>df/d32/namespaceph_1_1lta.html</anchorfile>
+      <anchor>ac017a110ee09b8cb7c2d5b0b1ff10f11</anchor>
+      <arglist>(const math::Vector3R &amp;Ns, const math::Vector3R &amp;Ng, const math::Vector3R &amp;V)</arglist>
     </member>
   </compound>
   <compound kind="namespace">
@@ -47358,12 +50998,14 @@
     <class kind="class">ph::math::TDisk</class>
     <class kind="class">ph::math::TFraction</class>
     <class kind="class">ph::math::TGaussian2D</class>
+    <class kind="class">ph::math::THeavisideStep2D</class>
     <class kind="class">ph::math::THemisphere</class>
     <class kind="struct">ph::math::TIndexedItemEndpoint</class>
     <class kind="class">ph::math::TIndexedKdtree</class>
     <class kind="class">ph::math::TIndexedKdtreeNode</class>
     <class kind="class">ph::math::TIndexedPointKdtree</class>
     <class kind="class">ph::math::TIndexedVector3</class>
+    <class kind="class">ph::math::TLinearGradient2D</class>
     <class kind="class">ph::math::TLineSegment</class>
     <class kind="class">ph::math::TMathFunction2D</class>
     <class kind="class">ph::math::TMatrix2</class>
@@ -47371,7 +51013,7 @@
     <class kind="class">ph::math::TMatrix4</class>
     <class kind="class">ph::math::TMatrixMxNBase</class>
     <class kind="class">ph::math::TMatrixNBase</class>
-    <class kind="class">ph::math::TMNCubic2D</class>
+    <class kind="class">ph::math::TMitchellNetravaliCubic2D</class>
     <class kind="class">ph::math::TMt19937</class>
     <class kind="class">ph::math::TOrthonormalBasis3</class>
     <class kind="class">ph::math::TPiecewiseLinear1D</class>
@@ -47397,6 +51039,7 @@
     <concept>ph::math::CItemSegmentIntersectionTesterVanilla</concept>
     <concept>ph::math::CItemSegmentIntersectionTesterWithIndex</concept>
     <concept>ph::math::CItemSegmentIntersectionTester</concept>
+    <concept>ph::math::CIndexedPointKdtreeItemStorage</concept>
     <concept>ph::math::CChromaticAdaptationDefinition</concept>
     <concept>ph::math::CSpectralSampleProps</concept>
     <concept>ph::math::CColorValuesInterface</concept>
@@ -48151,6 +51794,13 @@
       <arglist>(const T *data, std::size_t dataSize, uint32 seed)</arglist>
     </member>
     <member kind="function">
+      <type>uint32</type>
+      <name>permuted_index</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a46bffa9926cc5a79c3ae8eefdcc9990e</anchor>
+      <arglist>(uint32 i, uint32 l, uint32 p)</arglist>
+    </member>
+    <member kind="function">
       <type>void</type>
       <name>form_orthonormal_basis_frisvad</name>
       <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
@@ -48247,13 +51897,6 @@
       <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
       <anchor>a00dacdca0d6501e4506f1e80350c6529</anchor>
       <arglist>(const T value)</arglist>
-    </member>
-    <member kind="function">
-      <type>T</type>
-      <name>product</name>
-      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
-      <anchor>a536816208c239c8b2e217d70d5ec5d08</anchor>
-      <arglist>(const std::vector&lt; T &gt; &amp;values)</arglist>
     </member>
     <member kind="function">
       <type>constexpr NumberType</type>
@@ -48392,8 +52035,8 @@
       <type>Result</type>
       <name>radical_inverse_permuted</name>
       <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
-      <anchor>ac734c990d2720e669bdcc8d0875f35df</anchor>
-      <arglist>(const Value value, DigitPermuter permuter)</arglist>
+      <anchor>aadd21e9c389d1bfc9bc7d00d06dfb775</anchor>
+      <arglist>(const Value dimIndex, const Value value, DigitPermuter permuter)</arglist>
     </member>
     <member kind="function">
       <type>std::array&lt; To, N &gt;</type>
@@ -48487,6 +52130,48 @@
       <arglist>()</arglist>
     </member>
     <member kind="function">
+      <type>T</type>
+      <name>summation</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a423ca1404e587fb97e03569f02f95861</anchor>
+      <arglist>(const std::array&lt; T, N &gt; &amp;values, T initialValue=0)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>summation</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>aafd95c335ca3cea8382e4664fcb2e071</anchor>
+      <arglist>(const std::vector&lt; T &gt; &amp;values, T initialValue=0)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>summation</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a49a2a687b51def083e81e22e8aadd871</anchor>
+      <arglist>(TSpanView&lt; T, EXTENT &gt; values, T initialValue=0)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>product</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a688dbf6563c86608204cf755dc0be5cd</anchor>
+      <arglist>(const std::array&lt; T, N &gt; &amp;values, T initialValue=1)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>product</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>af88ea36316f4e3c2a63d8ff7342e3038</anchor>
+      <arglist>(const std::vector&lt; T &gt; &amp;values, T initialValue=1)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>product</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a46cc1344fc73d1e20da595d6e62bbb57</anchor>
+      <arglist>(TSpanView&lt; T, EXTENT &gt; values, T initialValue=1)</arglist>
+    </member>
+    <member kind="function">
       <type>UIntType</type>
       <name>flag_bit</name>
       <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
@@ -48513,6 +52198,111 @@
       <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
       <anchor>a050fd048afd360173b15c10a05c21f7c</anchor>
       <arglist>(const uint16 fp16Bits)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>length</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a5e1143174acd6afb8b6c9be755307c4b</anchor>
+      <arglist>(const std::array&lt; T, N &gt; &amp;vec)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>length</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>abd30caa18de616eaa04f98f75a8c9753</anchor>
+      <arglist>(const std::vector&lt; T &gt; &amp;vec)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>length</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a7ff2861977711d396858e5b6aef1436c</anchor>
+      <arglist>(TSpanView&lt; T, EXTENT &gt; vec)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>length_squared</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a271473c0e491fe4c7c0cb02fcfa88bb0</anchor>
+      <arglist>(const std::array&lt; T, N &gt; &amp;vec)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>length_squared</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a0a1c02f0fa48517a643a221c4200dc1e</anchor>
+      <arglist>(const std::vector&lt; T &gt; &amp;vec)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>length_squared</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a4d686d16a731cfaf96c02424b9215798</anchor>
+      <arglist>(TSpanView&lt; T, EXTENT &gt; vec)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>p_norm</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a4ff51da9284135e078f892589a4816cc</anchor>
+      <arglist>(const std::array&lt; T, N &gt; &amp;vec)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>p_norm</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a2f4af840af27b7877140cb250d0b2cba</anchor>
+      <arglist>(const std::vector&lt; T &gt; &amp;vec)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>p_norm</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a41e68b91f571234574a62deddcf6b47e</anchor>
+      <arglist>(TSpanView&lt; T, EXTENT &gt; vec)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>normalize</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a4f0591b11fba7210f6dd38cfbbcbc9f7</anchor>
+      <arglist>(std::array&lt; T, N &gt; &amp;vec)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>normalize</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a3cf4f52c15a3def1081a81e736a7a4f8</anchor>
+      <arglist>(std::vector&lt; T &gt; &amp;vec)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>normalize</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a82c62fe543155f8ea8d4fa031f8f3d85</anchor>
+      <arglist>(TSpan&lt; T, EXTENT &gt; vec)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>dot_product</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a03f8a077523cb1f8d667a39529300e98</anchor>
+      <arglist>(const std::array&lt; T, N &gt; &amp;vecA, const std::array&lt; T, N &gt; &amp;vecB)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>dot_product</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a1338f031a910337ae964bb3bc4ac6fe1</anchor>
+      <arglist>(const std::vector&lt; T &gt; &amp;vecA, const std::vector&lt; T &gt; &amp;vecB)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>dot_product</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a8bee0579f0647a84c49161d6ae0dba6f</anchor>
+      <arglist>(TSpanView&lt; T, EXTENT &gt; vecA, TSpanView&lt; T, EXTENT &gt; vecB)</arglist>
     </member>
     <member kind="function">
       <type>TSpectralSampleValues&lt; T, SampleProps &gt;</type>
@@ -48529,6 +52319,48 @@
       <arglist>()</arglist>
     </member>
     <member kind="function">
+      <type>T</type>
+      <name>summation</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a423ca1404e587fb97e03569f02f95861</anchor>
+      <arglist>(const std::array&lt; T, N &gt; &amp;values, T initialValue=0)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>summation</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>aafd95c335ca3cea8382e4664fcb2e071</anchor>
+      <arglist>(const std::vector&lt; T &gt; &amp;values, T initialValue=0)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>summation</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a49a2a687b51def083e81e22e8aadd871</anchor>
+      <arglist>(TSpanView&lt; T, EXTENT &gt; values, T initialValue=0)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>product</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a688dbf6563c86608204cf755dc0be5cd</anchor>
+      <arglist>(const std::array&lt; T, N &gt; &amp;values, T initialValue=1)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>product</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>af88ea36316f4e3c2a63d8ff7342e3038</anchor>
+      <arglist>(const std::vector&lt; T &gt; &amp;values, T initialValue=1)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>product</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a46cc1344fc73d1e20da595d6e62bbb57</anchor>
+      <arglist>(TSpanView&lt; T, EXTENT &gt; values, T initialValue=1)</arglist>
+    </member>
+    <member kind="function">
       <type>UIntType</type>
       <name>flag_bit</name>
       <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
@@ -48555,6 +52387,111 @@
       <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
       <anchor>a050fd048afd360173b15c10a05c21f7c</anchor>
       <arglist>(const uint16 fp16Bits)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>length</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a5e1143174acd6afb8b6c9be755307c4b</anchor>
+      <arglist>(const std::array&lt; T, N &gt; &amp;vec)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>length</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>abd30caa18de616eaa04f98f75a8c9753</anchor>
+      <arglist>(const std::vector&lt; T &gt; &amp;vec)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>length</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a7ff2861977711d396858e5b6aef1436c</anchor>
+      <arglist>(TSpanView&lt; T, EXTENT &gt; vec)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>length_squared</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a271473c0e491fe4c7c0cb02fcfa88bb0</anchor>
+      <arglist>(const std::array&lt; T, N &gt; &amp;vec)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>length_squared</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a0a1c02f0fa48517a643a221c4200dc1e</anchor>
+      <arglist>(const std::vector&lt; T &gt; &amp;vec)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>length_squared</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a4d686d16a731cfaf96c02424b9215798</anchor>
+      <arglist>(TSpanView&lt; T, EXTENT &gt; vec)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>p_norm</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a4ff51da9284135e078f892589a4816cc</anchor>
+      <arglist>(const std::array&lt; T, N &gt; &amp;vec)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>p_norm</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a2f4af840af27b7877140cb250d0b2cba</anchor>
+      <arglist>(const std::vector&lt; T &gt; &amp;vec)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>p_norm</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a41e68b91f571234574a62deddcf6b47e</anchor>
+      <arglist>(TSpanView&lt; T, EXTENT &gt; vec)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>normalize</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a4f0591b11fba7210f6dd38cfbbcbc9f7</anchor>
+      <arglist>(std::array&lt; T, N &gt; &amp;vec)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>normalize</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a3cf4f52c15a3def1081a81e736a7a4f8</anchor>
+      <arglist>(std::vector&lt; T &gt; &amp;vec)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>normalize</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a82c62fe543155f8ea8d4fa031f8f3d85</anchor>
+      <arglist>(TSpan&lt; T, EXTENT &gt; vec)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>dot_product</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a03f8a077523cb1f8d667a39529300e98</anchor>
+      <arglist>(const std::array&lt; T, N &gt; &amp;vecA, const std::array&lt; T, N &gt; &amp;vecB)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>dot_product</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a1338f031a910337ae964bb3bc4ac6fe1</anchor>
+      <arglist>(const std::vector&lt; T &gt; &amp;vecA, const std::vector&lt; T &gt; &amp;vecB)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>dot_product</name>
+      <anchorfile>d7/dac/namespaceph_1_1math.html</anchorfile>
+      <anchor>a8bee0579f0647a84c49161d6ae0dba6f</anchor>
+      <arglist>(TSpanView&lt; T, EXTENT &gt; vecA, TSpanView&lt; T, EXTENT &gt; vecB)</arglist>
     </member>
   </compound>
   <compound kind="namespace">
@@ -48607,6 +52544,13 @@
       <name>rcp_four_pi</name>
       <anchorfile>dc/d4b/namespaceph_1_1math_1_1constant.html</anchorfile>
       <anchor>ad94737c754eba014b00baed9a4bacea3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>constexpr T</type>
+      <name>pi2</name>
+      <anchorfile>dc/d4b/namespaceph_1_1math_1_1constant.html</anchorfile>
+      <anchor>a1de34fa3edf60d8404fbddd10aff51d6</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
@@ -48772,13 +52716,6 @@
       <anchor>a56f26ac6998799fac4fe89ea1370f3f4</anchor>
       <arglist>(const TVector2&lt; T &gt; &amp;point)</arglist>
     </member>
-    <member kind="variable">
-      <type>constexpr std::array&lt; unsigned char, 256 &gt;</type>
-      <name>BITS8_REVERSE_TABLE</name>
-      <anchorfile>db/dc6/namespaceph_1_1math_1_1detail.html</anchorfile>
-      <anchor>a8b1da491334c7a82b2312b3fce5c1278</anchor>
-      <arglist></arglist>
-    </member>
   </compound>
   <compound kind="namespace">
     <name>ph::math::detail::shuffle</name>
@@ -48936,11 +52873,30 @@
   <compound kind="namespace">
     <name>ph::math::table</name>
     <filename>d4/d7a/namespaceph_1_1math_1_1table.html</filename>
+    <namespace>ph::math::table::detail</namespace>
     <member kind="variable">
       <type>constexpr std::array&lt; uint32, 2048 &gt;</type>
-      <name>PRIME_TABLE</name>
+      <name>PRIME</name>
       <anchorfile>d4/d7a/namespaceph_1_1math_1_1table.html</anchorfile>
-      <anchor>a05105ed6eeb3c34a4c204235f67209eb</anchor>
+      <anchor>a6a102bd18125b6cb1b96692f49d6ef3d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>constexpr std::array&lt; uint32, 512 &gt;</type>
+      <name>GOOD_PRIME</name>
+      <anchorfile>d4/d7a/namespaceph_1_1math_1_1table.html</anchorfile>
+      <anchor>aa9ceefaabb346cc604ecb6738d7e03b9</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="namespace">
+    <name>ph::math::table::detail</name>
+    <filename>dd/d7d/namespaceph_1_1math_1_1table_1_1detail.html</filename>
+    <member kind="variable">
+      <type>constexpr std::array&lt; unsigned char, 256 &gt;</type>
+      <name>BITS8_REVERSE</name>
+      <anchorfile>dd/d7d/namespaceph_1_1math_1_1table_1_1detail.html</anchorfile>
+      <anchor>af06511c2d6e975a79a5f5a0f192f7379</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -49042,15 +52998,15 @@
       <type>math::Spectrum</type>
       <name>load_spectrum</name>
       <anchorfile>d3/dc3/namespaceph_1_1sdl.html</anchorfile>
-      <anchor>a039a8c9f9ff694e0b620242dcbe000ce</anchor>
-      <arglist>(const std::string &amp;sdlSpectrumStr, const std::string &amp;tag, math::EColorUsage usage)</arglist>
+      <anchor>a921ac6469983197807b7faa6a43db59e</anchor>
+      <arglist>(std::string_view sdlSpectrumStr, std::string_view tag, math::EColorUsage usage)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>save_spectrum</name>
       <anchorfile>d3/dc3/namespaceph_1_1sdl.html</anchorfile>
-      <anchor>a50f7e562654b98d65ea720e211b98867</anchor>
-      <arglist>(const math::Spectrum &amp;spectrum, std::string *out_sdlSpectrumStr, std::string *out_tag)</arglist>
+      <anchor>ad4c22f873ff33cced07bdb6d635f244c</anchor>
+      <arglist>(const math::Spectrum &amp;spectrum, std::string &amp;out_sdlSpectrumStr, std::string &amp;out_tag)</arglist>
     </member>
     <member kind="function">
       <type>std::string_view</type>
@@ -49072,41 +53028,6 @@
       <anchorfile>d3/dc3/namespaceph_1_1sdl.html</anchorfile>
       <anchor>a18c1800da16306125fe2232f0cf2e639</anchor>
       <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>math::Vector3R</type>
-      <name>load_vector3</name>
-      <anchorfile>d3/dc3/namespaceph_1_1sdl.html</anchorfile>
-      <anchor>ac68d4249e8a72f0015034ad453254b63</anchor>
-      <arglist>(const std::string &amp;sdlVector3Str)</arglist>
-    </member>
-    <member kind="function">
-      <type>math::QuaternionR</type>
-      <name>load_quaternion</name>
-      <anchorfile>d3/dc3/namespaceph_1_1sdl.html</anchorfile>
-      <anchor>a5d6121c3e28818790b5be3aeb70c262d</anchor>
-      <arglist>(const std::string &amp;sdlQuaternionStr)</arglist>
-    </member>
-    <member kind="function">
-      <type>std::vector&lt; math::Vector3R &gt;</type>
-      <name>load_vector3_array</name>
-      <anchorfile>d3/dc3/namespaceph_1_1sdl.html</anchorfile>
-      <anchor>a9c762e7f08a488454cf40c8045d6424e</anchor>
-      <arglist>(const std::string &amp;sdlVector3ArrayStr)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>save_quaternion</name>
-      <anchorfile>d3/dc3/namespaceph_1_1sdl.html</anchorfile>
-      <anchor>ab5a19ced8f1709eaa44b8add9f73a4db</anchor>
-      <arglist>(const math::QuaternionR &amp;value, std::string *const out_str)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>save_vector3_array</name>
-      <anchorfile>d3/dc3/namespaceph_1_1sdl.html</anchorfile>
-      <anchor>a688dcabd935477d4fbb28a0606cb37b8</anchor>
-      <arglist>(const std::vector&lt; math::Vector3R &gt; &amp;values, std::string *const out_str)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
@@ -49158,74 +53079,137 @@
       <arglist>(std::string_view sdlNumberStr)</arglist>
     </member>
     <member kind="function">
+      <type>void</type>
+      <name>load_numbers</name>
+      <anchorfile>d3/dc3/namespaceph_1_1sdl.html</anchorfile>
+      <anchor>a5028c4172f60e7a6bece45c742f5b3dc</anchor>
+      <arglist>(std::string_view sdlNumbersStr, TSpan&lt; NumberType, EXTENT &gt; out_numbers)</arglist>
+    </member>
+    <member kind="function">
       <type>math::TVector2&lt; Element &gt;</type>
       <name>load_vector2</name>
       <anchorfile>d3/dc3/namespaceph_1_1sdl.html</anchorfile>
-      <anchor>a41fe6ed1bc09d9d73a32b09152aff64f</anchor>
-      <arglist>(const std::string &amp;sdlVector2Str)</arglist>
+      <anchor>ac704ce841b201bdfba09d9de148be541</anchor>
+      <arglist>(std::string_view sdlVec2Str)</arglist>
+    </member>
+    <member kind="function">
+      <type>math::TVector3&lt; Element &gt;</type>
+      <name>load_vector3</name>
+      <anchorfile>d3/dc3/namespaceph_1_1sdl.html</anchorfile>
+      <anchor>af03426f0a098e040855dba998ee535d1</anchor>
+      <arglist>(std::string_view sdlVec3Str)</arglist>
+    </member>
+    <member kind="function">
+      <type>math::TVector4&lt; Element &gt;</type>
+      <name>load_vector4</name>
+      <anchorfile>d3/dc3/namespaceph_1_1sdl.html</anchorfile>
+      <anchor>abcd078529ce321e6d16c92162d0d4d9b</anchor>
+      <arglist>(std::string_view sdlVec4Str)</arglist>
+    </member>
+    <member kind="function">
+      <type>math::TQuaternion&lt; Element &gt;</type>
+      <name>load_quaternion</name>
+      <anchorfile>d3/dc3/namespaceph_1_1sdl.html</anchorfile>
+      <anchor>aaafa8109cd34574601a048baba5f60fc</anchor>
+      <arglist>(std::string_view sdlQuatStr)</arglist>
     </member>
     <member kind="function">
       <type>std::vector&lt; NumberType &gt;</type>
       <name>load_number_array</name>
       <anchorfile>d3/dc3/namespaceph_1_1sdl.html</anchorfile>
-      <anchor>a8bf66bc8baba3b0d6100ed51c824fbb6</anchor>
-      <arglist>(const std::string &amp;sdlNumberArrayStr)</arglist>
+      <anchor>ada40fc3c41de5db3040eb09afd0176db</anchor>
+      <arglist>(std::string_view sdlNumberArrayStr)</arglist>
+    </member>
+    <member kind="function">
+      <type>std::vector&lt; math::TVector3&lt; Element &gt; &gt;</type>
+      <name>load_vector3_array</name>
+      <anchorfile>d3/dc3/namespaceph_1_1sdl.html</anchorfile>
+      <anchor>a5f4e3adb783f7ef607a9717cc757f646</anchor>
+      <arglist>(std::string_view sdlVec3ArrayStr)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>save_real</name>
       <anchorfile>d3/dc3/namespaceph_1_1sdl.html</anchorfile>
-      <anchor>a46c0a4b72c37725db37846b47557baca</anchor>
-      <arglist>(real value, std::string *out_str)</arglist>
+      <anchor>a9e6e2c38740b4bffe9015f7790c68035</anchor>
+      <arglist>(real value, std::string &amp;out_str)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>save_integer</name>
       <anchorfile>d3/dc3/namespaceph_1_1sdl.html</anchorfile>
-      <anchor>a5cf45525c2b01c0180bfeb7d4eedcc83</anchor>
-      <arglist>(integer value, std::string *out_str)</arglist>
+      <anchor>a5d9d055ebe129c5c616c647254364214</anchor>
+      <arglist>(integer value, std::string &amp;out_str)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>save_float</name>
       <anchorfile>d3/dc3/namespaceph_1_1sdl.html</anchorfile>
-      <anchor>ab66496b7cc285d2b7c16892d4fe33bca</anchor>
-      <arglist>(FloatType value, std::string *out_str, std::size_t maxChars=32)</arglist>
+      <anchor>a9ccca4b44895cb70371ecda9b701492f</anchor>
+      <arglist>(FloatType value, std::string &amp;out_str)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>save_int</name>
       <anchorfile>d3/dc3/namespaceph_1_1sdl.html</anchorfile>
-      <anchor>a6bb38b72a4a4400830b0ab286cb1f49d</anchor>
-      <arglist>(IntType value, std::string *out_str, std::size_t maxChars=32)</arglist>
+      <anchor>a42a135abb3dc9d9bc0cb9431969bad61</anchor>
+      <arglist>(IntType value, std::string &amp;out_str)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>save_number</name>
       <anchorfile>d3/dc3/namespaceph_1_1sdl.html</anchorfile>
-      <anchor>ae5208c4cdf4f01b5f3b19ed71952e653</anchor>
-      <arglist>(NumberType value, std::string *out_str, std::size_t maxChars=32)</arglist>
+      <anchor>a82205eb601393ffbd96f18659821e224</anchor>
+      <arglist>(NumberType value, std::string &amp;out_str)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>save_numbers</name>
+      <anchorfile>d3/dc3/namespaceph_1_1sdl.html</anchorfile>
+      <anchor>a899080c7add9cf3bc0a42c72d295ec3d</anchor>
+      <arglist>(TSpanView&lt; NumberType, EXTENT &gt; numbers, std::string &amp;out_str)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>save_vector2</name>
       <anchorfile>d3/dc3/namespaceph_1_1sdl.html</anchorfile>
-      <anchor>af7a3801efaaab9faf9a06898fcb534d6</anchor>
-      <arglist>(const math::TVector2&lt; Element &gt; &amp;value, std::string *out_str)</arglist>
+      <anchor>ae7e3726272021e2f57471d5db6e1225f</anchor>
+      <arglist>(const math::TVector2&lt; Element &gt; &amp;value, std::string &amp;out_str)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>save_vector3</name>
       <anchorfile>d3/dc3/namespaceph_1_1sdl.html</anchorfile>
-      <anchor>a39694cc6679124b632955c94a825d9c6</anchor>
-      <arglist>(const math::TVector3&lt; Element &gt; &amp;value, std::string *out_str)</arglist>
+      <anchor>a0cf13e1d78e73b5a2ec7fc5aa2d9c72a</anchor>
+      <arglist>(const math::TVector3&lt; Element &gt; &amp;value, std::string &amp;out_str)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>save_vector4</name>
+      <anchorfile>d3/dc3/namespaceph_1_1sdl.html</anchorfile>
+      <anchor>a60fdde8ef6087daa0138880268f7a5d8</anchor>
+      <arglist>(const math::TVector4&lt; Element &gt; &amp;value, std::string &amp;out_str)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>save_quaternion</name>
+      <anchorfile>d3/dc3/namespaceph_1_1sdl.html</anchorfile>
+      <anchor>a7cecd5c2054e41c552c39682b032744c</anchor>
+      <arglist>(const math::TQuaternion&lt; Element &gt; &amp;value, std::string &amp;out_str)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>save_number_array</name>
       <anchorfile>d3/dc3/namespaceph_1_1sdl.html</anchorfile>
-      <anchor>a86fadc417d9333d7da87cbe8dc0b5ee6</anchor>
-      <arglist>(TSpanView&lt; NumberType &gt; values, std::string *out_str)</arglist>
+      <anchor>a3f644690a35bbaa5d03018d211a997fc</anchor>
+      <arglist>(TSpanView&lt; NumberType &gt; values, std::string &amp;out_str)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>save_vector3_array</name>
+      <anchorfile>d3/dc3/namespaceph_1_1sdl.html</anchorfile>
+      <anchor>adfec1b1da9398d8749f5b401cd18de70</anchor>
+      <arglist>(TSpanView&lt; math::TVector3&lt; Element &gt; &gt; values, std::string &amp;out_str)</arglist>
     </member>
     <member kind="function">
       <type>constexpr ESdlTypeCategory</type>
@@ -49280,6 +53264,13 @@
       <type>std::string</type>
       <name>gen_pretty_name</name>
       <anchorfile>d3/dc3/namespaceph_1_1sdl.html</anchorfile>
+      <anchor>aa46a7b173fbfb3a13b4f6de1a803ae30</anchor>
+      <arglist>(const SdlStruct *const ztruct)</arglist>
+    </member>
+    <member kind="function">
+      <type>std::string</type>
+      <name>gen_pretty_name</name>
+      <anchorfile>d3/dc3/namespaceph_1_1sdl.html</anchorfile>
       <anchor>a001940d07ebe975ffd1562eeb550b72a</anchor>
       <arglist>(const SdlFunction *const func)</arglist>
     </member>
@@ -49324,6 +53315,13 @@
       <anchorfile>d3/dc3/namespaceph_1_1sdl.html</anchorfile>
       <anchor>a16ba8b83316ce0f172ca13981e342faf</anchor>
       <arglist>(const SdlClass *clazz)</arglist>
+    </member>
+    <member kind="function">
+      <type>std::string</type>
+      <name>gen_pretty_name</name>
+      <anchorfile>d3/dc3/namespaceph_1_1sdl.html</anchorfile>
+      <anchor>aa46a7b173fbfb3a13b4f6de1a803ae30</anchor>
+      <arglist>(const SdlStruct *const ztruct)</arglist>
     </member>
     <member kind="function">
       <type>std::string</type>
@@ -49383,11 +53381,32 @@
     <name>ph::sdl_parser</name>
     <filename>d0/d12/namespaceph_1_1sdl__parser.html</filename>
     <member kind="function">
+      <type>bool</type>
+      <name>is_single_name_with_specifier</name>
+      <anchorfile>d0/d12/namespaceph_1_1sdl__parser.html</anchorfile>
+      <anchor>a8fec36ebe98d21e992943c701f59c653</anchor>
+      <arglist>(std::string_view valueToken)</arglist>
+    </member>
+    <member kind="function">
+      <type>auto</type>
+      <name>get_name_with_specifier</name>
+      <anchorfile>d0/d12/namespaceph_1_1sdl__parser.html</anchorfile>
+      <anchor>a1e1f17467dbd5db35b9bd1ab94152bd9</anchor>
+      <arglist>(std::string_view nameToken) -&gt; std::pair&lt; std::string_view, char &gt;</arglist>
+    </member>
+    <member kind="function">
       <type>std::string_view</type>
       <name>get_reference</name>
       <anchorfile>d0/d12/namespaceph_1_1sdl__parser.html</anchorfile>
       <anchor>a33d22ab7d598beaf1b57fefd4b9ab371</anchor>
       <arglist>(std::string_view referenceToken)</arglist>
+    </member>
+    <member kind="function">
+      <type>std::string_view</type>
+      <name>get_data_packet_name</name>
+      <anchorfile>d0/d12/namespaceph_1_1sdl__parser.html</anchorfile>
+      <anchor>ae62de7e60f6d4cac71283ebff8dfbeee</anchor>
+      <arglist>(std::string_view dataPacketNameToken)</arglist>
     </member>
     <member kind="function">
       <type>std::string_view</type>
@@ -49403,23 +53422,64 @@
       <anchor>ad71554f00f5fb3e7f766d352059338cd</anchor>
       <arglist>(std::string_view str)</arglist>
     </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>is_specifier</name>
+      <anchorfile>d0/d12/namespaceph_1_1sdl__parser.html</anchorfile>
+      <anchor>a377e27c06800dc3a9674d9bd3114e83f</anchor>
+      <arglist>(char ch)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>starts_with_specifier</name>
+      <anchorfile>d0/d12/namespaceph_1_1sdl__parser.html</anchorfile>
+      <anchor>a3f87641494261c5acb3e76bed0c41179</anchor>
+      <arglist>(std::string_view valueToken)</arglist>
+    </member>
+    <member kind="variable">
+      <type>constexpr char</type>
+      <name>persistent_specifier</name>
+      <anchorfile>d0/d12/namespaceph_1_1sdl__parser.html</anchorfile>
+      <anchor>a34cdeca96f94ccf367886f0fb8ce150e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>constexpr char</type>
+      <name>cached_specifier</name>
+      <anchorfile>d0/d12/namespaceph_1_1sdl__parser.html</anchorfile>
+      <anchor>a07ca65b196149e9a73ca5fd497562335</anchor>
+      <arglist></arglist>
+    </member>
   </compound>
   <compound kind="namespace">
     <name>ph::texfunc</name>
     <filename>da/de9/namespaceph_1_1texfunc.html</filename>
+    <class kind="class">ph::texfunc::TAbsolute</class>
     <class kind="class">ph::texfunc::TAdd</class>
-    <class kind="class">ph::texfunc::TAddConstant</class>
+    <class kind="class">ph::texfunc::TClamp</class>
     <class kind="class">ph::texfunc::TDefaultConversion</class>
+    <class kind="class">ph::texfunc::TDivide</class>
     <class kind="class">ph::texfunc::TMultiply</class>
-    <class kind="class">ph::texfunc::TMultiplyConstant</class>
+    <class kind="class">ph::texfunc::TPower</class>
     <class kind="class">ph::texfunc::TScalarToSpectrum</class>
+    <class kind="class">ph::texfunc::TSubtract</class>
+    <class kind="class">ph::texfunc::TUnaryFromBinary</class>
+    <class kind="class">ph::texfunc::TUnaryFromTernary</class>
     <concept>ph::texfunc::CBinaryOperator</concept>
+    <concept>ph::texfunc::CTernaryOperator</concept>
     <concept>ph::texfunc::CUnaryOperator</concept>
     <member kind="typedef">
       <type>TAdd&lt; math::Spectrum, math::Spectrum, math::Spectrum &gt;</type>
       <name>AddSpectrum</name>
       <anchorfile>da/de9/namespaceph_1_1texfunc.html</anchorfile>
       <anchor>a56417936b64a36dff31a022f9a78f01f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>TSubtract&lt; math::Spectrum, math::Spectrum, math::Spectrum &gt;</type>
+      <name>SubtractSpectrum</name>
+      <anchorfile>da/de9/namespaceph_1_1texfunc.html</anchorfile>
+      <anchor>a7dd8a2f6e99e27fdd4ca7c9b88ecf078</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
@@ -49430,6 +53490,69 @@
       <arglist></arglist>
     </member>
     <member kind="typedef">
+      <type>TDivide&lt; math::Spectrum, math::Spectrum, math::Spectrum &gt;</type>
+      <name>DivideSpectrum</name>
+      <anchorfile>da/de9/namespaceph_1_1texfunc.html</anchorfile>
+      <anchor>a45730e1ee27557b49d2effad0cd7a6cf</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>TPower&lt; math::Spectrum, math::Spectrum, math::Spectrum &gt;</type>
+      <name>PowerSpectrum</name>
+      <anchorfile>da/de9/namespaceph_1_1texfunc.html</anchorfile>
+      <anchor>a8e8e66a1928e672b89de51d4002e2e78</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>TClamp&lt; math::Spectrum, math::Spectrum, math::Spectrum, math::Spectrum &gt;</type>
+      <name>ClampSpectrum</name>
+      <anchorfile>da/de9/namespaceph_1_1texfunc.html</anchorfile>
+      <anchor>a300c844730802a28c9f5c3da637782cd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>TUnaryFromBinary&lt; InputType, ConstantType, OutputType, TAdd&lt; InputType, ConstantType, OutputType &gt; &gt;</type>
+      <name>TAddConstant</name>
+      <anchorfile>da/de9/namespaceph_1_1texfunc.html</anchorfile>
+      <anchor>a88f0c42d4f9fb8311925a68c35b62a2d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>TUnaryFromBinary&lt; InputType, ConstantType, OutputType, TSubtract&lt; InputType, ConstantType, OutputType &gt; &gt;</type>
+      <name>TSubtractConstant</name>
+      <anchorfile>da/de9/namespaceph_1_1texfunc.html</anchorfile>
+      <anchor>ad73d48ad75aed54098822b568aa26e74</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>TUnaryFromBinary&lt; InputType, ConstantType, OutputType, TMultiply&lt; InputType, ConstantType, OutputType &gt; &gt;</type>
+      <name>TMultiplyConstant</name>
+      <anchorfile>da/de9/namespaceph_1_1texfunc.html</anchorfile>
+      <anchor>a6ceda580708a11bd46c8a279a5d60e82</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>TUnaryFromBinary&lt; InputType, ConstantType, OutputType, TDivide&lt; InputType, ConstantType, OutputType &gt; &gt;</type>
+      <name>TDivideConstant</name>
+      <anchorfile>da/de9/namespaceph_1_1texfunc.html</anchorfile>
+      <anchor>a32656c2be2036ec9982b9718b317e85b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>TUnaryFromBinary&lt; InputType, ConstantType, OutputType, TPower&lt; InputType, ConstantType, OutputType &gt; &gt;</type>
+      <name>TPowerConstant</name>
+      <anchorfile>da/de9/namespaceph_1_1texfunc.html</anchorfile>
+      <anchor>ad41511900d251e3008d780e7ff06edaf</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>TUnaryFromTernary&lt; InputType, ConstantTypeA, ConstantTypeB, OutputType, TClamp&lt; InputType, ConstantTypeA, ConstantTypeB, OutputType &gt; &gt;</type>
+      <name>TClampConstant</name>
+      <anchorfile>da/de9/namespaceph_1_1texfunc.html</anchorfile>
+      <anchor>a6c536ff8965abc8ccb955a2521cd0445</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
       <type>TAddConstant&lt; math::Spectrum, math::ColorValue, math::Spectrum &gt;</type>
       <name>SpectrumAddScalar</name>
       <anchorfile>da/de9/namespaceph_1_1texfunc.html</anchorfile>
@@ -49437,10 +53560,31 @@
       <arglist></arglist>
     </member>
     <member kind="typedef">
+      <type>TSubtractConstant&lt; math::Spectrum, math::ColorValue, math::Spectrum &gt;</type>
+      <name>SpectrumSubtractScalar</name>
+      <anchorfile>da/de9/namespaceph_1_1texfunc.html</anchorfile>
+      <anchor>abe4d233248a0d93305ae5f162840e755</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
       <type>TMultiplyConstant&lt; math::Spectrum, math::ColorValue, math::Spectrum &gt;</type>
       <name>SpectrumMultiplyScalar</name>
       <anchorfile>da/de9/namespaceph_1_1texfunc.html</anchorfile>
       <anchor>a3a5d7abc7e5df279043c3ac30386d582</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>TDivideConstant&lt; math::Spectrum, math::ColorValue, math::Spectrum &gt;</type>
+      <name>SpectrumDivideScalar</name>
+      <anchorfile>da/de9/namespaceph_1_1texfunc.html</anchorfile>
+      <anchor>a858cff3a0784e06bba3b103eb1635965</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>TPowerConstant&lt; math::Spectrum, math::ColorValue, math::Spectrum &gt;</type>
+      <name>SpectrumPowerScalar</name>
+      <anchorfile>da/de9/namespaceph_1_1texfunc.html</anchorfile>
+      <anchor>a333cb660f6e0f8fcba04c4b4b9a72954</anchor>
       <arglist></arglist>
     </member>
   </compound>

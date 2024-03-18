@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['lerpedsurfaceoptics_0',['LerpedSurfaceOptics',['../../../Photon_Engine/html/df/d8a/classph_1_1_surface_optics.html#a8c837ea3881b4336c205dde24395f0a0',1,'ph::SurfaceOptics']]]
+  ['designerscene_0',['designerscene',['../../../Photon_EditorLib/html/dc/d75/classph_1_1editor_1_1_abstract_designer_object.html#adbb61626bfb2f5839b2a4a520c08b87a',1,'ph::editor::AbstractDesignerObject::DesignerScene'],['../../../Photon_EditorLib/html/d7/ded/classph_1_1editor_1_1_designer_object.html#adbb61626bfb2f5839b2a4a520c08b87a',1,'ph::editor::DesignerObject::DesignerScene']]],
+  ['designerscenemetainfo_1',['DesignerSceneMetaInfo',['../../../Photon_EditorLib/html/dc/d75/classph_1_1editor_1_1_abstract_designer_object.html#aae437781da2d4cc88ba788e65085b2e8',1,'ph::editor::AbstractDesignerObject']]]
 ];

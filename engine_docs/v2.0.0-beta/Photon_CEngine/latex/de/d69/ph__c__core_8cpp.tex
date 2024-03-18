@@ -4,18 +4,20 @@
 {\ttfamily \#include "{}Api/api\+\_\+helpers.\+h"{}}\newline
 {\ttfamily \#include $<$ph\+\_\+core.\+h$>$}\newline
 {\ttfamily \#include $<$Api/\+Api\+Database.\+h$>$}\newline
-{\ttfamily \#include $<$Core/\+Engine.\+h$>$}\newline
-{\ttfamily \#include $<$Core/\+Receiver/\+Receiver.\+h$>$}\newline
-{\ttfamily \#include $<$Api/test\+\_\+scene.\+h$>$}\newline
-{\ttfamily \#include $<$Math/\+TArithmetic\+Array.\+h$>$}\newline
-{\ttfamily \#include $<$Core/\+Renderer/\+Renderer.\+h$>$}\newline
-{\ttfamily \#include $<$Data\+IO/\+File\+System/\+Path.\+h$>$}\newline
 {\ttfamily \#include $<$Common/assertion.\+h$>$}\newline
-{\ttfamily \#include $<$Data\+IO/io\+\_\+utils.\+h$>$}\newline
-{\ttfamily \#include $<$Api/\+Api\+Helper.\+h$>$}\newline
-{\ttfamily \#include $<$Core/\+Renderer/\+Render\+Region\+Status.\+h$>$}\newline
 {\ttfamily \#include $<$Common/config.\+h$>$}\newline
 {\ttfamily \#include $<$Common/logging.\+h$>$}\newline
+{\ttfamily \#include $<$Common/profiling.\+h$>$}\newline
+{\ttfamily \#include $<$Common/memory.\+h$>$}\newline
+{\ttfamily \#include $<$Core/\+Engine.\+h$>$}\newline
+{\ttfamily \#include $<$Core/\+Receiver/\+Receiver.\+h$>$}\newline
+{\ttfamily \#include $<$Core/\+Renderer/\+Renderer.\+h$>$}\newline
+{\ttfamily \#include $<$Core/\+Renderer/\+Render\+Region\+Status.\+h$>$}\newline
+{\ttfamily \#include $<$Api/test\+\_\+scene.\+h$>$}\newline
+{\ttfamily \#include $<$Math/\+TArithmetic\+Array.\+h$>$}\newline
+{\ttfamily \#include $<$Data\+IO/\+File\+System/\+Path.\+h$>$}\newline
+{\ttfamily \#include $<$Data\+IO/io\+\_\+utils.\+h$>$}\newline
+{\ttfamily \#include $<$Api/\+Api\+Helper.\+h$>$}\newline
 {\ttfamily \#include $<$Frame/frame\+\_\+utils.\+h$>$}\newline
 {\ttfamily \#include $<$Frame/\+TFrame.\+h$>$}\newline
 {\ttfamily \#include $<$Frame/\+Picture\+Meta.\+h$>$}\newline
@@ -26,12 +28,13 @@
 {\ttfamily \#include $<$iostream$>$}\newline
 {\ttfamily \#include $<$cstring$>$}\newline
 {\ttfamily \#include $<$cstddef$>$}\newline
+{\ttfamily \#include $<$array$>$}\newline
 \doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{ph__c__core_8cpp_a261d8fba95b3de10839d9c042f609e41}{PH\+\_\+\+DEFINE\+\_\+\+INTERNAL\+\_\+\+LOG\+\_\+\+GROUP}} (CAPI, Engine)
 \item 
-void \mbox{\hyperlink{ph__c__core_8cpp_a040f22e302d6bce7d090f70b424f7c65}{ph\+Config\+Core\+Resource\+Directory}} (const \mbox{\hyperlink{ph__c__core__types_8h_a1148bb297d82700d3f9bcfaac35dae6f}{Ph\+Char}} \texorpdfstring{$\ast$}{*}const directory)
+void \mbox{\hyperlink{ph__c__core_8cpp_a88c4d632f5ad99836cf643dee647d214}{ph\+Config\+Renderer\+Resource\+Directory}} (const \mbox{\hyperlink{ph__c__core__types_8h_a1148bb297d82700d3f9bcfaac35dae6f}{Ph\+Char}} \texorpdfstring{$\ast$}{*}const directory)
 \item 
 \mbox{\hyperlink{ph__c__core__types_8h_ae3b6a13a62f2a5ebfb2c0c0b968d9e23}{Ph\+Bool}} \mbox{\hyperlink{ph__c__core_8cpp_a49673cdbd009ae7b30bf800f185104a5}{ph\+Init}} ()
 \item 
@@ -77,19 +80,21 @@ void \mbox{\hyperlink{ph__c__core_8cpp_a548fc129f9b73e3a48d33236d1729b38}{ph\+Fr
 \item 
 \mbox{\hyperlink{ph__c__core__types_8h_ab5490556f7a41927505e9ea43e7217f6}{Ph\+Float32}} \mbox{\hyperlink{ph__c__core_8cpp_a02f7b99cc5371f2fa8f3e8301ef704e9}{ph\+Frame\+Op\+MSE}} (const \mbox{\hyperlink{ph__c__core__types_8h_af246a98fda40fb09006dc69f38119319}{Ph\+UInt64}} expected\+Frame\+Id, const \mbox{\hyperlink{ph__c__core__types_8h_af246a98fda40fb09006dc69f38119319}{Ph\+UInt64}} estimated\+Frame\+Id)
 \item 
-void \mbox{\hyperlink{ph__c__core_8cpp_a97e787e1a41ccda85c55e1b7056f2f0c}{ph\+Async\+Get\+Renderer\+Statistics}} (const \mbox{\hyperlink{ph__c__core__types_8h_af246a98fda40fb09006dc69f38119319}{Ph\+UInt64}} engine\+Id, \mbox{\hyperlink{ph__c__core__types_8h_ab5490556f7a41927505e9ea43e7217f6}{Ph\+Float32}} \texorpdfstring{$\ast$}{*}const out\+\_\+percentage\+Progress, \mbox{\hyperlink{ph__c__core__types_8h_ab5490556f7a41927505e9ea43e7217f6}{Ph\+Float32}} \texorpdfstring{$\ast$}{*}const out\+\_\+samples\+Per\+Second)
+void \mbox{\hyperlink{ph__c__core_8cpp_a0b900bd6d3ddf3e3393ab5867d7f03bb}{ph\+Async\+Get\+Render\+Progress}} (\mbox{\hyperlink{ph__c__core__types_8h_af246a98fda40fb09006dc69f38119319}{Ph\+UInt64}} engine\+Id, \mbox{\hyperlink{struct_ph_render_progress}{Ph\+Render\+Progress}} \texorpdfstring{$\ast$}{*}out\+\_\+progress)
 \item 
-void \mbox{\hyperlink{ph__c__core_8cpp_a75c767157b61870afc50424c7fbdb80e}{ph\+Async\+Get\+Renderer\+State}} (const \mbox{\hyperlink{ph__c__core__types_8h_af246a98fda40fb09006dc69f38119319}{Ph\+UInt64}} engine\+Id, struct \mbox{\hyperlink{struct_p_h_render_state}{PHRender\+State}} \texorpdfstring{$\ast$}{*}const out\+\_\+state)
+void \mbox{\hyperlink{ph__c__core_8cpp_a472f5fed7ab19a1d49ff5eaaad0cf71c}{ph\+Async\+Get\+Render\+Statistics}} (const \mbox{\hyperlink{ph__c__core__types_8h_af246a98fda40fb09006dc69f38119319}{Ph\+UInt64}} engine\+Id, \mbox{\hyperlink{ph__c__core__types_8h_ab5490556f7a41927505e9ea43e7217f6}{Ph\+Float32}} \texorpdfstring{$\ast$}{*}const out\+\_\+percentage\+Progress, \mbox{\hyperlink{ph__c__core__types_8h_ab5490556f7a41927505e9ea43e7217f6}{Ph\+Float32}} \texorpdfstring{$\ast$}{*}const out\+\_\+samples\+Per\+Second)
+\item 
+void \mbox{\hyperlink{ph__c__core_8cpp_a40e001fbb57323e8e70254d9bcd3d96e}{ph\+Async\+Get\+Render\+State}} (const \mbox{\hyperlink{ph__c__core__types_8h_af246a98fda40fb09006dc69f38119319}{Ph\+UInt64}} engine\+Id, struct \mbox{\hyperlink{struct_p_h_render_state}{PHRender\+State}} \texorpdfstring{$\ast$}{*}const out\+\_\+state)
 \item 
 \mbox{\hyperlink{ph__c__core__types_8h_ae3b6a13a62f2a5ebfb2c0c0b968d9e23}{Ph\+Bool}} \mbox{\hyperlink{ph__c__core_8cpp_ab4415289080964d19ece9e4d78d772b7}{ph\+Async\+Poll\+Updated\+Frame\+Region}} (\mbox{\hyperlink{ph__c__core__types_8h_af246a98fda40fb09006dc69f38119319}{Ph\+UInt64}} engine\+Id, \mbox{\hyperlink{struct_ph_frame_region_info}{Ph\+Frame\+Region\+Info}} \texorpdfstring{$\ast$}{*}out\+\_\+region\+Info)
 \begin{DoxyCompactList}\small\item\em Polls for a single changed region during engine runtime. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{ph__c__core__types_8h_aee7c9d8767b70e3a089dc504ca954ce5}{Ph\+Size}} \mbox{\hyperlink{ph__c__core_8cpp_a8b9796f55ff635eda7b0cccf94876daa}{ph\+Async\+Poll\+Updated\+Frame\+Regions}} (\mbox{\hyperlink{ph__c__core__types_8h_af246a98fda40fb09006dc69f38119319}{Ph\+UInt64}} engine\+Id, \mbox{\hyperlink{ph__c__core__types_8h_af246a98fda40fb09006dc69f38119319}{Ph\+UInt64}} buffer\+Id, \mbox{\hyperlink{struct_ph_frame_region_info}{Ph\+Frame\+Region\+Info}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}out\+\_\+region\+Infos\+Ptr)
+\mbox{\hyperlink{ph__c__core__types_8h_aee7c9d8767b70e3a089dc504ca954ce5}{Ph\+Size}} \mbox{\hyperlink{ph__c__core_8cpp_a25288cc02c5dc5e9ab84db7c17fea384}{ph\+Async\+Poll\+Updated\+Frame\+Regions}} (\mbox{\hyperlink{ph__c__core__types_8h_af246a98fda40fb09006dc69f38119319}{Ph\+UInt64}} engine\+Id, \mbox{\hyperlink{ph__c__core__types_8h_af246a98fda40fb09006dc69f38119319}{Ph\+UInt64}} buffer\+Id, \mbox{\hyperlink{struct_ph_frame_region_info}{Ph\+Frame\+Region\+Info}} \texorpdfstring{$\ast$}{*}out\+\_\+region\+Infos, \mbox{\hyperlink{ph__c__core__types_8h_aee7c9d8767b70e3a089dc504ca954ce5}{Ph\+Size}} max\+Region\+Infos)
 \begin{DoxyCompactList}\small\item\em Polls for multiple changed regions during engine runtime. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{ph__c__core__types_8h_aee7c9d8767b70e3a089dc504ca954ce5}{Ph\+Size}} \mbox{\hyperlink{ph__c__core_8cpp_ade77a3d6d867953d2dbc6413703fa0c1}{ph\+Async\+Poll\+Merged\+Updated\+Frame\+Regions}} (\mbox{\hyperlink{ph__c__core__types_8h_af246a98fda40fb09006dc69f38119319}{Ph\+UInt64}} engine\+Id, \mbox{\hyperlink{ph__c__core__types_8h_af246a98fda40fb09006dc69f38119319}{Ph\+UInt64}} buffer\+Id, \mbox{\hyperlink{ph__c__core__types_8h_aee7c9d8767b70e3a089dc504ca954ce5}{Ph\+Size}} merge\+Size, \mbox{\hyperlink{struct_ph_frame_region_info}{Ph\+Frame\+Region\+Info}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}out\+\_\+region\+Infos\+Ptr)
+\mbox{\hyperlink{ph__c__core__types_8h_aee7c9d8767b70e3a089dc504ca954ce5}{Ph\+Size}} \mbox{\hyperlink{ph__c__core_8cpp_af2b9007329c1162707e711ed259168ad}{ph\+Async\+Poll\+Merged\+Updated\+Frame\+Regions}} (\mbox{\hyperlink{ph__c__core__types_8h_af246a98fda40fb09006dc69f38119319}{Ph\+UInt64}} engine\+Id, \mbox{\hyperlink{ph__c__core__types_8h_af246a98fda40fb09006dc69f38119319}{Ph\+UInt64}} buffer\+Id, \mbox{\hyperlink{ph__c__core__types_8h_aee7c9d8767b70e3a089dc504ca954ce5}{Ph\+Size}} merge\+Size, \mbox{\hyperlink{struct_ph_frame_region_info}{Ph\+Frame\+Region\+Info}} \texorpdfstring{$\ast$}{*}out\+\_\+region\+Infos, \mbox{\hyperlink{ph__c__core__types_8h_aee7c9d8767b70e3a089dc504ca954ce5}{Ph\+Size}} max\+Region\+Infos)
 \begin{DoxyCompactList}\small\item\em Polls for multiple changed regions during engine runtime. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{ph__c__core_8cpp_a67f2c808cd92969f9ef1596683abb17a}{ph\+Async\+Peek\+Frame}} (const \mbox{\hyperlink{ph__c__core__types_8h_af246a98fda40fb09006dc69f38119319}{Ph\+UInt64}} engine\+Id, const \mbox{\hyperlink{ph__c__core__types_8h_af246a98fda40fb09006dc69f38119319}{Ph\+UInt64}} channel\+Index, const \mbox{\hyperlink{ph__c__core__types_8h_a03472b69d2fec6298325a584353122fc}{Ph\+UInt32}} x\+Px, const \mbox{\hyperlink{ph__c__core__types_8h_a03472b69d2fec6298325a584353122fc}{Ph\+UInt32}} y\+Px, const \mbox{\hyperlink{ph__c__core__types_8h_a03472b69d2fec6298325a584353122fc}{Ph\+UInt32}} width\+Px, const \mbox{\hyperlink{ph__c__core__types_8h_a03472b69d2fec6298325a584353122fc}{Ph\+UInt32}} height\+Px, const \mbox{\hyperlink{ph__c__core__types_8h_af246a98fda40fb09006dc69f38119319}{Ph\+UInt64}} frame\+Id)
+void \mbox{\hyperlink{ph__c__core_8cpp_a190ee833692257794e0783f59827c519}{ph\+Async\+Peek\+Frame}} (\mbox{\hyperlink{ph__c__core__types_8h_af246a98fda40fb09006dc69f38119319}{Ph\+UInt64}} engine\+Id, \mbox{\hyperlink{ph__c__core__types_8h_af246a98fda40fb09006dc69f38119319}{Ph\+UInt64}} layer\+Index, \mbox{\hyperlink{ph__c__core__types_8h_a03472b69d2fec6298325a584353122fc}{Ph\+UInt32}} x\+Px, \mbox{\hyperlink{ph__c__core__types_8h_a03472b69d2fec6298325a584353122fc}{Ph\+UInt32}} y\+Px, \mbox{\hyperlink{ph__c__core__types_8h_a03472b69d2fec6298325a584353122fc}{Ph\+UInt32}} width\+Px, \mbox{\hyperlink{ph__c__core__types_8h_a03472b69d2fec6298325a584353122fc}{Ph\+UInt32}} height\+Px, \mbox{\hyperlink{ph__c__core__types_8h_af246a98fda40fb09006dc69f38119319}{Ph\+UInt64}} frame\+Id)
 \item 
-void \mbox{\hyperlink{ph__c__core_8cpp_af3bd5f6fff2b4d01a900d47f87aa9aa0}{ph\+Async\+Peek\+Frame\+Raw}} (const \mbox{\hyperlink{ph__c__core__types_8h_af246a98fda40fb09006dc69f38119319}{Ph\+UInt64}} engine\+Id, const \mbox{\hyperlink{ph__c__core__types_8h_af246a98fda40fb09006dc69f38119319}{Ph\+UInt64}} channel\+Index, const \mbox{\hyperlink{ph__c__core__types_8h_a03472b69d2fec6298325a584353122fc}{Ph\+UInt32}} x\+Px, const \mbox{\hyperlink{ph__c__core__types_8h_a03472b69d2fec6298325a584353122fc}{Ph\+UInt32}} y\+Px, const \mbox{\hyperlink{ph__c__core__types_8h_a03472b69d2fec6298325a584353122fc}{Ph\+UInt32}} width\+Px, const \mbox{\hyperlink{ph__c__core__types_8h_a03472b69d2fec6298325a584353122fc}{Ph\+UInt32}} height\+Px, const \mbox{\hyperlink{ph__c__core__types_8h_af246a98fda40fb09006dc69f38119319}{Ph\+UInt64}} frame\+Id)
+void \mbox{\hyperlink{ph__c__core_8cpp_aa0427b1cd1db88e3870dd2acc282c838}{ph\+Async\+Peek\+Frame\+Raw}} (\mbox{\hyperlink{ph__c__core__types_8h_af246a98fda40fb09006dc69f38119319}{Ph\+UInt64}} engine\+Id, \mbox{\hyperlink{ph__c__core__types_8h_af246a98fda40fb09006dc69f38119319}{Ph\+UInt64}} layer\+Index, \mbox{\hyperlink{ph__c__core__types_8h_a03472b69d2fec6298325a584353122fc}{Ph\+UInt32}} x\+Px, \mbox{\hyperlink{ph__c__core__types_8h_a03472b69d2fec6298325a584353122fc}{Ph\+UInt32}} y\+Px, \mbox{\hyperlink{ph__c__core__types_8h_a03472b69d2fec6298325a584353122fc}{Ph\+UInt32}} width\+Px, \mbox{\hyperlink{ph__c__core__types_8h_a03472b69d2fec6298325a584353122fc}{Ph\+UInt32}} height\+Px, \mbox{\hyperlink{ph__c__core__types_8h_af246a98fda40fb09006dc69f38119319}{Ph\+UInt64}} frame\+Id)
 \item 
 void \mbox{\hyperlink{ph__c__core_8cpp_a0f85ef208f187aa0906b87c39e2bfc89}{ph\+Set\+Working\+Directory}} (const \mbox{\hyperlink{ph__c__core__types_8h_af246a98fda40fb09006dc69f38119319}{Ph\+UInt64}} engine\+Id, const \mbox{\hyperlink{ph__c__core__types_8h_a1148bb297d82700d3f9bcfaac35dae6f}{Ph\+Char}} \texorpdfstring{$\ast$}{*}const working\+Directory)
 \item 
@@ -120,35 +125,41 @@ void \mbox{\hyperlink{ph__c__core_8cpp_a6883d4f8c41aad041187b98531aba77a}{ph\+De
 \doxysubsubsection{\texorpdfstring{phAquireFrameRaw()}{phAquireFrameRaw()}}
 {\footnotesize\ttfamily void ph\+Aquire\+Frame\+Raw (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{ph__c__core__types_8h_af246a98fda40fb09006dc69f38119319}{Ph\+UInt64}}}]{engine\+Id,  }\item[{const \mbox{\hyperlink{ph__c__core__types_8h_af246a98fda40fb09006dc69f38119319}{Ph\+UInt64}}}]{channel\+Index,  }\item[{const \mbox{\hyperlink{ph__c__core__types_8h_af246a98fda40fb09006dc69f38119319}{Ph\+UInt64}}}]{frame\+Id }\end{DoxyParamCaption})}
 
-\Hypertarget{ph__c__core_8cpp_a75c767157b61870afc50424c7fbdb80e}\label{ph__c__core_8cpp_a75c767157b61870afc50424c7fbdb80e} 
-\index{ph\_c\_core.cpp@{ph\_c\_core.cpp}!phAsyncGetRendererState@{phAsyncGetRendererState}}
-\index{phAsyncGetRendererState@{phAsyncGetRendererState}!ph\_c\_core.cpp@{ph\_c\_core.cpp}}
-\doxysubsubsection{\texorpdfstring{phAsyncGetRendererState()}{phAsyncGetRendererState()}}
-{\footnotesize\ttfamily void ph\+Async\+Get\+Renderer\+State (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{ph__c__core__types_8h_af246a98fda40fb09006dc69f38119319}{Ph\+UInt64}}}]{engine\+Id,  }\item[{struct \mbox{\hyperlink{struct_p_h_render_state}{PHRender\+State}} \texorpdfstring{$\ast$}{*}const}]{out\+\_\+state }\end{DoxyParamCaption})}
+\Hypertarget{ph__c__core_8cpp_a0b900bd6d3ddf3e3393ab5867d7f03bb}\label{ph__c__core_8cpp_a0b900bd6d3ddf3e3393ab5867d7f03bb} 
+\index{ph\_c\_core.cpp@{ph\_c\_core.cpp}!phAsyncGetRenderProgress@{phAsyncGetRenderProgress}}
+\index{phAsyncGetRenderProgress@{phAsyncGetRenderProgress}!ph\_c\_core.cpp@{ph\_c\_core.cpp}}
+\doxysubsubsection{\texorpdfstring{phAsyncGetRenderProgress()}{phAsyncGetRenderProgress()}}
+{\footnotesize\ttfamily void ph\+Async\+Get\+Render\+Progress (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ph__c__core__types_8h_af246a98fda40fb09006dc69f38119319}{Ph\+UInt64}}}]{engine\+Id,  }\item[{\mbox{\hyperlink{struct_ph_render_progress}{Ph\+Render\+Progress}} \texorpdfstring{$\ast$}{*}}]{out\+\_\+progress }\end{DoxyParamCaption})}
 
-\Hypertarget{ph__c__core_8cpp_a97e787e1a41ccda85c55e1b7056f2f0c}\label{ph__c__core_8cpp_a97e787e1a41ccda85c55e1b7056f2f0c} 
-\index{ph\_c\_core.cpp@{ph\_c\_core.cpp}!phAsyncGetRendererStatistics@{phAsyncGetRendererStatistics}}
-\index{phAsyncGetRendererStatistics@{phAsyncGetRendererStatistics}!ph\_c\_core.cpp@{ph\_c\_core.cpp}}
-\doxysubsubsection{\texorpdfstring{phAsyncGetRendererStatistics()}{phAsyncGetRendererStatistics()}}
-{\footnotesize\ttfamily void ph\+Async\+Get\+Renderer\+Statistics (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{ph__c__core__types_8h_af246a98fda40fb09006dc69f38119319}{Ph\+UInt64}}}]{engine\+Id,  }\item[{\mbox{\hyperlink{ph__c__core__types_8h_ab5490556f7a41927505e9ea43e7217f6}{Ph\+Float32}} \texorpdfstring{$\ast$}{*}const}]{out\+\_\+percentage\+Progress,  }\item[{\mbox{\hyperlink{ph__c__core__types_8h_ab5490556f7a41927505e9ea43e7217f6}{Ph\+Float32}} \texorpdfstring{$\ast$}{*}const}]{out\+\_\+samples\+Per\+Second }\end{DoxyParamCaption})}
+\Hypertarget{ph__c__core_8cpp_a40e001fbb57323e8e70254d9bcd3d96e}\label{ph__c__core_8cpp_a40e001fbb57323e8e70254d9bcd3d96e} 
+\index{ph\_c\_core.cpp@{ph\_c\_core.cpp}!phAsyncGetRenderState@{phAsyncGetRenderState}}
+\index{phAsyncGetRenderState@{phAsyncGetRenderState}!ph\_c\_core.cpp@{ph\_c\_core.cpp}}
+\doxysubsubsection{\texorpdfstring{phAsyncGetRenderState()}{phAsyncGetRenderState()}}
+{\footnotesize\ttfamily void ph\+Async\+Get\+Render\+State (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{ph__c__core__types_8h_af246a98fda40fb09006dc69f38119319}{Ph\+UInt64}}}]{engine\+Id,  }\item[{struct \mbox{\hyperlink{struct_p_h_render_state}{PHRender\+State}} \texorpdfstring{$\ast$}{*}const}]{out\+\_\+state }\end{DoxyParamCaption})}
 
-\Hypertarget{ph__c__core_8cpp_a67f2c808cd92969f9ef1596683abb17a}\label{ph__c__core_8cpp_a67f2c808cd92969f9ef1596683abb17a} 
+\Hypertarget{ph__c__core_8cpp_a472f5fed7ab19a1d49ff5eaaad0cf71c}\label{ph__c__core_8cpp_a472f5fed7ab19a1d49ff5eaaad0cf71c} 
+\index{ph\_c\_core.cpp@{ph\_c\_core.cpp}!phAsyncGetRenderStatistics@{phAsyncGetRenderStatistics}}
+\index{phAsyncGetRenderStatistics@{phAsyncGetRenderStatistics}!ph\_c\_core.cpp@{ph\_c\_core.cpp}}
+\doxysubsubsection{\texorpdfstring{phAsyncGetRenderStatistics()}{phAsyncGetRenderStatistics()}}
+{\footnotesize\ttfamily void ph\+Async\+Get\+Render\+Statistics (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{ph__c__core__types_8h_af246a98fda40fb09006dc69f38119319}{Ph\+UInt64}}}]{engine\+Id,  }\item[{\mbox{\hyperlink{ph__c__core__types_8h_ab5490556f7a41927505e9ea43e7217f6}{Ph\+Float32}} \texorpdfstring{$\ast$}{*}const}]{out\+\_\+percentage\+Progress,  }\item[{\mbox{\hyperlink{ph__c__core__types_8h_ab5490556f7a41927505e9ea43e7217f6}{Ph\+Float32}} \texorpdfstring{$\ast$}{*}const}]{out\+\_\+samples\+Per\+Second }\end{DoxyParamCaption})}
+
+\Hypertarget{ph__c__core_8cpp_a190ee833692257794e0783f59827c519}\label{ph__c__core_8cpp_a190ee833692257794e0783f59827c519} 
 \index{ph\_c\_core.cpp@{ph\_c\_core.cpp}!phAsyncPeekFrame@{phAsyncPeekFrame}}
 \index{phAsyncPeekFrame@{phAsyncPeekFrame}!ph\_c\_core.cpp@{ph\_c\_core.cpp}}
 \doxysubsubsection{\texorpdfstring{phAsyncPeekFrame()}{phAsyncPeekFrame()}}
-{\footnotesize\ttfamily void ph\+Async\+Peek\+Frame (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{ph__c__core__types_8h_af246a98fda40fb09006dc69f38119319}{Ph\+UInt64}}}]{engine\+Id,  }\item[{const \mbox{\hyperlink{ph__c__core__types_8h_af246a98fda40fb09006dc69f38119319}{Ph\+UInt64}}}]{channel\+Index,  }\item[{const \mbox{\hyperlink{ph__c__core__types_8h_a03472b69d2fec6298325a584353122fc}{Ph\+UInt32}}}]{x\+Px,  }\item[{const \mbox{\hyperlink{ph__c__core__types_8h_a03472b69d2fec6298325a584353122fc}{Ph\+UInt32}}}]{y\+Px,  }\item[{const \mbox{\hyperlink{ph__c__core__types_8h_a03472b69d2fec6298325a584353122fc}{Ph\+UInt32}}}]{width\+Px,  }\item[{const \mbox{\hyperlink{ph__c__core__types_8h_a03472b69d2fec6298325a584353122fc}{Ph\+UInt32}}}]{height\+Px,  }\item[{const \mbox{\hyperlink{ph__c__core__types_8h_af246a98fda40fb09006dc69f38119319}{Ph\+UInt64}}}]{frame\+Id }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void ph\+Async\+Peek\+Frame (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ph__c__core__types_8h_af246a98fda40fb09006dc69f38119319}{Ph\+UInt64}}}]{engine\+Id,  }\item[{\mbox{\hyperlink{ph__c__core__types_8h_af246a98fda40fb09006dc69f38119319}{Ph\+UInt64}}}]{layer\+Index,  }\item[{\mbox{\hyperlink{ph__c__core__types_8h_a03472b69d2fec6298325a584353122fc}{Ph\+UInt32}}}]{x\+Px,  }\item[{\mbox{\hyperlink{ph__c__core__types_8h_a03472b69d2fec6298325a584353122fc}{Ph\+UInt32}}}]{y\+Px,  }\item[{\mbox{\hyperlink{ph__c__core__types_8h_a03472b69d2fec6298325a584353122fc}{Ph\+UInt32}}}]{width\+Px,  }\item[{\mbox{\hyperlink{ph__c__core__types_8h_a03472b69d2fec6298325a584353122fc}{Ph\+UInt32}}}]{height\+Px,  }\item[{\mbox{\hyperlink{ph__c__core__types_8h_af246a98fda40fb09006dc69f38119319}{Ph\+UInt64}}}]{frame\+Id }\end{DoxyParamCaption})}
 
-\Hypertarget{ph__c__core_8cpp_af3bd5f6fff2b4d01a900d47f87aa9aa0}\label{ph__c__core_8cpp_af3bd5f6fff2b4d01a900d47f87aa9aa0} 
+\Hypertarget{ph__c__core_8cpp_aa0427b1cd1db88e3870dd2acc282c838}\label{ph__c__core_8cpp_aa0427b1cd1db88e3870dd2acc282c838} 
 \index{ph\_c\_core.cpp@{ph\_c\_core.cpp}!phAsyncPeekFrameRaw@{phAsyncPeekFrameRaw}}
 \index{phAsyncPeekFrameRaw@{phAsyncPeekFrameRaw}!ph\_c\_core.cpp@{ph\_c\_core.cpp}}
 \doxysubsubsection{\texorpdfstring{phAsyncPeekFrameRaw()}{phAsyncPeekFrameRaw()}}
-{\footnotesize\ttfamily void ph\+Async\+Peek\+Frame\+Raw (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{ph__c__core__types_8h_af246a98fda40fb09006dc69f38119319}{Ph\+UInt64}}}]{engine\+Id,  }\item[{const \mbox{\hyperlink{ph__c__core__types_8h_af246a98fda40fb09006dc69f38119319}{Ph\+UInt64}}}]{channel\+Index,  }\item[{const \mbox{\hyperlink{ph__c__core__types_8h_a03472b69d2fec6298325a584353122fc}{Ph\+UInt32}}}]{x\+Px,  }\item[{const \mbox{\hyperlink{ph__c__core__types_8h_a03472b69d2fec6298325a584353122fc}{Ph\+UInt32}}}]{y\+Px,  }\item[{const \mbox{\hyperlink{ph__c__core__types_8h_a03472b69d2fec6298325a584353122fc}{Ph\+UInt32}}}]{width\+Px,  }\item[{const \mbox{\hyperlink{ph__c__core__types_8h_a03472b69d2fec6298325a584353122fc}{Ph\+UInt32}}}]{height\+Px,  }\item[{const \mbox{\hyperlink{ph__c__core__types_8h_af246a98fda40fb09006dc69f38119319}{Ph\+UInt64}}}]{frame\+Id }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void ph\+Async\+Peek\+Frame\+Raw (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ph__c__core__types_8h_af246a98fda40fb09006dc69f38119319}{Ph\+UInt64}}}]{engine\+Id,  }\item[{\mbox{\hyperlink{ph__c__core__types_8h_af246a98fda40fb09006dc69f38119319}{Ph\+UInt64}}}]{layer\+Index,  }\item[{\mbox{\hyperlink{ph__c__core__types_8h_a03472b69d2fec6298325a584353122fc}{Ph\+UInt32}}}]{x\+Px,  }\item[{\mbox{\hyperlink{ph__c__core__types_8h_a03472b69d2fec6298325a584353122fc}{Ph\+UInt32}}}]{y\+Px,  }\item[{\mbox{\hyperlink{ph__c__core__types_8h_a03472b69d2fec6298325a584353122fc}{Ph\+UInt32}}}]{width\+Px,  }\item[{\mbox{\hyperlink{ph__c__core__types_8h_a03472b69d2fec6298325a584353122fc}{Ph\+UInt32}}}]{height\+Px,  }\item[{\mbox{\hyperlink{ph__c__core__types_8h_af246a98fda40fb09006dc69f38119319}{Ph\+UInt64}}}]{frame\+Id }\end{DoxyParamCaption})}
 
-\Hypertarget{ph__c__core_8cpp_ade77a3d6d867953d2dbc6413703fa0c1}\label{ph__c__core_8cpp_ade77a3d6d867953d2dbc6413703fa0c1} 
+\Hypertarget{ph__c__core_8cpp_af2b9007329c1162707e711ed259168ad}\label{ph__c__core_8cpp_af2b9007329c1162707e711ed259168ad} 
 \index{ph\_c\_core.cpp@{ph\_c\_core.cpp}!phAsyncPollMergedUpdatedFrameRegions@{phAsyncPollMergedUpdatedFrameRegions}}
 \index{phAsyncPollMergedUpdatedFrameRegions@{phAsyncPollMergedUpdatedFrameRegions}!ph\_c\_core.cpp@{ph\_c\_core.cpp}}
 \doxysubsubsection{\texorpdfstring{phAsyncPollMergedUpdatedFrameRegions()}{phAsyncPollMergedUpdatedFrameRegions()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{ph__c__core__types_8h_aee7c9d8767b70e3a089dc504ca954ce5}{Ph\+Size}} ph\+Async\+Poll\+Merged\+Updated\+Frame\+Regions (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ph__c__core__types_8h_af246a98fda40fb09006dc69f38119319}{Ph\+UInt64}}}]{engine\+Id,  }\item[{\mbox{\hyperlink{ph__c__core__types_8h_af246a98fda40fb09006dc69f38119319}{Ph\+UInt64}}}]{buffer\+Id,  }\item[{\mbox{\hyperlink{ph__c__core__types_8h_aee7c9d8767b70e3a089dc504ca954ce5}{Ph\+Size}}}]{merge\+Size,  }\item[{\mbox{\hyperlink{struct_ph_frame_region_info}{Ph\+Frame\+Region\+Info}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{out\+\_\+region\+Infos\+Ptr }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{ph__c__core__types_8h_aee7c9d8767b70e3a089dc504ca954ce5}{Ph\+Size}} ph\+Async\+Poll\+Merged\+Updated\+Frame\+Regions (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ph__c__core__types_8h_af246a98fda40fb09006dc69f38119319}{Ph\+UInt64}}}]{engine\+Id,  }\item[{\mbox{\hyperlink{ph__c__core__types_8h_af246a98fda40fb09006dc69f38119319}{Ph\+UInt64}}}]{buffer\+Id,  }\item[{\mbox{\hyperlink{ph__c__core__types_8h_aee7c9d8767b70e3a089dc504ca954ce5}{Ph\+Size}}}]{merge\+Size,  }\item[{\mbox{\hyperlink{struct_ph_frame_region_info}{Ph\+Frame\+Region\+Info}} \texorpdfstring{$\ast$}{*}}]{out\+\_\+region\+Infos,  }\item[{\mbox{\hyperlink{ph__c__core__types_8h_aee7c9d8767b70e3a089dc504ca954ce5}{Ph\+Size}}}]{max\+Region\+Infos }\end{DoxyParamCaption})}
 
 
 
@@ -156,7 +167,9 @@ Polls for multiple changed regions during engine runtime.
 
 
 \begin{DoxyParams}{Parameters}
-{\em merge\+Size} & Number of regions to merge together. To obtain a single region, you can specify a large number. \\
+{\em out\+\_\+region\+Infos} & Output buffer for storing the updated regions. The size of the buffer also determines the maximum number of regions that will participate in the merging process. \\
+\hline
+{\em merge\+Size} & Number of regions to merge to a single unit. To obtain a single region, you can specify a number greater or equal to the size of the output buffer. \\
 \hline
 \end{DoxyParams}
 \Hypertarget{ph__c__core_8cpp_ab4415289080964d19ece9e4d78d772b7}\label{ph__c__core_8cpp_ab4415289080964d19ece9e4d78d772b7} 
@@ -169,21 +182,21 @@ Polls for multiple changed regions during engine runtime.
 
 Polls for a single changed region during engine runtime. 
 
-\Hypertarget{ph__c__core_8cpp_a8b9796f55ff635eda7b0cccf94876daa}\label{ph__c__core_8cpp_a8b9796f55ff635eda7b0cccf94876daa} 
+\Hypertarget{ph__c__core_8cpp_a25288cc02c5dc5e9ab84db7c17fea384}\label{ph__c__core_8cpp_a25288cc02c5dc5e9ab84db7c17fea384} 
 \index{ph\_c\_core.cpp@{ph\_c\_core.cpp}!phAsyncPollUpdatedFrameRegions@{phAsyncPollUpdatedFrameRegions}}
 \index{phAsyncPollUpdatedFrameRegions@{phAsyncPollUpdatedFrameRegions}!ph\_c\_core.cpp@{ph\_c\_core.cpp}}
 \doxysubsubsection{\texorpdfstring{phAsyncPollUpdatedFrameRegions()}{phAsyncPollUpdatedFrameRegions()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{ph__c__core__types_8h_aee7c9d8767b70e3a089dc504ca954ce5}{Ph\+Size}} ph\+Async\+Poll\+Updated\+Frame\+Regions (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ph__c__core__types_8h_af246a98fda40fb09006dc69f38119319}{Ph\+UInt64}}}]{engine\+Id,  }\item[{\mbox{\hyperlink{ph__c__core__types_8h_af246a98fda40fb09006dc69f38119319}{Ph\+UInt64}}}]{buffer\+Id,  }\item[{\mbox{\hyperlink{struct_ph_frame_region_info}{Ph\+Frame\+Region\+Info}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{out\+\_\+region\+Infos\+Ptr }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{ph__c__core__types_8h_aee7c9d8767b70e3a089dc504ca954ce5}{Ph\+Size}} ph\+Async\+Poll\+Updated\+Frame\+Regions (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ph__c__core__types_8h_af246a98fda40fb09006dc69f38119319}{Ph\+UInt64}}}]{engine\+Id,  }\item[{\mbox{\hyperlink{ph__c__core__types_8h_af246a98fda40fb09006dc69f38119319}{Ph\+UInt64}}}]{buffer\+Id,  }\item[{\mbox{\hyperlink{struct_ph_frame_region_info}{Ph\+Frame\+Region\+Info}} \texorpdfstring{$\ast$}{*}}]{out\+\_\+region\+Infos,  }\item[{\mbox{\hyperlink{ph__c__core__types_8h_aee7c9d8767b70e3a089dc504ca954ce5}{Ph\+Size}}}]{max\+Region\+Infos }\end{DoxyParamCaption})}
 
 
 
 Polls for multiple changed regions during engine runtime. 
 
-\Hypertarget{ph__c__core_8cpp_a040f22e302d6bce7d090f70b424f7c65}\label{ph__c__core_8cpp_a040f22e302d6bce7d090f70b424f7c65} 
-\index{ph\_c\_core.cpp@{ph\_c\_core.cpp}!phConfigCoreResourceDirectory@{phConfigCoreResourceDirectory}}
-\index{phConfigCoreResourceDirectory@{phConfigCoreResourceDirectory}!ph\_c\_core.cpp@{ph\_c\_core.cpp}}
-\doxysubsubsection{\texorpdfstring{phConfigCoreResourceDirectory()}{phConfigCoreResourceDirectory()}}
-{\footnotesize\ttfamily void ph\+Config\+Core\+Resource\+Directory (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{ph__c__core__types_8h_a1148bb297d82700d3f9bcfaac35dae6f}{Ph\+Char}} \texorpdfstring{$\ast$}{*}const}]{directory }\end{DoxyParamCaption})}
+\Hypertarget{ph__c__core_8cpp_a88c4d632f5ad99836cf643dee647d214}\label{ph__c__core_8cpp_a88c4d632f5ad99836cf643dee647d214} 
+\index{ph\_c\_core.cpp@{ph\_c\_core.cpp}!phConfigRendererResourceDirectory@{phConfigRendererResourceDirectory}}
+\index{phConfigRendererResourceDirectory@{phConfigRendererResourceDirectory}!ph\_c\_core.cpp@{ph\_c\_core.cpp}}
+\doxysubsubsection{\texorpdfstring{phConfigRendererResourceDirectory()}{phConfigRendererResourceDirectory()}}
+{\footnotesize\ttfamily void ph\+Config\+Renderer\+Resource\+Directory (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{ph__c__core__types_8h_a1148bb297d82700d3f9bcfaac35dae6f}{Ph\+Char}} \texorpdfstring{$\ast$}{*}const}]{directory }\end{DoxyParamCaption})}
 
 \Hypertarget{ph__c__core_8cpp_a8f71a9b4ccb29b1e777d6c85419a49ed}\label{ph__c__core_8cpp_a8f71a9b4ccb29b1e777d6c85419a49ed} 
 \index{ph\_c\_core.cpp@{ph\_c\_core.cpp}!phCreateBuffer@{phCreateBuffer}}

@@ -20,6 +20,7 @@ var hierarchy =
     [ "ph::BsdfSampleInput", "d9/d9c/classph_1_1_bsdf_sample_input.html", null ],
     [ "ph::BsdfSampleOutput", "d7/ded/classph_1_1_bsdf_sample_output.html", null ],
     [ "ph::BsdfSampleQuery", "d9/d1b/classph_1_1_bsdf_sample_query.html", null ],
+    [ "ph::math::TIndexedPointKdtree< Item, Index, PointCalculator, ItemStorage >::BuildCache", "de/dd1/structph_1_1math_1_1_t_indexed_point_kdtree_1_1_build_cache.html", null ],
     [ "ph::BvhBuilder", "dd/d6d/classph_1_1_bvh_builder.html", null ],
     [ "ph::BvhInfoNode", "d6/d17/classph_1_1_bvh_info_node.html", null ],
     [ "ph::BvhIntersectableInfo", "d1/d14/classph_1_1_bvh_intersectable_info.html", null ],
@@ -43,6 +44,9 @@ var hierarchy =
     [ "ph::DielectricInterfaceInfo", "df/d04/classph_1_1_dielectric_interface_info.html", null ],
     [ "ph::DirectEnergySampleInput", "d8/d12/classph_1_1_direct_energy_sample_input.html", null ],
     [ "ph::DirectEnergySampleOutput", "de/df3/classph_1_1_direct_energy_sample_output.html", null ],
+    [ "ph::DirectEnergySamplePdfInput", "d8/d4e/classph_1_1_direct_energy_sample_pdf_input.html", null ],
+    [ "ph::DirectEnergySamplePdfOutput", "de/ddc/classph_1_1_direct_energy_sample_pdf_output.html", null ],
+    [ "ph::DirectEnergySamplePdfQuery", "d6/d19/classph_1_1_direct_energy_sample_pdf_query.html", null ],
     [ "ph::DirectEnergySampleQuery", "d1/d85/classph_1_1_direct_energy_sample_query.html", null ],
     [ "ph::DomeRadianceFunctionInfo", "d1/d1f/structph_1_1_dome_radiance_function_info.html", null ],
     [ "ph::EmbeddedPrimitiveMetaGetter", "d8/d28/structph_1_1_embedded_primitive_meta_getter.html", null ],
@@ -60,6 +64,9 @@ var hierarchy =
       [ "ph::ESPowerFavoring", "d8/de9/classph_1_1_e_s_power_favoring.html", null ],
       [ "ph::ESUniformRandom", "d2/d1f/classph_1_1_e_s_uniform_random.html", null ]
     ] ],
+    [ "ph::EnergyEmissionSampleInput", "d8/dc7/classph_1_1_energy_emission_sample_input.html", null ],
+    [ "ph::EnergyEmissionSampleOutput", "d3/d28/classph_1_1_energy_emission_sample_output.html", null ],
+    [ "ph::EnergyEmissionSampleQuery", "d4/d48/classph_1_1_energy_emission_sample_query.html", null ],
     [ "ph::Engine", "df/d0f/classph_1_1_engine.html", null ],
     [ "ph::EngineInitSettings", "d4/d87/classph_1_1_engine_init_settings.html", null ],
     [ "ph::ExrFileReader", "d9/d5b/classph_1_1_exr_file_reader.html", null ],
@@ -121,6 +128,7 @@ var hierarchy =
         [ "ph::TSamplingFilm< math::Vector3R >", "de/d4d/classph_1_1_t_sampling_film.html", [
           [ "ph::Vector3Film", "d9/dee/classph_1_1_vector3_film.html", null ]
         ] ],
+        [ "ph::TSamplingFilm< ph::math::TTristimulusSpectrum >", "de/d4d/classph_1_1_t_sampling_film.html", null ],
         [ "ph::TSamplingFilm< Sample >", "de/d4d/classph_1_1_t_sampling_film.html", null ]
       ] ],
       [ "ph::FrameProcessingPipeline", "d3/d4a/classph_1_1_frame_processing_pipeline.html", null ],
@@ -128,7 +136,6 @@ var hierarchy =
       [ "ph::InitiallyPausedThread", "df/da8/classph_1_1_initially_paused_thread.html", null ],
       [ "ph::MemoryArena", "db/d5c/classph_1_1_memory_arena.html", null ],
       [ "ph::ReceiverSamplingWork", "d1/dc2/classph_1_1_receiver_sampling_work.html", null ],
-      [ "ph::SurfaceTracer", "d2/dce/classph_1_1_surface_tracer.html", null ],
       [ "ph::TSdlBruteForceFieldSet< BaseFieldType, MAX_FIELDS >", "df/de1/classph_1_1_t_sdl_brute_force_field_set.html", null ],
       [ "ph::TUniquePtrVector< BaseType >", "db/d7a/classph_1_1_t_unique_ptr_vector.html", null ],
       [ "ph::VisualWorld", "d4/d1a/classph_1_1_visual_world.html", null ],
@@ -171,7 +178,6 @@ var hierarchy =
         [ "ph::PTriangle", "d1/db4/classph_1_1_p_triangle.html", null ],
         [ "ph::TMetaInjectionPrimitive< PrimitiveMetaGetter, PrimitiveGetter >", "d8/d66/classph_1_1_t_meta_injection_primitive.html", null ],
         [ "ph::TPIndexedKdTreeTriangleMesh< Index >", "d4/d4b/classph_1_1_t_p_indexed_kd_tree_triangle_mesh.html", null ],
-        [ "ph::TPKdTreeTriangleMesh< Index >", "d4/d32/classph_1_1_t_p_kd_tree_triangle_mesh.html", null ],
         [ "ph::TransformedPrimitive", "d2/dff/classph_1_1_transformed_primitive.html", null ]
       ] ],
       [ "ph::TransformedIntersectable", "d4/dfa/classph_1_1_transformed_intersectable.html", null ]
@@ -184,6 +190,9 @@ var hierarchy =
     ] ],
     [ "ph::IResourceIdentifierResolver", "d7/daa/classph_1_1_i_resource_identifier_resolver.html", [
       [ "ph::SdlResourceLocator", "d3/d0a/classph_1_1_sdl_resource_locator.html", null ]
+    ] ],
+    [ "ph::ISdlDataPacketGroup", "d7/d21/classph_1_1_i_sdl_data_packet_group.html", [
+      [ "ph::SdlDataPacketCollection", "d9/d47/classph_1_1_sdl_data_packet_collection.html", null ]
     ] ],
     [ "ph::ISdlInstantiable", "de/d21/classph_1_1_i_sdl_instantiable.html", [
       [ "ph::SdlClass", "db/d18/classph_1_1_sdl_class.html", [
@@ -384,10 +393,12 @@ var hierarchy =
     [ "ph::MotionCookConfig", "db/d35/classph_1_1_motion_cook_config.html", null ],
     [ "ph::field_set_op::NoOpNoticeReceiver", "d7/d00/structph_1_1field__set__op_1_1_no_op_notice_receiver.html", null ],
     [ "ph::VolumeDistanceSample::Output", "d9/d69/classph_1_1_volume_distance_sample_1_1_output.html", null ],
+    [ "ph::halton_detail::OwenScrambledPermuter", "da/d44/classph_1_1halton__detail_1_1_owen_scrambled_permuter.html", null ],
     [ "ph::math::detail::Pcg64UInt128", "df/d59/classph_1_1math_1_1detail_1_1_pcg64_u_int128.html", null ],
     [ "ph::halton_detail::PerDigitPermuter", "d4/daa/classph_1_1halton__detail_1_1_per_digit_permuter.html", null ],
     [ "ph::PeriodicSingleThreadExecutor", "d9/d2d/classph_1_1_periodic_single_thread_executor.html", null ],
     [ "ph::PfmFileWriter", "d5/dd4/classph_1_1_pfm_file_writer.html", null ],
+    [ "ph::TPhotonMap< Photon, PhotonStorage >::PhotonCenterCalculator", "d5/d49/structph_1_1_t_photon_map_1_1_photon_center_calculator.html", null ],
     [ "ph::PictureData", "dd/d8d/classph_1_1_picture_data.html", null ],
     [ "ph::PictureMeta", "d3/dd0/classph_1_1_picture_meta.html", null ],
     [ "ph::PixelBuffer2D", "d9/db1/classph_1_1_pixel_buffer2_d.html", [
@@ -399,7 +410,8 @@ var hierarchy =
     [ "ph::PlyProperty", "da/d57/structph_1_1_ply_property.html", null ],
     [ "ph::PlyPropertyListValues", "da/dba/classph_1_1_ply_property_list_values.html", null ],
     [ "ph::PlyPropertyValues", "d9/da4/classph_1_1_ply_property_values.html", null ],
-    [ "ph::PMStatistics", "df/dc1/classph_1_1_p_m_statistics.html", null ],
+    [ "ph::PMAtomicStatistics", "dd/d2a/classph_1_1_p_m_atomic_statistics.html", null ],
+    [ "ph::PMCommonParams", "d5/db0/classph_1_1_p_m_common_params.html", null ],
     [ "ph::PreCookReport", "db/db6/classph_1_1_pre_cook_report.html", null ],
     [ "ph::PreCookResourceCollectionProxy", "d8/d8e/classph_1_1_pre_cook_resource_collection_proxy.html", null ],
     [ "ph::PrimitiveBuildingMaterial", "d3/d6b/classph_1_1_primitive_building_material.html", null ],
@@ -411,7 +423,7 @@ var hierarchy =
     [ "ph::PrimitivePosSamplePdfOutput", "dc/da9/classph_1_1_primitive_pos_sample_pdf_output.html", null ],
     [ "ph::PrimitivePosSamplePdfQuery", "d2/def/classph_1_1_primitive_pos_sample_pdf_query.html", null ],
     [ "ph::PrimitivePosSampleQuery", "da/d3e/classph_1_1_primitive_pos_sample_query.html", null ],
-    [ "ph::PtVolumetricEstimator", "d6/d6f/classph_1_1_pt_volumetric_estimator.html", null ],
+    [ "ph::lta::PtVolumetricEstimator", "d4/d5e/classph_1_1lta_1_1_pt_volumetric_estimator.html", null ],
     [ "ph::RadianceSensor", "db/d77/classph_1_1_radiance_sensor.html", null ],
     [ "ph::math::Random", "d8/dad/classph_1_1math_1_1_random.html", null ],
     [ "ph::Ray", "d7/dcb/classph_1_1_ray.html", null ],
@@ -429,7 +441,12 @@ var hierarchy =
     [ "ph::RegularPictureFormat", "d5/d45/classph_1_1_regular_picture_format.html", null ],
     [ "ph::Renderer", "d7/d5c/classph_1_1_renderer.html", [
       [ "ph::AttributeRenderer", "d4/dcc/classph_1_1_attribute_renderer.html", null ],
-      [ "ph::PMRenderer", "d3/dd8/classph_1_1_p_m_renderer.html", null ],
+      [ "ph::PMRendererBase", "d0/dfd/classph_1_1_p_m_renderer_base.html", [
+        [ "ph::ProbabilisticProgressivePMRenderer", "d3/d2d/classph_1_1_probabilistic_progressive_p_m_renderer.html", null ],
+        [ "ph::ProgressivePMRenderer", "d8/d86/classph_1_1_progressive_p_m_renderer.html", null ],
+        [ "ph::StochasticProgressivePMRenderer", "d1/dbb/classph_1_1_stochastic_progressive_p_m_renderer.html", null ],
+        [ "ph::VanillaPMRenderer", "db/d67/classph_1_1_vanilla_p_m_renderer.html", null ]
+      ] ],
       [ "ph::SamplingRenderer", "d9/d0c/classph_1_1_sampling_renderer.html", [
         [ "ph::AdaptiveSamplingRenderer", "df/da5/classph_1_1_adaptive_sampling_renderer.html", null ],
         [ "ph::EqualSamplingRenderer", "d4/d07/classph_1_1_equal_sampling_renderer.html", null ]
@@ -441,13 +458,10 @@ var hierarchy =
     [ "ph::RenderRegionStatus", "df/dad/classph_1_1_render_region_status.html", null ],
     [ "ph::RenderStats", "de/d70/classph_1_1_render_stats.html", null ],
     [ "ph::RenderWork", "d1/dd4/classph_1_1_render_work.html", [
-      [ "ph::TRadianceEvaluationWork< FullPhoton >", "de/d38/classph_1_1_t_radiance_evaluation_work.html", [
-        [ "ph::PPMRadianceEvaluationWork", "de/d4d/classph_1_1_p_p_m_radiance_evaluation_work.html", null ]
-      ] ],
       [ "ph::ReceiverSamplingWork", "d1/dc2/classph_1_1_receiver_sampling_work.html", null ],
-      [ "ph::TPhotonMappingWork< Photon >", "dc/d76/classph_1_1_t_photon_mapping_work.html", null ],
-      [ "ph::TRadianceEvaluationWork< Photon >", "de/d38/classph_1_1_t_radiance_evaluation_work.html", null ],
-      [ "ph::TViewPathTracingWork< ViewPathHandler >", "d0/df4/classph_1_1_t_view_path_tracing_work.html", null ]
+      [ "ph::TPPMRadianceEvaluationWork< Photon, Viewpoint >", "df/d25/classph_1_1_t_p_p_m_radiance_evaluation_work.html", null ],
+      [ "ph::TPhotonPathTracingWork< Photon >", "d6/d54/classph_1_1_t_photon_path_tracing_work.html", null ],
+      [ "ph::TViewPathTracingWork< Handler >", "d0/df4/classph_1_1_t_view_path_tracing_work.html", null ]
     ] ],
     [ "ph::RenderWorker", "d5/da0/classph_1_1_render_worker.html", null ],
     [ "ph::ResourceIdentifier", "d7/d8e/classph_1_1_resource_identifier.html", null ],
@@ -468,11 +482,10 @@ var hierarchy =
         [ "ph::math::ColorError", "d3/db0/classph_1_1math_1_1_color_error.html", null ]
       ] ]
     ] ],
-    [ "ph::RussianRoulette", "d2/d57/classph_1_1_russian_roulette.html", null ],
+    [ "ph::lta::RussianRoulette", "df/d4f/classph_1_1lta_1_1_russian_roulette.html", null ],
     [ "ph::Sample", "db/dd3/classph_1_1_sample.html", null ],
     [ "ph::SampleContext", "dc/d57/classph_1_1_sample_context.html", null ],
     [ "ph::SampleFilter", "df/deb/classph_1_1_sample_filter.html", null ],
-    [ "ph::SampleFilters", "dc/d49/classph_1_1_sample_filters.html", null ],
     [ "ph::SampleFlow", "dd/d93/classph_1_1_sample_flow.html", null ],
     [ "ph::SampleGenerator", "d1/d22/classph_1_1_sample_generator.html", [
       [ "ph::SGHalton", "de/dc6/classph_1_1_s_g_halton.html", null ],
@@ -522,6 +535,7 @@ var hierarchy =
         [ "ph::TSdlAbstractValue< std::string, Owner >", "d1/de8/classph_1_1_t_sdl_abstract_value.html", null ],
         [ "ph::TSdlAbstractValue< math::TVector2< Element >, Owner >", "d1/de8/classph_1_1_t_sdl_abstract_value.html", null ],
         [ "ph::TSdlAbstractValue< math::TVector3< real >, Owner >", "d1/de8/classph_1_1_t_sdl_abstract_value.html", null ],
+        [ "ph::TSdlAbstractValue< math::TVector4< real >, Owner >", "d1/de8/classph_1_1_t_sdl_abstract_value.html", null ],
         [ "ph::TSdlAbstractValue< T, Owner >", "d1/de8/classph_1_1_t_sdl_abstract_value.html", [
           [ "ph::TSdlValue< bool, Owner >", "d6/d88/classph_1_1_t_sdl_value.html", null ],
           [ "ph::TSdlValue< EnumType, Owner >", "d6/d88/classph_1_1_t_sdl_value.html", null ],
@@ -535,6 +549,7 @@ var hierarchy =
           [ "ph::TSdlValue< std::string, Owner >", "d6/d88/classph_1_1_t_sdl_value.html", null ],
           [ "ph::TSdlValue< math::TVector2< Element >, Owner >", "d6/d88/classph_1_1_t_sdl_value.html", null ],
           [ "ph::TSdlValue< math::TVector3< real >, Owner >", "d6/d88/classph_1_1_t_sdl_value.html", null ],
+          [ "ph::TSdlValue< math::TVector4< real >, Owner >", "d6/d88/classph_1_1_t_sdl_value.html", null ],
           [ "ph::TSdlOptionalValue< T, Owner >", "dd/d0b/classph_1_1_t_sdl_optional_value.html", null ],
           [ "ph::TSdlValue< T, Owner >", "d6/d88/classph_1_1_t_sdl_value.html", [
             [ "ph::TSdlBool< Owner, SdlValueType >", "da/dab/classph_1_1_t_sdl_bool.html", null ],
@@ -548,11 +563,13 @@ var hierarchy =
             [ "ph::TSdlSpectrum< Owner, SdlValueType >", "d8/d0f/classph_1_1_t_sdl_spectrum.html", null ],
             [ "ph::TSdlString< Owner, SdlValueType >", "d6/dd1/classph_1_1_t_sdl_string.html", null ],
             [ "ph::TSdlVector2< Owner, Element, SdlValueType >", "d6/d82/classph_1_1_t_sdl_vector2.html", null ],
-            [ "ph::TSdlVector3< Owner, Element, SdlValueType >", "d0/ddd/classph_1_1_t_sdl_vector3.html", null ]
+            [ "ph::TSdlVector3< Owner, Element, SdlValueType >", "d0/ddd/classph_1_1_t_sdl_vector3.html", null ],
+            [ "ph::TSdlVector4< Owner, Element, SdlValueType >", "d8/da6/classph_1_1_t_sdl_vector4.html", null ]
           ] ]
         ] ],
         [ "ph::TSdlReference< T, Owner >", "d2/d5a/classph_1_1_t_sdl_reference.html", null ],
-        [ "ph::TSdlReferenceArray< T, Owner >", "d2/d7d/classph_1_1_t_sdl_reference_array.html", null ]
+        [ "ph::TSdlReferenceArray< T, Owner >", "d2/d7d/classph_1_1_t_sdl_reference_array.html", null ],
+        [ "ph::TSdlStructArray< Struct, Owner >", "db/d9e/classph_1_1_t_sdl_struct_array.html", null ]
       ] ]
     ] ],
     [ "ph::SdlInputClause", "d7/ddd/classph_1_1_sdl_input_clause.html", null ],
@@ -561,6 +578,7 @@ var hierarchy =
       [ "ph::SdlInputContext", "d2/de3/classph_1_1_sdl_input_context.html", null ],
       [ "ph::SdlOutputContext", "d3/d2c/classph_1_1_sdl_output_context.html", null ]
     ] ],
+    [ "ph::SdlNamedOutputClauses", "d2/d78/classph_1_1_sdl_named_output_clauses.html", null ],
     [ "ph::SdlNativeData", "d4/d9e/classph_1_1_sdl_native_data.html", null ],
     [ "ph::SdlOutputClause", "dd/d11/classph_1_1_sdl_output_clause.html", null ],
     [ "ph::SdlOutputClauses", "d8/dd7/classph_1_1_sdl_output_clauses.html", null ],
@@ -569,13 +587,14 @@ var hierarchy =
     [ "ph::SdlStructFieldStump", "d6/d63/classph_1_1_sdl_struct_field_stump.html", null ],
     [ "ph::PhysicalActor::SdlTranslate", "d7/dfd/structph_1_1_physical_actor_1_1_sdl_translate.html", null ],
     [ "ph::SemanticVersion", "d8/dcc/classph_1_1_semantic_version.html", null ],
-    [ "ph::SenseEvent", "d6/db1/classph_1_1_sense_event.html", null ],
+    [ "ph::lta::SenseEvent", "d9/d7b/classph_1_1lta_1_1_sense_event.html", null ],
     [ "ph::SGUtil", "db/d3e/classph_1_1_s_g_util.html", null ],
-    [ "ph::SidednessAgreement", "d8/df6/classph_1_1_sidedness_agreement.html", null ],
+    [ "ph::lta::SidednessAgreement", "db/d78/classph_1_1lta_1_1_sidedness_agreement.html", null ],
     [ "ph::math::detail::shuffle::StandardSwapper< T >", "d7/de0/structph_1_1math_1_1detail_1_1shuffle_1_1_standard_swapper.html", null ],
     [ "ph::Statistics", "dd/d72/classph_1_1_statistics.html", null ],
     [ "ph::SurfaceBehavior", "d4/dc8/classph_1_1_surface_behavior.html", null ],
     [ "ph::SurfaceHit", "d7/d2e/classph_1_1_surface_hit.html", null ],
+    [ "ph::lta::SurfaceHitRefinery", "da/d9b/classph_1_1lta_1_1_surface_hit_refinery.html", null ],
     [ "ph::SurfaceLayerInfo", "d7/d2a/classph_1_1_surface_layer_info.html", null ],
     [ "ph::SurfaceOptics", "df/d8a/classph_1_1_surface_optics.html", [
       [ "ph::IdealAbsorber", "d0/dfa/classph_1_1_ideal_absorber.html", null ],
@@ -590,6 +609,7 @@ var hierarchy =
       [ "ph::ThinDielectricFilm", "d7/db9/classph_1_1_thin_dielectric_film.html", null ],
       [ "ph::TranslucentMicrofacet", "d7/d92/classph_1_1_translucent_microfacet.html", null ]
     ] ],
+    [ "ph::lta::SurfaceTracer", "db/d6c/classph_1_1lta_1_1_surface_tracer.html", null ],
     [ "ph::math::TAABB2D< T >", "db/d1c/classph_1_1math_1_1_t_a_a_b_b2_d.html", null ],
     [ "ph::math::TAABB2D< float64 >", "db/d1c/classph_1_1math_1_1_t_a_a_b_b2_d.html", null ],
     [ "ph::math::TAABB2D< int64 >", "db/d1c/classph_1_1math_1_1_t_a_a_b_b2_d.html", null ],
@@ -597,13 +617,14 @@ var hierarchy =
     [ "ph::math::TAABB3D< real >", "d6/d74/classph_1_1math_1_1_t_a_a_b_b3_d.html", null ],
     [ "ph::TableFGD", "d4/dbf/classph_1_1_table_f_g_d.html", null ],
     [ "ph::TableTIR", "d0/da5/classph_1_1_table_t_i_r.html", null ],
+    [ "ph::texfunc::TAbsolute< InputType, OutputType >", "d0/dd8/classph_1_1texfunc_1_1_t_absolute.html", null ],
     [ "ph::texfunc::TAdd< InputTypeA, InputTypeB, OutputType >", "d3/dd9/classph_1_1texfunc_1_1_t_add.html", null ],
-    [ "ph::texfunc::TAddConstant< InputType, ConstantType, OutputType >", "d0/d20/classph_1_1texfunc_1_1_t_add_constant.html", null ],
     [ "ph::math::TAnalyticalIntegrator1D< T >", "dd/ddf/classph_1_1math_1_1_t_analytical_integrator1_d.html", null ],
     [ "ph::DammertzDispatcher::TAnalyzer< MODE >", "d5/d26/classph_1_1_dammertz_dispatcher_1_1_t_analyzer.html", null ],
     [ "ph::TAnyPtr< IS_CONST >", "d1/d75/classph_1_1_t_any_ptr.html", null ],
     [ "ph::TAnyPtr< false >", "d1/d75/classph_1_1_t_any_ptr.html", null ],
     [ "ph::math::TArithmeticArrayBase< Derived, T, N >", "dc/d3e/classph_1_1math_1_1_t_arithmetic_array_base.html", [
+      [ "ph::math::TQuaternion< real >", "df/d4d/classph_1_1math_1_1_t_quaternion.html", null ],
       [ "ph::math::TSpectrumBase< TSampledSpectrum< COLOR_SPACE, T, Props >, COLOR_SPACE, T, Props::NUM_SAMPLES >", "d7/dbb/classph_1_1math_1_1_t_spectrum_base.html", [
         [ "ph::math::TSampledSpectrum< COLOR_SPACE, T, Props >", "d4/dbf/classph_1_1math_1_1_t_sampled_spectrum.html", null ]
       ] ],
@@ -611,8 +632,9 @@ var hierarchy =
         [ "ph::math::TTristimulusSpectrum< COLOR_SPACE, T >", "d3/de0/classph_1_1math_1_1_t_tristimulus_spectrum.html", null ]
       ] ],
       [ "ph::math::TVectorNBase< TVector2< float64 >, float64, 2 >", "da/d31/classph_1_1math_1_1_t_vector_n_base.html", null ],
-      [ "ph::math::TVectorNBase< TVector3< real >, real, 3 >", "da/d31/classph_1_1math_1_1_t_vector_n_base.html", null ],
       [ "ph::math::TVectorNBase< TVector2< Element >, Element, 2 >", "da/d31/classph_1_1math_1_1_t_vector_n_base.html", null ],
+      [ "ph::math::TVectorNBase< TVector3< real >, real, 3 >", "da/d31/classph_1_1math_1_1_t_vector_n_base.html", null ],
+      [ "ph::math::TVectorNBase< TVector4< real >, real, 4 >", "da/d31/classph_1_1math_1_1_t_vector_n_base.html", null ],
       [ "ph::math::TVectorNBase< TVector2< T >, T, 2 >", "da/d31/classph_1_1math_1_1_t_vector_n_base.html", [
         [ "ph::math::TVector2< T >", "db/dba/classph_1_1math_1_1_t_vector2.html", null ]
       ] ],
@@ -629,6 +651,7 @@ var hierarchy =
       [ "ph::math::TVectorNBase< TVector2< int64 >, int64, 2 >", "da/d31/classph_1_1math_1_1_t_vector_n_base.html", null ],
       [ "ph::math::TVectorNBase< TVector2< std::size_t >, std::size_t, 2 >", "da/d31/classph_1_1math_1_1_t_vector_n_base.html", null ],
       [ "ph::math::TVectorNBase< TVector2< real >, real, 2 >", "da/d31/classph_1_1math_1_1_t_vector_n_base.html", null ],
+      [ "ph::math::TVectorNBase< TVector2< Value >, Value, 2 >", "da/d31/classph_1_1math_1_1_t_vector_n_base.html", null ],
       [ "ph::math::TSpectrumBase< Derived, COLOR_SPACE, T, N >", "d7/dbb/classph_1_1math_1_1_t_spectrum_base.html", null ],
       [ "ph::math::TVectorNBase< Derived, T, N >", "da/d31/classph_1_1math_1_1_t_vector_n_base.html", [
         [ "ph::math::TVector2< float64 >", "db/dba/classph_1_1math_1_1_t_vector2.html", null ],
@@ -637,13 +660,19 @@ var hierarchy =
         [ "ph::math::TVector2< int64 >", "db/dba/classph_1_1math_1_1_t_vector2.html", null ],
         [ "ph::math::TVector2< std::size_t >", "db/dba/classph_1_1math_1_1_t_vector2.html", null ],
         [ "ph::math::TVector2< real >", "db/dba/classph_1_1math_1_1_t_vector2.html", null ],
-        [ "ph::math::TVector3< real >", "d4/d2c/classph_1_1math_1_1_t_vector3.html", null ]
+        [ "ph::math::TVector2< Value >", "db/dba/classph_1_1math_1_1_t_vector2.html", null ],
+        [ "ph::math::TVector3< real >", "d4/d2c/classph_1_1math_1_1_t_vector3.html", null ],
+        [ "ph::math::TVector4< real >", "d7/d52/classph_1_1math_1_1_t_vector4.html", null ]
       ] ]
     ] ],
     [ "ph::math::TArithmeticArrayBase< TArithmeticArray< T, N >, T, N >", "dc/d3e/classph_1_1math_1_1_t_arithmetic_array_base.html", [
       [ "ph::math::TArithmeticArray< T, 3 >", "d4/d83/classph_1_1math_1_1_t_arithmetic_array.html", null ],
       [ "ph::math::TArithmeticArray< T, SampleProps::NUM_SAMPLES >", "d4/d83/classph_1_1math_1_1_t_arithmetic_array.html", null ],
       [ "ph::math::TArithmeticArray< T, N >", "d4/d83/classph_1_1math_1_1_t_arithmetic_array.html", null ]
+    ] ],
+    [ "ph::math::TArithmeticArrayBase< TQuaternion< real >, real, 4 >", "dc/d3e/classph_1_1math_1_1_t_arithmetic_array_base.html", null ],
+    [ "ph::math::TArithmeticArrayBase< TQuaternion< T >, T, 4 >", "dc/d3e/classph_1_1math_1_1_t_arithmetic_array_base.html", [
+      [ "ph::math::TQuaternion< T >", "df/d4d/classph_1_1math_1_1_t_quaternion.html", null ]
     ] ],
     [ "ph::math::TArithmeticArrayBase< TSampledSpectrum< COLOR_SPACE, T, Props >, T, N >", "dc/d3e/classph_1_1math_1_1_t_arithmetic_array_base.html", null ],
     [ "ph::math::TArithmeticArrayBase< TTristimulusSpectrum< COLOR_SPACE, T >, T, N >", "dc/d3e/classph_1_1math_1_1_t_arithmetic_array_base.html", null ],
@@ -654,19 +683,21 @@ var hierarchy =
     [ "ph::math::TArithmeticArrayBase< TVector2< std::size_t >, std::size_t, N >", "dc/d3e/classph_1_1math_1_1_t_arithmetic_array_base.html", null ],
     [ "ph::math::TArithmeticArrayBase< TVector2< T >, T, N >", "dc/d3e/classph_1_1math_1_1_t_arithmetic_array_base.html", null ],
     [ "ph::math::TArithmeticArrayBase< TVector2< uint32 >, uint32, N >", "dc/d3e/classph_1_1math_1_1_t_arithmetic_array_base.html", null ],
+    [ "ph::math::TArithmeticArrayBase< TVector2< Value >, Value, N >", "dc/d3e/classph_1_1math_1_1_t_arithmetic_array_base.html", null ],
     [ "ph::math::TArithmeticArrayBase< TVector3< real >, real, N >", "dc/d3e/classph_1_1math_1_1_t_arithmetic_array_base.html", null ],
     [ "ph::math::TArithmeticArrayBase< TVector3< T >, T, N >", "dc/d3e/classph_1_1math_1_1_t_arithmetic_array_base.html", null ],
+    [ "ph::math::TArithmeticArrayBase< TVector4< real >, real, N >", "dc/d3e/classph_1_1math_1_1_t_arithmetic_array_base.html", null ],
     [ "ph::math::TArithmeticArrayBase< TVector4< T >, T, N >", "dc/d3e/classph_1_1math_1_1_t_arithmetic_array_base.html", null ],
     [ "ph::math::TArithmeticArrayBase< TVectorN< T, N >, T, N >", "dc/d3e/classph_1_1math_1_1_t_arithmetic_array_base.html", null ],
-    [ "ph::TArrayAsStack< T, N >", "d9/d2b/classph_1_1_t_array_as_stack.html", null ],
-    [ "ph::TArrayAsStack< const Intersectable *, PH_HIT_PROBE_DEPTH >", "d9/d2b/classph_1_1_t_array_as_stack.html", null ],
-    [ "ph::TArrayAsVector< T, N >", "d1/dea/classph_1_1_t_array_as_vector.html", null ],
-    [ "ph::TArrayAsVector< BasicEnumEntry, 64 >", "d1/dea/classph_1_1_t_array_as_vector.html", null ],
-    [ "ph::TArrayAsVector< const SdlFunction *, PH_SDL_MAX_FUNCTIONS >", "d1/dea/classph_1_1_t_array_as_vector.html", null ],
-    [ "ph::TArrayAsVector< std::unique_ptr< BaseFieldType >, PH_SDL_MAX_FIELDS >", "d1/dea/classph_1_1_t_array_as_vector.html", null ],
-    [ "ph::TArrayAsVector< std::unique_ptr< ph::TSdlOwnedField< MethodStruct > >, PH_SDL_MAX_FIELDS >", "d1/dea/classph_1_1_t_array_as_vector.html", null ],
-    [ "ph::TArrayAsVector< std::unique_ptr< ph::TSdlOwnedField< StructType > >, PH_SDL_MAX_FIELDS >", "d1/dea/classph_1_1_t_array_as_vector.html", null ],
-    [ "ph::TArrayAsVector< std::unique_ptr< TSdlOwnedField< Owner > >, PH_SDL_MAX_FIELDS >", "d1/dea/classph_1_1_t_array_as_vector.html", null ],
+    [ "ph::TArrayStack< T, N >", "d9/d2f/classph_1_1_t_array_stack.html", null ],
+    [ "ph::TArrayStack< const Intersectable *, PH_HIT_PROBE_DEPTH >", "d9/d2f/classph_1_1_t_array_stack.html", null ],
+    [ "ph::TArrayVector< T, N >", "dc/d2a/classph_1_1_t_array_vector.html", null ],
+    [ "ph::TArrayVector< BasicEnumEntry, 64 >", "dc/d2a/classph_1_1_t_array_vector.html", null ],
+    [ "ph::TArrayVector< const SdlFunction *, PH_SDL_MAX_FUNCTIONS >", "dc/d2a/classph_1_1_t_array_vector.html", null ],
+    [ "ph::TArrayVector< std::unique_ptr< BaseFieldType >, PH_SDL_MAX_FIELDS >", "dc/d2a/classph_1_1_t_array_vector.html", null ],
+    [ "ph::TArrayVector< std::unique_ptr< ph::TSdlOwnedField< MethodStruct > >, PH_SDL_MAX_FIELDS >", "dc/d2a/classph_1_1_t_array_vector.html", null ],
+    [ "ph::TArrayVector< std::unique_ptr< ph::TSdlOwnedField< StructType > >, PH_SDL_MAX_FIELDS >", "dc/d2a/classph_1_1_t_array_vector.html", null ],
+    [ "ph::TArrayVector< std::unique_ptr< TSdlOwnedField< Owner > >, PH_SDL_MAX_FIELDS >", "dc/d2a/classph_1_1_t_array_vector.html", null ],
     [ "ph::TAtomicQuasiQueue< T >", "df/d4e/classph_1_1_t_atomic_quasi_queue.html", null ],
     [ "ph::TAtomicQuasiQueue< ph::RenderRegionStatus >", "df/d4e/classph_1_1_t_atomic_quasi_queue.html", null ],
     [ "ph::math::TBasicTriangle< T >", "dc/db6/classph_1_1math_1_1_t_basic_triangle.html", [
@@ -676,19 +707,22 @@ var hierarchy =
     ] ],
     [ "ph::math::TBasicTriangle< real >", "dc/db6/classph_1_1math_1_1_t_basic_triangle.html", null ],
     [ "ph::TBitFlags< Value, Input >", "d5/d6d/classph_1_1_t_bit_flags.html", null ],
-    [ "ph::TBitFlags< uint32, ESurfacePhenomenon >", "d5/d6d/classph_1_1_t_bit_flags.html", null ],
+    [ "ph::TBitFlags< EFaceTopology >", "d5/d6d/classph_1_1_t_bit_flags.html", null ],
+    [ "ph::TBitFlags< ESurfaceHitReason >", "d5/d6d/classph_1_1_t_bit_flags.html", null ],
+    [ "ph::TBitFlags< ESurfacePhenomenon >", "d5/d6d/classph_1_1_t_bit_flags.html", null ],
     [ "ph::TBlockableAtomicQuasiQueue< T >", "d5/d6e/classph_1_1_t_blockable_atomic_quasi_queue.html", null ],
     [ "ph::TBlockableAtomicQuasiQueue< Workload >", "d5/d6e/classph_1_1_t_blockable_atomic_quasi_queue.html", null ],
     [ "ph::math::TChromaticAdaptationDefinition< ALGORITHM, T >", "d0/dfa/classph_1_1math_1_1_t_chromatic_adaptation_definition.html", null ],
     [ "ph::math::detail::TCIEXYZCmfKernel< T, SampleProps >", "d7/ded/structph_1_1math_1_1detail_1_1_t_c_i_e_x_y_z_cmf_kernel.html", null ],
-    [ "ph::detail::TClosestHitProbeResult< Index >", "d4/dc9/structph_1_1detail_1_1_t_closest_hit_probe_result.html", null ],
+    [ "ph::texfunc::TClamp< InputTypeA, InputTypeB, InputTypeC, OutputType >", "d4/d54/classph_1_1texfunc_1_1_t_clamp.html", null ],
     [ "ph::math::TColorSpaceDefinition< COLOR_SPACE, T >", "d6/d92/classph_1_1math_1_1_t_color_space_definition.html", null ],
     [ "ph::math::detail::TColorSpaceDummy< COLOR_SPACE >", "df/d5f/classph_1_1math_1_1detail_1_1_t_color_space_dummy.html", null ],
     [ "ph::TConstIteratorProxy< ContainerType >", "db/d87/classph_1_1_t_const_iterator_proxy.html", null ],
     [ "ph::math::TDecomposedTransform< T >", "df/d63/classph_1_1math_1_1_t_decomposed_transform.html", null ],
     [ "ph::texfunc::TDefaultConversion< InputType, OutputType >", "da/d05/classph_1_1texfunc_1_1_t_default_conversion.html", null ],
-    [ "ph::TDirectLightEstimator< POLICY >", "dc/d82/classph_1_1_t_direct_light_estimator.html", null ],
+    [ "ph::lta::TDirectLightEstimator< POLICY >", "d4/dce/classph_1_1lta_1_1_t_direct_light_estimator.html", null ],
     [ "ph::math::TDisk< T >", "dc/d2c/classph_1_1math_1_1_t_disk.html", null ],
+    [ "ph::texfunc::TDivide< InputTypeA, InputTypeB, OutputType >", "d4/dd4/classph_1_1texfunc_1_1_t_divide.html", null ],
     [ "ph::TEmbeddedPrimitiveGetter< PrimitiveType >", "d1/dd2/structph_1_1_t_embedded_primitive_getter.html", null ],
     [ "ph::SdlEnum::TEntry< ValueType >", "da/d4c/structph_1_1_sdl_enum_1_1_t_entry.html", null ],
     [ "ph::TEstimationArray< EstimationType >", "d2/d9d/classph_1_1_t_estimation_array.html", null ],
@@ -712,15 +746,13 @@ var hierarchy =
     [ "ph::math::TIndexedItemEndpoint< Index >", "d1/ddb/structph_1_1math_1_1_t_indexed_item_endpoint.html", null ],
     [ "ph::math::TIndexedKdtree< IndexToItem, ItemToAABB, Index >", "de/dbc/classph_1_1math_1_1_t_indexed_kdtree.html", null ],
     [ "ph::math::TIndexedKdtree< IndexedIntersectables, IntersectableAABBCalculator, uint32 >", "de/dbc/classph_1_1math_1_1_t_indexed_kdtree.html", null ],
-    [ "ph::math::TIndexedKdtree< IndexedTriFaces, TriFaceAABBCalculator, Index >", "de/dbc/classph_1_1math_1_1_t_indexed_kdtree.html", null ],
     [ "ph::math::TIndexedKdtree< IndexToTriangle, TriangleToAABB, Index >", "de/dbc/classph_1_1math_1_1_t_indexed_kdtree.html", null ],
     [ "ph::math::TIndexedKdtreeNode< Index, USE_SINGLE_ITEM_OPT >", "df/d64/classph_1_1math_1_1_t_indexed_kdtree_node.html", null ],
-    [ "ph::math::TIndexedPointKdtree< Item, Index, PointCalculator >", "d0/dc6/classph_1_1math_1_1_t_indexed_point_kdtree.html", null ],
-    [ "ph::math::TIndexedPointKdtree< FullPhoton >", "d0/dc6/classph_1_1math_1_1_t_indexed_point_kdtree.html", null ],
-    [ "ph::math::TIndexedPointKdtree< ph::FullPhoton >", "d0/dc6/classph_1_1math_1_1_t_indexed_point_kdtree.html", null ],
-    [ "ph::math::TIndexedPointKdtree< Photon >", "d0/dc6/classph_1_1math_1_1_t_indexed_point_kdtree.html", null ],
+    [ "ph::math::TIndexedPointKdtree< Item, Index, PointCalculator, ItemStorage >", "d0/dc6/classph_1_1math_1_1_t_indexed_point_kdtree.html", null ],
+    [ "ph::math::TIndexedPointKdtree< Photon, int, PhotonCenterCalculator, std::vector< Photon > >", "d0/dc6/classph_1_1math_1_1_t_indexed_point_kdtree.html", null ],
     [ "ph::TIndexedPolygonBuffer< N >", "d9/d3d/classph_1_1_t_indexed_polygon_buffer.html", null ],
     [ "ph::math::TIndexedVector3< T >", "d1/d41/classph_1_1math_1_1_t_indexed_vector3.html", null ],
+    [ "ph::lta::TIndirectLightEstimator< POLICY >", "d5/de1/classph_1_1lta_1_1_t_indirect_light_estimator.html", null ],
     [ "ph::TIRayEstimator< EstimationType >", "d3/d9a/classph_1_1_t_i_ray_estimator.html", null ],
     [ "ph::TIRayEstimator< math::Spectrum >", "d3/d9a/classph_1_1_t_i_ray_estimator.html", [
       [ "ph::IRayEnergyEstimator", "d8/db3/classph_1_1_i_ray_energy_estimator.html", [
@@ -739,13 +771,13 @@ var hierarchy =
     [ "ph::TIteratorProxy< ContainerType >", "da/d1c/classph_1_1_t_iterator_proxy.html", null ],
     [ "ph::math::TLineSegment< T >", "d9/d8b/classph_1_1math_1_1_t_line_segment.html", null ],
     [ "ph::math::TLineSegment< real >", "d9/d8b/classph_1_1math_1_1_t_line_segment.html", null ],
-    [ "ph::math::TMathFunction2D< ValueType >", "db/d60/classph_1_1math_1_1_t_math_function2_d.html", [
-      [ "ph::math::TConstant2D< ValueType >", "d8/d6f/classph_1_1math_1_1_t_constant2_d.html", null ],
-      [ "ph::math::TGaussian2D< ValueType >", "d5/d85/classph_1_1math_1_1_t_gaussian2_d.html", null ],
-      [ "ph::math::TMNCubic2D< ValueType >", "df/d1c/classph_1_1math_1_1_t_m_n_cubic2_d.html", null ]
-    ] ],
     [ "ph::math::TMathFunction2D< Value >", "db/d60/classph_1_1math_1_1_t_math_function2_d.html", [
-      [ "ph::math::TBlackmanHarris2D< Value >", "d9/d71/classph_1_1math_1_1_t_blackman_harris2_d.html", null ]
+      [ "ph::math::TBlackmanHarris2D< Value >", "d9/d71/classph_1_1math_1_1_t_blackman_harris2_d.html", null ],
+      [ "ph::math::TConstant2D< Value >", "d8/d6f/classph_1_1math_1_1_t_constant2_d.html", null ],
+      [ "ph::math::TGaussian2D< Value >", "d5/d85/classph_1_1math_1_1_t_gaussian2_d.html", null ],
+      [ "ph::math::THeavisideStep2D< Value >", "d1/d85/classph_1_1math_1_1_t_heaviside_step2_d.html", null ],
+      [ "ph::math::TLinearGradient2D< Value >", "d2/df1/classph_1_1math_1_1_t_linear_gradient2_d.html", null ],
+      [ "ph::math::TMitchellNetravaliCubic2D< Value >", "d6/d48/classph_1_1math_1_1_t_mitchell_netravali_cubic2_d.html", null ]
     ] ],
     [ "ph::math::TMatrix2< T >", "d1/d7d/classph_1_1math_1_1_t_matrix2.html", null ],
     [ "ph::math::TMatrix4< T >", "d8/d48/classph_1_1math_1_1_t_matrix4.html", null ],
@@ -760,9 +792,8 @@ var hierarchy =
     ] ],
     [ "ph::math::TMatrixMxNBase< TMatrix3< T >, T, N, N >", "d7/dfd/classph_1_1math_1_1_t_matrix_mx_n_base.html", null ],
     [ "ph::TMergeableFilmProxy< Sample >", "d3/d35/classph_1_1_t_mergeable_film_proxy.html", null ],
-    [ "ph::TMis< STYLE >", "d0/dc5/classph_1_1_t_mis.html", null ],
+    [ "ph::lta::TMis< STYLE >", "dd/d85/classph_1_1lta_1_1_t_mis.html", null ],
     [ "ph::texfunc::TMultiply< InputTypeA, InputTypeB, OutputType >", "dd/d0a/classph_1_1texfunc_1_1_t_multiply.html", null ],
-    [ "ph::texfunc::TMultiplyConstant< InputType, ConstantType, OutputType >", "d9/d0a/classph_1_1texfunc_1_1_t_multiply_constant.html", null ],
     [ "ph::TNonTypeTemplateArgDummy< T, VALUE >", "db/dd9/structph_1_1_t_non_type_template_arg_dummy.html", null ],
     [ "ph::Tokenizer", "df/d76/classph_1_1_tokenizer.html", null ],
     [ "ph::ToneMapper", "d2/d25/classph_1_1_tone_mapper.html", null ],
@@ -772,15 +803,15 @@ var hierarchy =
     [ "ph::TPhoton< FullPhoton >", "d9/d60/classph_1_1_t_photon.html", [
       [ "ph::FullPhoton", "d9/d85/classph_1_1_full_photon.html", null ]
     ] ],
-    [ "ph::TPhotonCenterCalculator< Photon >", "d3/df3/structph_1_1_t_photon_center_calculator.html", null ],
+    [ "ph::TPhotonMap< Photon, PhotonStorage >", "d9/d1f/classph_1_1_t_photon_map.html", null ],
+    [ "ph::TPhotonMapInfo< Photon >", "df/d54/classph_1_1_t_photon_map_info.html", null ],
     [ "ph::math::TPiecewiseLinear1D< T >", "dc/dc8/classph_1_1math_1_1_t_piecewise_linear1_d.html", null ],
     [ "ph::pixel_buffer::TPixel< T >", "dc/dc5/classph_1_1pixel__buffer_1_1_t_pixel.html", null ],
+    [ "ph::texfunc::TPower< InputTypeA, InputTypeB, OutputType >", "dc/d7a/classph_1_1texfunc_1_1_t_power.html", null ],
     [ "ph::math::TPwcDistribution1D< T >", "d4/df4/classph_1_1math_1_1_t_pwc_distribution1_d.html", null ],
     [ "ph::math::TPwcDistribution1D< real >", "d4/df4/classph_1_1math_1_1_t_pwc_distribution1_d.html", null ],
     [ "ph::math::TPwcDistribution2D< T >", "d9/d42/classph_1_1math_1_1_t_pwc_distribution2_d.html", null ],
     [ "ph::math::TPwcDistribution2D< real >", "d9/d42/classph_1_1math_1_1_t_pwc_distribution2_d.html", null ],
-    [ "ph::math::TQuaternion< T >", "df/d4d/classph_1_1math_1_1_t_quaternion.html", null ],
-    [ "ph::math::TQuaternion< real >", "df/d4d/classph_1_1math_1_1_t_quaternion.html", null ],
     [ "ph::math::Transform", "d6/d17/classph_1_1math_1_1_transform.html", [
       [ "ph::math::RigidTransform", "df/dfd/classph_1_1math_1_1_rigid_transform.html", [
         [ "ph::math::DynamicLinearTranslation", "df/d2c/classph_1_1math_1_1_dynamic_linear_translation.html", null ],
@@ -817,6 +848,7 @@ var hierarchy =
     [ "ph::TSPSCRingBuffer< T, N >", "d1/d57/classph_1_1_t_s_p_s_c_ring_buffer.html", null ],
     [ "ph::TStableIndexDenseVector< T, SIndex >", "d1/d0b/classph_1_1_t_stable_index_dense_vector.html", null ],
     [ "ph::TStackSentinel< BUFFER_BYTES >", "de/d79/classph_1_1_t_stack_sentinel.html", null ],
+    [ "ph::texfunc::TSubtract< InputTypeA, InputTypeB, OutputType >", "d5/db1/classph_1_1texfunc_1_1_t_subtract.html", null ],
     [ "ph::TTexture< OutputType >", "de/d84/classph_1_1_t_texture.html", [
       [ "ph::TPixelTexture2D< math::Spectrum >", "d2/d96/classph_1_1_t_pixel_texture2_d.html", [
         [ "ph::TColorPixelTexture2D< COLOR_SPACE >", "d7/d50/classph_1_1_t_color_pixel_texture2_d.html", null ]
@@ -832,6 +864,7 @@ var hierarchy =
       [ "ph::TConstantTexture< OutputType >", "d9/d16/classph_1_1_t_constant_texture.html", null ],
       [ "ph::TLinearGradientTexture< OutputType >", "d9/d1d/classph_1_1_t_linear_gradient_texture.html", null ],
       [ "ph::TPixelTexture2D< OutputType >", "d2/d96/classph_1_1_t_pixel_texture2_d.html", null ],
+      [ "ph::TTernaryTextureOperator< InputTypeA, InputTypeB, InputTypeC, OutputType, OperatorType >", "d1/d07/classph_1_1_t_ternary_texture_operator.html", null ],
       [ "ph::TUnaryTextureOperator< InputType, OutputType, OperatorType >", "de/d13/classph_1_1_t_unary_texture_operator.html", null ]
     ] ],
     [ "ph::TTexture< math::Spectrum >", "de/d84/classph_1_1_t_texture.html", [
@@ -856,6 +889,8 @@ var hierarchy =
         ] ]
       ] ]
     ] ],
+    [ "ph::texfunc::TUnaryFromBinary< InputType, ConstantType, OutputType, BinaryOperatorType >", "d7/d1f/classph_1_1texfunc_1_1_t_unary_from_binary.html", null ],
+    [ "ph::texfunc::TUnaryFromTernary< InputType, ConstantTypeA, ConstantTypeB, OutputType, TernaryOperatorType >", "d0/d3d/classph_1_1texfunc_1_1_t_unary_from_ternary.html", null ],
     [ "ph::math::TUniformRandomBitGenerator< Derived, Bits >", "d3/d54/classph_1_1math_1_1_t_uniform_random_bit_generator.html", [
       [ "ph::math::TUrbg32x2< URBG1, URBG2 >", "de/d1b/classph_1_1math_1_1_t_urbg32x2.html", null ]
     ] ],
@@ -869,16 +904,16 @@ var hierarchy =
       [ "ph::math::TMt19937< Bits >", "d7/df8/classph_1_1math_1_1_t_mt19937.html", null ]
     ] ],
     [ "ph::math::TUniformRandomBitGenerator< TUrbg32x2< URBG1, URBG1 >, uint64 >", "d3/d54/classph_1_1math_1_1_t_uniform_random_bit_generator.html", null ],
-    [ "ph::TViewPathHandler< Derived >", "d3/d1c/classph_1_1_t_view_path_handler.html", null ],
-    [ "ph::TViewPathHandler< TPPMViewpointCollector< Viewpoint > >", "d3/d1c/classph_1_1_t_view_path_handler.html", [
-      [ "ph::TPPMViewpointCollector< Viewpoint >", "de/d34/classph_1_1_t_p_p_m_viewpoint_collector.html", null ]
+    [ "ph::TViewPathHandler< Derived >", "d3/d1c/classph_1_1_t_view_path_handler.html", [
+      [ "ph::TVPMRadianceEvaluator< Photon, PhotonMap >", "d1/d70/classph_1_1_t_v_p_m_radiance_evaluator.html", null ]
+    ] ],
+    [ "ph::TViewPathHandler< TPPMViewpointCollector< Viewpoint, Photon > >", "d3/d1c/classph_1_1_t_view_path_handler.html", [
+      [ "ph::TPPMViewpointCollector< Viewpoint, Photon >", "de/d34/classph_1_1_t_p_p_m_viewpoint_collector.html", null ]
     ] ],
     [ "ph::TViewPathHandler< TSPPMRadianceEvaluator< Viewpoint, Photon > >", "d3/d1c/classph_1_1_t_view_path_handler.html", [
       [ "ph::TSPPMRadianceEvaluator< Viewpoint, Photon >", "d2/d8d/classph_1_1_t_s_p_p_m_radiance_evaluator.html", null ]
     ] ],
-    [ "ph::TViewPathHandler< VPMRadianceEvaluator >", "d3/d1c/classph_1_1_t_view_path_handler.html", [
-      [ "ph::VPMRadianceEvaluator", "d3/d6e/classph_1_1_v_p_m_radiance_evaluator.html", null ]
-    ] ],
+    [ "ph::TViewPathHandler< TVPMRadianceEvaluator< Photon, TPhotonMap< Photon > > >", "d3/d1c/classph_1_1_t_view_path_handler.html", null ],
     [ "ph::TViewpoint< Derived >", "d1/ded/classph_1_1_t_viewpoint.html", null ],
     [ "ph::TViewpoint< FullViewpoint >", "d1/ded/classph_1_1_t_viewpoint.html", [
       [ "ph::FullViewpoint", "de/d48/classph_1_1_full_viewpoint.html", null ]
@@ -894,5 +929,6 @@ var hierarchy =
       [ "ph::VoHomoAbsorption", "dd/d7d/classph_1_1_vo_homo_absorption.html", null ]
     ] ],
     [ "ph::Workflow::WorkHandle", "d2/d3c/classph_1_1_workflow_1_1_work_handle.html", null ],
-    [ "ph::WorkUnit", "d0/d16/classph_1_1_work_unit.html", null ]
+    [ "ph::WorkUnit", "d0/d16/classph_1_1_work_unit.html", null ],
+    [ "ItemStorage", "db/d2f/class_item_storage.html", null ]
 ];

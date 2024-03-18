@@ -1,11 +1,9 @@
 var string__utils_8h =
 [
-    [ "ph::string_utils::detail::HeterogeneousStringHash", "d4/d5c/structph_1_1string__utils_1_1detail_1_1_heterogeneous_string_hash.html", "d4/d5c/structph_1_1string__utils_1_1detail_1_1_heterogeneous_string_hash" ],
     [ "ph::string_utils::CHasToString", "d6/def/conceptph_1_1string__utils_1_1_c_has_to_string.html", null ],
     [ "PH_DEFINE_INLINE_TO_STRING_FORMATTER", "d7/d2c/string__utils_8h.html#ae7822b2949903c0584c3ffba04b6e012", null ],
     [ "PH_DEFINE_INLINE_TO_STRING_FORMATTER_SPECIALIZATION", "d7/d2c/string__utils_8h.html#ab9038fe5a342f50895ef2bb732a76d46", null ],
     [ "PH_DEFINE_INLINE_TO_STRING_FORMATTER_TEMPLATE", "d7/d2c/string__utils_8h.html#ab15f9c6f07425eba03326f15f563c2bb", null ],
-    [ "TStdUnorderedStringMap", "d7/d2c/string__utils_8h.html#a879191a4c3e8b6a0648be7a609bbf036", null ],
     [ "EWhitespace", "d7/d2c/string__utils_8h.html#abecf2f015d2c6a55dc646154fd3202e2", [
       [ "Common", "d7/d2c/string__utils_8h.html#abecf2f015d2c6a55dc646154fd3202e2ad13bc5b68b2bd9e18f29777db17cc563", null ],
       [ "Standard", "d7/d2c/string__utils_8h.html#abecf2f015d2c6a55dc646154fd3202e2aeb6d8ae6f20283755b339c0dc273988b", null ]
@@ -31,7 +29,7 @@ var string__utils_8h =
     [ "stringify_int", "d7/d2c/string__utils_8h.html#a796fe6948698881ba1aa3d478c407b84", null ],
     [ "stringify_int_alphabetic", "d7/d2c/string__utils_8h.html#a68d321ee31b48d3dee66a12df5cb5b26", null ],
     [ "stringify_number", "d7/d2c/string__utils_8h.html#af639d1cc36d16379bf12ef68d74d2d76", null ],
-    [ "stringify_number", "d7/d2c/string__utils_8h.html#a015ff3fc7545219b1c9277247c10bcc1", null ],
+    [ "stringify_number", "d7/d2c/string__utils_8h.html#a840acb1d0358a1b420160495f6ee63d8", null ],
     [ "throw_from_std_errc_if_has_error", "d7/d2c/string__utils_8h.html#aa63794f185c91a346f77066fc16200b8", null ],
     [ "trim", "d7/d2c/string__utils_8h.html#a83615f1191b1894d0835561f1b00114a", null ],
     [ "trim_head", "d7/d2c/string__utils_8h.html#a478905d7b7b8b2280da4f5826fcb9b8e", null ],

@@ -1,0 +1,89 @@
+\doxysection{Offline\+Renderer.\+h}
+\hypertarget{_offline_renderer_8h_source}{}\label{_offline_renderer_8h_source}\index{Source/Render/Renderer/OfflineRenderer.h@{Source/Render/Renderer/OfflineRenderer.h}}
+\mbox{\hyperlink{_offline_renderer_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_scene_renderer_8h}{Render/Renderer/SceneRenderer.h}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_offline_render_stats_8h}{Render/Renderer/OfflineRenderStats.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_offline_render_peek_8h}{Render/Renderer/OfflineRenderPeek.h}}"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <Common/primitive\_type.h>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <Utility/Concurrent/TSPSCExecutor.h>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <DataIO/FileSystem/Path.h>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <Utility/Concurrent/TSynchronized.h>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <Utility/Concurrent/TRelaxedAtomic.h>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <Frame/TFrame.h>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <Math/Geometry/TAABB2D.h>}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <functional>}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <atomic>}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <thread>}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}\ \{\ \textcolor{keyword}{class\ }Engine;\ \}}
+\DoxyCodeLine{00020\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}\ \{\ \textcolor{keyword}{class\ }Renderer;\ \}}
+\DoxyCodeLine{00021\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph_1_1editor}{ph::editor}}\ \{\ \textcolor{keyword}{class\ }RenderConfig;\ \}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph_1_1editor_1_1render}{ph::editor::render}}}
+\DoxyCodeLine{00024\ \{}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1editor_1_1render_1_1_offline_renderer}{OfflineRenderer}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classph_1_1editor_1_1render_1_1_scene_renderer}{SceneRenderer}}}
+\DoxyCodeLine{00027\ \{}
+\DoxyCodeLine{00028\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00029\ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1render_1_1_offline_renderer_a8b8dec3c03f91e8b0b72c0f21cac3e72}{OfflineRenderer}}();}
+\DoxyCodeLine{00030\ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1render_1_1_offline_renderer_af273fbe43e766ca1b2a5bf2b7a65a582}{\string~OfflineRenderer}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1render_1_1_offline_renderer_aa178504e1309c03554711d8f73388c0a}{render}}(\mbox{\hyperlink{classph_1_1editor_1_1_render_config}{RenderConfig}}\ config);}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00037\ \ \ \ \ \mbox{\hyperlink{namespaceph_1_1editor_1_1render_a3ea760721ac29671bda1a0cad241b243}{EOfflineRenderStage}}\ \mbox{\hyperlink{classph_1_1editor_1_1render_1_1_offline_renderer_ad418da6303571f0581620e7f574e0fff}{getRenderStage}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1editor_1_1render_1_1_offline_renderer_a24877850b8c92df102a65a558c83c967}{tryGetRenderStats}}(\mbox{\hyperlink{classph_1_1editor_1_1render_1_1_offline_render_stats}{OfflineRenderStats}}*\ stats);}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1editor_1_1render_1_1_offline_renderer_a05d1e09e6b721c4cd66af41aab721d4e}{tryGetRenderPeek}}(\mbox{\hyperlink{classph_1_1editor_1_1render_1_1_offline_render_peek}{OfflineRenderPeek}}*\ peek,\ \textcolor{keywordtype}{bool}\ shouldUpdateInput\ =\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1render_1_1_offline_renderer_af44fbfd0fa1e35ff2a37833c6dac49ef}{setupGHI}}(\mbox{\hyperlink{classph_1_1editor_1_1_g_h_i_thread_caller}{GHIThreadCaller}}\&\ caller)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1render_1_1_offline_renderer_aa56f0e7321c7b23e576c6e948dd09b42}{cleanupGHI}}(\mbox{\hyperlink{classph_1_1editor_1_1_g_h_i_thread_caller}{GHIThreadCaller}}\&\ caller)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1render_1_1_offline_renderer_a96b874bdd6ec1454dbe64013b822a53b}{update}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1editor_1_1_render_thread_update_context}{RenderThreadUpdateContext}}\&\ ctx)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1render_1_1_offline_renderer_adcb9d4e6552f6ba6c7d855ac0ea4b496}{createGHICommands}}(\mbox{\hyperlink{classph_1_1editor_1_1_g_h_i_thread_caller}{GHIThreadCaller}}\&\ caller)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keyword}{using\ }EngineWork\ =\ std::function<void(\textcolor{keywordtype}{void})>;}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keyword}{struct\ }FrameData}
+\DoxyCodeLine{00056\ \ \ \ \ \{}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ HdrRgbFrame\ frame;}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ math::TAABB2D<int32>\ updatedRegion\ =\ math::TAABB2D<int32>::makeEmpty();}
+\DoxyCodeLine{00059\ \ \ \ \ \};}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordtype}{bool}\ tryUploadFrameData(\mbox{\hyperlink{classph_1_1editor_1_1_g_h_i_thread_caller}{GHIThreadCaller}}\&\ caller);}
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keywordtype}{void}\ renderSingleStaticImageOnEngineThread(\mbox{\hyperlink{classph_1_1editor_1_1_render_config}{RenderConfig}}\ config);}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordtype}{void}\ setRenderStage(\mbox{\hyperlink{namespaceph_1_1editor_1_1render_a3ea760721ac29671bda1a0cad241b243}{EOfflineRenderStage}}\ stage);}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \ \ \ \ std::jthread\ makeStatsRequestThread(Renderer*\ renderer,\ uint32\ minPeriodMs);}
+\DoxyCodeLine{00070\ \ \ \ \ std::jthread\ makePeekFrameThread(Renderer*\ renderer,\ uint32\ minPeriodMs);}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \ \ \ \ TSPSCExecutor<EngineWork>\ m\_engineThread;}
+\DoxyCodeLine{00073\ \ \ \ \ TRelaxedAtomic<EOfflineRenderStage>\ m\_renderStage;}
+\DoxyCodeLine{00074\ \ \ \ \ TSynchronized<OfflineRenderStats>\ m\_syncedRenderStats;}
+\DoxyCodeLine{00075\ \ \ \ \ TSynchronized<OfflineRenderPeek>\ m\_syncedRenderPeek;}
+\DoxyCodeLine{00076\ \ \ \ \ \mbox{\hyperlink{structph_1_1editor_1_1render_1_1_offline_render_peek_1_1_input}{OfflineRenderPeek::Input}}\ m\_cachedRenderPeekInput;}
+\DoxyCodeLine{00077\ \ \ \ \ TSynchronized<FrameData>\ m\_synchedFrameData;}
+\DoxyCodeLine{00078\ \ \ \ \ std::atomic\_flag\ m\_requestCompletedFrameDataUpload;}
+\DoxyCodeLine{00079\ \ \ \ \ std::atomic\_flag\ m\_requestRenderStats;}
+\DoxyCodeLine{00080\ \ \ \ \ std::atomic\_flag\ m\_requestRenderPeek;}
+\DoxyCodeLine{00081\ \};}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{namespaceph_1_1editor_1_1render_a3ea760721ac29671bda1a0cad241b243}{EOfflineRenderStage}}\ \mbox{\hyperlink{classph_1_1editor_1_1render_1_1_offline_renderer_ad418da6303571f0581620e7f574e0fff}{OfflineRenderer::getRenderStage}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00084\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_renderStage.relaxedRead();}
+\DoxyCodeLine{00086\ \}}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ OfflineRenderer::setRenderStage(\mbox{\hyperlink{namespaceph_1_1editor_1_1render_a3ea760721ac29671bda1a0cad241b243}{EOfflineRenderStage}}\ stage)}
+\DoxyCodeLine{00089\ \{}
+\DoxyCodeLine{00090\ \ \ \ \ m\_renderStage.relaxedWrite(stage);}
+\DoxyCodeLine{00091\ \}}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \}\textcolor{comment}{//\ end\ namespace\ ph::editor::render}}
+
+\end{DoxyCode}

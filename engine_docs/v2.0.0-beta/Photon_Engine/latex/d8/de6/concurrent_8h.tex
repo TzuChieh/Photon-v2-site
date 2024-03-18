@@ -1,10 +1,7 @@
 \doxysection{Source/\+Utility/\+Concurrent/concurrent.h File Reference}
 \hypertarget{concurrent_8h}{}\label{concurrent_8h}\index{Source/Utility/Concurrent/concurrent.h@{Source/Utility/Concurrent/concurrent.h}}
-{\ttfamily \#include "{}Math/math.\+h"{}}\newline
-{\ttfamily \#include $<$Common/assertion.\+h$>$}\newline
-{\ttfamily \#include $<$functional$>$}\newline
 {\ttfamily \#include $<$cstddef$>$}\newline
-{\ttfamily \#include $<$thread$>$}\newline
+{\ttfamily \#include $<$functional$>$}\newline
 \doxysubsubsection*{Namespaces}
 \begin{DoxyCompactItemize}
 \item 
@@ -13,5 +10,9 @@ namespace \mbox{\hyperlink{namespaceph}{ph}}
 \doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \mbox{\hyperlink{namespaceph_a24c686fb00834dfa25b4e3c8ac732d78}{ph\+::parallel\+\_\+work}} (const std\+::size\+\_\+t total\+Work\+Size, const std\+::size\+\_\+t num\+Workers, const std\+::function$<$ void(std\+::size\+\_\+t worker\+Idx, std\+::size\+\_\+t work\+Begin, std\+::size\+\_\+t work\+End) $>$ \&work)
-\begin{DoxyCompactList}\small\item\em Set the parametric distance where the ray ends. \end{DoxyCompactList}\end{DoxyCompactItemize}
+void \mbox{\hyperlink{namespaceph_a4bb82cb7d948a7f9feca7dffb744e02f}{ph\+::parallel\+\_\+work}} (const std\+::size\+\_\+t num\+Workers, std\+::function$<$ void(std\+::size\+\_\+t worker\+Idx) $>$ work)
+\begin{DoxyCompactList}\small\item\em Runs specified works in parallel. The function will block the calling thread until all works are complete. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespaceph_af97a91c8284655b7b30f7e815137585a}{ph\+::parallel\+\_\+work}} (const std\+::size\+\_\+t total\+Work\+Size, const std\+::size\+\_\+t num\+Workers, std\+::function$<$ void(std\+::size\+\_\+t worker\+Idx, std\+::size\+\_\+t work\+Begin, std\+::size\+\_\+t work\+End) $>$ work)
+\begin{DoxyCompactList}\small\item\em Runs specified works in parallel. The function will block the calling thread until all works are complete. Note that 0-\/sized works are not executed ({\ttfamily work} is not called in this case). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespaceph_ae17e9e02b729060f7221d4fe9b9636b2}{ph\+::parallel\+\_\+work}} (\mbox{\hyperlink{classph_1_1_fixed_size_thread_pool}{Fixed\+Size\+Thread\+Pool}} \&workers, const std\+::size\+\_\+t total\+Work\+Size, std\+::function$<$ void(std\+::size\+\_\+t worker\+Idx, std\+::size\+\_\+t work\+Begin, std\+::size\+\_\+t work\+End) $>$ work)
+\begin{DoxyCompactList}\small\item\em Runs specified works in parallel using a thread pool. The function will block the calling thread until all works are complete. Note that 0-\/sized works are not executed ({\ttfamily work} is not called in this case). \end{DoxyCompactList}\end{DoxyCompactItemize}

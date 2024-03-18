@@ -249,6 +249,13 @@
     </member>
     <member kind="define">
       <type>#define</type>
+      <name>PH_ENABLE_HIT_EVENT_STATS</name>
+      <anchorfile>db/d16/config_8h.html</anchorfile>
+      <anchor>a9d9ad0a99e9d6b8be408e9b7c55a3281</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
       <name>PH_STRICT_OBJECT_LIFETIME</name>
       <anchorfile>db/d16/config_8h.html</anchorfile>
       <anchor>a6da505c6f98b761c4d64f8358fd47e86</anchor>
@@ -270,6 +277,13 @@
     </member>
     <member kind="define">
       <type>#define</type>
+      <name>PH_SCRIPT_DIRECTORY</name>
+      <anchorfile>db/d16/config_8h.html</anchorfile>
+      <anchor>ae793f0ba86d20e45d4fc8da34e7af72b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
       <name>PH_INTERNAL_RESOURCE_DIRECTORY</name>
       <anchorfile>db/d16/config_8h.html</anchorfile>
       <anchor>a26cab0a34f558d080cebde64104a0b76</anchor>
@@ -277,9 +291,9 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>PH_RESOURCE_DIRECTORY</name>
+      <name>PH_RENDERER_RESOURCE_DIRECTORY</name>
       <anchorfile>db/d16/config_8h.html</anchorfile>
-      <anchor>a3473d1037b45a3a9899609a3fc636c55</anchor>
+      <anchor>aee24e4be1e17a155f0a5320d7aa1ae86</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
@@ -287,6 +301,41 @@
       <name>PH_RENDER_MODE_LINEAR_SRGB</name>
       <anchorfile>db/d16/config_8h.html</anchorfile>
       <anchor>a6624486cdc6b7543182cfbad4fd3e0bf</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>PH_RENDER_MODE_ACES</name>
+      <anchorfile>db/d16/config_8h.html</anchorfile>
+      <anchor>a8ffad63a4bcf5936a8286003008391e3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>PH_RENDER_MODE_SPECTRAL</name>
+      <anchorfile>db/d16/config_8h.html</anchorfile>
+      <anchor>a7be78d8c1821d89d5fcb3efa15bf00e4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>PH_RENDER_MODE_FULL_SPECTRAL</name>
+      <anchorfile>db/d16/config_8h.html</anchorfile>
+      <anchor>a1b30f4128c24a5d8cfe78e3fba5a93e6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>PH_RENDER_MODE</name>
+      <anchorfile>db/d16/config_8h.html</anchorfile>
+      <anchor>a428b740eef4677b34686db22476ccd07</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>PH_STRICT_ASYMMETRIC_IMPORTANCE_TRANSPORT</name>
+      <anchorfile>db/d16/config_8h.html</anchorfile>
+      <anchor>aefab556b8d08fae1672969ca3afc3bda</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
@@ -345,6 +394,28 @@
       <anchor>a519237ed61cc02aa57f8b964ed1ec643</anchor>
       <arglist></arglist>
     </member>
+  </compound>
+  <compound kind="file">
+    <name>detail.h</name>
+    <path>Include/Common/Container/</path>
+    <filename>d3/d97/detail_8h.html</filename>
+    <class kind="struct">ph::detail::HeterogeneousStringHash</class>
+    <namespace>ph</namespace>
+    <namespace>ph::detail</namespace>
+  </compound>
+  <compound kind="file">
+    <name>StdUnorderedStringSet.h</name>
+    <path>Include/Common/Container/</path>
+    <filename>db/d9a/_std_unordered_string_set_8h.html</filename>
+    <includes id="d3/d97/detail_8h" name="detail.h" local="yes" import="no" module="no" objc="no">Common/Container/detail.h</includes>
+    <namespace>ph</namespace>
+  </compound>
+  <compound kind="file">
+    <name>TStdUnorderedStringMap.h</name>
+    <path>Include/Common/Container/</path>
+    <filename>da/d08/_t_std_unordered_string_map_8h.html</filename>
+    <includes id="d3/d97/detail_8h" name="detail.h" local="yes" import="no" module="no" objc="no">Common/Container/detail.h</includes>
+    <namespace>ph</namespace>
   </compound>
   <compound kind="file">
     <name>debug.h</name>
@@ -447,197 +518,99 @@
       <type>#define</type>
       <name>PH_LOG_RAW_STRING_TO_CORE_LOGGER</name>
       <anchorfile>d5/d77/logging_8h.html</anchorfile>
-      <anchor>aba568fdf4b66df91577b279d2b500005</anchor>
-      <arglist>(groupName, logLevel, rawString)</arglist>
+      <anchor>a5f742fb09f23440d83f8dc270c69cf92</anchor>
+      <arglist>(groupName, level, rawStringExpr)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>PH_LOG_FORMAT_STRING_TO_CORE_LOGGER</name>
       <anchorfile>d5/d77/logging_8h.html</anchorfile>
-      <anchor>a9dda73828c91f0863513b273cb831307</anchor>
-      <arglist>(groupName, logLevel, formatString,...)</arglist>
+      <anchor>af11ff3381b281c1c179381205f38bec8</anchor>
+      <arglist>(groupName, level, formatString,...)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>PH_DEBUG_LOG_STRING</name>
+      <anchorfile>d5/d77/logging_8h.html</anchorfile>
+      <anchor>ac70fc0e24cc954f9a7269a43e3cf602c</anchor>
+      <arglist>(groupName, rawString)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>PH_DEBUG_LOG</name>
+      <anchorfile>d5/d77/logging_8h.html</anchorfile>
+      <anchor>a56d16cb63909e3b26b3fcce541d970e1</anchor>
+      <arglist>(groupName, formatString,...)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>PH_LOG_STRING</name>
       <anchorfile>d5/d77/logging_8h.html</anchorfile>
-      <anchor>af93c4efd5574f776bbfdd030d0eb1cb1</anchor>
-      <arglist>(groupName, rawString)</arglist>
+      <anchor>aee26e3add40e3535ee4b7486485532d8</anchor>
+      <arglist>(groupName, level, rawString)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>PH_LOG</name>
       <anchorfile>d5/d77/logging_8h.html</anchorfile>
-      <anchor>ac6712cb5a47adb976fd6c135de0d8a82</anchor>
-      <arglist>(groupName, formatString,...)</arglist>
+      <anchor>abd5bb46cd0cc90692615d3ddeeeff63f</anchor>
+      <arglist>(groupName, level, formatString,...)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>PH_LOG_WARNING_STRING</name>
+      <name>PH_DEFAULT_DEBUG_LOG_STRING</name>
       <anchorfile>d5/d77/logging_8h.html</anchorfile>
-      <anchor>a5832a352e23606ab39f3445a946fba11</anchor>
-      <arglist>(groupName, rawString)</arglist>
+      <anchor>a88ac5025e7153690bd355ddb92c01e32</anchor>
+      <arglist>(rawString,...)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>PH_LOG_WARNING</name>
+      <name>PH_DEFAULT_DEBUG_LOG</name>
       <anchorfile>d5/d77/logging_8h.html</anchorfile>
-      <anchor>a290098d3658028db348eddf93addb233</anchor>
-      <arglist>(groupName, formatString,...)</arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>PH_LOG_ERROR_STRING</name>
-      <anchorfile>d5/d77/logging_8h.html</anchorfile>
-      <anchor>a4dec88b36814d7ff09d895d52c2613f6</anchor>
-      <arglist>(groupName, rawString)</arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>PH_LOG_ERROR</name>
-      <anchorfile>d5/d77/logging_8h.html</anchorfile>
-      <anchor>a9795478f6e12b51c53a4b9379c626c0a</anchor>
-      <arglist>(groupName, formatString,...)</arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>PH_LOG_DEBUG_STRING</name>
-      <anchorfile>d5/d77/logging_8h.html</anchorfile>
-      <anchor>a26ecf67970e012988963f807a4902eda</anchor>
-      <arglist>(groupName, rawString)</arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>PH_LOG_DEBUG</name>
-      <anchorfile>d5/d77/logging_8h.html</anchorfile>
-      <anchor>a99ce7f36f3df758be2ab0941f75c75c9</anchor>
-      <arglist>(groupName, formatString,...)</arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>PH_LOG_DEBUG_STRING</name>
-      <anchorfile>d5/d77/logging_8h.html</anchorfile>
-      <anchor>a26ecf67970e012988963f807a4902eda</anchor>
-      <arglist>(groupName, rawString)</arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>PH_LOG_DEBUG</name>
-      <anchorfile>d5/d77/logging_8h.html</anchorfile>
-      <anchor>a99ce7f36f3df758be2ab0941f75c75c9</anchor>
-      <arglist>(groupName, formatString,...)</arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>PH_DEFAULT_LOG</name>
-      <anchorfile>d5/d77/logging_8h.html</anchorfile>
-      <anchor>af3b02a5e28c3079993e6318dd3799d60</anchor>
+      <anchor>afc54042a5c2e11ea4fa8b2ff57553a98</anchor>
       <arglist>(formatString,...)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>PH_DEFAULT_LOG_STRING</name>
       <anchorfile>d5/d77/logging_8h.html</anchorfile>
-      <anchor>ac03412669414e11ea5a58c0f0b02973b</anchor>
-      <arglist>(rawString)</arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>PH_DEFAULT_LOG_WARNING</name>
-      <anchorfile>d5/d77/logging_8h.html</anchorfile>
-      <anchor>adc040d5be9b1d3b037ca2db8ee4faeef</anchor>
-      <arglist>(formatString,...)</arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>PH_DEFAULT_LOG_WARNING_STRING</name>
-      <anchorfile>d5/d77/logging_8h.html</anchorfile>
-      <anchor>a3b02547c5bd71b7c74dade7de7af6c05</anchor>
-      <arglist>(rawString)</arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>PH_DEFAULT_LOG_ERROR</name>
-      <anchorfile>d5/d77/logging_8h.html</anchorfile>
-      <anchor>af6ce37e03c7b301b78809420ba70eded</anchor>
-      <arglist>(formatString,...)</arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>PH_DEFAULT_LOG_ERROR_STRING</name>
-      <anchorfile>d5/d77/logging_8h.html</anchorfile>
-      <anchor>a4db49dc1773b6ad90f2a0a3c8a9dffd1</anchor>
-      <arglist>(rawString)</arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>PH_LOG_DEBUG_STRING</name>
-      <anchorfile>d5/d77/logging_8h.html</anchorfile>
-      <anchor>a26ecf67970e012988963f807a4902eda</anchor>
-      <arglist>(groupName, rawString)</arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>PH_LOG_DEBUG</name>
-      <anchorfile>d5/d77/logging_8h.html</anchorfile>
-      <anchor>a99ce7f36f3df758be2ab0941f75c75c9</anchor>
-      <arglist>(groupName, formatString,...)</arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>PH_LOG_DEBUG_STRING</name>
-      <anchorfile>d5/d77/logging_8h.html</anchorfile>
-      <anchor>a26ecf67970e012988963f807a4902eda</anchor>
-      <arglist>(groupName, rawString)</arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>PH_LOG_DEBUG</name>
-      <anchorfile>d5/d77/logging_8h.html</anchorfile>
-      <anchor>a99ce7f36f3df758be2ab0941f75c75c9</anchor>
-      <arglist>(groupName, formatString,...)</arglist>
+      <anchor>a52cd7ff7dca13c82a6e51429cf4fa5f8</anchor>
+      <arglist>(level, rawString)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>PH_DEFAULT_LOG</name>
       <anchorfile>d5/d77/logging_8h.html</anchorfile>
-      <anchor>af3b02a5e28c3079993e6318dd3799d60</anchor>
+      <anchor>a822d71b834d3f3a387225ca9de6a985c</anchor>
+      <arglist>(level, formatString,...)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>PH_DEFAULT_DEBUG_LOG_STRING</name>
+      <anchorfile>d5/d77/logging_8h.html</anchorfile>
+      <anchor>a88ac5025e7153690bd355ddb92c01e32</anchor>
+      <arglist>(rawString,...)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>PH_DEFAULT_DEBUG_LOG</name>
+      <anchorfile>d5/d77/logging_8h.html</anchorfile>
+      <anchor>afc54042a5c2e11ea4fa8b2ff57553a98</anchor>
       <arglist>(formatString,...)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>PH_DEFAULT_LOG_STRING</name>
       <anchorfile>d5/d77/logging_8h.html</anchorfile>
-      <anchor>ac03412669414e11ea5a58c0f0b02973b</anchor>
-      <arglist>(rawString)</arglist>
+      <anchor>a52cd7ff7dca13c82a6e51429cf4fa5f8</anchor>
+      <arglist>(level, rawString)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>PH_DEFAULT_LOG_WARNING</name>
+      <name>PH_DEFAULT_LOG</name>
       <anchorfile>d5/d77/logging_8h.html</anchorfile>
-      <anchor>adc040d5be9b1d3b037ca2db8ee4faeef</anchor>
-      <arglist>(formatString,...)</arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>PH_DEFAULT_LOG_WARNING_STRING</name>
-      <anchorfile>d5/d77/logging_8h.html</anchorfile>
-      <anchor>a3b02547c5bd71b7c74dade7de7af6c05</anchor>
-      <arglist>(rawString)</arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>PH_DEFAULT_LOG_ERROR</name>
-      <anchorfile>d5/d77/logging_8h.html</anchorfile>
-      <anchor>af6ce37e03c7b301b78809420ba70eded</anchor>
-      <arglist>(formatString,...)</arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>PH_DEFAULT_LOG_ERROR_STRING</name>
-      <anchorfile>d5/d77/logging_8h.html</anchorfile>
-      <anchor>a4db49dc1773b6ad90f2a0a3c8a9dffd1</anchor>
-      <arglist>(rawString)</arglist>
+      <anchor>a822d71b834d3f3a387225ca9de6a985c</anchor>
+      <arglist>(level, formatString,...)</arglist>
     </member>
   </compound>
   <compound kind="file">
@@ -963,9 +936,9 @@
     <includes id="d8/df1/lib__tracy_8h" name="lib_tracy.h" local="yes" import="no" module="no" objc="no">Common/ThirdParty/lib_tracy.h</includes>
     <member kind="define">
       <type>#define</type>
-      <name>PH_PROFILE_UNIT_NAME</name>
+      <name>PH_DEFINE_PROFILE_UNIT_NAME</name>
       <anchorfile>d9/dba/profiling_8h.html</anchorfile>
-      <anchor>ae4c598a2bad4b6a83cabdd314ccd376a</anchor>
+      <anchor>ac8ba62ab953d2a8d76a8a88418bec9bd</anchor>
       <arglist>(unitName)</arglist>
     </member>
     <member kind="define">
@@ -1130,23 +1103,21 @@
   </compound>
   <compound kind="file">
     <name>CommandLineArguments.h</name>
-    <path>Include/Utility/</path>
+    <path>Include/Common/Utility/</path>
     <filename>de/d60/_command_line_arguments_8h.html</filename>
-    <includes id="d7/d2c/string__utils_8h" name="string_utils.h" local="yes" import="no" module="no" objc="no">Utility/string_utils.h</includes>
+    <includes id="d7/d2c/string__utils_8h" name="string_utils.h" local="yes" import="no" module="no" objc="no">Common/Utility/string_utils.h</includes>
     <class kind="class">ph::CommandLineArguments</class>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
     <name>string_utils.h</name>
-    <path>Include/Utility/</path>
+    <path>Include/Common/Utility/</path>
     <filename>d7/d2c/string__utils_8h.html</filename>
-    <includes id="d7/d81/string__utils__table_8h" name="string_utils_table.h" local="yes" import="no" module="no" objc="no">Utility/string_utils_table.h</includes>
+    <includes id="d7/d81/string__utils__table_8h" name="string_utils_table.h" local="yes" import="no" module="no" objc="no">Common/Utility/string_utils_table.h</includes>
     <includes id="d9/d13/assertion_8h" name="assertion.h" local="yes" import="no" module="no" objc="no">Common/assertion.h</includes>
     <includes id="dd/d2d/exception_8h" name="exception.h" local="yes" import="no" module="no" objc="no">Common/exception.h</includes>
-    <class kind="struct">ph::string_utils::detail::HeterogeneousStringHash</class>
     <namespace>ph</namespace>
     <namespace>ph::string_utils</namespace>
-    <namespace>ph::string_utils::detail</namespace>
     <namespace>ph::string_utils::detail_from_to_char</namespace>
     <concept>ph::string_utils::CHasToString</concept>
     <member kind="define">
@@ -1173,7 +1144,7 @@
   </compound>
   <compound kind="file">
     <name>string_utils_table.h</name>
-    <path>Include/Utility/</path>
+    <path>Include/Common/Utility/</path>
     <filename>d7/d81/string__utils__table_8h.html</filename>
     <namespace>ph</namespace>
     <namespace>ph::string_utils</namespace>
@@ -1181,7 +1152,7 @@
   </compound>
   <compound kind="file">
     <name>Timestamp.h</name>
-    <path>Include/Utility/</path>
+    <path>Include/Common/Utility/</path>
     <filename>df/d96/_timestamp_8h.html</filename>
     <class kind="class">ph::Timestamp</class>
     <namespace>ph</namespace>
@@ -1240,7 +1211,7 @@
     <includes id="da/d41/_e_log_level_8h" name="ELogLevel.h" local="yes" import="no" module="no" objc="no">Common/Log/ELogLevel.h</includes>
     <includes id="db/d16/config_8h" name="config.h" local="yes" import="no" module="no" objc="no">Common/config.h</includes>
     <includes id="d0/dff/os_8h" name="os.h" local="yes" import="no" module="no" objc="no">Common/os.h</includes>
-    <includes id="df/d96/_timestamp_8h" name="Timestamp.h" local="yes" import="no" module="no" objc="no">Utility/Timestamp.h</includes>
+    <includes id="df/d96/_timestamp_8h" name="Timestamp.h" local="yes" import="no" module="no" objc="no">Common/Utility/Timestamp.h</includes>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
@@ -1250,7 +1221,7 @@
     <includes id="d5/d77/logging_8h" name="logging.h" local="yes" import="no" module="no" objc="no">Common/logging.h</includes>
     <includes id="d6/dec/_logger_8h" name="Logger.h" local="yes" import="no" module="no" objc="no">Common/Log/Logger.h</includes>
     <includes id="d9/d13/assertion_8h" name="assertion.h" local="yes" import="no" module="no" objc="no">Common/assertion.h</includes>
-    <includes id="df/d96/_timestamp_8h" name="Timestamp.h" local="yes" import="no" module="no" objc="no">Utility/Timestamp.h</includes>
+    <includes id="df/d96/_timestamp_8h" name="Timestamp.h" local="yes" import="no" module="no" objc="no">Common/Utility/Timestamp.h</includes>
     <namespace>ph</namespace>
     <namespace>ph::detail</namespace>
     <namespace>ph::detail::core_logging</namespace>
@@ -1300,17 +1271,17 @@
   </compound>
   <compound kind="file">
     <name>CommandLineArguments.cpp</name>
-    <path>Source/Utility/</path>
+    <path>Source/Common/Utility/</path>
     <filename>de/d63/_command_line_arguments_8cpp.html</filename>
-    <includes id="de/d60/_command_line_arguments_8h" name="CommandLineArguments.h" local="yes" import="no" module="no" objc="no">Utility/CommandLineArguments.h</includes>
+    <includes id="de/d60/_command_line_arguments_8h" name="CommandLineArguments.h" local="yes" import="no" module="no" objc="no">Common/Utility/CommandLineArguments.h</includes>
     <includes id="d9/d13/assertion_8h" name="assertion.h" local="yes" import="no" module="no" objc="no">Common/assertion.h</includes>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
     <name>Timestamp.cpp</name>
-    <path>Source/Utility/</path>
+    <path>Source/Common/Utility/</path>
     <filename>d5/df8/_timestamp_8cpp.html</filename>
-    <includes id="df/d96/_timestamp_8h" name="Timestamp.h" local="yes" import="no" module="no" objc="no">Utility/Timestamp.h</includes>
+    <includes id="df/d96/_timestamp_8h" name="Timestamp.h" local="yes" import="no" module="no" objc="no">Common/Utility/Timestamp.h</includes>
     <includes id="d9/d13/assertion_8h" name="assertion.h" local="yes" import="no" module="no" objc="no">Common/assertion.h</includes>
     <includes id="d0/dff/os_8h" name="os.h" local="yes" import="no" module="no" objc="no">Common/os.h</includes>
     <namespace>ph</namespace>
@@ -1412,9 +1383,9 @@
     <filename>de/d94/classph_1_1_config.html</filename>
     <member kind="function" static="yes">
       <type>static std::string &amp;</type>
-      <name>CORE_RESOURCE_DIRECTORY</name>
+      <name>RENDERER_RESOURCE_DIRECTORY</name>
       <anchorfile>de/d94/classph_1_1_config.html</anchorfile>
-      <anchor>a789485dad5333101a5f24e892132e3fb</anchor>
+      <anchor>a5c4b8ef094eab3d2e3cf5a292063e442</anchor>
       <arglist>()</arglist>
     </member>
   </compound>
@@ -1458,34 +1429,34 @@
     </member>
   </compound>
   <compound kind="struct">
-    <name>ph::string_utils::detail::HeterogeneousStringHash</name>
-    <filename>d4/d5c/structph_1_1string__utils_1_1detail_1_1_heterogeneous_string_hash.html</filename>
+    <name>ph::detail::HeterogeneousStringHash</name>
+    <filename>d3/d9e/structph_1_1detail_1_1_heterogeneous_string_hash.html</filename>
     <member kind="typedef">
       <type>void</type>
       <name>is_transparent</name>
-      <anchorfile>d4/d5c/structph_1_1string__utils_1_1detail_1_1_heterogeneous_string_hash.html</anchorfile>
-      <anchor>af7c2f6d7e57abb171435e3a4abab5234</anchor>
+      <anchorfile>d3/d9e/structph_1_1detail_1_1_heterogeneous_string_hash.html</anchorfile>
+      <anchor>a6186c5b61990de5045674cedd0e26f04</anchor>
       <arglist></arglist>
     </member>
     <member kind="function">
       <type>std::size_t</type>
       <name>operator()</name>
-      <anchorfile>d4/d5c/structph_1_1string__utils_1_1detail_1_1_heterogeneous_string_hash.html</anchorfile>
-      <anchor>a9c43e13ed685302a52c961cc66a2023b</anchor>
+      <anchorfile>d3/d9e/structph_1_1detail_1_1_heterogeneous_string_hash.html</anchorfile>
+      <anchor>a48bd4d1d999dd29f269099dd17b160d0</anchor>
       <arglist>(const char *txt) const</arglist>
     </member>
     <member kind="function">
       <type>std::size_t</type>
       <name>operator()</name>
-      <anchorfile>d4/d5c/structph_1_1string__utils_1_1detail_1_1_heterogeneous_string_hash.html</anchorfile>
-      <anchor>aad2fd118a946c07d24160a3ac1d62348</anchor>
+      <anchorfile>d3/d9e/structph_1_1detail_1_1_heterogeneous_string_hash.html</anchorfile>
+      <anchor>ae20670bcd8d5396b7090e9adb0404c73</anchor>
       <arglist>(std::string_view txt) const</arglist>
     </member>
     <member kind="function">
       <type>std::size_t</type>
       <name>operator()</name>
-      <anchorfile>d4/d5c/structph_1_1string__utils_1_1detail_1_1_heterogeneous_string_hash.html</anchorfile>
-      <anchor>ac8f1f88c20e31100867c85e422e4c424</anchor>
+      <anchorfile>d3/d9e/structph_1_1detail_1_1_heterogeneous_string_hash.html</anchorfile>
+      <anchor>aabed1533ec242c8d4ad30b17a83176e4</anchor>
       <arglist>(const std::string &amp;txt) const</arglist>
     </member>
   </compound>
@@ -2045,6 +2016,20 @@
     <class kind="class">ph::UninitializedObjectException</class>
     <concept>ph::CPhotonException</concept>
     <member kind="typedef">
+      <type>std::unordered_set&lt; std::string, detail::HeterogeneousStringHash, std::equal_to&lt;&gt; &gt;</type>
+      <name>StdUnorderedStringSet</name>
+      <anchorfile>d3/d5c/namespaceph.html</anchorfile>
+      <anchor>af27aa6bc0973efcf2ee0e2e7e546f3fd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>std::unordered_map&lt; std::string, Value, detail::HeterogeneousStringHash, std::equal_to&lt;&gt; &gt;</type>
+      <name>TStdUnorderedStringMap</name>
+      <anchorfile>d3/d5c/namespaceph.html</anchorfile>
+      <anchor>ac837148000ded601032a44ed7ae37761</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
       <type>std::exception</type>
       <name>Exception</name>
       <anchorfile>d3/d5c/namespaceph.html</anchorfile>
@@ -2229,6 +2214,10 @@
       <enumvalue file="d3/d5c/namespaceph.html" anchor="af3d9a169aefd59566a65991df5db6dbda3b0649c72650c313a357338dcdfb64ec">Note</enumvalue>
       <enumvalue file="d3/d5c/namespaceph.html" anchor="af3d9a169aefd59566a65991df5db6dbda0eaadb4fcb48a0a0ed7bc9868be9fbaa">Warning</enumvalue>
       <enumvalue file="d3/d5c/namespaceph.html" anchor="af3d9a169aefd59566a65991df5db6dbda902b0d55fddef6f8d651fe1035b7d4bd">Error</enumvalue>
+      <enumvalue file="d3/d5c/namespaceph.html" anchor="af3d9a169aefd59566a65991df5db6dbda119b530fc1196c0fd19d09a67f957424">DebugOnce</enumvalue>
+      <enumvalue file="d3/d5c/namespaceph.html" anchor="af3d9a169aefd59566a65991df5db6dbda72c3464ac0d5bca4e97e120e36c213b2">NoteOnce</enumvalue>
+      <enumvalue file="d3/d5c/namespaceph.html" anchor="af3d9a169aefd59566a65991df5db6dbdaa43c06efcccacb892c333569791f68bc">WarningOnce</enumvalue>
+      <enumvalue file="d3/d5c/namespaceph.html" anchor="af3d9a169aefd59566a65991df5db6dbda08728f03ba50456e607012e433daaef5">ErrorOnce</enumvalue>
     </member>
     <member kind="function">
       <type>void</type>
@@ -2250,6 +2239,13 @@
       <anchorfile>d3/d5c/namespaceph.html</anchorfile>
       <anchor>ad635a8560b026867937793ce96cd85a1</anchor>
       <arglist>(const std::string_view formattedMsg, Args &amp;&amp;... args)</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr bool</type>
+      <name>is_once</name>
+      <anchorfile>d3/d5c/namespaceph.html</anchorfile>
+      <anchor>ac799a130d027e2bd5811308361d8b9fc</anchor>
+      <arglist>(const ELogLevel logLevel)</arglist>
     </member>
     <member kind="function">
       <type>LogGroups</type>
@@ -2297,8 +2293,8 @@
       <type>T *</type>
       <name>start_implicit_lifetime_as_array</name>
       <anchorfile>d3/d5c/namespaceph.html</anchorfile>
-      <anchor>a0acfb13347b5b1ebe8a50632883bce82</anchor>
-      <arglist>(void *ptr, std::size_t arrSize) noexcept</arglist>
+      <anchor>a0c289b178ae5acd2ce7e68bffeb528fd</anchor>
+      <arglist>(void *ptr, std::size_t numArrayElements) noexcept</arglist>
     </member>
     <member kind="function">
       <type>constexpr real</type>
@@ -2447,6 +2443,7 @@
     <namespace>ph::detail::core_logging</namespace>
     <namespace>ph::detail::stats</namespace>
     <class kind="struct">ph::detail::AlignedMemoryDeleter</class>
+    <class kind="struct">ph::detail::HeterogeneousStringHash</class>
     <concept>ph::detail::CPermissiveImplicitLifetime</concept>
     <member kind="function">
       <type>void</type>
@@ -2569,17 +2566,9 @@
   <compound kind="namespace">
     <name>ph::string_utils</name>
     <filename>da/d3e/namespaceph_1_1string__utils.html</filename>
-    <namespace>ph::string_utils::detail</namespace>
     <namespace>ph::string_utils::detail_from_to_char</namespace>
     <namespace>ph::string_utils::table</namespace>
     <concept>ph::string_utils::CHasToString</concept>
-    <member kind="typedef">
-      <type>std::unordered_map&lt; std::string, Value, detail::HeterogeneousStringHash, std::equal_to&lt;&gt; &gt;</type>
-      <name>TStdUnorderedStringMap</name>
-      <anchorfile>da/d3e/namespaceph_1_1string__utils.html</anchorfile>
-      <anchor>a879191a4c3e8b6a0648be7a609bbf036</anchor>
-      <arglist></arglist>
-    </member>
     <member kind="enumeration">
       <type></type>
       <name>EWhitespace</name>
@@ -2758,17 +2747,12 @@
       <arglist>(const NumberType value, char *const out_buffer, const std::size_t bufferSize)</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
+      <type>std::string &amp;</type>
       <name>stringify_number</name>
       <anchorfile>da/d3e/namespaceph_1_1string__utils.html</anchorfile>
-      <anchor>a015ff3fc7545219b1c9277247c10bcc1</anchor>
-      <arglist>(const NumberType value, std::string *const out_str, const std::size_t maxChars=64)</arglist>
+      <anchor>a840acb1d0358a1b420160495f6ee63d8</anchor>
+      <arglist>(const NumberType value, std::string &amp;out_str, const std::size_t maxChars=64)</arglist>
     </member>
-  </compound>
-  <compound kind="namespace">
-    <name>ph::string_utils::detail</name>
-    <filename>d0/dc2/namespaceph_1_1string__utils_1_1detail.html</filename>
-    <class kind="struct">ph::string_utils::detail::HeterogeneousStringHash</class>
   </compound>
   <compound kind="namespace">
     <name>ph::string_utils::detail_from_to_char</name>

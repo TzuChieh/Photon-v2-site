@@ -16,10 +16,6 @@
 \DoxyCodeLine{00012\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
 \DoxyCodeLine{00013\ \{}
 \DoxyCodeLine{00014\ }
-\DoxyCodeLine{00015\ \textcolor{comment}{/*}}
-\DoxyCodeLine{00016\ \textcolor{comment}{\ \ \ \ A\ spiral\ scheduler\ that\ further\ schedules\ each\ work\ unit\ using}}
-\DoxyCodeLine{00017\ \textcolor{comment}{\ \ \ \ a\ grid\ scheduler.}}
-\DoxyCodeLine{00018\ \textcolor{comment}{*/}}
 \DoxyCodeLine{00019\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_spiral_grid_scheduler}{SpiralGridScheduler}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classph_1_1_work_scheduler}{WorkScheduler}}}
 \DoxyCodeLine{00020\ \{}
 \DoxyCodeLine{00021\ \textcolor{keyword}{public}:}
@@ -46,60 +42,65 @@
 \DoxyCodeLine{00042\ }
 \DoxyCodeLine{00043\ \textcolor{comment}{//\ In-\/header\ Implementations:}}
 \DoxyCodeLine{00044\ }
-\DoxyCodeLine{00045\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_spiral_grid_scheduler_a3d6e2ebcb0f8b81bd5db0c07c67eaa10}{SpiralGridScheduler::SpiralGridScheduler}}()\ :}
-\DoxyCodeLine{00046\ \ \ \ \ \mbox{\hyperlink{classph_1_1_work_scheduler}{WorkScheduler}}()}
-\DoxyCodeLine{00047\ \{\}}
+\DoxyCodeLine{00045\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_spiral_grid_scheduler_a3d6e2ebcb0f8b81bd5db0c07c67eaa10}{SpiralGridScheduler::SpiralGridScheduler}}()}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ :\ \mbox{\hyperlink{classph_1_1_work_scheduler}{WorkScheduler}}()}
 \DoxyCodeLine{00048\ }
-\DoxyCodeLine{00049\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_spiral_grid_scheduler_a3d6e2ebcb0f8b81bd5db0c07c67eaa10}{SpiralGridScheduler::SpiralGridScheduler}}(}
-\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ \ \ \ \ numWorkers,}
-\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_work_unit}{WorkUnit}}\&\ \ \ \ \ \ \ totalWorkUnit,}
-\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{math::Vector2S}}\&\ spiralTileSize)\ :}
+\DoxyCodeLine{00049\ \ \ \ \ ,\ m\_spiralScheduler()}
+\DoxyCodeLine{00050\ \ \ \ \ ,\ m\_numGridCells\ \ \ (0)}
+\DoxyCodeLine{00051\ \ \ \ \ ,\ m\_currentGrid\ \ \ \ ()}
+\DoxyCodeLine{00052\ \{\}}
 \DoxyCodeLine{00053\ }
-\DoxyCodeLine{00054\ \ \ \ \ \mbox{\hyperlink{classph_1_1_spiral_grid_scheduler}{SpiralGridScheduler}}(}
-\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ numWorkers,\ }
-\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ totalWorkUnit,}
-\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ spiralTileSize,}
-\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ math::\mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{Vector2S}}(static\_cast<\mbox{\hyperlink{namespacestd}{std}}::size\_t>(}
-\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacestd}{std}}::max(math::\mbox{\hyperlink{namespaceph_1_1math_adb93254f78909d9fef4bc8d7326b7670}{fast\_sqrt}}(static\_cast<float>(numWorkers)),\ 1.0f))))}
-\DoxyCodeLine{00060\ \{\}}
-\DoxyCodeLine{00061\ }
-\DoxyCodeLine{00062\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_spiral_grid_scheduler_a3d6e2ebcb0f8b81bd5db0c07c67eaa10}{SpiralGridScheduler::SpiralGridScheduler}}(}
-\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ \ \ \ \ numWorkers,}
-\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_work_unit}{WorkUnit}}\&\ \ \ \ \ \ \ totalWorkUnit,}
-\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{math::Vector2S}}\&\ spiralTileSize,}
-\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{math::Vector2S}}\&\ numGridCells)\ :}
-\DoxyCodeLine{00067\ }
-\DoxyCodeLine{00068\ \ \ \ \ \mbox{\hyperlink{classph_1_1_work_scheduler}{WorkScheduler}}(numWorkers,\ totalWorkUnit),}
-\DoxyCodeLine{00069\ }
-\DoxyCodeLine{00070\ \ \ \ \ m\_spiralScheduler(numWorkers,\ totalWorkUnit,\ spiralTileSize),}
-\DoxyCodeLine{00071\ \ \ \ \ m\_numGridCells\ \ \ (numGridCells),}
-\DoxyCodeLine{00072\ \ \ \ \ m\_currentGrid\ \ \ \ ()}
-\DoxyCodeLine{00073\ \{\}}
+\DoxyCodeLine{00054\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_spiral_grid_scheduler_a3d6e2ebcb0f8b81bd5db0c07c67eaa10}{SpiralGridScheduler::SpiralGridScheduler}}(}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ \ \ \ \ numWorkers,}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_work_unit}{WorkUnit}}\&\ \ \ \ \ \ \ totalWorkUnit,}
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{math::Vector2S}}\&\ spiralTileSize)\ :}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ \ \ \mbox{\hyperlink{classph_1_1_spiral_grid_scheduler}{SpiralGridScheduler}}(}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ numWorkers,\ }
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ totalWorkUnit,}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ spiralTileSize,}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ math::\mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{Vector2S}}(static\_cast<\mbox{\hyperlink{namespacestd}{std}}::size\_t>(}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacestd}{std}}::max(math::\mbox{\hyperlink{namespaceph_1_1math_adb93254f78909d9fef4bc8d7326b7670}{fast\_sqrt}}(static\_cast<float>(numWorkers)),\ 1.0f))))}
+\DoxyCodeLine{00065\ \{\}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_spiral_grid_scheduler_a3d6e2ebcb0f8b81bd5db0c07c67eaa10}{SpiralGridScheduler::SpiralGridScheduler}}(}
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ \ \ \ \ numWorkers,}
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_work_unit}{WorkUnit}}\&\ \ \ \ \ \ \ totalWorkUnit,}
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{math::Vector2S}}\&\ spiralTileSize,}
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{math::Vector2S}}\&\ numGridCells)\ :}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \ \ \mbox{\hyperlink{classph_1_1_work_scheduler}{WorkScheduler}}(numWorkers,\ totalWorkUnit),}
 \DoxyCodeLine{00074\ }
-\DoxyCodeLine{00075\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ SpiralGridScheduler::scheduleOne(\mbox{\hyperlink{classph_1_1_work_unit}{WorkUnit}}*\ \textcolor{keyword}{const}\ out\_workUnit)}
-\DoxyCodeLine{00076\ \{}
-\DoxyCodeLine{00077\ \ \ \ \ PH\_ASSERT(out\_workUnit);}
-\DoxyCodeLine{00078\ }
-\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keywordflow}{if}(!m\_currentGrid.\mbox{\hyperlink{classph_1_1_work_scheduler_a2903b9d4d450a47d397d2450ee56d8ee}{schedule}}(out\_workUnit))}
-\DoxyCodeLine{00080\ \ \ \ \ \{}
-\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_work_unit}{WorkUnit}}\ parentWorkUnit;}
-\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(m\_spiralScheduler.\mbox{\hyperlink{classph_1_1_work_scheduler_a2903b9d4d450a47d397d2450ee56d8ee}{schedule}}(\&parentWorkUnit))}
-\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ m\_currentGrid\ =\ \mbox{\hyperlink{classph_1_1_grid_scheduler}{GridScheduler}}(}
-\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_numGridCells.\mbox{\hyperlink{classph_1_1math_1_1_t_vector_n_base_a5017418f0b8b2fd8b14dc9ec97dc8c5b}{product}}(),\ }
-\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ parentWorkUnit,\ }
-\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_numGridCells);}
-\DoxyCodeLine{00088\ }
-\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ m\_currentGrid.\mbox{\hyperlink{classph_1_1_work_scheduler_a2903b9d4d450a47d397d2450ee56d8ee}{schedule}}(out\_workUnit);}
-\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ PH\_ASSERT\_GT(out\_workUnit-\/>\mbox{\hyperlink{classph_1_1_work_unit_a1302ee4859cf25828d8da33b973c22e0}{getVolume}}(),\ 0);}
-\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ *out\_workUnit\ =\ WorkUnit();}
-\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00096\ \ \ \ \ \}}
-\DoxyCodeLine{00097\ \}}
-\DoxyCodeLine{00098\ }
-\DoxyCodeLine{00099\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+\DoxyCodeLine{00075\ \ \ \ \ m\_spiralScheduler(numWorkers,\ totalWorkUnit,\ spiralTileSize),}
+\DoxyCodeLine{00076\ \ \ \ \ m\_numGridCells\ \ \ (numGridCells),}
+\DoxyCodeLine{00077\ \ \ \ \ m\_currentGrid\ \ \ \ ()}
+\DoxyCodeLine{00078\ \{\}}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ SpiralGridScheduler::scheduleOne(\mbox{\hyperlink{classph_1_1_work_unit}{WorkUnit}}*\ \textcolor{keyword}{const}\ out\_workUnit)}
+\DoxyCodeLine{00081\ \{}
+\DoxyCodeLine{00082\ \ \ \ \ PH\_ASSERT(out\_workUnit);}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keywordflow}{if}(!m\_currentGrid.\mbox{\hyperlink{classph_1_1_work_scheduler_a2903b9d4d450a47d397d2450ee56d8ee}{schedule}}(out\_workUnit))}
+\DoxyCodeLine{00085\ \ \ \ \ \{}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_work_unit}{WorkUnit}}\ parentWorkUnit;}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(m\_spiralScheduler.\mbox{\hyperlink{classph_1_1_work_scheduler_a2903b9d4d450a47d397d2450ee56d8ee}{schedule}}(\&parentWorkUnit))}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ m\_currentGrid\ =\ \mbox{\hyperlink{classph_1_1_grid_scheduler}{GridScheduler}}(}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_numGridCells.\mbox{\hyperlink{classph_1_1math_1_1_t_vector_n_base_a5017418f0b8b2fd8b14dc9ec97dc8c5b}{product}}(),\ }
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ parentWorkUnit,\ }
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_numGridCells);}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ m\_currentGrid.\mbox{\hyperlink{classph_1_1_work_scheduler_a2903b9d4d450a47d397d2450ee56d8ee}{schedule}}(out\_workUnit);}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ PH\_ASSERT\_GT(out\_workUnit-\/>\mbox{\hyperlink{classph_1_1_work_unit_a1302ee4859cf25828d8da33b973c22e0}{getVolume}}(),\ 0);}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ *out\_workUnit\ =\ WorkUnit();}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00101\ \ \ \ \ \}}
+\DoxyCodeLine{00102\ \}}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
 
 \end{DoxyCode}

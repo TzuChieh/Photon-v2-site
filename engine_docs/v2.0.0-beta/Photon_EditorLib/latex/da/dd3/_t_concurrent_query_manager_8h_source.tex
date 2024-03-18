@@ -1,0 +1,79 @@
+\doxysection{TConcurrent\+Query\+Manager.\+h}
+\hypertarget{_t_concurrent_query_manager_8h_source}{}\label{_t_concurrent_query_manager_8h_source}\index{Source/EditorCore/Query/TConcurrentQueryManager.h@{Source/EditorCore/Query/TConcurrentQueryManager.h}}
+\mbox{\hyperlink{_t_concurrent_query_manager_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_query_8h}{EditorCore/Query/TQuery.h}}"{}}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <Utility/Concurrent/TAtomicQuasiQueue.h>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <Common/assertion.h>}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <iterator>}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#if\ PH\_DEBUG}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <thread>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph_1_1editor}{ph::editor}}}
+\DoxyCodeLine{00017\ \{}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Target>}
+\DoxyCodeLine{00020\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1editor_1_1_t_concurrent_query_manager}{TConcurrentQueryManager}}}
+\DoxyCodeLine{00021\ \{}
+\DoxyCodeLine{00022\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1_t_concurrent_query_manager_ac47130dba2c2f114bf0ce5e46c7a8211}{addQuery}}(\mbox{\hyperlink{classph_1_1editor_1_1_t_query}{TQuery<Target>}}\ query);}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1_t_concurrent_query_manager_ab264a43e67a6be4d89639b66538149dd}{processQueries}}(Target\&\ target);}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00034\ \ \ \ \ TAtomicQuasiQueue<TQuery<Target>>\ m\_queries;}
+\DoxyCodeLine{00035\ \ \ \ \ std::vector<TQuery<Target>>\ m\_queryCache;}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#if\ PH\_DEBUG}}
+\DoxyCodeLine{00038\ \ \ \ \ std::thread::id\ m\_processingThreadId;}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00040\ \};}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Target>}
+\DoxyCodeLine{00043\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1_t_concurrent_query_manager_ac47130dba2c2f114bf0ce5e46c7a8211}{TConcurrentQueryManager<Target>::addQuery}}(\mbox{\hyperlink{classph_1_1editor_1_1_t_query}{TQuery<Target>}}\ query)}
+\DoxyCodeLine{00044\ \{}
+\DoxyCodeLine{00045\ \ \ \ \ m\_queries.enqueue(std::move(query));}
+\DoxyCodeLine{00046\ \}}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Target>}
+\DoxyCodeLine{00049\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1_t_concurrent_query_manager_ab264a43e67a6be4d89639b66538149dd}{TConcurrentQueryManager<Target>::processQueries}}(Target\&\ target)}
+\DoxyCodeLine{00050\ \{}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#if\ PH\_DEBUG}}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordflow}{if}(m\_processingThreadId\ ==\ std::thread::id\{\})}
+\DoxyCodeLine{00053\ \ \ \ \ \{}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ m\_processingThreadId\ =\ std::this\_thread::get\_id();}
+\DoxyCodeLine{00055\ \ \ \ \ \}}
+\DoxyCodeLine{00056\ \ \ \ \ PH\_ASSERT(std::this\_thread::get\_id()\ ==\ m\_processingThreadId);}
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1_t_query}{TQuery<Target>}}\ query;}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordflow}{while}(m\_queries.tryDequeue(\&query))}
+\DoxyCodeLine{00061\ \ \ \ \ \{}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ query\ can\ simply\ be\ skipped\ if\ canceled}}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(query.\mbox{\hyperlink{classph_1_1editor_1_1_t_query_a4d59937fd529afc4314f205600dfe387}{isCanceled}}())}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!query.\mbox{\hyperlink{classph_1_1editor_1_1_t_query_ab81c651b64eb0f427a154cbfd0050a5e}{run}}(target))}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ m\_queryCache.push\_back(std::move(query));}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00072\ \ \ \ \ \}}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{comment}{//\ Queue\ queries\ that\ were\ not\ finished\ back}}
+\DoxyCodeLine{00075\ \ \ \ \ m\_queries.enqueueBulk(std::make\_move\_iterator(m\_queryCache.begin()),\ m\_queryCache.size());}
+\DoxyCodeLine{00076\ \ \ \ \ m\_queryCache.\mbox{\hyperlink{classph_1_1editor_1_1_t_query_a7e10a2b1c989f0002aac0a9d94f22519}{clear}}();}
+\DoxyCodeLine{00077\ \}}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \}\textcolor{comment}{//\ end\ namespace\ ph::editor}}
+
+\end{DoxyCode}

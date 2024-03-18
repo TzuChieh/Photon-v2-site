@@ -8,6 +8,5 @@ var namespaceph_1_1math_1_1detail =
     [ "TColorValuesElementType", "db/dc6/namespaceph_1_1math_1_1detail.html#af155073d15963792222dca41eeaee136", null ],
     [ "get_any_element_from_color_values", "db/dc6/namespaceph_1_1math_1_1detail.html#a28f2554c6e7ea85f7f455b3346673f61", null ],
     [ "make_chromaticity_table", "db/dc6/namespaceph_1_1math_1_1detail.html#a973b6895b66c5463767784c8a85e5f19", null ],
-    [ "octahedron_diamond_mirror", "db/dc6/namespaceph_1_1math_1_1detail.html#a56f26ac6998799fac4fe89ea1370f3f4", null ],
-    [ "BITS8_REVERSE_TABLE", "db/dc6/namespaceph_1_1math_1_1detail.html#a8b1da491334c7a82b2312b3fce5c1278", null ]
+    [ "octahedron_diamond_mirror", "db/dc6/namespaceph_1_1math_1_1detail.html#a56f26ac6998799fac4fe89ea1370f3f4", null ]
 ];

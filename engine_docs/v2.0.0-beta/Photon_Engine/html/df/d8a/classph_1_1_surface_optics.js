@@ -1,7 +1,7 @@
 var classph_1_1_surface_optics =
 [
     [ "SurfaceOptics", "df/d8a/classph_1_1_surface_optics.html#a3459ef14fb8637c1d5b0e9244067f568", null ],
-    [ "~SurfaceOptics", "df/d8a/classph_1_1_surface_optics.html#ace2edf96d79a3ec3fc1b95316637ba64", null ],
+    [ "~SurfaceOptics", "df/d8a/classph_1_1_surface_optics.html#abcb8d3358316d6ccc37ca40c03b6aaf6", null ],
     [ "calcBsdf", "df/d8a/classph_1_1_surface_optics.html#a058042308616bcf1c7a63ab27b211cc4", null ],
     [ "calcBsdfSample", "df/d8a/classph_1_1_surface_optics.html#aedd40a9bb65f592940538623d1acbcbd", null ],
     [ "calcBsdfSamplePdfW", "df/d8a/classph_1_1_surface_optics.html#a603130ce2c84dc114a1f0693302c6394", null ],

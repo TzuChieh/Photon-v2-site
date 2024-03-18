@@ -24,6 +24,7 @@ var concepts =
         [ "CItemSegmentIntersectionTesterVanilla", "d4/dca/conceptph_1_1math_1_1_c_item_segment_intersection_tester_vanilla.html", null ],
         [ "CItemSegmentIntersectionTesterWithIndex", "da/d7e/conceptph_1_1math_1_1_c_item_segment_intersection_tester_with_index.html", null ],
         [ "CItemSegmentIntersectionTester", "d7/d6d/conceptph_1_1math_1_1_c_item_segment_intersection_tester.html", null ],
+        [ "CIndexedPointKdtreeItemStorage", "db/d1e/conceptph_1_1math_1_1_c_indexed_point_kdtree_item_storage.html", null ],
         [ "CChromaticAdaptationDefinition", "d3/d4c/conceptph_1_1math_1_1_c_chromatic_adaptation_definition.html", null ],
         [ "CSpectralSampleProps", "d9/d95/conceptph_1_1math_1_1_c_spectral_sample_props.html", null ],
         [ "CColorValuesInterface", "d4/dba/conceptph_1_1math_1_1_c_color_values_interface.html", null ],
@@ -38,8 +39,12 @@ var concepts =
       ] ],
       [ "texfunc", "da/de9/namespaceph_1_1texfunc.html", [
         [ "CBinaryOperator", "d4/d2a/conceptph_1_1texfunc_1_1_c_binary_operator.html", null ],
+        [ "CTernaryOperator", "de/dfe/conceptph_1_1texfunc_1_1_c_ternary_operator.html", null ],
         [ "CUnaryOperator", "db/d00/conceptph_1_1texfunc_1_1_c_unary_operator.html", null ]
       ] ],
+      [ "CPhoton", "dd/d0a/conceptph_1_1_c_photon.html", null ],
+      [ "CViewPathHandler", "de/db8/conceptph_1_1_c_view_path_handler.html", null ],
+      [ "CViewpoint", "d5/d75/conceptph_1_1_c_viewpoint.html", null ],
       [ "CSdlResource", "d1/de2/conceptph_1_1_c_sdl_resource.html", null ],
       [ "CHasStaticSdlCategoryInfo", "d5/d96/conceptph_1_1_c_has_static_sdl_category_info.html", null ],
       [ "CHasSdlClassDefinition", "d4/d7a/conceptph_1_1_c_has_sdl_class_definition.html", null ],
@@ -49,12 +54,15 @@ var concepts =
       [ "CSdlInstance", "de/df7/conceptph_1_1_c_sdl_instance.html", null ],
       [ "CSdlStructSupportsInitToDefault", "d7/d4d/conceptph_1_1_c_sdl_struct_supports_init_to_default.html", null ],
       [ "CCanAdd", "da/da8/conceptph_1_1_c_can_add.html", null ],
+      [ "CCanSubtract", "d8/db9/conceptph_1_1_c_can_subtract.html", null ],
       [ "CCanMultiply", "de/dd8/conceptph_1_1_c_can_multiply.html", null ],
+      [ "CCanDivide", "d1/df8/conceptph_1_1_c_can_divide.html", null ],
       [ "CSubscriptable", "d9/d29/conceptph_1_1_c_subscriptable.html", null ],
       [ "CEnum", "d3/d8c/conceptph_1_1_c_enum.html", null ],
       [ "CEnumWithSizeInfo", "de/de7/conceptph_1_1_c_enum_with_size_info.html", null ],
       [ "CNumber", "dc/d78/conceptph_1_1_c_number.html", null ],
       [ "CSame", "dd/d00/conceptph_1_1_c_same.html", null ],
+      [ "CNotSame", "d4/de8/conceptph_1_1_c_not_same.html", null ],
       [ "CDerived", "de/dd2/conceptph_1_1_c_derived.html", null ],
       [ "CBase", "d5/de4/conceptph_1_1_c_base.html", null ]
     ] ]

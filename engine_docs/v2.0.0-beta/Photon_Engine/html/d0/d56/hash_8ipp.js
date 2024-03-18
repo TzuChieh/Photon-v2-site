@@ -9,5 +9,6 @@ var hash_8ipp =
     [ "murmur3_32", "d0/d56/hash_8ipp.html#a7c4434683d9ec2d4fb691f52d4433f85", null ],
     [ "murmur3_bit_mix_32", "d0/d56/hash_8ipp.html#a9c59773f54074f6e5f0e32c5ef4c0a96", null ],
     [ "murmur3_bit_mix_64", "d0/d56/hash_8ipp.html#a01043fa9b4769c1a7444e7e8fb143535", null ],
-    [ "murmur3_v13_bit_mix_64", "d0/d56/hash_8ipp.html#acb56174f050862060121bd5462dfe1bb", null ]
+    [ "murmur3_v13_bit_mix_64", "d0/d56/hash_8ipp.html#acb56174f050862060121bd5462dfe1bb", null ],
+    [ "permuted_index", "d0/d56/hash_8ipp.html#a46bffa9926cc5a79c3ae8eefdcc9990e", null ]
 ];

@@ -1,10 +1,9 @@
 var classph_1_1_primitive_pos_sample_pdf_input =
 [
-    [ "PrimitivePosSamplePdfInput", "d4/d1a/classph_1_1_primitive_pos_sample_pdf_input.html#ad3f0cae7186c271a7070c05f6f0537e7", null ],
-    [ "set", "d4/d1a/classph_1_1_primitive_pos_sample_pdf_input.html#adbcca2745041e7a5ec743e51bd12133d", null ],
-    [ "set", "d4/d1a/classph_1_1_primitive_pos_sample_pdf_input.html#a0f7e8febe8aa0dbc4be8ed6b534fb14b", null ],
-    [ "set", "d4/d1a/classph_1_1_primitive_pos_sample_pdf_input.html#a1b572b166b8f2ca222e726d791c2cbd4", null ],
-    [ "set", "d4/d1a/classph_1_1_primitive_pos_sample_pdf_input.html#adb9c8fe7bad46e4ad5556e762bd1844b", null ],
-    [ "faceId", "d4/d1a/classph_1_1_primitive_pos_sample_pdf_input.html#a2765c2a24c7caf97e9928f61000d52ed", null ],
-    [ "position", "d4/d1a/classph_1_1_primitive_pos_sample_pdf_input.html#a4995cd243e50cf7742178c433ccbfc01", null ]
+    [ "getFaceID", "d4/d1a/classph_1_1_primitive_pos_sample_pdf_input.html#a3c3b7686f752aa78e360e239fcaf4a3f", null ],
+    [ "getObservationRay", "d4/d1a/classph_1_1_primitive_pos_sample_pdf_input.html#a872d2e5ab445f3fd13b1f64f0f6d3d75", null ],
+    [ "getPos", "d4/d1a/classph_1_1_primitive_pos_sample_pdf_input.html#a6383df9e942eae1104591e7f5f67ee45", null ],
+    [ "set", "d4/d1a/classph_1_1_primitive_pos_sample_pdf_input.html#ae6dcb3bc611251b0653f66681661f152", null ],
+    [ "set", "d4/d1a/classph_1_1_primitive_pos_sample_pdf_input.html#aaf9e674ec41841e513e8ebf28d699812", null ],
+    [ "set", "d4/d1a/classph_1_1_primitive_pos_sample_pdf_input.html#a32c8046d119c4bd064e9ea8213dc5eff", null ]
 ];

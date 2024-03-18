@@ -1,0 +1,92 @@
+\doxysection{TArray\+Stack.\+ipp}
+\hypertarget{_t_array_stack_8ipp_source}{}\label{_t_array_stack_8ipp_source}\index{Source/Utility/TArrayStack.ipp@{Source/Utility/TArrayStack.ipp}}
+\mbox{\hyperlink{_t_array_stack_8ipp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_array_stack_8h}{Utility/TArrayStack.h}}"{}}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <Common/assertion.h>}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00010\ \{}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00013\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_t_array_stack_ade80ed89008f9b8596cfc5ff4d57e4f6}{TArrayStack<T,\ N>::TArrayStack}}()\ :}
+\DoxyCodeLine{00014\ \ \ \ \ m\_data\{\},\ m\_currentIndex(-\/1)}
+\DoxyCodeLine{00015\ \{\}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00018\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ U>}
+\DoxyCodeLine{00019\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_array_stack_a51868f681542a61cd2d194c70401e3d4}{TArrayStack<T,\ N>::push}}(U\&\&\ item)}
+\DoxyCodeLine{00020\ \{}
+\DoxyCodeLine{00021\ \ \ \ \ PH\_ASSERT\_IN\_RANGE(m\_currentIndex\ +\ 1,\ Index(0),\ Index(N));}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ \ \ m\_data[++m\_currentIndex]\ =\ std::forward<U>(item);}
+\DoxyCodeLine{00024\ \}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00027\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_array_stack_afbebdf469f1b9acfd39de1d07b602901}{TArrayStack<T,\ N>::pop}}()}
+\DoxyCodeLine{00028\ \{}
+\DoxyCodeLine{00029\ \ \ \ \ PH\_ASSERT\_IN\_RANGE(m\_currentIndex\ -\/\ 1,\ Index(-\/1),\ Index(N\ -\/\ 1));}
+\DoxyCodeLine{00030\ \ \ \ \ }
+\DoxyCodeLine{00031\ \ \ \ \ -\/-\/m\_currentIndex;}
+\DoxyCodeLine{00032\ \}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00035\ \textcolor{keyword}{inline}\ T\&\ \mbox{\hyperlink{classph_1_1_t_array_stack_a72fa9c013874f5c283f294e30d1c605c}{TArrayStack<T,\ N>::top}}()}
+\DoxyCodeLine{00036\ \{}
+\DoxyCodeLine{00037\ \ \ \ \ PH\_ASSERT\_IN\_RANGE(m\_currentIndex,\ Index(0),\ Index(N));}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_data[m\_currentIndex];}
+\DoxyCodeLine{00040\ \}}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00043\ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ T\&\ \mbox{\hyperlink{classph_1_1_t_array_stack_a72fa9c013874f5c283f294e30d1c605c}{TArrayStack<T,\ N>::top}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00044\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00045\ \ \ \ \ PH\_ASSERT\_IN\_RANGE(m\_currentIndex,\ Index(0),\ Index(N));}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_data[m\_currentIndex];}
+\DoxyCodeLine{00048\ \}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00051\ \textcolor{keyword}{inline}\ std::size\_t\ \mbox{\hyperlink{classph_1_1_t_array_stack_a82b1133db16ea86e616a0c3f06b7db1b}{TArrayStack<T,\ N>::height}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00052\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00053\ \ \ \ \ PH\_ASSERT\_GE(m\_currentIndex\ +\ 1,\ Index(0));}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}std::size\_t\textcolor{keyword}{>}(m\_currentIndex\ +\ 1);}
+\DoxyCodeLine{00056\ \}}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00059\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_array_stack_aaff99c6357e272849b6a887a62b14f7d}{TArrayStack<T,\ N>::clear}}()}
+\DoxyCodeLine{00060\ \{}
+\DoxyCodeLine{00061\ \ \ \ \ m\_currentIndex\ =\ -\/1;}
+\DoxyCodeLine{00062\ \}}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00065\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_t_array_stack_ab4973a77ae764dd2805a89440b2f13f9}{TArrayStack<T,\ N>::isEmpty}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00066\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_currentIndex\ ==\ -\/1;}
+\DoxyCodeLine{00068\ \}}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00071\ \textcolor{keyword}{inline}\ T\&\ \mbox{\hyperlink{classph_1_1_t_array_stack_a88ed547362533e472b189dcf8aa2a1b6}{TArrayStack<T,\ N>::operator\ []\ }}(\textcolor{keyword}{const}\ std::size\_t\ index)}
+\DoxyCodeLine{00072\ \{}
+\DoxyCodeLine{00073\ \ \ \ \ PH\_ASSERT\_IN\_RANGE(index,\ 0,\ m\_data.size());}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_data[index];}
+\DoxyCodeLine{00076\ \}}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00079\ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ T\&\ \mbox{\hyperlink{classph_1_1_t_array_stack_a88ed547362533e472b189dcf8aa2a1b6}{TArrayStack<T,\ N>::operator\ []\ }}(\textcolor{keyword}{const}\ std::size\_t\ index)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00080\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00081\ \ \ \ \ PH\_ASSERT\_IN\_RANGE(index,\ 0,\ m\_data.size());}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_data[index];}
+\DoxyCodeLine{00084\ \}}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+
+\end{DoxyCode}

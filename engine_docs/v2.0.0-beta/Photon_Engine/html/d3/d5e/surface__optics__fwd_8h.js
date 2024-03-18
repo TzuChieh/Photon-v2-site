@@ -1,17 +1,20 @@
 var surface__optics__fwd_8h =
 [
     [ "SurfaceElemental", "d3/d5e/surface__optics__fwd_8h.html#a9f3a5422acf386b99ae9712b13d55952", null ],
-    [ "SurfacePhenomena", "d3/d5e/surface__optics__fwd_8h.html#a368541bcb08772c8f877aa56743f51a6", null ],
+    [ "SurfacePhenomena", "d3/d5e/surface__optics__fwd_8h.html#aed18898381cecdbc0657b58e580ede3b", null ],
     [ "ESurfacePhenomenon", "d3/d5e/surface__optics__fwd_8h.html#a596116c16341de64c97b20395d758456", [
-      [ "DIFFUSE_REFLECTION", "d3/d5e/surface__optics__fwd_8h.html#a596116c16341de64c97b20395d758456a909db38cc4a1b6b18bc6828fa36ca0f4", null ],
-      [ "DELTA_REFLECTION", "d3/d5e/surface__optics__fwd_8h.html#a596116c16341de64c97b20395d758456a8aae1f9200b02a17e6d07e6e503bb0d3", null ],
-      [ "GLOSSY_REFLECTION", "d3/d5e/surface__optics__fwd_8h.html#a596116c16341de64c97b20395d758456aa43c307c517a359f041a1b3b108e986f", null ],
-      [ "DELTA_TRANSMISSION", "d3/d5e/surface__optics__fwd_8h.html#a596116c16341de64c97b20395d758456a362e423eb291bcb0fef5887867eaab19", null ],
-      [ "GLOSSY_TRANSMISSION", "d3/d5e/surface__optics__fwd_8h.html#a596116c16341de64c97b20395d758456a28343d34ab135df0db2c914fc00c8a43", null ]
+      [ "DiffuseReflection", "d3/d5e/surface__optics__fwd_8h.html#a596116c16341de64c97b20395d758456a96b6d5999da0dee7f6be9ed568bb11b3", null ],
+      [ "DeltaReflection", "d3/d5e/surface__optics__fwd_8h.html#a596116c16341de64c97b20395d758456a6a08e398f84e0c348effb4341042b207", null ],
+      [ "GlossyReflection", "d3/d5e/surface__optics__fwd_8h.html#a596116c16341de64c97b20395d758456ac8e33f42e15c4d38920faff1dd1ca4e5", null ],
+      [ "DeltaTransmission", "d3/d5e/surface__optics__fwd_8h.html#a596116c16341de64c97b20395d758456a1b72c07dc09193b5c23aec91a665a751", null ],
+      [ "GlossyTransmission", "d3/d5e/surface__optics__fwd_8h.html#a596116c16341de64c97b20395d758456abfc8a569b7687c064e61b4cf701cc0c8", null ]
     ] ],
     [ "ETransport", "d3/d5e/surface__optics__fwd_8h.html#a77d951ca57b4e319e083ebddd4695213", [
-      [ "RADIANCE", "d3/d5e/surface__optics__fwd_8h.html#a77d951ca57b4e319e083ebddd4695213a11ddd116a724531f18090168bc0fddcb", null ],
-      [ "IMPORTANCE", "d3/d5e/surface__optics__fwd_8h.html#a77d951ca57b4e319e083ebddd4695213aa8bf103ce6d1fcb1af7013857b1beee6", null ]
+      [ "Radiance", "d3/d5e/surface__optics__fwd_8h.html#a77d951ca57b4e319e083ebddd4695213a955d9ba35580bdcc7bed3f11736b0f76", null ],
+      [ "Importance", "d3/d5e/surface__optics__fwd_8h.html#a77d951ca57b4e319e083ebddd4695213af0d806461f33568d758feb27d468352a", null ]
     ] ],
-    [ "ALL_ELEMENTALS", "d3/d5e/surface__optics__fwd_8h.html#a6def4537451eb39524dc16ba6f987bfe", null ]
+    [ "PH_DEFINE_INLINE_ENUM_FLAG_OPERATORS", "d3/d5e/surface__optics__fwd_8h.html#a0e94768bd94280304bcdd6840fcef7f7", null ],
+    [ "ALL_SURFACE_ELEMENTALS", "d3/d5e/surface__optics__fwd_8h.html#ac2562eda4f90efe4267c1f774fd211bb", null ],
+    [ "ALL_SURFACE_PHENOMENA", "d3/d5e/surface__optics__fwd_8h.html#aabe77df4e760c2bcfffe395279637254", null ],
+    [ "DELTA_SURFACE_PHENOMENA", "d3/d5e/surface__optics__fwd_8h.html#a4fc648c9255debfc7f2fc587b7c017cc", null ]
 ];

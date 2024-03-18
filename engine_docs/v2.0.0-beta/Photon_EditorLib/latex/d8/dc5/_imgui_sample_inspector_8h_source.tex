@@ -1,0 +1,140 @@
+\doxysection{Imgui\+Sample\+Inspector.\+h}
+\hypertarget{_imgui_sample_inspector_8h_source}{}\label{_imgui_sample_inspector_8h_source}\index{Source/Render/Imgui/Tool/ImguiSampleInspector.h@{Source/Render/Imgui/Tool/ImguiSampleInspector.h}}
+\mbox{\hyperlink{_imgui_sample_inspector_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <Common/assertion.h>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <Utility/utility.h>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <Utility/TSpan.h>}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <cstddef>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph_1_1editor}{ph::editor}}}
+\DoxyCodeLine{00012\ \{}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1editor_1_1_imgui_sample_inspector}{ImguiSampleInspector}}\ final}
+\DoxyCodeLine{00015\ \{}
+\DoxyCodeLine{00016\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00017\ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1_imgui_sample_inspector_a0adb61a1c68c0a73e3d9d1be8a84f5ef}{ImguiSampleInspector}}();}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1_imgui_sample_inspector_a8347934d45af8572a7327b002b197e1d}{buildWindow}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ title,\ \textcolor{keywordtype}{bool}*\ isOpening);}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{comment}{//\ Update\ \`{}RNG\_NAMES`\ if\ modified}}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keyword}{enum}\ ERng\ :\ \textcolor{keywordtype}{int}}
+\DoxyCodeLine{00024\ \ \ \ \ \{}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ MT\_19937\ =\ 0,}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ PCG\_32,}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ PCG\_64\_DXSM}
+\DoxyCodeLine{00028\ \ \ \ \ \};}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ RNG\_NAMES[]\ =}
+\DoxyCodeLine{00031\ \ \ \ \ \{}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Mersenne\ Twister"{}},\ }
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}PCG-\/32"{}},}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}PCG-\/64-\/DXSM"{}}}
+\DoxyCodeLine{00035\ \ \ \ \ \};}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{comment}{//\ Update\ \`{}GENERATOR\_NAMES`\ if\ modified}}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keyword}{enum}\ EGenerator\ :\ \textcolor{keywordtype}{int}}
+\DoxyCodeLine{00039\ \ \ \ \ \{}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ UniformRandom\ =\ 0,}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ Stratified,}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ Halton,}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ HaltonFixedScramble,}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ HaltonPerDigitScramble}
+\DoxyCodeLine{00045\ \ \ \ \ \};}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ GENERATOR\_NAMES[]\ =}
+\DoxyCodeLine{00048\ \ \ \ \ \{}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Uniform\ Random"{}},}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Stratified"{}},}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Halton"{}},}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Halton\ (Fixed\ Scramble)"{}},}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Halton\ (Per-\/digit\ Scramble)"{}}}
+\DoxyCodeLine{00054\ \ \ \ \ \};}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keyword}{enum}\ ESource\ :\ \textcolor{keywordtype}{int}}
+\DoxyCodeLine{00057\ \ \ \ \ \{}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ Rng\ =\ 0,}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ Generator}
+\DoxyCodeLine{00060\ \ \ \ \ \};}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keyword}{struct\ }ScatterPlotData}
+\DoxyCodeLine{00063\ \ \ \ \ \{}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ std::string\ name;}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ std::vector<float>\ xs;}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ std::vector<float>\ ys;}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ clear();}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ resize(std::size\_t\ size);}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ reserve(std::size\_t\ size);}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ getPointCount()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00072\ \ \ \ \ \};}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keyword}{struct\ }RngSettings}
+\DoxyCodeLine{00075\ \ \ \ \ \{}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ type\ =\ 0;}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ seed\ =\ 0;}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ sequence\ =\ 0;}
+\DoxyCodeLine{00079\ \ \ \ \ \};}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keyword}{struct\ }GeneratorSettings}
+\DoxyCodeLine{00082\ \ \ \ \ \{}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ type\ =\ 0;}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ xAxisDimIndex\ =\ 0;}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ yAxisDimIndex\ =\ 1;}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ useSampleFlow\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00087\ \ \ \ \ \};}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keywordtype}{void}\ buildControlPanelContent();}
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keywordtype}{void}\ buildPlotterViewContent();}
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keywordtype}{void}\ safeguardParameters();}
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keywordtype}{void}\ genRngPoints(TSpan<float>\ out\_xBuffer,\ TSpan<float>\ out\_yBuffer)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keywordtype}{void}\ genGeneratorPoints(TSpan<float>\ out\_xBuffer,\ TSpan<float>\ out\_yBuffer)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00094\ \ \ \ \ }
+\DoxyCodeLine{00095\ \ \ \ \ std::vector<ScatterPlotData>\ m\_scatterPlots;}
+\DoxyCodeLine{00096\ \ \ \ \ std::vector<char>\ m\_plotNameBuffer;}
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keywordtype}{int}\ m\_numSamples;}
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keywordtype}{int}\ m\_sourceType;}
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keywordtype}{bool}\ m\_useParamSafeguards;}
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keywordtype}{bool}\ m\_autoClearOnGenerate;}
+\DoxyCodeLine{00101\ \ \ \ \ std::string\ m\_paramSafeguardMessage;}
+\DoxyCodeLine{00102\ \ \ \ \ RngSettings\ m\_rngSettings;}
+\DoxyCodeLine{00103\ \ \ \ \ GeneratorSettings\ m\_generatorSettings;}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ \ \ \ \ \textcolor{keywordtype}{bool}\ m\_isNormalizedFitRequested;}
+\DoxyCodeLine{00106\ \};}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ ImguiSampleInspector::ScatterPlotData::clear()}
+\DoxyCodeLine{00109\ \{}
+\DoxyCodeLine{00110\ \ \ \ \ name.clear();}
+\DoxyCodeLine{00111\ \ \ \ \ xs.clear();}
+\DoxyCodeLine{00112\ \ \ \ \ ys.clear();}
+\DoxyCodeLine{00113\ \}}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ ImguiSampleInspector::ScatterPlotData::resize(\textcolor{keyword}{const}\ std::size\_t\ size)}
+\DoxyCodeLine{00116\ \{}
+\DoxyCodeLine{00117\ \ \ \ \ xs.resize(size);}
+\DoxyCodeLine{00118\ \ \ \ \ ys.resize(size);}
+\DoxyCodeLine{00119\ \}}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ ImguiSampleInspector::ScatterPlotData::reserve(\textcolor{keyword}{const}\ std::size\_t\ size)}
+\DoxyCodeLine{00122\ \{}
+\DoxyCodeLine{00123\ \ \ \ \ xs.reserve(size);}
+\DoxyCodeLine{00124\ \ \ \ \ ys.reserve(size);}
+\DoxyCodeLine{00125\ \}}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00127\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{int}\ ImguiSampleInspector::ScatterPlotData::getPointCount()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00128\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00129\ \ \ \ \ PH\_ASSERT\_EQ(xs.size(),\ ys.size());}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ \ \ \ \ \textcolor{keywordflow}{return}\ lossless\_cast<int>(xs.size());}
+\DoxyCodeLine{00132\ \}}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00134\ \}\textcolor{comment}{//\ end\ namespace\ ph::editor}}
+
+\end{DoxyCode}

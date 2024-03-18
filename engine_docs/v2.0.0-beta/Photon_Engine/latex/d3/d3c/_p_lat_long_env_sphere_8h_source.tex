@@ -1,72 +1,104 @@
 \doxysection{PLat\+Long\+Env\+Sphere.\+h}
-\hypertarget{_p_lat_long_env_sphere_8h_source}{}\label{_p_lat_long_env_sphere_8h_source}\index{Source/Core/Intersectable/PLatLongEnvSphere.h@{Source/Core/Intersectable/PLatLongEnvSphere.h}}
+\hypertarget{_p_lat_long_env_sphere_8h_source}{}\label{_p_lat_long_env_sphere_8h_source}\index{Source/Core/Intersection/PLatLongEnvSphere.h@{Source/Core/Intersection/PLatLongEnvSphere.h}}
 \mbox{\hyperlink{_p_lat_long_env_sphere_8h}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
 \DoxyCodeLine{00002\ }
-\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_p_basic_sphere_8h}{Core/Intersectable/PBasicSphere.h}}"{}}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_p_basic_sphere_8h}{Core/Intersection/PBasicSphere.h}}"{}}}
 \DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_vector2_8h}{Math/TVector2.h}}"{}}}
 \DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_vector3_8h}{Math/TVector3.h}}"{}}}
 \DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_a_a_b_b3_d_8h}{Math/Geometry/TAABB3D.h}}"{}}}
 \DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_static_rigid_transform_8h}{Math/Transform/StaticRigidTransform.h}}"{}}}
 \DoxyCodeLine{00008\ }
-\DoxyCodeLine{00009\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
-\DoxyCodeLine{00010\ \{}
-\DoxyCodeLine{00011\ }
-\DoxyCodeLine{00018\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_p_lat_long_env_sphere}{PLatLongEnvSphere}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classph_1_1_p_basic_sphere}{PBasicSphere}}}
-\DoxyCodeLine{00019\ \{}
-\DoxyCodeLine{00020\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classph_1_1_p_lat_long_env_sphere}{PLatLongEnvSphere}}(real\ radius);}
-\DoxyCodeLine{00022\ }
-\DoxyCodeLine{00023\ \ \ \ \ \mbox{\hyperlink{classph_1_1_p_lat_long_env_sphere}{PLatLongEnvSphere}}(}
-\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ real\ radius,\ }
-\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_static_rigid_transform}{math::StaticRigidTransform}}*\ localToWorld,}
-\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_static_rigid_transform}{math::StaticRigidTransform}}*\ worldToLocal);}
-\DoxyCodeLine{00027\ }
-\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_p_lat_long_env_sphere_a021ee0e189084d1047de6766bd22efe9}{isIntersecting}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_ray}{Ray}}\&\ ray,\ \mbox{\hyperlink{classph_1_1_hit_probe}{HitProbe}}\&\ probe)\ \textcolor{keyword}{const\ override};}
-\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_p_lat_long_env_sphere_a1413932615d2fb24f9ae0bc55736e29a}{isOccluding}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_ray}{Ray}}\&\ ray)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <array>}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00012\ \{}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00020\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_p_lat_long_env_sphere}{PLatLongEnvSphere}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classph_1_1_p_basic_sphere}{PBasicSphere}}}
+\DoxyCodeLine{00021\ \{}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{comment}{//\ TODO:\ currently\ not\ fully\ time\ aware}}
+\DoxyCodeLine{00023\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classph_1_1_p_lat_long_env_sphere}{PLatLongEnvSphere}}(real\ radius);}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \ \ \ \ \mbox{\hyperlink{classph_1_1_p_lat_long_env_sphere}{PLatLongEnvSphere}}(}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ real\ radius,\ }
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_static_rigid_transform}{math::StaticRigidTransform}}*\ localToWorld,}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_static_rigid_transform}{math::StaticRigidTransform}}*\ worldToLocal);}
 \DoxyCodeLine{00030\ }
-\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_p_lat_long_env_sphere_a7f50af07d7606bc9cfd22636cccaa796}{calcIntersectionDetail}}(}
-\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_ray}{Ray}}\&\ ray,}
-\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_hit_probe}{HitProbe}}\&\ \ probe,}
-\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_hit_detail}{HitDetail}}*\ out\_detail)\ \textcolor{keyword}{const\ override};}
-\DoxyCodeLine{00035\ }
-\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_p_lat_long_env_sphere_a62efab606c54547ca10d717acee6b8b1}{mayOverlapVolume}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d}{math::AABB3D}}\&\ volume)\ \textcolor{keyword}{const\ override};}
-\DoxyCodeLine{00037\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d}{math::AABB3D}}\ \mbox{\hyperlink{classph_1_1_p_lat_long_env_sphere_ab365271a75cb844ac3bb3a1670812737}{calcAABB}}()\ \textcolor{keyword}{const\ override};}
-\DoxyCodeLine{00038\ \ \ \ \ real\ \mbox{\hyperlink{classph_1_1_p_lat_long_env_sphere_a82ef3186774036a140db3979d63d76aa}{calcExtendedArea}}()\ \textcolor{keyword}{const\ override};}
-\DoxyCodeLine{00039\ }
-\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_p_lat_long_env_sphere_a23e820e6a5a22c8c784a380b7573a649}{latLong01ToSurface}}(}
-\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{math::Vector2R}}\&\ latLong01,\ }
-\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\&\ observationPos,}
-\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}*\ \ \ \ \ \ \ out\_surface)\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00044\ }
-\DoxyCodeLine{00045\ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_static_rigid_transform}{math::StaticRigidTransform}}*\ m\_localToWorld;}
-\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_static_rigid_transform}{math::StaticRigidTransform}}*\ m\_worldToLocal;}
-\DoxyCodeLine{00048\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\ m\_worldOrigin;}
-\DoxyCodeLine{00049\ \};}
-\DoxyCodeLine{00050\ }
-\DoxyCodeLine{00051\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_p_lat_long_env_sphere_a62efab606c54547ca10d717acee6b8b1}{PLatLongEnvSphere::mayOverlapVolume}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d}{math::AABB3D}}\&\ volume)\textcolor{keyword}{\ const}}
-\DoxyCodeLine{00052\ \textcolor{keyword}{}\{}
-\DoxyCodeLine{00053\ \ \ \ \ \textcolor{comment}{//\ Rather\ than\ transforming\ \`{}volume`\ to\ local\ space,\ we\ transform\ the\ sphere\ to\ world\ space\ }}
-\DoxyCodeLine{00054\ \ \ \ \ \textcolor{comment}{//\ instead.\ Under\ static\ rigid\ transform\ the\ sphere\ shape\ is\ rotational\ invariant,\ we\ can\ }}
-\DoxyCodeLine{00055\ \ \ \ \ \textcolor{comment}{//\ inversely\ translate\ \`{}volume`\ and\ test\ against\ the\ sphere\ at\ the\ origin}}
-\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keyword}{auto}\ effectiveVolume\ =\ volume.\mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d_ab1a9510b332616e8d8987c3af36ffa54}{getTranslated}}(m\_worldOrigin.\mbox{\hyperlink{classph_1_1math_1_1_t_vector_n_base_a95415915a06f92953d0b06baba7a87f9}{negate}}());}
-\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1_p_basic_sphere_ab305a89c211275b48dad578131e56b7d}{PBasicSphere::mayOverlapVolume}}(effectiveVolume);}
-\DoxyCodeLine{00058\ \}}
-\DoxyCodeLine{00059\ }
-\DoxyCodeLine{00060\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d}{math::AABB3D}}\ \mbox{\hyperlink{classph_1_1_p_lat_long_env_sphere_ab365271a75cb844ac3bb3a1670812737}{PLatLongEnvSphere::calcAABB}}()\textcolor{keyword}{\ const}}
-\DoxyCodeLine{00061\ \textcolor{keyword}{}\{}
-\DoxyCodeLine{00062\ \ \ \ \ \textcolor{comment}{//\ Under\ static\ rigid\ transform,\ only\ translation\ will\ matter\ to\ the\ AABB\ of\ a\ sphere}}
-\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1_p_basic_sphere_a75e188eb9cbc9915c9072e741495ec30}{PBasicSphere::calcAABB}}().\mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d_acf1d827e2e68aa0e6e7bd9372b6968b8}{translate}}(m\_worldOrigin);}
-\DoxyCodeLine{00064\ \}}
-\DoxyCodeLine{00065\ }
-\DoxyCodeLine{00066\ \textcolor{keyword}{inline}\ real\ \mbox{\hyperlink{classph_1_1_p_lat_long_env_sphere_a82ef3186774036a140db3979d63d76aa}{PLatLongEnvSphere::calcExtendedArea}}()\textcolor{keyword}{\ const}}
-\DoxyCodeLine{00067\ \textcolor{keyword}{}\{}
-\DoxyCodeLine{00068\ \ \ \ \ \textcolor{comment}{//\ Does\ not\ change\ under\ rigid\ transform}}
-\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1_p_basic_sphere_aa4b4e2a2e02b90ffe5dab26cfed4e0c7}{PBasicSphere::calcExtendedArea}}();}
-\DoxyCodeLine{00070\ \}}
-\DoxyCodeLine{00071\ }
-\DoxyCodeLine{00072\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_p_lat_long_env_sphere_a021ee0e189084d1047de6766bd22efe9}{isIntersecting}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_ray}{Ray}}\&\ ray,\ \mbox{\hyperlink{classph_1_1_hit_probe}{HitProbe}}\&\ probe)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_p_lat_long_env_sphere_a1413932615d2fb24f9ae0bc55736e29a}{isOccluding}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_ray}{Ray}}\&\ ray)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_p_lat_long_env_sphere_a19903549b743c79401f6aeb8a690333a}{calcHitDetail}}(}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_ray}{Ray}}\&\ ray,}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_hit_probe}{HitProbe}}\&\ \ probe,}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_hit_detail}{HitDetail}}*\ out\_detail)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_p_lat_long_env_sphere_a62efab606c54547ca10d717acee6b8b1}{mayOverlapVolume}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d}{math::AABB3D}}\&\ volume)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00040\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d}{math::AABB3D}}\ \mbox{\hyperlink{classph_1_1_p_lat_long_env_sphere_ab365271a75cb844ac3bb3a1670812737}{calcAABB}}()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00041\ \ \ \ \ real\ \mbox{\hyperlink{classph_1_1_p_lat_long_env_sphere_a82ef3186774036a140db3979d63d76aa}{calcExtendedArea}}()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_p_lat_long_env_sphere_af4f31d651dac7eb630d7edb0b82e4bbd}{genPosSampleWithObservationPos}}(}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{math::Vector2R}}\&\ latLong01,}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ real\ latLong01Pdf,}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_primitive_pos_sample_query}{PrimitivePosSampleQuery}}\&\ query,}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_hit_probe}{HitProbe}}\&\ probe)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_p_lat_long_env_sphere_ad2e3e8485fdc877d377c04c5f5ede71a}{calcPosSamplePdfWithObservationPos}}(}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{math::Vector2R}}\&\ latLong01,}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ real\ latLong01Pdf,}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_primitive_pos_sample_pdf_query}{PrimitivePosSamplePdfQuery}}\&\ query,}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_hit_probe}{HitProbe}}\&\ probe)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_p_lat_long_env_sphere_acdcd54ccd12934c5e629c73fab8d5ec2}{genPosSampleWithoutObservationPos}}(}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{math::Vector2R}}\&\ latLong01,}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ real\ latLong01Pdf,}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_primitive_pos_sample_query}{PrimitivePosSampleQuery}}\&\ query,}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_sample_flow}{SampleFlow}}\&\ sampleFlow,}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_hit_probe}{HitProbe}}\&\ probe,}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}*\ out\_unitObservationDir,}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ real*\ out\_pdfW)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_p_lat_long_env_sphere_a37d92e8b6993df63f170135bb52bf1f9}{latLong01ToSurface}}(}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{math::Vector2R}}\&\ latLong01,}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\&\ observationPos,}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}*\ out\_surface,}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}*\ out\_unitObservationDir)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_p_lat_long_env_sphere_a37d92e8b6993df63f170135bb52bf1f9}{latLong01ToSurface}}(}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{math::Vector2R}}\&\ latLong01,}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::array<real,\ 2>\&\ uniformSample,}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}*\ out\_surface,}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}*\ out\_unitObservationDir,}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ real*\ out\_pdfA)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_static_rigid_transform}{math::StaticRigidTransform}}*\ m\_localToWorld;}
+\DoxyCodeLine{00110\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_static_rigid_transform}{math::StaticRigidTransform}}*\ m\_worldToLocal;}
+\DoxyCodeLine{00111\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\ m\_worldOrigin;}
+\DoxyCodeLine{00112\ \};}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_p_lat_long_env_sphere_a62efab606c54547ca10d717acee6b8b1}{PLatLongEnvSphere::mayOverlapVolume}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d}{math::AABB3D}}\&\ volume)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00115\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00116\ \ \ \ \ \textcolor{comment}{//\ Rather\ than\ transforming\ \`{}volume`\ to\ local\ space,\ we\ transform\ the\ sphere\ to\ world\ space\ }}
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{comment}{//\ instead.\ Under\ static\ rigid\ transform\ the\ sphere\ shape\ is\ rotational\ invariant,\ we\ can\ }}
+\DoxyCodeLine{00118\ \ \ \ \ \textcolor{comment}{//\ inversely\ translate\ \`{}volume`\ and\ test\ against\ the\ sphere\ at\ the\ origin}}
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{keyword}{auto}\ effectiveVolume\ =\ volume.\mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d_ab1a9510b332616e8d8987c3af36ffa54}{getTranslated}}(m\_worldOrigin.\mbox{\hyperlink{classph_1_1math_1_1_t_vector_n_base_a95415915a06f92953d0b06baba7a87f9}{negate}}());}
+\DoxyCodeLine{00120\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1_p_basic_sphere_ab305a89c211275b48dad578131e56b7d}{PBasicSphere::mayOverlapVolume}}(effectiveVolume);}
+\DoxyCodeLine{00121\ \}}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00123\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d}{math::AABB3D}}\ \mbox{\hyperlink{classph_1_1_p_lat_long_env_sphere_ab365271a75cb844ac3bb3a1670812737}{PLatLongEnvSphere::calcAABB}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00124\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00125\ \ \ \ \ \textcolor{comment}{//\ Under\ static\ rigid\ transform,\ only\ translation\ will\ matter\ to\ the\ AABB\ of\ a\ sphere}}
+\DoxyCodeLine{00126\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1_p_basic_sphere_a75e188eb9cbc9915c9072e741495ec30}{PBasicSphere::calcAABB}}().\mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d_acf1d827e2e68aa0e6e7bd9372b6968b8}{translate}}(m\_worldOrigin);}
+\DoxyCodeLine{00127\ \}}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00129\ \textcolor{keyword}{inline}\ real\ \mbox{\hyperlink{classph_1_1_p_lat_long_env_sphere_a82ef3186774036a140db3979d63d76aa}{PLatLongEnvSphere::calcExtendedArea}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00130\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00131\ \ \ \ \ \textcolor{comment}{//\ Does\ not\ change\ under\ rigid\ transform}}
+\DoxyCodeLine{00132\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1_p_basic_sphere_aa4b4e2a2e02b90ffe5dab26cfed4e0c7}{PBasicSphere::calcExtendedArea}}();}
+\DoxyCodeLine{00133\ \}}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00135\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
 
 \end{DoxyCode}

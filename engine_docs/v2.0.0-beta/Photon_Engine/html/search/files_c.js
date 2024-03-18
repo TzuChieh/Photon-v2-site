@@ -23,5 +23,6 @@ var searchData=
   ['lighttracingintegrator_2ecpp_20',['LightTracingIntegrator.cpp',['../d4/d5d/_light_tracing_integrator_8cpp.html',1,'']]],
   ['lighttracingintegrator_2eh_21',['LightTracingIntegrator.h',['../d6/d4c/_light_tracing_integrator_8h.html',1,'']]],
   ['location_2eh_22',['location.h',['../dd/dcf/location_8h.html',1,'']]],
-  ['lta_2eh_23',['lta.h',['../d1/d0c/lta_8h.html',1,'']]]
+  ['lta_2edox_23',['LTA.dox',['../d3/d84/_l_t_a_8dox.html',1,'']]],
+  ['lta_2eh_24',['lta.h',['../d1/d0c/lta_8h.html',1,'']]]
 ];

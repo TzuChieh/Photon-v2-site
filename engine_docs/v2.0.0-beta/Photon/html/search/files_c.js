@@ -29,5 +29,6 @@ var searchData=
   ['logger_5ffwd_2eh_26',['logger_fwd.h',['../../../Photon_Common/html/d0/d05/logger__fwd_8h.html',1,'']]],
   ['logging_2ecpp_27',['logging.cpp',['../../../Photon_Common/html/dd/daf/logging_8cpp.html',1,'']]],
   ['logging_2eh_28',['logging.h',['../../../Photon_Common/html/d5/d77/logging_8h.html',1,'']]],
-  ['lta_2eh_29',['lta.h',['../../../Photon_Engine/html/d1/d0c/lta_8h.html',1,'']]]
+  ['lta_2edox_29',['LTA.dox',['../../../Photon_Engine/html/d3/d84/_l_t_a_8dox.html',1,'']]],
+  ['lta_2eh_30',['lta.h',['../../../Photon_Engine/html/d1/d0c/lta_8h.html',1,'']]]
 ];

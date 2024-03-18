@@ -2,6 +2,11 @@
 \hypertarget{classph_1_1_scene}{}\label{classph_1_1_scene}\index{ph::Scene@{ph::Scene}}
 
 
+A unified interface for accessing cooked content in a visual world.  
+
+
+
+
 {\ttfamily \#include $<$Scene.\+h$>$}
 
 \doxysubsubsection*{Public Member Functions}
@@ -17,15 +22,18 @@ bool \mbox{\hyperlink{classph_1_1_scene_a5a7a34b8af81678644090d368e46eae9}{is\+I
 \item 
 const \mbox{\hyperlink{classph_1_1_emitter}{Emitter}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classph_1_1_scene_a64cf0bdf2320c90b343fcfa2a35bc070}{pick\+Emitter}} (\mbox{\hyperlink{classph_1_1_sample_flow}{Sample\+Flow}} \&sample\+Flow, real \texorpdfstring{$\ast$}{*}const out\+\_\+\+PDF) const
 \item 
-void \mbox{\hyperlink{classph_1_1_scene_a174dc35371a76085e3387c6bd41a9ddc}{gen\+Direct\+Sample}} (\mbox{\hyperlink{classph_1_1_direct_energy_sample_query}{Direct\+Energy\+Sample\+Query}} \&query, \mbox{\hyperlink{classph_1_1_sample_flow}{Sample\+Flow}} \&sample\+Flow) const
-\item 
-real \mbox{\hyperlink{classph_1_1_scene_a1a5ea87ed5b07e2e4be8982d1739f684}{calc\+Direct\+PdfW}} (const \mbox{\hyperlink{classph_1_1_surface_hit}{Surface\+Hit}} \&emit\+Pos, const \mbox{\hyperlink{namespaceph_1_1math_abf8e1463b13d63dcdc46f0cb65e59c5a}{math\+::\+Vector3R}} \&target\+Pos) const
-\item 
-void \mbox{\hyperlink{classph_1_1_scene_a0dc91cf6ed7dd6d1c74a242d034bc1ce}{emit\+Ray}} (\mbox{\hyperlink{classph_1_1_sample_flow}{Sample\+Flow}} \&sample\+Flow, \mbox{\hyperlink{classph_1_1_ray}{Ray}} \texorpdfstring{$\ast$}{*}out\+\_\+ray, \mbox{\hyperlink{namespaceph_1_1math_a42275285cd99065c86ce22761ccaab91}{math\+::\+Spectrum}} \texorpdfstring{$\ast$}{*}out\+\_\+\+Le, \mbox{\hyperlink{namespaceph_1_1math_abf8e1463b13d63dcdc46f0cb65e59c5a}{math\+::\+Vector3R}} \texorpdfstring{$\ast$}{*}out\+\_\+eN, real \texorpdfstring{$\ast$}{*}out\+\_\+pdfA, real \texorpdfstring{$\ast$}{*}out\+\_\+pdfW) const
-\item 
+void \mbox{\hyperlink{classph_1_1_scene_ac0b56216b94458892cd258d19299bb9b}{gen\+Direct\+Sample}} (\mbox{\hyperlink{classph_1_1_direct_energy_sample_query}{Direct\+Energy\+Sample\+Query}} \&query, \mbox{\hyperlink{classph_1_1_sample_flow}{Sample\+Flow}} \&sample\+Flow, \mbox{\hyperlink{classph_1_1_hit_probe}{Hit\+Probe}} \&probe) const
+\begin{DoxyCompactList}\small\item\em \doxylink{classph_1_1_sample}{Sample} direct lighting for a target position. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classph_1_1_scene_a2fb9579e47fa677e64a740e8f46437ff}{calc\+Direct\+Sample\+PdfW}} (\mbox{\hyperlink{classph_1_1_direct_energy_sample_pdf_query}{Direct\+Energy\+Sample\+Pdf\+Query}} \&query, \mbox{\hyperlink{classph_1_1_hit_probe}{Hit\+Probe}} \&probe) const
+\begin{DoxyCompactList}\small\item\em \doxylink{classph_1_1_sample}{Sample} direct lighting for a target position. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classph_1_1_scene_af4631dd4a0588a3d81851e5639620569}{emit\+Ray}} (\mbox{\hyperlink{classph_1_1_energy_emission_sample_query}{Energy\+Emission\+Sample\+Query}} \&query, \mbox{\hyperlink{classph_1_1_sample_flow}{Sample\+Flow}} \&sample\+Flow, \mbox{\hyperlink{classph_1_1_hit_probe}{Hit\+Probe}} \&probe) const
+\begin{DoxyCompactList}\small\item\em Emit a ray that carries some amount of energy from an emitter. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classph_1_1_scene_a9644fca5331effcde3271673da6c1c5d}{set\+Background\+Primitive}} (const \mbox{\hyperlink{classph_1_1_primitive}{Primitive}} \texorpdfstring{$\ast$}{*}const primitive)
 \end{DoxyCompactItemize}
 
+
+\doxysubsection{Detailed Description}
+A unified interface for accessing cooked content in a visual world. 
 
 \doxysubsection{Constructor \& Destructor Documentation}
 \Hypertarget{classph_1_1_scene_a8a73e8fd7b4b625ddee761f423b00b20}\label{classph_1_1_scene_a8a73e8fd7b4b625ddee761f423b00b20} 
@@ -43,24 +51,45 @@ void \mbox{\hyperlink{classph_1_1_scene_a9644fca5331effcde3271673da6c1c5d}{set\+
 
 
 \doxysubsection{Member Function Documentation}
-\Hypertarget{classph_1_1_scene_a1a5ea87ed5b07e2e4be8982d1739f684}\label{classph_1_1_scene_a1a5ea87ed5b07e2e4be8982d1739f684} 
-\index{ph::Scene@{ph::Scene}!calcDirectPdfW@{calcDirectPdfW}}
-\index{calcDirectPdfW@{calcDirectPdfW}!ph::Scene@{ph::Scene}}
-\doxysubsubsection{\texorpdfstring{calcDirectPdfW()}{calcDirectPdfW()}}
-{\footnotesize\ttfamily real ph\+::\+Scene\+::calc\+Direct\+PdfW (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classph_1_1_surface_hit}{Surface\+Hit}} \&}]{emit\+Pos,  }\item[{const \mbox{\hyperlink{namespaceph_1_1math_abf8e1463b13d63dcdc46f0cb65e59c5a}{math\+::\+Vector3R}} \&}]{target\+Pos }\end{DoxyParamCaption}) const}
+\Hypertarget{classph_1_1_scene_a2fb9579e47fa677e64a740e8f46437ff}\label{classph_1_1_scene_a2fb9579e47fa677e64a740e8f46437ff} 
+\index{ph::Scene@{ph::Scene}!calcDirectSamplePdfW@{calcDirectSamplePdfW}}
+\index{calcDirectSamplePdfW@{calcDirectSamplePdfW}!ph::Scene@{ph::Scene}}
+\doxysubsubsection{\texorpdfstring{calcDirectSamplePdfW()}{calcDirectSamplePdfW()}}
+{\footnotesize\ttfamily void ph\+::\+Scene\+::calc\+Direct\+Sample\+PdfW (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classph_1_1_direct_energy_sample_pdf_query}{Direct\+Energy\+Sample\+Pdf\+Query}} \&}]{query,  }\item[{\mbox{\hyperlink{classph_1_1_hit_probe}{Hit\+Probe}} \&}]{probe }\end{DoxyParamCaption}) const}
 
-\Hypertarget{classph_1_1_scene_a0dc91cf6ed7dd6d1c74a242d034bc1ce}\label{classph_1_1_scene_a0dc91cf6ed7dd6d1c74a242d034bc1ce} 
+
+
+\doxylink{classph_1_1_sample}{Sample} direct lighting for a target position. 
+
+\begin{DoxyNote}{Note}
+Generates hit event (with {\ttfamily \doxylink{classph_1_1_direct_energy_sample_pdf_input_a99d11be6bd0d22447720dfc9e7889940}{Direct\+Energy\+Sample\+Pdf\+Input\+::get\+Observation\+Ray()}} and {\ttfamily probe}). 
+\end{DoxyNote}
+\Hypertarget{classph_1_1_scene_af4631dd4a0588a3d81851e5639620569}\label{classph_1_1_scene_af4631dd4a0588a3d81851e5639620569} 
 \index{ph::Scene@{ph::Scene}!emitRay@{emitRay}}
 \index{emitRay@{emitRay}!ph::Scene@{ph::Scene}}
 \doxysubsubsection{\texorpdfstring{emitRay()}{emitRay()}}
-{\footnotesize\ttfamily void ph\+::\+Scene\+::emit\+Ray (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classph_1_1_sample_flow}{Sample\+Flow}} \&}]{sample\+Flow,  }\item[{\mbox{\hyperlink{classph_1_1_ray}{Ray}} \texorpdfstring{$\ast$}{*}}]{out\+\_\+ray,  }\item[{\mbox{\hyperlink{namespaceph_1_1math_a42275285cd99065c86ce22761ccaab91}{math\+::\+Spectrum}} \texorpdfstring{$\ast$}{*}}]{out\+\_\+\+Le,  }\item[{\mbox{\hyperlink{namespaceph_1_1math_abf8e1463b13d63dcdc46f0cb65e59c5a}{math\+::\+Vector3R}} \texorpdfstring{$\ast$}{*}}]{out\+\_\+eN,  }\item[{real \texorpdfstring{$\ast$}{*}}]{out\+\_\+pdfA,  }\item[{real \texorpdfstring{$\ast$}{*}}]{out\+\_\+pdfW }\end{DoxyParamCaption}) const}
+{\footnotesize\ttfamily void ph\+::\+Scene\+::emit\+Ray (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classph_1_1_energy_emission_sample_query}{Energy\+Emission\+Sample\+Query}} \&}]{query,  }\item[{\mbox{\hyperlink{classph_1_1_sample_flow}{Sample\+Flow}} \&}]{sample\+Flow,  }\item[{\mbox{\hyperlink{classph_1_1_hit_probe}{Hit\+Probe}} \&}]{probe }\end{DoxyParamCaption}) const}
 
-\Hypertarget{classph_1_1_scene_a174dc35371a76085e3387c6bd41a9ddc}\label{classph_1_1_scene_a174dc35371a76085e3387c6bd41a9ddc} 
+
+
+Emit a ray that carries some amount of energy from an emitter. 
+
+\begin{DoxyNote}{Note}
+Generates hit event (with {\ttfamily \doxylink{classph_1_1_energy_emission_sample_output_ad5244cbd58dfaf3217db78f8beaf9a3c}{Energy\+Emission\+Sample\+Output\+::get\+Emitted\+Ray()}} and {\ttfamily probe}). 
+\end{DoxyNote}
+\Hypertarget{classph_1_1_scene_ac0b56216b94458892cd258d19299bb9b}\label{classph_1_1_scene_ac0b56216b94458892cd258d19299bb9b} 
 \index{ph::Scene@{ph::Scene}!genDirectSample@{genDirectSample}}
 \index{genDirectSample@{genDirectSample}!ph::Scene@{ph::Scene}}
 \doxysubsubsection{\texorpdfstring{genDirectSample()}{genDirectSample()}}
-{\footnotesize\ttfamily void ph\+::\+Scene\+::gen\+Direct\+Sample (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classph_1_1_direct_energy_sample_query}{Direct\+Energy\+Sample\+Query}} \&}]{query,  }\item[{\mbox{\hyperlink{classph_1_1_sample_flow}{Sample\+Flow}} \&}]{sample\+Flow }\end{DoxyParamCaption}) const}
+{\footnotesize\ttfamily void ph\+::\+Scene\+::gen\+Direct\+Sample (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classph_1_1_direct_energy_sample_query}{Direct\+Energy\+Sample\+Query}} \&}]{query,  }\item[{\mbox{\hyperlink{classph_1_1_sample_flow}{Sample\+Flow}} \&}]{sample\+Flow,  }\item[{\mbox{\hyperlink{classph_1_1_hit_probe}{Hit\+Probe}} \&}]{probe }\end{DoxyParamCaption}) const}
 
+
+
+\doxylink{classph_1_1_sample}{Sample} direct lighting for a target position. 
+
+\begin{DoxyNote}{Note}
+Generates hit event (with {\ttfamily \doxylink{classph_1_1_direct_energy_sample_output_a8681008d7a7193dfdfa2e3daeedda11b}{Direct\+Energy\+Sample\+Output\+::get\+Observation\+Ray()}} and {\ttfamily probe}). 
+\end{DoxyNote}
 \Hypertarget{classph_1_1_scene_a5a7a34b8af81678644090d368e46eae9}\label{classph_1_1_scene_a5a7a34b8af81678644090d368e46eae9} 
 \index{ph::Scene@{ph::Scene}!isIntersecting@{isIntersecting}}
 \index{isIntersecting@{isIntersecting}!ph::Scene@{ph::Scene}}

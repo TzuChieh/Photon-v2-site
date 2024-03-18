@@ -16,6 +16,7 @@ var dir_9263546c05a53c824c3cf12d70c7aee4 =
     [ "SdlIOContext.h", "da/de0/_sdl_i_o_context_8h.html", "da/de0/_sdl_i_o_context_8h" ],
     [ "SdlNativeData.h", "de/d67/_sdl_native_data_8h.html", "de/d67/_sdl_native_data_8h" ],
     [ "SdlNativeData.ipp", "d4/d2c/_sdl_native_data_8ipp.html", null ],
+    [ "SdlOutputContext.cpp", "db/d84/_sdl_output_context_8cpp.html", null ],
     [ "SdlOutputContext.h", "dc/d19/_sdl_output_context_8h.html", "dc/d19/_sdl_output_context_8h" ],
     [ "SdlStruct.cpp", "df/df0/_sdl_struct_8cpp.html", null ],
     [ "SdlStruct.h", "d1/d2d/_sdl_struct_8h.html", "d1/d2d/_sdl_struct_8h" ],
@@ -50,9 +51,12 @@ var dir_9263546c05a53c824c3cf12d70c7aee4 =
     [ "TSdlReferenceArray.ipp", "da/d7b/_t_sdl_reference_array_8ipp.html", null ],
     [ "TSdlResourceIdentifier.h", "dd/d93/_t_sdl_resource_identifier_8h.html", "dd/d93/_t_sdl_resource_identifier_8h" ],
     [ "TSdlString.h", "dd/daa/_t_sdl_string_8h.html", "dd/daa/_t_sdl_string_8h" ],
+    [ "TSdlStructArray.h", "d0/d73/_t_sdl_struct_array_8h.html", "d0/d73/_t_sdl_struct_array_8h" ],
+    [ "TSdlStructArray.ipp", "d9/d21/_t_sdl_struct_array_8ipp.html", null ],
     [ "TSdlValue.h", "de/de4/_t_sdl_value_8h.html", "de/de4/_t_sdl_value_8h" ],
     [ "TSdlValue.ipp", "d5/d60/_t_sdl_value_8ipp.html", null ],
     [ "TSdlVector2.h", "d2/d6a/_t_sdl_vector2_8h.html", "d2/d6a/_t_sdl_vector2_8h" ],
     [ "TSdlVector3.h", "df/d35/_t_sdl_vector3_8h.html", "df/d35/_t_sdl_vector3_8h" ],
-    [ "TSdlVector3Array.h", "d3/d7a/_t_sdl_vector3_array_8h.html", "d3/d7a/_t_sdl_vector3_array_8h" ]
+    [ "TSdlVector3Array.h", "d3/d7a/_t_sdl_vector3_array_8h.html", "d3/d7a/_t_sdl_vector3_array_8h" ],
+    [ "TSdlVector4.h", "da/d9c/_t_sdl_vector4_8h.html", "da/d9c/_t_sdl_vector4_8h" ]
 ];

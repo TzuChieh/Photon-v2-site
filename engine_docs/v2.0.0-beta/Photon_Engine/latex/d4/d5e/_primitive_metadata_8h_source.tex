@@ -1,13 +1,13 @@
 \doxysection{Primitive\+Metadata.\+h}
-\hypertarget{_primitive_metadata_8h_source}{}\label{_primitive_metadata_8h_source}\index{Source/Core/Intersectable/PrimitiveMetadata.h@{Source/Core/Intersectable/PrimitiveMetadata.h}}
+\hypertarget{_primitive_metadata_8h_source}{}\label{_primitive_metadata_8h_source}\index{Source/Core/Intersection/PrimitiveMetadata.h@{Source/Core/Intersection/PrimitiveMetadata.h}}
 \mbox{\hyperlink{_primitive_metadata_8h}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
 \DoxyCodeLine{00002\ }
 \DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_surface_behavior_8h}{Core/SurfaceBehavior/SurfaceBehavior.h}}"{}}}
 \DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_static_affine_transform_8h}{Math/Transform/StaticAffineTransform.h}}"{}}}
-\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_uvw_mapper_8h}{Core/Intersectable/UvwMapper/UvwMapper.h}}"{}}}
-\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_primitive_channel_8h}{Core/Intersectable/PrimitiveChannel.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_uvw_mapper_8h}{Core/Intersection/UvwMapper/UvwMapper.h}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_primitive_channel_8h}{Core/Intersection/PrimitiveChannel.h}}"{}}}
 \DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_volume_behavior_8h}{Core/VolumeBehavior/VolumeBehavior.h}}"{}}}
 \DoxyCodeLine{00008\ }
 \DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <Common/assertion.h>}}
@@ -21,56 +21,85 @@
 \DoxyCodeLine{00017\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_primitive_metadata}{PrimitiveMetadata}}\ final}
 \DoxyCodeLine{00018\ \{}
 \DoxyCodeLine{00019\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ uint32\ \mbox{\hyperlink{classph_1_1_primitive_metadata_a548126069983f897f5d841c4bd1247e5}{INVALID\_CHANNEL\_ID}}\ =\ \textcolor{keyword}{static\_cast<}uint32\textcolor{keyword}{>}(-\/1);}
-\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ uint32\ \mbox{\hyperlink{classph_1_1_primitive_metadata_a6f9d3977c1d878caed6e55abce919f72}{DEFAULT\_CHANNEL\_ID}}\ =\ \textcolor{keyword}{static\_cast<}uint32\textcolor{keyword}{>}(\ 0);}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1_primitive_metadata_a4a71531bfd00b4b181d597c168629c8d}{INVALID\_CHANNEL\_ID}}\ =\ \textcolor{keyword}{static\_cast<}uint8\textcolor{keyword}{>}(-\/1);}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1_primitive_metadata_a89960b205df7a03bc03ae59362cff7c0}{DEFAULT\_CHANNEL\_ID}}\ =\ \textcolor{keyword}{static\_cast<}uint8\textcolor{keyword}{>}(\ 0);}
 \DoxyCodeLine{00022\ }
 \DoxyCodeLine{00023\ \ \ \ \ \mbox{\hyperlink{classph_1_1_primitive_metadata_a051ebfd72fe864cce9eec06c3d0d5a37}{PrimitiveMetadata}}();}
 \DoxyCodeLine{00024\ }
-\DoxyCodeLine{00025\ \ \ \ \ \textcolor{comment}{//\ Adds\ a\ channel\ to\ the\ metadata.\ Returns\ a\ channel\ ID\ that\ can\ be\ used}}
-\DoxyCodeLine{00026\ \ \ \ \ \textcolor{comment}{//\ to\ access\ the\ just\ added\ channel.}}
-\DoxyCodeLine{00027\ \ \ \ \ uint32\ \mbox{\hyperlink{classph_1_1_primitive_metadata_a2b717e31d736f9b0dafc25ca65d787fe}{addChannel}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_primitive_channel}{PrimitiveChannel}}\&\ channel);}
-\DoxyCodeLine{00028\ }
-\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_primitive_metadata_a80d2d0639d59edaebf6474be0b194129}{setChannel}}(uint32\ channelId,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_primitive_channel}{PrimitiveChannel}}\&\ channel);}
-\DoxyCodeLine{00030\ }
-\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_primitive_channel}{PrimitiveChannel}}\&\ \mbox{\hyperlink{classph_1_1_primitive_metadata_a2ce1367cba98d0ba3dbdc10fdbd4d679}{getChannel}}(\textcolor{keyword}{const}\ uint32\ channelId)\textcolor{keyword}{\ const}}
-\DoxyCodeLine{00032\ \textcolor{keyword}{\ \ \ \ }\{}
-\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{classph_1_1_primitive_metadata_af9931650facab653646603c48356a9bb}{isChannelIdValid}}(channelId))}
-\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_channels[channelId];}
-\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1_primitive_metadata_a47bd4a5c94f7baf77505fdcb54809775}{getDefaultChannel}}();}
-\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00041\ \ \ \ \ \}}
+\DoxyCodeLine{00028\ \ \ \ \ uint8\ \mbox{\hyperlink{classph_1_1_primitive_metadata_ae4671c35812d943d6ceff92dbe84ab6a}{addChannel}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_primitive_channel}{PrimitiveChannel}}\&\ channel);}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_primitive_metadata_a9e212ed9b674085d8335ec01784bb98e}{setChannel}}(uint8\ channelId,\ \mbox{\hyperlink{classph_1_1_primitive_channel}{PrimitiveChannel}}\ channel);}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_primitive_channel}{PrimitiveChannel}}\&\ \mbox{\hyperlink{classph_1_1_primitive_metadata_a6c5a384d085d3ed16e9955efaf8b6b99}{getChannel}}(uint8\ channelId)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_primitive_channel}{PrimitiveChannel}}\&\ \mbox{\hyperlink{classph_1_1_primitive_metadata_a47bd4a5c94f7baf77505fdcb54809775}{getDefaultChannel}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_primitive_metadata_afa78416a23ecdf73d9bbcaf0a99d9685}{isChannelIdValid}}(uint8\ channelId)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ \mbox{\hyperlink{classph_1_1_surface_behavior}{SurfaceBehavior}}\&\ \mbox{\hyperlink{classph_1_1_primitive_metadata_aa1de761e2aba6c2e38782234fb84c729}{getSurface}}();}
+\DoxyCodeLine{00036\ \ \ \ \ \mbox{\hyperlink{classph_1_1_volume_behavior}{VolumeBehavior}}\&\ \mbox{\hyperlink{classph_1_1_primitive_metadata_a063003f0b61e94427868585a3980e312}{getInterior}}();}
+\DoxyCodeLine{00037\ \ \ \ \ \mbox{\hyperlink{classph_1_1_volume_behavior}{VolumeBehavior}}\&\ \mbox{\hyperlink{classph_1_1_primitive_metadata_afd6a1de28956e9a1180b7050d1eac74e}{getExterior}}();}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_surface_behavior}{SurfaceBehavior}}\&\ \mbox{\hyperlink{classph_1_1_primitive_metadata_aa1de761e2aba6c2e38782234fb84c729}{getSurface}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_volume_behavior}{VolumeBehavior}}\&\ \mbox{\hyperlink{classph_1_1_primitive_metadata_a063003f0b61e94427868585a3980e312}{getInterior}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_volume_behavior}{VolumeBehavior}}\&\ \mbox{\hyperlink{classph_1_1_primitive_metadata_afd6a1de28956e9a1180b7050d1eac74e}{getExterior}}()\ \textcolor{keyword}{const};}
 \DoxyCodeLine{00042\ }
-\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_primitive_channel}{PrimitiveChannel}}\&\ \mbox{\hyperlink{classph_1_1_primitive_metadata_a47bd4a5c94f7baf77505fdcb54809775}{getDefaultChannel}}()\textcolor{keyword}{\ const}}
-\DoxyCodeLine{00044\ \textcolor{keyword}{\ \ \ \ }\{}
-\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1_primitive_metadata_a2ce1367cba98d0ba3dbdc10fdbd4d679}{getChannel}}(\mbox{\hyperlink{classph_1_1_primitive_metadata_a6f9d3977c1d878caed6e55abce919f72}{DEFAULT\_CHANNEL\_ID}});}
-\DoxyCodeLine{00046\ \ \ \ \ \}}
-\DoxyCodeLine{00047\ }
-\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_primitive_metadata_af9931650facab653646603c48356a9bb}{isChannelIdValid}}(\textcolor{keyword}{const}\ uint32\ channelId)\textcolor{keyword}{\ const}}
-\DoxyCodeLine{00049\ \textcolor{keyword}{\ \ \ \ }\{}
-\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ PH\_ASSERT(channelId\ !=\ \mbox{\hyperlink{classph_1_1_primitive_metadata_a548126069983f897f5d841c4bd1247e5}{INVALID\_CHANNEL\_ID}});}
-\DoxyCodeLine{00051\ }
-\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ channelId\ <\ m\_channels.size();}
-\DoxyCodeLine{00053\ \ \ \ \ \}}
-\DoxyCodeLine{00054\ }
-\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_surface_behavior}{SurfaceBehavior}}\&\ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_primitive_metadata_aa1de761e2aba6c2e38782234fb84c729}{getSurface}}()\ \ \{\ \textcolor{keywordflow}{return}\ m\_surface;\ \ \}}
-\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_volume_behavior}{VolumeBehavior}}\&\ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_primitive_metadata_a063003f0b61e94427868585a3980e312}{getInterior}}()\ \{\ \textcolor{keywordflow}{return}\ m\_interior;\ \}}
-\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_volume_behavior}{VolumeBehavior}}\&\ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_primitive_metadata_afd6a1de28956e9a1180b7050d1eac74e}{getExterior}}()\ \{\ \textcolor{keywordflow}{return}\ m\_exterior;\ \}}
-\DoxyCodeLine{00058\ }
-\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_surface_behavior}{SurfaceBehavior}}\&\ \mbox{\hyperlink{classph_1_1_primitive_metadata_a2dddf84fddc7d3d4e1b6162c4b8a79ee}{getSurface}}()\textcolor{keyword}{\ const\ \ }\{\ \textcolor{keywordflow}{return}\ m\_surface;\ \ \}}
-\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_volume_behavior}{VolumeBehavior}}\&\ \ \mbox{\hyperlink{classph_1_1_primitive_metadata_a9572ff0f6f46e5563e3ff5956a7ba64e}{getInterior}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ m\_interior;\ \}}
-\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_volume_behavior}{VolumeBehavior}}\&\ \ \mbox{\hyperlink{classph_1_1_primitive_metadata_adcb6e5a8642a5556061d5a28f7909ff5}{getExterior}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ m\_exterior;\ \}}
-\DoxyCodeLine{00062\ }
-\DoxyCodeLine{00063\ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00064\ \ \ \ \ \mbox{\hyperlink{classph_1_1_surface_behavior}{SurfaceBehavior}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_surface;}
-\DoxyCodeLine{00065\ \ \ \ \ \mbox{\hyperlink{classph_1_1_volume_behavior}{VolumeBehavior}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_interior;}
-\DoxyCodeLine{00066\ \ \ \ \ \mbox{\hyperlink{classph_1_1_volume_behavior}{VolumeBehavior}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_exterior;}
-\DoxyCodeLine{00067\ \ \ \ \ std::vector<PrimitiveChannel>\ m\_channels;}
-\DoxyCodeLine{00068\ \};}
-\DoxyCodeLine{00069\ }
-\DoxyCodeLine{00070\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+\DoxyCodeLine{00043\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00044\ \ \ \ \ \mbox{\hyperlink{classph_1_1_surface_behavior}{SurfaceBehavior}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_surface;}
+\DoxyCodeLine{00045\ \ \ \ \ \mbox{\hyperlink{classph_1_1_volume_behavior}{VolumeBehavior}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_interior;}
+\DoxyCodeLine{00046\ \ \ \ \ \mbox{\hyperlink{classph_1_1_volume_behavior}{VolumeBehavior}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_exterior;}
+\DoxyCodeLine{00047\ \ \ \ \ std::vector<PrimitiveChannel>\ m\_channels;}
+\DoxyCodeLine{00048\ \};}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_primitive_channel}{PrimitiveChannel}}\&\ \mbox{\hyperlink{classph_1_1_primitive_metadata_a6c5a384d085d3ed16e9955efaf8b6b99}{PrimitiveMetadata::getChannel}}(\textcolor{keyword}{const}\ uint8\ channelId)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00051\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{classph_1_1_primitive_metadata_afa78416a23ecdf73d9bbcaf0a99d9685}{isChannelIdValid}}(channelId))}
+\DoxyCodeLine{00053\ \ \ \ \ \{}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_channels[channelId];}
+\DoxyCodeLine{00055\ \ \ \ \ \}}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00057\ \ \ \ \ \{}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1_primitive_metadata_a47bd4a5c94f7baf77505fdcb54809775}{getDefaultChannel}}();}
+\DoxyCodeLine{00059\ \ \ \ \ \}}
+\DoxyCodeLine{00060\ \}}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_primitive_channel}{PrimitiveChannel}}\&\ \mbox{\hyperlink{classph_1_1_primitive_metadata_a47bd4a5c94f7baf77505fdcb54809775}{PrimitiveMetadata::getDefaultChannel}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00063\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1_primitive_metadata_a6c5a384d085d3ed16e9955efaf8b6b99}{getChannel}}(\mbox{\hyperlink{classph_1_1_primitive_metadata_a89960b205df7a03bc03ae59362cff7c0}{DEFAULT\_CHANNEL\_ID}});}
+\DoxyCodeLine{00065\ \}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_primitive_metadata_afa78416a23ecdf73d9bbcaf0a99d9685}{PrimitiveMetadata::isChannelIdValid}}(\textcolor{keyword}{const}\ uint8\ channelId)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00068\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keywordflow}{return}\ channelId\ <\ m\_channels.size();}
+\DoxyCodeLine{00070\ \}}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_surface_behavior}{SurfaceBehavior}}\&\ \mbox{\hyperlink{classph_1_1_primitive_metadata_aa1de761e2aba6c2e38782234fb84c729}{PrimitiveMetadata::getSurface}}()}
+\DoxyCodeLine{00073\ \{}
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_surface;}
+\DoxyCodeLine{00075\ \}}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_volume_behavior}{VolumeBehavior}}\&\ \mbox{\hyperlink{classph_1_1_primitive_metadata_a063003f0b61e94427868585a3980e312}{PrimitiveMetadata::getInterior}}()}
+\DoxyCodeLine{00078\ \{}
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_interior;}
+\DoxyCodeLine{00080\ \}}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_volume_behavior}{VolumeBehavior}}\&\ \mbox{\hyperlink{classph_1_1_primitive_metadata_afd6a1de28956e9a1180b7050d1eac74e}{PrimitiveMetadata::getExterior}}()}
+\DoxyCodeLine{00083\ \{}
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_exterior;}
+\DoxyCodeLine{00085\ \}}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_surface_behavior}{SurfaceBehavior}}\&\ \mbox{\hyperlink{classph_1_1_primitive_metadata_aa1de761e2aba6c2e38782234fb84c729}{PrimitiveMetadata::getSurface}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00088\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_surface;}
+\DoxyCodeLine{00090\ \}}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_volume_behavior}{VolumeBehavior}}\&\ \mbox{\hyperlink{classph_1_1_primitive_metadata_a063003f0b61e94427868585a3980e312}{PrimitiveMetadata::getInterior}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00093\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_interior;}
+\DoxyCodeLine{00095\ \}}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_volume_behavior}{VolumeBehavior}}\&\ \mbox{\hyperlink{classph_1_1_primitive_metadata_afd6a1de28956e9a1180b7050d1eac74e}{PrimitiveMetadata::getExterior}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00098\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_exterior;}
+\DoxyCodeLine{00100\ \}}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
 
 \end{DoxyCode}

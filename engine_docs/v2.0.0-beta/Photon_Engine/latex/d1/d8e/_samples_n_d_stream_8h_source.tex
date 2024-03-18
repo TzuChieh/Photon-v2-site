@@ -5,7 +5,7 @@
 \DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
 \DoxyCodeLine{00002\ }
 \DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_sample_flow_8h}{Core/SampleGenerator/SampleFlow.h}}"{}}}
-\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_random_8h}{Math/Random.h}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_random_8h}{Math/Random/Random.h}}"{}}}
 \DoxyCodeLine{00005\ }
 \DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <Common/assertion.h>}}
 \DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <Common/primitive\_type.h>}}
@@ -25,115 +25,115 @@
 \DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ std::size\_t\ \mbox{\hyperlink{classph_1_1_samples_n_d_stream_acf986228ed1cda7597d51e2e98eb695b}{numDims}},\ }
 \DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ std::size\_t\ \mbox{\hyperlink{classph_1_1_samples_n_d_stream_a2c1ec4a2f08d12c426eda7392ae5b7e1}{numSamples}});}
 \DoxyCodeLine{00023\ }
-\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keyword}{const}\ real*\ \mbox{\hyperlink{classph_1_1_samples_n_d_stream_a41fa29c6432304ffb2be4cec04600656}{readSample}}();}
-\DoxyCodeLine{00025\ }
-\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N>}
-\DoxyCodeLine{00027\ \ \ \ \ std::array<real,\ N>\ \mbox{\hyperlink{classph_1_1_samples_n_d_stream_a41fa29c6432304ffb2be4cec04600656}{readSample}}();}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{const}\ real*\ \mbox{\hyperlink{classph_1_1_samples_n_d_stream_a41fa29c6432304ffb2be4cec04600656}{readSample}}();}
 \DoxyCodeLine{00028\ }
-\DoxyCodeLine{00029\ \ \ \ \ \mbox{\hyperlink{classph_1_1_sample_flow}{SampleFlow}}\ \mbox{\hyperlink{classph_1_1_samples_n_d_stream_ab3b0b77bb77750833840bece8ec227af}{readSampleAsFlow}}();}
-\DoxyCodeLine{00030\ }
-\DoxyCodeLine{00031\ \ \ \ \ std::size\_t\ \mbox{\hyperlink{classph_1_1_samples_n_d_stream_acf986228ed1cda7597d51e2e98eb695b}{numDims}}()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00032\ \ \ \ \ std::size\_t\ \mbox{\hyperlink{classph_1_1_samples_n_d_stream_a2c1ec4a2f08d12c426eda7392ae5b7e1}{numSamples}}()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00033\ }
-\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N>}
-\DoxyCodeLine{00035\ \ \ \ \ std::array<real,\ N>\ \mbox{\hyperlink{classph_1_1_samples_n_d_stream_a5c1172023a4811cb013b7f52dd3b905d}{get}}(std::size\_t\ index)\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00036\ }
-\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{const}\ real*\ \mbox{\hyperlink{classph_1_1_samples_n_d_stream_a0ed1de82a91b4ecf1453e54639244fd4}{operator\ []\ }}(std::size\_t\ index)\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00041\ }
-\DoxyCodeLine{00042\ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keyword}{const}\ real*\ \ \ \ \ \ \ m\_buffer;}
-\DoxyCodeLine{00044\ \ \ \ \ std::size\_t\ \ \ \ \ \ \ m\_numDims;}
-\DoxyCodeLine{00045\ \ \ \ \ std::size\_t\ \ \ \ \ \ \ m\_numSamples;}
-\DoxyCodeLine{00046\ \ \ \ \ std::size\_t\ \ \ \ \ \ \ m\_readIndex;}
-\DoxyCodeLine{00047\ \ \ \ \ std::vector<real>\ m\_overreadBuffer;}
-\DoxyCodeLine{00048\ \};}
-\DoxyCodeLine{00049\ }
-\DoxyCodeLine{00050\ \textcolor{comment}{//\ In-\/header\ Implementations:}}
-\DoxyCodeLine{00051\ }
-\DoxyCodeLine{00052\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_samples_n_d_stream_adfa3f6f54d5b7936125a003e014db720}{SamplesNDStream::SamplesNDStream}}(}
-\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keyword}{const}\ real*\ \textcolor{keyword}{const}\ buffer,}
-\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ numDims,}
-\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ numSamples)\ :\ }
-\DoxyCodeLine{00056\ }
-\DoxyCodeLine{00057\ \ \ \ \ m\_buffer\ \ \ \ \ \ \ \ (buffer),}
-\DoxyCodeLine{00058\ \ \ \ \ m\_numDims\ \ \ \ \ \ \ (numDims),}
-\DoxyCodeLine{00059\ \ \ \ \ m\_numSamples\ \ \ \ (numSamples),}
-\DoxyCodeLine{00060\ \ \ \ \ m\_readIndex\ \ \ \ \ (0),}
-\DoxyCodeLine{00061\ \ \ \ \ m\_overreadBuffer(numDims)\textcolor{comment}{//\ TODO:\ possibly\ make\ it\ record\ all\ samples\ for\ further\ usage\ (let\ SamplesND\ provide\ buffer?)}}
-\DoxyCodeLine{00062\ \{}
-\DoxyCodeLine{00063\ \ \ \ \ PH\_ASSERT(buffer);}
-\DoxyCodeLine{00064\ \ \ \ \ PH\_ASSERT\_GT(\mbox{\hyperlink{classph_1_1_samples_n_d_stream_acf986228ed1cda7597d51e2e98eb695b}{numDims}},\ 0);}
-\DoxyCodeLine{00065\ \ \ \ \ PH\_ASSERT\_GT(\mbox{\hyperlink{classph_1_1_samples_n_d_stream_a2c1ec4a2f08d12c426eda7392ae5b7e1}{numSamples}},\ 0);}
-\DoxyCodeLine{00066\ \}}
-\DoxyCodeLine{00067\ }
-\DoxyCodeLine{00068\ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ real*\ \mbox{\hyperlink{classph_1_1_samples_n_d_stream_a41fa29c6432304ffb2be4cec04600656}{SamplesNDStream::readSample}}()}
-\DoxyCodeLine{00069\ \{}
-\DoxyCodeLine{00070\ \ \ \ \ PH\_ASSERT\_EQ(m\_overreadBuffer.size(),\ m\_numDims);}
-\DoxyCodeLine{00071\ }
-\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordflow}{if}(m\_readIndex\ <\ m\_numSamples)}
-\DoxyCodeLine{00073\ \ \ \ \ \{}
-\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (*\textcolor{keyword}{this})[m\_readIndex++];}
-\DoxyCodeLine{00075\ \ \ \ \ \}}
-\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00077\ \ \ \ \ \{}
-\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keyword}{auto}\&\ element\ :\ m\_overreadBuffer)}
-\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ element\ =\ \mbox{\hyperlink{classph_1_1math_1_1_random_a3a6997e06a6b12bc125e4c27a218908e}{math::Random::genUniformReal\_i0\_e1}}();}
-\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_overreadBuffer.data();}
-\DoxyCodeLine{00083\ \ \ \ \ \}}
-\DoxyCodeLine{00084\ \}}
-\DoxyCodeLine{00085\ }
-\DoxyCodeLine{00086\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N>}
-\DoxyCodeLine{00087\ \textcolor{keyword}{inline}\ std::array<real,\ N>\ \mbox{\hyperlink{classph_1_1_samples_n_d_stream_a41fa29c6432304ffb2be4cec04600656}{SamplesNDStream::readSample}}()}
-\DoxyCodeLine{00088\ \{}
-\DoxyCodeLine{00089\ \ \ \ \ PH\_ASSERT\_EQ(N,\ m\_numDims);}
-\DoxyCodeLine{00090\ }
-\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keyword}{const}\ real*\ \textcolor{keyword}{const}\ samplePtr\ =\ \mbox{\hyperlink{classph_1_1_samples_n_d_stream_a41fa29c6432304ffb2be4cec04600656}{readSample}}();}
-\DoxyCodeLine{00092\ }
-\DoxyCodeLine{00093\ \ \ \ \ std::array<real,\ N>\ sample;}
-\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ di\ =\ 0;\ di\ <\ N;\ ++di)}
-\DoxyCodeLine{00095\ \ \ \ \ \{}
-\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ sample[di]\ =\ samplePtr[di];}
-\DoxyCodeLine{00097\ \ \ \ \ \}}
-\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keywordflow}{return}\ sample;}
-\DoxyCodeLine{00099\ \}}
-\DoxyCodeLine{00100\ }
-\DoxyCodeLine{00101\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_sample_flow}{SampleFlow}}\ \mbox{\hyperlink{classph_1_1_samples_n_d_stream_ab3b0b77bb77750833840bece8ec227af}{SamplesNDStream::readSampleAsFlow}}()}
-\DoxyCodeLine{00102\ \{}
-\DoxyCodeLine{00103\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1_sample_flow}{SampleFlow}}(\mbox{\hyperlink{classph_1_1_samples_n_d_stream_a41fa29c6432304ffb2be4cec04600656}{readSample}}(),\ m\_numDims);}
-\DoxyCodeLine{00104\ \}}
-\DoxyCodeLine{00105\ }
-\DoxyCodeLine{00106\ \textcolor{keyword}{inline}\ std::size\_t\ \mbox{\hyperlink{classph_1_1_samples_n_d_stream_acf986228ed1cda7597d51e2e98eb695b}{SamplesNDStream::numDims}}()\textcolor{keyword}{\ const}}
-\DoxyCodeLine{00107\ \textcolor{keyword}{}\{}
-\DoxyCodeLine{00108\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_numDims;}
-\DoxyCodeLine{00109\ \}}
-\DoxyCodeLine{00110\ }
-\DoxyCodeLine{00111\ \textcolor{keyword}{inline}\ std::size\_t\ \mbox{\hyperlink{classph_1_1_samples_n_d_stream_a2c1ec4a2f08d12c426eda7392ae5b7e1}{SamplesNDStream::numSamples}}()\textcolor{keyword}{\ const}}
-\DoxyCodeLine{00112\ \textcolor{keyword}{}\{}
-\DoxyCodeLine{00113\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_numSamples;}
-\DoxyCodeLine{00114\ \}}
-\DoxyCodeLine{00115\ }
-\DoxyCodeLine{00116\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N>}
-\DoxyCodeLine{00117\ \textcolor{keyword}{inline}\ std::array<real,\ N>\ \mbox{\hyperlink{classph_1_1_samples_n_d_stream_a5c1172023a4811cb013b7f52dd3b905d}{SamplesNDStream::get}}(\textcolor{keyword}{const}\ std::size\_t\ index)\textcolor{keyword}{\ const}}
-\DoxyCodeLine{00118\ \textcolor{keyword}{}\{}
-\DoxyCodeLine{00119\ \ \ \ \ PH\_ASSERT\_EQ(N,\ m\_numDims);}
-\DoxyCodeLine{00120\ }
-\DoxyCodeLine{00121\ \ \ \ \ std::array<real,\ N>\ sample;}
-\DoxyCodeLine{00122\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ di\ =\ 0;\ di\ <\ N;\ ++di)}
-\DoxyCodeLine{00123\ \ \ \ \ \{}
-\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ sample[di]\ =\ (*this)[index][di];}
-\DoxyCodeLine{00125\ \ \ \ \ \}}
-\DoxyCodeLine{00126\ \ \ \ \ \textcolor{keywordflow}{return}\ sample;}
-\DoxyCodeLine{00127\ \}}
-\DoxyCodeLine{00128\ }
-\DoxyCodeLine{00129\ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ real*\ \mbox{\hyperlink{classph_1_1_samples_n_d_stream_a0ed1de82a91b4ecf1453e54639244fd4}{SamplesNDStream::operator\ []\ }}(\textcolor{keyword}{const}\ std::size\_t\ index)\textcolor{keyword}{\ const}}
-\DoxyCodeLine{00130\ \textcolor{keyword}{}\{}
-\DoxyCodeLine{00131\ \ \ \ \ PH\_ASSERT\_LT(index,\ \mbox{\hyperlink{classph_1_1_samples_n_d_stream_a2c1ec4a2f08d12c426eda7392ae5b7e1}{numSamples}}());}
-\DoxyCodeLine{00132\ }
-\DoxyCodeLine{00133\ \ \ \ \ \textcolor{keywordflow}{return}\ \&(m\_buffer[index\ *\ m\_numDims]);}
-\DoxyCodeLine{00134\ \}}
-\DoxyCodeLine{00135\ }
-\DoxyCodeLine{00136\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00033\ \ \ \ \ std::array<real,\ N>\ \mbox{\hyperlink{classph_1_1_samples_n_d_stream_a41fa29c6432304ffb2be4cec04600656}{readSample}}();}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00038\ \ \ \ \ \mbox{\hyperlink{classph_1_1_sample_flow}{SampleFlow}}\ \mbox{\hyperlink{classph_1_1_samples_n_d_stream_ab3b0b77bb77750833840bece8ec227af}{readSampleAsFlow}}();}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ std::size\_t\ \mbox{\hyperlink{classph_1_1_samples_n_d_stream_acf986228ed1cda7597d51e2e98eb695b}{numDims}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00041\ \ \ \ \ std::size\_t\ \mbox{\hyperlink{classph_1_1_samples_n_d_stream_a2c1ec4a2f08d12c426eda7392ae5b7e1}{numSamples}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00044\ \ \ \ \ std::array<real,\ N>\ \mbox{\hyperlink{classph_1_1_samples_n_d_stream_a5c1172023a4811cb013b7f52dd3b905d}{get}}(std::size\_t\ index)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keyword}{const}\ real*\ \mbox{\hyperlink{classph_1_1_samples_n_d_stream_a0ed1de82a91b4ecf1453e54639244fd4}{operator\ []\ }}(std::size\_t\ index)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keyword}{const}\ real*\ \ \ \ \ \ \ m\_buffer;}
+\DoxyCodeLine{00053\ \ \ \ \ std::size\_t\ \ \ \ \ \ \ m\_numDims;}
+\DoxyCodeLine{00054\ \ \ \ \ std::size\_t\ \ \ \ \ \ \ m\_numSamples;}
+\DoxyCodeLine{00055\ \ \ \ \ std::size\_t\ \ \ \ \ \ \ m\_readIndex;}
+\DoxyCodeLine{00056\ \ \ \ \ std::vector<real>\ m\_overreadBuffer;}
+\DoxyCodeLine{00057\ \};}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \textcolor{comment}{//\ In-\/header\ Implementations:}}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_samples_n_d_stream_adfa3f6f54d5b7936125a003e014db720}{SamplesNDStream::SamplesNDStream}}(}
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keyword}{const}\ real*\ \textcolor{keyword}{const}\ buffer,}
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ numDims,}
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ numSamples)\ :\ }
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ \ \ m\_buffer\ \ \ \ \ \ \ \ (buffer),}
+\DoxyCodeLine{00067\ \ \ \ \ m\_numDims\ \ \ \ \ \ \ (numDims),}
+\DoxyCodeLine{00068\ \ \ \ \ m\_numSamples\ \ \ \ (numSamples),}
+\DoxyCodeLine{00069\ \ \ \ \ m\_readIndex\ \ \ \ \ (0),}
+\DoxyCodeLine{00070\ \ \ \ \ m\_overreadBuffer(numDims)\textcolor{comment}{//\ TODO:\ possibly\ make\ it\ record\ all\ samples\ for\ further\ usage\ (let\ SamplesND\ provide\ buffer?)}}
+\DoxyCodeLine{00071\ \{}
+\DoxyCodeLine{00072\ \ \ \ \ PH\_ASSERT(buffer);}
+\DoxyCodeLine{00073\ \ \ \ \ PH\_ASSERT\_GT(\mbox{\hyperlink{classph_1_1_samples_n_d_stream_acf986228ed1cda7597d51e2e98eb695b}{numDims}},\ 0);}
+\DoxyCodeLine{00074\ \ \ \ \ PH\_ASSERT\_GT(\mbox{\hyperlink{classph_1_1_samples_n_d_stream_a2c1ec4a2f08d12c426eda7392ae5b7e1}{numSamples}},\ 0);}
+\DoxyCodeLine{00075\ \}}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ real*\ \mbox{\hyperlink{classph_1_1_samples_n_d_stream_a41fa29c6432304ffb2be4cec04600656}{SamplesNDStream::readSample}}()}
+\DoxyCodeLine{00078\ \{}
+\DoxyCodeLine{00079\ \ \ \ \ PH\_ASSERT\_EQ(m\_overreadBuffer.size(),\ m\_numDims);}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keywordflow}{if}(m\_readIndex\ <\ m\_numSamples)}
+\DoxyCodeLine{00082\ \ \ \ \ \{}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (*\textcolor{keyword}{this})[m\_readIndex++];}
+\DoxyCodeLine{00084\ \ \ \ \ \}}
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00086\ \ \ \ \ \{}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keyword}{auto}\&\ element\ :\ m\_overreadBuffer)}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ element\ =\ \mbox{\hyperlink{classph_1_1math_1_1_random_a8b21fc3c3cbf0ac4363591caafdce8af}{math::Random::sample}}();}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_overreadBuffer.data();}
+\DoxyCodeLine{00092\ \ \ \ \ \}}
+\DoxyCodeLine{00093\ \}}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00096\ \textcolor{keyword}{inline}\ std::array<real,\ N>\ \mbox{\hyperlink{classph_1_1_samples_n_d_stream_a41fa29c6432304ffb2be4cec04600656}{SamplesNDStream::readSample}}()}
+\DoxyCodeLine{00097\ \{}
+\DoxyCodeLine{00098\ \ \ \ \ PH\_ASSERT\_EQ(N,\ m\_numDims);}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keyword}{const}\ real*\ \textcolor{keyword}{const}\ samplePtr\ =\ \mbox{\hyperlink{classph_1_1_samples_n_d_stream_a41fa29c6432304ffb2be4cec04600656}{readSample}}();}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \ \ \ \ std::array<real,\ N>\ sample;}
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ di\ =\ 0;\ di\ <\ N;\ ++di)}
+\DoxyCodeLine{00104\ \ \ \ \ \{}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ sample[di]\ =\ samplePtr[di];}
+\DoxyCodeLine{00106\ \ \ \ \ \}}
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{keywordflow}{return}\ sample;}
+\DoxyCodeLine{00108\ \}}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_sample_flow}{SampleFlow}}\ \mbox{\hyperlink{classph_1_1_samples_n_d_stream_ab3b0b77bb77750833840bece8ec227af}{SamplesNDStream::readSampleAsFlow}}()}
+\DoxyCodeLine{00111\ \{}
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1_sample_flow}{SampleFlow}}(\mbox{\hyperlink{classph_1_1_samples_n_d_stream_a41fa29c6432304ffb2be4cec04600656}{readSample}}(),\ m\_numDims);}
+\DoxyCodeLine{00113\ \}}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ \textcolor{keyword}{inline}\ std::size\_t\ \mbox{\hyperlink{classph_1_1_samples_n_d_stream_acf986228ed1cda7597d51e2e98eb695b}{SamplesNDStream::numDims}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00116\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_numDims;}
+\DoxyCodeLine{00118\ \}}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \textcolor{keyword}{inline}\ std::size\_t\ \mbox{\hyperlink{classph_1_1_samples_n_d_stream_a2c1ec4a2f08d12c426eda7392ae5b7e1}{SamplesNDStream::numSamples}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00121\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_numSamples;}
+\DoxyCodeLine{00123\ \}}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00126\ \textcolor{keyword}{inline}\ std::array<real,\ N>\ \mbox{\hyperlink{classph_1_1_samples_n_d_stream_a5c1172023a4811cb013b7f52dd3b905d}{SamplesNDStream::get}}(\textcolor{keyword}{const}\ std::size\_t\ index)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00127\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00128\ \ \ \ \ PH\_ASSERT\_EQ(N,\ m\_numDims);}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ \ \ \ \ std::array<real,\ N>\ sample;}
+\DoxyCodeLine{00131\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ di\ =\ 0;\ di\ <\ N;\ ++di)}
+\DoxyCodeLine{00132\ \ \ \ \ \{}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ sample[di]\ =\ (*this)[index][di];}
+\DoxyCodeLine{00134\ \ \ \ \ \}}
+\DoxyCodeLine{00135\ \ \ \ \ \textcolor{keywordflow}{return}\ sample;}
+\DoxyCodeLine{00136\ \}}
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00138\ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ real*\ \mbox{\hyperlink{classph_1_1_samples_n_d_stream_a0ed1de82a91b4ecf1453e54639244fd4}{SamplesNDStream::operator\ []\ }}(\textcolor{keyword}{const}\ std::size\_t\ index)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00139\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00140\ \ \ \ \ PH\_ASSERT\_LT(index,\ \mbox{\hyperlink{classph_1_1_samples_n_d_stream_a2c1ec4a2f08d12c426eda7392ae5b7e1}{numSamples}}());}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00142\ \ \ \ \ \textcolor{keywordflow}{return}\ \&(m\_buffer[index\ *\ m\_numDims]);}
+\DoxyCodeLine{00143\ \}}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00145\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
 
 \end{DoxyCode}

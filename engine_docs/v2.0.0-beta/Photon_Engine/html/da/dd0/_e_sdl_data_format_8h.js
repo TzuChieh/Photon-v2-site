@@ -5,6 +5,7 @@ var _e_sdl_data_format_8h =
       [ "Single", "da/dd0/_e_sdl_data_format_8h.html#ace69f5c0a73308d2c88c512f8b70016ea66ba162102bbf6ae31b522aec561735e", null ],
       [ "Vector2", "da/dd0/_e_sdl_data_format_8h.html#ace69f5c0a73308d2c88c512f8b70016ea1bebc5ae2822f8e361fb0ce57b5e09e2", null ],
       [ "Vector3", "da/dd0/_e_sdl_data_format_8h.html#ace69f5c0a73308d2c88c512f8b70016ea02b4dab58bbc49e0851fb3fd8df520cc", null ],
+      [ "Vector4", "da/dd0/_e_sdl_data_format_8h.html#ace69f5c0a73308d2c88c512f8b70016eacf637ffa2663b40ae52857aa0bdb1ec3", null ],
       [ "Quaternion", "da/dd0/_e_sdl_data_format_8h.html#ace69f5c0a73308d2c88c512f8b70016ea3743af167c53361d795405561faac2b2", null ],
       [ "Vector", "da/dd0/_e_sdl_data_format_8h.html#ace69f5c0a73308d2c88c512f8b70016ea57dea6f5039281b7fee517fc43bf3110", null ],
       [ "Vector2Vector", "da/dd0/_e_sdl_data_format_8h.html#ace69f5c0a73308d2c88c512f8b70016ea7decf65e5ac729bc6b05ea5973f82634", null ],

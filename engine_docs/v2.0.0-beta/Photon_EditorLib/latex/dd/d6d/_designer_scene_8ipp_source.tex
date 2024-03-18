@@ -1,0 +1,426 @@
+\doxysection{Designer\+Scene.\+ipp}
+\hypertarget{_designer_scene_8ipp_source}{}\label{_designer_scene_8ipp_source}\index{Source/Designer/DesignerScene.ipp@{Source/Designer/DesignerScene.ipp}}
+\mbox{\hyperlink{_designer_scene_8ipp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_designer_scene_8h}{Designer/DesignerScene.h}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_designer_object_8h}{Designer/DesignerObject.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_threads_8h}{EditorCore/Thread/Threads.h}}"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <Utility/traits.h>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <Common/assertion.h>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <Common/exception.h>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <Common/logging.h>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <SDL/sdl\_helpers.h>}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <type\_traits>}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph_1_1editor}{ph::editor}}}
+\DoxyCodeLine{00017\ \{}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{keyword}{namespace\ }detail}
+\DoxyCodeLine{00020\ \{}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ ObjectType>}
+\DoxyCodeLine{00023\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structph_1_1editor_1_1detail_1_1_t_shared_object_deleter}{TSharedObjectDeleter}}}
+\DoxyCodeLine{00024\ \{}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{structph_1_1editor_1_1detail_1_1_t_shared_object_deleter_aa885ea1e81e4c22c9e286e18bd398935}{operator\ ()\ }}(ObjectType*\ \textcolor{keyword}{const}\ obj)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00026\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_assert}(CDerived<ObjectType,\ DesignerObject>,}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Object\ must\ be\ a\ designer\ object."{}});}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!obj)}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ obj-\/>getScene().deleteObject(obj);}
+\DoxyCodeLine{00036\ \ \ \ \ \}}
+\DoxyCodeLine{00037\ \};}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \}\textcolor{comment}{//\ end\ namespace\ detail}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{classph_1_1editor_1_1_designer_scene_a63154b4a46f44fae825b73565b07e134}{DesignerScene::defaultSceneName}}()}
+\DoxyCodeLine{00042\ \{}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}untitled\ scene"{}};}
+\DoxyCodeLine{00044\ \}}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ ObjectType>}
+\DoxyCodeLine{00047\ \textcolor{keyword}{inline}\ ObjectType*\ \mbox{\hyperlink{classph_1_1editor_1_1_designer_scene_a3fb8c17f2959ab80125fd6a28528c16b}{DesignerScene::newObject}}(}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ shouldInit,}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ shouldSetToDefault)}
+\DoxyCodeLine{00050\ \{}
+\DoxyCodeLine{00051\ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1_designer_object}{DesignerObject}}*\ obj\ =\ \mbox{\hyperlink{classph_1_1editor_1_1_designer_scene_a3fb8c17f2959ab80125fd6a28528c16b}{newObject}}(}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ ObjectType::getSdlClass(),}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ shouldInit,}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ shouldSetToDefault);}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{comment}{//\ We\ know\ the\ exact\ type}}
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}ObjectType*\textcolor{keyword}{>}(obj);}
+\DoxyCodeLine{00058\ \}}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ ObjectType>}
+\DoxyCodeLine{00061\ \textcolor{keyword}{inline}\ ObjectType*\ \mbox{\hyperlink{classph_1_1editor_1_1_designer_scene_aedc0d8a7051156fc2289dfb34d499617}{DesignerScene::newRootObject}}(}
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ shouldInit,}
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ shouldSetToDefault)}
+\DoxyCodeLine{00064\ \{}
+\DoxyCodeLine{00065\ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1_designer_object}{DesignerObject}}*\ obj\ =\ \mbox{\hyperlink{classph_1_1editor_1_1_designer_scene_aedc0d8a7051156fc2289dfb34d499617}{newRootObject}}(}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ ObjectType::getSdlClass(),}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ shouldInit,}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ shouldSetToDefault);}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{comment}{//\ We\ know\ the\ exact\ type}}
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}ObjectType*\textcolor{keyword}{>}(obj);}
+\DoxyCodeLine{00072\ \}}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ ObjectType>}
+\DoxyCodeLine{00075\ \textcolor{keyword}{inline}\ std::shared\_ptr<ObjectType>\ \mbox{\hyperlink{classph_1_1editor_1_1_designer_scene_a6d911b7c5cf4b68f64bb19281fa5373e}{DesignerScene::newSharedRootObject}}(}
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ shouldInit,}
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ shouldSetToDefault)}
+\DoxyCodeLine{00078\ \{}
+\DoxyCodeLine{00079\ \ \ \ \ std::shared\_ptr<ObjectType>\ rootObj\ =\ \mbox{\hyperlink{classph_1_1editor_1_1_designer_scene_a6d911b7c5cf4b68f64bb19281fa5373e}{newSharedRootObject}}(}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ ObjectType::getSdlClass(),}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ shouldInit,\ }
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ shouldSetToDefault);}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keywordflow}{return}\ std::static\_pointer\_cast<ObjectType>(std::move(rootObj));}
+\DoxyCodeLine{00085\ \}}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ ObjectType,\ \textcolor{keyword}{typename}...\ DeducedArgs>}
+\DoxyCodeLine{00088\ \textcolor{keyword}{inline}\ ObjectType*\ DesignerScene::makeObjectFromStorage(DeducedArgs\&\&...\ args)}
+\DoxyCodeLine{00089\ \{}
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keyword}{static\_assert}(CDerived<ObjectType,\ DesignerObject>,}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Object\ must\ be\ a\ designer\ object."{}});}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \ \ \ \ PH\_ASSERT(\mbox{\hyperlink{classph_1_1editor_1_1_threads_ac1104757e2cde2ed896ebdd8a401cbfc}{Threads::isOnMainThread}}());}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{classph_1_1editor_1_1_designer_scene_a877be80b2e8077e20264aef8f02193e3}{isPaused}}())}
+\DoxyCodeLine{00096\ \ \ \ \ \{}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ This\ is\ a\ condition\ that\ should\ be\ investigated\ (API\ misuse)}}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ PH\_ASSERT\_MSG(\textcolor{keyword}{false},\ }
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Cannot\ create\ object\ when\ paused-\/-\/this\ may\ modify\ object\ storage."{}});}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00101\ \ \ \ \ \}}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{keyword}{auto}\ storageIndex\ =\ \textcolor{keyword}{static\_cast<}uint64\textcolor{keyword}{>}(-\/1);}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ \ \ \ \ \textcolor{comment}{//\ Create\ new\ storage\ space}}
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keywordflow}{if}(m\_freeObjStorageIndices.empty())}
+\DoxyCodeLine{00107\ \ \ \ \ \{}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ m\_objStorage.add<ObjectType>(\textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ storageIndex\ =\ m\_objStorage.size()\ -\/\ 1;}
+\DoxyCodeLine{00110\ \ \ \ \ \}}
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{comment}{//\ Use\ existing\ storage\ space}}
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00113\ \ \ \ \ \{}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ storageIndex\ =\ m\_freeObjStorageIndices.back();}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ m\_freeObjStorageIndices.pop\_back();}
+\DoxyCodeLine{00116\ \ \ \ \ \}}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ \ \ \ \ \textcolor{keyword}{auto}\ uniqueObj\ =\ std::make\_unique<ObjectType>(std::forward<DeducedArgs>(args)...);}
+\DoxyCodeLine{00119\ \ \ \ \ ObjectType*\ obj\ =\ uniqueObj.get();}
+\DoxyCodeLine{00120\ \ \ \ \ m\_objStorage.getUniquePtr(storageIndex)\ =\ std::move(uniqueObj);}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ \ \ \ \ PH\_ASSERT(obj\ !=\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00123\ \ \ \ \ obj-\/>setSceneStorageIndex(storageIndex);}
+\DoxyCodeLine{00124\ \ \ \ \ \textcolor{keywordflow}{return}\ obj;}
+\DoxyCodeLine{00125\ \}}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00127\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ ObjectType>}
+\DoxyCodeLine{00128\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1_designer_scene_a1e45028b3f88189cf359921bfb0931a2}{DesignerScene::registerObjectType}}()}
+\DoxyCodeLine{00129\ \{}
+\DoxyCodeLine{00130\ \ \ \ \ \textcolor{keyword}{static\_assert}(CDerived<ObjectType,\ DesignerObject>,}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Object\ must\ be\ a\ designer\ object."{}});}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00133\ \ \ \ \ \textcolor{keyword}{const}\ SdlClass*\ \textcolor{keyword}{const}\ clazz\ =\ ObjectType::getSdlClass();}
+\DoxyCodeLine{00134\ \ \ \ \ \textcolor{keywordflow}{if}(classToObjMaker.find(clazz)\ !=\ classToObjMaker.end())}
+\DoxyCodeLine{00135\ \ \ \ \ \{}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ PH\_LOG(\mbox{\hyperlink{classph_1_1editor_1_1_designer_scene}{DesignerScene}},\ Error,}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}designer\ object\ already\ registered\ (\{\})"{}},}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ sdl::gen\_pretty\_name(clazz));}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00141\ \ \ \ \ \}}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00143\ \ \ \ \ classToObjMaker[clazz]\ =\ }
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ [](\mbox{\hyperlink{classph_1_1editor_1_1_designer_scene}{DesignerScene}}\&\ scene)\ -\/>\ \mbox{\hyperlink{classph_1_1editor_1_1_designer_object}{DesignerObject}}*}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(std::is\_abstract\_v<ObjectType>)}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ PH\_ASSERT\_MSG(\textcolor{keyword}{false},}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Attempting\ to\ create\ object\ of\ an\ abstract\ type."{}});}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ scene.makeObjectFromStorage<ObjectType>();}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00157\ \}}
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00159\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ DesignerScene::removeObjectFromStorage(\mbox{\hyperlink{classph_1_1editor_1_1_designer_object}{DesignerObject}}*\ \textcolor{keyword}{const}\ obj)}
+\DoxyCodeLine{00160\ \{}
+\DoxyCodeLine{00161\ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{classph_1_1editor_1_1_designer_scene_a877be80b2e8077e20264aef8f02193e3}{isPaused}}())}
+\DoxyCodeLine{00162\ \ \ \ \ \{}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ This\ is\ a\ condition\ that\ should\ be\ investigated\ (API\ misuse)}}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ PH\_ASSERT\_MSG(\textcolor{keyword}{false},}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Cannot\ remove\ object\ when\ paused-\/-\/this\ may\ modify\ object\ storage."{}});}
+\DoxyCodeLine{00166\ }
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00168\ \ \ \ \ \}}
+\DoxyCodeLine{00169\ }
+\DoxyCodeLine{00170\ \ \ \ \ \textcolor{keywordflow}{if}(!obj\ ||\ \&(obj-\/>\mbox{\hyperlink{classph_1_1editor_1_1_designer_object_a6e949a067d0fb3264f50ae47671e4b29}{getScene}}())\ !=\ \textcolor{keyword}{this}\ ||\ obj-\/>getSceneStorageIndex()\ ==\ \textcolor{keyword}{static\_cast<}uint64\textcolor{keyword}{>}(-\/1))}
+\DoxyCodeLine{00171\ \ \ \ \ \{}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00173\ \ \ \ \ \}}
+\DoxyCodeLine{00174\ }
+\DoxyCodeLine{00175\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ objIndex\ =\ obj-\/>getSceneStorageIndex();}
+\DoxyCodeLine{00176\ \ \ \ \ PH\_ASSERT(obj\ ==\ m\_objStorage[objIndex]);}
+\DoxyCodeLine{00177\ \ \ \ \ m\_objStorage.getUniquePtr(objIndex)\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00178\ \ \ \ \ m\_freeObjStorageIndices.push\_back(objIndex);}
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00180\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00181\ \}}
+\DoxyCodeLine{00182\ }
+\DoxyCodeLine{00183\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1editor_1_1_designer_scene_ad02da3fc668099e20252c805ca44f114}{DesignerScene::isFullyInitialized}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1editor_1_1_designer_object}{DesignerObject}}\&\ obj)}
+\DoxyCodeLine{00184\ \{}
+\DoxyCodeLine{00185\ \ \ \ \ \textcolor{keywordflow}{return}\ obj.\mbox{\hyperlink{classph_1_1editor_1_1_abstract_designer_object_afcf3179a5a43122a0ec73b7a7ffcee8a}{getState}}().hasAll(\{\mbox{\hyperlink{namespaceph_1_1editor_a5ea3806903f9839d255232c9276190c8a7ab4255d728934efba80565363ee9870}{EObjectState::HasInitialized}},\ \mbox{\hyperlink{namespaceph_1_1editor_a5ea3806903f9839d255232c9276190c8ab8825dacbfb11ced400d6e3521c52b27}{EObjectState::HasRenderInitialized}}\})\ \&\&}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \ \ \ obj.\mbox{\hyperlink{classph_1_1editor_1_1_abstract_designer_object_afcf3179a5a43122a0ec73b7a7ffcee8a}{getState}}().hasNone(\{\mbox{\hyperlink{namespaceph_1_1editor_a5ea3806903f9839d255232c9276190c8a0dc8f1faef6e6568af9b098f6bb6f85e}{EObjectState::HasUninitialized}},\ \mbox{\hyperlink{namespaceph_1_1editor_a5ea3806903f9839d255232c9276190c8a395d3faf9c5dadbf00fb2cf789f93c35}{EObjectState::HasRenderUninitialized}}\});}
+\DoxyCodeLine{00187\ \}}
+\DoxyCodeLine{00188\ }
+\DoxyCodeLine{00189\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1editor_1_1_designer_scene_a14c76641fbb10d78bbe0834c98970295}{DesignerScene::isInitialized}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1editor_1_1_designer_object}{DesignerObject}}\&\ obj)}
+\DoxyCodeLine{00190\ \{}
+\DoxyCodeLine{00191\ \ \ \ \ \textcolor{keywordflow}{return}\ obj.\mbox{\hyperlink{classph_1_1editor_1_1_abstract_designer_object_afcf3179a5a43122a0ec73b7a7ffcee8a}{getState}}().has(\mbox{\hyperlink{namespaceph_1_1editor_a5ea3806903f9839d255232c9276190c8a7ab4255d728934efba80565363ee9870}{EObjectState::HasInitialized}})\ \&\&}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \ \ \ obj.\mbox{\hyperlink{classph_1_1editor_1_1_abstract_designer_object_afcf3179a5a43122a0ec73b7a7ffcee8a}{getState}}().hasNo(\mbox{\hyperlink{namespaceph_1_1editor_a5ea3806903f9839d255232c9276190c8a0dc8f1faef6e6568af9b098f6bb6f85e}{EObjectState::HasUninitialized}});}
+\DoxyCodeLine{00193\ \}}
+\DoxyCodeLine{00194\ }
+\DoxyCodeLine{00195\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ DesignerScene::isOrphan(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1editor_1_1_designer_object}{DesignerObject}}\&\ obj)}
+\DoxyCodeLine{00196\ \{}
+\DoxyCodeLine{00197\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ isChild\ =\ obj.\mbox{\hyperlink{classph_1_1editor_1_1_abstract_designer_object_afcf3179a5a43122a0ec73b7a7ffcee8a}{getState}}().hasNo(\mbox{\hyperlink{namespaceph_1_1editor_a5ea3806903f9839d255232c9276190c8afa03eb688ad8aa1db593d33dabd89bad}{EObjectState::Root}});}
+\DoxyCodeLine{00198\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ hasParent\ =\ obj.\mbox{\hyperlink{classph_1_1editor_1_1_designer_object_a7482275974fe6e304fe030b50696783c}{getParent}}()\ !=\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00199\ }
+\DoxyCodeLine{00200\ \ \ \ \ \textcolor{keywordflow}{return}\ isChild\ \&\&\ !hasParent;}
+\DoxyCodeLine{00201\ \}}
+\DoxyCodeLine{00202\ }
+\DoxyCodeLine{00203\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1editor_1_1_editor}{Editor}}\&\ \mbox{\hyperlink{classph_1_1editor_1_1_designer_scene_a0da7243294fe58788530aed612dc32df}{DesignerScene::getEditor}}()}
+\DoxyCodeLine{00204\ \{}
+\DoxyCodeLine{00205\ \ \ \ \ PH\_ASSERT(m\_editor);}
+\DoxyCodeLine{00206\ \ \ \ \ \textcolor{keywordflow}{return}\ *m\_editor;}
+\DoxyCodeLine{00207\ \}}
+\DoxyCodeLine{00208\ }
+\DoxyCodeLine{00209\ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1editor_1_1_editor}{Editor}}\&\ \mbox{\hyperlink{classph_1_1editor_1_1_designer_scene_a0da7243294fe58788530aed612dc32df}{DesignerScene::getEditor}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00210\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00211\ \ \ \ \ PH\_ASSERT(m\_editor);}
+\DoxyCodeLine{00212\ \ \ \ \ \textcolor{keywordflow}{return}\ *m\_editor;}
+\DoxyCodeLine{00213\ \}}
+\DoxyCodeLine{00214\ }
+\DoxyCodeLine{00215\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1editor_1_1render_1_1_scene}{render::Scene}}\&\ \mbox{\hyperlink{classph_1_1editor_1_1_designer_scene_a4a54626406eb963ebddf96aa3f2325b7}{DesignerScene::getRendererScene}}()}
+\DoxyCodeLine{00216\ \{}
+\DoxyCodeLine{00217\ \ \ \ \ PH\_ASSERT(\mbox{\hyperlink{classph_1_1editor_1_1_threads_ac1104757e2cde2ed896ebdd8a401cbfc}{Threads::isOnMainThread}}());\textcolor{comment}{//\ do\ not\ let\ the\ word\ "{}render"{}\ fool\ you}}
+\DoxyCodeLine{00218\ \ \ \ \ PH\_ASSERT\_MSG(m\_rendererScene,}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Please\ make\ sure\ you\ are\ calling\ from\ render\ command\ generating\ methods."{}});}
+\DoxyCodeLine{00220\ }
+\DoxyCodeLine{00221\ \ \ \ \ \textcolor{keywordflow}{return}\ *m\_rendererScene;}
+\DoxyCodeLine{00222\ \}}
+\DoxyCodeLine{00223\ }
+\DoxyCodeLine{00224\ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1editor_1_1render_1_1_scene}{render::Scene}}\&\ \mbox{\hyperlink{classph_1_1editor_1_1_designer_scene_a4a54626406eb963ebddf96aa3f2325b7}{DesignerScene::getRendererScene}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00225\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00226\ \ \ \ \ PH\_ASSERT(\mbox{\hyperlink{classph_1_1editor_1_1_threads_ac1104757e2cde2ed896ebdd8a401cbfc}{Threads::isOnMainThread}}());\textcolor{comment}{//\ do\ not\ let\ the\ word\ "{}render"{}\ fool\ you}}
+\DoxyCodeLine{00227\ \ \ \ \ PH\_ASSERT\_MSG(m\_rendererScene,}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Please\ make\ sure\ you\ are\ calling\ from\ render\ command\ generating\ methods."{}});}
+\DoxyCodeLine{00229\ }
+\DoxyCodeLine{00230\ \ \ \ \ \textcolor{keywordflow}{return}\ *m\_rendererScene;}
+\DoxyCodeLine{00231\ \}}
+\DoxyCodeLine{00232\ }
+\DoxyCodeLine{00233\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1editor_1_1_designer_object}{DesignerObject}}*\ \mbox{\hyperlink{classph_1_1editor_1_1_designer_scene_a2de7714b9ecb94a2da7b7545f1f2724c}{DesignerScene::getPrimarySelectedObject}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00234\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00235\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_selectedObjs.empty()\ ?\ nullptr\ :\ m\_selectedObjs.front();}
+\DoxyCodeLine{00236\ \}}
+\DoxyCodeLine{00237\ }
+\DoxyCodeLine{00238\ \textcolor{keyword}{inline}\ TSpanView<DesignerObject*>\ \mbox{\hyperlink{classph_1_1editor_1_1_designer_scene_a75eeb726e066f1a6c1bfc5777355463f}{DesignerScene::getSelection}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00239\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00240\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_selectedObjs;}
+\DoxyCodeLine{00241\ \}}
+\DoxyCodeLine{00242\ }
+\DoxyCodeLine{00243\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ DesignerScene::SceneAction::isDone()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00244\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00245\ \ \ \ \ \textcolor{keywordflow}{return}\ !updateTask\ \&\&\ !renderTask;}
+\DoxyCodeLine{00246\ \}}
+\DoxyCodeLine{00247\ }
+\DoxyCodeLine{00248\ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ Path\&\ \mbox{\hyperlink{classph_1_1editor_1_1_designer_scene_a608859a9bb60618a59bce6c67c510736}{DesignerScene::getWorkingDirectory}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00249\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00250\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_workingDirectory;}
+\DoxyCodeLine{00251\ \}}
+\DoxyCodeLine{00252\ }
+\DoxyCodeLine{00253\ \textcolor{keyword}{inline}\ TSpanView<DesignerRendererBinding>\ \mbox{\hyperlink{classph_1_1editor_1_1_designer_scene_a448dd9205c877b7cc62e078e86994f6d}{DesignerScene::getRendererBindings}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00254\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00255\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_rendererBindings;}
+\DoxyCodeLine{00256\ \}}
+\DoxyCodeLine{00257\ }
+\DoxyCodeLine{00258\ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ std::string\&\ \mbox{\hyperlink{classph_1_1editor_1_1_designer_scene_afb9e8bfc38de9aae36a4d8ef542671ac}{DesignerScene::getName}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00259\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00260\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_name;}
+\DoxyCodeLine{00261\ \}}
+\DoxyCodeLine{00262\ }
+\DoxyCodeLine{00263\ \textcolor{keyword}{inline}\ SceneDescription\&\ \mbox{\hyperlink{classph_1_1editor_1_1_designer_scene_af1c010f27b4afb5ab37c5d1f21ebff02}{DesignerScene::getRenderDescription}}()}
+\DoxyCodeLine{00264\ \{}
+\DoxyCodeLine{00265\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_renderDescription;}
+\DoxyCodeLine{00266\ \}}
+\DoxyCodeLine{00267\ }
+\DoxyCodeLine{00268\ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ SceneDescription\&\ \mbox{\hyperlink{classph_1_1editor_1_1_designer_scene_af1c010f27b4afb5ab37c5d1f21ebff02}{DesignerScene::getRenderDescription}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00269\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00270\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_renderDescription;}
+\DoxyCodeLine{00271\ \}}
+\DoxyCodeLine{00272\ }
+\DoxyCodeLine{00273\ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ ResourceIdentifier\&\ \mbox{\hyperlink{classph_1_1editor_1_1_designer_scene_a28cefeeda8e0082933247ecc776a1f01}{DesignerScene::getRenderDescriptionLink}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00274\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00275\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_renderDescriptionLink;}
+\DoxyCodeLine{00276\ \}}
+\DoxyCodeLine{00277\ }
+\DoxyCodeLine{00278\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1_designer_scene_a2828aa6a481b9ba994be45c7aa591969}{DesignerScene::setRenderDescriptionLink}}(ResourceIdentifier\ link)}
+\DoxyCodeLine{00279\ \{}
+\DoxyCodeLine{00280\ \ \ \ \ m\_renderDescriptionLink\ =\ std::move(link);}
+\DoxyCodeLine{00281\ \}}
+\DoxyCodeLine{00282\ }
+\DoxyCodeLine{00283\ \textcolor{keyword}{inline}\ TSpanView<DesignerObject*>\ \mbox{\hyperlink{classph_1_1editor_1_1_designer_scene_ad7950f115bd14c5010b3079675085ece}{DesignerScene::getRootObjects}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00284\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00285\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_rootObjs;}
+\DoxyCodeLine{00286\ \}}
+\DoxyCodeLine{00287\ }
+\DoxyCodeLine{00288\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1editor_1_1_designer_scene_a877be80b2e8077e20264aef8f02193e3}{DesignerScene::isPaused}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00289\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00290\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_isPaused;}
+\DoxyCodeLine{00291\ \}}
+\DoxyCodeLine{00292\ }
+\DoxyCodeLine{00293\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ ObjectType>}
+\DoxyCodeLine{00294\ \textcolor{keyword}{inline}\ ObjectType*\ \mbox{\hyperlink{classph_1_1editor_1_1_designer_scene_a46e8d32346e53cb57cb894e876feac0c}{DesignerScene::findObjectByName}}(std::string\_view\ name)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00295\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00296\ \ \ \ \ ObjectType*\ result\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00297\ }
+\DoxyCodeLine{00298\ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1_designer_scene_ad850e424084931ef2094d3f58f3642bd}{forEachUsableObject}}(}
+\DoxyCodeLine{00299\ \ \ \ \ \ \ \ \ [name,\ \&result](\mbox{\hyperlink{classph_1_1editor_1_1_designer_object}{DesignerObject}}*\ obj)\ -\/>\ \textcolor{keywordtype}{bool}}
+\DoxyCodeLine{00300\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00301\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Implicit\ cast\ if\ \`{}ObjectType`\ is\ a\ base\ type}}
+\DoxyCodeLine{00302\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(CDerived<DesignerObject,\ ObjectType>)}
+\DoxyCodeLine{00303\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00304\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(obj-\/>\mbox{\hyperlink{classph_1_1editor_1_1_designer_object_ad616ecb0c5c0ff768170a0ca3a80e125}{getName}}()\ ==\ name)}
+\DoxyCodeLine{00305\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00306\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ result\ =\ obj;}
+\DoxyCodeLine{00307\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00308\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00309\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00310\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Otherwise\ explicit\ downcasting\ is\ required}}
+\DoxyCodeLine{00311\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00312\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00313\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_assert}(CDerived<ObjectType,\ DesignerObject>,}
+\DoxyCodeLine{00314\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Object\ must\ be\ a\ designer\ object."{}});}
+\DoxyCodeLine{00315\ }
+\DoxyCodeLine{00316\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(obj-\/>\mbox{\hyperlink{classph_1_1editor_1_1_designer_object_ad616ecb0c5c0ff768170a0ca3a80e125}{getName}}()\ ==\ name)}
+\DoxyCodeLine{00317\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00318\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Directly\ use\ the\ result\ of\ \`{}dynamic\_cast`.\ This\ can\ be\ null\ if\ the\ type\ does}}
+\DoxyCodeLine{00319\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ not\ match-\/-\/which\ is\ fine,\ as\ the\ object\ name\ is\ unique\ (and\ we\ already\ found\ the}}
+\DoxyCodeLine{00320\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ object)\ there\ is\ no\ point\ in\ continuing\ the\ search.}}
+\DoxyCodeLine{00321\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ result\ =\ \textcolor{keyword}{dynamic\_cast<}ObjectType*\textcolor{keyword}{>}(obj);}
+\DoxyCodeLine{00322\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00323\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00324\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00325\ }
+\DoxyCodeLine{00326\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00327\ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00328\ }
+\DoxyCodeLine{00329\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00330\ \}}
+\DoxyCodeLine{00331\ }
+\DoxyCodeLine{00332\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ ObjectType>}
+\DoxyCodeLine{00333\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1_designer_scene_a092c25c595e2765ccf2d1f26f29107bb}{DesignerScene::findObjectsByType}}(std::vector<ObjectType*>\&\ out\_objs)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00334\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00335\ \ \ \ \ out\_objs.reserve(out\_objs.size()\ +\ m\_objStorage.size());}
+\DoxyCodeLine{00336\ }
+\DoxyCodeLine{00337\ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1_designer_scene_ad850e424084931ef2094d3f58f3642bd}{forEachUsableObject}}(}
+\DoxyCodeLine{00338\ \ \ \ \ \ \ \ \ [\&out\_objs](\mbox{\hyperlink{classph_1_1editor_1_1_designer_object}{DesignerObject}}*\ obj)\ -\/>\ \textcolor{keywordtype}{bool}}
+\DoxyCodeLine{00339\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00340\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Implicit\ cast\ if\ \`{}ObjectType`\ is\ a\ base\ type}}
+\DoxyCodeLine{00341\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(CDerived<DesignerObject,\ ObjectType>)}
+\DoxyCodeLine{00342\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00343\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ out\_objs.push\_back(obj);}
+\DoxyCodeLine{00344\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00345\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Otherwise\ explicit\ downcasting\ is\ required}}
+\DoxyCodeLine{00346\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00347\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00348\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_assert}(CDerived<ObjectType,\ DesignerObject>,}
+\DoxyCodeLine{00349\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Object\ must\ be\ a\ designer\ object."{}});}
+\DoxyCodeLine{00350\ }
+\DoxyCodeLine{00351\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ \textcolor{keyword}{const}\ derivedObj\ =\ \textcolor{keyword}{dynamic\_cast<}ObjectType*\textcolor{keyword}{>}(obj);}
+\DoxyCodeLine{00352\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(derivedObj)}
+\DoxyCodeLine{00353\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00354\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ out\_objs.push\_back(derivedObj);}
+\DoxyCodeLine{00355\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00356\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00357\ }
+\DoxyCodeLine{00358\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Always\ continue}}
+\DoxyCodeLine{00359\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00360\ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00361\ \}}
+\DoxyCodeLine{00362\ }
+\DoxyCodeLine{00363\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ PerObjectOperation>}
+\DoxyCodeLine{00364\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1_designer_scene_ad850e424084931ef2094d3f58f3642bd}{DesignerScene::forEachUsableObject}}(PerObjectOperation\ op)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00365\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00366\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_invocable\_r\_v<bool,\ PerObjectOperation,\ DesignerObject*>);}
+\DoxyCodeLine{00367\ }
+\DoxyCodeLine{00368\ \ \ \ \ PH\_ASSERT(\mbox{\hyperlink{classph_1_1editor_1_1_threads_ac1104757e2cde2ed896ebdd8a401cbfc}{Threads::isOnMainThread}}());}
+\DoxyCodeLine{00369\ }
+\DoxyCodeLine{00370\ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keyword}{auto}\&\ objRes\ :\ m\_objStorage)}
+\DoxyCodeLine{00371\ \ \ \ \ \{}
+\DoxyCodeLine{00372\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1_designer_object}{DesignerObject}}*\ \textcolor{keyword}{const}\ obj\ =\ objRes.get();}
+\DoxyCodeLine{00373\ }
+\DoxyCodeLine{00374\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Skip\ removed\ object}}
+\DoxyCodeLine{00375\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!obj)}
+\DoxyCodeLine{00376\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00377\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00378\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00379\ }
+\DoxyCodeLine{00380\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Skip\ object\ with\ incomplete\ initialization\ state\ (we\ do\ not\ care\ about\ render\ state\ here)}}
+\DoxyCodeLine{00381\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!\mbox{\hyperlink{classph_1_1editor_1_1_designer_scene_a14c76641fbb10d78bbe0834c98970295}{isInitialized}}(*obj))}
+\DoxyCodeLine{00382\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00383\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00384\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00385\ }
+\DoxyCodeLine{00386\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Skip\ orphans}}
+\DoxyCodeLine{00387\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(isOrphan(*obj))}
+\DoxyCodeLine{00388\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00389\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00390\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00391\ }
+\DoxyCodeLine{00392\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ shouldContinue\ =\ op(obj);}
+\DoxyCodeLine{00393\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!shouldContinue)}
+\DoxyCodeLine{00394\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00395\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00396\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00397\ \ \ \ \ \}}
+\DoxyCodeLine{00398\ \}}
+\DoxyCodeLine{00399\ }
+\DoxyCodeLine{00400\ \textcolor{keyword}{inline}\ std::size\_t\ \mbox{\hyperlink{classph_1_1editor_1_1_designer_scene_aead0c51e8360cda6525ff3423ed85f9f}{DesignerScene::numRootObjects}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00401\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00402\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_rootObjs.size();}
+\DoxyCodeLine{00403\ \}}
+\DoxyCodeLine{00404\ }
+\DoxyCodeLine{00405\ \textcolor{keyword}{inline}\ std::size\_t\ \mbox{\hyperlink{classph_1_1editor_1_1_designer_scene_aa1483d793bbcadf22dec7ca0b462ec7c}{DesignerScene::numTickingObjects}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00406\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00407\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_tickingObjs.size();}
+\DoxyCodeLine{00408\ \}}
+\DoxyCodeLine{00409\ }
+\DoxyCodeLine{00410\ \textcolor{keyword}{inline}\ std::size\_t\ \mbox{\hyperlink{classph_1_1editor_1_1_designer_scene_a3bda4737a986b6d222338c03e0aa9cb8}{DesignerScene::numRenderTickingObjects}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00411\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00412\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_renderTickingObjs.size();}
+\DoxyCodeLine{00413\ \}}
+\DoxyCodeLine{00414\ }
+\DoxyCodeLine{00415\ \textcolor{keyword}{inline}\ std::size\_t\ \mbox{\hyperlink{classph_1_1editor_1_1_designer_scene_a6b5990a832fbe06fea65f7ed8541ce21}{DesignerScene::numAllocatedObjects}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00416\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00417\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_objStorage.size();}
+\DoxyCodeLine{00418\ \}}
+\DoxyCodeLine{00419\ }
+\DoxyCodeLine{00420\ \}\textcolor{comment}{//\ end\ namespace\ ph::editor}}
+
+\end{DoxyCode}

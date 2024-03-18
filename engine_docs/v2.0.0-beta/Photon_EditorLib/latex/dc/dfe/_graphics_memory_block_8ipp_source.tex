@@ -1,0 +1,113 @@
+\doxysection{Graphics\+Memory\+Block.\+ipp}
+\hypertarget{_graphics_memory_block_8ipp_source}{}\label{_graphics_memory_block_8ipp_source}\index{Source/RenderCore/Memory/GraphicsMemoryBlock.ipp@{Source/RenderCore/Memory/GraphicsMemoryBlock.ipp}}
+\mbox{\hyperlink{_graphics_memory_block_8ipp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_graphics_memory_block_8h}{RenderCore/Memory/GraphicsMemoryBlock.h}}"{}}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <Common/assertion.h>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <Common/math\_basics.h>}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <type\_traits>}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph_1_1editor_1_1ghi}{ph::editor::ghi}}}
+\DoxyCodeLine{00013\ \{}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{inline}\ std::size\_t\ \mbox{\hyperlink{classph_1_1editor_1_1ghi_1_1_graphics_memory_block_a1cd8d9f5b59ddbde188f516a6aa2bdaa}{GraphicsMemoryBlock::numAllocatedBytes}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00016\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_blockSizeInBytes;}
+\DoxyCodeLine{00018\ \}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{keyword}{inline}\ std::size\_t\ \mbox{\hyperlink{classph_1_1editor_1_1ghi_1_1_graphics_memory_block_a9d466c3ae413634360545e71d1fd95d7}{GraphicsMemoryBlock::numUsedBytes}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00021\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00022\ \ \ \ \ PH\_ASSERT\_GE(m\_blockSizeInBytes,\ m\_remainingBytesInBlock);}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_blockSizeInBytes\ -\/\ m\_remainingBytesInBlock;}
+\DoxyCodeLine{00024\ \}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{keyword}{inline}\ std::size\_t\ \mbox{\hyperlink{classph_1_1editor_1_1ghi_1_1_graphics_memory_block_ae3a680c20d289d0252c25005f2267bbf}{GraphicsMemoryBlock::numRemainingBytes}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00027\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_remainingBytesInBlock;}
+\DoxyCodeLine{00029\ \}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1ghi_1_1_graphics_memory_block_ab81cfb5680580509cf1cc1344fa43cd7}{GraphicsMemoryBlock::clear}}()}
+\DoxyCodeLine{00032\ \{}
+\DoxyCodeLine{00033\ \ \ \ \ m\_ptrInBlock\ =\ m\_blockSource;}
+\DoxyCodeLine{00034\ \ \ \ \ m\_remainingBytesInBlock\ =\ m\_blockSizeInBytes;}
+\DoxyCodeLine{00035\ \}}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ \mbox{\hyperlink{namespaceph_1_1editor_a8416c0e2549730bba9233b7ab6413c68ab9ece18c950afbfa6b0fdbfa4ff731d3}{T}},\ \textcolor{keyword}{typename}...\ Args>}
+\DoxyCodeLine{00038\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{namespaceph_1_1editor_a8416c0e2549730bba9233b7ab6413c68ab9ece18c950afbfa6b0fdbfa4ff731d3}{T}}*\ \mbox{\hyperlink{classph_1_1editor_1_1ghi_1_1_graphics_memory_block_a261c0913aeae821d3001e64e9e39167f}{GraphicsMemoryBlock::make}}(Args\&\&...\ args)}
+\DoxyCodeLine{00039\ \{}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_trivially\_destructible\_v<T>);}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{comment}{//\ IOC\ of\ array\ of\ size\ 1}}
+\DoxyCodeLine{00043\ \ \ \ \ \mbox{\hyperlink{namespaceph_1_1editor_a8416c0e2549730bba9233b7ab6413c68ab9ece18c950afbfa6b0fdbfa4ff731d3}{T}}*\ \textcolor{keyword}{const}\ storage\ =\ \textcolor{keyword}{reinterpret\_cast<}\mbox{\hyperlink{namespaceph_1_1editor_a8416c0e2549730bba9233b7ab6413c68ab9ece18c950afbfa6b0fdbfa4ff731d3}{T}}*\textcolor{keyword}{>}(allocRaw(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{namespaceph_1_1editor_a8416c0e2549730bba9233b7ab6413c68ab9ece18c950afbfa6b0fdbfa4ff731d3}{T}}),\ \textcolor{keyword}{alignof}(\mbox{\hyperlink{namespaceph_1_1editor_a8416c0e2549730bba9233b7ab6413c68ab9ece18c950afbfa6b0fdbfa4ff731d3}{T}})));}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordflow}{if}(!storage)}
+\DoxyCodeLine{00045\ \ \ \ \ \{}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00047\ \ \ \ \ \}}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordflow}{return}\ std::construct\_at(storage,\ std::forward<Args>(args)...);}
+\DoxyCodeLine{00050\ \}}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00053\ \textcolor{keyword}{inline}\ TSpan<T>\ \mbox{\hyperlink{classph_1_1editor_1_1ghi_1_1_graphics_memory_block_a8a7d5780183ad138e5b747b163ec072a}{GraphicsMemoryBlock::makeArray}}(\textcolor{keyword}{const}\ std::size\_t\ arraySize)}
+\DoxyCodeLine{00054\ \{}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{comment}{//\ To\ not\ violate\ [basic.life]\ section\ 8.3\ later}}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{comment}{//\ (https://timsong-\/cpp.github.io/cppwp/basic.life\#8.3)}}
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keyword}{using\ }NonConstT\ =\ std::remove\_const\_t<T>;}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_default\_constructible\_v<NonConstT>);}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_trivially\_destructible\_v<NonConstT>);}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{comment}{//\ IOC\ of\ array\ of\ size\ \`{}arraySize`}}
+\DoxyCodeLine{00063\ \ \ \ \ NonConstT*\ \textcolor{keyword}{const}\ storage\ =\ \textcolor{keyword}{reinterpret\_cast<}NonConstT*\textcolor{keyword}{>}(}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ allocRaw(\textcolor{keyword}{sizeof}(NonConstT)\ *\ arraySize,\ \textcolor{keyword}{alignof}(NonConstT)));}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordflow}{if}(!storage)}
+\DoxyCodeLine{00066\ \ \ \ \ \{}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \{\};}
+\DoxyCodeLine{00068\ \ \ \ \ \}}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ \ \ std::uninitialized\_default\_construct\_n(storage,\ arraySize);}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{comment}{//\ Potentially\ do\ implicit\ non-\/const\ -\/>\ const\ conversion}}
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordflow}{return}\ TSpan<NonConstT>(storage,\ arraySize);}
+\DoxyCodeLine{00074\ \}}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \textcolor{keyword}{inline}\ std::byte*\ GraphicsMemoryBlock::allocRaw(}
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ numBytes,\ }
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ alignmentInBytes)}
+\DoxyCodeLine{00079\ \{}
+\DoxyCodeLine{00080\ \ \ \ \ PH\_ASSERT(m\_blockSource);}
+\DoxyCodeLine{00081\ \ \ \ \ PH\_ASSERT(math::is\_power\_of\_2(alignmentInBytes));}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keywordtype}{void}*\ ptr\ =\ m\_ptrInBlock;}
+\DoxyCodeLine{00084\ \ \ \ \ std::size\_t\ availableBytes\ =\ m\_remainingBytesInBlock;}
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keywordtype}{void}*\ alignedPtr\ =\ std::align(alignmentInBytes,\ numBytes,\ ptr,\ availableBytes);}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{comment}{//\ Return\ null\ if\ there\ is\ not\ enough\ space\ left}}
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keywordflow}{if}(!alignedPtr)}
+\DoxyCodeLine{00089\ \ \ \ \ \{}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00091\ \ \ \ \ \}}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \ \ \ \ PH\_ASSERT(alignedPtr);}
+\DoxyCodeLine{00094\ \ \ \ \ PH\_ASSERT\_GE(availableBytes,\ numBytes);}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{comment}{//\ We\ have\ a\ successfully\ aligned\ allocation\ here,\ update\ block\ states}}
+\DoxyCodeLine{00097\ \ \ \ \ }
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{comment}{//\ \`{}std::align()`\ only\ adjusts\ \`{}ptr`\ to\ the\ aligned\ memory\ location}}
+\DoxyCodeLine{00099\ \ \ \ \ m\_ptrInBlock\ =\ \textcolor{keyword}{static\_cast<}std::byte*\textcolor{keyword}{>}(ptr)\ +\ numBytes;}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{comment}{//\ \`{}std::align()`\ only\ decreases\ \`{}availableBytes`\ by\ the\ number\ of\ bytes\ used\ for\ alignment}}
+\DoxyCodeLine{00102\ \ \ \ \ m\_remainingBytesInBlock\ =\ availableBytes\ -\/\ numBytes;}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \ \ \ \ \textcolor{keywordflow}{return}\ start\_implicit\_lifetime\_as\_array<std::byte>(alignedPtr,\ numBytes);}
+\DoxyCodeLine{00105\ \}}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \}\textcolor{comment}{//\ end\ namespace\ ph::editor::ghi}}
+
+\end{DoxyCode}

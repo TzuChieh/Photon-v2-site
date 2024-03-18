@@ -1,0 +1,212 @@
+\doxysection{imgui\+\_\+main.\+h}
+\hypertarget{imgui__main_8h_source}{}\label{imgui__main_8h_source}\index{Source/Api/imgui\_main.h@{Source/Api/imgui\_main.h}}
+\mbox{\hyperlink{imgui__main_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{comment}{/******************************************************************************}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ Note:}}
+\DoxyCodeLine{00005\ \textcolor{comment}{}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ Code\ that\ follows\ this\ comment\ section\ is\ copied\ from\ imgui's\ "{}./examples/"{}}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ directory,\ with\ \`{}main()`\ function\ renamed\ to\ \`{}imgui\_main()`\ to\ avoid\ name}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ collision\ with\ the\ actual\ \`{}main()`\ in\ global\ namespace.}}
+\DoxyCodeLine{00009\ \textcolor{comment}{}}
+\DoxyCodeLine{00010\ \textcolor{comment}{******************************************************************************/}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ Dear\ ImGui:\ standalone\ example\ application\ for\ GLFW\ +\ OpenGL\ 3,\ using\ programmable\ pipeline}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ (GLFW\ is\ a\ cross-\/platform\ general\ purpose\ library\ for\ handling\ windows,\ inputs,\ OpenGL/Vulkan/Metal\ graphics\ context\ creation,\ etc.)}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//\ If\ you\ are\ new\ to\ Dear\ ImGui,\ read\ documentation\ from\ the\ docs/\ folder\ +\ read\ the\ top\ of\ imgui.cpp.}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ Read\ online:\ https://github.com/ocornut/imgui/tree/master/docs}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ "{}imgui.h"{}}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ "{}imgui\_impl\_glfw.h"{}}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ "{}imgui\_impl\_opengl3.h"{}}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#if\ defined(IMGUI\_IMPL\_OPENGL\_ES2)}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ <GLES2/gl2.h>}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ <GLFW/glfw3.h>}\ \textcolor{comment}{//\ Will\ drag\ system\ OpenGL\ headers}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{comment}{//\ [Win32]\ Our\ example\ includes\ a\ copy\ of\ glfw3.lib\ pre-\/compiled\ with\ VS2010\ to\ maximize\ ease\ of\ testing\ and\ compatibility\ with\ old\ VS\ compilers.}}
+\DoxyCodeLine{00027\ \textcolor{comment}{//\ To\ link\ with\ VS2010-\/era\ libraries,\ VS2015+\ requires\ linking\ with\ legacy\_stdio\_definitions.lib,\ which\ we\ do\ using\ this\ pragma.}}
+\DoxyCodeLine{00028\ \textcolor{comment}{//\ Your\ own\ project\ should\ not\ be\ affected,\ as\ you\ are\ likely\ to\ link\ with\ a\ newer\ binary\ of\ GLFW\ that\ is\ adequate\ for\ your\ version\ of\ Visual\ Studio.}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#if\ defined(\_MSC\_VER)\ \&\&\ (\_MSC\_VER\ >=\ 1900)\ \&\&\ !defined(IMGUI\_DISABLE\_WIN32\_FUNCTIONS)}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#pragma\ comment(lib,\ "{}legacy\_stdio\_definitions"{})}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ glfw\_error\_callback(\textcolor{keywordtype}{int}\ error,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ description)}
+\DoxyCodeLine{00034\ \{}
+\DoxyCodeLine{00035\ \ \ \ \ fprintf(stderr,\ \textcolor{stringliteral}{"{}Glfw\ Error\ \%d:\ \%s\(\backslash\)n"{}},\ error,\ description);}
+\DoxyCodeLine{00036\ \}}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{imgui__main_8h_af8a5c368ece04057303ffc617d0c88e0}{imgui\_main}}(\textcolor{keywordtype}{int}\ argc,\ \textcolor{keywordtype}{char}*\ argv[])}
+\DoxyCodeLine{00039\ \{}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{comment}{//\ Setup\ window}}
+\DoxyCodeLine{00041\ \ \ \ \ glfwSetErrorCallback(glfw\_error\_callback);}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordflow}{if}\ (!glfwInit())}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{comment}{//\ Decide\ GL+GLSL\ versions}}
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#if\ defined(IMGUI\_IMPL\_OPENGL\_ES2)}}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{comment}{//\ GL\ ES\ 2.0\ +\ GLSL\ 100}}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ glsl\_version\ =\ \textcolor{stringliteral}{"{}\#version\ 100"{}};}
+\DoxyCodeLine{00049\ \ \ \ \ glfwWindowHint(GLFW\_CONTEXT\_VERSION\_MAJOR,\ 2);}
+\DoxyCodeLine{00050\ \ \ \ \ glfwWindowHint(GLFW\_CONTEXT\_VERSION\_MINOR,\ 0);}
+\DoxyCodeLine{00051\ \ \ \ \ glfwWindowHint(GLFW\_CLIENT\_API,\ GLFW\_OPENGL\_ES\_API);}
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#elif\ defined(\_\_APPLE\_\_)}}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{comment}{//\ GL\ 3.2\ +\ GLSL\ 150}}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ glsl\_version\ =\ \textcolor{stringliteral}{"{}\#version\ 150"{}};}
+\DoxyCodeLine{00055\ \ \ \ \ glfwWindowHint(GLFW\_CONTEXT\_VERSION\_MAJOR,\ 3);}
+\DoxyCodeLine{00056\ \ \ \ \ glfwWindowHint(GLFW\_CONTEXT\_VERSION\_MINOR,\ 2);}
+\DoxyCodeLine{00057\ \ \ \ \ glfwWindowHint(GLFW\_OPENGL\_PROFILE,\ GLFW\_OPENGL\_CORE\_PROFILE);\ \ \textcolor{comment}{//\ 3.2+\ only}}
+\DoxyCodeLine{00058\ \ \ \ \ glfwWindowHint(GLFW\_OPENGL\_FORWARD\_COMPAT,\ GL\_TRUE);\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Required\ on\ Mac}}
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{comment}{//\ GL\ 3.0\ +\ GLSL\ 130}}
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ glsl\_version\ =\ \textcolor{stringliteral}{"{}\#version\ 130"{}};}
+\DoxyCodeLine{00062\ \ \ \ \ glfwWindowHint(GLFW\_CONTEXT\_VERSION\_MAJOR,\ 3);}
+\DoxyCodeLine{00063\ \ \ \ \ glfwWindowHint(GLFW\_CONTEXT\_VERSION\_MINOR,\ 0);}
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{comment}{//glfwWindowHint(GLFW\_OPENGL\_PROFILE,\ GLFW\_OPENGL\_CORE\_PROFILE);\ \ //\ 3.2+\ only}}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{comment}{//glfwWindowHint(GLFW\_OPENGL\_FORWARD\_COMPAT,\ GL\_TRUE);\ \ \ \ \ \ \ \ \ \ \ \ //\ 3.0+\ only}}
+\DoxyCodeLine{00066\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{comment}{//\ Create\ window\ with\ graphics\ context}}
+\DoxyCodeLine{00069\ \ \ \ \ GLFWwindow*\ window\ =\ glfwCreateWindow(1280,\ 720,\ \textcolor{stringliteral}{"{}Dear\ ImGui\ GLFW+OpenGL3\ example"{}},\ NULL,\ NULL);}
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keywordflow}{if}\ (window\ ==\ NULL)}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{00072\ \ \ \ \ glfwMakeContextCurrent(window);}
+\DoxyCodeLine{00073\ \ \ \ \ glfwSwapInterval(1);\ \textcolor{comment}{//\ Enable\ vsync}}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{comment}{//\ Setup\ Dear\ ImGui\ context}}
+\DoxyCodeLine{00076\ \ \ \ \ IMGUI\_CHECKVERSION();}
+\DoxyCodeLine{00077\ \ \ \ \ ImGui::CreateContext();}
+\DoxyCodeLine{00078\ \ \ \ \ ImGuiIO\&\ io\ =\ ImGui::GetIO();\ (void)io;}
+\DoxyCodeLine{00079\ \ \ \ \ io.ConfigFlags\ |=\ ImGuiConfigFlags\_NavEnableKeyboard;\ \ \ \ \ \ \ \textcolor{comment}{//\ Enable\ Keyboard\ Controls}}
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{comment}{//io.ConfigFlags\ |=\ ImGuiConfigFlags\_NavEnableGamepad;\ \ \ \ \ \ //\ Enable\ Gamepad\ Controls}}
+\DoxyCodeLine{00081\ \ \ \ \ io.ConfigFlags\ |=\ ImGuiConfigFlags\_DockingEnable;\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Enable\ Docking}}
+\DoxyCodeLine{00082\ \ \ \ \ io.ConfigFlags\ |=\ ImGuiConfigFlags\_ViewportsEnable;\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Enable\ Multi-\/Viewport\ /\ Platform\ Windows}}
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{comment}{//io.ConfigViewportsNoAutoMerge\ =\ true;}}
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{comment}{//io.ConfigViewportsNoTaskBarIcon\ =\ true;}}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{comment}{//\ Setup\ Dear\ ImGui\ style}}
+\DoxyCodeLine{00087\ \ \ \ \ ImGui::StyleColorsDark();}
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{comment}{//ImGui::StyleColorsLight();}}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{comment}{//\ When\ viewports\ are\ enabled\ we\ tweak\ WindowRounding/WindowBg\ so\ platform\ windows\ can\ look\ identical\ to\ regular\ ones.}}
+\DoxyCodeLine{00091\ \ \ \ \ ImGuiStyle\&\ style\ =\ ImGui::GetStyle();}
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keywordflow}{if}\ (io.ConfigFlags\ \&\ ImGuiConfigFlags\_ViewportsEnable)}
+\DoxyCodeLine{00093\ \ \ \ \ \{}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ style.WindowRounding\ =\ 0.0f;}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ style.Colors[ImGuiCol\_WindowBg].w\ =\ 1.0f;}
+\DoxyCodeLine{00096\ \ \ \ \ \}}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{comment}{//\ Setup\ Platform/Renderer\ backends}}
+\DoxyCodeLine{00099\ \ \ \ \ ImGui\_ImplGlfw\_InitForOpenGL(window,\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00100\ \ \ \ \ ImGui\_ImplOpenGL3\_Init(glsl\_version);}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{comment}{//\ Load\ Fonts}}
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{comment}{//\ -\/\ If\ no\ fonts\ are\ loaded,\ dear\ imgui\ will\ use\ the\ default\ font.\ You\ can\ also\ load\ multiple\ fonts\ and\ use\ ImGui::PushFont()/PopFont()\ to\ select\ them.}}
+\DoxyCodeLine{00104\ \ \ \ \ \textcolor{comment}{//\ -\/\ AddFontFromFileTTF()\ will\ return\ the\ ImFont*\ so\ you\ can\ store\ it\ if\ you\ need\ to\ select\ the\ font\ among\ multiple.}}
+\DoxyCodeLine{00105\ \ \ \ \ \textcolor{comment}{//\ -\/\ If\ the\ file\ cannot\ be\ loaded,\ the\ function\ will\ return\ NULL.\ Please\ handle\ those\ errors\ in\ your\ application\ (e.g.\ use\ an\ assertion,\ or\ display\ an\ error\ and\ quit).}}
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{comment}{//\ -\/\ The\ fonts\ will\ be\ rasterized\ at\ a\ given\ size\ (w/\ oversampling)\ and\ stored\ into\ a\ texture\ when\ calling\ ImFontAtlas::Build()/GetTexDataAsXXXX(),\ which\ ImGui\_ImplXXXX\_NewFrame\ below\ will\ call.}}
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{comment}{//\ -\/\ Read\ 'docs/FONTS.md'\ for\ more\ instructions\ and\ details.}}
+\DoxyCodeLine{00108\ \ \ \ \ \textcolor{comment}{//\ -\/\ Remember\ that\ in\ C/C++\ if\ you\ want\ to\ include\ a\ backslash\ \(\backslash\)\ in\ a\ string\ literal\ you\ need\ to\ write\ a\ double\ backslash\ \(\backslash\)\(\backslash\)\ !}}
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{comment}{//io.Fonts-\/>AddFontDefault();}}
+\DoxyCodeLine{00110\ \ \ \ \ \textcolor{comment}{//io.Fonts-\/>AddFontFromFileTTF("{}../../misc/fonts/Roboto-\/Medium.ttf"{},\ 16.0f);}}
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{comment}{//io.Fonts-\/>AddFontFromFileTTF("{}../../misc/fonts/Cousine-\/Regular.ttf"{},\ 15.0f);}}
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{comment}{//io.Fonts-\/>AddFontFromFileTTF("{}../../misc/fonts/DroidSans.ttf"{},\ 16.0f);}}
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{comment}{//io.Fonts-\/>AddFontFromFileTTF("{}../../misc/fonts/ProggyTiny.ttf"{},\ 10.0f);}}
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{comment}{//ImFont*\ font\ =\ io.Fonts-\/>AddFontFromFileTTF("{}c:\(\backslash\)\(\backslash\)Windows\(\backslash\)\(\backslash\)Fonts\(\backslash\)\(\backslash\)ArialUni.ttf"{},\ 18.0f,\ NULL,\ io.Fonts-\/>GetGlyphRangesJapanese());}}
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{comment}{//IM\_ASSERT(font\ !=\ NULL);}}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{comment}{//\ Our\ state}}
+\DoxyCodeLine{00118\ \ \ \ \ \textcolor{keywordtype}{bool}\ show\_demo\_window\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{keywordtype}{bool}\ show\_another\_window\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00120\ \ \ \ \ ImVec4\ clear\_color\ =\ ImVec4(0.45f,\ 0.55f,\ 0.60f,\ 1.00f);}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{comment}{//\ Main\ loop}}
+\DoxyCodeLine{00123\ \ \ \ \ \textcolor{keywordflow}{while}\ (!glfwWindowShouldClose(window))}
+\DoxyCodeLine{00124\ \ \ \ \ \{}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Poll\ and\ handle\ events\ (inputs,\ window\ resize,\ etc.)}}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ You\ can\ read\ the\ io.WantCaptureMouse,\ io.WantCaptureKeyboard\ flags\ to\ tell\ if\ dear\ imgui\ wants\ to\ use\ your\ inputs.}}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ -\/\ When\ io.WantCaptureMouse\ is\ true,\ do\ not\ dispatch\ mouse\ input\ data\ to\ your\ main\ application,\ or\ clear/overwrite\ your\ copy\ of\ the\ mouse\ data.}}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ -\/\ When\ io.WantCaptureKeyboard\ is\ true,\ do\ not\ dispatch\ keyboard\ input\ data\ to\ your\ main\ application,\ or\ clear/overwrite\ your\ copy\ of\ the\ keyboard\ data.}}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Generally\ you\ may\ always\ pass\ all\ inputs\ to\ dear\ imgui,\ and\ hide\ them\ from\ your\ application\ based\ on\ those\ two\ flags.}}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ glfwPollEvents();}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Start\ the\ Dear\ ImGui\ frame}}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ ImGui\_ImplOpenGL3\_NewFrame();}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ ImGui\_ImplGlfw\_NewFrame();}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ ImGui::NewFrame();}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1.\ Show\ the\ big\ demo\ window\ (Most\ of\ the\ sample\ code\ is\ in\ ImGui::ShowDemoWindow()!\ You\ can\ browse\ its\ code\ to\ learn\ more\ about\ Dear\ ImGui!).}}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (show\_demo\_window)}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ ImGui::ShowDemoWindow(\&show\_demo\_window);}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 2.\ Show\ a\ simple\ window\ that\ we\ create\ ourselves.\ We\ use\ a\ Begin/End\ pair\ to\ created\ a\ named\ window.}}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{float}\ f\ =\ 0.0f;}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ counter\ =\ 0;}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ ImGui::Begin(\textcolor{stringliteral}{"{}Hello,\ world!"{}});\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Create\ a\ window\ called\ "{}Hello,\ world!"{}\ and\ append\ into\ it.}}
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \ \ \ \ ImGui::Text(\textcolor{stringliteral}{"{}This\ is\ some\ useful\ text."{}});\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Display\ some\ text\ (you\ can\ use\ a\ format\ strings\ too)}}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \ \ ImGui::Checkbox(\textcolor{stringliteral}{"{}Demo\ Window"{}},\ \&show\_demo\_window);\ \ \ \ \ \ \textcolor{comment}{//\ Edit\ bools\ storing\ our\ window\ open/close\ state}}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \ \ \ \ ImGui::Checkbox(\textcolor{stringliteral}{"{}Another\ Window"{}},\ \&show\_another\_window);}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \ \ \ \ ImGui::SliderFloat(\textcolor{stringliteral}{"{}float"{}},\ \&f,\ 0.0f,\ 1.0f);\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Edit\ 1\ float\ using\ a\ slider\ from\ 0.0f\ to\ 1.0f}}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \ \ \ \ ImGui::ColorEdit3(\textcolor{stringliteral}{"{}clear\ color"{}},\ (\textcolor{keywordtype}{float}*)\&clear\_color);\ \textcolor{comment}{//\ Edit\ 3\ floats\ representing\ a\ color}}
+\DoxyCodeLine{00154\ }
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ImGui::Button(\textcolor{stringliteral}{"{}Button"{}}))\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Buttons\ return\ true\ when\ clicked\ (most\ widgets\ return\ true\ when\ edited/activated)}}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ counter++;}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ ImGui::SameLine();}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ ImGui::Text(\textcolor{stringliteral}{"{}counter\ =\ \%d"{}},\ counter);}
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \ \ ImGui::Text(\textcolor{stringliteral}{"{}Application\ average\ \%.3f\ ms/frame\ (\%.1f\ FPS)"{}},\ 1000.0f\ /\ ImGui::GetIO().Framerate,\ ImGui::GetIO().Framerate);}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \ \ \ \ ImGui::End();}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 3.\ Show\ another\ simple\ window.}}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (show\_another\_window)}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ ImGui::Begin(\textcolor{stringliteral}{"{}Another\ Window"{}},\ \&show\_another\_window);\ \ \ \textcolor{comment}{//\ Pass\ a\ pointer\ to\ our\ bool\ variable\ (the\ window\ will\ have\ a\ closing\ button\ that\ will\ clear\ the\ bool\ when\ clicked)}}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ ImGui::Text(\textcolor{stringliteral}{"{}Hello\ from\ another\ window!"{}});}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ImGui::Button(\textcolor{stringliteral}{"{}Close\ Me"{}}))}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ show\_another\_window\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \ \ \ \ ImGui::End();}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Rendering}}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ ImGui::Render();}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ display\_w,\ display\_h;}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ glfwGetFramebufferSize(window,\ \&display\_w,\ \&display\_h);}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ glViewport(0,\ 0,\ display\_w,\ display\_h);}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ glClearColor(clear\_color.x\ *\ clear\_color.w,\ clear\_color.y\ *\ clear\_color.w,\ clear\_color.z\ *\ clear\_color.w,\ clear\_color.w);}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ glClear(GL\_COLOR\_BUFFER\_BIT);}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ ImGui\_ImplOpenGL3\_RenderDrawData(ImGui::GetDrawData());}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Update\ and\ Render\ additional\ Platform\ Windows}}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ (Platform\ functions\ may\ change\ the\ current\ OpenGL\ context,\ so\ we\ save/restore\ it\ to\ make\ it\ easier\ to\ paste\ this\ code\ elsewhere.}}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ For\ this\ specific\ demo\ app\ we\ could\ also\ call\ glfwMakeContextCurrent(window)\ directly)}}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (io.ConfigFlags\ \&\ ImGuiConfigFlags\_ViewportsEnable)}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \ \ \ \ GLFWwindow*\ backup\_current\_context\ =\ glfwGetCurrentContext();}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ ImGui::UpdatePlatformWindows();}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \ \ \ \ ImGui::RenderPlatformWindowsDefault();}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \ \ \ \ glfwMakeContextCurrent(backup\_current\_context);}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00193\ }
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ glfwSwapBuffers(window);}
+\DoxyCodeLine{00195\ \ \ \ \ \}}
+\DoxyCodeLine{00196\ }
+\DoxyCodeLine{00197\ \ \ \ \ \textcolor{comment}{//\ Cleanup}}
+\DoxyCodeLine{00198\ \ \ \ \ ImGui\_ImplOpenGL3\_Shutdown();}
+\DoxyCodeLine{00199\ \ \ \ \ ImGui\_ImplGlfw\_Shutdown();}
+\DoxyCodeLine{00200\ \ \ \ \ ImGui::DestroyContext();}
+\DoxyCodeLine{00201\ }
+\DoxyCodeLine{00202\ \ \ \ \ glfwDestroyWindow(window);}
+\DoxyCodeLine{00203\ \ \ \ \ glfwTerminate();}
+\DoxyCodeLine{00204\ }
+\DoxyCodeLine{00205\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00206\ \}}
+
+\end{DoxyCode}

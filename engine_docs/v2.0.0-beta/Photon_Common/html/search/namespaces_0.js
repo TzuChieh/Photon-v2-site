@@ -7,7 +7,6 @@ var searchData=
   ['ph_3a_3amath_4',['math',['../d7/dac/namespaceph_1_1math.html',1,'ph']]],
   ['ph_3a_3aos_5',['os',['../db/d53/namespaceph_1_1os.html',1,'ph']]],
   ['ph_3a_3astring_5futils_6',['string_utils',['../da/d3e/namespaceph_1_1string__utils.html',1,'ph']]],
-  ['ph_3a_3astring_5futils_3a_3adetail_7',['detail',['../d0/dc2/namespaceph_1_1string__utils_1_1detail.html',1,'ph::string_utils']]],
-  ['ph_3a_3astring_5futils_3a_3adetail_5ffrom_5fto_5fchar_8',['detail_from_to_char',['../d6/d5f/namespaceph_1_1string__utils_1_1detail__from__to__char.html',1,'ph::string_utils']]],
-  ['ph_3a_3astring_5futils_3a_3atable_9',['table',['../d9/d7f/namespaceph_1_1string__utils_1_1table.html',1,'ph::string_utils']]]
+  ['ph_3a_3astring_5futils_3a_3adetail_5ffrom_5fto_5fchar_7',['detail_from_to_char',['../d6/d5f/namespaceph_1_1string__utils_1_1detail__from__to__char.html',1,'ph::string_utils']]],
+  ['ph_3a_3astring_5futils_3a_3atable_8',['table',['../d9/d7f/namespaceph_1_1string__utils_1_1table.html',1,'ph::string_utils']]]
 ];

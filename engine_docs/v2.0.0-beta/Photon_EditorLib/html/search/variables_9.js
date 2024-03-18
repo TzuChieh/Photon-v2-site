@@ -1,0 +1,25 @@
+var searchData=
+[
+  ['mainthreadeventflushms_0',['mainThreadEventFlushMs',['../db/db6/classph_1_1editor_1_1_editor_stats.html#a00bb62b3140c48386d9f8851dda03874',1,'ph::editor::EditorStats']]],
+  ['mainthreadframems_1',['mainThreadFrameMs',['../db/db6/classph_1_1editor_1_1_editor_stats.html#a8736cb5ec5e26f288d17ab42ee0b0e58',1,'ph::editor::EditorStats']]],
+  ['mainthreadrenderms_2',['mainThreadRenderMs',['../db/db6/classph_1_1editor_1_1_editor_stats.html#acf89ecd296dd0f5df3aa36b3e8e9daac',1,'ph::editor::EditorStats']]],
+  ['mainthreadupdatems_3',['mainThreadUpdateMs',['../db/db6/classph_1_1editor_1_1_editor_stats.html#ac9f44998b4cf7d77b7c3f2c0f8709e53',1,'ph::editor::EditorStats']]],
+  ['mainview_4',['mainView',['../da/d59/classph_1_1editor_1_1render_1_1_scene.html#a8b3a134aa8eba8dc1ee6197a325060d1',1,'ph::editor::render::Scene']]],
+  ['mainviewportmaxheight_5',['mainViewportMaxHeight',['../dd/df5/classph_1_1editor_1_1_dimension_hints.html#a871a2c3d24771e4874714b69a3907aaa',1,'ph::editor::DimensionHints']]],
+  ['mainviewportmaxwidth_6',['mainViewportMaxWidth',['../dd/df5/classph_1_1editor_1_1_dimension_hints.html#af66b3201511bd82232941fc91ef85be4',1,'ph::editor::DimensionHints']]],
+  ['mainviewportminheight_7',['mainViewportMinHeight',['../dd/df5/classph_1_1editor_1_1_dimension_hints.html#a3fcd1562aee87fea7c5520af503d4c94',1,'ph::editor::DimensionHints']]],
+  ['mainviewportminwidth_8',['mainViewportMinWidth',['../dd/df5/classph_1_1editor_1_1_dimension_hints.html#afda3314b3d398e90c495a818b54d7b02',1,'ph::editor::DimensionHints']]],
+  ['mainviewportpreferredheight_9',['mainViewportPreferredHeight',['../dd/df5/classph_1_1editor_1_1_dimension_hints.html#a864d06a8877ba6043b564e24d744fb0a',1,'ph::editor::DimensionHints']]],
+  ['mainviewportpreferredwidth_10',['mainViewportPreferredWidth',['../dd/df5/classph_1_1editor_1_1_dimension_hints.html#ab0da59a54ed8c9fa614b31b21b3f57ad',1,'ph::editor::DimensionHints']]],
+  ['max_5fattribute_5fbindings_11',['MAX_ATTRIBUTE_BINDINGS',['../d4/d6e/classph_1_1editor_1_1ghi_1_1_mesh_vertex_layout_info.html#a76cc880cf4871a75c43e99575295973b',1,'ph::editor::ghi::MeshVertexLayoutInfo']]],
+  ['max_5fattributes_12',['MAX_ATTRIBUTES',['../dd/d63/classph_1_1editor_1_1ghi_1_1_vertex_group_format_info.html#a2c348d172fa11c290d435e9b4e46b13b',1,'ph::editor::ghi::VertexGroupFormatInfo']]],
+  ['max_5fcolor_5fattachments_13',['max_color_attachments',['../df/daa/classph_1_1editor_1_1ghi_1_1_framebuffer_desc.html#a72cae5056c7ba7af4e83083d5385e392',1,'ph::editor::ghi::FramebufferDesc::MAX_COLOR_ATTACHMENTS'],['../db/d9b/classph_1_1editor_1_1ghi_1_1_opengl_framebuffer.html#a09c3bb1822bfecb32eacaf31c4774e6b',1,'ph::editor::ghi::OpenglFramebuffer::MAX_COLOR_ATTACHMENTS']]],
+  ['maxanythreadworksperupdate_14',['maxAnyThreadWorksPerUpdate',['../d5/dd2/classph_1_1editor_1_1_editor_event_queue.html#aad085be8edb49810449124656bd41107',1,'ph::editor::EditorEventQueue']]],
+  ['maxfps_15',['maxFPS',['../d6/def/classph_1_1editor_1_1_app_settings.html#a4449dae4a760094862247cffa731810d',1,'ph::editor::AppSettings']]],
+  ['maxtextureunitsforfragmentshadingstage_16',['maxTextureUnitsForFragmentShadingStage',['../d0/d9e/classph_1_1editor_1_1ghi_1_1_device_capability_info.html#a614a3e82f58c0a04e9d12d2c95993b63',1,'ph::editor::ghi::DeviceCapabilityInfo']]],
+  ['maxtextureunitsforvertexshadingstage_17',['maxTextureUnitsForVertexShadingStage',['../d0/d9e/classph_1_1editor_1_1ghi_1_1_device_capability_info.html#a971ad8cdb2eac0c72be0c02131f02464',1,'ph::editor::ghi::DeviceCapabilityInfo']]],
+  ['maxvertexattributes_18',['maxVertexAttributes',['../d0/d9e/classph_1_1editor_1_1ghi_1_1_device_capability_info.html#a238a29ab4714f7b1b81eaa5e7b34c84c',1,'ph::editor::ghi::DeviceCapabilityInfo']]],
+  ['minframepeekperiodms_19',['minFramePeekPeriodMs',['../d5/d81/classph_1_1editor_1_1_render_config.html#a31630a36773812bf76de5734b34b1f43',1,'ph::editor::RenderConfig']]],
+  ['minstatsrequestperiodms_20',['minStatsRequestPeriodMs',['../d5/d81/classph_1_1editor_1_1_render_config.html#a203cd0743d6998be536f8b3e09eac53e',1,'ph::editor::RenderConfig']]],
+  ['modeltoview_21',['modelToView',['../db/d86/classph_1_1editor_1_1render_1_1_projective_view.html#a572dac2667e6cdec8a4847989cb14e6b',1,'ph::editor::render::ProjectiveView']]]
+];

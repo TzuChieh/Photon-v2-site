@@ -4,7 +4,7 @@
 \begin{DoxyCode}{0}
 \DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
 \DoxyCodeLine{00002\ }
-\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_array_as_stack_8h}{Utility/TArrayAsStack.h}}"{}}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_array_stack_8h}{Utility/TArrayStack.h}}"{}}}
 \DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_vector3_8h}{Math/TVector3.h}}"{}}}
 \DoxyCodeLine{00005\ }
 \DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <Common/assertion.h>}}
@@ -27,123 +27,142 @@
 \DoxyCodeLine{00023\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_hit_probe}{HitProbe}}\ final}
 \DoxyCodeLine{00024\ \{}
 \DoxyCodeLine{00025\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_hit_probe_a58196325999d269bcb5eff82cd9b1feb}{HitProbe}}()\ :}
-\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ m\_hitStack(),}
-\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ m\_hitRayT(\mbox{\hyperlink{namespacestd}{std}}::numeric\_limits<real>::max()),}
-\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ m\_hitDetailChannel(0),}
-\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ m\_cache(),}
-\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ m\_cacheHead(0)}
-\DoxyCodeLine{00032\ \ \ \ \ \{\}}
-\DoxyCodeLine{00033\ }
-\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_hit_probe_ad1d618361a24eee75f5deeaf542e52d2}{calcIntersectionDetail}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_ray}{Ray}}\&\ ray,\ \mbox{\hyperlink{classph_1_1_hit_detail}{HitDetail}}*\ out\_detail);}
+\DoxyCodeLine{00030\ \ \ \ \ \mbox{\hyperlink{classph_1_1_hit_probe_a58196325999d269bcb5eff82cd9b1feb}{HitProbe}}();}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_hit_probe_ad9fced029478af18b44b5fa91c6cd3d4}{calcHitDetail}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_ray}{Ray}}\&\ ray,\ \mbox{\hyperlink{classph_1_1_hit_detail}{HitDetail}}*\ out\_detail);}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_hit_probe_a6f0d930a1230e62b71c8de1989eda579}{calcFullHitDetail}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_ray}{Ray}}\&\ ray,\ \mbox{\hyperlink{classph_1_1_hit_detail}{HitDetail}}*\ out\_detail);}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_hit_probe_a742e35ef23dc97258d91643f934bcda1}{reintersect}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_ray}{Ray}}\&\ ray,\ \mbox{\hyperlink{classph_1_1_hit_probe}{HitProbe}}\&\ probe,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_ray}{Ray}}\&\ srcRay);}
 \DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_hit_probe_af85a756424121b306209e6607d3c89c5}{isOnDefaultChannel}}()\ \textcolor{keyword}{const};}
 \DoxyCodeLine{00036\ }
 \DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_hit_probe_a7df5934cb78fc0772ec90c55f8cc9696}{pushIntermediateHit}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_intersectable}{Intersectable}}*\ hitTarget);}
 \DoxyCodeLine{00041\ }
 \DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_hit_probe_a9465a13a3f4dc40bb55e45c8ffa4cbf6}{pushBaseHit}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_intersectable}{Intersectable}}*\ hitTarget,\ real\ hitRayT);}
 \DoxyCodeLine{00047\ }
-\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_hit_probe_ad1cb88165e5056705e79bdca7fad4910}{popIntermediateHit}}()}
-\DoxyCodeLine{00049\ \ \ \ \ \{}
-\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ m\_hitStack.\mbox{\hyperlink{classph_1_1_t_array_as_stack_a12e0229e5b45cdb161c7e653b6b7e730}{pop}}();}
-\DoxyCodeLine{00051\ \ \ \ \ \}}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_hit_probe_a4c7120e462a6cc8e500bc8b2302c2989}{popHit}}();}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_hit_probe_a8eb31aad8dd058a777c32affe176d03f}{replaceCurrentHitWith}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_intersectable}{Intersectable}}*\ newCurrentHit);}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_hit_probe_ad3158adf7c7d16eae01d8e94e3f49864}{replaceBaseHitRayTWith}}(real\ hitRayT);}
 \DoxyCodeLine{00052\ }
-\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_hit_probe_a14285ff4a74f9688445545c3125f035b}{replaceCurrentHitWith}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_intersectable}{Intersectable}}*\ \textcolor{keyword}{const}\ newCurrentHit)}
-\DoxyCodeLine{00054\ \ \ \ \ \{}
-\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ m\_hitStack.\mbox{\hyperlink{classph_1_1_t_array_as_stack_a12e0229e5b45cdb161c7e653b6b7e730}{pop}}();}
-\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ m\_hitStack.\mbox{\hyperlink{classph_1_1_t_array_as_stack_a27326e816fb76356e997aacf6cbd6e5c}{push}}(newCurrentHit);}
-\DoxyCodeLine{00057\ \ \ \ \ \}}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_hit_probe_a7b03e889e00edbdcaa81b42097ef6261}{setChannel}}(uint8\ channel);}
+\DoxyCodeLine{00054\ \ \ \ \ uint8\ \mbox{\hyperlink{classph_1_1_hit_probe_a32daa2188765ffbaf5d44e81caf8d592}{getChannel}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_intersectable}{Intersectable}}*\ \mbox{\hyperlink{classph_1_1_hit_probe_a1f9f623452257ca1b4bb5e64f8b1d1b0}{getCurrentHit}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00057\ \ \ \ \ real\ \mbox{\hyperlink{classph_1_1_hit_probe_af9c96bd20f167c30fe8802524c563a21}{getHitRayT}}()\ \textcolor{keyword}{const};}
 \DoxyCodeLine{00058\ }
-\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_hit_probe_ac6f16e51dc4ae4e6ba09bed705b085f2}{setChannel}}(\textcolor{keyword}{const}\ uint32\ channel)}
-\DoxyCodeLine{00060\ \ \ \ \ \{}
-\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ m\_hitDetailChannel\ =\ channel;}
-\DoxyCodeLine{00062\ \ \ \ \ \}}
-\DoxyCodeLine{00063\ }
-\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_intersectable}{Intersectable}}*\ \mbox{\hyperlink{classph_1_1_hit_probe_a1f9f623452257ca1b4bb5e64f8b1d1b0}{getCurrentHit}}()\textcolor{keyword}{\ const}}
-\DoxyCodeLine{00065\ \textcolor{keyword}{\ \ \ \ }\{}
-\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_hitStack.\mbox{\hyperlink{classph_1_1_t_array_as_stack_ab19487845d35c5b70f69f881a233b20b}{top}}();}
-\DoxyCodeLine{00067\ \ \ \ \ \}}
-\DoxyCodeLine{00068\ }
-\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keyword}{inline}\ real\ \mbox{\hyperlink{classph_1_1_hit_probe_af9c96bd20f167c30fe8802524c563a21}{getHitRayT}}()\textcolor{keyword}{\ const}}
-\DoxyCodeLine{00070\ \textcolor{keyword}{\ \ \ \ }\{}
-\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_hitRayT;}
-\DoxyCodeLine{00072\ \ \ \ \ \}}
-\DoxyCodeLine{00073\ }
-\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keyword}{inline}\ uint32\ \mbox{\hyperlink{classph_1_1_hit_probe_a1514e2125cde4bd20288ad95426893da}{getChannel}}()\textcolor{keyword}{\ const}}
-\DoxyCodeLine{00075\ \textcolor{keyword}{\ \ \ \ }\{}
-\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_hitDetailChannel;}
-\DoxyCodeLine{00077\ \ \ \ \ \}}
-\DoxyCodeLine{00078\ }
-\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_hit_probe_aa62d1132aeb88cf877ba0f6e0c277932}{clear}}();}
-\DoxyCodeLine{00083\ }
-\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_hit_probe_a4ba00967fa180c7ec1890825a4675b17}{pushCache}}(\textcolor{keyword}{const}\ T\&\ data);}
-\DoxyCodeLine{00086\ }
-\DoxyCodeLine{00087\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00088\ \ \ \ \ T\ \mbox{\hyperlink{classph_1_1_hit_probe_a68d5626b6856c97c8c30bea7e9f80b33}{popCache}}();}
-\DoxyCodeLine{00089\ }
-\DoxyCodeLine{00090\ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keyword}{using\ }Stack\ =\ \mbox{\hyperlink{classph_1_1_t_array_as_stack}{TArrayAsStack<const\ Intersectable*,\ PH\_HIT\_PROBE\_DEPTH>}};}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_hit_probe_a4ba00967fa180c7ec1890825a4675b17}{pushCache}}(\textcolor{keyword}{const}\ T\&\ data);}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00063\ \ \ \ \ T\ \mbox{\hyperlink{classph_1_1_hit_probe_a68d5626b6856c97c8c30bea7e9f80b33}{popCache}}();}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classph_1_1_t_array_stack}{Stack}}\ =\ \mbox{\hyperlink{classph_1_1_t_array_stack}{TArrayStack<const\ Intersectable*,\ PH\_HIT\_PROBE\_DEPTH>}};}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_array_stack}{Stack}}\ \ \ \ \ \ \ m\_hitStack;}
+\DoxyCodeLine{00069\ \ \ \ \ real\ \ \ \ \ \ \ \ m\_hitRayT;}
+\DoxyCodeLine{00070\ \ \ \ \ std::byte\ \ \ m\_cache[PH\_HIT\_PROBE\_CACHE\_BYTES];}
+\DoxyCodeLine{00071\ \ \ \ \ uint8\ \ \ \ \ \ \ m\_cacheHead;}
+\DoxyCodeLine{00072\ \ \ \ \ uint8\ \ \ \ \ \ \ m\_hitDetailChannel;}
+\DoxyCodeLine{00073\ \textcolor{preprocessor}{\#if\ PH\_DEBUG}}
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ m\_hasBaseHitSet\{\textcolor{keyword}{false}\};}
+\DoxyCodeLine{00075\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00076\ \};}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \textcolor{comment}{//\ In-\/header\ Implementations:}}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_hit_probe_a58196325999d269bcb5eff82cd9b1feb}{HitProbe::HitProbe}}()}
+\DoxyCodeLine{00081\ \ \ \ \ :\ m\_hitStack\ \ \ \ \ \ \ \ ()}
+\DoxyCodeLine{00082\ \ \ \ \ ,\ m\_hitRayT\ \ \ \ \ \ \ \ \ (\mbox{\hyperlink{namespacestd}{std}}::numeric\_limits<real>::max())}
+\DoxyCodeLine{00083\ \ \ \ \ ,\ m\_cache\ \ \ \ \ \ \ \ \ \ \ ()}
+\DoxyCodeLine{00084\ \ \ \ \ ,\ m\_cacheHead\ \ \ \ \ \ \ (0)}
+\DoxyCodeLine{00085\ \ \ \ \ ,\ m\_hitDetailChannel(0)}
+\DoxyCodeLine{00086\ \{\}}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_hit_probe_a7df5934cb78fc0772ec90c55f8cc9696}{HitProbe::pushIntermediateHit}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_intersectable}{Intersectable}}*\ \textcolor{keyword}{const}\ hitTarget)}
+\DoxyCodeLine{00089\ \{}
+\DoxyCodeLine{00090\ \ \ \ \ m\_hitStack.\mbox{\hyperlink{classph_1_1_t_array_stack_a51868f681542a61cd2d194c70401e3d4}{push}}(hitTarget);}
+\DoxyCodeLine{00091\ \}}
 \DoxyCodeLine{00092\ }
-\DoxyCodeLine{00093\ \ \ \ \ Stack\ \ \ \ \ \ \ m\_hitStack;}
-\DoxyCodeLine{00094\ \ \ \ \ real\ \ \ \ \ \ \ \ m\_hitRayT;}
-\DoxyCodeLine{00095\ \ \ \ \ uint32\ \ \ \ \ \ m\_hitDetailChannel;}
-\DoxyCodeLine{00096\ \ \ \ \ std::byte\ \ \ m\_cache[PH\_HIT\_PROBE\_CACHE\_BYTES];}
-\DoxyCodeLine{00097\ \ \ \ \ std::size\_t\ m\_cacheHead;}
-\DoxyCodeLine{00098\ \};}
-\DoxyCodeLine{00099\ }
-\DoxyCodeLine{00100\ \textcolor{comment}{//\ In-\/header\ Implementations:}}
-\DoxyCodeLine{00101\ }
-\DoxyCodeLine{00102\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_hit_probe_a7df5934cb78fc0772ec90c55f8cc9696}{HitProbe::pushIntermediateHit}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_intersectable}{Intersectable}}*\ \textcolor{keyword}{const}\ hitTarget)}
-\DoxyCodeLine{00103\ \{}
-\DoxyCodeLine{00104\ \ \ \ \ m\_hitStack.\mbox{\hyperlink{classph_1_1_t_array_as_stack_a27326e816fb76356e997aacf6cbd6e5c}{push}}(hitTarget);}
-\DoxyCodeLine{00105\ \}}
-\DoxyCodeLine{00106\ }
-\DoxyCodeLine{00107\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_hit_probe_a9465a13a3f4dc40bb55e45c8ffa4cbf6}{HitProbe::pushBaseHit}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_intersectable}{Intersectable}}*\ \textcolor{keyword}{const}\ hitTarget,\ \textcolor{keyword}{const}\ real\ hitRayT)}
-\DoxyCodeLine{00108\ \{}
-\DoxyCodeLine{00109\ \ \ \ \ m\_hitStack.\mbox{\hyperlink{classph_1_1_t_array_as_stack_a27326e816fb76356e997aacf6cbd6e5c}{push}}(hitTarget);}
-\DoxyCodeLine{00110\ \ \ \ \ m\_hitRayT\ =\ hitRayT;}
-\DoxyCodeLine{00111\ \}}
-\DoxyCodeLine{00112\ }
-\DoxyCodeLine{00113\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_hit_probe_aa62d1132aeb88cf877ba0f6e0c277932}{HitProbe::clear}}()}
-\DoxyCodeLine{00114\ \{}
-\DoxyCodeLine{00115\ \ \ \ \ m\_hitStack.\mbox{\hyperlink{classph_1_1_t_array_as_stack_a4ad25c459ee3005e708abd1adae6fec6}{clear}}();}
-\DoxyCodeLine{00116\ \ \ \ \ m\_hitRayT\ =\ std::numeric\_limits<real>::max();}
-\DoxyCodeLine{00117\ \ \ \ \ m\_hitDetailChannel\ =\ 0;}
-\DoxyCodeLine{00118\ \ \ \ \ m\_cacheHead\ =\ 0;}
-\DoxyCodeLine{00119\ \}}
-\DoxyCodeLine{00120\ }
-\DoxyCodeLine{00121\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00122\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_hit_probe_a4ba00967fa180c7ec1890825a4675b17}{HitProbe::pushCache}}(\textcolor{keyword}{const}\ T\&\ data)}
-\DoxyCodeLine{00123\ \{}
-\DoxyCodeLine{00124\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_trivially\_copyable\_v<T>,}
-\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}target\ type\ is\ not\ cacheable"{}});}
-\DoxyCodeLine{00126\ \ \ \ \ \textcolor{keyword}{static\_assert}(\textcolor{keyword}{sizeof}(T)\ <=\ \textcolor{keyword}{sizeof}(m\_cache),}
-\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}not\ enough\ cache\ to\ store\ target\ type,\ consider\ increasing\ config.PH\_HIT\_PROBE\_CACHE\_BYTES"{}});}
-\DoxyCodeLine{00128\ }
-\DoxyCodeLine{00129\ \ \ \ \ PH\_ASSERT\_MSG(m\_cacheHead\ +\ \textcolor{keyword}{sizeof}(T)\ <=\ \textcolor{keyword}{sizeof}(m\_cache),\ }
-\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}ran\ out\ of\ cache,\ consider\ increasing\ config.PH\_HIT\_PROBE\_CACHE\_BYTES\ \(\backslash\)n"{}}}
-\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}m\_cacheHead\ \ \ \ \ =\ "{}}\ +\ std::to\_string(m\_cacheHead)\ +\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}}\ +\ }
-\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}sizeof(T)\ \ \ \ \ \ \ =\ "{}}\ +\ std::to\_string(\textcolor{keyword}{sizeof}(T))\ +\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}}\ +\ }
-\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}sizeof(m\_cache)\ =\ "{}}\ +\ std::to\_string(\textcolor{keyword}{sizeof}(m\_cache)));}
+\DoxyCodeLine{00093\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_hit_probe_a9465a13a3f4dc40bb55e45c8ffa4cbf6}{HitProbe::pushBaseHit}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_intersectable}{Intersectable}}*\ \textcolor{keyword}{const}\ hitTarget,\ \textcolor{keyword}{const}\ real\ hitRayT)}
+\DoxyCodeLine{00094\ \{}
+\DoxyCodeLine{00095\ \ \ \ \ m\_hitStack.\mbox{\hyperlink{classph_1_1_t_array_stack_a51868f681542a61cd2d194c70401e3d4}{push}}(hitTarget);}
+\DoxyCodeLine{00096\ \ \ \ \ m\_hitRayT\ =\ hitRayT;}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ \textcolor{preprocessor}{\#if\ PH\_DEBUG}}
+\DoxyCodeLine{00099\ \ \ \ \ m\_hasBaseHitSet\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00100\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00101\ \}}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_hit_probe_a4c7120e462a6cc8e500bc8b2302c2989}{HitProbe::popHit}}()}
+\DoxyCodeLine{00104\ \{}
+\DoxyCodeLine{00105\ \ \ \ \ m\_hitStack.\mbox{\hyperlink{classph_1_1_t_array_stack_afbebdf469f1b9acfd39de1d07b602901}{pop}}();}
+\DoxyCodeLine{00106\ \}}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_hit_probe_a8eb31aad8dd058a777c32affe176d03f}{HitProbe::replaceCurrentHitWith}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_intersectable}{Intersectable}}*\ \textcolor{keyword}{const}\ newCurrentHit)}
+\DoxyCodeLine{00109\ \{}
+\DoxyCodeLine{00110\ \ \ \ \ m\_hitStack.\mbox{\hyperlink{classph_1_1_t_array_stack_afbebdf469f1b9acfd39de1d07b602901}{pop}}();}
+\DoxyCodeLine{00111\ \ \ \ \ m\_hitStack.\mbox{\hyperlink{classph_1_1_t_array_stack_a51868f681542a61cd2d194c70401e3d4}{push}}(newCurrentHit);}
+\DoxyCodeLine{00112\ \}}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_hit_probe_ad3158adf7c7d16eae01d8e94e3f49864}{HitProbe::replaceBaseHitRayTWith}}(\textcolor{keyword}{const}\ real\ hitRayT)}
+\DoxyCodeLine{00115\ \{}
+\DoxyCodeLine{00116\ \ \ \ \ PH\_ASSERT(m\_hasBaseHitSet);}
+\DoxyCodeLine{00117\ \ \ \ \ m\_hitRayT\ =\ hitRayT;}
+\DoxyCodeLine{00118\ \}}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_hit_probe_a7b03e889e00edbdcaa81b42097ef6261}{HitProbe::setChannel}}(\textcolor{keyword}{const}\ uint8\ channel)}
+\DoxyCodeLine{00121\ \{}
+\DoxyCodeLine{00122\ \ \ \ \ m\_hitDetailChannel\ =\ channel;}
+\DoxyCodeLine{00123\ \}}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \textcolor{keyword}{inline}\ uint8\ \mbox{\hyperlink{classph_1_1_hit_probe_a32daa2188765ffbaf5d44e81caf8d592}{HitProbe::getChannel}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00126\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00127\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_hitDetailChannel;}
+\DoxyCodeLine{00128\ \}}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_intersectable}{Intersectable}}*\ \mbox{\hyperlink{classph_1_1_hit_probe_a1f9f623452257ca1b4bb5e64f8b1d1b0}{HitProbe::getCurrentHit}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00131\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00132\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_hitStack.\mbox{\hyperlink{classph_1_1_t_array_stack_a72fa9c013874f5c283f294e30d1c605c}{top}}();}
+\DoxyCodeLine{00133\ \}}
 \DoxyCodeLine{00134\ }
-\DoxyCodeLine{00135\ \ \ \ \ std::memcpy(m\_cache\ +\ m\_cacheHead,\ \&data,\ \textcolor{keyword}{sizeof}(T));}
-\DoxyCodeLine{00136\ \ \ \ \ m\_cacheHead\ +=\ \textcolor{keyword}{sizeof}(T);}
-\DoxyCodeLine{00137\ \}}
-\DoxyCodeLine{00138\ }
-\DoxyCodeLine{00139\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00140\ \textcolor{keyword}{inline}\ T\ \mbox{\hyperlink{classph_1_1_hit_probe_a68d5626b6856c97c8c30bea7e9f80b33}{HitProbe::popCache}}()}
-\DoxyCodeLine{00141\ \{}
-\DoxyCodeLine{00142\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_trivially\_copyable\_v<T>);}
-\DoxyCodeLine{00143\ \ \ \ \ \textcolor{keyword}{static\_assert}(\textcolor{keyword}{sizeof}(T)\ <=\ \textcolor{keyword}{sizeof}(m\_cache));}
-\DoxyCodeLine{00144\ }
-\DoxyCodeLine{00145\ \ \ \ \ PH\_ASSERT\_IN\_RANGE\_INCLUSIVE(m\_cacheHead,\ \textcolor{keyword}{sizeof}(T),\ \textcolor{keyword}{sizeof}(m\_cache));}
-\DoxyCodeLine{00146\ \ \ \ \ m\_cacheHead\ -\/=\ \textcolor{keyword}{sizeof}(T);}
-\DoxyCodeLine{00147\ }
-\DoxyCodeLine{00148\ \ \ \ \ T\ data;}
-\DoxyCodeLine{00149\ \ \ \ \ std::memcpy(\&data,\ m\_cache\ +\ m\_cacheHead,\ \textcolor{keyword}{sizeof}(T));}
-\DoxyCodeLine{00150\ \ \ \ \ \textcolor{keywordflow}{return}\ data;}
-\DoxyCodeLine{00151\ \}}
-\DoxyCodeLine{00152\ }
-\DoxyCodeLine{00153\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+\DoxyCodeLine{00135\ \textcolor{keyword}{inline}\ real\ \mbox{\hyperlink{classph_1_1_hit_probe_af9c96bd20f167c30fe8802524c563a21}{HitProbe::getHitRayT}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00136\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00137\ \ \ \ \ PH\_ASSERT(m\_hasBaseHitSet);}
+\DoxyCodeLine{00138\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_hitRayT;}
+\DoxyCodeLine{00139\ \}}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00141\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00142\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_hit_probe_a4ba00967fa180c7ec1890825a4675b17}{HitProbe::pushCache}}(\textcolor{keyword}{const}\ T\&\ data)}
+\DoxyCodeLine{00143\ \{}
+\DoxyCodeLine{00144\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_trivially\_copyable\_v<T>,}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}target\ type\ is\ not\ cacheable"{}});}
+\DoxyCodeLine{00146\ \ \ \ \ \textcolor{keyword}{static\_assert}(\textcolor{keyword}{sizeof}(T)\ <=\ \textcolor{keyword}{sizeof}(m\_cache),}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}not\ enough\ cache\ to\ store\ target\ type,\ consider\ increasing\ config.PH\_HIT\_PROBE\_CACHE\_BYTES"{}});}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00149\ \ \ \ \ PH\_ASSERT\_MSG(m\_cacheHead\ +\ \textcolor{keyword}{sizeof}(T)\ <=\ \textcolor{keyword}{sizeof}(m\_cache),\ }
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}ran\ out\ of\ cache,\ consider\ increasing\ config.PH\_HIT\_PROBE\_CACHE\_BYTES\ \(\backslash\)n"{}}}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}m\_cacheHead\ \ \ \ \ =\ "{}}\ +\ std::to\_string(m\_cacheHead)\ +\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}}\ +\ }
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}sizeof(T)\ \ \ \ \ \ \ =\ "{}}\ +\ std::to\_string(\textcolor{keyword}{sizeof}(T))\ +\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}}\ +\ }
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}sizeof(m\_cache)\ =\ "{}}\ +\ std::to\_string(\textcolor{keyword}{sizeof}(m\_cache)));}
+\DoxyCodeLine{00154\ }
+\DoxyCodeLine{00155\ \ \ \ \ std::memcpy(m\_cache\ +\ m\_cacheHead,\ \&data,\ \textcolor{keyword}{sizeof}(T));}
+\DoxyCodeLine{00156\ \ \ \ \ m\_cacheHead\ +=\ \textcolor{keyword}{sizeof}(T);}
+\DoxyCodeLine{00157\ \}}
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00159\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00160\ \textcolor{keyword}{inline}\ T\ \mbox{\hyperlink{classph_1_1_hit_probe_a68d5626b6856c97c8c30bea7e9f80b33}{HitProbe::popCache}}()}
+\DoxyCodeLine{00161\ \{}
+\DoxyCodeLine{00162\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_trivially\_copyable\_v<T>);}
+\DoxyCodeLine{00163\ \ \ \ \ \textcolor{keyword}{static\_assert}(\textcolor{keyword}{sizeof}(T)\ <=\ \textcolor{keyword}{sizeof}(m\_cache));}
+\DoxyCodeLine{00164\ }
+\DoxyCodeLine{00165\ \ \ \ \ PH\_ASSERT\_IN\_RANGE\_INCLUSIVE(m\_cacheHead,\ \textcolor{keyword}{sizeof}(T),\ \textcolor{keyword}{sizeof}(m\_cache));}
+\DoxyCodeLine{00166\ \ \ \ \ m\_cacheHead\ -\/=\ \textcolor{keyword}{sizeof}(T);}
+\DoxyCodeLine{00167\ }
+\DoxyCodeLine{00168\ \ \ \ \ T\ data;}
+\DoxyCodeLine{00169\ \ \ \ \ std::memcpy(\&data,\ m\_cache\ +\ m\_cacheHead,\ \textcolor{keyword}{sizeof}(T));}
+\DoxyCodeLine{00170\ \ \ \ \ \textcolor{keywordflow}{return}\ data;}
+\DoxyCodeLine{00171\ \}}
+\DoxyCodeLine{00172\ }
+\DoxyCodeLine{00173\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
 
 \end{DoxyCode}

@@ -118,10 +118,6 @@ $(document).ready(function(){initNavTree('df/d7b/_plate_scheduler_8h_source.html
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="keyword">namespace </span><a class="code hl_namespace" href="../../d3/d5c/namespaceph.html">ph</a></div>
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>{</div>
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">/*</span></div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">    Schedules a complete region, without any planar division, to each worker. </span></div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">    Only work depth is distributed among workers.</span></div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment">*/</span></div>
 <div class="foldopen" id="foldopen00017" data-start="{" data-end="};">
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="../../d7/d09/classph_1_1_plate_scheduler.html">   17</a></span><span class="keyword">class </span><a class="code hl_class" href="../../d7/d09/classph_1_1_plate_scheduler.html">PlateScheduler</a> : <span class="keyword">public</span> <a class="code hl_class" href="../../de/d9c/classph_1_1_work_scheduler.html">WorkScheduler</a></div>
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>{</div>
@@ -139,37 +135,38 @@ $(document).ready(function(){initNavTree('df/d7b/_plate_scheduler_8h_source.html
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="comment">// In-header Implementations:</span></div>
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
 <div class="foldopen" id="foldopen00031" data-start="{" data-end="}">
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="../../d7/d09/classph_1_1_plate_scheduler.html#a604f15782655d656162e2d477843bb4e">   31</a></span><span class="keyword">inline</span> <a class="code hl_function" href="../../d7/d09/classph_1_1_plate_scheduler.html#a604f15782655d656162e2d477843bb4e">PlateScheduler::PlateScheduler</a>() : </div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <a class="code hl_class" href="../../de/d9c/classph_1_1_work_scheduler.html">WorkScheduler</a>()</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>{}</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="../../d7/d09/classph_1_1_plate_scheduler.html#a604f15782655d656162e2d477843bb4e">   31</a></span><span class="keyword">inline</span> <a class="code hl_function" href="../../d7/d09/classph_1_1_plate_scheduler.html#a604f15782655d656162e2d477843bb4e">PlateScheduler::PlateScheduler</a>()</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    : <a class="code hl_class" href="../../de/d9c/classph_1_1_work_scheduler.html">WorkScheduler</a>()</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    , m_numScheduled(0)</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>{}</div>
 </div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
-<div class="foldopen" id="foldopen00035" data-start="{" data-end="}">
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="../../d7/d09/classph_1_1_plate_scheduler.html#ae49e7481d403ff134a434d0953f990ec">   35</a></span><span class="keyword">inline</span> <a class="code hl_function" href="../../d7/d09/classph_1_1_plate_scheduler.html#a604f15782655d656162e2d477843bb4e">PlateScheduler::PlateScheduler</a>(<span class="keyword">const</span> std::size_t numWorkers, <span class="keyword">const</span> <a class="code hl_class" href="../../d0/d16/classph_1_1_work_unit.html">WorkUnit</a>&amp; totalWorkUnit) :</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <a class="code hl_class" href="../../de/d9c/classph_1_1_work_scheduler.html">WorkScheduler</a>(numWorkers, totalWorkUnit),</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    m_numScheduled(0)</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>{}</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
+<div class="foldopen" id="foldopen00036" data-start="{" data-end="}">
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="../../d7/d09/classph_1_1_plate_scheduler.html#ae49e7481d403ff134a434d0953f990ec">   36</a></span><span class="keyword">inline</span> <a class="code hl_function" href="../../d7/d09/classph_1_1_plate_scheduler.html#a604f15782655d656162e2d477843bb4e">PlateScheduler::PlateScheduler</a>(<span class="keyword">const</span> std::size_t numWorkers, <span class="keyword">const</span> <a class="code hl_class" href="../../d0/d16/classph_1_1_work_unit.html">WorkUnit</a>&amp; totalWorkUnit) :</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <a class="code hl_class" href="../../de/d9c/classph_1_1_work_scheduler.html">WorkScheduler</a>(numWorkers, totalWorkUnit),</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    m_numScheduled(0)</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>{}</div>
 </div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="keyword">inline</span> <span class="keywordtype">void</span> PlateScheduler::scheduleOne(<a class="code hl_class" href="../../d0/d16/classph_1_1_work_unit.html">WorkUnit</a>* <span class="keyword">const</span> out_workUnit)</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>{</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    PH_ASSERT(out_workUnit);</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <span class="keywordflow">if</span>(m_numScheduled &lt; <a class="code hl_variable" href="../../de/d9c/classph_1_1_work_scheduler.html#add086a102f673f58dceefbc5029a9f2b">m_numWorkers</a>)</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    {</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>        <span class="keyword">const</span> <span class="keyword">auto</span> depthRange = <a class="code hl_function" href="../../d7/dac/namespaceph_1_1math.html#a830bc8cab76b0720b0756fce21828b3f">math::ith_evenly_divided_range</a>(</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>            m_numScheduled, <a class="code hl_variable" href="../../de/d9c/classph_1_1_work_scheduler.html#a4cd851df1c4ab76ec2b4c25cc2c6fabb">m_totalWorkUnit</a>.<a class="code hl_function" href="../../d0/d16/classph_1_1_work_unit.html#aec0b887d6fd90b599c0d507b63549ee8">getDepth</a>(), <a class="code hl_variable" href="../../de/d9c/classph_1_1_work_scheduler.html#add086a102f673f58dceefbc5029a9f2b">m_numWorkers</a>);</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>        *out_workUnit = <a class="code hl_class" href="../../d0/d16/classph_1_1_work_unit.html">WorkUnit</a>(<a class="code hl_variable" href="../../de/d9c/classph_1_1_work_scheduler.html#a4cd851df1c4ab76ec2b4c25cc2c6fabb">m_totalWorkUnit</a>.<a class="code hl_function" href="../../d0/d16/classph_1_1_work_unit.html#a53dc72cbe5e24dca1167bf0190038700">getRegion</a>(), depthRange.second - depthRange.first);</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>        ++m_numScheduled;</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    }</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    <span class="keywordflow">else</span></div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    {</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>        *out_workUnit = WorkUnit();</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    }</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>}</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>}<span class="comment">// end namespace ph</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="keyword">inline</span> <span class="keywordtype">void</span> PlateScheduler::scheduleOne(<a class="code hl_class" href="../../d0/d16/classph_1_1_work_unit.html">WorkUnit</a>* <span class="keyword">const</span> out_workUnit)</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>{</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    PH_ASSERT(out_workUnit);</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <span class="keywordflow">if</span>(m_numScheduled &lt; <a class="code hl_variable" href="../../de/d9c/classph_1_1_work_scheduler.html#add086a102f673f58dceefbc5029a9f2b">m_numWorkers</a>)</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    {</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>        <span class="keyword">const</span> <span class="keyword">auto</span> depthRange = <a class="code hl_function" href="../../d7/dac/namespaceph_1_1math.html#a830bc8cab76b0720b0756fce21828b3f">math::ith_evenly_divided_range</a>(</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>            m_numScheduled, <a class="code hl_variable" href="../../de/d9c/classph_1_1_work_scheduler.html#a4cd851df1c4ab76ec2b4c25cc2c6fabb">m_totalWorkUnit</a>.<a class="code hl_function" href="../../d0/d16/classph_1_1_work_unit.html#aec0b887d6fd90b599c0d507b63549ee8">getDepth</a>(), <a class="code hl_variable" href="../../de/d9c/classph_1_1_work_scheduler.html#add086a102f673f58dceefbc5029a9f2b">m_numWorkers</a>);</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>        *out_workUnit = <a class="code hl_class" href="../../d0/d16/classph_1_1_work_unit.html">WorkUnit</a>(<a class="code hl_variable" href="../../de/d9c/classph_1_1_work_scheduler.html#a4cd851df1c4ab76ec2b4c25cc2c6fabb">m_totalWorkUnit</a>.<a class="code hl_function" href="../../d0/d16/classph_1_1_work_unit.html#a53dc72cbe5e24dca1167bf0190038700">getRegion</a>(), depthRange.second - depthRange.first);</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>        ++m_numScheduled;</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    }</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    {</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>        *out_workUnit = WorkUnit();</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    }</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>}</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>}<span class="comment">// end namespace ph</span></div>
 <div class="ttc" id="a_work_scheduler_8h_html"><div class="ttname"><a href="../../de/d74/_work_scheduler_8h.html">WorkScheduler.h</a></div></div>
 <div class="ttc" id="aclassph_1_1_plate_scheduler_html"><div class="ttname"><a href="../../d7/d09/classph_1_1_plate_scheduler.html">ph::PlateScheduler</a></div><div class="ttdef"><b>Definition</b> PlateScheduler.h:18</div></div>
 <div class="ttc" id="aclassph_1_1_plate_scheduler_html_a604f15782655d656162e2d477843bb4e"><div class="ttname"><a href="../../d7/d09/classph_1_1_plate_scheduler.html#a604f15782655d656162e2d477843bb4e">ph::PlateScheduler::PlateScheduler</a></div><div class="ttdeci">PlateScheduler()</div><div class="ttdef"><b>Definition</b> PlateScheduler.h:31</div></div>
@@ -180,7 +177,7 @@ $(document).ready(function(){initNavTree('df/d7b/_plate_scheduler_8h_source.html
 <div class="ttc" id="aclassph_1_1_work_unit_html_a53dc72cbe5e24dca1167bf0190038700"><div class="ttname"><a href="../../d0/d16/classph_1_1_work_unit.html#a53dc72cbe5e24dca1167bf0190038700">ph::WorkUnit::getRegion</a></div><div class="ttdeci">Region getRegion() const</div><div class="ttdef"><b>Definition</b> WorkUnit.h:72</div></div>
 <div class="ttc" id="aclassph_1_1_work_unit_html_aec0b887d6fd90b599c0d507b63549ee8"><div class="ttname"><a href="../../d0/d16/classph_1_1_work_unit.html#aec0b887d6fd90b599c0d507b63549ee8">ph::WorkUnit::getDepth</a></div><div class="ttdeci">std::size_t getDepth() const</div><div class="ttdef"><b>Definition</b> WorkUnit.h:77</div></div>
 <div class="ttc" id="amath_8h_html"><div class="ttname"><a href="../../df/db1/math_8h.html">math.h</a></div><div class="ttdoc">Miscellaneous math utilities.</div></div>
-<div class="ttc" id="anamespaceph_1_1math_html_a830bc8cab76b0720b0756fce21828b3f"><div class="ttname"><a href="../../d7/dac/namespaceph_1_1math.html#a830bc8cab76b0720b0756fce21828b3f">ph::math::ith_evenly_divided_range</a></div><div class="ttdeci">std::pair&lt; std::size_t, std::size_t &gt; ith_evenly_divided_range(const std::size_t rangeIndex, const std::size_t totalSize, const std::size_t numDivisions)</div><div class="ttdoc">Gets the i-th evenly divided range.</div><div class="ttdef"><b>Definition</b> math.h:325</div></div>
+<div class="ttc" id="anamespaceph_1_1math_html_a830bc8cab76b0720b0756fce21828b3f"><div class="ttname"><a href="../../d7/dac/namespaceph_1_1math.html#a830bc8cab76b0720b0756fce21828b3f">ph::math::ith_evenly_divided_range</a></div><div class="ttdeci">std::pair&lt; std::size_t, std::size_t &gt; ith_evenly_divided_range(const std::size_t rangeIndex, const std::size_t totalSize, const std::size_t numDivisions)</div><div class="ttdoc">Gets the i-th evenly divided range.</div><div class="ttdef"><b>Definition</b> math.h:334</div></div>
 <div class="ttc" id="anamespaceph_html"><div class="ttname"><a href="../../d3/d5c/namespaceph.html">ph</a></div><div class="ttdoc">The root for all renderer implementations.</div><div class="ttdef"><b>Definition</b> EEngineProject.h:6</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->

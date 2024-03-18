@@ -6,12 +6,8 @@ var annotated_dup =
           [ "ScopedTimer", "d1/d32/structph_1_1detail_1_1stats_1_1_scoped_timer.html", "d1/d32/structph_1_1detail_1_1stats_1_1_scoped_timer" ],
           [ "TimeCounter", "d4/dae/structph_1_1detail_1_1stats_1_1_time_counter.html", "d4/dae/structph_1_1detail_1_1stats_1_1_time_counter" ]
         ] ],
-        [ "AlignedMemoryDeleter", "d1/d34/structph_1_1detail_1_1_aligned_memory_deleter.html", "d1/d34/structph_1_1detail_1_1_aligned_memory_deleter" ]
-      ] ],
-      [ "string_utils", "da/d3e/namespaceph_1_1string__utils.html", [
-        [ "detail", "d0/dc2/namespaceph_1_1string__utils_1_1detail.html", [
-          [ "HeterogeneousStringHash", "d4/d5c/structph_1_1string__utils_1_1detail_1_1_heterogeneous_string_hash.html", "d4/d5c/structph_1_1string__utils_1_1detail_1_1_heterogeneous_string_hash" ]
-        ] ]
+        [ "AlignedMemoryDeleter", "d1/d34/structph_1_1detail_1_1_aligned_memory_deleter.html", "d1/d34/structph_1_1detail_1_1_aligned_memory_deleter" ],
+        [ "HeterogeneousStringHash", "d3/d9e/structph_1_1detail_1_1_heterogeneous_string_hash.html", "d3/d9e/structph_1_1detail_1_1_heterogeneous_string_hash" ]
       ] ],
       [ "CommandLineArguments", "df/d70/classph_1_1_command_line_arguments.html", "df/d70/classph_1_1_command_line_arguments" ],
       [ "Config", "de/d94/classph_1_1_config.html", null ],

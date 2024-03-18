@@ -25,6 +25,8 @@
 var NAVTREE =
 [
   [ "Photon Blend", "index.html", [
+    [ "Home", "^https://tzuchieh.github.io/Photon-v2-site/engine_docs/v2.0.0-beta/Photon/html/index.html", null ],
+    [ "Components", "^https://tzuchieh.github.io/Photon-v2-site/engine_docs/v2.0.0-beta/Photon/html/db/d72/project_structure.html", null ],
     [ "Blender Add-on for Photon-v2", "index.html", "index" ]
   ] ]
 ];

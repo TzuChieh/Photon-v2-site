@@ -1,0 +1,82 @@
+\doxysection{Designer\+Object.\+ipp}
+\hypertarget{_designer_object_8ipp_source}{}\label{_designer_object_8ipp_source}\index{Source/Designer/DesignerObject.ipp@{Source/Designer/DesignerObject.ipp}}
+\mbox{\hyperlink{_designer_object_8ipp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_designer_object_8h}{Designer/DesignerObject.h}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_designer_scene_8h}{Designer/DesignerScene.h}}"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <Utility/traits.h>}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph_1_1editor}{ph::editor}}}
+\DoxyCodeLine{00011\ \{}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ ChildType>}
+\DoxyCodeLine{00014\ \textcolor{keyword}{inline}\ ChildType*\ \mbox{\hyperlink{classph_1_1editor_1_1_designer_object_a90cbecf5666c3b436d7c607b4f4f6ff2}{DesignerObject::newChild}}(}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ shouldInit,}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ shouldSetToDefault)}
+\DoxyCodeLine{00017\ \{}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keyword}{static\_assert}(CDerived<ChildType,\ DesignerObject>,}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Child\ type\ must\ be\ a\ designer\ object."{}});}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordflow}{if}(!\mbox{\hyperlink{classph_1_1editor_1_1_designer_object_ac0725ccf577ce2d4b349f1a29a6343f8}{canHaveChildren}}())}
+\DoxyCodeLine{00022\ \ \ \ \ \{}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00024\ \ \ \ \ \}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \ \ \ \ ChildType*\ childObj\ =\ \mbox{\hyperlink{classph_1_1editor_1_1_designer_object_a90cbecf5666c3b436d7c607b4f4f6ff2}{newChild}}(}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ ChildType::getSdlClass(),}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ shouldInit,}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ shouldSetToDefault);}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{comment}{//\ We\ know\ the\ exact\ type}}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}ChildType*\textcolor{keyword}{>}(childObj);}
+\DoxyCodeLine{00033\ \}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1editor_1_1_designer_object_a3cf40700ef8c74337cec7c9af0d03136}{DesignerObject::isSelected}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00036\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1editor_1_1_abstract_designer_object_afcf3179a5a43122a0ec73b7a7ffcee8a}{getState}}().has(\mbox{\hyperlink{namespaceph_1_1editor_a5ea3806903f9839d255232c9276190c8a91b442d385b54e1418d81adc34871053}{EObjectState::Selected}});}
+\DoxyCodeLine{00038\ \}}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1editor_1_1_designer_object_a1c706a29021fb2f1c71a100f3dc1ff22}{DesignerObject::isVisible}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00041\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1editor_1_1_abstract_designer_object_afcf3179a5a43122a0ec73b7a7ffcee8a}{getState}}().hasNo(\mbox{\hyperlink{namespaceph_1_1editor_a5ea3806903f9839d255232c9276190c8a7acdf85c69cc3c5305456a293524386e}{EObjectState::Hidden}});}
+\DoxyCodeLine{00043\ \}}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ DesignerObject::setParentObject(\mbox{\hyperlink{classph_1_1editor_1_1_designer_object}{DesignerObject}}*\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{object})}
+\DoxyCodeLine{00046\ \{}
+\DoxyCodeLine{00047\ \ \ \ \ PH\_ASSERT(\textcolor{keywordtype}{object}\ !=\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00048\ \ \ \ \ PH\_ASSERT(\textcolor{keywordtype}{object}\ !=\ \textcolor{keyword}{this});}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{comment}{//\ Only\ root\ object\ can\ have\ a\ scene\ as\ parent}}
+\DoxyCodeLine{00051\ \ \ \ \ PH\_ASSERT(\mbox{\hyperlink{classph_1_1editor_1_1_abstract_designer_object_afcf3179a5a43122a0ec73b7a7ffcee8a}{getState}}().hasNo(\mbox{\hyperlink{namespaceph_1_1editor_a5ea3806903f9839d255232c9276190c8afa03eb688ad8aa1db593d33dabd89bad}{EObjectState::Root}}));}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ m\_parent.u\_object\ =\ object;}
+\DoxyCodeLine{00054\ \}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ DesignerObject::setParentScene(DesignerScene*\ \textcolor{keyword}{const}\ scene)}
+\DoxyCodeLine{00057\ \{}
+\DoxyCodeLine{00058\ \ \ \ \ PH\_ASSERT(scene\ !=\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{comment}{//\ Only\ root\ object\ can\ have\ a\ scene\ as\ parent}}
+\DoxyCodeLine{00061\ \ \ \ \ PH\_ASSERT(\mbox{\hyperlink{classph_1_1editor_1_1_abstract_designer_object_afcf3179a5a43122a0ec73b7a7ffcee8a}{getState}}().has(\mbox{\hyperlink{namespaceph_1_1editor_a5ea3806903f9839d255232c9276190c8afa03eb688ad8aa1db593d33dabd89bad}{EObjectState::Root}}));}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \ \ \ \ m\_parent.u\_scene\ =\ scene;}
+\DoxyCodeLine{00064\ \}}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ std::string\&\ \mbox{\hyperlink{classph_1_1editor_1_1_designer_object_ad616ecb0c5c0ff768170a0ca3a80e125}{DesignerObject::getName}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00067\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_name;}
+\DoxyCodeLine{00069\ \}}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1editor_1_1_designer_object_ab6b6841c997c870e4f9ec9231d56cf70}{DesignerObject::haveChildren}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00072\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1editor_1_1_designer_object_adc5cc2232006ba77e02d0032c9085829}{getChildren}}().size()\ >\ 0;}
+\DoxyCodeLine{00074\ \}}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \}\textcolor{comment}{//\ end\ namespace\ ph::editor}}
+
+\end{DoxyCode}

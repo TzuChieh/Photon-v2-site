@@ -111,12 +111,15 @@ $(document).ready(function(){initNavTree('df/db1/math_8h.html','../../'); initRe
 <code>#include &quot;<a class="el" href="../../d8/da4/math__fwd_8h_source.html">Math/math_fwd.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="../../d6/d6b/math__table_8h_source.html">Math/math_table.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="../../d5/d47/utility_8h_source.html">Utility/utility.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="../../dd/dff/traits_8h_source.html">Utility/traits.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="../../dd/da2/_t_span_8h_source.html">Utility/TSpan.h</a>&quot;</code><br />
 <code>#include &lt;Common/assertion.h&gt;</code><br />
 <code>#include &lt;Common/primitive_type.h&gt;</code><br />
 <code>#include &lt;Common/compiler.h&gt;</code><br />
 <code>#include &lt;Common/math_basics.h&gt;</code><br />
 <code>#include &lt;cmath&gt;</code><br />
 <code>#include &lt;algorithm&gt;</code><br />
+<code>#include &lt;numeric&gt;</code><br />
 <code>#include &lt;type_traits&gt;</code><br />
 <code>#include &lt;utility&gt;</code><br />
 <code>#include &lt;limits&gt;</code><br />
@@ -126,6 +129,7 @@ $(document).ready(function(){initNavTree('df/db1/math_8h.html','../../'); initRe
 <code>#include &lt;climits&gt;</code><br />
 <code>#include &lt;bit&gt;</code><br />
 <code>#include &lt;concepts&gt;</code><br />
+<code>#include &quot;<a class="el" href="../../d9/d06/math_8ipp_source.html">Math/math.ipp</a>&quot;</code><br />
 </div>
 <p><a href="../../df/db1/math_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
@@ -173,11 +177,11 @@ Functions</h2></td></tr>
 <tr class="separator:aef693a3af48988419e383d739b935a4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9460c87b6dab3097ee4d084d9b59a604" id="r_a9460c87b6dab3097ee4d084d9b59a604"><td class="memTemplParams" colspan="2">template&lt;typename T , std::enable_if_t&lt; std::is_floating_point_v&lt; T &gt;, int &gt;  = 0&gt; </td></tr>
 <tr class="memitem:a9460c87b6dab3097ee4d084d9b59a604"><td class="memTemplItemLeft" align="right" valign="top">T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d7/dac/namespaceph_1_1math.html#a9460c87b6dab3097ee4d084d9b59a604">ph::math::fractional_part</a> (const T value)</td></tr>
-<tr class="memdesc:a9460c87b6dab3097ee4d084d9b59a604"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve the fractional part of <code>value</code> (with the sign unchanged).  <br /></td></tr>
+<tr class="memdesc:a9460c87b6dab3097ee4d084d9b59a604"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve the fractional part of <code>value</code> (with the sign unchanged). The result is not guaranteed to be the same as the bit representation of 's fractional part. The result is undefined if input value is NaN or +-Inf.  <br /></td></tr>
 <tr class="separator:a9460c87b6dab3097ee4d084d9b59a604"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a48cf078fd719072dfc9c27d67a730c3c" id="r_a48cf078fd719072dfc9c27d67a730c3c"><td class="memTemplParams" colspan="2">template&lt;typename T , std::enable_if_t&lt; std::is_integral_v&lt; T &gt;, int &gt;  = 0&gt; </td></tr>
 <tr class="memitem:a48cf078fd719072dfc9c27d67a730c3c"><td class="memTemplItemLeft" align="right" valign="top">T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d7/dac/namespaceph_1_1math.html#a48cf078fd719072dfc9c27d67a730c3c">ph::math::wrap</a> (T value, const T lowerBound, const T upperBound)</td></tr>
-<tr class="memdesc:a48cf078fd719072dfc9c27d67a730c3c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wraps an integer around [lower-bound, upper-bound].  <br /></td></tr>
+<tr class="memdesc:a48cf078fd719072dfc9c27d67a730c3c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wraps an integer around [lower-bound, upper-bound]. For example, given a bound [-1, 2], 3 will be wrapped to -1.  <br /></td></tr>
 <tr class="separator:a48cf078fd719072dfc9c27d67a730c3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3d787dce79dfdd2614927831c40ab231" id="r_a3d787dce79dfdd2614927831c40ab231"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
 <tr class="memitem:a3d787dce79dfdd2614927831c40ab231"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d7/dac/namespaceph_1_1math.html#a3d787dce79dfdd2614927831c40ab231">ph::math::is_even</a> (const T value)</td></tr>
@@ -189,10 +193,6 @@ Functions</h2></td></tr>
 <tr class="separator:a00dacdca0d6501e4506f1e80350c6529"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a885a24bd55e37b45410ec47a89bfb55e" id="r_a885a24bd55e37b45410ec47a89bfb55e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/dac/namespaceph_1_1math.html#a885a24bd55e37b45410ec47a89bfb55e">ph::math::is_same_hemisphere</a> (const <a class="el" href="../../d7/dac/namespaceph_1_1math.html#abf8e1463b13d63dcdc46f0cb65e59c5a">Vector3R</a> &amp;vector, const <a class="el" href="../../d7/dac/namespaceph_1_1math.html#abf8e1463b13d63dcdc46f0cb65e59c5a">Vector3R</a> &amp;N)</td></tr>
 <tr class="separator:a885a24bd55e37b45410ec47a89bfb55e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a536816208c239c8b2e217d70d5ec5d08" id="r_a536816208c239c8b2e217d70d5ec5d08"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
-<tr class="memitem:a536816208c239c8b2e217d70d5ec5d08"><td class="memTemplItemLeft" align="right" valign="top">T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d7/dac/namespaceph_1_1math.html#a536816208c239c8b2e217d70d5ec5d08">ph::math::product</a> (const std::vector&lt; T &gt; &amp;values)</td></tr>
-<tr class="memdesc:a536816208c239c8b2e217d70d5ec5d08"><td class="mdescLeft">&#160;</td><td class="mdescRight">Multiplies all values together within a container.  <br /></td></tr>
-<tr class="separator:a536816208c239c8b2e217d70d5ec5d08"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adb4811e9be6e476d37c2db92e3d5a17a" id="r_adb4811e9be6e476d37c2db92e3d5a17a"><td class="memTemplParams" colspan="2">template&lt;typename NumberType &gt; </td></tr>
 <tr class="memitem:adb4811e9be6e476d37c2db92e3d5a17a"><td class="memTemplItemLeft" align="right" valign="top">constexpr NumberType&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d7/dac/namespaceph_1_1math.html#adb4811e9be6e476d37c2db92e3d5a17a">ph::math::bytes_to_KiB</a> (const std::size_t numBytes)</td></tr>
 <tr class="separator:adb4811e9be6e476d37c2db92e3d5a17a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -246,6 +246,28 @@ Functions</h2></td></tr>
 <tr class="memdesc:a996b8aaa152f5e58eea616b7340f7659"><td class="mdescLeft">&#160;</td><td class="mdescRight">Multiply two unsigined 64-bit numbers and get a 128-bit result.  <br /></td></tr>
 <tr class="separator:a996b8aaa152f5e58eea616b7340f7659"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr class="memitem:a423ca1404e587fb97e03569f02f95861" id="r_a423ca1404e587fb97e03569f02f95861"><td class="memTemplParams" colspan="2">template&lt;typename T , std::size_t N&gt; </td></tr>
+<tr class="memitem:a423ca1404e587fb97e03569f02f95861"><td class="memTemplItemLeft" align="right" valign="top">T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d7/dac/namespaceph_1_1math.html#a423ca1404e587fb97e03569f02f95861">ph::math::summation</a> (const std::array&lt; T, N &gt; &amp;values, T initialValue=0)</td></tr>
+<tr class="memdesc:a423ca1404e587fb97e03569f02f95861"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sum all values within a container together.  <br /></td></tr>
+<tr class="separator:a423ca1404e587fb97e03569f02f95861"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aafd95c335ca3cea8382e4664fcb2e071" id="r_aafd95c335ca3cea8382e4664fcb2e071"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:aafd95c335ca3cea8382e4664fcb2e071"><td class="memTemplItemLeft" align="right" valign="top">T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d7/dac/namespaceph_1_1math.html#aafd95c335ca3cea8382e4664fcb2e071">ph::math::summation</a> (const std::vector&lt; T &gt; &amp;values, T initialValue=0)</td></tr>
+<tr class="separator:aafd95c335ca3cea8382e4664fcb2e071"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a49a2a687b51def083e81e22e8aadd871" id="r_a49a2a687b51def083e81e22e8aadd871"><td class="memTemplParams" colspan="2">template&lt;typename T , std::size_t EXTENT = std::dynamic_extent&gt; </td></tr>
+<tr class="memitem:a49a2a687b51def083e81e22e8aadd871"><td class="memTemplItemLeft" align="right" valign="top">T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d7/dac/namespaceph_1_1math.html#a49a2a687b51def083e81e22e8aadd871">ph::math::summation</a> (<a class="el" href="../../d3/d5c/namespaceph.html#a6a9059902c5cb72738a2fcfc46614989">TSpanView</a>&lt; T, EXTENT &gt; values, T initialValue=0)</td></tr>
+<tr class="separator:a49a2a687b51def083e81e22e8aadd871"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr class="memitem:a688dbf6563c86608204cf755dc0be5cd" id="r_a688dbf6563c86608204cf755dc0be5cd"><td class="memTemplParams" colspan="2">template&lt;typename T , std::size_t N&gt; </td></tr>
+<tr class="memitem:a688dbf6563c86608204cf755dc0be5cd"><td class="memTemplItemLeft" align="right" valign="top">T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d7/dac/namespaceph_1_1math.html#a688dbf6563c86608204cf755dc0be5cd">ph::math::product</a> (const std::array&lt; T, N &gt; &amp;values, T initialValue=1)</td></tr>
+<tr class="memdesc:a688dbf6563c86608204cf755dc0be5cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Multiplies all values within a container together.  <br /></td></tr>
+<tr class="separator:a688dbf6563c86608204cf755dc0be5cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af88ea36316f4e3c2a63d8ff7342e3038" id="r_af88ea36316f4e3c2a63d8ff7342e3038"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:af88ea36316f4e3c2a63d8ff7342e3038"><td class="memTemplItemLeft" align="right" valign="top">T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d7/dac/namespaceph_1_1math.html#af88ea36316f4e3c2a63d8ff7342e3038">ph::math::product</a> (const std::vector&lt; T &gt; &amp;values, T initialValue=1)</td></tr>
+<tr class="separator:af88ea36316f4e3c2a63d8ff7342e3038"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a46cc1344fc73d1e20da595d6e62bbb57" id="r_a46cc1344fc73d1e20da595d6e62bbb57"><td class="memTemplParams" colspan="2">template&lt;typename T , std::size_t EXTENT = std::dynamic_extent&gt; </td></tr>
+<tr class="memitem:a46cc1344fc73d1e20da595d6e62bbb57"><td class="memTemplItemLeft" align="right" valign="top">T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d7/dac/namespaceph_1_1math.html#a46cc1344fc73d1e20da595d6e62bbb57">ph::math::product</a> (<a class="el" href="../../d3/d5c/namespaceph.html#a6a9059902c5cb72738a2fcfc46614989">TSpanView</a>&lt; T, EXTENT &gt; values, T initialValue=1)</td></tr>
+<tr class="separator:a46cc1344fc73d1e20da595d6e62bbb57"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
 <tr class="memitem:a7c44afb09e2610c07148d4b1120e4614" id="r_a7c44afb09e2610c07148d4b1120e4614"><td class="memTemplParams" colspan="2">template&lt;std::unsigned_integral UIntType&gt; </td></tr>
 <tr class="memitem:a7c44afb09e2610c07148d4b1120e4614"><td class="memTemplItemLeft" align="right" valign="top">UIntType&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d7/dac/namespaceph_1_1math.html#a7c44afb09e2610c07148d4b1120e4614">ph::math::flag_bit</a> (const UIntType bitIdx)</td></tr>
 <tr class="memdesc:a7c44afb09e2610c07148d4b1120e4614"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set a single bit to 1, others remain 0. LSB has the bit index 0.  <br /></td></tr>
@@ -260,6 +282,61 @@ Functions</h2></td></tr>
 <tr class="memitem:a050fd048afd360173b15c10a05c21f7c" id="r_a050fd048afd360173b15c10a05c21f7c"><td class="memItemLeft" align="right" valign="top">float32&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/dac/namespaceph_1_1math.html#a050fd048afd360173b15c10a05c21f7c">ph::math::fp16_bits_to_fp32</a> (const uint16 fp16Bits)</td></tr>
 <tr class="memdesc:a050fd048afd360173b15c10a05c21f7c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert a 16-bit representation back to 32-bit float.  <br /></td></tr>
 <tr class="separator:a050fd048afd360173b15c10a05c21f7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr class="memitem:a5e1143174acd6afb8b6c9be755307c4b" id="r_a5e1143174acd6afb8b6c9be755307c4b"><td class="memTemplParams" colspan="2">template&lt;typename T , std::size_t N&gt; </td></tr>
+<tr class="memitem:a5e1143174acd6afb8b6c9be755307c4b"><td class="memTemplItemLeft" align="right" valign="top">T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d7/dac/namespaceph_1_1math.html#a5e1143174acd6afb8b6c9be755307c4b">ph::math::length</a> (const std::array&lt; T, N &gt; &amp;vec)</td></tr>
+<tr class="memdesc:a5e1143174acd6afb8b6c9be755307c4b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Treating input values as a vector and calculates its length.  <br /></td></tr>
+<tr class="separator:a5e1143174acd6afb8b6c9be755307c4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abd30caa18de616eaa04f98f75a8c9753" id="r_abd30caa18de616eaa04f98f75a8c9753"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:abd30caa18de616eaa04f98f75a8c9753"><td class="memTemplItemLeft" align="right" valign="top">T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d7/dac/namespaceph_1_1math.html#abd30caa18de616eaa04f98f75a8c9753">ph::math::length</a> (const std::vector&lt; T &gt; &amp;vec)</td></tr>
+<tr class="separator:abd30caa18de616eaa04f98f75a8c9753"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ff2861977711d396858e5b6aef1436c" id="r_a7ff2861977711d396858e5b6aef1436c"><td class="memTemplParams" colspan="2">template&lt;typename T , std::size_t EXTENT = std::dynamic_extent&gt; </td></tr>
+<tr class="memitem:a7ff2861977711d396858e5b6aef1436c"><td class="memTemplItemLeft" align="right" valign="top">T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d7/dac/namespaceph_1_1math.html#a7ff2861977711d396858e5b6aef1436c">ph::math::length</a> (<a class="el" href="../../d3/d5c/namespaceph.html#a6a9059902c5cb72738a2fcfc46614989">TSpanView</a>&lt; T, EXTENT &gt; vec)</td></tr>
+<tr class="separator:a7ff2861977711d396858e5b6aef1436c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr class="memitem:a271473c0e491fe4c7c0cb02fcfa88bb0" id="r_a271473c0e491fe4c7c0cb02fcfa88bb0"><td class="memTemplParams" colspan="2">template&lt;typename T , std::size_t N&gt; </td></tr>
+<tr class="memitem:a271473c0e491fe4c7c0cb02fcfa88bb0"><td class="memTemplItemLeft" align="right" valign="top">T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d7/dac/namespaceph_1_1math.html#a271473c0e491fe4c7c0cb02fcfa88bb0">ph::math::length_squared</a> (const std::array&lt; T, N &gt; &amp;vec)</td></tr>
+<tr class="memdesc:a271473c0e491fe4c7c0cb02fcfa88bb0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Treating input values as a vector and calculates its squared length.  <br /></td></tr>
+<tr class="separator:a271473c0e491fe4c7c0cb02fcfa88bb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0a1c02f0fa48517a643a221c4200dc1e" id="r_a0a1c02f0fa48517a643a221c4200dc1e"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a0a1c02f0fa48517a643a221c4200dc1e"><td class="memTemplItemLeft" align="right" valign="top">T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d7/dac/namespaceph_1_1math.html#a0a1c02f0fa48517a643a221c4200dc1e">ph::math::length_squared</a> (const std::vector&lt; T &gt; &amp;vec)</td></tr>
+<tr class="separator:a0a1c02f0fa48517a643a221c4200dc1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4d686d16a731cfaf96c02424b9215798" id="r_a4d686d16a731cfaf96c02424b9215798"><td class="memTemplParams" colspan="2">template&lt;typename T , std::size_t EXTENT = std::dynamic_extent&gt; </td></tr>
+<tr class="memitem:a4d686d16a731cfaf96c02424b9215798"><td class="memTemplItemLeft" align="right" valign="top">T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d7/dac/namespaceph_1_1math.html#a4d686d16a731cfaf96c02424b9215798">ph::math::length_squared</a> (<a class="el" href="../../d3/d5c/namespaceph.html#a6a9059902c5cb72738a2fcfc46614989">TSpanView</a>&lt; T, EXTENT &gt; vec)</td></tr>
+<tr class="separator:a4d686d16a731cfaf96c02424b9215798"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr class="memitem:a4ff51da9284135e078f892589a4816cc" id="r_a4ff51da9284135e078f892589a4816cc"><td class="memTemplParams" colspan="2">template&lt;typename T , std::size_t N&gt; </td></tr>
+<tr class="memitem:a4ff51da9284135e078f892589a4816cc"><td class="memTemplItemLeft" align="right" valign="top">T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d7/dac/namespaceph_1_1math.html#a4ff51da9284135e078f892589a4816cc">ph::math::p_norm</a> (const std::array&lt; T, N &gt; &amp;vec)</td></tr>
+<tr class="memdesc:a4ff51da9284135e078f892589a4816cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Treating input values as a vector and calculates its p-norm.  <br /></td></tr>
+<tr class="separator:a4ff51da9284135e078f892589a4816cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2f4af840af27b7877140cb250d0b2cba" id="r_a2f4af840af27b7877140cb250d0b2cba"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a2f4af840af27b7877140cb250d0b2cba"><td class="memTemplItemLeft" align="right" valign="top">T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d7/dac/namespaceph_1_1math.html#a2f4af840af27b7877140cb250d0b2cba">ph::math::p_norm</a> (const std::vector&lt; T &gt; &amp;vec)</td></tr>
+<tr class="separator:a2f4af840af27b7877140cb250d0b2cba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a41e68b91f571234574a62deddcf6b47e" id="r_a41e68b91f571234574a62deddcf6b47e"><td class="memTemplParams" colspan="2">template&lt;std::size_t P, typename T , std::size_t EXTENT = std::dynamic_extent&gt; </td></tr>
+<tr class="memitem:a41e68b91f571234574a62deddcf6b47e"><td class="memTemplItemLeft" align="right" valign="top">T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d7/dac/namespaceph_1_1math.html#a41e68b91f571234574a62deddcf6b47e">ph::math::p_norm</a> (<a class="el" href="../../d3/d5c/namespaceph.html#a6a9059902c5cb72738a2fcfc46614989">TSpanView</a>&lt; T, EXTENT &gt; vec)</td></tr>
+<tr class="separator:a41e68b91f571234574a62deddcf6b47e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr class="memitem:a4f0591b11fba7210f6dd38cfbbcbc9f7" id="r_a4f0591b11fba7210f6dd38cfbbcbc9f7"><td class="memTemplParams" colspan="2">template&lt;typename T , std::size_t N&gt; </td></tr>
+<tr class="memitem:a4f0591b11fba7210f6dd38cfbbcbc9f7"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d7/dac/namespaceph_1_1math.html#a4f0591b11fba7210f6dd38cfbbcbc9f7">ph::math::normalize</a> (std::array&lt; T, N &gt; &amp;vec)</td></tr>
+<tr class="memdesc:a4f0591b11fba7210f6dd38cfbbcbc9f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Treating input values as a vector and normalize it. Notice that normalizing a integer typed vector will result in 0-vector most of the time.  <br /></td></tr>
+<tr class="separator:a4f0591b11fba7210f6dd38cfbbcbc9f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3cf4f52c15a3def1081a81e736a7a4f8" id="r_a3cf4f52c15a3def1081a81e736a7a4f8"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a3cf4f52c15a3def1081a81e736a7a4f8"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d7/dac/namespaceph_1_1math.html#a3cf4f52c15a3def1081a81e736a7a4f8">ph::math::normalize</a> (std::vector&lt; T &gt; &amp;vec)</td></tr>
+<tr class="separator:a3cf4f52c15a3def1081a81e736a7a4f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a82c62fe543155f8ea8d4fa031f8f3d85" id="r_a82c62fe543155f8ea8d4fa031f8f3d85"><td class="memTemplParams" colspan="2">template&lt;typename T , std::size_t EXTENT = std::dynamic_extent&gt; </td></tr>
+<tr class="memitem:a82c62fe543155f8ea8d4fa031f8f3d85"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d7/dac/namespaceph_1_1math.html#a82c62fe543155f8ea8d4fa031f8f3d85">ph::math::normalize</a> (<a class="el" href="../../d3/d5c/namespaceph.html#ac5bb03de153dde37c41cddcbfd29596c">TSpan</a>&lt; T, EXTENT &gt; vec)</td></tr>
+<tr class="separator:a82c62fe543155f8ea8d4fa031f8f3d85"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr class="memitem:a03f8a077523cb1f8d667a39529300e98" id="r_a03f8a077523cb1f8d667a39529300e98"><td class="memTemplParams" colspan="2">template&lt;typename T , std::size_t N&gt; </td></tr>
+<tr class="memitem:a03f8a077523cb1f8d667a39529300e98"><td class="memTemplItemLeft" align="right" valign="top">T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d7/dac/namespaceph_1_1math.html#a03f8a077523cb1f8d667a39529300e98">ph::math::dot_product</a> (const std::array&lt; T, N &gt; &amp;vecA, const std::array&lt; T, N &gt; &amp;vecB)</td></tr>
+<tr class="memdesc:a03f8a077523cb1f8d667a39529300e98"><td class="mdescLeft">&#160;</td><td class="mdescRight">Treating input values as vectors and calculates their dot product.  <br /></td></tr>
+<tr class="separator:a03f8a077523cb1f8d667a39529300e98"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1338f031a910337ae964bb3bc4ac6fe1" id="r_a1338f031a910337ae964bb3bc4ac6fe1"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a1338f031a910337ae964bb3bc4ac6fe1"><td class="memTemplItemLeft" align="right" valign="top">T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d7/dac/namespaceph_1_1math.html#a1338f031a910337ae964bb3bc4ac6fe1">ph::math::dot_product</a> (const std::vector&lt; T &gt; &amp;vecA, const std::vector&lt; T &gt; &amp;vecB)</td></tr>
+<tr class="separator:a1338f031a910337ae964bb3bc4ac6fe1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8bee0579f0647a84c49161d6ae0dba6f" id="r_a8bee0579f0647a84c49161d6ae0dba6f"><td class="memTemplParams" colspan="2">template&lt;typename T , std::size_t EXTENT = std::dynamic_extent&gt; </td></tr>
+<tr class="memitem:a8bee0579f0647a84c49161d6ae0dba6f"><td class="memTemplItemLeft" align="right" valign="top">T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d7/dac/namespaceph_1_1math.html#a8bee0579f0647a84c49161d6ae0dba6f">ph::math::dot_product</a> (<a class="el" href="../../d3/d5c/namespaceph.html#a6a9059902c5cb72738a2fcfc46614989">TSpanView</a>&lt; T, EXTENT &gt; vecA, <a class="el" href="../../d3/d5c/namespaceph.html#a6a9059902c5cb72738a2fcfc46614989">TSpanView</a>&lt; T, EXTENT &gt; vecB)</td></tr>
+<tr class="separator:a8bee0579f0647a84c49161d6ae0dba6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Miscellaneous math utilities. </p>

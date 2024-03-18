@@ -1,6 +1,5 @@
 var classph_1_1_raw_resource_collection =
 [
-    [ "RawResourceCollection", "db/d53/classph_1_1_raw_resource_collection.html#abc5e10fb582f87ee06f07ceb37a6b79a", null ],
     [ "add", "db/d53/classph_1_1_raw_resource_collection.html#a71c1500b514f6fbfdce9879303225c83", null ],
     [ "get", "db/d53/classph_1_1_raw_resource_collection.html#a71014e2c028b96d471867aa050d02dc0", null ],
     [ "getAll", "db/d53/classph_1_1_raw_resource_collection.html#a4fdde646b0e5f0cecd6fc34fa051200b", null ],

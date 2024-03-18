@@ -1,0 +1,184 @@
+\doxysection{TIndirect\+Light\+Estimator.\+ipp}
+\hypertarget{_t_indirect_light_estimator_8ipp_source}{}\label{_t_indirect_light_estimator_8ipp_source}\index{Source/Core/LTA/TIndirectLightEstimator.ipp@{Source/Core/LTA/TIndirectLightEstimator.ipp}}
+\mbox{\hyperlink{_t_indirect_light_estimator_8ipp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_indirect_light_estimator_8h}{Core/LTA/TIndirectLightEstimator.h}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_direct_light_estimator_8h}{Core/LTA/TDirectLightEstimator.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_russian_roulette_8h}{Core/LTA/RussianRoulette.h}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_surface_tracer_8h}{Core/LTA/SurfaceTracer.h}}"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_bsdf_query_context_8h}{Core/SurfaceBehavior/BsdfQueryContext.h}}"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_bsdf_sample_query_8h}{Core/SurfaceBehavior/BsdfSampleQuery.h}}"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_surface_hit_8h}{Core/SurfaceHit.h}}"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_ray_8h}{Core/Ray.h}}"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_vector3_8h}{Math/TVector3.h}}"{}}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <Common/assertion.h>}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph_1_1lta}{ph::lta}}}
+\DoxyCodeLine{00016\ \{}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{template}<ES\textcolor{keywordtype}{id}ednessPolicy\ POLICY>}
+\DoxyCodeLine{00019\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1lta_1_1_t_indirect_light_estimator_a844fe25c1d0a654a63de0f1bb5c60887}{TIndirectLightEstimator<POLICY>::TIndirectLightEstimator}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_scene}{Scene}}*\ \textcolor{keyword}{const}\ scene)}
+\DoxyCodeLine{00020\ \ \ \ \ :\ m\_scene(scene)}
+\DoxyCodeLine{00021\ \{}
+\DoxyCodeLine{00022\ \ \ \ \ PH\_ASSERT(scene);}
+\DoxyCodeLine{00023\ \}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{keyword}{template}<ES\textcolor{keywordtype}{id}ednessPolicy\ POLICY>}
+\DoxyCodeLine{00026\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1lta_1_1_t_indirect_light_estimator_ab44f4355ef6b8bb149bb0ffa0ea754bb}{TIndirectLightEstimator<POLICY>::bsdfSamplePathWithNee}}(}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_surface_hit}{SurfaceHit}}\&\ \ \ \ \ \ X,}
+\DoxyCodeLine{00028\ \ \ \ \ \mbox{\hyperlink{classph_1_1_sample_flow}{SampleFlow}}\&\ \ \ \ \ \ \ \ \ \ \ \ sampleFlow,}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ \ \ \ \ \ pathLength,}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1lta_1_1_russian_roulette}{RussianRoulette}}\&\ rr,}
+\DoxyCodeLine{00031\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_spectrum}{math::Spectrum}}*\ \textcolor{keyword}{const}\ \ out\_Lo,}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ \ \ \ \ \ rrBeginPathLength,}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_spectrum}{math::Spectrum}}\&\ \ initialPathWeight)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00034\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00035\ \ \ \ \ PH\_ASSERT\_GE(pathLength,\ 1);}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1lta_1_1_surface_tracer}{SurfaceTracer}}\ surfaceTracer\{m\_scene\};}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1lta_1_1_t_direct_light_estimator}{TDirectLightEstimator<POLICY>}}\ directLight\{m\_scene\};}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_bsdf_query_context}{BsdfQueryContext}}\ bsdfCtx\{POLICY\};}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \ \ \mbox{\hyperlink{classph_1_1_surface_hit}{SurfaceHit}}\ currentHit\ =\ X;}
+\DoxyCodeLine{00042\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_spectrum}{math::Spectrum}}\ accuLiWeight\ =\ initialPathWeight;}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ std::size\_t\ currentPathLength\ =\ 0;}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordflow}{while}(currentPathLength\ <\ pathLength)\textcolor{comment}{//\ can\ extend\ by\ 1?}}
+\DoxyCodeLine{00046\ \ \ \ \ \{}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(currentPathLength\ >=\ rrBeginPathLength)}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_spectrum}{math::Spectrum}}\ weightedAccuLiWeight;}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(rr.\mbox{\hyperlink{classph_1_1lta_1_1_russian_roulette_a23dbf1483999b91aa772ebb117e1dd91}{surviveOnLuminance}}(accuLiWeight,\ sampleFlow,\ \&weightedAccuLiWeight))}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ accuLiWeight\ =\ weightedAccuLiWeight;}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\ V\ =\ currentHit.\mbox{\hyperlink{classph_1_1_surface_hit_a61d656616db630197f8b06093705fba6}{getIncidentRay}}().\mbox{\hyperlink{classph_1_1_ray_a3f62b201c0015a647611282280130b52}{getDirection}}().\mbox{\hyperlink{classph_1_1math_1_1_t_vector_n_base_a15602e64861b8d4b90033e87b168b846}{mul}}(-\/1);}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\ N\ =\ currentHit.\mbox{\hyperlink{classph_1_1_surface_hit_a189bd3896f87838eea8b7e06f5e71286}{getShadingNormal}}();}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_bsdf_sample_query}{BsdfSampleQuery}}\ bsdfSample\{bsdfCtx\};}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ bsdfSample.\mbox{\hyperlink{classph_1_1_bsdf_sample_query_a15de1880de1bfef9ac195e1f7c072164}{inputs}}.\mbox{\hyperlink{classph_1_1_bsdf_sample_input_ac45066366eca9aa0f45e4fd92273608e}{set}}(currentHit,\ V);}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Sample\ direct\ lighting}}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(currentPathLength\ +\ 1\ ==\ pathLength)}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_spectrum}{math::Spectrum}}\ Lo;}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(directLight.bsdfSamplePathWithNee(bsdfSample,\ sampleFlow,\ \&Lo))}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(out\_Lo)\ \{\ *out\_Lo\ =\ accuLiWeight\ *\ Lo;\ \}}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Extend\ the\ path}}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_surface_hit}{SurfaceHit}}\ nextHit;}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!surfaceTracer.bsdfSampleNextSurface(bsdfSample,\ sampleFlow,\ \&nextHit)\ ||}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !bsdfSample.outputs.isMeasurable())}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ currentHit\ =\ nextHit;}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ accuLiWeight\ *=\ bsdfSample.outputs.getPdfAppliedBsdf()\ *\ N.\mbox{\hyperlink{classph_1_1math_1_1_t_vector_n_base_ab2bbb5734f5be195c7b0d34e5324f9e1}{absDot}}(bsdfSample.outputs.getL());}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ ++currentPathLength;}
+\DoxyCodeLine{00091\ \ \ \ \ \}}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00094\ \}}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \textcolor{keyword}{template}<ES\textcolor{keywordtype}{id}ednessPolicy\ POLICY>}
+\DoxyCodeLine{00097\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1lta_1_1_t_indirect_light_estimator_ab44f4355ef6b8bb149bb0ffa0ea754bb}{TIndirectLightEstimator<POLICY>::bsdfSamplePathWithNee}}(}
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_surface_hit}{SurfaceHit}}\&\ \ \ \ \ \ X,}
+\DoxyCodeLine{00099\ \ \ \ \ \mbox{\hyperlink{classph_1_1_sample_flow}{SampleFlow}}\&\ \ \ \ \ \ \ \ \ \ \ \ sampleFlow,}
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ \ \ \ \ \ minPathLength,}
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ \ \ \ \ \ maxPathLength,}
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1lta_1_1_russian_roulette}{RussianRoulette}}\&\ rr,}
+\DoxyCodeLine{00103\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_spectrum}{math::Spectrum}}*\ \textcolor{keyword}{const}\ \ out\_Lo,}
+\DoxyCodeLine{00104\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ \ \ \ \ \ rrBeginPathLength,}
+\DoxyCodeLine{00105\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_spectrum}{math::Spectrum}}\&\ \ initialPathWeight)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00106\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00107\ \ \ \ \ PH\_ASSERT\_GE(minPathLength,\ 1);}
+\DoxyCodeLine{00108\ \ \ \ \ PH\_ASSERT\_LE(minPathLength,\ maxPathLength);}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1lta_1_1_surface_tracer}{SurfaceTracer}}\ surfaceTracer\{m\_scene\};}
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1lta_1_1_t_direct_light_estimator}{TDirectLightEstimator<POLICY>}}\ directLight\{m\_scene\};}
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_bsdf_query_context}{BsdfQueryContext}}\ bsdfCtx\{POLICY\};}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \ \ \ \ \mbox{\hyperlink{classph_1_1_surface_hit}{SurfaceHit}}\ currentHit\ =\ X;}
+\DoxyCodeLine{00115\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_spectrum}{math::Spectrum}}\ accuPathWeight\ =\ initialPathWeight;}
+\DoxyCodeLine{00116\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_spectrum}{math::Spectrum}}\ accuLo(0);}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ \ \ \ \ std::size\_t\ currentPathLength\ =\ 0;}
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{keywordflow}{while}(currentPathLength\ <\ maxPathLength)\textcolor{comment}{//\ can\ extend\ by\ 1?}}
+\DoxyCodeLine{00120\ \ \ \ \ \{}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(currentPathLength\ >=\ rrBeginPathLength)}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_spectrum}{math::Spectrum}}\ weightedAccuPathWeight;}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(rr.\mbox{\hyperlink{classph_1_1lta_1_1_russian_roulette_a23dbf1483999b91aa772ebb117e1dd91}{surviveOnLuminance}}(accuPathWeight,\ sampleFlow,\ \&weightedAccuPathWeight))}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ accuPathWeight\ =\ weightedAccuPathWeight;}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\ V\ =\ currentHit.\mbox{\hyperlink{classph_1_1_surface_hit_a61d656616db630197f8b06093705fba6}{getIncidentRay}}().\mbox{\hyperlink{classph_1_1_ray_a3f62b201c0015a647611282280130b52}{getDirection}}().\mbox{\hyperlink{classph_1_1math_1_1_t_vector_n_base_a15602e64861b8d4b90033e87b168b846}{mul}}(-\/1);}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\ N\ =\ currentHit.\mbox{\hyperlink{classph_1_1_surface_hit_a189bd3896f87838eea8b7e06f5e71286}{getShadingNormal}}();}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_bsdf_sample_query}{BsdfSampleQuery}}\ bsdfSample\{bsdfCtx\};}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ bsdfSample.\mbox{\hyperlink{classph_1_1_bsdf_sample_query_a15de1880de1bfef9ac195e1f7c072164}{inputs}}.\mbox{\hyperlink{classph_1_1_bsdf_sample_input_ac45066366eca9aa0f45e4fd92273608e}{set}}(currentHit,\ V);}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Account\ for\ energy\ from\ the\ specified\ path\ length\ range}}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ PH\_ASSERT\_LE(currentPathLength\ +\ 1,\ maxPathLength);}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(currentPathLength\ +\ 1\ >=\ minPathLength)}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_spectrum}{math::Spectrum}}\ Lo;}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ std::optional<SurfaceHit>\ nextHit;}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!directLight.bsdfSamplePathWithNee(bsdfSample,\ sampleFlow,\ \&Lo,\ \&nextHit)\ ||}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !bsdfSample.outputs.isMeasurable()\ ||}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !nextHit)}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \ \ \ \ accuLo\ +=\ accuPathWeight\ *\ Lo;}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ currentHit\ =\ *nextHit;}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Extend\ the\ path}}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_surface_hit}{SurfaceHit}}\ nextHit;}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!surfaceTracer.bsdfSampleNextSurface(bsdfSample,\ sampleFlow,\ \&nextHit)\ ||}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !bsdfSample.outputs.isMeasurable())}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ currentHit\ =\ nextHit;}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ accuPathWeight\ *=\ bsdfSample.outputs.getPdfAppliedBsdf()\ *\ N.\mbox{\hyperlink{classph_1_1math_1_1_t_vector_n_base_ab2bbb5734f5be195c7b0d34e5324f9e1}{absDot}}(bsdfSample.outputs.getL());}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ ++currentPathLength;}
+\DoxyCodeLine{00171\ \ \ \ \ \}}
+\DoxyCodeLine{00172\ }
+\DoxyCodeLine{00173\ \ \ \ \ \textcolor{keywordflow}{if}(out\_Lo)\ \{\ *out\_Lo\ =\ accuLo;\ \}}
+\DoxyCodeLine{00174\ }
+\DoxyCodeLine{00175\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00176\ \}}
+\DoxyCodeLine{00177\ }
+\DoxyCodeLine{00178\ \}\textcolor{comment}{//\ end\ namespace\ ph::lta}}
+
+\end{DoxyCode}

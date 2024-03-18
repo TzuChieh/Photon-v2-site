@@ -1,11 +1,12 @@
 var classph_1_1math_1_1_t_indexed_point_kdtree =
 [
-    [ "Node", "d0/dc6/classph_1_1math_1_1_t_indexed_point_kdtree.html#a2ad6b74ca85a82c7704c3b162ca507ca", null ],
-    [ "TIndexedPointKdtree", "d0/dc6/classph_1_1math_1_1_t_indexed_point_kdtree.html#a211b59cc5b1c8fb7892f954f95a43fc7", null ],
-    [ "build", "d0/dc6/classph_1_1math_1_1_t_indexed_point_kdtree.html#a0bf5585ef40d30ab11a363d98a0e9b7c", null ],
-    [ "findNearest", "d0/dc6/classph_1_1math_1_1_t_indexed_point_kdtree.html#ae5ca50caae33e316b0e911104b228402", null ],
-    [ "findWithinRange", "d0/dc6/classph_1_1math_1_1_t_indexed_point_kdtree.html#a62e63beeb0363b932338ace3c3c7dcb4", null ],
-    [ "nearestTraversal", "d0/dc6/classph_1_1math_1_1_t_indexed_point_kdtree.html#a568e14f83e5ba397ceedfee1961754e0", null ],
-    [ "numItems", "d0/dc6/classph_1_1math_1_1_t_indexed_point_kdtree.html#ad332e631b1471a84d63ca6fc65251be0", null ],
-    [ "rangeTraversal", "d0/dc6/classph_1_1math_1_1_t_indexed_point_kdtree.html#a0764b4f7823627a72989d9af85d23a7b", null ]
+    [ "BuildCache", "de/dd1/structph_1_1math_1_1_t_indexed_point_kdtree_1_1_build_cache.html", "de/dd1/structph_1_1math_1_1_t_indexed_point_kdtree_1_1_build_cache" ],
+    [ "TIndexedPointKdtree", "d0/dc6/classph_1_1math_1_1_t_indexed_point_kdtree.html#a39172a3e4409d3fa8a5d07dd00bc7769", null ],
+    [ "build", "d0/dc6/classph_1_1math_1_1_t_indexed_point_kdtree.html#aac4a7a12e85819b95c001619a9b9c8c5", null ],
+    [ "build", "d0/dc6/classph_1_1math_1_1_t_indexed_point_kdtree.html#a576b57090a15285c069d4ef7e894b3c4", null ],
+    [ "findNearest", "d0/dc6/classph_1_1math_1_1_t_indexed_point_kdtree.html#a9dc8273ea975dc31c69d16c1f52df536", null ],
+    [ "findWithinRange", "d0/dc6/classph_1_1math_1_1_t_indexed_point_kdtree.html#a41e6c17d09ed35c19f67ea6c95945608", null ],
+    [ "nearestTraversal", "d0/dc6/classph_1_1math_1_1_t_indexed_point_kdtree.html#aedee1c3e0d192cb2a793ddbf1c587713", null ],
+    [ "numItems", "d0/dc6/classph_1_1math_1_1_t_indexed_point_kdtree.html#a6dbfe1039ac9d1bfd086ea29c38cb2b6", null ],
+    [ "rangeTraversal", "d0/dc6/classph_1_1math_1_1_t_indexed_point_kdtree.html#a7ca842bdeb4e15322673024b8f17a3e3", null ]
 ];

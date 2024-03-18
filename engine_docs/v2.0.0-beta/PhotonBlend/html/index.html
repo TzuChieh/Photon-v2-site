@@ -106,15 +106,53 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 <h1><a class="anchor" id="autotoc_md1"></a>
 Features</h1>
 <ul>
-<li>Exporting scenes to Photon's scene description format</li>
-<li>Manipulating materials implemented in Photon with shader nodes</li>
+<li>Export scenes to Photon's scene description format</li>
+<li>Manipulate Photon materials with shader nodes</li>
 <li>Physically meaningful input parameters</li>
+<li>Preview and perform final render directly in Blender</li>
 </ul>
 <h1><a class="anchor" id="autotoc_md2"></a>
 Development</h1>
 <ul>
 <li>It can be useful to have <a href="https://github.com/nutti/fake-bpy-module">fake bpy modules</a> around so that <code>import bpy</code> and its equivalent no longer trigger errors in your IDE (and autocomplete is now possible).</li>
-<li>By enabling <code>Edit &gt; Preferences &gt; Interface &gt; Developer Extras</code> and <code>Python Tooltips</code>, you gain more information for developer from Blender's UI. </li>
+<li>By enabling <code>Edit &gt; Preferences &gt; Interface &gt; Developer Extras</code> and <code>Python Tooltips</code>, you gain more information for developer from Blender's UI.</li>
+<li>To avoid opening Blender console manually everytime on startup, pass <code>-con</code> to the Blender executable.</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md3"></a>
+Notes on &lt;tt&gt;bpy.types.EnumProperty&lt;/tt&gt;</h2>
+<p>When defining enum entries, you <b>must</b> specify a number for it. The number are unique value used as the identifier for the entry (stored in file data). If you do not do this, the original .blend file will break (by using wrong or invalid value) when entries are added/reordered/renamed. The following is a <b>wrong</b> example:</p>
+<div class="fragment"><div class="line">items = [</div>
+<div class="line">    (<span class="stringliteral">&#39;entry&#39;</span>, <span class="stringliteral">&quot;Entry&quot;</span>, <span class="stringliteral">&quot;Hello entry!&quot;</span>),</div>
+<div class="line">    (<span class="stringliteral">&#39;entry2&#39;</span>, <span class="stringliteral">&quot;Entry 2&quot;</span>, <span class="stringliteral">&quot;Hello entry 2!&quot;</span>),</div>
+<div class="line">]</div>
+</div><!-- fragment --><p>Please always use the following form (numbers are specified in the end, and should not be changed to keep the integrity of old .blend files):</p>
+<div class="fragment"><div class="line">items = [</div>
+<div class="line">    (<span class="stringliteral">&#39;entry&#39;</span>, <span class="stringliteral">&quot;Entry&quot;</span>, <span class="stringliteral">&quot;Hello entry!&quot;</span>, 0),</div>
+<div class="line">    (<span class="stringliteral">&#39;entry2&#39;</span>, <span class="stringliteral">&quot;Entry 2&quot;</span>, <span class="stringliteral">&quot;Hello entry 2!&quot;</span>, 1),</div>
+<div class="line">]</div>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md4"></a>
+Troubleshooting</h1>
+<ul>
+<li>Exported scene is different or missing some data.<ul>
+<li>If you are exporting via <code>File -&gt; Export -&gt; Photon Scene (.p2)</code>, try using the <code>Render to .p2</code> render engine to export instead. Unfortunately Blender currently does not support getting a depsgraph with &lsquo;depsgraph.mode == 'RENDER&rsquo;<code>(except the one passed to</code>bpy.types.RenderEngine<code>by Blender). This will cause the exporter to export in</code>VIEWPORT<code>mode, and many settings such as subdivision modifiers will not apply their</code>RENDER<code>mode settings. The exporter still attempts to enhance this part by trying to automatically adjust object settings to match the one used for final rendering (or what the user specifies), but chances are that some parts are still missing/different. The</code>Render to .p2<code>render engine export scenes in</code>RENDER` mode by default. See <a href="https://devtalk.blender.org/t/get-render-dependency-graph/12164">Get "Render" dependency graph</a> for a related discussion.</li>
+</ul>
+</li>
+<li>The render is completely black.<ul>
+<li>Go to <code>Window -&gt; Toggle System Console</code> and see if there is message like "Warning: reading render result: expected channel "XXX" not found". If so, then it is due to we are not fully supporting Blender's layer system yet. Please change the view layer's name to its default (ViewLayer) for now.</li>
+</ul>
+</li>
+<li>Camera view does not match what I see from the viewport.<ul>
+<li>Select the camera, set the property <code>Camera -&gt; Sensor Fit</code> to <code>Horizontal</code> and see if that works for you. When the rendering has lower aspect ratio (e.g., height &gt; width), <code>Auto</code> sensor fit seems to interpolating between vertical and horizontal sensor size/FoV. I have yet figured out how the actual interpolation is done.</li>
+</ul>
+</li>
+</ul>
+<h1><a class="anchor" id="autotoc_md5"></a>
+Known Issues</h1>
+<h2><a class="anchor" id="autotoc_md6"></a>
+Blender 3.6.5</h2>
+<ul>
+<li><code>File -&gt; Export -&gt; Photon Scene (.p2)</code> may omit a newly created material's node tree, resulting in a fallback material being used. Using fake user for the material or saving and reopening the .blend file seem to work. A better alternative is to use the <code>Render to .p2</code> render engine to export. This seems to have something to do with the depsgraph <code>VIEWPORT</code> &amp; <code>RENDER</code> mode issue, <code>VIEWPORT</code> depsgraph does not evaluate a newly created material's node tree.</li>
+<li>Render to .p2 output empty (black) frames to output folder (<code>Output Properties -&gt; Output -&gt; Output Path</code>, defaults to <code>/tmp/</code>) no matter the render engine setting (<code>bl_use_image_save = False</code>). You may want to manually remove those files from time to time. </li>
 </ul>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->

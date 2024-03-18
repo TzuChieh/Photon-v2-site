@@ -1,8 +1,8 @@
 var classph_1_1_sdl_input_context =
 [
     [ "SdlInputContext", "d2/de3/classph_1_1_sdl_input_context.html#a11cbd9d67166fb8d66d7d18b2a3a98d3", null ],
-    [ "SdlInputContext", "d2/de3/classph_1_1_sdl_input_context.html#a3551da03d3d05b5a8bdfde997e548665", null ],
-    [ "SdlInputContext", "d2/de3/classph_1_1_sdl_input_context.html#ae2e63ab0b69526fbe1e4e7b9ab5f8cca", null ],
-    [ "SdlInputContext", "d2/de3/classph_1_1_sdl_input_context.html#a90f1e4f86d7140c9e6cd30bc98330b2e", null ],
-    [ "getSrcReferences", "d2/de3/classph_1_1_sdl_input_context.html#af5bc726581207603029b9252e7e32501", null ]
+    [ "SdlInputContext", "d2/de3/classph_1_1_sdl_input_context.html#aaba4abeead5f7f5abcf11f8eb066d475", null ],
+    [ "SdlInputContext", "d2/de3/classph_1_1_sdl_input_context.html#a05db98a0fa5d3107257b9f8ea8eb3eda", null ],
+    [ "getSrcDataPackets", "d2/de3/classph_1_1_sdl_input_context.html#a9adc4b7a596c28a387058041f2ca96d3", null ],
+    [ "getSrcResources", "d2/de3/classph_1_1_sdl_input_context.html#ad10a6db86e2a8cc7bf7099b4d9d3c85e", null ]
 ];

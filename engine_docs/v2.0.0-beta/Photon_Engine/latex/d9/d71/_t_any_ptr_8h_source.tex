@@ -26,92 +26,81 @@
 \DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
 \DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{auto}*\ \mbox{\hyperlink{classph_1_1_t_any_ptr_a175bbce5a54aed0ee8e8f81c6a324058}{get}}()\ \textcolor{keyword}{const};}
 \DoxyCodeLine{00028\ }
-\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{const}\ T*\ \mbox{\hyperlink{classph_1_1_t_any_ptr_a1678a1083744b6c9826893e9464bcdc6}{getConst}}()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00031\ }
-\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{operator}\ bool\ ()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{operator}\ bool\ ()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{operator}\ T*\ ()\ \textcolor{keyword}{const};}
 \DoxyCodeLine{00033\ }
-\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{operator}\ T*\ ()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00034\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{using\ }PointerType\ =\ std::conditional\_t<IS\_CONST,\ const\ void*,\ void*>;}
 \DoxyCodeLine{00036\ }
-\DoxyCodeLine{00037\ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keyword}{using\ }PointerType\ =\ std::conditional\_t<IS\_CONST,\ const\ void*,\ void*>;}
-\DoxyCodeLine{00039\ }
-\DoxyCodeLine{00040\ \ \ \ \ PointerType\ m\_pointer;}
-\DoxyCodeLine{00041\ \ \ \ \ std::type\_index\ m\_pointedType;}
-\DoxyCodeLine{00042\ \};}
-\DoxyCodeLine{00043\ }
-\DoxyCodeLine{00046\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classph_1_1_t_any_ptr}{AnyConstPtr}}\ =\ \mbox{\hyperlink{classph_1_1_t_any_ptr}{TAnyPtr<true>}};}
-\DoxyCodeLine{00047\ }
-\DoxyCodeLine{00050\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classph_1_1_t_any_ptr}{AnyNonConstPtr}}\ =\ \mbox{\hyperlink{classph_1_1_t_any_ptr}{TAnyPtr<false>}};}
-\DoxyCodeLine{00051\ }
-\DoxyCodeLine{00052\ \textcolor{keyword}{template}<\textcolor{keywordtype}{bool}\ IS\_CONST>}
-\DoxyCodeLine{00053\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_t_any_ptr_a79c43a7cd5180ccb47281b6e35d8e804}{TAnyPtr<IS\_CONST>::TAnyPtr}}()}
-\DoxyCodeLine{00054\ \ \ \ \ :\ \mbox{\hyperlink{classph_1_1_t_any_ptr}{TAnyPtr}}(nullptr)}
-\DoxyCodeLine{00055\ \{\}}
-\DoxyCodeLine{00056\ }
-\DoxyCodeLine{00057\ \textcolor{keyword}{template}<\textcolor{keywordtype}{bool}\ IS\_CONST>}
-\DoxyCodeLine{00058\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_t_any_ptr_a79c43a7cd5180ccb47281b6e35d8e804}{TAnyPtr<IS\_CONST>::TAnyPtr}}(std::nullptr\_t\ \textcolor{comment}{/*\ ptr\ */})}
-\DoxyCodeLine{00059\ \ \ \ \ :\ m\_pointer(nullptr)}
-\DoxyCodeLine{00060\ \ \ \ \ ,\ m\_pointedType(typeid(\mbox{\hyperlink{namespacestd}{std}}::nullptr\_t))}
-\DoxyCodeLine{00061\ \{\}}
-\DoxyCodeLine{00062\ }
-\DoxyCodeLine{00063\ \textcolor{keyword}{template}<\textcolor{keywordtype}{bool}\ IS\_CONST>}
-\DoxyCodeLine{00064\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00065\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_t_any_ptr_a79c43a7cd5180ccb47281b6e35d8e804}{TAnyPtr<IS\_CONST>::TAnyPtr}}(T*\ \textcolor{keyword}{const}\ ptr)}
-\DoxyCodeLine{00066\ \ \ \ \ :\ m\_pointer(ptr)}
-\DoxyCodeLine{00067\ \ \ \ \ ,\ m\_pointedType(typeid(T))}
-\DoxyCodeLine{00068\ \{}
-\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keyword}{static\_assert}(\textcolor{keyword}{sizeof}(T)\ ==\ \textcolor{keyword}{sizeof}(T),}
-\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Input\ must\ be\ a\ complete\ type."{}});}
-\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keyword}{static\_assert}(!(!IS\_CONST\ \&\&\ std::is\_const\_v<T>),}
-\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Input\ pointer\ is\ const,\ cannot\ convert\ it\ to\ non-\/const."{}});}
-\DoxyCodeLine{00073\ \}}
-\DoxyCodeLine{00074\ }
-\DoxyCodeLine{00075\ \textcolor{keyword}{template}<\textcolor{keywordtype}{bool}\ IS\_CONST>}
-\DoxyCodeLine{00076\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00077\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}*\ \mbox{\hyperlink{classph_1_1_t_any_ptr_a175bbce5a54aed0ee8e8f81c6a324058}{TAnyPtr<IS\_CONST>::get}}()\textcolor{keyword}{\ const}}
-\DoxyCodeLine{00078\ \textcolor{keyword}{}\{}
-\DoxyCodeLine{00079\ \ \ \ \ \textcolor{comment}{//\ Also\ handles\ the\ case\ where\ \`{}const`\ is\ explicitly\ specified\ in\ \`{}T`}}
-\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keyword}{using\ }ReturnType\ =\ std::conditional\_t<IS\_CONST,\ const\ T,\ T>;}
-\DoxyCodeLine{00081\ }
-\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keywordflow}{if}(m\_pointedType\ ==\ \textcolor{keyword}{typeid}(T))}
+\DoxyCodeLine{00037\ \ \ \ \ PointerType\ m\_pointer;}
+\DoxyCodeLine{00038\ \ \ \ \ std::type\_index\ m\_pointedType;}
+\DoxyCodeLine{00039\ \};}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00043\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classph_1_1_t_any_ptr}{AnyConstPtr}}\ =\ \mbox{\hyperlink{classph_1_1_t_any_ptr}{TAnyPtr<true>}};}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00047\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classph_1_1_t_any_ptr}{AnyNonConstPtr}}\ =\ \mbox{\hyperlink{classph_1_1_t_any_ptr}{TAnyPtr<false>}};}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \textcolor{keyword}{template}<\textcolor{keywordtype}{bool}\ IS\_CONST>}
+\DoxyCodeLine{00050\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_t_any_ptr_a79c43a7cd5180ccb47281b6e35d8e804}{TAnyPtr<IS\_CONST>::TAnyPtr}}()}
+\DoxyCodeLine{00051\ \ \ \ \ :\ \mbox{\hyperlink{classph_1_1_t_any_ptr}{TAnyPtr}}(nullptr)}
+\DoxyCodeLine{00052\ \{\}}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \textcolor{keyword}{template}<\textcolor{keywordtype}{bool}\ IS\_CONST>}
+\DoxyCodeLine{00055\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_t_any_ptr_a79c43a7cd5180ccb47281b6e35d8e804}{TAnyPtr<IS\_CONST>::TAnyPtr}}(std::nullptr\_t\ \textcolor{comment}{/*\ ptr\ */})}
+\DoxyCodeLine{00056\ \ \ \ \ :\ m\_pointer(nullptr)}
+\DoxyCodeLine{00057\ \ \ \ \ ,\ m\_pointedType(typeid(\mbox{\hyperlink{namespacestd}{std}}::nullptr\_t))}
+\DoxyCodeLine{00058\ \{\}}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \textcolor{keyword}{template}<\textcolor{keywordtype}{bool}\ IS\_CONST>}
+\DoxyCodeLine{00061\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00062\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_t_any_ptr_a79c43a7cd5180ccb47281b6e35d8e804}{TAnyPtr<IS\_CONST>::TAnyPtr}}(T*\ \textcolor{keyword}{const}\ ptr)}
+\DoxyCodeLine{00063\ \ \ \ \ :\ m\_pointer(ptr)}
+\DoxyCodeLine{00064\ \ \ \ \ ,\ m\_pointedType(typeid(T))}
+\DoxyCodeLine{00065\ \{}
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keyword}{static\_assert}(\textcolor{keyword}{sizeof}(T)\ ==\ \textcolor{keyword}{sizeof}(T),}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Input\ must\ be\ a\ complete\ type."{}});}
+\DoxyCodeLine{00068\ \}}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \textcolor{keyword}{template}<\textcolor{keywordtype}{bool}\ IS\_CONST>}
+\DoxyCodeLine{00071\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00072\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}*\ \mbox{\hyperlink{classph_1_1_t_any_ptr_a175bbce5a54aed0ee8e8f81c6a324058}{TAnyPtr<IS\_CONST>::get}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00073\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{comment}{//\ Also\ handles\ the\ case\ where\ \`{}const`\ is\ explicitly\ specified\ in\ \`{}T`}}
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keyword}{using\ }ReturnType\ =\ std::conditional\_t<IS\_CONST,\ const\ T,\ T>;}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{comment}{//\ Important:\ type\ must\ be\ exactly\ equal\ for\ the\ cast\ to\ have\ defined\ behavior}}
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keywordflow}{if}(m\_pointedType\ ==\ \textcolor{keyword}{typeid}(T))}
+\DoxyCodeLine{00079\ \ \ \ \ \{}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}ReturnType*\textcolor{keyword}{>}(m\_pointer);}
+\DoxyCodeLine{00081\ \ \ \ \ \}}
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keywordflow}{else}}
 \DoxyCodeLine{00083\ \ \ \ \ \{}
-\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}ReturnType*\textcolor{keyword}{>}(m\_pointer);}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}ReturnType*\textcolor{keyword}{>}(\textcolor{keyword}{nullptr});}
 \DoxyCodeLine{00085\ \ \ \ \ \}}
-\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00087\ \ \ \ \ \{}
-\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}ReturnType*\textcolor{keyword}{>}(\textcolor{keyword}{nullptr});}
-\DoxyCodeLine{00089\ \ \ \ \ \}}
-\DoxyCodeLine{00090\ \}}
-\DoxyCodeLine{00091\ }
-\DoxyCodeLine{00092\ \textcolor{keyword}{template}<\textcolor{keywordtype}{bool}\ IS\_CONST>}
-\DoxyCodeLine{00093\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00094\ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ T*\ \mbox{\hyperlink{classph_1_1_t_any_ptr_a1678a1083744b6c9826893e9464bcdc6}{TAnyPtr<IS\_CONST>::getConst}}()\textcolor{keyword}{\ const}}
-\DoxyCodeLine{00095\ \textcolor{keyword}{}\{}
-\DoxyCodeLine{00096\ \ \ \ \ \textcolor{keywordflow}{return}\ std::as\_const(get<T>());}
-\DoxyCodeLine{00097\ \}}
-\DoxyCodeLine{00098\ }
-\DoxyCodeLine{00099\ \textcolor{keyword}{template}<\textcolor{keywordtype}{bool}\ IS\_CONST>}
-\DoxyCodeLine{00100\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_t_any_ptr}{TAnyPtr<IS\_CONST>::operator}}\ bool\ ()\textcolor{keyword}{\ const}}
-\DoxyCodeLine{00101\ \textcolor{keyword}{}\{}
-\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_pointer\ !=\ \textcolor{keyword}{nullptr};}
-\DoxyCodeLine{00103\ \}}
+\DoxyCodeLine{00086\ \}}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \textcolor{keyword}{template}<\textcolor{keywordtype}{bool}\ IS\_CONST>}
+\DoxyCodeLine{00089\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_t_any_ptr}{TAnyPtr<IS\_CONST>::operator}}\ bool\ ()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00090\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_pointer\ !=\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00092\ \}}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \textcolor{keyword}{template}<\textcolor{keywordtype}{bool}\ IS\_CONST>}
+\DoxyCodeLine{00095\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00096\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_t_any_ptr}{TAnyPtr<IS\_CONST>::operator}}\ T*\ ()\ \textcolor{keyword}{const}}
+\DoxyCodeLine{00097\ \{}
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{comment}{//\ Note\ that\ we\ could,\ of\ course,\ write\ a\ better\ return\ type\ that\ matches\ \`{}IS\_CONST`.\ Here\ a\ more}}
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{comment}{//\ general\ type\ \`{}T*`\ is\ used,\ so\ we\ could\ detect\ potential\ conversion\ errors\ here\ and\ provide}}
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{comment}{//\ a\ more\ friendly\ error\ message.}}
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keyword}{static\_assert}(!(IS\_CONST\ \&\&\ !std::is\_const\_v<T>),}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Cannot\ convert\ a\ const\ pointer\ to\ non-\/const."{}});}
 \DoxyCodeLine{00104\ }
-\DoxyCodeLine{00105\ \textcolor{keyword}{template}<\textcolor{keywordtype}{bool}\ IS\_CONST>}
-\DoxyCodeLine{00106\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00107\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_t_any_ptr}{TAnyPtr<IS\_CONST>::operator}}\ T*\ ()\ \textcolor{keyword}{const}}
-\DoxyCodeLine{00108\ \{}
-\DoxyCodeLine{00109\ \ \ \ \ \textcolor{comment}{//\ Note\ that\ we\ could,\ of\ course,\ write\ a\ better\ return\ type\ that\ matches\ \`{}IS\_CONST`.\ Here\ a\ more}}
-\DoxyCodeLine{00110\ \ \ \ \ \textcolor{comment}{//\ general\ type\ \`{}T*`\ is\ used,\ so\ we\ could\ detect\ potential\ conversion\ errors\ here\ and\ provide}}
-\DoxyCodeLine{00111\ \ \ \ \ \textcolor{comment}{//\ a\ more\ friendly\ error\ message.}}
-\DoxyCodeLine{00112\ \ \ \ \ \textcolor{comment}{//}}
-\DoxyCodeLine{00113\ \ \ \ \ \textcolor{keyword}{static\_assert}(!(IS\_CONST\ \&\&\ !std::is\_const\_v<T>),}
-\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Cannot\ convert\ a\ const\ pointer\ to\ non-\/const."{}});}
-\DoxyCodeLine{00115\ }
-\DoxyCodeLine{00116\ \ \ \ \ \textcolor{keywordflow}{return}\ get<T>();}
-\DoxyCodeLine{00117\ \}}
-\DoxyCodeLine{00118\ }
-\DoxyCodeLine{00119\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+\DoxyCodeLine{00105\ \ \ \ \ \textcolor{keywordflow}{return}\ get<T>();}
+\DoxyCodeLine{00106\ \}}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
 
 \end{DoxyCode}

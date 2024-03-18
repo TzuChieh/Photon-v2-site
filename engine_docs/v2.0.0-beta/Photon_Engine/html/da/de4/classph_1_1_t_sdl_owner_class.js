@@ -26,6 +26,6 @@ var classph_1_1_t_sdl_owner_class =
     [ "numFields", "da/de4/classph_1_1_t_sdl_owner_class.html#ac7bc33c1b0e44216ff3dce62ade8bf8c", null ],
     [ "numFunctions", "da/de4/classph_1_1_t_sdl_owner_class.html#adae015ec780de787b5de939f68cea748", null ],
     [ "referencedResources", "da/de4/classph_1_1_t_sdl_owner_class.html#a131d2dec7086d7248c1559f6f05aed43", null ],
-    [ "saveFieldsToSdl", "da/de4/classph_1_1_t_sdl_owner_class.html#aab29c8c7ddf724df47309f471c25d685", null ],
-    [ "saveResource", "da/de4/classph_1_1_t_sdl_owner_class.html#a042b1eaf8d0ac9947cff1c33441e3d1c", null ]
+    [ "saveFieldsToSdl", "da/de4/classph_1_1_t_sdl_owner_class.html#a50c9f219266ce8e41493b88768143a89", null ],
+    [ "saveResource", "da/de4/classph_1_1_t_sdl_owner_class.html#ac8e23c3ff4dc142192e6927e646714e5", null ]
 ];

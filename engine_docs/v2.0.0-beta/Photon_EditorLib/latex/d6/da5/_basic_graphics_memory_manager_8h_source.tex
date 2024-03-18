@@ -1,0 +1,72 @@
+\doxysection{Basic\+Graphics\+Memory\+Manager.\+h}
+\hypertarget{_basic_graphics_memory_manager_8h_source}{}\label{_basic_graphics_memory_manager_8h_source}\index{Source/RenderCore/BasicGraphicsMemoryManager.h@{Source/RenderCore/BasicGraphicsMemoryManager.h}}
+\mbox{\hyperlink{_basic_graphics_memory_manager_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_graphics_memory_manager_8h}{RenderCore/GraphicsMemoryManager.h}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_host_memory_block_8h}{RenderCore/Memory/HostMemoryBlock.h}}"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <Common/primitive\_type.h>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <Utility/Concurrent/TAtomicQuasiQueue.h>}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <cstddef>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <atomic>}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph_1_1editor_1_1ghi}{ph::editor::ghi}}}
+\DoxyCodeLine{00015\ \{}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{class\ }GraphicsMemoryBlock;}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00021\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1editor_1_1ghi_1_1_basic_graphics_memory_manager}{BasicGraphicsMemoryManager}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classph_1_1editor_1_1ghi_1_1_graphics_memory_manager}{GraphicsMemoryManager}}}
+\DoxyCodeLine{00022\ \{}
+\DoxyCodeLine{00023\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00024\ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1ghi_1_1_basic_graphics_memory_manager_afedacdcb20ed8824addb85301e9c6808}{BasicGraphicsMemoryManager}}();}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1ghi_1_1_basic_graphics_memory_manager_afedacdcb20ed8824addb85301e9c6808}{BasicGraphicsMemoryManager}}(}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ std::size\_t\ pooledHostBlockSize,}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ std::size\_t\ maxPooledHostBlocks);}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1ghi_1_1_graphics_memory_block}{GraphicsMemoryBlock}}*\ \mbox{\hyperlink{classph_1_1editor_1_1ghi_1_1_basic_graphics_memory_manager_ad3d99bcfd0f7954d9d2b7be94c1db5ca}{allocHostBlock}}(uint32\ numFramesToLive)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1ghi_1_1_graphics_memory_block}{GraphicsMemoryBlock}}*\ \mbox{\hyperlink{classph_1_1editor_1_1ghi_1_1_basic_graphics_memory_manager_ae23ddcb9a7c0d01bc020199412db0564}{allocCustomHostBlock}}(}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ uint32\ numFramesToLive,}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ std::size\_t\ blockSize,}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ std::size\_t\ blockAlignment)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1ghi_1_1_basic_graphics_memory_manager_a1e5409d9e54cd2a3d32847a1c780670b}{onGHILoad}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1ghi_1_1_basic_graphics_memory_manager_ae46611ed2126b3b2857fad7e27a65431}{onGHIUnload}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1ghi_1_1_basic_graphics_memory_manager_a52ca8fad77c869902671fd4fde946caa}{beginFrameUpdate}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1editor_1_1_g_h_i_thread_update_context}{GHIThreadUpdateContext}}\&\ ctx)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1ghi_1_1_basic_graphics_memory_manager_a7d825faa0764bd406af9914c9b7b3271}{endFrameUpdate}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1editor_1_1_g_h_i_thread_update_context}{GHIThreadUpdateContext}}\&\ ctx)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keyword}{struct\ }PooledHostBlock}
+\DoxyCodeLine{00044\ \ \ \ \ \{}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1ghi_1_1_host_memory_block}{HostMemoryBlock}}\ block;}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ uint32\ numFramesLeft\ =\ 0;}
+\DoxyCodeLine{00047\ \ \ \ \ \};}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keyword}{struct\ }CustomHostBlock}
+\DoxyCodeLine{00050\ \ \ \ \ \{}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ std::unique\_ptr<HostMemoryBlock>\ block;}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ uint32\ numFramesLeft\ =\ 0;}
+\DoxyCodeLine{00053\ \ \ \ \ \};}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \ \ std::unique\_ptr<PooledHostBlock[]>\ m\_hostBlocks;}
+\DoxyCodeLine{00056\ \ \ \ \ TAtomicQuasiQueue<PooledHostBlock*>\ m\_freeHostBlocks;}
+\DoxyCodeLine{00057\ \ \ \ \ TAtomicQuasiQueue<PooledHostBlock*>\ m\_activeHostBlocks;}
+\DoxyCodeLine{00058\ \ \ \ \ std::unique\_ptr<PooledHostBlock*[]>\ m\_hostBlockCache;}
+\DoxyCodeLine{00059\ \ \ \ \ std::atomic\_uint32\_t\ m\_numUsedHostBlocks;}
+\DoxyCodeLine{00060\ \ \ \ \ std::size\_t\ m\_maxPooledHostBlocks;}
+\DoxyCodeLine{00061\ \ \ \ \ std::size\_t\ m\_pooledHostBlockSize;}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \ \ \ \ TAtomicQuasiQueue<CustomHostBlock>\ m\_freeCustomHostBlocks;}
+\DoxyCodeLine{00064\ \ \ \ \ TAtomicQuasiQueue<CustomHostBlock>\ m\_activeCustomHostBlocks;}
+\DoxyCodeLine{00065\ \ \ \ \ std::vector<CustomHostBlock>\ m\_customHostBlockCache;}
+\DoxyCodeLine{00066\ \};}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \}\textcolor{comment}{//\ end\ namespace\ ph::editor::ghi}}
+
+\end{DoxyCode}

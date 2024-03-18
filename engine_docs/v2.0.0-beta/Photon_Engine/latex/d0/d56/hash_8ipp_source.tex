@@ -202,6 +202,45 @@
 \DoxyCodeLine{00198\ \ \ \ \ \textcolor{keywordflow}{return}\ h1;}
 \DoxyCodeLine{00199\ \}}
 \DoxyCodeLine{00200\ }
-\DoxyCodeLine{00201\ \}\textcolor{comment}{//\ end\ namespace\ ph::math}}
+\DoxyCodeLine{00201\ \textcolor{keyword}{inline}\ uint32\ \mbox{\hyperlink{namespaceph_1_1math_a46bffa9926cc5a79c3ae8eefdcc9990e}{permuted\_index}}(uint32\ i,\ uint32\ l,\ uint32\ p)}
+\DoxyCodeLine{00202\ \{}
+\DoxyCodeLine{00203\ \ \ \ \ \textcolor{comment}{//\ This\ is\ the\ implementation\ from\ Kensler's\ paper:\ "{}Correlated\ Multi-\/Jittered\ Sampling"{}.}}
+\DoxyCodeLine{00204\ \ \ \ \ \textcolor{comment}{//\ See\ https://afnan.io/posts/2019-\/04-\/05-\/explaining-\/the-\/hashed-\/permutation/\ for}}
+\DoxyCodeLine{00205\ \ \ \ \ \textcolor{comment}{//\ a\ nice\ introduction.}}
+\DoxyCodeLine{00206\ \ \ \ \ \textcolor{comment}{//\ Note\ that\ PBRT-\/v4\ also\ uses\ the\ same\ implementation,\ see\ their\ \`{}PermutationElement()`.}}
+\DoxyCodeLine{00207\ }
+\DoxyCodeLine{00208\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ w\ =\ l\ -\/\ 1;}
+\DoxyCodeLine{00209\ \ \ \ \ w\ |=\ w\ >>\ 1;}
+\DoxyCodeLine{00210\ \ \ \ \ w\ |=\ w\ >>\ 2;}
+\DoxyCodeLine{00211\ \ \ \ \ w\ |=\ w\ >>\ 4;}
+\DoxyCodeLine{00212\ \ \ \ \ w\ |=\ w\ >>\ 8;}
+\DoxyCodeLine{00213\ \ \ \ \ w\ |=\ w\ >>\ 16;}
+\DoxyCodeLine{00214\ }
+\DoxyCodeLine{00215\ \ \ \ \ \textcolor{keywordflow}{do}}
+\DoxyCodeLine{00216\ \ \ \ \ \{}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ i\ \string^=\ p;}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ i\ *=\ 0xe170893d;}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ i\ \string^=\ p\ >>\ 16;}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ i\ \string^=\ (i\ \&\ w)\ >>\ 4;}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ i\ \string^=\ p\ >>\ 8;}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ i\ *=\ 0x0929eb3f;}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ i\ \string^=\ p\ >>\ 23;}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ i\ \string^=\ (i\ \&\ w)\ >>\ 1;}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ i\ *=\ 1\ |\ p\ >>\ 27;}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ i\ *=\ 0x6935fa69;}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ i\ \string^=\ (i\ \&\ w)\ >>\ 11;}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ i\ *=\ 0x74dcb303;}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ i\ \string^=\ (i\ \&\ w)\ >>\ 2;}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ i\ *=\ 0x9e501cc3;}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ i\ \string^=\ (i\ \&\ w)\ >>\ 2;}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ i\ *=\ 0xc860a3df;}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ i\ \&=\ w;}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ i\ \string^=\ i\ >>\ 5;}
+\DoxyCodeLine{00235\ \ \ \ \ \}\ \textcolor{keywordflow}{while}\ (i\ >=\ l);}
+\DoxyCodeLine{00236\ }
+\DoxyCodeLine{00237\ \ \ \ \ \textcolor{keywordflow}{return}\ (i\ +\ p)\ \%\ l;\ }
+\DoxyCodeLine{00238\ \}}
+\DoxyCodeLine{00239\ }
+\DoxyCodeLine{00240\ \}\textcolor{comment}{//\ end\ namespace\ ph::math}}
 
 \end{DoxyCode}

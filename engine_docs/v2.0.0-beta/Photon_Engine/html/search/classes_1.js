@@ -21,13 +21,14 @@ var searchData=
   ['bsdfsampleinput_18',['BsdfSampleInput',['../d9/d9c/classph_1_1_bsdf_sample_input.html',1,'ph']]],
   ['bsdfsampleoutput_19',['BsdfSampleOutput',['../d7/ded/classph_1_1_bsdf_sample_output.html',1,'ph']]],
   ['bsdfsamplequery_20',['BsdfSampleQuery',['../d9/d1b/classph_1_1_bsdf_sample_query.html',1,'ph']]],
-  ['bvhbuilder_21',['BvhBuilder',['../dd/d6d/classph_1_1_bvh_builder.html',1,'ph']]],
-  ['bvhinfonode_22',['BvhInfoNode',['../d6/d17/classph_1_1_bvh_info_node.html',1,'ph']]],
-  ['bvhintersectableinfo_23',['BvhIntersectableInfo',['../d1/d14/classph_1_1_bvh_intersectable_info.html',1,'ph']]],
-  ['bvhlinearnode_24',['BvhLinearNode',['../df/d89/classph_1_1_bvh_linear_node.html',1,'ph']]],
-  ['bvhsahbucket_25',['BvhSahBucket',['../d7/d75/classph_1_1_bvh_sah_bucket.html',1,'ph']]],
-  ['bvptdlestimator_26',['BVPTDLEstimator',['../dc/daf/classph_1_1_b_v_p_t_d_l_estimator.html',1,'ph']]],
-  ['bvptestimator_27',['BVPTEstimator',['../d9/d01/classph_1_1_b_v_p_t_estimator.html',1,'ph']]],
-  ['bytebuffer_28',['ByteBuffer',['../db/d38/classph_1_1_byte_buffer.html',1,'ph']]],
-  ['bytebufferinputstream_29',['ByteBufferInputStream',['../d9/d5b/classph_1_1_byte_buffer_input_stream.html',1,'ph']]]
+  ['buildcache_21',['BuildCache',['../de/dd1/structph_1_1math_1_1_t_indexed_point_kdtree_1_1_build_cache.html',1,'ph::math::TIndexedPointKdtree']]],
+  ['bvhbuilder_22',['BvhBuilder',['../dd/d6d/classph_1_1_bvh_builder.html',1,'ph']]],
+  ['bvhinfonode_23',['BvhInfoNode',['../d6/d17/classph_1_1_bvh_info_node.html',1,'ph']]],
+  ['bvhintersectableinfo_24',['BvhIntersectableInfo',['../d1/d14/classph_1_1_bvh_intersectable_info.html',1,'ph']]],
+  ['bvhlinearnode_25',['BvhLinearNode',['../df/d89/classph_1_1_bvh_linear_node.html',1,'ph']]],
+  ['bvhsahbucket_26',['BvhSahBucket',['../d7/d75/classph_1_1_bvh_sah_bucket.html',1,'ph']]],
+  ['bvptdlestimator_27',['BVPTDLEstimator',['../dc/daf/classph_1_1_b_v_p_t_d_l_estimator.html',1,'ph']]],
+  ['bvptestimator_28',['BVPTEstimator',['../d9/d01/classph_1_1_b_v_p_t_estimator.html',1,'ph']]],
+  ['bytebuffer_29',['ByteBuffer',['../db/d38/classph_1_1_byte_buffer.html',1,'ph']]],
+  ['bytebufferinputstream_30',['ByteBufferInputStream',['../d9/d5b/classph_1_1_byte_buffer_input_stream.html',1,'ph']]]
 ];

@@ -7,6 +7,6 @@ var classph_1_1_sample_flow =
     [ "flow3D", "dd/d93/classph_1_1_sample_flow.html#a62272ab3edcfd6d0a073a6945de03e90", null ],
     [ "flowND", "dd/d93/classph_1_1_sample_flow.html#a2f72c899dcaa55221eaa6f161fbafee0", null ],
     [ "pick", "dd/d93/classph_1_1_sample_flow.html#a1ee7d8902ff81c8acbbb948709178644", null ],
-    [ "randomPick", "dd/d93/classph_1_1_sample_flow.html#a0b209bcee911034f60602561f7fbe284", null ],
-    [ "unflowedPick", "dd/d93/classph_1_1_sample_flow.html#afc150517d79595beb57e792dcb3d1e0f", null ]
+    [ "unflowedPick", "dd/d93/classph_1_1_sample_flow.html#afc150517d79595beb57e792dcb3d1e0f", null ],
+    [ "unflowedRandomPick", "dd/d93/classph_1_1_sample_flow.html#a4f580847a20e8fe7777480e97d0a756e", null ]
 ];

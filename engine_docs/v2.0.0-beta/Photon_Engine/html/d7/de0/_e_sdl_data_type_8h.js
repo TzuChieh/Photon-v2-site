@@ -18,6 +18,7 @@ var _e_sdl_data_type_8h =
       [ "ResourceIdentifier", "d7/de0/_e_sdl_data_type_8h.html#ada33bb2d4bc26b3ec1da2acb348ef4ebaeb222d153d13a436ed254a8eabc42700", null ],
       [ "Spectrum", "d7/de0/_e_sdl_data_type_8h.html#ada33bb2d4bc26b3ec1da2acb348ef4ebac0d49cbee3b571a77b483aaceb20270f", null ],
       [ "Enum", "d7/de0/_e_sdl_data_type_8h.html#ada33bb2d4bc26b3ec1da2acb348ef4ebacf20423ed48998082c20099488a0917c", null ],
+      [ "Struct", "d7/de0/_e_sdl_data_type_8h.html#ada33bb2d4bc26b3ec1da2acb348ef4eba886ef5dbd655a6c97726d7091c6b173e", null ],
       [ "Geometry", "d7/de0/_e_sdl_data_type_8h.html#ada33bb2d4bc26b3ec1da2acb348ef4ebad9c6333623e6357515fcbf17be806273", null ],
       [ "Material", "d7/de0/_e_sdl_data_type_8h.html#ada33bb2d4bc26b3ec1da2acb348ef4ebad92a8333dd3ccb895cc65f7455b71206", null ],
       [ "Motion", "d7/de0/_e_sdl_data_type_8h.html#ada33bb2d4bc26b3ec1da2acb348ef4eba8226588f03da49b857e5ddf8c508dd2d", null ],

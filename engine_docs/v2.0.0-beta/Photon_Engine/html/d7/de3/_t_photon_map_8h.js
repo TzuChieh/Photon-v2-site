@@ -1,5 +1,6 @@
 var _t_photon_map_8h =
 [
-    [ "ph::TPhotonCenterCalculator< Photon >", "d3/df3/structph_1_1_t_photon_center_calculator.html", "d3/df3/structph_1_1_t_photon_center_calculator" ],
-    [ "TPhotonMap", "d7/de3/_t_photon_map_8h.html#aabd2922ed9fbc4763b49ec84230e8dd2", null ]
+    [ "ph::TPhotonMapInfo< Photon >", "df/d54/classph_1_1_t_photon_map_info.html", "df/d54/classph_1_1_t_photon_map_info" ],
+    [ "ph::TPhotonMap< Photon, PhotonStorage >", "d9/d1f/classph_1_1_t_photon_map.html", "d9/d1f/classph_1_1_t_photon_map" ],
+    [ "ph::TPhotonMap< Photon, PhotonStorage >::PhotonCenterCalculator", "d5/d49/structph_1_1_t_photon_map_1_1_photon_center_calculator.html", "d5/d49/structph_1_1_t_photon_map_1_1_photon_center_calculator" ]
 ];

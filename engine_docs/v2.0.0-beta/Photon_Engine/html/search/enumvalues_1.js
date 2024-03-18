@@ -1,7 +1,7 @@
 var searchData=
 [
   ['b_0',['b',['../d1/d0a/classph_1_1_ies_file.html#aad491b64ff23f630764f05db028a2f67a9d5ed678fe57bcca610140957afab571',1,'ph::IesFile::B'],['../d1/d5d/namespaceph_1_1pixel__texture.html#a3b167f72734af6e016a66878c539bd9da9d5ed678fe57bcca610140957afab571',1,'ph::pixel_texture::B'],['../d7/dac/namespaceph_1_1math.html#ac8bbf5c13da6b60663011e0be1acb6c4a9d5ed678fe57bcca610140957afab571',1,'ph::math::B']]],
-  ['balance_1',['BALANCE',['../d3/d5c/namespaceph.html#ab9811191fad612c528234d06cda1c867abd50bfdaa74e237144552ad497048642',1,'ph']]],
+  ['balance_1',['Balance',['../df/d32/namespaceph_1_1lta.html#a61430bac8f881a2704ade2e078883195a99a808d8d16122d70e44bd7f709d30fb',1,'ph::lta']]],
   ['beckmann_2',['Beckmann',['../d3/d5c/namespaceph.html#adc27a9e67654dae7969a693c5a098a3aad2709c197188889c61725cecd7e02d08',1,'ph']]],
   ['bgr_3',['BGR',['../d1/d5d/namespaceph_1_1pixel__texture.html#a3b167f72734af6e016a66878c539bd9da2ad5640ebdec72fc79531d1778c6c2dc',1,'ph::pixel_texture']]],
   ['bgra_4',['BGRA',['../d1/d5d/namespaceph_1_1pixel__texture.html#a3b167f72734af6e016a66878c539bd9da5a1fe3c61c9e2fd6dbbc823589f6e697',1,'ph::pixel_texture']]],

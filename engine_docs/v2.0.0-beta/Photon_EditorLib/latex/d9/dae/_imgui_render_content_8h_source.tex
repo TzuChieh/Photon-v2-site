@@ -1,0 +1,68 @@
+\doxysection{Imgui\+Render\+Content.\+h}
+\hypertarget{_imgui_render_content_8h_source}{}\label{_imgui_render_content_8h_source}\index{Source/Render/Imgui/ImguiRenderContent.h@{Source/Render/Imgui/ImguiRenderContent.h}}
+\mbox{\hyperlink{_imgui_render_content_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_i_dynamic_scene_resource_8h}{Render/IDynamicSceneResource.h}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{editor__lib__config_8h}{editor\_lib\_config.h}}"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_dear_im_gui_8h}{ThirdParty/DearImGui.h}}"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <Utility/Concurrent/TSPSCRingBuffer.h>}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <array>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <cstddef>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph_1_1editor_1_1render}{ph::editor::render}}}
+\DoxyCodeLine{00015\ \{}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1editor_1_1render_1_1_imgui_render_content}{ImguiRenderContent}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classph_1_1editor_1_1render_1_1_i_dynamic_scene_resource}{IDynamicSceneResource}}}
+\DoxyCodeLine{00018\ \{}
+\DoxyCodeLine{00019\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{comment}{//\ All\ data\ required\ by\ IMGUI\ to\ render\ a\ frame.}}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structph_1_1editor_1_1render_1_1_imgui_render_content_1_1_imgui_render_data}{ImguiRenderData}}}
+\DoxyCodeLine{00022\ \ \ \ \ \{}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ ImDrawData\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structph_1_1editor_1_1render_1_1_imgui_render_content_1_1_imgui_render_data_a82f9f2b48ee3f213889b1c644c31bee6}{drawData}};}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ std::vector<ImDrawList>\ \ \mbox{\hyperlink{structph_1_1editor_1_1render_1_1_imgui_render_content_1_1_imgui_render_data_aa569745798c41239df730602779d5e17}{drawListBuffer}};}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ std::vector<ImDrawList*>\ \mbox{\hyperlink{structph_1_1editor_1_1render_1_1_imgui_render_content_1_1_imgui_render_data_aff2861b83e388048d68e96167030ec23}{drawListPtrBuffer}};}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ ImGuiViewport\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structph_1_1editor_1_1render_1_1_imgui_render_content_1_1_imgui_render_data_a488625fad83d8f4e05e9d31f22032ed6}{ownerViewportBuffer}};}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{structph_1_1editor_1_1render_1_1_imgui_render_content_1_1_imgui_render_data_a18ffbc4a91bffd0a9a08cb9beb76bb61}{copyFrom}}(\textcolor{keyword}{const}\ ImDrawData\&\ srcDrawData);}
+\DoxyCodeLine{00029\ \ \ \ \ \};}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classph_1_1editor_1_1render_1_1_imgui_render_content_a0e3108ee64fd1634e4a876488c19ee7d}{SharedRenderData}}\ =\ TSPSCRingBuffer<}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structph_1_1editor_1_1render_1_1_imgui_render_content_1_1_imgui_render_data}{ImguiRenderData}},\ }
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceph_1_1editor_1_1config_a60e315d570702cbee7aaca7783097a7a}{config::NUM\_RENDER\_THREAD\_BUFFERED\_FRAMES}}\ +\ 1>;}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00044\ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1render_1_1_imgui_render_content_a34c80710b2903245b0d9f90b8ee125f4}{ImguiRenderContent}}();}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1render_1_1_imgui_render_content_a0b86a2dc6de5aee0f02e1dc612317d10}{update}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1editor_1_1_render_thread_update_context}{RenderThreadUpdateContext}}\&\ ctx)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1render_1_1_imgui_render_content_aa691aefd40e702d11fddd67a7e4c0a98}{createGHICommands}}(\mbox{\hyperlink{classph_1_1editor_1_1_g_h_i_thread_caller}{GHIThreadCaller}}\&\ caller)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1render_1_1_imgui_render_content_aaaa3989ac4a4badd6753c1cf50897df4}{setupGHI}}(\mbox{\hyperlink{classph_1_1editor_1_1_g_h_i_thread_caller}{GHIThreadCaller}}\&\ caller)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1render_1_1_imgui_render_content_a8fe7db0a5b8b1d4607444aeec900b0bd}{cleanupGHI}}(\mbox{\hyperlink{classph_1_1editor_1_1_g_h_i_thread_caller}{GHIThreadCaller}}\&\ caller)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00050\ \ \ \ \ \mbox{\hyperlink{namespaceph_1_1editor_1_1render_a9f6ebb37458d63f06505330101d56607}{EProcessOrder}}\ \mbox{\hyperlink{classph_1_1editor_1_1render_1_1_imgui_render_content_a7b213e2289d8e8a7d6c68c577458e2f3}{getProcessOrder}}()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00053\ \textcolor{comment}{\ \ \ \ Can\ only\ be\ called\ during\ render\ update\ and\ command\ generation\ (on\ main\ thread).}}
+\DoxyCodeLine{00054\ \textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{00055\ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1render_1_1_imgui_render_content_a0e3108ee64fd1634e4a876488c19ee7d}{SharedRenderData}}\&\ \mbox{\hyperlink{classph_1_1editor_1_1render_1_1_imgui_render_content_a1aa4083860c03de6aaeb6ec4c89eea68}{getSharedRenderData}}();}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1render_1_1_imgui_render_content_a81a85559147b7daaf7b45b8461c358f1}{signifyNewRenderDataIsAvailable}}();}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00074\ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1render_1_1_imgui_render_content_a0e3108ee64fd1634e4a876488c19ee7d}{SharedRenderData}}\ m\_sharedRenderData;}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keywordtype}{int}\ m\_numAvailableRenderData;}
+\DoxyCodeLine{00077\ \};}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{namespaceph_1_1editor_1_1render_a9f6ebb37458d63f06505330101d56607}{EProcessOrder}}\ \mbox{\hyperlink{classph_1_1editor_1_1render_1_1_imgui_render_content_a7b213e2289d8e8a7d6c68c577458e2f3}{ImguiRenderContent::getProcessOrder}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00080\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespaceph_1_1editor_1_1render_a9f6ebb37458d63f06505330101d56607a6b551379c3c0b59326abdaf3b4395bd3}{EProcessOrder::Overlay}};}
+\DoxyCodeLine{00082\ \}}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \}\textcolor{comment}{//\ end\ namespace\ ph::editor::render}}
+
+\end{DoxyCode}

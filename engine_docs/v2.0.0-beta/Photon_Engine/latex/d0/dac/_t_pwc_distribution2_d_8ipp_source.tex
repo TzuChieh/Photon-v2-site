@@ -7,89 +7,87 @@
 \DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_pwc_distribution2_d_8h}{Math/Random/TPwcDistribution2D.h}}"{}}}
 \DoxyCodeLine{00004\ }
 \DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <Common/assertion.h>}}
-\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <Common/profiling.h>}}
-\DoxyCodeLine{00007\ }
-\DoxyCodeLine{00008\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph_1_1math}{ph::math}}}
-\DoxyCodeLine{00009\ \{}
-\DoxyCodeLine{00010\ }
-\DoxyCodeLine{00011\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00012\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1math_1_1_t_pwc_distribution2_d_ab07edab61cf92d5130910a52e3e9d415}{TPwcDistribution2D<T>::TPwcDistribution2D}}(}
-\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d}{TAABB2D<T>}}\&\ \ \ \ \ \ \ \ \ \ \ \ range,}
-\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keyword}{const}\ T*\ \textcolor{keyword}{const}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ weights,}
-\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{TVector2<std::size\_t>}}\&\ numWeights)\ :\ }
-\DoxyCodeLine{00016\ }
-\DoxyCodeLine{00017\ \ \ \ \ m\_marginalYs(),}
-\DoxyCodeLine{00018\ \ \ \ \ m\_conditionalXs(numWeights.y())}
-\DoxyCodeLine{00019\ \{}
-\DoxyCodeLine{00020\ \ \ \ \ PH\_PROFILE\_SCOPE();}
-\DoxyCodeLine{00021\ \ \ \ \ PH\_ASSERT(weights\ \&\&\ numWeights.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_a03c5e56839820da78b52d2db0281f065}{x}}()\ >\ 0\ \&\&\ numWeights.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_af3065a5fa872cdb3f2291a84824d5d59}{y}}()\ >\ 0);}
-\DoxyCodeLine{00022\ }
-\DoxyCodeLine{00023\ \ \ \ \ \textcolor{comment}{//\ initialize\ conditional\ distributions\ for\ each\ row}}
-\DoxyCodeLine{00024\ \ \ \ \ std::vector<T>\ rowSums(numWeights.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_af3065a5fa872cdb3f2291a84824d5d59}{y}}(),\ 0);}
-\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ y\ =\ 0;\ y\ <\ numWeights.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_af3065a5fa872cdb3f2291a84824d5d59}{y}}();\ ++y)}
-\DoxyCodeLine{00026\ \ \ \ \ \{}
-\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ baseIndex\ =\ y\ *\ numWeights.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_a03c5e56839820da78b52d2db0281f065}{x}}();}
-\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ x\ =\ 0;\ x\ <\ numWeights.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_a03c5e56839820da78b52d2db0281f065}{x}}();\ ++x)}
-\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ rowSums[y]\ +=\ weights[baseIndex\ +\ x];}
-\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00032\ }
-\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ m\_conditionalXs[y]\ =\ \mbox{\hyperlink{classph_1_1math_1_1_t_pwc_distribution1_d}{TPwcDistribution1D<T>}}(}
-\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ range.\mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d_ac78db088c8023b3e555759eff399110b}{getMinVertex}}().x(),}
-\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ range.\mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d_a4df9f4984a7cfe372c16e2e16ad56326}{getMaxVertex}}().x(),}
-\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ \&(weights[baseIndex]),}
-\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ numWeights.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_a03c5e56839820da78b52d2db0281f065}{x}}());}
-\DoxyCodeLine{00038\ \ \ \ \ \}}
-\DoxyCodeLine{00039\ }
-\DoxyCodeLine{00040\ \ \ \ \ \textcolor{comment}{//\ initialize\ marginal\ distribution\ for\ each\ row}}
-\DoxyCodeLine{00041\ \ \ \ \ m\_marginalYs\ =\ \mbox{\hyperlink{classph_1_1math_1_1_t_pwc_distribution1_d}{TPwcDistribution1D<T>}}(}
-\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ range.\mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d_ac78db088c8023b3e555759eff399110b}{getMinVertex}}().y(),}
-\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ range.\mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d_a4df9f4984a7cfe372c16e2e16ad56326}{getMaxVertex}}().y(),}
-\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ rowSums);}
-\DoxyCodeLine{00045\ \}}
-\DoxyCodeLine{00046\ }
-\DoxyCodeLine{00047\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00048\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1math_1_1_t_pwc_distribution2_d_ab07edab61cf92d5130910a52e3e9d415}{TPwcDistribution2D<T>::TPwcDistribution2D}}(}
-\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keyword}{const}\ T*\ \textcolor{keyword}{const}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ weights,}
-\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{TVector2<std::size\_t>}}\&\ numWeights)\ :\ }
-\DoxyCodeLine{00051\ }
-\DoxyCodeLine{00052\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_pwc_distribution2_d}{TPwcDistribution2D}}(}
-\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d}{TAABB2D}}<T>(\mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{TVector2}}<T>(0),\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{TVector2}}<T>(1)),\ }
-\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ weights,\ }
-\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ numWeights)}
-\DoxyCodeLine{00056\ \{\}}
-\DoxyCodeLine{00057\ }
-\DoxyCodeLine{00058\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00059\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1math_1_1_t_pwc_distribution2_d_ab07edab61cf92d5130910a52e3e9d415}{TPwcDistribution2D<T>::TPwcDistribution2D}}()\ =\ \textcolor{keywordflow}{default};}
-\DoxyCodeLine{00060\ }
-\DoxyCodeLine{00061\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00062\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{TVector2<T>}}\ \mbox{\hyperlink{classph_1_1math_1_1_t_pwc_distribution2_d_ae0838ad0b7c99cc5c80ea7c9ab0f8afa}{TPwcDistribution2D<T>::sampleContinuous}}(}
-\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keyword}{const}\ std::array<T,\ 2>\&\ sample,}
-\DoxyCodeLine{00064\ \ \ \ \ T*\ \textcolor{keyword}{const}\ out\_pdf)\textcolor{keyword}{\ const}}
-\DoxyCodeLine{00065\ \textcolor{keyword}{}\{}
-\DoxyCodeLine{00066\ \ \ \ \ PH\_ASSERT(out\_pdf);}
-\DoxyCodeLine{00067\ }
-\DoxyCodeLine{00068\ \ \ \ \ std::size\_t\ y;}
-\DoxyCodeLine{00069\ \ \ \ \ T\ pdfY,\ pdfXgivenY;}
-\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keyword}{const}\ T\ sampleY\ =\ m\_marginalYs.sampleContinuous(sample[1],\ \&pdfY,\ \&y);}
-\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keyword}{const}\ T\ sampleX\ =\ m\_conditionalXs[y].sampleContinuous(sample[0],\ \&pdfXgivenY);}
-\DoxyCodeLine{00072\ }
-\DoxyCodeLine{00073\ \ \ \ \ *out\_pdf\ =\ pdfXgivenY\ *\ pdfY;}
-\DoxyCodeLine{00074\ \ \ \ \ PH\_ASSERT(*out\_pdf\ >\ 0);}
-\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{TVector2<T>}}(sampleX,\ sampleY);}
-\DoxyCodeLine{00076\ \}}
-\DoxyCodeLine{00077\ }
-\DoxyCodeLine{00078\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00079\ \textcolor{keyword}{inline}\ T\ \mbox{\hyperlink{classph_1_1math_1_1_t_pwc_distribution2_d_a8478721a01ceded165f9f61143e5ab9d}{TPwcDistribution2D<T>::pdfContinuous}}(\textcolor{keyword}{const}\ std::array<T,\ 2>\&\ sample)\textcolor{keyword}{\ const}}
-\DoxyCodeLine{00080\ \textcolor{keyword}{}\{}
-\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ y\ =\ m\_marginalYs.continuousToDiscrete(sample[1]);}
-\DoxyCodeLine{00082\ }
-\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keyword}{const}\ T\ pdfY\ \ \ \ \ \ \ =\ m\_marginalYs.pdfContinuous(y);}
-\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keyword}{const}\ T\ pdfXgivenY\ =\ m\_conditionalXs[y].pdfContinuous(sample[0]);}
-\DoxyCodeLine{00085\ }
-\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keywordflow}{return}\ pdfXgivenY\ *\ pdfY;}
-\DoxyCodeLine{00087\ \}}
-\DoxyCodeLine{00088\ }
-\DoxyCodeLine{00089\ \}\textcolor{comment}{//\ end\ namespace\ ph::math}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph_1_1math}{ph::math}}}
+\DoxyCodeLine{00008\ \{}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00011\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1math_1_1_t_pwc_distribution2_d_ab07edab61cf92d5130910a52e3e9d415}{TPwcDistribution2D<T>::TPwcDistribution2D}}(}
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d}{TAABB2D<T>}}\&\ \ \ \ \ \ \ \ \ \ \ \ range,}
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keyword}{const}\ T*\ \textcolor{keyword}{const}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ weights,}
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{TVector2<std::size\_t>}}\&\ numWeights)\ :\ }
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \ \ \ \ m\_marginalYs(),}
+\DoxyCodeLine{00017\ \ \ \ \ m\_conditionalXs(numWeights.y())}
+\DoxyCodeLine{00018\ \{}
+\DoxyCodeLine{00019\ \ \ \ \ PH\_ASSERT(weights\ \&\&\ numWeights.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_a03c5e56839820da78b52d2db0281f065}{x}}()\ >\ 0\ \&\&\ numWeights.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_af3065a5fa872cdb3f2291a84824d5d59}{y}}()\ >\ 0);}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{comment}{//\ initialize\ conditional\ distributions\ for\ each\ row}}
+\DoxyCodeLine{00022\ \ \ \ \ std::vector<T>\ rowSums(numWeights.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_af3065a5fa872cdb3f2291a84824d5d59}{y}}(),\ 0);}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ y\ =\ 0;\ y\ <\ numWeights.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_af3065a5fa872cdb3f2291a84824d5d59}{y}}();\ ++y)}
+\DoxyCodeLine{00024\ \ \ \ \ \{}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ baseIndex\ =\ y\ *\ numWeights.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_a03c5e56839820da78b52d2db0281f065}{x}}();}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ x\ =\ 0;\ x\ <\ numWeights.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_a03c5e56839820da78b52d2db0281f065}{x}}();\ ++x)}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ rowSums[y]\ +=\ weights[baseIndex\ +\ x];}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ m\_conditionalXs[y]\ =\ \mbox{\hyperlink{classph_1_1math_1_1_t_pwc_distribution1_d}{TPwcDistribution1D<T>}}(}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ range.\mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d_ac78db088c8023b3e555759eff399110b}{getMinVertex}}().x(),}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ range.\mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d_a4df9f4984a7cfe372c16e2e16ad56326}{getMaxVertex}}().x(),}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ \&(weights[baseIndex]),}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ numWeights.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_a03c5e56839820da78b52d2db0281f065}{x}}());}
+\DoxyCodeLine{00036\ \ \ \ \ \}}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{comment}{//\ initialize\ marginal\ distribution\ for\ each\ row}}
+\DoxyCodeLine{00039\ \ \ \ \ m\_marginalYs\ =\ \mbox{\hyperlink{classph_1_1math_1_1_t_pwc_distribution1_d}{TPwcDistribution1D<T>}}(}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ range.\mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d_ac78db088c8023b3e555759eff399110b}{getMinVertex}}().y(),}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ range.\mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d_a4df9f4984a7cfe372c16e2e16ad56326}{getMaxVertex}}().y(),}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ rowSums);}
+\DoxyCodeLine{00043\ \}}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00046\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1math_1_1_t_pwc_distribution2_d_ab07edab61cf92d5130910a52e3e9d415}{TPwcDistribution2D<T>::TPwcDistribution2D}}(}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keyword}{const}\ T*\ \textcolor{keyword}{const}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ weights,}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{TVector2<std::size\_t>}}\&\ numWeights)\ :\ }
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_pwc_distribution2_d}{TPwcDistribution2D}}(}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d}{TAABB2D}}<T>(\mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{TVector2}}<T>(0),\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{TVector2}}<T>(1)),\ }
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ weights,\ }
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ numWeights)}
+\DoxyCodeLine{00054\ \{\}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00057\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1math_1_1_t_pwc_distribution2_d_ab07edab61cf92d5130910a52e3e9d415}{TPwcDistribution2D<T>::TPwcDistribution2D}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00060\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{TVector2<T>}}\ \mbox{\hyperlink{classph_1_1math_1_1_t_pwc_distribution2_d_ae0838ad0b7c99cc5c80ea7c9ab0f8afa}{TPwcDistribution2D<T>::sampleContinuous}}(}
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keyword}{const}\ std::array<T,\ 2>\&\ sample,}
+\DoxyCodeLine{00062\ \ \ \ \ T*\ \textcolor{keyword}{const}\ out\_pdf)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00063\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00064\ \ \ \ \ PH\_ASSERT(out\_pdf);}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ \ \ std::size\_t\ y;}
+\DoxyCodeLine{00067\ \ \ \ \ T\ pdfY,\ pdfXgivenY;}
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keyword}{const}\ T\ sampleY\ =\ m\_marginalYs.sampleContinuous(sample[1],\ \&pdfY,\ \&y);}
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keyword}{const}\ T\ sampleX\ =\ m\_conditionalXs[y].sampleContinuous(sample[0],\ \&pdfXgivenY);}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ *out\_pdf\ =\ pdfXgivenY\ *\ pdfY;}
+\DoxyCodeLine{00072\ \ \ \ \ PH\_ASSERT(*out\_pdf\ >\ 0);}
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{TVector2<T>}}(sampleX,\ sampleY);}
+\DoxyCodeLine{00074\ \}}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00077\ \textcolor{keyword}{inline}\ T\ \mbox{\hyperlink{classph_1_1math_1_1_t_pwc_distribution2_d_a8478721a01ceded165f9f61143e5ab9d}{TPwcDistribution2D<T>::pdfContinuous}}(\textcolor{keyword}{const}\ std::array<T,\ 2>\&\ sample)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00078\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ y\ =\ m\_marginalYs.continuousToDiscrete(sample[1]);}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keyword}{const}\ T\ pdfY\ \ \ \ \ \ \ =\ m\_marginalYs.pdfContinuous(y);}
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keyword}{const}\ T\ pdfXgivenY\ =\ m\_conditionalXs[y].pdfContinuous(sample[0]);}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keywordflow}{return}\ pdfXgivenY\ *\ pdfY;}
+\DoxyCodeLine{00085\ \}}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \}\textcolor{comment}{//\ end\ namespace\ ph::math}}
 
 \end{DoxyCode}

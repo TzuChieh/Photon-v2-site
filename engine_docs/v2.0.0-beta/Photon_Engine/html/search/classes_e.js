@@ -7,5 +7,6 @@ var searchData=
   ['option_4',['Option',['../d6/da8/classph_1_1_option.html',1,'ph']]],
   ['orennayar_5',['OrenNayar',['../d3/dd0/classph_1_1_oren_nayar.html',1,'ph']]],
   ['orientedrasterobserver_6',['OrientedRasterObserver',['../da/d60/classph_1_1_oriented_raster_observer.html',1,'ph']]],
-  ['output_7',['Output',['../d9/d69/classph_1_1_volume_distance_sample_1_1_output.html',1,'ph::VolumeDistanceSample']]]
+  ['output_7',['Output',['../d9/d69/classph_1_1_volume_distance_sample_1_1_output.html',1,'ph::VolumeDistanceSample']]],
+  ['owenscrambledpermuter_8',['OwenScrambledPermuter',['../da/d44/classph_1_1halton__detail_1_1_owen_scrambled_permuter.html',1,'ph::halton_detail']]]
 ];

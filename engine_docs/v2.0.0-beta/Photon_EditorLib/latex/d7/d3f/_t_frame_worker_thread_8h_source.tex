@@ -1,0 +1,491 @@
+\doxysection{TFrame\+Worker\+Thread.\+h}
+\hypertarget{_t_frame_worker_thread_8h_source}{}\label{_t_frame_worker_thread_8h_source}\index{Source/EditorCore/Thread/TFrameWorkerThread.h@{Source/EditorCore/Thread/TFrameWorkerThread.h}}
+\mbox{\hyperlink{_t_frame_worker_thread_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <Utility/INoCopyAndMove.h>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <Utility/MemoryArena.h>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <Utility/TFunction.h>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <Utility/Concurrent/TAtomicQuasiQueue.h>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <Common/config.h>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <Common/assertion.h>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <Common/logging.h>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <Common/primitive\_type.h>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <Utility/Concurrent/InitiallyPausedThread.h>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <Utility/Concurrent/TSPSCRingBuffer.h>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <Utility/Concurrent/TSynchronized.h>}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <cstddef>}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <thread>}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <atomic>}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ <type\_traits>}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph_1_1editor}{ph::editor}}}
+\DoxyCodeLine{00023\ \{}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \mbox{\hyperlink{namespaceph_1_1editor_a0c33d97a525886280c3ab657c37aa3ab}{PH\_DEFINE\_EXTERNAL\_LOG\_GROUP}}(\mbox{\hyperlink{classph_1_1editor_1_1_t_frame_worker_thread}{TFrameWorkerThread}},\ EditorCore);}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structph_1_1editor_1_1_buffered_frame_info}{BufferedFrameInfo}}\ final}
+\DoxyCodeLine{00028\ \{}
+\DoxyCodeLine{00029\ \ \ \ \ uint64\ \ \ \ \ \ \mbox{\hyperlink{structph_1_1editor_1_1_buffered_frame_info_a35587818718a1b57c1a426fea7240778}{frameNumber}}\ \ \ \ \ \ \ \ =\ 0;}
+\DoxyCodeLine{00030\ \ \ \ \ uint32\ \ \ \ \ \ \mbox{\hyperlink{structph_1_1editor_1_1_buffered_frame_info_a9a90ea9716ef170ba676b3e0d2dd067b}{frameCycleIndex}}\ \ \ \ =\ 0;}
+\DoxyCodeLine{00031\ \ \ \ \ std::size\_t\ \mbox{\hyperlink{structph_1_1editor_1_1_buffered_frame_info_aea00e7e1e48cb1be483c49b78cdd6ce3}{numParentWorks}}\ \ \ \ \ =\ 0;}
+\DoxyCodeLine{00032\ \ \ \ \ std::size\_t\ \mbox{\hyperlink{structph_1_1editor_1_1_buffered_frame_info_a4ac091f7af1218926c44a9f66ec35609}{sizeofWorkerThread}}\ =\ 0;}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structph_1_1editor_1_1_buffered_frame_info_1_1_detail}{Detail}}\ final}
+\DoxyCodeLine{00035\ \ \ \ \ \{}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ std::size\_t\ \mbox{\hyperlink{structph_1_1editor_1_1_buffered_frame_info_1_1_detail_ae7b0d5cd1d5eff002211d4e8185358fc}{numEstimatedAnyThreadWorks}}\ \ =\ 0;}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ std::size\_t\ \mbox{\hyperlink{structph_1_1editor_1_1_buffered_frame_info_1_1_detail_aecff11467f8a222e29abdfce9e08a3c8}{numEstimatedTotalWorks}}\ \ \ \ \ \ =\ 0;}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ std::size\_t\ \mbox{\hyperlink{structph_1_1editor_1_1_buffered_frame_info_1_1_detail_aece20c24ce0fdc1debf92f6a3d938eca}{estimatedLocalBytesForWorks}}\ =\ 0;}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ std::size\_t\ \mbox{\hyperlink{structph_1_1editor_1_1_buffered_frame_info_1_1_detail_ada9f65848e2b0bba4ee26c19e7793770}{extraBytesAllocatedForWorks}}\ =\ 0;}
+\DoxyCodeLine{00040\ \ \ \ \ \};}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ \mbox{\hyperlink{structph_1_1editor_1_1_buffered_frame_info_1_1_detail}{Detail}}\ \mbox{\hyperlink{structph_1_1editor_1_1_buffered_frame_info_aa18e13635670d635811799c428143079}{detail}};}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structph_1_1editor_1_1_buffered_frame_info_a0e76961124814b610e4800723ee75a67}{hasDetail}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keyword}{inline}\ std::size\_t\ \mbox{\hyperlink{structph_1_1editor_1_1_buffered_frame_info_aedb872d962b5427f3fafe20f08de2066}{estimatedTotalBytesUsed}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00046\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structph_1_1editor_1_1_buffered_frame_info_aa18e13635670d635811799c428143079}{detail}}.\mbox{\hyperlink{structph_1_1editor_1_1_buffered_frame_info_1_1_detail_aece20c24ce0fdc1debf92f6a3d938eca}{estimatedLocalBytesForWorks}}\ +\ }
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structph_1_1editor_1_1_buffered_frame_info_aa18e13635670d635811799c428143079}{detail}}.\mbox{\hyperlink{structph_1_1editor_1_1_buffered_frame_info_1_1_detail_ada9f65848e2b0bba4ee26c19e7793770}{extraBytesAllocatedForWorks}}\ +\ }
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structph_1_1editor_1_1_buffered_frame_info_a4ac091f7af1218926c44a9f66ec35609}{sizeofWorkerThread}};}
+\DoxyCodeLine{00050\ \ \ \ \ \}}
+\DoxyCodeLine{00051\ \};}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ NUM\_BUFFERS,\ \textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00054\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1editor_1_1_t_frame_worker_thread}{TFrameWorkerThread}}}
+\DoxyCodeLine{00055\ \{}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{comment}{//\ Correct\ function\ signature\ will\ instantiate\ the\ specialized\ type.\ If\ this\ type\ is\ selected}}
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{comment}{//\ instead,\ notify\ the\ user\ about\ the\ ill-\/formed\ function\ signature}}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_function\_v<T>,}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Invalid\ function\ signature."{}});}
+\DoxyCodeLine{00060\ \};}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00098\ \textcolor{keyword}{template}<std::size\_t\ NUM\_BUFFERS,\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{namespaceph_1_1editor_a8416c0e2549730bba9233b7ab6413c68ae1e1d3d40573127e9ee0480caf1283d6}{R}},\ \textcolor{keyword}{typename}...\ Args>}
+\DoxyCodeLine{00099\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1editor_1_1_t_frame_worker_thread}{TFrameWorkerThread}}<NUM\_BUFFERS,\ \mbox{\hyperlink{namespaceph_1_1editor_a8416c0e2549730bba9233b7ab6413c68ae1e1d3d40573127e9ee0480caf1283d6}{R}}(Args...)>\ :\ \textcolor{keyword}{private}\ INoCopyAndMove}
+\DoxyCodeLine{00100\ \{}
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{keyword}{static\_assert}(NUM\_BUFFERS\ >=\ 1,}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Must\ have\ at\ least\ 1\ buffer."{}});}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00105\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classph_1_1editor_1_1_t_frame_worker_thread_3_01_n_u_m___b_u_f_f_e_r_s_00_01_r_07_args_8_8_8_08_4_a977e8183004ac999d670215e3bc90d78}{Work}}\ =\ TFunction<\mbox{\hyperlink{namespaceph_1_1editor_a8416c0e2549730bba9233b7ab6413c68ae1e1d3d40573127e9ee0480caf1283d6}{R}}(Args...)>;}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00108\ \ \ \ \ \textcolor{comment}{//\ Safe\ limit\ of\ concurrent\ works\ processed\ to\ avoid\ starvation\ on\ parent\ thread\ works}}
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{static}\ std::size\_t\ maxAnyThreadWorksPerFrame\ =\ 16384;}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{keyword}{struct\ }Frame\ final}
+\DoxyCodeLine{00112\ \ \ \ \ \{}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ std::vector<Work>\ \ \ \ \ \ \ \ \ \ parentThreadWorkQueue;}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ TAtomicQuasiQueue<Work>\ \ \ \ anyThreadWorkQueue;}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ TSynchronized<MemoryArena>\ workQueueMemory;}
+\DoxyCodeLine{00116\ \textcolor{preprocessor}{\#if\ PH\_DEBUG}}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ std::atomic\_int32\_t\ \ \ \ \ \ \ \ numAnyThreadWorks;}
+\DoxyCodeLine{00118\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ Frame()}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ :\ parentThreadWorkQueue()}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ ,\ anyThreadWorkQueue\ \ \ ()}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ ,\ workQueueMemory\ \ \ \ \ \ ()}
+\DoxyCodeLine{00124\ \textcolor{preprocessor}{\#if\ PH\_DEBUG}}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ ,\ numAnyThreadWorks\ \ \ \ (0)}
+\DoxyCodeLine{00126\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \{\}}
+\DoxyCodeLine{00128\ \ \ \ \ \};}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00131\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1editor_1_1_t_frame_worker_thread_3_01_n_u_m___b_u_f_f_e_r_s_00_01_r_07_args_8_8_8_08_4_abd4665d907aa02a05c9d8ff2d5f4d982}{TFrameWorkerThread}}()}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classph_1_1editor_1_1_t_frame_worker_thread}{TFrameWorkerThread}}(true)}
+\DoxyCodeLine{00133\ \ \ \ \ \{\}}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00140\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1editor_1_1_t_frame_worker_thread_3_01_n_u_m___b_u_f_f_e_r_s_00_01_r_07_args_8_8_8_08_4_a0ed8a66b43938d09af0c53c37b0c15a9}{TFrameWorkerThread}}(\textcolor{keywordtype}{bool}\ shouldFlushBufferBeforeStop)}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ :\ m\_thread()}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ ,\ m\_frames()}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ ,\ m\_isStopRequested()}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ ,\ m\_hasFinalFrameEnded()}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ ,\ m\_frameNumber(0)}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ ,\ m\_shouldFlushBufferBeforeStop(shouldFlushBufferBeforeStop)}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ ,\ m\_parentThreadId()}
+\DoxyCodeLine{00148\ \#if\ PH\_DEBUG}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ ,\ m\_isBetweenFrameBeginAndEnd(false)}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ ,\ m\_isStopped(false)}
+\DoxyCodeLine{00151\ \#endif}
+\DoxyCodeLine{00152\ \ \ \ \ \{}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ m\_thread\ =\ InitiallyPausedThread(}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ [\textcolor{keyword}{this}]()}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ asyncProcessFrames();}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00158\ \ \ \ \ \}}
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00163\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classph_1_1editor_1_1_t_frame_worker_thread_3_01_n_u_m___b_u_f_f_e_r_s_00_01_r_07_args_8_8_8_08_4_a65bfdacf5c15c20f9390dfbd0a89b6a5}{\string~TFrameWorkerThread}}()}
+\DoxyCodeLine{00164\ \ \ \ \ \{}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Do\ not\ call\ \`{}waitForWorkerToStop()`\ here\ as\ the\ worker\ sould\ finish\ its\ work\ before\ }}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ reaching\ dtor\ to\ ensure\ \`{}onAsyncProcessWork()`\ will\ not\ be\ called\ after\ parent\ object\ }}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ has\ already\ destructed.\ This\ assertion\ make\ sure\ this\ does\ not\ happen.}}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ PH\_ASSERT(m\_isStopped);}
+\DoxyCodeLine{00169\ \ \ \ \ \}}
+\DoxyCodeLine{00170\ }
+\DoxyCodeLine{00175\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1_t_frame_worker_thread_3_01_n_u_m___b_u_f_f_e_r_s_00_01_r_07_args_8_8_8_08_4_a05a317731cb316946ab9afd157d95587}{onAsyncProcessWork}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1editor_1_1_t_frame_worker_thread_3_01_n_u_m___b_u_f_f_e_r_s_00_01_r_07_args_8_8_8_08_4_a977e8183004ac999d670215e3bc90d78}{Work}}\&\ work)\ =\ 0;}
+\DoxyCodeLine{00176\ }
+\DoxyCodeLine{00180\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1_t_frame_worker_thread_3_01_n_u_m___b_u_f_f_e_r_s_00_01_r_07_args_8_8_8_08_4_a9d62a9f305615a9356f4af8ffc0bc911}{onAsyncWorkerStart}}()}
+\DoxyCodeLine{00181\ \ \ \ \ \{\}}
+\DoxyCodeLine{00182\ }
+\DoxyCodeLine{00186\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1_t_frame_worker_thread_3_01_n_u_m___b_u_f_f_e_r_s_00_01_r_07_args_8_8_8_08_4_a94e00dbbe244c932751963a9b8d55861}{onAsyncWorkerStop}}()}
+\DoxyCodeLine{00187\ \ \ \ \ \{\}}
+\DoxyCodeLine{00188\ }
+\DoxyCodeLine{00192\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1_t_frame_worker_thread_3_01_n_u_m___b_u_f_f_e_r_s_00_01_r_07_args_8_8_8_08_4_a5c80a273319fd3e84fbbed0c5c1f8ebe}{onBeginFrame}}()}
+\DoxyCodeLine{00193\ \ \ \ \ \{\}}
+\DoxyCodeLine{00194\ }
+\DoxyCodeLine{00198\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1_t_frame_worker_thread_3_01_n_u_m___b_u_f_f_e_r_s_00_01_r_07_args_8_8_8_08_4_a234f8a4fe9693f7c85d6e8cd197fa8e6}{onEndFrame}}()}
+\DoxyCodeLine{00199\ \ \ \ \ \{\}}
+\DoxyCodeLine{00200\ }
+\DoxyCodeLine{00207\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1_t_frame_worker_thread_3_01_n_u_m___b_u_f_f_e_r_s_00_01_r_07_args_8_8_8_08_4_aeccac1b02007ffec04f9a1ac7a8ea564}{startWorker}}()}
+\DoxyCodeLine{00208\ \ \ \ \ \{}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ PH\_ASSERT(!m\_frames.isProducing());}
+\DoxyCodeLine{00210\ }
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ worker\ thread\ must\ not\ be\ already\ initiated.\ If\ this\ assertion\ fails,\ it\ is\ likely}}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ that\ \`{}startWorker()`\ is\ called\ more\ than\ once.}}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ PH\_ASSERT(!hasWorkerStarted());}
+\DoxyCodeLine{00214\ }
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ m\_parentThreadId\ =\ std::this\_thread::get\_id();}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ m\_thread.start();}
+\DoxyCodeLine{00217\ \ \ \ \ \}}
+\DoxyCodeLine{00218\ }
+\DoxyCodeLine{00224\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1_t_frame_worker_thread_3_01_n_u_m___b_u_f_f_e_r_s_00_01_r_07_args_8_8_8_08_4_ae01fc47788fe7c65a8300d2d66fd9720}{beginFrame}}()}
+\DoxyCodeLine{00225\ \ \ \ \ \{}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ PH\_ASSERT(isParentThread());}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ PH\_ASSERT(hasWorkerStarted());}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ PH\_ASSERT(!isStopRequested());}
+\DoxyCodeLine{00229\ }
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Wait\ until\ current\ frame\ is\ available\ for\ adding\ works}}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ m\_frames.beginProduce();}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ Frame\&\ currentFrame\ =\ m\_frames.getBufferForProducer();}
+\DoxyCodeLine{00233\ }
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\///}}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ vvvvv\ \ \ Works\ can\ now\ be\ added\ after\ the\ begin\ produce\ call\ \ vvvvv\ //}}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\///}}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00238\ \textcolor{preprocessor}{\#if\ PH\_DEBUG}}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ m\_isBetweenFrameBeginAndEnd\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00240\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00241\ }
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Must\ be\ empty\ (already\ cleared\ by\ worker)}}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ PH\_ASSERT\_EQ(currentFrame.numAnyThreadWorks.load(std::memory\_order\_relaxed),\ 0);}
+\DoxyCodeLine{00244\ }
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ onBeginFrame();}
+\DoxyCodeLine{00246\ \ \ \ \ \}}
+\DoxyCodeLine{00247\ }
+\DoxyCodeLine{00252\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1_t_frame_worker_thread_3_01_n_u_m___b_u_f_f_e_r_s_00_01_r_07_args_8_8_8_08_4_a2c961f276e1af646dc807d50697f66af}{endFrame}}()}
+\DoxyCodeLine{00253\ \ \ \ \ \{}
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ PH\_ASSERT(isParentThread());}
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ PH\_ASSERT(hasWorkerStarted());}
+\DoxyCodeLine{00256\ }
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ onEndFrame();}
+\DoxyCodeLine{00258\ }
+\DoxyCodeLine{00259\ \textcolor{preprocessor}{\#if\ PH\_DEBUG}}
+\DoxyCodeLine{00260\ \ \ \ \ \ \ \ \ m\_isBetweenFrameBeginAndEnd\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00261\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00262\ }
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Mark\ that\ current\ frame\ is\ now\ filled\ and\ is\ ready\ for\ processing}}
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ m\_frames.endProduce();}
+\DoxyCodeLine{00265\ }
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\///}}
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \string^\string^\string^\string^\string^\ \ \ Works\ can\ no\ longer\ be\ added\ after\ the\ end\ produce\ call\ \ \ \ \string^\string^\string^\string^\string^\ //}}
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\///}}
+\DoxyCodeLine{00269\ }
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(isStopRequested())}
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Ensure\ memory\ effects\ of\ \`{}m\_frames`\ will\ be\ visible\ on\ worker}}
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ \ \ \ \ m\_hasFinalFrameEnded.test\_and\_set(std::memory\_order\_release);}
+\DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ \ \ \ \ m\_hasFinalFrameEnded.notify\_one();}
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00276\ }
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ ++m\_frameNumber;}
+\DoxyCodeLine{00278\ \ \ \ \ \}}
+\DoxyCodeLine{00279\ }
+\DoxyCodeLine{00286\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Func>}
+\DoxyCodeLine{00287\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1_t_frame_worker_thread_3_01_n_u_m___b_u_f_f_e_r_s_00_01_r_07_args_8_8_8_08_4_ab94d36143ba6f4154e1fa10a4c0aed20}{addWork}}(Func\&\&\ workFunc)}
+\DoxyCodeLine{00288\ \ \ \ \ \{}
+\DoxyCodeLine{00289\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(Work::template\ TIsStorableFunctor<Func>::value)}
+\DoxyCodeLine{00290\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ \ \ \ \ addWork(\mbox{\hyperlink{classph_1_1editor_1_1_t_frame_worker_thread_3_01_n_u_m___b_u_f_f_e_r_s_00_01_r_07_args_8_8_8_08_4_a977e8183004ac999d670215e3bc90d78}{Work}}(std::forward<Func>(workFunc)));}
+\DoxyCodeLine{00292\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00293\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00294\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00295\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ \`{}Func`\ cannot\ be\ stored\ in\ the\ internal\ buffer\ of\ \`{}TFunction`,\ then}}
+\DoxyCodeLine{00296\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ we\ allocate\ its\ space\ in\ the\ arena\ and\ call\ it\ through\ a\ wrapper}}
+\DoxyCodeLine{00297\ }
+\DoxyCodeLine{00298\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}*\ \textcolor{keyword}{const}\ funcPtr\ =\ storeFuncInMemoryArena(std::forward<Func>(workFunc));}
+\DoxyCodeLine{00299\ \ \ \ \ \ \ \ \ \ \ \ \ PH\_ASSERT(funcPtr);}
+\DoxyCodeLine{00300\ }
+\DoxyCodeLine{00301\ \ \ \ \ \ \ \ \ \ \ \ \ addWork(\mbox{\hyperlink{classph_1_1editor_1_1_t_frame_worker_thread_3_01_n_u_m___b_u_f_f_e_r_s_00_01_r_07_args_8_8_8_08_4_a977e8183004ac999d670215e3bc90d78}{Work}}(}
+\DoxyCodeLine{00302\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ [funcPtr](Args...\ args)\ -\/>\ \mbox{\hyperlink{namespaceph_1_1editor_a8416c0e2549730bba9233b7ab6413c68ae1e1d3d40573127e9ee0480caf1283d6}{R}}}
+\DoxyCodeLine{00303\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00304\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ return\ (*funcPtr)(std::forward<Args>(args)...);}
+\DoxyCodeLine{00305\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}));}
+\DoxyCodeLine{00306\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00307\ \ \ \ \ \}}
+\DoxyCodeLine{00308\ }
+\DoxyCodeLine{00315\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1_t_frame_worker_thread_3_01_n_u_m___b_u_f_f_e_r_s_00_01_r_07_args_8_8_8_08_4_ad8a17998c6c5868dca6c82cc09331424}{addWork}}(\mbox{\hyperlink{classph_1_1editor_1_1_t_frame_worker_thread_3_01_n_u_m___b_u_f_f_e_r_s_00_01_r_07_args_8_8_8_08_4_a977e8183004ac999d670215e3bc90d78}{Work}}\ work)}
+\DoxyCodeLine{00316\ \ \ \ \ \{}
+\DoxyCodeLine{00317\ \ \ \ \ \ \ \ \ PH\_ASSERT(work.isValid());}
+\DoxyCodeLine{00318\ \ \ \ \ \ \ \ \ PH\_ASSERT(m\_isBetweenFrameBeginAndEnd);}
+\DoxyCodeLine{00319\ }
+\DoxyCodeLine{00320\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Unsafe\ buffer\ reference\ is\ okay-\/-\/producer\ threads\ should\ synchronize\ with\ frame\ begin/end}}
+\DoxyCodeLine{00321\ \ \ \ \ \ \ \ \ Frame\&\ currentFrame\ =\ m\_frames.unsafeGetBufferReference(m\_frames.unsafeGetProduceHead());}
+\DoxyCodeLine{00322\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(isParentThread())}
+\DoxyCodeLine{00323\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00324\ \ \ \ \ \ \ \ \ \ \ \ \ currentFrame.parentThreadWorkQueue.push\_back(std::move(work));}
+\DoxyCodeLine{00325\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00326\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00327\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00328\ \ \ \ \ \ \ \ \ \ \ \ \ PH\_ASSERT(!isWorkerThread());}
+\DoxyCodeLine{00329\ }
+\DoxyCodeLine{00330\ \ \ \ \ \ \ \ \ \ \ \ \ currentFrame.anyThreadWorkQueue.enqueue(std::move(work));}
+\DoxyCodeLine{00331\ }
+\DoxyCodeLine{00332\ \textcolor{preprocessor}{\#if\ PH\_DEBUG}}
+\DoxyCodeLine{00333\ \ \ \ \ \ \ \ \ \ \ \ \ currentFrame.numAnyThreadWorks.fetch\_add(1,\ std::memory\_order\_relaxed);}
+\DoxyCodeLine{00334\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00335\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00336\ \ \ \ \ \}}
+\DoxyCodeLine{00337\ }
+\DoxyCodeLine{00345\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1_t_frame_worker_thread_3_01_n_u_m___b_u_f_f_e_r_s_00_01_r_07_args_8_8_8_08_4_aa90935fc18ecbabdebe864c4b4f272c5}{requestWorkerStop}}()}
+\DoxyCodeLine{00346\ \ \ \ \ \{}
+\DoxyCodeLine{00347\ \ \ \ \ \ \ \ \ PH\_ASSERT(isParentThread());}
+\DoxyCodeLine{00348\ }
+\DoxyCodeLine{00349\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Ensures\ that\ \`{}endFrame()`\ will\ be\ called\ later,\ which\ guarantees\ that\ the\ stop\ condition}}
+\DoxyCodeLine{00350\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ will\ be\ checked\ (in\ case\ of\ the\ worker\ was\ already\ waiting,\ \`{}endFrame()`\ will\ unwait\ it)}}
+\DoxyCodeLine{00351\ \ \ \ \ \ \ \ \ PH\_ASSERT(m\_frames.isProducing());}
+\DoxyCodeLine{00352\ }
+\DoxyCodeLine{00353\ \ \ \ \ \ \ \ \ m\_isStopRequested.test\_and\_set(std::memory\_order\_relaxed);}
+\DoxyCodeLine{00354\ \ \ \ \ \}}
+\DoxyCodeLine{00355\ }
+\DoxyCodeLine{00359\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1editor_1_1_t_frame_worker_thread_3_01_n_u_m___b_u_f_f_e_r_s_00_01_r_07_args_8_8_8_08_4_a44fc5f3a250fb055afb97c7a102b601a}{isStopRequested}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00360\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00361\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_isStopRequested.test(std::memory\_order\_relaxed);}
+\DoxyCodeLine{00362\ \ \ \ \ \}}
+\DoxyCodeLine{00363\ }
+\DoxyCodeLine{00369\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1_t_frame_worker_thread_3_01_n_u_m___b_u_f_f_e_r_s_00_01_r_07_args_8_8_8_08_4_a63a7c467cd4a7d11aaa59d6f7e337c43}{waitForWorkerToStop}}()}
+\DoxyCodeLine{00370\ \ \ \ \ \{}
+\DoxyCodeLine{00371\ \ \ \ \ \ \ \ \ PH\_ASSERT(isParentThread());}
+\DoxyCodeLine{00372\ \ \ \ \ \ \ \ \ PH\_ASSERT(!m\_frames.isProducing());}
+\DoxyCodeLine{00373\ \ \ \ \ \ \ \ \ PH\_ASSERT(isStopRequested());}
+\DoxyCodeLine{00374\ \ \ \ \ \ \ \ \ PH\_ASSERT(hasWorkerStarted());}
+\DoxyCodeLine{00375\ }
+\DoxyCodeLine{00376\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Ensures\ that\ \`{}endFrame()`\ is\ called\ at\ least\ once\ before\ requesting\ stop,\ so\ worker\ can}}
+\DoxyCodeLine{00377\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ process\ at\ least\ one\ frame\ and\ see\ the\ stop\ request\ (rather\ than\ block\ forever).}}
+\DoxyCodeLine{00378\ \ \ \ \ \ \ \ \ PH\_ASSERT\_GE(getFrameNumber(),\ 1);}
+\DoxyCodeLine{00379\ }
+\DoxyCodeLine{00380\ \ \ \ \ \ \ \ \ m\_thread.join();}
+\DoxyCodeLine{00381\ }
+\DoxyCodeLine{00382\ \textcolor{preprocessor}{\#if\ PH\_DEBUG}}
+\DoxyCodeLine{00383\ \ \ \ \ \ \ \ \ m\_isStopped\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00384\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00385\ \ \ \ \ \}}
+\DoxyCodeLine{00386\ }
+\DoxyCodeLine{00390\ \ \ \ \ \textcolor{keyword}{inline}\ std::thread::id\ \mbox{\hyperlink{classph_1_1editor_1_1_t_frame_worker_thread_3_01_n_u_m___b_u_f_f_e_r_s_00_01_r_07_args_8_8_8_08_4_a42718fe9201bdb465dca6634e61278ae}{getWorkerThreadId}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00391\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00392\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ ID\ is\ always\ valid.}}
+\DoxyCodeLine{00393\ \ \ \ \ \ \ \ \ PH\_ASSERT(m\_thread.getId()\ !=\ std::thread::id());}
+\DoxyCodeLine{00394\ }
+\DoxyCodeLine{00395\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_thread.getId();}
+\DoxyCodeLine{00396\ \ \ \ \ \}}
+\DoxyCodeLine{00397\ }
+\DoxyCodeLine{00404\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{structph_1_1editor_1_1_buffered_frame_info}{BufferedFrameInfo}}\ \mbox{\hyperlink{classph_1_1editor_1_1_t_frame_worker_thread_3_01_n_u_m___b_u_f_f_e_r_s_00_01_r_07_args_8_8_8_08_4_a37e496b69ec455ad225be0cbabf84739}{getFrameInfo}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ shouldIncludeDetails\ =\ \textcolor{keyword}{false})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00405\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00406\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ For\ all\ producer\ threads,\ it\ is\ only\ safe\ to\ access\ between\ being/end\ frame.}}
+\DoxyCodeLine{00407\ \ \ \ \ \ \ \ \ PH\_ASSERT(!isWorkerThread());}
+\DoxyCodeLine{00408\ \ \ \ \ \ \ \ \ PH\_ASSERT(m\_isBetweenFrameBeginAndEnd);}
+\DoxyCodeLine{00409\ }
+\DoxyCodeLine{00410\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Unsafe\ buffer\ reference\ is\ okay-\/-\/producer\ threads\ should\ synchronize\ with\ frame\ begin/end}}
+\DoxyCodeLine{00411\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Frame\&\ currentFrame\ =\ m\_frames.unsafeGetBufferReference(m\_frames.unsafeGetProduceHead());}
+\DoxyCodeLine{00412\ }
+\DoxyCodeLine{00413\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structph_1_1editor_1_1_buffered_frame_info}{BufferedFrameInfo}}\ info;}
+\DoxyCodeLine{00414\ \ \ \ \ \ \ \ \ info.\mbox{\hyperlink{structph_1_1editor_1_1_buffered_frame_info_a35587818718a1b57c1a426fea7240778}{frameNumber}}\ \ \ \ \ \ \ \ =\ getFrameNumber();}
+\DoxyCodeLine{00415\ \ \ \ \ \ \ \ \ info.\mbox{\hyperlink{structph_1_1editor_1_1_buffered_frame_info_a9a90ea9716ef170ba676b3e0d2dd067b}{frameCycleIndex}}\ \ \ \ =\ \textcolor{keyword}{static\_cast<}uint32\textcolor{keyword}{>}(m\_frames.getProduceHead());}
+\DoxyCodeLine{00416\ \ \ \ \ \ \ \ \ info.\mbox{\hyperlink{structph_1_1editor_1_1_buffered_frame_info_aea00e7e1e48cb1be483c49b78cdd6ce3}{numParentWorks}}\ \ \ \ \ =\ currentFrame.parentThreadWorkQueue.size();}
+\DoxyCodeLine{00417\ \ \ \ \ \ \ \ \ info.\mbox{\hyperlink{structph_1_1editor_1_1_buffered_frame_info_a4ac091f7af1218926c44a9f66ec35609}{sizeofWorkerThread}}\ =\ \textcolor{keyword}{sizeof}(*this);}
+\DoxyCodeLine{00418\ }
+\DoxyCodeLine{00419\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(shouldIncludeDetails)}
+\DoxyCodeLine{00420\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00421\ \ \ \ \ \ \ \ \ \ \ \ \ info.\mbox{\hyperlink{structph_1_1editor_1_1_buffered_frame_info_aa18e13635670d635811799c428143079}{detail}}.\mbox{\hyperlink{structph_1_1editor_1_1_buffered_frame_info_1_1_detail_ae7b0d5cd1d5eff002211d4e8185358fc}{numEstimatedAnyThreadWorks}}\ \ =\ currentFrame.anyThreadWorkQueue.estimatedSize();}
+\DoxyCodeLine{00422\ \ \ \ \ \ \ \ \ \ \ \ \ info.\mbox{\hyperlink{structph_1_1editor_1_1_buffered_frame_info_aa18e13635670d635811799c428143079}{detail}}.\mbox{\hyperlink{structph_1_1editor_1_1_buffered_frame_info_1_1_detail_aecff11467f8a222e29abdfce9e08a3c8}{numEstimatedTotalWorks}}\ \ \ \ \ \ =\ info.\mbox{\hyperlink{structph_1_1editor_1_1_buffered_frame_info_aea00e7e1e48cb1be483c49b78cdd6ce3}{numParentWorks}}\ +\ info.\mbox{\hyperlink{structph_1_1editor_1_1_buffered_frame_info_aa18e13635670d635811799c428143079}{detail}}.\mbox{\hyperlink{structph_1_1editor_1_1_buffered_frame_info_1_1_detail_ae7b0d5cd1d5eff002211d4e8185358fc}{numEstimatedAnyThreadWorks}};}
+\DoxyCodeLine{00423\ \ \ \ \ \ \ \ \ \ \ \ \ info.\mbox{\hyperlink{structph_1_1editor_1_1_buffered_frame_info_aa18e13635670d635811799c428143079}{detail}}.\mbox{\hyperlink{structph_1_1editor_1_1_buffered_frame_info_1_1_detail_aece20c24ce0fdc1debf92f6a3d938eca}{estimatedLocalBytesForWorks}}\ =\ info.\mbox{\hyperlink{structph_1_1editor_1_1_buffered_frame_info_aa18e13635670d635811799c428143079}{detail}}.\mbox{\hyperlink{structph_1_1editor_1_1_buffered_frame_info_1_1_detail_aecff11467f8a222e29abdfce9e08a3c8}{numEstimatedTotalWorks}}\ *\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{classph_1_1editor_1_1_t_frame_worker_thread_3_01_n_u_m___b_u_f_f_e_r_s_00_01_r_07_args_8_8_8_08_4_a977e8183004ac999d670215e3bc90d78}{Work}});}
+\DoxyCodeLine{00424\ \ \ \ \ \ \ \ \ \ \ \ \ info.\mbox{\hyperlink{structph_1_1editor_1_1_buffered_frame_info_aa18e13635670d635811799c428143079}{detail}}.\mbox{\hyperlink{structph_1_1editor_1_1_buffered_frame_info_1_1_detail_ada9f65848e2b0bba4ee26c19e7793770}{extraBytesAllocatedForWorks}}\ =\ currentFrame.workQueueMemory-\/>numAllocatedBytes();}
+\DoxyCodeLine{00425\ }
+\DoxyCodeLine{00426\ \ \ \ \ \ \ \ \ \ \ \ \ info.\mbox{\hyperlink{structph_1_1editor_1_1_buffered_frame_info_a0e76961124814b610e4800723ee75a67}{hasDetail}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00427\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00428\ }
+\DoxyCodeLine{00429\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ info;}
+\DoxyCodeLine{00430\ \ \ \ \ \}}
+\DoxyCodeLine{00431\ }
+\DoxyCodeLine{00432\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00436\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ asyncProcessFrames()}
+\DoxyCodeLine{00437\ \ \ \ \ \{}
+\DoxyCodeLine{00438\ \ \ \ \ \ \ \ \ PH\_ASSERT(isWorkerThread());}
+\DoxyCodeLine{00439\ }
+\DoxyCodeLine{00440\ \ \ \ \ \ \ \ \ onAsyncWorkerStart();}
+\DoxyCodeLine{00441\ }
+\DoxyCodeLine{00442\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}}
+\DoxyCodeLine{00443\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00444\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Wait\ until\ being\ notified\ there\ is\ new\ frame\ that\ can\ be\ processed}}
+\DoxyCodeLine{00445\ \ \ \ \ \ \ \ \ \ \ \ \ m\_frames.beginConsume();}
+\DoxyCodeLine{00446\ \ \ \ \ \ \ \ \ \ \ \ \ Frame\&\ currentFrame\ =\ m\_frames.getBufferForConsumer();}
+\DoxyCodeLine{00447\ }
+\DoxyCodeLine{00448\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\///}}
+\DoxyCodeLine{00449\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ vvvvv\ \ \ Works\ can\ now\ be\ processed\ after\ the\ begin\ consume\ call\ \ vvvvv\ //}}
+\DoxyCodeLine{00450\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\///}}
+\DoxyCodeLine{00451\ }
+\DoxyCodeLine{00452\ \ \ \ \ \ \ \ \ \ \ \ \ processSingleFrame(currentFrame);}
+\DoxyCodeLine{00453\ }
+\DoxyCodeLine{00454\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\///}}
+\DoxyCodeLine{00455\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \string^\string^\string^\string^\string^\ \ \ Works\ can\ no\ longer\ be\ processed\ after\ the\ end\ consume\ call\ \ \ \ \string^\string^\string^\string^\string^\ //}}
+\DoxyCodeLine{00456\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\///}}
+\DoxyCodeLine{00457\ }
+\DoxyCodeLine{00458\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Mark\ that\ current\ frame\ is\ now\ processed\ and\ is\ ready\ for\ producer\ again}}
+\DoxyCodeLine{00459\ \ \ \ \ \ \ \ \ \ \ \ \ m\_frames.endConsume();}
+\DoxyCodeLine{00460\ }
+\DoxyCodeLine{00461\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{while}(!isStopRequested());}
+\DoxyCodeLine{00462\ }
+\DoxyCodeLine{00463\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Ensure\ memory\ effects\ of\ \`{}m\_frames`\ from\ parent\ will\ be\ visible.\ After\ this,\ contents\ in}}
+\DoxyCodeLine{00464\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \`{}m\_frames`\ are\ for\ worker\ thread\ to\ use\ exclusively.}}
+\DoxyCodeLine{00465\ \ \ \ \ \ \ \ \ m\_hasFinalFrameEnded.wait(\textcolor{keyword}{false},\ std::memory\_order\_acquire);}
+\DoxyCodeLine{00466\ }
+\DoxyCodeLine{00467\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ numRemainingFrames\ =\ m\_frames.getHeadDistanceDirectly();}
+\DoxyCodeLine{00468\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ i\ =\ 0;\ i\ <\ numRemainingFrames;\ ++i)}
+\DoxyCodeLine{00469\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00470\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ consumerHead\ =\ m\_frames.nextProducerConsumerHead(m\_frames.getConsumeHead(),\ i);}
+\DoxyCodeLine{00471\ \ \ \ \ \ \ \ \ \ \ \ \ Frame\&\ remainingFrame\ =\ m\_frames.unsafeGetBufferReference(consumerHead);}
+\DoxyCodeLine{00472\ }
+\DoxyCodeLine{00473\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Process\ all\ remaining\ works}}
+\DoxyCodeLine{00474\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(m\_shouldFlushBufferBeforeStop)}
+\DoxyCodeLine{00475\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00476\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ processSingleFrame(remainingFrame);}
+\DoxyCodeLine{00477\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00478\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Perform\ cleanup\ directly}}
+\DoxyCodeLine{00479\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00480\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00481\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ remainingFrame.parentThreadWorkQueue.clear();}
+\DoxyCodeLine{00482\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ remainingFrame.anyThreadWorkQueue\ =\ TAtomicQuasiQueue<Work>\{\};}
+\DoxyCodeLine{00483\ \textcolor{preprocessor}{\#if\ PH\_DEBUG}}
+\DoxyCodeLine{00484\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ remainingFrame.numAnyThreadWorks.store(0,\ std::memory\_order\_relaxed);}
+\DoxyCodeLine{00485\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00486\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ remainingFrame.workQueueMemory.unsafeGetReference().clear();}
+\DoxyCodeLine{00487\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00488\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00489\ }
+\DoxyCodeLine{00490\ \ \ \ \ \ \ \ \ onAsyncWorkerStop();}
+\DoxyCodeLine{00491\ \ \ \ \ \}}
+\DoxyCodeLine{00492\ }
+\DoxyCodeLine{00493\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ processSingleFrame(Frame\&\ frame)}
+\DoxyCodeLine{00494\ \ \ \ \ \{}
+\DoxyCodeLine{00495\ \ \ \ \ \ \ \ \ PH\_ASSERT(isWorkerThread());}
+\DoxyCodeLine{00496\ }
+\DoxyCodeLine{00497\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Process\ works\ added\ from\ parent\ thread}}
+\DoxyCodeLine{00498\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00499\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keyword}{const}\ Work\&\ workFromParentThread\ :\ frame.parentThreadWorkQueue)}
+\DoxyCodeLine{00500\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00501\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ onAsyncProcessWork(workFromParentThread);}
+\DoxyCodeLine{00502\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00503\ \ \ \ \ \ \ \ \ \ \ \ \ frame.parentThreadWorkQueue.clear();}
+\DoxyCodeLine{00504\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00505\ }
+\DoxyCodeLine{00506\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Process\ works\ added\ from\ any\ thread}}
+\DoxyCodeLine{00507\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00508\ \ \ \ \ \ \ \ \ \ \ \ \ Work\ workFromAnyThread;}
+\DoxyCodeLine{00509\ \ \ \ \ \ \ \ \ \ \ \ \ std::size\_t\ numDequeuedAnyThreadWorks\ =\ 0;}
+\DoxyCodeLine{00510\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}(frame.anyThreadWorkQueue.tryDequeue(\&workFromAnyThread))}
+\DoxyCodeLine{00511\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00512\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ++numDequeuedAnyThreadWorks;}
+\DoxyCodeLine{00513\ }
+\DoxyCodeLine{00514\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ onAsyncProcessWork(workFromAnyThread);}
+\DoxyCodeLine{00515\ }
+\DoxyCodeLine{00516\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(numDequeuedAnyThreadWorks\ ==\ maxAnyThreadWorksPerFrame\ +\ 1)}
+\DoxyCodeLine{00517\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00518\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ PH\_LOG(TFrameWorkerThread,\ \mbox{\hyperlink{namespaceph_1_1editor_ab22d5af9db4b80743b6d02f8e4ad555ca0eaadb4fcb48a0a0ed7bc9868be9fbaa}{Warning}},}
+\DoxyCodeLine{00519\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}too\ many\ concurrently\ added\ works\ (\{\}),\ current\ safe\ limit\ is\ \{\}"{}},}
+\DoxyCodeLine{00520\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ numDequeuedAnyThreadWorks\ +\ frame.anyThreadWorkQueue.estimatedSize(),\ maxAnyThreadWorksPerFrame);}
+\DoxyCodeLine{00521\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00522\ }
+\DoxyCodeLine{00523\ \textcolor{preprocessor}{\#if\ PH\_DEBUG}}
+\DoxyCodeLine{00524\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ frame.numAnyThreadWorks.fetch\_sub(1,\ std::memory\_order\_relaxed);}
+\DoxyCodeLine{00525\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00526\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00527\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00528\ }
+\DoxyCodeLine{00529\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Since\ there\ is\ no\ consumer\ contention,\ there\ should\ be\ no\ work\ once\ \`{}tryDequeue`\ fails\ }}
+\DoxyCodeLine{00530\ \ \ \ \ \ \ \ \ PH\_ASSERT\_EQ(frame.numAnyThreadWorks.load(std::memory\_order\_relaxed),\ 0);}
+\DoxyCodeLine{00531\ }
+\DoxyCodeLine{00532\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ It\ is\ worker's\ job\ to\ cleanup\ this\ frame\ for\ producer\ (for\ performance\ reasons;\ }}
+\DoxyCodeLine{00533\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ also,\ some\ code\ is\ only\ meant\ to\ be\ called\ on\ the\ worker\ thread,\ this\ includes}}
+\DoxyCodeLine{00534\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ non-\/trivial\ destructors).}}
+\DoxyCodeLine{00535\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ No\ need\ to\ lock\ the\ arena\ here\ as\ \`{}isSealedForProcessing`\ already\ established}}
+\DoxyCodeLine{00536\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ proper\ ordering\ for\ the\ memory\ effects\ to\ be\ visible.}}
+\DoxyCodeLine{00537\ \ \ \ \ \ \ \ \ frame.workQueueMemory.unsafeGetReference().clear();}
+\DoxyCodeLine{00538\ \ \ \ \ \}}
+\DoxyCodeLine{00539\ }
+\DoxyCodeLine{00543\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ isWorkerThread()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00544\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00545\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::this\_thread::get\_id()\ ==\ getWorkerThreadId();}
+\DoxyCodeLine{00546\ \ \ \ \ \}}
+\DoxyCodeLine{00547\ }
+\DoxyCodeLine{00551\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ isParentThread()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00552\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00553\ \ \ \ \ \ \ \ \ PH\_ASSERT(m\_parentThreadId\ !=\ std::thread::id());}
+\DoxyCodeLine{00554\ }
+\DoxyCodeLine{00555\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::this\_thread::get\_id()\ ==\ m\_parentThreadId;}
+\DoxyCodeLine{00556\ \ \ \ \ \}}
+\DoxyCodeLine{00557\ }
+\DoxyCodeLine{00558\ \textcolor{preprocessor}{\#if\ PH\_DEBUG}}
+\DoxyCodeLine{00561\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ hasWorkerStarted()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00562\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00563\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_thread.hasStarted();}
+\DoxyCodeLine{00564\ \ \ \ \ \}}
+\DoxyCodeLine{00565\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00566\ }
+\DoxyCodeLine{00570\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Func>}
+\DoxyCodeLine{00571\ \ \ \ \ \textcolor{keyword}{inline}\ std::remove\_reference\_t<Func>*\ storeFuncInMemoryArena(Func\&\&\ workFunc)}
+\DoxyCodeLine{00572\ \ \ \ \ \{}
+\DoxyCodeLine{00573\ \ \ \ \ \ \ \ \ PH\_ASSERT(!isWorkerThread());}
+\DoxyCodeLine{00574\ \ \ \ \ \ \ \ \ PH\_ASSERT(m\_isBetweenFrameBeginAndEnd);}
+\DoxyCodeLine{00575\ }
+\DoxyCodeLine{00576\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Unsafe\ buffer\ reference\ is\ okay-\/-\/producer\ threads\ should\ synchronize\ with\ frame\ begin/end}}
+\DoxyCodeLine{00577\ \ \ \ \ \ \ \ \ TSynchronized<MemoryArena>\&\ currentArena\ =\ }
+\DoxyCodeLine{00578\ \ \ \ \ \ \ \ \ \ \ \ \ m\_frames.unsafeGetBufferReference(m\_frames.unsafeGetProduceHead()).workQueueMemory;}
+\DoxyCodeLine{00579\ }
+\DoxyCodeLine{00580\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Since\ it\ is\ possible\ that\ multiple\ threads\ are\ concurrently\ storing\ oversized\ functor,}}
+\DoxyCodeLine{00581\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ we\ simply\ lock\ the\ arena\ on\ allocation\ to\ avoid\ contention}}
+\DoxyCodeLine{00582\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ currentArena-\/>make<std::remove\_reference\_t<Func>>(std::forward<Func>(workFunc));}
+\DoxyCodeLine{00583\ \ \ \ \ \}}
+\DoxyCodeLine{00584\ }
+\DoxyCodeLine{00588\ \ \ \ \ \textcolor{keyword}{inline}\ uint64\ getFrameNumber()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00589\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00590\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ For\ all\ producer\ threads,\ it\ is\ only\ safe\ to\ access\ between\ being/end\ frame.}}
+\DoxyCodeLine{00591\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ it\ is\ parent\ thread,\ it\ is\ safe\ to\ access\ anytime.}}
+\DoxyCodeLine{00592\ \ \ \ \ \ \ \ \ PH\_ASSERT(}
+\DoxyCodeLine{00593\ \ \ \ \ \ \ \ \ \ \ \ \ (!isWorkerThread()\ \&\&\ m\_isBetweenFrameBeginAndEnd)\ ||}
+\DoxyCodeLine{00594\ \ \ \ \ \ \ \ \ \ \ \ \ (isParentThread()));}
+\DoxyCodeLine{00595\ }
+\DoxyCodeLine{00596\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_frameNumber;}
+\DoxyCodeLine{00597\ \ \ \ \ \}}
+\DoxyCodeLine{00598\ }
+\DoxyCodeLine{00599\ \ \ \ \ TSPSCRingBuffer<Frame,\ NUM\_BUFFERS>\ m\_frames;}
+\DoxyCodeLine{00600\ }
+\DoxyCodeLine{00601\ \ \ \ \ InitiallyPausedThread\ m\_thread;}
+\DoxyCodeLine{00602\ \ \ \ \ std::atomic\_flag\ \ \ \ \ \ m\_isStopRequested;}
+\DoxyCodeLine{00603\ \ \ \ \ std::atomic\_flag\ \ \ \ \ \ m\_hasFinalFrameEnded;}
+\DoxyCodeLine{00604\ \ \ \ \ uint64\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_frameNumber;}
+\DoxyCodeLine{00605\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_shouldFlushBufferBeforeStop;}
+\DoxyCodeLine{00606\ \ \ \ \ std::thread::id\ \ \ \ \ \ \ m\_parentThreadId;}
+\DoxyCodeLine{00607\ \textcolor{preprocessor}{\#if\ PH\_DEBUG}}
+\DoxyCodeLine{00608\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_isBetweenFrameBeginAndEnd;}
+\DoxyCodeLine{00609\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_isStopped;}
+\DoxyCodeLine{00610\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00611\ \};}
+\DoxyCodeLine{00612\ }
+\DoxyCodeLine{00613\ \}\textcolor{comment}{//\ end\ namespace\ ph::editor}}
+
+\end{DoxyCode}

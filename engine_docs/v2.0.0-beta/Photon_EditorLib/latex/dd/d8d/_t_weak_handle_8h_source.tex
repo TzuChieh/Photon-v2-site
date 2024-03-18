@@ -1,0 +1,111 @@
+\doxysection{TWeak\+Handle.\+h}
+\hypertarget{_t_weak_handle_8h_source}{}\label{_t_weak_handle_8h_source}\index{Source/EditorCore/Storage/TWeakHandle.h@{Source/EditorCore/Storage/TWeakHandle.h}}
+\mbox{\hyperlink{_t_weak_handle_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_editor_core_2_storage_2fwd_8h}{EditorCore/Storage/fwd.h}}"{}}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <Common/Utility/string\_utils.h>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <Utility/traits.h>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <Utility/utility.h>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <Math/hash.h>}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <cstddef>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <limits>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <functional>}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph_1_1editor}{ph::editor}}}
+\DoxyCodeLine{00016\ \{}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00021\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Item,\ \textcolor{keyword}{typename}\ Index\ =\ std::\textcolor{keywordtype}{size\_t},\ \textcolor{keyword}{typename}\ Generation\ =\ Index>}
+\DoxyCodeLine{00022\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1editor_1_1_t_weak_handle}{TWeakHandle}}\ final}
+\DoxyCodeLine{00023\ \{}
+\DoxyCodeLine{00024\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classph_1_1editor_1_1_t_weak_handle_ab3ae7b2960843be75dab509a57b09951}{WeakHandleTag}}\ =\ void;}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classph_1_1editor_1_1_t_weak_handle_a73c0d5ae06bedc8f58ebcd3d63cd4291}{ItemType}}\ =\ Item;}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classph_1_1editor_1_1_t_weak_handle_a72a439265b6a495ae056a99365810299}{IndexType}}\ =\ Index;}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classph_1_1editor_1_1_t_weak_handle_a57b6293301ac90ff27fb84c6f36c7363}{GenerationType}}\ =\ Generation;}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1editor_1_1_t_weak_handle_a49702db704e32c58758169f6ad61fcfb}{INVALID\_INDEX}}\ =\ std::numeric\_limits<Index>::max();}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1editor_1_1_t_weak_handle_ab23d31abefee6520e64bec648e6af597}{INVALID\_GENERATION}}\ =\ 0;}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1_t_weak_handle_a7e60cccfe45a68ed774bf9fe7b6a636e}{PH\_DEFINE\_INLINE\_RULE\_OF\_5\_MEMBERS}}(\mbox{\hyperlink{classph_1_1editor_1_1_t_weak_handle}{TWeakHandle}});}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1editor_1_1_t_weak_handle_aeb64a998b59bc46e1f08ef48fe5761dd}{TWeakHandle}}(Index\ itemIdx,\ Generation\ itemGeneration)}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ :\ m\_itemIdx(itemIdx)}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ ,\ m\_itemGeneration(itemGeneration)}
+\DoxyCodeLine{00038\ \ \ \ \ \{\}}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keyword}{template}<CDerived<Item>\ DerivedItem>}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1editor_1_1_t_weak_handle_a19980e4526dae25677a335d535463ac3}{TWeakHandle}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1editor_1_1_t_weak_handle}{TWeakHandle<DerivedItem,\ Index,\ Generation>}}\&\ otherHandle)}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classph_1_1editor_1_1_t_weak_handle}{TWeakHandle}}(otherHandle.\mbox{\hyperlink{classph_1_1editor_1_1_t_weak_handle_a7c72ac3de9bc1d28a324ecceca00693f}{getIndex}}(),\ otherHandle.\mbox{\hyperlink{classph_1_1editor_1_1_t_weak_handle_a8782bd43babd473712fcf0e05972ab9c}{getGeneration}}())}
+\DoxyCodeLine{00047\ \ \ \ \ \{\}}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keyword}{inline}\ Index\ \mbox{\hyperlink{classph_1_1editor_1_1_t_weak_handle_a7c72ac3de9bc1d28a324ecceca00693f}{getIndex}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00050\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_itemIdx;}
+\DoxyCodeLine{00052\ \ \ \ \ \}}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keyword}{inline}\ Generation\ \mbox{\hyperlink{classph_1_1editor_1_1_t_weak_handle_a8782bd43babd473712fcf0e05972ab9c}{getGeneration}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00055\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_itemGeneration;}
+\DoxyCodeLine{00057\ \ \ \ \ \}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1editor_1_1_t_weak_handle_acf14e17313b3ac14dbcb28571f4ce263}{isEmpty}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00063\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_itemIdx\ ==\ \mbox{\hyperlink{classph_1_1editor_1_1_t_weak_handle_a49702db704e32c58758169f6ad61fcfb}{INVALID\_INDEX}}\ ||\ m\_itemGeneration\ ==\ \mbox{\hyperlink{classph_1_1editor_1_1_t_weak_handle_ab23d31abefee6520e64bec648e6af597}{INVALID\_GENERATION}};}
+\DoxyCodeLine{00065\ \ \ \ \ \}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keyword}{inline}\ std::string\ \mbox{\hyperlink{classph_1_1editor_1_1_t_weak_handle_a5af6e089a963f7254503a9c7533c3c59}{toString}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00068\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ std::string\ indexStr\ =\ m\_itemIdx\ !=\ \mbox{\hyperlink{classph_1_1editor_1_1_t_weak_handle_a49702db704e32c58758169f6ad61fcfb}{INVALID\_INDEX}}}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ ?\ std::to\_string(m\_itemIdx)\ :\ \textcolor{stringliteral}{"{}invalid"{}};}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ std::string\ generationStr\ =\ m\_itemGeneration\ !=\ \mbox{\hyperlink{classph_1_1editor_1_1_t_weak_handle_ab23d31abefee6520e64bec648e6af597}{INVALID\_GENERATION}}}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ ?\ std::to\_string(m\_itemGeneration)\ :\ \textcolor{stringliteral}{"{}invalid"{}};}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}[index="{}}\ +\ indexStr\ +\ \textcolor{stringliteral}{"{},\ generation="{}}\ +\ generationStr\ +\ \textcolor{stringliteral}{"{}]"{}};}
+\DoxyCodeLine{00074\ \ \ \ \ \}}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{operator}\ bool\ ()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00080\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ !\mbox{\hyperlink{classph_1_1editor_1_1_t_weak_handle_acf14e17313b3ac14dbcb28571f4ce263}{isEmpty}}();}
+\DoxyCodeLine{00082\ \ \ \ \ \}}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1editor_1_1_t_weak_handle_a129154271ae44afdc2db6a6f334f5a85}{operator\ ==\ }}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1editor_1_1_t_weak_handle}{TWeakHandle}}\&\ rhs)\ \textcolor{keyword}{const}\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ Generation\ \mbox{\hyperlink{classph_1_1editor_1_1_t_weak_handle_a949e00a3bc63a6c87504c7b6b9f5fce5}{nextGeneration}}(\textcolor{keyword}{const}\ Generation\ currentGeneration)}
+\DoxyCodeLine{00093\ \ \ \ \ \{}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ Index\ nextGen\ =\ currentGeneration\ +\ 1;}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(nextGen\ ==\ \mbox{\hyperlink{classph_1_1editor_1_1_t_weak_handle_ab23d31abefee6520e64bec648e6af597}{INVALID\_GENERATION}})}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ ++nextGen;}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ nextGen;}
+\DoxyCodeLine{00100\ \ \ \ \ \}}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00103\ \ \ \ \ Index\ m\_itemIdx\ =\ \mbox{\hyperlink{classph_1_1editor_1_1_t_weak_handle_a49702db704e32c58758169f6ad61fcfb}{INVALID\_INDEX}};}
+\DoxyCodeLine{00104\ \ \ \ \ Generation\ m\_itemGeneration\ =\ \mbox{\hyperlink{classph_1_1editor_1_1_t_weak_handle_ab23d31abefee6520e64bec648e6af597}{INVALID\_GENERATION}};}
+\DoxyCodeLine{00105\ \};}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \}\textcolor{comment}{//\ end\ namespace\ ph::editor}}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00109\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Item,\ \textcolor{keyword}{typename}\ Index,\ \textcolor{keyword}{typename}\ Generation>}
+\DoxyCodeLine{00110\ \mbox{\hyperlink{_t_weak_handle_8h_a7fcf4b4fe76f08089c950ddfcb7b4877}{PH\_DEFINE\_INLINE\_TO\_STRING\_FORMATTER\_TEMPLATE}}(\mbox{\hyperlink{classph_1_1editor_1_1_t_weak_handle}{ph::editor::TWeakHandle<Item,\ Index,\ Generation>}});}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacestd}{std}}}
+\DoxyCodeLine{00113\ \{}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ \textcolor{keyword}{template}<ph::editor::CWeakHandle\ Handle>}
+\DoxyCodeLine{00116\ \textcolor{keyword}{struct\ }hash<Handle>}
+\DoxyCodeLine{00117\ \{}
+\DoxyCodeLine{00118\ \ \ \ \ std::size\_t\ operator\ ()\ (\textcolor{keyword}{const}\ Handle\&\ handle)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00119\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ph::math::murmur3\_32(handle,\ 0);}
+\DoxyCodeLine{00121\ \ \ \ \ \}}
+\DoxyCodeLine{00122\ \};}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00124\ \}\textcolor{comment}{//\ end\ namespace\ std}}
+
+\end{DoxyCode}

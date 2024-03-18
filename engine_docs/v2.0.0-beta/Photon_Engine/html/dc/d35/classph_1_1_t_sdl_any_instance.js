@@ -5,7 +5,6 @@ var classph_1_1_t_sdl_any_instance =
     [ "TSdlAnyInstance", "dc/d35/classph_1_1_t_sdl_any_instance.html#a29efa116ba99f92e669f6c2e5e9939c3", null ],
     [ "get", "dc/d35/classph_1_1_t_sdl_any_instance.html#a61433a680c88d952fff6fa7011670469", null ],
     [ "getClass", "dc/d35/classph_1_1_t_sdl_any_instance.html#a26e19e41dc4ef43bc2f5e05d034afd3a", null ],
-    [ "getConst", "dc/d35/classph_1_1_t_sdl_any_instance.html#ab8514fcfdfc6a906122501917215aa18", null ],
     [ "getFunction", "dc/d35/classph_1_1_t_sdl_any_instance.html#a50d576217b2aff214e7c035a05819313", null ],
     [ "getInstantiable", "dc/d35/classph_1_1_t_sdl_any_instance.html#a2c16a470d7e61577274a198713aed346", null ],
     [ "getStruct", "dc/d35/classph_1_1_t_sdl_any_instance.html#a2c2adf949c203e3ce9b7f9274c4297a3", null ],

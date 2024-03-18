@@ -13,7 +13,7 @@ Inheritance diagram for ph\+::Brute\+Force\+Intersector\+:\begin{figure}[H]
 \doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \mbox{\hyperlink{classph_1_1_brute_force_intersector_a447efc961191d1c8443712c602b3e610}{update}} (\mbox{\hyperlink{namespaceph_aef9e26e2a4f42469befa033923b033bf}{TSpan\+View}}$<$ const \mbox{\hyperlink{classph_1_1_intersectable}{Intersectable}} \texorpdfstring{$\ast$}{*} $>$ intersectables) override
+void \mbox{\hyperlink{classph_1_1_brute_force_intersector_a447efc961191d1c8443712c602b3e610}{update}} (\mbox{\hyperlink{namespaceph_a6a9059902c5cb72738a2fcfc46614989}{TSpan\+View}}$<$ const \mbox{\hyperlink{classph_1_1_intersectable}{Intersectable}} \texorpdfstring{$\ast$}{*} $>$ intersectables) override
 \item 
 bool \mbox{\hyperlink{classph_1_1_brute_force_intersector_a0a5228b902cb6e48f93de216c537b6ad}{is\+Intersecting}} (const \mbox{\hyperlink{classph_1_1_ray}{Ray}} \&ray, \mbox{\hyperlink{classph_1_1_hit_probe}{Hit\+Probe}} \&probe) const override
 \begin{DoxyCompactList}\small\item\em Determine whether a given ray hits the object. \end{DoxyCompactList}\item 
@@ -24,7 +24,9 @@ bool \mbox{\hyperlink{classph_1_1_brute_force_intersector_a70e1236cfa378300de910
 \doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classph_1_1_intersector}{ph\+::\+Intersector}}}
 \begin{DoxyCompactItemize}
 \item 
-void \mbox{\hyperlink{classph_1_1_intersector_aed0c4b35b8a7bd626f3938111106c81c}{calc\+Intersection\+Detail}} (const \mbox{\hyperlink{classph_1_1_ray}{Ray}} \&ray, \mbox{\hyperlink{classph_1_1_hit_probe}{Hit\+Probe}} \&probe, \mbox{\hyperlink{classph_1_1_hit_detail}{Hit\+Detail}} \texorpdfstring{$\ast$}{*}out\+\_\+detail) const override
+bool \mbox{\hyperlink{classph_1_1_intersector_ae32d1fce4edbce37b1cf8cbab60a81e9}{reintersect}} (const \mbox{\hyperlink{classph_1_1_ray}{Ray}} \&ray, \mbox{\hyperlink{classph_1_1_hit_probe}{Hit\+Probe}} \&probe, const \mbox{\hyperlink{classph_1_1_ray}{Ray}} \&src\+Ray, \mbox{\hyperlink{classph_1_1_hit_probe}{Hit\+Probe}} \&src\+Probe) const override
+\begin{DoxyCompactList}\small\item\em Intersect the intersected object again with a different ray. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classph_1_1_intersector_a2491abaf0c5c0766137e460098804f20}{calc\+Hit\+Detail}} (const \mbox{\hyperlink{classph_1_1_ray}{Ray}} \&ray, \mbox{\hyperlink{classph_1_1_hit_probe}{Hit\+Probe}} \&probe, \mbox{\hyperlink{classph_1_1_hit_detail}{Hit\+Detail}} \texorpdfstring{$\ast$}{*}out\+\_\+detail) const override
 \begin{DoxyCompactList}\small\item\em Calculates properties of a hit, such as coordinates and normal. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classph_1_1_intersectable}{ph\+::\+Intersectable}}}
 \begin{DoxyCompactItemize}
@@ -60,7 +62,12 @@ Implements \mbox{\hyperlink{classph_1_1_intersector_a8760833075046d96a131f32ed9d
 
 Determine whether a given ray hits the object. 
 
-Checks whether the specified ray intersects this intersectable. If there is an intersection, true is returned and a brief intersection report is stored inside the probe. If there is no intersection, false is returned and the state of the probe is undefined. 
+Checks whether the specified ray intersects this intersectable. If there is an intersection, true is returned and a brief hit report is stored inside the probe. If there is no intersection, false is returned and the state of the probe is undefined. {\ttfamily ray} and {\ttfamily probe} can be used for obtaining hit detail if an intersection is found.
+
+\begin{DoxyNote}{Note}
+Generates hit event (with {\ttfamily ray} and {\ttfamily probe}). 
+\end{DoxyNote}
+
 
 Implements \mbox{\hyperlink{classph_1_1_intersector_a78facadac843c2df2891c7ac159abc50}{ph\+::\+Intersector}}.
 
@@ -74,7 +81,9 @@ Implements \mbox{\hyperlink{classph_1_1_intersector_a78facadac843c2df2891c7ac159
 
 Determines whether this object blocks the ray. 
 
-If greater performance is desired, you can override the default implementation which simply calls \doxylink{classph_1_1_brute_force_intersector_a0a5228b902cb6e48f93de216c537b6ad}{is\+Intersecting(const Ray\&, Hit\+Probe\&) const }to do the job. The test generally considers the underlying shape as {\bfseries{hollow}} (for closed shape), e.\+g., a sphere is not occluding a line segment inside the sphere. 
+If greater performance is desired, you can override the default implementation which simply calls \doxylink{classph_1_1_brute_force_intersector_a0a5228b902cb6e48f93de216c537b6ad}{is\+Intersecting(const Ray\&, Hit\+Probe\&) const }to do the job. The test generally considers the underlying shape as {\bfseries{hollow}} (for closed shape), e.\+g., a sphere is not occluding a line segment inside the sphere.
+
+This method does not provide any means to retrieve {\ttfamily \doxylink{classph_1_1_hit_detail}{Hit\+Detail}}. Focusing on testing occlusion can improve performance for some cases. 
 
 Reimplemented from \mbox{\hyperlink{classph_1_1_intersectable_ab2704ced51a4d65af7030b1a45a4fdda}{ph\+::\+Intersectable}}.
 
@@ -82,7 +91,7 @@ Reimplemented from \mbox{\hyperlink{classph_1_1_intersectable_ab2704ced51a4d65af
 \index{ph::BruteForceIntersector@{ph::BruteForceIntersector}!update@{update}}
 \index{update@{update}!ph::BruteForceIntersector@{ph::BruteForceIntersector}}
 \doxysubsubsection{\texorpdfstring{update()}{update()}}
-{\footnotesize\ttfamily void ph\+::\+Brute\+Force\+Intersector\+::update (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespaceph_aef9e26e2a4f42469befa033923b033bf}{TSpan\+View}}$<$ const \mbox{\hyperlink{classph_1_1_intersectable}{Intersectable}} \texorpdfstring{$\ast$}{*} $>$}]{intersectables }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+{\footnotesize\ttfamily void ph\+::\+Brute\+Force\+Intersector\+::update (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespaceph_a6a9059902c5cb72738a2fcfc46614989}{TSpan\+View}}$<$ const \mbox{\hyperlink{classph_1_1_intersectable}{Intersectable}} \texorpdfstring{$\ast$}{*} $>$}]{intersectables }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
 
 
 
@@ -92,5 +101,5 @@ Implements \mbox{\hyperlink{classph_1_1_intersector_a0eb7e326596f3a43f66c35e8c44
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-Source/\+Core/\+Intersectable/\mbox{\hyperlink{_brute_force_intersector_8h}{Brute\+Force\+Intersector.\+h}}\item 
-Source/\+Core/\+Intersectable/\mbox{\hyperlink{_brute_force_intersector_8cpp}{Brute\+Force\+Intersector.\+cpp}}\end{DoxyCompactItemize}
+Source/\+Core/\+Intersection/\mbox{\hyperlink{_brute_force_intersector_8h}{Brute\+Force\+Intersector.\+h}}\item 
+Source/\+Core/\+Intersection/\mbox{\hyperlink{_brute_force_intersector_8cpp}{Brute\+Force\+Intersector.\+cpp}}\end{DoxyCompactItemize}

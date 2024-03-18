@@ -1,6 +1,5 @@
 var classph_1_1math_1_1_t_indexed_kdtree_node =
 [
-    [ "TIndexedKdtreeNode", "df/d64/classph_1_1math_1_1_t_indexed_kdtree_node.html#a5d7ebff4287add2e364ea0221dd28aa6", null ],
     [ "index", "df/d64/classph_1_1math_1_1_t_indexed_kdtree_node.html#a16d603e46b03148759c5c160222a7902", null ],
     [ "indexBufferOffset", "df/d64/classph_1_1math_1_1_t_indexed_kdtree_node.html#a5bc617d46dfd30f2db79662506aa0b8a", null ],
     [ "isLeaf", "df/d64/classph_1_1math_1_1_t_indexed_kdtree_node.html#a1c23ae45d09daab8d726c9faaffdc60c", null ],

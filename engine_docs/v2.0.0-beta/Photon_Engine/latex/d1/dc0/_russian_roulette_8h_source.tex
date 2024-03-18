@@ -1,5 +1,5 @@
 \doxysection{Russian\+Roulette.\+h}
-\hypertarget{_russian_roulette_8h_source}{}\label{_russian_roulette_8h_source}\index{Source/Core/LTABuildingBlock/RussianRoulette.h@{Source/Core/LTABuildingBlock/RussianRoulette.h}}
+\hypertarget{_russian_roulette_8h_source}{}\label{_russian_roulette_8h_source}\index{Source/Core/LTA/RussianRoulette.h@{Source/Core/LTA/RussianRoulette.h}}
 \mbox{\hyperlink{_russian_roulette_8h}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
@@ -10,33 +10,33 @@
 \DoxyCodeLine{00006\ }
 \DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <Common/assertion.h>}}
 \DoxyCodeLine{00008\ }
-\DoxyCodeLine{00009\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00009\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph_1_1lta}{ph::lta}}}
 \DoxyCodeLine{00010\ \{}
 \DoxyCodeLine{00011\ }
-\DoxyCodeLine{00012\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_russian_roulette}{RussianRoulette}}\ final}
+\DoxyCodeLine{00012\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1lta_1_1_russian_roulette}{RussianRoulette}}\ final}
 \DoxyCodeLine{00013\ \{}
 \DoxyCodeLine{00014\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_russian_roulette_a81f3df6572664153baf4323995583c23}{surviveOnLuminance}}(}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1lta_1_1_russian_roulette_a23dbf1483999b91aa772ebb117e1dd91}{surviveOnLuminance}}(}
 \DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_spectrum}{math::Spectrum}}\&\ s,}
 \DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_sample_flow}{SampleFlow}}\&\ \ \ \ \ \ \ \ \ \ \ sampleFlow,}
-\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_spectrum}{math::Spectrum}}*\ \textcolor{keyword}{const}\ out\_weightedS)}
-\DoxyCodeLine{00019\ \ \ \ \ \{}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_spectrum}{math::Spectrum}}*\ \textcolor{keyword}{const}\ out\_weightedS)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00019\ \textcolor{keyword}{\ \ \ \ }\{}
 \DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ PH\_ASSERT(out\_weightedS);}
 \DoxyCodeLine{00021\ }
-\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ survive\ rate\ is\ not\ allowed\ to\ be\ 100\%\ to\ avoid\ immortal\ rays\ (e.g.,\ TIR)}}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Survive\ rate\ is\ not\ allowed\ to\ be\ 100\%\ to\ avoid\ immortal\ rays\ (e.g.,\ TIR)}}
 \DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ real\ rrSurviveRate\ =\ \mbox{\hyperlink{namespaceph_1_1math_a9e5d8a7a977115813ceeba3f0c00cbdb}{math::clamp}}(s.\mbox{\hyperlink{classph_1_1math_1_1_t_spectrum_base_a5120053ee6a7d02f4d1f38119552ac2d}{relativeLuminance}}(),\ 0.0\_r,\ 0.95\_r);}
 \DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ real\ rrSpin\ \ \ \ \ \ \ \ =\ sampleFlow.\mbox{\hyperlink{classph_1_1_sample_flow_a8d93ef2d1e1d131e8c735e2224d3dd00}{flow1D}}();\textcolor{comment}{//\ FIXME:\ use\ something\ like\ sampleFlow.binaryPick()}}
 \DoxyCodeLine{00025\ }
-\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ survived}}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Survived}}
 \DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(rrSpin\ <\ rrSurviveRate)}
 \DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \{}
 \DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ PH\_ASSERT(0.0\_r\ <\ rrSurviveRate\ \&\&\ rrSurviveRate\ <=\ 1.0\_r);}
 \DoxyCodeLine{00030\ }
 \DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ real\ rrScale\ =\ 1.0\_r\ /\ rrSurviveRate;}
-\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ *out\_weightedS\ =\ s.\mbox{\hyperlink{classph_1_1math_1_1_t_spectrum_base_a15602e64861b8d4b90033e87b168b846}{mul}}(rrScale);}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ *out\_weightedS\ =\ s\ *\ rrScale;}
 \DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
 \DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ dead}}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Dead}}
 \DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
 \DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \{}
 \DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
@@ -44,6 +44,6 @@
 \DoxyCodeLine{00040\ \ \ \ \ \}}
 \DoxyCodeLine{00041\ \};}
 \DoxyCodeLine{00042\ }
-\DoxyCodeLine{00043\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+\DoxyCodeLine{00043\ \}\textcolor{comment}{//\ end\ namespace\ ph::lta}}
 
 \end{DoxyCode}

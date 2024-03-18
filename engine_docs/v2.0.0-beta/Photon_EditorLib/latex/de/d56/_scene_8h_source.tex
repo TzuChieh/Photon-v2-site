@@ -1,0 +1,107 @@
+\doxysection{Scene.\+h}
+\hypertarget{_scene_8h_source}{}\label{_scene_8h_source}\index{Source/Render/Scene.h@{Source/Render/Scene.h}}
+\mbox{\hyperlink{_scene_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_i_scene_resource_8h}{Render/ISceneResource.h}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_i_dynamic_scene_resource_8h}{Render/IDynamicSceneResource.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_projective_view_8h}{Render/View/ProjectiveView.h}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_item_pool_8h}{EditorCore/Storage/TItemPool.h}}"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_concurrent_handle_dispatcher_8h}{EditorCore/Storage/TConcurrentHandleDispatcher.h}}"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_weak_handle_8h}{EditorCore/Storage/TWeakHandle.h}}"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_texture_8h}{Render/Content/Texture.h}}"{}}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <Common/assertion.h>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <Utility/TUniquePtrVector.h>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <Utility/INoCopyAndMove.h>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <Utility/TSortedVector.h>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <Utility/TFunction.h>}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}\ \{\ \textcolor{keyword}{class\ }Path;\ \}}
+\DoxyCodeLine{00022\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph_1_1editor}{ph::editor}}\ \{\ \textcolor{keyword}{class\ }GHIThreadCaller;\ \}}
+\DoxyCodeLine{00023\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph_1_1editor}{ph::editor}}\ \{\ \textcolor{keyword}{class\ }RenderThreadUpdateContext;\ \}}
+\DoxyCodeLine{00024\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph_1_1editor_1_1ghi}{ph::editor::ghi}}\ \{\ \textcolor{keyword}{class\ }TextureDesc;\ \}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph_1_1editor_1_1render}{ph::editor::render}}}
+\DoxyCodeLine{00027\ \{}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{keyword}{class\ }System;}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00033\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1editor_1_1render_1_1_scene}{Scene}}\ final\ :\ \textcolor{keyword}{private}\ INoCopyAndMove}
+\DoxyCodeLine{00034\ \{}
+\DoxyCodeLine{00035\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00036\ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1render_1_1_scene_a9ef639da4e4a6d4770f79d45229e4c14}{Scene}}();}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classph_1_1editor_1_1render_1_1_scene_a9ef639da4e4a6d4770f79d45229e4c14}{Scene}}(std::string\ debugName);}
+\DoxyCodeLine{00038\ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1render_1_1_scene_abb8ca948e8492a30acdaa9524c618de3}{\string~Scene}}();}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00043\ \ \ \ \ [[nodiscard]]}
+\DoxyCodeLine{00044\ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1_t_weak_handle}{TextureHandle}}\ \mbox{\hyperlink{classph_1_1editor_1_1render_1_1_scene_ab55e3de321e900a8977120d87c29207b}{declareTexture}}();}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1render_1_1_scene_aef75ed90c9f4b66fc9ab4c412ad97714}{createTexture}}(\mbox{\hyperlink{classph_1_1editor_1_1_t_weak_handle}{TextureHandle}}\ handle,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1editor_1_1ghi_1_1_texture_desc}{ghi::TextureDesc}}\&\ desc);}
+\DoxyCodeLine{00047\ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1render_1_1_texture}{Texture}}*\ \mbox{\hyperlink{classph_1_1editor_1_1render_1_1_scene_a67b434018576d22af235bfe0e98516a8}{getTexture}}(\mbox{\hyperlink{classph_1_1editor_1_1_t_weak_handle}{TextureHandle}}\ handle);}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1render_1_1_scene_ad9b7fb3d385f3e79274612e83ed39a69}{removeTexture}}(\mbox{\hyperlink{classph_1_1editor_1_1_t_weak_handle}{TextureHandle}}\ handle);}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1render_1_1_scene_ac7331f7c7a27d489a4ea6bce774863c2}{loadPicture}}(\mbox{\hyperlink{classph_1_1editor_1_1_t_weak_handle}{TextureHandle}}\ handle,\ \textcolor{keyword}{const}\ Path\&\ pictureFile);}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1render_1_1_scene_abe6918efabc1f0da15bde4bad061c05b}{runPendingSetups}}(\mbox{\hyperlink{classph_1_1editor_1_1_g_h_i_thread_caller}{GHIThreadCaller}}\&\ caller);}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1render_1_1_scene_a22e2a6d411bd2d23257e660bab9c9b26}{runPendingCleanups}}(\mbox{\hyperlink{classph_1_1editor_1_1_g_h_i_thread_caller}{GHIThreadCaller}}\&\ caller);}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1render_1_1_scene_a4fc7c70a4a7e1be3eaaca2291ff71dfd}{addResource}}(std::unique\_ptr<ISceneResource>\ resource);}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1render_1_1_scene_af0a503f00037c7237b80c03f64c55a2b}{addDynamicResource}}(std::unique\_ptr<IDynamicSceneResource>\ resource);}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1render_1_1_scene_aa10e250bc6266ed1195515596086b39f}{removeResource}}(\mbox{\hyperlink{classph_1_1editor_1_1render_1_1_i_scene_resource}{ISceneResource}}*\ resource);}
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1render_1_1_scene_afcde36f6a27ac139c69827747f1b4178}{destroyRemovedResources}}();}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1render_1_1_scene_a37eabd83ac127fcd93254a5cd4d6e1fc}{updateDynamicResources}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1editor_1_1_render_thread_update_context}{RenderThreadUpdateContext}}\&\ ctx);}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1render_1_1_scene_a36935331ae5f02f2c7957c6e54a2b9e3}{createGHICommandsForDynamicResources}}(\mbox{\hyperlink{classph_1_1editor_1_1_g_h_i_thread_caller}{GHIThreadCaller}}\&\ caller);}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1render_1_1_system}{System}}\&\ \mbox{\hyperlink{classph_1_1editor_1_1render_1_1_scene_abfdab946aacaa2a7fbd32849ff2a8a08}{getSystem}}();}
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keyword}{const}\ std::string\&\ \mbox{\hyperlink{classph_1_1editor_1_1render_1_1_scene_aa13fd20406f521f4eec0e0fd671ef0a6}{getDebugName}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1render_1_1_scene_a270b425c7450d62cd70a0dcc811d1669}{setSystem}}(\mbox{\hyperlink{classph_1_1editor_1_1render_1_1_system}{System}}*\ sys);}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1render_1_1_scene_ac95a821ea07bbdeef05e321e8e20a85e}{removeAllContents}}();}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00068\ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1render_1_1_projective_view}{ProjectiveView}}\ \mbox{\hyperlink{classph_1_1editor_1_1render_1_1_scene_a8b3a134aa8eba8dc1ee6197a325060d1}{mainView}};}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00071\ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1render_1_1_system}{System}}*\ m\_sys;}
+\DoxyCodeLine{00072\ \ \ \ \ std::string\ m\_debugName;}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Content,\ CWeakHandle\ Handle>}
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classph_1_1editor_1_1_t_item_pool}{TContentPool}}\ =\ \mbox{\hyperlink{classph_1_1editor_1_1_t_item_pool}{TItemPool<Content,\ TConcurrentHandleDispatcher<Handle>}}>;}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1_t_item_pool}{TContentPool<Texture,\ TextureHandle>}}\ m\_textures;}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \ \ \ \ std::vector<TFunction<void(\mbox{\hyperlink{classph_1_1editor_1_1_g_h_i_thread_caller}{GHIThreadCaller}}\&\ caller)>>\ m\_pendingSetups;}
+\DoxyCodeLine{00080\ \ \ \ \ std::vector<TFunction<void(\mbox{\hyperlink{classph_1_1editor_1_1_g_h_i_thread_caller}{GHIThreadCaller}}\&\ caller)>>\ m\_pendingCleanups;}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keyword}{struct\ }DynamicResourceOrderer}
+\DoxyCodeLine{00083\ \ \ \ \ \{}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ operator\ ()\ (\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1editor_1_1render_1_1_i_dynamic_scene_resource}{IDynamicSceneResource}}*\ a,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1editor_1_1render_1_1_i_dynamic_scene_resource}{IDynamicSceneResource}}*\ b)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00085\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ a-\/>\mbox{\hyperlink{classph_1_1editor_1_1render_1_1_i_dynamic_scene_resource_ab30b18d50c5f64113640f2d2a27232c2}{getProcessOrder}}()\ <\ b-\/>\mbox{\hyperlink{classph_1_1editor_1_1render_1_1_i_dynamic_scene_resource_ab30b18d50c5f64113640f2d2a27232c2}{getProcessOrder}}();}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00088\ \ \ \ \ \};}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \ \ \ \ TUniquePtrVector<ISceneResource>\ m\_resources;}
+\DoxyCodeLine{00091\ \ \ \ \ std::vector<ISceneResource*>\ m\_resourcesPendingDestroy;}
+\DoxyCodeLine{00092\ \ \ \ \ TSortedVector<IDynamicSceneResource*,\ DynamicResourceOrderer>\ m\_dynamicResources;}
+\DoxyCodeLine{00093\ \};}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1editor_1_1render_1_1_system}{System}}\&\ \mbox{\hyperlink{classph_1_1editor_1_1render_1_1_scene_abfdab946aacaa2a7fbd32849ff2a8a08}{Scene::getSystem}}()}
+\DoxyCodeLine{00096\ \{}
+\DoxyCodeLine{00097\ \ \ \ \ PH\_ASSERT(m\_sys);}
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keywordflow}{return}\ *m\_sys;}
+\DoxyCodeLine{00099\ \}}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ std::string\&\ \mbox{\hyperlink{classph_1_1editor_1_1render_1_1_scene_aa13fd20406f521f4eec0e0fd671ef0a6}{Scene::getDebugName}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00102\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_debugName;}
+\DoxyCodeLine{00104\ \}}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \}\textcolor{comment}{//\ end\ namespace\ ph::editor::render}}
+
+\end{DoxyCode}

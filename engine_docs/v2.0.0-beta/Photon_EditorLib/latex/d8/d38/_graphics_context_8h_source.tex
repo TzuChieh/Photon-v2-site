@@ -1,0 +1,67 @@
+\doxysection{Graphics\+Context.\+h}
+\hypertarget{_graphics_context_8h_source}{}\label{_graphics_context_8h_source}\index{Source/RenderCore/GraphicsContext.h@{Source/RenderCore/GraphicsContext.h}}
+\mbox{\hyperlink{_graphics_context_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{ore_2_query_2query__basics_8h}{RenderCore/Query/query\_basics.h}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_concurrent_query_manager_8h}{EditorCore/Query/TConcurrentQueryManager.h}}"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <Common/assertion.h>}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#if\ PH\_DEBUG}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <thread>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph_1_1editor}{ph::editor}}\ \{\ \textcolor{keyword}{class\ }GHIThreadUpdateContext;\ \}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph_1_1editor_1_1ghi}{ph::editor::ghi}}}
+\DoxyCodeLine{00017\ \{}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{keyword}{class\ }GHI;}
+\DoxyCodeLine{00020\ \textcolor{keyword}{class\ }GraphicsObjectManager;}
+\DoxyCodeLine{00021\ \textcolor{keyword}{class\ }GraphicsMemoryManager;}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1editor_1_1ghi_1_1_graphics_context}{GraphicsContext}}}
+\DoxyCodeLine{00024\ \{}
+\DoxyCodeLine{00025\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classph_1_1editor_1_1ghi_1_1_graphics_context_a835ff76485c377be1be297df31b9715a}{\string~GraphicsContext}}();}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classph_1_1editor_1_1ghi_1_1_g_h_i}{GHI}}\&\ \mbox{\hyperlink{classph_1_1editor_1_1ghi_1_1_graphics_context_ae46202b8c8c8653b102a396ae1c24034}{getGHI}}()\ =\ 0;}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classph_1_1editor_1_1ghi_1_1_graphics_object_manager}{GraphicsObjectManager}}\&\ \mbox{\hyperlink{classph_1_1editor_1_1ghi_1_1_graphics_context_a20c84e9a8556e0e04e8c7116c8e6aa3c}{getObjectManager}}()\ =\ 0;}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classph_1_1editor_1_1ghi_1_1_graphics_memory_manager}{GraphicsMemoryManager}}\&\ \mbox{\hyperlink{classph_1_1editor_1_1ghi_1_1_graphics_context_acf1c4acff91fad374f834b0edb489438}{getMemoryManager}}()\ =\ 0;}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1ghi_1_1_graphics_context_a76d7371b47f9935884fefcac5aef41fd}{load}}();}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1ghi_1_1_graphics_context_a6c935e1d23e46d08d333b6dc25d557ca}{unload}}();}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1ghi_1_1_graphics_context_ad072c5b15027a0c30f38bd5cf88d9794}{beginFrameUpdate}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1editor_1_1_g_h_i_thread_update_context}{GHIThreadUpdateContext}}\&\ updateCtx);}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1ghi_1_1_graphics_context_a6d2100abdc2a1f0131e015ef3cfe11d1}{endFrameUpdate}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1editor_1_1_g_h_i_thread_update_context}{GHIThreadUpdateContext}}\&\ updateCtx);}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1ghi_1_1_graphics_context_a387bffd98a7f8de3ff5f0dbd6575e06a}{addQuery}}(\mbox{\hyperlink{classph_1_1editor_1_1_t_query}{ghi::Query}}\ query);}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00051\ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1_t_concurrent_query_manager}{TConcurrentQueryManager<GraphicsContext>}}\ m\_queryManager;}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#if\ PH\_DEBUG}}
+\DoxyCodeLine{00054\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordtype}{bool}\ isOnContextThread()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00056\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::this\_thread::get\_id()\ ==\ m\_ctxThreadId;}
+\DoxyCodeLine{00058\ \ \ \ \ \}}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ std::thread::id\ m\_ctxThreadId;}
+\DoxyCodeLine{00061\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00062\ \};}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1ghi_1_1_graphics_context_a387bffd98a7f8de3ff5f0dbd6575e06a}{GraphicsContext::addQuery}}(\mbox{\hyperlink{classph_1_1editor_1_1_t_query}{ghi::Query}}\ query)}
+\DoxyCodeLine{00065\ \{}
+\DoxyCodeLine{00066\ \ \ \ \ m\_queryManager.addQuery(std::move(query));}
+\DoxyCodeLine{00067\ \}}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \}\textcolor{comment}{//\ end\ namespace\ ph::editor::ghi}}
+
+\end{DoxyCode}

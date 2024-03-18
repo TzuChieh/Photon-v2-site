@@ -4,50 +4,37 @@
 \begin{DoxyCode}{0}
 \DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
 \DoxyCodeLine{00002\ }
-\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{math_8h}{Math/math.h}}"{}}}
-\DoxyCodeLine{00004\ }
-\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <Common/assertion.h>}}
-\DoxyCodeLine{00006\ }
-\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <functional>}}
-\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <cstddef>}}
-\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <thread>}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <cstddef>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <functional>}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00007\ \{}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{class\ }FixedSizeThreadPool;}
 \DoxyCodeLine{00010\ }
-\DoxyCodeLine{00011\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
-\DoxyCodeLine{00012\ \{}
-\DoxyCodeLine{00013\ }
-\DoxyCodeLine{00026\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespaceph_a24c686fb00834dfa25b4e3c8ac732d78}{parallel\_work}}(}
-\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ totalWorkSize,}
-\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ numWorkers,}
-\DoxyCodeLine{00029\ }
-\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{const}\ std::function<}
-\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}(std::size\_t\ workerIdx,\ std::size\_t\ workBegin,\ std::size\_t\ workEnd)}
-\DoxyCodeLine{00032\ \ \ \ \ >\&\ work)}
-\DoxyCodeLine{00033\ \{}
-\DoxyCodeLine{00034\ \ \ \ \ PH\_ASSERT\_GT(numWorkers,\ 0);}
+\DoxyCodeLine{00017\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespaceph_a4bb82cb7d948a7f9feca7dffb744e02f}{parallel\_work}}(}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ numWorkers,}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \ \ \ \ std::function<}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}(std::size\_t\ workerIdx)}
+\DoxyCodeLine{00022\ \ \ \ \ >\ work);}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00032\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespaceph_a4bb82cb7d948a7f9feca7dffb744e02f}{parallel\_work}}(}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ totalWorkSize,}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ numWorkers,}
 \DoxyCodeLine{00035\ }
-\DoxyCodeLine{00036\ \ \ \ \ std::vector<std::thread>\ workers(numWorkers);}
-\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ workerIdx\ =\ 0;\ workerIdx\ <\ numWorkers;\ ++workerIdx)}
-\DoxyCodeLine{00038\ \ \ \ \ \{}
-\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ workRange\ =\ \mbox{\hyperlink{namespaceph_1_1math_a830bc8cab76b0720b0756fce21828b3f}{math::ith\_evenly\_divided\_range}}(workerIdx,\ totalWorkSize,\ numWorkers);}
-\DoxyCodeLine{00040\ }
-\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Skip\ the\ execution\ of\ 0-\/sized\ work}}
-\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ workSize\ =\ workRange.second\ -\/\ workRange.first;}
-\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(workSize\ >\ 0)}
-\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ workers[workerIdx]\ =\ std::thread(work,\ workerIdx,\ workRange.first,\ workRange.second);}
-\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00047\ \ \ \ \ \}}
-\DoxyCodeLine{00048\ }
-\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keyword}{auto}\&\ workerThread\ :\ workers)}
-\DoxyCodeLine{00050\ \ \ \ \ \{}
-\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Not\ joining\ default-\/constructed\ thread\ and\ already-\/joined\ thread}}
-\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(workerThread.joinable())}
-\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ workerThread.join();}
-\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00056\ \ \ \ \ \}}
-\DoxyCodeLine{00057\ \}}
-\DoxyCodeLine{00058\ }
-\DoxyCodeLine{00059\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+\DoxyCodeLine{00036\ \ \ \ \ std::function<}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}(std::size\_t\ workerIdx,\ std::size\_t\ workBegin,\ std::size\_t\ workEnd)}
+\DoxyCodeLine{00038\ \ \ \ \ >\ work);}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00048\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespaceph_a4bb82cb7d948a7f9feca7dffb744e02f}{parallel\_work}}(}
+\DoxyCodeLine{00049\ \ \ \ \ FixedSizeThreadPool\&\ workers,}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ totalWorkSize,}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ std::function<}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}(std::size\_t\ workerIdx,\ std::size\_t\ workBegin,\ std::size\_t\ workEnd)}
+\DoxyCodeLine{00054\ \ \ \ \ >\ work);}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
 
 \end{DoxyCode}

@@ -8,7 +8,8 @@ var _e_engine_project_8h =
       [ "PhotonCLI", "d7/ddc/_e_engine_project_8h.html#aff42ef94a4b6b6f5c793abc70beee644aebdb11fc05b41c36db88d41ee3a40e35", null ],
       [ "Editor", "d7/ddc/_e_engine_project_8h.html#aff42ef94a4b6b6f5c793abc70beee644a344a7f427fb765610ef96eb7bce95257", null ],
       [ "EditorLib", "d7/ddc/_e_engine_project_8h.html#aff42ef94a4b6b6f5c793abc70beee644aaf3825c5cae546eeccf651ce17158920", null ],
-      [ "EditorTest", "d7/ddc/_e_engine_project_8h.html#aff42ef94a4b6b6f5c793abc70beee644a895980a0ebcd15465d0cf980f8504c25", null ]
+      [ "EditorTest", "d7/ddc/_e_engine_project_8h.html#aff42ef94a4b6b6f5c793abc70beee644a895980a0ebcd15465d0cf980f8504c25", null ],
+      [ "IntersectError", "d7/ddc/_e_engine_project_8h.html#aff42ef94a4b6b6f5c793abc70beee644a69cc92a3d8f539741900e112e46963f8", null ]
     ] ],
     [ "to_string", "d7/ddc/_e_engine_project_8h.html#adecb230bffadee8258a10560793943e0", null ]
 ];

@@ -6,19 +6,118 @@
 \DoxyCodeLine{00002\ }
 \DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{api__helpers_8h}{Api/api\_helpers.h}}"{}}}
 \DoxyCodeLine{00004\ }
-\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <Utility/ByteBuffer.h>}}
-\DoxyCodeLine{00006\ }
-\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <type\_traits>}}
-\DoxyCodeLine{00008\ }
-\DoxyCodeLine{00009\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
-\DoxyCodeLine{00010\ \{}
-\DoxyCodeLine{00011\ }
-\DoxyCodeLine{00012\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00013\ \textcolor{keyword}{inline}\ T*\ \mbox{\hyperlink{namespaceph_a3060621822f1210660139fa081efbc64}{make\_array\_from\_buffer}}(std::size\_t\ arraySize,\ ByteBuffer\&\ buffer)}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <Common/assertion.h>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <Common/memory.h>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <Utility/ByteBuffer.h>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <Core/Renderer/RenderRegionStatus.h>}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <type\_traits>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
 \DoxyCodeLine{00014\ \{}
-\DoxyCodeLine{00015\ \ \ \ \ \textcolor{comment}{//\ TODO}}
-\DoxyCodeLine{00016\ \}}
-\DoxyCodeLine{00017\ }
-\DoxyCodeLine{00018\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespaceph_a85401491c33ec4d8215dcfb4d08afd82}{is\_reversing\_bytes\_needed}}(\mbox{\hyperlink{ph__c__core__types_8h_af60e56def3fea9c01c333768110564f1}{PhEndian}}\ desiredEndianness)}
+\DoxyCodeLine{00017\ \{}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ native\ =\ std::endian::native;}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keywordflow}{return}\ }
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ (native\ ==\ std::endian::little\ \&\&\ desiredEndianness\ ==\ PhEndian::PH\_BIG\_ENDIAN)\ ||}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ (native\ ==\ std::endian::big\ \&\&\ desiredEndianness\ ==\ PhEndian::PH\_LITTLE\_ENDIAN);}
+\DoxyCodeLine{00023\ \}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{ph__c__core__types_8h_abf5d0f58be2ece4c498738ff6cf44a39}{PhFrameRegionStatus}}\ \mbox{\hyperlink{namespaceph_a7b0a42a38b5cf76c8ec0b211b198bfcd}{to\_frame\_region\_status}}(ERegionStatus\ regionStatus)}
+\DoxyCodeLine{00026\ \{}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordflow}{switch}(regionStatus)}
+\DoxyCodeLine{00028\ \ \ \ \ \{}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordflow}{case}\ ERegionStatus::Finished:}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{ph__c__core__types_8h_abf5d0f58be2ece4c498738ff6cf44a39a182b063b8a7a74176aef0424d90d66e3}{PH\_FRAME\_REGION\_STATUS\_FINISHED}};}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordflow}{case}\ ERegionStatus::Updating:}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{ph__c__core__types_8h_abf5d0f58be2ece4c498738ff6cf44a39af3193d68e383b37a7f397a37290b417f}{PH\_FRAME\_REGION\_STATUS\_UPDATING}};}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{ph__c__core__types_8h_abf5d0f58be2ece4c498738ff6cf44a39aca63dea0bed7fb8ccedfa6d1587d4dc3}{PH\_FRAME\_REGION\_STATUS\_INVALID}};}
+\DoxyCodeLine{00037\ \ \ \ \ \}}
+\DoxyCodeLine{00038\ \}}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespaceph_a7d7179ae0ecf06ed4433c05f40ffe7ee}{to\_frame\_region\_info}}(\textcolor{keyword}{const}\ RenderRegionStatus\&\ regionStatus,\ \mbox{\hyperlink{struct_ph_frame_region_info}{PhFrameRegionInfo}}*\ out\_regionInfo)}
+\DoxyCodeLine{00041\ \{}
+\DoxyCodeLine{00042\ \ \ \ \ PH\_ASSERT(out\_regionInfo);}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keyword}{const}\ Region\ region\ =\ regionStatus.getRegion();}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keyword}{const}\ ERegionStatus\ status\ =\ regionStatus.getStatus();}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ out\_regionInfo-\/>\mbox{\hyperlink{struct_ph_frame_region_info_aa13ffc2ccebb6d4ba70104adca64e18d}{xPx}}\ =\ \textcolor{keyword}{static\_cast<}\mbox{\hyperlink{ph__c__core__types_8h_a03472b69d2fec6298325a584353122fc}{PhUInt32}}\textcolor{keyword}{>}(region.getMinVertex().x());}
+\DoxyCodeLine{00048\ \ \ \ \ out\_regionInfo-\/>\mbox{\hyperlink{struct_ph_frame_region_info_a84b98ea45945c5da86aa9ba9f468f8ab}{yPx}}\ =\ \textcolor{keyword}{static\_cast<}\mbox{\hyperlink{ph__c__core__types_8h_a03472b69d2fec6298325a584353122fc}{PhUInt32}}\textcolor{keyword}{>}(region.getMinVertex().y());}
+\DoxyCodeLine{00049\ \ \ \ \ out\_regionInfo-\/>\mbox{\hyperlink{struct_ph_frame_region_info_aa966083e50de13e58e1f15085d8ad077}{widthPx}}\ =\ \textcolor{keyword}{static\_cast<}\mbox{\hyperlink{ph__c__core__types_8h_a03472b69d2fec6298325a584353122fc}{PhUInt32}}\textcolor{keyword}{>}(region.getWidth());}
+\DoxyCodeLine{00050\ \ \ \ \ out\_regionInfo-\/>\mbox{\hyperlink{struct_ph_frame_region_info_adf57b8b26814fd774054a655f8d69b5d}{heightPx}}\ =\ \textcolor{keyword}{static\_cast<}\mbox{\hyperlink{ph__c__core__types_8h_a03472b69d2fec6298325a584353122fc}{PhUInt32}}\textcolor{keyword}{>}(region.getHeight());}
+\DoxyCodeLine{00051\ \ \ \ \ out\_regionInfo-\/>\mbox{\hyperlink{struct_ph_frame_region_info_a8b7e9823ae7cfc5baba876afdcb40e91}{status}}\ =\ \mbox{\hyperlink{namespaceph_a7b0a42a38b5cf76c8ec0b211b198bfcd}{to\_frame\_region\_status}}(status);}
+\DoxyCodeLine{00052\ \}}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00055\ \textcolor{keyword}{inline}\ TSpan<T>\ \mbox{\hyperlink{namespaceph_abb7062a8160fbc4426c3b40370c5dd63}{make\_array\_from\_buffer}}(}
+\DoxyCodeLine{00056\ \ \ \ \ std::size\_t\ numArrayElements,}
+\DoxyCodeLine{00057\ \ \ \ \ ByteBuffer\&\ buffer,}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordtype}{bool}\ allowBufferGrowth)}
+\DoxyCodeLine{00059\ \{}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{comment}{//\ To\ not\ violate\ [basic.life]\ section\ 8.3\ later}}
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{comment}{//\ (https://timsong-\/cpp.github.io/cppwp/basic.life\#8.3)}}
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keyword}{using\ }NonConstT\ =\ std::remove\_const\_t<T>;}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_default\_constructible\_v<NonConstT>);}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_trivially\_destructible\_v<NonConstT>);}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ alignmentInBytes\ =\ \textcolor{keyword}{alignof}(NonConstT);}
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ arraySizeInBytes\ =\ \textcolor{keyword}{sizeof}(NonConstT)\ *\ numArrayElements;}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keywordtype}{void}*\ ptr\ =\ buffer.getBytes().data()\ +\ buffer.getWritePosition();}
+\DoxyCodeLine{00071\ \ \ \ \ std::size\_t\ availableBytes\ =\ buffer.numBytes()\ -\/\ buffer.getWritePosition();}
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordtype}{void}*\ alignedPtr\ =\ std::align(alignmentInBytes,\ arraySizeInBytes,\ ptr,\ availableBytes);}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{comment}{//\ Grow\ the\ buffer\ if\ allowed}}
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keywordflow}{if}(!alignedPtr\ \&\&\ allowBufferGrowth)}
+\DoxyCodeLine{00076\ \ \ \ \ \{}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Set\ to\ a\ size\ that\ the\ alignment\ should\ always\ work}}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ buffer.setNumBytes(buffer.getWritePosition()\ +\ arraySizeInBytes\ +\ alignmentInBytes);}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Align\ again}}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ ptr\ =\ buffer.getBytes().data()\ +\ buffer.getWritePosition();}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ availableBytes\ =\ buffer.numBytes()\ -\/\ buffer.getWritePosition();}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ alignedPtr\ =\ std::align(alignmentInBytes,\ arraySizeInBytes,\ ptr,\ availableBytes);}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ PH\_ASSERT(alignedPtr);}
+\DoxyCodeLine{00086\ \ \ \ \ \}}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{comment}{//\ Return\ empty\ span\ if\ there\ is\ not\ enough\ space\ left}}
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keywordflow}{if}(!alignedPtr)}
+\DoxyCodeLine{00090\ \ \ \ \ \{}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \{\};}
+\DoxyCodeLine{00092\ \ \ \ \ \}}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \ \ \ \ PH\_ASSERT(alignedPtr);}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{comment}{//\ We\ have\ a\ successfully\ aligned\ pointer\ here,\ update\ buffer\ states}}
+\DoxyCodeLine{00097\ \ \ \ \ }
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{comment}{//\ \`{}std::align()`\ only\ adjusts\ \`{}ptr`\ to\ the\ aligned\ memory\ location}}
+\DoxyCodeLine{00099\ \ \ \ \ std::byte*\ endPtr\ =\ \textcolor{keyword}{static\_cast<}std::byte*\textcolor{keyword}{>}(ptr)\ +\ arraySizeInBytes;}
+\DoxyCodeLine{00100\ \ \ \ \ buffer.setWritePosition(endPtr\ -\/\ buffer.getBytes().data());}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{comment}{//\ \`{}std::align()`\ only\ decreases\ \`{}availableBytes`\ by\ the\ number\ of\ bytes\ used\ for\ alignment}}
+\DoxyCodeLine{00103\ \ \ \ \ PH\_ASSERT\_GE(availableBytes,\ arraySizeInBytes);}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ \ \ \ \ \textcolor{comment}{//\ Prepare\ the\ array\ to\ return}}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{comment}{//\ IOC\ of\ array\ of\ size\ \`{}numArrayElements`}}
+\DoxyCodeLine{00108\ \ \ \ \ NonConstT*\ \textcolor{keyword}{const}\ storage\ =\ start\_implicit\_lifetime\_as\_array<NonConstT>(alignedPtr,\ arraySizeInBytes);}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \ \ \ \ \textcolor{comment}{//\ Part\ of\ the\ contract\ of\ this\ function-\/-\/default\ construct\ array\ elements}}
+\DoxyCodeLine{00111\ \ \ \ \ std::uninitialized\_default\_construct\_n(storage,\ numArrayElements);}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{comment}{//\ Potentially\ do\ implicit\ non-\/const\ -\/>\ const\ conversion}}
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{keywordflow}{return}\ TSpan<NonConstT>(storage,\ numArrayElements);}
+\DoxyCodeLine{00115\ \}}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
 
 \end{DoxyCode}

@@ -1,0 +1,85 @@
+\doxysection{Render\+Thread.\+h}
+\hypertarget{_render_thread_8h_source}{}\label{_render_thread_8h_source}\index{Source/Render/RenderThread.h@{Source/Render/RenderThread.h}}
+\mbox{\hyperlink{_render_thread_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_frame_worker_thread_8h}{EditorCore/Thread/TFrameWorkerThread.h}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{editor__lib__config_8h}{editor\_lib\_config.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_g_h_i_thread_8h}{RenderCore/GHIThread.h}}"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <Common/primitive\_type.h>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <Utility/Timer.h>}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <atomic>}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph_1_1editor_1_1render}{ph::editor::render}}\ \{\ \textcolor{keyword}{class\ }System;\ \}}
+\DoxyCodeLine{00014\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph_1_1editor_1_1ghi}{ph::editor::ghi}}\ \{\ \textcolor{keyword}{class\ }GraphicsContext;\ \}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph_1_1editor}{ph::editor}}}
+\DoxyCodeLine{00017\ \{}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{keyword}{class\ }GHIThread;}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1editor_1_1_render_thread}{RenderThread}}\ :\ }
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{classph_1_1editor_1_1_t_frame_worker_thread}{TFrameWorkerThread}}<}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ config::NUM\_RENDER\_THREAD\_BUFFERED\_FRAMES,\ }
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ void(render::System\&)>}
+\DoxyCodeLine{00025\ \{}
+\DoxyCodeLine{00026\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classph_1_1editor_1_1_t_frame_worker_thread}{Base}}\ =\ \mbox{\hyperlink{classph_1_1editor_1_1_t_frame_worker_thread}{TFrameWorkerThread}}<}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceph_1_1editor_1_1config_a60e315d570702cbee7aaca7783097a7a}{config::NUM\_RENDER\_THREAD\_BUFFERED\_FRAMES}},}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ void(\mbox{\hyperlink{classph_1_1editor_1_1render_1_1_system}{render::System}}\&)>;}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1_render_thread_adb9d6a35919400b8b8d27732458824e1}{RenderThread}}();}
+\DoxyCodeLine{00032\ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1_render_thread_a4b81687501fb59827d1226709e7bebc6}{\string~RenderThread}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1_render_thread_aafb70c077b450c707ef4465a55b9ed8e}{onAsyncProcessWork}}(\textcolor{keyword}{const}\ Work\&\ work)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1_render_thread_acd909bbf111e65f56537b625071a25a5}{onAsyncWorkerStart}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1_render_thread_a460d49a29b83cda863df5c9d67961a62}{onAsyncWorkerStop}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1_render_thread_a914dab911da9a90eb69e18bd9039e3de}{onBeginFrame}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1_render_thread_a5a6efe69ede31d569fae85bce3a4a3bc}{onEndFrame}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00043\ \ \ \ \ float32\ \mbox{\hyperlink{classph_1_1editor_1_1_render_thread_a0b1bce66521a5f526e84e8f2c168cc8f}{getFrameTimeMs}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00048\ \ \ \ \ float32\ \mbox{\hyperlink{classph_1_1editor_1_1_render_thread_ab592078a99bf1d026042c9829d81f0ab}{getGHIFrameTimeMs}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00053\ \ \ \ \ std::thread::id\ \mbox{\hyperlink{classph_1_1editor_1_1_render_thread_ae89593701cafc70aebfbd5f3831eab3d}{getGHIWorkerThreadId}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1_render_thread_a7464e388e9effaa0972836d6c5ec1237}{setGraphicsContext}}(\mbox{\hyperlink{classph_1_1editor_1_1ghi_1_1_graphics_context}{ghi::GraphicsContext}}*\ graphicsCtx);}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keywordtype}{void}\ beforeFirstRenderWorkInFrame();}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordtype}{void}\ afterLastRenderWorkInFrame();}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{comment}{//\ Context\ should\ be\ set\ before\ thread\ start\ and\ cannot\ be\ changed.\ See\ \`{}setGraphicsContext()`.}}
+\DoxyCodeLine{00070\ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1ghi_1_1_graphics_context}{ghi::GraphicsContext}}*\ m\_graphicsCtx;}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{comment}{//\ Fields\ that\ are\ accessed\ on\ render\ thread}}
+\DoxyCodeLine{00073\ \ \ \ \ std::unique\_ptr<render::System>\ m\_system;}
+\DoxyCodeLine{00074\ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1_g_h_i_thread}{GHIThread}}\ m\_ghiThread;}
+\DoxyCodeLine{00075\ \ \ \ \ Timer\ m\_frameTimer;}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \ \ \ \ std::atomic<float32>\ m\_frameTimeMs;}
+\DoxyCodeLine{00078\ \};}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \textcolor{keyword}{inline}\ float32\ \mbox{\hyperlink{classph_1_1editor_1_1_render_thread_a0b1bce66521a5f526e84e8f2c168cc8f}{RenderThread::getFrameTimeMs}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00081\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_frameTimeMs.load(std::memory\_order\_relaxed);}
+\DoxyCodeLine{00083\ \}}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \textcolor{keyword}{inline}\ float32\ \mbox{\hyperlink{classph_1_1editor_1_1_render_thread_ab592078a99bf1d026042c9829d81f0ab}{RenderThread::getGHIFrameTimeMs}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00086\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_ghiThread.\mbox{\hyperlink{classph_1_1editor_1_1_g_h_i_thread_abc64bf792b37b1d67495653118ac05aa}{getFrameTimeMs}}();}
+\DoxyCodeLine{00088\ \}}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \textcolor{keyword}{inline}\ std::thread::id\ \mbox{\hyperlink{classph_1_1editor_1_1_render_thread_ae89593701cafc70aebfbd5f3831eab3d}{RenderThread::getGHIWorkerThreadId}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00091\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_ghiThread.getWorkerThreadId();}
+\DoxyCodeLine{00093\ \}}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \}\textcolor{comment}{//\ end\ namespace\ ph::editor}}
+
+\end{DoxyCode}

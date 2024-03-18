@@ -1,5 +1,6 @@
 var ph__c__core__types_8h =
 [
+    [ "PhRenderProgress", "d2/d1e/struct_ph_render_progress.html", "d2/d1e/struct_ph_render_progress" ],
     [ "PhFrameRegionInfo", "df/d6c/struct_ph_frame_region_info.html", "df/d6c/struct_ph_frame_region_info" ],
     [ "PhFrameSaveInfo", "de/d8d/struct_ph_frame_save_info.html", "de/d8d/struct_ph_frame_save_info" ],
     [ "PH_MAX_FRAME_DATA_NAME_SIZE", "d2/d10/ph__c__core__types_8h.html#aeb121af18f3c43f4130439e13890d4a0", null ],
@@ -16,6 +17,7 @@ var ph__c__core__types_8h =
     [ "PhInt32", "d2/d10/ph__c__core__types_8h.html#a5f7afeeffc0d8f655ce0e8c7536b0e3f", null ],
     [ "PhInt64", "d2/d10/ph__c__core__types_8h.html#af88d303972522ee600e4646268f47dad", null ],
     [ "PhInt8", "d2/d10/ph__c__core__types_8h.html#ad763cd23e780e4b9247c9edd175aa4af", null ],
+    [ "PhRenderProgress", "d2/d10/ph__c__core__types_8h.html#a990a71ea2522bb22b81aa21dfe14b178", null ],
     [ "PhSize", "d2/d10/ph__c__core__types_8h.html#aee7c9d8767b70e3a089dc504ca954ce5", null ],
     [ "PhUChar", "d2/d10/ph__c__core__types_8h.html#addcd66aed3eba68fce59af456da753d2", null ],
     [ "PhUInt16", "d2/d10/ph__c__core__types_8h.html#a19c1064ad24e0b9a5b361ce2e1f8c834", null ],

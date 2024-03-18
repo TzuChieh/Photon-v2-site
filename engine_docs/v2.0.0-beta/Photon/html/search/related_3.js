@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['tsdlbruteforcefieldset_0',['TSdlBruteForceFieldSet',['../../../Photon_Engine/html/df/de1/classph_1_1_t_sdl_brute_force_field_set.html#a54599725ccf86a40f6b927371db3c09e',1,'ph::TSdlBruteForceFieldSet']]],
-  ['tsdlnestedfield_1',['TSdlNestedField',['../../../Photon_Engine/html/d3/de9/classph_1_1_t_sdl_owned_field.html#a00318eeb6a7db3ac1e4ccbf8030eff36',1,'ph::TSdlOwnedField']]]
+  ['iresourceidentifierresolver_0',['IResourceIdentifierResolver',['../../../Photon_Engine/html/d7/d8e/classph_1_1_resource_identifier.html#aeaa2a31a7c0b5f423838a859108c9fa2',1,'ph::ResourceIdentifier']]]
 ];

@@ -89,9 +89,9 @@
 \DoxyCodeLine{00085\ \}}
 \DoxyCodeLine{00086\ }
 \DoxyCodeLine{00087\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Owner,\ \textcolor{keyword}{typename}\ FieldSet>}
-\DoxyCodeLine{00088\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_sdl_owner_class_a042b1eaf8d0ac9947cff1c33441e3d1c}{TSdlOwnerClass<Owner,\ FieldSet>::saveResource}}(}
+\DoxyCodeLine{00088\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_sdl_owner_class_ac8e23c3ff4dc142192e6927e646714e5}{TSdlOwnerClass<Owner,\ FieldSet>::saveResource}}(}
 \DoxyCodeLine{00089\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_i_sdl_resource}{ISdlResource}}\&\ \ \ \ \ resource,}
-\DoxyCodeLine{00090\ \ \ \ \ \mbox{\hyperlink{classph_1_1_sdl_output_clauses}{SdlOutputClauses}}\&\ \ \ \ \ \ \ out\_clauses,}
+\DoxyCodeLine{00090\ \ \ \ \ \mbox{\hyperlink{classph_1_1_sdl_output_clauses}{SdlOutputClauses}}\&\ \ \ \ \ \ \ clauses,}
 \DoxyCodeLine{00091\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_sdl_output_context}{SdlOutputContext}}\&\ ctx)\textcolor{keyword}{\ const}}
 \DoxyCodeLine{00092\ \textcolor{keyword}{}\{}
 \DoxyCodeLine{00093\ \ \ \ \ \textcolor{comment}{//\ No\ specific\ ordering\ is\ required\ here.\ We\ save\ base\ class\ first\ just\ like\ how}}
@@ -99,11 +99,11 @@
 \DoxyCodeLine{00095\ \ \ \ \ \textcolor{keywordflow}{if}(isDerived())}
 \DoxyCodeLine{00096\ \ \ \ \ \{}
 \DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ PH\_ASSERT(getBase());}
-\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ getBase()-\/>saveResource(resource,\ out\_clauses,\ ctx);}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ getBase()-\/>saveResource(resource,\ clauses,\ ctx);}
 \DoxyCodeLine{00099\ \ \ \ \ \}}
 \DoxyCodeLine{00100\ }
 \DoxyCodeLine{00101\ \ \ \ \ \textcolor{keyword}{const}\ Owner*\ \textcolor{keyword}{const}\ ownerResource\ =\ castTo<const\ Owner>(\&resource);}
-\DoxyCodeLine{00102\ \ \ \ \ saveFieldsToSdl(*ownerResource,\ out\_clauses,\ ctx);}
+\DoxyCodeLine{00102\ \ \ \ \ saveFieldsToSdl(*ownerResource,\ clauses,\ ctx);}
 \DoxyCodeLine{00103\ \}}
 \DoxyCodeLine{00104\ }
 \DoxyCodeLine{00105\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Owner,\ \textcolor{keyword}{typename}\ FieldSet>}
@@ -255,15 +255,15 @@
 \DoxyCodeLine{00251\ \ \ \ \ \mbox{\hyperlink{classph_1_1_sdl_input_clauses}{SdlInputClauses}}\&\ \ \ \ \ \ \ \ clauses,}
 \DoxyCodeLine{00252\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_sdl_input_context}{SdlInputContext}}\&\ \ ctx)\textcolor{keyword}{\ const}}
 \DoxyCodeLine{00253\ \textcolor{keyword}{}\{}
-\DoxyCodeLine{00254\ \ \ \ \ \textcolor{keyword}{auto}\ noticeReceiver\ =\ [](std::string\ noticeMsg,\ \mbox{\hyperlink{namespaceph_a3f81b078141211109d7e3b340d0525cc}{EFieldImportance}}\ importance)}
+\DoxyCodeLine{00254\ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ noticeReceiver\ =\ [](std::string\ noticeMsg,\ \mbox{\hyperlink{namespaceph_a3f81b078141211109d7e3b340d0525cc}{EFieldImportance}}\ importance)}
 \DoxyCodeLine{00255\ \ \ \ \ \{}
 \DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(importance\ ==\ \mbox{\hyperlink{namespaceph_a3f81b078141211109d7e3b340d0525ccaebb061953c0454b2c8ee7b0ac615ebcd}{EFieldImportance::Optional}}\ ||\ importance\ ==\ \mbox{\hyperlink{namespaceph_a3f81b078141211109d7e3b340d0525cca0cfbb34b0d0b5ecbec9383c0e7fd4337}{EFieldImportance::NiceToHave}})}
 \DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ \ \ \ \ PH\_LOG\_STRING(\mbox{\hyperlink{classph_1_1_sdl_class}{SdlClass}},\ noticeMsg);}
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ \ \ \ \ PH\_LOG\_STRING(\mbox{\hyperlink{classph_1_1_sdl_class}{SdlClass}},\ Note,\ noticeMsg);}
 \DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ \}}
 \DoxyCodeLine{00260\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
 \DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ \ \ \ \ PH\_LOG\_WARNING\_STRING(\mbox{\hyperlink{classph_1_1_sdl_class}{SdlClass}},\ noticeMsg);}
+\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ \ \ \ \ PH\_LOG\_STRING(\mbox{\hyperlink{classph_1_1_sdl_class}{SdlClass}},\ Warning,\ noticeMsg);}
 \DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ \}}
 \DoxyCodeLine{00264\ \ \ \ \ \};}
 \DoxyCodeLine{00265\ }
@@ -278,7 +278,7 @@
 \DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ \ \ \ \ m\_fields,}
 \DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \ \ \ \ clauses,}
 \DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ \ \ \ \ ctx,}
-\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \ \ \ \ std::move(noticeReceiver));}
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \ \ \ \ noticeReceiver);}
 \DoxyCodeLine{00278\ \ \ \ \ \}}
 \DoxyCodeLine{00279\ \ \ \ \ \textcolor{keywordflow}{else}}
 \DoxyCodeLine{00280\ \ \ \ \ \{}
@@ -287,7 +287,7 @@
 \DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ \ \ \ \ m\_fields,}
 \DoxyCodeLine{00284\ \ \ \ \ \ \ \ \ \ \ \ \ clauses,}
 \DoxyCodeLine{00285\ \ \ \ \ \ \ \ \ \ \ \ \ ctx,}
-\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ \ \ \ \ std::move(noticeReceiver));}
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ \ \ \ \ noticeReceiver);}
 \DoxyCodeLine{00287\ \ \ \ \ \}}
 \DoxyCodeLine{00288\ \}}
 \DoxyCodeLine{00289\ }
@@ -304,16 +304,16 @@
 \DoxyCodeLine{00300\ \}}
 \DoxyCodeLine{00301\ }
 \DoxyCodeLine{00302\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Owner,\ \textcolor{keyword}{typename}\ FieldSet>}
-\DoxyCodeLine{00303\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_sdl_owner_class_aab29c8c7ddf724df47309f471c25d685}{TSdlOwnerClass<Owner,\ FieldSet>::saveFieldsToSdl}}(}
+\DoxyCodeLine{00303\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_sdl_owner_class_a50c9f219266ce8e41493b88768143a89}{TSdlOwnerClass<Owner,\ FieldSet>::saveFieldsToSdl}}(}
 \DoxyCodeLine{00304\ \ \ \ \ \textcolor{keyword}{const}\ Owner\&\ \ \ \ \ \ \ \ \ \ \ \ owner,}
-\DoxyCodeLine{00305\ \ \ \ \ \mbox{\hyperlink{classph_1_1_sdl_output_clauses}{SdlOutputClauses}}\&\ \ \ \ \ \ \ out\_clauses,}
+\DoxyCodeLine{00305\ \ \ \ \ \mbox{\hyperlink{classph_1_1_sdl_output_clauses}{SdlOutputClauses}}\&\ clauses,}
 \DoxyCodeLine{00306\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_sdl_output_context}{SdlOutputContext}}\&\ ctx)\textcolor{keyword}{\ const}}
 \DoxyCodeLine{00307\ \textcolor{keyword}{}\{}
 \DoxyCodeLine{00308\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ fieldIdx\ =\ 0;\ fieldIdx\ <\ m\_fields.numFields();\ ++fieldIdx)}
 \DoxyCodeLine{00309\ \ \ \ \ \{}
 \DoxyCodeLine{00310\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_t_sdl_owned_field}{TSdlOwnedField<Owner>}}\&\ field\ =\ m\_fields[fieldIdx];}
 \DoxyCodeLine{00311\ }
-\DoxyCodeLine{00312\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_sdl_output_clause}{SdlOutputClause}}\&\ clause\ =\ out\_clauses.\mbox{\hyperlink{classph_1_1_sdl_output_clauses_a0cda7ec745897c926164ad2d88cc0533}{createClause}}();}
+\DoxyCodeLine{00312\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_sdl_output_clause}{SdlOutputClause}}\&\ clause\ =\ clauses.\mbox{\hyperlink{classph_1_1_sdl_output_clauses_a0cda7ec745897c926164ad2d88cc0533}{createClause}}();}
 \DoxyCodeLine{00313\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceph_1_1sdl_a6d7fc19827d3c14f61cd3261beca32df}{sdl::save\_field\_id}}(\&field,\ clause);}
 \DoxyCodeLine{00314\ \ \ \ \ \ \ \ \ field.\mbox{\hyperlink{classph_1_1_t_sdl_owned_field_a00689959197a3049e417692979df58e0}{toSdl}}(owner,\ clause,\ ctx);}
 \DoxyCodeLine{00315\ \ \ \ \ \}}

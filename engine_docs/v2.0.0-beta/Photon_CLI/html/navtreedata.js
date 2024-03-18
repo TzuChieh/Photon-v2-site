@@ -25,6 +25,8 @@
 var NAVTREE =
 [
   [ "Photon CLI", "index.html", [
+    [ "Home", "^https://tzuchieh.github.io/Photon-v2-site/engine_docs/v2.0.0-beta/Photon/html/index.html", null ],
+    [ "Components", "^https://tzuchieh.github.io/Photon-v2-site/engine_docs/v2.0.0-beta/Photon/html/db/d72/project_structure.html", null ],
     [ "Command-line Interface (CLI)", "index.html", "index" ]
   ] ]
 ];

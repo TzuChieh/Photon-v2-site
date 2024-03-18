@@ -25,14 +25,17 @@
 var NAVTREE =
 [
   [ "Photon", "index.html", [
-    [ "Engine Directories", "../../Photon_Engine/html/de/d32/engine_directories.html", null ],
-    [ "Build From Source", "df/dea/md__documentation_2build__from__source.html", [
+    [ "Home", "^https://tzuchieh.github.io/Photon-v2-site/engine_docs/v2.0.0-beta/Photon/html/index.html", null ],
+    [ "Components", "^https://tzuchieh.github.io/Photon-v2-site/engine_docs/v2.0.0-beta/Photon/html/db/d72/project_structure.html", [
       [ "A Brief Introduction", "index.html#autotoc_md0", null ],
       [ "Useful Links", "index.html#autotoc_md1", null ],
       [ "Contributing", "index.html#autotoc_md2", null ],
       [ "Technical Showreel", "index.html#autotoc_md3", null ],
       [ "Scene Description Language", "index.html#autotoc_md4", null ],
-      [ "About the Author", "index.html#autotoc_md5", null ],
+      [ "About the Author", "index.html#autotoc_md5", null ]
+    ] ],
+    [ "Engine Directories", "../../Photon_Engine/html/de/d32/engine_directories.html", null ],
+    [ "Build From Source", "df/dea/md__documentation_2build__from__source.html", [
       [ "Prerequisites", "df/dea/md__documentation_2build__from__source.html#autotoc_md7", null ],
       [ "Step 1: Run the Setup Script", "df/dea/md__documentation_2build__from__source.html#autotoc_md8", null ],
       [ "Step 2: Compile", "df/dea/md__documentation_2build__from__source.html#autotoc_md9", null ],
@@ -51,6 +54,11 @@ var NAVTREE =
     [ "Project Structure", "db/d72/project_structure.html", [
       [ "Programs", "db/d72/project_structure.html#programs", null ],
       [ "Libraries", "db/d72/project_structure.html#libraries", null ]
+    ] ],
+    [ "Photon Render Test", "d9/dd2/md__render_test_2_r_e_a_d_m_e.html", [
+      [ "Parallel Test Execution", "d9/dd2/md__render_test_2_r_e_a_d_m_e.html#autotoc_md21", null ],
+      [ "Run Specified Tests Only", "d9/dd2/md__render_test_2_r_e_a_d_m_e.html#autotoc_md22", null ],
+      [ "Writing New Tests", "d9/dd2/md__render_test_2_r_e_a_d_m_e.html#autotoc_md23", null ]
     ] ]
   ] ]
 ];

@@ -9,6 +9,7 @@ var searchData=
   ['next_5fpower_5fof_5f2_5fmultiple_6',['next_power_of_2_multiple',['../d7/dac/namespaceph_1_1math.html#a97fd8863ca133b67190d7d2101f95918',1,'ph::math']]],
   ['next_5ftoken_7',['next_token',['../da/d3e/namespaceph_1_1string__utils.html#ae908e885df20324155bdaf6f5654b505',1,'ph::string_utils']]],
   ['note_8',['Note',['../d3/d5c/namespaceph.html#af3d9a169aefd59566a65991df5db6dbda3b0649c72650c313a357338dcdfb64ec',1,'ph']]],
-  ['numericexception_9',['NumericException',['../d7/da9/classph_1_1_numeric_exception.html',1,'ph']]],
-  ['numgroups_10',['numGroups',['../dc/de2/classph_1_1_log_groups.html#a8886dbbac3ce6a013c7808be24cb1874',1,'ph::LogGroups']]]
+  ['noteonce_9',['NoteOnce',['../d3/d5c/namespaceph.html#af3d9a169aefd59566a65991df5db6dbda72c3464ac0d5bca4e97e120e36c213b2',1,'ph']]],
+  ['numericexception_10',['NumericException',['../d7/da9/classph_1_1_numeric_exception.html',1,'ph']]],
+  ['numgroups_11',['numGroups',['../dc/de2/classph_1_1_log_groups.html#a8886dbbac3ce6a013c7808be24cb1874',1,'ph::LogGroups']]]
 ];

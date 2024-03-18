@@ -7,8 +7,6 @@ var dir_e6b04613532eac76ea6e081e7ec822a1 =
     [ "HdrRgbFilm.h", "d5/dc2/_hdr_rgb_film_8h.html", "d5/dc2/_hdr_rgb_film_8h" ],
     [ "SampleFilter.cpp", "d0/d3f/_sample_filter_8cpp.html", null ],
     [ "SampleFilter.h", "d4/dd3/_sample_filter_8h.html", "d4/dd3/_sample_filter_8h" ],
-    [ "SampleFilters.cpp", "d5/d34/_sample_filters_8cpp.html", null ],
-    [ "SampleFilters.h", "d7/dc2/_sample_filters_8h.html", "d7/dc2/_sample_filters_8h" ],
     [ "SamplingFilmDimensions.h", "d6/d03/_sampling_film_dimensions_8h.html", "d6/d03/_sampling_film_dimensions_8h" ],
     [ "TSamplingFilm.h", "de/d25/_t_sampling_film_8h.html", "de/d25/_t_sampling_film_8h" ],
     [ "TSamplingFilm.ipp", "d6/dc9/_t_sampling_film_8ipp.html", null ],

@@ -15,7 +15,7 @@ Inheritance diagram for ph\+::TIndexed\+Kdtree\+Intersector\texorpdfstring{$<$}{
 \item 
 \mbox{\hyperlink{classph_1_1_t_indexed_kdtree_intersector_a0471cacb265d08e549e6675b8e6b9274}{TIndexed\+Kdtree\+Intersector}} (\mbox{\hyperlink{classph_1_1math_1_1_indexed_kdtree_params}{math\+::\+Indexed\+Kdtree\+Params}} params=\mbox{\hyperlink{classph_1_1math_1_1_indexed_kdtree_params}{math\+::\+Indexed\+Kdtree\+Params}}())
 \item 
-void \mbox{\hyperlink{classph_1_1_t_indexed_kdtree_intersector_a73d99f5870c1d3a299761bef2e2e4056}{update}} (\mbox{\hyperlink{namespaceph_aef9e26e2a4f42469befa033923b033bf}{TSpan\+View}}$<$ const \mbox{\hyperlink{classph_1_1_intersectable}{Intersectable}} \texorpdfstring{$\ast$}{*} $>$ intersectables) override
+void \mbox{\hyperlink{classph_1_1_t_indexed_kdtree_intersector_a73d99f5870c1d3a299761bef2e2e4056}{update}} (\mbox{\hyperlink{namespaceph_a6a9059902c5cb72738a2fcfc46614989}{TSpan\+View}}$<$ const \mbox{\hyperlink{classph_1_1_intersectable}{Intersectable}} \texorpdfstring{$\ast$}{*} $>$ intersectables) override
 \item 
 bool \mbox{\hyperlink{classph_1_1_t_indexed_kdtree_intersector_a7e661abc7fe76c05118eedf5399b0a75}{is\+Intersecting}} (const \mbox{\hyperlink{classph_1_1_ray}{Ray}} \&ray, \mbox{\hyperlink{classph_1_1_hit_probe}{Hit\+Probe}} \&probe) const override
 \begin{DoxyCompactList}\small\item\em Determine whether a given ray hits the object. \end{DoxyCompactList}\item 
@@ -24,7 +24,9 @@ bool \mbox{\hyperlink{classph_1_1_t_indexed_kdtree_intersector_a7e661abc7fe76c05
 \doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classph_1_1_intersector}{ph\+::\+Intersector}}}
 \begin{DoxyCompactItemize}
 \item 
-void \mbox{\hyperlink{classph_1_1_intersector_aed0c4b35b8a7bd626f3938111106c81c}{calc\+Intersection\+Detail}} (const \mbox{\hyperlink{classph_1_1_ray}{Ray}} \&ray, \mbox{\hyperlink{classph_1_1_hit_probe}{Hit\+Probe}} \&probe, \mbox{\hyperlink{classph_1_1_hit_detail}{Hit\+Detail}} \texorpdfstring{$\ast$}{*}out\+\_\+detail) const override
+bool \mbox{\hyperlink{classph_1_1_intersector_ae32d1fce4edbce37b1cf8cbab60a81e9}{reintersect}} (const \mbox{\hyperlink{classph_1_1_ray}{Ray}} \&ray, \mbox{\hyperlink{classph_1_1_hit_probe}{Hit\+Probe}} \&probe, const \mbox{\hyperlink{classph_1_1_ray}{Ray}} \&src\+Ray, \mbox{\hyperlink{classph_1_1_hit_probe}{Hit\+Probe}} \&src\+Probe) const override
+\begin{DoxyCompactList}\small\item\em Intersect the intersected object again with a different ray. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classph_1_1_intersector_a2491abaf0c5c0766137e460098804f20}{calc\+Hit\+Detail}} (const \mbox{\hyperlink{classph_1_1_ray}{Ray}} \&ray, \mbox{\hyperlink{classph_1_1_hit_probe}{Hit\+Probe}} \&probe, \mbox{\hyperlink{classph_1_1_hit_detail}{Hit\+Detail}} \texorpdfstring{$\ast$}{*}out\+\_\+detail) const override
 \begin{DoxyCompactList}\small\item\em Calculates properties of a hit, such as coordinates and normal. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classph_1_1_intersectable}{ph\+::\+Intersectable}}}
 \begin{DoxyCompactItemize}
@@ -74,7 +76,12 @@ auto \mbox{\hyperlink{classph_1_1_t_indexed_kdtree_intersector}{ph\+::\+TIndexed
 
 Determine whether a given ray hits the object. 
 
-Checks whether the specified ray intersects this intersectable. If there is an intersection, true is returned and a brief intersection report is stored inside the probe. If there is no intersection, false is returned and the state of the probe is undefined. 
+Checks whether the specified ray intersects this intersectable. If there is an intersection, true is returned and a brief hit report is stored inside the probe. If there is no intersection, false is returned and the state of the probe is undefined. {\ttfamily ray} and {\ttfamily probe} can be used for obtaining hit detail if an intersection is found.
+
+\begin{DoxyNote}{Note}
+Generates hit event (with {\ttfamily ray} and {\ttfamily probe}). 
+\end{DoxyNote}
+
 
 Implements \mbox{\hyperlink{classph_1_1_intersector_a78facadac843c2df2891c7ac159abc50}{ph\+::\+Intersector}}.
 
@@ -83,7 +90,7 @@ Implements \mbox{\hyperlink{classph_1_1_intersector_a78facadac843c2df2891c7ac159
 \index{update@{update}!ph::TIndexedKdtreeIntersector$<$ Index $>$@{ph::TIndexedKdtreeIntersector$<$ Index $>$}}
 \doxysubsubsection{\texorpdfstring{update()}{update()}}
 {\footnotesize\ttfamily template$<$typename Index $>$ \\
-void \mbox{\hyperlink{classph_1_1_t_indexed_kdtree_intersector}{ph\+::\+TIndexed\+Kdtree\+Intersector}}$<$ Index $>$\+::update (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespaceph_aef9e26e2a4f42469befa033923b033bf}{TSpan\+View}}$<$ const \mbox{\hyperlink{classph_1_1_intersectable}{Intersectable}} \texorpdfstring{$\ast$}{*} $>$}]{intersectables }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+void \mbox{\hyperlink{classph_1_1_t_indexed_kdtree_intersector}{ph\+::\+TIndexed\+Kdtree\+Intersector}}$<$ Index $>$\+::update (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespaceph_a6a9059902c5cb72738a2fcfc46614989}{TSpan\+View}}$<$ const \mbox{\hyperlink{classph_1_1_intersectable}{Intersectable}} \texorpdfstring{$\ast$}{*} $>$}]{intersectables }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
 
 
 
@@ -93,5 +100,5 @@ Implements \mbox{\hyperlink{classph_1_1_intersector_a0eb7e326596f3a43f66c35e8c44
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-Source/\+Core/\+Intersectable/\+Intersector/\mbox{\hyperlink{_t_indexed_kdtree_intersector_8h}{TIndexed\+Kdtree\+Intersector.\+h}}\item 
-Source/\+Core/\+Intersectable/\+Intersector/\mbox{\hyperlink{_t_indexed_kdtree_intersector_8ipp}{TIndexed\+Kdtree\+Intersector.\+ipp}}\end{DoxyCompactItemize}
+Source/\+Core/\+Intersection/\+Intersector/\mbox{\hyperlink{_t_indexed_kdtree_intersector_8h}{TIndexed\+Kdtree\+Intersector.\+h}}\item 
+Source/\+Core/\+Intersection/\+Intersector/\mbox{\hyperlink{_t_indexed_kdtree_intersector_8ipp}{TIndexed\+Kdtree\+Intersector.\+ipp}}\end{DoxyCompactItemize}

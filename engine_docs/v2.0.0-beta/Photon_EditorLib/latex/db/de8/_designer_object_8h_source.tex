@@ -1,0 +1,162 @@
+\doxysection{Designer\+Object.\+h}
+\hypertarget{_designer_object_8h_source}{}\label{_designer_object_8h_source}\index{Source/Designer/DesignerObject.h@{Source/Designer/DesignerObject.h}}
+\mbox{\hyperlink{_designer_object_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_abstract_designer_object_8h}{Designer/AbstractDesignerObject.h}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{designer__fwd_8h}{Designer/designer\_fwd.h}}"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <Common/primitive\_type.h>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <Utility/TSpan.h>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <SDL/sdl\_interface.h>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <Math/math\_fwd.h>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <Math/Transform/TDecomposedTransform.h>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}Utility/TFunction.h"{}}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <cstddef>}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <type\_traits>}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph_1_1editor_1_1render}{ph::editor::render}}\ \{\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1editor_1_1render_1_1_system}{System}};\ \}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph_1_1editor}{ph::editor}}}
+\DoxyCodeLine{00022\ \{}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1editor_1_1_render_thread_caller}{RenderThreadCaller}};}
+\DoxyCodeLine{00025\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1editor_1_1_main_thread_update_context}{MainThreadUpdateContext}};}
+\DoxyCodeLine{00026\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1editor_1_1_main_thread_render_update_context}{MainThreadRenderUpdateContext}};}
+\DoxyCodeLine{00027\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1editor_1_1_render_thread_caller}{RenderThreadCaller}};}
+\DoxyCodeLine{00028\ \textcolor{keyword}{class\ }RenderData;}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1editor_1_1_designer_object}{DesignerObject}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classph_1_1editor_1_1_abstract_designer_object}{AbstractDesignerObject}}}
+\DoxyCodeLine{00031\ \{}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classph_1_1editor_1_1_abstract_designer_object}{Base}}\ =\ \mbox{\hyperlink{classph_1_1editor_1_1_abstract_designer_object_a890058922eba497642ff2be0a34c110b}{AbstractDesignerObject}};}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{comment}{//\ Work\ type\ should\ be\ kept\ in\ sync\ with\ \`{}RenderThread::Work`}}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classph_1_1editor_1_1_designer_object_ac90a250416e14dd8a872fca0300cdde7}{RenderWorkType}}\ =\ TFunction<void(\mbox{\hyperlink{classph_1_1editor_1_1render_1_1_system}{render::System}}\&)>;}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keyword}{static}\ std::string\ \mbox{\hyperlink{classph_1_1editor_1_1_designer_object_acb879fd0223f4dc4e2dc5b5ade8ad074}{generateObjectName}}();}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00045\ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1_designer_object_a4467dda98c681fa124dafc169d5495c7}{\string~DesignerObject}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keyword}{virtual}\ TSpanView<DesignerObject*>\ \mbox{\hyperlink{classph_1_1editor_1_1_designer_object_adc5cc2232006ba77e02d0032c9085829}{getChildren}}()\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1editor_1_1_designer_object_ac0725ccf577ce2d4b349f1a29a6343f8}{canHaveChildren}}()\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keyword}{virtual}\ math::TDecomposedTransform<real>\ \mbox{\hyperlink{classph_1_1editor_1_1_designer_object_ad2a8ad0c7c88fa6275eff7b9dec21c38}{getLocalToParent}}()\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1_designer_object_ac683e8b03bfcbac15adf40b2625142a2}{setLocalToParent}}(\textcolor{keyword}{const}\ math::TDecomposedTransform<real>\&\ transform)\ =\ 0;}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1_designer_object_aaa345bbad8edd97dbe9d87cdd2e3b788}{init}}();}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1_designer_object_a96b1f3fa51d911db824aad1f4812c623}{uninit}}();}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1_designer_object_a7d19972ee05f9b80da6b7d813d2fe73a}{renderInit}}(\mbox{\hyperlink{classph_1_1editor_1_1_render_thread_caller}{RenderThreadCaller}}\&\ caller);}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1_designer_object_a6c245028705906c649705ee488a011db}{renderUninit}}(\mbox{\hyperlink{classph_1_1editor_1_1_render_thread_caller}{RenderThreadCaller}}\&\ caller);}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1_designer_object_a280dc10dd16c4498f96420bf46129bec}{update}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1editor_1_1_main_thread_update_context}{MainThreadUpdateContext}}\&\ ctx);}
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1_designer_object_a2153b9acc2b732824883cfa5f5e146f0}{renderUpdate}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1editor_1_1_main_thread_render_update_context}{MainThreadRenderUpdateContext}}\&\ ctx);}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1_designer_object_a9ddac47d70590b3d0d9cf8d9c662f8c0}{createRenderCommands}}(\mbox{\hyperlink{classph_1_1editor_1_1_render_thread_caller}{RenderThreadCaller}}\&\ caller);}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1_designer_object_ab00106ee90fbc26b3ab720671b2fc94a}{editorTranslate}}(\textcolor{keyword}{const}\ math::Vector3R\&\ amount);}
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1_designer_object_af04e3f483ddcd89f6df3be471a074100}{editorRotate}}(\textcolor{keyword}{const}\ math::QuaternionR\&\ additionalRotation);}
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1_designer_object_ada45ffdf837ef9c27b91fc7f27925745}{editorScale}}(\textcolor{keyword}{const}\ math::Vector3R\&\ amount);}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1_u_i_property_layout}{UIPropertyLayout}}\ \mbox{\hyperlink{classph_1_1editor_1_1_designer_object_a2f63087e13ca9854ddef8cbb277167c1}{layoutProperties}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ ChildType>}
+\DoxyCodeLine{00071\ \ \ \ \ ChildType*\ \mbox{\hyperlink{classph_1_1editor_1_1_designer_object_a90cbecf5666c3b436d7c607b4f4f6ff2}{newChild}}(}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ shouldInit\ =\ \textcolor{keyword}{true},}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ shouldSetToDefault\ =\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00077\ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1_designer_object}{DesignerObject}}*\ \mbox{\hyperlink{classph_1_1editor_1_1_designer_object_a90cbecf5666c3b436d7c607b4f4f6ff2}{newChild}}(}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ SdlClass*\ clazz,}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ shouldInit\ =\ \textcolor{keyword}{true},}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ shouldSetToDefault\ =\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00085\ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1_designer_object}{DesignerObject}}*\ \mbox{\hyperlink{classph_1_1editor_1_1_designer_object_af6b2cc4907bfa110086b367f60657dbb}{addNewChild}}(\mbox{\hyperlink{classph_1_1editor_1_1_designer_object}{DesignerObject}}*\ childObj);}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1_designer_object_a76a149822f3deebb42fc0db81d2b180d}{deleteChild}}(\mbox{\hyperlink{classph_1_1editor_1_1_designer_object}{DesignerObject}}*\ childObj);}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1_designer_object_ac7a07cf710fc0b703c236a378e47756f}{deleteAllChildren}}();}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1_designer_object_aaf79ea42002555952962ad2f91f3139a}{enqueueRenderWork}}(\mbox{\hyperlink{classph_1_1editor_1_1_designer_object_ac90a250416e14dd8a872fca0300cdde7}{RenderWorkType}}\ work);}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1_designer_object_ac92d31aba9ea5d4f29dc4743d2122b3c}{setName}}(std::string\ name);}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1_designer_object_acb36aa48306131084f2351010ca7145b}{setUniqueName}}(std::string\ uniqueName);}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1_designer_object_a5c4f87acbd19900b6a23a886d17fcc36}{select}}();}
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1_designer_object_affa6110726928605b57e8e16afd41773}{deselect}}();}
+\DoxyCodeLine{00116\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1editor_1_1_designer_object_a3cf40700ef8c74337cec7c9af0d03136}{isSelected}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1_designer_object_acae738f189593af12edd99d0f596a2ee}{setVisibility}}(\textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1editor_1_1_designer_object_a1c706a29021fb2f1c71a100f3dc1ff22}{isVisible}});}
+\DoxyCodeLine{00118\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1editor_1_1_designer_object_a1c706a29021fb2f1c71a100f3dc1ff22}{isVisible}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1_designer_object_a522cb7bd29565e616f1724f67556fe6b}{setTick}}(\textcolor{keywordtype}{bool}\ shouldTick);}
+\DoxyCodeLine{00120\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1_designer_object_a35d84df111a08fa342c54db0584abce2}{setRenderTick}}(\textcolor{keywordtype}{bool}\ shouldTick);}
+\DoxyCodeLine{00121\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1editor_1_1_designer_object_ab6b6841c997c870e4f9ec9231d56cf70}{haveChildren}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00122\ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1_designer_scene}{DesignerScene}}\&\ \mbox{\hyperlink{classph_1_1editor_1_1_designer_object_a6e949a067d0fb3264f50ae47671e4b29}{getScene}}();}
+\DoxyCodeLine{00123\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1editor_1_1_designer_scene}{DesignerScene}}\&\ \mbox{\hyperlink{classph_1_1editor_1_1_designer_object_a6e949a067d0fb3264f50ae47671e4b29}{getScene}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00124\ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1_designer_object}{DesignerObject}}*\ \mbox{\hyperlink{classph_1_1editor_1_1_designer_object_a7482275974fe6e304fe030b50696783c}{getParent}}();}
+\DoxyCodeLine{00125\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1editor_1_1_designer_object}{DesignerObject}}*\ \mbox{\hyperlink{classph_1_1editor_1_1_designer_object_a7482275974fe6e304fe030b50696783c}{getParent}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00126\ \ \ \ \ \textcolor{keyword}{const}\ std::string\&\ \mbox{\hyperlink{classph_1_1editor_1_1_designer_object_ad616ecb0c5c0ff768170a0ca3a80e125}{getName}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00129\ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1_designer_object_a2922f0d6ea7d0518e7c1f685488cdc7a}{DesignerObject}}();}
+\DoxyCodeLine{00130\ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1_designer_object_a3b976297261d977e377fac57cec44a6d}{DesignerObject}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1editor_1_1_designer_object}{DesignerObject}}\&\ other);}
+\DoxyCodeLine{00131\ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1_designer_object_a69a40cca4bddfb10ff0ae82e8fba3a39}{DesignerObject}}(\mbox{\hyperlink{classph_1_1editor_1_1_designer_object}{DesignerObject}}\&\&\ other)\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00133\ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1_designer_object}{DesignerObject}}\&\ \mbox{\hyperlink{classph_1_1editor_1_1_designer_object_aea7bbf062291c2dd09e6ba3b86df95ba}{operator\ =\ }}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1editor_1_1_designer_object}{DesignerObject}}\&\ rhs);}
+\DoxyCodeLine{00134\ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1_designer_object}{DesignerObject}}\&\ \mbox{\hyperlink{classph_1_1editor_1_1_designer_object_aea7bbf062291c2dd09e6ba3b86df95ba}{operator\ =\ }}(\mbox{\hyperlink{classph_1_1editor_1_1_designer_object}{DesignerObject}}\&\&\ rhs)\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00136\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00137\ \ \ \ \ \textcolor{comment}{//\ For\ accessing\ \`{}setParentScene()`\ when\ creating\ root\ objects}}
+\DoxyCodeLine{00138\ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1editor_1_1_designer_scene}{DesignerScene}};}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00143\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classph_1_1editor_1_1_designer_object}{DesignerObject}}*\ addChild(\mbox{\hyperlink{classph_1_1editor_1_1_designer_object}{DesignerObject}}*\ childObj)\ =\ 0;}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00148\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ removeChild(\mbox{\hyperlink{classph_1_1editor_1_1_designer_object}{DesignerObject}}*\ childObj)\ =\ 0;}
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00152\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ selected();}
+\DoxyCodeLine{00153\ }
+\DoxyCodeLine{00156\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ deselected();}
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00158\ \ \ \ \ \textcolor{keywordtype}{void}\ setParentObject(\mbox{\hyperlink{classph_1_1editor_1_1_designer_object}{DesignerObject}}*\ \textcolor{keywordtype}{object});}
+\DoxyCodeLine{00159\ \ \ \ \ \textcolor{keywordtype}{void}\ setParentScene(\mbox{\hyperlink{classph_1_1editor_1_1_designer_scene}{DesignerScene}}*\ scene);}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00161\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00162\ \ \ \ \ \textcolor{keyword}{union\ }GeneralParent}
+\DoxyCodeLine{00163\ \ \ \ \ \{}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1_designer_scene}{DesignerScene}}*\ u\_scene;}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1_designer_object}{DesignerObject}}*\ u\_object;}
+\DoxyCodeLine{00166\ \ \ \ \ \};}
+\DoxyCodeLine{00167\ \ \ \ \ }
+\DoxyCodeLine{00168\ \ \ \ \ GeneralParent\ m\_parent;}
+\DoxyCodeLine{00169\ }
+\DoxyCodeLine{00170\ \ \ \ \ \textcolor{comment}{//\ SDL-\/binded\ fields:}}
+\DoxyCodeLine{00171\ \ \ \ \ std::string\ m\_name;}
+\DoxyCodeLine{00172\ }
+\DoxyCodeLine{00173\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00174\ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1_designer_object_a94b26fe8c2bc5ab1bf3f88bee90dab8a}{PH\_DEFINE\_SDL\_CLASS}}(TSdlOwnerClass<DesignerObject>)}
+\DoxyCodeLine{00175\ \ \ \ \ \{}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ ClassType\ clazz(\textcolor{stringliteral}{"{}dobj"{}});}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ clazz.docName(\textcolor{stringliteral}{"{}Designer\ Object"{}});}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ clazz.description(\textcolor{stringliteral}{"{}Main\ base\ class\ of\ designer\ object."{}});}
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Creation\ and\ removal\ should\ be\ handled\ by\ designer\ scene}}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ clazz.allowCreateFromClass(\textcolor{keyword}{false});}
+\DoxyCodeLine{00182\ }
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ clazz.baseOn<\mbox{\hyperlink{classph_1_1editor_1_1_abstract_designer_object}{AbstractDesignerObject}}>();}
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ TSdlString<OwnerType>\ name(\textcolor{stringliteral}{"{}name"{}},\ \&OwnerType::m\_name);}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ name.description(\textcolor{stringliteral}{"{}Name\ of\ the\ designer\ object."{}});}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ name.noDefault();\textcolor{comment}{//\ we\ are\ supplying\ custom\ default\ name\ in\ ctor}}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ clazz.addField(name);}
+\DoxyCodeLine{00189\ }
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ clazz;}
+\DoxyCodeLine{00191\ \ \ \ \ \}}
+\DoxyCodeLine{00192\ \};}
+\DoxyCodeLine{00193\ }
+\DoxyCodeLine{00194\ \}\textcolor{comment}{//\ end\ namespace\ ph::editor}}
+\DoxyCodeLine{00195\ }
+\DoxyCodeLine{00196\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_designer_object_8ipp}{Designer/DesignerObject.ipp}}"{}}}
+
+\end{DoxyCode}

@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['iresourceidentifierresolver_0',['IResourceIdentifierResolver',['../../../Photon_Engine/html/d7/d8e/classph_1_1_resource_identifier.html#aeaa2a31a7c0b5f423838a859108c9fa2',1,'ph::ResourceIdentifier']]]
+  ['application_0',['Application',['../../../Photon_EditorLib/html/df/d77/classph_1_1editor_1_1_threads.html#a23f25bcc02a0e94c2f5a4188496b04d0',1,'ph::editor::Threads']]],
+  ['application_5fentry_5fpoint_1',['application_entry_point',['../../../Photon_EditorLib/html/db/d65/classph_1_1editor_1_1_program.html#ab3f73c79862b8441196a36e1520d71f0',1,'ph::editor::Program']]]
 ];

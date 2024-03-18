@@ -1,7 +1,6 @@
 var classph_1_1math_1_1_t_orthonormal_basis3 =
 [
     [ "TOrthonormalBasis3", "d8/de9/classph_1_1math_1_1_t_orthonormal_basis3.html#af86f7b3c88091e0b527997392e7a2d4c", null ],
-    [ "TOrthonormalBasis3", "d8/de9/classph_1_1math_1_1_t_orthonormal_basis3.html#a46496359b49b89fc1ef6b3eef5b7e95d", null ],
     [ "TOrthonormalBasis3", "d8/de9/classph_1_1math_1_1_t_orthonormal_basis3.html#af39531e755d5ceb09cbcf4a98e5b8f3a", null ],
     [ "absCosTheta", "d8/de9/classph_1_1math_1_1_t_orthonormal_basis3.html#a0ef75a37f90af1da0b37f77b970c8dcc", null ],
     [ "absSinTheta", "d8/de9/classph_1_1math_1_1_t_orthonormal_basis3.html#a8af2319cb1d298508b165ba22ff8edd4", null ],
@@ -13,7 +12,6 @@ var classph_1_1math_1_1_t_orthonormal_basis3 =
     [ "getYAxis", "d8/de9/classph_1_1math_1_1_t_orthonormal_basis3.html#a292a84d14f5ded9fcb640de83d2289d0", null ],
     [ "getZAxis", "d8/de9/classph_1_1math_1_1_t_orthonormal_basis3.html#a2da892795c848c0801eb782650117d3b", null ],
     [ "localToWorld", "d8/de9/classph_1_1math_1_1_t_orthonormal_basis3.html#afec03f05361afa009eea63e8baae5742", null ],
-    [ "operator=", "d8/de9/classph_1_1math_1_1_t_orthonormal_basis3.html#a7807befb0646362cc7dde0b86baf50b1", null ],
     [ "renormalize", "d8/de9/classph_1_1math_1_1_t_orthonormal_basis3.html#a4cf958e335bc7a1d634e6a16d0355853", null ],
     [ "renormalizeXAxis", "d8/de9/classph_1_1math_1_1_t_orthonormal_basis3.html#aaf3c28a9fab2ae56b313125119b31132", null ],
     [ "renormalizeYAxis", "d8/de9/classph_1_1math_1_1_t_orthonormal_basis3.html#acb4035fa6dc3c5a1e2e3b8f1c98139d3", null ],
