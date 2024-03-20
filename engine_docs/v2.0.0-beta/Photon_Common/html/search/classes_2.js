@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['groupedtimerecord_0',['GroupedTimeRecord',['../d8/dc7/structph_1_1_timer_stats_report_1_1_grouped_time_record.html',1,'ph::TimerStatsReport']]]
+  ['fileioerror_0',['FileIOError',['../d6/d6d/classph_1_1_file_i_o_error.html',1,'ph']]],
+  ['filesystemerror_1',['FilesystemError',['../d7/d1a/classph_1_1_filesystem_error.html',1,'ph']]]
 ];

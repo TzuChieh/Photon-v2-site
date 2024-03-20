@@ -11,7 +11,7 @@ var utility_8h =
     [ "enum_size", "d5/d47/utility_8h.html#a0d3e015dc9f7674dbf795a75385cda0a", null ],
     [ "enum_to_string", "d5/d47/utility_8h.html#a2e8e601f93efff74360a027ba59d4232", null ],
     [ "enum_to_value", "d5/d47/utility_8h.html#ae490c9f4fa11ad921cdb383d4c84445c", null ],
-    [ "is_big_endian", "d5/d47/utility_8h.html#a9225322648443d9d704158c967ecc371", null ],
+    [ "is_big_endian", "d5/d47/utility_8h.html#a6c349a68b88d7c9de75e72be90894a84", null ],
     [ "pointer_access", "d5/d47/utility_8h.html#adc22002ce22a2c36d495dbc0eae3f103", null ],
     [ "regular_access", "d5/d47/utility_8h.html#a088f88ce0c13cb136e0578ba5e45627d", null ],
     [ "sizeof_in_bits", "d5/d47/utility_8h.html#af8b01b99e42b7dd15dca28359ac1bf9e", null ]

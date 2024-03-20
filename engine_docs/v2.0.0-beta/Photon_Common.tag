@@ -396,6 +396,14 @@
     </member>
   </compound>
   <compound kind="file">
+    <name>IniFile.h</name>
+    <path>Include/Common/Config/</path>
+    <filename>d1/df9/_ini_file_8h.html</filename>
+    <includes id="d9/d13/assertion_8h" name="assertion.h" local="yes" import="no" module="no" objc="no">Common/assertion.h</includes>
+    <class kind="class">ph::IniFile</class>
+    <namespace>ph</namespace>
+  </compound>
+  <compound kind="file">
     <name>detail.h</name>
     <path>Include/Common/Container/</path>
     <filename>d3/d97/detail_8h.html</filename>
@@ -431,9 +439,9 @@
     </member>
   </compound>
   <compound kind="file">
-    <name>exception.h</name>
+    <name>exceptions.h</name>
     <path>Include/Common/</path>
-    <filename>dd/d2d/exception_8h.html</filename>
+    <filename>d4/d03/exceptions_8h.html</filename>
     <class kind="class">ph::RuntimeException</class>
     <class kind="class">ph::LogicalException</class>
     <class kind="class">ph::NumericException</class>
@@ -444,6 +452,16 @@
     <class kind="class">ph::OutOfRangeException</class>
     <namespace>ph</namespace>
     <concept>ph::CPhotonException</concept>
+  </compound>
+  <compound kind="file">
+    <name>io_exceptions.h</name>
+    <path>Include/Common/</path>
+    <filename>dd/d5a/io__exceptions_8h.html</filename>
+    <includes id="d4/d03/exceptions_8h" name="exceptions.h" local="yes" import="no" module="no" objc="no">Common/exceptions.h</includes>
+    <class kind="class">ph::IOException</class>
+    <class kind="class">ph::FileIOError</class>
+    <class kind="class">ph::FilesystemError</class>
+    <namespace>ph</namespace>
   </compound>
   <compound kind="file">
     <name>ELogLevel.h</name>
@@ -1115,7 +1133,7 @@
     <filename>d7/d2c/string__utils_8h.html</filename>
     <includes id="d7/d81/string__utils__table_8h" name="string_utils_table.h" local="yes" import="no" module="no" objc="no">Common/Utility/string_utils_table.h</includes>
     <includes id="d9/d13/assertion_8h" name="assertion.h" local="yes" import="no" module="no" objc="no">Common/assertion.h</includes>
-    <includes id="dd/d2d/exception_8h" name="exception.h" local="yes" import="no" module="no" objc="no">Common/exception.h</includes>
+    <includes id="d4/d03/exceptions_8h" name="exceptions.h" local="yes" import="no" module="no" objc="no">Common/exceptions.h</includes>
     <namespace>ph</namespace>
     <namespace>ph::string_utils</namespace>
     <namespace>ph::string_utils::detail_from_to_char</namespace>
@@ -1181,6 +1199,15 @@
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
+    <name>IniFile.cpp</name>
+    <path>Source/Common/Config/</path>
+    <filename>d9/d58/_ini_file_8cpp.html</filename>
+    <includes id="d1/df9/_ini_file_8h" name="IniFile.h" local="yes" import="no" module="no" objc="no">Common/Config/IniFile.h</includes>
+    <includes id="dd/d5a/io__exceptions_8h" name="io_exceptions.h" local="yes" import="no" module="no" objc="no">Common/io_exceptions.h</includes>
+    <includes id="d7/d2c/string__utils_8h" name="string_utils.h" local="yes" import="no" module="no" objc="no">Common/Utility/string_utils.h</includes>
+    <namespace>ph</namespace>
+  </compound>
+  <compound kind="file">
     <name>debug.cpp</name>
     <path>Source/Common/</path>
     <filename>d1/d00/debug_8cpp.html</filename>
@@ -1200,7 +1227,7 @@
     <name>exception.cpp</name>
     <path>Source/Common/</path>
     <filename>de/d9e/exception_8cpp.html</filename>
-    <includes id="dd/d2d/exception_8h" name="exception.h" local="yes" import="no" module="no" objc="no">Common/exception.h</includes>
+    <includes id="d4/d03/exceptions_8h" name="exceptions.h" local="yes" import="no" module="no" objc="no">Common/exceptions.h</includes>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
@@ -1389,6 +1416,79 @@
       <arglist>()</arglist>
     </member>
   </compound>
+  <compound kind="class">
+    <name>ph::FileIOError</name>
+    <filename>d6/d6d/classph_1_1_file_i_o_error.html</filename>
+    <base>ph::IOException</base>
+    <member kind="function">
+      <type></type>
+      <name>FileIOError</name>
+      <anchorfile>d6/d6d/classph_1_1_file_i_o_error.html</anchorfile>
+      <anchor>a4323745c93031dc604132631e7a0cd42</anchor>
+      <arglist>(const std::string &amp;message)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>FileIOError</name>
+      <anchorfile>d6/d6d/classph_1_1_file_i_o_error.html</anchorfile>
+      <anchor>a9541990f30bdbd25cabf675bf710d501</anchor>
+      <arglist>(const char *message)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>FileIOError</name>
+      <anchorfile>d6/d6d/classph_1_1_file_i_o_error.html</anchorfile>
+      <anchor>acb870a1f13bd303a6fc373818e10d253</anchor>
+      <arglist>(const std::string &amp;message, std::string filename)</arglist>
+    </member>
+    <member kind="function">
+      <type>std::string</type>
+      <name>whatStr</name>
+      <anchorfile>d6/d6d/classph_1_1_file_i_o_error.html</anchorfile>
+      <anchor>a00908e5911de6c0b35ecf4528adb2658</anchor>
+      <arglist>() const override</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>ph::FilesystemError</name>
+    <filename>d7/d1a/classph_1_1_filesystem_error.html</filename>
+    <base>ph::IOException</base>
+    <member kind="function">
+      <type></type>
+      <name>FilesystemError</name>
+      <anchorfile>d7/d1a/classph_1_1_filesystem_error.html</anchorfile>
+      <anchor>a29bbad5f66b10dd01230780e0fdada20</anchor>
+      <arglist>(std::error_code errorCode)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>FilesystemError</name>
+      <anchorfile>d7/d1a/classph_1_1_filesystem_error.html</anchorfile>
+      <anchor>aa816b24b78c6ebdf56bdc4e47bd85c5b</anchor>
+      <arglist>(const std::string &amp;message, std::error_code errorCode)</arglist>
+    </member>
+    <member kind="function">
+      <type>std::string</type>
+      <name>whatStr</name>
+      <anchorfile>d7/d1a/classph_1_1_filesystem_error.html</anchorfile>
+      <anchor>a38d172ffac0dd657980b27bc0e11180c</anchor>
+      <arglist>() const override</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>IOException</name>
+      <anchorfile>d7/d1a/classph_1_1_filesystem_error.html</anchorfile>
+      <anchor>a35b0e5229196ec0ed234b8e4a8a0cf73</anchor>
+      <arglist>(const std::string &amp;message)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>IOException</name>
+      <anchorfile>d7/d1a/classph_1_1_filesystem_error.html</anchorfile>
+      <anchor>a059a3b43745c4889683c79b553217720</anchor>
+      <arglist>(const char *message)</arglist>
+    </member>
+  </compound>
   <compound kind="struct">
     <name>ph::TimerStatsReport::GroupedTimeRecord</name>
     <filename>d8/dc7/structph_1_1_timer_stats_report_1_1_grouped_time_record.html</filename>
@@ -1480,6 +1580,136 @@
     </member>
   </compound>
   <compound kind="class">
+    <name>ph::IniFile</name>
+    <filename>d7/d19/classph_1_1_ini_file.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>IniFile</name>
+      <anchorfile>d7/d19/classph_1_1_ini_file.html</anchorfile>
+      <anchor>a9c856af2782405f539b3e3598e45c2e8</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>IniFile</name>
+      <anchorfile>d7/d19/classph_1_1_ini_file.html</anchorfile>
+      <anchor>a0a9277e149075b7f82ffa588a781f6e8</anchor>
+      <arglist>(const std::string &amp;iniFilePath)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>save</name>
+      <anchorfile>d7/d19/classph_1_1_ini_file.html</anchorfile>
+      <anchor>ac5f69124bfee4649a28237f1bcb86019</anchor>
+      <arglist>(const std::string &amp;iniFilePath)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>clear</name>
+      <anchorfile>d7/d19/classph_1_1_ini_file.html</anchorfile>
+      <anchor>a9b0fbdf4bdf8489e43835db99b1218fb</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>std::size_t</type>
+      <name>numSections</name>
+      <anchorfile>d7/d19/classph_1_1_ini_file.html</anchorfile>
+      <anchor>a43813ee4b9633de395088b2aa56506cd</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>std::string_view</type>
+      <name>getSectionName</name>
+      <anchorfile>d7/d19/classph_1_1_ini_file.html</anchorfile>
+      <anchor>a92653e03f92f779bdcb8e0949b10d6f1</anchor>
+      <arglist>(std::size_t sectionIdx) const</arglist>
+    </member>
+    <member kind="function">
+      <type>std::string_view</type>
+      <name>getCurrentSectionName</name>
+      <anchorfile>d7/d19/classph_1_1_ini_file.html</anchorfile>
+      <anchor>a26a80b6fc9858a01bc5838b5eb4adb2f</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>std::optional&lt; std::size_t &gt;</type>
+      <name>findSectionIndex</name>
+      <anchorfile>d7/d19/classph_1_1_ini_file.html</anchorfile>
+      <anchor>a0f898d59858cc3f54456f8fa9bc0b3ae</anchor>
+      <arglist>(std::string_view sectionName) const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setCurrentSection</name>
+      <anchorfile>d7/d19/classph_1_1_ini_file.html</anchorfile>
+      <anchor>a198ca08733e96805d97f6ddc388e6a48</anchor>
+      <arglist>(std::size_t sectionIdx)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setCurrentSection</name>
+      <anchorfile>d7/d19/classph_1_1_ini_file.html</anchorfile>
+      <anchor>a28485d20edd79829098cc456104a90c3</anchor>
+      <arglist>(std::string_view sectionName, bool createIfNotExist=true)</arglist>
+    </member>
+    <member kind="function">
+      <type>std::size_t</type>
+      <name>numProperties</name>
+      <anchorfile>d7/d19/classph_1_1_ini_file.html</anchorfile>
+      <anchor>ac75614639cea431e79e2eba5187fa94f</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>std::string_view</type>
+      <name>getPropertyName</name>
+      <anchorfile>d7/d19/classph_1_1_ini_file.html</anchorfile>
+      <anchor>a8f4bf4663c58e07cbf47c753aedd54af</anchor>
+      <arglist>(std::size_t propertyIdx) const</arglist>
+    </member>
+    <member kind="function">
+      <type>std::string_view</type>
+      <name>getPropertyValue</name>
+      <anchorfile>d7/d19/classph_1_1_ini_file.html</anchorfile>
+      <anchor>a13f63998cd251748e5d40d8f24487f72</anchor>
+      <arglist>(std::size_t propertyIdx) const</arglist>
+    </member>
+    <member kind="function">
+      <type>std::optional&lt; std::size_t &gt;</type>
+      <name>findPropertyIndex</name>
+      <anchorfile>d7/d19/classph_1_1_ini_file.html</anchorfile>
+      <anchor>a7022649ed49c040c3b4f9ee54edec5ba</anchor>
+      <arglist>(std::string_view propertyName) const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setProperty</name>
+      <anchorfile>d7/d19/classph_1_1_ini_file.html</anchorfile>
+      <anchor>aeed0c8de9266857a88d68c7582424aed</anchor>
+      <arglist>(std::size_t propertyIdx, std::string_view propertyValue)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setProperty</name>
+      <anchorfile>d7/d19/classph_1_1_ini_file.html</anchorfile>
+      <anchor>a20cc458a35750e0631ce3f2a0490275e</anchor>
+      <arglist>(std::string_view propertyName, std::string_view propertyValue, bool createIfNotExist=true)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>append</name>
+      <anchorfile>d7/d19/classph_1_1_ini_file.html</anchorfile>
+      <anchor>aae7cb1d8586f85269731db6b49a86e31</anchor>
+      <arglist>(const IniFile &amp;other)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static IniFile</type>
+      <name>read</name>
+      <anchorfile>d7/d19/classph_1_1_ini_file.html</anchorfile>
+      <anchor>afb73ae8b29d16f86a2243982bfb48e05</anchor>
+      <arglist>(const std::string &amp;iniFilePath)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
     <name>ph::InvalidArgumentException</name>
     <filename>d4/d55/classph_1_1_invalid_argument_exception.html</filename>
     <base>ph::LogicalException</base>
@@ -1495,6 +1725,25 @@
       <name>LogicalException</name>
       <anchorfile>d4/d55/classph_1_1_invalid_argument_exception.html</anchorfile>
       <anchor>a45762bfa110d9d544954dfc099abb6cd</anchor>
+      <arglist>(const char *message)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>ph::IOException</name>
+    <filename>db/d5e/classph_1_1_i_o_exception.html</filename>
+    <base>ph::RuntimeException</base>
+    <member kind="function">
+      <type></type>
+      <name>IOException</name>
+      <anchorfile>db/d5e/classph_1_1_i_o_exception.html</anchorfile>
+      <anchor>a35b0e5229196ec0ed234b8e4a8a0cf73</anchor>
+      <arglist>(const std::string &amp;message)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>IOException</name>
+      <anchorfile>db/d5e/classph_1_1_i_o_exception.html</anchorfile>
+      <anchor>a059a3b43745c4889683c79b553217720</anchor>
       <arglist>(const char *message)</arglist>
     </member>
   </compound>
@@ -2001,8 +2250,12 @@
     <namespace>ph::string_utils</namespace>
     <class kind="class">ph::CommandLineArguments</class>
     <class kind="class">ph::Config</class>
+    <class kind="class">ph::FileIOError</class>
+    <class kind="class">ph::FilesystemError</class>
     <class kind="class">ph::IllegalOperationException</class>
+    <class kind="class">ph::IniFile</class>
     <class kind="class">ph::InvalidArgumentException</class>
+    <class kind="class">ph::IOException</class>
     <class kind="class">ph::Logger</class>
     <class kind="struct">ph::LogGroup</class>
     <class kind="class">ph::LogGroups</class>
@@ -2729,15 +2982,15 @@
       <type>std::size_t</type>
       <name>stringify_int_alphabetic</name>
       <anchorfile>da/d3e/namespaceph_1_1string__utils.html</anchorfile>
-      <anchor>a68d321ee31b48d3dee66a12df5cb5b26</anchor>
-      <arglist>(T value, char *const out_buffer, const std::size_t bufferSize, const int base)</arglist>
+      <anchor>ae3952ce9999dad2081ffe74739b731af</anchor>
+      <arglist>(const T value, char *const out_buffer, const std::size_t bufferSize, const int base)</arglist>
     </member>
     <member kind="function">
       <type>std::size_t</type>
       <name>stringify_int</name>
       <anchorfile>da/d3e/namespaceph_1_1string__utils.html</anchorfile>
-      <anchor>a796fe6948698881ba1aa3d478c407b84</anchor>
-      <arglist>(T value, char *out_buffer, std::size_t bufferSize, int base=10)</arglist>
+      <anchor>a4b765128ba6181cd2d20343c5350259d</anchor>
+      <arglist>(const T value, char *const out_buffer, const std::size_t bufferSize, const int base=10)</arglist>
     </member>
     <member kind="function">
       <type>std::size_t</type>
@@ -2752,6 +3005,13 @@
       <anchorfile>da/d3e/namespaceph_1_1string__utils.html</anchorfile>
       <anchor>a840acb1d0358a1b420160495f6ee63d8</anchor>
       <arglist>(const NumberType value, std::string &amp;out_str, const std::size_t maxChars=64)</arglist>
+    </member>
+    <member kind="function">
+      <type>std::string</type>
+      <name>stringify_number</name>
+      <anchorfile>da/d3e/namespaceph_1_1string__utils.html</anchorfile>
+      <anchor>ad784e4cf432dcdc238c3f81d33c1cdfb</anchor>
+      <arglist>(const NumberType value, const std::size_t maxChars=64)</arglist>
     </member>
   </compound>
   <compound kind="namespace">

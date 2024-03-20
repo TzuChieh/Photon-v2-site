@@ -9,5 +9,5 @@ var searchData=
   ['ewindowsversion_6',['EWindowsVersion',['../db/d53/namespaceph_1_1os.html#a19b458c339590bd8d6525abd294ef2e7',1,'ph::os']]],
   ['exception_7',['Exception',['../d3/d5c/namespaceph.html#af2a189766a247192101b3fc6f6bd5331',1,'ph']]],
   ['exception_2ecpp_8',['exception.cpp',['../de/d9e/exception_8cpp.html',1,'']]],
-  ['exception_2eh_9',['exception.h',['../dd/d2d/exception_8h.html',1,'']]]
+  ['exceptions_2eh_9',['exceptions.h',['../d4/d03/exceptions_8h.html',1,'']]]
 ];

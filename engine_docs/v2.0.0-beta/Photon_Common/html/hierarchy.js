@@ -5,6 +5,7 @@ var hierarchy =
     [ "ph::Config", "de/d94/classph_1_1_config.html", null ],
     [ "ph::TimerStatsReport::GroupedTimeRecord", "d8/dc7/structph_1_1_timer_stats_report_1_1_grouped_time_record.html", null ],
     [ "ph::detail::HeterogeneousStringHash", "d3/d9e/structph_1_1detail_1_1_heterogeneous_string_hash.html", null ],
+    [ "ph::IniFile", "d7/d19/classph_1_1_ini_file.html", null ],
     [ "ph::Logger", "d2/d90/classph_1_1_logger.html", null ],
     [ "ph::LogGroup", "df/dfe/structph_1_1_log_group.html", null ],
     [ "ph::LogGroups", "dc/de2/classph_1_1_log_groups.html", null ],
@@ -18,6 +19,10 @@ var hierarchy =
     ] ],
     [ "std::runtime_error", null, [
       [ "ph::RuntimeException", "d2/dd1/classph_1_1_runtime_exception.html", [
+        [ "ph::IOException", "db/d5e/classph_1_1_i_o_exception.html", [
+          [ "ph::FileIOError", "d6/d6d/classph_1_1_file_i_o_error.html", null ],
+          [ "ph::FilesystemError", "d7/d1a/classph_1_1_filesystem_error.html", null ]
+        ] ],
         [ "ph::NumericException", "d7/da9/classph_1_1_numeric_exception.html", [
           [ "ph::OverflowException", "d7/d86/classph_1_1_overflow_exception.html", null ]
         ] ]

@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['illegaloperationexception_0',['IllegalOperationException',['../db/dec/classph_1_1_illegal_operation_exception.html',1,'ph']]],
-  ['invalidargumentexception_1',['InvalidArgumentException',['../d4/d55/classph_1_1_invalid_argument_exception.html',1,'ph']]]
+  ['heterogeneousstringhash_0',['HeterogeneousStringHash',['../d3/d9e/structph_1_1detail_1_1_heterogeneous_string_hash.html',1,'ph::detail']]]
 ];

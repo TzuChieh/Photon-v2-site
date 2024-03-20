@@ -11,5 +11,7 @@ var searchData=
   ['note_8',['Note',['../d3/d5c/namespaceph.html#af3d9a169aefd59566a65991df5db6dbda3b0649c72650c313a357338dcdfb64ec',1,'ph']]],
   ['noteonce_9',['NoteOnce',['../d3/d5c/namespaceph.html#af3d9a169aefd59566a65991df5db6dbda72c3464ac0d5bca4e97e120e36c213b2',1,'ph']]],
   ['numericexception_10',['NumericException',['../d7/da9/classph_1_1_numeric_exception.html',1,'ph']]],
-  ['numgroups_11',['numGroups',['../dc/de2/classph_1_1_log_groups.html#a8886dbbac3ce6a013c7808be24cb1874',1,'ph::LogGroups']]]
+  ['numgroups_11',['numGroups',['../dc/de2/classph_1_1_log_groups.html#a8886dbbac3ce6a013c7808be24cb1874',1,'ph::LogGroups']]],
+  ['numproperties_12',['numProperties',['../d7/d19/classph_1_1_ini_file.html#ac75614639cea431e79e2eba5187fa94f',1,'ph::IniFile']]],
+  ['numsections_13',['numSections',['../d7/d19/classph_1_1_ini_file.html#a43813ee4b9633de395088b2aa56506cd',1,'ph::IniFile']]]
 ];

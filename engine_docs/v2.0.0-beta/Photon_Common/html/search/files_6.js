@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['namespace_5fph_2edox_0',['namespace_ph.dox',['../dd/d5e/namespace__ph_8dox.html',1,'']]],
-  ['namespace_5fph_5fdetail_2edox_1',['namespace_ph_detail.dox',['../db/df8/namespace__ph__detail_8dox.html',1,'']]],
-  ['namespace_5fph_5fdetail_5fcore_5flogging_2edox_2',['namespace_ph_detail_core_logging.dox',['../da/dd4/namespace__ph__detail__core__logging_8dox.html',1,'']]],
-  ['namespace_5fph_5fstring_5futils_2edox_3',['namespace_ph_string_utils.dox',['../db/d9a/namespace__ph__string__utils_8dox.html',1,'']]]
+  ['math_5fbasics_2eh_0',['math_basics.h',['../d6/d93/math__basics_8h.html',1,'']]],
+  ['memory_2ecpp_1',['memory.cpp',['../d8/d71/memory_8cpp.html',1,'']]],
+  ['memory_2eh_2',['memory.h',['../dc/d18/memory_8h.html',1,'']]],
+  ['memory_2eipp_3',['memory.ipp',['../d2/d53/memory_8ipp.html',1,'']]]
 ];

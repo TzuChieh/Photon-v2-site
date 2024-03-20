@@ -9,7 +9,7 @@ var searchData=
   ['pempty_6',['PEmpty',['../d8/d2f/classph_1_1_p_empty.html',1,'ph']]],
   ['perdigitpermuter_7',['PerDigitPermuter',['../d4/daa/classph_1_1halton__detail_1_1_per_digit_permuter.html',1,'ph::halton_detail']]],
   ['periodicsinglethreadexecutor_8',['PeriodicSingleThreadExecutor',['../d9/d2d/classph_1_1_periodic_single_thread_executor.html',1,'ph']]],
-  ['pfmfilewriter_9',['PfmFileWriter',['../d5/dd4/classph_1_1_pfm_file_writer.html',1,'ph']]],
+  ['pfmfile_9',['PfmFile',['../d4/da3/classph_1_1_pfm_file.html',1,'ph']]],
   ['photoncentercalculator_10',['PhotonCenterCalculator',['../d5/d49/structph_1_1_t_photon_map_1_1_photon_center_calculator.html',1,'ph::TPhotonMap']]],
   ['photonmappingvisualizer_11',['PhotonMappingVisualizer',['../d2/d07/classph_1_1_photon_mapping_visualizer.html',1,'ph']]],
   ['physicalactor_12',['PhysicalActor',['../d3/d70/classph_1_1_physical_actor.html',1,'ph']]],

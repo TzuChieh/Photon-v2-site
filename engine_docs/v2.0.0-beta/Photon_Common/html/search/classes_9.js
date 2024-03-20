@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['scopedtimer_0',['ScopedTimer',['../d1/d32/structph_1_1detail_1_1stats_1_1_scoped_timer.html',1,'ph::detail::stats']]]
+  ['runtimeexception_0',['RuntimeException',['../d2/dd1/classph_1_1_runtime_exception.html',1,'ph']]]
 ];

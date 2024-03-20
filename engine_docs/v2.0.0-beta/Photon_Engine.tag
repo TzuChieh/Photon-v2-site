@@ -411,7 +411,6 @@
     <includes id="d9/de0/_g_indexed_triangle_mesh_8h" name="GIndexedTriangleMesh.h" local="yes" import="no" module="no" objc="no">Actor/Geometry/GIndexedTriangleMesh.h</includes>
     <includes id="d8/dd9/_ply_file_8h" name="PlyFile.h" local="yes" import="no" module="no" objc="no">DataIO/PlyFile.h</includes>
     <includes id="d4/d03/exceptions_8h" name="exceptions.h" local="yes" import="no" module="no" objc="no">Actor/Basic/exceptions.h</includes>
-    <includes id="dd/d5a/io__exceptions_8h" name="io_exceptions.h" local="yes" import="no" module="no" objc="no">DataIO/io_exceptions.h</includes>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
@@ -745,7 +744,6 @@
     <includes id="d6/d7d/_raster_file_image_8h" name="RasterFileImage.h" local="yes" import="no" module="no" objc="no">Actor/Image/RasterFileImage.h</includes>
     <includes id="d2/d6d/_t_frame_buffer2_d_8h" name="TFrameBuffer2D.h" local="yes" import="no" module="no" objc="no">Core/Texture/Pixel/TFrameBuffer2D.h</includes>
     <includes id="d1/de1/io__utils_8h" name="io_utils.h" local="yes" import="no" module="no" objc="no">DataIO/io_utils.h</includes>
-    <includes id="dd/d5a/io__exceptions_8h" name="io_exceptions.h" local="yes" import="no" module="no" objc="no">DataIO/io_exceptions.h</includes>
     <includes id="d4/d03/exceptions_8h" name="exceptions.h" local="yes" import="no" module="no" objc="no">Actor/Basic/exceptions.h</includes>
     <includes id="df/d87/_t_frame_8h" name="TFrame.h" local="yes" import="no" module="no" objc="no">Frame/TFrame.h</includes>
     <includes id="d5/d17/_t_numeric_pixel_texture2_d_8h" name="TNumericPixelTexture2D.h" local="yes" import="no" module="no" objc="no">Core/Texture/Pixel/TNumericPixelTexture2D.h</includes>
@@ -1755,7 +1753,6 @@
     <includes id="d8/d2e/_sdl_resource_locator_8h" name="SdlResourceLocator.h" local="yes" import="no" module="no" objc="no">SDL/SdlResourceLocator.h</includes>
     <includes id="da/d58/_sdl_input_context_8h" name="SdlInputContext.h" local="yes" import="no" module="no" objc="no">SDL/Introspect/SdlInputContext.h</includes>
     <includes id="d1/de1/io__utils_8h" name="io_utils.h" local="yes" import="no" module="no" objc="no">DataIO/io_utils.h</includes>
-    <includes id="dd/d5a/io__exceptions_8h" name="io_exceptions.h" local="yes" import="no" module="no" objc="no">DataIO/io_exceptions.h</includes>
     <includes id="d4/d8b/sdl__spectrum__io_8h" name="sdl_spectrum_io.h" local="yes" import="no" module="no" objc="no">Actor/SDLExtension/sdl_spectrum_io.h</includes>
     <includes id="d6/d35/sdl__color__enums_8h" name="sdl_color_enums.h" local="yes" import="no" module="no" objc="no">Actor/SDLExtension/sdl_color_enums.h</includes>
     <class kind="class">ph::TSdlSpectrum</class>
@@ -1798,6 +1795,13 @@
     <path>Source/Api/</path>
     <filename>d6/deb/_e_engine_project_8cpp.html</filename>
     <includes id="d7/ddc/_e_engine_project_8h" name="EEngineProject.h" local="yes" import="no" module="no" objc="no">EEngineProject.h</includes>
+    <namespace>ph</namespace>
+  </compound>
+  <compound kind="file">
+    <name>EngineInitSettings.cpp</name>
+    <path>Source/Api/</path>
+    <filename>d2/d9a/_engine_init_settings_8cpp.html</filename>
+    <includes id="d1/dd0/_engine_init_settings_8h" name="EngineInitSettings.h" local="yes" import="no" module="no" objc="no">EngineInitSettings.h</includes>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
@@ -6322,7 +6326,6 @@
     <filename>da/dad/_filesystem_8cpp.html</filename>
     <includes id="db/d1b/_filesystem_8h" name="Filesystem.h" local="yes" import="no" module="no" objc="no">DataIO/FileSystem/Filesystem.h</includes>
     <includes id="db/d36/_path_8h" name="Path.h" local="yes" import="no" module="no" objc="no">DataIO/FileSystem/Path.h</includes>
-    <includes id="dd/d5a/io__exceptions_8h" name="io_exceptions.h" local="yes" import="no" module="no" objc="no">DataIO/io_exceptions.h</includes>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
@@ -6394,45 +6397,17 @@
     </member>
   </compound>
   <compound kind="file">
-    <name>IniFile.cpp</name>
-    <path>Source/DataIO/</path>
-    <filename>d9/d58/_ini_file_8cpp.html</filename>
-    <includes id="d1/df9/_ini_file_8h" name="IniFile.h" local="yes" import="no" module="no" objc="no">DataIO/IniFile.h</includes>
-    <includes id="dd/d5a/io__exceptions_8h" name="io_exceptions.h" local="yes" import="no" module="no" objc="no">DataIO/io_exceptions.h</includes>
-    <includes id="d1/ddd/_formatted_text_input_stream_8h" name="FormattedTextInputStream.h" local="yes" import="no" module="no" objc="no">DataIO/Stream/FormattedTextInputStream.h</includes>
-    <includes id="dd/df8/_formatted_text_output_stream_8h" name="FormattedTextOutputStream.h" local="yes" import="no" module="no" objc="no">DataIO/Stream/FormattedTextOutputStream.h</includes>
-    <namespace>ph</namespace>
-  </compound>
-  <compound kind="file">
-    <name>IniFile.h</name>
-    <path>Source/DataIO/</path>
-    <filename>d1/df9/_ini_file_8h.html</filename>
-    <includes id="db/d36/_path_8h" name="Path.h" local="yes" import="no" module="no" objc="no">DataIO/FileSystem/Path.h</includes>
-    <class kind="class">ph::IniFile</class>
-    <namespace>ph</namespace>
-  </compound>
-  <compound kind="file">
-    <name>io_exceptions.h</name>
-    <path>Source/DataIO/</path>
-    <filename>dd/d5a/io__exceptions_8h.html</filename>
-    <class kind="class">ph::IOException</class>
-    <class kind="class">ph::FileIOError</class>
-    <class kind="class">ph::FilesystemError</class>
-    <namespace>ph</namespace>
-  </compound>
-  <compound kind="file">
     <name>io_utils.cpp</name>
     <path>Source/DataIO/</path>
     <filename>d3/dc4/io__utils_8cpp.html</filename>
     <includes id="d1/de1/io__utils_8h" name="io_utils.h" local="yes" import="no" module="no" objc="no">DataIO/io_utils.h</includes>
-    <includes id="dd/d5a/io__exceptions_8h" name="io_exceptions.h" local="yes" import="no" module="no" objc="no">DataIO/io_exceptions.h</includes>
     <includes id="d8/d50/_exr_file_reader_8h" name="ExrFileReader.h" local="yes" import="no" module="no" objc="no">DataIO/EXR/ExrFileReader.h</includes>
     <includes id="d8/d63/_exr_file_writer_8h" name="ExrFileWriter.h" local="yes" import="no" module="no" objc="no">DataIO/EXR/ExrFileWriter.h</includes>
     <includes id="dd/d6a/frame__utils_8h" name="frame_utils.h" local="yes" import="no" module="no" objc="no">Frame/frame_utils.h</includes>
     <includes id="da/dae/_regular_picture_8h" name="RegularPicture.h" local="yes" import="no" module="no" objc="no">Frame/RegularPicture.h</includes>
     <includes id="da/d80/_picture_meta_8h" name="PictureMeta.h" local="yes" import="no" module="no" objc="no">Frame/PictureMeta.h</includes>
     <includes id="db/d36/_path_8h" name="Path.h" local="yes" import="no" module="no" objc="no">DataIO/FileSystem/Path.h</includes>
-    <includes id="d1/db9/_pfm_file_writer_8h" name="PfmFileWriter.h" local="yes" import="no" module="no" objc="no">DataIO/PfmFileWriter.h</includes>
+    <includes id="dc/d3a/_pfm_file_8h" name="PfmFile.h" local="yes" import="no" module="no" objc="no">DataIO/PfmFile.h</includes>
     <includes id="d9/dfb/_t_vector2_8h" name="TVector2.h" local="yes" import="no" module="no" objc="no">Math/TVector2.h</includes>
     <includes id="de/d20/sdl__picture__file__type_8h" name="sdl_picture_file_type.h" local="yes" import="no" module="no" objc="no">DataIO/sdl_picture_file_type.h</includes>
     <includes id="d6/d6c/_byte_buffer_8h" name="ByteBuffer.h" local="yes" import="no" module="no" objc="no">Utility/ByteBuffer.h</includes>
@@ -6537,22 +6512,22 @@
     </member>
   </compound>
   <compound kind="file">
-    <name>PfmFileWriter.cpp</name>
+    <name>PfmFile.cpp</name>
     <path>Source/DataIO/</path>
-    <filename>d1/d74/_pfm_file_writer_8cpp.html</filename>
-    <includes id="d1/db9/_pfm_file_writer_8h" name="PfmFileWriter.h" local="yes" import="no" module="no" objc="no">DataIO/PfmFileWriter.h</includes>
+    <filename>db/d60/_pfm_file_8cpp.html</filename>
+    <includes id="dc/d3a/_pfm_file_8h" name="PfmFile.h" local="yes" import="no" module="no" objc="no">DataIO/PfmFile.h</includes>
+    <includes id="db/d36/_path_8h" name="Path.h" local="yes" import="no" module="no" objc="no">DataIO/FileSystem/Path.h</includes>
+    <includes id="d4/dcf/_binary_file_input_stream_8h" name="BinaryFileInputStream.h" local="yes" import="no" module="no" objc="no">DataIO/Stream/BinaryFileInputStream.h</includes>
     <includes id="d1/d55/_binary_file_output_stream_8h" name="BinaryFileOutputStream.h" local="yes" import="no" module="no" objc="no">DataIO/Stream/BinaryFileOutputStream.h</includes>
     <includes id="d5/d47/utility_8h" name="utility.h" local="yes" import="no" module="no" objc="no">Utility/utility.h</includes>
-    <includes id="dd/d5a/io__exceptions_8h" name="io_exceptions.h" local="yes" import="no" module="no" objc="no">DataIO/io_exceptions.h</includes>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
-    <name>PfmFileWriter.h</name>
+    <name>PfmFile.h</name>
     <path>Source/DataIO/</path>
-    <filename>d1/db9/_pfm_file_writer_8h.html</filename>
-    <includes id="db/d36/_path_8h" name="Path.h" local="yes" import="no" module="no" objc="no">DataIO/FileSystem/Path.h</includes>
+    <filename>dc/d3a/_pfm_file_8h.html</filename>
     <includes id="df/d87/_t_frame_8h" name="TFrame.h" local="yes" import="no" module="no" objc="no">Frame/TFrame.h</includes>
-    <class kind="class">ph::PfmFileWriter</class>
+    <class kind="class">ph::PfmFile</class>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
@@ -6562,7 +6537,6 @@
     <includes id="d8/dd9/_ply_file_8h" name="PlyFile.h" local="yes" import="no" module="no" objc="no">DataIO/PlyFile.h</includes>
     <includes id="d4/dcf/_binary_file_input_stream_8h" name="BinaryFileInputStream.h" local="yes" import="no" module="no" objc="no">DataIO/Stream/BinaryFileInputStream.h</includes>
     <includes id="d4/d70/_byte_buffer_input_stream_8h" name="ByteBufferInputStream.h" local="yes" import="no" module="no" objc="no">DataIO/Stream/ByteBufferInputStream.h</includes>
-    <includes id="dd/d5a/io__exceptions_8h" name="io_exceptions.h" local="yes" import="no" module="no" objc="no">DataIO/io_exceptions.h</includes>
     <includes id="d5/d47/utility_8h" name="utility.h" local="yes" import="no" module="no" objc="no">Utility/utility.h</includes>
     <namespace>ph</namespace>
   </compound>
@@ -6602,6 +6576,7 @@
     <filename>d4/dcf/_binary_file_input_stream_8h.html</filename>
     <includes id="d4/d81/_std_input_stream_8h" name="StdInputStream.h" local="yes" import="no" module="no" objc="no">DataIO/Stream/StdInputStream.h</includes>
     <includes id="db/d36/_path_8h" name="Path.h" local="yes" import="no" module="no" objc="no">DataIO/FileSystem/Path.h</includes>
+    <includes id="dd/da2/_t_span_8h" name="TSpan.h" local="yes" import="no" module="no" objc="no">Utility/TSpan.h</includes>
     <class kind="class">ph::BinaryFileInputStream</class>
     <namespace>ph</namespace>
   </compound>
@@ -6618,6 +6593,7 @@
     <filename>d1/d55/_binary_file_output_stream_8h.html</filename>
     <includes id="d5/db5/_std_output_stream_8h" name="StdOutputStream.h" local="yes" import="no" module="no" objc="no">DataIO/Stream/StdOutputStream.h</includes>
     <includes id="db/d36/_path_8h" name="Path.h" local="yes" import="no" module="no" objc="no">DataIO/FileSystem/Path.h</includes>
+    <includes id="dd/da2/_t_span_8h" name="TSpan.h" local="yes" import="no" module="no" objc="no">Utility/TSpan.h</includes>
     <class kind="class">ph::BinaryFileOutputStream</class>
     <namespace>ph</namespace>
   </compound>
@@ -6633,7 +6609,6 @@
     <path>Source/DataIO/Stream/</path>
     <filename>d4/d70/_byte_buffer_input_stream_8h.html</filename>
     <includes id="da/d36/_i_input_stream_8h" name="IInputStream.h" local="yes" import="no" module="no" objc="no">DataIO/Stream/IInputStream.h</includes>
-    <includes id="dd/d5a/io__exceptions_8h" name="io_exceptions.h" local="yes" import="no" module="no" objc="no">DataIO/io_exceptions.h</includes>
     <class kind="class">ph::ByteBufferInputStream</class>
     <namespace>ph</namespace>
   </compound>
@@ -6650,7 +6625,6 @@
     <path>Source/DataIO/Stream/</path>
     <filename>db/ded/_formatted_text_input_stream_8cpp.html</filename>
     <includes id="d1/ddd/_formatted_text_input_stream_8h" name="FormattedTextInputStream.h" local="yes" import="no" module="no" objc="no">DataIO/Stream/FormattedTextInputStream.h</includes>
-    <includes id="dd/d5a/io__exceptions_8h" name="io_exceptions.h" local="yes" import="no" module="no" objc="no">DataIO/io_exceptions.h</includes>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
@@ -6667,7 +6641,6 @@
     <path>Source/DataIO/Stream/</path>
     <filename>df/d93/_formatted_text_output_stream_8cpp.html</filename>
     <includes id="dd/df8/_formatted_text_output_stream_8h" name="FormattedTextOutputStream.h" local="yes" import="no" module="no" objc="no">DataIO/Stream/FormattedTextOutputStream.h</includes>
-    <includes id="dd/d5a/io__exceptions_8h" name="io_exceptions.h" local="yes" import="no" module="no" objc="no">DataIO/io_exceptions.h</includes>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
@@ -6707,7 +6680,6 @@
     <path>Source/DataIO/Stream/</path>
     <filename>de/d16/_std_input_stream_8cpp.html</filename>
     <includes id="d4/d81/_std_input_stream_8h" name="StdInputStream.h" local="yes" import="no" module="no" objc="no">DataIO/Stream/StdInputStream.h</includes>
-    <includes id="dd/d5a/io__exceptions_8h" name="io_exceptions.h" local="yes" import="no" module="no" objc="no">DataIO/io_exceptions.h</includes>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
@@ -6724,7 +6696,6 @@
     <path>Source/DataIO/Stream/</path>
     <filename>d5/dbf/_std_output_stream_8cpp.html</filename>
     <includes id="d5/db5/_std_output_stream_8h" name="StdOutputStream.h" local="yes" import="no" module="no" objc="no">DataIO/Stream/StdOutputStream.h</includes>
-    <includes id="dd/d5a/io__exceptions_8h" name="io_exceptions.h" local="yes" import="no" module="no" objc="no">DataIO/io_exceptions.h</includes>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
@@ -9816,7 +9787,6 @@
     <includes id="d8/d2e/_sdl_resource_locator_8h" name="SdlResourceLocator.h" local="yes" import="no" module="no" objc="no">SDL/SdlResourceLocator.h</includes>
     <includes id="da/d58/_sdl_input_context_8h" name="SdlInputContext.h" local="yes" import="no" module="no" objc="no">SDL/Introspect/SdlInputContext.h</includes>
     <includes id="d1/de1/io__utils_8h" name="io_utils.h" local="yes" import="no" module="no" objc="no">DataIO/io_utils.h</includes>
-    <includes id="dd/d5a/io__exceptions_8h" name="io_exceptions.h" local="yes" import="no" module="no" objc="no">DataIO/io_exceptions.h</includes>
     <class kind="class">ph::TSdlRealArray</class>
     <namespace>ph</namespace>
   </compound>
@@ -12661,8 +12631,15 @@
       <type>void</type>
       <name>readData</name>
       <anchorfile>d3/dd8/classph_1_1_binary_file_input_stream.html</anchorfile>
-      <anchor>af27e17c9669dc6586a015acc99cff01e</anchor>
+      <anchor>ae869aa67c72a207d9a929b29b5c3c978</anchor>
       <arglist>(T *out_data)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>readData</name>
+      <anchorfile>d3/dd8/classph_1_1_binary_file_input_stream.html</anchorfile>
+      <anchor>a1faed1ca2dd7da2a4aef2d3758f00dd5</anchor>
+      <arglist>(TSpan&lt; T &gt; out_data)</arglist>
     </member>
     <member kind="function">
       <type>std::optional&lt; std::size_t &gt;</type>
@@ -12708,8 +12685,15 @@
       <type>void</type>
       <name>writeData</name>
       <anchorfile>d3/daf/classph_1_1_binary_file_output_stream.html</anchorfile>
-      <anchor>a02a519327699b35ed8694dafad239f52</anchor>
+      <anchor>ad3ac7d10100bfc121416e3c4c21fa825</anchor>
       <arglist>(const T *data)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>writeData</name>
+      <anchorfile>d3/daf/classph_1_1_binary_file_output_stream.html</anchorfile>
+      <anchor>a5f53670956c1242a6377fa4c24507821</anchor>
+      <arglist>(TSpanView&lt; T &gt; data)</arglist>
     </member>
     <member kind="function">
       <type>BinaryFileOutputStream &amp;</type>
@@ -16240,6 +16224,34 @@
   <compound kind="class">
     <name>ph::EngineInitSettings</name>
     <filename>d4/d87/classph_1_1_engine_init_settings.html</filename>
+    <member kind="function">
+      <type>bool</type>
+      <name>tryLoad</name>
+      <anchorfile>d4/d87/classph_1_1_engine_init_settings.html</anchorfile>
+      <anchor>a4fd3c37e0820469fc2d7674676834fa0</anchor>
+      <arglist>(const std::string &amp;settingsFile)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>load</name>
+      <anchorfile>d4/d87/classph_1_1_engine_init_settings.html</anchorfile>
+      <anchor>a8cca1309d6c14db4a30385b41129867f</anchor>
+      <arglist>(const std::string &amp;settingsFile)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>save</name>
+      <anchorfile>d4/d87/classph_1_1_engine_init_settings.html</anchorfile>
+      <anchor>a4cb66a95d48c3febd3d2873a2934e4a8</anchor>
+      <arglist>(const std::string &amp;settingsFile) const</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static EngineInitSettings</type>
+      <name>loadStandardConfig</name>
+      <anchorfile>d4/d87/classph_1_1_engine_init_settings.html</anchorfile>
+      <anchor>a343aa929d1ce7dcd4eab1b104d0bc810</anchor>
+      <arglist>()</arglist>
+    </member>
     <member kind="variable">
       <type>std::vector&lt; LogHandler &gt;</type>
       <name>additionalLogHandlers</name>
@@ -16541,39 +16553,6 @@
     </member>
   </compound>
   <compound kind="class">
-    <name>ph::FileIOError</name>
-    <filename>d6/d6d/classph_1_1_file_i_o_error.html</filename>
-    <base>ph::IOException</base>
-    <member kind="function">
-      <type></type>
-      <name>FileIOError</name>
-      <anchorfile>d6/d6d/classph_1_1_file_i_o_error.html</anchorfile>
-      <anchor>a4323745c93031dc604132631e7a0cd42</anchor>
-      <arglist>(const std::string &amp;message)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>FileIOError</name>
-      <anchorfile>d6/d6d/classph_1_1_file_i_o_error.html</anchorfile>
-      <anchor>a9541990f30bdbd25cabf675bf710d501</anchor>
-      <arglist>(const char *message)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>FileIOError</name>
-      <anchorfile>d6/d6d/classph_1_1_file_i_o_error.html</anchorfile>
-      <anchor>acb870a1f13bd303a6fc373818e10d253</anchor>
-      <arglist>(const std::string &amp;message, std::string filename)</arglist>
-    </member>
-    <member kind="function">
-      <type>std::string</type>
-      <name>whatStr</name>
-      <anchorfile>d6/d6d/classph_1_1_file_i_o_error.html</anchorfile>
-      <anchor>a00908e5911de6c0b35ecf4528adb2658</anchor>
-      <arglist>() const override</arglist>
-    </member>
-  </compound>
-  <compound kind="class">
     <name>ph::Filesystem</name>
     <filename>d3/daf/classph_1_1_filesystem.html</filename>
     <member kind="function" static="yes">
@@ -16631,46 +16610,6 @@
       <anchorfile>d3/daf/classph_1_1_filesystem.html</anchorfile>
       <anchor>a55247b6427f0a3fe99fa2c19654aa941</anchor>
       <arglist>(const Path &amp;src, const Path &amp;base)</arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>ph::FilesystemError</name>
-    <filename>d7/d1a/classph_1_1_filesystem_error.html</filename>
-    <base>ph::IOException</base>
-    <member kind="function">
-      <type></type>
-      <name>FilesystemError</name>
-      <anchorfile>d7/d1a/classph_1_1_filesystem_error.html</anchorfile>
-      <anchor>a29bbad5f66b10dd01230780e0fdada20</anchor>
-      <arglist>(std::error_code errorCode)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>FilesystemError</name>
-      <anchorfile>d7/d1a/classph_1_1_filesystem_error.html</anchorfile>
-      <anchor>aa816b24b78c6ebdf56bdc4e47bd85c5b</anchor>
-      <arglist>(const std::string &amp;message, std::error_code errorCode)</arglist>
-    </member>
-    <member kind="function">
-      <type>std::string</type>
-      <name>whatStr</name>
-      <anchorfile>d7/d1a/classph_1_1_filesystem_error.html</anchorfile>
-      <anchor>a38d172ffac0dd657980b27bc0e11180c</anchor>
-      <arglist>() const override</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>IOException</name>
-      <anchorfile>d7/d1a/classph_1_1_filesystem_error.html</anchorfile>
-      <anchor>a35b0e5229196ec0ed234b8e4a8a0cf73</anchor>
-      <arglist>(const std::string &amp;message)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>IOException</name>
-      <anchorfile>d7/d1a/classph_1_1_filesystem_error.html</anchorfile>
-      <anchor>a059a3b43745c4889683c79b553217720</anchor>
-      <arglist>(const char *message)</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -19606,136 +19545,6 @@
     </member>
   </compound>
   <compound kind="class">
-    <name>ph::IniFile</name>
-    <filename>d7/d19/classph_1_1_ini_file.html</filename>
-    <member kind="function">
-      <type></type>
-      <name>IniFile</name>
-      <anchorfile>d7/d19/classph_1_1_ini_file.html</anchorfile>
-      <anchor>a9c856af2782405f539b3e3598e45c2e8</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>IniFile</name>
-      <anchorfile>d7/d19/classph_1_1_ini_file.html</anchorfile>
-      <anchor>af71af7d73b210472ccb2c9633c048236</anchor>
-      <arglist>(const Path &amp;iniFilePath)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>save</name>
-      <anchorfile>d7/d19/classph_1_1_ini_file.html</anchorfile>
-      <anchor>a56c4597d0f51d9ed6bfd3e1b2b2da9f0</anchor>
-      <arglist>(const Path &amp;iniFilePath)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>clear</name>
-      <anchorfile>d7/d19/classph_1_1_ini_file.html</anchorfile>
-      <anchor>a9b0fbdf4bdf8489e43835db99b1218fb</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>std::size_t</type>
-      <name>numSections</name>
-      <anchorfile>d7/d19/classph_1_1_ini_file.html</anchorfile>
-      <anchor>a43813ee4b9633de395088b2aa56506cd</anchor>
-      <arglist>() const</arglist>
-    </member>
-    <member kind="function">
-      <type>std::string_view</type>
-      <name>getSectionName</name>
-      <anchorfile>d7/d19/classph_1_1_ini_file.html</anchorfile>
-      <anchor>a92653e03f92f779bdcb8e0949b10d6f1</anchor>
-      <arglist>(std::size_t sectionIdx) const</arglist>
-    </member>
-    <member kind="function">
-      <type>std::string_view</type>
-      <name>getCurrentSectionName</name>
-      <anchorfile>d7/d19/classph_1_1_ini_file.html</anchorfile>
-      <anchor>a26a80b6fc9858a01bc5838b5eb4adb2f</anchor>
-      <arglist>() const</arglist>
-    </member>
-    <member kind="function">
-      <type>std::optional&lt; std::size_t &gt;</type>
-      <name>findSectionIndex</name>
-      <anchorfile>d7/d19/classph_1_1_ini_file.html</anchorfile>
-      <anchor>a0f898d59858cc3f54456f8fa9bc0b3ae</anchor>
-      <arglist>(std::string_view sectionName) const</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>setCurrentSection</name>
-      <anchorfile>d7/d19/classph_1_1_ini_file.html</anchorfile>
-      <anchor>a198ca08733e96805d97f6ddc388e6a48</anchor>
-      <arglist>(std::size_t sectionIdx)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>setCurrentSection</name>
-      <anchorfile>d7/d19/classph_1_1_ini_file.html</anchorfile>
-      <anchor>a28485d20edd79829098cc456104a90c3</anchor>
-      <arglist>(std::string_view sectionName, bool createIfNotExist=true)</arglist>
-    </member>
-    <member kind="function">
-      <type>std::size_t</type>
-      <name>numProperties</name>
-      <anchorfile>d7/d19/classph_1_1_ini_file.html</anchorfile>
-      <anchor>ac75614639cea431e79e2eba5187fa94f</anchor>
-      <arglist>() const</arglist>
-    </member>
-    <member kind="function">
-      <type>std::string_view</type>
-      <name>getPropertyName</name>
-      <anchorfile>d7/d19/classph_1_1_ini_file.html</anchorfile>
-      <anchor>a8f4bf4663c58e07cbf47c753aedd54af</anchor>
-      <arglist>(std::size_t propertyIdx) const</arglist>
-    </member>
-    <member kind="function">
-      <type>std::string_view</type>
-      <name>getPropertyValue</name>
-      <anchorfile>d7/d19/classph_1_1_ini_file.html</anchorfile>
-      <anchor>a13f63998cd251748e5d40d8f24487f72</anchor>
-      <arglist>(std::size_t propertyIdx) const</arglist>
-    </member>
-    <member kind="function">
-      <type>std::optional&lt; std::size_t &gt;</type>
-      <name>findPropertyIndex</name>
-      <anchorfile>d7/d19/classph_1_1_ini_file.html</anchorfile>
-      <anchor>a7022649ed49c040c3b4f9ee54edec5ba</anchor>
-      <arglist>(std::string_view propertyName) const</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>setProperty</name>
-      <anchorfile>d7/d19/classph_1_1_ini_file.html</anchorfile>
-      <anchor>aeed0c8de9266857a88d68c7582424aed</anchor>
-      <arglist>(std::size_t propertyIdx, std::string_view propertyValue)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>setProperty</name>
-      <anchorfile>d7/d19/classph_1_1_ini_file.html</anchorfile>
-      <anchor>a20cc458a35750e0631ce3f2a0490275e</anchor>
-      <arglist>(std::string_view propertyName, std::string_view propertyValue, bool createIfNotExist=true)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>append</name>
-      <anchorfile>d7/d19/classph_1_1_ini_file.html</anchorfile>
-      <anchor>aae7cb1d8586f85269731db6b49a86e31</anchor>
-      <arglist>(const IniFile &amp;other)</arglist>
-    </member>
-    <member kind="function" static="yes">
-      <type>static IniFile</type>
-      <name>read</name>
-      <anchorfile>d7/d19/classph_1_1_ini_file.html</anchorfile>
-      <anchor>a8c9f876d8d7913d8d81c2c7250957695</anchor>
-      <arglist>(const Path &amp;iniFilePath)</arglist>
-    </member>
-  </compound>
-  <compound kind="class">
     <name>ph::InitiallyPausedThread</name>
     <filename>df/da8/classph_1_1_initially_paused_thread.html</filename>
     <base protection="private">ph::IMoveOnly</base>
@@ -20050,24 +19859,6 @@
       <anchorfile>db/d54/classph_1_1_intersector.html</anchorfile>
       <anchor>a2491abaf0c5c0766137e460098804f20</anchor>
       <arglist>(const Ray &amp;ray, HitProbe &amp;probe, HitDetail *out_detail) const override</arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>ph::IOException</name>
-    <filename>db/d5e/classph_1_1_i_o_exception.html</filename>
-    <member kind="function">
-      <type></type>
-      <name>IOException</name>
-      <anchorfile>db/d5e/classph_1_1_i_o_exception.html</anchorfile>
-      <anchor>a35b0e5229196ec0ed234b8e4a8a0cf73</anchor>
-      <arglist>(const std::string &amp;message)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>IOException</name>
-      <anchorfile>db/d5e/classph_1_1_i_o_exception.html</anchorfile>
-      <anchor>a059a3b43745c4889683c79b553217720</anchor>
-      <arglist>(const char *message)</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -22686,21 +22477,56 @@
     </member>
   </compound>
   <compound kind="class">
-    <name>ph::PfmFileWriter</name>
-    <filename>d5/dd4/classph_1_1_pfm_file_writer.html</filename>
+    <name>ph::PfmFile</name>
+    <filename>d4/da3/classph_1_1_pfm_file.html</filename>
     <member kind="function">
       <type></type>
-      <name>PfmFileWriter</name>
-      <anchorfile>d5/dd4/classph_1_1_pfm_file_writer.html</anchorfile>
-      <anchor>a2107c88ecced2287a17ffdfa048a0067</anchor>
+      <name>PfmFile</name>
+      <anchorfile>d4/da3/classph_1_1_pfm_file.html</anchorfile>
+      <anchor>a95f92e9c6078483aa8854c911fa30a47</anchor>
+      <arglist>()=default</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>PfmFile</name>
+      <anchorfile>d4/da3/classph_1_1_pfm_file.html</anchorfile>
+      <anchor>afe246de55261711d29bcd5e84ace304a</anchor>
+      <arglist>(const TFrame&lt; float32, 3 &gt; &amp;colorFrame)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>copy</name>
+      <anchorfile>d4/da3/classph_1_1_pfm_file.html</anchorfile>
+      <anchor>aea07babd259b01f3044ee2ad5379e2af</anchor>
+      <arglist>(const TFrame&lt; float32, 3 &gt; &amp;colorFrame)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>load</name>
+      <anchorfile>d4/da3/classph_1_1_pfm_file.html</anchorfile>
+      <anchor>a035b8be89482e1b26a65b67ee4e4e935</anchor>
       <arglist>(const Path &amp;filePath)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>save</name>
-      <anchorfile>d5/dd4/classph_1_1_pfm_file_writer.html</anchorfile>
-      <anchor>ad2e0fa07aa38638d43923751f44d7e79</anchor>
-      <arglist>(const HdrRgbFrame &amp;frame)</arglist>
+      <anchorfile>d4/da3/classph_1_1_pfm_file.html</anchorfile>
+      <anchor>a5e336ff1d21e5df20f40c92eca82b692</anchor>
+      <arglist>(const Path &amp;filePath) const</arglist>
+    </member>
+    <member kind="function">
+      <type>const TFrame&lt; float32, 3 &gt; &amp;</type>
+      <name>getColorFrame</name>
+      <anchorfile>d4/da3/classph_1_1_pfm_file.html</anchorfile>
+      <anchor>ae0adfe361f77d592c905875ff539a5c9</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>isMonochromatic</name>
+      <anchorfile>d4/da3/classph_1_1_pfm_file.html</anchorfile>
+      <anchor>a6ebb26c9535e40b6c0651052b823a082</anchor>
+      <arglist>() const</arglist>
     </member>
   </compound>
   <compound kind="struct">
@@ -47909,9 +47735,7 @@
     <class kind="class">ph::ExactDielectricFresnel</class>
     <class kind="class">ph::ExrFileReader</class>
     <class kind="class">ph::ExrFileWriter</class>
-    <class kind="class">ph::FileIOError</class>
     <class kind="class">ph::Filesystem</class>
-    <class kind="class">ph::FilesystemError</class>
     <class kind="class">ph::Film</class>
     <class kind="class">ph::FilteredInputStream</class>
     <class kind="class">ph::FixedSizeThreadPool</class>
@@ -47966,14 +47790,12 @@
     <class kind="class">ph::IndexedTriMesh</class>
     <class kind="class">ph::IndexedUIntBuffer</class>
     <class kind="class">ph::IndexedVertexBuffer</class>
-    <class kind="class">ph::IniFile</class>
     <class kind="class">ph::InitiallyPausedThread</class>
     <class kind="class">ph::INoCopyAndMove</class>
     <class kind="class">ph::Integrand</class>
     <class kind="class">ph::InterfaceStatistics</class>
     <class kind="class">ph::Intersectable</class>
     <class kind="class">ph::Intersector</class>
-    <class kind="class">ph::IOException</class>
     <class kind="class">ph::IOutputStream</class>
     <class kind="class">ph::IRayEnergyEstimator</class>
     <class kind="class">ph::IReceivedRayProcessor</class>
@@ -48028,7 +47850,7 @@
     <class kind="class">ph::PBasicSphere</class>
     <class kind="class">ph::PEmpty</class>
     <class kind="class">ph::PeriodicSingleThreadExecutor</class>
-    <class kind="class">ph::PfmFileWriter</class>
+    <class kind="class">ph::PfmFile</class>
     <class kind="class">ph::PhotonMappingVisualizer</class>
     <class kind="class">ph::PhysicalActor</class>
     <class kind="class">ph::PictureData</class>
@@ -49406,6 +49228,20 @@
       <arglist>(EEngineProject project)</arglist>
     </member>
     <member kind="function">
+      <type>std::string_view</type>
+      <name>refine_mode_to_str</name>
+      <anchorfile>d3/d5c/namespaceph.html</anchorfile>
+      <anchor>ad926da1f841759aaceaf4e0a01728cce</anchor>
+      <arglist>(const ESurfaceRefineMode mode)</arglist>
+    </member>
+    <member kind="function">
+      <type>ESurfaceRefineMode</type>
+      <name>str_to_refine_mode</name>
+      <anchorfile>d3/d5c/namespaceph.html</anchorfile>
+      <anchor>a8068f447441136ef3344aca3d8f23f4c</anchor>
+      <arglist>(std::string_view mode)</arglist>
+    </member>
+    <member kind="function">
       <type>bool</type>
       <name>init_render_engine</name>
       <anchorfile>d3/d5c/namespaceph.html</anchorfile>
@@ -50011,15 +49847,8 @@
       <type></type>
       <name>PH_DEFINE_INTERNAL_LOG_GROUP</name>
       <anchorfile>d3/d5c/namespaceph.html</anchorfile>
-      <anchor>a15d03e9709f0daed28cc043775c2222a</anchor>
-      <arglist>(IniFile, DataIO)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>PH_DEFINE_INTERNAL_LOG_GROUP</name>
-      <anchorfile>d3/d5c/namespaceph.html</anchorfile>
-      <anchor>a33ee0e8a11163a7b1f52e37eb64d9fca</anchor>
-      <arglist>(PfmFileWriter, DataIO)</arglist>
+      <anchor>a130911a0b30e47cad029871990eae72c</anchor>
+      <arglist>(PfmFile, DataIO)</arglist>
     </member>
     <member kind="function">
       <type></type>
@@ -50351,10 +50180,10 @@
       <arglist>(const Source &amp;source)</arglist>
     </member>
     <member kind="function">
-      <type>bool</type>
+      <type>consteval bool</type>
       <name>is_big_endian</name>
       <anchorfile>d3/d5c/namespaceph.html</anchorfile>
-      <anchor>a9225322648443d9d704158c967ecc371</anchor>
+      <anchor>a6c349a68b88d7c9de75e72be90894a84</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">

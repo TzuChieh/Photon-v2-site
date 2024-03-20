@@ -148,7 +148,6 @@ var hierarchy =
     ] ],
     [ "ph::IndexedUIntBuffer", "d4/d0e/classph_1_1_indexed_u_int_buffer.html", null ],
     [ "ph::IndexedVertexBuffer", "d5/d6b/classph_1_1_indexed_vertex_buffer.html", null ],
-    [ "ph::IniFile", "d7/d19/classph_1_1_ini_file.html", null ],
     [ "ph::INoCopyAndMove", "d2/d79/classph_1_1_i_no_copy_and_move.html", [
       [ "ph::CookedResourceCollectionBase", "d5/d6d/classph_1_1_cooked_resource_collection_base.html", [
         [ "ph::CookedResourceCollection", "d6/d6b/classph_1_1_cooked_resource_collection.html", null ],
@@ -397,7 +396,7 @@ var hierarchy =
     [ "ph::math::detail::Pcg64UInt128", "df/d59/classph_1_1math_1_1detail_1_1_pcg64_u_int128.html", null ],
     [ "ph::halton_detail::PerDigitPermuter", "d4/daa/classph_1_1halton__detail_1_1_per_digit_permuter.html", null ],
     [ "ph::PeriodicSingleThreadExecutor", "d9/d2d/classph_1_1_periodic_single_thread_executor.html", null ],
-    [ "ph::PfmFileWriter", "d5/dd4/classph_1_1_pfm_file_writer.html", null ],
+    [ "ph::PfmFile", "d4/da3/classph_1_1_pfm_file.html", null ],
     [ "ph::TPhotonMap< Photon, PhotonStorage >::PhotonCenterCalculator", "d5/d49/structph_1_1_t_photon_map_1_1_photon_center_calculator.html", null ],
     [ "ph::PictureData", "dd/d8d/classph_1_1_picture_data.html", null ],
     [ "ph::PictureMeta", "d3/dd0/classph_1_1_picture_meta.html", null ],
@@ -469,10 +468,6 @@ var hierarchy =
     [ "RuntimeException", null, [
       [ "ph::CookException", "d4/dbc/classph_1_1_cook_exception.html", [
         [ "ph::ActorCookException", "d1/d73/classph_1_1_actor_cook_exception.html", null ]
-      ] ],
-      [ "ph::IOException", "db/d5e/classph_1_1_i_o_exception.html", [
-        [ "ph::FileIOError", "d6/d6d/classph_1_1_file_i_o_error.html", null ],
-        [ "ph::FilesystemError", "d7/d1a/classph_1_1_filesystem_error.html", null ]
       ] ],
       [ "ph::SdlException", "d1/d79/classph_1_1_sdl_exception.html", [
         [ "ph::SdlLoadError", "d5/d0b/classph_1_1_sdl_load_error.html", null ],
@@ -733,6 +728,7 @@ var hierarchy =
     [ "ph::TFixedMapEntry< KeyType, KEY_VAL, ValueType >", "d9/d35/classph_1_1_t_fixed_map_entry.html", null ],
     [ "ph::math::TFraction< T >", "d2/d55/classph_1_1math_1_1_t_fraction.html", null ],
     [ "ph::TFrame< T, N >", "d0/d75/classph_1_1_t_frame.html", null ],
+    [ "ph::TFrame< float32, 3 >", "d0/d75/classph_1_1_t_frame.html", null ],
     [ "ph::TFrame< HdrComponent, 3 >", "d0/d75/classph_1_1_t_frame.html", null ],
     [ "ph::TFrame< uint64, 1 >", "d0/d75/classph_1_1_t_frame.html", null ],
     [ "ph::function_detail::TFunction< T, MIN_SIZE_HINT >", "df/df5/classph_1_1function__detail_1_1_t_function.html", null ],
