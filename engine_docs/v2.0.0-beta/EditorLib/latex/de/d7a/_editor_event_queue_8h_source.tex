@@ -1,0 +1,55 @@
+\doxysection{Editor\+Event\+Queue.\+h}
+\hypertarget{_editor_event_queue_8h_source}{}\label{_editor_event_queue_8h_source}\index{Source/App/EditorEventQueue.h@{Source/App/EditorEventQueue.h}}
+\mbox{\hyperlink{_editor_event_queue_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_threads_8h}{EditorCore/Thread/Threads.h}}"{}}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <Utility/Concurrent/TAtomicQuasiQueue.h>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <Utility/TFunction.h>}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <cstddef>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph_1_1editor}{ph::editor}}}
+\DoxyCodeLine{00013\ \{}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1editor_1_1_editor_event_queue}{EditorEventQueue}}\ final}
+\DoxyCodeLine{00016\ \{}
+\DoxyCodeLine{00017\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{comment}{//\ Safe\ limit\ of\ concurrent\ works\ executed\ to\ avoid\ starvation\ on\ main\ thread\ works}}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{static}\ std::size\_t\ \mbox{\hyperlink{classph_1_1editor_1_1_editor_event_queue_aad085be8edb49810449124656bd41107}{maxAnyThreadWorksPerUpdate}}\ =\ 1024;}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classph_1_1editor_1_1_editor_event_queue_a1ff7eadfddb4be4ef57e80275568d298}{EventUpdateWork}}\ =\ TFunction<void(\textcolor{keywordtype}{void})>;}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1_editor_event_queue_af2b305de973322eb305370a5fed9d8a6}{EditorEventQueue}}();}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1_editor_event_queue_af531ccafe5244c8bb3548562f5770fdc}{add}}(\mbox{\hyperlink{classph_1_1editor_1_1_editor_event_queue_a1ff7eadfddb4be4ef57e80275568d298}{EventUpdateWork}}\ work);}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1_editor_event_queue_a4b419442fbb53ac8e3adb1be5aec3529}{flushAllEvents}}();}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordtype}{void}\ updateMainThreadEvents();}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordtype}{void}\ updateAnyThreadEvents();}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ std::vector<EventUpdateWork>\ m\_mainThreadWorks;}
+\DoxyCodeLine{00043\ \ \ \ \ TAtomicQuasiQueue<EventUpdateWork>\ m\_anyThreadWorks;}
+\DoxyCodeLine{00044\ \};}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1_editor_event_queue_af531ccafe5244c8bb3548562f5770fdc}{EditorEventQueue::add}}(\mbox{\hyperlink{classph_1_1editor_1_1_editor_event_queue_a1ff7eadfddb4be4ef57e80275568d298}{EventUpdateWork}}\ work)}
+\DoxyCodeLine{00047\ \{}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{classph_1_1editor_1_1_threads_ac1104757e2cde2ed896ebdd8a401cbfc}{Threads::isOnMainThread}}())}
+\DoxyCodeLine{00049\ \ \ \ \ \{}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ m\_mainThreadWorks.push\_back(std::move(work));}
+\DoxyCodeLine{00051\ \ \ \ \ \}}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00053\ \ \ \ \ \{}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ m\_anyThreadWorks.enqueue(std::move(work));}
+\DoxyCodeLine{00055\ \ \ \ \ \}}
+\DoxyCodeLine{00056\ \}}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \}\textcolor{comment}{//\ end\ namespace\ ph::editor}}
+
+\end{DoxyCode}
