@@ -1,0 +1,62 @@
+\doxysection{TBlackman\+Harris2\+D.\+h}
+\hypertarget{_t_blackman_harris2_d_8h_source}{}\label{_t_blackman_harris2_d_8h_source}\index{Source/Math/Function/TBlackmanHarris2D.h@{Source/Math/Function/TBlackmanHarris2D.h}}
+\mbox{\hyperlink{_t_blackman_harris2_d_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_math_function2_d_8h}{Math/Function/TMathFunction2D.h}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{constant_8h}{Math/constant.h}}"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <Common/assertion.h>}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <cmath>}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph_1_1math}{ph::math}}}
+\DoxyCodeLine{00011\ \{}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00020\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Value>}
+\DoxyCodeLine{00021\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1math_1_1_t_blackman_harris2_d}{TBlackmanHarris2D}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classph_1_1math_1_1_t_math_function2_d}{TMathFunction2D}}<Value>}
+\DoxyCodeLine{00022\ \{}
+\DoxyCodeLine{00023\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classph_1_1math_1_1_t_blackman_harris2_d_a03058a6bb2106e0040d07e46d7866357}{TBlackmanHarris2D}}(Value\ radius);}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \ \ \ \ Value\ \mbox{\hyperlink{classph_1_1math_1_1_t_blackman_harris2_d_a785c9ce477bf7647532e478ef8cd2434}{evaluate}}(Value\ x,\ Value\ y)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00029\ \ \ \ \ Value\ m\_reciRadius;}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \ \ Value\ blackmanHarris1D(Value\ n)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00032\ \};}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Value>}
+\DoxyCodeLine{00035\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1math_1_1_t_blackman_harris2_d_a03058a6bb2106e0040d07e46d7866357}{TBlackmanHarris2D<Value>::TBlackmanHarris2D}}(\textcolor{keyword}{const}\ Value\ radius)}
+\DoxyCodeLine{00036\ \ \ \ \ :\ m\_reciRadius(radius\ >\ Value(0)\ ?\ Value(1)\ /\ radius\ :\ Value(0))}
+\DoxyCodeLine{00037\ \{}
+\DoxyCodeLine{00038\ \ \ \ \ PH\_ASSERT(radius\ >\ Value(0));}
+\DoxyCodeLine{00039\ \}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Value>}
+\DoxyCodeLine{00042\ \textcolor{keyword}{inline}\ Value\ \mbox{\hyperlink{classph_1_1math_1_1_t_blackman_harris2_d_a785c9ce477bf7647532e478ef8cd2434}{TBlackmanHarris2D<Value>::evaluate}}(\textcolor{keyword}{const}\ Value\ x,\ \textcolor{keyword}{const}\ Value\ y)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00043\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keyword}{const}\ Value\ nx\ =\ (x\ *\ m\_reciRadius\ +\ Value(1.0))\ *\ Value(0.5);}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keyword}{const}\ Value\ ny\ =\ (y\ *\ m\_reciRadius\ +\ Value(1.0))\ *\ Value(0.5);}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordflow}{return}\ blackmanHarris1D(nx)\ *\ blackmanHarris1D(ny);}
+\DoxyCodeLine{00048\ \}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Value>}
+\DoxyCodeLine{00051\ \textcolor{keyword}{inline}\ Value\ \mbox{\hyperlink{classph_1_1math_1_1_t_blackman_harris2_d}{TBlackmanHarris2D<Value>::blackmanHarris1D}}(\textcolor{keyword}{const}\ Value\ n)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00052\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordflow}{return}\ }
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ Value(0.35875)}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ -\/\ Value(0.48829)\ *\ std::cos(Value(2.0)\ *\ \mbox{\hyperlink{namespaceph_1_1math_1_1constant_aeb217ecd643bb14c638c3d0457a031e0}{constant::pi<Value>}}\ *\ n)}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ +\ Value(0.14128)\ *\ std::cos(Value(4.0)\ *\ \mbox{\hyperlink{namespaceph_1_1math_1_1constant_aeb217ecd643bb14c638c3d0457a031e0}{constant::pi<Value>}}\ *\ n)}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ -\/\ Value(0.01174)\ *\ std::cos(Value(6.0)\ *\ \mbox{\hyperlink{namespaceph_1_1math_1_1constant_aeb217ecd643bb14c638c3d0457a031e0}{constant::pi<Value>}}\ *\ n);}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \string^\string^\string^\string^\string^\string^\string^}}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{comment}{//\ NOTE:\ Originally\ this\ coefficient\ is\ 0.01168,\ we\ modified\ it\ like\ how}}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ \ appleseed\ renderer\ did\ to\ make\ it\ evaluate\ to\ 0\ at\ boundaries.}}
+\DoxyCodeLine{00061\ \}}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \}\textcolor{comment}{//\ end\ namespace\ ph::math}}
+
+\end{DoxyCode}

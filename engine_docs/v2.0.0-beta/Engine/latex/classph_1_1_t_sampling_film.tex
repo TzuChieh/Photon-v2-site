@@ -1,0 +1,254 @@
+\doxysection{ph\+::TSampling\+Film\texorpdfstring{$<$}{<} Sample \texorpdfstring{$>$}{>} Class Template Reference}
+\hypertarget{classph_1_1_t_sampling_film}{}\label{classph_1_1_t_sampling_film}\index{ph::TSamplingFilm$<$ Sample $>$@{ph::TSamplingFilm$<$ Sample $>$}}
+
+
+A camera film that receives any quantity, for sampling-\/based rendering techniques.  
+
+
+
+
+{\ttfamily \#include $<$TSampling\+Film.\+h$>$}
+
+Inheritance diagram for ph\+::TSampling\+Film\texorpdfstring{$<$}{<} Sample \texorpdfstring{$>$}{>}\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classph_1_1_t_sampling_film}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classph_1_1_t_sampling_film_a0553b4a03944b4e63884579539fbe759}{TSampling\+Film}} ()=default
+\item 
+\mbox{\hyperlink{classph_1_1_t_sampling_film_a76a3129a3f87db4402a4d70c3edca96f}{TSampling\+Film}} (int64 actual\+Width\+Px, int64 actual\+Height\+Px, const \mbox{\hyperlink{classph_1_1_sample_filter}{Sample\+Filter}} \&filter)
+\item 
+\mbox{\hyperlink{classph_1_1_t_sampling_film_a33c56f0b5f45f5cbb41f0f7243052127}{TSampling\+Film}} (int64 actual\+Width\+Px, int64 actual\+Height\+Px, const \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d}{math\+::\+TAABB2D}}$<$ int64 $>$ \&effective\+Window\+Px, const \mbox{\hyperlink{classph_1_1_sample_filter}{Sample\+Filter}} \&filter)
+\item 
+virtual void \mbox{\hyperlink{classph_1_1_t_sampling_film_a661e59e3e38663aea46eac384ffbdf6a}{add\+Sample}} (float64 x\+Px, float64 y\+Px, const \mbox{\hyperlink{classph_1_1_sample}{Sample}} \&sample)=0
+\begin{DoxyCompactList}\small\item\em Applies filter to sample value and add to the film. Generally, this method can produce higher quality result by reconstruct the image function with a filter. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classph_1_1_t_sampling_film_a25ee16bbf7cccb59f25eecccbebc9309}{set\+Pixel}} (float64 x\+Px, float64 y\+Px, const \mbox{\hyperlink{classph_1_1_sample}{Sample}} \&sample)=0
+\begin{DoxyCompactList}\small\item\em Let the pixel developes to the specified sample value. An interface for using the film as an ordinary image. This method may disturb sample weights. Using this method with {\ttfamily \doxylink{classph_1_1_t_sampling_film_a661e59e3e38663aea46eac384ffbdf6a}{add\+Sample()}} may result in image artifacts unless the implementation says otherwise. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classph_1_1_t_sampling_film_a02aa2aceb9305f3f12e00ce6ffb7e170}{clear}} () override=0
+\begin{DoxyCompactList}\small\item\em Set all pixel data to its initial state. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classph_1_1_t_sampling_film_aea4047228dec43fe7dcc33583c11694c}{set\+Effective\+Window\+Px}} (const \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d}{math\+::\+TAABB2D}}$<$ int64 $>$ \&effective\+Window) override
+\begin{DoxyCompactList}\small\item\em Set the region where the film will be used. Implementation is advised to take advantage of this and only allocate memory for the part within the effective window. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classph_1_1_t_sampling_film_a379201ba7e3870a7f4c9c315631ad20a}{set\+Soft\+Edge}} (bool use\+Soft\+Edge, float32 softness=1.\+0f)
+\begin{DoxyCompactList}\small\item\em Whether to increase the sampling window converage for prettier boundaries in developed frame. In renderings where the image is divided into tiles and sampled independently, the resulting image may have visible artifacts along tile boundaries. This can be alleviated by increasing the size of each tile, so edge pixels can receive more information, reducing their variance. This costs slightly more memory, and tiles will have overlapping sampling regions (may need more care for concurrency). \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{math\+::\+TVector2}}$<$ float64 $>$ \mbox{\hyperlink{classph_1_1_t_sampling_film_a379969d774abecc6737efcfc112b8552}{get\+Sample\+Res\+Px}} () const
+\item 
+const \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d}{math\+::\+TAABB2D}}$<$ float64 $>$ \& \mbox{\hyperlink{classph_1_1_t_sampling_film_ac7c2aaa7181feba14db68e85371ca2fc}{get\+Sample\+Window\+Px}} () const
+\item 
+const \mbox{\hyperlink{classph_1_1_sample_filter}{Sample\+Filter}} \& \mbox{\hyperlink{classph_1_1_t_sampling_film_a26b3d7004e65048a07c3a6874c8d1cd6}{get\+Filter}} () const
+\item 
+\mbox{\hyperlink{structph_1_1_sampling_film_dimensions}{Sampling\+Film\+Dimensions}} \mbox{\hyperlink{classph_1_1_t_sampling_film_afe6337b459d40a5f83e9d1709ac34673}{get\+Dimensions}} () const
+\item 
+bool \mbox{\hyperlink{classph_1_1_t_sampling_film_a6e56f532a54b42d6041aad95d8ae4806}{is\+Soft\+Edged}} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classph_1_1_film}{ph\+::\+Film}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classph_1_1_film_a89bbffe1bd6ac0df487ddef591d3a274}{Film}} ()
+\item 
+\mbox{\hyperlink{classph_1_1_film_ae53f776e26480496a306c03064f6c4d7}{Film}} (int64 actual\+Width\+Px, int64 actual\+Height\+Px)
+\item 
+\mbox{\hyperlink{classph_1_1_film_a60c30818a10cfe54f1c150f5df0fde85}{Film}} (int64 actual\+Width\+Px, int64 actual\+Height\+Px, const \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d}{math\+::\+TAABB2D}}$<$ int64 $>$ \&effective\+Window\+Px)
+\item 
+\mbox{\hyperlink{classph_1_1_film_acd1e4846e9d0bea0b3edf5f96c008b9a}{Film}} (\mbox{\hyperlink{classph_1_1_film}{Film}} \&\&other)=default
+\item 
+\mbox{\hyperlink{classph_1_1_film}{Film}} \& \mbox{\hyperlink{classph_1_1_film_ab8cc1a256d94c8c4a664f6ac901f5d5c}{operator=}} (\mbox{\hyperlink{classph_1_1_film}{Film}} \&\&other)=default
+\item 
+virtual \mbox{\hyperlink{classph_1_1_film_accb42952775b9006e2e8444d85e8bee2}{\texorpdfstring{$\sim$}{\string~}\+Film}} ()=default
+\item 
+virtual void \mbox{\hyperlink{classph_1_1_film_ae4521107c2030b714cd233586f8eb0f4}{set\+Actual\+Res\+Px}} (const \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{math\+::\+TVector2}}$<$ int64 $>$ \&actual\+Res\+Px)
+\begin{DoxyCompactList}\small\item\em Set the apparent size of the film. If only a sub-\/region of the film is going to be used, set the effective window accordingly may improve performance especially in memory usage. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classph_1_1_film_ad4a28e11c606acd07ac6419016e464a0}{develop}} (\mbox{\hyperlink{namespaceph_a6cb342b38d32fd46d08ca0ec0f69fe3e}{Hdr\+Rgb\+Frame}} \&out\+\_\+frame) const
+\item 
+void \mbox{\hyperlink{classph_1_1_film_a05c8eaed41686a6bc5c8a46edcc28673}{develop}} (\mbox{\hyperlink{namespaceph_a6cb342b38d32fd46d08ca0ec0f69fe3e}{Hdr\+Rgb\+Frame}} \&out\+\_\+frame, const \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d}{math\+::\+TAABB2D}}$<$ int64 $>$ \&region\+Px) const
+\item 
+const \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{math\+::\+TVector2}}$<$ int64 $>$ \& \mbox{\hyperlink{classph_1_1_film_a2ed88265ddc185baea6449584a8b9050}{get\+Actual\+Res\+Px}} () const
+\item 
+\mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{math\+::\+TVector2}}$<$ int64 $>$ \mbox{\hyperlink{classph_1_1_film_a56255418a8530fc40c74a8bc8c8a4fe9}{get\+Effective\+Res\+Px}} () const
+\item 
+const \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d}{math\+::\+TAABB2D}}$<$ int64 $>$ \& \mbox{\hyperlink{classph_1_1_film_af4297a260e3571ba4c1f426f28dd042e}{get\+Effective\+Window\+Px}} () const
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename \mbox{\hyperlink{classph_1_1_sample}{Sample}}$>$\newline
+class ph\+::\+TSampling\+Film$<$ Sample $>$}
+A camera film that receives any quantity, for sampling-\/based rendering techniques. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classph_1_1_t_sampling_film_a0553b4a03944b4e63884579539fbe759}\index{ph::TSamplingFilm$<$ Sample $>$@{ph::TSamplingFilm$<$ Sample $>$}!TSamplingFilm@{TSamplingFilm}}
+\index{TSamplingFilm@{TSamplingFilm}!ph::TSamplingFilm$<$ Sample $>$@{ph::TSamplingFilm$<$ Sample $>$}}
+\doxysubsubsection{\texorpdfstring{TSamplingFilm()}{TSamplingFilm()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily \label{classph_1_1_t_sampling_film_a0553b4a03944b4e63884579539fbe759} 
+template$<$typename \mbox{\hyperlink{classph_1_1_sample}{Sample}} $>$ \\
+\mbox{\hyperlink{classph_1_1_t_sampling_film}{ph\+::\+TSampling\+Film}}$<$ \mbox{\hyperlink{classph_1_1_sample}{Sample}} $>$\+::\+TSampling\+Film (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\Hypertarget{classph_1_1_t_sampling_film_a76a3129a3f87db4402a4d70c3edca96f}\index{ph::TSamplingFilm$<$ Sample $>$@{ph::TSamplingFilm$<$ Sample $>$}!TSamplingFilm@{TSamplingFilm}}
+\index{TSamplingFilm@{TSamplingFilm}!ph::TSamplingFilm$<$ Sample $>$@{ph::TSamplingFilm$<$ Sample $>$}}
+\doxysubsubsection{\texorpdfstring{TSamplingFilm()}{TSamplingFilm()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily \label{classph_1_1_t_sampling_film_a76a3129a3f87db4402a4d70c3edca96f} 
+template$<$typename \mbox{\hyperlink{classph_1_1_sample}{Sample}} $>$ \\
+\mbox{\hyperlink{classph_1_1_t_sampling_film}{ph\+::\+TSampling\+Film}}$<$ \mbox{\hyperlink{classph_1_1_sample}{Sample}} $>$\+::\+TSampling\+Film (\begin{DoxyParamCaption}\item[{int64}]{actual\+Width\+Px}{, }\item[{int64}]{actual\+Height\+Px}{, }\item[{const \mbox{\hyperlink{classph_1_1_sample_filter}{Sample\+Filter}} \&}]{filter}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classph_1_1_t_sampling_film_a33c56f0b5f45f5cbb41f0f7243052127}\index{ph::TSamplingFilm$<$ Sample $>$@{ph::TSamplingFilm$<$ Sample $>$}!TSamplingFilm@{TSamplingFilm}}
+\index{TSamplingFilm@{TSamplingFilm}!ph::TSamplingFilm$<$ Sample $>$@{ph::TSamplingFilm$<$ Sample $>$}}
+\doxysubsubsection{\texorpdfstring{TSamplingFilm()}{TSamplingFilm()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily \label{classph_1_1_t_sampling_film_a33c56f0b5f45f5cbb41f0f7243052127} 
+template$<$typename \mbox{\hyperlink{classph_1_1_sample}{Sample}} $>$ \\
+\mbox{\hyperlink{classph_1_1_t_sampling_film}{ph\+::\+TSampling\+Film}}$<$ \mbox{\hyperlink{classph_1_1_sample}{Sample}} $>$\+::\+TSampling\+Film (\begin{DoxyParamCaption}\item[{int64}]{actual\+Width\+Px}{, }\item[{int64}]{actual\+Height\+Px}{, }\item[{const \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d}{math\+::\+TAABB2D}}$<$ int64 $>$ \&}]{effective\+Window\+Px}{, }\item[{const \mbox{\hyperlink{classph_1_1_sample_filter}{Sample\+Filter}} \&}]{filter}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classph_1_1_t_sampling_film_a661e59e3e38663aea46eac384ffbdf6a}\index{ph::TSamplingFilm$<$ Sample $>$@{ph::TSamplingFilm$<$ Sample $>$}!addSample@{addSample}}
+\index{addSample@{addSample}!ph::TSamplingFilm$<$ Sample $>$@{ph::TSamplingFilm$<$ Sample $>$}}
+\doxysubsubsection{\texorpdfstring{addSample()}{addSample()}}
+{\footnotesize\ttfamily \label{classph_1_1_t_sampling_film_a661e59e3e38663aea46eac384ffbdf6a} 
+template$<$typename \mbox{\hyperlink{classph_1_1_sample}{Sample}} $>$ \\
+virtual void \mbox{\hyperlink{classph_1_1_t_sampling_film}{ph\+::\+TSampling\+Film}}$<$ \mbox{\hyperlink{classph_1_1_sample}{Sample}} $>$\+::add\+Sample (\begin{DoxyParamCaption}\item[{float64}]{x\+Px}{, }\item[{float64}]{y\+Px}{, }\item[{const \mbox{\hyperlink{classph_1_1_sample}{Sample}} \&}]{sample}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Applies filter to sample value and add to the film. Generally, this method can produce higher quality result by reconstruct the image function with a filter. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x\+Px} & The x coordinate in raster space. \\
+\hline
+{\em y\+Px} & The y coordinate in raster space. \\
+\hline
+{\em sample} & The value to add as a sample. \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \mbox{\hyperlink{classph_1_1_hdr_rgb_film_a6e689fab1b196d5f1b7b8419893db3c8}{ph\+::\+Hdr\+Rgb\+Film}}, and \mbox{\hyperlink{classph_1_1_vector3_film_aab544e68d3225d318fbe0cd44e790219}{ph\+::\+Vector3\+Film}}.
+
+\Hypertarget{classph_1_1_t_sampling_film_a02aa2aceb9305f3f12e00ce6ffb7e170}\index{ph::TSamplingFilm$<$ Sample $>$@{ph::TSamplingFilm$<$ Sample $>$}!clear@{clear}}
+\index{clear@{clear}!ph::TSamplingFilm$<$ Sample $>$@{ph::TSamplingFilm$<$ Sample $>$}}
+\doxysubsubsection{\texorpdfstring{clear()}{clear()}}
+{\footnotesize\ttfamily \label{classph_1_1_t_sampling_film_a02aa2aceb9305f3f12e00ce6ffb7e170} 
+template$<$typename \mbox{\hyperlink{classph_1_1_sample}{Sample}} $>$ \\
+void \mbox{\hyperlink{classph_1_1_t_sampling_film}{ph\+::\+TSampling\+Film}}$<$ \mbox{\hyperlink{classph_1_1_sample}{Sample}} $>$\+::clear (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [pure virtual]}}
+
+
+
+Set all pixel data to its initial state. 
+
+
+
+Implements \mbox{\hyperlink{classph_1_1_film_a62d0fee655ee76b62de7df6b91732d3f}{ph\+::\+Film}}.
+
+
+
+Implemented in \mbox{\hyperlink{classph_1_1_hdr_rgb_film_a8506b4f8262b426c5390cac4c5fa64ac}{ph\+::\+Hdr\+Rgb\+Film}}, and \mbox{\hyperlink{classph_1_1_vector3_film_a38db3d41a25d438bd5fc172ff351bad8}{ph\+::\+Vector3\+Film}}.
+
+\Hypertarget{classph_1_1_t_sampling_film_afe6337b459d40a5f83e9d1709ac34673}\index{ph::TSamplingFilm$<$ Sample $>$@{ph::TSamplingFilm$<$ Sample $>$}!getDimensions@{getDimensions}}
+\index{getDimensions@{getDimensions}!ph::TSamplingFilm$<$ Sample $>$@{ph::TSamplingFilm$<$ Sample $>$}}
+\doxysubsubsection{\texorpdfstring{getDimensions()}{getDimensions()}}
+{\footnotesize\ttfamily \label{classph_1_1_t_sampling_film_afe6337b459d40a5f83e9d1709ac34673} 
+template$<$typename \mbox{\hyperlink{classph_1_1_sample}{Sample}} $>$ \\
+\mbox{\hyperlink{structph_1_1_sampling_film_dimensions}{Sampling\+Film\+Dimensions}} \mbox{\hyperlink{classph_1_1_t_sampling_film}{ph\+::\+TSampling\+Film}}$<$ \mbox{\hyperlink{classph_1_1_sample}{Sample}} $>$\+::get\+Dimensions (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classph_1_1_t_sampling_film_a26b3d7004e65048a07c3a6874c8d1cd6}\index{ph::TSamplingFilm$<$ Sample $>$@{ph::TSamplingFilm$<$ Sample $>$}!getFilter@{getFilter}}
+\index{getFilter@{getFilter}!ph::TSamplingFilm$<$ Sample $>$@{ph::TSamplingFilm$<$ Sample $>$}}
+\doxysubsubsection{\texorpdfstring{getFilter()}{getFilter()}}
+{\footnotesize\ttfamily \label{classph_1_1_t_sampling_film_a26b3d7004e65048a07c3a6874c8d1cd6} 
+template$<$typename \mbox{\hyperlink{classph_1_1_sample}{Sample}} $>$ \\
+const \mbox{\hyperlink{classph_1_1_sample_filter}{Sample\+Filter}} \& \mbox{\hyperlink{classph_1_1_t_sampling_film}{ph\+::\+TSampling\+Film}}$<$ \mbox{\hyperlink{classph_1_1_sample}{Sample}} $>$\+::get\+Filter (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classph_1_1_t_sampling_film_a379969d774abecc6737efcfc112b8552}\index{ph::TSamplingFilm$<$ Sample $>$@{ph::TSamplingFilm$<$ Sample $>$}!getSampleResPx@{getSampleResPx}}
+\index{getSampleResPx@{getSampleResPx}!ph::TSamplingFilm$<$ Sample $>$@{ph::TSamplingFilm$<$ Sample $>$}}
+\doxysubsubsection{\texorpdfstring{getSampleResPx()}{getSampleResPx()}}
+{\footnotesize\ttfamily \label{classph_1_1_t_sampling_film_a379969d774abecc6737efcfc112b8552} 
+template$<$typename \mbox{\hyperlink{classph_1_1_sample}{Sample}} $>$ \\
+\mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{math\+::\+TVector2}}$<$ float64 $>$ \mbox{\hyperlink{classph_1_1_t_sampling_film}{ph\+::\+TSampling\+Film}}$<$ \mbox{\hyperlink{classph_1_1_sample}{Sample}} $>$\+::get\+Sample\+Res\+Px (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classph_1_1_t_sampling_film_ac7c2aaa7181feba14db68e85371ca2fc}\index{ph::TSamplingFilm$<$ Sample $>$@{ph::TSamplingFilm$<$ Sample $>$}!getSampleWindowPx@{getSampleWindowPx}}
+\index{getSampleWindowPx@{getSampleWindowPx}!ph::TSamplingFilm$<$ Sample $>$@{ph::TSamplingFilm$<$ Sample $>$}}
+\doxysubsubsection{\texorpdfstring{getSampleWindowPx()}{getSampleWindowPx()}}
+{\footnotesize\ttfamily \label{classph_1_1_t_sampling_film_ac7c2aaa7181feba14db68e85371ca2fc} 
+template$<$typename \mbox{\hyperlink{classph_1_1_sample}{Sample}} $>$ \\
+auto \mbox{\hyperlink{classph_1_1_t_sampling_film}{ph\+::\+TSampling\+Film}}$<$ \mbox{\hyperlink{classph_1_1_sample}{Sample}} $>$\+::get\+Sample\+Window\+Px (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classph_1_1_t_sampling_film_a6e56f532a54b42d6041aad95d8ae4806}\index{ph::TSamplingFilm$<$ Sample $>$@{ph::TSamplingFilm$<$ Sample $>$}!isSoftEdged@{isSoftEdged}}
+\index{isSoftEdged@{isSoftEdged}!ph::TSamplingFilm$<$ Sample $>$@{ph::TSamplingFilm$<$ Sample $>$}}
+\doxysubsubsection{\texorpdfstring{isSoftEdged()}{isSoftEdged()}}
+{\footnotesize\ttfamily \label{classph_1_1_t_sampling_film_a6e56f532a54b42d6041aad95d8ae4806} 
+template$<$typename \mbox{\hyperlink{classph_1_1_sample}{Sample}} $>$ \\
+bool \mbox{\hyperlink{classph_1_1_t_sampling_film}{ph\+::\+TSampling\+Film}}$<$ \mbox{\hyperlink{classph_1_1_sample}{Sample}} $>$\+::is\+Soft\+Edged (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classph_1_1_t_sampling_film_aea4047228dec43fe7dcc33583c11694c}\index{ph::TSamplingFilm$<$ Sample $>$@{ph::TSamplingFilm$<$ Sample $>$}!setEffectiveWindowPx@{setEffectiveWindowPx}}
+\index{setEffectiveWindowPx@{setEffectiveWindowPx}!ph::TSamplingFilm$<$ Sample $>$@{ph::TSamplingFilm$<$ Sample $>$}}
+\doxysubsubsection{\texorpdfstring{setEffectiveWindowPx()}{setEffectiveWindowPx()}}
+{\footnotesize\ttfamily \label{classph_1_1_t_sampling_film_aea4047228dec43fe7dcc33583c11694c} 
+template$<$typename \mbox{\hyperlink{classph_1_1_sample}{Sample}} $>$ \\
+void \mbox{\hyperlink{classph_1_1_t_sampling_film}{ph\+::\+TSampling\+Film}}$<$ \mbox{\hyperlink{classph_1_1_sample}{Sample}} $>$\+::set\+Effective\+Window\+Px (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d}{math\+::\+TAABB2D}}$<$ int64 $>$ \&}]{effective\+Window}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Set the region where the film will be used. Implementation is advised to take advantage of this and only allocate memory for the part within the effective window. 
+
+
+
+Reimplemented from \mbox{\hyperlink{classph_1_1_film_a1f5eafe4931d941bab0a16a153846fa0}{ph\+::\+Film}}.
+
+
+
+Reimplemented in \mbox{\hyperlink{classph_1_1_vector3_film_a9cbe702d2dcf84777c60d8dfe5fd8dcc}{ph\+::\+Vector3\+Film}}.
+
+\Hypertarget{classph_1_1_t_sampling_film_a25ee16bbf7cccb59f25eecccbebc9309}\index{ph::TSamplingFilm$<$ Sample $>$@{ph::TSamplingFilm$<$ Sample $>$}!setPixel@{setPixel}}
+\index{setPixel@{setPixel}!ph::TSamplingFilm$<$ Sample $>$@{ph::TSamplingFilm$<$ Sample $>$}}
+\doxysubsubsection{\texorpdfstring{setPixel()}{setPixel()}}
+{\footnotesize\ttfamily \label{classph_1_1_t_sampling_film_a25ee16bbf7cccb59f25eecccbebc9309} 
+template$<$typename \mbox{\hyperlink{classph_1_1_sample}{Sample}} $>$ \\
+virtual void \mbox{\hyperlink{classph_1_1_t_sampling_film}{ph\+::\+TSampling\+Film}}$<$ \mbox{\hyperlink{classph_1_1_sample}{Sample}} $>$\+::set\+Pixel (\begin{DoxyParamCaption}\item[{float64}]{x\+Px}{, }\item[{float64}]{y\+Px}{, }\item[{const \mbox{\hyperlink{classph_1_1_sample}{Sample}} \&}]{sample}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Let the pixel developes to the specified sample value. An interface for using the film as an ordinary image. This method may disturb sample weights. Using this method with {\ttfamily \doxylink{classph_1_1_t_sampling_film_a661e59e3e38663aea46eac384ffbdf6a}{add\+Sample()}} may result in image artifacts unless the implementation says otherwise. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x\+Px} & The x coordinate in raster space. \\
+\hline
+{\em y\+Px} & The y coordinate in raster space. \\
+\hline
+{\em sample} & The value the pixel will develop to. \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \mbox{\hyperlink{classph_1_1_hdr_rgb_film_a6bca3156ec8fd7e22b4a585c742f99d0}{ph\+::\+Hdr\+Rgb\+Film}}, and \mbox{\hyperlink{classph_1_1_vector3_film_a19794a29b2da7f29f6d48341224cd0d4}{ph\+::\+Vector3\+Film}}.
+
+\Hypertarget{classph_1_1_t_sampling_film_a379201ba7e3870a7f4c9c315631ad20a}\index{ph::TSamplingFilm$<$ Sample $>$@{ph::TSamplingFilm$<$ Sample $>$}!setSoftEdge@{setSoftEdge}}
+\index{setSoftEdge@{setSoftEdge}!ph::TSamplingFilm$<$ Sample $>$@{ph::TSamplingFilm$<$ Sample $>$}}
+\doxysubsubsection{\texorpdfstring{setSoftEdge()}{setSoftEdge()}}
+{\footnotesize\ttfamily \label{classph_1_1_t_sampling_film_a379201ba7e3870a7f4c9c315631ad20a} 
+template$<$typename \mbox{\hyperlink{classph_1_1_sample}{Sample}} $>$ \\
+void \mbox{\hyperlink{classph_1_1_t_sampling_film}{ph\+::\+TSampling\+Film}}$<$ \mbox{\hyperlink{classph_1_1_sample}{Sample}} $>$\+::set\+Soft\+Edge (\begin{DoxyParamCaption}\item[{bool}]{use\+Soft\+Edge}{, }\item[{float32}]{softness}{ = {\ttfamily 1.0f}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Whether to increase the sampling window converage for prettier boundaries in developed frame. In renderings where the image is divided into tiles and sampled independently, the resulting image may have visible artifacts along tile boundaries. This can be alleviated by increasing the size of each tile, so edge pixels can receive more information, reducing their variance. This costs slightly more memory, and tiles will have overlapping sampling regions (may need more care for concurrency). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em use\+Soft\+Edge} & Whether prettier boundaries are needed or not. By default soft edge is enabled with maximum softness (1). If {\ttfamily false}, the value of {\ttfamily softness} will be ignored and set to 0. \\
+\hline
+{\em softness} & A value in {\ttfamily \mbox{[}0, 1\mbox{]}} to indicate the amount of increased size relative to the filter used. For a value of {\ttfamily 1}, the amount of expansion will be the radius of the filter. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Using soft edge or not will not affect effective window in any way. 
+\end{DoxyNote}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Source/\+Core/\+Filmic/\mbox{\hyperlink{filmic__fwd_8h}{filmic\+\_\+fwd.\+h}}\item 
+Source/\+Core/\+Filmic/\mbox{\hyperlink{_t_sampling_film_8h}{TSampling\+Film.\+h}}\item 
+Source/\+Core/\+Filmic/\mbox{\hyperlink{_t_sampling_film_8ipp}{TSampling\+Film.\+ipp}}\end{DoxyCompactItemize}

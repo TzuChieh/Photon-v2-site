@@ -1,0 +1,123 @@
+\doxysection{color\+\_\+spaces.\+h}
+\hypertarget{color__spaces_8h_source}{}\label{color__spaces_8h_source}\index{Source/Math/Color/color\_spaces.h@{Source/Math/Color/color\_spaces.h}}
+\mbox{\hyperlink{color__spaces_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{color__enums_8h}{Math/Color/color\_enums.h}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{color__basics_8h}{Math/Color/color\_basics.h}}"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <concepts>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <type\_traits>}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph_1_1math}{ph::math}}}
+\DoxyCodeLine{00010\ \{}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ DefType>}
+\DoxyCodeLine{00015\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptph_1_1math_1_1_c_has_color_space_properties}{CHasColorSpaceProperties}}\ =\ \textcolor{keyword}{requires}}
+\DoxyCodeLine{00016\ \{}
+\DoxyCodeLine{00017\ \ \ \ \ \{\ DefType::getColorSpace()\ \}\ \textcolor{keyword}{noexcept}\ -\/>\ std::same\_as<EColorSpace>;}
+\DoxyCodeLine{00018\ \ \ \ \ \{\ DefType::isTristimulus()\ \}\ \textcolor{keyword}{noexcept}\ -\/>\ std::same\_as<bool>;}
+\DoxyCodeLine{00019\ \};}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00023\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ DefType,\ \textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00024\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptph_1_1math_1_1_c_supports_tristimulus_conversions}{CSupportsTristimulusConversions}}\ =\ \textcolor{keyword}{requires}\ (\mbox{\hyperlink{namespaceph_1_1math_a9d9c64dd71192e59bad3d1a729ce7e68}{TTristimulusValues<T>}}\ thisColor,\ \mbox{\hyperlink{namespaceph_1_1math_a9d9c64dd71192e59bad3d1a729ce7e68}{TTristimulusValues<T>}}\ CIEXYZColor)}
+\DoxyCodeLine{00025\ \{}
+\DoxyCodeLine{00026\ \ \ \ \ \{\ DefType::getReferenceWhite()\ \}\ \textcolor{keyword}{noexcept}\ -\/>\ std::same\_as<EReferenceWhite>;}
+\DoxyCodeLine{00027\ \ \ \ \ \{\ DefType::toCIEXYZ(thisColor)\ \}\ -\/>\ std::same\_as<TTristimulusValues<T>>;}
+\DoxyCodeLine{00028\ \ \ \ \ \{\ DefType::fromCIEXYZ(CIEXYZColor)\ \}\ -\/>\ std::same\_as<TTristimulusValues<T>>;}
+\DoxyCodeLine{00029\ \};}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00036\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ DefType,\ \textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00037\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptph_1_1math_1_1_c_supports_spectral_conversions}{CSupportsSpectralConversions}}\ =\ \textcolor{keyword}{requires}\ (}
+\DoxyCodeLine{00038\ \ \ \ \ \mbox{\hyperlink{namespaceph_1_1math_a9d9c64dd71192e59bad3d1a729ce7e68}{TTristimulusValues<T>}}\ \ \ \ boundColor,\ }
+\DoxyCodeLine{00039\ \ \ \ \ \mbox{\hyperlink{namespaceph_1_1math_a1b3bd4f6ba91a04531f5255c5412ff0b}{TSpectralSampleValues<T>}}\ sampleValues,}
+\DoxyCodeLine{00040\ \ \ \ \ \mbox{\hyperlink{namespaceph_1_1math_a821af6da20aaed56cc09ad440633d067}{EColorUsage}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ usage)}
+\DoxyCodeLine{00041\ \{}
+\DoxyCodeLine{00042\ \ \ \ \ \{\ DefType::getBoundTristimulusColorSpace()\ \}\ -\/>\ std::same\_as<EColorSpace>;}
+\DoxyCodeLine{00043\ \ \ \ \ \{\ DefType::upSample(boundColor,\ usage)\ \}\ -\/>\ std::same\_as<TSpectralSampleValues<T>>;}
+\DoxyCodeLine{00044\ \ \ \ \ \{\ DefType::downSample(sampleValues,\ usage)\ \}\ -\/>\ std::same\_as<TTristimulusValues<T>>;}
+\DoxyCodeLine{00045\ \};}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ DefType,\ \textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00048\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptph_1_1math_1_1_c_tristimulus_color_space_definition}{CTristimulusColorSpaceDefinition}}\ =\ }
+\DoxyCodeLine{00049\ \ \ \ \ \mbox{\hyperlink{conceptph_1_1math_1_1_c_has_color_space_properties}{CHasColorSpaceProperties<DefType>}}\ \&\&}
+\DoxyCodeLine{00050\ \ \ \ \ \mbox{\hyperlink{conceptph_1_1math_1_1_c_supports_tristimulus_conversions}{CSupportsTristimulusConversions<DefType,\ T>}};}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ DefType,\ \textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00053\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptph_1_1math_1_1_c_spectral_color_space_definition}{CSpectralColorSpaceDefinition}}\ =\ }
+\DoxyCodeLine{00054\ \ \ \ \ \mbox{\hyperlink{conceptph_1_1math_1_1_c_has_color_space_properties}{CHasColorSpaceProperties<DefType>}}\ \&\&}
+\DoxyCodeLine{00055\ \ \ \ \ \mbox{\hyperlink{conceptph_1_1math_1_1_c_supports_spectral_conversions}{CSupportsSpectralConversions<DefType,\ T>}};}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ DefType,\ \textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00058\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptph_1_1math_1_1_c_color_space_definition}{CColorSpaceDefinition}}\ =\ }
+\DoxyCodeLine{00059\ \ \ \ \ \mbox{\hyperlink{conceptph_1_1math_1_1_c_tristimulus_color_space_definition}{CTristimulusColorSpaceDefinition<DefType,\ T>}}\ ||}
+\DoxyCodeLine{00060\ \ \ \ \ \mbox{\hyperlink{conceptph_1_1math_1_1_c_spectral_color_space_definition}{CSpectralColorSpaceDefinition<DefType,\ T>}};}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00066\ \textcolor{keyword}{template}<EColorSpace\ COLOR\_SPACE,\ \textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00067\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1math_1_1_t_color_space_definition}{TColorSpaceDefinition}}\ final}
+\DoxyCodeLine{00068\ \{}
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{comment}{//\ Available\ color\ spaces\ must\ provide\ definition\ and\ thus\ should\ not\ end\ up\ here.}}
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keyword}{static\_assert}(COLOR\_SPACE\ ==\ \mbox{\hyperlink{namespaceph_1_1math_a957eab3ceed525ebce5c24b6b57eb975a6fcdc090caeade09d0efd6253932b6f5}{EColorSpace::Unspecified}}\ ||\ COLOR\_SPACE\ ==\ \mbox{\hyperlink{namespaceph_1_1math_a957eab3ceed525ebce5c24b6b57eb975a44119bf3bae5d40a8d0766b91c304aac}{EColorSpace::NUM}},}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}No\ definition\ for\ the\ specified\ COLOR\_SPACE."{}});}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{consteval}\ \mbox{\hyperlink{namespaceph_1_1math_a957eab3ceed525ebce5c24b6b57eb975}{EColorSpace}}\ \mbox{\hyperlink{classph_1_1math_1_1_t_color_space_definition_a55d9eddcfddabf3ce0179e8f75b29682}{getColorSpace}}()\ noexcept}
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{comment}{//\ Should\ not\ provide\ color\ space\ info\ for\ \`{}EColorSpace::NUM`\ as\ it\ is\ not\ even\ a\ color\ space}}
+\DoxyCodeLine{00076\ \ \ \ \ requires\ (COLOR\_SPACE\ ==\ \mbox{\hyperlink{namespaceph_1_1math_a957eab3ceed525ebce5c24b6b57eb975}{EColorSpace}}::\mbox{\hyperlink{namespaceph_1_1math_a957eab3ceed525ebce5c24b6b57eb975a6fcdc090caeade09d0efd6253932b6f5}{Unspecified}})}
+\DoxyCodeLine{00077\ \ \ \ \ \{}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ COLOR\_SPACE;}
+\DoxyCodeLine{00079\ \ \ \ \ \}}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{consteval}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1math_1_1_t_color_space_definition_a6b1a82a44f15be5641f746f5a69539b4}{isTristimulus}}()\ noexcept}
+\DoxyCodeLine{00082\ \ \ \ \ \{}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00084\ \ \ \ \ \}}
+\DoxyCodeLine{00085\ \};}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00089\ \textcolor{keyword}{template}<EColorSpace\ COLOR\_SPACE>}
+\DoxyCodeLine{00090\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classph_1_1math_1_1_t_color_space_definition}{TColorSpaceDef}}\ =\ \mbox{\hyperlink{classph_1_1math_1_1_t_color_space_definition}{TColorSpaceDefinition<COLOR\_SPACE,\ ColorValue>}};}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00095\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespaceph_1_1math_abe1a45b3ea4179b27954f963695cae32}{is\_tristimulus}}(\mbox{\hyperlink{namespaceph_1_1math_a957eab3ceed525ebce5c24b6b57eb975}{EColorSpace}}\ colorSpace);}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00099\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ InColorValuesType,\ EColorSpace\ COLOR\_SPACE>}
+\DoxyCodeLine{00100\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespaceph_1_1math_a4f9e5426a4fdf63a119b6fac5a86eb98}{is\_compatible}}();}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00108\ \textcolor{keyword}{template}<EColorSpace\ SRC\_COLOR\_SPACE,\ EColorSpace\ DST\_COLOR\_SPACE,\ \textcolor{keyword}{typename}\ T,\ EChromaticAdaptation\ ALGORITHM\ =\ EChromaticAdaptation::Default>}
+\DoxyCodeLine{00109\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespaceph_1_1math_a57a6066f091fead6bc616fb811b42b21}{transform\_color}}(\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ srcColorValues,\ \mbox{\hyperlink{namespaceph_1_1math_a821af6da20aaed56cc09ad440633d067}{EColorUsage}}\ usage);}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00117\ \textcolor{keyword}{template}<EColorSpace\ SRC\_COLOR\_SPACE,\ \textcolor{keyword}{typename}\ T,\ EChromaticAdaptation\ ALGORITHM\ =\ EChromaticAdaptation::Default>}
+\DoxyCodeLine{00118\ T\ \mbox{\hyperlink{namespaceph_1_1math_a2982839b6392253fc67bb096add9a44f}{relative\_luminance}}(\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ srcColorValues,\ \mbox{\hyperlink{namespaceph_1_1math_a821af6da20aaed56cc09ad440633d067}{EColorUsage}}\ usage\ =\ \mbox{\hyperlink{namespaceph_1_1math_a821af6da20aaed56cc09ad440633d067a8d4c0b2cef256d21ab680366c8b1c6bf}{EColorUsage::EMR}});}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \textcolor{keyword}{template}<EColorSpace\ SRC\_COLOR\_SPACE,\ \textcolor{keyword}{typename}\ T,\ EColorSpace\ SPECTRAL\_COLOR\_SPACE\ =\ EColorSpace::Spectral,\ EChromaticAdaptation\ ALGORITHM\ =\ EChromaticAdaptation::Default>}
+\DoxyCodeLine{00121\ T\ \mbox{\hyperlink{namespaceph_1_1math_a2b0482067dc614d1eeafbf75b8b10996}{estimate\_color\_energy}}(\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ srcColorValues);}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00123\ \textcolor{keyword}{template}<EColorSpace\ SRC\_COLOR\_SPACE,\ \textcolor{keyword}{typename}\ T,\ EColorSpace\ SPECTRAL\_COLOR\_SPACE\ =\ EColorSpace::Spectral,\ EChromaticAdaptation\ ALGORITHM\ =\ EChromaticAdaptation::Default>}
+\DoxyCodeLine{00124\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespaceph_1_1math_aaaa5875dae95653f7145e11b81e90459}{normalize\_color\_energy}}(\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ srcColorValues);}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00126\ \textcolor{keyword}{template}<EColorSpace\ SRC\_COLOR\_SPACE,\ \textcolor{keyword}{typename}\ T,\ EColorSpace\ SPECTRAL\_COLOR\_SPACE\ =\ EColorSpace::Spectral,\ EChromaticAdaptation\ ALGORITHM\ =\ EChromaticAdaptation::Default>}
+\DoxyCodeLine{00127\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespaceph_1_1math_a036e6132c8c8a769c292f29b8427112b}{put\_color\_energy}}(\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ srcColorValues,\ T\ energyLevel);}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00131\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00132\ \mbox{\hyperlink{namespaceph_1_1math_a9d9c64dd71192e59bad3d1a729ce7e68}{TTristimulusValues<T>}}\ \mbox{\hyperlink{namespaceph_1_1math_af073289717f681f13febdf1888d38d5b}{sRGB\_nonlinear\_to\_linear}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_1_1math_a9d9c64dd71192e59bad3d1a729ce7e68}{TTristimulusValues<T>}}\&\ nonlinearSRGB);}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00136\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00137\ \mbox{\hyperlink{namespaceph_1_1math_a9d9c64dd71192e59bad3d1a729ce7e68}{TTristimulusValues<T>}}\ \mbox{\hyperlink{namespaceph_1_1math_ad70f4b84a56b15f96d640ee5dfe83c58}{sRGB\_linear\_to\_nonlinear}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_1_1math_a9d9c64dd71192e59bad3d1a729ce7e68}{TTristimulusValues<T>}}\&\ linearSRGB);}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00141\ \textcolor{keyword}{template}<EColorSpace\ DST\_COLOR\_SPACE,\ \textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00142\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespaceph_1_1math_a4b760ffa2dd0b2fb8b0c477fffd7c097}{transform\_from\_sRGB}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_1_1math_a9d9c64dd71192e59bad3d1a729ce7e68}{TTristimulusValues<T>}}\&\ nonlinearSRGB,\ \mbox{\hyperlink{namespaceph_1_1math_a821af6da20aaed56cc09ad440633d067}{EColorUsage}}\ usage);}
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00146\ \textcolor{keyword}{template}<EColorSpace\ DST\_COLOR\_SPACE,\ \textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00147\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespaceph_1_1math_a9d227a2cbf1065eaa4e4b5d51d71f30c}{transform\_from\_linear\_sRGB}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_1_1math_a9d9c64dd71192e59bad3d1a729ce7e68}{TTristimulusValues<T>}}\&\ linearSRGB,\ \mbox{\hyperlink{namespaceph_1_1math_a821af6da20aaed56cc09ad440633d067}{EColorUsage}}\ usage);}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00151\ \textcolor{keyword}{template}<EColorSpace\ SRC\_COLOR\_SPACE,\ \textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00152\ \mbox{\hyperlink{namespaceph_1_1math_a9d9c64dd71192e59bad3d1a729ce7e68}{TTristimulusValues<T>}}\ \mbox{\hyperlink{namespaceph_1_1math_ad3164ab55096d5ac1fd9a7158c8ea6d4}{transform\_to\_sRGB}}(\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ srcColorValues,\ \mbox{\hyperlink{namespaceph_1_1math_a821af6da20aaed56cc09ad440633d067}{EColorUsage}}\ usage);}
+\DoxyCodeLine{00153\ }
+\DoxyCodeLine{00156\ \textcolor{keyword}{template}<EColorSpace\ SRC\_COLOR\_SPACE,\ \textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00157\ \mbox{\hyperlink{namespaceph_1_1math_a9d9c64dd71192e59bad3d1a729ce7e68}{TTristimulusValues<T>}}\ \mbox{\hyperlink{namespaceph_1_1math_a9a607a63db401274a7e3d77c0895dcaf}{transform\_to\_linear\_sRGB}}(\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ srcColorValues,\ \mbox{\hyperlink{namespaceph_1_1math_a821af6da20aaed56cc09ad440633d067}{EColorUsage}}\ usage);}
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00159\ \}\textcolor{comment}{//\ end\ namespace\ ph::math}}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00161\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{color__spaces_8ipp}{Math/Color/color\_spaces.ipp}}"{}}}
+
+\end{DoxyCode}

@@ -1,0 +1,135 @@
+\doxysection{ph\+::Fixed\+Size\+Thread\+Pool Class Reference}
+\hypertarget{classph_1_1_fixed_size_thread_pool}{}\label{classph_1_1_fixed_size_thread_pool}\index{ph::FixedSizeThreadPool@{ph::FixedSizeThreadPool}}
+
+
+A thread pool where works are accessed concurrently by blocking other threads. A thread pool that contains fixed number of threads for work processing. It is a blocking pool, i.\+e., works are enqueued and dequeued concurrently by blocking other threads, in FIFO order. The pool can be used concurrently, namely, it is thread-\/safe. However, the user must ensure that the pool is properly initialized before subsequent usages.  
+
+
+
+
+{\ttfamily \#include $<$Fixed\+Size\+Thread\+Pool.\+h$>$}
+
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{classph_1_1_fixed_size_thread_pool_ad8ae064343bb81cc83a5dfdefca6a203}{Work}} = std\+::function$<$void()$>$
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classph_1_1_fixed_size_thread_pool_aeb2450fdbb681a75d5e15dcc74a9a17a}{Fixed\+Size\+Thread\+Pool}} (std\+::size\+\_\+t \mbox{\hyperlink{classph_1_1_fixed_size_thread_pool_a16762ab882dc4f7d03ff8be909db04a6}{num\+Workers}})
+\item 
+\mbox{\hyperlink{classph_1_1_fixed_size_thread_pool_a601c9b6e27cad4048fbc5a1eb684d963}{\texorpdfstring{$\sim$}{\string~}\+Fixed\+Size\+Thread\+Pool}} ()
+\begin{DoxyCompactList}\small\item\em Terminates the pool, effectively the same as calling \doxylink{classph_1_1_fixed_size_thread_pool_a5e83efc9143bd0331d5d8e6fabf1bb04}{request\+Termination()}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classph_1_1_fixed_size_thread_pool_aff3870f1e476b5a0e846d025bff18a53}{wait\+All\+Works}} ()
+\begin{DoxyCompactList}\small\item\em Blocks until all queued works are finished. Should not be called on worker thread. New works can be queued after waiting is finished. It may not be desirable to call this method while works are still being queued and processed (e.\+g., MPMC), as it is possible that sometimes the work queue is temporarily empty and cause this method to return early. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classph_1_1_fixed_size_thread_pool_a5e83efc9143bd0331d5d8e6fabf1bb04}{request\+Termination}} ()
+\begin{DoxyCompactList}\small\item\em Stop processing queued works as soon as possible. Workers will stop processing queued works as soon as possible. Any work that is already being processed will still complete. No further write operations should be performed after requesting termination. Threads waiting for the completion of works, e.\+g., waiting on \doxylink{classph_1_1_fixed_size_thread_pool_aff3870f1e476b5a0e846d025bff18a53}{wait\+All\+Works()}, will stop waiting. Requesting termination multiple times has the same effect. \end{DoxyCompactList}\item 
+std\+::size\+\_\+t \mbox{\hyperlink{classph_1_1_fixed_size_thread_pool_a16762ab882dc4f7d03ff8be909db04a6}{num\+Workers}} () const
+\begin{DoxyCompactList}\small\item\em Number of worker threads in the pool. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\textbf{ }\par
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classph_1_1_fixed_size_thread_pool_a63f966889b6ebb82c72b20a15e230b11}{queue\+Work}} (const \mbox{\hyperlink{classph_1_1_fixed_size_thread_pool_ad8ae064343bb81cc83a5dfdefca6a203}{Work}} \&work)
+\begin{DoxyCompactList}\small\item\em Queue up a work to the pool. Workers start to process the work right away. The works are guaranteed to be processed in FIFO order. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classph_1_1_fixed_size_thread_pool_adb69c7f506ac91de3e21f44e44091f0b}{queue\+Work}} (\mbox{\hyperlink{classph_1_1_fixed_size_thread_pool_ad8ae064343bb81cc83a5dfdefca6a203}{Work}} \&\&work)
+\end{DoxyCompactItemize}
+
+
+
+\doxysubsection{Detailed Description}
+A thread pool where works are accessed concurrently by blocking other threads. A thread pool that contains fixed number of threads for work processing. It is a blocking pool, i.\+e., works are enqueued and dequeued concurrently by blocking other threads, in FIFO order. The pool can be used concurrently, namely, it is thread-\/safe. However, the user must ensure that the pool is properly initialized before subsequent usages. 
+
+\doxysubsection{Member Typedef Documentation}
+\Hypertarget{classph_1_1_fixed_size_thread_pool_ad8ae064343bb81cc83a5dfdefca6a203}\index{ph::FixedSizeThreadPool@{ph::FixedSizeThreadPool}!Work@{Work}}
+\index{Work@{Work}!ph::FixedSizeThreadPool@{ph::FixedSizeThreadPool}}
+\doxysubsubsection{\texorpdfstring{Work}{Work}}
+{\footnotesize\ttfamily \label{classph_1_1_fixed_size_thread_pool_ad8ae064343bb81cc83a5dfdefca6a203} 
+using \mbox{\hyperlink{classph_1_1_fixed_size_thread_pool_ad8ae064343bb81cc83a5dfdefca6a203}{ph\+::\+Fixed\+Size\+Thread\+Pool\+::\+Work}} = std\+::function$<$void()$>$}
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classph_1_1_fixed_size_thread_pool_aeb2450fdbb681a75d5e15dcc74a9a17a}\index{ph::FixedSizeThreadPool@{ph::FixedSizeThreadPool}!FixedSizeThreadPool@{FixedSizeThreadPool}}
+\index{FixedSizeThreadPool@{FixedSizeThreadPool}!ph::FixedSizeThreadPool@{ph::FixedSizeThreadPool}}
+\doxysubsubsection{\texorpdfstring{FixedSizeThreadPool()}{FixedSizeThreadPool()}}
+{\footnotesize\ttfamily \label{classph_1_1_fixed_size_thread_pool_aeb2450fdbb681a75d5e15dcc74a9a17a} 
+ph\+::\+Fixed\+Size\+Thread\+Pool\+::\+Fixed\+Size\+Thread\+Pool (\begin{DoxyParamCaption}\item[{std\+::size\+\_\+t}]{num\+Workers}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+\Hypertarget{classph_1_1_fixed_size_thread_pool_a601c9b6e27cad4048fbc5a1eb684d963}\index{ph::FixedSizeThreadPool@{ph::FixedSizeThreadPool}!````~FixedSizeThreadPool@{\texorpdfstring{$\sim$}{\string~}FixedSizeThreadPool}}
+\index{````~FixedSizeThreadPool@{\texorpdfstring{$\sim$}{\string~}FixedSizeThreadPool}!ph::FixedSizeThreadPool@{ph::FixedSizeThreadPool}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}FixedSizeThreadPool()}{\string~FixedSizeThreadPool()}}
+{\footnotesize\ttfamily \label{classph_1_1_fixed_size_thread_pool_a601c9b6e27cad4048fbc5a1eb684d963} 
+ph\+::\+Fixed\+Size\+Thread\+Pool\+::\texorpdfstring{$\sim$}{\string~}\+Fixed\+Size\+Thread\+Pool (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Terminates the pool, effectively the same as calling \doxylink{classph_1_1_fixed_size_thread_pool_a5e83efc9143bd0331d5d8e6fabf1bb04}{request\+Termination()}. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classph_1_1_fixed_size_thread_pool_a16762ab882dc4f7d03ff8be909db04a6}\index{ph::FixedSizeThreadPool@{ph::FixedSizeThreadPool}!numWorkers@{numWorkers}}
+\index{numWorkers@{numWorkers}!ph::FixedSizeThreadPool@{ph::FixedSizeThreadPool}}
+\doxysubsubsection{\texorpdfstring{numWorkers()}{numWorkers()}}
+{\footnotesize\ttfamily \label{classph_1_1_fixed_size_thread_pool_a16762ab882dc4f7d03ff8be909db04a6} 
+std\+::size\+\_\+t ph\+::\+Fixed\+Size\+Thread\+Pool\+::num\+Workers (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Number of worker threads in the pool. 
+
+\begin{DoxyNote}{Note}
+Thread-\/safe. 
+\end{DoxyNote}
+\Hypertarget{classph_1_1_fixed_size_thread_pool_a63f966889b6ebb82c72b20a15e230b11}\index{ph::FixedSizeThreadPool@{ph::FixedSizeThreadPool}!queueWork@{queueWork}}
+\index{queueWork@{queueWork}!ph::FixedSizeThreadPool@{ph::FixedSizeThreadPool}}
+\doxysubsubsection{\texorpdfstring{queueWork()}{queueWork()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{classph_1_1_fixed_size_thread_pool_a63f966889b6ebb82c72b20a15e230b11} 
+void ph\+::\+Fixed\+Size\+Thread\+Pool\+::queue\+Work (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classph_1_1_fixed_size_thread_pool_ad8ae064343bb81cc83a5dfdefca6a203}{Work}} \&}]{work}{}\end{DoxyParamCaption})}
+
+
+
+Queue up a work to the pool. Workers start to process the work right away. The works are guaranteed to be processed in FIFO order. 
+
+\begin{DoxyNote}{Note}
+Thread-\/safe. 
+\end{DoxyNote}
+\Hypertarget{classph_1_1_fixed_size_thread_pool_adb69c7f506ac91de3e21f44e44091f0b}\index{ph::FixedSizeThreadPool@{ph::FixedSizeThreadPool}!queueWork@{queueWork}}
+\index{queueWork@{queueWork}!ph::FixedSizeThreadPool@{ph::FixedSizeThreadPool}}
+\doxysubsubsection{\texorpdfstring{queueWork()}{queueWork()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{classph_1_1_fixed_size_thread_pool_adb69c7f506ac91de3e21f44e44091f0b} 
+void ph\+::\+Fixed\+Size\+Thread\+Pool\+::queue\+Work (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classph_1_1_fixed_size_thread_pool_ad8ae064343bb81cc83a5dfdefca6a203}{Work}} \&\&}]{work}{}\end{DoxyParamCaption})}
+
+\Hypertarget{classph_1_1_fixed_size_thread_pool_a5e83efc9143bd0331d5d8e6fabf1bb04}\index{ph::FixedSizeThreadPool@{ph::FixedSizeThreadPool}!requestTermination@{requestTermination}}
+\index{requestTermination@{requestTermination}!ph::FixedSizeThreadPool@{ph::FixedSizeThreadPool}}
+\doxysubsubsection{\texorpdfstring{requestTermination()}{requestTermination()}}
+{\footnotesize\ttfamily \label{classph_1_1_fixed_size_thread_pool_a5e83efc9143bd0331d5d8e6fabf1bb04} 
+void ph\+::\+Fixed\+Size\+Thread\+Pool\+::request\+Termination (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Stop processing queued works as soon as possible. Workers will stop processing queued works as soon as possible. Any work that is already being processed will still complete. No further write operations should be performed after requesting termination. Threads waiting for the completion of works, e.\+g., waiting on \doxylink{classph_1_1_fixed_size_thread_pool_aff3870f1e476b5a0e846d025bff18a53}{wait\+All\+Works()}, will stop waiting. Requesting termination multiple times has the same effect. 
+
+\begin{DoxyNote}{Note}
+Thread-\/safe. 
+\end{DoxyNote}
+\Hypertarget{classph_1_1_fixed_size_thread_pool_aff3870f1e476b5a0e846d025bff18a53}\index{ph::FixedSizeThreadPool@{ph::FixedSizeThreadPool}!waitAllWorks@{waitAllWorks}}
+\index{waitAllWorks@{waitAllWorks}!ph::FixedSizeThreadPool@{ph::FixedSizeThreadPool}}
+\doxysubsubsection{\texorpdfstring{waitAllWorks()}{waitAllWorks()}}
+{\footnotesize\ttfamily \label{classph_1_1_fixed_size_thread_pool_aff3870f1e476b5a0e846d025bff18a53} 
+void ph\+::\+Fixed\+Size\+Thread\+Pool\+::wait\+All\+Works (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Blocks until all queued works are finished. Should not be called on worker thread. New works can be queued after waiting is finished. It may not be desirable to call this method while works are still being queued and processed (e.\+g., MPMC), as it is possible that sometimes the work queue is temporarily empty and cause this method to return early. 
+
+\begin{DoxyNote}{Note}
+Thread-\/safe. 
+\end{DoxyNote}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Source/\+Utility/\+Concurrent/\mbox{\hyperlink{_fixed_size_thread_pool_8h}{Fixed\+Size\+Thread\+Pool.\+h}}\item 
+Source/\+Utility/\+Concurrent/\mbox{\hyperlink{_fixed_size_thread_pool_8cpp}{Fixed\+Size\+Thread\+Pool.\+cpp}}\end{DoxyCompactItemize}

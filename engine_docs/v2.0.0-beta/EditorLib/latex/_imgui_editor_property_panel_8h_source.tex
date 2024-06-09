@@ -1,0 +1,62 @@
+\doxysection{Imgui\+Editor\+Property\+Panel.\+h}
+\hypertarget{_imgui_editor_property_panel_8h_source}{}\label{_imgui_editor_property_panel_8h_source}\index{Source/Render/Imgui/Editor/ImguiEditorPropertyPanel.h@{Source/Render/Imgui/Editor/ImguiEditorPropertyPanel.h}}
+\mbox{\hyperlink{_imgui_editor_property_panel_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_imgui_editor_panel_8h}{Render/Imgui/ImguiEditorPanel.h}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_u_i_property_layout_8h}{Designer/UI/UIPropertyLayout.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{imgui__helpers_8h}{Render/Imgui/Utility/imgui\_helpers.h}}"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <Common/primitive\_type.h>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <SDL/SdlResourceId.h>}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <string\_view>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <unordered\_map>}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}\ \{\ \textcolor{keyword}{class\ }SdlEnum;\ \}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph_1_1editor}{ph::editor}}}
+\DoxyCodeLine{00017\ \{}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{keyword}{class\ }DesignerScene;}
+\DoxyCodeLine{00020\ \textcolor{keyword}{class\ }DesignerObject;}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1editor_1_1_imgui_editor_property_panel}{ImguiEditorPropertyPanel}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classph_1_1editor_1_1_imgui_editor_panel}{ImguiEditorPanel}}}
+\DoxyCodeLine{00023\ \{}
+\DoxyCodeLine{00024\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classph_1_1editor_1_1_imgui_editor_property_panel_a8e574040c0f5f9ee70c773c57324032d}{ImguiEditorPropertyPanel}}(\mbox{\hyperlink{classph_1_1editor_1_1_imgui_editor_u_i_proxy}{ImguiEditorUIProxy}}\ editorUI);}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1_imgui_editor_property_panel_a58f1cfd6dbfc2a75cfa742f2c39678e3}{buildWindow}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ windowIdName,\ \textcolor{keywordtype}{bool}*\ isOpening)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1editor_1_1_imgui_editor_property_panel_aaec2117f56d654798169bb9b9392262b}{getAttributes}}()\ \textcolor{keyword}{const}\ -\/>\ \mbox{\hyperlink{structph_1_1editor_1_1_imgui_editor_panel_1_1_attributes}{Attributes}}\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{struct\ }EnumType}
+\DoxyCodeLine{00032\ \ \ \ \ \{}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ SdlEnum*\ enuw\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ std::unordered\_map<int64,\ std::string>\ valueToDisplayName;}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ getDisplayName(int64\ enumValue)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00037\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ iter\ =\ valueToDisplayName.find(enumValue);}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ iter\ !=\ valueToDisplayName.end()\ ?\ iter-\/>second.c\_str()\ :\ \textcolor{stringliteral}{"{}(unknown\ entry)"{}};}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00041\ \ \ \ \ \};}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordtype}{void}\ buildGeneralSettings(\mbox{\hyperlink{classph_1_1editor_1_1_designer_object}{DesignerObject}}\&\ obj);}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordtype}{void}\ buildPropertyEditor(\mbox{\hyperlink{classph_1_1editor_1_1_designer_object}{DesignerObject}}\&\ obj);}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordtype}{void}\ buildPropertiesInGroup(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1editor_1_1_u_i_property_group}{UIPropertyGroup}}\&\ group);}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{auto}\ gatherEnumTypes()\ -\/>\ std::vector<EnumType>;}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{auto}\ getEnumType(std::string\_view\ typeSignature)\ -\/>\ \textcolor{keyword}{const}\ EnumType*;}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \ \ SdlResourceId\ m\_layoutObjID;}
+\DoxyCodeLine{00051\ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1_u_i_property_layout}{UIPropertyLayout}}\ m\_propertyLayout;}
+\DoxyCodeLine{00052\ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1imgui_1_1_string_cache}{imgui::StringCache}}\ m\_stringEditCache;}
+\DoxyCodeLine{00053\ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1imgui_1_1_string_cache}{imgui::StringCache}}\ m\_popupNameEditCache;}
+\DoxyCodeLine{00054\ \};}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \}\textcolor{comment}{//\ end\ namespace\ ph::editor}}
+
+\end{DoxyCode}

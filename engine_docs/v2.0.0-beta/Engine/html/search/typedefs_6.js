@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['hdrcomponent_0',['HdrComponent',['../d3/d5c/namespaceph.html#a616994a6a9ee59cfcdc213954e5d71eb',1,'ph']]],
-  ['hdrrgbframe_1',['HdrRgbFrame',['../d3/d5c/namespaceph.html#aa6f64f0671c9673a00df0bd8567aeb78',1,'ph']]]
+  ['hdrcomponent_0',['HdrComponent',['../namespaceph.html#a7a9db669761b3f363c93db64cf5e6d0e',1,'ph']]],
+  ['hdrrgbframe_1',['HdrRgbFrame',['../namespaceph.html#a6cb342b38d32fd46d08ca0ec0f69fe3e',1,'ph']]]
 ];

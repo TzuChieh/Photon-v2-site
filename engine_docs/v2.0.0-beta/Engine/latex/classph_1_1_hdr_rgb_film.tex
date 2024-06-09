@@ -1,0 +1,267 @@
+\doxysection{ph\+::Hdr\+Rgb\+Film Class Reference}
+\hypertarget{classph_1_1_hdr_rgb_film}{}\label{classph_1_1_hdr_rgb_film}\index{ph::HdrRgbFilm@{ph::HdrRgbFilm}}
+
+
+A film that records RGB values internally. Although film samples are added as spectral values, they are automatically converted to linear s\+RGB values for storage.  
+
+
+
+
+{\ttfamily \#include $<$Hdr\+Rgb\+Film.\+h$>$}
+
+Inheritance diagram for ph\+::Hdr\+Rgb\+Film\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{classph_1_1_hdr_rgb_film}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classph_1_1_hdr_rgb_film_a5ef26a7b48198ed6b6c4b39d6005bfa7}{Hdr\+Rgb\+Film}} ()=default
+\item 
+\mbox{\hyperlink{classph_1_1_hdr_rgb_film_a48bd648e20c80f61ab719a8341dc88d2}{Hdr\+Rgb\+Film}} (int64 actual\+Width\+Px, int64 actual\+Height\+Px, const \mbox{\hyperlink{classph_1_1_sample_filter}{Sample\+Filter}} \&filter)
+\item 
+\mbox{\hyperlink{classph_1_1_hdr_rgb_film_ac0fe4e014ecaac2c9e8a0d225689792e}{Hdr\+Rgb\+Film}} (int64 actual\+Width\+Px, int64 actual\+Height\+Px, const \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d}{math\+::\+TAABB2D}}$<$ int64 $>$ \&effective\+Window\+Px, const \mbox{\hyperlink{classph_1_1_sample_filter}{Sample\+Filter}} \&filter)
+\item 
+void \mbox{\hyperlink{classph_1_1_hdr_rgb_film_a6e689fab1b196d5f1b7b8419893db3c8}{add\+Sample}} (float64 x\+Px, float64 y\+Px, const \mbox{\hyperlink{namespaceph_1_1math_ad1ddf3801f5a9ea201227d49747987ed}{math\+::\+Spectrum}} \&sample) override
+\begin{DoxyCompactList}\small\item\em Applies filter to sample value and add to the film. Generally, this method can produce higher quality result by reconstruct the image function with a filter. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classph_1_1_hdr_rgb_film_a6bca3156ec8fd7e22b4a585c742f99d0}{set\+Pixel}} (float64 x\+Px, float64 y\+Px, const \mbox{\hyperlink{namespaceph_1_1math_ad1ddf3801f5a9ea201227d49747987ed}{math\+::\+Spectrum}} \&sample) override
+\begin{DoxyCompactList}\small\item\em Let the pixel developes to the specified sample value. An interface for using the film as an ordinary image. This method may disturb sample weights. Using this method with {\ttfamily \doxylink{classph_1_1_hdr_rgb_film_a6e689fab1b196d5f1b7b8419893db3c8}{add\+Sample()}} may result in image artifacts unless the implementation says otherwise. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classph_1_1_hdr_rgb_film_a8506b4f8262b426c5390cac4c5fa64ac}{clear}} () override
+\begin{DoxyCompactList}\small\item\em Set all pixel data to its initial state. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classph_1_1_hdr_rgb_film_a008cc8ea9e2f38e3a2be337269e96f55}{set\+Effective\+Window\+Px}} (const \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d}{math\+::\+TAABB2D}}$<$ int64 $>$ \&effective\+Window) override
+\begin{DoxyCompactList}\small\item\em Set the region where the film will be used. Implementation is advised to take advantage of this and only allocate memory for the part within the effective window. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classph_1_1_hdr_rgb_film_af463bb4b3b38cbecf3ad7180b6491024}{merge\+With}} (const \mbox{\hyperlink{classph_1_1_hdr_rgb_film}{Hdr\+Rgb\+Film}} \&other)
+\end{DoxyCompactItemize}
+\textbf{ }\par
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classph_1_1_hdr_rgb_film_ad62a5ac22b9835c623adfde9808108f5}{add\+Rgb\+Sample}} (float64 x\+Px, float64 y\+Px, const \mbox{\hyperlink{namespaceph_1_1math_a7f5d9bea70db00eb52ece79b05e544c8}{math\+::\+Vector3R}} \&rgb)
+\begin{DoxyCompactList}\small\item\em Add a pixel sample. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classph_1_1_hdr_rgb_film_a9e5299edcaf599dc8c2830e84d2ac9a5}{add\+Rgb\+Sample}} (float64 x\+Px, float64 y\+Px, const \mbox{\hyperlink{namespaceph_1_1math_ad0f41824cfe5e85bdbde57f0f779e230}{math\+::\+Vector3D}} \&rgb)
+\end{DoxyCompactItemize}
+
+\textbf{ }\par
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classph_1_1_hdr_rgb_film_a1b9cbe363574fb0c554e28d8fcb0c70f}{set\+Rgb\+Pixel}} (float64 x\+Px, float64 y\+Px, const \mbox{\hyperlink{namespaceph_1_1math_a7f5d9bea70db00eb52ece79b05e544c8}{math\+::\+Vector3R}} \&rgb, float64 weight=1)
+\begin{DoxyCompactList}\small\item\em Set a pixel directly. Filter is not applied when setting a pixel directly (effectively applying a box filter). The pixel coordinate is not integral as the implementation may choose to store the values in higher resolution (e.\+g., super sampling). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classph_1_1_hdr_rgb_film_a69b1ca3a33bad823dcb590201b56b8d4}{set\+Rgb\+Pixel}} (float64 x\+Px, float64 y\+Px, const \mbox{\hyperlink{namespaceph_1_1math_ad0f41824cfe5e85bdbde57f0f779e230}{math\+::\+Vector3D}} \&rgb, float64 weight=1)
+\end{DoxyCompactItemize}
+
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classph_1_1_t_sampling_film}{ph\+::\+TSampling\+Film$<$ math\+::\+Spectrum $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classph_1_1_t_sampling_film_a0553b4a03944b4e63884579539fbe759}{TSampling\+Film}} ()=default
+\item 
+\mbox{\hyperlink{classph_1_1_t_sampling_film_a76a3129a3f87db4402a4d70c3edca96f}{TSampling\+Film}} (int64 actual\+Width\+Px, int64 actual\+Height\+Px, const \mbox{\hyperlink{classph_1_1_sample_filter}{Sample\+Filter}} \&filter)
+\item 
+\mbox{\hyperlink{classph_1_1_t_sampling_film_a33c56f0b5f45f5cbb41f0f7243052127}{TSampling\+Film}} (int64 actual\+Width\+Px, int64 actual\+Height\+Px, const \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d}{math\+::\+TAABB2D}}$<$ int64 $>$ \&effective\+Window\+Px, const \mbox{\hyperlink{classph_1_1_sample_filter}{Sample\+Filter}} \&filter)
+\item 
+void \mbox{\hyperlink{classph_1_1_t_sampling_film_aea4047228dec43fe7dcc33583c11694c}{set\+Effective\+Window\+Px}} (const \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d}{math\+::\+TAABB2D}}$<$ int64 $>$ \&effective\+Window) override
+\begin{DoxyCompactList}\small\item\em Set the region where the film will be used. Implementation is advised to take advantage of this and only allocate memory for the part within the effective window. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classph_1_1_t_sampling_film_a379201ba7e3870a7f4c9c315631ad20a}{set\+Soft\+Edge}} (bool use\+Soft\+Edge, float32 softness=1.\+0f)
+\begin{DoxyCompactList}\small\item\em Whether to increase the sampling window converage for prettier boundaries in developed frame. In renderings where the image is divided into tiles and sampled independently, the resulting image may have visible artifacts along tile boundaries. This can be alleviated by increasing the size of each tile, so edge pixels can receive more information, reducing their variance. This costs slightly more memory, and tiles will have overlapping sampling regions (may need more care for concurrency). \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{math\+::\+TVector2}}$<$ float64 $>$ \mbox{\hyperlink{classph_1_1_t_sampling_film_a379969d774abecc6737efcfc112b8552}{get\+Sample\+Res\+Px}} () const
+\item 
+const \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d}{math\+::\+TAABB2D}}$<$ float64 $>$ \& \mbox{\hyperlink{classph_1_1_t_sampling_film_ac7c2aaa7181feba14db68e85371ca2fc}{get\+Sample\+Window\+Px}} () const
+\item 
+const \mbox{\hyperlink{classph_1_1_sample_filter}{Sample\+Filter}} \& \mbox{\hyperlink{classph_1_1_t_sampling_film_a26b3d7004e65048a07c3a6874c8d1cd6}{get\+Filter}} () const
+\item 
+\mbox{\hyperlink{structph_1_1_sampling_film_dimensions}{Sampling\+Film\+Dimensions}} \mbox{\hyperlink{classph_1_1_t_sampling_film_afe6337b459d40a5f83e9d1709ac34673}{get\+Dimensions}} () const
+\item 
+bool \mbox{\hyperlink{classph_1_1_t_sampling_film_a6e56f532a54b42d6041aad95d8ae4806}{is\+Soft\+Edged}} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classph_1_1_film}{ph\+::\+Film}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classph_1_1_film_a89bbffe1bd6ac0df487ddef591d3a274}{Film}} ()
+\item 
+\mbox{\hyperlink{classph_1_1_film_ae53f776e26480496a306c03064f6c4d7}{Film}} (int64 actual\+Width\+Px, int64 actual\+Height\+Px)
+\item 
+\mbox{\hyperlink{classph_1_1_film_a60c30818a10cfe54f1c150f5df0fde85}{Film}} (int64 actual\+Width\+Px, int64 actual\+Height\+Px, const \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d}{math\+::\+TAABB2D}}$<$ int64 $>$ \&effective\+Window\+Px)
+\item 
+\mbox{\hyperlink{classph_1_1_film_acd1e4846e9d0bea0b3edf5f96c008b9a}{Film}} (\mbox{\hyperlink{classph_1_1_film}{Film}} \&\&other)=default
+\item 
+\mbox{\hyperlink{classph_1_1_film}{Film}} \& \mbox{\hyperlink{classph_1_1_film_ab8cc1a256d94c8c4a664f6ac901f5d5c}{operator=}} (\mbox{\hyperlink{classph_1_1_film}{Film}} \&\&other)=default
+\item 
+virtual \mbox{\hyperlink{classph_1_1_film_accb42952775b9006e2e8444d85e8bee2}{\texorpdfstring{$\sim$}{\string~}\+Film}} ()=default
+\item 
+virtual void \mbox{\hyperlink{classph_1_1_film_ae4521107c2030b714cd233586f8eb0f4}{set\+Actual\+Res\+Px}} (const \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{math\+::\+TVector2}}$<$ int64 $>$ \&actual\+Res\+Px)
+\begin{DoxyCompactList}\small\item\em Set the apparent size of the film. If only a sub-\/region of the film is going to be used, set the effective window accordingly may improve performance especially in memory usage. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classph_1_1_film_ad4a28e11c606acd07ac6419016e464a0}{develop}} (\mbox{\hyperlink{namespaceph_a6cb342b38d32fd46d08ca0ec0f69fe3e}{Hdr\+Rgb\+Frame}} \&out\+\_\+frame) const
+\item 
+void \mbox{\hyperlink{classph_1_1_film_a05c8eaed41686a6bc5c8a46edcc28673}{develop}} (\mbox{\hyperlink{namespaceph_a6cb342b38d32fd46d08ca0ec0f69fe3e}{Hdr\+Rgb\+Frame}} \&out\+\_\+frame, const \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d}{math\+::\+TAABB2D}}$<$ int64 $>$ \&region\+Px) const
+\item 
+const \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{math\+::\+TVector2}}$<$ int64 $>$ \& \mbox{\hyperlink{classph_1_1_film_a2ed88265ddc185baea6449584a8b9050}{get\+Actual\+Res\+Px}} () const
+\item 
+\mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{math\+::\+TVector2}}$<$ int64 $>$ \mbox{\hyperlink{classph_1_1_film_a56255418a8530fc40c74a8bc8c8a4fe9}{get\+Effective\+Res\+Px}} () const
+\item 
+const \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d}{math\+::\+TAABB2D}}$<$ int64 $>$ \& \mbox{\hyperlink{classph_1_1_film_af4297a260e3571ba4c1f426f28dd042e}{get\+Effective\+Window\+Px}} () const
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A film that records RGB values internally. Although film samples are added as spectral values, they are automatically converted to linear s\+RGB values for storage. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classph_1_1_hdr_rgb_film_a5ef26a7b48198ed6b6c4b39d6005bfa7}\index{ph::HdrRgbFilm@{ph::HdrRgbFilm}!HdrRgbFilm@{HdrRgbFilm}}
+\index{HdrRgbFilm@{HdrRgbFilm}!ph::HdrRgbFilm@{ph::HdrRgbFilm}}
+\doxysubsubsection{\texorpdfstring{HdrRgbFilm()}{HdrRgbFilm()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily \label{classph_1_1_hdr_rgb_film_a5ef26a7b48198ed6b6c4b39d6005bfa7} 
+ph\+::\+Hdr\+Rgb\+Film\+::\+Hdr\+Rgb\+Film (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\Hypertarget{classph_1_1_hdr_rgb_film_a48bd648e20c80f61ab719a8341dc88d2}\index{ph::HdrRgbFilm@{ph::HdrRgbFilm}!HdrRgbFilm@{HdrRgbFilm}}
+\index{HdrRgbFilm@{HdrRgbFilm}!ph::HdrRgbFilm@{ph::HdrRgbFilm}}
+\doxysubsubsection{\texorpdfstring{HdrRgbFilm()}{HdrRgbFilm()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily \label{classph_1_1_hdr_rgb_film_a48bd648e20c80f61ab719a8341dc88d2} 
+ph\+::\+Hdr\+Rgb\+Film\+::\+Hdr\+Rgb\+Film (\begin{DoxyParamCaption}\item[{int64}]{actual\+Width\+Px}{, }\item[{int64}]{actual\+Height\+Px}{, }\item[{const \mbox{\hyperlink{classph_1_1_sample_filter}{Sample\+Filter}} \&}]{filter}{}\end{DoxyParamCaption})}
+
+\Hypertarget{classph_1_1_hdr_rgb_film_ac0fe4e014ecaac2c9e8a0d225689792e}\index{ph::HdrRgbFilm@{ph::HdrRgbFilm}!HdrRgbFilm@{HdrRgbFilm}}
+\index{HdrRgbFilm@{HdrRgbFilm}!ph::HdrRgbFilm@{ph::HdrRgbFilm}}
+\doxysubsubsection{\texorpdfstring{HdrRgbFilm()}{HdrRgbFilm()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily \label{classph_1_1_hdr_rgb_film_ac0fe4e014ecaac2c9e8a0d225689792e} 
+ph\+::\+Hdr\+Rgb\+Film\+::\+Hdr\+Rgb\+Film (\begin{DoxyParamCaption}\item[{int64}]{actual\+Width\+Px}{, }\item[{int64}]{actual\+Height\+Px}{, }\item[{const \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d}{math\+::\+TAABB2D}}$<$ int64 $>$ \&}]{effective\+Window\+Px}{, }\item[{const \mbox{\hyperlink{classph_1_1_sample_filter}{Sample\+Filter}} \&}]{filter}{}\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classph_1_1_hdr_rgb_film_a9e5299edcaf599dc8c2830e84d2ac9a5}\index{ph::HdrRgbFilm@{ph::HdrRgbFilm}!addRgbSample@{addRgbSample}}
+\index{addRgbSample@{addRgbSample}!ph::HdrRgbFilm@{ph::HdrRgbFilm}}
+\doxysubsubsection{\texorpdfstring{addRgbSample()}{addRgbSample()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{classph_1_1_hdr_rgb_film_a9e5299edcaf599dc8c2830e84d2ac9a5} 
+void ph\+::\+Hdr\+Rgb\+Film\+::add\+Rgb\+Sample (\begin{DoxyParamCaption}\item[{float64}]{x\+Px}{, }\item[{float64}]{y\+Px}{, }\item[{const \mbox{\hyperlink{namespaceph_1_1math_ad0f41824cfe5e85bdbde57f0f779e230}{math\+::\+Vector3D}} \&}]{rgb}{}\end{DoxyParamCaption})}
+
+\Hypertarget{classph_1_1_hdr_rgb_film_ad62a5ac22b9835c623adfde9808108f5}\index{ph::HdrRgbFilm@{ph::HdrRgbFilm}!addRgbSample@{addRgbSample}}
+\index{addRgbSample@{addRgbSample}!ph::HdrRgbFilm@{ph::HdrRgbFilm}}
+\doxysubsubsection{\texorpdfstring{addRgbSample()}{addRgbSample()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{classph_1_1_hdr_rgb_film_ad62a5ac22b9835c623adfde9808108f5} 
+void ph\+::\+Hdr\+Rgb\+Film\+::add\+Rgb\+Sample (\begin{DoxyParamCaption}\item[{float64}]{x\+Px}{, }\item[{float64}]{y\+Px}{, }\item[{const \mbox{\hyperlink{namespaceph_1_1math_a7f5d9bea70db00eb52ece79b05e544c8}{math\+::\+Vector3R}} \&}]{rgb}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Add a pixel sample. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x\+Px} & The pixel\textquotesingle{}s x coordinate. \\
+\hline
+{\em y\+Px} & The pixel\textquotesingle{}s y coordinate. \\
+\hline
+{\em rgb} & The RGB values of the pixel. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classph_1_1_hdr_rgb_film_a6e689fab1b196d5f1b7b8419893db3c8}\index{ph::HdrRgbFilm@{ph::HdrRgbFilm}!addSample@{addSample}}
+\index{addSample@{addSample}!ph::HdrRgbFilm@{ph::HdrRgbFilm}}
+\doxysubsubsection{\texorpdfstring{addSample()}{addSample()}}
+{\footnotesize\ttfamily \label{classph_1_1_hdr_rgb_film_a6e689fab1b196d5f1b7b8419893db3c8} 
+void ph\+::\+Hdr\+Rgb\+Film\+::add\+Sample (\begin{DoxyParamCaption}\item[{float64}]{x\+Px}{, }\item[{float64}]{y\+Px}{, }\item[{const \mbox{\hyperlink{namespaceph_1_1math_ad1ddf3801f5a9ea201227d49747987ed}{math\+::\+Spectrum}} \&}]{sample}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Applies filter to sample value and add to the film. Generally, this method can produce higher quality result by reconstruct the image function with a filter. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x\+Px} & The x coordinate in raster space. \\
+\hline
+{\em y\+Px} & The y coordinate in raster space. \\
+\hline
+{\em sample} & The value to add as a sample. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classph_1_1_t_sampling_film_a661e59e3e38663aea46eac384ffbdf6a}{ph\+::\+TSampling\+Film$<$ math\+::\+Spectrum $>$}}.
+
+\Hypertarget{classph_1_1_hdr_rgb_film_a8506b4f8262b426c5390cac4c5fa64ac}\index{ph::HdrRgbFilm@{ph::HdrRgbFilm}!clear@{clear}}
+\index{clear@{clear}!ph::HdrRgbFilm@{ph::HdrRgbFilm}}
+\doxysubsubsection{\texorpdfstring{clear()}{clear()}}
+{\footnotesize\ttfamily \label{classph_1_1_hdr_rgb_film_a8506b4f8262b426c5390cac4c5fa64ac} 
+void ph\+::\+Hdr\+Rgb\+Film\+::clear (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Set all pixel data to its initial state. 
+
+
+
+Implements \mbox{\hyperlink{classph_1_1_t_sampling_film_a02aa2aceb9305f3f12e00ce6ffb7e170}{ph\+::\+TSampling\+Film$<$ math\+::\+Spectrum $>$}}.
+
+\Hypertarget{classph_1_1_hdr_rgb_film_af463bb4b3b38cbecf3ad7180b6491024}\index{ph::HdrRgbFilm@{ph::HdrRgbFilm}!mergeWith@{mergeWith}}
+\index{mergeWith@{mergeWith}!ph::HdrRgbFilm@{ph::HdrRgbFilm}}
+\doxysubsubsection{\texorpdfstring{mergeWith()}{mergeWith()}}
+{\footnotesize\ttfamily \label{classph_1_1_hdr_rgb_film_af463bb4b3b38cbecf3ad7180b6491024} 
+void ph\+::\+Hdr\+Rgb\+Film\+::merge\+With (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classph_1_1_hdr_rgb_film}{Hdr\+Rgb\+Film}} \&}]{other}{}\end{DoxyParamCaption})}
+
+\Hypertarget{classph_1_1_hdr_rgb_film_a008cc8ea9e2f38e3a2be337269e96f55}\index{ph::HdrRgbFilm@{ph::HdrRgbFilm}!setEffectiveWindowPx@{setEffectiveWindowPx}}
+\index{setEffectiveWindowPx@{setEffectiveWindowPx}!ph::HdrRgbFilm@{ph::HdrRgbFilm}}
+\doxysubsubsection{\texorpdfstring{setEffectiveWindowPx()}{setEffectiveWindowPx()}}
+{\footnotesize\ttfamily \label{classph_1_1_hdr_rgb_film_a008cc8ea9e2f38e3a2be337269e96f55} 
+void ph\+::\+Hdr\+Rgb\+Film\+::set\+Effective\+Window\+Px (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d}{math\+::\+TAABB2D}}$<$ int64 $>$ \&}]{effective\+Window}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Set the region where the film will be used. Implementation is advised to take advantage of this and only allocate memory for the part within the effective window. 
+
+
+
+Reimplemented from \mbox{\hyperlink{classph_1_1_film_a1f5eafe4931d941bab0a16a153846fa0}{ph\+::\+Film}}.
+
+\Hypertarget{classph_1_1_hdr_rgb_film_a6bca3156ec8fd7e22b4a585c742f99d0}\index{ph::HdrRgbFilm@{ph::HdrRgbFilm}!setPixel@{setPixel}}
+\index{setPixel@{setPixel}!ph::HdrRgbFilm@{ph::HdrRgbFilm}}
+\doxysubsubsection{\texorpdfstring{setPixel()}{setPixel()}}
+{\footnotesize\ttfamily \label{classph_1_1_hdr_rgb_film_a6bca3156ec8fd7e22b4a585c742f99d0} 
+void ph\+::\+Hdr\+Rgb\+Film\+::set\+Pixel (\begin{DoxyParamCaption}\item[{float64}]{x\+Px}{, }\item[{float64}]{y\+Px}{, }\item[{const \mbox{\hyperlink{namespaceph_1_1math_ad1ddf3801f5a9ea201227d49747987ed}{math\+::\+Spectrum}} \&}]{sample}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Let the pixel developes to the specified sample value. An interface for using the film as an ordinary image. This method may disturb sample weights. Using this method with {\ttfamily \doxylink{classph_1_1_hdr_rgb_film_a6e689fab1b196d5f1b7b8419893db3c8}{add\+Sample()}} may result in image artifacts unless the implementation says otherwise. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x\+Px} & The x coordinate in raster space. \\
+\hline
+{\em y\+Px} & The y coordinate in raster space. \\
+\hline
+{\em sample} & The value the pixel will develop to. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classph_1_1_t_sampling_film_a25ee16bbf7cccb59f25eecccbebc9309}{ph\+::\+TSampling\+Film$<$ math\+::\+Spectrum $>$}}.
+
+\Hypertarget{classph_1_1_hdr_rgb_film_a69b1ca3a33bad823dcb590201b56b8d4}\index{ph::HdrRgbFilm@{ph::HdrRgbFilm}!setRgbPixel@{setRgbPixel}}
+\index{setRgbPixel@{setRgbPixel}!ph::HdrRgbFilm@{ph::HdrRgbFilm}}
+\doxysubsubsection{\texorpdfstring{setRgbPixel()}{setRgbPixel()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{classph_1_1_hdr_rgb_film_a69b1ca3a33bad823dcb590201b56b8d4} 
+void ph\+::\+Hdr\+Rgb\+Film\+::set\+Rgb\+Pixel (\begin{DoxyParamCaption}\item[{float64}]{x\+Px}{, }\item[{float64}]{y\+Px}{, }\item[{const \mbox{\hyperlink{namespaceph_1_1math_ad0f41824cfe5e85bdbde57f0f779e230}{math\+::\+Vector3D}} \&}]{rgb}{, }\item[{float64}]{weight}{ = {\ttfamily 1}}\end{DoxyParamCaption})}
+
+\Hypertarget{classph_1_1_hdr_rgb_film_a1b9cbe363574fb0c554e28d8fcb0c70f}\index{ph::HdrRgbFilm@{ph::HdrRgbFilm}!setRgbPixel@{setRgbPixel}}
+\index{setRgbPixel@{setRgbPixel}!ph::HdrRgbFilm@{ph::HdrRgbFilm}}
+\doxysubsubsection{\texorpdfstring{setRgbPixel()}{setRgbPixel()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{classph_1_1_hdr_rgb_film_a1b9cbe363574fb0c554e28d8fcb0c70f} 
+void ph\+::\+Hdr\+Rgb\+Film\+::set\+Rgb\+Pixel (\begin{DoxyParamCaption}\item[{float64}]{x\+Px}{, }\item[{float64}]{y\+Px}{, }\item[{const \mbox{\hyperlink{namespaceph_1_1math_a7f5d9bea70db00eb52ece79b05e544c8}{math\+::\+Vector3R}} \&}]{rgb}{, }\item[{float64}]{weight}{ = {\ttfamily 1}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set a pixel directly. Filter is not applied when setting a pixel directly (effectively applying a box filter). The pixel coordinate is not integral as the implementation may choose to store the values in higher resolution (e.\+g., super sampling). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x\+Px} & The pixel\textquotesingle{}s x coordinate. \\
+\hline
+{\em y\+Px} & The pixel\textquotesingle{}s y coordinate. \\
+\hline
+{\em rgb} & The RGB values of the pixel. \\
+\hline
+{\em weight} & The weight of the pixel. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Source/\+Core/\+Filmic/\mbox{\hyperlink{_hdr_rgb_film_8h}{Hdr\+Rgb\+Film.\+h}}\item 
+Source/\+Core/\+Filmic/\mbox{\hyperlink{_hdr_rgb_film_8cpp}{Hdr\+Rgb\+Film.\+cpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,408 @@
+\doxysection{TAABB3\+D.\+ipp}
+\hypertarget{_t_a_a_b_b3_d_8ipp_source}{}\label{_t_a_a_b_b3_d_8ipp_source}\index{Source/Math/Geometry/TAABB3D.ipp@{Source/Math/Geometry/TAABB3D.ipp}}
+\mbox{\hyperlink{_t_a_a_b_b3_d_8ipp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_a_a_b_b3_d_8h}{Math/Geometry/TAABB3D.h}}"{}}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <Common/assertion.h>}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <cmath>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <type\_traits>}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph_1_1math}{ph::math}}}
+\DoxyCodeLine{00012\ \{}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00015\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d}{TAABB3D<T>}}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d_acd1ef6d19364c61bd5d10e513ed8ad29}{TAABB3D<T>::makeEmpty}}()}
+\DoxyCodeLine{00016\ \{}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keyword}{constexpr}\ T\ maxVal\ =\ std::numeric\_limits<T>::max();}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keyword}{constexpr}\ T\ minVal\ =\ std::numeric\_limits<T>::lowest();}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d}{TAABB3D}}(}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \{maxVal,\ maxVal,\ maxVal\},}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \{minVal,\ minVal,\ minVal\});}
+\DoxyCodeLine{00023\ \}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00026\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d}{TAABB3D<T>}}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d_ab8a4a18e04cd0077c5ae1bdfdec3752c}{TAABB3D<T>::makeUnioned}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d}{TAABB3D}}\&\ a,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d}{TAABB3D}}\&\ b)}
+\DoxyCodeLine{00027\ \{}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d}{TAABB3D}}(a).\mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d_a14473a59e33504a3ac1503796c421a78}{unionWith}}(b);}
+\DoxyCodeLine{00029\ \}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00032\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d_a41b40578767a587b90cb561990706302}{TAABB3D<T>::TAABB3D}}()\ :}
+\DoxyCodeLine{00033\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d}{TAABB3D}}(\mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{TVector3}}<T>(0,\ 0,\ 0))}
+\DoxyCodeLine{00034\ \{\}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00037\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d_a41b40578767a587b90cb561990706302}{TAABB3D<T>::TAABB3D}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{TVector3<T>}}\&\ point)\ :}
+\DoxyCodeLine{00038\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d}{TAABB3D}}(point,\ point)}
+\DoxyCodeLine{00039\ \{\}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00042\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d_a41b40578767a587b90cb561990706302}{TAABB3D<T>::TAABB3D}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{TVector3<T>}}\&\ minVertex,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{TVector3<T>}}\&\ maxVertex)\ :}
+\DoxyCodeLine{00043\ \ \ \ \ m\_minVertex(minVertex),\ m\_maxVertex(maxVertex)}
+\DoxyCodeLine{00044\ \{}
+\DoxyCodeLine{00045\ \ \ \ \ PH\_ASSERT\_MSG(maxVertex.\mbox{\hyperlink{classph_1_1math_1_1_t_vector3_a8d0eb557cecca2a3e07326c409b2c16b}{x}}()\ >=\ minVertex.\mbox{\hyperlink{classph_1_1math_1_1_t_vector3_a8d0eb557cecca2a3e07326c409b2c16b}{x}}()\ \&\&}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ maxVertex.\mbox{\hyperlink{classph_1_1math_1_1_t_vector3_a0a5f0880f6b82a8519416ca9a987818b}{y}}()\ >=\ minVertex.\mbox{\hyperlink{classph_1_1math_1_1_t_vector3_a0a5f0880f6b82a8519416ca9a987818b}{y}}()\ \&\&}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ maxVertex.\mbox{\hyperlink{classph_1_1math_1_1_t_vector3_a34d51b9c12196175c8ad04c2cd9c59ec}{z}}()\ >=\ minVertex.\mbox{\hyperlink{classph_1_1math_1_1_t_vector3_a34d51b9c12196175c8ad04c2cd9c59ec}{z}}(),}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}minVertex\ =\ "{}}\ +\ minVertex.\mbox{\hyperlink{classph_1_1math_1_1_t_vector_n_base_a945f66ed8e65964d232f259b223debd1}{toString}}()\ +}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}maxVertex\ =\ "{}}\ +\ maxVertex.\mbox{\hyperlink{classph_1_1math_1_1_t_vector_n_base_a945f66ed8e65964d232f259b223debd1}{toString}}());}
+\DoxyCodeLine{00050\ \}}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00053\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d_a61f8f534fe13793cba10fc7ef927e00a}{TAABB3D<T>::isIntersectingVolume}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_line_segment}{TLineSegment<T>}}\&\ segment)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00054\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00055\ \ \ \ \ T\ nearHitT,\ farHitT;}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordflow}{return}\ isIntersectingVolume(segment,\ \&nearHitT,\ \&farHitT);}
+\DoxyCodeLine{00057\ \}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00060\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d_a61f8f534fe13793cba10fc7ef927e00a}{TAABB3D<T>::isIntersectingVolume}}(}
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_line_segment}{TLineSegment<T>}}\&\ segment,}
+\DoxyCodeLine{00062\ \ \ \ \ T*\ \textcolor{keyword}{const}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ out\_nearHitT,}
+\DoxyCodeLine{00063\ \ \ \ \ T*\ \textcolor{keyword}{const}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ out\_farHitT)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00064\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordflow}{return}\ isIntersectingVolumeKajiyaKay(segment,\ out\_nearHitT,\ out\_farHitT);}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{comment}{//\ Somewhat\ slower,\ don't\ know\ why}}
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{comment}{//return\ isIntersectingVolumeTavian(segment,\ out\_nearHitT,\ out\_farHitT);}}
+\DoxyCodeLine{00069\ \}}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00072\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d_a61f8f534fe13793cba10fc7ef927e00a}{TAABB3D<T>::isIntersectingVolume}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d}{TAABB3D}}\&\ other)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00073\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_minVertex.x()\ <=\ other.m\_maxVertex.x()\ \&\&\ m\_maxVertex.x()\ >=\ other.m\_minVertex.x()\ \&\&}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ m\_minVertex.y()\ <=\ other.m\_maxVertex.y()\ \&\&\ m\_maxVertex.y()\ >=\ other.m\_minVertex.y()\ \&\&}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ m\_minVertex.z()\ <=\ other.m\_maxVertex.z()\ \&\&\ m\_maxVertex.z()\ >=\ other.m\_minVertex.z();}
+\DoxyCodeLine{00077\ \}}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00080\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d}{TAABB3D<T>}}\&\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d_a14473a59e33504a3ac1503796c421a78}{TAABB3D<T>::unionWith}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d}{TAABB3D}}\&\ other)}
+\DoxyCodeLine{00081\ \{}
+\DoxyCodeLine{00082\ \ \ \ \ m\_minVertex\ =\ m\_minVertex.min(other.\mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d_af374aa4e2c99cf83c5324f7e5f376fec}{getMinVertex}}());}
+\DoxyCodeLine{00083\ \ \ \ \ m\_maxVertex\ =\ m\_maxVertex.max(other.\mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d_a1c7cf27e2b7ecf50add7da77b78c5e3e}{getMaxVertex}}());}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00086\ \}}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00089\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d}{TAABB3D<T>}}\&\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d_a14473a59e33504a3ac1503796c421a78}{TAABB3D<T>::unionWith}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{TVector3<T>}}\&\ point)}
+\DoxyCodeLine{00090\ \{}
+\DoxyCodeLine{00091\ \ \ \ \ m\_minVertex\ =\ m\_minVertex.min(point);}
+\DoxyCodeLine{00092\ \ \ \ \ m\_maxVertex\ =\ m\_maxVertex.max(point);}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00095\ \}}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00098\ \textcolor{keyword}{inline}\ std::pair<TVector3<T>,\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{TVector3<T>}}>\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d_a930e7c02892bf2f36fc1365faa792a0b}{TAABB3D<T>::getVertices}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00099\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keywordflow}{return}\ \{getMinVertex(),\ getMaxVertex()\};}
+\DoxyCodeLine{00101\ \}}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00104\ \textcolor{keyword}{inline}\ std::array<TVector3<T>,\ 8>\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d_a8bff2c55afb8d71160edca1edba8befa}{TAABB3D<T>::getBoundVertices}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00105\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keywordflow}{return}\ \{\mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{TVector3<T>}}(m\_minVertex.x(),\ m\_minVertex.y(),\ m\_minVertex.z()),}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{TVector3<T>}}(m\_maxVertex.x(),\ m\_minVertex.y(),\ m\_minVertex.z()),}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{TVector3<T>}}(m\_minVertex.x(),\ m\_maxVertex.y(),\ m\_minVertex.z()),}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{TVector3<T>}}(m\_minVertex.x(),\ m\_minVertex.y(),\ m\_maxVertex.z()),}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{TVector3<T>}}(m\_maxVertex.x(),\ m\_maxVertex.y(),\ m\_minVertex.z()),}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{TVector3<T>}}(m\_minVertex.x(),\ m\_maxVertex.y(),\ m\_maxVertex.z()),}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{TVector3<T>}}(m\_maxVertex.x(),\ m\_minVertex.y(),\ m\_maxVertex.z()),}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{TVector3<T>}}(m\_maxVertex.x(),\ m\_maxVertex.y(),\ m\_maxVertex.z())\};}
+\DoxyCodeLine{00114\ \}}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00116\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00117\ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{TVector3<T>}}\&\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d_af374aa4e2c99cf83c5324f7e5f376fec}{TAABB3D<T>::getMinVertex}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00118\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_minVertex;}
+\DoxyCodeLine{00120\ \}}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00123\ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{TVector3<T>}}\&\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d_a1c7cf27e2b7ecf50add7da77b78c5e3e}{TAABB3D<T>::getMaxVertex}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00124\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00125\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_maxVertex;}
+\DoxyCodeLine{00126\ \}}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00129\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{TVector3<T>}}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d_aa3d3b111b39060a279c21e50519c9806}{TAABB3D<T>::getCentroid}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00130\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00131\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(std::is\_integral\_v<T>)}
+\DoxyCodeLine{00132\ \ \ \ \ \{}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_minVertex.\mbox{\hyperlink{classph_1_1math_1_1_t_vector_n_base_ad58cdb9489c07d271045fb770b461eed}{add}}(m\_maxVertex).div(T(2));}
+\DoxyCodeLine{00134\ \ \ \ \ \}}
+\DoxyCodeLine{00135\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00136\ \ \ \ \ \{}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_minVertex.add(m\_maxVertex).mul(T(0.5));}
+\DoxyCodeLine{00138\ \ \ \ \ \}}
+\DoxyCodeLine{00139\ \}}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00141\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00142\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{TVector3<T>}}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d_ae6a2cecea2f301839e76c1222672b99e}{TAABB3D<T>::getExtents}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00143\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00144\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_maxVertex.\mbox{\hyperlink{classph_1_1math_1_1_t_vector_n_base_a8ef096d70a1bc8e75e4c7e7ae48e5b62}{sub}}(m\_minVertex);}
+\DoxyCodeLine{00145\ \}}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00147\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00148\ \textcolor{keyword}{inline}\ T\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d_a87a7e69b389f32ab59a020d816379314}{TAABB3D<T>::getSurfaceArea}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00149\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00150\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{TVector3<T>}}\&\ extents\ =\ getExtents();}
+\DoxyCodeLine{00151\ \ \ \ \ \textcolor{keywordflow}{return}\ T(2)\ *\ (extents.\mbox{\hyperlink{classph_1_1math_1_1_t_vector3_a8d0eb557cecca2a3e07326c409b2c16b}{x}}()\ *\ extents.\mbox{\hyperlink{classph_1_1math_1_1_t_vector3_a0a5f0880f6b82a8519416ca9a987818b}{y}}()\ +\ extents.\mbox{\hyperlink{classph_1_1math_1_1_t_vector3_a0a5f0880f6b82a8519416ca9a987818b}{y}}()\ *\ extents.\mbox{\hyperlink{classph_1_1math_1_1_t_vector3_a34d51b9c12196175c8ad04c2cd9c59ec}{z}}()\ +\ extents.\mbox{\hyperlink{classph_1_1math_1_1_t_vector3_a34d51b9c12196175c8ad04c2cd9c59ec}{z}}()\ *\ extents.\mbox{\hyperlink{classph_1_1math_1_1_t_vector3_a8d0eb557cecca2a3e07326c409b2c16b}{x}}());}
+\DoxyCodeLine{00152\ \}}
+\DoxyCodeLine{00153\ }
+\DoxyCodeLine{00154\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00155\ \textcolor{keyword}{inline}\ T\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d_aa76a56ac613aae72e1c6d11195f22e6e}{TAABB3D<T>::getVolume}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00156\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00157\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{TVector3<T>}}\&\ extents\ =\ getExtents();}
+\DoxyCodeLine{00158\ \ \ \ \ \textcolor{keywordflow}{return}\ extents.\mbox{\hyperlink{classph_1_1math_1_1_t_vector3_a8d0eb557cecca2a3e07326c409b2c16b}{x}}()\ *\ extents.\mbox{\hyperlink{classph_1_1math_1_1_t_vector3_a0a5f0880f6b82a8519416ca9a987818b}{y}}()\ *\ extents.\mbox{\hyperlink{classph_1_1math_1_1_t_vector3_a34d51b9c12196175c8ad04c2cd9c59ec}{z}}();}
+\DoxyCodeLine{00159\ \}}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00161\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00162\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d}{TAABB3D<T>}}\&\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d_a7b4f6009133871cbefc62bf0f2597fcd}{TAABB3D<T>::setMinVertex}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{TVector3<T>}}\&\ minVertex)}
+\DoxyCodeLine{00163\ \{}
+\DoxyCodeLine{00164\ \ \ \ \ m\_minVertex\ =\ minVertex;}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00166\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00167\ \}}
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00169\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00170\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d}{TAABB3D<T>}}\&\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d_a9b974e52317e2b64846ec809943f52c7}{TAABB3D<T>::setMaxVertex}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{TVector3<T>}}\&\ maxVertex)}
+\DoxyCodeLine{00171\ \{}
+\DoxyCodeLine{00172\ \ \ \ \ m\_maxVertex\ =\ maxVertex;}
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00174\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00175\ \}}
+\DoxyCodeLine{00176\ }
+\DoxyCodeLine{00177\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00178\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d}{TAABB3D<T>}}\&\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d_ab2d377fcfdd1eaf166ffad753742fb8e}{TAABB3D<T>::setVertices}}(std::pair<\mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{TVector3<T>}},\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{TVector3<T>}}>\ minMaxVertices)}
+\DoxyCodeLine{00179\ \{}
+\DoxyCodeLine{00180\ \ \ \ \ setMinVertex(minMaxVertices.first);}
+\DoxyCodeLine{00181\ \ \ \ \ setMaxVertex(minMaxVertices.second);}
+\DoxyCodeLine{00182\ }
+\DoxyCodeLine{00183\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00184\ \}}
+\DoxyCodeLine{00185\ }
+\DoxyCodeLine{00186\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00187\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d}{TAABB3D<T>}}\&\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d_acf1d827e2e68aa0e6e7bd9372b6968b8}{TAABB3D<T>::translate}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{TVector3<T>}}\&\ amount)}
+\DoxyCodeLine{00188\ \{}
+\DoxyCodeLine{00189\ \ \ \ \ m\_minVertex.addLocal(amount);}
+\DoxyCodeLine{00190\ \ \ \ \ m\_maxVertex.addLocal(amount);}
+\DoxyCodeLine{00191\ }
+\DoxyCodeLine{00192\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00193\ \}}
+\DoxyCodeLine{00194\ }
+\DoxyCodeLine{00195\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00196\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d}{TAABB3D<T>}}\&\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d_ad06d107942d236ee0f6090e572467dd1}{TAABB3D<T>::expand}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{TVector3<T>}}\&\ amount)}
+\DoxyCodeLine{00197\ \{}
+\DoxyCodeLine{00198\ \ \ \ \ m\_minVertex.subLocal(amount);}
+\DoxyCodeLine{00199\ \ \ \ \ m\_maxVertex.addLocal(amount);}
+\DoxyCodeLine{00200\ }
+\DoxyCodeLine{00201\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00202\ \}}
+\DoxyCodeLine{00203\ }
+\DoxyCodeLine{00204\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00205\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d_a50070e02e92810a2bbe305688a7eb786}{TAABB3D<T>::isEmpty}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00206\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00207\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_minVertex.x()\ >\ m\_maxVertex.x()\ ||}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \ \ \ m\_minVertex.y()\ >\ m\_maxVertex.y()\ ||}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \ \ \ m\_minVertex.z()\ >\ m\_maxVertex.z();}
+\DoxyCodeLine{00210\ \}}
+\DoxyCodeLine{00211\ }
+\DoxyCodeLine{00212\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00213\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d_af9ced1d62f056abf6f30a4dad3e03716}{TAABB3D<T>::isPoint}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00214\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00215\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_minVertex.\mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d_a05d186af1327a74800ee66583c86dc42}{isEqual}}(m\_maxVertex);}
+\DoxyCodeLine{00216\ \}}
+\DoxyCodeLine{00217\ }
+\DoxyCodeLine{00218\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00219\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d_ad2c67dc332b7422cc9fc9f9de643f2aa}{TAABB3D<T>::isFiniteVolume}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00220\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00221\ \ \ \ \ \textcolor{keyword}{const}\ T\ volume\ =\ getVolume();}
+\DoxyCodeLine{00222\ \ \ \ \ \textcolor{keywordflow}{return}\ volume\ >\ T(0)\ \&\&\ !std::isinf(volume);}
+\DoxyCodeLine{00223\ \}}
+\DoxyCodeLine{00224\ }
+\DoxyCodeLine{00225\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00226\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d}{TAABB3D<T>}}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d_ab1a9510b332616e8d8987c3af36ffa54}{TAABB3D<T>::getTranslated}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{TVector3<T>}}\&\ amount)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00227\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00228\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d}{TAABB3D}}(*this).\mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d_acf1d827e2e68aa0e6e7bd9372b6968b8}{translate}}(amount);}
+\DoxyCodeLine{00229\ \}}
+\DoxyCodeLine{00230\ }
+\DoxyCodeLine{00231\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00232\ \textcolor{keyword}{inline}\ std::pair<TAABB3D<T>,\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d}{TAABB3D<T>}}>\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d_aea05a658d36d416c1d04a6916a3f71f9}{TAABB3D<T>::getSplitted}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_1_1math_1_1constant_a6399d62eb40c0ceee94dfcb7b77cb85c}{constant::AxisIndexType}}\ axis,\ \textcolor{keyword}{const}\ T\ splitPoint)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00233\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00234\ \ \ \ \ PH\_ASSERT\_IN\_RANGE\_INCLUSIVE(splitPoint,\ m\_minVertex[axis],\ m\_maxVertex[axis]);}
+\DoxyCodeLine{00235\ }
+\DoxyCodeLine{00236\ \ \ \ \ \textcolor{keywordflow}{return}\ \{\mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d}{TAABB3D}}(m\_minVertex,\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{TVector3<T>}}(m\_maxVertex).set(axis,\ splitPoint)),}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d}{TAABB3D}}(\mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{TVector3<T>}}(m\_minVertex).set(axis,\ splitPoint),\ m\_maxVertex)\};}
+\DoxyCodeLine{00238\ \}}
+\DoxyCodeLine{00239\ }
+\DoxyCodeLine{00240\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00241\ std::string\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d_ac987283dd6180a0accc11bb284885de6}{TAABB3D<T>::toString}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00242\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00243\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}min-\/vertex\ =\ "{}}\ +\ m\_minVertex.\mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d_ac987283dd6180a0accc11bb284885de6}{toString}}()\ +\ \textcolor{stringliteral}{"{},\ max-\/vertex\ =\ "{}}\ +\ m\_maxVertex.toString();}
+\DoxyCodeLine{00244\ \}}
+\DoxyCodeLine{00245\ }
+\DoxyCodeLine{00246\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00247\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d_a05d186af1327a74800ee66583c86dc42}{TAABB3D<T>::isEqual}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d}{TAABB3D}}\&\ other)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00248\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00249\ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>m\_minVertex.isEqual(other.m\_minVertex)\ \&\&\ }
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \ \ \ this-\/>m\_maxVertex.isEqual(other.m\_maxVertex);}
+\DoxyCodeLine{00251\ \}}
+\DoxyCodeLine{00252\ }
+\DoxyCodeLine{00253\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00254\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d}{TAABB3D<T>::isIntersectingVolumeKajiyaKay}}(}
+\DoxyCodeLine{00255\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_line_segment}{TLineSegment<T>}}\&\ segment,}
+\DoxyCodeLine{00256\ \ \ \ \ T*\ \textcolor{keyword}{const}\ out\_nearHitT,}
+\DoxyCodeLine{00257\ \ \ \ \ T*\ \textcolor{keyword}{const}\ out\_farHitT)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00258\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00259\ \ \ \ \ PH\_ASSERT(out\_nearHitT);}
+\DoxyCodeLine{00260\ \ \ \ \ PH\_ASSERT(out\_farHitT);}
+\DoxyCodeLine{00261\ }
+\DoxyCodeLine{00262\ \ \ \ \ \textcolor{comment}{//\ The\ starting\ ray\ interval\ (tMin,\ tMax)\ will\ be\ incrementally\ intersect}}
+\DoxyCodeLine{00263\ \ \ \ \ \textcolor{comment}{//\ against\ each\ ray-\/slab\ hitting\ interval\ (t1,\ t2)\ and\ be\ updated\ with\ the}}
+\DoxyCodeLine{00264\ \ \ \ \ \textcolor{comment}{//\ resulting\ interval.}}
+\DoxyCodeLine{00265\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00266\ \ \ \ \ \textcolor{comment}{//\ Note\ that\ the\ following\ implementation\ is\ NaN-\/aware\ }}
+\DoxyCodeLine{00267\ \ \ \ \ \textcolor{comment}{//\ (tMin\ \&\ tMax\ will\ never\ have\ NaNs)}}
+\DoxyCodeLine{00268\ }
+\DoxyCodeLine{00269\ \ \ \ \ PH\_ASSERT(!std::isnan(segment.\mbox{\hyperlink{classph_1_1math_1_1_t_line_segment_a588ff84da8c9cf249fd988d174c9c186}{getMinT}}())\ \&\&\ !std::isnan(segment.\mbox{\hyperlink{classph_1_1math_1_1_t_line_segment_aa2611afa9715bba822ed0f4f5216b6ec}{getMaxT}}()));}
+\DoxyCodeLine{00270\ }
+\DoxyCodeLine{00271\ \ \ \ \ T\ tMin\ =\ segment.\mbox{\hyperlink{classph_1_1math_1_1_t_line_segment_a588ff84da8c9cf249fd988d174c9c186}{getMinT}}();}
+\DoxyCodeLine{00272\ \ \ \ \ T\ tMax\ =\ segment.\mbox{\hyperlink{classph_1_1math_1_1_t_line_segment_aa2611afa9715bba822ed0f4f5216b6ec}{getMaxT}}();}
+\DoxyCodeLine{00273\ }
+\DoxyCodeLine{00274\ \ \ \ \ \textcolor{comment}{//\ find\ ray-\/slab\ hitting\ interval\ in\ x-\/axis\ then\ intersect\ with\ (tMin,\ tMax)}}
+\DoxyCodeLine{00275\ }
+\DoxyCodeLine{00276\ \ \ \ \ T\ rcpDir\ =\ T(1)\ /\ segment.\mbox{\hyperlink{classph_1_1math_1_1_t_line_segment_a385cef7e7ba5c22d61e0f9f55a661608}{getDirection}}().x();}
+\DoxyCodeLine{00277\ \ \ \ \ T\ t1\ \ \ \ \ =\ (m\_minVertex.x()\ -\/\ segment.\mbox{\hyperlink{classph_1_1math_1_1_t_line_segment_a7eb6381eadee282d2f2afa035ddaba18}{getOrigin}}().x())\ *\ rcpDir;}
+\DoxyCodeLine{00278\ \ \ \ \ T\ t2\ \ \ \ \ =\ (m\_maxVertex.x()\ -\/\ segment.\mbox{\hyperlink{classph_1_1math_1_1_t_line_segment_a7eb6381eadee282d2f2afa035ddaba18}{getOrigin}}().x())\ *\ rcpDir;}
+\DoxyCodeLine{00279\ }
+\DoxyCodeLine{00280\ \ \ \ \ \textcolor{keywordflow}{if}(t1\ <\ t2)}
+\DoxyCodeLine{00281\ \ \ \ \ \{}
+\DoxyCodeLine{00282\ \ \ \ \ \ \ \ \ tMin\ =\ t1\ >\ tMin\ ?\ t1\ :\ tMin;}
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ tMax\ =\ t2\ <\ tMax\ ?\ t2\ :\ tMax;}
+\DoxyCodeLine{00284\ \ \ \ \ \}}
+\DoxyCodeLine{00285\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00286\ \ \ \ \ \{}
+\DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ tMin\ =\ t2\ >\ tMin\ ?\ t2\ :\ tMin;}
+\DoxyCodeLine{00288\ \ \ \ \ \ \ \ \ tMax\ =\ t1\ <\ tMax\ ?\ t1\ :\ tMax;}
+\DoxyCodeLine{00289\ \ \ \ \ \}}
+\DoxyCodeLine{00290\ }
+\DoxyCodeLine{00291\ \ \ \ \ \textcolor{keywordflow}{if}(tMin\ >\ tMax)}
+\DoxyCodeLine{00292\ \ \ \ \ \{}
+\DoxyCodeLine{00293\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00294\ \ \ \ \ \}}
+\DoxyCodeLine{00295\ }
+\DoxyCodeLine{00296\ \ \ \ \ \textcolor{comment}{//\ find\ ray-\/slab\ hitting\ interval\ in\ y-\/axis\ then\ intersect\ with\ (tMin,\ tMax)}}
+\DoxyCodeLine{00297\ }
+\DoxyCodeLine{00298\ \ \ \ \ rcpDir\ =\ T(1)\ /\ segment.\mbox{\hyperlink{classph_1_1math_1_1_t_line_segment_a385cef7e7ba5c22d61e0f9f55a661608}{getDirection}}().y();}
+\DoxyCodeLine{00299\ \ \ \ \ t1\ \ \ \ \ =\ (m\_minVertex.y()\ -\/\ segment.\mbox{\hyperlink{classph_1_1math_1_1_t_line_segment_a7eb6381eadee282d2f2afa035ddaba18}{getOrigin}}().y())\ *\ rcpDir;}
+\DoxyCodeLine{00300\ \ \ \ \ t2\ \ \ \ \ =\ (m\_maxVertex.y()\ -\/\ segment.\mbox{\hyperlink{classph_1_1math_1_1_t_line_segment_a7eb6381eadee282d2f2afa035ddaba18}{getOrigin}}().y())\ *\ rcpDir;}
+\DoxyCodeLine{00301\ }
+\DoxyCodeLine{00302\ \ \ \ \ \textcolor{keywordflow}{if}(t1\ <\ t2)}
+\DoxyCodeLine{00303\ \ \ \ \ \{}
+\DoxyCodeLine{00304\ \ \ \ \ \ \ \ \ tMin\ =\ t1\ >\ tMin\ ?\ t1\ :\ tMin;}
+\DoxyCodeLine{00305\ \ \ \ \ \ \ \ \ tMax\ =\ t2\ <\ tMax\ ?\ t2\ :\ tMax;}
+\DoxyCodeLine{00306\ \ \ \ \ \}}
+\DoxyCodeLine{00307\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00308\ \ \ \ \ \{}
+\DoxyCodeLine{00309\ \ \ \ \ \ \ \ \ tMin\ =\ t2\ >\ tMin\ ?\ t2\ :\ tMin;}
+\DoxyCodeLine{00310\ \ \ \ \ \ \ \ \ tMax\ =\ t1\ <\ tMax\ ?\ t1\ :\ tMax;}
+\DoxyCodeLine{00311\ \ \ \ \ \}}
+\DoxyCodeLine{00312\ }
+\DoxyCodeLine{00313\ \ \ \ \ \textcolor{keywordflow}{if}(tMin\ >\ tMax)}
+\DoxyCodeLine{00314\ \ \ \ \ \{}
+\DoxyCodeLine{00315\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00316\ \ \ \ \ \}}
+\DoxyCodeLine{00317\ }
+\DoxyCodeLine{00318\ \ \ \ \ \textcolor{comment}{//\ find\ ray-\/slab\ hitting\ interval\ in\ z-\/axis\ then\ intersect\ with\ (tMin,\ tMax)}}
+\DoxyCodeLine{00319\ }
+\DoxyCodeLine{00320\ \ \ \ \ rcpDir\ =\ T(1)\ /\ segment.\mbox{\hyperlink{classph_1_1math_1_1_t_line_segment_a385cef7e7ba5c22d61e0f9f55a661608}{getDirection}}().z();}
+\DoxyCodeLine{00321\ \ \ \ \ t1\ \ \ \ \ =\ (m\_minVertex.z()\ -\/\ segment.\mbox{\hyperlink{classph_1_1math_1_1_t_line_segment_a7eb6381eadee282d2f2afa035ddaba18}{getOrigin}}().z())\ *\ rcpDir;}
+\DoxyCodeLine{00322\ \ \ \ \ t2\ \ \ \ \ =\ (m\_maxVertex.z()\ -\/\ segment.\mbox{\hyperlink{classph_1_1math_1_1_t_line_segment_a7eb6381eadee282d2f2afa035ddaba18}{getOrigin}}().z())\ *\ rcpDir;}
+\DoxyCodeLine{00323\ }
+\DoxyCodeLine{00324\ \ \ \ \ \textcolor{keywordflow}{if}(t1\ <\ t2)}
+\DoxyCodeLine{00325\ \ \ \ \ \{}
+\DoxyCodeLine{00326\ \ \ \ \ \ \ \ \ tMin\ =\ t1\ >\ tMin\ ?\ t1\ :\ tMin;}
+\DoxyCodeLine{00327\ \ \ \ \ \ \ \ \ tMax\ =\ t2\ <\ tMax\ ?\ t2\ :\ tMax;}
+\DoxyCodeLine{00328\ \ \ \ \ \}}
+\DoxyCodeLine{00329\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00330\ \ \ \ \ \{}
+\DoxyCodeLine{00331\ \ \ \ \ \ \ \ \ tMin\ =\ t2\ >\ tMin\ ?\ t2\ :\ tMin;}
+\DoxyCodeLine{00332\ \ \ \ \ \ \ \ \ tMax\ =\ t1\ <\ tMax\ ?\ t1\ :\ tMax;}
+\DoxyCodeLine{00333\ \ \ \ \ \}}
+\DoxyCodeLine{00334\ }
+\DoxyCodeLine{00335\ \ \ \ \ \textcolor{keywordflow}{if}(tMin\ >\ tMax)}
+\DoxyCodeLine{00336\ \ \ \ \ \{}
+\DoxyCodeLine{00337\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00338\ \ \ \ \ \}}
+\DoxyCodeLine{00339\ }
+\DoxyCodeLine{00340\ \ \ \ \ *out\_nearHitT\ =\ tMin;}
+\DoxyCodeLine{00341\ \ \ \ \ *out\_farHitT\ \ =\ tMax;}
+\DoxyCodeLine{00342\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00343\ \}}
+\DoxyCodeLine{00344\ }
+\DoxyCodeLine{00345\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00346\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ TAABB3D<T>::isIntersectingVolumeTavian(}
+\DoxyCodeLine{00347\ \ \ \ \ \textcolor{keyword}{const}\ TLineSegment<T>\&\ segment,}
+\DoxyCodeLine{00348\ \ \ \ \ T*\ \textcolor{keyword}{const}\ out\_nearHitT,}
+\DoxyCodeLine{00349\ \ \ \ \ T*\ \textcolor{keyword}{const}\ out\_farHitT)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00350\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00351\ \ \ \ \ PH\_ASSERT(out\_nearHitT);}
+\DoxyCodeLine{00352\ \ \ \ \ PH\_ASSERT(out\_farHitT);}
+\DoxyCodeLine{00353\ }
+\DoxyCodeLine{00354\ \ \ \ \ PH\_ASSERT(!std::isnan(segment.getMinT())\ \&\&\ !std::isnan(segment.getMaxT()));}
+\DoxyCodeLine{00355\ }
+\DoxyCodeLine{00356\ \ \ \ \ T\ tMin\ =\ segment.getMinT();}
+\DoxyCodeLine{00357\ \ \ \ \ T\ tMax\ =\ segment.getMaxT();}
+\DoxyCodeLine{00358\ }
+\DoxyCodeLine{00359\ \ \ \ \ \textcolor{comment}{//\ Find\ ray-\/slab\ hitting\ interval\ in\ the\ i-\/th\ dimension\ then\ intersect\ with\ (tMin,\ tMax)}}
+\DoxyCodeLine{00360\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ i\ =\ 0;\ i\ <\ 3;\ ++i)}
+\DoxyCodeLine{00361\ \ \ \ \ \{}
+\DoxyCodeLine{00362\ \ \ \ \ \ \ \ \ T\ rcpDir\ =\ T(1)\ /\ segment.getDirection()[i];}
+\DoxyCodeLine{00363\ \ \ \ \ \ \ \ \ T\ t1\ =\ (m\_minVertex[i]\ -\/\ segment.getOrigin()[i])\ *\ rcpDir;}
+\DoxyCodeLine{00364\ \ \ \ \ \ \ \ \ T\ t2\ =\ (m\_maxVertex[i]\ -\/\ segment.getOrigin()[i])\ *\ rcpDir;}
+\DoxyCodeLine{00365\ }
+\DoxyCodeLine{00366\ \ \ \ \ \ \ \ \ tMin\ =\ std::max(tMin,\ std::min(t1,\ t2));}
+\DoxyCodeLine{00367\ \ \ \ \ \ \ \ \ tMax\ =\ std::min(tMax,\ std::max(t1,\ t2));}
+\DoxyCodeLine{00368\ }
+\DoxyCodeLine{00369\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*T\ minT1T2\ =\ t1\ <\ t2\ ?\ t1\ :\ t2;}}
+\DoxyCodeLine{00370\ \textcolor{comment}{\ \ \ \ \ \ \ \ T\ maxT1T2\ =\ t1\ >\ t2\ ?\ t1\ :\ t2;}}
+\DoxyCodeLine{00371\ \textcolor{comment}{\ \ \ \ \ \ \ \ tMin\ =\ tMin\ >\ minT1T2\ ?\ tMin\ :\ minT1T2;}}
+\DoxyCodeLine{00372\ \textcolor{comment}{\ \ \ \ \ \ \ \ tMax\ =\ tMax\ <\ maxT1T2\ ?\ tMax\ :\ maxT1T2;*/}}
+\DoxyCodeLine{00373\ }
+\DoxyCodeLine{00374\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Early\ out\ (branching)}}
+\DoxyCodeLine{00375\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*if(tMin\ >\ tMax)}}
+\DoxyCodeLine{00376\ \textcolor{comment}{\ \ \ \ \ \ \ \ \{}}
+\DoxyCodeLine{00377\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ return\ false;}}
+\DoxyCodeLine{00378\ \textcolor{comment}{\ \ \ \ \ \ \ \ \}*/}}
+\DoxyCodeLine{00379\ \ \ \ \ \}}
+\DoxyCodeLine{00380\ }
+\DoxyCodeLine{00381\ \ \ \ \ \textcolor{comment}{/*T\ rcpDirX\ =\ T(1)\ /\ segment.getDirection().x();}}
+\DoxyCodeLine{00382\ \textcolor{comment}{\ \ \ \ T\ t1X\ =\ (m\_minVertex.x()\ -\/\ segment.getOrigin().x())\ *\ rcpDirX;}}
+\DoxyCodeLine{00383\ \textcolor{comment}{\ \ \ \ T\ t2X\ =\ (m\_maxVertex.x()\ -\/\ segment.getOrigin().x())\ *\ rcpDirX;}}
+\DoxyCodeLine{00384\ \textcolor{comment}{\ \ \ \ tMin\ =\ std::max(tMin,\ std::min(t1X,\ t2X));}}
+\DoxyCodeLine{00385\ \textcolor{comment}{\ \ \ \ tMax\ =\ std::min(tMax,\ std::max(t1X,\ t2X));}}
+\DoxyCodeLine{00386\ \textcolor{comment}{\ \ \ \ T\ rcpDirY\ =\ T(1)\ /\ segment.getDirection().y();}}
+\DoxyCodeLine{00387\ \textcolor{comment}{\ \ \ \ T\ t1Y\ =\ (m\_minVertex.y()\ -\/\ segment.getOrigin().y())\ *\ rcpDirY;}}
+\DoxyCodeLine{00388\ \textcolor{comment}{\ \ \ \ T\ t2Y\ =\ (m\_maxVertex.y()\ -\/\ segment.getOrigin().y())\ *\ rcpDirY;}}
+\DoxyCodeLine{00389\ \textcolor{comment}{\ \ \ \ tMin\ =\ std::max(tMin,\ std::min(t1Y,\ t2Y));}}
+\DoxyCodeLine{00390\ \textcolor{comment}{\ \ \ \ tMax\ =\ std::min(tMax,\ std::max(t1Y,\ t2Y));}}
+\DoxyCodeLine{00391\ \textcolor{comment}{\ \ \ \ T\ rcpDirZ\ =\ T(1)\ /\ segment.getDirection().z();}}
+\DoxyCodeLine{00392\ \textcolor{comment}{\ \ \ \ T\ t1Z\ =\ (m\_minVertex.z()\ -\/\ segment.getOrigin().z())\ *\ rcpDirZ;}}
+\DoxyCodeLine{00393\ \textcolor{comment}{\ \ \ \ T\ t2Z\ =\ (m\_maxVertex.z()\ -\/\ segment.getOrigin().z())\ *\ rcpDirZ;}}
+\DoxyCodeLine{00394\ \textcolor{comment}{\ \ \ \ tMin\ =\ std::max(tMin,\ std::min(t1Z,\ t2Z));}}
+\DoxyCodeLine{00395\ \textcolor{comment}{\ \ \ \ tMax\ =\ std::min(tMax,\ std::max(t1Z,\ t2Z));*/}}
+\DoxyCodeLine{00396\ }
+\DoxyCodeLine{00397\ \ \ \ \ *out\_nearHitT\ =\ tMin;}
+\DoxyCodeLine{00398\ \ \ \ \ *out\_farHitT\ =\ tMax;}
+\DoxyCodeLine{00399\ \ \ \ \ \textcolor{keywordflow}{return}\ tMax\ >=\ tMin;}
+\DoxyCodeLine{00400\ \}}
+\DoxyCodeLine{00401\ }
+\DoxyCodeLine{00402\ \}\textcolor{comment}{//\ end\ namespace\ ph::math}}
+
+\end{DoxyCode}

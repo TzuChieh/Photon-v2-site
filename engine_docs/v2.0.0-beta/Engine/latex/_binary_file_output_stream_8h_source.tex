@@ -1,0 +1,76 @@
+\doxysection{Binary\+File\+Output\+Stream.\+h}
+\hypertarget{_binary_file_output_stream_8h_source}{}\label{_binary_file_output_stream_8h_source}\index{Source/DataIO/Stream/BinaryFileOutputStream.h@{Source/DataIO/Stream/BinaryFileOutputStream.h}}
+\mbox{\hyperlink{_binary_file_output_stream_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_std_output_stream_8h}{DataIO/Stream/StdOutputStream.h}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_path_8h}{DataIO/FileSystem/Path.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_span_8h}{Utility/TSpan.h}}"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <Common/assertion.h>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <Common/memory.h>}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <type\_traits>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <array>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <cstddef>}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00016\ \{}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_binary_file_output_stream}{BinaryFileOutputStream}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classph_1_1_std_output_stream}{StdOutputStream}}}
+\DoxyCodeLine{00019\ \{}
+\DoxyCodeLine{00020\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_binary_file_output_stream_a294cfb834baf71472aec2a62c1b16689}{BinaryFileOutputStream}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classph_1_1_binary_file_output_stream_a294cfb834baf71472aec2a62c1b16689}{BinaryFileOutputStream}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_alt_path}{Path}}\&\ filePath);}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_binary_file_output_stream_ab998a400edab4e7cba62b124d1c0e941}{BinaryFileOutputStream}}(\mbox{\hyperlink{classph_1_1_binary_file_output_stream}{BinaryFileOutputStream}}\&\&\ other)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ \textcolor{keywordtype}{bool}\ DO\_BYTE\_REVERSAL\ =\ false>}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_binary_file_output_stream_ad3ac7d10100bfc121416e3c4c21fa825}{writeData}}(\textcolor{keyword}{const}\ T*\ data);}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ \textcolor{keywordtype}{bool}\ DO\_BYTE\_REVERSAL\ =\ false>}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_binary_file_output_stream_ad3ac7d10100bfc121416e3c4c21fa825}{writeData}}(\mbox{\hyperlink{namespaceph_a06c532bb78132f63638ec3ef52d46ff3}{TSpanView<T>}}\ data);}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_binary_file_output_stream}{BinaryFileOutputStream}}\&\ \mbox{\hyperlink{classph_1_1_binary_file_output_stream_ae7452f1cf6ea63ece30b5bd9781d4ce4}{operator\ =\ }}(\mbox{\hyperlink{classph_1_1_binary_file_output_stream}{BinaryFileOutputStream}}\&\&\ rhs)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00032\ \};}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{comment}{//\ In-\/header\ Implementations:}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ \textcolor{keywordtype}{bool}\ DO\_BYTE\_REVERSAL>}
+\DoxyCodeLine{00037\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_binary_file_output_stream_ad3ac7d10100bfc121416e3c4c21fa825}{BinaryFileOutputStream::writeData}}(\textcolor{keyword}{const}\ T*\ \textcolor{keyword}{const}\ data)}
+\DoxyCodeLine{00038\ \{}
+\DoxyCodeLine{00039\ \ \ \ \ \mbox{\hyperlink{classph_1_1_binary_file_output_stream_ad3ac7d10100bfc121416e3c4c21fa825}{writeData<T,\ DO\_BYTE\_REVERSAL>}}(\mbox{\hyperlink{namespaceph_a06c532bb78132f63638ec3ef52d46ff3}{TSpanView<T>}}\{data,\ 1\});}
+\DoxyCodeLine{00040\ \}}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ \textcolor{keywordtype}{bool}\ DO\_BYTE\_REVERSAL>}
+\DoxyCodeLine{00043\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_binary_file_output_stream_ad3ac7d10100bfc121416e3c4c21fa825}{BinaryFileOutputStream::writeData}}(\mbox{\hyperlink{namespaceph_a06c532bb78132f63638ec3ef52d46ff3}{TSpanView<T>}}\ data)}
+\DoxyCodeLine{00044\ \{}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_trivially\_copyable\_v<T>);}
+\DoxyCodeLine{00046\ \ \ \ \ PH\_ASSERT(data.data());}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keyword}{auto}\ \textcolor{keyword}{const}\ dataAsBytes\ =\ std::as\_bytes(data);}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(DO\_BYTE\_REVERSAL)}
+\DoxyCodeLine{00050\ \ \ \ \ \{}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ di\ =\ 0;\ di\ <\ data.size();\ ++di)}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ std::array<std::byte,\ \textcolor{keyword}{sizeof}(T)>\ reversedBytes;}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ std::copy\_n(}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const\ }std::byte*\textcolor{keyword}{>}(\&data[di]),\ \textcolor{keyword}{sizeof}(T),\ reversedBytes.data());}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ reverse\_bytes<sizeof(T)>(reversedBytes.data());}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ OPT:\ this\ is\ calling\ write()\ a\ lot\ as\ we\ do\ not\ have\ large\ buffer\ for\ storing\ the}}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ reversed\ bytes;\ should\ find\ a\ way\ to\ implement\ a\ more\ efficient\ way\ for\ arrays}}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_std_output_stream_a4f6c34a21ca27f4548e6f9982044a451}{write}}(\textcolor{keyword}{sizeof}(T),\ reversedBytes.data());}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00063\ \ \ \ \ \}}
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00065\ \ \ \ \ \{}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_std_output_stream_a4f6c34a21ca27f4548e6f9982044a451}{write}}(dataAsBytes.size(),\ dataAsBytes.data());}
+\DoxyCodeLine{00067\ \ \ \ \ \}}
+\DoxyCodeLine{00068\ \}}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+
+\end{DoxyCode}

@@ -1,0 +1,131 @@
+\doxysection{field\+\_\+set\+\_\+op.\+ipp}
+\hypertarget{field__set__op_8ipp_source}{}\label{field__set__op_8ipp_source}\index{Source/SDL/Introspect/field\_set\_op.ipp@{Source/SDL/Introspect/field\_set\_op.ipp}}
+\mbox{\hyperlink{field__set__op_8ipp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{field__set__op_8h}{SDL/Introspect/field\_set\_op.h}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_sdl_input_clauses_8h}{SDL/SdlInputClauses.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_sdl_input_context_8h}{SDL/Introspect/SdlInputContext.h}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{sdl__helpers_8h}{SDL/sdl\_helpers.h}}"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <Common/assertion.h>}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <array>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph_1_1field__set__op}{ph::field\_set\_op}}}
+\DoxyCodeLine{00014\ \{}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{template}<}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keyword}{typename}\ Owner,}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keyword}{typename}\ FieldSet,}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keyword}{typename}\ NoticeReceiver,}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ SHOULD\_NOTIFY\_REDUNDANT\_CLAUSE>}
+\DoxyCodeLine{00021\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespaceph_1_1field__set__op_a79ed90f2437a8f2caf1a958dffd9d4c1}{load\_fields\_from\_sdl}}(}
+\DoxyCodeLine{00022\ \ \ \ \ Owner\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ owner,}
+\DoxyCodeLine{00023\ \ \ \ \ FieldSet\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ fieldSet,}
+\DoxyCodeLine{00024\ \ \ \ \ \mbox{\hyperlink{classph_1_1_sdl_input_clauses}{SdlInputClauses}}\&\ \ \ \ \ \ \ clauses,}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_sdl_input_context}{SdlInputContext}}\&\ ctx,}
+\DoxyCodeLine{00026\ \ \ \ \ NoticeReceiver\ \ \ \ \ \ \ \ \ noticeReceiver)}
+\DoxyCodeLine{00027\ \{}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{comment}{//\ Consider\ to\ increase\ the\ number\ if\ not\ enough}}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{constexpr}\ std::size\_t\ MAX\_FIELD\_FLAGS\ =\ 64;}
+\DoxyCodeLine{00030\ \ \ \ \ PH\_ASSERT\_GE(MAX\_FIELD\_FLAGS,\ fieldSet.numFields());}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{comment}{//\ Zero\ initialization\ performed\ on\ array\ elements\ (defaults\ to\ false)}}
+\DoxyCodeLine{00033\ \ \ \ \ std::array<bool,\ MAX\_FIELD\_FLAGS>\ isFieldTouched\{\};}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{comment}{//\ For\ each\ clause,\ load\ them\ into\ matching\ field}}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ clauseIdx\ =\ 0;\ clauseIdx\ <\ clauses.\mbox{\hyperlink{classph_1_1_sdl_input_clauses_a8f5df6493c597b9421bc45d6e9fcb899}{size}}();)}
+\DoxyCodeLine{00037\ \ \ \ \ \{}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ TODO:\ check\ isFieldTouched\ and\ warn\ on\ duplicating\ clauses?}}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ clause\ \ \ =\ clauses[clauseIdx];}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ fieldIdx\ =\ fieldSet.findFieldIndex(clause.type,\ clause.name);}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(fieldIdx)}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ field\ =\ fieldSet[fieldIdx.value()];}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ field.fromSdl(owner,\ clause,\ ctx);}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ isFieldTouched[fieldIdx.value()]\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Consume\ the\ clause\ once\ a\ match\ is\ found;\ no\ need\ to\ increment}}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ <clauseIdx>\ since\ a\ new\ one\ will\ fill\ the\ empty\ slot}}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ clauses.\mbox{\hyperlink{classph_1_1_sdl_input_clauses_ad180e36b76bc3397de35abe3244194a9}{consumeBySwapPop}}(clauseIdx);}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(SHOULD\_NOTIFY\_REDUNDANT\_CLAUSE)}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Treat\ a\ redundant\ clause\ input\ as\ an\ optional\ field}}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ noticeReceiver(}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}no\ matching\ field\ for\ input\ clause\ <"{}}\ +\ clause.genPrettyName()\ +\ \textcolor{stringliteral}{"{}>\ "{}}}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}("{}}\ +\ ctx.\mbox{\hyperlink{classph_1_1_sdl_i_o_context_a0d0097ef3a8e3e652225996cd3a5167d}{genPrettySrcInfo}}()\ +\ \textcolor{stringliteral}{"{}),\ ignoring"{}},}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceph_a3f81b078141211109d7e3b340d0525ccaebb061953c0454b2c8ee7b0ac615ebcd}{EFieldImportance::Optional}});}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ No\ match\ is\ found,\ skip\ to\ next\ clause}}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ ++clauseIdx;}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00067\ \ \ \ \ \}}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{comment}{//\ Check\ and\ process\ uninitialized\ fields}}
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ fieldIdx\ =\ 0;\ fieldIdx\ <\ fieldSet.numFields();\ ++fieldIdx)}
+\DoxyCodeLine{00071\ \ \ \ \ \{}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!isFieldTouched[fieldIdx])}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ field\ =\ fieldSet[fieldIdx];}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ importance\ =\ field.getImportance();}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(field.isFallbackEnabled())}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ field.ownedValueToDefault(owner);}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Only\ optional\ field\ will\ be\ silently\ set\ to\ default}}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ (emit\ notice\ for\ other\ importance\ levels)}}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(importance\ !=\ \mbox{\hyperlink{namespaceph_a3f81b078141211109d7e3b340d0525ccaebb061953c0454b2c8ee7b0ac615ebcd}{EFieldImportance::Optional}})}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ noticeReceiver(}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}no\ clause\ for\ field\ <"{}}\ +\ \mbox{\hyperlink{namespaceph_1_1sdl_a16ba8b83316ce0f172ca13981e342faf}{sdl::gen\_pretty\_name}}(\&field)\ +\ \textcolor{stringliteral}{"{}>\ "{}}}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}("{}}\ +\ ctx.\mbox{\hyperlink{classph_1_1_sdl_i_o_context_a0d0097ef3a8e3e652225996cd3a5167d}{genPrettySrcInfo}}()\ +\ \textcolor{stringliteral}{"{}),\ default\ to\ "{}}}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<"{}}\ +\ field.valueToString(owner)\ +\ \textcolor{stringliteral}{"{}>"{}},}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ importance);}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ For\ importance\ levels\ other\ than\ optional,\ uninitialized\ field\ is\ an\ error}}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(importance\ !=\ \mbox{\hyperlink{namespaceph_a3f81b078141211109d7e3b340d0525ccaebb061953c0454b2c8ee7b0ac615ebcd}{EFieldImportance::Optional}})}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \mbox{\hyperlink{classph_1_1_sdl_load_error}{SdlLoadError}}(}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}a\ clause\ for\ value\ <"{}}\ +\ field.genPrettyName()\ +\ \textcolor{stringliteral}{"{}>\ is\ required"{}});}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ TODO:\ util\ for\ generating\ class\ +\ field\ info\ string}}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00103\ \ \ \ \ \}}
+\DoxyCodeLine{00104\ \}}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \textcolor{keyword}{template}<}
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{keyword}{typename}\ Owner,}
+\DoxyCodeLine{00108\ \ \ \ \ \textcolor{keyword}{typename}\ FieldSet,}
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{keyword}{typename}\ NoticeReceiver>}
+\DoxyCodeLine{00110\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespaceph_1_1field__set__op_ab11e22444f68057b00a8b86fc071b7d6}{load\_fields\_from\_sdl\_with\_redundant\_clauses}}(}
+\DoxyCodeLine{00111\ \ \ \ \ Owner\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ owner,}
+\DoxyCodeLine{00112\ \ \ \ \ FieldSet\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ fieldSet,}
+\DoxyCodeLine{00113\ \ \ \ \ \mbox{\hyperlink{classph_1_1_sdl_input_clauses}{SdlInputClauses}}\&\ \ \ \ \ \ \ clauses,}
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_sdl_input_context}{SdlInputContext}}\&\ ctx,}
+\DoxyCodeLine{00115\ \ \ \ \ NoticeReceiver\ \ \ \ \ \ \ \ \ noticeReceiver)}
+\DoxyCodeLine{00116\ \{}
+\DoxyCodeLine{00117\ \ \ \ \ \mbox{\hyperlink{namespaceph_1_1field__set__op_a79ed90f2437a8f2caf1a958dffd9d4c1}{load\_fields\_from\_sdl<Owner,\ FieldSet,\ NoticeReceiver,\ false>}}(}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ owner,}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ fieldSet,}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ clauses,}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ ctx,}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ std::move(noticeReceiver));}
+\DoxyCodeLine{00123\ \}}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \}\textcolor{comment}{//\ end\ namespace\ ph::field\_set\_op}}
+
+\end{DoxyCode}

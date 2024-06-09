@@ -1,0 +1,204 @@
+\doxysection{ph\+::Adaptive\+Sampling\+Renderer Class Reference}
+\hypertarget{classph_1_1_adaptive_sampling_renderer}{}\label{classph_1_1_adaptive_sampling_renderer}\index{ph::AdaptiveSamplingRenderer@{ph::AdaptiveSamplingRenderer}}
+
+
+{\ttfamily \#include $<$Adaptive\+Sampling\+Renderer.\+h$>$}
+
+Inheritance diagram for ph\+::Adaptive\+Sampling\+Renderer\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classph_1_1_adaptive_sampling_renderer}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classph_1_1_adaptive_sampling_renderer_a5c41d80ea5f1f63760fd73a9bb29e4e3}{do\+Update}} (const \mbox{\hyperlink{classph_1_1_core_cooked_unit}{Core\+Cooked\+Unit}} \&cooked, const \mbox{\hyperlink{classph_1_1_visual_world}{Visual\+World}} \&world) override
+\begin{DoxyCompactList}\small\item\em Perform necessary updates for rendering. No asynchronous operation is allowed during update. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classph_1_1_adaptive_sampling_renderer_af371754d875de3fa0edf5e81a741a0b8}{do\+Render}} () override
+\begin{DoxyCompactList}\small\item\em Perform rendering. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classph_1_1_adaptive_sampling_renderer_a8788f8b27299026ce7e461733ff00a54}{retrieve\+Frame}} (std\+::size\+\_\+t layer\+Index, \mbox{\hyperlink{namespaceph_a6cb342b38d32fd46d08ca0ec0f69fe3e}{Hdr\+Rgb\+Frame}} \&out\+\_\+frame) override
+\begin{DoxyCompactList}\small\item\em Get the rendered result. \end{DoxyCompactList}\item 
+std\+::size\+\_\+t \mbox{\hyperlink{classph_1_1_adaptive_sampling_renderer_a8cc7d7d356988b1a6d769dcbe626a0bc}{async\+Poll\+Updated\+Regions}} (\mbox{\hyperlink{namespaceph_a5390437e1d7fd7d167c847677ea146e6}{TSpan}}$<$ \mbox{\hyperlink{classph_1_1_render_region_status}{Render\+Region\+Status}} $>$ out\+\_\+regions) override
+\begin{DoxyCompactList}\small\item\em Get the rendering regions that have been updated. Status of a region will always transition to {\ttfamily \doxylink{namespaceph_af3aab646b468fc89b9303fa5e31aae24a8f3d10eb21bd36347c258679eba9e92b}{ERegion\+Status\+::\+Finished}}, and this ordering guarantee is valid for one or across multiple calls. Note that if the renderer has multiple workers working on the same region, you may observe a region transition from {\ttfamily \doxylink{namespaceph_af3aab646b468fc89b9303fa5e31aae24a8f3d10eb21bd36347c258679eba9e92b}{ERegion\+Status\+::\+Finished}} to other status multiple times, but in the end it will eventually be {\ttfamily \doxylink{namespaceph_af3aab646b468fc89b9303fa5e31aae24a8f3d10eb21bd36347c258679eba9e92b}{ERegion\+Status\+::\+Finished}}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classph_1_1_render_stats}{Render\+Stats}} \mbox{\hyperlink{classph_1_1_adaptive_sampling_renderer_a811c5ede2c22028a7bbfea9874a5a277}{async\+Query\+Render\+Stats}} () override
+\begin{DoxyCompactList}\small\item\em Get general information of the ongoing rendering process. More information can be provided by the implementation. The meaning of each stat can be obtained via {\ttfamily \doxylink{classph_1_1_adaptive_sampling_renderer_aec479774acd3405cc784d3f853cc8027}{get\+Observation\+Info()}}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classph_1_1_render_progress}{Render\+Progress}} \mbox{\hyperlink{classph_1_1_adaptive_sampling_renderer_ace8427003c789a6dff1308e627d2300c}{async\+Query\+Render\+Progress}} () override
+\begin{DoxyCompactList}\small\item\em Get progress of the ongoing rendering process. Implementation is advised to provide this information as it is vital for the caller to be able to observe the progress of a potentially long-\/running rendering process. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classph_1_1_adaptive_sampling_renderer_a4127a7f8697756f8cee5aee62fc66482}{async\+Peek\+Frame}} (std\+::size\+\_\+t layer\+Index, const \mbox{\hyperlink{namespaceph_acd27ed918ae0cbe8f569b976cd5451a0}{Region}} \&region, \mbox{\hyperlink{namespaceph_a6cb342b38d32fd46d08ca0ec0f69fe3e}{Hdr\+Rgb\+Frame}} \&out\+\_\+frame) override
+\begin{DoxyCompactList}\small\item\em Get the intermediate render result. This method is similar to {\ttfamily \doxylink{classph_1_1_adaptive_sampling_renderer_a8788f8b27299026ce7e461733ff00a54}{retrieve\+Frame()}}, except that correctness is not guaranteed for the returned frame. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classph_1_1_render_observation_info}{Render\+Observation\+Info}} \mbox{\hyperlink{classph_1_1_adaptive_sampling_renderer_aec479774acd3405cc784d3f853cc8027}{get\+Observation\+Info}} () const override
+\begin{DoxyCompactList}\small\item\em Get information about available transient outputs of an ongoing render operation. This information will be determined after each update (constant throughout the following rendering process). The actual data and can be retrieved via async$<$\+X$>$() methods. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classph_1_1_sampling_renderer}{ph\+::\+Sampling\+Renderer}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classph_1_1_sampling_renderer_a95ec3dd9c542ba56c35fb4c780549787}{Sampling\+Renderer}} (std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classph_1_1_i_ray_energy_estimator}{IRay\+Energy\+Estimator}} $>$ estimator, \mbox{\hyperlink{classph_1_1_viewport}{Viewport}} viewport, \mbox{\hyperlink{classph_1_1_sample_filter}{Sample\+Filter}} filter, uint32 \mbox{\hyperlink{classph_1_1_renderer_aee3d015bf17aa93acab1bb833a5e77f5}{num\+Workers}})
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classph_1_1_renderer}{ph\+::\+Renderer}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classph_1_1_renderer_a2aab5f8d048bff77320072e18f47b242}{Renderer}} (\mbox{\hyperlink{classph_1_1_viewport}{Viewport}} viewport, uint32 \mbox{\hyperlink{classph_1_1_renderer_aee3d015bf17aa93acab1bb833a5e77f5}{num\+Workers}})
+\item 
+virtual \mbox{\hyperlink{classph_1_1_renderer_a904f3dc805728dd9efd002749acd6d63}{\texorpdfstring{$\sim$}{\string~}\+Renderer}} ()
+\item 
+void \mbox{\hyperlink{classph_1_1_renderer_ae6d0f72c37ef4680e3e6399d10553b7c}{update}} (const \mbox{\hyperlink{classph_1_1_core_cooked_unit}{Core\+Cooked\+Unit}} \&cooked, const \mbox{\hyperlink{classph_1_1_visual_world}{Visual\+World}} \&world)
+\begin{DoxyCompactList}\small\item\em Start updating. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classph_1_1_renderer_adab549a4f26a5c8eb4d63d8bf514f936}{render}} ()
+\begin{DoxyCompactList}\small\item\em Start rendering. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classph_1_1_renderer_acb94fca033ca3aa8b35a43b42385be87}{set\+Num\+Workers}} (uint32 \mbox{\hyperlink{classph_1_1_renderer_aee3d015bf17aa93acab1bb833a5e77f5}{num\+Workers}})
+\begin{DoxyCompactList}\small\item\em Set number of workers for the renderer. \end{DoxyCompactList}\item 
+uint32 \mbox{\hyperlink{classph_1_1_renderer_aee3d015bf17aa93acab1bb833a5e77f5}{num\+Workers}} () const
+\item 
+uint32 \mbox{\hyperlink{classph_1_1_renderer_a54d949b61b12994ade05a3132f583dd3}{get\+Render\+Width\+Px}} () const
+\item 
+uint32 \mbox{\hyperlink{classph_1_1_renderer_a3839ef7de1541e84379f860835e7efb9}{get\+Render\+Height\+Px}} () const
+\item 
+\mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d}{math\+::\+TAABB2D}}$<$ int64 $>$ \mbox{\hyperlink{classph_1_1_renderer_a20ada347f45d9c4b189a305f1a7c5345}{get\+Crop\+Window\+Px}} () const
+\begin{DoxyCompactList}\small\item\em The region to work on. The user may specify a window to confine all operations to this region. Note that this is not necessary the region that will be rendered (see {\ttfamily \doxylink{classph_1_1_renderer_a7b3f00f5396e7459541d951b49a2cacd}{get\+Render\+Region\+Px()}}). \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d}{math\+::\+TAABB2D}}$<$ int64 $>$ \mbox{\hyperlink{classph_1_1_renderer_a7b3f00f5396e7459541d951b49a2cacd}{get\+Render\+Region\+Px}} () const
+\begin{DoxyCompactList}\small\item\em The region that is going to be rendered. The difference between render region and crop window is that render region will never exceed the area defined by the base render size (\mbox{[}0, 0\mbox{]} to \mbox{[}{\ttfamily \doxylink{classph_1_1_renderer_a54d949b61b12994ade05a3132f583dd3}{get\+Render\+Width\+Px()}}, {\ttfamily \doxylink{classph_1_1_renderer_a3839ef7de1541e84379f860835e7efb9}{get\+Render\+Height\+Px()}}\mbox{]}). \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{classph_1_1_viewport}{Viewport}} \& \mbox{\hyperlink{classph_1_1_renderer_a42d8776ecca1c73e0150583970f74749}{get\+Viewport}} () const
+\begin{DoxyCompactList}\small\item\em Descriptions regarding dimensions for the rendered frame. \doxylink{classph_1_1_viewport}{Viewport} is set on ctor and stayed constant during the lifetime of the renderer. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classph_1_1_renderer_a4a970abb912298c1357ff3cb55200c95}{async\+Is\+Updating}} () const
+\item 
+bool \mbox{\hyperlink{classph_1_1_renderer_afb2a3475b769c3bf5b26f9cb0be5773c}{async\+Is\+Rendering}} () const
+\item 
+std\+::size\+\_\+t \mbox{\hyperlink{classph_1_1_renderer_af01dfb5b621929945a5d47131cbe9222}{async\+Poll\+Merged\+Updated\+Regions}} (\mbox{\hyperlink{namespaceph_a5390437e1d7fd7d167c847677ea146e6}{TSpan}}$<$ \mbox{\hyperlink{classph_1_1_render_region_status}{Render\+Region\+Status}} $>$ out\+\_\+regions, std\+::size\+\_\+t merge\+Size)
+\begin{DoxyCompactList}\small\item\em Get the rendering region that has been updated. This variant polls for combined regions. Note that this variant does not guarantee any status ordering for a region. If a more fine-\/grained result is desired, use {\ttfamily \doxylink{classph_1_1_renderer_a608a44e798226c1bdb591ccf3c1c4dd2}{async\+Poll\+Updated\+Regions()}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classph_1_1_sampling_renderer}{ph\+::\+Sampling\+Renderer}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classph_1_1_sample_filter}{Sample\+Filter}} \mbox{\hyperlink{classph_1_1_sampling_renderer_a7ead3e84ac14aa7cf5c2f90a3bcd4d18}{m\+\_\+filter}}
+\item 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classph_1_1_i_ray_energy_estimator}{IRay\+Energy\+Estimator}} $>$ \mbox{\hyperlink{classph_1_1_sampling_renderer_a09e90be1b2f016d0a9df55f36c2276b3}{m\+\_\+estimator}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classph_1_1_adaptive_sampling_renderer_a4127a7f8697756f8cee5aee62fc66482}\index{ph::AdaptiveSamplingRenderer@{ph::AdaptiveSamplingRenderer}!asyncPeekFrame@{asyncPeekFrame}}
+\index{asyncPeekFrame@{asyncPeekFrame}!ph::AdaptiveSamplingRenderer@{ph::AdaptiveSamplingRenderer}}
+\doxysubsubsection{\texorpdfstring{asyncPeekFrame()}{asyncPeekFrame()}}
+{\footnotesize\ttfamily \label{classph_1_1_adaptive_sampling_renderer_a4127a7f8697756f8cee5aee62fc66482} 
+void ph\+::\+Adaptive\+Sampling\+Renderer\+::async\+Peek\+Frame (\begin{DoxyParamCaption}\item[{std\+::size\+\_\+t}]{layer\+Index}{, }\item[{const \mbox{\hyperlink{namespaceph_acd27ed918ae0cbe8f569b976cd5451a0}{Region}} \&}]{region}{, }\item[{\mbox{\hyperlink{namespaceph_a6cb342b38d32fd46d08ca0ec0f69fe3e}{Hdr\+Rgb\+Frame}} \&}]{out\+\_\+frame}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get the intermediate render result. This method is similar to {\ttfamily \doxylink{classph_1_1_adaptive_sampling_renderer_a8788f8b27299026ce7e461733ff00a54}{retrieve\+Frame()}}, except that correctness is not guaranteed for the returned frame. 
+
+
+
+Implements \mbox{\hyperlink{classph_1_1_sampling_renderer_a8d0e9d6cb6fb30e735c00558b683d2ba}{ph\+::\+Sampling\+Renderer}}.
+
+\Hypertarget{classph_1_1_adaptive_sampling_renderer_a8cc7d7d356988b1a6d769dcbe626a0bc}\index{ph::AdaptiveSamplingRenderer@{ph::AdaptiveSamplingRenderer}!asyncPollUpdatedRegions@{asyncPollUpdatedRegions}}
+\index{asyncPollUpdatedRegions@{asyncPollUpdatedRegions}!ph::AdaptiveSamplingRenderer@{ph::AdaptiveSamplingRenderer}}
+\doxysubsubsection{\texorpdfstring{asyncPollUpdatedRegions()}{asyncPollUpdatedRegions()}}
+{\footnotesize\ttfamily \label{classph_1_1_adaptive_sampling_renderer_a8cc7d7d356988b1a6d769dcbe626a0bc} 
+std\+::size\+\_\+t ph\+::\+Adaptive\+Sampling\+Renderer\+::async\+Poll\+Updated\+Regions (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespaceph_a5390437e1d7fd7d167c847677ea146e6}{TSpan}}$<$ \mbox{\hyperlink{classph_1_1_render_region_status}{Render\+Region\+Status}} $>$}]{out\+\_\+regions}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get the rendering regions that have been updated. Status of a region will always transition to {\ttfamily \doxylink{namespaceph_af3aab646b468fc89b9303fa5e31aae24a8f3d10eb21bd36347c258679eba9e92b}{ERegion\+Status\+::\+Finished}}, and this ordering guarantee is valid for one or across multiple calls. Note that if the renderer has multiple workers working on the same region, you may observe a region transition from {\ttfamily \doxylink{namespaceph_af3aab646b468fc89b9303fa5e31aae24a8f3d10eb21bd36347c258679eba9e92b}{ERegion\+Status\+::\+Finished}} to other status multiple times, but in the end it will eventually be {\ttfamily \doxylink{namespaceph_af3aab646b468fc89b9303fa5e31aae24a8f3d10eb21bd36347c258679eba9e92b}{ERegion\+Status\+::\+Finished}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em out\+\_\+regions} & Output buffer for storing the updated regions. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Number of regions actually stored in the output buffer. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classph_1_1_sampling_renderer_a6d8fe891309986e969ddc62205882b39}{ph\+::\+Sampling\+Renderer}}.
+
+\Hypertarget{classph_1_1_adaptive_sampling_renderer_ace8427003c789a6dff1308e627d2300c}\index{ph::AdaptiveSamplingRenderer@{ph::AdaptiveSamplingRenderer}!asyncQueryRenderProgress@{asyncQueryRenderProgress}}
+\index{asyncQueryRenderProgress@{asyncQueryRenderProgress}!ph::AdaptiveSamplingRenderer@{ph::AdaptiveSamplingRenderer}}
+\doxysubsubsection{\texorpdfstring{asyncQueryRenderProgress()}{asyncQueryRenderProgress()}}
+{\footnotesize\ttfamily \label{classph_1_1_adaptive_sampling_renderer_ace8427003c789a6dff1308e627d2300c} 
+\mbox{\hyperlink{classph_1_1_render_progress}{Render\+Progress}} ph\+::\+Adaptive\+Sampling\+Renderer\+::async\+Query\+Render\+Progress (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get progress of the ongoing rendering process. Implementation is advised to provide this information as it is vital for the caller to be able to observe the progress of a potentially long-\/running rendering process. 
+
+
+
+Implements \mbox{\hyperlink{classph_1_1_sampling_renderer_a6c6ddfa18a7a9225d79c9408c0d7da68}{ph\+::\+Sampling\+Renderer}}.
+
+\Hypertarget{classph_1_1_adaptive_sampling_renderer_a811c5ede2c22028a7bbfea9874a5a277}\index{ph::AdaptiveSamplingRenderer@{ph::AdaptiveSamplingRenderer}!asyncQueryRenderStats@{asyncQueryRenderStats}}
+\index{asyncQueryRenderStats@{asyncQueryRenderStats}!ph::AdaptiveSamplingRenderer@{ph::AdaptiveSamplingRenderer}}
+\doxysubsubsection{\texorpdfstring{asyncQueryRenderStats()}{asyncQueryRenderStats()}}
+{\footnotesize\ttfamily \label{classph_1_1_adaptive_sampling_renderer_a811c5ede2c22028a7bbfea9874a5a277} 
+\mbox{\hyperlink{classph_1_1_render_stats}{Render\+Stats}} ph\+::\+Adaptive\+Sampling\+Renderer\+::async\+Query\+Render\+Stats (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get general information of the ongoing rendering process. More information can be provided by the implementation. The meaning of each stat can be obtained via {\ttfamily \doxylink{classph_1_1_adaptive_sampling_renderer_aec479774acd3405cc784d3f853cc8027}{get\+Observation\+Info()}}. 
+
+
+
+Implements \mbox{\hyperlink{classph_1_1_sampling_renderer_a317e4a58e543391f93cdb5989dd3b381}{ph\+::\+Sampling\+Renderer}}.
+
+\Hypertarget{classph_1_1_adaptive_sampling_renderer_af371754d875de3fa0edf5e81a741a0b8}\index{ph::AdaptiveSamplingRenderer@{ph::AdaptiveSamplingRenderer}!doRender@{doRender}}
+\index{doRender@{doRender}!ph::AdaptiveSamplingRenderer@{ph::AdaptiveSamplingRenderer}}
+\doxysubsubsection{\texorpdfstring{doRender()}{doRender()}}
+{\footnotesize\ttfamily \label{classph_1_1_adaptive_sampling_renderer_af371754d875de3fa0edf5e81a741a0b8} 
+void ph\+::\+Adaptive\+Sampling\+Renderer\+::do\+Render (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Perform rendering. 
+
+
+
+Implements \mbox{\hyperlink{classph_1_1_sampling_renderer_acc989dff6f09064750a21ad0152e3b9b}{ph\+::\+Sampling\+Renderer}}.
+
+\Hypertarget{classph_1_1_adaptive_sampling_renderer_a5c41d80ea5f1f63760fd73a9bb29e4e3}\index{ph::AdaptiveSamplingRenderer@{ph::AdaptiveSamplingRenderer}!doUpdate@{doUpdate}}
+\index{doUpdate@{doUpdate}!ph::AdaptiveSamplingRenderer@{ph::AdaptiveSamplingRenderer}}
+\doxysubsubsection{\texorpdfstring{doUpdate()}{doUpdate()}}
+{\footnotesize\ttfamily \label{classph_1_1_adaptive_sampling_renderer_a5c41d80ea5f1f63760fd73a9bb29e4e3} 
+void ph\+::\+Adaptive\+Sampling\+Renderer\+::do\+Update (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classph_1_1_core_cooked_unit}{Core\+Cooked\+Unit}} \&}]{cooked}{, }\item[{const \mbox{\hyperlink{classph_1_1_visual_world}{Visual\+World}} \&}]{world}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Perform necessary updates for rendering. No asynchronous operation is allowed during update. 
+
+
+
+Implements \mbox{\hyperlink{classph_1_1_sampling_renderer_aa8d8b0bfd5c6d1d235b25247f189311f}{ph\+::\+Sampling\+Renderer}}.
+
+\Hypertarget{classph_1_1_adaptive_sampling_renderer_aec479774acd3405cc784d3f853cc8027}\index{ph::AdaptiveSamplingRenderer@{ph::AdaptiveSamplingRenderer}!getObservationInfo@{getObservationInfo}}
+\index{getObservationInfo@{getObservationInfo}!ph::AdaptiveSamplingRenderer@{ph::AdaptiveSamplingRenderer}}
+\doxysubsubsection{\texorpdfstring{getObservationInfo()}{getObservationInfo()}}
+{\footnotesize\ttfamily \label{classph_1_1_adaptive_sampling_renderer_aec479774acd3405cc784d3f853cc8027} 
+\mbox{\hyperlink{classph_1_1_render_observation_info}{Render\+Observation\+Info}} ph\+::\+Adaptive\+Sampling\+Renderer\+::get\+Observation\+Info (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get information about available transient outputs of an ongoing render operation. This information will be determined after each update (constant throughout the following rendering process). The actual data and can be retrieved via async$<$\+X$>$() methods. 
+
+
+
+Implements \mbox{\hyperlink{classph_1_1_sampling_renderer_a4cdb34451fb158d79545ae24ff83ec01}{ph\+::\+Sampling\+Renderer}}.
+
+\Hypertarget{classph_1_1_adaptive_sampling_renderer_a8788f8b27299026ce7e461733ff00a54}\index{ph::AdaptiveSamplingRenderer@{ph::AdaptiveSamplingRenderer}!retrieveFrame@{retrieveFrame}}
+\index{retrieveFrame@{retrieveFrame}!ph::AdaptiveSamplingRenderer@{ph::AdaptiveSamplingRenderer}}
+\doxysubsubsection{\texorpdfstring{retrieveFrame()}{retrieveFrame()}}
+{\footnotesize\ttfamily \label{classph_1_1_adaptive_sampling_renderer_a8788f8b27299026ce7e461733ff00a54} 
+void ph\+::\+Adaptive\+Sampling\+Renderer\+::retrieve\+Frame (\begin{DoxyParamCaption}\item[{std\+::size\+\_\+t}]{layer\+Index}{, }\item[{\mbox{\hyperlink{namespaceph_a6cb342b38d32fd46d08ca0ec0f69fe3e}{Hdr\+Rgb\+Frame}} \&}]{out\+\_\+frame}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get the rendered result. 
+
+
+
+Implements \mbox{\hyperlink{classph_1_1_sampling_renderer_a76ed63ee85169f65e086b994204e7e74}{ph\+::\+Sampling\+Renderer}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Source/\+Core/\+Renderer/\+Sampling/\mbox{\hyperlink{_adaptive_sampling_renderer_8h}{Adaptive\+Sampling\+Renderer.\+h}}\item 
+Source/\+Core/\+Renderer/\+Sampling/\mbox{\hyperlink{_adaptive_sampling_renderer_8cpp}{Adaptive\+Sampling\+Renderer.\+cpp}}\end{DoxyCompactItemize}

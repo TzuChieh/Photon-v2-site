@@ -1,0 +1,73 @@
+\doxysection{TSwizzled\+Texture.\+h}
+\hypertarget{_t_swizzled_texture_8h_source}{}\label{_t_swizzled_texture_8h_source}\index{Source/Core/Texture/TSwizzledTexture.h@{Source/Core/Texture/TSwizzledTexture.h}}
+\mbox{\hyperlink{_t_swizzled_texture_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_texture_8h}{Core/Texture/TTexture.h}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_sample_location_8h}{Core/Texture/SampleLocation.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{traits_8h}{Utility/traits.h}}"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <Common/assertion.h>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <Common/primitive\_type.h>}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <cstddef>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <array>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <type\_traits>}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00017\ \{}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00025\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ InputT,\ \textcolor{keyword}{typename}\ OutputT,\ std::\textcolor{keywordtype}{size\_t}\ OUTPUT\_N>}
+\DoxyCodeLine{00026\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_t_swizzled_texture}{TSwizzledTexture}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classph_1_1_t_texture}{TTexture}}<OutputT>}
+\DoxyCodeLine{00027\ \{}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{static\_assert}(\mbox{\hyperlink{conceptph_1_1_c_subscriptable}{CSubscriptable<InputT>}},}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Input\ type\ must\ be\ subscriptable."{}});}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{static\_assert}(\mbox{\hyperlink{conceptph_1_1_c_subscriptable}{CSubscriptable<OutputT>}},}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Output\ type\ must\ be\ subscriptable."{}});}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classph_1_1_t_swizzled_texture_acb92cc8b6ce1ea2eb96157b52447ef60}{InputTexRes}}\ \ \ =\ std::shared\_ptr<TTexture<InputT>>;}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classph_1_1_t_swizzled_texture_aafc0f94e0ff6e90a778ba18dea6ad3a5}{InputElement}}\ \ =\ std::remove\_cvref\_t<decltype(std::declval<InputT>()[std::declval<std::size\_t>()])>;}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classph_1_1_t_swizzled_texture_a8d9cfb00abaef2fac3afc3b61446dda9}{OutputElement}}\ =\ std::remove\_cvref\_t<decltype(std::declval<OutputT>()[std::declval<std::size\_t>()])>;}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_convertible\_v<InputElement,\ OutputElement>,}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Array\ element\ of\ input\ type\ is\ not\ convertible\ to\ the\ array\ element\ of\ output\ type."{}});}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00046\ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_swizzled_texture_a8afa19133fae7dd66a475a08711bdedc}{TSwizzledTexture}}(}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_swizzled_texture_acb92cc8b6ce1ea2eb96157b52447ef60}{InputTexRes}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ inputTexture,}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ std::array<uint8,\ OUTPUT\_N>\ swizzleMap)\ :}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_texture}{TTexture}}<OutputT>(),}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ m\_inputTexture(\mbox{\hyperlink{namespacestd}{std}}::move(inputTexture)),}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ m\_swizzleMap\ \ (\mbox{\hyperlink{namespacestd}{std}}::move(swizzleMap))}
+\DoxyCodeLine{00054\ \ \ \ \ \{\}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_swizzled_texture_ace8f0408b85c72d1307ef8c6e1319b0c}{sample}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_sample_location}{SampleLocation}}\&\ sampleLocation,\ OutputT*\ \textcolor{keyword}{const}\ out\_value)\textcolor{keyword}{\ const\ override}}
+\DoxyCodeLine{00057\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ PH\_ASSERT(m\_inputTexture);}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ PH\_ASSERT(out\_value);}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ InputT\ inputValue;}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ m\_inputTexture-\/>sample(sampleLocation,\ \&inputValue);}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ *out\_value\ =\ OutputT\{\};}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ oi\ =\ 0;\ oi\ <\ OUTPUT\_N;\ ++oi)}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ mappedIndex\ =\ m\_swizzleMap[oi];}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ (*out\_value)[oi]\ =\ \textcolor{keyword}{static\_cast<}\mbox{\hyperlink{classph_1_1_t_swizzled_texture_a8d9cfb00abaef2fac3afc3b61446dda9}{OutputElement}}\textcolor{keyword}{>}(inputValue[mappedIndex]);}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00070\ \ \ \ \ \}}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00073\ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_swizzled_texture_acb92cc8b6ce1ea2eb96157b52447ef60}{InputTexRes}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_inputTexture;}
+\DoxyCodeLine{00074\ \ \ \ \ std::array<uint8,\ OUTPUT\_N>\ m\_swizzleMap;}
+\DoxyCodeLine{00075\ \};}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+
+\end{DoxyCode}

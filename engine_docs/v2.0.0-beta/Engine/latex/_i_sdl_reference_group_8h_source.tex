@@ -1,0 +1,74 @@
+\doxysection{ISdl\+Reference\+Group.\+h}
+\hypertarget{_i_sdl_reference_group_8h_source}{}\label{_i_sdl_reference_group_8h_source}\index{Source/SDL/ISdlReferenceGroup.h@{Source/SDL/ISdlReferenceGroup.h}}
+\mbox{\hyperlink{_i_sdl_reference_group_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_i_sdl_resource_8h}{SDL/ISdlResource.h}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{sdl__helpers_8h}{SDL/sdl\_helpers.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{sdl__exceptions_8h}{SDL/sdl\_exceptions.h}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{utility_8h}{Utility/utility.h}}"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <string\_view>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <type\_traits>}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00013\ \{}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_i_sdl_reference_group}{ISdlReferenceGroup}}}
+\DoxyCodeLine{00018\ \{}
+\DoxyCodeLine{00019\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00020\ \ \ \ \ \mbox{\hyperlink{classph_1_1_i_sdl_reference_group_a5e82161b2a510601aa605b91f9c4c6ef}{PH\_DEFINE\_INLINE\_RULE\_OF\_5\_MEMBERS\_NO\_DTOR}}(\mbox{\hyperlink{classph_1_1_i_sdl_reference_group}{ISdlReferenceGroup}});}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classph_1_1_i_sdl_reference_group_a2768a45a4f07392e2bb6431e77d21ca4}{\string~ISdlReferenceGroup}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{virtual}\ std::shared\_ptr<ISdlResource>\ \mbox{\hyperlink{classph_1_1_i_sdl_reference_group_a2f7207bc58f696549d5ca59ebda52232}{get}}(std::string\_view\ resourceName)\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_i_sdl_reference_group_a8c334893f881c1754201cf90290e0099}{has}}(std::string\_view\ resourceName)\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00033\ \ \ \ \ }
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00039\ \ \ \ \ std::shared\_ptr<T>\ \mbox{\hyperlink{classph_1_1_i_sdl_reference_group_a18b922e4a8526b7c5f72701196a2c0be}{getTyped}}(std::string\_view\ resourceName)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_i_sdl_reference_group_a001529f107c211ab73a13f71fa330887}{hasTyped}}(std::string\_view\ resourceName)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00045\ \};}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00048\ \textcolor{keyword}{inline}\ std::shared\_ptr<T>\ \mbox{\hyperlink{classph_1_1_i_sdl_reference_group_a18b922e4a8526b7c5f72701196a2c0be}{ISdlReferenceGroup::getTyped}}(std::string\_view\ resourceName)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00049\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_base\_of\_v<ISdlResource,\ T>,}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}T\ is\ not\ a\ SDL\ resource."{}});}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ std::shared\_ptr<ISdlResource>\ rawResource\ =\ \mbox{\hyperlink{classph_1_1_i_sdl_reference_group_a2f7207bc58f696549d5ca59ebda52232}{get}}(resourceName);}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordflow}{if}(!rawResource)}
+\DoxyCodeLine{00055\ \ \ \ \ \{}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00057\ \ \ \ \ \}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ \ \ std::shared\_ptr<T>\ castedResource\ =\ std::dynamic\_pointer\_cast<T>(std::move(rawResource));}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordflow}{if}(!castedResource)}
+\DoxyCodeLine{00061\ \ \ \ \ \{}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ cast\ can\ fail\ if\ a\ wrong\ type\ for\ the\ resource\ is\ specified}}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ (name\ is\ correct,\ but\ with\ a\ wrong\ type).}}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ throw\_formatted<SdlLoadError>(}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}resource\ type\ (category:\ \{\})\ is\ not\ the\ requested\ type\ (category:\ \{\},\ name:\ \{\})"{}},}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceph_1_1sdl_a1ebba778e6cb2b1078321d70592b53f9}{sdl::category\_to\_string}}(\mbox{\hyperlink{classph_1_1_i_sdl_reference_group_a2f7207bc58f696549d5ca59ebda52232}{get}}(resourceName)-\/>getDynamicCategory()),}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceph_1_1sdl_a1ebba778e6cb2b1078321d70592b53f9}{sdl::category\_to\_string}}(\mbox{\hyperlink{namespaceph_1_1sdl_a82df961475e33d5cbc1b5693d10d83c4}{sdl::category\_of<T>}}()),\ resourceName);}
+\DoxyCodeLine{00069\ \ \ \ \ \}}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keywordflow}{return}\ castedResource;}
+\DoxyCodeLine{00072\ \}}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00075\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_i_sdl_reference_group_a001529f107c211ab73a13f71fa330887}{ISdlReferenceGroup::hasTyped}}(std::string\_view\ resourceName)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00076\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_base\_of\_v<ISdlResource,\ T>,}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}T\ is\ not\ a\ SDL\ resource."{}});}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1_i_sdl_reference_group_a8c334893f881c1754201cf90290e0099}{has}}(resourceName,\ \mbox{\hyperlink{namespaceph_1_1sdl_a82df961475e33d5cbc1b5693d10d83c4}{sdl::category\_of<T>}}());}
+\DoxyCodeLine{00081\ \}}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+
+\end{DoxyCode}

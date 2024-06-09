@@ -1,8 +1,0 @@
-var classph_1_1_rectangular_sensor_receiver =
-[
-    [ "RectangularSensorReceiver", "d0/d7f/classph_1_1_rectangular_sensor_receiver.html#a6b5c4938d14523c52d78ad87776a5731", null ],
-    [ "evalEmittedImportanceAndPdfW", "d0/d7f/classph_1_1_rectangular_sensor_receiver.html#a1f48819da95e148bd62691d3d8c08acd", null ],
-    [ "getRasterToSensor", "d0/d7f/classph_1_1_rectangular_sensor_receiver.html#afc65567b4396bf0e7a0f0525a1831025", null ],
-    [ "getSensorSize", "d0/d7f/classph_1_1_rectangular_sensor_receiver.html#a44fe8c31d1c434c2c62ecc4c7dcb172c", null ],
-    [ "receiveRay", "d0/d7f/classph_1_1_rectangular_sensor_receiver.html#a588bf8cfdfa499625f6466ff279a8d67", null ]
-];

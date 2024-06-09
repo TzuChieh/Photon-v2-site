@@ -1,0 +1,383 @@
+\doxysection{TSdl\+Owner\+Class.\+ipp}
+\hypertarget{_t_sdl_owner_class_8ipp_source}{}\label{_t_sdl_owner_class_8ipp_source}\index{Source/SDL/Introspect/TSdlOwnerClass.ipp@{Source/SDL/Introspect/TSdlOwnerClass.ipp}}
+\mbox{\hyperlink{_t_sdl_owner_class_8ipp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_sdl_owner_class_8h}{SDL/Introspect/TSdlOwnerClass.h}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{field__set__op_8h}{SDL/Introspect/field\_set\_op.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_sdl_struct_8h}{SDL/Introspect/SdlStruct.h}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_sdl_struct_field_stump_8h}{SDL/Introspect/SdlStructFieldStump.h}}"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{sdl__exceptions_8h}{SDL/sdl\_exceptions.h}}"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_sdl_function_8h}{SDL/Introspect/SdlFunction.h}}"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{sdl__helpers_8h}{SDL/sdl\_helpers.h}}"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{sdl__traits_8h}{SDL/sdl\_traits.h}}"{}}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <Common/assertion.h>}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <type\_traits>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <format>}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00018\ \{}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Owner,\ \textcolor{keyword}{typename}\ FieldSet>}
+\DoxyCodeLine{00021\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_t_sdl_owner_class_a56a7cf7c60df98b0f7958898257151ff}{TSdlOwnerClass<Owner,\ FieldSet>::TSdlOwnerClass}}(std::string\ displayName)}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ \ \ :\ \mbox{\hyperlink{classph_1_1_sdl_class}{SdlClass}}(sdl::category\_of<Owner>(),\ \mbox{\hyperlink{namespacestd}{std}}::move(displayName))}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \ \ \ \ ,\ m\_fields()}
+\DoxyCodeLine{00026\ \ \ \ \ ,\ m\_functions()}
+\DoxyCodeLine{00027\ \{}
+\DoxyCodeLine{00028\ \ \ \ \ \mbox{\hyperlink{classph_1_1_sdl_class_a1b596f34643d7bbede7a591f5bd659d1}{setIsBlueprint}}(std::is\_abstract\_v<Owner>);}
+\DoxyCodeLine{00029\ \}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Owner,\ \textcolor{keyword}{typename}\ FieldSet>}
+\DoxyCodeLine{00032\ \textcolor{keyword}{inline}\ std::shared\_ptr<ISdlResource>\ \mbox{\hyperlink{classph_1_1_t_sdl_owner_class_a3045ee607dfd901242ee1e6990ac75b6}{TSdlOwnerClass<Owner,\ FieldSet>::createResource}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00033\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(!std::is\_abstract\_v<Owner>\ \&\&\ std::is\_default\_constructible\_v<Owner>)}
+\DoxyCodeLine{00035\ \ \ \ \ \{}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!isBlueprint()\ \&\&\ allowCreateFromClass())}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::make\_shared<Owner>();}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00044\ \ \ \ \ \}}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00046\ \ \ \ \ \{}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ resource\ is\ abstract\ and/or\ not\ default-\/constructible,\ make\ sure\ this\ is\ intended}}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ PH\_ASSERT\_MSG(isBlueprint()\ ||\ !allowCreateFromClass(),}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ std::format(\textcolor{stringliteral}{"{}Cannot\ create\ resource\ while\ the\ SDL\ definition\ permits\ it\ (is\ blueprint:\ \{\},\ "{}}}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}allow\ create\ from\ class:\ \{\})"{}},\ isBlueprint(),\ allowCreateFromClass()));}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00053\ \ \ \ \ \}}
+\DoxyCodeLine{00054\ \}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Owner,\ \textcolor{keyword}{typename}\ FieldSet>}
+\DoxyCodeLine{00057\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_sdl_owner_class_a5594a36d254f62132602c513c59600e8}{TSdlOwnerClass<Owner,\ FieldSet>::initResource}}(}
+\DoxyCodeLine{00058\ \ \ \ \ \mbox{\hyperlink{classph_1_1_i_sdl_resource}{ISdlResource}}\&\ \ \ \ \ \ \ \ \ \ resource,}
+\DoxyCodeLine{00059\ \ \ \ \ \mbox{\hyperlink{classph_1_1_sdl_input_clauses}{SdlInputClauses}}\&\ \ \ \ \ \ \ clauses,}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_sdl_input_context}{SdlInputContext}}\&\ ctx)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00061\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{comment}{//\ Init\ base\ first\ just\ like\ how\ standard\ C++\ does}}
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keywordflow}{if}(isDerived())}
+\DoxyCodeLine{00064\ \ \ \ \ \{}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ PH\_ASSERT(getBase());}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ getBase()-\/>initResource(resource,\ clauses,\ ctx);}
+\DoxyCodeLine{00067\ \ \ \ \ \}}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \ \ \ \ Owner*\ \textcolor{keyword}{const}\ ownerResource\ =\ castTo<Owner>(\&resource);}
+\DoxyCodeLine{00070\ \ \ \ \ loadFieldsFromSdl(*ownerResource,\ clauses,\ ctx);}
+\DoxyCodeLine{00071\ \}}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Owner,\ \textcolor{keyword}{typename}\ FieldSet>}
+\DoxyCodeLine{00074\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_sdl_owner_class_a0b8b40cd627e33c5986f1e262b3519c9}{TSdlOwnerClass<Owner,\ FieldSet>::initDefaultResource}}(\mbox{\hyperlink{classph_1_1_i_sdl_resource}{ISdlResource}}\&\ resource)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00075\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{comment}{//\ Init\ base\ first\ just\ like\ how\ standard\ C++\ does}}
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keywordflow}{if}(isDerived())}
+\DoxyCodeLine{00078\ \ \ \ \ \{}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ PH\_ASSERT(getBase());}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ getBase()-\/>initDefaultResource(resource);}
+\DoxyCodeLine{00081\ \ \ \ \ \}}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \ \ \ \ Owner*\ \textcolor{keyword}{const}\ ownerResource\ =\ castTo<Owner>(\&resource);}
+\DoxyCodeLine{00084\ \ \ \ \ setFieldsToDefaults(*ownerResource);}
+\DoxyCodeLine{00085\ \}}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Owner,\ \textcolor{keyword}{typename}\ FieldSet>}
+\DoxyCodeLine{00088\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_sdl_owner_class_ac8e23c3ff4dc142192e6927e646714e5}{TSdlOwnerClass<Owner,\ FieldSet>::saveResource}}(}
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_i_sdl_resource}{ISdlResource}}\&\ \ \ \ \ resource,}
+\DoxyCodeLine{00090\ \ \ \ \ \mbox{\hyperlink{classph_1_1_sdl_output_clauses}{SdlOutputClauses}}\&\ \ \ \ \ \ \ clauses,}
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_sdl_output_context}{SdlOutputContext}}\&\ ctx)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00092\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{comment}{//\ No\ specific\ ordering\ is\ required\ here.\ We\ save\ base\ class\ first\ just\ like\ how}}
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{comment}{//\ the\ loading\ process\ is.}}
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keywordflow}{if}(isDerived())}
+\DoxyCodeLine{00096\ \ \ \ \ \{}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ PH\_ASSERT(getBase());}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ getBase()-\/>saveResource(resource,\ clauses,\ ctx);}
+\DoxyCodeLine{00099\ \ \ \ \ \}}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{keyword}{const}\ Owner*\ \textcolor{keyword}{const}\ ownerResource\ =\ castTo<const\ Owner>(\&resource);}
+\DoxyCodeLine{00102\ \ \ \ \ saveFieldsToSdl(*ownerResource,\ clauses,\ ctx);}
+\DoxyCodeLine{00103\ \}}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Owner,\ \textcolor{keyword}{typename}\ FieldSet>}
+\DoxyCodeLine{00106\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_sdl_owner_class_a6272e3c7cbd3b5b6d3ac5f2db03c8ab2}{TSdlOwnerClass<Owner,\ FieldSet>::call}}(}
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{keyword}{const}\ std::string\_view\ funcName,}
+\DoxyCodeLine{00108\ \ \ \ \ \mbox{\hyperlink{classph_1_1_i_sdl_resource}{ISdlResource}}*\ \textcolor{keyword}{const}\ \ \ \ resource,}
+\DoxyCodeLine{00109\ \ \ \ \ \mbox{\hyperlink{classph_1_1_sdl_input_clauses}{SdlInputClauses}}\&\ \ \ \ \ \ \ clauses,}
+\DoxyCodeLine{00110\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_sdl_input_context}{SdlInputContext}}\&\ ctx)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00111\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{comment}{//\ Find\ SDL\ function\ by\ name}}
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_sdl_function}{SdlFunction}}*\ func\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ funcIdx\ =\ 0;\ funcIdx\ <\ m\_functions.size();\ ++funcIdx)}
+\DoxyCodeLine{00115\ \ \ \ \ \{}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ PH\_ASSERT(m\_functions[funcIdx]);}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_sdl_function}{SdlFunction}}\&\ funcI\ =\ *(m\_functions[funcIdx]);}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(funcI.\mbox{\hyperlink{classph_1_1_sdl_function_ab51e4911b07457cb64224ec0d4acb97f}{getName}}()\ ==\ funcName)}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ func\ =\ \&funcI;}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00123\ \ \ \ \ \}}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \ \ \ \ \textcolor{comment}{//\ If\ found\ the\ function\ in\ this\ class,\ call\ it}}
+\DoxyCodeLine{00126\ \ \ \ \ \textcolor{keywordflow}{if}(func)}
+\DoxyCodeLine{00127\ \ \ \ \ \{}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ func-\/>\mbox{\hyperlink{classph_1_1_sdl_function_a3ed20390ed7a0cb8961805d7d2c0ac74}{call}}(resource,\ clauses,\ ctx);}
+\DoxyCodeLine{00129\ \ \ \ \ \}}
+\DoxyCodeLine{00130\ \ \ \ \ \textcolor{comment}{//\ If\ not\ found\ in\ this\ class,\ call\ on\ base\ class\ instead}}
+\DoxyCodeLine{00131\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(getBase())}
+\DoxyCodeLine{00132\ \ \ \ \ \{}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ getBase()-\/>call(funcName,\ resource,\ clauses,\ ctx);}
+\DoxyCodeLine{00134\ \ \ \ \ \}}
+\DoxyCodeLine{00135\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00136\ \ \ \ \ \{}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \mbox{\hyperlink{classph_1_1_sdl_load_error}{SdlLoadError}}(}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}cannot\ find\ SDL\ function\ named\ <"{}}\ +\ std::string(funcName)\ +\ \textcolor{stringliteral}{"{}>\ in\ "{}}}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}SDL\ class\ <"{}}\ +\ genPrettyName()\ +\ \textcolor{stringliteral}{"{}>"{}});}
+\DoxyCodeLine{00140\ \ \ \ \ \}}
+\DoxyCodeLine{00141\ \}}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00143\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Owner,\ \textcolor{keyword}{typename}\ FieldSet>}
+\DoxyCodeLine{00144\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_sdl_owner_class_a131d2dec7086d7248c1559f6f05aed43}{TSdlOwnerClass<Owner,\ FieldSet>::referencedResources}}(}
+\DoxyCodeLine{00145\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_i_sdl_resource}{ISdlResource}}*\ \textcolor{keyword}{const}\ targetResource,}
+\DoxyCodeLine{00146\ \ \ \ \ std::vector<const\ ISdlResource*>\&\ out\_resources)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00147\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00148\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_base\_of\_v<ISdlResource,\ Owner>,}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Owner\ class\ must\ derive\ from\ ISdlResource."{}});}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00151\ \ \ \ \ \textcolor{keyword}{const}\ Owner\&\ owner\ =\ *(castTo<const\ Owner>(targetResource));}
+\DoxyCodeLine{00152\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ fieldIdx\ =\ 0;\ fieldIdx\ <\ m\_fields.numFields();\ ++fieldIdx)}
+\DoxyCodeLine{00153\ \ \ \ \ \{}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ m\_fields[fieldIdx].ownedResources(owner,\ out\_resources);}
+\DoxyCodeLine{00155\ \ \ \ \ \}}
+\DoxyCodeLine{00156\ }
+\DoxyCodeLine{00157\ \ \ \ \ \textcolor{comment}{//\ Find\ more\ references\ in\ base\ class}}
+\DoxyCodeLine{00158\ \ \ \ \ \textcolor{keywordflow}{if}(isDerived())}
+\DoxyCodeLine{00159\ \ \ \ \ \{}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ PH\_ASSERT(getBase());}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ getBase()-\/>referencedResources(targetResource,\ out\_resources);}
+\DoxyCodeLine{00162\ \ \ \ \ \}}
+\DoxyCodeLine{00163\ \}}
+\DoxyCodeLine{00164\ }
+\DoxyCodeLine{00165\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Owner,\ \textcolor{keyword}{typename}\ FieldSet>}
+\DoxyCodeLine{00166\ \textcolor{keyword}{inline}\ std::size\_t\ \mbox{\hyperlink{classph_1_1_t_sdl_owner_class_ac7bc33c1b0e44216ff3dce62ade8bf8c}{TSdlOwnerClass<Owner,\ FieldSet>::numFields}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00167\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00168\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_fields.numFields();}
+\DoxyCodeLine{00169\ \}}
+\DoxyCodeLine{00170\ }
+\DoxyCodeLine{00171\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Owner,\ \textcolor{keyword}{typename}\ FieldSet>}
+\DoxyCodeLine{00172\ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_sdl_field}{SdlField}}*\ \mbox{\hyperlink{classph_1_1_t_sdl_owner_class_a5d0fad2a5f682b624dc410992a4a6e32}{TSdlOwnerClass<Owner,\ FieldSet>::getField}}(\textcolor{keyword}{const}\ std::size\_t\ index)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00173\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00174\ \ \ \ \ \textcolor{keywordflow}{return}\ getOwnedField(index);}
+\DoxyCodeLine{00175\ \}}
+\DoxyCodeLine{00176\ }
+\DoxyCodeLine{00177\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Owner,\ \textcolor{keyword}{typename}\ FieldSet>}
+\DoxyCodeLine{00178\ \textcolor{keyword}{inline}\ std::size\_t\ \mbox{\hyperlink{classph_1_1_t_sdl_owner_class_adae015ec780de787b5de939f68cea748}{TSdlOwnerClass<Owner,\ FieldSet>::numFunctions}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00179\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00180\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_functions.size();}
+\DoxyCodeLine{00181\ \}}
+\DoxyCodeLine{00182\ }
+\DoxyCodeLine{00183\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Owner,\ \textcolor{keyword}{typename}\ FieldSet>}
+\DoxyCodeLine{00184\ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_sdl_function}{SdlFunction}}*\ \mbox{\hyperlink{classph_1_1_t_sdl_owner_class_ada8e0ce801b13a159f80bcbee5992e76}{TSdlOwnerClass<Owner,\ FieldSet>::getFunction}}(\textcolor{keyword}{const}\ std::size\_t\ index)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00185\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00186\ \ \ \ \ \textcolor{keywordflow}{return}\ index\ <\ m\_functions.size()\ ?\ m\_functions[index]\ :\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00187\ \}}
+\DoxyCodeLine{00188\ }
+\DoxyCodeLine{00189\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Owner,\ \textcolor{keyword}{typename}\ FieldSet>}
+\DoxyCodeLine{00190\ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_t_sdl_owned_field}{TSdlOwnedField<Owner>}}*\ \mbox{\hyperlink{classph_1_1_t_sdl_owner_class_a10054cf45110204663ff9cdc16f11a18}{TSdlOwnerClass<Owner,\ FieldSet>::getOwnedField}}(\textcolor{keyword}{const}\ std::size\_t\ index)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00191\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00192\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_fields.getField(index);}
+\DoxyCodeLine{00193\ \}}
+\DoxyCodeLine{00194\ }
+\DoxyCodeLine{00195\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Owner,\ \textcolor{keyword}{typename}\ FieldSet>}
+\DoxyCodeLine{00196\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ SdlFieldType>}
+\DoxyCodeLine{00197\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1_t_sdl_owner_class_a6b4cf50218461ccd568eccb87a8ace35}{TSdlOwnerClass<Owner,\ FieldSet>::addField}}(SdlFieldType\ sdlField)}
+\DoxyCodeLine{00198\ \ \ \ \ -\/>\ \mbox{\hyperlink{classph_1_1_t_sdl_owner_class}{TSdlOwnerClass}}\&}
+\DoxyCodeLine{00199\ \{}
+\DoxyCodeLine{00200\ \ \ \ \ \textcolor{comment}{//\ More\ restrictions\ on\ the\ type\ of\ SdlFieldType\ may\ be\ imposed\ by\ FieldSet}}
+\DoxyCodeLine{00201\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_base\_of\_v<SdlField,\ SdlFieldType>,}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Provided\ SdlFieldType\ is\ not\ a\ SdlField\ thus\ cannot\ be\ added."{}});}
+\DoxyCodeLine{00203\ }
+\DoxyCodeLine{00204\ \ \ \ \ m\_fields.\mbox{\hyperlink{classph_1_1_t_sdl_owner_class_a6b4cf50218461ccd568eccb87a8ace35}{addField}}(std::move(sdlField));}
+\DoxyCodeLine{00205\ }
+\DoxyCodeLine{00206\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00207\ \}}
+\DoxyCodeLine{00208\ }
+\DoxyCodeLine{00209\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Owner,\ \textcolor{keyword}{typename}\ FieldSet>}
+\DoxyCodeLine{00210\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ StructType>}
+\DoxyCodeLine{00211\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1_t_sdl_owner_class_a463db4ed5deba7a7bc865b5f667f4778}{TSdlOwnerClass<Owner,\ FieldSet>::addStruct}}(StructType\ Owner::*\ const\ structObjPtr)}
+\DoxyCodeLine{00212\ \ \ \ \ -\/>\ \mbox{\hyperlink{classph_1_1_t_sdl_owner_class}{TSdlOwnerClass}}\&}
+\DoxyCodeLine{00213\ \{}
+\DoxyCodeLine{00214\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1_t_sdl_owner_class_a463db4ed5deba7a7bc865b5f667f4778}{addStruct}}(structObjPtr,\ \mbox{\hyperlink{classph_1_1_sdl_struct_field_stump}{SdlStructFieldStump}}());}
+\DoxyCodeLine{00215\ \}}
+\DoxyCodeLine{00216\ }
+\DoxyCodeLine{00217\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Owner,\ \textcolor{keyword}{typename}\ FieldSet>}
+\DoxyCodeLine{00218\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ StructType>}
+\DoxyCodeLine{00219\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1_t_sdl_owner_class_a463db4ed5deba7a7bc865b5f667f4778}{TSdlOwnerClass<Owner,\ FieldSet>::addStruct}}(}
+\DoxyCodeLine{00220\ \ \ \ \ StructType\ Owner::*\ const\ \ structObjPtr,}
+\DoxyCodeLine{00221\ \ \ \ \ const\ \mbox{\hyperlink{classph_1_1_sdl_struct_field_stump}{SdlStructFieldStump}}\&\ structFieldStump)}
+\DoxyCodeLine{00222\ }
+\DoxyCodeLine{00223\ \ \ \ \ -\/>\ \mbox{\hyperlink{classph_1_1_t_sdl_owner_class}{TSdlOwnerClass}}\&}
+\DoxyCodeLine{00224\ \{}
+\DoxyCodeLine{00225\ \ \ \ \ \textcolor{keyword}{static\_assert}(\mbox{\hyperlink{conceptph_1_1_c_has_sdl_struct_definition}{CHasSdlStructDefinition<StructType>}},}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}SDL\ struct\ definition\ not\ found."{}});}
+\DoxyCodeLine{00227\ }
+\DoxyCodeLine{00228\ \ \ \ \ PH\_ASSERT(structObjPtr);}
+\DoxyCodeLine{00229\ }
+\DoxyCodeLine{00230\ \ \ \ \ m\_fields.addFields(structFieldStump.genFieldSet(structObjPtr));}
+\DoxyCodeLine{00231\ }
+\DoxyCodeLine{00232\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00233\ \}}
+\DoxyCodeLine{00234\ }
+\DoxyCodeLine{00235\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Owner,\ \textcolor{keyword}{typename}\ FieldSet>}
+\DoxyCodeLine{00236\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00237\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1_t_sdl_owner_class_ab9321b51f838c424e04abd546b28b79c}{TSdlOwnerClass<Owner,\ FieldSet>::addFunction}}()}
+\DoxyCodeLine{00238\ \ \ \ \ -\/>\ \mbox{\hyperlink{classph_1_1_t_sdl_owner_class}{TSdlOwnerClass}}\&}
+\DoxyCodeLine{00239\ \{}
+\DoxyCodeLine{00240\ \ \ \ \ \textcolor{keyword}{static\_assert}(\mbox{\hyperlink{conceptph_1_1_c_has_sdl_function_definition}{CHasSdlFunctionDefinition<T>}},}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}SDL\ function\ definition\ not\ found."{}});}
+\DoxyCodeLine{00242\ }
+\DoxyCodeLine{00243\ \ \ \ \ m\_functions.pushBack(T::getSdlFunction());}
+\DoxyCodeLine{00244\ }
+\DoxyCodeLine{00245\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00246\ \}}
+\DoxyCodeLine{00247\ }
+\DoxyCodeLine{00248\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Owner,\ \textcolor{keyword}{typename}\ FieldSet>}
+\DoxyCodeLine{00249\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_sdl_owner_class_a51bc4455366694517ec859032d195bac}{TSdlOwnerClass<Owner,\ FieldSet>::loadFieldsFromSdl}}(}
+\DoxyCodeLine{00250\ \ \ \ \ Owner\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ owner,\ }
+\DoxyCodeLine{00251\ \ \ \ \ \mbox{\hyperlink{classph_1_1_sdl_input_clauses}{SdlInputClauses}}\&\ \ \ \ \ \ \ \ clauses,}
+\DoxyCodeLine{00252\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_sdl_input_context}{SdlInputContext}}\&\ \ ctx)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00253\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00254\ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ noticeReceiver\ =\ [](std::string\ noticeMsg,\ \mbox{\hyperlink{namespaceph_a3f81b078141211109d7e3b340d0525cc}{EFieldImportance}}\ importance)}
+\DoxyCodeLine{00255\ \ \ \ \ \{}
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(importance\ ==\ \mbox{\hyperlink{namespaceph_a3f81b078141211109d7e3b340d0525ccaebb061953c0454b2c8ee7b0ac615ebcd}{EFieldImportance::Optional}}\ ||\ importance\ ==\ \mbox{\hyperlink{namespaceph_a3f81b078141211109d7e3b340d0525cca0cfbb34b0d0b5ecbec9383c0e7fd4337}{EFieldImportance::NiceToHave}})}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ \ \ \ \ PH\_LOG\_STRING(\mbox{\hyperlink{classph_1_1_sdl_class}{SdlClass}},\ Note,\ noticeMsg);}
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00260\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ \ \ \ \ PH\_LOG\_STRING(\mbox{\hyperlink{classph_1_1_sdl_class}{SdlClass}},\ Warning,\ noticeMsg);}
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00264\ \ \ \ \ \};}
+\DoxyCodeLine{00265\ }
+\DoxyCodeLine{00266\ \ \ \ \ \textcolor{comment}{//\ If\ this\ class\ is\ the\ source\ class,\ it\ should\ be\ the\ most\ derived\ class\ of\ the\ current}}
+\DoxyCodeLine{00267\ \ \ \ \ \textcolor{comment}{//\ input\ process\ and\ consume\ all\ remaining\ clauses.\ Otherwise,\ redundant\ clauses\ are\ }}
+\DoxyCodeLine{00268\ \ \ \ \ \textcolor{comment}{//\ allowed\ as\ subsequent\ (derived)\ classes\ would\ consume\ them.}}
+\DoxyCodeLine{00269\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00270\ \ \ \ \ \textcolor{keywordflow}{if}(ctx.\mbox{\hyperlink{classph_1_1_sdl_i_o_context_a5b9c08b5228d2e5e4718e08485cb83d5}{getSrcClass}}()\ ==\ \textcolor{keyword}{this})}
+\DoxyCodeLine{00271\ \ \ \ \ \{}
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceph_1_1field__set__op_a79ed90f2437a8f2caf1a958dffd9d4c1}{field\_set\_op::load\_fields\_from\_sdl}}(}
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ \ \ \ \ owner,}
+\DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ \ \ \ \ m\_fields,}
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \ \ \ \ clauses,}
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ \ \ \ \ ctx,}
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \ \ \ \ noticeReceiver);}
+\DoxyCodeLine{00278\ \ \ \ \ \}}
+\DoxyCodeLine{00279\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00280\ \ \ \ \ \{}
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceph_1_1field__set__op_ab11e22444f68057b00a8b86fc071b7d6}{field\_set\_op::load\_fields\_from\_sdl\_with\_redundant\_clauses}}(}
+\DoxyCodeLine{00282\ \ \ \ \ \ \ \ \ \ \ \ \ owner,}
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ \ \ \ \ m\_fields,}
+\DoxyCodeLine{00284\ \ \ \ \ \ \ \ \ \ \ \ \ clauses,}
+\DoxyCodeLine{00285\ \ \ \ \ \ \ \ \ \ \ \ \ ctx,}
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ \ \ \ \ noticeReceiver);}
+\DoxyCodeLine{00287\ \ \ \ \ \}}
+\DoxyCodeLine{00288\ \}}
+\DoxyCodeLine{00289\ }
+\DoxyCodeLine{00290\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Owner,\ \textcolor{keyword}{typename}\ FieldSet>}
+\DoxyCodeLine{00291\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_sdl_owner_class}{TSdlOwnerClass<Owner,\ FieldSet>::setFieldsToDefaults}}(Owner\&\ owner)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00292\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00293\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ fieldIdx\ =\ 0;\ fieldIdx\ <\ m\_fields.numFields();\ ++fieldIdx)}
+\DoxyCodeLine{00294\ \ \ \ \ \{}
+\DoxyCodeLine{00295\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ field\ =\ m\_fields[fieldIdx];}
+\DoxyCodeLine{00296\ }
+\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Set\ field\ to\ default\ value\ regardless\ of\ its\ importance\ (field\ importance\ is\ for\ import/export)}}
+\DoxyCodeLine{00298\ \ \ \ \ \ \ \ \ field.ownedValueToDefault(owner);}
+\DoxyCodeLine{00299\ \ \ \ \ \}}
+\DoxyCodeLine{00300\ \}}
+\DoxyCodeLine{00301\ }
+\DoxyCodeLine{00302\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Owner,\ \textcolor{keyword}{typename}\ FieldSet>}
+\DoxyCodeLine{00303\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_sdl_owner_class_a50c9f219266ce8e41493b88768143a89}{TSdlOwnerClass<Owner,\ FieldSet>::saveFieldsToSdl}}(}
+\DoxyCodeLine{00304\ \ \ \ \ \textcolor{keyword}{const}\ Owner\&\ \ \ \ \ \ \ \ \ \ \ \ owner,}
+\DoxyCodeLine{00305\ \ \ \ \ \mbox{\hyperlink{classph_1_1_sdl_output_clauses}{SdlOutputClauses}}\&\ clauses,}
+\DoxyCodeLine{00306\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_sdl_output_context}{SdlOutputContext}}\&\ ctx)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00307\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00308\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ fieldIdx\ =\ 0;\ fieldIdx\ <\ m\_fields.numFields();\ ++fieldIdx)}
+\DoxyCodeLine{00309\ \ \ \ \ \{}
+\DoxyCodeLine{00310\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_t_sdl_owned_field}{TSdlOwnedField<Owner>}}\&\ field\ =\ m\_fields[fieldIdx];}
+\DoxyCodeLine{00311\ }
+\DoxyCodeLine{00312\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_sdl_output_clause}{SdlOutputClause}}\&\ clause\ =\ clauses.\mbox{\hyperlink{classph_1_1_sdl_output_clauses_a0cda7ec745897c926164ad2d88cc0533}{createClause}}();}
+\DoxyCodeLine{00313\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceph_1_1sdl_a6d7fc19827d3c14f61cd3261beca32df}{sdl::save\_field\_id}}(\&field,\ clause);}
+\DoxyCodeLine{00314\ \ \ \ \ \ \ \ \ field.\mbox{\hyperlink{classph_1_1_t_sdl_owned_field_a00689959197a3049e417692979df58e0}{toSdl}}(owner,\ clause,\ ctx);}
+\DoxyCodeLine{00315\ \ \ \ \ \}}
+\DoxyCodeLine{00316\ \}}
+\DoxyCodeLine{00317\ }
+\DoxyCodeLine{00318\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Owner,\ \textcolor{keyword}{typename}\ FieldSet>}
+\DoxyCodeLine{00319\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1_t_sdl_owner_class_a6ae857dd32691cd531c228a86332c674}{TSdlOwnerClass<Owner,\ FieldSet>::description}}(std::string\ descriptionStr)}
+\DoxyCodeLine{00320\ -\/>\ \mbox{\hyperlink{classph_1_1_t_sdl_owner_class}{TSdlOwnerClass}}\&}
+\DoxyCodeLine{00321\ \{}
+\DoxyCodeLine{00322\ \ \ \ \ setDescription(std::move(descriptionStr));}
+\DoxyCodeLine{00323\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00324\ \}}
+\DoxyCodeLine{00325\ }
+\DoxyCodeLine{00326\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Owner,\ \textcolor{keyword}{typename}\ FieldSet>}
+\DoxyCodeLine{00327\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1_t_sdl_owner_class_a2fa9def4a3eaffe13e9b032be0abfe55}{TSdlOwnerClass<Owner,\ FieldSet>::docName}}(std::string\ docName)}
+\DoxyCodeLine{00328\ -\/>\ \mbox{\hyperlink{classph_1_1_t_sdl_owner_class}{TSdlOwnerClass}}\&}
+\DoxyCodeLine{00329\ \{}
+\DoxyCodeLine{00330\ \ \ \ \ setDocName(std::move(docName));}
+\DoxyCodeLine{00331\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00332\ \}}
+\DoxyCodeLine{00333\ }
+\DoxyCodeLine{00334\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Owner,\ \textcolor{keyword}{typename}\ FieldSet>}
+\DoxyCodeLine{00335\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00336\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1_t_sdl_owner_class_a8b4f89761ee386cfa73a01ee21be48c6}{TSdlOwnerClass<Owner,\ FieldSet>::baseOn}}()}
+\DoxyCodeLine{00337\ -\/>\ \mbox{\hyperlink{classph_1_1_t_sdl_owner_class}{TSdlOwnerClass}}\&}
+\DoxyCodeLine{00338\ \{}
+\DoxyCodeLine{00339\ \ \ \ \ \textcolor{keyword}{static\_assert}(!std::is\_same\_v<T,\ Owner>,}
+\DoxyCodeLine{00340\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}A\ SDL\ class\ cannot\ base\ on\ itself."{}});}
+\DoxyCodeLine{00341\ }
+\DoxyCodeLine{00342\ \ \ \ \ setBase<T>();}
+\DoxyCodeLine{00343\ }
+\DoxyCodeLine{00344\ \ \ \ \ \textcolor{comment}{//\ If\ base\ cannot\ be\ created\ from\ class,\ the\ derived\ should\ be\ the\ same}}
+\DoxyCodeLine{00345\ \ \ \ \ \textcolor{keywordflow}{if}(getBase()\ \&\&\ !getBase()-\/>allowCreateFromClass())}
+\DoxyCodeLine{00346\ \ \ \ \ \{}
+\DoxyCodeLine{00347\ \ \ \ \ \ \ \ \ allowCreateFromClass(\textcolor{keyword}{false});}
+\DoxyCodeLine{00348\ \ \ \ \ \}}
+\DoxyCodeLine{00349\ }
+\DoxyCodeLine{00350\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00351\ \}}
+\DoxyCodeLine{00352\ }
+\DoxyCodeLine{00353\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Owner,\ \textcolor{keyword}{typename}\ FieldSet>}
+\DoxyCodeLine{00354\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1_t_sdl_owner_class_a5981e83bbf50e724728155754f89badc}{TSdlOwnerClass<Owner,\ FieldSet>::allowCreateFromClass}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ allowCreateFromClass)}
+\DoxyCodeLine{00355\ -\/>\ \mbox{\hyperlink{classph_1_1_t_sdl_owner_class}{TSdlOwnerClass}}\&}
+\DoxyCodeLine{00356\ \{}
+\DoxyCodeLine{00357\ \ \ \ \ setAllowCreateFromClass(allowCreateFromClass);}
+\DoxyCodeLine{00358\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00359\ \}}
+\DoxyCodeLine{00360\ }
+\DoxyCodeLine{00361\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Owner,\ \textcolor{keyword}{typename}\ FieldSet>}
+\DoxyCodeLine{00362\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ DstType,\ \textcolor{keyword}{typename}\ SrcType>}
+\DoxyCodeLine{00363\ \textcolor{keyword}{inline}\ DstType*\ \mbox{\hyperlink{classph_1_1_t_sdl_owner_class}{TSdlOwnerClass<Owner,\ FieldSet>::castTo}}(SrcType*\ \textcolor{keyword}{const}\ srcInstance)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00364\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00365\ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00366\ \ \ \ \ \{}
+\DoxyCodeLine{00367\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespaceph_1_1sdl_a591b5f6c3060f18a5452c2043d148fa6}{sdl::cast\_to<DstType>}}(srcInstance);}
+\DoxyCodeLine{00368\ \ \ \ \ \}}
+\DoxyCodeLine{00369\ \ \ \ \ \textcolor{keywordflow}{catch}(\textcolor{keyword}{const}\ SdlException\&\ e)}
+\DoxyCodeLine{00370\ \ \ \ \ \{}
+\DoxyCodeLine{00371\ \ \ \ \ \ \ \ \ throw\_formatted<SdlException>(}
+\DoxyCodeLine{00372\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}input\ resource\ is\ not\ owned\ by\ this\ class\ <\{\}>\ (\{\})"{}},}
+\DoxyCodeLine{00373\ \ \ \ \ \ \ \ \ \ \ \ \ genPrettyName(),\ e.whatStr());}
+\DoxyCodeLine{00374\ \ \ \ \ \}}
+\DoxyCodeLine{00375\ \}}
+\DoxyCodeLine{00376\ }
+\DoxyCodeLine{00377\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+
+\end{DoxyCode}

@@ -1,0 +1,111 @@
+\doxysection{ph\+::detail Namespace Reference}
+\hypertarget{namespaceph_1_1detail}{}\label{namespaceph_1_1detail}\index{ph::detail@{ph::detail}}
+
+
+Implementation detail mainly for internal usages.  
+
+
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespaceph_1_1detail_1_1core__logging}{core\+\_\+logging}}
+\begin{DoxyCompactList}\small\item\em Core logging functionalities. Most logs will output information (logs) via a main logger, which we refer to as "{}core logger"{}. This namespace contains implementation details for core logging functionalities. \end{DoxyCompactList}\item 
+namespace \mbox{\hyperlink{namespaceph_1_1detail_1_1stats}{stats}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structph_1_1detail_1_1_aligned_memory_deleter}{Aligned\+Memory\+Deleter}}
+\item 
+struct \mbox{\hyperlink{structph_1_1detail_1_1_heterogeneous_string_hash}{Heterogeneous\+String\+Hash}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Concepts}
+\begin{DoxyCompactItemize}
+\item 
+concept \mbox{\hyperlink{conceptph_1_1detail_1_1_c_permissive_implicit_lifetime}{CPermissive\+Implicit\+Lifetime}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{namespaceph_1_1detail_a1e235d766376bc6db0c81e8b2515bc84}{output\+\_\+assertion\+\_\+message}} (const std\+::string \&filename, const std\+::string \&line\+Number, const std\+::string \&condition, const std\+::string \&message)
+\item 
+void \mbox{\hyperlink{namespaceph_1_1detail_afb2c097abc4ae73683151fc3a4497ba4}{on\+\_\+assertion\+\_\+failed}} ()
+\item 
+void \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{namespaceph_1_1detail_a9d92e2667b84b33138b9090f433e48cf}{allocate\+\_\+aligned\+\_\+memory}} (std\+::size\+\_\+t num\+Bytes, std\+::size\+\_\+t alignment\+In\+Bytes)
+\item 
+void \mbox{\hyperlink{namespaceph_1_1detail_a0f0be026a79079ba575ac780a8735598}{free\+\_\+aligned\+\_\+memory}} (void \texorpdfstring{$\ast$}{*}ptr)
+\item 
+void \mbox{\hyperlink{namespaceph_1_1detail_a469aa47e4b2da92f0b9bd9be352af784}{output\+\_\+not\+\_\+implemented\+\_\+warning}} (const std\+::string \&filename, const std\+::string \&line\+Number)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename T $>$ }\\constexpr bool \mbox{\hyperlink{namespaceph_1_1detail_a3057abc356dc47c98586193297b10313}{DEPENDENT\+\_\+\+FALSE}} = false
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implementation detail mainly for internal usages. 
+
+\doxysubsection{Function Documentation}
+\Hypertarget{namespaceph_1_1detail_a9d92e2667b84b33138b9090f433e48cf}\index{ph::detail@{ph::detail}!allocate\_aligned\_memory@{allocate\_aligned\_memory}}
+\index{allocate\_aligned\_memory@{allocate\_aligned\_memory}!ph::detail@{ph::detail}}
+\doxysubsubsection{\texorpdfstring{allocate\_aligned\_memory()}{allocate\_aligned\_memory()}}
+{\footnotesize\ttfamily \label{namespaceph_1_1detail_a9d92e2667b84b33138b9090f433e48cf} 
+void \texorpdfstring{$\ast$}{*} ph\+::detail\+::allocate\+\_\+aligned\+\_\+memory (\begin{DoxyParamCaption}\item[{std\+::size\+\_\+t}]{num\+Bytes}{, }\item[{std\+::size\+\_\+t}]{alignment\+In\+Bytes}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [nodiscard]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em num\+Bytes} & Number of bytes to allocate. Must be an integer multiple of {\ttfamily alignment\+In\+Bytes}. \\
+\hline
+{\em alignment\+In\+Bytes} & How many bytes to align (so the returned pointer is an integer multiple of {\ttfamily alignment\+In\+Bytes}). Must be an integer power of 2 and a multiple of {\ttfamily sizeof(void\texorpdfstring{$\ast$}{*})}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the beginning of newly allocated memory. {\ttfamily nullptr} on failure. 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Call \doxylink{namespaceph_1_1detail_a0f0be026a79079ba575ac780a8735598}{free\+\_\+aligned\+\_\+memory(void\texorpdfstring{$\ast$}{*})} to deallocate the memory. The implementation is based on {\ttfamily malloc()}, and object lifetime can be reasoned w.\+r.\+t. {\ttfamily malloc()}. This function is thread safe. 
+\end{DoxyNote}
+\Hypertarget{namespaceph_1_1detail_a0f0be026a79079ba575ac780a8735598}\index{ph::detail@{ph::detail}!free\_aligned\_memory@{free\_aligned\_memory}}
+\index{free\_aligned\_memory@{free\_aligned\_memory}!ph::detail@{ph::detail}}
+\doxysubsubsection{\texorpdfstring{free\_aligned\_memory()}{free\_aligned\_memory()}}
+{\footnotesize\ttfamily \label{namespaceph_1_1detail_a0f0be026a79079ba575ac780a8735598} 
+void ph\+::detail\+::free\+\_\+aligned\+\_\+memory (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{ptr}{}\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em ptr} & The memory to be deallocated. {\ttfamily ptr} must be allocated by \doxylink{namespaceph_1_1detail_a9d92e2667b84b33138b9090f433e48cf}{allocate\+\_\+aligned\+\_\+memory(std\+::size\+\_\+t, std\+::size\+\_\+t)}. If {\ttfamily ptr} is {\ttfamily nullptr}, no action is performed. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+This function is thread safe. 
+\end{DoxyNote}
+\Hypertarget{namespaceph_1_1detail_afb2c097abc4ae73683151fc3a4497ba4}\index{ph::detail@{ph::detail}!on\_assertion\_failed@{on\_assertion\_failed}}
+\index{on\_assertion\_failed@{on\_assertion\_failed}!ph::detail@{ph::detail}}
+\doxysubsubsection{\texorpdfstring{on\_assertion\_failed()}{on\_assertion\_failed()}}
+{\footnotesize\ttfamily \label{namespaceph_1_1detail_afb2c097abc4ae73683151fc3a4497ba4} 
+void ph\+::detail\+::on\+\_\+assertion\+\_\+failed (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{namespaceph_1_1detail_a1e235d766376bc6db0c81e8b2515bc84}\index{ph::detail@{ph::detail}!output\_assertion\_message@{output\_assertion\_message}}
+\index{output\_assertion\_message@{output\_assertion\_message}!ph::detail@{ph::detail}}
+\doxysubsubsection{\texorpdfstring{output\_assertion\_message()}{output\_assertion\_message()}}
+{\footnotesize\ttfamily \label{namespaceph_1_1detail_a1e235d766376bc6db0c81e8b2515bc84} 
+void ph\+::detail\+::output\+\_\+assertion\+\_\+message (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{filename}{, }\item[{const std\+::string \&}]{line\+Number}{, }\item[{const std\+::string \&}]{condition}{, }\item[{const std\+::string \&}]{message}{}\end{DoxyParamCaption})}
+
+\Hypertarget{namespaceph_1_1detail_a469aa47e4b2da92f0b9bd9be352af784}\index{ph::detail@{ph::detail}!output\_not\_implemented\_warning@{output\_not\_implemented\_warning}}
+\index{output\_not\_implemented\_warning@{output\_not\_implemented\_warning}!ph::detail@{ph::detail}}
+\doxysubsubsection{\texorpdfstring{output\_not\_implemented\_warning()}{output\_not\_implemented\_warning()}}
+{\footnotesize\ttfamily \label{namespaceph_1_1detail_a469aa47e4b2da92f0b9bd9be352af784} 
+void ph\+::detail\+::output\+\_\+not\+\_\+implemented\+\_\+warning (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{filename}{, }\item[{const std\+::string \&}]{line\+Number}{}\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{namespaceph_1_1detail_a3057abc356dc47c98586193297b10313}\index{ph::detail@{ph::detail}!DEPENDENT\_FALSE@{DEPENDENT\_FALSE}}
+\index{DEPENDENT\_FALSE@{DEPENDENT\_FALSE}!ph::detail@{ph::detail}}
+\doxysubsubsection{\texorpdfstring{DEPENDENT\_FALSE}{DEPENDENT\_FALSE}}
+{\footnotesize\ttfamily \label{namespaceph_1_1detail_a3057abc356dc47c98586193297b10313} 
+template$<$typename T $>$ \\
+bool ph\+::detail\+::\+DEPENDENT\+\_\+\+FALSE = false\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+

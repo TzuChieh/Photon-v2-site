@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['quaterniond_0',['QuaternionD',['../d7/dac/namespaceph_1_1math.html#aad5661543f5f387fad5f89d74974139b',1,'ph::math']]],
-  ['quaternionf_1',['QuaternionF',['../d7/dac/namespaceph_1_1math.html#a5f6bf2c1726afc62a8be2e8097e2217d',1,'ph::math']]],
-  ['quaternionr_2',['QuaternionR',['../d7/dac/namespaceph_1_1math.html#a789624425545505142a31fb4f8c6d05e',1,'ph::math']]]
+  ['quaterniond_0',['QuaternionD',['../namespaceph_1_1math.html#a7c35c4621ab96f1173aa2c8e7ce71fe1',1,'ph::math']]],
+  ['quaternionf_1',['QuaternionF',['../namespaceph_1_1math.html#a99d75be7f2ec5d70b2398a52bced9df6',1,'ph::math']]],
+  ['quaternionr_2',['QuaternionR',['../namespaceph_1_1math.html#adee0f3690eabc71a94eb5973f510fc3c',1,'ph::math']]]
 ];

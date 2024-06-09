@@ -1,0 +1,176 @@
+\doxysection{Surface\+Hit.\+h}
+\hypertarget{_surface_hit_8h_source}{}\label{_surface_hit_8h_source}\index{Source/Core/SurfaceHit.h@{Source/Core/SurfaceHit.h}}
+\mbox{\hyperlink{_surface_hit_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_hit_probe_8h}{Core/HitProbe.h}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_hit_detail_8h}{Core/HitDetail.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_ray_8h}{Core/Ray.h}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{math_8h}{Math/math.h}}"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_bit_flags_8h}{Utility/TBitFlags.h}}"{}}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <Common/assertion.h>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <Common/primitive\_type.h>}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00013\ \{}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{class\ }SurfaceOptics;}
+\DoxyCodeLine{00016\ \textcolor{keyword}{class\ }VolumeOptics;}
+\DoxyCodeLine{00017\ \textcolor{keyword}{class\ }Emitter;}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{keyword}{namespace\ }detail}
+\DoxyCodeLine{00020\ \{}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespaceph_1_1detail_a66cc86df67a0c260b76459b78264b580}{SurfaceHitReasonIntType}}\ =\ uint8;}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespaceph_1_1detail_ad6294352d5c32a45eb1386caccf76e01}{shr\_unknown\_bits}}\ \ \ \ \ \ =\ \mbox{\hyperlink{namespaceph_1_1math_a00c7265b62195ee8215d3a07ee97d8a6}{math::flag\_bit<uint8,\ 0>}}();}
+\DoxyCodeLine{00025\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespaceph_1_1detail_a119285860228c108c59da6358f651fe4}{shr\_incident\_ray\_bits}}\ =\ \mbox{\hyperlink{namespaceph_1_1math_a00c7265b62195ee8215d3a07ee97d8a6}{math::flag\_bit<uint8,\ 1>}}();}
+\DoxyCodeLine{00026\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespaceph_1_1detail_a102fa6b0e28324bfd88f8cce244a27b3}{shr\_sampled\_pos\_bits}}\ \ =\ \mbox{\hyperlink{namespaceph_1_1math_a00c7265b62195ee8215d3a07ee97d8a6}{math::flag\_bit<uint8,\ 2>}}();}
+\DoxyCodeLine{00027\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespaceph_1_1detail_a75888fe8da875a22d86245dfcfc487d0}{shr\_sampled\_dir\_bits}}\ \ =\ \mbox{\hyperlink{namespaceph_1_1math_a00c7265b62195ee8215d3a07ee97d8a6}{math::flag\_bit<uint8,\ 3>}}();}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \}\textcolor{comment}{//\ end\ namespace\ detail}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{keyword}{enum\ class}\ \mbox{\hyperlink{namespaceph_a3624e7ffb99b556c1cf59f3bbfbc6afa}{ESurfaceHitReason}}\ :\ \mbox{\hyperlink{namespaceph_1_1detail_a66cc86df67a0c260b76459b78264b580}{detail::SurfaceHitReasonIntType}}}
+\DoxyCodeLine{00032\ \{}
+\DoxyCodeLine{00033\ \ \ \ \ \mbox{\hyperlink{namespaceph_af3aab646b468fc89b9303fa5e31aae24a4bbb8f967da6d1a610596d7257179c2b}{Invalid}}\ \ \ \ \ \ \ =\ 0,}
+\DoxyCodeLine{00034\ \ \ \ \ \mbox{\hyperlink{namespaceph_a3624e7ffb99b556c1cf59f3bbfbc6afaa88183b946cc5f0e8c96b2e66e1c74a7e}{Unknown}}\ \ \ \ \ \ \ =\ \mbox{\hyperlink{namespaceph_1_1detail_ad6294352d5c32a45eb1386caccf76e01}{detail::shr\_unknown\_bits}},}
+\DoxyCodeLine{00035\ \ \ \ \ \mbox{\hyperlink{namespaceph_a3624e7ffb99b556c1cf59f3bbfbc6afaad0fa933fa8c2bf79571c16d657ee0383}{IncidentRay}}\ \ \ =\ \mbox{\hyperlink{namespaceph_1_1detail_a119285860228c108c59da6358f651fe4}{detail::shr\_incident\_ray\_bits}},}
+\DoxyCodeLine{00036\ \ \ \ \ \mbox{\hyperlink{namespaceph_a3624e7ffb99b556c1cf59f3bbfbc6afaa6ffca551d875be000c71d6ae0ceea16d}{SampledPos}}\ \ \ \ =\ \mbox{\hyperlink{namespaceph_1_1detail_a102fa6b0e28324bfd88f8cce244a27b3}{detail::shr\_sampled\_pos\_bits}},}
+\DoxyCodeLine{00037\ \ \ \ \ \mbox{\hyperlink{namespaceph_a3624e7ffb99b556c1cf59f3bbfbc6afaa1dffcca819566351b10a22017129b9d2}{SampledDir}}\ \ \ \ =\ \mbox{\hyperlink{namespaceph_1_1detail_a75888fe8da875a22d86245dfcfc487d0}{detail::shr\_sampled\_dir\_bits}},}
+\DoxyCodeLine{00038\ \ \ \ \ \mbox{\hyperlink{namespaceph_a3624e7ffb99b556c1cf59f3bbfbc6afaa60bb5154dab623db355be36cf93cfdf2}{SampledPosDir}}\ =\ \mbox{\hyperlink{namespaceph_1_1detail_a102fa6b0e28324bfd88f8cce244a27b3}{detail::shr\_sampled\_pos\_bits}}\ |\ \mbox{\hyperlink{namespaceph_1_1detail_a75888fe8da875a22d86245dfcfc487d0}{detail::shr\_sampled\_dir\_bits}}}
+\DoxyCodeLine{00039\ \};}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \mbox{\hyperlink{_t_bit_flags_8h_a64590046e16e534159ae243ff6a5e90a}{PH\_DEFINE\_INLINE\_ENUM\_FLAG\_OPERATORS}}(\mbox{\hyperlink{namespaceph_a3624e7ffb99b556c1cf59f3bbfbc6afa}{ESurfaceHitReason}});}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classph_1_1_t_bit_flags}{SurfaceHitReason}}\ =\ \mbox{\hyperlink{classph_1_1_t_bit_flags}{TEnumFlags<ESurfaceHitReason>}};}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_surface_hit}{SurfaceHit}}\ final}
+\DoxyCodeLine{00046\ \{}
+\DoxyCodeLine{00047\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00048\ \ \ \ \ \mbox{\hyperlink{classph_1_1_surface_hit_a6d710545e6541e5467320f9f4c29c020}{SurfaceHit}}();}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \ \ \mbox{\hyperlink{classph_1_1_surface_hit_a6d710545e6541e5467320f9f4c29c020}{SurfaceHit}}(}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_ray}{Ray}}\&\ \ \ \ \ \ \ ray,}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_hit_probe}{HitProbe}}\&\ \ probe,}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_bit_flags}{SurfaceHitReason}}\ reason);}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \ \ \mbox{\hyperlink{classph_1_1_surface_hit_a6d710545e6541e5467320f9f4c29c020}{SurfaceHit}}(}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_ray}{Ray}}\&\ \ \ \ \ \ \ ray,}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_hit_probe}{HitProbe}}\&\ \ probe,}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_hit_detail}{HitDetail}}\&\ detail,}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_bit_flags}{SurfaceHitReason}}\ reason);}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \ \ \mbox{\hyperlink{classph_1_1_surface_hit}{SurfaceHit}}\ \mbox{\hyperlink{classph_1_1_surface_hit_a79b4cb19de425a2e4e73fe942c06bf0b}{switchChannel}}(uint32\ newChannel)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_surface_hit_a15479d1cbec2a4e8ee67ca00ce5f0d75}{reintersect}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_ray}{Ray}}\&\ ray,\ \mbox{\hyperlink{classph_1_1_hit_probe}{HitProbe}}\&\ probe)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_surface_hit_a5aa56bbfe581343becbdd2f3f7c89d66}{hasSurfaceOptics}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_surface_hit_a4e5bb137052c4179332d53f0fc740756}{hasInteriorOptics}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_surface_hit_afec7e98220b8cff78a5886a13a18baf3}{hasExteriorOptics}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_hit_detail}{HitDetail}}\&\ \mbox{\hyperlink{classph_1_1_surface_hit_a796492b34ec40eb78da4b70c287b26d6}{getDetail}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00069\ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_bit_flags}{SurfaceHitReason}}\ \mbox{\hyperlink{classph_1_1_surface_hit_ac3682ffd128991eba27bf658b07ddbd5}{getReason}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_ray}{Ray}}\&\ \mbox{\hyperlink{classph_1_1_surface_hit_a49a643c1fa327421d9e4fc665ad6982d}{getRay}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_ray}{Ray}}\&\ \mbox{\hyperlink{classph_1_1_surface_hit_a61d656616db630197f8b06093705fba6}{getIncidentRay}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_time}{Time}}\&\ \mbox{\hyperlink{classph_1_1_surface_hit_ac2cb393b2496e941c712c302fa1bdc78}{getTime}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00073\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\ \mbox{\hyperlink{classph_1_1_surface_hit_ab9436d2c3f6530722d402edb487f87f1}{getPosition}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00074\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\ \mbox{\hyperlink{classph_1_1_surface_hit_a189bd3896f87838eea8b7e06f5e71286}{getShadingNormal}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00075\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\ \mbox{\hyperlink{classph_1_1_surface_hit_a03950ddbe22d5c8bcf72c04306660f36}{getGeometryNormal}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_emitter}{Emitter}}*\ \mbox{\hyperlink{classph_1_1_surface_hit_a65af3adb7f79bb7f6ac996983af46e73}{getSurfaceEmitter}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_surface_optics}{SurfaceOptics}}*\ \mbox{\hyperlink{classph_1_1_surface_hit_a75da2f51e2142ca3e24859620965333c}{getSurfaceOptics}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_volume_optics}{VolumeOptics}}*\ \mbox{\hyperlink{classph_1_1_surface_hit_a92c607f245db419e4a49cae5e93c1544}{getInteriorOptics}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_volume_optics}{VolumeOptics}}*\ \mbox{\hyperlink{classph_1_1_surface_hit_a373057cb0ae8ac7f32dee93e126eab8b}{getExteriorOptics}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00083\ \ \ \ \ \mbox{\hyperlink{classph_1_1_ray}{Ray}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_ray;}
+\DoxyCodeLine{00084\ \ \ \ \ \mbox{\hyperlink{classph_1_1_hit_probe}{HitProbe}}\ \ \ \ \ \ \ \ \ m\_recordedProbe;}
+\DoxyCodeLine{00085\ \ \ \ \ \mbox{\hyperlink{classph_1_1_hit_detail}{HitDetail}}\ \ \ \ \ \ \ \ m\_detail;}
+\DoxyCodeLine{00086\ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_bit_flags}{SurfaceHitReason}}\ m\_reason;}
+\DoxyCodeLine{00087\ \};}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \textcolor{comment}{//\ In-\/header\ Implementations:}}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_surface_hit_a6d710545e6541e5467320f9f4c29c020}{SurfaceHit::SurfaceHit}}()}
+\DoxyCodeLine{00092\ \ \ \ \ :\ m\_ray\ \ \ \ \ \ \ \ \ \ \{\}}
+\DoxyCodeLine{00093\ \ \ \ \ ,\ m\_recordedProbe\{\}}
+\DoxyCodeLine{00094\ \ \ \ \ ,\ m\_detail\ \ \ \ \ \ \ \{\}}
+\DoxyCodeLine{00095\ \ \ \ \ ,\ m\_reason\ \ \ \ \ \ \ \{\}}
+\DoxyCodeLine{00096\ \{\}}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_surface_hit_a6d710545e6541e5467320f9f4c29c020}{SurfaceHit::SurfaceHit}}(}
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_ray}{Ray}}\&\ \ \ \ \ \ \ ray,}
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_hit_probe}{HitProbe}}\&\ \ probe,}
+\DoxyCodeLine{00101\ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_bit_flags}{SurfaceHitReason}}\ reason)}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \ \ \ \ :\ m\_ray\ \ \ \ \ \ \ \ \ \ \{ray\}}
+\DoxyCodeLine{00104\ \ \ \ \ ,\ m\_recordedProbe\{probe\}}
+\DoxyCodeLine{00105\ \ \ \ \ ,\ m\_detail\ \ \ \ \ \ \ \{\}}
+\DoxyCodeLine{00106\ \ \ \ \ ,\ m\_reason\ \ \ \ \ \ \ \{reason\}}
+\DoxyCodeLine{00107\ \{}
+\DoxyCodeLine{00108\ \ \ \ \ \mbox{\hyperlink{classph_1_1_hit_probe}{HitProbe}}(probe).\mbox{\hyperlink{classph_1_1_hit_probe_a6f0d930a1230e62b71c8de1989eda579}{calcFullHitDetail}}(ray,\ \&m\_detail);}
+\DoxyCodeLine{00109\ \}}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_surface_hit_a6d710545e6541e5467320f9f4c29c020}{SurfaceHit::SurfaceHit}}(}
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_ray}{Ray}}\&\ \ \ \ \ \ \ \ \ \ \ \ \ ray,\ }
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_hit_probe}{HitProbe}}\&\ \ \ \ \ \ \ \ probe,\ }
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_hit_detail}{HitDetail}}\&\ \ \ \ \ \ \ detail,}
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_t_bit_flags}{SurfaceHitReason}}\ reason)}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ \ \ \ \ :\ m\_ray\ \ \ \ \ \ \ \ \ \ \{ray\}}
+\DoxyCodeLine{00118\ \ \ \ \ ,\ m\_recordedProbe\{probe\}}
+\DoxyCodeLine{00119\ \ \ \ \ ,\ m\_detail\ \ \ \ \ \ \ \{detail\}}
+\DoxyCodeLine{00120\ \ \ \ \ ,\ m\_reason\ \ \ \ \ \ \ \{reason\}}
+\DoxyCodeLine{00121\ \{\}}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00123\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_surface_hit_a15479d1cbec2a4e8ee67ca00ce5f0d75}{SurfaceHit::reintersect}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_ray}{Ray}}\&\ ray,\ \mbox{\hyperlink{classph_1_1_hit_probe}{HitProbe}}\&\ probe)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00124\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00125\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1_hit_probe}{HitProbe}}(m\_recordedProbe).\mbox{\hyperlink{classph_1_1_hit_probe_a742e35ef23dc97258d91643f934bcda1}{reintersect}}(ray,\ probe,\ \mbox{\hyperlink{classph_1_1_surface_hit_a49a643c1fa327421d9e4fc665ad6982d}{getRay}}());}
+\DoxyCodeLine{00126\ \}}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_hit_detail}{HitDetail}}\&\ \mbox{\hyperlink{classph_1_1_surface_hit_a796492b34ec40eb78da4b70c287b26d6}{SurfaceHit::getDetail}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00129\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00130\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_detail;}
+\DoxyCodeLine{00131\ \}}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00133\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_t_bit_flags}{SurfaceHitReason}}\ \mbox{\hyperlink{classph_1_1_surface_hit_ac3682ffd128991eba27bf658b07ddbd5}{SurfaceHit::getReason}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00134\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00135\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_reason;}
+\DoxyCodeLine{00136\ \}}
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00138\ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_ray}{Ray}}\&\ \mbox{\hyperlink{classph_1_1_surface_hit_a49a643c1fa327421d9e4fc665ad6982d}{SurfaceHit::getRay}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00139\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00140\ \ \ \ \ PH\_ASSERT(!m\_reason.\mbox{\hyperlink{classph_1_1_t_bit_flags_a35e98dd171cbc7aecfc237e6d1621a12}{hasExactly}}(\mbox{\hyperlink{namespaceph_a3624e7ffb99b556c1cf59f3bbfbc6afaa4bbb8f967da6d1a610596d7257179c2b}{ESurfaceHitReason::Invalid}}));}
+\DoxyCodeLine{00141\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_ray;}
+\DoxyCodeLine{00142\ \}}
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00144\ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_ray}{Ray}}\&\ \mbox{\hyperlink{classph_1_1_surface_hit_a61d656616db630197f8b06093705fba6}{SurfaceHit::getIncidentRay}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00145\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00146\ \ \ \ \ PH\_ASSERT(m\_reason.\mbox{\hyperlink{classph_1_1_t_bit_flags_a481cf188f6423a3fb5ee717dcd70b004}{has}}(\mbox{\hyperlink{namespaceph_a3624e7ffb99b556c1cf59f3bbfbc6afaad0fa933fa8c2bf79571c16d657ee0383}{ESurfaceHitReason::IncidentRay}}));}
+\DoxyCodeLine{00147\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1_surface_hit_a49a643c1fa327421d9e4fc665ad6982d}{getRay}}();}
+\DoxyCodeLine{00148\ \}}
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00150\ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_time}{Time}}\&\ \mbox{\hyperlink{classph_1_1_surface_hit_ac2cb393b2496e941c712c302fa1bdc78}{SurfaceHit::getTime}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00151\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00152\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_ray.\mbox{\hyperlink{classph_1_1_ray_a04e6742d9bab6178bb7135f4b5d8e415}{getTime}}();}
+\DoxyCodeLine{00153\ \}}
+\DoxyCodeLine{00154\ }
+\DoxyCodeLine{00155\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\ \mbox{\hyperlink{classph_1_1_surface_hit_ab9436d2c3f6530722d402edb487f87f1}{SurfaceHit::getPosition}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00156\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00157\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_detail.\mbox{\hyperlink{classph_1_1_hit_detail_ad3b7b47b289b386f503a922d5ee19f68}{getPosition}}();}
+\DoxyCodeLine{00158\ \}}
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00160\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\ \mbox{\hyperlink{classph_1_1_surface_hit_a189bd3896f87838eea8b7e06f5e71286}{SurfaceHit::getShadingNormal}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00161\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00162\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_detail.\mbox{\hyperlink{classph_1_1_hit_detail_a360bcdc67456930b7bcb54a919121bed}{getShadingNormal}}();}
+\DoxyCodeLine{00163\ \}}
+\DoxyCodeLine{00164\ }
+\DoxyCodeLine{00165\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\ \mbox{\hyperlink{classph_1_1_surface_hit_a03950ddbe22d5c8bcf72c04306660f36}{SurfaceHit::getGeometryNormal}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00166\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00167\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_detail.\mbox{\hyperlink{classph_1_1_hit_detail_aeb2c56bef7db1ef1d68557405fbd814d}{getGeometryNormal}}();}
+\DoxyCodeLine{00168\ \}}
+\DoxyCodeLine{00169\ }
+\DoxyCodeLine{00170\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+
+\end{DoxyCode}

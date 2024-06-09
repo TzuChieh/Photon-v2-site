@@ -1,0 +1,206 @@
+\doxysection{TReceiver\+Measurement\+Estimator.\+ipp}
+\hypertarget{_t_receiver_measurement_estimator_8ipp_source}{}\label{_t_receiver_measurement_estimator_8ipp_source}\index{Source/Core/Renderer/Sampling/TReceiverMeasurementEstimator.ipp@{Source/Core/Renderer/Sampling/TReceiverMeasurementEstimator.ipp}}
+\mbox{\hyperlink{_t_receiver_measurement_estimator_8ipp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_receiver_measurement_estimator_8h}{Core/Renderer/Sampling/TReceiverMeasurementEstimator.h}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_vector2_8h}{Math/TVector2.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_ray_8h}{Core/Ray.h}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_i_ray_energy_estimator_8h}{Core/Estimator/IRayEnergyEstimator.h}}"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00009\ \{}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ SamplingFilmType,\ \textcolor{keyword}{typename}\ EstimationType>}
+\DoxyCodeLine{00012\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_t_receiver_measurement_estimator_a8a7dc8f634c6e27ebe7c97dd6ff9ed25}{TReceiverMeasurementEstimator<SamplingFilmType,\ EstimationType>::}}}
+\DoxyCodeLine{00013\ \mbox{\hyperlink{classph_1_1_t_receiver_measurement_estimator_a8a7dc8f634c6e27ebe7c97dd6ff9ed25}{TReceiverMeasurementEstimator}}(}
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ \ numFilms,}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ \ numEstimations,}
+\DoxyCodeLine{00016\ \ \ \ \ \mbox{\hyperlink{classph_1_1_integrand}{Integrand}}\ \ \ \ \ \ \ \ \ \ integrand,}
+\DoxyCodeLine{00017\ \ \ \ \ \mbox{\hyperlink{classph_1_1_sample_filter}{SampleFilter}}\ \ \ \ \ \ \ filter)\ :}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \ \ \ \ m\_filter\ \ \ \ \ \ \ \ \ \ (\mbox{\hyperlink{namespacestd}{std}}::move(filter)),}
+\DoxyCodeLine{00020\ \ \ \ \ m\_estimations\ \ \ \ \ (numEstimations),}
+\DoxyCodeLine{00021\ \ \ \ \ m\_filmActualResFPx(0),}
+\DoxyCodeLine{00022\ \ \ \ \ m\_films\ \ \ \ \ \ \ \ \ \ \ (numFilms),}
+\DoxyCodeLine{00023\ \ \ \ \ m\_estimators\ \ \ \ \ \ (),}
+\DoxyCodeLine{00024\ \ \ \ \ m\_integrand\ \ \ \ \ \ \ (\mbox{\hyperlink{namespacestd}{std}}::move(integrand)),}
+\DoxyCodeLine{00025\ \ \ \ \ m\_estimationToFilm()}
+\DoxyCodeLine{00026\ \{}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordflow}{for}(SamplingFilmType\&\ film\ :\ \mbox{\hyperlink{classph_1_1_t_receiver_measurement_estimator_a1e873b0b4c129139693e8e8b4c63e97c}{m\_films}})}
+\DoxyCodeLine{00028\ \ \ \ \ \{}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ film\ =\ SamplingFilmType(}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ 0,}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ 0,}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ \{\{0,\ 0\},\ \{0,\ 0\}\},}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_receiver_measurement_estimator_a5836f39a64015e8b84201c47b775cb22}{m\_filter}});}
+\DoxyCodeLine{00034\ \ \ \ \ \}}
+\DoxyCodeLine{00035\ \}}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ SamplingFilmType,\ \textcolor{keyword}{typename}\ EstimationType>}
+\DoxyCodeLine{00038\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_t_receiver_measurement_estimator_a8a7dc8f634c6e27ebe7c97dd6ff9ed25}{TReceiverMeasurementEstimator<SamplingFilmType,\ EstimationType>::}}}
+\DoxyCodeLine{00039\ \mbox{\hyperlink{classph_1_1_t_receiver_measurement_estimator_a8a7dc8f634c6e27ebe7c97dd6ff9ed25}{TReceiverMeasurementEstimator}}(\mbox{\hyperlink{classph_1_1_t_receiver_measurement_estimator}{TReceiverMeasurementEstimator}}\&\&\ other)\ :}
+\DoxyCodeLine{00040\ \ \ \ \ m\_filter\ \ \ \ \ \ \ \ \ \ (\mbox{\hyperlink{namespacestd}{std}}::move(other.m\_filter)),}
+\DoxyCodeLine{00041\ \ \ \ \ m\_estimations\ \ \ \ \ (\mbox{\hyperlink{namespacestd}{std}}::move(other.m\_estimations)),}
+\DoxyCodeLine{00042\ \ \ \ \ m\_filmActualResFPx(\mbox{\hyperlink{namespacestd}{std}}::move(other.m\_filmActualResFPx)),}
+\DoxyCodeLine{00043\ \ \ \ \ m\_films\ \ \ \ \ \ \ \ \ \ \ (\mbox{\hyperlink{namespacestd}{std}}::move(other.m\_films)),}
+\DoxyCodeLine{00044\ \ \ \ \ m\_estimators\ \ \ \ \ \ (\mbox{\hyperlink{namespacestd}{std}}::move(other.m\_estimators)),}
+\DoxyCodeLine{00045\ \ \ \ \ m\_integrand\ \ \ \ \ \ \ (\mbox{\hyperlink{namespacestd}{std}}::move(other.m\_integrand)),}
+\DoxyCodeLine{00046\ \ \ \ \ m\_estimationToFilm(\mbox{\hyperlink{namespacestd}{std}}::move(other.m\_estimationToFilm))}
+\DoxyCodeLine{00047\ \{\}}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ SamplingFilmType,\ \textcolor{keyword}{typename}\ EstimationType>}
+\DoxyCodeLine{00050\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1_t_receiver_measurement_estimator_a28f2062e15486100414d7398e3a68f31}{TReceiverMeasurementEstimator<SamplingFilmType,\ EstimationType>::}}}
+\DoxyCodeLine{00051\ \mbox{\hyperlink{classph_1_1_t_receiver_measurement_estimator_a28f2062e15486100414d7398e3a68f31}{process}}(}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{math::Vector2D}}\&\ rasterCoord,}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_ray}{Ray}}\&\ \ \ \ \ \ \ \ \ \ \ \ sensedRay,\ }
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_spectrum}{math::Spectrum}}\&\ quantityWeight,}
+\DoxyCodeLine{00055\ \ \ \ \ \mbox{\hyperlink{classph_1_1_sample_flow}{SampleFlow}}\&\ \ \ \ \ \ \ \ \ \ \ sampleFlow)}
+\DoxyCodeLine{00056\ \ \ \ \ -\/>\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00057\ \{}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keyword}{const}\ \textcolor{keyword}{auto}*\ estimator\ :\ m\_estimators)}
+\DoxyCodeLine{00059\ \ \ \ \ \{}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ estimator-\/>estimate(sensedRay,\ m\_integrand,\ sampleFlow,\ m\_estimations);}
+\DoxyCodeLine{00061\ \ \ \ \ \}}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ estimationToFilm\ :\ m\_estimationToFilm)}
+\DoxyCodeLine{00064\ \ \ \ \ \{}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ estimationIndex\ =\ estimationToFilm.first;}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ filmIndex\ \ \ \ \ \ \ =\ estimationToFilm.second;}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ m\_films[filmIndex].addSample(rasterCoord.x(),\ rasterCoord.y(),\ m\_estimations[estimationIndex]\ *\ quantityWeight);}
+\DoxyCodeLine{00069\ \ \ \ \ \}}
+\DoxyCodeLine{00070\ \}}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ SamplingFilmType,\ \textcolor{keyword}{typename}\ EstimationType>}
+\DoxyCodeLine{00073\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1_t_receiver_measurement_estimator_a2cfca8f6a83d40e7c93292ca62b0235b}{TReceiverMeasurementEstimator<SamplingFilmType,\ EstimationType>::}}}
+\DoxyCodeLine{00074\ \mbox{\hyperlink{classph_1_1_t_receiver_measurement_estimator_a2cfca8f6a83d40e7c93292ca62b0235b}{addEstimator}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_t_i_ray_estimator}{Estimator}}*\ \textcolor{keyword}{const}\ estimator)}
+\DoxyCodeLine{00075\ \ \ \ \ -\/>\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00076\ \{}
+\DoxyCodeLine{00077\ \ \ \ \ PH\_ASSERT(estimator);}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \ \ \ \ m\_estimators.push\_back(estimator);}
+\DoxyCodeLine{00080\ \}}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ SamplingFilmType,\ \textcolor{keyword}{typename}\ EstimationType>}
+\DoxyCodeLine{00083\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1_t_receiver_measurement_estimator_a4e9cf1b5557e4b83ec734e6529fd2168}{TReceiverMeasurementEstimator<SamplingFilmType,\ EstimationType>::}}}
+\DoxyCodeLine{00084\ \mbox{\hyperlink{classph_1_1_t_receiver_measurement_estimator_a4e9cf1b5557e4b83ec734e6529fd2168}{addFilmEstimation}}(}
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ filmIndex,}
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ estimationIndex)}
+\DoxyCodeLine{00087\ \ \ \ \ -\/>\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00088\ \{}
+\DoxyCodeLine{00089\ \ \ \ \ PH\_ASSERT\_LT(filmIndex,\ m\_films.size());}
+\DoxyCodeLine{00090\ \ \ \ \ PH\_ASSERT\_LT(estimationIndex,\ m\_estimations.numEstimations());}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \ \ \ \ m\_estimationToFilm.push\_back(\{estimationIndex,\ filmIndex\});}
+\DoxyCodeLine{00093\ \}}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ SamplingFilmType,\ \textcolor{keyword}{typename}\ EstimationType>}
+\DoxyCodeLine{00096\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1_t_receiver_measurement_estimator_a56f07078eae8b4b122060a219856584b}{TReceiverMeasurementEstimator<SamplingFilmType,\ EstimationType>::}}}
+\DoxyCodeLine{00097\ \mbox{\hyperlink{classph_1_1_t_receiver_measurement_estimator_a56f07078eae8b4b122060a219856584b}{clearFilms}}()}
+\DoxyCodeLine{00098\ \ \ \ \ -\/>\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00099\ \{}
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ i\ =\ 0;\ i\ <\ m\_films.size();\ ++i)}
+\DoxyCodeLine{00101\ \ \ \ \ \{}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ clearFilm(i);}
+\DoxyCodeLine{00103\ \ \ \ \ \}}
+\DoxyCodeLine{00104\ \}}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ SamplingFilmType,\ \textcolor{keyword}{typename}\ EstimationType>}
+\DoxyCodeLine{00107\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1_t_receiver_measurement_estimator_a2b51b69aa1999a1126427fd543883145}{TReceiverMeasurementEstimator<SamplingFilmType,\ EstimationType>::}}}
+\DoxyCodeLine{00108\ \mbox{\hyperlink{classph_1_1_t_receiver_measurement_estimator_a2b51b69aa1999a1126427fd543883145}{clearFilm}}(\textcolor{keyword}{const}\ std::size\_t\ index)}
+\DoxyCodeLine{00109\ \ \ \ \ -\/>\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00110\ \{}
+\DoxyCodeLine{00111\ \ \ \ \ PH\_ASSERT\_LT(index,\ m\_films.size());}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ \ \ \ \ m\_films[index].clear();}
+\DoxyCodeLine{00114\ \}}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00116\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ SamplingFilmType,\ \textcolor{keyword}{typename}\ EstimationType>}
+\DoxyCodeLine{00117\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1_t_receiver_measurement_estimator_ae60907a2e4e9a768a4c0dab39d3285af}{TReceiverMeasurementEstimator<SamplingFilmType,\ EstimationType>::}}}
+\DoxyCodeLine{00118\ \mbox{\hyperlink{classph_1_1_t_receiver_measurement_estimator_ae60907a2e4e9a768a4c0dab39d3285af}{mergeFilmTo}}(\textcolor{keyword}{const}\ std::size\_t\ fromIndex,\ SamplingFilmType\&\ toFilm)}
+\DoxyCodeLine{00119\ \ \ \ \ -\/>\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00120\ \{}
+\DoxyCodeLine{00121\ \ \ \ \ PH\_ASSERT\_LT(fromIndex,\ m\_films.size());}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00123\ \ \ \ \ toFilm.mergeWith(m\_films[fromIndex]);}
+\DoxyCodeLine{00124\ \}}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00126\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ SamplingFilmType,\ \textcolor{keyword}{typename}\ EstimationType>}
+\DoxyCodeLine{00127\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1_t_receiver_measurement_estimator_a3e7f31bdd62f9d67e17d488f271713f6}{TReceiverMeasurementEstimator<SamplingFilmType,\ EstimationType>::}}}
+\DoxyCodeLine{00128\ \mbox{\hyperlink{classph_1_1_t_receiver_measurement_estimator_a3e7f31bdd62f9d67e17d488f271713f6}{setFilmDimensions}}(}
+\DoxyCodeLine{00129\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{math::TVector2<int64>}}\&\ actualResPx,}
+\DoxyCodeLine{00130\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d}{math::TAABB2D<int64>}}\&\ \ effectiveWindowPx,}
+\DoxyCodeLine{00131\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ useSoftEdge)}
+\DoxyCodeLine{00132\ \ \ \ \ -\/>\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00133\ \{}
+\DoxyCodeLine{00134\ \ \ \ \ m\_filmActualResFPx\ =\ \mbox{\hyperlink{namespaceph_1_1math_a130315e9eff82a9a70624253b5e6de50}{math::Vector2D}}(actualResPx);}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00136\ \ \ \ \ \textcolor{keywordflow}{for}(SamplingFilmType\&\ film\ :\ m\_films)}
+\DoxyCodeLine{00137\ \ \ \ \ \{}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ film.setActualResPx(actualResPx);}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ film.setEffectiveWindowPx(effectiveWindowPx);}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ film.setSoftEdge(useSoftEdge);}
+\DoxyCodeLine{00141\ \ \ \ \ \}}
+\DoxyCodeLine{00142\ \}}
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00144\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ SamplingFilmType,\ \textcolor{keyword}{typename}\ EstimationType>}
+\DoxyCodeLine{00145\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1_t_receiver_measurement_estimator_aaf11deb3f22d8ffed68537864399a4cf}{TReceiverMeasurementEstimator<SamplingFilmType,\ EstimationType>::}}}
+\DoxyCodeLine{00146\ \mbox{\hyperlink{classph_1_1_t_receiver_measurement_estimator_aaf11deb3f22d8ffed68537864399a4cf}{numEstimations}}()\ const}
+\DoxyCodeLine{00147\ \ \ \ \ -\/>\ \mbox{\hyperlink{namespacestd}{std}}::\textcolor{keywordtype}{size\_t}}
+\DoxyCodeLine{00148\ \{}
+\DoxyCodeLine{00149\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_estimations.numEstimations();}
+\DoxyCodeLine{00150\ \}}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00152\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ SamplingFilmType,\ \textcolor{keyword}{typename}\ EstimationType>}
+\DoxyCodeLine{00153\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1_t_receiver_measurement_estimator_a79077f8a63428f95e797c6e424a9bc3a}{TReceiverMeasurementEstimator<SamplingFilmType,\ EstimationType>::}}}
+\DoxyCodeLine{00154\ \mbox{\hyperlink{classph_1_1_t_receiver_measurement_estimator_a79077f8a63428f95e797c6e424a9bc3a}{getFilmEffectiveWindowPx}}()\ const}
+\DoxyCodeLine{00155\ \ \ \ \ -\/>\ math::\mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d}{TAABB2D}}<int64>}
+\DoxyCodeLine{00156\ \{}
+\DoxyCodeLine{00157\ \ \ \ \ PH\_ASSERT(!m\_films.empty());}
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00159\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_films.front().getEffectiveWindowPx();}
+\DoxyCodeLine{00160\ \}}
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00162\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ SamplingFilmType,\ \textcolor{keyword}{typename}\ EstimationType>}
+\DoxyCodeLine{00163\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1_t_receiver_measurement_estimator_a544d292a2348025d1ca38e3259e50e84}{TReceiverMeasurementEstimator<SamplingFilmType,\ EstimationType>::}}}
+\DoxyCodeLine{00164\ \mbox{\hyperlink{classph_1_1_t_receiver_measurement_estimator_a544d292a2348025d1ca38e3259e50e84}{getFilmDimensions}}()\ const}
+\DoxyCodeLine{00165\ \ \ \ \ -\/>\ \mbox{\hyperlink{structph_1_1_sampling_film_dimensions}{SamplingFilmDimensions}}}
+\DoxyCodeLine{00166\ \{}
+\DoxyCodeLine{00167\ \ \ \ \ PH\_ASSERT(!m\_films.empty());}
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00169\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_films.front().getDimensions();}
+\DoxyCodeLine{00170\ \}}
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00172\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ SamplingFilmType,\ \textcolor{keyword}{typename}\ EstimationType>}
+\DoxyCodeLine{00173\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1_t_receiver_measurement_estimator_a08834f3010c29da59faeb0dac9ee1826}{TReceiverMeasurementEstimator<SamplingFilmType,\ EstimationType>::}}}
+\DoxyCodeLine{00174\ \mbox{\hyperlink{classph_1_1_t_receiver_measurement_estimator_a08834f3010c29da59faeb0dac9ee1826}{isSoftEdgedFilm}}()\ const}
+\DoxyCodeLine{00175\ \ \ \ \ -\/>\ \textcolor{keywordtype}{bool}}
+\DoxyCodeLine{00176\ \{}
+\DoxyCodeLine{00177\ \ \ \ \ PH\_ASSERT(!m\_films.empty());}
+\DoxyCodeLine{00178\ }
+\DoxyCodeLine{00179\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_films.front().isSoftEdged();}
+\DoxyCodeLine{00180\ \}}
+\DoxyCodeLine{00181\ }
+\DoxyCodeLine{00182\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ SamplingFilmType,\ \textcolor{keyword}{typename}\ EstimationType>}
+\DoxyCodeLine{00183\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1_t_receiver_measurement_estimator_a386e1a4b804e52b40d263ed6a1587adb}{TReceiverMeasurementEstimator<SamplingFilmType,\ EstimationType>::}}}
+\DoxyCodeLine{00184\ \mbox{\hyperlink{classph_1_1_t_receiver_measurement_estimator_a386e1a4b804e52b40d263ed6a1587adb}{operator\ =\ }}(\mbox{\hyperlink{classph_1_1_t_receiver_measurement_estimator}{TReceiverMeasurementEstimator}}\&\&\ other)}
+\DoxyCodeLine{00185\ \ \ \ \ -\/>\ \mbox{\hyperlink{classph_1_1_t_receiver_measurement_estimator}{TReceiverMeasurementEstimator}}\&}
+\DoxyCodeLine{00186\ \{}
+\DoxyCodeLine{00187\ \ \ \ \ IReceivedRayProcessor::operator\ =\ (std::move(other));}
+\DoxyCodeLine{00188\ }
+\DoxyCodeLine{00189\ \ \ \ \ m\_filter\ \ \ \ \ \ \ \ \ \ \ =\ std::move(other.m\_filter);}
+\DoxyCodeLine{00190\ \ \ \ \ m\_estimations\ \ \ \ \ \ =\ std::move(other.m\_estimations);}
+\DoxyCodeLine{00191\ \ \ \ \ m\_filmActualResFPx\ =\ std::move(other.m\_filmActualResFPx);}
+\DoxyCodeLine{00192\ \ \ \ \ m\_films\ \ \ \ \ \ \ \ \ \ \ \ =\ std::move(other.m\_films);}
+\DoxyCodeLine{00193\ \ \ \ \ m\_estimators\ \ \ \ \ \ \ =\ std::move(other.m\_estimators);}
+\DoxyCodeLine{00194\ \ \ \ \ m\_integrand\ \ \ \ \ \ \ \ =\ std::move(other.m\_integrand);}
+\DoxyCodeLine{00195\ \ \ \ \ m\_estimationToFilm\ =\ std::move(other.m\_estimationToFilm);}
+\DoxyCodeLine{00196\ }
+\DoxyCodeLine{00197\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00198\ \}}
+\DoxyCodeLine{00199\ }
+\DoxyCodeLine{00200\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+
+\end{DoxyCode}

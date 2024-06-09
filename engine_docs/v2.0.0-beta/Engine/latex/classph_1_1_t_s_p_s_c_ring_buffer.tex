@@ -1,0 +1,338 @@
+\doxysection{ph\+::TSPSCRing\+Buffer\texorpdfstring{$<$}{<} T, N \texorpdfstring{$>$}{>} Class Template Reference}
+\hypertarget{classph_1_1_t_s_p_s_c_ring_buffer}{}\label{classph_1_1_t_s_p_s_c_ring_buffer}\index{ph::TSPSCRingBuffer$<$ T, N $>$@{ph::TSPSCRingBuffer$<$ T, N $>$}}
+
+
+{\ttfamily \#include $<$TSPSCRing\+Buffer.\+h$>$}
+
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classph_1_1_t_s_p_s_c_ring_buffer_1_1_consumer_guard}{Consumer\+Guard}}
+\item 
+class \mbox{\hyperlink{classph_1_1_t_s_p_s_c_ring_buffer_1_1_producer_guard}{Producer\+Guard}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classph_1_1_t_s_p_s_c_ring_buffer_a6d6eb5deb401efda5bc5c3dcc9276f13}{TSPSCRing\+Buffer}} ()
+\item 
+void \mbox{\hyperlink{classph_1_1_t_s_p_s_c_ring_buffer_af992502e630f83e2cc73c2c88f5a719a}{begin\+Produce}} ()
+\begin{DoxyCompactList}\small\item\em Start producing. Will wait if buffer is unavailable for now. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classph_1_1_t_s_p_s_c_ring_buffer_aeb59a91417d14efc6f6f40b8e16d815c}{end\+Produce}} ()
+\begin{DoxyCompactList}\small\item\em Stop producing. Consumer will unwait and start to consume. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classph_1_1_t_s_p_s_c_ring_buffer_a9836fa5e4d4ce18d9d61d347cfdfd999}{begin\+Consume}} ()
+\begin{DoxyCompactList}\small\item\em Start consuming. Will wait if buffer is unavailable for now. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classph_1_1_t_s_p_s_c_ring_buffer_a13025045d3cd62d8765594964a2bdafa}{end\+Consume}} ()
+\begin{DoxyCompactList}\small\item\em Stop consuming. Producer will unwait and start to produce. \end{DoxyCompactList}\item 
+std\+::size\+\_\+t \mbox{\hyperlink{classph_1_1_t_s_p_s_c_ring_buffer_ac64eec0798a5e9d5698cd0d2aec338f3}{get\+Head\+Distance\+Directly}} () const
+\begin{DoxyCompactList}\small\item\em Get the distance between produce and consume heads with limited thread safety guarantee. This method is thread safe, however note that when called during producing/consuming operations the result is an approximation to the actual distance. The distance is only exact if the buffer is synchronized externally and no one is currently producing/consuming the buffer. \end{DoxyCompactList}\item 
+std\+::size\+\_\+t \mbox{\hyperlink{classph_1_1_t_s_p_s_c_ring_buffer_ad5f6ead15cf3cc87561683d57b355776}{get\+Produce\+Head}} () const
+\begin{DoxyCompactList}\small\item\em Get the buffer index to be accessed by producer thread. \end{DoxyCompactList}\item 
+std\+::size\+\_\+t \mbox{\hyperlink{classph_1_1_t_s_p_s_c_ring_buffer_a903de33790d49a9d279a4ddb433d0d48}{get\+Consume\+Head}} () const
+\begin{DoxyCompactList}\small\item\em Get the buffer index to be accessed by consumer thread. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classph_1_1_t_s_p_s_c_ring_buffer_af22627d9fef129b2dd6053959ae538bc}{may\+Wait\+To\+Produce}} () const
+\begin{DoxyCompactList}\small\item\em Whether the next call to \doxylink{classph_1_1_t_s_p_s_c_ring_buffer_af992502e630f83e2cc73c2c88f5a719a}{begin\+Produce()} will potentially wait (block). \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classph_1_1_t_s_p_s_c_ring_buffer_ac46938eba07fc0e082ad615f84116cd1}{may\+Wait\+To\+Consume}} () const
+\begin{DoxyCompactList}\small\item\em Whether the next call to \doxylink{classph_1_1_t_s_p_s_c_ring_buffer_a9836fa5e4d4ce18d9d61d347cfdfd999}{begin\+Consume()} will potentially wait (block). \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classph_1_1_t_s_p_s_c_ring_buffer_aec31b9ec9bfcfbc492b595c8babea2be}{is\+Producing}} () const
+\begin{DoxyCompactList}\small\item\em Whether this thread is producing to the buffer made current. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classph_1_1_t_s_p_s_c_ring_buffer_a351cdb88dd21aa2629f17ff594b8408a}{is\+Consuming}} () const
+\begin{DoxyCompactList}\small\item\em Whether this thread is consuming from the buffer made current. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Producer\+Func $>$ }\\void \mbox{\hyperlink{classph_1_1_t_s_p_s_c_ring_buffer_aa2d1a5f241e2ac3e19301357343428a9}{guarded\+Produce}} (Producer\+Func func)
+\item 
+{\footnotesize template$<$typename Consumer\+Func $>$ }\\void \mbox{\hyperlink{classph_1_1_t_s_p_s_c_ring_buffer_ad8d4ab3891c65448e057e03cd8c454f3}{guarded\+Consume}} (Consumer\+Func func)
+\end{DoxyCompactItemize}
+\textbf{ }\par
+\begin{DoxyCompactItemize}
+\item 
+T \& \mbox{\hyperlink{classph_1_1_t_s_p_s_c_ring_buffer_a13671a7bf8463906834d597ffd997d59}{get\+Buffer\+For\+Producer}} ()
+\item 
+const T \& \mbox{\hyperlink{classph_1_1_t_s_p_s_c_ring_buffer_a2991ecf63b7711cf058250b54fd839bf}{get\+Buffer\+For\+Producer}} () const
+\end{DoxyCompactItemize}
+
+\textbf{ }\par
+\begin{DoxyCompactItemize}
+\item 
+T \& \mbox{\hyperlink{classph_1_1_t_s_p_s_c_ring_buffer_a22bd6f22356667bab0e9407fc4cd78e2}{get\+Buffer\+For\+Consumer}} ()
+\item 
+const T \& \mbox{\hyperlink{classph_1_1_t_s_p_s_c_ring_buffer_a1cd397f38d757bb82acb3bd89ad31c01}{get\+Buffer\+For\+Consumer}} () const
+\end{DoxyCompactItemize}
+
+\textbf{ }\par
+\begin{DoxyCompactItemize}
+\item 
+std\+::size\+\_\+t \mbox{\hyperlink{classph_1_1_t_s_p_s_c_ring_buffer_a5b53c378bd544846f3f709db57064986}{unsafe\+Get\+Produce\+Head}} () const
+\begin{DoxyCompactList}\small\item\em Access the buffer directly without any thread safety guarantee. These unsafe getters break the thread safety guarantee unlike most of the {\ttfamily \doxylink{classph_1_1_t_s_p_s_c_ring_buffer}{TSPSCRing\+Buffer}} methods and should be used with caution. These unsafe getters can be useful for, e.\+g., the caller can guarantee that directly accessing the buffer will not result in any contention. \end{DoxyCompactList}\item 
+std\+::size\+\_\+t \mbox{\hyperlink{classph_1_1_t_s_p_s_c_ring_buffer_ab27ac4c9552c62de9d1c8b83b0a85ec9}{unsafe\+Get\+Consume\+Head}} () const
+\item 
+T \& \mbox{\hyperlink{classph_1_1_t_s_p_s_c_ring_buffer_a45b19f1f683e2ce703a9361e5212914a}{unsafe\+Get\+Buffer\+Reference}} (const std\+::size\+\_\+t index)
+\item 
+const T \& \mbox{\hyperlink{classph_1_1_t_s_p_s_c_ring_buffer_ab0f98c05368d0ceb636f06ca51990d87}{unsafe\+Get\+Buffer\+Reference}} (const std\+::size\+\_\+t index) const
+\end{DoxyCompactItemize}
+
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static std\+::size\+\_\+t \mbox{\hyperlink{classph_1_1_t_s_p_s_c_ring_buffer_a01e9af14556c42635a42d4d516641792}{next\+Producer\+Consumer\+Head}} (const std\+::size\+\_\+t current\+Producer\+Consumer\+Head, const std\+::size\+\_\+t num\+Advancements=1)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classph_1_1_t_s_p_s_c_ring_buffer_a6d6eb5deb401efda5bc5c3dcc9276f13}\index{ph::TSPSCRingBuffer$<$ T, N $>$@{ph::TSPSCRingBuffer$<$ T, N $>$}!TSPSCRingBuffer@{TSPSCRingBuffer}}
+\index{TSPSCRingBuffer@{TSPSCRingBuffer}!ph::TSPSCRingBuffer$<$ T, N $>$@{ph::TSPSCRingBuffer$<$ T, N $>$}}
+\doxysubsubsection{\texorpdfstring{TSPSCRingBuffer()}{TSPSCRingBuffer()}}
+{\footnotesize\ttfamily \label{classph_1_1_t_s_p_s_c_ring_buffer_a6d6eb5deb401efda5bc5c3dcc9276f13} 
+template$<$typename T , std\+::size\+\_\+t N$>$ \\
+\mbox{\hyperlink{classph_1_1_t_s_p_s_c_ring_buffer}{ph\+::\+TSPSCRing\+Buffer}}$<$ T, N $>$\+::\+TSPSCRing\+Buffer (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classph_1_1_t_s_p_s_c_ring_buffer_a9836fa5e4d4ce18d9d61d347cfdfd999}\index{ph::TSPSCRingBuffer$<$ T, N $>$@{ph::TSPSCRingBuffer$<$ T, N $>$}!beginConsume@{beginConsume}}
+\index{beginConsume@{beginConsume}!ph::TSPSCRingBuffer$<$ T, N $>$@{ph::TSPSCRingBuffer$<$ T, N $>$}}
+\doxysubsubsection{\texorpdfstring{beginConsume()}{beginConsume()}}
+{\footnotesize\ttfamily \label{classph_1_1_t_s_p_s_c_ring_buffer_a9836fa5e4d4ce18d9d61d347cfdfd999} 
+template$<$typename T , std\+::size\+\_\+t N$>$ \\
+void \mbox{\hyperlink{classph_1_1_t_s_p_s_c_ring_buffer}{ph\+::\+TSPSCRing\+Buffer}}$<$ T, N $>$\+::begin\+Consume (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Start consuming. Will wait if buffer is unavailable for now. 
+
+\begin{DoxyNote}{Note}
+Consumer thread only. 
+\end{DoxyNote}
+\Hypertarget{classph_1_1_t_s_p_s_c_ring_buffer_af992502e630f83e2cc73c2c88f5a719a}\index{ph::TSPSCRingBuffer$<$ T, N $>$@{ph::TSPSCRingBuffer$<$ T, N $>$}!beginProduce@{beginProduce}}
+\index{beginProduce@{beginProduce}!ph::TSPSCRingBuffer$<$ T, N $>$@{ph::TSPSCRingBuffer$<$ T, N $>$}}
+\doxysubsubsection{\texorpdfstring{beginProduce()}{beginProduce()}}
+{\footnotesize\ttfamily \label{classph_1_1_t_s_p_s_c_ring_buffer_af992502e630f83e2cc73c2c88f5a719a} 
+template$<$typename T , std\+::size\+\_\+t N$>$ \\
+void \mbox{\hyperlink{classph_1_1_t_s_p_s_c_ring_buffer}{ph\+::\+TSPSCRing\+Buffer}}$<$ T, N $>$\+::begin\+Produce (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Start producing. Will wait if buffer is unavailable for now. 
+
+\begin{DoxyNote}{Note}
+Producer thread only. 
+\end{DoxyNote}
+\Hypertarget{classph_1_1_t_s_p_s_c_ring_buffer_a13025045d3cd62d8765594964a2bdafa}\index{ph::TSPSCRingBuffer$<$ T, N $>$@{ph::TSPSCRingBuffer$<$ T, N $>$}!endConsume@{endConsume}}
+\index{endConsume@{endConsume}!ph::TSPSCRingBuffer$<$ T, N $>$@{ph::TSPSCRingBuffer$<$ T, N $>$}}
+\doxysubsubsection{\texorpdfstring{endConsume()}{endConsume()}}
+{\footnotesize\ttfamily \label{classph_1_1_t_s_p_s_c_ring_buffer_a13025045d3cd62d8765594964a2bdafa} 
+template$<$typename T , std\+::size\+\_\+t N$>$ \\
+void \mbox{\hyperlink{classph_1_1_t_s_p_s_c_ring_buffer}{ph\+::\+TSPSCRing\+Buffer}}$<$ T, N $>$\+::end\+Consume (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Stop consuming. Producer will unwait and start to produce. 
+
+\begin{DoxyNote}{Note}
+Consumer thread only. 
+\end{DoxyNote}
+\Hypertarget{classph_1_1_t_s_p_s_c_ring_buffer_aeb59a91417d14efc6f6f40b8e16d815c}\index{ph::TSPSCRingBuffer$<$ T, N $>$@{ph::TSPSCRingBuffer$<$ T, N $>$}!endProduce@{endProduce}}
+\index{endProduce@{endProduce}!ph::TSPSCRingBuffer$<$ T, N $>$@{ph::TSPSCRingBuffer$<$ T, N $>$}}
+\doxysubsubsection{\texorpdfstring{endProduce()}{endProduce()}}
+{\footnotesize\ttfamily \label{classph_1_1_t_s_p_s_c_ring_buffer_aeb59a91417d14efc6f6f40b8e16d815c} 
+template$<$typename T , std\+::size\+\_\+t N$>$ \\
+void \mbox{\hyperlink{classph_1_1_t_s_p_s_c_ring_buffer}{ph\+::\+TSPSCRing\+Buffer}}$<$ T, N $>$\+::end\+Produce (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Stop producing. Consumer will unwait and start to consume. 
+
+\begin{DoxyNote}{Note}
+Producer thread only. 
+\end{DoxyNote}
+\Hypertarget{classph_1_1_t_s_p_s_c_ring_buffer_a22bd6f22356667bab0e9407fc4cd78e2}\index{ph::TSPSCRingBuffer$<$ T, N $>$@{ph::TSPSCRingBuffer$<$ T, N $>$}!getBufferForConsumer@{getBufferForConsumer}}
+\index{getBufferForConsumer@{getBufferForConsumer}!ph::TSPSCRingBuffer$<$ T, N $>$@{ph::TSPSCRingBuffer$<$ T, N $>$}}
+\doxysubsubsection{\texorpdfstring{getBufferForConsumer()}{getBufferForConsumer()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{classph_1_1_t_s_p_s_c_ring_buffer_a22bd6f22356667bab0e9407fc4cd78e2} 
+template$<$typename T , std\+::size\+\_\+t N$>$ \\
+T \& \mbox{\hyperlink{classph_1_1_t_s_p_s_c_ring_buffer}{ph\+::\+TSPSCRing\+Buffer}}$<$ T, N $>$\+::get\+Buffer\+For\+Consumer (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyNote}{Note}
+Consumer thread only. 
+\end{DoxyNote}
+\Hypertarget{classph_1_1_t_s_p_s_c_ring_buffer_a1cd397f38d757bb82acb3bd89ad31c01}\index{ph::TSPSCRingBuffer$<$ T, N $>$@{ph::TSPSCRingBuffer$<$ T, N $>$}!getBufferForConsumer@{getBufferForConsumer}}
+\index{getBufferForConsumer@{getBufferForConsumer}!ph::TSPSCRingBuffer$<$ T, N $>$@{ph::TSPSCRingBuffer$<$ T, N $>$}}
+\doxysubsubsection{\texorpdfstring{getBufferForConsumer()}{getBufferForConsumer()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{classph_1_1_t_s_p_s_c_ring_buffer_a1cd397f38d757bb82acb3bd89ad31c01} 
+template$<$typename T , std\+::size\+\_\+t N$>$ \\
+const T \& \mbox{\hyperlink{classph_1_1_t_s_p_s_c_ring_buffer}{ph\+::\+TSPSCRing\+Buffer}}$<$ T, N $>$\+::get\+Buffer\+For\+Consumer (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classph_1_1_t_s_p_s_c_ring_buffer_a13671a7bf8463906834d597ffd997d59}\index{ph::TSPSCRingBuffer$<$ T, N $>$@{ph::TSPSCRingBuffer$<$ T, N $>$}!getBufferForProducer@{getBufferForProducer}}
+\index{getBufferForProducer@{getBufferForProducer}!ph::TSPSCRingBuffer$<$ T, N $>$@{ph::TSPSCRingBuffer$<$ T, N $>$}}
+\doxysubsubsection{\texorpdfstring{getBufferForProducer()}{getBufferForProducer()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{classph_1_1_t_s_p_s_c_ring_buffer_a13671a7bf8463906834d597ffd997d59} 
+template$<$typename T , std\+::size\+\_\+t N$>$ \\
+T \& \mbox{\hyperlink{classph_1_1_t_s_p_s_c_ring_buffer}{ph\+::\+TSPSCRing\+Buffer}}$<$ T, N $>$\+::get\+Buffer\+For\+Producer (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyNote}{Note}
+Producer thread only. 
+\end{DoxyNote}
+\Hypertarget{classph_1_1_t_s_p_s_c_ring_buffer_a2991ecf63b7711cf058250b54fd839bf}\index{ph::TSPSCRingBuffer$<$ T, N $>$@{ph::TSPSCRingBuffer$<$ T, N $>$}!getBufferForProducer@{getBufferForProducer}}
+\index{getBufferForProducer@{getBufferForProducer}!ph::TSPSCRingBuffer$<$ T, N $>$@{ph::TSPSCRingBuffer$<$ T, N $>$}}
+\doxysubsubsection{\texorpdfstring{getBufferForProducer()}{getBufferForProducer()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{classph_1_1_t_s_p_s_c_ring_buffer_a2991ecf63b7711cf058250b54fd839bf} 
+template$<$typename T , std\+::size\+\_\+t N$>$ \\
+const T \& \mbox{\hyperlink{classph_1_1_t_s_p_s_c_ring_buffer}{ph\+::\+TSPSCRing\+Buffer}}$<$ T, N $>$\+::get\+Buffer\+For\+Producer (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classph_1_1_t_s_p_s_c_ring_buffer_a903de33790d49a9d279a4ddb433d0d48}\index{ph::TSPSCRingBuffer$<$ T, N $>$@{ph::TSPSCRingBuffer$<$ T, N $>$}!getConsumeHead@{getConsumeHead}}
+\index{getConsumeHead@{getConsumeHead}!ph::TSPSCRingBuffer$<$ T, N $>$@{ph::TSPSCRingBuffer$<$ T, N $>$}}
+\doxysubsubsection{\texorpdfstring{getConsumeHead()}{getConsumeHead()}}
+{\footnotesize\ttfamily \label{classph_1_1_t_s_p_s_c_ring_buffer_a903de33790d49a9d279a4ddb433d0d48} 
+template$<$typename T , std\+::size\+\_\+t N$>$ \\
+std\+::size\+\_\+t \mbox{\hyperlink{classph_1_1_t_s_p_s_c_ring_buffer}{ph\+::\+TSPSCRing\+Buffer}}$<$ T, N $>$\+::get\+Consume\+Head (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the buffer index to be accessed by consumer thread. 
+
+\begin{DoxyNote}{Note}
+Consumer thread only. 
+\end{DoxyNote}
+\Hypertarget{classph_1_1_t_s_p_s_c_ring_buffer_ac64eec0798a5e9d5698cd0d2aec338f3}\index{ph::TSPSCRingBuffer$<$ T, N $>$@{ph::TSPSCRingBuffer$<$ T, N $>$}!getHeadDistanceDirectly@{getHeadDistanceDirectly}}
+\index{getHeadDistanceDirectly@{getHeadDistanceDirectly}!ph::TSPSCRingBuffer$<$ T, N $>$@{ph::TSPSCRingBuffer$<$ T, N $>$}}
+\doxysubsubsection{\texorpdfstring{getHeadDistanceDirectly()}{getHeadDistanceDirectly()}}
+{\footnotesize\ttfamily \label{classph_1_1_t_s_p_s_c_ring_buffer_ac64eec0798a5e9d5698cd0d2aec338f3} 
+template$<$typename T , std\+::size\+\_\+t N$>$ \\
+std\+::size\+\_\+t \mbox{\hyperlink{classph_1_1_t_s_p_s_c_ring_buffer}{ph\+::\+TSPSCRing\+Buffer}}$<$ T, N $>$\+::get\+Head\+Distance\+Directly (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the distance between produce and consume heads with limited thread safety guarantee. This method is thread safe, however note that when called during producing/consuming operations the result is an approximation to the actual distance. The distance is only exact if the buffer is synchronized externally and no one is currently producing/consuming the buffer. 
+
+\Hypertarget{classph_1_1_t_s_p_s_c_ring_buffer_ad5f6ead15cf3cc87561683d57b355776}\index{ph::TSPSCRingBuffer$<$ T, N $>$@{ph::TSPSCRingBuffer$<$ T, N $>$}!getProduceHead@{getProduceHead}}
+\index{getProduceHead@{getProduceHead}!ph::TSPSCRingBuffer$<$ T, N $>$@{ph::TSPSCRingBuffer$<$ T, N $>$}}
+\doxysubsubsection{\texorpdfstring{getProduceHead()}{getProduceHead()}}
+{\footnotesize\ttfamily \label{classph_1_1_t_s_p_s_c_ring_buffer_ad5f6ead15cf3cc87561683d57b355776} 
+template$<$typename T , std\+::size\+\_\+t N$>$ \\
+std\+::size\+\_\+t \mbox{\hyperlink{classph_1_1_t_s_p_s_c_ring_buffer}{ph\+::\+TSPSCRing\+Buffer}}$<$ T, N $>$\+::get\+Produce\+Head (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the buffer index to be accessed by producer thread. 
+
+\begin{DoxyNote}{Note}
+Producer thread only. 
+\end{DoxyNote}
+\Hypertarget{classph_1_1_t_s_p_s_c_ring_buffer_ad8d4ab3891c65448e057e03cd8c454f3}\index{ph::TSPSCRingBuffer$<$ T, N $>$@{ph::TSPSCRingBuffer$<$ T, N $>$}!guardedConsume@{guardedConsume}}
+\index{guardedConsume@{guardedConsume}!ph::TSPSCRingBuffer$<$ T, N $>$@{ph::TSPSCRingBuffer$<$ T, N $>$}}
+\doxysubsubsection{\texorpdfstring{guardedConsume()}{guardedConsume()}}
+{\footnotesize\ttfamily \label{classph_1_1_t_s_p_s_c_ring_buffer_ad8d4ab3891c65448e057e03cd8c454f3} 
+template$<$typename T , std\+::size\+\_\+t N$>$ \\
+template$<$typename Consumer\+Func $>$ \\
+void \mbox{\hyperlink{classph_1_1_t_s_p_s_c_ring_buffer}{ph\+::\+TSPSCRing\+Buffer}}$<$ T, N $>$\+::guarded\+Consume (\begin{DoxyParamCaption}\item[{Consumer\+Func}]{func}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classph_1_1_t_s_p_s_c_ring_buffer_aa2d1a5f241e2ac3e19301357343428a9}\index{ph::TSPSCRingBuffer$<$ T, N $>$@{ph::TSPSCRingBuffer$<$ T, N $>$}!guardedProduce@{guardedProduce}}
+\index{guardedProduce@{guardedProduce}!ph::TSPSCRingBuffer$<$ T, N $>$@{ph::TSPSCRingBuffer$<$ T, N $>$}}
+\doxysubsubsection{\texorpdfstring{guardedProduce()}{guardedProduce()}}
+{\footnotesize\ttfamily \label{classph_1_1_t_s_p_s_c_ring_buffer_aa2d1a5f241e2ac3e19301357343428a9} 
+template$<$typename T , std\+::size\+\_\+t N$>$ \\
+template$<$typename Producer\+Func $>$ \\
+void \mbox{\hyperlink{classph_1_1_t_s_p_s_c_ring_buffer}{ph\+::\+TSPSCRing\+Buffer}}$<$ T, N $>$\+::guarded\+Produce (\begin{DoxyParamCaption}\item[{Producer\+Func}]{func}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classph_1_1_t_s_p_s_c_ring_buffer_a351cdb88dd21aa2629f17ff594b8408a}\index{ph::TSPSCRingBuffer$<$ T, N $>$@{ph::TSPSCRingBuffer$<$ T, N $>$}!isConsuming@{isConsuming}}
+\index{isConsuming@{isConsuming}!ph::TSPSCRingBuffer$<$ T, N $>$@{ph::TSPSCRingBuffer$<$ T, N $>$}}
+\doxysubsubsection{\texorpdfstring{isConsuming()}{isConsuming()}}
+{\footnotesize\ttfamily \label{classph_1_1_t_s_p_s_c_ring_buffer_a351cdb88dd21aa2629f17ff594b8408a} 
+template$<$typename T , std\+::size\+\_\+t N$>$ \\
+bool \mbox{\hyperlink{classph_1_1_t_s_p_s_c_ring_buffer}{ph\+::\+TSPSCRing\+Buffer}}$<$ T, N $>$\+::is\+Consuming (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Whether this thread is consuming from the buffer made current. 
+
+\begin{DoxyNote}{Note}
+Consumer thread only. 
+\end{DoxyNote}
+\Hypertarget{classph_1_1_t_s_p_s_c_ring_buffer_aec31b9ec9bfcfbc492b595c8babea2be}\index{ph::TSPSCRingBuffer$<$ T, N $>$@{ph::TSPSCRingBuffer$<$ T, N $>$}!isProducing@{isProducing}}
+\index{isProducing@{isProducing}!ph::TSPSCRingBuffer$<$ T, N $>$@{ph::TSPSCRingBuffer$<$ T, N $>$}}
+\doxysubsubsection{\texorpdfstring{isProducing()}{isProducing()}}
+{\footnotesize\ttfamily \label{classph_1_1_t_s_p_s_c_ring_buffer_aec31b9ec9bfcfbc492b595c8babea2be} 
+template$<$typename T , std\+::size\+\_\+t N$>$ \\
+bool \mbox{\hyperlink{classph_1_1_t_s_p_s_c_ring_buffer}{ph\+::\+TSPSCRing\+Buffer}}$<$ T, N $>$\+::is\+Producing (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Whether this thread is producing to the buffer made current. 
+
+\begin{DoxyNote}{Note}
+Producer thread only. 
+\end{DoxyNote}
+\Hypertarget{classph_1_1_t_s_p_s_c_ring_buffer_ac46938eba07fc0e082ad615f84116cd1}\index{ph::TSPSCRingBuffer$<$ T, N $>$@{ph::TSPSCRingBuffer$<$ T, N $>$}!mayWaitToConsume@{mayWaitToConsume}}
+\index{mayWaitToConsume@{mayWaitToConsume}!ph::TSPSCRingBuffer$<$ T, N $>$@{ph::TSPSCRingBuffer$<$ T, N $>$}}
+\doxysubsubsection{\texorpdfstring{mayWaitToConsume()}{mayWaitToConsume()}}
+{\footnotesize\ttfamily \label{classph_1_1_t_s_p_s_c_ring_buffer_ac46938eba07fc0e082ad615f84116cd1} 
+template$<$typename T , std\+::size\+\_\+t N$>$ \\
+bool \mbox{\hyperlink{classph_1_1_t_s_p_s_c_ring_buffer}{ph\+::\+TSPSCRing\+Buffer}}$<$ T, N $>$\+::may\+Wait\+To\+Consume (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Whether the next call to \doxylink{classph_1_1_t_s_p_s_c_ring_buffer_a9836fa5e4d4ce18d9d61d347cfdfd999}{begin\+Consume()} will potentially wait (block). 
+
+\begin{DoxyNote}{Note}
+Consumer thread only. 
+\end{DoxyNote}
+\Hypertarget{classph_1_1_t_s_p_s_c_ring_buffer_af22627d9fef129b2dd6053959ae538bc}\index{ph::TSPSCRingBuffer$<$ T, N $>$@{ph::TSPSCRingBuffer$<$ T, N $>$}!mayWaitToProduce@{mayWaitToProduce}}
+\index{mayWaitToProduce@{mayWaitToProduce}!ph::TSPSCRingBuffer$<$ T, N $>$@{ph::TSPSCRingBuffer$<$ T, N $>$}}
+\doxysubsubsection{\texorpdfstring{mayWaitToProduce()}{mayWaitToProduce()}}
+{\footnotesize\ttfamily \label{classph_1_1_t_s_p_s_c_ring_buffer_af22627d9fef129b2dd6053959ae538bc} 
+template$<$typename T , std\+::size\+\_\+t N$>$ \\
+bool \mbox{\hyperlink{classph_1_1_t_s_p_s_c_ring_buffer}{ph\+::\+TSPSCRing\+Buffer}}$<$ T, N $>$\+::may\+Wait\+To\+Produce (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Whether the next call to \doxylink{classph_1_1_t_s_p_s_c_ring_buffer_af992502e630f83e2cc73c2c88f5a719a}{begin\+Produce()} will potentially wait (block). 
+
+\begin{DoxyNote}{Note}
+Producer thread only. 
+\end{DoxyNote}
+\Hypertarget{classph_1_1_t_s_p_s_c_ring_buffer_a01e9af14556c42635a42d4d516641792}\index{ph::TSPSCRingBuffer$<$ T, N $>$@{ph::TSPSCRingBuffer$<$ T, N $>$}!nextProducerConsumerHead@{nextProducerConsumerHead}}
+\index{nextProducerConsumerHead@{nextProducerConsumerHead}!ph::TSPSCRingBuffer$<$ T, N $>$@{ph::TSPSCRingBuffer$<$ T, N $>$}}
+\doxysubsubsection{\texorpdfstring{nextProducerConsumerHead()}{nextProducerConsumerHead()}}
+{\footnotesize\ttfamily \label{classph_1_1_t_s_p_s_c_ring_buffer_a01e9af14556c42635a42d4d516641792} 
+template$<$typename T , std\+::size\+\_\+t N$>$ \\
+static std\+::size\+\_\+t \mbox{\hyperlink{classph_1_1_t_s_p_s_c_ring_buffer}{ph\+::\+TSPSCRing\+Buffer}}$<$ T, N $>$\+::next\+Producer\+Consumer\+Head (\begin{DoxyParamCaption}\item[{const std\+::size\+\_\+t}]{current\+Producer\+Consumer\+Head}{, }\item[{const std\+::size\+\_\+t}]{num\+Advancements}{ = {\ttfamily 1}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\begin{DoxyNote}{Note}
+Thread-\/safe. 
+\end{DoxyNote}
+\Hypertarget{classph_1_1_t_s_p_s_c_ring_buffer_a45b19f1f683e2ce703a9361e5212914a}\index{ph::TSPSCRingBuffer$<$ T, N $>$@{ph::TSPSCRingBuffer$<$ T, N $>$}!unsafeGetBufferReference@{unsafeGetBufferReference}}
+\index{unsafeGetBufferReference@{unsafeGetBufferReference}!ph::TSPSCRingBuffer$<$ T, N $>$@{ph::TSPSCRingBuffer$<$ T, N $>$}}
+\doxysubsubsection{\texorpdfstring{unsafeGetBufferReference()}{unsafeGetBufferReference()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{classph_1_1_t_s_p_s_c_ring_buffer_a45b19f1f683e2ce703a9361e5212914a} 
+template$<$typename T , std\+::size\+\_\+t N$>$ \\
+T \& \mbox{\hyperlink{classph_1_1_t_s_p_s_c_ring_buffer}{ph\+::\+TSPSCRing\+Buffer}}$<$ T, N $>$\+::unsafe\+Get\+Buffer\+Reference (\begin{DoxyParamCaption}\item[{const std\+::size\+\_\+t}]{index}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classph_1_1_t_s_p_s_c_ring_buffer_ab0f98c05368d0ceb636f06ca51990d87}\index{ph::TSPSCRingBuffer$<$ T, N $>$@{ph::TSPSCRingBuffer$<$ T, N $>$}!unsafeGetBufferReference@{unsafeGetBufferReference}}
+\index{unsafeGetBufferReference@{unsafeGetBufferReference}!ph::TSPSCRingBuffer$<$ T, N $>$@{ph::TSPSCRingBuffer$<$ T, N $>$}}
+\doxysubsubsection{\texorpdfstring{unsafeGetBufferReference()}{unsafeGetBufferReference()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{classph_1_1_t_s_p_s_c_ring_buffer_ab0f98c05368d0ceb636f06ca51990d87} 
+template$<$typename T , std\+::size\+\_\+t N$>$ \\
+const T \& \mbox{\hyperlink{classph_1_1_t_s_p_s_c_ring_buffer}{ph\+::\+TSPSCRing\+Buffer}}$<$ T, N $>$\+::unsafe\+Get\+Buffer\+Reference (\begin{DoxyParamCaption}\item[{const std\+::size\+\_\+t}]{index}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classph_1_1_t_s_p_s_c_ring_buffer_ab27ac4c9552c62de9d1c8b83b0a85ec9}\index{ph::TSPSCRingBuffer$<$ T, N $>$@{ph::TSPSCRingBuffer$<$ T, N $>$}!unsafeGetConsumeHead@{unsafeGetConsumeHead}}
+\index{unsafeGetConsumeHead@{unsafeGetConsumeHead}!ph::TSPSCRingBuffer$<$ T, N $>$@{ph::TSPSCRingBuffer$<$ T, N $>$}}
+\doxysubsubsection{\texorpdfstring{unsafeGetConsumeHead()}{unsafeGetConsumeHead()}}
+{\footnotesize\ttfamily \label{classph_1_1_t_s_p_s_c_ring_buffer_ab27ac4c9552c62de9d1c8b83b0a85ec9} 
+template$<$typename T , std\+::size\+\_\+t N$>$ \\
+std\+::size\+\_\+t \mbox{\hyperlink{classph_1_1_t_s_p_s_c_ring_buffer}{ph\+::\+TSPSCRing\+Buffer}}$<$ T, N $>$\+::unsafe\+Get\+Consume\+Head (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classph_1_1_t_s_p_s_c_ring_buffer_a5b53c378bd544846f3f709db57064986}\index{ph::TSPSCRingBuffer$<$ T, N $>$@{ph::TSPSCRingBuffer$<$ T, N $>$}!unsafeGetProduceHead@{unsafeGetProduceHead}}
+\index{unsafeGetProduceHead@{unsafeGetProduceHead}!ph::TSPSCRingBuffer$<$ T, N $>$@{ph::TSPSCRingBuffer$<$ T, N $>$}}
+\doxysubsubsection{\texorpdfstring{unsafeGetProduceHead()}{unsafeGetProduceHead()}}
+{\footnotesize\ttfamily \label{classph_1_1_t_s_p_s_c_ring_buffer_a5b53c378bd544846f3f709db57064986} 
+template$<$typename T , std\+::size\+\_\+t N$>$ \\
+std\+::size\+\_\+t \mbox{\hyperlink{classph_1_1_t_s_p_s_c_ring_buffer}{ph\+::\+TSPSCRing\+Buffer}}$<$ T, N $>$\+::unsafe\+Get\+Produce\+Head (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Access the buffer directly without any thread safety guarantee. These unsafe getters break the thread safety guarantee unlike most of the {\ttfamily \doxylink{classph_1_1_t_s_p_s_c_ring_buffer}{TSPSCRing\+Buffer}} methods and should be used with caution. These unsafe getters can be useful for, e.\+g., the caller can guarantee that directly accessing the buffer will not result in any contention. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Source/\+Utility/\+Concurrent/\mbox{\hyperlink{_t_s_p_s_c_ring_buffer_8h}{TSPSCRing\+Buffer.\+h}}\end{DoxyCompactItemize}

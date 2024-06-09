@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['query_0',['query',['../d1/d70/namespaceph_1_1editor_1_1render.html#a3aa8cad669676c560802a9fc7ff7c760',1,'ph::editor::render::Query'],['../de/df6/namespaceph_1_1editor_1_1ghi.html#acb1edcb546a7559430a4816df21909a0',1,'ph::editor::ghi::Query']]],
-  ['queryperformer_1',['queryperformer',['../d1/d70/namespaceph_1_1editor_1_1render.html#aa75add3684de96f9dce4a01743de2032',1,'ph::editor::render::QueryPerformer'],['../de/df6/namespaceph_1_1editor_1_1ghi.html#a5e0d96e303480c241bcbe358ef6deba8',1,'ph::editor::ghi::QueryPerformer']]]
+  ['query_0',['Query',['../namespaceph_1_1editor_1_1render.html#ad4265ffc8532d21de4e2f0dc37f6b3f1',1,'ph::editor::render::Query'],['../namespaceph_1_1editor_1_1ghi.html#ac683facfe593b9a3009b0cf1b6fa8fda',1,'ph::editor::ghi::Query']]],
+  ['queryperformer_1',['QueryPerformer',['../namespaceph_1_1editor_1_1render.html#ae85ef872de8476a776027728fa210352',1,'ph::editor::render::QueryPerformer'],['../namespaceph_1_1editor_1_1ghi.html#a8511598f54785e2c76d605d10ecfe1fe',1,'ph::editor::ghi::QueryPerformer']]]
 ];

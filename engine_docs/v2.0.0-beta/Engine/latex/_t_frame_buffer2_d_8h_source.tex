@@ -1,0 +1,88 @@
+\doxysection{TFrame\+Buffer2\+D.\+h}
+\hypertarget{_t_frame_buffer2_d_8h_source}{}\label{_t_frame_buffer2_d_8h_source}\index{Source/Core/Texture/Pixel/TFrameBuffer2D.h@{Source/Core/Texture/Pixel/TFrameBuffer2D.h}}
+\mbox{\hyperlink{_t_frame_buffer2_d_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_pixel_buffer2_d_8h}{Core/Texture/Pixel/PixelBuffer2D.h}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_frame_8h}{Frame/TFrame.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_arithmetic_array_8h}{Math/TArithmeticArray.h}}"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <cstddef>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <type\_traits>}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00012\ \{}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00015\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_t_frame_buffer2_d}{TFrameBuffer2D}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classph_1_1_pixel_buffer2_d}{PixelBuffer2D}}}
+\DoxyCodeLine{00016\ \{}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keyword}{static\_assert}(N\ <=\ \mbox{\hyperlink{namespaceph_1_1pixel__buffer_ac1848420a959a4cce0717c35fe2520eb}{pixel\_buffer::MAX\_PIXEL\_ELEMENTS}},}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Number\ of\ pixel\ components\ exceeded\ allowed\ number"{}});}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classph_1_1_t_frame_buffer2_d_aec846b806b8084c6cfc31b12785ae336}{TFrameBuffer2D}}(\mbox{\hyperlink{classph_1_1_t_frame}{TFrame<T,\ N>}}\ frame);}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ \ \ \mbox{\hyperlink{classph_1_1pixel__buffer_1_1_t_pixel}{pixel\_buffer::TPixel<float64>}}\ \mbox{\hyperlink{classph_1_1_t_frame_buffer2_d_a4baf4374b4ea86383c9cac0ca0a93784}{fetchPixel}}(\mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{math::TVector2<uint32>}}\ xy,\ std::size\_t\ mipLevel)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00024\ \ \ \ \ std::size\_t\ \mbox{\hyperlink{classph_1_1_t_frame_buffer2_d_a9361d35a033cbb2a79ec09220cd25061}{estimateMemoryUsageBytes}}()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1_t_frame_buffer2_d_a610758b44a43658396d6f5ed50470f68}{getFramePixel}}(\mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{math::TVector2<uint32>}}\ xy,\ std::size\_t\ mipLevel)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00033\ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_frame}{TFrame<T,\ N>}}\ m\_frame;}
+\DoxyCodeLine{00034\ \};}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{comment}{//\ In-\/header\ Implementations:}}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00039\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_t_frame_buffer2_d_aec846b806b8084c6cfc31b12785ae336}{TFrameBuffer2D<T,\ N>::TFrameBuffer2D}}(\mbox{\hyperlink{classph_1_1_t_frame}{TFrame<T,\ N>}}\ frame)\ :}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \ \ \mbox{\hyperlink{classph_1_1_pixel_buffer2_d}{PixelBuffer2D}}(}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ frame.getSizePx(),}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ N),}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ m\_frame(\mbox{\hyperlink{namespacestd}{std}}::move(frame))}
+\DoxyCodeLine{00046\ \{\}}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00049\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1pixel__buffer_1_1_t_pixel}{pixel\_buffer::TPixel<float64>}}\ \mbox{\hyperlink{classph_1_1_t_frame_buffer2_d_a4baf4374b4ea86383c9cac0ca0a93784}{TFrameBuffer2D<T,\ N>::fetchPixel}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{math::TVector2<uint32>}}\ xy,\ \textcolor{keyword}{const}\ std::size\_t\ mipLevel)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00050\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{comment}{//\ Directly\ cast\ all\ value\ types\ to\ float64}}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classph_1_1_t_frame_a011971270bfecfc36862f4ef56955ed2}{TFrame<float64,\ N>::PixelType}}(getFramePixel(xy,\ mipLevel)).toArray();}
+\DoxyCodeLine{00053\ \}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00056\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1_t_frame_buffer2_d_a610758b44a43658396d6f5ed50470f68}{TFrameBuffer2D<T,\ N>::getFramePixel}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{math::TVector2<uint32>}}\ xy,\ \textcolor{keyword}{const}\ std::size\_t\ mipLevel)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00057\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classph_1_1math_1_1_t_arithmetic_array}{TFrame<T,\ N>::PixelType}}\ framePixel\ =\ m\_frame.getPixel(xy);}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{comment}{//\ TODO:\ this\ should\ be\ a\ configurable\ option\ for\ each\ type;\ or\ some\ fixed\ policy}}
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{comment}{//\ Convert\ from\ [0,\ 255]\ to\ [0,\ 1]\ for\ LDR\ values}}
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(std::is\_same\_v<T,\ uint8>)}
+\DoxyCodeLine{00063\ \ \ \ \ \{}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classph_1_1_t_frame_a011971270bfecfc36862f4ef56955ed2}{TFrame<float32,\ N>::PixelType}}(framePixel)\ /\ 255.0f;}
+\DoxyCodeLine{00065\ \ \ \ \ \}}
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{comment}{//\ For\ rest\ of\ the\ types,\ no\ conversion\ is\ made}}
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00068\ \ \ \ \ \{}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ framePixel;}
+\DoxyCodeLine{00070\ \ \ \ \ \}}
+\DoxyCodeLine{00071\ \}}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00074\ \textcolor{keyword}{inline}\ std::size\_t\ \mbox{\hyperlink{classph_1_1_t_frame_buffer2_d_a9361d35a033cbb2a79ec09220cd25061}{TFrameBuffer2D<T,\ N>::estimateMemoryUsageBytes}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00075\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ baseUsage\ \ =\ \mbox{\hyperlink{classph_1_1_pixel_buffer2_d_a6b79c7fe12585b04c3bfd27b688d99e2}{PixelBuffer2D::estimateMemoryUsageBytes}}();}
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ frameUsage\ =\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{classph_1_1_t_frame}{TFrame<T,\ N>}});}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{comment}{//\ Estimate\ usage\ of\ frame\ internal\ buffer}}
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ numPixels\ \ \ =\ \mbox{\hyperlink{namespaceph_1_1math_acaabd5e409a78972a00c7164c0c48eb9}{math::Vector2S}}(m\_frame.getSizePx()).\mbox{\hyperlink{classph_1_1math_1_1_t_vector_n_base_a5017418f0b8b2fd8b14dc9ec97dc8c5b}{product}}();}
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ bufferUsage\ =\ numPixels\ *\ (\textcolor{keyword}{sizeof}(T)\ *\ N);}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keywordflow}{return}\ baseUsage\ +\ frameUsage\ +\ bufferUsage;}
+\DoxyCodeLine{00084\ \}}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+
+\end{DoxyCode}

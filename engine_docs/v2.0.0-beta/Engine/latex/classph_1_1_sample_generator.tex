@@ -1,0 +1,187 @@
+\doxysection{ph\+::Sample\+Generator Class Reference}
+\hypertarget{classph_1_1_sample_generator}{}\label{classph_1_1_sample_generator}\index{ph::SampleGenerator@{ph::SampleGenerator}}
+
+
+Generates samples in \mbox{[}0, 1\mbox{]}. Generators of different types produces samples with different properties. Depending on the implementation, the samples can be fully random, quasi random, or even fully deterministic. \doxylink{classph_1_1_sample}{Sample} generators in Photon have their life cycles. Life cycle begins when the sample generator start producing sample batches, and ends when all sample batches are exhausted.  
+
+
+
+
+{\ttfamily \#include $<$Sample\+Generator.\+h$>$}
+
+Inheritance diagram for ph\+::Sample\+Generator\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classph_1_1_sample_generator}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classph_1_1_sample_generator_ad18e2cc85a9bb8f4fc8df6031e60cdeb}{Sample\+Generator}} (std\+::size\+\_\+t \mbox{\hyperlink{classph_1_1_sample_generator_a9edb109e3a59ca98916a04396bd18f64}{num\+Sample\+Batches}}, std\+::size\+\_\+t \mbox{\hyperlink{classph_1_1_sample_generator_af47f8935a22467cb85f9200ea951c073}{max\+Cached\+Batches}})
+\item 
+\mbox{\hyperlink{classph_1_1_sample_generator_ac3def52a89b46c93603a96f084dca43b}{Sample\+Generator}} (std\+::size\+\_\+t \mbox{\hyperlink{classph_1_1_sample_generator_a9edb109e3a59ca98916a04396bd18f64}{num\+Sample\+Batches}})
+\item 
+virtual \mbox{\hyperlink{classph_1_1_sample_generator_afca6e5af28e5f65be3bc83740c95967e}{\texorpdfstring{$\sim$}{\string~}\+Sample\+Generator}} ()=default
+\item 
+virtual std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classph_1_1_sample_generator}{Sample\+Generator}} $>$ \mbox{\hyperlink{classph_1_1_sample_generator_aa4f9f004fb02f33836562de91ce1fae2}{make\+Newborn}} (std\+::size\+\_\+t \mbox{\hyperlink{classph_1_1_sample_generator_a9edb109e3a59ca98916a04396bd18f64}{num\+Sample\+Batches}}) const =0
+\begin{DoxyCompactList}\small\item\em Make a new generator. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classph_1_1_sample_generator_a08d4fe62f9a5b30da204c7d66b586cc9}{rebirth}} ()
+\begin{DoxyCompactList}\small\item\em Reset this generator to its initial state, reviving it from dead state. Calling this method starts a new life cycle--all existing sample stages and values are lost, and references to them are invalidated. New declarations can be made after, and new sample values can be generated. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classph_1_1_sample_generator_af3a0506e6f463c5a63d67c424e36304c}{gen\+Splitted}} (std\+::size\+\_\+t num\+Splits, std\+::vector$<$ std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classph_1_1_sample_generator}{Sample\+Generator}} $>$ $>$ \&out\+\_\+sgs) const
+\item 
+bool \mbox{\hyperlink{classph_1_1_sample_generator_a761b9d5dba5cf68a0a7738e0949193eb}{prepare\+Sample\+Batch}} ()
+\begin{DoxyCompactList}\small\item\em Generates sample values for current sample batch. Advances all sample values in all stages to the next batch. Will potentially generate sample values for more than one batch at once (cached). \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classph_1_1_samples_n_d_handle}{Samples\+NDHandle}} \mbox{\hyperlink{classph_1_1_sample_generator_a4ee7cb159594b35bd2251b64af07e516}{declare\+Stage\+ND}} (std\+::size\+\_\+t num\+Dims, std\+::size\+\_\+t num\+Samples)
+\begin{DoxyCompactList}\small\item\em Similar to {\ttfamily \doxylink{classph_1_1_sample_generator_a4ee7cb159594b35bd2251b64af07e516}{declare\+Stage\+ND()}}, with default size hints. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classph_1_1_samples_n_d_handle}{Samples\+NDHandle}} \mbox{\hyperlink{classph_1_1_sample_generator_a9b40463337e94df4b8c7e3441356d292}{declare\+Stage\+ND}} (std\+::size\+\_\+t num\+Dims, std\+::size\+\_\+t num\+Samples, std\+::vector$<$ std\+::size\+\_\+t $>$ dim\+Size\+Hints)
+\begin{DoxyCompactList}\small\item\em Declares a N-\/dimensional sample stage. A sample stage contains information for how the samples will be used, number of samples, etc. These information can help the sample generator to produce sample values of better quality. This method can only be called before sample batches are generated (before any call to {\ttfamily \doxylink{classph_1_1_sample_generator_a761b9d5dba5cf68a0a7738e0949193eb}{prepare\+Sample\+Batch()}}). \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classph_1_1_samples_n_d_stream}{Samples\+NDStream}} \mbox{\hyperlink{classph_1_1_sample_generator_ada73517fb696bb7daccdbf26d0fc53cc}{get\+Samples\+ND}} (const \mbox{\hyperlink{classph_1_1_samples_n_d_handle}{Samples\+NDHandle}} \&handle) const
+\begin{DoxyCompactList}\small\item\em Gets generated N-\/dimensional sample values in a stage. This method can only be called after sample batches are generated (after any call to {\ttfamily \doxylink{classph_1_1_sample_generator_a761b9d5dba5cf68a0a7738e0949193eb}{prepare\+Sample\+Batch()}}). \end{DoxyCompactList}\item 
+std\+::size\+\_\+t \mbox{\hyperlink{classph_1_1_sample_generator_a9edb109e3a59ca98916a04396bd18f64}{num\+Sample\+Batches}} () const
+\item 
+std\+::size\+\_\+t \mbox{\hyperlink{classph_1_1_sample_generator_af47f8935a22467cb85f9200ea951c073}{max\+Cached\+Batches}} () const
+\item 
+std\+::size\+\_\+t \mbox{\hyperlink{classph_1_1_sample_generator_affa7565a4bb64f5dc7136ff9448390b4}{num\+Remaining\+Batches}} () const
+\item 
+bool \mbox{\hyperlink{classph_1_1_sample_generator_adbca8efb8c2ee12f0da1b714a77e12bd}{has\+More\+Batches}} () const
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Generates samples in \mbox{[}0, 1\mbox{]}. Generators of different types produces samples with different properties. Depending on the implementation, the samples can be fully random, quasi random, or even fully deterministic. \doxylink{classph_1_1_sample}{Sample} generators in Photon have their life cycles. Life cycle begins when the sample generator start producing sample batches, and ends when all sample batches are exhausted. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classph_1_1_sample_generator_ad18e2cc85a9bb8f4fc8df6031e60cdeb}\index{ph::SampleGenerator@{ph::SampleGenerator}!SampleGenerator@{SampleGenerator}}
+\index{SampleGenerator@{SampleGenerator}!ph::SampleGenerator@{ph::SampleGenerator}}
+\doxysubsubsection{\texorpdfstring{SampleGenerator()}{SampleGenerator()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{classph_1_1_sample_generator_ad18e2cc85a9bb8f4fc8df6031e60cdeb} 
+ph\+::\+Sample\+Generator\+::\+Sample\+Generator (\begin{DoxyParamCaption}\item[{std\+::size\+\_\+t}]{num\+Sample\+Batches}{, }\item[{std\+::size\+\_\+t}]{max\+Cached\+Batches}{}\end{DoxyParamCaption})}
+
+\Hypertarget{classph_1_1_sample_generator_ac3def52a89b46c93603a96f084dca43b}\index{ph::SampleGenerator@{ph::SampleGenerator}!SampleGenerator@{SampleGenerator}}
+\index{SampleGenerator@{SampleGenerator}!ph::SampleGenerator@{ph::SampleGenerator}}
+\doxysubsubsection{\texorpdfstring{SampleGenerator()}{SampleGenerator()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{classph_1_1_sample_generator_ac3def52a89b46c93603a96f084dca43b} 
+ph\+::\+Sample\+Generator\+::\+Sample\+Generator (\begin{DoxyParamCaption}\item[{std\+::size\+\_\+t}]{num\+Sample\+Batches}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+\Hypertarget{classph_1_1_sample_generator_afca6e5af28e5f65be3bc83740c95967e}\index{ph::SampleGenerator@{ph::SampleGenerator}!````~SampleGenerator@{\texorpdfstring{$\sim$}{\string~}SampleGenerator}}
+\index{````~SampleGenerator@{\texorpdfstring{$\sim$}{\string~}SampleGenerator}!ph::SampleGenerator@{ph::SampleGenerator}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}SampleGenerator()}{\string~SampleGenerator()}}
+{\footnotesize\ttfamily \label{classph_1_1_sample_generator_afca6e5af28e5f65be3bc83740c95967e} 
+virtual ph\+::\+Sample\+Generator\+::\texorpdfstring{$\sim$}{\string~}\+Sample\+Generator (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [default]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classph_1_1_sample_generator_a4ee7cb159594b35bd2251b64af07e516}\index{ph::SampleGenerator@{ph::SampleGenerator}!declareStageND@{declareStageND}}
+\index{declareStageND@{declareStageND}!ph::SampleGenerator@{ph::SampleGenerator}}
+\doxysubsubsection{\texorpdfstring{declareStageND()}{declareStageND()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{classph_1_1_sample_generator_a4ee7cb159594b35bd2251b64af07e516} 
+\mbox{\hyperlink{classph_1_1_samples_n_d_handle}{Samples\+NDHandle}} ph\+::\+Sample\+Generator\+::declare\+Stage\+ND (\begin{DoxyParamCaption}\item[{std\+::size\+\_\+t}]{num\+Dims}{, }\item[{std\+::size\+\_\+t}]{num\+Samples}{}\end{DoxyParamCaption})}
+
+
+
+Similar to {\ttfamily \doxylink{classph_1_1_sample_generator_a4ee7cb159594b35bd2251b64af07e516}{declare\+Stage\+ND()}}, with default size hints. 
+
+\Hypertarget{classph_1_1_sample_generator_a9b40463337e94df4b8c7e3441356d292}\index{ph::SampleGenerator@{ph::SampleGenerator}!declareStageND@{declareStageND}}
+\index{declareStageND@{declareStageND}!ph::SampleGenerator@{ph::SampleGenerator}}
+\doxysubsubsection{\texorpdfstring{declareStageND()}{declareStageND()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{classph_1_1_sample_generator_a9b40463337e94df4b8c7e3441356d292} 
+\mbox{\hyperlink{classph_1_1_samples_n_d_handle}{Samples\+NDHandle}} ph\+::\+Sample\+Generator\+::declare\+Stage\+ND (\begin{DoxyParamCaption}\item[{std\+::size\+\_\+t}]{num\+Dims}{, }\item[{std\+::size\+\_\+t}]{num\+Samples}{, }\item[{std\+::vector$<$ std\+::size\+\_\+t $>$}]{dim\+Size\+Hints}{}\end{DoxyParamCaption})}
+
+
+
+Declares a N-\/dimensional sample stage. A sample stage contains information for how the samples will be used, number of samples, etc. These information can help the sample generator to produce sample values of better quality. This method can only be called before sample batches are generated (before any call to {\ttfamily \doxylink{classph_1_1_sample_generator_a761b9d5dba5cf68a0a7738e0949193eb}{prepare\+Sample\+Batch()}}). 
+
+\Hypertarget{classph_1_1_sample_generator_af3a0506e6f463c5a63d67c424e36304c}\index{ph::SampleGenerator@{ph::SampleGenerator}!genSplitted@{genSplitted}}
+\index{genSplitted@{genSplitted}!ph::SampleGenerator@{ph::SampleGenerator}}
+\doxysubsubsection{\texorpdfstring{genSplitted()}{genSplitted()}}
+{\footnotesize\ttfamily \label{classph_1_1_sample_generator_af3a0506e6f463c5a63d67c424e36304c} 
+void ph\+::\+Sample\+Generator\+::gen\+Splitted (\begin{DoxyParamCaption}\item[{std\+::size\+\_\+t}]{num\+Splits}{, }\item[{std\+::vector$<$ std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classph_1_1_sample_generator}{Sample\+Generator}} $>$ $>$ \&}]{out\+\_\+sgs}{}\end{DoxyParamCaption}) const}
+
+\Hypertarget{classph_1_1_sample_generator_ada73517fb696bb7daccdbf26d0fc53cc}\index{ph::SampleGenerator@{ph::SampleGenerator}!getSamplesND@{getSamplesND}}
+\index{getSamplesND@{getSamplesND}!ph::SampleGenerator@{ph::SampleGenerator}}
+\doxysubsubsection{\texorpdfstring{getSamplesND()}{getSamplesND()}}
+{\footnotesize\ttfamily \label{classph_1_1_sample_generator_ada73517fb696bb7daccdbf26d0fc53cc} 
+\mbox{\hyperlink{classph_1_1_samples_n_d_stream}{Samples\+NDStream}} ph\+::\+Sample\+Generator\+::get\+Samples\+ND (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classph_1_1_samples_n_d_handle}{Samples\+NDHandle}} \&}]{handle}{}\end{DoxyParamCaption}) const}
+
+
+
+Gets generated N-\/dimensional sample values in a stage. This method can only be called after sample batches are generated (after any call to {\ttfamily \doxylink{classph_1_1_sample_generator_a761b9d5dba5cf68a0a7738e0949193eb}{prepare\+Sample\+Batch()}}). 
+
+\Hypertarget{classph_1_1_sample_generator_adbca8efb8c2ee12f0da1b714a77e12bd}\index{ph::SampleGenerator@{ph::SampleGenerator}!hasMoreBatches@{hasMoreBatches}}
+\index{hasMoreBatches@{hasMoreBatches}!ph::SampleGenerator@{ph::SampleGenerator}}
+\doxysubsubsection{\texorpdfstring{hasMoreBatches()}{hasMoreBatches()}}
+{\footnotesize\ttfamily \label{classph_1_1_sample_generator_adbca8efb8c2ee12f0da1b714a77e12bd} 
+bool ph\+::\+Sample\+Generator\+::has\+More\+Batches (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+Whether the generator has more batches to generate. If {\ttfamily true}, {\ttfamily \doxylink{classph_1_1_sample_generator_a761b9d5dba5cf68a0a7738e0949193eb}{prepare\+Sample\+Batch()}} will return {\ttfamily true} also. If {\ttfamily false}, the generator\textquotesingle{}s life cycle has ended--all samples are exhausted and cannot produce new samples. 
+\end{DoxyReturn}
+\Hypertarget{classph_1_1_sample_generator_aa4f9f004fb02f33836562de91ce1fae2}\index{ph::SampleGenerator@{ph::SampleGenerator}!makeNewborn@{makeNewborn}}
+\index{makeNewborn@{makeNewborn}!ph::SampleGenerator@{ph::SampleGenerator}}
+\doxysubsubsection{\texorpdfstring{makeNewborn()}{makeNewborn()}}
+{\footnotesize\ttfamily \label{classph_1_1_sample_generator_aa4f9f004fb02f33836562de91ce1fae2} 
+virtual std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classph_1_1_sample_generator}{Sample\+Generator}} $>$ ph\+::\+Sample\+Generator\+::make\+Newborn (\begin{DoxyParamCaption}\item[{std\+::size\+\_\+t}]{num\+Sample\+Batches}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Make a new generator. 
+
+\begin{DoxyReturn}{Returns}
+The new generator. Newborn generator may not have the same internal state as its ancestor. 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classph_1_1_s_g_halton_a24e4d6d1065c51f15e7322a6837ec790}{ph\+::\+SGHalton}}, \mbox{\hyperlink{classph_1_1_s_g_stratified_a9de27f9f24ddca95dffa33e621f4aa2c}{ph\+::\+SGStratified}}, and \mbox{\hyperlink{classph_1_1_s_g_uniform_random_a8aee79da9d9b62e1530e43717632fd20}{ph\+::\+SGUniform\+Random}}.
+
+\Hypertarget{classph_1_1_sample_generator_af47f8935a22467cb85f9200ea951c073}\index{ph::SampleGenerator@{ph::SampleGenerator}!maxCachedBatches@{maxCachedBatches}}
+\index{maxCachedBatches@{maxCachedBatches}!ph::SampleGenerator@{ph::SampleGenerator}}
+\doxysubsubsection{\texorpdfstring{maxCachedBatches()}{maxCachedBatches()}}
+{\footnotesize\ttfamily \label{classph_1_1_sample_generator_af47f8935a22467cb85f9200ea951c073} 
+std\+::size\+\_\+t ph\+::\+Sample\+Generator\+::max\+Cached\+Batches (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classph_1_1_sample_generator_affa7565a4bb64f5dc7136ff9448390b4}\index{ph::SampleGenerator@{ph::SampleGenerator}!numRemainingBatches@{numRemainingBatches}}
+\index{numRemainingBatches@{numRemainingBatches}!ph::SampleGenerator@{ph::SampleGenerator}}
+\doxysubsubsection{\texorpdfstring{numRemainingBatches()}{numRemainingBatches()}}
+{\footnotesize\ttfamily \label{classph_1_1_sample_generator_affa7565a4bb64f5dc7136ff9448390b4} 
+std\+::size\+\_\+t ph\+::\+Sample\+Generator\+::num\+Remaining\+Batches (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classph_1_1_sample_generator_a9edb109e3a59ca98916a04396bd18f64}\index{ph::SampleGenerator@{ph::SampleGenerator}!numSampleBatches@{numSampleBatches}}
+\index{numSampleBatches@{numSampleBatches}!ph::SampleGenerator@{ph::SampleGenerator}}
+\doxysubsubsection{\texorpdfstring{numSampleBatches()}{numSampleBatches()}}
+{\footnotesize\ttfamily \label{classph_1_1_sample_generator_a9edb109e3a59ca98916a04396bd18f64} 
+std\+::size\+\_\+t ph\+::\+Sample\+Generator\+::num\+Sample\+Batches (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classph_1_1_sample_generator_a761b9d5dba5cf68a0a7738e0949193eb}\index{ph::SampleGenerator@{ph::SampleGenerator}!prepareSampleBatch@{prepareSampleBatch}}
+\index{prepareSampleBatch@{prepareSampleBatch}!ph::SampleGenerator@{ph::SampleGenerator}}
+\doxysubsubsection{\texorpdfstring{prepareSampleBatch()}{prepareSampleBatch()}}
+{\footnotesize\ttfamily \label{classph_1_1_sample_generator_a761b9d5dba5cf68a0a7738e0949193eb} 
+bool ph\+::\+Sample\+Generator\+::prepare\+Sample\+Batch (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Generates sample values for current sample batch. Advances all sample values in all stages to the next batch. Will potentially generate sample values for more than one batch at once (cached). 
+
+\begin{DoxyReturn}{Returns}
+Whether sample values are generated. 
+\end{DoxyReturn}
+\Hypertarget{classph_1_1_sample_generator_a08d4fe62f9a5b30da204c7d66b586cc9}\index{ph::SampleGenerator@{ph::SampleGenerator}!rebirth@{rebirth}}
+\index{rebirth@{rebirth}!ph::SampleGenerator@{ph::SampleGenerator}}
+\doxysubsubsection{\texorpdfstring{rebirth()}{rebirth()}}
+{\footnotesize\ttfamily \label{classph_1_1_sample_generator_a08d4fe62f9a5b30da204c7d66b586cc9} 
+void ph\+::\+Sample\+Generator\+::rebirth (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Reset this generator to its initial state, reviving it from dead state. Calling this method starts a new life cycle--all existing sample stages and values are lost, and references to them are invalidated. New declarations can be made after, and new sample values can be generated. 
+
+\begin{DoxyNote}{Note}
+The initial state of a generator may be different each time {\ttfamily \doxylink{classph_1_1_sample_generator_a08d4fe62f9a5b30da204c7d66b586cc9}{rebirth()}} is called. This depends on the actual settings used for the generator. 
+\end{DoxyNote}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Source/\+Core/\+Sample\+Generator/\mbox{\hyperlink{_sample_generator_8h}{Sample\+Generator.\+h}}\item 
+Source/\+Core/\+Sample\+Generator/\mbox{\hyperlink{_sample_generator_8cpp}{Sample\+Generator.\+cpp}}\end{DoxyCompactItemize}

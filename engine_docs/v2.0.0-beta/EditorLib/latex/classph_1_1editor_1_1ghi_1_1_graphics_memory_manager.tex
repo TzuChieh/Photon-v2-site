@@ -1,0 +1,180 @@
+\doxysection{ph\+::editor\+::ghi\+::Graphics\+Memory\+Manager Class Reference}
+\hypertarget{classph_1_1editor_1_1ghi_1_1_graphics_memory_manager}{}\label{classph_1_1editor_1_1ghi_1_1_graphics_memory_manager}\index{ph::editor::ghi::GraphicsMemoryManager@{ph::editor::ghi::GraphicsMemoryManager}}
+
+
+Manages memory for graphics.  
+
+
+
+
+{\ttfamily \#include $<$Graphics\+Memory\+Manager.\+h$>$}
+
+Inheritance diagram for ph\+::editor\+::ghi\+::Graphics\+Memory\+Manager\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classph_1_1editor_1_1ghi_1_1_graphics_memory_manager}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classph_1_1editor_1_1ghi_1_1_graphics_memory_manager_ab8675ecd5a351be1fd8009e68bdf40b9}{\texorpdfstring{$\sim$}{\string~}\+Graphics\+Memory\+Manager}} ()
+\item 
+virtual \mbox{\hyperlink{classph_1_1editor_1_1ghi_1_1_graphics_memory_block}{Graphics\+Memory\+Block}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classph_1_1editor_1_1ghi_1_1_graphics_memory_manager_a4ca11b54d0731b2f51e3e756f3dfbb35}{alloc\+Host\+Block}} (uint32 num\+Frames\+To\+Live)=0
+\item 
+virtual \mbox{\hyperlink{classph_1_1editor_1_1ghi_1_1_graphics_memory_block}{Graphics\+Memory\+Block}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classph_1_1editor_1_1ghi_1_1_graphics_memory_manager_af36211bf5f6e919df70c2c6cd5840473}{alloc\+Custom\+Host\+Block}} (uint32 num\+Frames\+To\+Live, std\+::size\+\_\+t block\+Size, std\+::size\+\_\+t block\+Alignment)=0
+\item 
+virtual void \mbox{\hyperlink{classph_1_1editor_1_1ghi_1_1_graphics_memory_manager_a0c2c2e95ed7e63a7f525c31caede087e}{on\+GHILoad}} ()=0
+\begin{DoxyCompactList}\small\item\em Called by \doxylink{classph_1_1editor_1_1ghi_1_1_g_h_i}{GHI} thread after \doxylink{classph_1_1editor_1_1ghi_1_1_g_h_i}{GHI} is loaded. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classph_1_1editor_1_1ghi_1_1_graphics_memory_manager_af7ac520cbf6e721b28a5833ee0bfdedf}{on\+GHIUnload}} ()=0
+\begin{DoxyCompactList}\small\item\em Called by \doxylink{classph_1_1editor_1_1ghi_1_1_g_h_i}{GHI} thread before \doxylink{classph_1_1editor_1_1ghi_1_1_g_h_i}{GHI} is unloaded. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classph_1_1editor_1_1ghi_1_1_graphics_memory_manager_a080cf02656946c7ccae57e8cf588c083}{begin\+Frame\+Update}} (const \mbox{\hyperlink{classph_1_1editor_1_1_g_h_i_thread_update_context}{GHIThread\+Update\+Context}} \&ctx)=0
+\begin{DoxyCompactList}\small\item\em Called by \doxylink{classph_1_1editor_1_1ghi_1_1_g_h_i}{GHI} thread when a frame begins. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classph_1_1editor_1_1ghi_1_1_graphics_memory_manager_a0da7eed65a34c4b9d2efba841c1f81ee}{end\+Frame\+Update}} (const \mbox{\hyperlink{classph_1_1editor_1_1_g_h_i_thread_update_context}{GHIThread\+Update\+Context}} \&ctx)=0
+\begin{DoxyCompactList}\small\item\em Called by \doxylink{classph_1_1editor_1_1ghi_1_1_g_h_i}{GHI} thread when a frame ends. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classph_1_1editor_1_1ghi_1_1_graphics_arena}{Graphics\+Arena}} \mbox{\hyperlink{classph_1_1editor_1_1ghi_1_1_graphics_memory_manager_acb8a18a7c29e32af92f7cde9d2107317}{new\+Host\+Arena}} ()
+\item 
+\mbox{\hyperlink{classph_1_1editor_1_1ghi_1_1_graphics_arena}{Graphics\+Arena}} \mbox{\hyperlink{classph_1_1editor_1_1ghi_1_1_graphics_memory_manager_ab7329434ead11b66ecd7dc3db82e1fa3}{new\+Render\+Producer\+Host\+Arena}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static uint32 \mbox{\hyperlink{classph_1_1editor_1_1ghi_1_1_graphics_memory_manager_a91bb497efda0b2d20e87df9340835eeb}{equivalent\+Render\+Frame\+Lifetime}} (uint32 num\+Render\+Frames\+To\+Live)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Manages memory for graphics. 
+
+A lower level graphics abstraction that can act as one of the foundations of other higher level abstractions (such as {\ttfamily Graphics\+Object\+Manger}).
+
+During the lifetime of the current graphics context, the {\ttfamily \doxylink{classph_1_1editor_1_1ghi_1_1_g_h_i}{GHI}} abstraction may be loaded/unloaded and thread safe methods are allowed to fail gently (not crash or causing any data corruption) during the unloaded period. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classph_1_1editor_1_1ghi_1_1_graphics_memory_manager_ab8675ecd5a351be1fd8009e68bdf40b9}\index{ph::editor::ghi::GraphicsMemoryManager@{ph::editor::ghi::GraphicsMemoryManager}!````~GraphicsMemoryManager@{\texorpdfstring{$\sim$}{\string~}GraphicsMemoryManager}}
+\index{````~GraphicsMemoryManager@{\texorpdfstring{$\sim$}{\string~}GraphicsMemoryManager}!ph::editor::ghi::GraphicsMemoryManager@{ph::editor::ghi::GraphicsMemoryManager}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}GraphicsMemoryManager()}{\string~GraphicsMemoryManager()}}
+{\footnotesize\ttfamily \label{classph_1_1editor_1_1ghi_1_1_graphics_memory_manager_ab8675ecd5a351be1fd8009e68bdf40b9} 
+ph\+::editor\+::ghi\+::\+Graphics\+Memory\+Manager\+::\texorpdfstring{$\sim$}{\string~}\+Graphics\+Memory\+Manager (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [default]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classph_1_1editor_1_1ghi_1_1_graphics_memory_manager_af36211bf5f6e919df70c2c6cd5840473}\index{ph::editor::ghi::GraphicsMemoryManager@{ph::editor::ghi::GraphicsMemoryManager}!allocCustomHostBlock@{allocCustomHostBlock}}
+\index{allocCustomHostBlock@{allocCustomHostBlock}!ph::editor::ghi::GraphicsMemoryManager@{ph::editor::ghi::GraphicsMemoryManager}}
+\doxysubsubsection{\texorpdfstring{allocCustomHostBlock()}{allocCustomHostBlock()}}
+{\footnotesize\ttfamily \label{classph_1_1editor_1_1ghi_1_1_graphics_memory_manager_af36211bf5f6e919df70c2c6cd5840473} 
+virtual \mbox{\hyperlink{classph_1_1editor_1_1ghi_1_1_graphics_memory_block}{Graphics\+Memory\+Block}} \texorpdfstring{$\ast$}{*} ph\+::editor\+::ghi\+::\+Graphics\+Memory\+Manager\+::alloc\+Custom\+Host\+Block (\begin{DoxyParamCaption}\item[{uint32}]{num\+Frames\+To\+Live}{, }\item[{std\+::size\+\_\+t}]{block\+Size}{, }\item[{std\+::size\+\_\+t}]{block\+Alignment}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+This variant of host block is generally not pooled, and much higher performance hit is expected. The block size can be determined by the user, which is useful in situations where large block is required or for one-\/off allocations. 
+\begin{DoxyParams}{Parameters}
+{\em num\+Frames\+To\+Live} & See {\ttfamily new\+Host\+Block()}. \\
+\hline
+{\em block\+Size} & Size of the memory block in bytes. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Thread safe. 
+\end{DoxyNote}
+
+
+Implemented in \mbox{\hyperlink{classph_1_1editor_1_1ghi_1_1_basic_graphics_memory_manager_ae23ddcb9a7c0d01bc020199412db0564}{ph\+::editor\+::ghi\+::\+Basic\+Graphics\+Memory\+Manager}}, and \mbox{\hyperlink{classph_1_1editor_1_1ghi_1_1_null_memory_manager_a5f71a19e35f6a8fc23d4a309b5e3b6b4}{ph\+::editor\+::ghi\+::\+Null\+Memory\+Manager}}.
+
+\Hypertarget{classph_1_1editor_1_1ghi_1_1_graphics_memory_manager_a4ca11b54d0731b2f51e3e756f3dfbb35}\index{ph::editor::ghi::GraphicsMemoryManager@{ph::editor::ghi::GraphicsMemoryManager}!allocHostBlock@{allocHostBlock}}
+\index{allocHostBlock@{allocHostBlock}!ph::editor::ghi::GraphicsMemoryManager@{ph::editor::ghi::GraphicsMemoryManager}}
+\doxysubsubsection{\texorpdfstring{allocHostBlock()}{allocHostBlock()}}
+{\footnotesize\ttfamily \label{classph_1_1editor_1_1ghi_1_1_graphics_memory_manager_a4ca11b54d0731b2f51e3e756f3dfbb35} 
+virtual \mbox{\hyperlink{classph_1_1editor_1_1ghi_1_1_graphics_memory_block}{Graphics\+Memory\+Block}} \texorpdfstring{$\ast$}{*} ph\+::editor\+::ghi\+::\+Graphics\+Memory\+Manager\+::alloc\+Host\+Block (\begin{DoxyParamCaption}\item[{uint32}]{num\+Frames\+To\+Live}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Guaranteed to be pooled. 
+\begin{DoxyParams}{Parameters}
+{\em num\+Frames\+To\+Live} & The expected lifespan the allocated memory block is guaranteed to be valid. Lifetime is in terms of \doxylink{classph_1_1editor_1_1ghi_1_1_g_h_i}{GHI} frames. E.\+g., 0 = May be invalidated after the end of current frame; 1 = May be invalidated after the end of next frame (current +1 frame), etc. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Thread safe. 
+\end{DoxyNote}
+
+
+Implemented in \mbox{\hyperlink{classph_1_1editor_1_1ghi_1_1_basic_graphics_memory_manager_ad3d99bcfd0f7954d9d2b7be94c1db5ca}{ph\+::editor\+::ghi\+::\+Basic\+Graphics\+Memory\+Manager}}, and \mbox{\hyperlink{classph_1_1editor_1_1ghi_1_1_null_memory_manager_a2b0818dd89ccc8ec27b2ee53011f6455}{ph\+::editor\+::ghi\+::\+Null\+Memory\+Manager}}.
+
+\Hypertarget{classph_1_1editor_1_1ghi_1_1_graphics_memory_manager_a080cf02656946c7ccae57e8cf588c083}\index{ph::editor::ghi::GraphicsMemoryManager@{ph::editor::ghi::GraphicsMemoryManager}!beginFrameUpdate@{beginFrameUpdate}}
+\index{beginFrameUpdate@{beginFrameUpdate}!ph::editor::ghi::GraphicsMemoryManager@{ph::editor::ghi::GraphicsMemoryManager}}
+\doxysubsubsection{\texorpdfstring{beginFrameUpdate()}{beginFrameUpdate()}}
+{\footnotesize\ttfamily \label{classph_1_1editor_1_1ghi_1_1_graphics_memory_manager_a080cf02656946c7ccae57e8cf588c083} 
+virtual void ph\+::editor\+::ghi\+::\+Graphics\+Memory\+Manager\+::begin\+Frame\+Update (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classph_1_1editor_1_1_g_h_i_thread_update_context}{GHIThread\+Update\+Context}} \&}]{ctx}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Called by \doxylink{classph_1_1editor_1_1ghi_1_1_g_h_i}{GHI} thread when a frame begins. 
+
+
+
+Implemented in \mbox{\hyperlink{classph_1_1editor_1_1ghi_1_1_basic_graphics_memory_manager_a52ca8fad77c869902671fd4fde946caa}{ph\+::editor\+::ghi\+::\+Basic\+Graphics\+Memory\+Manager}}, and \mbox{\hyperlink{classph_1_1editor_1_1ghi_1_1_null_memory_manager_a99bcb9d580805738a26449878a9a5120}{ph\+::editor\+::ghi\+::\+Null\+Memory\+Manager}}.
+
+\Hypertarget{classph_1_1editor_1_1ghi_1_1_graphics_memory_manager_a0da7eed65a34c4b9d2efba841c1f81ee}\index{ph::editor::ghi::GraphicsMemoryManager@{ph::editor::ghi::GraphicsMemoryManager}!endFrameUpdate@{endFrameUpdate}}
+\index{endFrameUpdate@{endFrameUpdate}!ph::editor::ghi::GraphicsMemoryManager@{ph::editor::ghi::GraphicsMemoryManager}}
+\doxysubsubsection{\texorpdfstring{endFrameUpdate()}{endFrameUpdate()}}
+{\footnotesize\ttfamily \label{classph_1_1editor_1_1ghi_1_1_graphics_memory_manager_a0da7eed65a34c4b9d2efba841c1f81ee} 
+virtual void ph\+::editor\+::ghi\+::\+Graphics\+Memory\+Manager\+::end\+Frame\+Update (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classph_1_1editor_1_1_g_h_i_thread_update_context}{GHIThread\+Update\+Context}} \&}]{ctx}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Called by \doxylink{classph_1_1editor_1_1ghi_1_1_g_h_i}{GHI} thread when a frame ends. 
+
+
+
+Implemented in \mbox{\hyperlink{classph_1_1editor_1_1ghi_1_1_basic_graphics_memory_manager_a7d825faa0764bd406af9914c9b7b3271}{ph\+::editor\+::ghi\+::\+Basic\+Graphics\+Memory\+Manager}}, and \mbox{\hyperlink{classph_1_1editor_1_1ghi_1_1_null_memory_manager_a6a7e96937775b88ce3d5adfe7df29bd0}{ph\+::editor\+::ghi\+::\+Null\+Memory\+Manager}}.
+
+\Hypertarget{classph_1_1editor_1_1ghi_1_1_graphics_memory_manager_a91bb497efda0b2d20e87df9340835eeb}\index{ph::editor::ghi::GraphicsMemoryManager@{ph::editor::ghi::GraphicsMemoryManager}!equivalentRenderFrameLifetime@{equivalentRenderFrameLifetime}}
+\index{equivalentRenderFrameLifetime@{equivalentRenderFrameLifetime}!ph::editor::ghi::GraphicsMemoryManager@{ph::editor::ghi::GraphicsMemoryManager}}
+\doxysubsubsection{\texorpdfstring{equivalentRenderFrameLifetime()}{equivalentRenderFrameLifetime()}}
+{\footnotesize\ttfamily \label{classph_1_1editor_1_1ghi_1_1_graphics_memory_manager_a91bb497efda0b2d20e87df9340835eeb} 
+static uint32 ph\+::editor\+::ghi\+::\+Graphics\+Memory\+Manager\+::equivalent\+Render\+Frame\+Lifetime (\begin{DoxyParamCaption}\item[{uint32}]{num\+Render\+Frames\+To\+Live}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\Hypertarget{classph_1_1editor_1_1ghi_1_1_graphics_memory_manager_acb8a18a7c29e32af92f7cde9d2107317}\index{ph::editor::ghi::GraphicsMemoryManager@{ph::editor::ghi::GraphicsMemoryManager}!newHostArena@{newHostArena}}
+\index{newHostArena@{newHostArena}!ph::editor::ghi::GraphicsMemoryManager@{ph::editor::ghi::GraphicsMemoryManager}}
+\doxysubsubsection{\texorpdfstring{newHostArena()}{newHostArena()}}
+{\footnotesize\ttfamily \label{classph_1_1editor_1_1ghi_1_1_graphics_memory_manager_acb8a18a7c29e32af92f7cde9d2107317} 
+\mbox{\hyperlink{classph_1_1editor_1_1ghi_1_1_graphics_arena}{Graphics\+Arena}} ph\+::editor\+::ghi\+::\+Graphics\+Memory\+Manager\+::new\+Host\+Arena (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{classph_1_1editor_1_1ghi_1_1_graphics_memory_manager_ab7329434ead11b66ecd7dc3db82e1fa3}\index{ph::editor::ghi::GraphicsMemoryManager@{ph::editor::ghi::GraphicsMemoryManager}!newRenderProducerHostArena@{newRenderProducerHostArena}}
+\index{newRenderProducerHostArena@{newRenderProducerHostArena}!ph::editor::ghi::GraphicsMemoryManager@{ph::editor::ghi::GraphicsMemoryManager}}
+\doxysubsubsection{\texorpdfstring{newRenderProducerHostArena()}{newRenderProducerHostArena()}}
+{\footnotesize\ttfamily \label{classph_1_1editor_1_1ghi_1_1_graphics_memory_manager_ab7329434ead11b66ecd7dc3db82e1fa3} 
+\mbox{\hyperlink{classph_1_1editor_1_1ghi_1_1_graphics_arena}{Graphics\+Arena}} ph\+::editor\+::ghi\+::\+Graphics\+Memory\+Manager\+::new\+Render\+Producer\+Host\+Arena (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{classph_1_1editor_1_1ghi_1_1_graphics_memory_manager_a0c2c2e95ed7e63a7f525c31caede087e}\index{ph::editor::ghi::GraphicsMemoryManager@{ph::editor::ghi::GraphicsMemoryManager}!onGHILoad@{onGHILoad}}
+\index{onGHILoad@{onGHILoad}!ph::editor::ghi::GraphicsMemoryManager@{ph::editor::ghi::GraphicsMemoryManager}}
+\doxysubsubsection{\texorpdfstring{onGHILoad()}{onGHILoad()}}
+{\footnotesize\ttfamily \label{classph_1_1editor_1_1ghi_1_1_graphics_memory_manager_a0c2c2e95ed7e63a7f525c31caede087e} 
+virtual void ph\+::editor\+::ghi\+::\+Graphics\+Memory\+Manager\+::on\+GHILoad (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Called by \doxylink{classph_1_1editor_1_1ghi_1_1_g_h_i}{GHI} thread after \doxylink{classph_1_1editor_1_1ghi_1_1_g_h_i}{GHI} is loaded. 
+
+
+
+Implemented in \mbox{\hyperlink{classph_1_1editor_1_1ghi_1_1_basic_graphics_memory_manager_a1e5409d9e54cd2a3d32847a1c780670b}{ph\+::editor\+::ghi\+::\+Basic\+Graphics\+Memory\+Manager}}, and \mbox{\hyperlink{classph_1_1editor_1_1ghi_1_1_null_memory_manager_a3feed1e4bc13504a8a6c94cf2261778a}{ph\+::editor\+::ghi\+::\+Null\+Memory\+Manager}}.
+
+\Hypertarget{classph_1_1editor_1_1ghi_1_1_graphics_memory_manager_af7ac520cbf6e721b28a5833ee0bfdedf}\index{ph::editor::ghi::GraphicsMemoryManager@{ph::editor::ghi::GraphicsMemoryManager}!onGHIUnload@{onGHIUnload}}
+\index{onGHIUnload@{onGHIUnload}!ph::editor::ghi::GraphicsMemoryManager@{ph::editor::ghi::GraphicsMemoryManager}}
+\doxysubsubsection{\texorpdfstring{onGHIUnload()}{onGHIUnload()}}
+{\footnotesize\ttfamily \label{classph_1_1editor_1_1ghi_1_1_graphics_memory_manager_af7ac520cbf6e721b28a5833ee0bfdedf} 
+virtual void ph\+::editor\+::ghi\+::\+Graphics\+Memory\+Manager\+::on\+GHIUnload (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Called by \doxylink{classph_1_1editor_1_1ghi_1_1_g_h_i}{GHI} thread before \doxylink{classph_1_1editor_1_1ghi_1_1_g_h_i}{GHI} is unloaded. 
+
+
+
+Implemented in \mbox{\hyperlink{classph_1_1editor_1_1ghi_1_1_basic_graphics_memory_manager_ae46611ed2126b3b2857fad7e27a65431}{ph\+::editor\+::ghi\+::\+Basic\+Graphics\+Memory\+Manager}}, and \mbox{\hyperlink{classph_1_1editor_1_1ghi_1_1_null_memory_manager_ad0c0b7b4417abeb49492561fcd47a517}{ph\+::editor\+::ghi\+::\+Null\+Memory\+Manager}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Source/\+Render\+Core/\mbox{\hyperlink{_graphics_memory_manager_8h}{Graphics\+Memory\+Manager.\+h}}\item 
+Source/\+Render\+Core/\mbox{\hyperlink{_graphics_memory_manager_8cpp}{Graphics\+Memory\+Manager.\+cpp}}\end{DoxyCompactItemize}

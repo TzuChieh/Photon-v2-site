@@ -1,0 +1,81 @@
+\chapter{Build From Source}
+\hypertarget{main_build_from_source}{}\label{main_build_from_source}\index{Build From Source@{Build From Source}}
+\label{main_build_from_source_md__documentation_2build__from__source}%
+\Hypertarget{main_build_from_source_md__documentation_2build__from__source}%
+
+
+Building Photon is super easy since the renderer is mostly coded from scratch using standard C++. Each of the required third-\/party libraries is either header only or pre-\/compiled, and can be handled automatically with the setup script.\hypertarget{main_build_from_source_autotoc_md5}{}\doxysection{\texorpdfstring{Prerequisites}{Prerequisites}}\label{main_build_from_source_autotoc_md5}
+Photon uses CMake as its main build system, and the toolkits you need are as follows\+:
+
+
+\begin{DoxyItemize}
+\item CMake 3.\+10+ (3.\+20+ recommended)
+\item Python 3 (3.\+9 recommended)
+\item C++20 compliant compiler (necessary)
+\end{DoxyItemize}
+
+If you want to build the editor in previous version, you will also need\+:
+
+
+\begin{DoxyItemize}
+\item JDK 1.\+8+ and Maven
+\end{DoxyItemize}
+
+This is not required for building the new C++ based editor.
+
+{\itshape Note that the working directory is assumed to be the project root (in the folder that you cloned) if not stated, and please use {\ttfamily ./build/} as build folder for now since build scripts are more or less hard-\/coded to use this path, currently.}\hypertarget{main_build_from_source_autotoc_md6}{}\doxysection{\texorpdfstring{Step 1\+: Run the Setup Script}{Step 1\+: Run the Setup Script}}\label{main_build_from_source_autotoc_md6}
+Run the setup script (depending on your system, choose either {\ttfamily ./setup.bat} or {\ttfamily ./setup.sh}), this will download pre-\/compiled libraries and resources into "{}./build"{}.\hypertarget{main_build_from_source_autotoc_md7}{}\doxysection{\texorpdfstring{Step 2\+: Compile}{Step 2\+: Compile}}\label{main_build_from_source_autotoc_md7}
+For Windows, just use CMake-\/\+GUI to generate project files for your favorite IDE.
+
+For Linux and mac\+OS, run the following commands\+:
+
+
+\begin{DoxyItemize}
+\item {\ttfamily cd ./build/}
+\item {\ttfamily cmake -\/DCMAKE\+\_\+\+BUILD\+\_\+\+TYPE=release ../}
+\item {\ttfamily make}
+\end{DoxyItemize}\hypertarget{main_build_from_source_autotoc_md8}{}\doxysection{\texorpdfstring{Step 3\+: Have Fun}{Step 3\+: Have Fun}}\label{main_build_from_source_autotoc_md8}
+The compiled binaries will be in the {\ttfamily ./build/bin/} folder.\hypertarget{main_build_from_source_autotoc_md9}{}\doxysection{\texorpdfstring{Appendix A\+: Available CMake Options}{Appendix A\+: Available CMake Options}}\label{main_build_from_source_autotoc_md9}
+Several options are available for fine-\/tuning the built binaries. To specify a CMake option named {\ttfamily SOME\+\_\+\+OPTION} with value {\ttfamily SOME\+\_\+\+VALUE}, you should add it as an additional argument in the form
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{cmake\ -\/DSOME\_OPTION=SOME\_VALUE\ (other\ arguments...)}
+
+\end{DoxyCode}
+
+
+and substitute {\ttfamily SOME\+\_\+\+OPTION} and {\ttfamily SOME\+\_\+\+VALUE} with the options listed below.
+
+\texorpdfstring{$\ast$}{*}(do not forget the -\/D prefix)\texorpdfstring{$\ast$}{*}
+
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{3}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Options   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Values   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Effects    }\\\cline{1-3}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Options   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Values   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Effects    }\\\cline{1-3}
+\endhead
+CMAKE\+\_\+\+BUILD\+\_\+\+TYPE   &release, debug   &When set, build binaries with optimizations enabled; otherwise no optimization is done.    \\\cline{1-3}
+PH\+\_\+\+BUILD\+\_\+\+TESTS   &ON (default), OFF   &Build unit tests. They should be executed from the build folder.    \\\cline{1-3}
+PH\+\_\+\+BUILD\+\_\+\+EDITOR\+\_\+\+JNI   &ON, OFF (default)   &Build JNI for Photon Studio (previous editor).    \\\cline{1-3}
+PH\+\_\+\+BUILD\+\_\+\+EDITOR   &ON (default), OFF   &Build editor application.    \\\cline{1-3}
+PH\+\_\+\+BUILD\+\_\+\+SDL\+\_\+\+GEN   &ON (default), OFF   &Build SDL automation tool.    \\\cline{1-3}
+PH\+\_\+\+BUILD\+\_\+\+PHOTON\+\_\+\+CLI   &ON (default), OFF   &Build command-\/line application.   \\\cline{1-3}
+\end{longtabu}
+
+
+\begin{DoxyRemark}{Remarks}
+You can also obtain a complete list of options with descriptions by running {\ttfamily cmake -\/LAH ../} in the build folder.
+\end{DoxyRemark}
+\hypertarget{main_build_from_source_autotoc_md10}{}\doxysection{\texorpdfstring{Appendix B\+: Building Documentation}{Appendix B\+: Building Documentation}}\label{main_build_from_source_autotoc_md10}
+Similar to building the libraries, running setup script is also required (depending on your system, choose either {\ttfamily ./setup.bat} or {\ttfamily ./setup.sh}). After that, you can either choose to run Doxygen from the same directory as the {\ttfamily doxygen.\+config} file of each project, or run {\ttfamily python ./scripts/build\+\_\+doxygen\+\_\+doc.py \texorpdfstring{$<$}{<}path-\/to-\/doxygen-\/executable\texorpdfstring{$>$}{>}}. The output will be in {\ttfamily ./\+Main/docs/}.
+
+Currently we are building documentation using Doxygen 1.\+11.\+0. You will also need the {\ttfamily bibtex} tool to be present in the search path to generate project bibliography.
+
+\begin{DoxyWarning}{Warning}
+As noted by the \href{https://www.doxygen.nl/manual/customize.html}{\texttt{ Doxygen documentation for output customization}}, {\ttfamily ./\+Main/header.html} may need to be regenerated and updated after upgrading/changing the Doxygen version. 
+\end{DoxyWarning}

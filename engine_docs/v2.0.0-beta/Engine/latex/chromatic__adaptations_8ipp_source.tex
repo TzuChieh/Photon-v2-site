@@ -1,0 +1,193 @@
+\doxysection{chromatic\+\_\+adaptations.\+ipp}
+\hypertarget{chromatic__adaptations_8ipp_source}{}\label{chromatic__adaptations_8ipp_source}\index{Source/Math/Color/chromatic\_adaptations.ipp@{Source/Math/Color/chromatic\_adaptations.ipp}}
+\mbox{\hyperlink{chromatic__adaptations_8ipp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{chromatic__adaptations_8h}{Math/Color/chromatic\_adaptations.h}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_i_uninstantiable_8h}{Utility/IUninstantiable.h}}"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <Common/assertion.h>}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph_1_1math}{ph::math}}}
+\DoxyCodeLine{00009\ \{}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{template}<EChromaticAdaptation\ ALGORITHM>}
+\DoxyCodeLine{00012\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1math_1_1_t_chromatic_adaptation_definition_helper}{TChromaticAdaptationDefinitionHelper}}\ :\ \textcolor{keyword}{private}\ \mbox{\hyperlink{classph_1_1_i_uninstantiable}{IUninstantiable}}}
+\DoxyCodeLine{00013\ \{}
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keyword}{static\_assert}(ALGORITHM\ !=\ \mbox{\hyperlink{namespaceph_1_1math_aeb6d400f8c4f85be266ab51b3cd65951a6fcdc090caeade09d0efd6253932b6f5}{EChromaticAdaptation::Unspecified}});}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ \textcolor{keyword}{consteval}\ \mbox{\hyperlink{namespaceph_1_1math_aeb6d400f8c4f85be266ab51b3cd65951}{EChromaticAdaptation}}\ \mbox{\hyperlink{classph_1_1math_1_1_t_chromatic_adaptation_definition_helper_a05cae291257795a004753681af7f44e1}{getAlgorithm}}()\ noexcept}
+\DoxyCodeLine{00018\ \ \ \ \ \{}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ALGORITHM;}
+\DoxyCodeLine{00020\ \ \ \ \ \}}
+\DoxyCodeLine{00021\ \};}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00029\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00030\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1math_1_1_t_matrix3}{TMatrix3<T>}}\ \mbox{\hyperlink{namespaceph_1_1math_a7bf83fdc8c49c4fec93e35a91cb671ca}{create\_von\_kries\_linear\_CAT\_matrix}}(}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_matrix3}{TMatrix3<T>}}\&\ \ \ \ CIEXYZToConeResponse,}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_matrix3}{TMatrix3<T>}}\&\ \ \ \ ConeResponseToCIEXYZ,}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_1_1math_ac8bbf5c13da6b60663011e0be1acb6c4}{EReferenceWhite}}\ srcRefWhite,}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_1_1math_ac8bbf5c13da6b60663011e0be1acb6c4}{EReferenceWhite}}\ dstRefWhite)}
+\DoxyCodeLine{00035\ \{}
+\DoxyCodeLine{00036\ \ \ \ \ PH\_ASSERT(srcRefWhite\ !=\ \mbox{\hyperlink{namespaceph_1_1math_ac8bbf5c13da6b60663011e0be1acb6c4a6fcdc090caeade09d0efd6253932b6f5}{EReferenceWhite::Unspecified}});}
+\DoxyCodeLine{00037\ \ \ \ \ PH\_ASSERT(dstRefWhite\ !=\ \mbox{\hyperlink{namespaceph_1_1math_ac8bbf5c13da6b60663011e0be1acb6c4a6fcdc090caeade09d0efd6253932b6f5}{EReferenceWhite::Unspecified}});}
+\DoxyCodeLine{00038\ \ \ \ \ PH\_ASSERT(srcRefWhite\ !=\ dstRefWhite);}
+\DoxyCodeLine{00039\ \ \ \ \ }
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespaceph_1_1math_a7bf83fdc8c49c4fec93e35a91cb671ca}{create\_von\_kries\_linear\_CAT\_matrix<T>}}(}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ CIEXYZToConeResponse,}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ ConeResponseToCIEXYZ,}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceph_1_1math_a43b1d3cfd69b7670eef57a752e641687}{CIEXYZ\_of<T>}}(srcRefWhite),}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceph_1_1math_a43b1d3cfd69b7670eef57a752e641687}{CIEXYZ\_of<T>}}(dstRefWhite));}
+\DoxyCodeLine{00045\ \}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00053\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00054\ \mbox{\hyperlink{classph_1_1math_1_1_t_matrix3}{TMatrix3<T>}}\ \mbox{\hyperlink{namespaceph_1_1math_a7bf83fdc8c49c4fec93e35a91cb671ca}{create\_von\_kries\_linear\_CAT\_matrix}}(}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_matrix3}{TMatrix3<T>}}\&\ \ \ \ \ \ \ \ \ \ \ CIEXYZToConeResponse,}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_matrix3}{TMatrix3<T>}}\&\ \ \ \ \ \ \ \ \ \ \ ConeResponseToCIEXYZ,}
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_1_1math_a9d9c64dd71192e59bad3d1a729ce7e68}{TTristimulusValues<T>}}\&\ srcRefWhite,}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_1_1math_a9d9c64dd71192e59bad3d1a729ce7e68}{TTristimulusValues<T>}}\&\ dstRefWhite)}
+\DoxyCodeLine{00059\ \{}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_1_1math_a9d9c64dd71192e59bad3d1a729ce7e68}{TTristimulusValues<T>}}\ srcConeResponse\ =\ CIEXYZToConeResponse.\mbox{\hyperlink{classph_1_1math_1_1_t_matrix_mx_n_base_adb31940ade56da868f7b1834d6e3e22c}{multiplyVector}}(srcRefWhite);}
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_1_1math_a9d9c64dd71192e59bad3d1a729ce7e68}{TTristimulusValues<T>}}\ dstConeResponse\ =\ CIEXYZToConeResponse.\mbox{\hyperlink{classph_1_1math_1_1_t_matrix_mx_n_base_adb31940ade56da868f7b1834d6e3e22c}{multiplyVector}}(dstRefWhite);}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \ \ \ \ PH\_ASSERT\_NE(srcConeResponse[0],\ 0);}
+\DoxyCodeLine{00064\ \ \ \ \ PH\_ASSERT\_NE(srcConeResponse[1],\ 0);}
+\DoxyCodeLine{00065\ \ \ \ \ PH\_ASSERT\_NE(srcConeResponse[2],\ 0);}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_1_1math_a9d9c64dd71192e59bad3d1a729ce7e68}{TTristimulusValues<T>}}\ coneResponseScale\ =\ \{}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ dstConeResponse[0]\ /\ srcConeResponse[0],}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ dstConeResponse[1]\ /\ srcConeResponse[1],}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ dstConeResponse[2]\ /\ srcConeResponse[2]}
+\DoxyCodeLine{00071\ \ \ \ \ \};}
+\DoxyCodeLine{00072\ \ \ \ \ }
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ coneResponseScaleMat\ =\ \mbox{\hyperlink{classph_1_1math_1_1_t_matrix3}{TMatrix3<T>}}().\mbox{\hyperlink{classph_1_1math_1_1_t_matrix_n_base_adb9ced97b1f3361c2f00d1a99764aa32}{setScale}}(coneResponseScale);}
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keywordflow}{return}\ ConeResponseToCIEXYZ.\mbox{\hyperlink{classph_1_1math_1_1_t_matrix3_aa0db23d8838f4ebe543afbad98b64746}{mul}}(coneResponseScaleMat).mul(CIEXYZToConeResponse);}
+\DoxyCodeLine{00075\ \}}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00079\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00080\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1math_1_1_t_chromatic_adaptation_definition}{TChromaticAdaptationDefinition}}<\mbox{\hyperlink{namespaceph_1_1math_aeb6d400f8c4f85be266ab51b3cd65951}{EChromaticAdaptation}}::\mbox{\hyperlink{namespaceph_1_1math_aeb6d400f8c4f85be266ab51b3cd65951a3fd49dab43044bf83a81e5e7ab067402}{XYZScaling}},\ T>\ final}
+\DoxyCodeLine{00081\ \ \ \ \ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classph_1_1math_1_1_t_chromatic_adaptation_definition_helper}{TChromaticAdaptationDefinitionHelper}}<EChromaticAdaptation::XYZScaling>}
+\DoxyCodeLine{00082\ \{}
+\DoxyCodeLine{00083\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ \mbox{\hyperlink{classph_1_1math_1_1_t_matrix3}{TMatrix3<T>}}\ \mbox{\hyperlink{classph_1_1math_1_1_t_chromatic_adaptation_definition_3_01_e_chromatic_adaptation_1_1_x_y_z_scaling_00_01_t_01_4_ab42e73f7a83100e98b37e48b62164220}{getCIEXYZToConeResponse}}()}
+\DoxyCodeLine{00085\ \ \ \ \ \{}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1math_1_1_t_matrix3}{TMatrix3<T>}}().\mbox{\hyperlink{classph_1_1math_1_1_t_matrix_n_base_a0618460442b2a4ca39639e3b215bdc56}{setIdentity}}();}
+\DoxyCodeLine{00087\ \ \ \ \ \}}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ \mbox{\hyperlink{classph_1_1math_1_1_t_matrix3}{TMatrix3<T>}}\ \mbox{\hyperlink{classph_1_1math_1_1_t_chromatic_adaptation_definition_3_01_e_chromatic_adaptation_1_1_x_y_z_scaling_00_01_t_01_4_a684b11872acc06e0c35392c3bc845059}{getConeResponseToCIEXYZ}}()}
+\DoxyCodeLine{00090\ \ \ \ \ \{}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1math_1_1_t_matrix3}{TMatrix3<T>}}().\mbox{\hyperlink{classph_1_1math_1_1_t_matrix_n_base_a0618460442b2a4ca39639e3b215bdc56}{setIdentity}}();}
+\DoxyCodeLine{00092\ \ \ \ \ \}}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ \mbox{\hyperlink{namespaceph_1_1math_a9d9c64dd71192e59bad3d1a729ce7e68}{TTristimulusValues<T>}}\ \mbox{\hyperlink{classph_1_1math_1_1_t_chromatic_adaptation_definition_3_01_e_chromatic_adaptation_1_1_x_y_z_scaling_00_01_t_01_4_a8ddfc5fcb7639a661418c9a9b400caae}{adapt}}(}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_1_1math_a9d9c64dd71192e59bad3d1a729ce7e68}{TTristimulusValues<T>}}\&\ CIEXYZColor,}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_1_1math_ac8bbf5c13da6b60663011e0be1acb6c4}{EReferenceWhite}}\ \ \ \ \ \ \ \ srcRefWhite,}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_1_1math_ac8bbf5c13da6b60663011e0be1acb6c4}{EReferenceWhite}}\ \ \ \ \ \ \ \ dstRefWhite)}
+\DoxyCodeLine{00098\ \ \ \ \ \{}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ CATMatrix\ =\ \mbox{\hyperlink{namespaceph_1_1math_a7bf83fdc8c49c4fec93e35a91cb671ca}{create\_von\_kries\_linear\_CAT\_matrix<T>}}(}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ getCIEXYZToConeResponse(),}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ getConeResponseToCIEXYZ(),}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ srcRefWhite,}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ dstRefWhite);}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ CATMatrix.multiplyVector(CIEXYZColor);}
+\DoxyCodeLine{00106\ \ \ \ \ \}}
+\DoxyCodeLine{00107\ \};}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00116\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00117\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1math_1_1_t_chromatic_adaptation_definition}{TChromaticAdaptationDefinition}}<\mbox{\hyperlink{namespaceph_1_1math_aeb6d400f8c4f85be266ab51b3cd65951}{EChromaticAdaptation}}::\mbox{\hyperlink{namespaceph_1_1math_aeb6d400f8c4f85be266ab51b3cd65951aaa6039aa9501f740afe28823ab6a2419}{Bradford}},\ T>\ final}
+\DoxyCodeLine{00118\ \ \ \ \ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classph_1_1math_1_1_t_chromatic_adaptation_definition_helper}{TChromaticAdaptationDefinitionHelper}}<EChromaticAdaptation::Bradford>}
+\DoxyCodeLine{00119\ \{}
+\DoxyCodeLine{00120\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00121\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ \mbox{\hyperlink{classph_1_1math_1_1_t_matrix3}{TMatrix3<T>}}\ \mbox{\hyperlink{classph_1_1math_1_1_t_chromatic_adaptation_definition_3_01_e_chromatic_adaptation_1_1_bradford_00_01_t_01_4_a41f115f0385276e9fec0adeddb87bf83}{getCIEXYZToConeResponse}}()}
+\DoxyCodeLine{00122\ \ \ \ \ \{}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1math_1_1_t_matrix3}{TMatrix3<T>}}(\mbox{\hyperlink{namespaceph_1_1math_a8013bb719cc5f01bbf14efd7f05ae955}{Matrix3D}}(}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ 0.8951000,\ \ 0.2664000,\ -\/0.1614000,}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ -\/0.7502000,\ \ 1.7135000,\ \ 0.0367000,}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ \ 0.0389000,\ -\/0.0685000,\ \ 1.0296000));}
+\DoxyCodeLine{00127\ \ \ \ \ \}}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00129\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ \mbox{\hyperlink{classph_1_1math_1_1_t_matrix3}{TMatrix3<T>}}\ \mbox{\hyperlink{classph_1_1math_1_1_t_chromatic_adaptation_definition_3_01_e_chromatic_adaptation_1_1_bradford_00_01_t_01_4_acd3c532f26c4772e5c439057c8f4505a}{getConeResponseToCIEXYZ}}()}
+\DoxyCodeLine{00130\ \ \ \ \ \{}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1math_1_1_t_matrix3}{TMatrix3<T>}}(\mbox{\hyperlink{namespaceph_1_1math_a8013bb719cc5f01bbf14efd7f05ae955}{Matrix3D}}(}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ \ 0.9869929054667121899,\ \ \ -\/0.14705425642099010066,\ \ 0.15996265166373123948,}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \ \ \ 0.43230526972339451002,\ \ \ 0.51836027153677753834,\ \ 0.049291228212855612148,}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ -\/0.0085286645751773312464,\ 0.040042821654084864313,\ 0.96848669578754998478));}
+\DoxyCodeLine{00135\ \ \ \ \ \}}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00137\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ \mbox{\hyperlink{namespaceph_1_1math_a9d9c64dd71192e59bad3d1a729ce7e68}{TTristimulusValues<T>}}\ \mbox{\hyperlink{classph_1_1math_1_1_t_chromatic_adaptation_definition_3_01_e_chromatic_adaptation_1_1_bradford_00_01_t_01_4_aa0a7468c1c0386503931f3248cd0ccc1}{adapt}}(}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_1_1math_a9d9c64dd71192e59bad3d1a729ce7e68}{TTristimulusValues<T>}}\&\ CIEXYZColor,}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_1_1math_ac8bbf5c13da6b60663011e0be1acb6c4}{EReferenceWhite}}\ \ \ \ \ \ \ \ srcRefWhite,}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_1_1math_ac8bbf5c13da6b60663011e0be1acb6c4}{EReferenceWhite}}\ \ \ \ \ \ \ \ dstRefWhite)}
+\DoxyCodeLine{00141\ \ \ \ \ \{}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ CATMatrix\ =\ \mbox{\hyperlink{namespaceph_1_1math_a7bf83fdc8c49c4fec93e35a91cb671ca}{create\_von\_kries\_linear\_CAT\_matrix<T>}}(}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ getCIEXYZToConeResponse(),}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ getConeResponseToCIEXYZ(),}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ srcRefWhite,}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ dstRefWhite);}
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ CATMatrix.multiplyVector(CIEXYZColor);}
+\DoxyCodeLine{00149\ \ \ \ \ \}}
+\DoxyCodeLine{00150\ \};}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00152\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00153\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1math_1_1_t_chromatic_adaptation_definition}{TChromaticAdaptationDefinition}}<\mbox{\hyperlink{namespaceph_1_1math_aeb6d400f8c4f85be266ab51b3cd65951}{EChromaticAdaptation}}::\mbox{\hyperlink{namespaceph_1_1math_aeb6d400f8c4f85be266ab51b3cd65951a68248943bdadb8d6c76e9d9c7dee38e8}{VonKries}},\ T>\ final}
+\DoxyCodeLine{00154\ \ \ \ \ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classph_1_1math_1_1_t_chromatic_adaptation_definition_helper}{TChromaticAdaptationDefinitionHelper}}<EChromaticAdaptation::VonKries>}
+\DoxyCodeLine{00155\ \{}
+\DoxyCodeLine{00156\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00157\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ \mbox{\hyperlink{classph_1_1math_1_1_t_matrix3}{TMatrix3<T>}}\ \mbox{\hyperlink{classph_1_1math_1_1_t_chromatic_adaptation_definition_3_01_e_chromatic_adaptation_1_1_von_kries_00_01_t_01_4_abc5967d3767ff39d4d6f0e8b93f86fbb}{getCIEXYZToConeResponse}}()}
+\DoxyCodeLine{00158\ \ \ \ \ \{}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1math_1_1_t_matrix3}{TMatrix3<T>}}(\mbox{\hyperlink{namespaceph_1_1math_a8013bb719cc5f01bbf14efd7f05ae955}{Matrix3D}}(}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \ \ \ 0.4002400,\ 0.7076000,\ -\/0.0808100,}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \ \ \ \ -\/0.2263000,\ 1.1653200,\ \ 0.0457000,}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \ \ \ \ \ 0.0000000,\ 0.0000000,\ \ 0.9182200));}
+\DoxyCodeLine{00163\ \ \ \ \ \}}
+\DoxyCodeLine{00164\ }
+\DoxyCodeLine{00165\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ \mbox{\hyperlink{classph_1_1math_1_1_t_matrix3}{TMatrix3<T>}}\ \mbox{\hyperlink{classph_1_1math_1_1_t_chromatic_adaptation_definition_3_01_e_chromatic_adaptation_1_1_von_kries_00_01_t_01_4_a477bdcf96bd3201508348e718d09fe23}{getConeResponseToCIEXYZ}}()}
+\DoxyCodeLine{00166\ \ \ \ \ \{}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1math_1_1_t_matrix3}{TMatrix3<T>}}(\mbox{\hyperlink{namespaceph_1_1math_a8013bb719cc5f01bbf14efd7f05ae955}{Matrix3D}}(}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ 1.8599363874558397422,\ -\/1.1293816185800914784,\ \ \ 0.21989740959619327624,}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ 0.36119143624176752624,\ 0.63881246328504213303,\ -\/0.0000063705968386570599758,}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \ \ \ \ 0,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 1.0890636230968613186));}
+\DoxyCodeLine{00171\ \ \ \ \ \}}
+\DoxyCodeLine{00172\ }
+\DoxyCodeLine{00173\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ \mbox{\hyperlink{namespaceph_1_1math_a9d9c64dd71192e59bad3d1a729ce7e68}{TTristimulusValues<T>}}\ \mbox{\hyperlink{classph_1_1math_1_1_t_chromatic_adaptation_definition_3_01_e_chromatic_adaptation_1_1_von_kries_00_01_t_01_4_a428172b427b61ae4c7da6d3e7d37a142}{adapt}}(}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_1_1math_a9d9c64dd71192e59bad3d1a729ce7e68}{TTristimulusValues<T>}}\&\ CIEXYZColor,}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_1_1math_ac8bbf5c13da6b60663011e0be1acb6c4}{EReferenceWhite}}\ \ \ \ \ \ \ \ srcRefWhite,}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_1_1math_ac8bbf5c13da6b60663011e0be1acb6c4}{EReferenceWhite}}\ \ \ \ \ \ \ \ dstRefWhite)}
+\DoxyCodeLine{00177\ \ \ \ \ \{}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ CATMatrix\ =\ \mbox{\hyperlink{namespaceph_1_1math_a7bf83fdc8c49c4fec93e35a91cb671ca}{create\_von\_kries\_linear\_CAT\_matrix<T>}}(}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \ \ \ \ getCIEXYZToConeResponse(),}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \ \ \ \ getConeResponseToCIEXYZ(),}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \ \ \ \ srcRefWhite,}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \ \ \ \ dstRefWhite);}
+\DoxyCodeLine{00183\ }
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ CATMatrix.multiplyVector(CIEXYZColor);}
+\DoxyCodeLine{00185\ \ \ \ \ \}}
+\DoxyCodeLine{00186\ \};}
+\DoxyCodeLine{00187\ }
+\DoxyCodeLine{00188\ \textcolor{comment}{//\ End\ Chromatic\ Adaptation\ Definitions}}
+\DoxyCodeLine{00189\ }
+\DoxyCodeLine{00190\ \textcolor{comment}{//\ Unspecified\ adaption\ configuration\ must\ not\ be\ a\ valid\ definition.}}
+\DoxyCodeLine{00191\ \textcolor{keyword}{static\_assert}(!CChromaticAdaptationDefinition<}
+\DoxyCodeLine{00192\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_chromatic_adaptation_definition}{TChromaticAdaptationDefinition<EChromaticAdaptation::Unspecified,\ ColorValue>}},\ \mbox{\hyperlink{namespaceph_1_1math_a49168cf166e251842d147b4817b81451}{ColorValue}}>);}
+\DoxyCodeLine{00193\ }
+\DoxyCodeLine{00194\ \textcolor{keyword}{template}<EChromaticAdaptation\ ALGORITHM,\ \textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00195\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{namespaceph_1_1math_a9d9c64dd71192e59bad3d1a729ce7e68}{TTristimulusValues<T>}}\ \mbox{\hyperlink{namespaceph_1_1math_a57a79918ca16800547722e927119aa60}{chromatic\_adapt}}(}
+\DoxyCodeLine{00196\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_1_1math_a9d9c64dd71192e59bad3d1a729ce7e68}{TTristimulusValues<T>}}\&\ srcCIEXYZColor,}
+\DoxyCodeLine{00197\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_1_1math_ac8bbf5c13da6b60663011e0be1acb6c4}{EReferenceWhite}}\ \ \ \ \ \ \ \ srcRefWhite,}
+\DoxyCodeLine{00198\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_1_1math_ac8bbf5c13da6b60663011e0be1acb6c4}{EReferenceWhite}}\ \ \ \ \ \ \ \ dstRefWhite)}
+\DoxyCodeLine{00199\ \{}
+\DoxyCodeLine{00200\ \ \ \ \ \textcolor{keyword}{using\ }ChromaticAdapter\ =\ \mbox{\hyperlink{classph_1_1math_1_1_t_chromatic_adaptation_definition}{TChromaticAdaptationDefinition<ALGORITHM,\ T>}};}
+\DoxyCodeLine{00201\ }
+\DoxyCodeLine{00202\ \ \ \ \ \textcolor{keyword}{static\_assert}(\mbox{\hyperlink{conceptph_1_1math_1_1_c_chromatic_adaptation_definition}{CChromaticAdaptationDefinition<ChromaticAdapter,\ T>}},}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}No\ definition\ for\ the\ specified\ chromatic\ adaptation\ ALGORITHM."{}});}
+\DoxyCodeLine{00204\ }
+\DoxyCodeLine{00205\ \ \ \ \ \textcolor{keywordflow}{return}\ ChromaticAdapter::adapt(srcCIEXYZColor,\ srcRefWhite,\ dstRefWhite);}
+\DoxyCodeLine{00206\ \}}
+\DoxyCodeLine{00207\ }
+\DoxyCodeLine{00208\ \}\textcolor{comment}{//\ end\ namespace\ ph::math}}
+
+\end{DoxyCode}

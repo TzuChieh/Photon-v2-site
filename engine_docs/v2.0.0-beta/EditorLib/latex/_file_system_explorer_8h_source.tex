@@ -1,0 +1,85 @@
+\doxysection{File\+System\+Explorer.\+h}
+\hypertarget{_file_system_explorer_8h_source}{}\label{_file_system_explorer_8h_source}\index{Source/EditorCore/FileSystemExplorer.h@{Source/EditorCore/FileSystemExplorer.h}}
+\mbox{\hyperlink{_file_system_explorer_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <DataIO/FileSystem/Path.h>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <Utility/TUniquePtrVector.h>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <Utility/TSpan.h>}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <optional>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <cstddef>}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph_1_1editor}{ph::editor}}}
+\DoxyCodeLine{00014\ \{}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1editor_1_1_file_system_directory_entry}{FileSystemDirectoryEntry}}\ final}
+\DoxyCodeLine{00019\ \{}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1editor_1_1_file_system_explorer}{FileSystemExplorer}};}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{comment}{//\ A\ dummy\ struct\ to\ prevent\ the\ entry\ from\ being\ constructed\ by\ others\ (ctors\ are\ public\ for}}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{comment}{//\ \`{}unique\_ptr`\ to\ access\ them)}}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{struct\ }CtorAccessToken}
+\DoxyCodeLine{00026\ \ \ \ \ \{\};}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00029\ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1_file_system_directory_entry_af345889549fcb65a4da45002c50eab3d}{FileSystemDirectoryEntry}}(\mbox{\hyperlink{classph_1_1editor_1_1_file_system_directory_entry}{FileSystemDirectoryEntry}}*\ parent,\ Path\ directoryPath,\ CtorAccessToken);}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1editor_1_1_file_system_directory_entry_a59d415bbf21fc14f255dfaad7505e7e5}{haveChildren}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00032\ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1_file_system_directory_entry}{FileSystemDirectoryEntry}}*\ \mbox{\hyperlink{classph_1_1editor_1_1_file_system_directory_entry_a93213e89789cef4689be7a03ac8bf39e}{getParent}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00033\ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1_file_system_directory_entry}{FileSystemDirectoryEntry}}*\ \mbox{\hyperlink{classph_1_1editor_1_1_file_system_directory_entry_a80b5c80331b81ce1e31d3eda4d9703b8}{getChild}}(std::size\_t\ childIndex)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00034\ \ \ \ \ std::size\_t\ \mbox{\hyperlink{classph_1_1editor_1_1_file_system_directory_entry_a2b7d448cda3cf4b61cf88070a8ca2783}{numChildren}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{const}\ Path\&\ \mbox{\hyperlink{classph_1_1editor_1_1_file_system_directory_entry_a9ee7e90449db2a6817804bf53cc4f778}{getDirectoryPath}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{const}\ std::string\&\ \mbox{\hyperlink{classph_1_1editor_1_1_file_system_directory_entry_a6c666c0fb9d6d75c0f866c2620e8c319}{getDirectoryName}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1editor_1_1_file_system_directory_entry_af345889549fcb65a4da45002c50eab3d}{FileSystemDirectoryEntry}}(\mbox{\hyperlink{classph_1_1editor_1_1_file_system_directory_entry}{FileSystemDirectoryEntry}}\&\&\ other)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1editor_1_1_file_system_directory_entry}{FileSystemDirectoryEntry}}\&\ operator\ =\ (\mbox{\hyperlink{classph_1_1editor_1_1_file_system_directory_entry}{FileSystemDirectoryEntry}}\&\&\ rhs)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordtype}{void}\ populateChildren();}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordtype}{void}\ removeChildren();}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1_file_system_directory_entry}{FileSystemDirectoryEntry}}*\ m\_parent;}
+\DoxyCodeLine{00046\ \ \ \ \ TUniquePtrVector<FileSystemDirectoryEntry>\ m\_children;}
+\DoxyCodeLine{00047\ \ \ \ \ Path\ m\_directoryPath;}
+\DoxyCodeLine{00048\ \ \ \ \ std::string\ m\_directoryName;}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordtype}{bool}\ m\_hasBeenPopulated;}
+\DoxyCodeLine{00050\ \};}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1editor_1_1_file_system_explorer}{FileSystemExplorer}}\ final}
+\DoxyCodeLine{00053\ \{}
+\DoxyCodeLine{00054\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00055\ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1_file_system_explorer_af90815f4850bc6912c0bf7220ed916a3}{FileSystemExplorer}}();}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ \ \ std::optional<std::size\_t>\ \mbox{\hyperlink{classph_1_1editor_1_1_file_system_explorer_a045c7a29797a87b460c3358f3534ef20}{addRootPath}}(\textcolor{keyword}{const}\ Path\&\ path);}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1_file_system_explorer_abb837a85d735aad6050f4c0d0423fffd}{setCurrentRootPath}}(std::size\_t\ rootPathIndex);}
+\DoxyCodeLine{00059\ \ \ \ \ TSpanView<Path>\ \mbox{\hyperlink{classph_1_1editor_1_1_file_system_explorer_a63a32841b8d57b6c0e5ee77655005211}{getRootPaths}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keyword}{const}\ Path\&\ \mbox{\hyperlink{classph_1_1editor_1_1_file_system_explorer_a19523e4c0373c4cb71fc48cdce9ecb84}{getCurrentRootPath}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1_file_system_directory_entry}{FileSystemDirectoryEntry}}*\ \mbox{\hyperlink{classph_1_1editor_1_1_file_system_explorer_ad2104b4291037df308ee8d28927e7417}{getCurrentDirectoryEntry}}();}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1_file_system_explorer_a0d4f38b524c49ffb3e0f9aef9128f64d}{expand}}(\mbox{\hyperlink{classph_1_1editor_1_1_file_system_directory_entry}{FileSystemDirectoryEntry}}*\ directoryEntry);}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1editor_1_1_file_system_explorer_a2a2e6f0387a5cbb1f29a2a3afd88cb9e}{collapse}}(\mbox{\hyperlink{classph_1_1editor_1_1_file_system_directory_entry}{FileSystemDirectoryEntry}}*\ directoryEntry);}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ \ \ std::vector<Path>\ \mbox{\hyperlink{classph_1_1editor_1_1_file_system_explorer_a0f0ad4f073459981da3217eaf05d024c}{makeItemListing}}(}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1_file_system_directory_entry}{FileSystemDirectoryEntry}}*\ directoryEntry,}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ withDirectories\ =\ \textcolor{keyword}{true})\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00079\ \ \ \ \ std::optional<std::size\_t>\ findRootPathIndex(\textcolor{keyword}{const}\ Path\&\ rootPath)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ \ \ std::vector<Path>\ m\_rootPaths;}
+\DoxyCodeLine{00082\ \ \ \ \ TUniquePtrVector<FileSystemDirectoryEntry>\ m\_rootDirectoryEntries;}
+\DoxyCodeLine{00083\ \ \ \ \ std::size\_t\ m\_currentRootIndex;}
+\DoxyCodeLine{00084\ \ \ \ \ \mbox{\hyperlink{classph_1_1editor_1_1_file_system_directory_entry}{FileSystemDirectoryEntry}}*\ m\_currentDirectoryEntry;}
+\DoxyCodeLine{00085\ \};}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \}\textcolor{comment}{//\ end\ namespace\ ph::editor}}
+
+\end{DoxyCode}

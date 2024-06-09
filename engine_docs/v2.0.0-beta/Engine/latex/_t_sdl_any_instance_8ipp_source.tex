@@ -1,0 +1,203 @@
+\doxysection{TSdl\+Any\+Instance.\+ipp}
+\hypertarget{_t_sdl_any_instance_8ipp_source}{}\label{_t_sdl_any_instance_8ipp_source}\index{Source/SDL/TSdlAnyInstance.ipp@{Source/SDL/TSdlAnyInstance.ipp}}
+\mbox{\hyperlink{_t_sdl_any_instance_8ipp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_sdl_any_instance_8h}{SDL/TSdlAnyInstance.h}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{traits_8h}{Utility/traits.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{utility_8h}{Utility/utility.h}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{sdl__traits_8h}{SDL/sdl\_traits.h}}"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{sdl__helpers_8h}{SDL/sdl\_helpers.h}}"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_sdl_class_8h}{SDL/Introspect/SdlClass.h}}"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_sdl_struct_8h}{SDL/Introspect/SdlStruct.h}}"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_sdl_function_8h}{SDL/Introspect/SdlFunction.h}}"{}}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <Common/assertion.h>}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00017\ \{}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{keyword}{template}<\textcolor{keywordtype}{bool}\ IS\_CONST>}
+\DoxyCodeLine{00020\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_t_sdl_any_instance_a47de546d8e25937c98fd8405129db0cd}{TSdlAnyInstance<IS\_CONST>::TSdlAnyInstance}}()}
+\DoxyCodeLine{00021\ \ \ \ \ :\ \mbox{\hyperlink{classph_1_1_t_sdl_any_instance}{TSdlAnyInstance}}(nullptr)}
+\DoxyCodeLine{00022\ \{\}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{keyword}{template}<\textcolor{keywordtype}{bool}\ IS\_CONST>}
+\DoxyCodeLine{00025\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_t_sdl_any_instance_a47de546d8e25937c98fd8405129db0cd}{TSdlAnyInstance<IS\_CONST>::TSdlAnyInstance}}(std::nullptr\_t\ \textcolor{comment}{/*\ instance\ */})}
+\DoxyCodeLine{00026\ \ \ \ \ :\ m\_instance()}
+\DoxyCodeLine{00027\ \ \ \ \ ,\ m\_meta()}
+\DoxyCodeLine{00028\ \{\}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{keyword}{template}<\textcolor{keywordtype}{bool}\ IS\_CONST>}
+\DoxyCodeLine{00031\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00032\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_t_sdl_any_instance_a47de546d8e25937c98fd8405129db0cd}{TSdlAnyInstance<IS\_CONST>::TSdlAnyInstance}}(T*\ \textcolor{keyword}{const}\ target)}
+\DoxyCodeLine{00033\ \ \ \ \ :\ \mbox{\hyperlink{classph_1_1_t_sdl_any_instance}{TSdlAnyInstance}}()}
+\DoxyCodeLine{00034\ \{}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{static\_assert}(\textcolor{keyword}{sizeof}(T)\ ==\ \textcolor{keyword}{sizeof}(T),}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Input\ must\ be\ a\ complete\ type."{}});}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(\mbox{\hyperlink{conceptph_1_1_c_derived}{CDerived<T,\ ISdlResource>}})}
+\DoxyCodeLine{00039\ \ \ \ \ \{}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \`{}T`\ may\ be\ const\ qualified;\ this\ automatically\ sets\ the\ right\ type\ (void\ pointer\ has}}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ lower\ rank\ in\ overload\ resolution)}}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ m\_instance\ =\ target;}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(target)}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ m\_meta\ =\ target-\/>getDynamicSdlClass();}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(\mbox{\hyperlink{conceptph_1_1_c_has_sdl_class_definition}{CHasSdlClassDefinition<T>}})}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ m\_meta\ =\ T::getSdlClass();}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00052\ \ \ \ \ \}}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(\mbox{\hyperlink{conceptph_1_1_c_has_sdl_struct_definition}{CHasSdlStructDefinition<T>}})}
+\DoxyCodeLine{00054\ \ \ \ \ \{}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \`{}T`\ may\ be\ const\ qualified;\ this\ automatically\ sets\ the\ right\ type}}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ m\_instance\ =\ target;}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ m\_meta\ =\ T::getSdlStruct();}
+\DoxyCodeLine{00059\ \ \ \ \ \}}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(\mbox{\hyperlink{conceptph_1_1_c_has_sdl_function_definition}{CHasSdlFunctionDefinition<T>}})}
+\DoxyCodeLine{00061\ \ \ \ \ \{}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \`{}T`\ may\ be\ const\ qualified;\ this\ automatically\ sets\ the\ right\ type}}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ m\_instance\ =\ target;}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ m\_meta\ =\ T::getSdlFunction();}
+\DoxyCodeLine{00066\ \ \ \ \ \}}
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00068\ \ \ \ \ \{}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ PH\_STATIC\_ASSERT\_DEPENDENT\_FALSE(T,}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Input\ is\ not\ a\ valid\ SDL\ target\ type\ (must\ be\ a\ SDL\ class/struct/function)."{}});}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Make\ sure\ every\ invalid\ \`{}T`\ also\ fail\ this\ concept}}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_assert}(!\mbox{\hyperlink{conceptph_1_1_c_sdl_instance}{CSdlInstance<T>}});}
+\DoxyCodeLine{00074\ \ \ \ \ \}}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{comment}{//\ Make\ sure\ every\ valid\ \`{}T`\ also\ satisfy\ this\ concept}}
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keyword}{static\_assert}(\mbox{\hyperlink{conceptph_1_1_c_sdl_instance}{CSdlInstance<T>}});}
+\DoxyCodeLine{00078\ \}}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \textcolor{keyword}{template}<\textcolor{keywordtype}{bool}\ IS\_CONST>}
+\DoxyCodeLine{00081\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00082\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}*\ \mbox{\hyperlink{classph_1_1_t_sdl_any_instance_a61433a680c88d952fff6fa7011670469}{TSdlAnyInstance<IS\_CONST>::get}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00083\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keyword}{using\ }ReturnType\ =\ std::conditional\_t<IS\_CONST,\ const\ T,\ T>;}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{comment}{//\ Only\ one\ of\ class,\ struct\ and\ function\ can\ exist\ (may\ all\ be\ null\ also)}}
+\DoxyCodeLine{00087\ \ \ \ \ PH\_ASSERT\_LE(}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ (getClass()\ !=\ \textcolor{keyword}{nullptr})\ +\ (getStruct()\ !=\ \textcolor{keyword}{nullptr})\ +\ (getFunction()\ !=\ \textcolor{keyword}{nullptr}),}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ 1);}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(\mbox{\hyperlink{conceptph_1_1_c_derived}{CDerived<T,\ ISdlResource>}})}
+\DoxyCodeLine{00092\ \ \ \ \ \{}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ ClassInstanceType*\ \textcolor{keyword}{const}\ instance\ =\ std::holds\_alternative<ClassInstanceType*>(m\_instance)}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ ?\ std::get<ClassInstanceType*>(m\_instance)\ :\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(instance)}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespaceph_1_1sdl_a591b5f6c3060f18a5452c2043d148fa6}{sdl::cast\_to<ReturnType>}}(instance);}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00099\ \ \ \ \ \}}
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(\mbox{\hyperlink{conceptph_1_1_c_has_sdl_struct_definition}{CHasSdlStructDefinition<T>}})}
+\DoxyCodeLine{00101\ \ \ \ \ \{}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(std::holds\_alternative<StructInstanceType*>(m\_instance))}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Ensure\ \`{}T`\ and\ stored\ instance\ are\ the\ same\ type\ before\ casting}}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(T::getSdlStruct()\ ==\ getStruct())}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ StructInstanceType*\ \textcolor{keyword}{const}\ instance\ =\ std::get<StructInstanceType*>(m\_instance);}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}ReturnType*\textcolor{keyword}{>}(instance);}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00111\ \ \ \ \ \}}
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(\mbox{\hyperlink{conceptph_1_1_c_has_sdl_function_definition}{CHasSdlFunctionDefinition<T>}})}
+\DoxyCodeLine{00113\ \ \ \ \ \{}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(std::holds\_alternative<StructInstanceType*>(m\_instance))}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Ensure\ \`{}T`\ and\ stored\ instance\ are\ the\ same\ type\ before\ casting}}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(T::getSdlFunction()\ ==\ getFunction())}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ StructInstanceType*\ \textcolor{keyword}{const}\ instance\ =\ std::get<StructInstanceType*>(m\_instance);}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}ReturnType*\textcolor{keyword}{>}(instance);}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00123\ \ \ \ \ \}}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}ReturnType*\textcolor{keyword}{>}(\textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00126\ \}}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \textcolor{keyword}{template}<\textcolor{keywordtype}{bool}\ IS\_CONST>}
+\DoxyCodeLine{00129\ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_sdl_class}{SdlClass}}*\ \mbox{\hyperlink{classph_1_1_t_sdl_any_instance_a26e19e41dc4ef43bc2f5e05d034afd3a}{TSdlAnyInstance<IS\_CONST>::getClass}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00130\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00131\ \ \ \ \ \textcolor{keywordflow}{return}\ std::holds\_alternative<const\ SdlClass*>(m\_meta)}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ ?\ std::get<const\ SdlClass*>(m\_meta)\ :\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00133\ \}}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00135\ \textcolor{keyword}{template}<\textcolor{keywordtype}{bool}\ IS\_CONST>}
+\DoxyCodeLine{00136\ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_sdl_struct}{SdlStruct}}*\ \mbox{\hyperlink{classph_1_1_t_sdl_any_instance_a2c2adf949c203e3ce9b7f9274c4297a3}{TSdlAnyInstance<IS\_CONST>::getStruct}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00137\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00138\ \ \ \ \ \textcolor{keywordflow}{return}\ std::holds\_alternative<const\ SdlStruct*>(m\_meta)}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ ?\ std::get<const\ SdlStruct*>(m\_meta)\ :\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00140\ \}}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00142\ \textcolor{keyword}{template}<\textcolor{keywordtype}{bool}\ IS\_CONST>}
+\DoxyCodeLine{00143\ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_sdl_function}{SdlFunction}}*\ \mbox{\hyperlink{classph_1_1_t_sdl_any_instance_a50d576217b2aff214e7c035a05819313}{TSdlAnyInstance<IS\_CONST>::getFunction}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00144\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00145\ \ \ \ \ \textcolor{keywordflow}{return}\ std::holds\_alternative<const\ SdlFunction*>(m\_meta)}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ ?\ std::get<const\ SdlFunction*>(m\_meta)\ :\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00147\ \}}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00149\ \textcolor{keyword}{template}<\textcolor{keywordtype}{bool}\ IS\_CONST>}
+\DoxyCodeLine{00150\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_t_sdl_any_instance_a4f6690daaa6e29e179f3c1f93ef04ea0}{TSdlAnyInstance<IS\_CONST>::isClass}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00151\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00152\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_meta.index()\ ==\ variant\_index\_of<const\ SdlClass*>(m\_meta);}
+\DoxyCodeLine{00153\ \}}
+\DoxyCodeLine{00154\ }
+\DoxyCodeLine{00155\ \textcolor{keyword}{template}<\textcolor{keywordtype}{bool}\ IS\_CONST>}
+\DoxyCodeLine{00156\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_t_sdl_any_instance_a223b4a78d2a94a5f4def4b5491dff5ba}{TSdlAnyInstance<IS\_CONST>::isStruct}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00157\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00158\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_meta.index()\ ==\ variant\_index\_of<const\ SdlStruct*>(m\_meta);}
+\DoxyCodeLine{00159\ \}}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00161\ \textcolor{keyword}{template}<\textcolor{keywordtype}{bool}\ IS\_CONST>}
+\DoxyCodeLine{00162\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_t_sdl_any_instance_a2c571c00f4f3705df6fe46b588d9db66}{TSdlAnyInstance<IS\_CONST>::isFunction}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00163\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00164\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_meta.index()\ ==\ variant\_index\_of<const\ SdlFunction*>(m\_meta);}
+\DoxyCodeLine{00165\ \}}
+\DoxyCodeLine{00166\ }
+\DoxyCodeLine{00167\ \textcolor{keyword}{template}<\textcolor{keywordtype}{bool}\ IS\_CONST>}
+\DoxyCodeLine{00168\ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_i_sdl_instantiable}{ISdlInstantiable}}*\ \mbox{\hyperlink{classph_1_1_t_sdl_any_instance_a2c16a470d7e61577274a198713aed346}{TSdlAnyInstance<IS\_CONST>::getInstantiable}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00169\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00170\ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ classIdx\ =\ variant\_index\_of<const\ SdlClass*,\ MetaType>();}
+\DoxyCodeLine{00171\ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ structIdx\ =\ variant\_index\_of<const\ SdlStruct*,\ MetaType>();}
+\DoxyCodeLine{00172\ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ functionIdx\ =\ variant\_index\_of<const\ SdlFunction*,\ MetaType>();}
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00174\ \ \ \ \ \textcolor{keywordflow}{switch}(m\_meta.index())}
+\DoxyCodeLine{00175\ \ \ \ \ \{}
+\DoxyCodeLine{00176\ \ \ \ \ \textcolor{keywordflow}{case}\ classIdx:\ \textcolor{keywordflow}{return}\ std::get<classIdx>(m\_meta);}
+\DoxyCodeLine{00177\ \ \ \ \ \textcolor{keywordflow}{case}\ structIdx:\ \textcolor{keywordflow}{return}\ std::get<structIdx>(m\_meta);}
+\DoxyCodeLine{00178\ \ \ \ \ \textcolor{keywordflow}{case}\ functionIdx:\ \textcolor{keywordflow}{return}\ std::get<functionIdx>(m\_meta);}
+\DoxyCodeLine{00179\ \ \ \ \ \textcolor{keywordflow}{default}:\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00180\ \ \ \ \ \}}
+\DoxyCodeLine{00181\ \}}
+\DoxyCodeLine{00182\ }
+\DoxyCodeLine{00183\ \textcolor{keyword}{template}<\textcolor{keywordtype}{bool}\ IS\_CONST>}
+\DoxyCodeLine{00184\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_t_sdl_any_instance}{TSdlAnyInstance<IS\_CONST>::operator}}\ bool\ ()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00185\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00186\ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ classInstanceIdx\ =\ variant\_index\_of<ClassInstanceType*,\ InstanceType>();}
+\DoxyCodeLine{00187\ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ structInstanceIdx\ =\ variant\_index\_of<StructInstanceType*,\ InstanceType>();}
+\DoxyCodeLine{00188\ }
+\DoxyCodeLine{00189\ \ \ \ \ \textcolor{keywordflow}{switch}(m\_instance.index())}
+\DoxyCodeLine{00190\ \ \ \ \ \{}
+\DoxyCodeLine{00191\ \ \ \ \ \textcolor{keywordflow}{case}\ classInstanceIdx:\ \textcolor{keywordflow}{return}\ std::get<classInstanceIdx>(m\_instance)\ !=\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00192\ \ \ \ \ \textcolor{keywordflow}{case}\ structInstanceIdx:\ \textcolor{keywordflow}{return}\ std::get<structInstanceIdx>(m\_instance)\ !=\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00193\ \ \ \ \ \textcolor{keywordflow}{default}:\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00194\ \ \ \ \ \}}
+\DoxyCodeLine{00195\ \}}
+\DoxyCodeLine{00196\ }
+\DoxyCodeLine{00197\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+
+\end{DoxyCode}

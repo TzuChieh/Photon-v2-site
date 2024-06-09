@@ -1,0 +1,80 @@
+\doxysection{Gamma\+Correction.\+h}
+\hypertarget{_gamma_correction_8h_source}{}\label{_gamma_correction_8h_source}\index{Source/Frame/Operator/GammaCorrection.h@{Source/Frame/Operator/GammaCorrection.h}}
+\mbox{\hyperlink{_gamma_correction_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_frame_operator_8h}{Frame/Operator/FrameOperator.h}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Core/Quantity/ColorSpace.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_vector3_8h}{Math/TVector3.h}}"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <Common/assertion.h>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <Common/primitive\_type.h>}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <cmath>}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00013\ \{}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_gamma_correction}{GammaCorrection}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classph_1_1_frame_operator}{FrameOperator}}}
+\DoxyCodeLine{00016\ \{}
+\DoxyCodeLine{00017\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classph_1_1_gamma_correction_a3f42905edf75d8f096ef68fbc58e1a8b}{GammaCorrection}}(real\ gamma);}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_gamma_correction_a85d8386178dd138af37316f96213b600}{operate}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_t_frame}{HdrRgbFrame}}\&\ srcFrame,\ \mbox{\hyperlink{classph_1_1_t_frame}{HdrRgbFrame}}*\ out\_dstFrame)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_gamma_correction_ae87dc7e301c1071de9f0dfc907a14e89}{useSrgbStandard}}(\textcolor{keywordtype}{bool}\ value);}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00025\ \ \ \ \ real\ m\_reciGamma;}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordtype}{bool}\ m\_useSrgbStandard;}
+\DoxyCodeLine{00027\ \};}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{comment}{//\ In-\/header\ Implementations:}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_gamma_correction_a3f42905edf75d8f096ef68fbc58e1a8b}{GammaCorrection::GammaCorrection}}(\textcolor{keyword}{const}\ real\ gamma)\ :}
+\DoxyCodeLine{00032\ \ \ \ \ m\_reciGamma(1.0\_r\ /\ gamma),\ m\_useSrgbStandard(true)}
+\DoxyCodeLine{00033\ \{\}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_gamma_correction_a85d8386178dd138af37316f96213b600}{GammaCorrection::operate}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_t_frame}{HdrRgbFrame}}\&\ srcFrame,\ \mbox{\hyperlink{classph_1_1_t_frame}{HdrRgbFrame}}*\ \textcolor{keyword}{const}\ out\_dstFrame)}
+\DoxyCodeLine{00036\ \{}
+\DoxyCodeLine{00037\ \ \ \ \ PH\_ASSERT(out\_dstFrame);}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \ \ out\_dstFrame-\/>\mbox{\hyperlink{classph_1_1_t_frame_ae7c8a68b09bb8a9ef7848ac483d9e289}{setSize}}(srcFrame.\mbox{\hyperlink{classph_1_1_t_frame_ad2b5ff4ddaf573ca769aa979bcf5a104}{getSizePx}}());}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordflow}{if}(m\_useSrgbStandard)}
+\DoxyCodeLine{00042\ \ \ \ \ \{}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ srcFrame.\mbox{\hyperlink{classph_1_1_t_frame_a413fc408c290db1fc546248b3fd98cae}{forEachPixel}}(}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ [\textcolor{keyword}{this},\ out\_dstFrame]}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ uint32\ x,\ \textcolor{keyword}{const}\ uint32\ y,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_arithmetic_array}{HdrRgbFrame::PixelType}}\&\ srcPixel)}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\ linearSrgb(srcPixel[0],\ srcPixel[1],\ srcPixel[2]);}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\ srgb\ =\ ColorSpace::linear\_sRGB\_to\_sRGB(linearSrgb);}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ out\_dstFrame-\/>\mbox{\hyperlink{classph_1_1_t_frame_aaf66a8a2b44e5336c87a2ff31ede16dc}{setPixel}}(x,\ y,\ \mbox{\hyperlink{classph_1_1math_1_1_t_arithmetic_array}{HdrRgbFrame::PixelType}}(\{srgb.\mbox{\hyperlink{classph_1_1math_1_1_t_vector3_a8d0eb557cecca2a3e07326c409b2c16b}{x}},\ srgb.\mbox{\hyperlink{classph_1_1math_1_1_t_vector3_a0a5f0880f6b82a8519416ca9a987818b}{y}},\ srgb.\mbox{\hyperlink{classph_1_1math_1_1_t_vector3_a34d51b9c12196175c8ad04c2cd9c59ec}{z}}\}));}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00052\ \ \ \ \ \}}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00054\ \ \ \ \ \{}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ srcFrame.\mbox{\hyperlink{classph_1_1_t_frame_a413fc408c290db1fc546248b3fd98cae}{forEachPixel}}(}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ [\textcolor{keyword}{this},\ out\_dstFrame]}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ uint32\ x,\ \textcolor{keyword}{const}\ uint32\ y,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_arithmetic_array}{HdrRgbFrame::PixelType}}\&\ pixel)}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\ rgb(}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::pow(pixel[0],\ m\_reciGamma),}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::pow(pixel[1],\ m\_reciGamma),}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::pow(pixel[2],\ m\_reciGamma));}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ out\_dstFrame-\/>\mbox{\hyperlink{classph_1_1_t_frame_aaf66a8a2b44e5336c87a2ff31ede16dc}{setPixel}}(x,\ y,\ \mbox{\hyperlink{classph_1_1math_1_1_t_arithmetic_array}{HdrRgbFrame::PixelType}}(\{rgb.\mbox{\hyperlink{classph_1_1math_1_1_t_vector3_a8d0eb557cecca2a3e07326c409b2c16b}{x}},\ rgb.\mbox{\hyperlink{classph_1_1math_1_1_t_vector3_a0a5f0880f6b82a8519416ca9a987818b}{y}},\ rgb.\mbox{\hyperlink{classph_1_1math_1_1_t_vector3_a34d51b9c12196175c8ad04c2cd9c59ec}{z}}\}));}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00066\ \ \ \ \ \}}
+\DoxyCodeLine{00067\ \}}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_gamma_correction_ae87dc7e301c1071de9f0dfc907a14e89}{GammaCorrection::useSrgbStandard}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ value)}
+\DoxyCodeLine{00070\ \{}
+\DoxyCodeLine{00071\ \ \ \ \ m\_useSrgbStandard\ =\ value;}
+\DoxyCodeLine{00072\ \}}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+
+\end{DoxyCode}

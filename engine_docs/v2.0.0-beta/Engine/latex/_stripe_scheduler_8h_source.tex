@@ -1,0 +1,99 @@
+\doxysection{Stripe\+Scheduler.\+h}
+\hypertarget{_stripe_scheduler_8h_source}{}\label{_stripe_scheduler_8h_source}\index{Source/Core/Scheduler/StripeScheduler.h@{Source/Core/Scheduler/StripeScheduler.h}}
+\mbox{\hyperlink{_stripe_scheduler_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_work_scheduler_8h}{Core/Scheduler/WorkScheduler.h}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{math_8h}{Math/math.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{constant_8h}{Math/constant.h}}"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <Common/assertion.h>}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00012\ \{}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_stripe_scheduler}{StripeScheduler}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classph_1_1_work_scheduler}{WorkScheduler}}}
+\DoxyCodeLine{00019\ \{}
+\DoxyCodeLine{00020\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00021\ \ \ \ \ \mbox{\hyperlink{classph_1_1_stripe_scheduler_a2d7cea70ec76e7e2707a0f4dfc04cd29}{StripeScheduler}}();}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ \ \ \mbox{\hyperlink{classph_1_1_stripe_scheduler_a2d7cea70ec76e7e2707a0f4dfc04cd29}{StripeScheduler}}(}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ std::size\_t\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ numWorkers,\ }
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_work_unit}{WorkUnit}}\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ totalWorkUnit);}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ \ \ \mbox{\hyperlink{classph_1_1_stripe_scheduler_a2d7cea70ec76e7e2707a0f4dfc04cd29}{StripeScheduler}}(}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ std::size\_t\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ numWorkers,\ }
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_work_unit}{WorkUnit}}\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ totalWorkUnit,}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceph_1_1math_1_1constant_a6399d62eb40c0ceee94dfcb7b77cb85c}{math::constant::AxisIndexType}}\ slicedAxis);}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00033\ \ \ \ \ \mbox{\hyperlink{namespaceph_1_1math_1_1constant_a6399d62eb40c0ceee94dfcb7b77cb85c}{math::constant::AxisIndexType}}\ m\_slicedAxis;}
+\DoxyCodeLine{00034\ \ \ \ \ std::size\_t\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_numScheduled;}
+\DoxyCodeLine{00035\ \ \ \ \ std::size\_t\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_sideLength;}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordtype}{void}\ scheduleOne(\mbox{\hyperlink{classph_1_1_work_unit}{WorkUnit}}*\ out\_workUnit)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00038\ \};}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{comment}{//\ In-\/header\ Implementations:}}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_stripe_scheduler_a2d7cea70ec76e7e2707a0f4dfc04cd29}{StripeScheduler::StripeScheduler}}()}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ :\ \mbox{\hyperlink{classph_1_1_work_scheduler}{WorkScheduler}}()}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \ \ ,\ m\_slicedAxis\ \ (0)}
+\DoxyCodeLine{00047\ \ \ \ \ ,\ m\_numScheduled(0)}
+\DoxyCodeLine{00048\ \ \ \ \ ,\ m\_sideLength\ \ (0)}
+\DoxyCodeLine{00049\ \{\}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_stripe_scheduler_a2d7cea70ec76e7e2707a0f4dfc04cd29}{StripeScheduler::StripeScheduler}}(}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ numWorkers,}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_work_unit}{WorkUnit}}\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ totalWorkUnit)}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \ \ :\ \mbox{\hyperlink{classph_1_1_stripe_scheduler}{StripeScheduler}}(}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ numWorkers,\ }
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ totalWorkUnit,}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ math::constant::Y\_AXIS)\textcolor{comment}{//\ default\ to\ slice\ Y\ as\ it\ is\ likely\ more\ cache\ friendly}}
+\DoxyCodeLine{00059\ \{\}}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_stripe_scheduler_a2d7cea70ec76e7e2707a0f4dfc04cd29}{StripeScheduler::StripeScheduler}}(}
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ numWorkers,}
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_work_unit}{WorkUnit}}\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ totalWorkUnit,}
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_1_1math_1_1constant_a6399d62eb40c0ceee94dfcb7b77cb85c}{math::constant::AxisIndexType}}\ slicedAxis)\ :}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ \ \ \mbox{\hyperlink{classph_1_1_work_scheduler}{WorkScheduler}}(numWorkers,\ totalWorkUnit),}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ \ m\_slicedAxis\ \ (slicedAxis),}
+\DoxyCodeLine{00069\ \ \ \ \ m\_numScheduled(0),}
+\DoxyCodeLine{00070\ \ \ \ \ m\_sideLength\ \ (static\_cast<\mbox{\hyperlink{namespacestd}{std}}::size\_t>(m\_totalWorkUnit.getRegion().getExtents()[slicedAxis]))}
+\DoxyCodeLine{00071\ \{\}}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ StripeScheduler::scheduleOne(\mbox{\hyperlink{classph_1_1_work_unit}{WorkUnit}}*\ \textcolor{keyword}{const}\ out\_workUnit)}
+\DoxyCodeLine{00074\ \{}
+\DoxyCodeLine{00075\ \ \ \ \ PH\_ASSERT(out\_workUnit);}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keywordflow}{if}(m\_numScheduled\ <\ \mbox{\hyperlink{classph_1_1_work_scheduler_add086a102f673f58dceefbc5029a9f2b}{m\_numWorkers}})}
+\DoxyCodeLine{00078\ \ \ \ \ \{}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ sideRange\ =\ \mbox{\hyperlink{namespaceph_1_1math_a830bc8cab76b0720b0756fce21828b3f}{math::ith\_evenly\_divided\_range}}(m\_numScheduled,\ m\_sideLength,\ \mbox{\hyperlink{classph_1_1_work_scheduler_add086a102f673f58dceefbc5029a9f2b}{m\_numWorkers}});}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d}{Region}}\ stripRegion\ =\ \mbox{\hyperlink{classph_1_1_work_scheduler_a4cd851df1c4ab76ec2b4c25cc2c6fabb}{m\_totalWorkUnit}}.\mbox{\hyperlink{classph_1_1_work_unit_a53dc72cbe5e24dca1167bf0190038700}{getRegion}}();}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ [minVertex,\ maxVertex]\ =\ stripRegion.\mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d_a7bd875b57b085f4a4091e97a248b1409}{getVertices}}();}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ minVertex[m\_slicedAxis]\ +=\ \textcolor{keyword}{static\_cast<}int64\textcolor{keyword}{>}(sideRange.first);}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ maxVertex[m\_slicedAxis]\ -\/=\ \textcolor{keyword}{static\_cast<}int64\textcolor{keyword}{>}(m\_sideLength\ -\/\ sideRange.second);}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ stripRegion.\mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d_a7db98a2355ad9850e96628a200db8f30}{setVertices}}(\{minVertex,\ maxVertex\});}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ *out\_workUnit\ =\ WorkUnit(stripRegion,\ \mbox{\hyperlink{classph_1_1_work_scheduler_a4cd851df1c4ab76ec2b4c25cc2c6fabb}{m\_totalWorkUnit}}.\mbox{\hyperlink{classph_1_1_work_unit_aec0b887d6fd90b599c0d507b63549ee8}{getDepth}}());}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ ++m\_numScheduled;}
+\DoxyCodeLine{00090\ \ \ \ \ \}}
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00092\ \ \ \ \ \{}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ *out\_workUnit\ =\ WorkUnit();}
+\DoxyCodeLine{00094\ \ \ \ \ \}}
+\DoxyCodeLine{00095\ \}}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+
+\end{DoxyCode}

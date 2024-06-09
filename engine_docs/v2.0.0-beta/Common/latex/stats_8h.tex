@@ -1,0 +1,91 @@
+\doxysection{Include/\+Common/stats.h File Reference}
+\hypertarget{stats_8h}{}\label{stats_8h}\index{Include/Common/stats.h@{Include/Common/stats.h}}
+{\ttfamily \#include $<$atomic$>$}\newline
+{\ttfamily \#include $<$chrono$>$}\newline
+{\ttfamily \#include $<$cstdint$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$string\+\_\+view$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structph_1_1detail_1_1stats_1_1_time_counter}{ph\+::detail\+::stats\+::\+Time\+Counter}}
+\item 
+struct \mbox{\hyperlink{structph_1_1detail_1_1stats_1_1_scoped_timer}{ph\+::detail\+::stats\+::\+Scoped\+Timer}}
+\item 
+class \mbox{\hyperlink{classph_1_1_timer_stats_report}{ph\+::\+Timer\+Stats\+Report}}
+\item 
+struct \mbox{\hyperlink{structph_1_1_timer_stats_report_1_1_time_record}{ph\+::\+Timer\+Stats\+Report\+::\+Time\+Record}}
+\item 
+struct \mbox{\hyperlink{structph_1_1_timer_stats_report_1_1_grouped_time_record}{ph\+::\+Timer\+Stats\+Report\+::\+Grouped\+Time\+Record}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespaceph}{ph}}
+\begin{DoxyCompactList}\small\item\em The root for all renderer implementations. \end{DoxyCompactList}\item 
+namespace \mbox{\hyperlink{namespaceph_1_1detail}{ph\+::detail}}
+\begin{DoxyCompactList}\small\item\em Implementation detail mainly for internal usages. \end{DoxyCompactList}\item 
+namespace \mbox{\hyperlink{namespaceph_1_1detail_1_1stats}{ph\+::detail\+::stats}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{stats_8h_adf074e0d45a43e9e0f116d607750cfe6}{PH\+\_\+\+DEFINE\+\_\+\+INLINE\+\_\+\+TIMER\+\_\+\+STAT}}(stat\+Name,  category\+Name)
+\item 
+\#define \mbox{\hyperlink{stats_8h_a7768484d52ccace7bf966fbf0bbbb415}{PH\+\_\+\+DEFINE\+\_\+\+INTERNAL\+\_\+\+TIMER\+\_\+\+STAT}}(stat\+Name,  category\+Name)
+\item 
+\#define \mbox{\hyperlink{stats_8h_a4c108dd4df518ee68ae37a84b3f5a9d7}{PH\+\_\+\+DEFINE\+\_\+\+EXTERNAL\+\_\+\+TIMER\+\_\+\+STAT}}(stat\+Name,  category\+Name)~ \mbox{\hyperlink{stats_8h_adf074e0d45a43e9e0f116d607750cfe6}{PH\+\_\+\+DEFINE\+\_\+\+INLINE\+\_\+\+TIMER\+\_\+\+STAT}}(stat\+Name, category\+Name)
+\item 
+\#define \mbox{\hyperlink{stats_8h_ae228d0466e32ce20a32baed6a76d1425}{PH\+\_\+\+SCOPED\+\_\+\+TIMER}}(stat\+Name)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{stats_8h_a4c108dd4df518ee68ae37a84b3f5a9d7}\index{stats.h@{stats.h}!PH\_DEFINE\_EXTERNAL\_TIMER\_STAT@{PH\_DEFINE\_EXTERNAL\_TIMER\_STAT}}
+\index{PH\_DEFINE\_EXTERNAL\_TIMER\_STAT@{PH\_DEFINE\_EXTERNAL\_TIMER\_STAT}!stats.h@{stats.h}}
+\doxysubsubsection{\texorpdfstring{PH\_DEFINE\_EXTERNAL\_TIMER\_STAT}{PH\_DEFINE\_EXTERNAL\_TIMER\_STAT}}
+{\footnotesize\ttfamily \label{stats_8h_a4c108dd4df518ee68ae37a84b3f5a9d7} 
+\#define PH\+\_\+\+DEFINE\+\_\+\+EXTERNAL\+\_\+\+TIMER\+\_\+\+STAT(\begin{DoxyParamCaption}\item[{}]{stat\+Name}{, }\item[{}]{category\+Name}{}\end{DoxyParamCaption})~ \mbox{\hyperlink{stats_8h_adf074e0d45a43e9e0f116d607750cfe6}{PH\+\_\+\+DEFINE\+\_\+\+INLINE\+\_\+\+TIMER\+\_\+\+STAT}}(stat\+Name, category\+Name)}
+
+\Hypertarget{stats_8h_adf074e0d45a43e9e0f116d607750cfe6}\index{stats.h@{stats.h}!PH\_DEFINE\_INLINE\_TIMER\_STAT@{PH\_DEFINE\_INLINE\_TIMER\_STAT}}
+\index{PH\_DEFINE\_INLINE\_TIMER\_STAT@{PH\_DEFINE\_INLINE\_TIMER\_STAT}!stats.h@{stats.h}}
+\doxysubsubsection{\texorpdfstring{PH\_DEFINE\_INLINE\_TIMER\_STAT}{PH\_DEFINE\_INLINE\_TIMER\_STAT}}
+{\footnotesize\ttfamily \label{stats_8h_adf074e0d45a43e9e0f116d607750cfe6} 
+\#define PH\+\_\+\+DEFINE\+\_\+\+INLINE\+\_\+\+TIMER\+\_\+\+STAT(\begin{DoxyParamCaption}\item[{}]{stat\+Name}{, }\item[{}]{category\+Name}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ inline\ ::ph::detail::stats::TimeCounter\&\ internal\_impl\_time\_counter\_access\_\#\#statName()\(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \{\(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ static\ ::ph::detail::stats::TimeCounter\ counter(\#statName,\ \#categoryName);\(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ counter;\(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{stats_8h_a7768484d52ccace7bf966fbf0bbbb415}\index{stats.h@{stats.h}!PH\_DEFINE\_INTERNAL\_TIMER\_STAT@{PH\_DEFINE\_INTERNAL\_TIMER\_STAT}}
+\index{PH\_DEFINE\_INTERNAL\_TIMER\_STAT@{PH\_DEFINE\_INTERNAL\_TIMER\_STAT}!stats.h@{stats.h}}
+\doxysubsubsection{\texorpdfstring{PH\_DEFINE\_INTERNAL\_TIMER\_STAT}{PH\_DEFINE\_INTERNAL\_TIMER\_STAT}}
+{\footnotesize\ttfamily \label{stats_8h_a7768484d52ccace7bf966fbf0bbbb415} 
+\#define PH\+\_\+\+DEFINE\+\_\+\+INTERNAL\+\_\+\+TIMER\+\_\+\+STAT(\begin{DoxyParamCaption}\item[{}]{stat\+Name}{, }\item[{}]{category\+Name}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{namespace}\(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \{\(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ PH\_DEFINE\_INLINE\_TIMER\_STAT(statName,\ categoryName);\(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{stats_8h_ae228d0466e32ce20a32baed6a76d1425}\index{stats.h@{stats.h}!PH\_SCOPED\_TIMER@{PH\_SCOPED\_TIMER}}
+\index{PH\_SCOPED\_TIMER@{PH\_SCOPED\_TIMER}!stats.h@{stats.h}}
+\doxysubsubsection{\texorpdfstring{PH\_SCOPED\_TIMER}{PH\_SCOPED\_TIMER}}
+{\footnotesize\ttfamily \label{stats_8h_ae228d0466e32ce20a32baed6a76d1425} 
+\#define PH\+\_\+\+SCOPED\+\_\+\+TIMER(\begin{DoxyParamCaption}\item[{}]{stat\+Name}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{structph_1_1detail_1_1stats_1_1_scoped_timer}{::ph::detail::stats::ScopedTimer}}\ internal\_impl\_scopedTimer\#\#statName(\(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ internal\_impl\_time\_counter\_access\_\#\#statName())}
+
+\end{DoxyCode}

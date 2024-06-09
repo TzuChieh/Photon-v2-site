@@ -1,0 +1,138 @@
+\doxysection{TMRSWResource.\+h}
+\hypertarget{_t_m_r_s_w_resource_8h_source}{}\label{_t_m_r_s_w_resource_8h_source}\index{Source/Utility/Concurrent/TMRSWResource.h@{Source/Utility/Concurrent/TMRSWResource.h}}
+\mbox{\hyperlink{_t_m_r_s_w_resource_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_i_no_copy_and_move_8h}{Utility/INoCopyAndMove.h}}"{}}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <type\_traits>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <mutex>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <shared\_mutex>}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00011\ \{}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00018\ \textcolor{comment}{//\ TODO:\ convenient\ getter\ and\ setter}}
+\DoxyCodeLine{00019\ \textcolor{comment}{//\ TODO:\ perfect\ forward\ readers,\ writers,\ and\ operations?}}
+\DoxyCodeLine{00020\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Resource>}
+\DoxyCodeLine{00021\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_t_m_r_s_w_resource}{TMRSWResource}}\ final\ :\ \textcolor{keyword}{private}\ \mbox{\hyperlink{classph_1_1_i_no_copy_and_move}{INoCopyAndMove}}}
+\DoxyCodeLine{00022\ \{}
+\DoxyCodeLine{00023\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Res>}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classph_1_1_t_m_r_s_w_resource_a69634c4c9347314da7e0053689cfd4f9}{TMRSWResource}}(Res\&\&\ resource);}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{comment}{//\ Performs\ reading\ operations\ on\ the\ resource.\ It\ is\ guaranteed\ no\ }}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{comment}{//\ writing\ operations\ are\ ongoing\ in\ the\ meantime.}}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Reader>}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_m_r_s_w_resource_a54ac304abf7df21ea8b4b001864be145}{read}}(Reader\ reader)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{comment}{//\ Performs\ writing\ operations\ on\ the\ resource.\ It\ is\ guaranteed\ no\ }}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{comment}{//\ reading\ operations\ are\ ongoing\ in\ the\ meantime.}}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Writer>}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_m_r_s_w_resource_a1e7364d3e650f938ecf20090e006bd05}{write}}(Writer\ writer);}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{comment}{//\ Similar\ to\ read(1)\ except\ that\ if\ the\ attempt\ failed,\ read\ operation}}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{comment}{//\ is\ not\ performed\ and\ false\ is\ returned.}}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Reader>}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_t_m_r_s_w_resource_ace89b7e2b90def7aff3c18a1d9df2a68}{tryRead}}(Reader\ reader)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{comment}{//\ Similar\ to\ write(1)\ except\ that\ if\ the\ attempt\ failed,\ write\ operation}}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{comment}{//\ is\ not\ performed\ and\ false\ is\ returned.}}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Writer>}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_t_m_r_s_w_resource_ae4045ea717b7621808e0d9e591ba0ad4}{tryWrite}}(Writer\ writer);}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{comment}{//\ Performs\ direct\ operations\ on\ the\ resource.\ The\ operations\ are\ }}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{comment}{//\ performed\ straightforwardly\ without\ any\ thread-\/safety\ measure.}}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Operation>}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_m_r_s_w_resource_aea9bd7ae0abf87a1fec0f441f9719724}{directCall}}(Operation\ operation);}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{comment}{//\ Note\ that\ the\ type\ contains\ mutex\ and\ should\ be\ non-\/copyable\ and}}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{comment}{//\ non-\/movable\ already,\ but\ the\ template\ constructor\ for\ stored\ resources}}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{comment}{//\ seems\ to\ fool\ some\ type\_traits\ functionalities\ (the\ INoCopyAndMove\ base}}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{comment}{//\ cannot\ help\ with\ the\ case\ of\ std::is\_move\_constructible\_v,\ it\ returns}}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{comment}{//\ true\ always\ in\ VS\ 15.9.34);}}
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{comment}{//\ made\ the\ copy\ and\ move\ requirements\ explicit\ by\ marking\ them\ as}}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{comment}{//\ deleted\ here,\ which\ will\ solve\ the\ issue\ (as\ these\ are\ better\ match}}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{comment}{//\ than\ templates).}}
+\DoxyCodeLine{00060\ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_m_r_s_w_resource_a8db498cdf499a91139e451b4fdc85a78}{TMRSWResource}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_t_m_r_s_w_resource}{TMRSWResource}}\&\ other)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00061\ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_m_r_s_w_resource}{TMRSWResource}}\&\ \mbox{\hyperlink{classph_1_1_t_m_r_s_w_resource_aa8527adcafed96c38007fa916736fc78}{operator\ =\ }}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_t_m_r_s_w_resource}{TMRSWResource}}\&\ rhs)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00062\ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_m_r_s_w_resource_ab51865821742f8208350467e7f5c881e}{TMRSWResource}}(\mbox{\hyperlink{classph_1_1_t_m_r_s_w_resource}{TMRSWResource}}\&\&\ other)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00063\ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_m_r_s_w_resource}{TMRSWResource}}\&\ \mbox{\hyperlink{classph_1_1_t_m_r_s_w_resource_aa8527adcafed96c38007fa916736fc78}{operator\ =\ }}(\mbox{\hyperlink{classph_1_1_t_m_r_s_w_resource}{TMRSWResource}}\&\&\ rhs)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keyword}{mutable}\ std::shared\_mutex\ m\_mutex;}
+\DoxyCodeLine{00067\ \ \ \ \ Resource\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_resource;}
+\DoxyCodeLine{00068\ \};}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \textcolor{comment}{//\ In-\/header\ Implementations:}}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Resource>}
+\DoxyCodeLine{00073\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Res>}
+\DoxyCodeLine{00074\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_t_m_r_s_w_resource_a69634c4c9347314da7e0053689cfd4f9}{TMRSWResource<Resource>::TMRSWResource}}(Res\&\&\ resource)\ :}
+\DoxyCodeLine{00075\ \ \ \ \ m\_mutex(),\ m\_resource(\mbox{\hyperlink{namespacestd}{std}}::forward<Res>(resource))}
+\DoxyCodeLine{00076\ \{\}}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Resource>}
+\DoxyCodeLine{00079\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Reader>}
+\DoxyCodeLine{00080\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_m_r_s_w_resource_a54ac304abf7df21ea8b4b001864be145}{TMRSWResource<Resource>::read}}(Reader\ reader)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00081\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00082\ \ \ \ \ std::shared\_lock\ lock(m\_mutex);}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \ \ \ \ reader(m\_resource);}
+\DoxyCodeLine{00085\ \}}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Resource>}
+\DoxyCodeLine{00088\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Writer>}
+\DoxyCodeLine{00089\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_m_r_s_w_resource_a1e7364d3e650f938ecf20090e006bd05}{TMRSWResource<Resource>::write}}(Writer\ writer)}
+\DoxyCodeLine{00090\ \{}
+\DoxyCodeLine{00091\ \ \ \ \ std::unique\_lock\ lock(m\_mutex);}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \ \ \ \ writer(m\_resource);}
+\DoxyCodeLine{00094\ \}}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Resource>}
+\DoxyCodeLine{00097\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Reader>}
+\DoxyCodeLine{00098\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_t_m_r_s_w_resource_ace89b7e2b90def7aff3c18a1d9df2a68}{TMRSWResource<Resource>::tryRead}}(Reader\ reader)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00099\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00100\ \ \ \ \ std::shared\_lock\ lock(m\_mutex,\ std::try\_to\_lock);}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keywordflow}{if}(lock.owns\_lock())}
+\DoxyCodeLine{00103\ \ \ \ \ \{}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ reader(m\_resource);}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00106\ \ \ \ \ \}}
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00108\ \ \ \ \ \{}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00110\ \ \ \ \ \}}
+\DoxyCodeLine{00111\ \}}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Resource>}
+\DoxyCodeLine{00114\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Writer>}
+\DoxyCodeLine{00115\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_t_m_r_s_w_resource_ae4045ea717b7621808e0d9e591ba0ad4}{TMRSWResource<Resource>::tryWrite}}(Writer\ writer)}
+\DoxyCodeLine{00116\ \{}
+\DoxyCodeLine{00117\ \ \ \ \ std::unique\_lock\ lock(m\_mutex,\ std::try\_to\_lock);}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{keywordflow}{if}(lock.owns\_lock())}
+\DoxyCodeLine{00120\ \ \ \ \ \{}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ writer(m\_resource);}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00123\ \ \ \ \ \}}
+\DoxyCodeLine{00124\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00125\ \ \ \ \ \{}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00127\ \ \ \ \ \}}
+\DoxyCodeLine{00128\ \}}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Resource>}
+\DoxyCodeLine{00131\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Operation>}
+\DoxyCodeLine{00132\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_m_r_s_w_resource_aea9bd7ae0abf87a1fec0f441f9719724}{TMRSWResource<Resource>::directCall}}(Operation\ operation)}
+\DoxyCodeLine{00133\ \{}
+\DoxyCodeLine{00134\ \ \ \ \ operation(m\_resource);}
+\DoxyCodeLine{00135\ \}}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00137\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+
+\end{DoxyCode}

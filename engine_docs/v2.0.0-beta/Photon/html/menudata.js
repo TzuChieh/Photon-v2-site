@@ -24,6 +24,6 @@
 */
 var menudata={children:[
 {text:"Home",url:"^https://tzuchieh.github.io/Photon-v2-site/engine_docs/v2.0.0-beta/Photon/html/index.html"},
-{text:"Components",url:"^https://tzuchieh.github.io/Photon-v2-site/engine_docs/v2.0.0-beta/Photon/html/db/d72/project_structure.html"},
+{text:"Components",url:"^https://tzuchieh.github.io/Photon-v2-site/engine_docs/v2.0.0-beta/Photon/html/main_project_structure.html"},
 {text:"Main Page",url:"index.html"},
 {text:"Related Pages",url:"pages.html"}]}

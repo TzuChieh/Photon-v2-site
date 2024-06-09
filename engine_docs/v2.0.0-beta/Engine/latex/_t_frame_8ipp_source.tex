@@ -1,0 +1,489 @@
+\doxysection{TFrame.\+ipp}
+\hypertarget{_t_frame_8ipp_source}{}\label{_t_frame_8ipp_source}\index{Source/Frame/TFrame.ipp@{Source/Frame/TFrame.ipp}}
+\mbox{\hyperlink{_t_frame_8ipp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_frame_8h}{Frame/TFrame.h}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_vector3_8h}{Math/TVector3.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_vector2_8h}{Math/TVector2.h}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{math_8h}{Math/math.h}}"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <Common/assertion.h>}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <limits>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <type\_traits>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <concepts>}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00017\ \{}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{keyword}{namespace\ }frame\_detail}
+\DoxyCodeLine{00020\ \{}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Func,\ \textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00023\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptph_1_1frame__detail_1_1_c_is_get_pixel_op}{CIsGetPixelOp}}\ =\ \textcolor{keyword}{requires}\ (Func\ func,\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classph_1_1_t_frame_a011971270bfecfc36862f4ef56955ed2}{TFrame<T,\ N>::PixelType}}\ pixel)}
+\DoxyCodeLine{00024\ \{}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{comment}{//\ Requires\ returning\ \`{}void`-\/-\/to\ disambiguate\ with\ set\ ops}}
+\DoxyCodeLine{00026\ \ \ \ \ \{\ func(pixel)\ \}\ -\/>\ std::same\_as<void>;}
+\DoxyCodeLine{00027\ \};}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Func,\ \textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00030\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptph_1_1frame__detail_1_1_c_is_get_pixel_with_coords_op}{CIsGetPixelWithCoordsOp}}\ =\ \textcolor{keyword}{requires}\ (Func\ func,\ uint32\ x,\ uint32\ y,\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classph_1_1_t_frame_a011971270bfecfc36862f4ef56955ed2}{TFrame<T,\ N>::PixelType}}\ pixel)}
+\DoxyCodeLine{00031\ \{}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{comment}{//\ Requires\ returning\ \`{}void`-\/-\/to\ disambiguate\ with\ set\ ops}}
+\DoxyCodeLine{00033\ \ \ \ \ \{\ func(x,\ y,\ pixel)\ \}\ -\/>\ std::same\_as<void>;}
+\DoxyCodeLine{00034\ \};}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Func,\ \textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00037\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptph_1_1frame__detail_1_1_c_is_set_pixel_op}{CIsSetPixelOp}}\ =\ \textcolor{keyword}{requires}\ (Func\ func)}
+\DoxyCodeLine{00038\ \{}
+\DoxyCodeLine{00039\ \ \ \ \ \{\ func()\ \}\ -\/>\ std::convertible\_to<typename\ TFrame<T,\ N>::PixelType>;}
+\DoxyCodeLine{00040\ \};}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Func,\ \textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00043\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptph_1_1frame__detail_1_1_c_is_set_pixel_with_coords_op}{CIsSetPixelWithCoordsOp}}\ =\ \textcolor{keyword}{requires}\ (Func\ func,\ uint32\ x,\ uint32\ y)}
+\DoxyCodeLine{00044\ \{}
+\DoxyCodeLine{00045\ \ \ \ \ \{\ func(x,\ y)\ \}\ -\/>\ std::convertible\_to<typename\ TFrame<T,\ N>::PixelType>;}
+\DoxyCodeLine{00046\ \};}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Func,\ \textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00049\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptph_1_1frame__detail_1_1_c_is_get_and_set_pixel_op}{CIsGetAndSetPixelOp}}\ =\ \textcolor{keyword}{requires}\ (Func\ func,\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classph_1_1_t_frame_a011971270bfecfc36862f4ef56955ed2}{TFrame<T,\ N>::PixelType}}\ pixel)}
+\DoxyCodeLine{00050\ \{}
+\DoxyCodeLine{00051\ \ \ \ \ \{\ func(pixel)\ \}\ -\/>\ std::convertible\_to<typename\ TFrame<T,\ N>::PixelType>;}
+\DoxyCodeLine{00052\ \};}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Func,\ \textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00055\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptph_1_1frame__detail_1_1_c_is_get_and_set_pixel_with_coords_op}{CIsGetAndSetPixelWithCoordsOp}}\ =\ \textcolor{keyword}{requires}\ (Func\ func,\ uint32\ x,\ uint32\ y,\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classph_1_1_t_frame_a011971270bfecfc36862f4ef56955ed2}{TFrame<T,\ N>::PixelType}}\ pixel)}
+\DoxyCodeLine{00056\ \{}
+\DoxyCodeLine{00057\ \ \ \ \ \{\ func(x,\ y,\ pixel)\ \}\ -\/>\ std::convertible\_to<typename\ TFrame<T,\ N>::PixelType>;}
+\DoxyCodeLine{00058\ \};}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \}\textcolor{comment}{//\ end\ namespace\ frame\_detail}}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00063\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ U>}
+\DoxyCodeLine{00064\ \textcolor{keyword}{inline}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classph_1_1_t_frame}{TFrame<T,\ N>::template}}\ \mbox{\hyperlink{classph_1_1math_1_1_t_arithmetic_array}{TPixelType<U>}}\ \mbox{\hyperlink{classph_1_1_t_frame_a6ca527800362b03ad8744272194ee185}{TFrame<T,\ N>::makeMonochromaticPixel}}(\textcolor{keyword}{const}\ U\ value)}
+\DoxyCodeLine{00065\ \{}
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1math_1_1_t_arithmetic_array}{TPixelType<U>}}(value);}
+\DoxyCodeLine{00067\ \}}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00070\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_t_frame_a4d4576141cf399e01733a3ca87fcb4e6}{TFrame<T,\ N>::TFrame}}()\ :}
+\DoxyCodeLine{00071\ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_frame}{TFrame}}(0,\ 0)}
+\DoxyCodeLine{00072\ \{\}}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00075\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_t_frame_a4d4576141cf399e01733a3ca87fcb4e6}{TFrame<T,\ N>::TFrame}}(\textcolor{keyword}{const}\ uint32\ wPx,\ \textcolor{keyword}{const}\ uint32\ hPx)\ :}
+\DoxyCodeLine{00076\ \ \ \ \ m\_widthPx\ \ (wPx),\ }
+\DoxyCodeLine{00077\ \ \ \ \ m\_heightPx\ (hPx),}
+\DoxyCodeLine{00078\ \ \ \ \ m\_pixelData(wPx\ *\ hPx\ *\ N,\ 0)}
+\DoxyCodeLine{00079\ \{\}}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00082\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_t_frame_a4d4576141cf399e01733a3ca87fcb4e6}{TFrame<T,\ N>::TFrame}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_t_frame}{TFrame}}\&\ other)\ :}
+\DoxyCodeLine{00083\ \ \ \ \ m\_widthPx\ \ (other.m\_widthPx),\ }
+\DoxyCodeLine{00084\ \ \ \ \ m\_heightPx\ (other.m\_heightPx),}
+\DoxyCodeLine{00085\ \ \ \ \ m\_pixelData(other.m\_pixelData)}
+\DoxyCodeLine{00086\ \{\}}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00089\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_t_frame_a4d4576141cf399e01733a3ca87fcb4e6}{TFrame<T,\ N>::TFrame}}(\mbox{\hyperlink{classph_1_1_t_frame}{TFrame}}\&\&\ other)\ noexcept\ :}
+\DoxyCodeLine{00090\ \ \ \ \ m\_widthPx\ \ (other.m\_widthPx),\ }
+\DoxyCodeLine{00091\ \ \ \ \ m\_heightPx\ (other.m\_heightPx),}
+\DoxyCodeLine{00092\ \ \ \ \ m\_pixelData(std::move(other.m\_pixelData))}
+\DoxyCodeLine{00093\ \{\}}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00096\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_frame_a9813ad98ff90fada402f296a34bd8d5d}{TFrame<T,\ N>::fill}}(\textcolor{keyword}{const}\ T\ value)}
+\DoxyCodeLine{00097\ \{}
+\DoxyCodeLine{00098\ \ \ \ \ std::fill(m\_pixelData.begin(),\ m\_pixelData.end(),\ value);}
+\DoxyCodeLine{00099\ \}}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00102\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_frame_a9813ad98ff90fada402f296a34bd8d5d}{TFrame<T,\ N>::fill}}(\textcolor{keyword}{const}\ T\ value,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d}{math::TAABB2D<uint32>}}\&\ region)}
+\DoxyCodeLine{00103\ \{}
+\DoxyCodeLine{00104\ \ \ \ \ PH\_ASSERT\_MSG(!region.\mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d_a4887bcbc3c7a3d375a06c93b880724d9}{isEmpty}}(),\ region.\mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d_a7b78880748c832ea0cf49be127292470}{toString}}());}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keyword}{const}\ uint32\ regionDataWidth\ =\ \textcolor{keyword}{static\_cast<}uint32\textcolor{keyword}{>}(N)\ *\ region.\mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d_a2f69c95543fdfbfd75445ee866671e20}{getWidth}}();}
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{keywordflow}{for}(uint32\ y\ =\ region.\mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d_ac78db088c8023b3e555759eff399110b}{getMinVertex}}().y();\ y\ <\ region.\mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d_a4df9f4984a7cfe372c16e2e16ad56326}{getMaxVertex}}().y();\ ++y)}
+\DoxyCodeLine{00108\ \ \ \ \ \{}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ offset\ =\ calcPixelDataBaseIndex(region.\mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d_ac78db088c8023b3e555759eff399110b}{getMinVertex}}().x(),\ y);}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ std::fill(}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ m\_pixelData.begin()\ +\ offset,}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ m\_pixelData.begin()\ +\ offset\ +\ regionDataWidth,}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ value);}
+\DoxyCodeLine{00115\ \ \ \ \ \}}
+\DoxyCodeLine{00116\ \}}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ \textcolor{comment}{//\ TODO:\ wrap\ mode}}
+\DoxyCodeLine{00119\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00120\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_frame_a7723a1cf39cd33c2f32268de02e85faf}{TFrame<T,\ N>::sample}}(}
+\DoxyCodeLine{00121\ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_frame}{TFrame}}\&\ sampled,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_math_function2_d}{math::TMathFunction2D<float64>}}\&\ kernel,\ \textcolor{keyword}{const}\ uint32\ kernelRadiusPx)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00122\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00123\ \ \ \ \ \textcolor{keywordflow}{if}(isEmpty()\ ||\ sampled.\mbox{\hyperlink{classph_1_1_t_frame_ae97b9356ec29f90e58fd70af856e4e71}{isEmpty}}()\ ||}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ kernelRadiusPx\ ==\ 0)}
+\DoxyCodeLine{00125\ \ \ \ \ \{}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ sampled.\mbox{\hyperlink{classph_1_1_t_frame_a9813ad98ff90fada402f296a34bd8d5d}{fill}}(0);}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00128\ \ \ \ \ \}}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ \ \ \ \ \textcolor{keywordflow}{for}(uint32\ y\ =\ 0;\ y\ <\ sampled.\mbox{\hyperlink{classph_1_1_t_frame_a159a201823ab57d7cb45a4fc8efcf4f0}{heightPx}}();\ ++y)}
+\DoxyCodeLine{00131\ \ \ \ \ \{}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(uint32\ x\ =\ 0;\ x\ <\ sampled.\mbox{\hyperlink{classph_1_1_t_frame_ab5d17e08684e85a4b644c1d678f0bd0c}{widthPx}}();\ ++x)}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{math::Vector2D}}\ samplePosPx(}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (x\ +\ 0.5)\ /\ sampled.\mbox{\hyperlink{classph_1_1_t_frame_ab5d17e08684e85a4b644c1d678f0bd0c}{widthPx}}()\ *\ widthPx(),}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (y\ +\ 0.5)\ /\ sampled.\mbox{\hyperlink{classph_1_1_t_frame_a159a201823ab57d7cb45a4fc8efcf4f0}{heightPx}}()\ *\ heightPx());}
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ compute\ filter\ bounds}}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{math::Vector2D}}\ filterMin(samplePosPx.\mbox{\hyperlink{classph_1_1math_1_1_t_vector_n_base_a8ef096d70a1bc8e75e4c7e7ae48e5b62}{sub}}(kernelRadiusPx));}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{math::Vector2D}}\ filterMax(samplePosPx.\mbox{\hyperlink{classph_1_1math_1_1_t_vector_n_base_ad58cdb9489c07d271045fb770b461eed}{add}}(kernelRadiusPx));}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ make\ filter\ bounds\ not\ to\ exceed\ frame\ bounds}}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ filterMin\ =\ filterMin.\mbox{\hyperlink{classph_1_1math_1_1_t_vector_n_base_ac8f6534906d279ce79b81ccfc4e615e0}{max}}(\mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{math::Vector2D}}(0,\ 0));}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ filterMax\ =\ filterMax.\mbox{\hyperlink{classph_1_1math_1_1_t_vector_n_base_a9d7c74ed57f9eb3b148e93aa58acc93d}{min}}(\mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{math::Vector2D}}(widthPx(),\ heightPx()));}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ PH\_ASSERT\_LE(filterMin.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_a03c5e56839820da78b52d2db0281f065}{x}}(),\ filterMax.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_a03c5e56839820da78b52d2db0281f065}{x}}());}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \ \ PH\_ASSERT\_LE(filterMin.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_af3065a5fa872cdb3f2291a84824d5d59}{y}}(),\ filterMax.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_af3065a5fa872cdb3f2291a84824d5d59}{y}}());}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ compute\ pixel\ index\ bounds}}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{math::TVector2<int64>}}\ x0y0(filterMin.\mbox{\hyperlink{classph_1_1math_1_1_t_vector_n_base_a8ef096d70a1bc8e75e4c7e7ae48e5b62}{sub}}(0.5).\mbox{\hyperlink{classph_1_1math_1_1_t_vector_n_base_aedee759eab6d4ba1fc96b4a110298baa}{ceil}}());}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{math::TVector2<int64>}}\ x1y1(filterMax.\mbox{\hyperlink{classph_1_1math_1_1_t_vector_n_base_a8ef096d70a1bc8e75e4c7e7ae48e5b62}{sub}}(0.5).\mbox{\hyperlink{classph_1_1math_1_1_t_vector_n_base_a4c60bc682281c483ba904ec377038f17}{floor}}());}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \ \ \ \ PH\_ASSERT(x0y0.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_a03c5e56839820da78b52d2db0281f065}{x}}()\ >=\ 0\ \&\&\ x0y0.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_af3065a5fa872cdb3f2291a84824d5d59}{y}}()\ >=\ 0\ \&\&}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ x1y1.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_a03c5e56839820da78b52d2db0281f065}{x}}()\ <\ widthPx()\ \&\&\ x1y1.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_af3065a5fa872cdb3f2291a84824d5d59}{y}}()\ <\ heightPx());}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_arithmetic_array}{TPixelType<float64>}}\ pixelSum\ \ =\ makeMonochromaticPixel<float64>(0);}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ float64\ weightSum\ =\ 0.0;}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(int64\ ky\ =\ x0y0.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_af3065a5fa872cdb3f2291a84824d5d59}{y}}();\ ky\ <=\ x1y1.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_af3065a5fa872cdb3f2291a84824d5d59}{y}}();\ ++ky)}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(int64\ kx\ =\ x0y0.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_a03c5e56839820da78b52d2db0281f065}{x}}();\ kx\ <=\ x1y1.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_a03c5e56839820da78b52d2db0281f065}{x}}();\ ++kx)}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ float64\ kernelX\ =\ (kx\ +\ 0.5)\ -\/\ samplePosPx.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_a03c5e56839820da78b52d2db0281f065}{x}}();}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ float64\ kernelY\ =\ (ky\ +\ 0.5)\ -\/\ samplePosPx.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_af3065a5fa872cdb3f2291a84824d5d59}{y}}();}
+\DoxyCodeLine{00164\ }
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_arithmetic_array}{PixelType}}\ pixel;}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ getPixel(\textcolor{keyword}{static\_cast<}uint32\textcolor{keyword}{>}(kx),\ \textcolor{keyword}{static\_cast<}uint32\textcolor{keyword}{>}(ky),\ \&pixel);}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ float64\ weight\ =\ kernel.\mbox{\hyperlink{classph_1_1math_1_1_t_math_function2_d_a94c24929715a60f68c3cc6f729e53a3e}{evaluate}}(kernelX,\ kernelY);}
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ i\ =\ 0;\ i\ <\ N;\ ++i)}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pixelSum[i]\ +=\ \textcolor{keyword}{static\_cast<}float64\textcolor{keyword}{>}(pixel[i]);}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ weightSum\ +=\ weight;}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\textcolor{comment}{//\ }}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \ \ \ \textcolor{comment}{//\ end\ for\ each\ pixel\ in\ kernel\ support}}
+\DoxyCodeLine{00176\ }
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_arithmetic_array}{PixelType}}\ sampledPixel;}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(weightSum\ >\ 0.0)}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ float64\ reciWeightSum\ =\ 1.0\ /\ weightSum;}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ i\ =\ 0;\ i\ <\ N;\ ++i)}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ float64\ sampledValue\ =\ pixelSum[i]\ *\ reciWeightSum;}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sampledValue\ =\ \mbox{\hyperlink{namespaceph_1_1math_a9e5d8a7a977115813ceeba3f0c00cbdb}{math::clamp}}(sampledValue,}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_cast<}float64\textcolor{keyword}{>}(std::numeric\_limits<T>::lowest()),}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_cast<}float64\textcolor{keyword}{>}(std::numeric\_limits<T>::max()));}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sampledPixel[i]\ =\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(sampledValue);}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sampledPixel\ =\ makeMonochromaticPixel(T(0));}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \ \ \ \ sampled.\mbox{\hyperlink{classph_1_1_t_frame_aaf66a8a2b44e5336c87a2ff31ede16dc}{setPixel}}(x,\ y,\ sampledPixel);}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \}\textcolor{comment}{//\ }}
+\DoxyCodeLine{00196\ \ \ \ \ \}\ \ \ \ \textcolor{comment}{//\ end\ for\ each\ pixel\ in\ sampled\ frame}}
+\DoxyCodeLine{00197\ \}}
+\DoxyCodeLine{00198\ }
+\DoxyCodeLine{00199\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00200\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_frame_acb9210ffa01b56f7c86509bd655bf902}{TFrame<T,\ N>::flipHorizontally}}()}
+\DoxyCodeLine{00201\ \{}
+\DoxyCodeLine{00202\ \ \ \ \ \textcolor{keyword}{const}\ uint32\ halfWidthPx\ =\ m\_widthPx\ /\ 2;}
+\DoxyCodeLine{00203\ }
+\DoxyCodeLine{00204\ \ \ \ \ \textcolor{keywordflow}{for}(uint32\ y\ =\ 0;\ y\ <\ m\_heightPx;\ ++y)}
+\DoxyCodeLine{00205\ \ \ \ \ \{}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(uint32\ x\ =\ 0;\ x\ <\ halfWidthPx;\ ++x)}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ leftPixelBegin\ \ =\ calcPixelDataBaseIndex(x,\ y);}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ rightPixelBegin\ =\ calcPixelDataBaseIndex(m\_widthPx\ -\/\ 1\ -\/\ x,\ y);}
+\DoxyCodeLine{00210\ }
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ i\ =\ 0;\ i\ <\ N;\ ++i)}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::swap(m\_pixelData[leftPixelBegin\ +\ i],\ m\_pixelData[rightPixelBegin\ +\ i]);}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00216\ \ \ \ \ \}}
+\DoxyCodeLine{00217\ \}}
+\DoxyCodeLine{00218\ }
+\DoxyCodeLine{00219\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00220\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_frame_ab5a18df82e52d31fe16aeea27245f3e9}{TFrame<T,\ N>::flipVertically}}()}
+\DoxyCodeLine{00221\ \{}
+\DoxyCodeLine{00222\ \ \ \ \ \textcolor{keyword}{const}\ uint32\ \ \ \ \ \ halfHeightPx\ \ \ =\ m\_heightPx\ /\ 2;}
+\DoxyCodeLine{00223\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ numRowElements\ =\ m\_widthPx\ *\ N;}
+\DoxyCodeLine{00224\ }
+\DoxyCodeLine{00225\ \ \ \ \ \textcolor{keywordflow}{for}(uint32\ y\ =\ 0;\ y\ <\ halfHeightPx;\ ++y)}
+\DoxyCodeLine{00226\ \ \ \ \ \{}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ bottomRowBegin\ =\ calcPixelDataBaseIndex(0,\ y);}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ topRowBegin\ \ \ \ =\ calcPixelDataBaseIndex(0,\ m\_heightPx\ -\/\ 1\ -\/\ y);}
+\DoxyCodeLine{00229\ }
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ i\ =\ 0;\ i\ <\ numRowElements;\ ++i)}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \ \ \ \ std::swap(m\_pixelData[bottomRowBegin\ +\ i],\ m\_pixelData[topRowBegin\ +\ i]);}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00234\ \ \ \ \ \}}
+\DoxyCodeLine{00235\ \}}
+\DoxyCodeLine{00236\ }
+\DoxyCodeLine{00237\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00238\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_frame_ae7c8a68b09bb8a9ef7848ac483d9e289}{TFrame<T,\ N>::setSize}}(\textcolor{keyword}{const}\ uint32\ wPx,\ \textcolor{keyword}{const}\ uint32\ hPx)}
+\DoxyCodeLine{00239\ \{}
+\DoxyCodeLine{00240\ \ \ \ \ m\_widthPx\ \ =\ wPx;}
+\DoxyCodeLine{00241\ \ \ \ \ m\_heightPx\ =\ hPx;}
+\DoxyCodeLine{00242\ \ \ \ \ m\_pixelData.resize(wPx\ *\ hPx\ *\ N);}
+\DoxyCodeLine{00243\ \}}
+\DoxyCodeLine{00244\ }
+\DoxyCodeLine{00245\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00246\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_frame_ae7c8a68b09bb8a9ef7848ac483d9e289}{TFrame<T,\ N>::setSize}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{math::TVector2<uint32>}}\&\ sizePx)}
+\DoxyCodeLine{00247\ \{}
+\DoxyCodeLine{00248\ \ \ \ \ setSize(sizePx.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_a03c5e56839820da78b52d2db0281f065}{x}}(),\ sizePx.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_af3065a5fa872cdb3f2291a84824d5d59}{y}}());}
+\DoxyCodeLine{00249\ \}}
+\DoxyCodeLine{00250\ }
+\DoxyCodeLine{00251\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00252\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ PerPixelOperation>}
+\DoxyCodeLine{00253\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_frame_a413fc408c290db1fc546248b3fd98cae}{TFrame<T,\ N>::forEachPixel}}(PerPixelOperation\ op)}
+\DoxyCodeLine{00254\ \{}
+\DoxyCodeLine{00255\ \ \ \ \ forEachPixel(\mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d}{math::TAABB2D<uint32>}}(\{0,\ 0\},\ \{m\_widthPx,\ m\_heightPx\}),\ std::move(op));}
+\DoxyCodeLine{00256\ \}}
+\DoxyCodeLine{00257\ }
+\DoxyCodeLine{00258\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00259\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ PerPixelOperation>}
+\DoxyCodeLine{00260\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_frame_a413fc408c290db1fc546248b3fd98cae}{TFrame<T,\ N>::forEachPixel}}(PerPixelOperation\ op)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00261\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00262\ \ \ \ \ forEachPixel(\mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d}{math::TAABB2D<uint32>}}(\{0,\ 0\},\ \{m\_widthPx,\ m\_heightPx\}),\ std::move(op));}
+\DoxyCodeLine{00263\ \}}
+\DoxyCodeLine{00264\ }
+\DoxyCodeLine{00265\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00266\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ PerPixelOperation>}
+\DoxyCodeLine{00267\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_frame_a413fc408c290db1fc546248b3fd98cae}{TFrame<T,\ N>::forEachPixel}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d}{math::TAABB2D<uint32>}}\&\ region,\ PerPixelOperation\ op)}
+\DoxyCodeLine{00268\ \{}
+\DoxyCodeLine{00269\ \ \ \ \ \textcolor{comment}{//\ OPT}}
+\DoxyCodeLine{00270\ }
+\DoxyCodeLine{00271\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_arithmetic_array}{PixelType}}\ pixel;}
+\DoxyCodeLine{00272\ \ \ \ \ \textcolor{keywordflow}{for}(uint32\ y\ =\ region.\mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d_ac78db088c8023b3e555759eff399110b}{getMinVertex}}().y();\ y\ <\ region.\mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d_a4df9f4984a7cfe372c16e2e16ad56326}{getMaxVertex}}().y();\ ++y)}
+\DoxyCodeLine{00273\ \ \ \ \ \{}
+\DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(uint32\ x\ =\ region.\mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d_ac78db088c8023b3e555759eff399110b}{getMinVertex}}().x();\ x\ <\ region.\mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d_a4df9f4984a7cfe372c16e2e16ad56326}{getMaxVertex}}().x();\ ++x)}
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ \ \ \ \ getPixel(x,\ y,\ \&pixel);}
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(\mbox{\hyperlink{conceptph_1_1frame__detail_1_1_c_is_get_pixel_op}{frame\_detail::CIsGetPixelOp<PerPixelOperation,\ T,\ N>}})}
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ op(pixel);}
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00282\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(\mbox{\hyperlink{conceptph_1_1frame__detail_1_1_c_is_get_pixel_with_coords_op}{frame\_detail::CIsGetPixelWithCoordsOp<PerPixelOperation,\ T,\ N>}})}
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00284\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ op(x,\ y,\ pixel);}
+\DoxyCodeLine{00285\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(\mbox{\hyperlink{conceptph_1_1frame__detail_1_1_c_is_set_pixel_op}{frame\_detail::CIsSetPixelOp<PerPixelOperation,\ T,\ N>}})}
+\DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00288\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ setPixel(x,\ y,\ op());}
+\DoxyCodeLine{00289\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00290\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(\mbox{\hyperlink{conceptph_1_1frame__detail_1_1_c_is_set_pixel_with_coords_op}{frame\_detail::CIsSetPixelWithCoordsOp<PerPixelOperation,\ T,\ N>}})}
+\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00292\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ setPixel(x,\ y,\ op(x,\ y));}
+\DoxyCodeLine{00293\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00294\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(\mbox{\hyperlink{conceptph_1_1frame__detail_1_1_c_is_get_and_set_pixel_op}{frame\_detail::CIsGetAndSetPixelOp<PerPixelOperation,\ T,\ N>}})}
+\DoxyCodeLine{00295\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00296\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ setPixel(x,\ y,\ op(pixel));}
+\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00298\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(\mbox{\hyperlink{conceptph_1_1frame__detail_1_1_c_is_get_and_set_pixel_with_coords_op}{frame\_detail::CIsGetAndSetPixelWithCoordsOp<PerPixelOperation,\ T,\ N>}})}
+\DoxyCodeLine{00299\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00300\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ setPixel(x,\ y,\ op(x,\ y,\ pixel));}
+\DoxyCodeLine{00301\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00302\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00303\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00304\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Unsupported\ per\ pixel\ operation}}
+\DoxyCodeLine{00305\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ PH\_ASSERT\_UNREACHABLE\_SECTION();}
+\DoxyCodeLine{00306\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00307\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00308\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00309\ \ \ \ \ \}}
+\DoxyCodeLine{00310\ \}}
+\DoxyCodeLine{00311\ }
+\DoxyCodeLine{00312\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00313\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ PerPixelOperation>}
+\DoxyCodeLine{00314\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_frame_a413fc408c290db1fc546248b3fd98cae}{TFrame<T,\ N>::forEachPixel}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d}{math::TAABB2D<uint32>}}\&\ region,\ PerPixelOperation\ op)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00315\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00316\ \ \ \ \ \textcolor{comment}{//\ OPT}}
+\DoxyCodeLine{00317\ }
+\DoxyCodeLine{00318\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_arithmetic_array}{PixelType}}\ pixel;}
+\DoxyCodeLine{00319\ \ \ \ \ \textcolor{keywordflow}{for}(uint32\ y\ =\ region.\mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d_ac78db088c8023b3e555759eff399110b}{getMinVertex}}().y();\ y\ <\ region.\mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d_a4df9f4984a7cfe372c16e2e16ad56326}{getMaxVertex}}().y();\ ++y)}
+\DoxyCodeLine{00320\ \ \ \ \ \{}
+\DoxyCodeLine{00321\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(uint32\ x\ =\ region.\mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d_ac78db088c8023b3e555759eff399110b}{getMinVertex}}().x();\ x\ <\ region.\mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d_a4df9f4984a7cfe372c16e2e16ad56326}{getMaxVertex}}().x();\ ++x)}
+\DoxyCodeLine{00322\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00323\ \ \ \ \ \ \ \ \ \ \ \ \ getPixel(x,\ y,\ \&pixel);}
+\DoxyCodeLine{00324\ }
+\DoxyCodeLine{00325\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(\mbox{\hyperlink{conceptph_1_1frame__detail_1_1_c_is_get_pixel_op}{frame\_detail::CIsGetPixelOp<PerPixelOperation,\ T,\ N>}})}
+\DoxyCodeLine{00326\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00327\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ op(pixel);}
+\DoxyCodeLine{00328\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00329\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(\mbox{\hyperlink{conceptph_1_1frame__detail_1_1_c_is_get_pixel_with_coords_op}{frame\_detail::CIsGetPixelWithCoordsOp<PerPixelOperation,\ T,\ N>}})}
+\DoxyCodeLine{00330\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00331\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ op(x,\ y,\ pixel);}
+\DoxyCodeLine{00332\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00333\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00334\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00335\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Unsupported\ per\ pixel\ operation}}
+\DoxyCodeLine{00336\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ PH\_ASSERT\_UNREACHABLE\_SECTION();}
+\DoxyCodeLine{00337\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00338\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00339\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00340\ \ \ \ \ \}}
+\DoxyCodeLine{00341\ \}}
+\DoxyCodeLine{00342\ }
+\DoxyCodeLine{00343\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00344\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1_t_frame_aef4963452da3dcee7e9373f3a30983ed}{TFrame<T,\ N>::getPixel}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{math::TVector2<uint32>}}\&\ coordPx)\ \textcolor{keyword}{const}}
+\DoxyCodeLine{00345\ \ \ \ \ -\/>\ \mbox{\hyperlink{classph_1_1math_1_1_t_arithmetic_array}{PixelType}}}
+\DoxyCodeLine{00346\ \{}
+\DoxyCodeLine{00347\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_arithmetic_array}{PixelType}}\ pixel;}
+\DoxyCodeLine{00348\ \ \ \ \ getPixel(coordPx.x(),\ coordPx.y(),\ \&pixel);}
+\DoxyCodeLine{00349\ \ \ \ \ \textcolor{keywordflow}{return}\ pixel;}
+\DoxyCodeLine{00350\ \}}
+\DoxyCodeLine{00351\ }
+\DoxyCodeLine{00352\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00353\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_frame_aef4963452da3dcee7e9373f3a30983ed}{TFrame<T,\ N>::getPixel}}(}
+\DoxyCodeLine{00354\ \ \ \ \ \textcolor{keyword}{const}\ uint32\ x,\ }
+\DoxyCodeLine{00355\ \ \ \ \ \textcolor{keyword}{const}\ uint32\ y,\ }
+\DoxyCodeLine{00356\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_arithmetic_array}{PixelType}}*\ \textcolor{keyword}{const}\ out\_pixel)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00357\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00358\ \ \ \ \ PH\_ASSERT(out\_pixel);}
+\DoxyCodeLine{00359\ }
+\DoxyCodeLine{00360\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ baseIndex\ =\ calcPixelDataBaseIndex(x,\ y);}
+\DoxyCodeLine{00361\ }
+\DoxyCodeLine{00362\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ i\ =\ 0;\ i\ <\ N;\ ++i)}
+\DoxyCodeLine{00363\ \ \ \ \ \{}
+\DoxyCodeLine{00364\ \ \ \ \ \ \ \ \ PH\_ASSERT\_LT(baseIndex\ +\ i,\ m\_pixelData.size());}
+\DoxyCodeLine{00365\ }
+\DoxyCodeLine{00366\ \ \ \ \ \ \ \ \ (*out\_pixel)[i]\ =\ m\_pixelData[baseIndex\ +\ i];}
+\DoxyCodeLine{00367\ \ \ \ \ \}}
+\DoxyCodeLine{00368\ \}}
+\DoxyCodeLine{00369\ }
+\DoxyCodeLine{00370\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00371\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_frame_aaf66a8a2b44e5336c87a2ff31ede16dc}{TFrame<T,\ N>::setPixel}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{math::TVector2<uint32>}}\&\ coordPx,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_arithmetic_array}{PixelType}}\&\ pixel)}
+\DoxyCodeLine{00372\ \{}
+\DoxyCodeLine{00373\ \ \ \ \ setPixel(coordPx.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_a03c5e56839820da78b52d2db0281f065}{x}}(),\ coordPx.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_af3065a5fa872cdb3f2291a84824d5d59}{y}}(),\ pixel);}
+\DoxyCodeLine{00374\ \}}
+\DoxyCodeLine{00375\ }
+\DoxyCodeLine{00376\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00377\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_frame_aaf66a8a2b44e5336c87a2ff31ede16dc}{TFrame<T,\ N>::setPixel}}(}
+\DoxyCodeLine{00378\ \ \ \ \ \textcolor{keyword}{const}\ uint32\ x,\ }
+\DoxyCodeLine{00379\ \ \ \ \ \textcolor{keyword}{const}\ uint32\ y,\ }
+\DoxyCodeLine{00380\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_arithmetic_array}{PixelType}}\&\ pixel)}
+\DoxyCodeLine{00381\ \{}
+\DoxyCodeLine{00382\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ baseIndex\ =\ calcPixelDataBaseIndex(x,\ y);}
+\DoxyCodeLine{00383\ }
+\DoxyCodeLine{00384\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ i\ =\ 0;\ i\ <\ N;\ ++i)}
+\DoxyCodeLine{00385\ \ \ \ \ \{}
+\DoxyCodeLine{00386\ \ \ \ \ \ \ \ \ PH\_ASSERT\_LT(baseIndex\ +\ i,\ m\_pixelData.size());}
+\DoxyCodeLine{00387\ }
+\DoxyCodeLine{00388\ \ \ \ \ \ \ \ \ m\_pixelData[baseIndex\ +\ i]\ =\ pixel[i];}
+\DoxyCodeLine{00389\ \ \ \ \ \}}
+\DoxyCodeLine{00390\ \}}
+\DoxyCodeLine{00391\ }
+\DoxyCodeLine{00392\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00393\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ std::size\_t\ \mbox{\hyperlink{classph_1_1_t_frame_aafaa069719243ac5dded6f8735a7b984}{TFrame<T,\ N>::numPixelComponents}}()\ const\ noexcept}
+\DoxyCodeLine{00394\ \{}
+\DoxyCodeLine{00395\ \ \ \ \ \textcolor{keywordflow}{return}\ N;}
+\DoxyCodeLine{00396\ \}}
+\DoxyCodeLine{00397\ }
+\DoxyCodeLine{00398\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00399\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{namespaceph_a5390437e1d7fd7d167c847677ea146e6}{TSpan<T>}}\ \mbox{\hyperlink{classph_1_1_t_frame_a1e40cd607beb3bc9d3998ae3c7ec5f30}{TFrame<T,\ N>::getPixelData}}()}
+\DoxyCodeLine{00400\ \{}
+\DoxyCodeLine{00401\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_pixelData;}
+\DoxyCodeLine{00402\ \}}
+\DoxyCodeLine{00403\ }
+\DoxyCodeLine{00404\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00405\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{namespaceph_a06c532bb78132f63638ec3ef52d46ff3}{TSpanView<T>}}\ \mbox{\hyperlink{classph_1_1_t_frame_a1e40cd607beb3bc9d3998ae3c7ec5f30}{TFrame<T,\ N>::getPixelData}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00406\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00407\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_pixelData;}
+\DoxyCodeLine{00408\ \}}
+\DoxyCodeLine{00409\ }
+\DoxyCodeLine{00410\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00411\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_frame_a690cebd4231842145c24cb5f32e3003c}{TFrame<T,\ N>::copyPixelData}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d}{math::TAABB2D<uint32>}}\&\ region,\ \mbox{\hyperlink{namespaceph_a5390437e1d7fd7d167c847677ea146e6}{TSpan<T>}}\ out\_data)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00412\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00413\ \ \ \ \ PH\_ASSERT\_MSG(!region.\mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d_a4887bcbc3c7a3d375a06c93b880724d9}{isEmpty}}(),\ region.\mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d_a7b78880748c832ea0cf49be127292470}{toString}}());}
+\DoxyCodeLine{00414\ }
+\DoxyCodeLine{00415\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ regionDataWidth\ =\ N\ *\ region.\mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d_a2f69c95543fdfbfd75445ee866671e20}{getWidth}}();}
+\DoxyCodeLine{00416\ \ \ \ \ \textcolor{keywordflow}{for}(uint32\ y\ =\ region.\mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d_ac78db088c8023b3e555759eff399110b}{getMinVertex}}().y();\ y\ <\ region.\mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d_a4df9f4984a7cfe372c16e2e16ad56326}{getMaxVertex}}().y();\ ++y)}
+\DoxyCodeLine{00417\ \ \ \ \ \{}
+\DoxyCodeLine{00418\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ srcOffset\ =\ calcPixelDataBaseIndex(region.\mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d_ac78db088c8023b3e555759eff399110b}{getMinVertex}}().x(),\ y);}
+\DoxyCodeLine{00419\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ dstOffset\ =\ (y\ -\/\ region.\mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b2_d_ac78db088c8023b3e555759eff399110b}{getMinVertex}}().y())\ *\ regionDataWidth;}
+\DoxyCodeLine{00420\ }
+\DoxyCodeLine{00421\ \ \ \ \ \ \ \ \ std::copy\_n(}
+\DoxyCodeLine{00422\ \ \ \ \ \ \ \ \ \ \ \ \ m\_pixelData.begin()\ +\ srcOffset,}
+\DoxyCodeLine{00423\ \ \ \ \ \ \ \ \ \ \ \ \ regionDataWidth,}
+\DoxyCodeLine{00424\ \ \ \ \ \ \ \ \ \ \ \ \ out\_data.begin()\ +\ dstOffset);}
+\DoxyCodeLine{00425\ \ \ \ \ \}}
+\DoxyCodeLine{00426\ \}}
+\DoxyCodeLine{00427\ }
+\DoxyCodeLine{00428\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00429\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{math::TVector2<uint32>}}\ \mbox{\hyperlink{classph_1_1_t_frame_ad2b5ff4ddaf573ca769aa979bcf5a104}{TFrame<T,\ N>::getSizePx}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00430\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00431\ \ \ \ \ \textcolor{keywordflow}{return}\ \{m\_widthPx,\ m\_heightPx\};}
+\DoxyCodeLine{00432\ \}}
+\DoxyCodeLine{00433\ }
+\DoxyCodeLine{00434\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00435\ \textcolor{keyword}{inline}\ uint32\ \mbox{\hyperlink{classph_1_1_t_frame_ab5d17e08684e85a4b644c1d678f0bd0c}{TFrame<T,\ N>::widthPx}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00436\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00437\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_widthPx;}
+\DoxyCodeLine{00438\ \}}
+\DoxyCodeLine{00439\ }
+\DoxyCodeLine{00440\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00441\ \textcolor{keyword}{inline}\ uint32\ \mbox{\hyperlink{classph_1_1_t_frame_a159a201823ab57d7cb45a4fc8efcf4f0}{TFrame<T,\ N>::heightPx}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00442\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00443\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_heightPx;}
+\DoxyCodeLine{00444\ \}}
+\DoxyCodeLine{00445\ }
+\DoxyCodeLine{00446\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00447\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_t_frame_ae97b9356ec29f90e58fd70af856e4e71}{TFrame<T,\ N>::isEmpty}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00448\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00449\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_pixelData.empty();}
+\DoxyCodeLine{00450\ \}}
+\DoxyCodeLine{00451\ }
+\DoxyCodeLine{00452\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00453\ \textcolor{keyword}{inline}\ std::size\_t\ \mbox{\hyperlink{classph_1_1_t_frame}{TFrame<T,\ N>::calcPixelDataBaseIndex}}(}
+\DoxyCodeLine{00454\ \ \ \ \ \textcolor{keyword}{const}\ uint32\ x,\ }
+\DoxyCodeLine{00455\ \ \ \ \ \textcolor{keyword}{const}\ uint32\ y)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00456\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00457\ \ \ \ \ PH\_ASSERT\_LT(x,\ m\_widthPx);}
+\DoxyCodeLine{00458\ \ \ \ \ PH\_ASSERT\_LT(y,\ m\_heightPx);}
+\DoxyCodeLine{00459\ }
+\DoxyCodeLine{00460\ \ \ \ \ \textcolor{keywordflow}{return}\ (y\ *\ \textcolor{keyword}{static\_cast<}std::size\_t\textcolor{keyword}{>}(m\_widthPx)\ +\ x)\ *\ N;}
+\DoxyCodeLine{00461\ \}}
+\DoxyCodeLine{00462\ }
+\DoxyCodeLine{00463\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00464\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_t_frame}{TFrame<T,\ N>}}\&\ \mbox{\hyperlink{classph_1_1_t_frame_ad516346130203c69d95fa4b5b73ac10c}{TFrame<T,\ N>::operator\ =\ }}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_t_frame}{TFrame}}\&\ rhs)}
+\DoxyCodeLine{00465\ \{}
+\DoxyCodeLine{00466\ \ \ \ \ m\_widthPx\ \ \ =\ rhs.m\_widthPx;}
+\DoxyCodeLine{00467\ \ \ \ \ m\_heightPx\ \ =\ rhs.m\_heightPx;}
+\DoxyCodeLine{00468\ \ \ \ \ m\_pixelData\ =\ rhs.m\_pixelData;}
+\DoxyCodeLine{00469\ }
+\DoxyCodeLine{00470\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00471\ \}}
+\DoxyCodeLine{00472\ }
+\DoxyCodeLine{00473\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00474\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1_t_frame}{TFrame<T,\ N>}}\&\ \mbox{\hyperlink{classph_1_1_t_frame_ad516346130203c69d95fa4b5b73ac10c}{TFrame<T,\ N>::operator\ =\ }}(\mbox{\hyperlink{classph_1_1_t_frame}{TFrame}}\&\&\ rhs)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00475\ \{}
+\DoxyCodeLine{00476\ \ \ \ \ m\_widthPx\ \ \ =\ rhs.m\_widthPx;}
+\DoxyCodeLine{00477\ \ \ \ \ m\_heightPx\ \ =\ rhs.m\_heightPx;}
+\DoxyCodeLine{00478\ \ \ \ \ m\_pixelData\ =\ std::move(rhs.m\_pixelData);}
+\DoxyCodeLine{00479\ }
+\DoxyCodeLine{00480\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00481\ \}}
+\DoxyCodeLine{00482\ }
+\DoxyCodeLine{00483\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+
+\end{DoxyCode}

@@ -1,0 +1,585 @@
+\doxysection{sdl\+\_\+helpers.\+ipp}
+\hypertarget{sdl__helpers_8ipp_source}{}\label{sdl__helpers_8ipp_source}\index{Source/SDL/sdl\_helpers.ipp@{Source/SDL/sdl\_helpers.ipp}}
+\mbox{\hyperlink{sdl__helpers_8ipp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{sdl__helpers_8h}{SDL/sdl\_helpers.h}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_vector2_8h}{Math/TVector2.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_vector3_8h}{Math/TVector3.h}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_vector4_8h}{Math/TVector4.h}}"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_quaternion_8h}{Math/TQuaternion.h}}"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_tokenizer_8h}{SDL/Tokenizer.h}}"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{sdl__traits_8h}{SDL/sdl\_traits.h}}"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{sdl__exceptions_8h}{SDL/sdl\_exceptions.h}}"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_i_sdl_resource_8h}{SDL/ISdlResource.h}}"{}}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <Common/assertion.h>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <Common/Utility/string\_utils.h>}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <type\_traits>}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ <exception>}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph_1_1sdl}{ph::sdl}}}
+\DoxyCodeLine{00021\ \{}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ FloatType>}
+\DoxyCodeLine{00024\ \textcolor{keyword}{inline}\ FloatType\ \mbox{\hyperlink{namespaceph_1_1sdl_a9e3a060577c496cabaee6d92c2c98743}{load\_float}}(std::string\_view\ sdlFloatStr)}
+\DoxyCodeLine{00025\ \{}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00027\ \ \ \ \ \{}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ string\_utils::parse\_float<FloatType>(sdlFloatStr);}
+\DoxyCodeLine{00029\ \ \ \ \ \}}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keywordflow}{catch}(\textcolor{keyword}{const}\ std::exception\&\ e)}
+\DoxyCodeLine{00031\ \ \ \ \ \{}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \mbox{\hyperlink{classph_1_1_sdl_load_error}{SdlLoadError}}(\textcolor{stringliteral}{"{}on\ loading\ floating-\/point\ value\ -\/>\ "{}}\ +\ std::string(e.what()));}
+\DoxyCodeLine{00033\ \ \ \ \ \}}
+\DoxyCodeLine{00034\ \}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ IntType>}
+\DoxyCodeLine{00037\ \textcolor{keyword}{inline}\ IntType\ \mbox{\hyperlink{namespaceph_1_1sdl_a37717f7c69b019e54ead1ad91a8d0dbe}{load\_int}}(std::string\_view\ sdlIntStr)}
+\DoxyCodeLine{00038\ \{}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00040\ \ \ \ \ \{}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ string\_utils::parse\_int<IntType>(sdlIntStr);}
+\DoxyCodeLine{00042\ \ \ \ \ \}}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordflow}{catch}(\textcolor{keyword}{const}\ std::exception\&\ e)}
+\DoxyCodeLine{00044\ \ \ \ \ \{}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \mbox{\hyperlink{classph_1_1_sdl_load_error}{SdlLoadError}}(\textcolor{stringliteral}{"{}on\ loading\ integer\ value\ -\/>\ "{}}\ +\ std::string(e.what()));}
+\DoxyCodeLine{00046\ \ \ \ \ \}}
+\DoxyCodeLine{00047\ \}}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ NumberType>}
+\DoxyCodeLine{00050\ \textcolor{keyword}{inline}\ NumberType\ \mbox{\hyperlink{namespaceph_1_1sdl_a5831dce38b7d1501ac2fbb3ce9e926f1}{load\_number}}(std::string\_view\ sdlNumberStr)}
+\DoxyCodeLine{00051\ \{}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(std::is\_floating\_point\_v<NumberType>)}
+\DoxyCodeLine{00053\ \ \ \ \ \{}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespaceph_1_1sdl_a9e3a060577c496cabaee6d92c2c98743}{load\_float<NumberType>}}(sdlNumberStr);}
+\DoxyCodeLine{00055\ \ \ \ \ \}}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00057\ \ \ \ \ \{}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_integral\_v<NumberType>);}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespaceph_1_1sdl_a37717f7c69b019e54ead1ad91a8d0dbe}{load\_int<NumberType>}}(sdlNumberStr);}
+\DoxyCodeLine{00061\ \ \ \ \ \}}
+\DoxyCodeLine{00062\ \}}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ NumberType,\ std::\textcolor{keywordtype}{size\_t}\ EXTENT>}
+\DoxyCodeLine{00065\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespaceph_1_1sdl_a5028c4172f60e7a6bece45c742f5b3dc}{load\_numbers}}(std::string\_view\ sdlNumbersStr,\ \mbox{\hyperlink{namespaceph_a5390437e1d7fd7d167c847677ea146e6}{TSpan<NumberType,\ EXTENT>}}\ out\_numbers)}
+\DoxyCodeLine{00066\ \{}
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_tokenizer}{Tokenizer}}\ tokenizer(\{\textcolor{charliteral}{'\ '},\ \textcolor{charliteral}{'\(\backslash\)t'},\ \textcolor{charliteral}{'\(\backslash\)n'},\ \textcolor{charliteral}{'\(\backslash\)r'}\},\ \{\});}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ N\ =\ out\_numbers.size();}
+\DoxyCodeLine{00070\ \ \ \ \ PH\_ASSERT\_GT(N,\ 0);}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00073\ \ \ \ \ \{}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ TODO:\ use\ view}}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ std::vector<std::string>\ tokens;}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ tokenizer.tokenize(std::string(sdlNumbersStr),\ tokens);}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ N\ input\ values\ form\ a\ N-\/tuple\ exactly}}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tokens.size()\ ==\ N)}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ ni\ =\ 0;\ ni\ <\ N;\ ++ni)}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ out\_numbers[ni]\ =\ \mbox{\hyperlink{namespaceph_1_1sdl_a5831dce38b7d1501ac2fbb3ce9e926f1}{load\_number<NumberType>}}(tokens[ni]);}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1\ input\ value\ results\ in\ the\ N-\/tuple\ filled\ with\ the\ same\ value}}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(tokens.size()\ ==\ 1)}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ std::fill(out\_numbers.begin(),\ out\_numbers.end(),\ \mbox{\hyperlink{namespaceph_1_1sdl_a5831dce38b7d1501ac2fbb3ce9e926f1}{load\_number<NumberType>}}(tokens[0]));}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ throw\_formatted<SdlLoadError>(}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}invalid\ number\ of\ tokens:\ \{\}"{}},\ tokens.size());}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00096\ \ \ \ \ \}}
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keywordflow}{catch}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_sdl_exception}{SdlException}}\&\ e)}
+\DoxyCodeLine{00098\ \ \ \ \ \{}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ throw\_formatted<SdlLoadError>(}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}on\ parsing\ \{\}-\/tuple\ -\/>\ \{\}"{}},\ out\_numbers.size(),\ e.whatStr());}
+\DoxyCodeLine{00101\ \ \ \ \ \}}
+\DoxyCodeLine{00102\ \}}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \textcolor{keyword}{inline}\ real\ \mbox{\hyperlink{namespaceph_1_1sdl_af2a28d686fe87a78317a319af22dc0fd}{load\_real}}(std::string\_view\ sdlRealStr)}
+\DoxyCodeLine{00105\ \{}
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespaceph_1_1sdl_a9e3a060577c496cabaee6d92c2c98743}{load\_float<real>}}(sdlRealStr);}
+\DoxyCodeLine{00107\ \}}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00109\ \textcolor{keyword}{inline}\ integer\ \mbox{\hyperlink{namespaceph_1_1sdl_a1fae33a0e0fdf54f446e35617bb4b597}{load\_integer}}(std::string\_view\ sdlIntegerStr)}
+\DoxyCodeLine{00110\ \{}
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespaceph_1_1sdl_a37717f7c69b019e54ead1ad91a8d0dbe}{load\_int<integer>}}(sdlIntegerStr);}
+\DoxyCodeLine{00112\ \}}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Element>}
+\DoxyCodeLine{00115\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{math::TVector2<Element>}}\ \mbox{\hyperlink{namespaceph_1_1sdl_ac704ce841b201bdfba09d9de148be541}{load\_vector2}}(std::string\_view\ sdlVec2Str)}
+\DoxyCodeLine{00116\ \{}
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00118\ \ \ \ \ \{}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{math::TVector2<Element>}}\ vec2;}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceph_1_1sdl_a5028c4172f60e7a6bece45c742f5b3dc}{load\_numbers}}(sdlVec2Str,\ vec2.\mbox{\hyperlink{classph_1_1math_1_1_t_vector_n_base_ab31fa7a608a3b3330e39351c0e7acf9e}{toSpan}}());}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ vec2;}
+\DoxyCodeLine{00122\ \ \ \ \ \}}
+\DoxyCodeLine{00123\ \ \ \ \ \textcolor{keywordflow}{catch}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_sdl_exception}{SdlException}}\&\ e)}
+\DoxyCodeLine{00124\ \ \ \ \ \{}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \mbox{\hyperlink{classph_1_1_sdl_load_error}{SdlLoadError}}(\textcolor{stringliteral}{"{}on\ parsing\ Vector2\ -\/>\ "{}}\ +\ e.whatStr());}
+\DoxyCodeLine{00126\ \ \ \ \ \}}
+\DoxyCodeLine{00127\ \}}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00129\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Element>}
+\DoxyCodeLine{00130\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::TVector3<Element>}}\ \mbox{\hyperlink{namespaceph_1_1sdl_af03426f0a098e040855dba998ee535d1}{load\_vector3}}(std::string\_view\ sdlVec3Str)}
+\DoxyCodeLine{00131\ \{}
+\DoxyCodeLine{00132\ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00133\ \ \ \ \ \{}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::TVector3<Element>}}\ vec3;}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceph_1_1sdl_a5028c4172f60e7a6bece45c742f5b3dc}{load\_numbers}}(sdlVec3Str,\ vec3.\mbox{\hyperlink{classph_1_1math_1_1_t_vector_n_base_ab31fa7a608a3b3330e39351c0e7acf9e}{toSpan}}());}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ vec3;}
+\DoxyCodeLine{00137\ \ \ \ \ \}}
+\DoxyCodeLine{00138\ \ \ \ \ \textcolor{keywordflow}{catch}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_sdl_exception}{SdlException}}\&\ e)}
+\DoxyCodeLine{00139\ \ \ \ \ \{}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \mbox{\hyperlink{classph_1_1_sdl_load_error}{SdlLoadError}}(\textcolor{stringliteral}{"{}on\ parsing\ Vector3\ -\/>\ "{}}\ +\ e.whatStr());}
+\DoxyCodeLine{00141\ \ \ \ \ \}}
+\DoxyCodeLine{00142\ \}}
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00144\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Element>}
+\DoxyCodeLine{00145\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector4}{math::TVector4<Element>}}\ \mbox{\hyperlink{namespaceph_1_1sdl_abcd078529ce321e6d16c92162d0d4d9b}{load\_vector4}}(std::string\_view\ sdlVec4Str)}
+\DoxyCodeLine{00146\ \{}
+\DoxyCodeLine{00147\ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00148\ \ \ \ \ \{}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector4}{math::TVector4<Element>}}\ vec4;}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceph_1_1sdl_a5028c4172f60e7a6bece45c742f5b3dc}{load\_numbers}}(sdlVec4Str,\ vec4.\mbox{\hyperlink{classph_1_1math_1_1_t_vector_n_base_ab31fa7a608a3b3330e39351c0e7acf9e}{toSpan}}());}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ vec4;}
+\DoxyCodeLine{00152\ \ \ \ \ \}}
+\DoxyCodeLine{00153\ \ \ \ \ \textcolor{keywordflow}{catch}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_sdl_exception}{SdlException}}\&\ e)}
+\DoxyCodeLine{00154\ \ \ \ \ \{}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \mbox{\hyperlink{classph_1_1_sdl_load_error}{SdlLoadError}}(\textcolor{stringliteral}{"{}on\ parsing\ Vector4\ -\/>\ "{}}\ +\ e.whatStr());}
+\DoxyCodeLine{00156\ \ \ \ \ \}}
+\DoxyCodeLine{00157\ \}}
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00159\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Element>}
+\DoxyCodeLine{00160\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1math_1_1_t_quaternion}{math::TQuaternion<Element>}}\ \mbox{\hyperlink{namespaceph_1_1sdl_aaafa8109cd34574601a048baba5f60fc}{load\_quaternion}}(std::string\_view\ sdlQuatStr)}
+\DoxyCodeLine{00161\ \{}
+\DoxyCodeLine{00162\ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00163\ \ \ \ \ \{}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_quaternion}{math::TQuaternion<Element>}}\ quat;}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceph_1_1sdl_a5028c4172f60e7a6bece45c742f5b3dc}{load\_numbers}}(sdlQuatStr,\ quat.\mbox{\hyperlink{classph_1_1math_1_1_t_arithmetic_array_base_ab31fa7a608a3b3330e39351c0e7acf9e}{toSpan}}());}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ quat;}
+\DoxyCodeLine{00167\ \ \ \ \ \}}
+\DoxyCodeLine{00168\ \ \ \ \ \textcolor{keywordflow}{catch}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_sdl_exception}{SdlException}}\&\ e)}
+\DoxyCodeLine{00169\ \ \ \ \ \{}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \mbox{\hyperlink{classph_1_1_sdl_load_error}{SdlLoadError}}(\textcolor{stringliteral}{"{}on\ parsing\ Quaternion\ -\/>\ "{}}\ +\ e.whatStr());}
+\DoxyCodeLine{00171\ \ \ \ \ \}}
+\DoxyCodeLine{00172\ \}}
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00174\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ NumberType>}
+\DoxyCodeLine{00175\ \textcolor{keyword}{inline}\ std::vector<NumberType>\ \mbox{\hyperlink{namespaceph_1_1sdl_ada40fc3c41de5db3040eb09afd0176db}{load\_number\_array}}(std::string\_view\ sdlNumberArrayStr)}
+\DoxyCodeLine{00176\ \{}
+\DoxyCodeLine{00177\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_tokenizer}{Tokenizer}}\ tokenizer(\{\textcolor{charliteral}{'\ '},\ \textcolor{charliteral}{'\(\backslash\)t'},\ \textcolor{charliteral}{'\(\backslash\)n'},\ \textcolor{charliteral}{'\(\backslash\)r'}\},\ \{\});}
+\DoxyCodeLine{00178\ }
+\DoxyCodeLine{00179\ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00180\ \ \ \ \ \{}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ TODO:\ use\ view}}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ std::vector<std::string>\ arrayTokens;}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ tokenizer.\mbox{\hyperlink{classph_1_1_tokenizer_a2e20d3458fae278b2d04142110cba83a}{tokenize}}(std::string(sdlNumberArrayStr),\ arrayTokens);}
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ std::vector<NumberType>\ numberArray(arrayTokens.size());}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ i\ =\ 0;\ i\ <\ numberArray.size();\ ++i)}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \ \ \ \ numberArray[i]\ =\ \mbox{\hyperlink{namespaceph_1_1sdl_a5831dce38b7d1501ac2fbb3ce9e926f1}{load\_number<NumberType>}}(arrayTokens[i]);}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00190\ }
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ numberArray;}
+\DoxyCodeLine{00192\ \ \ \ \ \}}
+\DoxyCodeLine{00193\ \ \ \ \ \textcolor{keywordflow}{catch}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_sdl_exception}{SdlException}}\&\ e)}
+\DoxyCodeLine{00194\ \ \ \ \ \{}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \mbox{\hyperlink{classph_1_1_sdl_load_error}{SdlLoadError}}(\textcolor{stringliteral}{"{}on\ parsing\ number\ array\ -\/>\ "{}}\ +\ e.whatStr());}
+\DoxyCodeLine{00196\ \ \ \ \ \}}
+\DoxyCodeLine{00197\ \}}
+\DoxyCodeLine{00198\ }
+\DoxyCodeLine{00199\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Element>}
+\DoxyCodeLine{00200\ \textcolor{keyword}{inline}\ std::vector<math::TVector3<Element>>\ \mbox{\hyperlink{namespaceph_1_1sdl_a5f4e3adb783f7ef607a9717cc757f646}{load\_vector3\_array}}(std::string\_view\ sdlVec3ArrayStr)}
+\DoxyCodeLine{00201\ \{}
+\DoxyCodeLine{00202\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_tokenizer}{Tokenizer}}\ tokenizer(\{\textcolor{charliteral}{'\ '},\ \textcolor{charliteral}{'\(\backslash\)t'},\ \textcolor{charliteral}{'\(\backslash\)n'},\ \textcolor{charliteral}{'\(\backslash\)r'}\},\ \{\{\textcolor{charliteral}{'"{}'},\ \textcolor{charliteral}{'"{}'}\}\});}
+\DoxyCodeLine{00203\ }
+\DoxyCodeLine{00204\ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00205\ \ \ \ \ \{}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ TODO:\ use\ view}}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ std::vector<std::string>\ vec3Tokens;}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ tokenizer.\mbox{\hyperlink{classph_1_1_tokenizer_a2e20d3458fae278b2d04142110cba83a}{tokenize}}(std::string(sdlVec3ArrayStr),\ vec3Tokens);}
+\DoxyCodeLine{00209\ }
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ std::vector<math::TVector3<Element>>\ vec3Array(vec3Tokens.size());}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ i\ =\ 0;\ i\ <\ vec3Array.size();\ ++i)}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \ \ \ \ vec3Array[i]\ =\ \mbox{\hyperlink{namespaceph_1_1sdl_af03426f0a098e040855dba998ee535d1}{load\_vector3<Element>}}(vec3Tokens[i]);}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00215\ }
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ vec3Array;}
+\DoxyCodeLine{00217\ \ \ \ \ \}}
+\DoxyCodeLine{00218\ \ \ \ \ \textcolor{keywordflow}{catch}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_sdl_exception}{SdlException}}\&\ e)}
+\DoxyCodeLine{00219\ \ \ \ \ \{}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \mbox{\hyperlink{classph_1_1_sdl_load_error}{SdlLoadError}}(\textcolor{stringliteral}{"{}on\ parsing\ Vector3\ array\ -\/>\ "{}}\ +\ e.whatStr());}
+\DoxyCodeLine{00221\ \ \ \ \ \}}
+\DoxyCodeLine{00222\ \}}
+\DoxyCodeLine{00223\ }
+\DoxyCodeLine{00224\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespaceph_1_1sdl_a9e6e2c38740b4bffe9015f7790c68035}{save\_real}}(\textcolor{keyword}{const}\ real\ value,\ std::string\&\ out\_str)}
+\DoxyCodeLine{00225\ \{}
+\DoxyCodeLine{00226\ \ \ \ \ \mbox{\hyperlink{namespaceph_1_1sdl_a9ccca4b44895cb70371ecda9b701492f}{save\_float<real>}}(value,\ out\_str);}
+\DoxyCodeLine{00227\ \}}
+\DoxyCodeLine{00228\ }
+\DoxyCodeLine{00229\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespaceph_1_1sdl_a5d9d055ebe129c5c616c647254364214}{save\_integer}}(\textcolor{keyword}{const}\ integer\ value,\ std::string\&\ out\_str)}
+\DoxyCodeLine{00230\ \{}
+\DoxyCodeLine{00231\ \ \ \ \ \mbox{\hyperlink{namespaceph_1_1sdl_a42a135abb3dc9d9bc0cb9431969bad61}{save\_int<integer>}}(value,\ out\_str);}
+\DoxyCodeLine{00232\ \}}
+\DoxyCodeLine{00233\ }
+\DoxyCodeLine{00234\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ FloatType>}
+\DoxyCodeLine{00235\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespaceph_1_1sdl_a9ccca4b44895cb70371ecda9b701492f}{save\_float}}(\textcolor{keyword}{const}\ FloatType\ value,\ std::string\&\ out\_str)}
+\DoxyCodeLine{00236\ \{}
+\DoxyCodeLine{00237\ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00238\ \ \ \ \ \{}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ string\_utils::stringify\_number(value,\ out\_str,\ 32);}
+\DoxyCodeLine{00240\ \ \ \ \ \}}
+\DoxyCodeLine{00241\ \ \ \ \ \textcolor{keywordflow}{catch}(\textcolor{keyword}{const}\ std::exception\&\ e)}
+\DoxyCodeLine{00242\ \ \ \ \ \{}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \mbox{\hyperlink{classph_1_1_sdl_save_error}{SdlSaveError}}(\textcolor{stringliteral}{"{}on\ saving\ floating-\/point\ value\ -\/>\ "{}}\ +\ std::string(e.what()));}
+\DoxyCodeLine{00244\ \ \ \ \ \}}
+\DoxyCodeLine{00245\ \}}
+\DoxyCodeLine{00246\ }
+\DoxyCodeLine{00247\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ IntType>}
+\DoxyCodeLine{00248\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespaceph_1_1sdl_a42a135abb3dc9d9bc0cb9431969bad61}{save\_int}}(\textcolor{keyword}{const}\ IntType\ value,\ std::string\&\ out\_str)}
+\DoxyCodeLine{00249\ \{}
+\DoxyCodeLine{00250\ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00251\ \ \ \ \ \{}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ string\_utils::stringify\_number(value,\ out\_str,\ 32);}
+\DoxyCodeLine{00253\ \ \ \ \ \}}
+\DoxyCodeLine{00254\ \ \ \ \ \textcolor{keywordflow}{catch}(\textcolor{keyword}{const}\ std::exception\&\ e)}
+\DoxyCodeLine{00255\ \ \ \ \ \{}
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \mbox{\hyperlink{classph_1_1_sdl_save_error}{SdlSaveError}}(\textcolor{stringliteral}{"{}on\ saving\ integer\ value\ -\/>\ "{}}\ +\ std::string(e.what()));}
+\DoxyCodeLine{00257\ \ \ \ \ \}}
+\DoxyCodeLine{00258\ \}}
+\DoxyCodeLine{00259\ }
+\DoxyCodeLine{00260\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ NumberType>}
+\DoxyCodeLine{00261\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespaceph_1_1sdl_a82205eb601393ffbd96f18659821e224}{save\_number}}(\textcolor{keyword}{const}\ NumberType\ value,\ std::string\&\ out\_str)}
+\DoxyCodeLine{00262\ \{}
+\DoxyCodeLine{00263\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(std::is\_floating\_point\_v<NumberType>)}
+\DoxyCodeLine{00264\ \ \ \ \ \{}
+\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceph_1_1sdl_a9ccca4b44895cb70371ecda9b701492f}{save\_float}}(value,\ out\_str);}
+\DoxyCodeLine{00266\ \ \ \ \ \}}
+\DoxyCodeLine{00267\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00268\ \ \ \ \ \{}
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_integral\_v<NumberType>);}
+\DoxyCodeLine{00270\ }
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceph_1_1sdl_a42a135abb3dc9d9bc0cb9431969bad61}{save\_int}}(value,\ out\_str);}
+\DoxyCodeLine{00272\ \ \ \ \ \}}
+\DoxyCodeLine{00273\ \}}
+\DoxyCodeLine{00274\ }
+\DoxyCodeLine{00275\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ NumberType,\ std::\textcolor{keywordtype}{size\_t}\ EXTENT>}
+\DoxyCodeLine{00276\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespaceph_1_1sdl_a899080c7add9cf3bc0a42c72d295ec3d}{save\_numbers}}(}
+\DoxyCodeLine{00277\ \ \ \ \ \mbox{\hyperlink{namespaceph_a06c532bb78132f63638ec3ef52d46ff3}{TSpanView<NumberType,\ EXTENT>}}\ numbers,}
+\DoxyCodeLine{00278\ \ \ \ \ std::string\&\ out\_str)}
+\DoxyCodeLine{00279\ \{}
+\DoxyCodeLine{00280\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ N\ =\ numbers.size();}
+\DoxyCodeLine{00281\ \ \ \ \ PH\_ASSERT\_GT(N,\ 0);}
+\DoxyCodeLine{00282\ }
+\DoxyCodeLine{00283\ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00284\ \ \ \ \ \{}
+\DoxyCodeLine{00285\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ all\ values\ are\ equal,\ we\ can\ save\ it\ as\ one\ value}}
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(std::equal(numbers.begin()\ +\ 1,\ numbers.end(),\ numbers.begin()))}
+\DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00288\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceph_1_1sdl_a82205eb601393ffbd96f18659821e224}{save\_number<NumberType>}}(numbers[0],\ out\_str);}
+\DoxyCodeLine{00289\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00290\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00292\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceph_1_1sdl_a82205eb601393ffbd96f18659821e224}{save\_number<NumberType>}}(numbers[0],\ out\_str);}
+\DoxyCodeLine{00293\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ ni\ =\ 1;\ ni\ <\ N;\ ++ni)}
+\DoxyCodeLine{00294\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00295\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ out\_str\ +=\ \textcolor{charliteral}{'\ '};}
+\DoxyCodeLine{00296\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceph_1_1sdl_a82205eb601393ffbd96f18659821e224}{save\_number<NumberType>}}(numbers[ni],\ out\_str);}
+\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00298\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00299\ \ \ \ \ \}}
+\DoxyCodeLine{00300\ \ \ \ \ \textcolor{keywordflow}{catch}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_sdl_exception}{SdlException}}\&\ e)}
+\DoxyCodeLine{00301\ \ \ \ \ \{}
+\DoxyCodeLine{00302\ \ \ \ \ \ \ \ \ throw\_formatted<SdlSaveError>(}
+\DoxyCodeLine{00303\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}on\ saving\ \{\}-\/tuple\ -\/>\ \{\}"{}},\ numbers.size(),\ e.whatStr());}
+\DoxyCodeLine{00304\ \ \ \ \ \}}
+\DoxyCodeLine{00305\ \}}
+\DoxyCodeLine{00306\ }
+\DoxyCodeLine{00307\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Element>}
+\DoxyCodeLine{00308\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespaceph_1_1sdl_ae7e3726272021e2f57471d5db6e1225f}{save\_vector2}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{math::TVector2<Element>}}\&\ value,\ std::string\&\ out\_str)}
+\DoxyCodeLine{00309\ \{}
+\DoxyCodeLine{00310\ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00311\ \ \ \ \ \{}
+\DoxyCodeLine{00312\ \ \ \ \ \ \ \ \ out\_str\ +=\ \textcolor{charliteral}{'"{}'};}
+\DoxyCodeLine{00313\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceph_1_1sdl_a899080c7add9cf3bc0a42c72d295ec3d}{save\_numbers}}(value.\mbox{\hyperlink{classph_1_1math_1_1_t_vector_n_base_a5acfe2ab947966811c66ec6241f7c723}{toView}}(),\ out\_str);}
+\DoxyCodeLine{00314\ \ \ \ \ \ \ \ \ out\_str\ +=\ \textcolor{charliteral}{'"{}'};}
+\DoxyCodeLine{00315\ \ \ \ \ \}}
+\DoxyCodeLine{00316\ \ \ \ \ \textcolor{keywordflow}{catch}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_sdl_exception}{SdlException}}\&\ e)}
+\DoxyCodeLine{00317\ \ \ \ \ \{}
+\DoxyCodeLine{00318\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \mbox{\hyperlink{classph_1_1_sdl_save_error}{SdlSaveError}}(\textcolor{stringliteral}{"{}on\ saving\ Vector2\ -\/>\ "{}}\ +\ e.whatStr());}
+\DoxyCodeLine{00319\ \ \ \ \ \}}
+\DoxyCodeLine{00320\ \}}
+\DoxyCodeLine{00321\ }
+\DoxyCodeLine{00322\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Element>}
+\DoxyCodeLine{00323\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespaceph_1_1sdl_a0cf13e1d78e73b5a2ec7fc5aa2d9c72a}{save\_vector3}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::TVector3<Element>}}\&\ value,\ std::string\&\ out\_str)}
+\DoxyCodeLine{00324\ \{}
+\DoxyCodeLine{00325\ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00326\ \ \ \ \ \{}
+\DoxyCodeLine{00327\ \ \ \ \ \ \ \ \ out\_str\ +=\ \textcolor{charliteral}{'"{}'};}
+\DoxyCodeLine{00328\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceph_1_1sdl_a899080c7add9cf3bc0a42c72d295ec3d}{save\_numbers}}(value.\mbox{\hyperlink{classph_1_1math_1_1_t_vector_n_base_a5acfe2ab947966811c66ec6241f7c723}{toView}}(),\ out\_str);}
+\DoxyCodeLine{00329\ \ \ \ \ \ \ \ \ out\_str\ +=\ \textcolor{charliteral}{'"{}'};}
+\DoxyCodeLine{00330\ \ \ \ \ \}}
+\DoxyCodeLine{00331\ \ \ \ \ \textcolor{keywordflow}{catch}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_sdl_exception}{SdlException}}\&\ e)}
+\DoxyCodeLine{00332\ \ \ \ \ \{}
+\DoxyCodeLine{00333\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \mbox{\hyperlink{classph_1_1_sdl_save_error}{SdlSaveError}}(\textcolor{stringliteral}{"{}on\ saving\ Vector3\ -\/>\ "{}}\ +\ e.whatStr());}
+\DoxyCodeLine{00334\ \ \ \ \ \}}
+\DoxyCodeLine{00335\ \}}
+\DoxyCodeLine{00336\ }
+\DoxyCodeLine{00337\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Element>}
+\DoxyCodeLine{00338\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespaceph_1_1sdl_a60fdde8ef6087daa0138880268f7a5d8}{save\_vector4}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector4}{math::TVector4<Element>}}\&\ value,\ std::string\&\ out\_str)}
+\DoxyCodeLine{00339\ \{}
+\DoxyCodeLine{00340\ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00341\ \ \ \ \ \{}
+\DoxyCodeLine{00342\ \ \ \ \ \ \ \ \ out\_str\ +=\ \textcolor{charliteral}{'"{}'};}
+\DoxyCodeLine{00343\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceph_1_1sdl_a899080c7add9cf3bc0a42c72d295ec3d}{save\_numbers}}(value.\mbox{\hyperlink{classph_1_1math_1_1_t_vector_n_base_a5acfe2ab947966811c66ec6241f7c723}{toView}}(),\ out\_str);}
+\DoxyCodeLine{00344\ \ \ \ \ \ \ \ \ out\_str\ +=\ \textcolor{charliteral}{'"{}'};}
+\DoxyCodeLine{00345\ \ \ \ \ \}}
+\DoxyCodeLine{00346\ \ \ \ \ \textcolor{keywordflow}{catch}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_sdl_exception}{SdlException}}\&\ e)}
+\DoxyCodeLine{00347\ \ \ \ \ \{}
+\DoxyCodeLine{00348\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \mbox{\hyperlink{classph_1_1_sdl_save_error}{SdlSaveError}}(\textcolor{stringliteral}{"{}on\ saving\ Vector4\ -\/>\ "{}}\ +\ e.whatStr());}
+\DoxyCodeLine{00349\ \ \ \ \ \}}
+\DoxyCodeLine{00350\ \}}
+\DoxyCodeLine{00351\ }
+\DoxyCodeLine{00352\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Element>}
+\DoxyCodeLine{00353\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespaceph_1_1sdl_a7cecd5c2054e41c552c39682b032744c}{save\_quaternion}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_quaternion}{math::TQuaternion<Element>}}\&\ value,\ std::string\&\ out\_str)}
+\DoxyCodeLine{00354\ \{}
+\DoxyCodeLine{00355\ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00356\ \ \ \ \ \{}
+\DoxyCodeLine{00357\ \ \ \ \ \ \ \ \ out\_str\ +=\ \textcolor{charliteral}{'"{}'};}
+\DoxyCodeLine{00358\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceph_1_1sdl_a899080c7add9cf3bc0a42c72d295ec3d}{save\_numbers}}(value.\mbox{\hyperlink{classph_1_1math_1_1_t_arithmetic_array_base_a5acfe2ab947966811c66ec6241f7c723}{toView}}(),\ out\_str);}
+\DoxyCodeLine{00359\ \ \ \ \ \ \ \ \ out\_str\ +=\ \textcolor{charliteral}{'"{}'};}
+\DoxyCodeLine{00360\ \ \ \ \ \}}
+\DoxyCodeLine{00361\ \ \ \ \ \textcolor{keywordflow}{catch}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_sdl_exception}{SdlException}}\&\ e)}
+\DoxyCodeLine{00362\ \ \ \ \ \{}
+\DoxyCodeLine{00363\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \mbox{\hyperlink{classph_1_1_sdl_save_error}{SdlSaveError}}(\textcolor{stringliteral}{"{}on\ saving\ Quaternion\ -\/>\ "{}}\ +\ e.whatStr());}
+\DoxyCodeLine{00364\ \ \ \ \ \}}
+\DoxyCodeLine{00365\ \}}
+\DoxyCodeLine{00366\ }
+\DoxyCodeLine{00367\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ NumberType>}
+\DoxyCodeLine{00368\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespaceph_1_1sdl_a3f644690a35bbaa5d03018d211a997fc}{save\_number\_array}}(\mbox{\hyperlink{namespaceph_a06c532bb78132f63638ec3ef52d46ff3}{TSpanView<NumberType>}}\ values,\ std::string\&\ out\_str)}
+\DoxyCodeLine{00369\ \{}
+\DoxyCodeLine{00370\ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00371\ \ \ \ \ \{}
+\DoxyCodeLine{00372\ \ \ \ \ \ \ \ \ out\_str\ +=\ \textcolor{charliteral}{'"{}'};}
+\DoxyCodeLine{00373\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceph_1_1sdl_a899080c7add9cf3bc0a42c72d295ec3d}{save\_numbers}}(values,\ out\_str);}
+\DoxyCodeLine{00374\ \ \ \ \ \ \ \ \ out\_str\ +=\ \textcolor{charliteral}{'"{}'};}
+\DoxyCodeLine{00375\ \ \ \ \ \}}
+\DoxyCodeLine{00376\ \ \ \ \ \textcolor{keywordflow}{catch}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_sdl_exception}{SdlException}}\&\ e)}
+\DoxyCodeLine{00377\ \ \ \ \ \{}
+\DoxyCodeLine{00378\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \mbox{\hyperlink{classph_1_1_sdl_save_error}{SdlSaveError}}(\textcolor{stringliteral}{"{}on\ saving\ number\ array\ -\/>\ "{}}\ +\ e.whatStr());}
+\DoxyCodeLine{00379\ \ \ \ \ \}}
+\DoxyCodeLine{00380\ \}}
+\DoxyCodeLine{00381\ }
+\DoxyCodeLine{00382\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Element>}
+\DoxyCodeLine{00383\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespaceph_1_1sdl_adfec1b1da9398d8749f5b401cd18de70}{save\_vector3\_array}}(\mbox{\hyperlink{namespaceph_a06c532bb78132f63638ec3ef52d46ff3}{TSpanView}}<\mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::TVector3<Element>}}>\ values,\ std::string\&\ out\_str)}
+\DoxyCodeLine{00384\ \{}
+\DoxyCodeLine{00385\ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00386\ \ \ \ \ \{}
+\DoxyCodeLine{00387\ \ \ \ \ \ \ \ \ out\_str\ +=\ \textcolor{charliteral}{'\{'};}
+\DoxyCodeLine{00388\ }
+\DoxyCodeLine{00389\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!values.empty())}
+\DoxyCodeLine{00390\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00391\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceph_1_1sdl_a0cf13e1d78e73b5a2ec7fc5aa2d9c72a}{save\_vector3}}(values[0],\ out\_str);}
+\DoxyCodeLine{00392\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00393\ }
+\DoxyCodeLine{00394\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ vi\ =\ 1;\ vi\ <\ values.size();\ ++vi)}
+\DoxyCodeLine{00395\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00396\ \ \ \ \ \ \ \ \ \ \ \ \ out\_str\ +=\ \textcolor{charliteral}{'\ '};}
+\DoxyCodeLine{00397\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceph_1_1sdl_a0cf13e1d78e73b5a2ec7fc5aa2d9c72a}{save\_vector3}}(values[vi],\ out\_str);}
+\DoxyCodeLine{00398\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00399\ }
+\DoxyCodeLine{00400\ \ \ \ \ \ \ \ \ out\_str\ +=\ \textcolor{charliteral}{'\}'};}
+\DoxyCodeLine{00401\ \ \ \ \ \}}
+\DoxyCodeLine{00402\ \ \ \ \ \textcolor{keywordflow}{catch}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_sdl_exception}{SdlException}}\&\ e)}
+\DoxyCodeLine{00403\ \ \ \ \ \{}
+\DoxyCodeLine{00404\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \mbox{\hyperlink{classph_1_1_sdl_save_error}{SdlSaveError}}(\textcolor{stringliteral}{"{}on\ saving\ Vector3\ array\ -\/>\ "{}}\ +\ e.whatStr());}
+\DoxyCodeLine{00405\ \ \ \ \ \}}
+\DoxyCodeLine{00406\ \}}
+\DoxyCodeLine{00407\ }
+\DoxyCodeLine{00408\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00409\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{namespaceph_aee9d551563491bc7930c4ca21e22204b}{ESdlTypeCategory}}\ \mbox{\hyperlink{namespaceph_1_1sdl_a82df961475e33d5cbc1b5693d10d83c4}{category\_of}}()}
+\DoxyCodeLine{00410\ \{}
+\DoxyCodeLine{00411\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(\mbox{\hyperlink{conceptph_1_1_c_sdl_resource}{CSdlResource<T>}}\ \&\&\ \mbox{\hyperlink{conceptph_1_1_c_has_static_sdl_category_info}{CHasStaticSdlCategoryInfo<T>}})}
+\DoxyCodeLine{00412\ \ \ \ \ \{}
+\DoxyCodeLine{00413\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ T::CATEGORY;}
+\DoxyCodeLine{00414\ \ \ \ \ \}}
+\DoxyCodeLine{00415\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00416\ \ \ \ \ \{}
+\DoxyCodeLine{00417\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespaceph_aee9d551563491bc7930c4ca21e22204ba6fcdc090caeade09d0efd6253932b6f5}{ESdlTypeCategory::Unspecified}};}
+\DoxyCodeLine{00418\ \ \ \ \ \}}
+\DoxyCodeLine{00419\ \}}
+\DoxyCodeLine{00420\ }
+\DoxyCodeLine{00421\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{int}egral\ IntType>}
+\DoxyCodeLine{00422\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{namespaceph_ada33bb2d4bc26b3ec1da2acb348ef4eb}{ESdlDataType}}\ \mbox{\hyperlink{namespaceph_1_1sdl_a821c8c787e1e73e26694c89197487d15}{int\_type\_of}}()}
+\DoxyCodeLine{00423\ \{}
+\DoxyCodeLine{00424\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(\mbox{\hyperlink{conceptph_1_1_c_same}{CSame<IntType,\ bool>}})}
+\DoxyCodeLine{00425\ \ \ \ \ \{}
+\DoxyCodeLine{00426\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespaceph_ada33bb2d4bc26b3ec1da2acb348ef4ebac26f15e86e3de4c398a8273272aba034}{ESdlDataType::Bool}};}
+\DoxyCodeLine{00427\ \ \ \ \ \}}
+\DoxyCodeLine{00428\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(\mbox{\hyperlink{conceptph_1_1_c_same}{CSame<IntType,\ int8>}})}
+\DoxyCodeLine{00429\ \ \ \ \ \{}
+\DoxyCodeLine{00430\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespaceph_ada33bb2d4bc26b3ec1da2acb348ef4eba7d839b2c12bfd40ac121b4cc9e81c539}{ESdlDataType::Int8}};}
+\DoxyCodeLine{00431\ \ \ \ \ \}}
+\DoxyCodeLine{00432\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(\mbox{\hyperlink{conceptph_1_1_c_same}{CSame<IntType,\ uint8>}})}
+\DoxyCodeLine{00433\ \ \ \ \ \{}
+\DoxyCodeLine{00434\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespaceph_ada33bb2d4bc26b3ec1da2acb348ef4ebab31df9c476d20e85ff898121efe11b5a}{ESdlDataType::UInt8}};}
+\DoxyCodeLine{00435\ \ \ \ \ \}}
+\DoxyCodeLine{00436\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(\mbox{\hyperlink{conceptph_1_1_c_same}{CSame<IntType,\ int16>}})}
+\DoxyCodeLine{00437\ \ \ \ \ \{}
+\DoxyCodeLine{00438\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespaceph_ada33bb2d4bc26b3ec1da2acb348ef4eba39bc2ae44b184207f560ff8619823208}{ESdlDataType::Int16}};}
+\DoxyCodeLine{00439\ \ \ \ \ \}}
+\DoxyCodeLine{00440\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(\mbox{\hyperlink{conceptph_1_1_c_same}{CSame<IntType,\ uint16>}})}
+\DoxyCodeLine{00441\ \ \ \ \ \{}
+\DoxyCodeLine{00442\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespaceph_ada33bb2d4bc26b3ec1da2acb348ef4eba8bd950a9d7779b83f5c30046c9aaf1cf}{ESdlDataType::UInt16}};}
+\DoxyCodeLine{00443\ \ \ \ \ \}}
+\DoxyCodeLine{00444\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(\mbox{\hyperlink{conceptph_1_1_c_same}{CSame<IntType,\ int32>}})}
+\DoxyCodeLine{00445\ \ \ \ \ \{}
+\DoxyCodeLine{00446\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespaceph_ada33bb2d4bc26b3ec1da2acb348ef4ebac06129f6e6e15c09328365e553f1dc31}{ESdlDataType::Int32}};}
+\DoxyCodeLine{00447\ \ \ \ \ \}}
+\DoxyCodeLine{00448\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(\mbox{\hyperlink{conceptph_1_1_c_same}{CSame<IntType,\ uint32>}})}
+\DoxyCodeLine{00449\ \ \ \ \ \{}
+\DoxyCodeLine{00450\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespaceph_ada33bb2d4bc26b3ec1da2acb348ef4ebae7956ed7be1c5025a27ed3cb42a396bd}{ESdlDataType::UInt32}};}
+\DoxyCodeLine{00451\ \ \ \ \ \}}
+\DoxyCodeLine{00452\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(\mbox{\hyperlink{conceptph_1_1_c_same}{CSame<IntType,\ int64>}})}
+\DoxyCodeLine{00453\ \ \ \ \ \{}
+\DoxyCodeLine{00454\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespaceph_ada33bb2d4bc26b3ec1da2acb348ef4ebafbde23b11d7e59af7828e81144c8b487}{ESdlDataType::Int64}};}
+\DoxyCodeLine{00455\ \ \ \ \ \}}
+\DoxyCodeLine{00456\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00457\ \ \ \ \ \{}
+\DoxyCodeLine{00458\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_assert}(\mbox{\hyperlink{conceptph_1_1_c_same}{CSame<IntType,\ uint64>}});}
+\DoxyCodeLine{00459\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespaceph_ada33bb2d4bc26b3ec1da2acb348ef4ebaaf71234725f0470ccf993e263a8b820a}{ESdlDataType::UInt64}};}
+\DoxyCodeLine{00460\ \ \ \ \ \}}
+\DoxyCodeLine{00461\ \}}
+\DoxyCodeLine{00462\ }
+\DoxyCodeLine{00463\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{float}ing\_po\textcolor{keywordtype}{int}\ FloatType>}
+\DoxyCodeLine{00464\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{namespaceph_ada33bb2d4bc26b3ec1da2acb348ef4eb}{ESdlDataType}}\ \mbox{\hyperlink{namespaceph_1_1sdl_ae7e8c66484745868ebdca9c1d1b7f6cc}{float\_type\_of}}()}
+\DoxyCodeLine{00465\ \{}
+\DoxyCodeLine{00466\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(\mbox{\hyperlink{conceptph_1_1_c_same}{CSame<FloatType,\ float32>}})}
+\DoxyCodeLine{00467\ \ \ \ \ \{}
+\DoxyCodeLine{00468\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespaceph_ada33bb2d4bc26b3ec1da2acb348ef4eba166495adc0d0f53bee6baecc577f5204}{ESdlDataType::Float32}};}
+\DoxyCodeLine{00469\ \ \ \ \ \}}
+\DoxyCodeLine{00470\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00471\ \ \ \ \ \{}
+\DoxyCodeLine{00472\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_assert}(\mbox{\hyperlink{conceptph_1_1_c_same}{CSame<FloatType,\ float64>}});}
+\DoxyCodeLine{00473\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespaceph_ada33bb2d4bc26b3ec1da2acb348ef4ebad2b556d8a8f5c8ac323f51a4b82e79a0}{ESdlDataType::Float64}};}
+\DoxyCodeLine{00474\ \ \ \ \ \}}
+\DoxyCodeLine{00475\ \}}
+\DoxyCodeLine{00476\ }
+\DoxyCodeLine{00477\ \textcolor{keyword}{template}<CNumber\ NumberType>}
+\DoxyCodeLine{00478\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{namespaceph_ada33bb2d4bc26b3ec1da2acb348ef4eb}{ESdlDataType}}\ \mbox{\hyperlink{namespaceph_1_1sdl_ae2e3133fa14648771568f84db1de168a}{number\_type\_of}}()}
+\DoxyCodeLine{00479\ \{}
+\DoxyCodeLine{00480\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(std::is\_floating\_point\_v<NumberType>)}
+\DoxyCodeLine{00481\ \ \ \ \ \{}
+\DoxyCodeLine{00482\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespaceph_1_1sdl_ae7e8c66484745868ebdca9c1d1b7f6cc}{sdl::float\_type\_of<NumberType>}}();}
+\DoxyCodeLine{00483\ \ \ \ \ \}}
+\DoxyCodeLine{00484\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00485\ \ \ \ \ \{}
+\DoxyCodeLine{00486\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_integral\_v<NumberType>);}
+\DoxyCodeLine{00487\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespaceph_1_1sdl_a821c8c787e1e73e26694c89197487d15}{sdl::int\_type\_of<NumberType>}}();}
+\DoxyCodeLine{00488\ \ \ \ \ \}}
+\DoxyCodeLine{00489\ \}}
+\DoxyCodeLine{00490\ }
+\DoxyCodeLine{00491\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00492\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{namespaceph_ada33bb2d4bc26b3ec1da2acb348ef4eb}{ESdlDataType}}\ \mbox{\hyperlink{namespaceph_1_1sdl_a9e0f507e441d4a627ee74d38ac43def1}{resource\_type\_of}}()}
+\DoxyCodeLine{00493\ \{}
+\DoxyCodeLine{00494\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{namespaceph_aee9d551563491bc7930c4ca21e22204b}{ESdlTypeCategory}}\ CATEGORY\ =\ \mbox{\hyperlink{namespaceph_1_1sdl_a82df961475e33d5cbc1b5693d10d83c4}{sdl::category\_of<T>}}();}
+\DoxyCodeLine{00495\ }
+\DoxyCodeLine{00496\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(CATEGORY\ ==\ \mbox{\hyperlink{namespaceph_aee9d551563491bc7930c4ca21e22204ba7b77aed5146529c3116a67b97c3a3ee3}{ESdlTypeCategory::Ref\_Geometry}})}
+\DoxyCodeLine{00497\ \ \ \ \ \{}
+\DoxyCodeLine{00498\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespaceph_ada33bb2d4bc26b3ec1da2acb348ef4ebad9c6333623e6357515fcbf17be806273}{ESdlDataType::Geometry}};}
+\DoxyCodeLine{00499\ \ \ \ \ \}}
+\DoxyCodeLine{00500\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(CATEGORY\ ==\ \mbox{\hyperlink{namespaceph_aee9d551563491bc7930c4ca21e22204ba4bd225eceaf89433e0bc847a60b185da}{ESdlTypeCategory::Ref\_Material}})}
+\DoxyCodeLine{00501\ \ \ \ \ \{}
+\DoxyCodeLine{00502\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespaceph_ada33bb2d4bc26b3ec1da2acb348ef4ebad92a8333dd3ccb895cc65f7455b71206}{ESdlDataType::Material}};}
+\DoxyCodeLine{00503\ \ \ \ \ \}}
+\DoxyCodeLine{00504\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(CATEGORY\ ==\ \mbox{\hyperlink{namespaceph_aee9d551563491bc7930c4ca21e22204bae532102d42b963b65896f61673c0709b}{ESdlTypeCategory::Ref\_Motion}})}
+\DoxyCodeLine{00505\ \ \ \ \ \{}
+\DoxyCodeLine{00506\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespaceph_ada33bb2d4bc26b3ec1da2acb348ef4eba8226588f03da49b857e5ddf8c508dd2d}{ESdlDataType::Motion}};}
+\DoxyCodeLine{00507\ \ \ \ \ \}}
+\DoxyCodeLine{00508\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(CATEGORY\ ==\ \mbox{\hyperlink{namespaceph_aee9d551563491bc7930c4ca21e22204ba82ffa509a63f0d2c294e6de3ccc31573}{ESdlTypeCategory::Ref\_LightSource}})}
+\DoxyCodeLine{00509\ \ \ \ \ \{}
+\DoxyCodeLine{00510\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespaceph_ada33bb2d4bc26b3ec1da2acb348ef4eba4cbb187bee11b3b06558284cd3e17d8d}{ESdlDataType::LightSource}};}
+\DoxyCodeLine{00511\ \ \ \ \ \}}
+\DoxyCodeLine{00512\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(CATEGORY\ ==\ \mbox{\hyperlink{namespaceph_aee9d551563491bc7930c4ca21e22204bad9bad7a78004290b75b7e614b273807e}{ESdlTypeCategory::Ref\_Actor}})}
+\DoxyCodeLine{00513\ \ \ \ \ \{}
+\DoxyCodeLine{00514\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespaceph_ada33bb2d4bc26b3ec1da2acb348ef4eba1cc84619677de81ee6e44149845270a3}{ESdlDataType::Actor}};}
+\DoxyCodeLine{00515\ \ \ \ \ \}}
+\DoxyCodeLine{00516\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(CATEGORY\ ==\ \mbox{\hyperlink{namespaceph_aee9d551563491bc7930c4ca21e22204baefde95994b59471d0a11721ea557c049}{ESdlTypeCategory::Ref\_Image}})}
+\DoxyCodeLine{00517\ \ \ \ \ \{}
+\DoxyCodeLine{00518\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespaceph_ada33bb2d4bc26b3ec1da2acb348ef4ebabe53a0541a6d36f6ecb879fa2c584b08}{ESdlDataType::Image}};}
+\DoxyCodeLine{00519\ \ \ \ \ \}}
+\DoxyCodeLine{00520\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(CATEGORY\ ==\ \mbox{\hyperlink{namespaceph_aee9d551563491bc7930c4ca21e22204ba5a81d2b7ba0d731c083d2528a88be222}{ESdlTypeCategory::Ref\_FrameProcessor}})}
+\DoxyCodeLine{00521\ \ \ \ \ \{}
+\DoxyCodeLine{00522\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespaceph_ada33bb2d4bc26b3ec1da2acb348ef4eba3c61c04825dd7c0cc614b51840b0e433}{ESdlDataType::FrameProcessor}};}
+\DoxyCodeLine{00523\ \ \ \ \ \}}
+\DoxyCodeLine{00524\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(CATEGORY\ ==\ \mbox{\hyperlink{namespaceph_aee9d551563491bc7930c4ca21e22204bab85c12598381f8f8b8e512f4dcf5e916}{ESdlTypeCategory::Ref\_Observer}})}
+\DoxyCodeLine{00525\ \ \ \ \ \{}
+\DoxyCodeLine{00526\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespaceph_ada33bb2d4bc26b3ec1da2acb348ef4eba83d694b8b98b155b8817ac412c4d3e9c}{ESdlDataType::Observer}};}
+\DoxyCodeLine{00527\ \ \ \ \ \}}
+\DoxyCodeLine{00528\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(CATEGORY\ ==\ \mbox{\hyperlink{namespaceph_aee9d551563491bc7930c4ca21e22204baa417aeca7536fb7779b3017d4a2bee91}{ESdlTypeCategory::Ref\_SampleSource}})}
+\DoxyCodeLine{00529\ \ \ \ \ \{}
+\DoxyCodeLine{00530\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespaceph_ada33bb2d4bc26b3ec1da2acb348ef4ebaba50656fda764a074dd26ab06d13b3d7}{ESdlDataType::SampleSource}};}
+\DoxyCodeLine{00531\ \ \ \ \ \}}
+\DoxyCodeLine{00532\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(CATEGORY\ ==\ \mbox{\hyperlink{namespaceph_aee9d551563491bc7930c4ca21e22204baddf30737283494e0c82660063013c290}{ESdlTypeCategory::Ref\_Visualizer}})}
+\DoxyCodeLine{00533\ \ \ \ \ \{}
+\DoxyCodeLine{00534\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespaceph_ada33bb2d4bc26b3ec1da2acb348ef4eba246eb6da3962c4c606501926a42d0b71}{ESdlDataType::Visualizer}};}
+\DoxyCodeLine{00535\ \ \ \ \ \}}
+\DoxyCodeLine{00536\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(CATEGORY\ ==\ \mbox{\hyperlink{namespaceph_aee9d551563491bc7930c4ca21e22204ba4963cade08bc6dd93e303ddb29991261}{ESdlTypeCategory::Ref\_Option}})}
+\DoxyCodeLine{00537\ \ \ \ \ \{}
+\DoxyCodeLine{00538\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespaceph_ada33bb2d4bc26b3ec1da2acb348ef4eba054b4f3ea543c990f6b125f41af6ebf7}{ESdlDataType::Option}};}
+\DoxyCodeLine{00539\ \ \ \ \ \}}
+\DoxyCodeLine{00540\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(CATEGORY\ ==\ \mbox{\hyperlink{namespaceph_aee9d551563491bc7930c4ca21e22204bad490977845b37e83c7e2cd129f414134}{ESdlTypeCategory::Ref\_Object}})}
+\DoxyCodeLine{00541\ \ \ \ \ \{}
+\DoxyCodeLine{00542\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespaceph_ada33bb2d4bc26b3ec1da2acb348ef4eba497031794414a552435f90151ac3b54b}{ESdlDataType::Object}};}
+\DoxyCodeLine{00543\ \ \ \ \ \}}
+\DoxyCodeLine{00544\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00545\ \ \ \ \ \{}
+\DoxyCodeLine{00546\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_assert}(CATEGORY\ ==\ \mbox{\hyperlink{namespaceph_aee9d551563491bc7930c4ca21e22204ba6fcdc090caeade09d0efd6253932b6f5}{ESdlTypeCategory::Unspecified}});}
+\DoxyCodeLine{00547\ }
+\DoxyCodeLine{00548\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespaceph_ada33bb2d4bc26b3ec1da2acb348ef4eba6adf97f83acf6453d4a6a4b1070f3754}{ESdlDataType::None}};}
+\DoxyCodeLine{00549\ \ \ \ \ \}}
+\DoxyCodeLine{00550\ \}}
+\DoxyCodeLine{00551\ }
+\DoxyCodeLine{00552\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ DstType,\ \textcolor{keyword}{typename}\ SrcType>}
+\DoxyCodeLine{00553\ \textcolor{keyword}{inline}\ DstType*\ \mbox{\hyperlink{namespaceph_1_1sdl_a591b5f6c3060f18a5452c2043d148fa6}{cast\_to}}(SrcType*\ \textcolor{keyword}{const}\ srcResource)}
+\DoxyCodeLine{00554\ \{}
+\DoxyCodeLine{00555\ \ \ \ \ \textcolor{comment}{//\ \`{}SrcType`\ and\ \`{}DstType`\ are\ both\ possibly\ cv-\/qualified}}
+\DoxyCodeLine{00556\ }
+\DoxyCodeLine{00557\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_base\_of\_v<ISdlResource,\ SrcType>,}
+\DoxyCodeLine{00558\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Source\ resource\ must\ derive\ from\ ISdlResource."{}});}
+\DoxyCodeLine{00559\ }
+\DoxyCodeLine{00560\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_base\_of\_v<ISdlResource,\ DstType>,}
+\DoxyCodeLine{00561\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Casted-\/to\ type\ must\ derive\ from\ ISdlResource."{}});}
+\DoxyCodeLine{00562\ }
+\DoxyCodeLine{00563\ \ \ \ \ \textcolor{keywordflow}{if}(srcResource\ ==\ \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{00564\ \ \ \ \ \{}
+\DoxyCodeLine{00565\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \mbox{\hyperlink{classph_1_1_sdl_exception}{SdlException}}(\textcolor{stringliteral}{"{}source\ resource\ is\ empty"{}});}
+\DoxyCodeLine{00566\ \ \ \ \ \}}
+\DoxyCodeLine{00567\ }
+\DoxyCodeLine{00568\ \ \ \ \ DstType*\ \textcolor{keyword}{const}\ dstResource\ =\ \textcolor{keyword}{dynamic\_cast<}DstType*\textcolor{keyword}{>}(srcResource);}
+\DoxyCodeLine{00569\ \ \ \ \ \textcolor{keywordflow}{if}(dstResource\ ==\ \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{00570\ \ \ \ \ \{}
+\DoxyCodeLine{00571\ \ \ \ \ \ \ \ \ throw\_formatted<SdlException>(}
+\DoxyCodeLine{00572\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}type\ cast\ error:\ source\ resource\ cannot\ be\ casted\ to\ the\ specified\ type\ (resource\ ID:\ \{\})"{}},}
+\DoxyCodeLine{00573\ \ \ \ \ \ \ \ \ \ \ \ \ srcResource-\/>getId());}
+\DoxyCodeLine{00574\ \ \ \ \ \}}
+\DoxyCodeLine{00575\ }
+\DoxyCodeLine{00576\ \ \ \ \ \textcolor{keywordflow}{return}\ dstResource;}
+\DoxyCodeLine{00577\ \}}
+\DoxyCodeLine{00578\ }
+\DoxyCodeLine{00579\ \}\textcolor{comment}{//\ end\ namespace\ ph::sdl}}
+
+\end{DoxyCode}

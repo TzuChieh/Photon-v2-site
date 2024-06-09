@@ -1,0 +1,112 @@
+\doxysection{Cooked\+Resource\+Collection.\+h}
+\hypertarget{_cooked_resource_collection_8h_source}{}\label{_cooked_resource_collection_8h_source}\index{Source/World/Foundation/CookedResourceCollection.h@{Source/World/Foundation/CookedResourceCollection.h}}
+\mbox{\hyperlink{_cooked_resource_collection_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_cooked_resource_collection_base_8h}{World/Foundation/CookedResourceCollectionBase.h}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_unique_ptr_vector_8h}{Utility/TUniquePtrVector.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_transform_8h}{Math/Transform/Transform.h}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_cooked_geometry_8h}{World/Foundation/CookedGeometry.h}}"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_cooked_motion_8h}{World/Foundation/CookedMotion.h}}"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_synchronized_8h}{Utility/Concurrent/TSynchronized.h}}"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{traits_8h}{Utility/traits.h}}"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_sdl_resource_id_8h}{SDL/SdlResourceId.h}}"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_primitive_metadata_8h}{Core/Intersection/PrimitiveMetadata.h}}"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_intersectable_8h}{Core/Intersection/Intersectable.h}}"{}}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_indexed_polygon_buffer_8h}{Core/Intersection/DataStructure/TIndexedPolygonBuffer.h}}"{}}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_emitter_8h}{Core/Emitter/Emitter.h}}"{}}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_cooked_named_resource_8h}{World/Foundation/CookedNamedResource.h}}"{}}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <Common/logging.h>}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00022\ \{}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \mbox{\hyperlink{namespaceph_af8d22cf306042080a0359590cd0e2449}{PH\_DEFINE\_EXTERNAL\_LOG\_GROUP}}(\mbox{\hyperlink{classph_1_1_cooked_resource_collection}{CookedResourceCollection}},\ \mbox{\hyperlink{namespaceph_a586c922092ae1fe5b4123bee53c9a404af5a7924e621e84c9280a9a27e1bcb7f6}{World}});}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00030\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_cooked_resource_collection}{CookedResourceCollection}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classph_1_1_cooked_resource_collection_base}{CookedResourceCollectionBase}}}
+\DoxyCodeLine{00031\ \{}
+\DoxyCodeLine{00032\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00033\ \ \ \ \ std::string\ \mbox{\hyperlink{classph_1_1_cooked_resource_collection_a72a5223c851fbe486acd69db39fdce39}{getStats}}()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}...\ DeducedArgs>}
+\DoxyCodeLine{00036\ \ \ \ \ [[nodiscard]]}
+\DoxyCodeLine{00037\ \ \ \ \ \mbox{\hyperlink{classph_1_1_primitive_metadata}{PrimitiveMetadata}}*\ \mbox{\hyperlink{classph_1_1_cooked_resource_collection_a6d40af31823e4212866cbb927863f429}{makeMetadata}}(DeducedArgs\&\&...\ args)}
+\DoxyCodeLine{00038\ \ \ \ \ \{}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1_cooked_resource_collection_base_ab96405ffd9ba54cd321a2b26af4d9ceb}{makeCookedResource<PrimitiveMetadata>}}(}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ m\_metadatas,\ std::forward<DeducedArgs>(args)...);}
+\DoxyCodeLine{00041\ \ \ \ \ \}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keyword}{template}<CDerived<math::Transform>\ TransformType,\ \textcolor{keyword}{typename}...\ DeducedArgs>}
+\DoxyCodeLine{00044\ \ \ \ \ [[nodiscard]]}
+\DoxyCodeLine{00045\ \ \ \ \ TransformType*\ \mbox{\hyperlink{classph_1_1_cooked_resource_collection_a58083f8919989df1c03f5a592d1debc7}{makeTransform}}(DeducedArgs\&\&...\ args)}
+\DoxyCodeLine{00046\ \ \ \ \ \{}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1_cooked_resource_collection_base_ab96405ffd9ba54cd321a2b26af4d9ceb}{makeCookedResource<TransformType>}}(}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ m\_transforms,\ std::forward<DeducedArgs>(args)...);}
+\DoxyCodeLine{00049\ \ \ \ \ \}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keyword}{template}<CDerived<Intersectable>\ IntersectableType,\ \textcolor{keyword}{typename}...\ DeducedArgs>}
+\DoxyCodeLine{00052\ \ \ \ \ [[nodiscard]]}
+\DoxyCodeLine{00053\ \ \ \ \ IntersectableType*\ \mbox{\hyperlink{classph_1_1_cooked_resource_collection_ae22557b412f95479b54653efec23ac6a}{makeIntersectable}}(DeducedArgs\&\&...\ args)}
+\DoxyCodeLine{00054\ \ \ \ \ \{}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1_cooked_resource_collection_base_ab96405ffd9ba54cd321a2b26af4d9ceb}{makeCookedResource<IntersectableType>}}(}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ m\_intersectables,\ std::forward<DeducedArgs>(args)...);}
+\DoxyCodeLine{00057\ \ \ \ \ \}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keyword}{template}<CDerived<Intersectable>\ IntersectableType>}
+\DoxyCodeLine{00060\ \ \ \ \ [[nodiscard]]}
+\DoxyCodeLine{00061\ \ \ \ \ IntersectableType*\ \mbox{\hyperlink{classph_1_1_cooked_resource_collection_afd52be7d5c047bfe81f916da65e965b4}{copyIntersectable}}(IntersectableType\ intersectable)}
+\DoxyCodeLine{00062\ \ \ \ \ \{}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1_cooked_resource_collection_ae22557b412f95479b54653efec23ac6a}{makeIntersectable<IntersectableType>}}(std::move(intersectable));}
+\DoxyCodeLine{00064\ \ \ \ \ \}}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keyword}{template}<CDerived<Emitter>\ EmitterType,\ \textcolor{keyword}{typename}...\ DeducedArgs>}
+\DoxyCodeLine{00067\ \ \ \ \ [[nodiscard]]}
+\DoxyCodeLine{00068\ \ \ \ \ EmitterType*\ \mbox{\hyperlink{classph_1_1_cooked_resource_collection_a5352f4851638dd78bab3ea7ff5f5a37e}{makeEmitter}}(DeducedArgs\&\&...\ args)}
+\DoxyCodeLine{00069\ \ \ \ \ \{}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1_cooked_resource_collection_base_ab96405ffd9ba54cd321a2b26af4d9ceb}{makeCookedResource<EmitterType>}}(}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ m\_emitters,\ std::forward<DeducedArgs>(args)...);}
+\DoxyCodeLine{00072\ \ \ \ \ \}}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}...\ DeducedArgs>}
+\DoxyCodeLine{00075\ \ \ \ \ [[nodiscard]]}
+\DoxyCodeLine{00076\ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_indexed_polygon_buffer}{IndexedTriangleBuffer}}*\ \mbox{\hyperlink{classph_1_1_cooked_resource_collection_a9aedc8276df79c17f0f87b6a538040a4}{makeTriangleBuffer}}(DeducedArgs\&\&...\ args)}
+\DoxyCodeLine{00077\ \ \ \ \ \{}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1_cooked_resource_collection_base_ab96405ffd9ba54cd321a2b26af4d9ceb}{makeCookedResource<IndexedTriangleBuffer>}}(}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ m\_triangleBuffers,\ std::forward<DeducedArgs>(args)...);}
+\DoxyCodeLine{00080\ \ \ \ \ \}}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}...\ DeducedArgs>}
+\DoxyCodeLine{00083\ \ \ \ \ \mbox{\hyperlink{classph_1_1_cooked_geometry}{CookedGeometry}}*\ \mbox{\hyperlink{classph_1_1_cooked_resource_collection_a34910045ddd46483441e24af25f1fdac}{makeGeometry}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_a9fb37b88616e2b97fc2a1756fb8fd765}{SdlResourceId}}\ \textcolor{keywordtype}{id},\ DeducedArgs\&\&...\ args)}
+\DoxyCodeLine{00084\ \ \ \ \ \{}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1_cooked_resource_collection_base_ab5138b010bd0572e42eb52d895d30287}{makeCookedResourceWithID}}(m\_idToGeometry,\ \textcolor{keywordtype}{id},\ std::forward<DeducedArgs>(args)...);}
+\DoxyCodeLine{00086\ \ \ \ \ \}}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}...\ DeducedArgs>}
+\DoxyCodeLine{00089\ \ \ \ \ \mbox{\hyperlink{classph_1_1_cooked_motion}{CookedMotion}}*\ \mbox{\hyperlink{classph_1_1_cooked_resource_collection_ada30e2395cb65fa211bce6611f48c904}{makeMotion}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_a9fb37b88616e2b97fc2a1756fb8fd765}{SdlResourceId}}\ \textcolor{keywordtype}{id},\ DeducedArgs\&\&...\ args)}
+\DoxyCodeLine{00090\ \ \ \ \ \{}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1_cooked_resource_collection_base_ab5138b010bd0572e42eb52d895d30287}{makeCookedResourceWithID}}(m\_idToMotion,\ \textcolor{keywordtype}{id},\ std::forward<DeducedArgs>(args)...);}
+\DoxyCodeLine{00092\ \ \ \ \ \}}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00097\ \ \ \ \ TSynchronized<CookedNamedResource>\&\ \mbox{\hyperlink{classph_1_1_cooked_resource_collection_a05a0fbc7dbec8f80c4cd630da923bf6b}{getNamed}}();}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_cooked_geometry}{CookedGeometry}}*\ \mbox{\hyperlink{classph_1_1_cooked_resource_collection_ad49e528e9c595348713a66a814990e7d}{getGeometry}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_a9fb37b88616e2b97fc2a1756fb8fd765}{SdlResourceId}}\ \textcolor{keywordtype}{id})\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_cooked_motion}{CookedMotion}}*\ \mbox{\hyperlink{classph_1_1_cooked_resource_collection_af85b5f6c9193f1f94d70f1e1cc76db03}{getMotion}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_a9fb37b88616e2b97fc2a1756fb8fd765}{SdlResourceId}}\ \textcolor{keywordtype}{id})\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00103\ \ \ \ \ TSynchronized<TUniquePtrVector<PrimitiveMetadata>>\ m\_metadatas;}
+\DoxyCodeLine{00104\ \ \ \ \ TSynchronized<TUniquePtrVector<math::Transform>>\ m\_transforms;}
+\DoxyCodeLine{00105\ \ \ \ \ TSynchronized<TUniquePtrVector<Intersectable>>\ m\_intersectables;}
+\DoxyCodeLine{00106\ \ \ \ \ TSynchronized<TUniquePtrVector<Emitter>>\ m\_emitters;}
+\DoxyCodeLine{00107\ \ \ \ \ TSynchronized<TUniquePtrVector<IndexedTriangleBuffer>>\ m\_triangleBuffers;}
+\DoxyCodeLine{00108\ \ \ \ \ TSynchronized<TSdlResourceIdMap<CookedGeometry>>\ m\_idToGeometry;}
+\DoxyCodeLine{00109\ \ \ \ \ TSynchronized<TSdlResourceIdMap<CookedMotion>>\ m\_idToMotion;}
+\DoxyCodeLine{00110\ \ \ \ \ TSynchronized<CookedNamedResource>\ m\_namedResource;}
+\DoxyCodeLine{00111\ \};}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+
+\end{DoxyCode}

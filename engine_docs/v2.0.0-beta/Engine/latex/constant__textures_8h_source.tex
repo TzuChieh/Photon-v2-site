@@ -1,0 +1,87 @@
+\doxysection{constant\+\_\+textures.\+h}
+\hypertarget{constant__textures_8h_source}{}\label{constant__textures_8h_source}\index{Source/Core/Texture/constant\_textures.h@{Source/Core/Texture/constant\_textures.h}}
+\mbox{\hyperlink{constant__textures_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_texture_8h}{Core/Texture/TTexture.h}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{color__enums_8h}{Math/Color/color\_enums.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{color__basics_8h}{Math/Color/color\_basics.h}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_spectrum_8h}{Math/Color/Spectrum.h}}"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_sample_location_8h}{Core/Texture/SampleLocation.h}}"{}}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <Common/assertion.h>}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00014\ \{}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ OutputType>}
+\DoxyCodeLine{00023\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_t_constant_texture}{TConstantTexture}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classph_1_1_t_texture}{TTexture}}<OutputType>}
+\DoxyCodeLine{00024\ \{}
+\DoxyCodeLine{00025\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classph_1_1_t_constant_texture_a5ecc4c7a9928af0614a88f44a4288f1c}{TConstantTexture}}(OutputType\ value)}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classph_1_1_t_texture}{TTexture}}<OutputType>()}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ ,\ m\_value(\mbox{\hyperlink{namespacestd}{std}}::move(value))}
+\DoxyCodeLine{00029\ \ \ \ \ \{\}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_constant_texture_a407e63aafa2cf21cab7e95369463abe0}{sample}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_sample_location}{SampleLocation}}\&\ sampleLocation,\ OutputType*\ \textcolor{keyword}{const}\ out\_value)\textcolor{keyword}{\ const\ override}}
+\DoxyCodeLine{00032\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ PH\_ASSERT(out\_value);}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ *out\_value\ =\ m\_value;}
+\DoxyCodeLine{00036\ \ \ \ \ \}}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00039\ \ \ \ \ OutputType\ m\_value;}
+\DoxyCodeLine{00040\ \};}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00046\ \textcolor{keyword}{template}<math::EColorSpace\ COLOR\_SPACE\ =\ math::EColorSpace::Linear\_sRGB>}
+\DoxyCodeLine{00047\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_t_constant_tristimulus_texture}{TConstantTristimulusTexture}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classph_1_1_t_texture}{TTexture}}<math::Spectrum>}
+\DoxyCodeLine{00048\ \{}
+\DoxyCodeLine{00049\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classph_1_1_t_constant_tristimulus_texture_af8c68e903a9f03250eaeaf92c074d773}{TConstantTristimulusTexture}}(\mbox{\hyperlink{namespaceph_1_1math_a7d1ffe02a63011a87bb8f07f84f0599a}{math::TristimulusValues}}\ value)}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classph_1_1_t_texture}{TTexture}}<math::\mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_spectrum}{Spectrum}}>()}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ ,\ m\_value(\mbox{\hyperlink{namespacestd}{std}}::move(value))}
+\DoxyCodeLine{00053\ \ \ \ \ \{\}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classph_1_1_t_constant_tristimulus_texture_ab11a6fc98a3304eee0e0b3963a1a6b46}{TConstantTristimulusTexture}}(\mbox{\hyperlink{namespaceph_1_1math_a49168cf166e251842d147b4817b81451}{math::ColorValue}}\ value)}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classph_1_1_t_texture}{TTexture}}<math::\mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_spectrum}{Spectrum}}>()}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ ,\ m\_value(\{value,\ value,\ value\})}
+\DoxyCodeLine{00058\ \ \ \ \ \{\}}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_constant_tristimulus_texture_a93f2638663499b7029d624776cb66d94}{sample}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_sample_location}{SampleLocation}}\&\ sampleLocation,\ \mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_spectrum}{math::Spectrum}}*\ \textcolor{keyword}{const}\ out\_value)\textcolor{keyword}{\ const\ override}}
+\DoxyCodeLine{00061\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ PH\_ASSERT(out\_value);}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ out\_value-\/>\mbox{\hyperlink{classph_1_1math_1_1_t_spectrum_base_a0dcecb2f81e37f7f062e2520ce70a334}{setTransformed}}<COLOR\_SPACE>(m\_value,\ sampleLocation.\mbox{\hyperlink{classph_1_1_sample_location_a3c1e3b216ab49235a5db3efd00a1f657}{expectedUsage}}());}
+\DoxyCodeLine{00065\ \ \ \ \ \}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00068\ \ \ \ \ \mbox{\hyperlink{namespaceph_1_1math_a7d1ffe02a63011a87bb8f07f84f0599a}{math::TristimulusValues}}\ m\_value;}
+\DoxyCodeLine{00069\ \};}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00075\ \textcolor{keyword}{template}<math::EColorSpace\ COLOR\_SPACE\ =\ math::EColorSpace::Spectral>}
+\DoxyCodeLine{00076\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_t_constant_spectral_texture}{TConstantSpectralTexture}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classph_1_1_t_texture}{TTexture}}<math::Spectrum>}
+\DoxyCodeLine{00077\ \{}
+\DoxyCodeLine{00078\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classph_1_1_t_constant_spectral_texture_a2ef12c0b30b581b15ed26be3c1c79a68}{TConstantSpectralTexture}}(\mbox{\hyperlink{namespaceph_1_1math_a2dca4d0c3ba12850dad1c78cb2eedc8f}{math::SpectralSampleValues}}\ value)}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classph_1_1_t_texture}{TTexture}}<math::\mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_spectrum}{Spectrum}}>()}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ ,\ m\_value(\mbox{\hyperlink{namespacestd}{std}}::move(value))}
+\DoxyCodeLine{00082\ \ \ \ \ \{\}}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_constant_spectral_texture_ab0803a1e10b743d36aab296f50601cbe}{sample}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_sample_location}{SampleLocation}}\&\ sampleLocation,\ \mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_spectrum}{math::Spectrum}}*\ \textcolor{keyword}{const}\ out\_value)\textcolor{keyword}{\ const\ override}}
+\DoxyCodeLine{00085\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ PH\_ASSERT(out\_value);}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ out\_value-\/>\mbox{\hyperlink{classph_1_1math_1_1_t_spectrum_base_ae108d06dbcb8d3c10a6a054e4182e37b}{setSpectral}}<COLOR\_SPACE>(m\_value,\ sampleLocation.\mbox{\hyperlink{classph_1_1_sample_location_a3c1e3b216ab49235a5db3efd00a1f657}{expectedUsage}}());}
+\DoxyCodeLine{00089\ \ \ \ \ \}}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00092\ \ \ \ \ \mbox{\hyperlink{namespaceph_1_1math_a2dca4d0c3ba12850dad1c78cb2eedc8f}{math::SpectralSampleValues}}\ m\_value;}
+\DoxyCodeLine{00093\ \};}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+
+\end{DoxyCode}

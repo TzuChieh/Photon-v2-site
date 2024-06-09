@@ -1,0 +1,351 @@
+\doxysection{TFunction.\+h}
+\hypertarget{_t_function_8h_source}{}\label{_t_function_8h_source}\index{Source/Utility/TFunction.h@{Source/Utility/TFunction.h}}
+\mbox{\hyperlink{_t_function_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <Common/assertion.h>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <Common/config.h>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <Common/exceptions.h>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <Common/memory.h>}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <cstddef>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <type\_traits>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <new>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00016\ \{}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{namespace\ }function\_detail}
+\DoxyCodeLine{00019\ \{}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ MIN\_SIZE\_HINT\ =\ 0>}
+\DoxyCodeLine{00022\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1function__detail_1_1_t_function}{TFunction}}\ final}
+\DoxyCodeLine{00023\ \{}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{comment}{//\ Correct\ function\ signature\ will\ instantiate\ the\ specialized\ type.\ If\ this\ type\ is\ selected}}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{comment}{//\ instead,\ notify\ the\ user\ about\ the\ ill-\/formed\ function\ signature}}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_function\_v<T>,}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Invalid\ function\ signature."{}});}
+\DoxyCodeLine{00028\ \};}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{keyword}{template}<\textcolor{keyword}{auto}\ Func,\ \textcolor{keyword}{typename}\ R,\ \textcolor{keyword}{typename}...\ Args>}
+\DoxyCodeLine{00031\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptph_1_1function__detail_1_1_c_free_function_form}{CFreeFunctionForm}}\ =\ }
+\DoxyCodeLine{00032\ \ \ \ \ std::is\_function\_v<std::remove\_pointer\_t<\textcolor{keyword}{decltype}(Func)>>\ \&\&}
+\DoxyCodeLine{00033\ \ \ \ \ std::is\_invocable\_r\_v<R,\ \textcolor{keyword}{decltype}(Func),\ Args...>;}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{keyword}{template}<\textcolor{keyword}{auto}\ Func,\ \textcolor{keyword}{typename}\ Class,\ \textcolor{keyword}{typename}\ R,\ \textcolor{keyword}{typename}...\ Args>}
+\DoxyCodeLine{00036\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptph_1_1function__detail_1_1_c_const_callable_method_form}{CConstCallableMethodForm}}\ =\ }
+\DoxyCodeLine{00037\ \ \ \ \ std::is\_member\_function\_pointer\_v<\textcolor{keyword}{decltype}(Func)>\ \&\&}
+\DoxyCodeLine{00038\ \ \ \ \ std::is\_invocable\_r\_v<R,\ \textcolor{keyword}{decltype}(Func),\ \textcolor{keyword}{const}\ Class*,\ Args...>;}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{keyword}{template}<\textcolor{keyword}{auto}\ Func,\ \textcolor{keyword}{typename}\ Class,\ \textcolor{keyword}{typename}\ R,\ \textcolor{keyword}{typename}...\ Args>}
+\DoxyCodeLine{00041\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptph_1_1function__detail_1_1_c_non_const_callable_method_form}{CNonConstCallableMethodForm}}\ =}
+\DoxyCodeLine{00042\ \ \ \ \ std::is\_member\_function\_pointer\_v<\textcolor{keyword}{decltype}(Func)>\ \&\&}
+\DoxyCodeLine{00043\ \ \ \ \ std::is\_invocable\_r\_v<R,\ \textcolor{keyword}{decltype}(Func),\ Class*,\ Args...>;}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Func,\ \textcolor{keyword}{typename}\ R,\ \textcolor{keyword}{typename}...\ Args>}
+\DoxyCodeLine{00046\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptph_1_1function__detail_1_1_c_empty_functor_form}{CEmptyFunctorForm}}\ =\ }
+\DoxyCodeLine{00047\ \ \ \ \ std::is\_empty\_v<std::decay\_t<Func>>\ \&\&\textcolor{comment}{//\ so\ we\ do\ not\ need\ to\ store\ its\ states}}
+\DoxyCodeLine{00048\ \ \ \ \ std::is\_default\_constructible\_v<std::decay\_t<Func>>\ \&\&\textcolor{comment}{//\ we\ construct\ it\ on\ every\ call}}
+\DoxyCodeLine{00049\ \ \ \ \ std::is\_invocable\_r\_v<R,\ std::decay\_t<Func>,\ Args...>;\textcolor{comment}{//\ we\ call\ from\ the\ newly\ constructed\ value,\ no\ matter\ the\ constness}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Func,\ \textcolor{keyword}{typename}\ R,\ \textcolor{keyword}{typename}...\ Args>}
+\DoxyCodeLine{00052\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptph_1_1function__detail_1_1_c_non_empty_functor_form}{CNonEmptyFunctorForm}}\ =\ }
+\DoxyCodeLine{00053\ \ \ \ \ !std::is\_empty\_v<std::decay\_t<Func>>\ \&\&\textcolor{comment}{//\ to\ disambiguate\ from\ the\ empty\ form}}
+\DoxyCodeLine{00054\ \ \ \ \ !std::is\_function\_v<std::remove\_pointer\_t<std::decay\_t<Func>>>\ \&\&\textcolor{comment}{//\ to\ disambiguate\ from\ the\ free\ function\ form}}
+\DoxyCodeLine{00055\ \ \ \ \ (}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ std::is\_constructible\_v<std::decay\_t<Func>,\ Func\&\&>\ ||\textcolor{comment}{//\ we\ can\ placement\ new\ from\ an\ instance}}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ std::is\_trivially\_copyable\_v<std::decay\_t<Func>>\ \ \ \ \ \ \textcolor{comment}{//\ or\ copy\ to\ a\ byte\ buffer}}
+\DoxyCodeLine{00058\ \ \ \ \ )\ \&\&}
+\DoxyCodeLine{00059\ \ \ \ \ std::is\_trivially\_destructible\_v<std::decay\_t<Func>>\ \&\&\textcolor{comment}{//\ we\ are\ neither\ storing\ dtor\ nor\ calling\ it}}
+\DoxyCodeLine{00060\ \ \ \ \ std::is\_invocable\_r\_v<R,\ \textcolor{keyword}{const}\ std::decay\_t<Func>\&,\ Args...>;\textcolor{comment}{//\ must\ be\ const\ as\ we\ store\ its\ states\ and\ \`{}operator\ ()`\ is\ \`{}const`}}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00080\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ R,\ \textcolor{keyword}{typename}...\ Args,\ std::size\_t\ MIN\_SIZE\_HINT>}
+\DoxyCodeLine{00081\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1function__detail_1_1_t_function}{TFunction}}<R(Args...),\ MIN\_SIZE\_HINT>\ final}
+\DoxyCodeLine{00082\ \{}
+\DoxyCodeLine{00083\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keyword}{using\ }UnifiedCaller\ =\ R(*)(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1function__detail_1_1_t_function}{TFunction}}*,\ Args...);}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{comment}{//\ Aligning\ to\ the\ pointer\ size\ should\ be\ sufficient\ in\ most\ cases.\ Currently\ we\ do\ not\ align\ the}}
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{comment}{//\ buffer\ to\ \`{}std::max\_align\_t`\ or\ anything\ greater\ to\ save\ space.}}
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{static}\ std::size\_t\ BUFFER\_ALIGNMENT\ =\ \textcolor{keyword}{alignof}(\textcolor{keywordtype}{void}*);}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{static}\ std::size\_t\ BUFFER\_SIZE\ =\ MIN\_SIZE\_HINT\ >\ \textcolor{keyword}{sizeof}(UnifiedCaller)\ +\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{void}*)}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ ?\ MIN\_SIZE\_HINT\ -\/\ \textcolor{keyword}{sizeof}(UnifiedCaller)}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ :\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{void}*);}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Func>}
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classph_1_1function__detail_1_1_t_function_3_01_r_07_args_8_8_8_08_00_01_m_i_n___s_i_z_e___h_i_n_t_01_4_ad3ffb8b8e9d5313999c3902c6c298d7c}{TCanFitBuffer}}\ =\ std::bool\_constant<}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \textcolor{keyword}{sizeof}(std::decay\_t<Func>)\ <=\ BUFFER\_SIZE\ \&\&}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \textcolor{keyword}{alignof}(std::decay\_t<Func>)\ <=\ BUFFER\_ALIGNMENT>;}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{keyword}{template}<auto\ Func>}
+\DoxyCodeLine{00110\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classph_1_1function__detail_1_1_t_function_3_01_r_07_args_8_8_8_08_00_01_m_i_n___s_i_z_e___h_i_n_t_01_4_abd1fb57dabab6aecf1b825d021864c9b}{TIsFreeFunction}}\ =\ std::bool\_constant<\mbox{\hyperlink{conceptph_1_1function__detail_1_1_c_free_function_form}{CFreeFunctionForm}}<Func,\ R,\ Args...>>;}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00116\ \ \ \ \ \textcolor{keyword}{template}<auto\ Func,\ \textcolor{keyword}{typename}\ Class>}
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classph_1_1function__detail_1_1_t_function_3_01_r_07_args_8_8_8_08_00_01_m_i_n___s_i_z_e___h_i_n_t_01_4_ab1f67cc8d9fa872596cae2bef37788a6}{TIsConstCallableMethod}}\ =\ std::bool\_constant<\mbox{\hyperlink{conceptph_1_1function__detail_1_1_c_const_callable_method_form}{CConstCallableMethodForm}}<Func,\ Class,\ R,\ Args...>>;}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00124\ \ \ \ \ \textcolor{keyword}{template}<auto\ Func,\ \textcolor{keyword}{typename}\ Class>}
+\DoxyCodeLine{00125\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classph_1_1function__detail_1_1_t_function_3_01_r_07_args_8_8_8_08_00_01_m_i_n___s_i_z_e___h_i_n_t_01_4_aa39ce551201991358893a4c7d269eaed}{TIsNonConstCallableMethod}}\ =\ std::bool\_constant<\mbox{\hyperlink{conceptph_1_1function__detail_1_1_c_non_const_callable_method_form}{CNonConstCallableMethodForm}}<Func,\ Class,\ R,\ Args...>>;}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00132\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Func>}
+\DoxyCodeLine{00133\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classph_1_1function__detail_1_1_t_function_3_01_r_07_args_8_8_8_08_00_01_m_i_n___s_i_z_e___h_i_n_t_01_4_ae1b62c51b49a6af5387072fce3b71498}{TIsEmptyFunctor}}\ =\ std::bool\_constant<\mbox{\hyperlink{conceptph_1_1function__detail_1_1_c_empty_functor_form}{CEmptyFunctorForm}}<Func,\ R,\ Args...>>;}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00139\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Func>}
+\DoxyCodeLine{00140\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classph_1_1function__detail_1_1_t_function_3_01_r_07_args_8_8_8_08_00_01_m_i_n___s_i_z_e___h_i_n_t_01_4_a3857a35f1c0f6f94ce376ce719bd071d}{TIsNonEmptyFunctor}}\ =\ std::bool\_constant<}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{conceptph_1_1function__detail_1_1_c_non_empty_functor_form}{CNonEmptyFunctorForm}}<Func,\ R,\ Args...>\ \&\&}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ (}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1function__detail_1_1_t_function_3_01_r_07_args_8_8_8_08_00_01_m_i_n___s_i_z_e___h_i_n_t_01_4_ad3ffb8b8e9d5313999c3902c6c298d7c}{TCanFitBuffer<Func>::value}}\ ||\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ for\ placement\ new\ into\ the\ buffer}}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{sizeof}(std::decay\_t<Func>)\ <=\ BUFFER\_SIZE\textcolor{comment}{//\ for\ bytewise\ copy}}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ )>;}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00151\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Func>}
+\DoxyCodeLine{00152\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classph_1_1function__detail_1_1_t_function_3_01_r_07_args_8_8_8_08_00_01_m_i_n___s_i_z_e___h_i_n_t_01_4_aac88655ce4dcef1c8b1d6e7c7a124afc}{TIsStorableFunctor}}\ =\ std::bool\_constant<}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1function__detail_1_1_t_function_3_01_r_07_args_8_8_8_08_00_01_m_i_n___s_i_z_e___h_i_n_t_01_4_ae1b62c51b49a6af5387072fce3b71498}{TIsEmptyFunctor<Func>::value}}\ ||}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1function__detail_1_1_t_function_3_01_r_07_args_8_8_8_08_00_01_m_i_n___s_i_z_e___h_i_n_t_01_4_a3857a35f1c0f6f94ce376ce719bd071d}{TIsNonEmptyFunctor<Func>::value}}>;}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00156\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00159\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1function__detail_1_1_t_function_3_01_r_07_args_8_8_8_08_00_01_m_i_n___s_i_z_e___h_i_n_t_01_4_a527aee62cc23f260da38fe18c8a2691c}{TFunction}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00163\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1function__detail_1_1_t_function_3_01_r_07_args_8_8_8_08_00_01_m_i_n___s_i_z_e___h_i_n_t_01_4_abee9a0fc91151eb2c2da5dc84ebc254b}{TFunction}}(std::nullptr\_t\ \textcolor{comment}{/*\ ptr\ */})}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classph_1_1function__detail_1_1_t_function}{TFunction}}()}
+\DoxyCodeLine{00165\ \ \ \ \ \{\}}
+\DoxyCodeLine{00166\ }
+\DoxyCodeLine{00169\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Func>}
+\DoxyCodeLine{00170\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1function__detail_1_1_t_function_3_01_r_07_args_8_8_8_08_00_01_m_i_n___s_i_z_e___h_i_n_t_01_4_a56299c30b51d0bd6813a3beccaddba8a}{TFunction}}(Func\&\&\ func)}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \textcolor{keyword}{requires}\ (!std::is\_same\_v<std::decay\_t<Func>,\ \mbox{\hyperlink{classph_1_1function__detail_1_1_t_function}{TFunction}}>)\textcolor{comment}{//\ avoid\ ambiguity\ during\ copy\ init}}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classph_1_1function__detail_1_1_t_function}{TFunction}}()}
+\DoxyCodeLine{00173\ \ \ \ \ \{}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(\mbox{\hyperlink{classph_1_1function__detail_1_1_t_function_3_01_r_07_args_8_8_8_08_00_01_m_i_n___s_i_z_e___h_i_n_t_01_4_ae1b62c51b49a6af5387072fce3b71498}{TIsEmptyFunctor<Func>::value}})}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \ \ \ set<Func>();}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_assert}(\mbox{\hyperlink{classph_1_1function__detail_1_1_t_function_3_01_r_07_args_8_8_8_08_00_01_m_i_n___s_i_z_e___h_i_n_t_01_4_a3857a35f1c0f6f94ce376ce719bd071d}{TIsNonEmptyFunctor<Func>::value}},}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Cannot\ direct-\/init\ TFunction\ with\ the\ input\ functor.\ Possible\ cause\ of\ errors:\ "{}}}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}(1)\ sizeof\ functor\ exceeds\ current\ limit,\ reduce\ functor\ size\ or\ increase\ the\ limit;\ "{}}}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}(2)\ Invalid/mismatched\ functor\ signature;\ "{}}}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}(3)\ The\ direct-\/init\ ctor\ only\ works\ for\ functors.\ For\ other\ function\ types,\ please\ use\ setters."{}});}
+\DoxyCodeLine{00185\ }
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \ \ \ \ set<Func>(std::forward<Func>(func));}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00188\ \ \ \ \ \}}
+\DoxyCodeLine{00189\ }
+\DoxyCodeLine{00190\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1function__detail_1_1_t_function_3_01_r_07_args_8_8_8_08_00_01_m_i_n___s_i_z_e___h_i_n_t_01_4_a4ebd7705215d4f695761c3c7da3007a9}{TFunction}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1function__detail_1_1_t_function}{TFunction}}\&\ other)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00191\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1function__detail_1_1_t_function_3_01_r_07_args_8_8_8_08_00_01_m_i_n___s_i_z_e___h_i_n_t_01_4_a7527a8053ba250b4537e6e2e1db0a7ee}{TFunction}}(\mbox{\hyperlink{classph_1_1function__detail_1_1_t_function}{TFunction}}\&\&\ other)\ \textcolor{keyword}{noexcept}\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00192\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1function__detail_1_1_t_function}{TFunction}}\&\ operator\ =\ (\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1function__detail_1_1_t_function}{TFunction}}\&\ rhs)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00193\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1function__detail_1_1_t_function}{TFunction}}\&\ operator\ =\ (\mbox{\hyperlink{classph_1_1function__detail_1_1_t_function}{TFunction}}\&\&\ rhs)\ \textcolor{keyword}{noexcept}\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00194\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1function__detail_1_1_t_function_3_01_r_07_args_8_8_8_08_00_01_m_i_n___s_i_z_e___h_i_n_t_01_4_ab9366f2a2a333d9ce037210087ae6064}{\string~TFunction}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00195\ }
+\DoxyCodeLine{00199\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}...\ DeducedArgs>}
+\DoxyCodeLine{00200\ \ \ \ \ \textcolor{keyword}{inline}\ R\ operator\ ()\ (DeducedArgs\&\&...\ args)\ \textcolor{keyword}{const}}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \textcolor{keyword}{requires}\ std::is\_invocable\_v<R(Args...),\ DeducedArgs...>}
+\DoxyCodeLine{00202\ \ \ \ \ \{}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (*m\_caller)(\textcolor{keyword}{this},\ std::forward<DeducedArgs>(args)...);}
+\DoxyCodeLine{00204\ \ \ \ \ \}}
+\DoxyCodeLine{00205\ }
+\DoxyCodeLine{00208\ \ \ \ \ \textcolor{keyword}{template}<auto\ Func>}
+\DoxyCodeLine{00209\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1function__detail_1_1_t_function}{TFunction}}\&\ \mbox{\hyperlink{classph_1_1function__detail_1_1_t_function_3_01_r_07_args_8_8_8_08_00_01_m_i_n___s_i_z_e___h_i_n_t_01_4_a665c856b589513fc7cb26c4af3dfef3a}{set}}()}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \textcolor{keyword}{requires}\ \mbox{\hyperlink{classph_1_1function__detail_1_1_t_function_3_01_r_07_args_8_8_8_08_00_01_m_i_n___s_i_z_e___h_i_n_t_01_4_abd1fb57dabab6aecf1b825d021864c9b}{TIsFreeFunction}}<Func>::value}
+\DoxyCodeLine{00211\ \ \ \ \ \{}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ m\_data.u\_emptyStruct\ =\ EmptyStruct\{\};}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ m\_caller\ =\ \&freeFunctionCaller<Func>;}
+\DoxyCodeLine{00214\ }
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00216\ \ \ \ \ \}}
+\DoxyCodeLine{00217\ }
+\DoxyCodeLine{00220\ \ \ \ \ \textcolor{keyword}{template}<auto\ Func,\ \textcolor{keyword}{typename}\ Class>}
+\DoxyCodeLine{00221\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1function__detail_1_1_t_function}{TFunction}}\&\ \mbox{\hyperlink{classph_1_1function__detail_1_1_t_function_3_01_r_07_args_8_8_8_08_00_01_m_i_n___s_i_z_e___h_i_n_t_01_4_a37e914989a34cabaecbc519713a370a8}{set}}(\textcolor{keyword}{const}\ Class*\ \textcolor{keyword}{const}\ instancePtr)}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \textcolor{keyword}{requires}\ \mbox{\hyperlink{classph_1_1function__detail_1_1_t_function_3_01_r_07_args_8_8_8_08_00_01_m_i_n___s_i_z_e___h_i_n_t_01_4_ab1f67cc8d9fa872596cae2bef37788a6}{TIsConstCallableMethod<Func,\ Class>::value}}}
+\DoxyCodeLine{00223\ \ \ \ \ \{}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ PH\_ASSERT(instancePtr);}
+\DoxyCodeLine{00225\ }
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ m\_data.u\_constInstance\ =\ instancePtr;}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ m\_caller\ =\ \&constCallableMethodCaller<Func,\ Class>;}
+\DoxyCodeLine{00228\ }
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00230\ \ \ \ \ \}}
+\DoxyCodeLine{00231\ }
+\DoxyCodeLine{00234\ \ \ \ \ \textcolor{keyword}{template}<auto\ Func,\ \textcolor{keyword}{typename}\ Class>}
+\DoxyCodeLine{00235\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1function__detail_1_1_t_function}{TFunction}}\&\ \mbox{\hyperlink{classph_1_1function__detail_1_1_t_function_3_01_r_07_args_8_8_8_08_00_01_m_i_n___s_i_z_e___h_i_n_t_01_4_a74f435a291db93890a9a4f42b12989b1}{set}}(Class*\ \textcolor{keyword}{const}\ instancePtr)}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \textcolor{keyword}{requires}\ \mbox{\hyperlink{classph_1_1function__detail_1_1_t_function_3_01_r_07_args_8_8_8_08_00_01_m_i_n___s_i_z_e___h_i_n_t_01_4_aa39ce551201991358893a4c7d269eaed}{TIsNonConstCallableMethod<Func,\ Class>::value}}}
+\DoxyCodeLine{00237\ \ \ \ \ \{}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ PH\_ASSERT(instancePtr);}
+\DoxyCodeLine{00239\ }
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ m\_data.u\_nonConstInstance\ =\ instancePtr;}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ m\_caller\ =\ \&nonConstCallableMethodCaller<Func,\ Class>;}
+\DoxyCodeLine{00242\ }
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00244\ \ \ \ \ \}}
+\DoxyCodeLine{00245\ }
+\DoxyCodeLine{00248\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Func>}
+\DoxyCodeLine{00249\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1function__detail_1_1_t_function}{TFunction}}\&\ \mbox{\hyperlink{classph_1_1function__detail_1_1_t_function_3_01_r_07_args_8_8_8_08_00_01_m_i_n___s_i_z_e___h_i_n_t_01_4_ace0400325ac4cc99c8bd321f197a44aa}{set}}()}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \textcolor{keyword}{requires}\ \mbox{\hyperlink{classph_1_1function__detail_1_1_t_function_3_01_r_07_args_8_8_8_08_00_01_m_i_n___s_i_z_e___h_i_n_t_01_4_ae1b62c51b49a6af5387072fce3b71498}{TIsEmptyFunctor}}<Func>::value}
+\DoxyCodeLine{00251\ \ \ \ \ \{}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ m\_data.u\_emptyStruct\ =\ EmptyStruct\{\};}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ m\_caller\ =\ \&emptyFunctorCaller<std::decay\_t<Func>>;}
+\DoxyCodeLine{00254\ }
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00256\ \ \ \ \ \}}
+\DoxyCodeLine{00257\ }
+\DoxyCodeLine{00260\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Func>}
+\DoxyCodeLine{00261\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1function__detail_1_1_t_function}{TFunction}}\&\ \mbox{\hyperlink{classph_1_1function__detail_1_1_t_function_3_01_r_07_args_8_8_8_08_00_01_m_i_n___s_i_z_e___h_i_n_t_01_4_a9023ba2599c60e71c88ad448051d07d4}{set}}(\textcolor{keyword}{const}\ Func\&\ \textcolor{comment}{/*\ unused\ */})}
+\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ \textcolor{keyword}{requires}\ \mbox{\hyperlink{classph_1_1function__detail_1_1_t_function_3_01_r_07_args_8_8_8_08_00_01_m_i_n___s_i_z_e___h_i_n_t_01_4_ae1b62c51b49a6af5387072fce3b71498}{TIsEmptyFunctor<Func>::value}}}
+\DoxyCodeLine{00263\ \ \ \ \ \{}
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ set<Func>();}
+\DoxyCodeLine{00265\ \ \ \ \ \}}
+\DoxyCodeLine{00266\ }
+\DoxyCodeLine{00269\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Func>}
+\DoxyCodeLine{00270\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1function__detail_1_1_t_function}{TFunction}}\&\ \mbox{\hyperlink{classph_1_1function__detail_1_1_t_function_3_01_r_07_args_8_8_8_08_00_01_m_i_n___s_i_z_e___h_i_n_t_01_4_aee405910e23b0784619e69dbd2580a4a}{set}}(Func\&\&\ func)}
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ \textcolor{keyword}{requires}\ \mbox{\hyperlink{classph_1_1function__detail_1_1_t_function_3_01_r_07_args_8_8_8_08_00_01_m_i_n___s_i_z_e___h_i_n_t_01_4_a3857a35f1c0f6f94ce376ce719bd071d}{TIsNonEmptyFunctor<Func>::value}}}
+\DoxyCodeLine{00272\ \ \ \ \ \{}
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }Functor\ =\ std::decay\_t<Func>;}
+\DoxyCodeLine{00274\ }
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Favor\ constructed\ functor\ since\ it\ is\ more\ efficient\ in\ general}}
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(std::is\_constructible\_v<Functor,\ Func\&\&>)}
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ IOC\ of\ array\ of\ size\ 1}}
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ \ \ \ \ Functor*\ \textcolor{keyword}{const}\ storage\ =\ start\_implicit\_lifetime\_as<Functor>(m\_data.u\_buffer);}
+\DoxyCodeLine{00280\ }
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ \ \ \ \ std::construct\_at(storage,\ std::forward<Func>(func));}
+\DoxyCodeLine{00282\ \ \ \ \ \ \ \ \ \ \ \ \ m\_caller\ =\ \&nonEmptyConstructedFunctorCaller<Functor>;}
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00284\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00285\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_trivially\_copyable\_v<Functor>);}
+\DoxyCodeLine{00287\ }
+\DoxyCodeLine{00288\ \ \ \ \ \ \ \ \ \ \ \ \ std::copy\_n(\textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const\ }std::byte*\textcolor{keyword}{>}(\&func),\ \textcolor{keyword}{sizeof}(Functor),\ m\_data.u\_buffer);}
+\DoxyCodeLine{00289\ \ \ \ \ \ \ \ \ \ \ \ \ m\_caller\ =\ \&nonEmptyCopiedFunctorCaller<Functor>();}
+\DoxyCodeLine{00290\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00292\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00293\ \ \ \ \ \}}
+\DoxyCodeLine{00294\ }
+\DoxyCodeLine{00297\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1function__detail_1_1_t_function_3_01_r_07_args_8_8_8_08_00_01_m_i_n___s_i_z_e___h_i_n_t_01_4_a815e30f7f8a7ba050db1156baed78860}{isValid}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00298\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00299\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_caller\ !=\ \&invalidFunctionCaller;}
+\DoxyCodeLine{00300\ \ \ \ \ \}}
+\DoxyCodeLine{00301\ }
+\DoxyCodeLine{00304\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{operator}\ bool\ ()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00305\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00306\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ isValid();}
+\DoxyCodeLine{00307\ \ \ \ \ \}}
+\DoxyCodeLine{00308\ }
+\DoxyCodeLine{00312\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1function__detail_1_1_t_function_3_01_r_07_args_8_8_8_08_00_01_m_i_n___s_i_z_e___h_i_n_t_01_4_a788aa80303cd9f8fa777fc05e0950a01}{unset}}()}
+\DoxyCodeLine{00313\ \ \ \ \ \{}
+\DoxyCodeLine{00314\ \ \ \ \ \ \ \ \ m\_caller\ =\ \&invalidFunctionCaller;}
+\DoxyCodeLine{00315\ \ \ \ \ \}}
+\DoxyCodeLine{00316\ }
+\DoxyCodeLine{00317\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00318\ \ \ \ \ \textcolor{keyword}{template}<auto\ Func>}
+\DoxyCodeLine{00319\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ R\ freeFunctionCaller(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1function__detail_1_1_t_function}{TFunction}}*\ \textcolor{comment}{/*\ unused\ */},\ Args...\ args)}
+\DoxyCodeLine{00320\ \ \ \ \ \ \ \ \ \textcolor{keyword}{requires}\ TIsFreeFunction<Func>::value}
+\DoxyCodeLine{00321\ \ \ \ \ \{}
+\DoxyCodeLine{00322\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (*Func)(std::forward<Args>(args)...);}
+\DoxyCodeLine{00323\ \ \ \ \ \}}
+\DoxyCodeLine{00324\ }
+\DoxyCodeLine{00325\ \ \ \ \ \textcolor{keyword}{template}<auto\ Func,\ \textcolor{keyword}{typename}\ Class>}
+\DoxyCodeLine{00326\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ R\ constCallableMethodCaller(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1function__detail_1_1_t_function}{TFunction}}*\ \textcolor{keyword}{const}\ self,\ Args...\ args)}
+\DoxyCodeLine{00327\ \ \ \ \ \ \ \ \ \textcolor{keyword}{requires}\ TIsConstCallableMethod<Func,\ Class>::value}
+\DoxyCodeLine{00328\ \ \ \ \ \{}
+\DoxyCodeLine{00329\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}*\ \textcolor{keyword}{const}\ instancePtr\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keyword}{const\ }Class*\textcolor{keyword}{>}(self-\/>m\_data.u\_constInstance);}
+\DoxyCodeLine{00330\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (instancePtr-\/>*Func)(std::forward<Args>(args)...);}
+\DoxyCodeLine{00331\ \ \ \ \ \}}
+\DoxyCodeLine{00332\ }
+\DoxyCodeLine{00333\ \ \ \ \ \textcolor{keyword}{template}<auto\ Func,\ \textcolor{keyword}{typename}\ Class>}
+\DoxyCodeLine{00334\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ R\ nonConstCallableMethodCaller(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_ada0b8a3952aa28723b1425b91e284eaf}{TFunction}}*\ \textcolor{keyword}{const}\ self,\ Args...\ args)}
+\DoxyCodeLine{00335\ \ \ \ \ \ \ \ \ \textcolor{keyword}{requires}\ TIsNonConstCallableMethod<Func,\ Class>::value}
+\DoxyCodeLine{00336\ \ \ \ \ \{}
+\DoxyCodeLine{00337\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}*\ \textcolor{keyword}{const}\ instancePtr\ =\ \textcolor{keyword}{static\_cast<}Class*\textcolor{keyword}{>}(self-\/>m\_data.u\_nonConstInstance);}
+\DoxyCodeLine{00338\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00339\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (instancePtr-\/>*Func)(std::forward<Args>(args)...);}
+\DoxyCodeLine{00340\ \ \ \ \ \}}
+\DoxyCodeLine{00341\ }
+\DoxyCodeLine{00342\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Func>}
+\DoxyCodeLine{00343\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ \mbox{\hyperlink{namespaceph_1_1pixel__texture_a3b167f72734af6e016a66878c539bd9dae1e1d3d40573127e9ee0480caf1283d6}{R}}\ emptyFunctorCaller(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_ada0b8a3952aa28723b1425b91e284eaf}{TFunction}}*\ \textcolor{comment}{/*\ unused\ */},\ Args...\ args)}
+\DoxyCodeLine{00344\ \ \ \ \ \ \ \ \ \textcolor{keyword}{requires}\ TIsEmptyFunctor<Func>::value}
+\DoxyCodeLine{00345\ \ \ \ \ \{}
+\DoxyCodeLine{00346\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Under\ the\ assumption\ that\ a\ stateless\ functor\ should\ be\ cheap\ to\ create\ (and\ without\ any}}
+\DoxyCodeLine{00347\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ side\ effects),\ we\ construct\ a\ new\ \`{}Func`\ on\ every\ call\ to\ it}}
+\DoxyCodeLine{00348\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Func\{\}(std::forward<Args>(args)...);}
+\DoxyCodeLine{00349\ \ \ \ \ \}}
+\DoxyCodeLine{00350\ }
+\DoxyCodeLine{00351\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Func>}
+\DoxyCodeLine{00352\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ \mbox{\hyperlink{namespaceph_1_1pixel__texture_a3b167f72734af6e016a66878c539bd9dae1e1d3d40573127e9ee0480caf1283d6}{R}}\ nonEmptyConstructedFunctorCaller(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_ada0b8a3952aa28723b1425b91e284eaf}{TFunction}}*\ \textcolor{keyword}{const}\ self,\ Args...\ args)}
+\DoxyCodeLine{00353\ \ \ \ \ \{}
+\DoxyCodeLine{00354\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ We\ do\ not\ obtain\ the\ pointer\ to\ \`{}Func`\ via\ placement\ new\ (or\ \`{}std::construct\_at`).}}
+\DoxyCodeLine{00355\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Instead,\ we\ cast\ it\ from\ raw\ buffer\ and\ laundering\ is\ required\ by\ the\ standard}}
+\DoxyCodeLine{00356\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ func\ =\ *std::launder(\textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const\ }Func*\textcolor{keyword}{>}(self-\/>m\_data.u\_buffer));}
+\DoxyCodeLine{00357\ }
+\DoxyCodeLine{00358\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ func(std::forward<Args>(args)...);}
+\DoxyCodeLine{00359\ \ \ \ \ \}}
+\DoxyCodeLine{00360\ }
+\DoxyCodeLine{00361\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Func>}
+\DoxyCodeLine{00362\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ \mbox{\hyperlink{namespaceph_1_1pixel__texture_a3b167f72734af6e016a66878c539bd9dae1e1d3d40573127e9ee0480caf1283d6}{R}}\ nonEmptyCopiedFunctorCaller(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_ada0b8a3952aa28723b1425b91e284eaf}{TFunction}}*\ \textcolor{keyword}{const}\ self,\ Args...\ args)}
+\DoxyCodeLine{00363\ \ \ \ \ \{}
+\DoxyCodeLine{00364\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_trivially\_copyable\_v<Func>\ \&\&\ std::is\_default\_constructible\_v<Func>,}
+\DoxyCodeLine{00365\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Current\ implementation\ of\ copied\ functor\ caller\ requires\ default\ constructible\ functor\ "{}}}
+\DoxyCodeLine{00366\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}to\ copy\ bytes\ into."{}});}
+\DoxyCodeLine{00367\ }
+\DoxyCodeLine{00368\ \ \ \ \ \ \ \ \ Func\ func;}
+\DoxyCodeLine{00369\ \ \ \ \ \ \ \ \ std::copy\_n(self-\/>m\_data.u\_buffer,\ \textcolor{keyword}{sizeof}(Func),\ \textcolor{keyword}{reinterpret\_cast<}std::byte*\textcolor{keyword}{>}(\&func));}
+\DoxyCodeLine{00370\ }
+\DoxyCodeLine{00371\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ func(std::forward<Args>(args)...);}
+\DoxyCodeLine{00372\ \ \ \ \ \}}
+\DoxyCodeLine{00373\ }
+\DoxyCodeLine{00374\ \ \ \ \ [[noreturn]]}
+\DoxyCodeLine{00375\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ \mbox{\hyperlink{namespaceph_1_1pixel__texture_a3b167f72734af6e016a66878c539bd9dae1e1d3d40573127e9ee0480caf1283d6}{R}}\ invalidFunctionCaller(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_ada0b8a3952aa28723b1425b91e284eaf}{TFunction}}*\ \textcolor{comment}{/*\ unused\ */},\ Args...\ args)}
+\DoxyCodeLine{00376\ \ \ \ \ \{}
+\DoxyCodeLine{00377\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ UninitializedObjectException(\textcolor{stringliteral}{"{}Invalid\ function\ call:\ function\ is\ not\ set"{}});}
+\DoxyCodeLine{00378\ \ \ \ \ \}}
+\DoxyCodeLine{00379\ }
+\DoxyCodeLine{00380\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00381\ \ \ \ \ \textcolor{keyword}{struct\ }EmptyStruct}
+\DoxyCodeLine{00382\ \ \ \ \ \{\};}
+\DoxyCodeLine{00383\ }
+\DoxyCodeLine{00384\ \ \ \ \ \textcolor{keyword}{union\ }Data}
+\DoxyCodeLine{00385\ \ \ \ \ \{}
+\DoxyCodeLine{00386\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Intentionally\ provided\ so\ that\ default\ init\ of\ the\ union\ is\ a\ no-\/op.}}
+\DoxyCodeLine{00387\ \ \ \ \ \ \ \ \ EmptyStruct\ u\_emptyStruct;}
+\DoxyCodeLine{00388\ }
+\DoxyCodeLine{00389\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Pointer\ to\ const\ class\ instance.\ May\ be\ empty\ except\ for\ methods.}}
+\DoxyCodeLine{00390\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{void}*\ u\_constInstance;}
+\DoxyCodeLine{00391\ }
+\DoxyCodeLine{00392\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Pointer\ to\ non-\/const\ class\ instance.\ May\ be\ empty\ except\ for\ methods.}}
+\DoxyCodeLine{00393\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}*\ u\_nonConstInstance;}
+\DoxyCodeLine{00394\ }
+\DoxyCodeLine{00395\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Buffer\ for\ non-\/empty\ functors.}}
+\DoxyCodeLine{00396\ \ \ \ \ \ \ \ \ \textcolor{keyword}{alignas}(BUFFER\_ALIGNMENT)\ std::byte\ u\_buffer[BUFFER\_SIZE];}
+\DoxyCodeLine{00397\ \ \ \ \ \};}
+\DoxyCodeLine{00398\ }
+\DoxyCodeLine{00399\ \ \ \ \ \textcolor{comment}{//\ Ensure\ we\ are\ not\ wasting\ memory.\ Adjust\ buffer\ alignment\ if\ failed.}}
+\DoxyCodeLine{00400\ \ \ \ \ \textcolor{keyword}{static\_assert}(\textcolor{keyword}{alignof}(Data)\ ==\ BUFFER\_ALIGNMENT);}
+\DoxyCodeLine{00401\ }
+\DoxyCodeLine{00402\ \ \ \ \ \textcolor{comment}{//\ Member\ variables:\ smallest\ possible\ size\ of\ \`{}TFunction`\ is\ two\ pointers-\/-\/one\ for\ \`{}UnifiedCaller`\ }}
+\DoxyCodeLine{00403\ \ \ \ \ \textcolor{comment}{//\ and\ another\ one\ in\ \`{}Data`}}
+\DoxyCodeLine{00404\ }
+\DoxyCodeLine{00405\ \ \ \ \ Data\ m\_data\ =\ EmptyStruct\{\};}
+\DoxyCodeLine{00406\ }
+\DoxyCodeLine{00407\ \ \ \ \ \textcolor{comment}{//\ Wrapper\ function\ with\ unified\ signature\ for\ calling\ the\ actual\ function.}}
+\DoxyCodeLine{00408\ \ \ \ \ UnifiedCaller\ m\_caller\ =\ \&invalidFunctionCaller;}
+\DoxyCodeLine{00409\ \};}
+\DoxyCodeLine{00410\ }
+\DoxyCodeLine{00411\ \}\textcolor{comment}{//\ end\ namespace\ function\_detail}}
+\DoxyCodeLine{00412\ }
+\DoxyCodeLine{00413\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Func,\ std::\textcolor{keywordtype}{size\_t}\ MIN\_SIZE\_HINT\ =\ PH\_TFUNCTION\_DEFAULT\_MIN\_SIZE\_IN\_BYTES>}
+\DoxyCodeLine{00414\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classph_1_1function__detail_1_1_t_function}{TFunction}}\ =\ \mbox{\hyperlink{classph_1_1function__detail_1_1_t_function}{function\_detail::TFunction<Func,\ MIN\_SIZE\_HINT>}};}
+\DoxyCodeLine{00415\ }
+\DoxyCodeLine{00416\ \textcolor{comment}{//\ This\ is\ a\ stricter\ requirement\ than\ what\ \`{}TFunction`\ guaranteed.\ However,\ if\ its\ code\ works\ }}
+\DoxyCodeLine{00417\ \textcolor{comment}{//\ correctly\ the\ size\ should\ be\ exactly\ what\ has\ been\ requested\ (providing\ the\ hint\ is\ >=\ 16\ bytes).}}
+\DoxyCodeLine{00418\ \textcolor{keyword}{static\_assert}(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{classph_1_1function__detail_1_1_t_function}{TFunction}}<int(\textcolor{keywordtype}{int},\ \textcolor{keywordtype}{int})>)\ ==\ PH\_TFUNCTION\_DEFAULT\_MIN\_SIZE\_IN\_BYTES);}
+\DoxyCodeLine{00419\ }
+\DoxyCodeLine{00420\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+
+\end{DoxyCode}

@@ -1,0 +1,154 @@
+\doxysection{Full\+Viewpoint.\+h}
+\hypertarget{_full_viewpoint_8h_source}{}\label{_full_viewpoint_8h_source}\index{Source/Core/Renderer/PM/FullViewpoint.h@{Source/Core/Renderer/PM/FullViewpoint.h}}
+\mbox{\hyperlink{_full_viewpoint_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_viewpoint_8h}{Core/Renderer/PM/TViewpoint.h}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_surface_hit_8h}{Core/SurfaceHit.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_vector2_8h}{Math/TVector2.h}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_spectrum_8h}{Math/Color/Spectrum.h}}"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{surface__optics__fwd_8h}{Core/SurfaceBehavior/surface\_optics\_fwd.h}}"{}}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <Common/assertion.h>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <Common/primitive\_type.h>}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <cstddef>}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00015\ \{}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00020\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_full_viewpoint}{FullViewpoint}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classph_1_1_t_viewpoint}{TViewpoint}}<FullViewpoint>}
+\DoxyCodeLine{00021\ \{}
+\DoxyCodeLine{00022\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00023\ \ \ \ \ \mbox{\hyperlink{classph_1_1_full_viewpoint_ad6d3123dcb2e1b121b8ae14d22ad6a07}{FullViewpoint}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{template}<EViewpo\textcolor{keywordtype}{int}Data\ TYPE>}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_full_viewpoint_a5fe2cca932e48236c3b24829520071e6}{impl\_has}}();}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{template}<EViewpo\textcolor{keywordtype}{int}Data\ TYPE>}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{decltype}(\textcolor{keyword}{auto})\ \mbox{\hyperlink{classph_1_1_full_viewpoint_ae811774f42fc0f12e06e1d8bb3c30bc7}{impl\_get}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{template}<EViewpo\textcolor{keywordtype}{int}Data\ TYPE,\ \textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_full_viewpoint_a1f59e29bdd0b1fefe8a82ab711927bef}{impl\_set}}(\textcolor{keyword}{const}\ T\&\ value);}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00035\ \ \ \ \ \mbox{\hyperlink{classph_1_1_surface_hit}{SurfaceHit}}\ \ \ \ \ m\_surfaceHit;}
+\DoxyCodeLine{00036\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{math::Vector2R}}\ m\_rasterCoord;}
+\DoxyCodeLine{00037\ \ \ \ \ real\ \ \ \ \ \ \ \ \ \ \ m\_radius;}
+\DoxyCodeLine{00038\ \ \ \ \ real\ \ \ \ \ \ \ \ \ \ \ m\_numPhotons;}
+\DoxyCodeLine{00039\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_spectrum}{math::Spectrum}}\ m\_tau;}
+\DoxyCodeLine{00040\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_spectrum}{math::Spectrum}}\ m\_viewThroughput;}
+\DoxyCodeLine{00041\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\ m\_viewDir;}
+\DoxyCodeLine{00042\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_spectrum}{math::Spectrum}}\ m\_viewRadiance;}
+\DoxyCodeLine{00043\ \};}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \textcolor{comment}{//\ In-\/header\ Implementations:}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \textcolor{keyword}{template}<EViewpo\textcolor{keywordtype}{int}Data\ TYPE>}
+\DoxyCodeLine{00048\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_full_viewpoint_a5fe2cca932e48236c3b24829520071e6}{FullViewpoint::impl\_has}}()}
+\DoxyCodeLine{00049\ \{}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ TYPE\ ==\ \mbox{\hyperlink{namespaceph_a7d646adaf4c44ccfcbbe787120a7cb1fa2eee368b673cbaedbb7a829562fa85d7}{EViewpointData::SurfaceHit}}\ \ \ \ \ ||}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ TYPE\ ==\ \mbox{\hyperlink{namespaceph_a7d646adaf4c44ccfcbbe787120a7cb1faa03022bf680492c4c7e9a0723ed7cd71}{EViewpointData::RasterCoord}}\ \ \ \ ||}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ TYPE\ ==\ \mbox{\hyperlink{namespaceph_a7d646adaf4c44ccfcbbe787120a7cb1fad1106ccca74e98877ed6d7890c70bb2c}{EViewpointData::Radius}}\ \ \ \ \ \ \ \ \ ||}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ TYPE\ ==\ \mbox{\hyperlink{namespaceph_a7d646adaf4c44ccfcbbe787120a7cb1fa119fba41118f04e03c5f46ff06b79da1}{EViewpointData::NumPhotons}}\ \ \ \ \ ||}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ TYPE\ ==\ \mbox{\hyperlink{namespaceph_a7d646adaf4c44ccfcbbe787120a7cb1faf3f155d55288e275dbad53d835b03757}{EViewpointData::Tau}}\ \ \ \ \ \ \ \ \ \ \ \ ||}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ TYPE\ ==\ \mbox{\hyperlink{namespaceph_a7d646adaf4c44ccfcbbe787120a7cb1fa0737ad937b6f497fd48cf5b484ed4c9b}{EViewpointData::ViewThroughput}}\ ||\ }
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ TYPE\ ==\ \mbox{\hyperlink{namespaceph_a7d646adaf4c44ccfcbbe787120a7cb1fa19eec7ab9f3a463f76c6b158371b05c5}{EViewpointData::ViewDir}}\ \ \ \ \ \ \ \ ||\ }
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ TYPE\ ==\ \mbox{\hyperlink{namespaceph_a7d646adaf4c44ccfcbbe787120a7cb1fa5aefb2b156a27259f3f640c349bf6f93}{EViewpointData::ViewRadiance}})}
+\DoxyCodeLine{00059\ \ \ \ \ \{}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00061\ \ \ \ \ \}}
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00063\ \ \ \ \ \{}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00065\ \ \ \ \ \}}
+\DoxyCodeLine{00066\ \}}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \textcolor{keyword}{template}<EViewpo\textcolor{keywordtype}{int}Data\ TYPE>}
+\DoxyCodeLine{00069\ \textcolor{keyword}{inline}\ \textcolor{keyword}{decltype}(\textcolor{keyword}{auto})\ \mbox{\hyperlink{classph_1_1_full_viewpoint_ae811774f42fc0f12e06e1d8bb3c30bc7}{FullViewpoint::impl\_get}}()\ \textcolor{keyword}{const}}
+\DoxyCodeLine{00070\ \{}
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(TYPE\ ==\ \mbox{\hyperlink{namespaceph_a7d646adaf4c44ccfcbbe787120a7cb1fa2eee368b673cbaedbb7a829562fa85d7}{EViewpointData::SurfaceHit}})}
+\DoxyCodeLine{00072\ \ \ \ \ \{}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_surfaceHit;}
+\DoxyCodeLine{00074\ \ \ \ \ \}}
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(TYPE\ ==\ \mbox{\hyperlink{namespaceph_a7d646adaf4c44ccfcbbe787120a7cb1faa03022bf680492c4c7e9a0723ed7cd71}{EViewpointData::RasterCoord}})}
+\DoxyCodeLine{00076\ \ \ \ \ \{}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespaceph_1_1math_a130315e9eff82a9a70624253b5e6de50}{math::Vector2D}}(m\_rasterCoord);}
+\DoxyCodeLine{00078\ \ \ \ \ \}}
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(TYPE\ ==\ \mbox{\hyperlink{namespaceph_a7d646adaf4c44ccfcbbe787120a7cb1fad1106ccca74e98877ed6d7890c70bb2c}{EViewpointData::Radius}})}
+\DoxyCodeLine{00080\ \ \ \ \ \{}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_radius;}
+\DoxyCodeLine{00082\ \ \ \ \ \}}
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(TYPE\ ==\ \mbox{\hyperlink{namespaceph_a7d646adaf4c44ccfcbbe787120a7cb1fa119fba41118f04e03c5f46ff06b79da1}{EViewpointData::NumPhotons}})}
+\DoxyCodeLine{00084\ \ \ \ \ \{}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_numPhotons;}
+\DoxyCodeLine{00086\ \ \ \ \ \}}
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(TYPE\ ==\ \mbox{\hyperlink{namespaceph_a7d646adaf4c44ccfcbbe787120a7cb1faf3f155d55288e275dbad53d835b03757}{EViewpointData::Tau}})}
+\DoxyCodeLine{00088\ \ \ \ \ \{}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_tau;}
+\DoxyCodeLine{00090\ \ \ \ \ \}}
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(TYPE\ ==\ \mbox{\hyperlink{namespaceph_a7d646adaf4c44ccfcbbe787120a7cb1fa0737ad937b6f497fd48cf5b484ed4c9b}{EViewpointData::ViewThroughput}})}
+\DoxyCodeLine{00092\ \ \ \ \ \{}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_viewThroughput;}
+\DoxyCodeLine{00094\ \ \ \ \ \}}
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(TYPE\ ==\ \mbox{\hyperlink{namespaceph_a7d646adaf4c44ccfcbbe787120a7cb1fa19eec7ab9f3a463f76c6b158371b05c5}{EViewpointData::ViewDir}})}
+\DoxyCodeLine{00096\ \ \ \ \ \{}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_viewDir;}
+\DoxyCodeLine{00098\ \ \ \ \ \}}
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(TYPE\ ==\ \mbox{\hyperlink{namespaceph_a7d646adaf4c44ccfcbbe787120a7cb1fa5aefb2b156a27259f3f640c349bf6f93}{EViewpointData::ViewRadiance}})}
+\DoxyCodeLine{00100\ \ \ \ \ \{}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_viewRadiance;}
+\DoxyCodeLine{00102\ \ \ \ \ \}}
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00104\ \ \ \ \ \{}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ PH\_ASSERT\_UNREACHABLE\_SECTION();}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00107\ \ \ \ \ \}}
+\DoxyCodeLine{00108\ \}}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \textcolor{keyword}{template}<EViewpo\textcolor{keywordtype}{int}Data\ TYPE,\ \textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00111\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_full_viewpoint_a1f59e29bdd0b1fefe8a82ab711927bef}{FullViewpoint::impl\_set}}(\textcolor{keyword}{const}\ T\&\ value)}
+\DoxyCodeLine{00112\ \{}
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(TYPE\ ==\ \mbox{\hyperlink{namespaceph_a7d646adaf4c44ccfcbbe787120a7cb1fa2eee368b673cbaedbb7a829562fa85d7}{EViewpointData::SurfaceHit}})}
+\DoxyCodeLine{00114\ \ \ \ \ \{}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ m\_surfaceHit\ =\ value;}
+\DoxyCodeLine{00116\ \ \ \ \ \}}
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(TYPE\ ==\ \mbox{\hyperlink{namespaceph_a7d646adaf4c44ccfcbbe787120a7cb1faa03022bf680492c4c7e9a0723ed7cd71}{EViewpointData::RasterCoord}})}
+\DoxyCodeLine{00118\ \ \ \ \ \{}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ m\_rasterCoord\ =\ \mbox{\hyperlink{namespaceph_1_1math_a5895ae9c1c8e89f96302ff21d9f15df8}{math::Vector2R}}(value);}
+\DoxyCodeLine{00120\ \ \ \ \ \}}
+\DoxyCodeLine{00121\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(TYPE\ ==\ \mbox{\hyperlink{namespaceph_a7d646adaf4c44ccfcbbe787120a7cb1fad1106ccca74e98877ed6d7890c70bb2c}{EViewpointData::Radius}})}
+\DoxyCodeLine{00122\ \ \ \ \ \{}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ m\_radius\ =\ value;}
+\DoxyCodeLine{00124\ \ \ \ \ \}}
+\DoxyCodeLine{00125\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(TYPE\ ==\ \mbox{\hyperlink{namespaceph_a7d646adaf4c44ccfcbbe787120a7cb1fa119fba41118f04e03c5f46ff06b79da1}{EViewpointData::NumPhotons}})}
+\DoxyCodeLine{00126\ \ \ \ \ \{}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ m\_numPhotons\ =\ value;}
+\DoxyCodeLine{00128\ \ \ \ \ \}}
+\DoxyCodeLine{00129\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(TYPE\ ==\ \mbox{\hyperlink{namespaceph_a7d646adaf4c44ccfcbbe787120a7cb1faf3f155d55288e275dbad53d835b03757}{EViewpointData::Tau}})}
+\DoxyCodeLine{00130\ \ \ \ \ \{}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ m\_tau\ =\ value;}
+\DoxyCodeLine{00132\ \ \ \ \ \}}
+\DoxyCodeLine{00133\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(TYPE\ ==\ \mbox{\hyperlink{namespaceph_a7d646adaf4c44ccfcbbe787120a7cb1fa0737ad937b6f497fd48cf5b484ed4c9b}{EViewpointData::ViewThroughput}})}
+\DoxyCodeLine{00134\ \ \ \ \ \{}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ m\_viewThroughput\ =\ value;}
+\DoxyCodeLine{00136\ \ \ \ \ \}}
+\DoxyCodeLine{00137\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(TYPE\ ==\ \mbox{\hyperlink{namespaceph_a7d646adaf4c44ccfcbbe787120a7cb1fa19eec7ab9f3a463f76c6b158371b05c5}{EViewpointData::ViewDir}})}
+\DoxyCodeLine{00138\ \ \ \ \ \{}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ m\_viewDir\ =\ value;}
+\DoxyCodeLine{00140\ \ \ \ \ \}}
+\DoxyCodeLine{00141\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(TYPE\ ==\ \mbox{\hyperlink{namespaceph_a7d646adaf4c44ccfcbbe787120a7cb1fa5aefb2b156a27259f3f640c349bf6f93}{EViewpointData::ViewRadiance}})}
+\DoxyCodeLine{00142\ \ \ \ \ \{}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ m\_viewRadiance\ =\ value;}
+\DoxyCodeLine{00144\ \ \ \ \ \}}
+\DoxyCodeLine{00145\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00146\ \ \ \ \ \{}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ PH\_ASSERT\_UNREACHABLE\_SECTION();}
+\DoxyCodeLine{00148\ \ \ \ \ \}}
+\DoxyCodeLine{00149\ \}}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00151\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+
+\end{DoxyCode}

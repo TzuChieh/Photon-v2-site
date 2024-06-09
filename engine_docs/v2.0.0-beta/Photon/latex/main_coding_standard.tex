@@ -1,0 +1,151 @@
+\chapter{Coding Standard}
+\hypertarget{main_coding_standard}{}\label{main_coding_standard}\index{Coding Standard@{Coding Standard}}
+\label{main_coding_standard_md__documentation_2coding__standard}%
+\Hypertarget{main_coding_standard_md__documentation_2coding__standard}%
+
+
+The development of the core of Photon complies to a collection of rules.\hypertarget{main_coding_standard_autotoc_md11}{}\doxysection{\texorpdfstring{Why}{Why}}\label{main_coding_standard_autotoc_md11}
+It is benefitial to have a common coding style to follow with, the reasons are\+:
+
+
+\begin{DoxyItemize}
+\item code is written by one person, but viewed multiple times by others
+\item 80\% of the lifetime cost of a piece of software goes to maintenance (from UE4)
+\item sometimes higher level concepts can be implied by the layouts
+\end{DoxyItemize}
+
+This guideline is for coding in C++ since most of the code for engine is written in it; nonetheless, some concepts can be applied to other parts of Photon (and is encouraged). You do not need to follow all these rules strictly as long as you have a good reason that doing the other way is better for the context.\hypertarget{main_coding_standard_autotoc_md12}{}\doxysection{\texorpdfstring{Language and Naming}{Language and Naming}}\label{main_coding_standard_autotoc_md12}
+
+\begin{DoxyItemize}
+\item Follow C++20 standard, try to use standard features only.
+\item Class names are in capitalized camel case, e.\+g., {\ttfamily Some\+Class\+Name}.
+\item Namespaces and function names are in lower case and underscore separated, e,g., {\ttfamily some\+\_\+name}.
+\item Member variables should have {\ttfamily m\+\_\+} prefix.
+\item Local variables and methods are camel case and uncapitalized, e.\+g., {\ttfamily world\+To\+Local}.
+\item Try not to use abbreviations, except for
+\begin{DoxyItemize}
+\item {\ttfamily num} for number
+\item {\ttfamily pos} for position
+\item {\ttfamily dir} for direction
+\item common abbreviations in graphics
+\item common abbreviations in mathematics
+\item formulae in referenced papers
+\end{DoxyItemize}
+\item Classes that defines an interfaces should have an {\ttfamily I} prefix, e.\+g., {\ttfamily IFile\+System}.
+\item Name a variable in plural if it is a collection.
+\item Boolean variables and methods should ask a question, e.\+g., {\ttfamily m\+\_\+is\+Running}, {\ttfamily has\+Material()}.
+\item Use {\ttfamily \#pragma once}. Do {\bfseries{not}} use macro-\/based header guards.
+\item Use {\ttfamily PH\+\_\+\+ASSERT} for runtime assertions. See \href{https://github.com/TzuChieh/Photon-v2/blob/master/Engine/Source/Common/assertion.h}{\texttt{ {\ttfamily Engine/\+Source/\+Common/assertion.\+h}}}.
+\end{DoxyItemize}\hypertarget{main_coding_standard_autotoc_md13}{}\doxysection{\texorpdfstring{Filename Extensions and Includes}{Filename Extensions and Includes}}\label{main_coding_standard_autotoc_md13}
+
+\begin{DoxyItemize}
+\item {\ttfamily .h} for header files
+\item {\ttfamily .cpp} for source code
+\item {\ttfamily .ipp} for template implementations
+\item Include directives should have the following order (with each category separated by a blank line)\+:
+\begin{DoxyEnumerate}
+\item Engine Headers
+\item Library Headers
+\item Third-\/party Library Headers
+\item Standard Headers
+\end{DoxyEnumerate}
+\item Include engine headers with quotes ({\ttfamily "{}"{}}) and absolute path, relative to {\ttfamily Engine/\+Source/}.
+\item Include non-\/engine headers with angle brackets ({\ttfamily \texorpdfstring{$<$}{<}\texorpdfstring{$>$}{>}}).
+\item Favor forward declaration over inclusion.
+\begin{DoxyItemize}
+\item This can help to reduce compile time over time.
+\item Helps to break cyclic dependency.
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{main_coding_standard_autotoc_md14}{}\doxysection{\texorpdfstring{Formatting}{Formatting}}\label{main_coding_standard_autotoc_md14}
+
+\begin{DoxyItemize}
+\item Curly braces should have their own line.
+\item Operators surrounded by spaces.
+\item No spaces around brackets and parentheses.
+\item Try not to declare multiple variables in single line.
+\item Indent with tabs and align with spaces.
+\item Do not write comments that state obvious things.
+\item Do not indent namespace body.
+\end{DoxyItemize}\hypertarget{main_coding_standard_autotoc_md15}{}\doxysection{\texorpdfstring{C++ Syntax}{C++ Syntax}}\label{main_coding_standard_autotoc_md15}
+
+\begin{DoxyItemize}
+\item Add {\ttfamily const} to anything that is intended to be a constant.
+\item Add {\ttfamily const} to methods if it will not alter the state of the object.
+\item Add {\ttfamily override} when overriding virtual methods, do not repeat {\ttfamily virtual} in this case.
+\item Add a virtual destructor if the object is intended to be used polymorphically.
+\item Use {\ttfamily static\+\_\+assert} if you have assumptions that can be verified in compile time.
+\item Use {\ttfamily nullptr}, do {\bfseries{not}} use {\ttfamily NULL}.
+\item Use {\ttfamily typename} for template type parameters, do {\bfseries{not}} use {\ttfamily class}.
+\item Use {\ttfamily constexpr} for constants where you can.
+\item {\ttfamily auto} should not be used, except for
+\begin{DoxyItemize}
+\item range based for loops (only when the iterated target is verbose)
+\item variable type is obvious, such as constructing smart pointers via {\ttfamily std\+::make\+\_\+shared\texorpdfstring{$<$}{<}T\texorpdfstring{$>$}{>}}
+\item TMP where this is necessary, e.\+g., {\ttfamily decltype(auto)}
+\end{DoxyItemize}
+\item Perform explicit captures for lambda expressions.
+\item Pass by {\ttfamily const} reference if the parameter is not intended to be modified.
+\item Pass by non-\/{\ttfamily const} reference and a {\ttfamily out\+\_\+} prefix for partially modified parameters.
+\item Pass by non-\/{\ttfamily const} pointer and a {\ttfamily out\+\_\+} prefix for completely modified parameters.
+\item Strongly-\/typed enum should always be used, and with a {\ttfamily E} prefix, e.\+g., {\ttfamily enum class EUnit}.
+\item Use of anonymous namespaces is encouraged for implementation specific helpers.
+\item Do not use {\ttfamily final} everywhere; use it only when the target is {\bfseries{designed not to be}} inherited.
+\item Always use a pair of braces for statements ({\ttfamily if}, {\ttfamily for}, {\ttfamily while}, etc.) that contains only a single line.
+\item Do not put {\ttfamily using} declarations in global scope.
+\item Pointers and references\+:
+\begin{DoxyItemize}
+\item Declare like this {\ttfamily ICommand\texorpdfstring{$\ast$}{*} command}
+\item {\bfseries{Not}} like this {\ttfamily ICommand \texorpdfstring{$\ast$}{*}command}
+\end{DoxyItemize}
+\item If needed, define functions/methods as {\ttfamily inline}, not when declaring them.
+\item Do not use {\ttfamily new} and {\ttfamily delete} directly.
+\item Make constructor {\ttfamily explicit} if it has single input parameter.
+\end{DoxyItemize}\hypertarget{main_coding_standard_autotoc_md16}{}\doxysection{\texorpdfstring{Primitive Type Aliasing}{Primitive Type Aliasing}}\label{main_coding_standard_autotoc_md16}
+Photon uses aliased types most of the time for cross platform compatibilities and ease of tuning. They are declared in \href{https://github.com/TzuChieh/Photon-v2/blob/master/Engine/Source/Common/primitive_type.h}{\texttt{ {\ttfamily Engine/\+Source/\+Common/primitive\+\_\+type.\+h}}}.
+
+
+\begin{DoxyItemize}
+\item Use {\ttfamily real} for reals, and a {\ttfamily \+\_\+r} suffix for real literals.
+\item Use {\ttfamily integer} for integers.
+\item If you need specific precision and Photon has it, use it; otherwise use standard types.
+\end{DoxyItemize}\hypertarget{main_coding_standard_autotoc_md17}{}\doxysection{\texorpdfstring{Others}{Others}}\label{main_coding_standard_autotoc_md17}
+
+\begin{DoxyItemize}
+\item All engine code should be under {\ttfamily ph} namespace, preferably with an ending comment\+:
+\end{DoxyItemize}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{namespace\ }ph}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \textcolor{comment}{//\ some\ code}}
+\DoxyCodeLine{\}\textcolor{comment}{//\ end\ namespace\ ph}}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyItemize}
+\item Any function/method with empty body should be formatted like this\+:
+\end{DoxyItemize}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{void}\ someMeaningfulName()}
+\DoxyCodeLine{\{\}}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyItemize}
+\item Uninitialized variable/object should have its initializing routine follows immediately, without any blank lines\+:
+\end{DoxyItemize}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{TimeStamp\ someTime;\textcolor{comment}{//\ uninitialized}}
+\DoxyCodeLine{m\_timeMachine.getTime(\&someTime);\textcolor{comment}{//\ <someTime>\ initialized}}
+
+\end{DoxyCode}
+ 

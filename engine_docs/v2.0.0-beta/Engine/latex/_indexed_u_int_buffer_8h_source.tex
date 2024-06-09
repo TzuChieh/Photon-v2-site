@@ -1,0 +1,236 @@
+\doxysection{Indexed\+UInt\+Buffer.\+h}
+\hypertarget{_indexed_u_int_buffer_8h_source}{}\label{_indexed_u_int_buffer_8h_source}\index{Source/Core/Intersection/DataStructure/IndexedUIntBuffer.h@{Source/Core/Intersection/DataStructure/IndexedUIntBuffer.h}}
+\mbox{\hyperlink{_indexed_u_int_buffer_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{math_8h}{Math/math.h}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{utility_8h}{Utility/utility.h}}"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <Common/assertion.h>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <Common/primitive\_type.h>}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <cstddef>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <climits>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <concepts>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <limits>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <stdexcept>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <format>}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <cstring>}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ <type\_traits>}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00021\ \{}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00025\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_indexed_u_int_buffer}{IndexedUIntBuffer}}\ final}
+\DoxyCodeLine{00026\ \{}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{static\_assert}(\textcolor{keyword}{sizeof}(std::byte)*\ CHAR\_BIT\ ==\ 8,}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}The\ buffer\ explicitly\ depends\ on\ the\ fact\ that\ std::byte\ contains\ 8\ bits."{}});}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00031\ \ \ \ \ \mbox{\hyperlink{classph_1_1_indexed_u_int_buffer_a43ac68a640b6331b2fc1dab110936514}{IndexedUIntBuffer}}();}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{comment}{//\ TODO:\ aligned\ memory\ allocation?}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_indexed_u_int_buffer_a1395241b853fa709ec4e0a9b080a9f1e}{declareUIntFormat}}(std::size\_t\ numBitsPerUInt);}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_indexed_u_int_buffer_a98a869b41ecc4bbd48559af331ec588a}{declareUIntFormatByMaxValue}}(uint64\ maxValue);}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{int}egral\ IntegerType>}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_indexed_u_int_buffer_a1395241b853fa709ec4e0a9b080a9f1e}{declareUIntFormat}}();}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_indexed_u_int_buffer_a75bbe7677800f1dde49c00f43701455a}{allocate}}(std::size\_t\ \mbox{\hyperlink{classph_1_1_indexed_u_int_buffer_a12f2f72009140fa7ceac4e76d0f94571}{numUInts}});}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{int}egral\ IntegerType>}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_indexed_u_int_buffer_af3a5a8a0d5b72d4aa85cf04814acf32f}{setUInt}}(std::size\_t\ index,\ IntegerType\ value);}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ ValueType>}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_indexed_u_int_buffer_ac42c57a15bb2f281f1a9886b29416899}{setUInts}}(\textcolor{keyword}{const}\ ValueType*\ values,\ std::size\_t\ numValues,\ std::size\_t\ dstBeginValueIndex\ =\ 0);}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_indexed_u_int_buffer_ac42c57a15bb2f281f1a9886b29416899}{setUInts}}(\textcolor{keyword}{const}\ std::byte*\ srcBytes,\ std::size\_t\ numBytes,\ std::size\_t\ dstOffset\ =\ 0);}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{comment}{//\ TODO:\ templatize}}
+\DoxyCodeLine{00059\ \ \ \ \ uint64\ \mbox{\hyperlink{classph_1_1_indexed_u_int_buffer_a0b70f6fcbeaddfdb5cff6befe7733a9c}{getUInt}}(std::size\_t\ index)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \ \ std::size\_t\ \mbox{\hyperlink{classph_1_1_indexed_u_int_buffer_a12f2f72009140fa7ceac4e76d0f94571}{numUInts}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00062\ \ \ \ \ std::size\_t\ \mbox{\hyperlink{classph_1_1_indexed_u_int_buffer_a94ef8b8f4fc398ad2e68495891ed77c4}{memoryUsage}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_indexed_u_int_buffer_acd3f265f6453814a58087d12a37f22df}{isAllocated}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00068\ \ \ \ \ uint64\ \mbox{\hyperlink{classph_1_1_indexed_u_int_buffer_ad9911b2c5e8022c1207cd7d52f3f79d5}{getMaxAllowedValue}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00073\ \ \ \ \ std::byte*\ \mbox{\hyperlink{classph_1_1_indexed_u_int_buffer_af1a4c220a550c453a6ad70f0301dc073}{getData}}();}
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keyword}{const}\ std::byte*\ \mbox{\hyperlink{classph_1_1_indexed_u_int_buffer_af1a4c220a550c453a6ad70f0301dc073}{getData}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keyword}{static}\ uint64\ maxAllowedValue(uint8\ numBitsPerUInt);}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \ \ \ \ std::unique\_ptr<std::byte[]>\ m\_byteBuffer;}
+\DoxyCodeLine{00081\ \ \ \ \ std::size\_t\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_byteBufferSize;}
+\DoxyCodeLine{00082\ \ \ \ \ uint8\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_numBitsPerUInt;}
+\DoxyCodeLine{00083\ \};}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \textcolor{comment}{//\ In-\/header\ Implementations:}}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{int}egral\ IntegerType>}
+\DoxyCodeLine{00088\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_indexed_u_int_buffer_a1395241b853fa709ec4e0a9b080a9f1e}{IndexedUIntBuffer::declareUIntFormat}}()}
+\DoxyCodeLine{00089\ \{}
+\DoxyCodeLine{00090\ \ \ \ \ \mbox{\hyperlink{classph_1_1_indexed_u_int_buffer_a1395241b853fa709ec4e0a9b080a9f1e}{declareUIntFormat}}(\mbox{\hyperlink{namespaceph_af8b01b99e42b7dd15dca28359ac1bf9e}{sizeof\_in\_bits<IntegerType>}}());}
+\DoxyCodeLine{00091\ \}}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \textcolor{keyword}{inline}\ std::size\_t\ \mbox{\hyperlink{classph_1_1_indexed_u_int_buffer_a94ef8b8f4fc398ad2e68495891ed77c4}{IndexedUIntBuffer::memoryUsage}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00094\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{sizeof}(*this)\ +\ m\_byteBufferSize;}
+\DoxyCodeLine{00096\ \}}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_indexed_u_int_buffer_acd3f265f6453814a58087d12a37f22df}{IndexedUIntBuffer::isAllocated}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00099\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_byteBuffer\ !=\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00101\ \}}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \textcolor{keyword}{inline}\ uint64\ \mbox{\hyperlink{classph_1_1_indexed_u_int_buffer_ad9911b2c5e8022c1207cd7d52f3f79d5}{IndexedUIntBuffer::getMaxAllowedValue}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00104\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00105\ \ \ \ \ \textcolor{keywordflow}{return}\ maxAllowedValue(m\_numBitsPerUInt);}
+\DoxyCodeLine{00106\ \}}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \textcolor{keyword}{inline}\ std::size\_t\ \mbox{\hyperlink{classph_1_1_indexed_u_int_buffer_a12f2f72009140fa7ceac4e76d0f94571}{IndexedUIntBuffer::numUInts}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00109\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00110\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_numBitsPerUInt\ >\ 0\ ?\ m\_byteBufferSize\ *\ CHAR\_BIT\ /\ m\_numBitsPerUInt\ :\ 0;}
+\DoxyCodeLine{00111\ \}}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ \textcolor{keyword}{inline}\ uint64\ IndexedUIntBuffer::maxAllowedValue(\textcolor{keyword}{const}\ uint8\ numBitsPerUInt)}
+\DoxyCodeLine{00114\ \{}
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{keywordflow}{return}\ numBitsPerUInt\ <\ 64}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ ?\ (\textcolor{keyword}{static\_cast<}uint64\textcolor{keyword}{>}(1)\ <<\ numBitsPerUInt)\ -\/\ 1}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ :\ std::numeric\_limits<uint64>::max();}
+\DoxyCodeLine{00118\ \}}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{int}egral\ IntegerType>}
+\DoxyCodeLine{00121\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_indexed_u_int_buffer_af3a5a8a0d5b72d4aa85cf04814acf32f}{IndexedUIntBuffer::setUInt}}(\textcolor{keyword}{const}\ std::size\_t\ index,\ \textcolor{keyword}{const}\ IntegerType\ value)}
+\DoxyCodeLine{00122\ \{}
+\DoxyCodeLine{00123\ \ \ \ \ PH\_ASSERT(\mbox{\hyperlink{classph_1_1_indexed_u_int_buffer_acd3f265f6453814a58087d12a37f22df}{isAllocated}}());}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ uint64Value\ =\ lossless\_integer\_cast<uint64>(value);}
+\DoxyCodeLine{00126\ \ \ \ \ \textcolor{keywordflow}{if}(uint64Value\ >\ \mbox{\hyperlink{classph_1_1_indexed_u_int_buffer_ad9911b2c5e8022c1207cd7d52f3f79d5}{getMaxAllowedValue}}())}
+\DoxyCodeLine{00127\ \ \ \ \ \{}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::invalid\_argument(std::format(}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Integer\ value\ \{\}\ cannot\ be\ stored\ using\ \{\}\ bits."{}},\ value,\ m\_numBitsPerUInt));}
+\DoxyCodeLine{00130\ \ \ \ \ \}}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00132\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ firstByteIndex\ \ \ \ \ =\ index\ *\ m\_numBitsPerUInt\ /\ CHAR\_BIT;}
+\DoxyCodeLine{00133\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ firstByteBitOffset\ =\ index\ *\ m\_numBitsPerUInt\ -\/\ firstByteIndex\ *\ CHAR\_BIT;}
+\DoxyCodeLine{00134\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ numStraddledBytes\ \ =\ (firstByteBitOffset\ +\ m\_numBitsPerUInt\ +\ (CHAR\_BIT\ -\/\ 1))\ /\ CHAR\_BIT;}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00136\ \ \ \ \ PH\_ASSERT\_LT(firstByteBitOffset,\ CHAR\_BIT);}
+\DoxyCodeLine{00137\ \ \ \ \ PH\_ASSERT\_LE(numStraddledBytes,\ 8\ +\ 1);}
+\DoxyCodeLine{00138\ \ \ \ \ PH\_ASSERT\_LE(firstByteIndex\ +\ numStraddledBytes,\ m\_byteBufferSize);}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00140\ \ \ \ \ \textcolor{comment}{//\ Potentially\ read\ straddled\ previous\ \&\ next\ values'\ bits}}
+\DoxyCodeLine{00141\ \ \ \ \ uint64\ rawBits\ =\ 0;}
+\DoxyCodeLine{00142\ \ \ \ \ std::memcpy(\&rawBits,\ \&m\_byteBuffer[firstByteIndex],\ std::min<std::size\_t>(numStraddledBytes,\ 8));}
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00144\ \ \ \ \ \textcolor{comment}{//\ Store\ value\ between\ the\ back\ of\ previous\ value\ and\ the\ head\ of\ next\ value}}
+\DoxyCodeLine{00145\ \ \ \ \ rawBits\ =\ \mbox{\hyperlink{namespaceph_1_1math_af11f191a13f32e5ff37ba539bb731029}{math::clear\_bits\_in\_range}}(rawBits,\ firstByteBitOffset,\ firstByteBitOffset\ +\ m\_numBitsPerUInt);}
+\DoxyCodeLine{00146\ \ \ \ \ rawBits\ |=\ (uint64Value\ <<\ firstByteBitOffset);}
+\DoxyCodeLine{00147\ \ \ \ \ std::memcpy(\&m\_byteBuffer[firstByteIndex],\ \&rawBits,\ std::min<std::size\_t>(numStraddledBytes,\ 8));}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00149\ \ \ \ \ \textcolor{comment}{//\ Handle\ situations\ where\ the\ value\ needs\ the\ 9-\/th\ byte\ (straddles\ next\ byte),\ this\ can\ happen}}
+\DoxyCodeLine{00150\ \ \ \ \ \textcolor{comment}{//\ since\ we\ support\ any\ number\ of\ bits\ per\ index}}
+\DoxyCodeLine{00151\ \ \ \ \ \textcolor{keywordflow}{if}(numStraddledBytes\ >\ 8)}
+\DoxyCodeLine{00152\ \ \ \ \ \{}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ uint8\ remainingRawBits;}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ std::memcpy(\&remainingRawBits,\ \&m\_byteBuffer[firstByteIndex\ +\ 8],\ 1);}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Store\ the\ remaining\ value\ before\ next\ value}}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ remainingRawBits\ =\ \mbox{\hyperlink{namespaceph_1_1math_af11f191a13f32e5ff37ba539bb731029}{math::clear\_bits\_in\_range}}(remainingRawBits,\ \textcolor{keyword}{static\_cast<}std::size\_t\textcolor{keyword}{>}(0),\ firstByteBitOffset\ +\ m\_numBitsPerUInt\ -\/\ 64);}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ remainingRawBits\ |=\ \textcolor{keyword}{static\_cast<}uint8\textcolor{keyword}{>}(uint64Value\ >>\ (64\ -\/\ firstByteBitOffset));}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ std::memcpy(\&m\_byteBuffer[firstByteIndex\ +\ 8],\ \&remainingRawBits,\ 1);}
+\DoxyCodeLine{00160\ \ \ \ \ \}}
+\DoxyCodeLine{00161\ \}}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00163\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ ValueType>}
+\DoxyCodeLine{00164\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_indexed_u_int_buffer_ac42c57a15bb2f281f1a9886b29416899}{IndexedUIntBuffer::setUInts}}(}
+\DoxyCodeLine{00165\ \ \ \ \ \textcolor{keyword}{const}\ ValueType*\ \textcolor{keyword}{const}\ values,}
+\DoxyCodeLine{00166\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ \ \ \ \ \ numValues,}
+\DoxyCodeLine{00167\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ \ \ \ \ \ dstBeginValueIndex)}
+\DoxyCodeLine{00168\ \{}
+\DoxyCodeLine{00169\ \ \ \ \ PH\_ASSERT(values);}
+\DoxyCodeLine{00170\ }
+\DoxyCodeLine{00171\ \ \ \ \ \textcolor{comment}{//\ Directly\ copy\ the\ value\ buffer\ if\ the\ formats\ matched}}
+\DoxyCodeLine{00172\ \ \ \ \ \textcolor{keywordflow}{if}(std::is\_unsigned\_v<ValueType>\ \&\&\ \mbox{\hyperlink{namespaceph_af8b01b99e42b7dd15dca28359ac1bf9e}{sizeof\_in\_bits<ValueType>}}()\ ==\ m\_numBitsPerUInt)}
+\DoxyCodeLine{00173\ \ \ \ \ \{}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_indexed_u_int_buffer_ac42c57a15bb2f281f1a9886b29416899}{setUInts}}(}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const\ }std::byte*\textcolor{keyword}{>}(values),\ }
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \ \ \ numValues\ *\ \textcolor{keyword}{sizeof}(ValueType),\ }
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \ \ \ \ dstBeginValueIndex\ *\ \textcolor{keyword}{sizeof}(ValueType));}
+\DoxyCodeLine{00178\ \ \ \ \ \}}
+\DoxyCodeLine{00179\ \ \ \ \ \textcolor{comment}{//\ Resort\ to\ copy\ one\ by\ one}}
+\DoxyCodeLine{00180\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00181\ \ \ \ \ \{}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ uintIdx\ =\ dstBeginValueIndex,\ valueIdx\ =\ 0;\ valueIdx\ <\ numValues;\ ++uintIdx,\ ++valueIdx)}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(std::is\_integral\_v<ValueType>)}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_indexed_u_int_buffer_af3a5a8a0d5b72d4aa85cf04814acf32f}{setUInt}}(uintIdx,\ values[valueIdx]);}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_indexed_u_int_buffer_af3a5a8a0d5b72d4aa85cf04814acf32f}{setUInt}}(uintIdx,\ \textcolor{keyword}{static\_cast<}uint64\textcolor{keyword}{>}(values[valueIdx]));}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00193\ \ \ \ \ \}}
+\DoxyCodeLine{00194\ \}}
+\DoxyCodeLine{00195\ }
+\DoxyCodeLine{00196\ \textcolor{keyword}{inline}\ uint64\ \mbox{\hyperlink{classph_1_1_indexed_u_int_buffer_a0b70f6fcbeaddfdb5cff6befe7733a9c}{IndexedUIntBuffer::getUInt}}(\textcolor{keyword}{const}\ std::size\_t\ index)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00197\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00198\ \ \ \ \ PH\_ASSERT(\mbox{\hyperlink{classph_1_1_indexed_u_int_buffer_acd3f265f6453814a58087d12a37f22df}{isAllocated}}());}
+\DoxyCodeLine{00199\ }
+\DoxyCodeLine{00200\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ firstByteIndex\ \ \ \ \ =\ index\ *\ m\_numBitsPerUInt\ /\ CHAR\_BIT;}
+\DoxyCodeLine{00201\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ firstByteBitOffset\ =\ index\ *\ m\_numBitsPerUInt\ -\/\ firstByteIndex\ *\ CHAR\_BIT;}
+\DoxyCodeLine{00202\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ numStraddledBytes\ \ =\ (firstByteBitOffset\ +\ m\_numBitsPerUInt\ +\ (CHAR\_BIT\ -\/\ 1))\ /\ CHAR\_BIT;}
+\DoxyCodeLine{00203\ }
+\DoxyCodeLine{00204\ \ \ \ \ PH\_ASSERT\_LT(firstByteBitOffset,\ CHAR\_BIT);}
+\DoxyCodeLine{00205\ \ \ \ \ PH\_ASSERT\_LE(numStraddledBytes,\ 8\ +\ 1);}
+\DoxyCodeLine{00206\ \ \ \ \ PH\_ASSERT\_LE(firstByteIndex\ +\ numStraddledBytes,\ m\_byteBufferSize);}
+\DoxyCodeLine{00207\ }
+\DoxyCodeLine{00208\ \ \ \ \ \textcolor{comment}{//\ Read\ current\ value's\ bits\ (first\ 8\ bytes,\ at\ most)}}
+\DoxyCodeLine{00209\ \ \ \ \ uint64\ rawBits\ =\ 0;}
+\DoxyCodeLine{00210\ \ \ \ \ std::memcpy(\&rawBits,\ \&m\_byteBuffer[firstByteIndex],\ std::min<std::size\_t>(numStraddledBytes,\ 8));}
+\DoxyCodeLine{00211\ }
+\DoxyCodeLine{00212\ \ \ \ \ \textcolor{comment}{//\ Clear\ previous\ and\ next\ values'\ bits\ if\ any,\ then\ get\ the\ value}}
+\DoxyCodeLine{00213\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ bitMask\ =\ \mbox{\hyperlink{namespaceph_1_1math_abbf29a619bc4b2cd6e88bbc5e3380a0f}{math::set\_bits\_in\_range<uint64>}}(0,\ firstByteBitOffset,\ firstByteBitOffset\ +\ m\_numBitsPerUInt);}
+\DoxyCodeLine{00214\ \ \ \ \ uint64\ value\ =\ (rawBits\ \&\ bitMask)\ >>\ firstByteBitOffset;}
+\DoxyCodeLine{00215\ }
+\DoxyCodeLine{00216\ \ \ \ \ \textcolor{comment}{//\ Handle\ situations\ where\ the\ value\ needs\ the\ 9-\/th\ byte\ (straddles\ next\ byte),\ this\ can\ happen}}
+\DoxyCodeLine{00217\ \ \ \ \ \textcolor{comment}{//\ since\ we\ support\ any\ number\ of\ bits\ per\ index}}
+\DoxyCodeLine{00218\ \ \ \ \ \textcolor{keywordflow}{if}(numStraddledBytes\ >\ 8)}
+\DoxyCodeLine{00219\ \ \ \ \ \{}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ uint8\ remainingRawBits;}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ std::memcpy(\&remainingRawBits,\ \&m\_byteBuffer[firstByteIndex\ +\ 8],\ 1);}
+\DoxyCodeLine{00222\ }
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Extract\ the\ remaining\ value\ and\ clear\ next\ value's\ bits\ if\ any}}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ remainingBitsBitMask\ =\ \mbox{\hyperlink{namespaceph_1_1math_abbf29a619bc4b2cd6e88bbc5e3380a0f}{math::set\_bits\_in\_range<uint8>}}(0,\ \textcolor{keyword}{static\_cast<}std::size\_t\textcolor{keyword}{>}(0),\ firstByteBitOffset\ +\ m\_numBitsPerUInt\ -\/\ 64);}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ remainingRawBits\ \&=\ remainingBitsBitMask;}
+\DoxyCodeLine{00226\ }
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Add\ the\ remaining\ bits\ to\ the\ value}}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ value\ |=\ (\textcolor{keyword}{static\_cast<}uint64\textcolor{keyword}{>}(remainingRawBits)\ <<\ (64\ -\/\ firstByteBitOffset));}
+\DoxyCodeLine{00229\ \ \ \ \ \}}
+\DoxyCodeLine{00230\ }
+\DoxyCodeLine{00231\ \ \ \ \ \textcolor{keywordflow}{return}\ value;}
+\DoxyCodeLine{00232\ \}}
+\DoxyCodeLine{00233\ }
+\DoxyCodeLine{00234\ \textcolor{keyword}{inline}\ std::byte*\ \mbox{\hyperlink{classph_1_1_indexed_u_int_buffer_af1a4c220a550c453a6ad70f0301dc073}{IndexedUIntBuffer::getData}}()}
+\DoxyCodeLine{00235\ \{}
+\DoxyCodeLine{00236\ \ \ \ \ PH\_ASSERT(\mbox{\hyperlink{classph_1_1_indexed_u_int_buffer_acd3f265f6453814a58087d12a37f22df}{isAllocated}}());}
+\DoxyCodeLine{00237\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_byteBuffer.get();}
+\DoxyCodeLine{00238\ \}}
+\DoxyCodeLine{00239\ }
+\DoxyCodeLine{00240\ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ std::byte*\ \mbox{\hyperlink{classph_1_1_indexed_u_int_buffer_af1a4c220a550c453a6ad70f0301dc073}{IndexedUIntBuffer::getData}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00241\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00242\ \ \ \ \ PH\_ASSERT(\mbox{\hyperlink{classph_1_1_indexed_u_int_buffer_acd3f265f6453814a58087d12a37f22df}{isAllocated}}());}
+\DoxyCodeLine{00243\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_byteBuffer.get();}
+\DoxyCodeLine{00244\ \}}
+\DoxyCodeLine{00245\ }
+\DoxyCodeLine{00246\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+
+\end{DoxyCode}

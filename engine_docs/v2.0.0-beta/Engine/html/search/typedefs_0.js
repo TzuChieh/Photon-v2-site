@@ -1,14 +1,14 @@
 var searchData=
 [
-  ['aabb2d_0',['AABB2D',['../d7/dac/namespaceph_1_1math.html#a96c75cf240ec4a49daedde92de85d85a',1,'ph::math']]],
-  ['aabb3d_1',['aabb3d',['../d6/d17/classph_1_1_bvh_info_node.html#addbd9393990c50a57a2ea297838ba452',1,'ph::BvhInfoNode::AABB3D'],['../d7/dac/namespaceph_1_1math.html#a3edcdc1cc0792608777f3af5347b049d',1,'ph::math::AABB3D']]],
-  ['acesspectrum_2',['ACESSpectrum',['../d7/dac/namespaceph_1_1math.html#a388bd0ce5a7018b4f2581429a80fbd3f',1,'ph::math']]],
-  ['addspectrum_3',['AddSpectrum',['../da/de9/namespaceph_1_1texfunc.html#a56417936b64a36dff31a022f9a78f01f',1,'ph::texfunc']]],
-  ['anyconstptr_4',['AnyConstPtr',['../d3/d5c/namespaceph.html#a14bed083c6df9bb5fc25512fdf352484',1,'ph']]],
-  ['anynonconstptr_5',['AnyNonConstPtr',['../d3/d5c/namespaceph.html#a76393562caa22c28431e3d8da5706a2b',1,'ph']]],
-  ['arrayd65_6',['ArrayD65',['../db/d0a/namespaceph_1_1math_1_1spectral__data.html#aa61f92800ebfc2564b50481b6e1fb3d2',1,'ph::math::spectral_data']]],
-  ['arraysmits_7',['ArraySmits',['../db/d0a/namespaceph_1_1math_1_1spectral__data.html#a9b03f586a813185dfa83ee24aa30d3eb',1,'ph::math::spectral_data']]],
-  ['arraytype_8',['arraytype',['../d0/d6e/classph_1_1_image.html#a6301d13e2b4686a89e2dc9d0738f961d',1,'ph::Image::ArrayType'],['../d7/ded/structph_1_1math_1_1detail_1_1_t_c_i_e_x_y_z_cmf_kernel.html#ae541cb3f00a17960c049dc4ac5ab3f7f',1,'ph::math::detail::TCIEXYZCmfKernel::ArrayType']]],
-  ['arrayxyzcmf_9',['ArrayXYZCMF',['../db/d0a/namespaceph_1_1math_1_1spectral__data.html#a897a9c8f8b89a63d0d855e97135d6479',1,'ph::math::spectral_data']]],
-  ['axisindextype_10',['AxisIndexType',['../dc/d4b/namespaceph_1_1math_1_1constant.html#ab7c3a75b519914e8d156f38c54a9a00c',1,'ph::math::constant']]]
+  ['aabb2d_0',['AABB2D',['../namespaceph_1_1math.html#aa27d1888edfba7c31c0f15d5160425d8',1,'ph::math']]],
+  ['aabb3d_1',['AABB3D',['../classph_1_1_bvh_info_node.html#addbd9393990c50a57a2ea297838ba452',1,'ph::BvhInfoNode::AABB3D'],['../namespaceph_1_1math.html#a79409e9e8aea24d984f98f3acb483937',1,'ph::math::AABB3D']]],
+  ['acesspectrum_2',['ACESSpectrum',['../namespaceph_1_1math.html#a8761cd5a4bcc6da06a6939afc7e4809f',1,'ph::math']]],
+  ['addspectrum_3',['AddSpectrum',['../namespaceph_1_1texfunc.html#a9383bf48f6ed71707e25b97dd4b683ca',1,'ph::texfunc']]],
+  ['anyconstptr_4',['AnyConstPtr',['../namespaceph.html#a3597b04390bac91e1da93a999434a93d',1,'ph']]],
+  ['anynonconstptr_5',['AnyNonConstPtr',['../namespaceph.html#a0fb0ff3cce7d4159198bcdf8a935d1b2',1,'ph']]],
+  ['arrayd65_6',['ArrayD65',['../namespaceph_1_1math_1_1spectral__data.html#acdd5355d95ac691ce5f7b7f744045d01',1,'ph::math::spectral_data']]],
+  ['arraysmits_7',['ArraySmits',['../namespaceph_1_1math_1_1spectral__data.html#ad4e0974550f743b0e2539c1450c469a1',1,'ph::math::spectral_data']]],
+  ['arraytype_8',['ArrayType',['../classph_1_1_image.html#a6301d13e2b4686a89e2dc9d0738f961d',1,'ph::Image::ArrayType'],['../structph_1_1math_1_1detail_1_1_t_c_i_e_x_y_z_cmf_kernel.html#ae541cb3f00a17960c049dc4ac5ab3f7f',1,'ph::math::detail::TCIEXYZCmfKernel::ArrayType']]],
+  ['arrayxyzcmf_9',['ArrayXYZCMF',['../namespaceph_1_1math_1_1spectral__data.html#a76122bf8164907cad9e6c3898652ffed',1,'ph::math::spectral_data']]],
+  ['axisindextype_10',['AxisIndexType',['../namespaceph_1_1math_1_1constant.html#a6399d62eb40c0ceee94dfcb7b77cb85c',1,'ph::math::constant']]]
 ];

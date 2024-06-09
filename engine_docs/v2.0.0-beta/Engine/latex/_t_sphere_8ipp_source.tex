@@ -1,0 +1,528 @@
+\doxysection{TSphere.\+ipp}
+\hypertarget{_t_sphere_8ipp_source}{}\label{_t_sphere_8ipp_source}\index{Source/Math/Geometry/TSphere.ipp@{Source/Math/Geometry/TSphere.ipp}}
+\mbox{\hyperlink{_t_sphere_8ipp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_sphere_8h}{Math/Geometry/TSphere.h}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{constant_8h}{Math/constant.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_orthonormal_basis3_8h}{Math/TOrthonormalBasis3.h}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_vector2_8h}{Math/TVector2.h}}"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_matrix2_8h}{Math/TMatrix2.h}}"{}}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <Common/assertion.h>}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <cmath>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <type\_traits>}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph_1_1math}{ph::math}}}
+\DoxyCodeLine{00016\ \{}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00019\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1math_1_1_t_sphere}{TSphere<T>}}\ \mbox{\hyperlink{classph_1_1math_1_1_t_sphere_a0cb0289b08521cf74ec7832fe67de73e}{TSphere<T>::makeUnit}}()}
+\DoxyCodeLine{00020\ \{}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1math_1_1_t_sphere}{TSphere}}(1);}
+\DoxyCodeLine{00022\ \}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00025\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1math_1_1_t_sphere_ae243baae22dd1006ac1a53b3e363b9fa}{TSphere<T>::TSphere}}(\textcolor{keyword}{const}\ T\ radius)\ :\ }
+\DoxyCodeLine{00026\ \ \ \ \ m\_radius(radius)}
+\DoxyCodeLine{00027\ \{}
+\DoxyCodeLine{00028\ \ \ \ \ PH\_ASSERT\_GE(radius,\ T(0));}
+\DoxyCodeLine{00029\ \}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00032\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1math_1_1_t_sphere_af7b74dfb3c157cc22610512479e85678}{TSphere<T>::isIntersecting}}(}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_line_segment}{TLineSegment<T>}}\&\ segment,}
+\DoxyCodeLine{00034\ \ \ \ \ real*\ \textcolor{keyword}{const}\ \ \ \ \ \ \ \ \ \ \ \ out\_hitT)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00035\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{comment}{//return\ isIntersectingNaive(segment,\ out\_hitT);}}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordflow}{return}\ isIntersectingHearnBaker(segment,\ out\_hitT);}
+\DoxyCodeLine{00038\ \}}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{comment}{//template<typename\ T>}}
+\DoxyCodeLine{00041\ \textcolor{comment}{//inline\ bool\ TSphere<T>::isIntersectingRefined(}}
+\DoxyCodeLine{00042\ \textcolor{comment}{//\ \ const\ TLineSegment<T>\&\ segment,}}
+\DoxyCodeLine{00043\ \textcolor{comment}{//\ \ T*\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ out\_hitT)\ const}}
+\DoxyCodeLine{00044\ \textcolor{comment}{//\{}}
+\DoxyCodeLine{00045\ \textcolor{comment}{//\ \ const\ auto\ segmentOriginToCentroid\ =\ math::TVector3<T>(0)\ -\/\ segment.getOrigin();}}
+\DoxyCodeLine{00046\ \textcolor{comment}{//\ \ const\ auto\ approxHitT\ =\ segmentOriginToCentroid.dot(segment.getDirection());}}
+\DoxyCodeLine{00047\ \textcolor{comment}{//}}
+\DoxyCodeLine{00048\ \textcolor{comment}{//\ \ const\ TLineSegment<T>\ shiftedSegment(}}
+\DoxyCodeLine{00049\ \textcolor{comment}{//\ \ \ \ \ \ segment.getPoint(approxHitT),}}
+\DoxyCodeLine{00050\ \textcolor{comment}{//\ \ \ \ \ \ segment.getDirection(),}}
+\DoxyCodeLine{00051\ \textcolor{comment}{//\ \ \ \ \ \ segment.getMinT()\ -\/\ approxHitT,}}
+\DoxyCodeLine{00052\ \textcolor{comment}{//\ \ \ \ \ \ segment.getMaxT()\ -\/\ approxHitT);}}
+\DoxyCodeLine{00053\ \textcolor{comment}{//\ \ if(!isIntersecting(shiftedSegment,\ out\_hitT))}}
+\DoxyCodeLine{00054\ \textcolor{comment}{//\ \ \{}}
+\DoxyCodeLine{00055\ \textcolor{comment}{//\ \ \ \ \ \ return\ false;}}
+\DoxyCodeLine{00056\ \textcolor{comment}{//\ \ \}}}
+\DoxyCodeLine{00057\ \textcolor{comment}{//}}
+\DoxyCodeLine{00058\ \textcolor{comment}{//\ \ *out\_hitT\ +=\ approxHitT;}}
+\DoxyCodeLine{00059\ \textcolor{comment}{//\ \ return\ true;}}
+\DoxyCodeLine{00060\ \textcolor{comment}{//\}}}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00063\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1math_1_1_t_sphere_a1fce08069ea53b6d55d05d76260e9f7f}{TSphere<T>::isInside}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{TVector3<T>}}\&\ point)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00064\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{comment}{//\ Checks\ whether\ the\ point\ is\ within\ radius\ (sphere\ center\ =\ origin)}}
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keywordflow}{return}\ point.\mbox{\hyperlink{classph_1_1math_1_1_t_vector_n_base_acfa70203a3b892f2a545a344d5ab9e43}{lengthSquared}}()\ <\ \mbox{\hyperlink{namespaceph_1_1math_a3d95f12613138cf607ca4b4b0c04ea48}{math::squared}}(m\_radius);}
+\DoxyCodeLine{00067\ \}}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00070\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1math_1_1_t_sphere}{TSphere<T>::isIntersectingNaive}}(}
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_line_segment}{TLineSegment<T>}}\&\ segment,}
+\DoxyCodeLine{00072\ \ \ \ \ real*\ \textcolor{keyword}{const}\ out\_hitT)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00073\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00074\ \ \ \ \ PH\_ASSERT\_GE(m\_radius,\ T(0));}
+\DoxyCodeLine{00075\ \ \ \ \ PH\_ASSERT(out\_hitT);}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{comment}{//\ Construct\ a\ ray/line\ then\ use\ its\ parametric\ form\ to\ test\ against\ the\ sphere\ and\ solve\ for\ t}}
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{comment}{//\ ray\ origin:\ \ \ \ \ \ \ \ \ o}}
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{comment}{//\ ray\ direction:\ \ \ \ \ \ d}}
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{comment}{//\ sphere\ center:\ \ \ \ \ \ c}}
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{comment}{//\ sphere\ radius:\ \ \ \ \ \ r}}
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{comment}{//\ intersection\ point:\ p}}
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{comment}{//\ vector\ dot:\ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{comment}{//\ ray\ equation:\ \ \ \ \ \ \ o\ +\ td\ (t\ is\ a\ scalar\ variable)}}
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{comment}{//\ To\ find\ the\ intersection\ point,\ the\ length\ of\ vector\ (td\ -\/\ oc)\ must\ equals\ r.}}
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{comment}{//\ This\ is\ equivalent\ to\ (td\ -\/\ oc)*(td\ -\/\ oc)\ =\ r\string^2.\ After\ reformatting,\ we\ have}}
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ t\string^2(d*d)\ -\/\ 2t(d*oc)\ +\ (oc*oc)\ -\/\ r\string^2\ =\ 0\ \ \ \ \ -\/-\/-\/\ (1)}}
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{comment}{//\ Solving\ equation\ (1)\ for\ t\ will\ yield\ the\ intersection\ point\ (o\ +\ td).}}
+\DoxyCodeLine{00093\ \ \ \ \ }
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{comment}{//\ FIXME:\ T\ may\ be\ more\ precise\ than\ float64}}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{Vector3D}}\ rayO(segment.\mbox{\hyperlink{classph_1_1math_1_1_t_line_segment_a7eb6381eadee282d2f2afa035ddaba18}{getOrigin}}());}
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{Vector3D}}\ rayD(segment.\mbox{\hyperlink{classph_1_1math_1_1_t_line_segment_a385cef7e7ba5c22d61e0f9f55a661608}{getDirection}}());}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{comment}{//\ Vector\ from\ ray\ origin\ (o)\ to\ sphere\ center\ (c)}}
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{Vector3D}}\ oc\ =\ \mbox{\hyperlink{namespaceph_1_1math_ad0f41824cfe5e85bdbde57f0f779e230}{Vector3D}}(0).\mbox{\hyperlink{classph_1_1math_1_1_t_vector_n_base_a8ef096d70a1bc8e75e4c7e7ae48e5b62}{sub}}(rayO);}
+\DoxyCodeLine{00101\ \ \ \ \ }
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{comment}{//\ a\ in\ equation\ (1)}}
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{keyword}{const}\ float64\ a\ =\ rayD.dot(rayD);}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ \ \ \ \ \textcolor{comment}{//\ b\ in\ equation\ (1)\ (-\/2\ is\ cancelled\ while\ solving\ t)}}
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keyword}{const}\ float64\ b\ =\ rayD.dot(oc);}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \ \ \ \ \textcolor{comment}{//\ c\ in\ equation\ (1)}}
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{keyword}{const}\ float64\ c\ =\ oc.\mbox{\hyperlink{classph_1_1math_1_1_t_vector_n_base_a798d064dc3ff4c11b536919418b2e2d5}{dot}}(oc)\ -\/\ \textcolor{keyword}{static\_cast<}float64\textcolor{keyword}{>}(m\_radius)\ *\ m\_radius;}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \ \ \ \ float64\ D\ =\ b\ *\ b\ -\/\ a\ *\ c;}
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{keywordflow}{if}(D\ <\ 0.0)}
+\DoxyCodeLine{00113\ \ \ \ \ \{}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00115\ \ \ \ \ \}}
+\DoxyCodeLine{00116\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00117\ \ \ \ \ \{}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ D\ =\ std::sqrt(D);}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ float64\ rcpA\ =\ 1.0\ /\ a;}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ t\ =\ (b\ +-\/\ D)\ /\ a}}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ t1\ must\ be\ <=\ t2\ (rcpA\ \&\ D\ always\ >\ 0)}}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ float64\ t1\ =\ (b\ -\/\ D)\ *\ rcpA;}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ float64\ t2\ =\ (b\ +\ D)\ *\ rcpA;}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ PH\_ASSERT\_MSG(t1\ <=\ t2,\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}}}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}t1\ \ \ \ \ \ \ \ \ \ \ \ =\ "{}}\ +\ std::to\_string(t1)\ +\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}}}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}t2\ \ \ \ \ \ \ \ \ \ \ \ =\ "{}}\ +\ std::to\_string(t2)\ +\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}}}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}(a,\ b,\ c)\ \ \ \ \ =\ ("{}}\ +\ std::to\_string(a)\ +\ \textcolor{stringliteral}{"{},\ "{}}\ +\ std::to\_string(b)\ +\ \textcolor{stringliteral}{"{},\ "{}}\ +\ std::to\_string(c)\ +\ \textcolor{stringliteral}{"{})\(\backslash\)n"{}}}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}ray-\/origin\ \ \ \ =\ "{}}\ +\ rayO.toString()\ +\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}}}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}ray-\/direction\ =\ "{}}\ +\ rayD.toString());}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ We\ now\ know\ that\ the\ ray/line\ intersects\ the\ sphere,\ but\ it\ may\ not\ be\ the\ case\ for\ the\ line}}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ segment.\ We\ test\ all\ cases\ with\ t1\ <=\ t2\ being\ kept\ in\ mind:}}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ float64\ tClosest;}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ t1\ is\ smaller\ than\ t2,\ we\ test\ t1\ first}}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(segment.\mbox{\hyperlink{classph_1_1math_1_1_t_line_segment_a588ff84da8c9cf249fd988d174c9c186}{getMinT}}()\ <=\ t1\ \&\&\ t1\ <=\ segment.\mbox{\hyperlink{classph_1_1math_1_1_t_line_segment_aa2611afa9715bba822ed0f4f5216b6ec}{getMaxT}}())}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ tClosest\ =\ t1;}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ test\ t2}}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(segment.\mbox{\hyperlink{classph_1_1math_1_1_t_line_segment_a588ff84da8c9cf249fd988d174c9c186}{getMinT}}()\ <=\ t2\ \&\&\ t2\ <=\ segment.\mbox{\hyperlink{classph_1_1math_1_1_t_line_segment_aa2611afa9715bba822ed0f4f5216b6ec}{getMaxT}}())}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \ \ tClosest\ =\ t2;}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ no\ intersection\ found\ in\ [t\_min,\ t\_max]\ (NaN\ aware)}}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00154\ }
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ PH\_ASSERT\_IN\_RANGE\_INCLUSIVE(tClosest,\ segment.\mbox{\hyperlink{classph_1_1math_1_1_t_line_segment_a588ff84da8c9cf249fd988d174c9c186}{getMinT}}(),\ segment.\mbox{\hyperlink{classph_1_1math_1_1_t_line_segment_aa2611afa9715bba822ed0f4f5216b6ec}{getMaxT}}());}
+\DoxyCodeLine{00156\ }
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ *out\_hitT\ =\ \textcolor{keyword}{static\_cast<}real\textcolor{keyword}{>}(tClosest);}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00159\ \ \ \ \ \}}
+\DoxyCodeLine{00160\ \}}
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00162\ \textcolor{comment}{//\ References:}}
+\DoxyCodeLine{00163\ \textcolor{comment}{//\ [1]\ Ray\ Tracing\ Gems\ Chapter\ 7:\ Precision\ Improvements\ for\ Ray/Sphere\ Intersection}}
+\DoxyCodeLine{00164\ \textcolor{comment}{//\ [2]\ Best\ reference\ would\ be\ code\ for\ chapter\ 7\ with\ method\ 5\ (our\ line\ direction\ is\ not\ normalized)}}
+\DoxyCodeLine{00165\ \textcolor{comment}{//\ \ \ \ \ https://github.com/Apress/ray-\/tracing-\/gems/}}
+\DoxyCodeLine{00166\ \textcolor{comment}{//\ [3]\ https://github.com/NVIDIAGameWorks/Falcor\ (Source/Falcor/Utils/Geometry/IntersectionHelpers.slang)}}
+\DoxyCodeLine{00167\ \textcolor{comment}{//}}
+\DoxyCodeLine{00168\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00169\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ TSphere<T>::isIntersectingHearnBaker(}
+\DoxyCodeLine{00170\ \ \ \ \ \textcolor{keyword}{const}\ TLineSegment<T>\&\ segment,}
+\DoxyCodeLine{00171\ \ \ \ \ real*\ \textcolor{keyword}{const}\ out\_hitT)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00172\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00173\ \ \ \ \ PH\_ASSERT\_GE(m\_radius,\ T(0));}
+\DoxyCodeLine{00174\ \ \ \ \ PH\_ASSERT(out\_hitT);}
+\DoxyCodeLine{00175\ }
+\DoxyCodeLine{00176\ \ \ \ \ \textcolor{comment}{//\ We\ use\ the\ same\ notation\ as\ \`{}isIntersectingNaive()`\ for\ the\ geometries}}
+\DoxyCodeLine{00177\ }
+\DoxyCodeLine{00178\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_1_1math_ad0f41824cfe5e85bdbde57f0f779e230}{Vector3D}}\ rayO(segment.getOrigin());}
+\DoxyCodeLine{00179\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_1_1math_ad0f41824cfe5e85bdbde57f0f779e230}{Vector3D}}\ rayD(segment.getDirection());}
+\DoxyCodeLine{00180\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_1_1math_ad0f41824cfe5e85bdbde57f0f779e230}{Vector3D}}\ unitRayD\ =\ rayD.normalize();}
+\DoxyCodeLine{00181\ }
+\DoxyCodeLine{00182\ \ \ \ \ \textcolor{comment}{//\ Vector\ from\ sphere\ center\ (c)\ to\ ray\ origin\ (o)}}
+\DoxyCodeLine{00183\ \ \ \ \ \textcolor{comment}{//\ (vector\ f\ in\ Ray\ Tracing\ Gems,\ note\ this\ is\ the\ negated\ version\ of\ oc\ in\ \`{}isIntersectingNaive()`)}}
+\DoxyCodeLine{00184\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_1_1math_ad0f41824cfe5e85bdbde57f0f779e230}{Vector3D}}\ co\ =\ rayO;\textcolor{comment}{//\ rayO\ -\/\ Vector3D(0);}}
+\DoxyCodeLine{00185\ }
+\DoxyCodeLine{00186\ \ \ \ \ \textcolor{keyword}{const}\ float64\ r2\ =\ \textcolor{keyword}{static\_cast<}float64\textcolor{keyword}{>}(m\_radius)\ *\ m\_radius;}
+\DoxyCodeLine{00187\ }
+\DoxyCodeLine{00188\ \ \ \ \ \textcolor{comment}{//\ a\ in\ equation\ (1)\ in\ \`{}isIntersectingNaive()`}}
+\DoxyCodeLine{00189\ \ \ \ \ \textcolor{comment}{//\ (same\ as\ in\ RT\ Gems)}}
+\DoxyCodeLine{00190\ \ \ \ \ \textcolor{keyword}{const}\ float64\ a\ =\ rayD.dot(rayD);}
+\DoxyCodeLine{00191\ }
+\DoxyCodeLine{00192\ \ \ \ \ \textcolor{comment}{//\ b\ term\ in\ RT\ Gems\ eq.\ 8\ without\ the\ negative\ sign\ (handled\ in\ q\ later\ to\ save\ one\ negation)}}
+\DoxyCodeLine{00193\ \ \ \ \ \textcolor{keyword}{const}\ float64\ b\ =\ co.dot(rayD);}
+\DoxyCodeLine{00194\ }
+\DoxyCodeLine{00195\ \ \ \ \ \textcolor{comment}{//\ vector\ fd\ in\ RT\ Gems\ eq.\ 5\ (curvy\_L\string^2)}}
+\DoxyCodeLine{00196\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_1_1math_ad0f41824cfe5e85bdbde57f0f779e230}{Vector3D}}\ fd\ =\ co\ -\/\ unitRayD\ *\ co.dot(unitRayD);}
+\DoxyCodeLine{00197\ }
+\DoxyCodeLine{00198\ \ \ \ \ \textcolor{comment}{//\ Basically\ the\ discriminant\ term\ in\ RT\ Gems\ eq.\ 5\ with\ 4s\ and\ 2s\ eliminated}}
+\DoxyCodeLine{00199\ \ \ \ \ \textcolor{keyword}{const}\ float64\ D\ =\ a\ *\ (r2\ -\/\ fd.dot(fd));}
+\DoxyCodeLine{00200\ \ \ \ \ \textcolor{keywordflow}{if}(D\ <\ 0.0)}
+\DoxyCodeLine{00201\ \ \ \ \ \{}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00203\ \ \ \ \ \}}
+\DoxyCodeLine{00204\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00205\ \ \ \ \ \{}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ c\ in\ equation\ (1)\ in\ \`{}isIntersectingNaive()`}}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ (same\ as\ in\ RT\ Gems)}}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ float64\ c\ =\ co.dot(co)\ -\/\ r2;}
+\DoxyCodeLine{00209\ }
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ float64\ sqrtD\ =\ std::sqrt(D);}
+\DoxyCodeLine{00211\ }
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ q\ term\ in\ RT\ Gems\ eq.\ 10}}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ float64\ q\ =\ (b\ >=\ 0.0)\ ?\ -\/sqrtD\ -\/\ b\ :\ sqrtD\ -\/\ b;}
+\DoxyCodeLine{00214\ }
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ t0\ \&\ t1\ term\ in\ RT\ Gems\ eq.\ 10\ (here\ we\ let\ t0\ <=\ t1)}}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ (unlike\ \`{}isIntersectingNaive()`,\ we\ cannot\ determine\ which\ one\ is\ smaller\ due\ to\ its\ formulation)}}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ float64\ t0\ =\ c\ /\ q;}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ float64\ t1\ =\ q\ /\ a;}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(t0\ >\ t1)}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \ \ \ \ std::swap(t0,\ t1);}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00223\ }
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ PH\_ASSERT\_MSG(t0\ <=\ t1,\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}}}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}t0\ \ \ \ \ \ \ \ \ \ \ \ =\ "{}}\ +\ std::to\_string(t0)\ +\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}}}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}t1\ \ \ \ \ \ \ \ \ \ \ \ =\ "{}}\ +\ std::to\_string(t1)\ +\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}}}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}(a,\ b,\ c)\ \ \ \ \ =\ ("{}}\ +\ std::to\_string(a)\ +\ \textcolor{stringliteral}{"{},\ "{}}\ +\ std::to\_string(b)\ +\ \textcolor{stringliteral}{"{},\ "{}}\ +\ std::to\_string(c)\ +\ \textcolor{stringliteral}{"{})\(\backslash\)n"{}}}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}ray-\/origin\ \ \ \ =\ "{}}\ +\ rayO.toString()\ +\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}}}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}ray-\/direction\ =\ "{}}\ +\ rayD.toString());}
+\DoxyCodeLine{00230\ }
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ We\ now\ know\ that\ the\ ray/line\ intersects\ the\ sphere,\ but\ it\ may\ not\ be\ the\ case\ for\ the\ line}}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ segment.\ We\ test\ all\ cases\ with\ t0\ <=\ t1\ being\ kept\ in\ mind:}}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ float64\ tClosest;}
+\DoxyCodeLine{00235\ }
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ t0\ is\ smaller\ than\ t1,\ we\ test\ t0\ first}}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(segment.getMinT()\ <=\ t0\ \&\&\ t0\ <=\ segment.getMaxT())}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \ \ \ \ tClosest\ =\ t0;}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ test\ t1}}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(segment.getMinT()\ <=\ t1\ \&\&\ t1\ <=\ segment.getMaxT())}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \ \ \ \ tClosest\ =\ t1;}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ no\ intersection\ found\ in\ [t\_min,\ t\_max]\ (NaN\ aware)}}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00251\ }
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ PH\_ASSERT\_IN\_RANGE\_INCLUSIVE(tClosest,\ segment.getMinT(),\ segment.getMaxT());}
+\DoxyCodeLine{00253\ }
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ *out\_hitT\ =\ \textcolor{keyword}{static\_cast<}real\textcolor{keyword}{>}(tClosest);}
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00256\ \ \ \ \ \}}
+\DoxyCodeLine{00257\ \}}
+\DoxyCodeLine{00258\ }
+\DoxyCodeLine{00259\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00260\ \textcolor{keyword}{inline}\ T\ \mbox{\hyperlink{classph_1_1math_1_1_t_sphere_a90f7a64a81c28785f9cd7de6481b889e}{TSphere<T>::getRadius}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00261\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00262\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_radius;}
+\DoxyCodeLine{00263\ \}}
+\DoxyCodeLine{00264\ }
+\DoxyCodeLine{00265\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00266\ \textcolor{keyword}{inline}\ T\ \mbox{\hyperlink{classph_1_1math_1_1_t_sphere_a40953921efc58de7d774bc4abf67e1a4}{TSphere<T>::getArea}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00267\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00268\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespaceph_1_1math_1_1constant_a74df15a988474294266e06f83a0f51fe}{constant::four\_pi<T>}}\ *\ m\_radius\ *\ m\_radius;}
+\DoxyCodeLine{00269\ \}}
+\DoxyCodeLine{00270\ }
+\DoxyCodeLine{00271\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00272\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d}{TAABB3D<T>}}\ \mbox{\hyperlink{classph_1_1math_1_1_t_sphere_a52d25d0ec3ad48297444d08fa99e10bd}{TSphere<T>::getAABB}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00273\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00274\ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ EXPANSION\_RATIO\ =\ T(0.0001);}
+\DoxyCodeLine{00275\ }
+\DoxyCodeLine{00276\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d}{TAABB3D<T>}}(}
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{TVector3<T>}}(-\/m\_radius,\ -\/m\_radius,\ -\/m\_radius),}
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{TVector3<T>}}(\ m\_radius,\ \ m\_radius,\ \ m\_radius))}
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ .\mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d_ad06d107942d236ee0f6090e572467dd1}{expand}}(\mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{TVector3<T>}}(EXPANSION\_RATIO\ *\ m\_radius));}
+\DoxyCodeLine{00280\ \}}
+\DoxyCodeLine{00281\ }
+\DoxyCodeLine{00282\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00283\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1math_1_1_t_sphere_aca90b735abbabdb683b0d7feb7638982}{TSphere<T>::mayOverlapVolume}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d}{TAABB3D<T>}}\&\ volume)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00284\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00285\ \ \ \ \ \textcolor{comment}{//\ Intersection\ test\ for\ solid\ box\ and\ hollow\ sphere.}}
+\DoxyCodeLine{00286\ \ \ \ \ \textcolor{comment}{//\ Reference:\ Jim\ Arvo's\ algorithm\ in\ Graphics\ Gems\ 2}}
+\DoxyCodeLine{00287\ }
+\DoxyCodeLine{00288\ \ \ \ \ \textcolor{keyword}{const}\ T\ radius2\ =\ \mbox{\hyperlink{namespaceph_1_1math_a3d95f12613138cf607ca4b4b0c04ea48}{math::squared}}(m\_radius);}
+\DoxyCodeLine{00289\ }
+\DoxyCodeLine{00290\ \ \ \ \ \textcolor{comment}{//\ These\ variables\ are\ gonna\ store\ minimum\ and\ maximum\ squared\ distances\ }}
+\DoxyCodeLine{00291\ \ \ \ \ \textcolor{comment}{//\ from\ the\ sphere's\ center\ to\ the\ AABB\ volume.}}
+\DoxyCodeLine{00292\ \ \ \ \ T\ minDist2\ =\ T(0);}
+\DoxyCodeLine{00293\ \ \ \ \ T\ maxDist2\ =\ T(0);}
+\DoxyCodeLine{00294\ }
+\DoxyCodeLine{00295\ \ \ \ \ T\ a,\ b;}
+\DoxyCodeLine{00296\ }
+\DoxyCodeLine{00297\ \ \ \ \ a\ =\ \mbox{\hyperlink{namespaceph_1_1math_a3d95f12613138cf607ca4b4b0c04ea48}{math::squared}}(volume.\mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d_af374aa4e2c99cf83c5324f7e5f376fec}{getMinVertex}}().x());}
+\DoxyCodeLine{00298\ \ \ \ \ b\ =\ \mbox{\hyperlink{namespaceph_1_1math_a3d95f12613138cf607ca4b4b0c04ea48}{math::squared}}(volume.\mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d_a1c7cf27e2b7ecf50add7da77b78c5e3e}{getMaxVertex}}().x());}
+\DoxyCodeLine{00299\ \ \ \ \ maxDist2\ +=\ std::max(a,\ b);}
+\DoxyCodeLine{00300\ \ \ \ \ \textcolor{keywordflow}{if}\ \ \ \ \ (T(0)\ <\ volume.\mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d_af374aa4e2c99cf83c5324f7e5f376fec}{getMinVertex}}().x())\ minDist2\ +=\ a;}
+\DoxyCodeLine{00301\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(T(0)\ >\ volume.\mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d_a1c7cf27e2b7ecf50add7da77b78c5e3e}{getMaxVertex}}().x())\ minDist2\ +=\ b;}
+\DoxyCodeLine{00302\ }
+\DoxyCodeLine{00303\ \ \ \ \ a\ =\ \mbox{\hyperlink{namespaceph_1_1math_a3d95f12613138cf607ca4b4b0c04ea48}{math::squared}}(volume.\mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d_af374aa4e2c99cf83c5324f7e5f376fec}{getMinVertex}}().y());}
+\DoxyCodeLine{00304\ \ \ \ \ b\ =\ \mbox{\hyperlink{namespaceph_1_1math_a3d95f12613138cf607ca4b4b0c04ea48}{math::squared}}(volume.\mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d_a1c7cf27e2b7ecf50add7da77b78c5e3e}{getMaxVertex}}().y());}
+\DoxyCodeLine{00305\ \ \ \ \ maxDist2\ +=\ std::max(a,\ b);}
+\DoxyCodeLine{00306\ \ \ \ \ \textcolor{keywordflow}{if}\ \ \ \ \ (T(0)\ <\ volume.\mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d_af374aa4e2c99cf83c5324f7e5f376fec}{getMinVertex}}().y())\ minDist2\ +=\ a;}
+\DoxyCodeLine{00307\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(T(0)\ >\ volume.\mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d_a1c7cf27e2b7ecf50add7da77b78c5e3e}{getMaxVertex}}().y())\ minDist2\ +=\ b;}
+\DoxyCodeLine{00308\ }
+\DoxyCodeLine{00309\ \ \ \ \ a\ =\ \mbox{\hyperlink{namespaceph_1_1math_a3d95f12613138cf607ca4b4b0c04ea48}{math::squared}}(volume.\mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d_af374aa4e2c99cf83c5324f7e5f376fec}{getMinVertex}}().z());}
+\DoxyCodeLine{00310\ \ \ \ \ b\ =\ \mbox{\hyperlink{namespaceph_1_1math_a3d95f12613138cf607ca4b4b0c04ea48}{math::squared}}(volume.\mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d_a1c7cf27e2b7ecf50add7da77b78c5e3e}{getMaxVertex}}().z());}
+\DoxyCodeLine{00311\ \ \ \ \ maxDist2\ +=\ std::max(a,\ b);}
+\DoxyCodeLine{00312\ \ \ \ \ \textcolor{keywordflow}{if}\ \ \ \ \ (T(0)\ <\ volume.\mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d_af374aa4e2c99cf83c5324f7e5f376fec}{getMinVertex}}().z())\ minDist2\ +=\ a;}
+\DoxyCodeLine{00313\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(T(0)\ >\ volume.\mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d_a1c7cf27e2b7ecf50add7da77b78c5e3e}{getMaxVertex}}().z())\ minDist2\ +=\ b;}
+\DoxyCodeLine{00314\ }
+\DoxyCodeLine{00315\ \ \ \ \ \textcolor{keywordflow}{return}\ minDist2\ <=\ radius2\ \&\&\ radius2\ <=\ maxDist2;}
+\DoxyCodeLine{00316\ \}}
+\DoxyCodeLine{00317\ }
+\DoxyCodeLine{00318\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00319\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{TVector3<T>}}\ \mbox{\hyperlink{classph_1_1math_1_1_t_sphere_ac6900873c3c0c85a96003705a742c9b7}{TSphere<T>::sampleToSurfaceArchimedes}}(\textcolor{keyword}{const}\ std::array<T,\ 2>\&\ sample)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00320\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00321\ \ \ \ \ PH\_ASSERT\_IN\_RANGE\_INCLUSIVE(sample[0],\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(0),\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(1));}
+\DoxyCodeLine{00322\ \ \ \ \ PH\_ASSERT\_IN\_RANGE\_INCLUSIVE(sample[1],\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(0),\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(1));}
+\DoxyCodeLine{00323\ \ \ \ \ PH\_ASSERT\_GE(m\_radius,\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(0));}
+\DoxyCodeLine{00324\ }
+\DoxyCodeLine{00325\ \ \ \ \ \textcolor{keyword}{const}\ T\ y\ \ \ =\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(2)\ *\ (sample[0]\ -\/\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(0.5));}
+\DoxyCodeLine{00326\ \ \ \ \ \textcolor{keyword}{const}\ T\ phi\ =\ \mbox{\hyperlink{namespaceph_1_1math_1_1constant_ad8b55217fcc8198b83c50375e1120c8a}{constant::two\_pi<T>}}\ *\ sample[1];}
+\DoxyCodeLine{00327\ \ \ \ \ \textcolor{keyword}{const}\ T\ r\ \ \ =\ std::sqrt(std::max(\textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(1)\ -\/\ y\ *\ y,\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(0)));}
+\DoxyCodeLine{00328\ }
+\DoxyCodeLine{00329\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ localUnitPos\ =\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{TVector3<T>}}(}
+\DoxyCodeLine{00330\ \ \ \ \ \ \ \ \ r\ *\ std::sin(phi),}
+\DoxyCodeLine{00331\ \ \ \ \ \ \ \ \ y,}
+\DoxyCodeLine{00332\ \ \ \ \ \ \ \ \ r\ *\ std::cos(phi));}
+\DoxyCodeLine{00333\ }
+\DoxyCodeLine{00334\ \ \ \ \ \textcolor{keywordflow}{return}\ localUnitPos\ *\ m\_radius;}
+\DoxyCodeLine{00335\ \}}
+\DoxyCodeLine{00336\ }
+\DoxyCodeLine{00337\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00338\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{TVector3<T>}}\ \mbox{\hyperlink{classph_1_1math_1_1_t_sphere_ac6900873c3c0c85a96003705a742c9b7}{TSphere<T>::sampleToSurfaceArchimedes}}(}
+\DoxyCodeLine{00339\ \ \ \ \ \textcolor{keyword}{const}\ std::array<T,\ 2>\&\ sample,\ T*\ \textcolor{keyword}{const}\ out\_pdfA)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00340\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00341\ \ \ \ \ PH\_ASSERT(out\_pdfA);}
+\DoxyCodeLine{00342\ }
+\DoxyCodeLine{00343\ \ \ \ \ *out\_pdfA\ =\ uniformSurfaceSamplePdfA();}
+\DoxyCodeLine{00344\ }
+\DoxyCodeLine{00345\ \ \ \ \ \textcolor{keywordflow}{return}\ sampleToSurfaceArchimedes(sample);}
+\DoxyCodeLine{00346\ \}}
+\DoxyCodeLine{00347\ }
+\DoxyCodeLine{00348\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00349\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{TVector3<T>}}\ \mbox{\hyperlink{classph_1_1math_1_1_t_sphere_ac8b370a7fefa900a990fe52bd7421c16}{TSphere<T>::sampleToSurfaceAbsCosThetaWeighted}}(\textcolor{keyword}{const}\ std::array<T,\ 2>\&\ sample)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00350\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00351\ \ \ \ \ PH\_ASSERT\_LE(\textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(0),\ sample[0]);\ PH\_ASSERT\_LE(sample[0],\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(1));}
+\DoxyCodeLine{00352\ \ \ \ \ PH\_ASSERT\_LE(\textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(0),\ sample[1]);\ PH\_ASSERT\_LE(sample[1],\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(1));}
+\DoxyCodeLine{00353\ }
+\DoxyCodeLine{00354\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ ySign\ \ \ \ \ \ \ \ \ =\ \mbox{\hyperlink{namespaceph_1_1math_a7377d0dddd537e4e7a04f98bd8e1114e}{math::sign}}(sample[1]\ -\/\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(0.5));}
+\DoxyCodeLine{00355\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ reusedSample1\ =\ ySign\ *\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(2)\ *\ (sample[1]\ -\/\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(0.5));}
+\DoxyCodeLine{00356\ }
+\DoxyCodeLine{00357\ \ \ \ \ \textcolor{keyword}{const}\ T\ phi\ \ \ \ \ =\ \mbox{\hyperlink{namespaceph_1_1math_1_1constant_ad8b55217fcc8198b83c50375e1120c8a}{constant::two\_pi<T>}}\ *\ sample[0];}
+\DoxyCodeLine{00358\ \ \ \ \ \textcolor{keyword}{const}\ T\ yValue\ \ =\ ySign\ *\ std::sqrt(reusedSample1);}
+\DoxyCodeLine{00359\ \ \ \ \ \textcolor{keyword}{const}\ T\ yRadius\ =\ std::sqrt(\textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(1)\ -\/\ yValue\ *\ yValue);\textcolor{comment}{//\ TODO:\ y*y\ is\ in\ fact\ valueB?}}
+\DoxyCodeLine{00360\ }
+\DoxyCodeLine{00361\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ localUnitPos\ =\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{TVector3<T>}}(}
+\DoxyCodeLine{00362\ \ \ \ \ \ \ \ \ std::sin(phi)\ *\ yRadius,}
+\DoxyCodeLine{00363\ \ \ \ \ \ \ \ \ yValue,}
+\DoxyCodeLine{00364\ \ \ \ \ \ \ \ \ std::cos(phi)\ *\ yRadius);}
+\DoxyCodeLine{00365\ }
+\DoxyCodeLine{00366\ \ \ \ \ \textcolor{keywordflow}{return}\ localUnitPos.mul(m\_radius);}
+\DoxyCodeLine{00367\ \}}
+\DoxyCodeLine{00368\ }
+\DoxyCodeLine{00369\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00370\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{TVector3<T>}}\ \mbox{\hyperlink{classph_1_1math_1_1_t_sphere_ac8b370a7fefa900a990fe52bd7421c16}{TSphere<T>::sampleToSurfaceAbsCosThetaWeighted}}(}
+\DoxyCodeLine{00371\ \ \ \ \ \textcolor{keyword}{const}\ std::array<T,\ 2>\&\ sample,\ T*\ \textcolor{keyword}{const}\ out\_pdfA)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00372\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00373\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ localPos\ =\ sampleToSurfaceAbsCosThetaWeighted(sample);}
+\DoxyCodeLine{00374\ }
+\DoxyCodeLine{00375\ \ \ \ \ PH\_ASSERT\_GE(localPos.y(),\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(0));}
+\DoxyCodeLine{00376\ \ \ \ \ \textcolor{keyword}{const}\ T\ cosTheta\ =\ localPos.y()\ /\ m\_radius;}
+\DoxyCodeLine{00377\ }
+\DoxyCodeLine{00378\ \ \ \ \ \textcolor{comment}{//\ PDF\_A\ is\ |cos(theta)|/(pi*r\string^2)}}
+\DoxyCodeLine{00379\ \ \ \ \ PH\_ASSERT(out\_pdfA);}
+\DoxyCodeLine{00380\ \ \ \ \ *out\_pdfA\ =\ std::abs(cosTheta)\ /\ (\mbox{\hyperlink{namespaceph_1_1math_1_1constant_aeb217ecd643bb14c638c3d0457a031e0}{constant::pi<real>}}\ *\ m\_radius\ *\ m\_radius);}
+\DoxyCodeLine{00381\ }
+\DoxyCodeLine{00382\ \ \ \ \ \textcolor{keywordflow}{return}\ localPos;}
+\DoxyCodeLine{00383\ \}}
+\DoxyCodeLine{00384\ }
+\DoxyCodeLine{00385\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00386\ \textcolor{keyword}{inline}\ T\ \mbox{\hyperlink{classph_1_1math_1_1_t_sphere_a90c17725b7c3c8dc5b170ee8ab70cc73}{TSphere<T>::uniformSurfaceSamplePdfA}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00387\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00388\ \ \ \ \ \textcolor{comment}{//\ PDF\_A\ is\ 1/(4*pi*r\string^2)}}
+\DoxyCodeLine{00389\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(1)\ /\ getArea();}
+\DoxyCodeLine{00390\ \}}
+\DoxyCodeLine{00391\ }
+\DoxyCodeLine{00392\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00393\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{TVector2<T>}}\ \mbox{\hyperlink{classph_1_1math_1_1_t_sphere_a2b0372bb3fa26dba56ceb59370dc6f19}{TSphere<T>::surfaceToLatLong01}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{TVector3<T>}}\&\ surface)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00394\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00395\ \ \ \ \ \textcolor{keyword}{using\ namespace\ }math::constant;}
+\DoxyCodeLine{00396\ }
+\DoxyCodeLine{00397\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{TVector2<T>}}\&\ phiTheta\ =\ surfaceToPhiTheta(surface);}
+\DoxyCodeLine{00398\ }
+\DoxyCodeLine{00399\ \ \ \ \ \textcolor{keywordflow}{return}\ \{}
+\DoxyCodeLine{00400\ \ \ \ \ \ \ \ \ phiTheta.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_a03c5e56839820da78b52d2db0281f065}{x}}()\ /\ two\_pi<T>,\ \ \ \ \ \ \ \textcolor{comment}{//\ [0,\ 1]}}
+\DoxyCodeLine{00401\ \ \ \ \ \ \ \ \ (pi<T>\ -\/\ phiTheta.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_af3065a5fa872cdb3f2291a84824d5d59}{y}}())\ /\ pi<T>\};\textcolor{comment}{//\ [0,\ 1]}}
+\DoxyCodeLine{00402\ \}}
+\DoxyCodeLine{00403\ }
+\DoxyCodeLine{00404\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00405\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{TVector2<T>}}\ \mbox{\hyperlink{classph_1_1math_1_1_t_sphere_a8169234843c46e90276088676bb5c061}{TSphere<T>::latLong01ToPhiTheta}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{TVector2<T>}}\&\ latLong01)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00406\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00407\ \ \ \ \ \textcolor{keyword}{using\ namespace\ }math::constant;}
+\DoxyCodeLine{00408\ }
+\DoxyCodeLine{00409\ \ \ \ \ \textcolor{keyword}{const}\ T\ phi\ \ \ =\ latLong01.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_a03c5e56839820da78b52d2db0281f065}{x}}()\ *\ two\_pi<T>;}
+\DoxyCodeLine{00410\ \ \ \ \ \textcolor{keyword}{const}\ T\ theta\ =\ (\textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(1)\ -\/\ latLong01.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_af3065a5fa872cdb3f2291a84824d5d59}{y}}())\ *\ pi<T>;}
+\DoxyCodeLine{00411\ }
+\DoxyCodeLine{00412\ \ \ \ \ \textcolor{keywordflow}{return}\ \{phi,\ theta\};}
+\DoxyCodeLine{00413\ \}}
+\DoxyCodeLine{00414\ }
+\DoxyCodeLine{00415\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00416\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{TVector3<T>}}\ \mbox{\hyperlink{classph_1_1math_1_1_t_sphere_a23aa887f35059be5c35d3c226e5c49d8}{TSphere<T>::latLong01ToSurface}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{TVector2<T>}}\&\ latLong01)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00417\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00418\ \ \ \ \ \textcolor{keywordflow}{return}\ phiThetaToSurface(latLong01ToPhiTheta(latLong01));}
+\DoxyCodeLine{00419\ \}}
+\DoxyCodeLine{00420\ }
+\DoxyCodeLine{00421\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00422\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{TVector2<T>}}\ \mbox{\hyperlink{classph_1_1math_1_1_t_sphere_a11e120d1c4c848b60c6283cb92db5386}{TSphere<T>::surfaceToPhiTheta}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{TVector3<T>}}\&\ surface)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00423\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00424\ \ \ \ \ \textcolor{keyword}{using\ namespace\ }math::constant;}
+\DoxyCodeLine{00425\ }
+\DoxyCodeLine{00426\ \ \ \ \ PH\_ASSERT\_GT(m\_radius,\ 0);}
+\DoxyCodeLine{00427\ }
+\DoxyCodeLine{00428\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::TVector3<T>}}\&\ unitDir\ =\ surface.\mbox{\hyperlink{classph_1_1math_1_1_t_vector_n_base_a90e51e4c7b0bf070959cc95ed9784288}{div}}(m\_radius);}
+\DoxyCodeLine{00429\ }
+\DoxyCodeLine{00430\ \ \ \ \ \textcolor{keyword}{const}\ T\ cosTheta\ =\ \mbox{\hyperlink{namespaceph_1_1math_a9e5d8a7a977115813ceeba3f0c00cbdb}{math::clamp}}(unitDir.\mbox{\hyperlink{classph_1_1math_1_1_t_vector3_a0a5f0880f6b82a8519416ca9a987818b}{y}}(),\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(-\/1),\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(1));}
+\DoxyCodeLine{00431\ }
+\DoxyCodeLine{00432\ \ \ \ \ \textcolor{keyword}{const}\ T\ theta\ \ =\ std::acos(cosTheta);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ [\ \ 0,\ \ \ pi]}}
+\DoxyCodeLine{00433\ \ \ \ \ \textcolor{keyword}{const}\ T\ phiRaw\ =\ std::atan2(unitDir.\mbox{\hyperlink{classph_1_1math_1_1_t_vector3_a8d0eb557cecca2a3e07326c409b2c16b}{x}}(),\ unitDir.\mbox{\hyperlink{classph_1_1math_1_1_t_vector3_a34d51b9c12196175c8ad04c2cd9c59ec}{z}}());\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ [-\/pi,\ \ \ pi]}}
+\DoxyCodeLine{00434\ \ \ \ \ \textcolor{keyword}{const}\ T\ phi\ \ \ \ =\ phiRaw\ >=\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(0)\ ?\ phiRaw\ :\ two\_pi<T>\ +\ phiRaw;\textcolor{comment}{//\ [\ \ 0,\ 2*pi]}}
+\DoxyCodeLine{00435\ }
+\DoxyCodeLine{00436\ \ \ \ \ \textcolor{keywordflow}{return}\ \{phi,\ theta\};}
+\DoxyCodeLine{00437\ \}}
+\DoxyCodeLine{00438\ }
+\DoxyCodeLine{00439\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00440\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{TVector3<T>}}\ \mbox{\hyperlink{classph_1_1math_1_1_t_sphere_a6437eabb3effe3f5eb34a38e090f3fda}{TSphere<T>::phiThetaToSurface}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{TVector2<T>}}\&\ phiTheta)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00441\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00442\ \ \ \ \ \textcolor{keyword}{const}\ T\ phi\ \ \ =\ phiTheta.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_a03c5e56839820da78b52d2db0281f065}{x}}();}
+\DoxyCodeLine{00443\ \ \ \ \ \textcolor{keyword}{const}\ T\ theta\ =\ phiTheta.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_af3065a5fa872cdb3f2291a84824d5d59}{y}}();}
+\DoxyCodeLine{00444\ }
+\DoxyCodeLine{00445\ \ \ \ \ \textcolor{keyword}{const}\ T\ zxPlaneRadius\ =\ std::sin(theta);}
+\DoxyCodeLine{00446\ }
+\DoxyCodeLine{00447\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ localUnitPos\ =\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{TVector3<T>}}(}
+\DoxyCodeLine{00448\ \ \ \ \ \ \ \ \ zxPlaneRadius\ *\ std::sin(phi),}
+\DoxyCodeLine{00449\ \ \ \ \ \ \ \ \ std::cos(theta),}
+\DoxyCodeLine{00450\ \ \ \ \ \ \ \ \ zxPlaneRadius\ *\ std::cos(phi));}
+\DoxyCodeLine{00451\ }
+\DoxyCodeLine{00452\ \ \ \ \ \textcolor{keywordflow}{return}\ localUnitPos\ *\ m\_radius;}
+\DoxyCodeLine{00453\ \}}
+\DoxyCodeLine{00454\ }
+\DoxyCodeLine{00455\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00456\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ SurfaceToUv>}
+\DoxyCodeLine{00457\ \textcolor{keyword}{inline}\ std::pair<TVector3<T>,\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{TVector3<T>}}>\ \mbox{\hyperlink{classph_1_1math_1_1_t_sphere_ae5d55bf20849f35e8347915e0b89ff8f}{TSphere<T>::surfaceDerivativesWrtUv}}(}
+\DoxyCodeLine{00458\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{TVector3<T>}}\&\ surface,}
+\DoxyCodeLine{00459\ \ \ \ \ SurfaceToUv\ \ \ \ \ \ \ \ surfaceToUv,}
+\DoxyCodeLine{00460\ \ \ \ \ T\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ hInRadians)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00461\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00462\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_invocable\_r\_v<TVector2<T>,\ SurfaceToUv,\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{TVector3<T>}}>,}
+\DoxyCodeLine{00463\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}A\ surface\ to\ UV\ mapper\ must\ accept\ Vector3\ position\ and\ return\ Vector2\ "{}}}
+\DoxyCodeLine{00464\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}UV\ or\ any\ type\ that\ is\ convertible\ to\ the\ mentioned\ ones"{}});}
+\DoxyCodeLine{00465\ }
+\DoxyCodeLine{00466\ \ \ \ \ PH\_ASSERT\_GT(hInRadians,\ 0);}
+\DoxyCodeLine{00467\ \ \ \ \ }
+\DoxyCodeLine{00468\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::TVector3<T>}}\&\ normal\ =\ surface.\mbox{\hyperlink{classph_1_1math_1_1_t_vector_n_base_a90e51e4c7b0bf070959cc95ed9784288}{div}}(m\_radius);}
+\DoxyCodeLine{00469\ \ \ \ \ hInRadians\ =\ std::min(hInRadians,\ \mbox{\hyperlink{namespaceph_1_1math_a8d924d614efcdd92fcce816a3f8eebf3}{math::to\_radians<T>}}(45));}
+\DoxyCodeLine{00470\ }
+\DoxyCodeLine{00471\ \ \ \ \ \textcolor{comment}{//\ Calculate\ displacement\ vectors\ on\ hit\ normal's\ tangent\ plane}}
+\DoxyCodeLine{00472\ \ \ \ \ \textcolor{comment}{//\ (with\ small\ angle\ approximation)}}
+\DoxyCodeLine{00473\ }
+\DoxyCodeLine{00474\ \ \ \ \ \textcolor{keyword}{const}\ T\ delta\ =\ m\_radius\ *\ std::tan(hInRadians);}
+\DoxyCodeLine{00475\ }
+\DoxyCodeLine{00476\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ hitBasis\ =\ \mbox{\hyperlink{classph_1_1math_1_1_t_orthonormal_basis3_a4c527b1dd22229b5cb47d55b8a804592}{math::TOrthonormalBasis3<T>::makeFromUnitY}}(normal);}
+\DoxyCodeLine{00477\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::TVector3<T>}}\&\ dx\ =\ hitBasis.getXAxis().\mbox{\hyperlink{classph_1_1math_1_1_t_vector_n_base_a15602e64861b8d4b90033e87b168b846}{mul}}(delta);}
+\DoxyCodeLine{00478\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::TVector3<T>}}\&\ dz\ =\ hitBasis.getZAxis().\mbox{\hyperlink{classph_1_1math_1_1_t_vector_n_base_a15602e64861b8d4b90033e87b168b846}{mul}}(delta);}
+\DoxyCodeLine{00479\ }
+\DoxyCodeLine{00480\ \ \ \ \ \textcolor{comment}{//\ Compute\ partial\ derivatives\ with\ 2nd-\/order\ approximation}}
+\DoxyCodeLine{00481\ }
+\DoxyCodeLine{00482\ \ \ \ \ \textcolor{comment}{//\ Find\ delta\ positions\ on\ the\ sphere\ from\ displacement\ vectors}}
+\DoxyCodeLine{00483\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::TVector3<T>}}\&\ negX\ =\ surface.\mbox{\hyperlink{classph_1_1math_1_1_t_vector_n_base_a8ef096d70a1bc8e75e4c7e7ae48e5b62}{sub}}(dx).normalize().mul(m\_radius);}
+\DoxyCodeLine{00484\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::TVector3<T>}}\&\ posX\ =\ surface.\mbox{\hyperlink{classph_1_1math_1_1_t_vector_n_base_ad58cdb9489c07d271045fb770b461eed}{add}}(dx).normalize().mul(m\_radius);}
+\DoxyCodeLine{00485\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::TVector3<T>}}\&\ negZ\ =\ surface.\mbox{\hyperlink{classph_1_1math_1_1_t_vector_n_base_a8ef096d70a1bc8e75e4c7e7ae48e5b62}{sub}}(dz).normalize().mul(m\_radius);}
+\DoxyCodeLine{00486\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::TVector3<T>}}\&\ posZ\ =\ surface.\mbox{\hyperlink{classph_1_1math_1_1_t_vector_n_base_ad58cdb9489c07d271045fb770b461eed}{add}}(dz).normalize().mul(m\_radius);}
+\DoxyCodeLine{00487\ }
+\DoxyCodeLine{00488\ \ \ \ \ \textcolor{comment}{//\ Find\ delta\ uvw\ vectors}}
+\DoxyCodeLine{00489\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{math::TVector2<T>}}\&\ negXuv\ =\ surfaceToUv(negX);}
+\DoxyCodeLine{00490\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{math::TVector2<T>}}\&\ posXuv\ =\ surfaceToUv(posX);}
+\DoxyCodeLine{00491\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{math::TVector2<T>}}\&\ negZuv\ =\ surfaceToUv(negZ);}
+\DoxyCodeLine{00492\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{math::TVector2<T>}}\&\ posZuv\ =\ surfaceToUv(posZ);}
+\DoxyCodeLine{00493\ }
+\DoxyCodeLine{00494\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_matrix2}{math::TMatrix2<T>}}\ uvwDiff(}
+\DoxyCodeLine{00495\ \ \ \ \ \ \ \ \ posXuv.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_a03c5e56839820da78b52d2db0281f065}{x}}()\ -\/\ negXuv.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_a03c5e56839820da78b52d2db0281f065}{x}}(),\ posXuv.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_af3065a5fa872cdb3f2291a84824d5d59}{y}}()\ -\/\ negXuv.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_af3065a5fa872cdb3f2291a84824d5d59}{y}}(),}
+\DoxyCodeLine{00496\ \ \ \ \ \ \ \ \ posZuv.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_a03c5e56839820da78b52d2db0281f065}{x}}()\ -\/\ negZuv.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_a03c5e56839820da78b52d2db0281f065}{x}}(),\ posZuv.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_af3065a5fa872cdb3f2291a84824d5d59}{y}}()\ -\/\ negZuv.\mbox{\hyperlink{classph_1_1math_1_1_t_vector2_af3065a5fa872cdb3f2291a84824d5d59}{y}}());}
+\DoxyCodeLine{00497\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ xDiff\ =\ posX\ -\/\ negX;}
+\DoxyCodeLine{00498\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ zDiff\ =\ posZ\ -\/\ negZ;}
+\DoxyCodeLine{00499\ \ \ \ \ \textcolor{keyword}{const}\ std::array<std::array<T,\ 2>,\ 3>\ bs\ =\ \{}
+\DoxyCodeLine{00500\ \ \ \ \ \ \ \ \ xDiff.\mbox{\hyperlink{classph_1_1math_1_1_t_vector3_a8d0eb557cecca2a3e07326c409b2c16b}{x}}(),\ zDiff.x(),}
+\DoxyCodeLine{00501\ \ \ \ \ \ \ \ \ xDiff.y(),\ zDiff.y(),}
+\DoxyCodeLine{00502\ \ \ \ \ \ \ \ \ xDiff.z(),\ zDiff.z()\ \};}
+\DoxyCodeLine{00503\ }
+\DoxyCodeLine{00504\ \ \ \ \ \textcolor{comment}{//\ Calculate\ positional\ partial\ derivatives}}
+\DoxyCodeLine{00505\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::TVector3<T>}}\ dPdU,\ dPdV;}
+\DoxyCodeLine{00506\ \ \ \ \ std::array<std::array<T,\ 2>,\ 3>\ xs;}
+\DoxyCodeLine{00507\ \ \ \ \ \textcolor{keywordflow}{if}(uvwDiff.\mbox{\hyperlink{classph_1_1math_1_1_t_matrix2_af045e437800e5761ade0ee9129738d07}{solve}}(bs,\ \&xs))}
+\DoxyCodeLine{00508\ \ \ \ \ \{}
+\DoxyCodeLine{00509\ \ \ \ \ \ \ \ \ dPdU.\mbox{\hyperlink{classph_1_1math_1_1_t_vector3_a8d0eb557cecca2a3e07326c409b2c16b}{x}}()\ =\ xs[0][0];\ dPdV.\mbox{\hyperlink{classph_1_1math_1_1_t_vector3_a8d0eb557cecca2a3e07326c409b2c16b}{x}}()\ =\ xs[0][1];}
+\DoxyCodeLine{00510\ \ \ \ \ \ \ \ \ dPdU.\mbox{\hyperlink{classph_1_1math_1_1_t_vector3_a0a5f0880f6b82a8519416ca9a987818b}{y}}()\ =\ xs[1][0];\ dPdV.\mbox{\hyperlink{classph_1_1math_1_1_t_vector3_a0a5f0880f6b82a8519416ca9a987818b}{y}}()\ =\ xs[1][1];}
+\DoxyCodeLine{00511\ \ \ \ \ \ \ \ \ dPdU.\mbox{\hyperlink{classph_1_1math_1_1_t_vector3_a34d51b9c12196175c8ad04c2cd9c59ec}{z}}()\ =\ xs[2][0];\ dPdV.\mbox{\hyperlink{classph_1_1math_1_1_t_vector3_a34d51b9c12196175c8ad04c2cd9c59ec}{z}}()\ =\ xs[2][1];}
+\DoxyCodeLine{00512\ \ \ \ \ \}}
+\DoxyCodeLine{00513\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00514\ \ \ \ \ \{}
+\DoxyCodeLine{00515\ \ \ \ \ \ \ \ \ dPdU\ =\ hitBasis.getZAxis();}
+\DoxyCodeLine{00516\ \ \ \ \ \ \ \ \ dPdV\ =\ hitBasis.getXAxis();}
+\DoxyCodeLine{00517\ \ \ \ \ \}}
+\DoxyCodeLine{00518\ }
+\DoxyCodeLine{00519\ \ \ \ \ \textcolor{keywordflow}{return}\ \{dPdU,\ dPdV\};}
+\DoxyCodeLine{00520\ \}}
+\DoxyCodeLine{00521\ }
+\DoxyCodeLine{00522\ \}\textcolor{comment}{//\ end\ namespace\ ph::math}}
+
+\end{DoxyCode}
