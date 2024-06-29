@@ -103,7 +103,7 @@ var searchData=
   ['tmatrixnbase_2eipp_100',['TMatrixNBase.ipp',['../_t_matrix_n_base_8ipp.html',1,'']]],
   ['tmetainjectionprimitive_2eh_101',['TMetaInjectionPrimitive.h',['../_t_meta_injection_primitive_8h.html',1,'']]],
   ['tmipmap_2eh_102',['TMipmap.h',['../_t_mipmap_8h.html',1,'']]],
-  ['tmis_2eh_103',['TMis.h',['../_t_mis_8h.html',1,'']]],
+  ['tmis_2eh_103',['TMIS.h',['../_t_m_i_s_8h.html',1,'']]],
   ['tmitchellnetravalicubic2d_2eh_104',['TMitchellNetravaliCubic2D.h',['../_t_mitchell_netravali_cubic2_d_8h.html',1,'']]],
   ['tmrswresource_2eh_105',['TMRSWResource.h',['../_t_m_r_s_w_resource_8h.html',1,'']]],
   ['tmt19937_2eh_106',['TMt19937.h',['../_t_mt19937_8h.html',1,'']]],

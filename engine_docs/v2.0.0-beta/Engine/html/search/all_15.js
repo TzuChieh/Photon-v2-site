@@ -44,12 +44,14 @@ var searchData=
   ['usesrgbstandard_41',['useSrgbStandard',['../classph_1_1_gamma_correction.html#ae87dc7e301c1071de9f0dfc907a14e89',1,'ph::GammaCorrection']]],
   ['utility_2eh_42',['utility.h',['../utility_8h.html',1,'']]],
   ['uv_43',['uv',['../classph_1_1_sample_location.html#a78193ae93dd235b9fedf79badf09be83',1,'ph::SampleLocation']]],
-  ['uv_5fto_5fst_44',['uv_to_st',['../namespaceph_1_1pixel__texture.html#a49433cbc4ff5f1c8c5fd65512942718f',1,'ph::pixel_texture']]],
-  ['uv_5fto_5fst_5fscalar_45',['uv_to_st_scalar',['../namespaceph_1_1pixel__texture.html#ad14c058e9d6dfdf7eec2fcce1bf9f915',1,'ph::pixel_texture']]],
-  ['uvw_46',['uvw',['../classph_1_1_sample_location.html#ac351e93a5024f7425c723f5852bb24e7',1,'ph::SampleLocation']]],
-  ['uvwmapper_47',['UvwMapper',['../classph_1_1_uvw_mapper.html',1,'ph']]],
-  ['uvwmapper_2ecpp_48',['UvwMapper.cpp',['../_uvw_mapper_8cpp.html',1,'']]],
-  ['uvwmapper_2eh_49',['UvwMapper.h',['../_uvw_mapper_8h.html',1,'']]],
-  ['uvwtodirection_50',['uvwToDirection',['../classph_1_1_spherical_mapper.html#af2b137a426965864066d8febcebbbe49',1,'ph::SphericalMapper::uvwToDirection()'],['../classph_1_1_uvw_mapper.html#af2ca5ae7e6da26efd840f4757d28b20f',1,'ph::UvwMapper::uvwToDirection()']]],
-  ['uvwtoposition_51',['uvwToPosition',['../classph_1_1_primitive.html#a5f788c61aabe92e33a80524795c45cc5',1,'ph::Primitive::uvwToPosition()'],['../classph_1_1_t_meta_injection_primitive.html#ac66da1913eb9b1cc8a59928f12c6278e',1,'ph::TMetaInjectionPrimitive::uvwToPosition()'],['../classph_1_1_transformed_primitive.html#af3c733f69962ac9686af531b6d4d80ca',1,'ph::TransformedPrimitive::uvwToPosition()'],['../classph_1_1_spherical_mapper.html#a54e90f9aebb6b3b9fd3618920879055b',1,'ph::SphericalMapper::uvwToPosition()'],['../classph_1_1_uvw_mapper.html#a171134f6193bf379028ea2dbdcd46b1b',1,'ph::UvwMapper::uvwToPosition()']]]
+  ['uv01_44',['UV01',['../namespaceph_1_1lta.html#a517f9714c97ec4a5bcdd5beae0eaf9ddaf3d7d007f2c4d9612c4128a2a6a8b011',1,'ph::lta']]],
+  ['uv_5fto_5fst_45',['uv_to_st',['../namespaceph_1_1pixel__texture.html#a49433cbc4ff5f1c8c5fd65512942718f',1,'ph::pixel_texture']]],
+  ['uv_5fto_5fst_5fscalar_46',['uv_to_st_scalar',['../namespaceph_1_1pixel__texture.html#ad14c058e9d6dfdf7eec2fcce1bf9f915',1,'ph::pixel_texture']]],
+  ['uvw_47',['uvw',['../classph_1_1_sample_location.html#ac351e93a5024f7425c723f5852bb24e7',1,'ph::SampleLocation']]],
+  ['uvw01_48',['UVW01',['../namespaceph_1_1lta.html#a517f9714c97ec4a5bcdd5beae0eaf9ddac75c6f8c5e1c2970cf2feaf8a7331651',1,'ph::lta']]],
+  ['uvwmapper_49',['UvwMapper',['../classph_1_1_uvw_mapper.html',1,'ph']]],
+  ['uvwmapper_2ecpp_50',['UvwMapper.cpp',['../_uvw_mapper_8cpp.html',1,'']]],
+  ['uvwmapper_2eh_51',['UvwMapper.h',['../_uvw_mapper_8h.html',1,'']]],
+  ['uvwtodir_52',['uvwToDir',['../classph_1_1_spherical_mapper.html#a992ed753973c1a6ae9fbb49d8100dfc5',1,'ph::SphericalMapper::uvwToDir()'],['../classph_1_1_uvw_mapper.html#aff92783b50ae6005683c47124a54bddb',1,'ph::UvwMapper::uvwToDir()']]],
+  ['uvwtopos_53',['uvwToPos',['../classph_1_1_spherical_mapper.html#a7a5e0225f7f01598b7be04ef0a4ec6b3',1,'ph::SphericalMapper::uvwToPos()'],['../classph_1_1_uvw_mapper.html#a8c979067f00f5d573ef3d7cbf9a7f6a0',1,'ph::UvwMapper::uvwToPos()']]]
 ];

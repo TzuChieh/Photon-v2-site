@@ -157,7 +157,7 @@ var searchData=
   ['tmetainjectionprimitive_154',['TMetaInjectionPrimitive',['../../../Engine/html/classph_1_1_t_meta_injection_primitive.html',1,'ph']]],
   ['tmipmap_155',['TMipmap',['../../../Engine/html/classph_1_1_t_mipmap.html',1,'ph']]],
   ['tmipmap_3c_20t_2c_20n_20_3e_156',['TMipmap&lt; T, N &gt;',['../../../Engine/html/classph_1_1_t_mipmap.html',1,'ph']]],
-  ['tmis_157',['TMis',['../../../Engine/html/classph_1_1lta_1_1_t_mis.html',1,'ph::lta']]],
+  ['tmis_157',['TMIS',['../../../Engine/html/classph_1_1lta_1_1_t_m_i_s.html',1,'ph::lta']]],
   ['tmitchellnetravalicubic2d_158',['TMitchellNetravaliCubic2D',['../../../Engine/html/classph_1_1math_1_1_t_mitchell_netravali_cubic2_d.html',1,'ph::math']]],
   ['tmrswresource_159',['TMRSWResource',['../../../Engine/html/classph_1_1_t_m_r_s_w_resource.html',1,'ph']]],
   ['tmt19937_160',['TMt19937',['../../../Engine/html/classph_1_1math_1_1_t_mt19937.html',1,'ph::math']]],

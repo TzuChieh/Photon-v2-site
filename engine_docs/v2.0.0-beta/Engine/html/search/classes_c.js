@@ -12,6 +12,5 @@ var searchData=
   ['modelparser_9',['ModelParser',['../classph_1_1_model_parser.html',1,'ph']]],
   ['modelsource_10',['ModelSource',['../classph_1_1_model_source.html',1,'ph']]],
   ['motioncookconfig_11',['MotionCookConfig',['../classph_1_1_motion_cook_config.html',1,'ph']]],
-  ['motionsource_12',['MotionSource',['../classph_1_1_motion_source.html',1,'ph']]],
-  ['multidiffusesurfaceemitter_13',['MultiDiffuseSurfaceEmitter',['../classph_1_1_multi_diffuse_surface_emitter.html',1,'ph']]]
+  ['motionsource_12',['MotionSource',['../classph_1_1_motion_source.html',1,'ph']]]
 ];

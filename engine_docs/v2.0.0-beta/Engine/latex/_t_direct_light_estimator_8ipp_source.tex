@@ -6,7 +6,7 @@
 \DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_scene_8h}{World/Scene.h}}"{}}}
 \DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_emitter_8h}{Core/Emitter/Emitter.h}}"{}}}
 \DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_direct_energy_sample_query_8h}{Core/Emitter/Query/DirectEnergySampleQuery.h}}"{}}}
-\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_direct_energy_sample_pdf_query_8h}{Core/Emitter/Query/DirectEnergySamplePdfQuery.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_direct_energy_pdf_query_8h}{Core/Emitter/Query/DirectEnergyPdfQuery.h}}"{}}}
 \DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_surface_hit_8h}{Core/SurfaceHit.h}}"{}}}
 \DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_primitive_8h}{Core/Intersection/Primitive.h}}"{}}}
 \DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_primitive_metadata_8h}{Core/Intersection/PrimitiveMetadata.h}}"{}}}
@@ -20,7 +20,7 @@
 \DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_ray_8h}{Core/Ray.h}}"{}}}
 \DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{lta_8h}{Core/LTA/lta.h}}"{}}}
 \DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_surface_tracer_8h}{Core/LTA/SurfaceTracer.h}}"{}}}
-\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_mis_8h}{Core/LTA/TMis.h}}"{}}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_m_i_s_8h}{Core/LTA/TMIS.h}}"{}}}
 \DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_surface_hit_refinery_8h}{Core/LTA/SurfaceHitRefinery.h}}"{}}}
 \DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_vector3_8h}{Math/TVector3.h}}"{}}}
 \DoxyCodeLine{00022\ }
@@ -54,198 +54,200 @@
 \DoxyCodeLine{00050\ \ \ \ \ \}}
 \DoxyCodeLine{00051\ }
 \DoxyCodeLine{00052\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_spectrum}{math::Spectrum}}\ Le(0);}
-\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordflow}{if}(foundNextX\ \&\&\ nextX.\mbox{\hyperlink{classph_1_1_surface_hit_a65af3adb7f79bb7f6ac996983af46e73}{getSurfaceEmitter}}())}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordflow}{if}(foundNextX)}
 \DoxyCodeLine{00054\ \ \ \ \ \{}
-\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ nextX.\mbox{\hyperlink{classph_1_1_surface_hit_a65af3adb7f79bb7f6ac996983af46e73}{getSurfaceEmitter}}()-\/>\mbox{\hyperlink{classph_1_1_emitter_a411feaf012b6fde9b14c995e0f146c99}{evalEmittedRadiance}}(nextX,\ \&Le);}
-\DoxyCodeLine{00056\ \ \ \ \ \}}
-\DoxyCodeLine{00057\ }
-\DoxyCodeLine{00058\ \ \ \ \ PH\_ASSERT\_IN\_RANGE(bsdfSample.\mbox{\hyperlink{classph_1_1_bsdf_sample_query_ae5f5dce90d4b33005528d3725d8f2ede}{outputs}}.\mbox{\hyperlink{classph_1_1_bsdf_sample_output_a60ec597b8df470ac4c45a064fb1fd23c}{getL}}().\mbox{\hyperlink{classph_1_1math_1_1_t_vector_n_base_acfa70203a3b892f2a545a344d5ab9e43}{lengthSquared}}(),\ 0.9\_r,\ 1.1\_r);}
-\DoxyCodeLine{00059\ \ \ \ \ }
-\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordflow}{if}(out\_Le)\ \{\ *out\_Le\ =\ Le;\ \}}
-\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordflow}{if}(out\_X)\ \ \{\ *out\_X\ =\ foundNextX\ ?\ std::make\_optional(nextX)\ :\ std::nullopt;\ \}}
-\DoxyCodeLine{00062\ }
-\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
-\DoxyCodeLine{00064\ \}}
-\DoxyCodeLine{00065\ }
-\DoxyCodeLine{00066\ \textcolor{keyword}{template}<ES\textcolor{keywordtype}{id}ednessPolicy\ POLICY>}
-\DoxyCodeLine{00067\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1lta_1_1_t_direct_light_estimator_aaf17280d6b32cb7ae5037251523f5eaf}{TDirectLightEstimator<POLICY>::neeSampleEmission}}(}
-\DoxyCodeLine{00068\ \ \ \ \ \mbox{\hyperlink{classph_1_1_direct_energy_sample_query}{DirectEnergySampleQuery}}\&\ \ directSample,}
-\DoxyCodeLine{00069\ \ \ \ \ \mbox{\hyperlink{classph_1_1_sample_flow}{SampleFlow}}\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sampleFlow,}
-\DoxyCodeLine{00070\ \ \ \ \ \mbox{\hyperlink{classph_1_1_surface_hit}{SurfaceHit}}*\ \textcolor{keyword}{const}\ \ \ \ \ \ \ \ \ out\_Xe)\textcolor{keyword}{\ const}}
-\DoxyCodeLine{00071\ \textcolor{keyword}{}\{}
-\DoxyCodeLine{00072\ \ \ \ \ PH\_ASSERT(isNeeSamplable(directSample.\mbox{\hyperlink{classph_1_1_direct_energy_sample_query_ada947c45e95c3e9c8cdf3e3b0cd86604}{inputs}}.\mbox{\hyperlink{classph_1_1_direct_energy_sample_input_a440d8c752151cb80858dc237dc97018a}{getX}}()));}
-\DoxyCodeLine{00073\ }
-\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1lta_1_1_sidedness_agreement}{SidednessAgreement}}\ sidedness\{POLICY\};}
-\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_surface_hit}{SurfaceHit}}\&\ X\ =\ directSample.\mbox{\hyperlink{classph_1_1_direct_energy_sample_query_ada947c45e95c3e9c8cdf3e3b0cd86604}{inputs}}.\mbox{\hyperlink{classph_1_1_direct_energy_sample_input_a440d8c752151cb80858dc237dc97018a}{getX}}();}
-\DoxyCodeLine{00076\ }
-\DoxyCodeLine{00077\ \ \ \ \ \mbox{\hyperlink{classph_1_1_hit_probe}{HitProbe}}\ probe;}
-\DoxyCodeLine{00078\ \ \ \ \ getScene().genDirectSample(directSample,\ sampleFlow,\ probe);}
-\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keywordflow}{if}(!directSample.\mbox{\hyperlink{classph_1_1_direct_energy_sample_query_a7451f8803ed4441da19fce6be3eaa009}{outputs}}\ ||\ !sidedness.isSidednessAgreed(X,\ directSample.\mbox{\hyperlink{classph_1_1_direct_energy_sample_query_a13ce8d83f4c30a09ab976a364ae44b9f}{getTargetToEmit}}()))}
-\DoxyCodeLine{00080\ \ \ \ \ \{}
-\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
-\DoxyCodeLine{00082\ \ \ \ \ \}}
-\DoxyCodeLine{00083\ }
-\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classph_1_1_t_bit_flags}{SurfaceHitReason}}\ reason\{\mbox{\hyperlink{namespaceph_a3624e7ffb99b556c1cf59f3bbfbc6afaa6ffca551d875be000c71d6ae0ceea16d}{ESurfaceHitReason::SampledPos}}\};}
-\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_surface_hit}{SurfaceHit}}\ Xe(directSample.\mbox{\hyperlink{classph_1_1_direct_energy_sample_query_a7451f8803ed4441da19fce6be3eaa009}{outputs}}.\mbox{\hyperlink{classph_1_1_direct_energy_sample_output_a8681008d7a7193dfdfa2e3daeedda11b}{getObservationRay}}(),\ probe,\ reason);}
-\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keyword}{const}\ std::optional<Ray>\ visibilityRay\ =\ \mbox{\hyperlink{classph_1_1lta_1_1_surface_hit_refinery}{SurfaceHitRefinery}}\{X\}.tryEscape(Xe);}
-\DoxyCodeLine{00087\ \ \ \ \ \textcolor{keywordflow}{if}(!visibilityRay\ ||\ getScene().isOccluding(*visibilityRay))}
-\DoxyCodeLine{00088\ \ \ \ \ \{}
-\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
-\DoxyCodeLine{00090\ \ \ \ \ \}}
-\DoxyCodeLine{00091\ }
-\DoxyCodeLine{00092\ \ \ \ \ PH\_ASSERT\_IN\_RANGE(visibilityRay-\/>getDirection().lengthSquared(),\ 0.9\_r,\ 1.1\_r);}
-\DoxyCodeLine{00093\ \ \ \ \ PH\_ASSERT(Xe.\mbox{\hyperlink{classph_1_1_surface_hit_a65af3adb7f79bb7f6ac996983af46e73}{getSurfaceEmitter}}());}
-\DoxyCodeLine{00094\ }
-\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keywordflow}{if}(out\_Xe)\ \{\ *out\_Xe\ =\ Xe;\ \}}
-\DoxyCodeLine{00096\ }
-\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
-\DoxyCodeLine{00098\ \}}
-\DoxyCodeLine{00099\ }
-\DoxyCodeLine{00100\ \textcolor{keyword}{template}<ES\textcolor{keywordtype}{id}ednessPolicy\ POLICY>}
-\DoxyCodeLine{00101\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1lta_1_1_t_direct_light_estimator_a0ab62eb48b7793411c4c0d07d928734e}{TDirectLightEstimator<POLICY>::bsdfSamplePathWithNee}}(}
-\DoxyCodeLine{00102\ \ \ \ \ \mbox{\hyperlink{classph_1_1_bsdf_sample_query}{BsdfSampleQuery}}\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ bsdfSample,}
-\DoxyCodeLine{00103\ \ \ \ \ \mbox{\hyperlink{classph_1_1_sample_flow}{SampleFlow}}\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sampleFlow,}
-\DoxyCodeLine{00104\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_spectrum}{math::Spectrum}}*\ \textcolor{keyword}{const}\ \ \ \ \ \ \ \ \ \ \ \ out\_Lo,}
-\DoxyCodeLine{00105\ \ \ \ \ std::optional<SurfaceHit>*\ \textcolor{keyword}{const}\ out\_X)\textcolor{keyword}{\ const}}
-\DoxyCodeLine{00106\ \textcolor{keyword}{}\{}
-\DoxyCodeLine{00107\ \ \ \ \ \textcolor{keyword}{using\ }MIS\ =\ \mbox{\hyperlink{classph_1_1lta_1_1_t_mis}{TMis<EMisStyle::Power>}};}
-\DoxyCodeLine{00108\ }
-\DoxyCodeLine{00109\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_surface_hit}{SurfaceHit}}\&\ \ \ \ X\ =\ bsdfSample.\mbox{\hyperlink{classph_1_1_bsdf_sample_query_a15de1880de1bfef9ac195e1f7c072164}{inputs}}.\mbox{\hyperlink{classph_1_1_bsdf_sample_input_a80e452c090e68a1448ebaf303140cf4d}{getX}}();}
-\DoxyCodeLine{00110\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\ V\ =\ X.\mbox{\hyperlink{classph_1_1_surface_hit_a61d656616db630197f8b06093705fba6}{getIncidentRay}}().\mbox{\hyperlink{classph_1_1_ray_a3f62b201c0015a647611282280130b52}{getDirection}}().\mbox{\hyperlink{classph_1_1math_1_1_t_vector_n_base_a15602e64861b8d4b90033e87b168b846}{mul}}(-\/1);}
-\DoxyCodeLine{00111\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\ N\ =\ X.\mbox{\hyperlink{classph_1_1_surface_hit_a189bd3896f87838eea8b7e06f5e71286}{getShadingNormal}}();}
-\DoxyCodeLine{00112\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_spectrum}{math::Spectrum}}\ sampledLo(0);}
-\DoxyCodeLine{00113\ }
-\DoxyCodeLine{00114\ \ \ \ \ \textcolor{comment}{//\ BSDF\ sample}}
-\DoxyCodeLine{00115\ \ \ \ \ \{}
-\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_spectrum}{math::Spectrum}}\ bsdfLe;}
-\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ std::optional<SurfaceHit>\ nextX;}
-\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(bsdfSampleEmission(bsdfSample,\ sampleFlow,\ \&bsdfLe,\ \&nextX)\ \&\&}
-\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ bsdfSample.\mbox{\hyperlink{classph_1_1_bsdf_sample_query_ae5f5dce90d4b33005528d3725d8f2ede}{outputs}}.\mbox{\hyperlink{classph_1_1_bsdf_sample_output_ab8a034ca50318eaf24b20ef8523a572e}{isMeasurable}}()\ \&\&}
-\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ nextX)}
-\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_surface_optics}{SurfaceOptics}}*\ optics\ =\ X.\mbox{\hyperlink{classph_1_1_surface_hit_a75da2f51e2142ca3e24859620965333c}{getSurfaceOptics}}();}
-\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ PH\_ASSERT(optics);}
-\DoxyCodeLine{00124\ }
-\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ L\ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ bsdfSample.\mbox{\hyperlink{classph_1_1_bsdf_sample_query_ae5f5dce90d4b33005528d3725d8f2ede}{outputs}}.\mbox{\hyperlink{classph_1_1_bsdf_sample_output_a60ec597b8df470ac4c45a064fb1fd23c}{getL}}();}
-\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ pdfAppliedBsdf\ =\ bsdfSample.\mbox{\hyperlink{classph_1_1_bsdf_sample_query_ae5f5dce90d4b33005528d3725d8f2ede}{outputs}}.\mbox{\hyperlink{classph_1_1_bsdf_sample_output_a13bb80a89a3b32551ab3cbc2995f0ec5}{getPdfAppliedBsdf}}();}
-\DoxyCodeLine{00127\ }
-\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ NEE\ cannot\ sample\ the\ same\ light\ from\ \`{}X`\ (due\ to\ delta\ BSDF,\ etc.),\ then\ we}}
-\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ cannot\ use\ MIS\ weighting\ to\ remove\ NEE\ contribution\ as\ BSDF\ sampling\ may\ not}}
-\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ always\ have\ an\ explicit\ PDF\ term.}}
-\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ MIS}}
-\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(isNeeSamplable(X)\ \&\&\ nextX-\/>getSurfaceEmitter())}
-\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ No\ need\ to\ test\ occlusion\ again\ as\ \`{}bsdfSampleEmission()`\ already\ done\ that}}
-\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ real\ neePdfW\ =\ neeSamplePdfWUnoccluded(X,\ *nextX);}
-\DoxyCodeLine{00137\ }
-\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_bsdf_pdf_query}{BsdfPdfQuery}}\ bsdfPdfQuery\{bsdfSample.\mbox{\hyperlink{classph_1_1_bsdf_sample_query_a1bfaa61482d5266d1e8fe1f0dfd3b372}{context}}\};}
-\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ bsdfPdfQuery.inputs.set(bsdfSample);}
-\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ optics-\/>\mbox{\hyperlink{classph_1_1_surface_optics_a603130ce2c84dc114a1f0693302c6394}{calcBsdfSamplePdfW}}(bsdfPdfQuery);}
-\DoxyCodeLine{00141\ }
-\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \`{}isNeeSamplable()`\ is\ already\ checked,\ but\ \`{}bsdfSamplePdfW`\ can\ still\ be\ 0\ (e.g.,}}
-\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ sidedness\ policy\ or\ by\ the\ distribution\ itself).}}
-\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ real\ bsdfSamplePdfW\ =\ bsdfPdfQuery.outputs.getSampleDirPdfW();}
-\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(bsdfSamplePdfW\ >\ 0)}
-\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ real\ misWeighting\ =\ MIS\{\}.weight(bsdfSamplePdfW,\ neePdfW);}
-\DoxyCodeLine{00148\ }
-\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_spectrum}{math::Spectrum}}\ weight(pdfAppliedBsdf\ *\ N.\mbox{\hyperlink{classph_1_1math_1_1_t_vector_n_base_ab2bbb5734f5be195c7b0d34e5324f9e1}{absDot}}(L)\ *\ misWeighting);}
-\DoxyCodeLine{00150\ }
-\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Avoid\ excessive,\ negative\ weight\ and\ possible\ NaNs}}
-\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ weight.\mbox{\hyperlink{classph_1_1math_1_1_t_spectrum_base_ad2b8a87560ab65188ec7a7795eb4179d}{clampLocal}}(0.0\_r,\ 1e9\_r);}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_emitter}{Emitter}}*\ nextEmitter\ =\ nextX.\mbox{\hyperlink{classph_1_1_surface_hit_a65af3adb7f79bb7f6ac996983af46e73}{getSurfaceEmitter}}();}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(nextEmitter\ \&\&\ nextEmitter-\/>\mbox{\hyperlink{classph_1_1_emitter_a22739f580c4e70e93961d5eca8ddc80e}{getFeatureSet}}().\mbox{\hyperlink{classph_1_1_t_bit_flags_a481cf188f6423a3fb5ee717dcd70b004}{has}}(\mbox{\hyperlink{namespaceph_a16b931b405833c11fca5c86a7514e603a5009a2197d7e7d6a3fd59251182bea9e}{EEmitterFeatureSet::BsdfSample}}))}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ nextX.\mbox{\hyperlink{classph_1_1_surface_hit_a65af3adb7f79bb7f6ac996983af46e73}{getSurfaceEmitter}}()-\/>\mbox{\hyperlink{classph_1_1_emitter_a3227615e9fa0f370b6668302603a8ed0}{evalEmittedEnergy}}(nextX,\ \&Le);}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00060\ \ \ \ \ \}}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \ \ PH\_ASSERT\_IN\_RANGE(bsdfSample.\mbox{\hyperlink{classph_1_1_bsdf_sample_query_ae5f5dce90d4b33005528d3725d8f2ede}{outputs}}.\mbox{\hyperlink{classph_1_1_bsdf_sample_output_a60ec597b8df470ac4c45a064fb1fd23c}{getL}}().\mbox{\hyperlink{classph_1_1math_1_1_t_vector_n_base_acfa70203a3b892f2a545a344d5ab9e43}{lengthSquared}}(),\ 0.9\_r,\ 1.1\_r);}
+\DoxyCodeLine{00063\ \ \ \ \ }
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keywordflow}{if}(out\_Le)\ \{\ *out\_Le\ =\ Le;\ \}}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordflow}{if}(out\_X)\ \ \{\ *out\_X\ =\ foundNextX\ ?\ std::make\_optional(nextX)\ :\ std::nullopt;\ \}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00068\ \}}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \textcolor{keyword}{template}<ES\textcolor{keywordtype}{id}ednessPolicy\ POLICY>}
+\DoxyCodeLine{00071\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1lta_1_1_t_direct_light_estimator_aaf17280d6b32cb7ae5037251523f5eaf}{TDirectLightEstimator<POLICY>::neeSampleEmission}}(}
+\DoxyCodeLine{00072\ \ \ \ \ \mbox{\hyperlink{classph_1_1_direct_energy_sample_query}{DirectEnergySampleQuery}}\&\ \ directSample,}
+\DoxyCodeLine{00073\ \ \ \ \ \mbox{\hyperlink{classph_1_1_sample_flow}{SampleFlow}}\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sampleFlow,}
+\DoxyCodeLine{00074\ \ \ \ \ \mbox{\hyperlink{classph_1_1_surface_hit}{SurfaceHit}}*\ \textcolor{keyword}{const}\ \ \ \ \ \ \ \ \ out\_Xe)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00075\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00076\ \ \ \ \ PH\_ASSERT(isNeeSamplable(directSample.\mbox{\hyperlink{classph_1_1_direct_energy_sample_query_ada947c45e95c3e9c8cdf3e3b0cd86604}{inputs}}.\mbox{\hyperlink{classph_1_1_direct_energy_sample_input_a440d8c752151cb80858dc237dc97018a}{getX}}()));}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1lta_1_1_sidedness_agreement}{SidednessAgreement}}\ sidedness\{POLICY\};}
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_surface_hit}{SurfaceHit}}\&\ X\ =\ directSample.\mbox{\hyperlink{classph_1_1_direct_energy_sample_query_ada947c45e95c3e9c8cdf3e3b0cd86604}{inputs}}.\mbox{\hyperlink{classph_1_1_direct_energy_sample_input_a440d8c752151cb80858dc237dc97018a}{getX}}();}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ \ \ \mbox{\hyperlink{classph_1_1_hit_probe}{HitProbe}}\ probe;}
+\DoxyCodeLine{00082\ \ \ \ \ getScene().genDirectSample(directSample,\ sampleFlow,\ probe);}
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keywordflow}{if}(!directSample.\mbox{\hyperlink{classph_1_1_direct_energy_sample_query_a7451f8803ed4441da19fce6be3eaa009}{outputs}}\ ||\ !sidedness.isSidednessAgreed(X,\ directSample.\mbox{\hyperlink{classph_1_1_direct_energy_sample_query_a13ce8d83f4c30a09ab976a364ae44b9f}{getTargetToEmit}}()))}
+\DoxyCodeLine{00084\ \ \ \ \ \{}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00086\ \ \ \ \ \}}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classph_1_1_t_bit_flags}{SurfaceHitReason}}\ reason\{\mbox{\hyperlink{namespaceph_a3624e7ffb99b556c1cf59f3bbfbc6afaa6ffca551d875be000c71d6ae0ceea16d}{ESurfaceHitReason::SampledPos}}\};}
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_surface_hit}{SurfaceHit}}\ Xe(directSample.\mbox{\hyperlink{classph_1_1_direct_energy_sample_query_a7451f8803ed4441da19fce6be3eaa009}{outputs}}.\mbox{\hyperlink{classph_1_1_direct_energy_sample_output_a8681008d7a7193dfdfa2e3daeedda11b}{getObservationRay}}(),\ probe,\ reason);}
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ optVisibilityRay\ =\ \mbox{\hyperlink{classph_1_1lta_1_1_surface_hit_refinery}{SurfaceHitRefinery}}\{X\}.tryEscape(Xe);}
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keywordflow}{if}(!optVisibilityRay\ ||\ getScene().isOccluding(*optVisibilityRay))}
+\DoxyCodeLine{00092\ \ \ \ \ \{}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00094\ \ \ \ \ \}}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \ \ \ \ PH\_ASSERT\_IN\_RANGE(optVisibilityRay-\/>getDir().lengthSquared(),\ 0.9\_r,\ 1.1\_r);}
+\DoxyCodeLine{00097\ \ \ \ \ PH\_ASSERT(Xe.\mbox{\hyperlink{classph_1_1_surface_hit_a65af3adb7f79bb7f6ac996983af46e73}{getSurfaceEmitter}}());}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keywordflow}{if}(out\_Xe)\ \{\ *out\_Xe\ =\ Xe;\ \}}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00102\ \}}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \textcolor{keyword}{template}<ES\textcolor{keywordtype}{id}ednessPolicy\ POLICY>}
+\DoxyCodeLine{00105\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1lta_1_1_t_direct_light_estimator_a0ab62eb48b7793411c4c0d07d928734e}{TDirectLightEstimator<POLICY>::bsdfSamplePathWithNee}}(}
+\DoxyCodeLine{00106\ \ \ \ \ \mbox{\hyperlink{classph_1_1_bsdf_sample_query}{BsdfSampleQuery}}\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ bsdfSample,}
+\DoxyCodeLine{00107\ \ \ \ \ \mbox{\hyperlink{classph_1_1_sample_flow}{SampleFlow}}\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sampleFlow,}
+\DoxyCodeLine{00108\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_spectrum}{math::Spectrum}}*\ \textcolor{keyword}{const}\ \ \ \ \ \ \ \ \ \ \ \ out\_Lo,}
+\DoxyCodeLine{00109\ \ \ \ \ std::optional<SurfaceHit>*\ \textcolor{keyword}{const}\ out\_X)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00110\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{keyword}{using\ }MIS\ =\ \mbox{\hyperlink{classph_1_1lta_1_1_t_m_i_s}{TMIS<EMISStyle::Power>}};}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_surface_hit}{SurfaceHit}}\&\ \ \ \ X\ =\ bsdfSample.\mbox{\hyperlink{classph_1_1_bsdf_sample_query_a15de1880de1bfef9ac195e1f7c072164}{inputs}}.\mbox{\hyperlink{classph_1_1_bsdf_sample_input_a80e452c090e68a1448ebaf303140cf4d}{getX}}();}
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\ V\ =\ X.\mbox{\hyperlink{classph_1_1_surface_hit_a61d656616db630197f8b06093705fba6}{getIncidentRay}}().\mbox{\hyperlink{classph_1_1_ray_a3c80f865b8ba404194a5afc268fe9651}{getDir}}().\mbox{\hyperlink{classph_1_1math_1_1_t_vector_n_base_a15602e64861b8d4b90033e87b168b846}{mul}}(-\/1);}
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\ N\ =\ X.\mbox{\hyperlink{classph_1_1_surface_hit_a189bd3896f87838eea8b7e06f5e71286}{getShadingNormal}}();}
+\DoxyCodeLine{00116\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_spectrum}{math::Spectrum}}\ sampledLo(0);}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ \ \ \ \ \textcolor{comment}{//\ BSDF\ sample}}
+\DoxyCodeLine{00119\ \ \ \ \ \{}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_spectrum}{math::Spectrum}}\ bsdfLe;}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ std::optional<SurfaceHit>\ nextX;}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(bsdfSampleEmission(bsdfSample,\ sampleFlow,\ \&bsdfLe,\ \&nextX)\ \&\&}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ bsdfSample.\mbox{\hyperlink{classph_1_1_bsdf_sample_query_ae5f5dce90d4b33005528d3725d8f2ede}{outputs}}.\mbox{\hyperlink{classph_1_1_bsdf_sample_output_ab8a034ca50318eaf24b20ef8523a572e}{isMeasurable}}()\ \&\&}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ nextX)}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_surface_optics}{SurfaceOptics}}*\ optics\ =\ X.\mbox{\hyperlink{classph_1_1_surface_hit_a75da2f51e2142ca3e24859620965333c}{getSurfaceOptics}}();}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ PH\_ASSERT(optics);}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ pdfAppliedBsdfCos\ =\ bsdfSample.\mbox{\hyperlink{classph_1_1_bsdf_sample_query_ae5f5dce90d4b33005528d3725d8f2ede}{outputs}}.\mbox{\hyperlink{classph_1_1_bsdf_sample_output_a9c16c0bf8d45ecda70092f985b5e25fd}{getPdfAppliedBsdfCos}}();}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ NEE\ cannot\ sample\ the\ same\ light\ from\ \`{}X`\ (due\ to\ delta\ BSDF,\ etc.),\ then\ we}}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ cannot\ use\ MIS\ weighting\ to\ remove\ NEE\ contribution\ as\ BSDF\ sampling\ may\ not}}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ always\ have\ an\ explicit\ PDF\ term.}}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ MIS}}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(isNeeSamplable(X)\ \&\&\ nextX-\/>getSurfaceEmitter())}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ No\ need\ to\ test\ occlusion\ again\ as\ \`{}bsdfSampleEmission()`\ already\ done\ that}}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ real\ neePdfW\ =\ neeSamplePdfWUnoccluded(X,\ *nextX);}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_bsdf_pdf_query}{BsdfPdfQuery}}\ bsdfPdfQuery\{bsdfSample.\mbox{\hyperlink{classph_1_1_bsdf_sample_query_a1bfaa61482d5266d1e8fe1f0dfd3b372}{context}}\};}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ bsdfPdfQuery.inputs.set(bsdfSample);}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ optics-\/>\mbox{\hyperlink{classph_1_1_surface_optics_aadd9f9f59af50d27cef10b87aab192b6}{calcBsdfPdf}}(bsdfPdfQuery);}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \`{}isNeeSamplable()`\ is\ already\ checked,\ but\ BSDF\ PDF\ can\ still\ be\ empty\ or\ 0}}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ (e.g.,\ sidedness\ policy\ or\ by\ the\ distribution\ itself)}}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(bsdfPdfQuery.outputs)}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ real\ bsdfSamplePdfW\ =\ bsdfPdfQuery.outputs.getSampleDirPdfW();}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ real\ misWeighting\ \ \ =\ MIS\{\}.weight(bsdfSamplePdfW,\ neePdfW);}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_spectrum}{math::Spectrum}}\ weight(pdfAppliedBsdfCos\ *\ misWeighting);}
 \DoxyCodeLine{00153\ }
-\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sampledLo\ +=\ bsdfLe\ *\ weight;}
-\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ BSDF\ sample\ only}}
-\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sampledLo\ +=\ bsdfLe\ *\ pdfAppliedBsdf\ *\ N.\mbox{\hyperlink{classph_1_1math_1_1_t_vector_n_base_ab2bbb5734f5be195c7b0d34e5324f9e1}{absDot}}(L);}
-\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00163\ }
-\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ BSDF\ sampling\ failed\ for\ whatever\ reason,\ we\ cannot\ simply\ return\ \`{}false`}}
-\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ as\ NEE\ could\ still\ sample\ a\ non-\/zero\ outgoing\ energy}}
-\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(out\_X)\ \{\ *out\_X\ =\ nextX;\ \}}
-\DoxyCodeLine{00167\ \ \ \ \ \}}
-\DoxyCodeLine{00168\ }
-\DoxyCodeLine{00169\ \ \ \ \ \textcolor{comment}{//\ NEE}}
-\DoxyCodeLine{00170\ \ \ \ \ \textcolor{keywordflow}{if}(isNeeSamplable(X))}
-\DoxyCodeLine{00171\ \ \ \ \ \{}
-\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_direct_energy_sample_query}{DirectEnergySampleQuery}}\ directSample;}
-\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ directSample.\mbox{\hyperlink{classph_1_1_direct_energy_sample_query_ada947c45e95c3e9c8cdf3e3b0cd86604}{inputs}}.\mbox{\hyperlink{classph_1_1_direct_energy_sample_input_abaafdd7be43ef228a149b936f648780b}{set}}(bsdfSample.\mbox{\hyperlink{classph_1_1_bsdf_sample_query_a15de1880de1bfef9ac195e1f7c072164}{inputs}}.\mbox{\hyperlink{classph_1_1_bsdf_sample_input_a80e452c090e68a1448ebaf303140cf4d}{getX}}());}
-\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(neeSampleEmission(directSample,\ sampleFlow)\ \&\&\ }
-\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \ \ \ directSample.\mbox{\hyperlink{classph_1_1_direct_energy_sample_query_a7451f8803ed4441da19fce6be3eaa009}{outputs}})}
-\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Always\ do\ MIS.\ If\ NEE\ can\ sample\ a\ light\ from\ \`{}X`,\ then\ BSDF\ light\ sample\ should\ have}}
-\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ no\ problem\ doing\ the\ same.\ No\ need\ to\ consider\ delta\ light\ sources\ as\ Photon\ do\ not}}
-\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ have\ them.}}
-\DoxyCodeLine{00180\ }
-\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_surface_optics}{SurfaceOptics}}*\ optics\ =\ X.\mbox{\hyperlink{classph_1_1_surface_hit_a75da2f51e2142ca3e24859620965333c}{getSurfaceOptics}}();}
-\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \ \ \ \ PH\_ASSERT(optics);}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Avoid\ excessive,\ negative\ weight\ and\ possible\ NaNs}}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ weight.\mbox{\hyperlink{classph_1_1math_1_1_t_spectrum_base_a54908315882651cc81ddbfeef0563c60}{safeClampLocal}}(0.0\_r,\ 1e9\_r);}
+\DoxyCodeLine{00156\ }
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sampledLo\ +=\ bsdfLe\ *\ weight;}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ BSDF\ sample\ only}}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sampledLo\ +=\ bsdfLe\ *\ pdfAppliedBsdfCos;}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00166\ }
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ BSDF\ sampling\ failed\ for\ whatever\ reason,\ we\ cannot\ simply\ return\ \`{}false`}}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ as\ NEE\ could\ still\ sample\ a\ non-\/zero\ outgoing\ energy}}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(out\_X)\ \{\ *out\_X\ =\ nextX;\ \}}
+\DoxyCodeLine{00170\ \ \ \ \ \}}
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00172\ \ \ \ \ \textcolor{comment}{//\ NEE}}
+\DoxyCodeLine{00173\ \ \ \ \ \textcolor{keywordflow}{if}(isNeeSamplable(X))}
+\DoxyCodeLine{00174\ \ \ \ \ \{}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_direct_energy_sample_query}{DirectEnergySampleQuery}}\ directSample;}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ directSample.\mbox{\hyperlink{classph_1_1_direct_energy_sample_query_ada947c45e95c3e9c8cdf3e3b0cd86604}{inputs}}.\mbox{\hyperlink{classph_1_1_direct_energy_sample_input_abaafdd7be43ef228a149b936f648780b}{set}}(bsdfSample.\mbox{\hyperlink{classph_1_1_bsdf_sample_query_a15de1880de1bfef9ac195e1f7c072164}{inputs}}.\mbox{\hyperlink{classph_1_1_bsdf_sample_input_a80e452c090e68a1448ebaf303140cf4d}{getX}}());}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(neeSampleEmission(directSample,\ sampleFlow)\ \&\&\ }
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \ \ \ directSample.\mbox{\hyperlink{classph_1_1_direct_energy_sample_query_a7451f8803ed4441da19fce6be3eaa009}{outputs}})}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Always\ do\ MIS.\ If\ NEE\ can\ sample\ a\ light\ from\ \`{}X`,\ then\ BSDF\ light\ sample\ should\ have}}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ no\ problem\ doing\ the\ same.\ No\ need\ to\ consider\ delta\ light\ sources\ as\ Photon\ do\ not}}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ have\ them.}}
 \DoxyCodeLine{00183\ }
-\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_bsdf_eval_query}{BsdfEvalQuery}}\ bsdfEval\{bsdfSample.\mbox{\hyperlink{classph_1_1_bsdf_sample_query_a1bfaa61482d5266d1e8fe1f0dfd3b372}{context}}\};}
-\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \ \ \ \ bsdfEval.inputs.set(X,\ directSample.\mbox{\hyperlink{classph_1_1_direct_energy_sample_query_a13ce8d83f4c30a09ab976a364ae44b9f}{getTargetToEmit}}().\mbox{\hyperlink{classph_1_1math_1_1_t_vector_n_base_a83faa5cec9beeb81bb58af4a8b1d13b1}{normalize}}(),\ V);}
-\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \ \ \ \ optics-\/>\mbox{\hyperlink{classph_1_1_surface_optics_a058042308616bcf1c7a63ab27b211cc4}{calcBsdf}}(bsdfEval);}
-\DoxyCodeLine{00187\ }
-\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(bsdfEval.outputs.isMeasurable())}
-\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_bsdf_pdf_query}{BsdfPdfQuery}}\ bsdfPdfQuery\{bsdfSample.\mbox{\hyperlink{classph_1_1_bsdf_sample_query_a1bfaa61482d5266d1e8fe1f0dfd3b372}{context}}\};}
-\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ bsdfPdfQuery.inputs.set(bsdfEval.inputs);}
-\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ optics-\/>\mbox{\hyperlink{classph_1_1_surface_optics_a603130ce2c84dc114a1f0693302c6394}{calcBsdfSamplePdfW}}(bsdfPdfQuery);}
-\DoxyCodeLine{00193\ }
-\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ L\ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ bsdfEval.inputs.getL();}
-\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ real\ neePdfW\ \ \ \ \ \ \ \ =\ directSample.\mbox{\hyperlink{classph_1_1_direct_energy_sample_query_a7451f8803ed4441da19fce6be3eaa009}{outputs}}.\mbox{\hyperlink{classph_1_1_direct_energy_sample_output_ae61929db70aebae0ad79b589830edbe7}{getPdfW}}();}
-\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ real\ bsdfSamplePdfW\ =\ bsdfPdfQuery.outputs.getSampleDirPdfW();}
-\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ real\ misWeighting\ \ \ =\ MIS\{\}.weight(neePdfW,\ bsdfSamplePdfW);}
-\DoxyCodeLine{00198\ }
-\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_spectrum}{math::Spectrum}}\ weight(bsdfEval.outputs.getBsdf()\ *\ N.\mbox{\hyperlink{classph_1_1math_1_1_t_vector_n_base_ab2bbb5734f5be195c7b0d34e5324f9e1}{absDot}}(L)\ *\ misWeighting\ /\ neePdfW);}
-\DoxyCodeLine{00200\ }
-\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Avoid\ excessive,\ negative\ weight\ and\ possible\ NaNs}}
-\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ weight.\mbox{\hyperlink{classph_1_1math_1_1_t_spectrum_base_ad2b8a87560ab65188ec7a7795eb4179d}{clampLocal}}(0.0\_r,\ 1e9\_r);}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_surface_optics}{SurfaceOptics}}*\ optics\ =\ X.\mbox{\hyperlink{classph_1_1_surface_hit_a75da2f51e2142ca3e24859620965333c}{getSurfaceOptics}}();}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \ \ \ \ PH\_ASSERT(optics);}
+\DoxyCodeLine{00186\ }
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_bsdf_eval_query}{BsdfEvalQuery}}\ bsdfEval\{bsdfSample.\mbox{\hyperlink{classph_1_1_bsdf_sample_query_a1bfaa61482d5266d1e8fe1f0dfd3b372}{context}}\};}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \ \ \ \ bsdfEval.inputs.set(X,\ directSample.\mbox{\hyperlink{classph_1_1_direct_energy_sample_query_a13ce8d83f4c30a09ab976a364ae44b9f}{getTargetToEmit}}().\mbox{\hyperlink{classph_1_1math_1_1_t_vector_n_base_a83faa5cec9beeb81bb58af4a8b1d13b1}{normalize}}(),\ V);}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ optics-\/>\mbox{\hyperlink{classph_1_1_surface_optics_a058042308616bcf1c7a63ab27b211cc4}{calcBsdf}}(bsdfEval);}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(bsdfEval.outputs.isMeasurable())}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_bsdf_pdf_query}{BsdfPdfQuery}}\ bsdfPdfQuery\{bsdfSample.\mbox{\hyperlink{classph_1_1_bsdf_sample_query_a1bfaa61482d5266d1e8fe1f0dfd3b372}{context}}\};}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ bsdfPdfQuery.inputs.set(bsdfEval.inputs);}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ optics-\/>\mbox{\hyperlink{classph_1_1_surface_optics_aadd9f9f59af50d27cef10b87aab192b6}{calcBsdfPdf}}(bsdfPdfQuery);}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(bsdfPdfQuery.outputs)}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ L\ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ bsdfEval.inputs.getL();}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ real\ neePdfW\ \ \ \ \ \ \ \ =\ directSample.\mbox{\hyperlink{classph_1_1_direct_energy_sample_query_a7451f8803ed4441da19fce6be3eaa009}{outputs}}.\mbox{\hyperlink{classph_1_1_direct_energy_sample_output_ae61929db70aebae0ad79b589830edbe7}{getPdfW}}();}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ real\ bsdfSamplePdfW\ =\ bsdfPdfQuery.outputs.getSampleDirPdfW();}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ real\ misWeighting\ \ \ =\ MIS\{\}.weight(neePdfW,\ bsdfSamplePdfW);}
+\DoxyCodeLine{00201\ }
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_spectrum}{math::Spectrum}}\ weight(bsdfEval.outputs.getBsdf()\ *\ N.\mbox{\hyperlink{classph_1_1math_1_1_t_vector_n_base_ab2bbb5734f5be195c7b0d34e5324f9e1}{absDot}}(L)\ *\ misWeighting\ /\ neePdfW);}
 \DoxyCodeLine{00203\ }
-\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sampledLo\ +=\ directSample.\mbox{\hyperlink{classph_1_1_direct_energy_sample_query_a7451f8803ed4441da19fce6be3eaa009}{outputs}}.\mbox{\hyperlink{classph_1_1_direct_energy_sample_output_a85b326c37338f6f2ce7aba6845aba775}{getEmittedEnergy}}()\ *\ weight;}
-\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00207\ \ \ \ \ \}}
-\DoxyCodeLine{00208\ \ \ \ \ }
-\DoxyCodeLine{00209\ \ \ \ \ \textcolor{keywordflow}{if}(out\_Lo)\ \{\ *out\_Lo\ =\ sampledLo;\ \}}
-\DoxyCodeLine{00210\ }
-\DoxyCodeLine{00211\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
-\DoxyCodeLine{00212\ \}}
-\DoxyCodeLine{00213\ }
-\DoxyCodeLine{00214\ \textcolor{keyword}{template}<ES\textcolor{keywordtype}{id}ednessPolicy\ POLICY>}
-\DoxyCodeLine{00215\ \textcolor{keyword}{inline}\ real\ \mbox{\hyperlink{classph_1_1lta_1_1_t_direct_light_estimator_ae264d6fc1c916e86aa96e788b6d8a9f6}{TDirectLightEstimator<POLICY>::neeSamplePdfWUnoccluded}}(}
-\DoxyCodeLine{00216\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_surface_hit}{SurfaceHit}}\&\ \ \ \ \ X,}
-\DoxyCodeLine{00217\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_surface_hit}{SurfaceHit}}\&\ \ \ \ \ Xe)\textcolor{keyword}{\ const}}
-\DoxyCodeLine{00218\ \textcolor{keyword}{}\{}
-\DoxyCodeLine{00219\ \ \ \ \ PH\_ASSERT(isNeeSamplable(X));}
-\DoxyCodeLine{00220\ \ \ \ \ PH\_ASSERT(Xe.\mbox{\hyperlink{classph_1_1_surface_hit_a65af3adb7f79bb7f6ac996983af46e73}{getSurfaceEmitter}}());}
-\DoxyCodeLine{00221\ }
-\DoxyCodeLine{00222\ \ \ \ \ \mbox{\hyperlink{classph_1_1_direct_energy_sample_pdf_query}{DirectEnergySamplePdfQuery}}\ pdfQuery;}
-\DoxyCodeLine{00223\ \ \ \ \ pdfQuery.\mbox{\hyperlink{classph_1_1_direct_energy_sample_pdf_query_ab38b3f9332b42243eb2b6c88f5be6ce3}{inputs}}.\mbox{\hyperlink{classph_1_1_direct_energy_sample_pdf_input_a16789c5f0ff1b07f333960a1b7dd786d}{set}}(X,\ Xe);}
-\DoxyCodeLine{00224\ }
-\DoxyCodeLine{00225\ \ \ \ \ \mbox{\hyperlink{classph_1_1_hit_probe}{HitProbe}}\ probe;}
-\DoxyCodeLine{00226\ \ \ \ \ getScene().calcDirectSamplePdfW(pdfQuery,\ probe);}
-\DoxyCodeLine{00227\ \ \ \ \ \textcolor{keywordflow}{return}\ pdfQuery.\mbox{\hyperlink{classph_1_1_direct_energy_sample_pdf_query_a82ca50601454e81f87f9f869955e01e2}{outputs}}\ ?\ pdfQuery.\mbox{\hyperlink{classph_1_1_direct_energy_sample_pdf_query_a82ca50601454e81f87f9f869955e01e2}{outputs}}.\mbox{\hyperlink{classph_1_1_direct_energy_sample_pdf_output_aaa4cc1444407f172d69c25d4257341a9}{getPdfW}}()\ :\ 0;}
-\DoxyCodeLine{00228\ \}}
-\DoxyCodeLine{00229\ }
-\DoxyCodeLine{00230\ \textcolor{keyword}{template}<ES\textcolor{keywordtype}{id}ednessPolicy\ POLICY>}
-\DoxyCodeLine{00231\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1lta_1_1_t_direct_light_estimator_a6fd335f50bce1a71748affc54b550d0f}{TDirectLightEstimator<POLICY>::isNeeSamplable}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_surface_hit}{SurfaceHit}}\&\ X)\textcolor{keyword}{\ const}}
-\DoxyCodeLine{00232\ \textcolor{keyword}{}\{}
-\DoxyCodeLine{00233\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_surface_optics}{SurfaceOptics}}*\ optics\ =\ X.\mbox{\hyperlink{classph_1_1_surface_hit_a75da2f51e2142ca3e24859620965333c}{getSurfaceOptics}}();}
-\DoxyCodeLine{00234\ \ \ \ \ \textcolor{keywordflow}{return}\ optics\ \&\&\ optics-\/>\mbox{\hyperlink{classph_1_1_surface_optics_adac0e938a47756775943ff1e5f4bb9fa}{getAllPhenomena}}().\mbox{\hyperlink{classph_1_1_t_bit_flags_a847a820da08c5b1d624bfa3c3c8bc96d}{hasNone}}(\mbox{\hyperlink{namespaceph_a4fc648c9255debfc7f2fc587b7c017cc}{DELTA\_SURFACE\_PHENOMENA}});}
-\DoxyCodeLine{00235\ \}}
-\DoxyCodeLine{00236\ }
-\DoxyCodeLine{00237\ \textcolor{keyword}{template}<ES\textcolor{keywordtype}{id}ednessPolicy\ POLICY>}
-\DoxyCodeLine{00238\ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_scene}{Scene}}\&\ \mbox{\hyperlink{classph_1_1lta_1_1_t_direct_light_estimator}{TDirectLightEstimator<POLICY>::getScene}}()\textcolor{keyword}{\ const}}
-\DoxyCodeLine{00239\ \textcolor{keyword}{}\{}
-\DoxyCodeLine{00240\ \ \ \ \ PH\_ASSERT(m\_scene);}
-\DoxyCodeLine{00241\ }
-\DoxyCodeLine{00242\ \ \ \ \ \textcolor{keywordflow}{return}\ *m\_scene;}
-\DoxyCodeLine{00243\ \}}
-\DoxyCodeLine{00244\ }
-\DoxyCodeLine{00245\ \}\textcolor{comment}{//\ end\ namespace\ ph::lta}}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Avoid\ excessive,\ negative\ weight\ and\ possible\ NaNs}}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ weight.\mbox{\hyperlink{classph_1_1math_1_1_t_spectrum_base_a54908315882651cc81ddbfeef0563c60}{safeClampLocal}}(0.0\_r,\ 1e9\_r);}
+\DoxyCodeLine{00206\ }
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sampledLo\ +=\ directSample.\mbox{\hyperlink{classph_1_1_direct_energy_sample_query_a7451f8803ed4441da19fce6be3eaa009}{outputs}}.\mbox{\hyperlink{classph_1_1_direct_energy_sample_output_a85b326c37338f6f2ce7aba6845aba775}{getEmittedEnergy}}()\ *\ weight;}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00211\ \ \ \ \ \}}
+\DoxyCodeLine{00212\ \ \ \ \ }
+\DoxyCodeLine{00213\ \ \ \ \ \textcolor{keywordflow}{if}(out\_Lo)\ \{\ *out\_Lo\ =\ sampledLo;\ \}}
+\DoxyCodeLine{00214\ }
+\DoxyCodeLine{00215\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00216\ \}}
+\DoxyCodeLine{00217\ }
+\DoxyCodeLine{00218\ \textcolor{keyword}{template}<ES\textcolor{keywordtype}{id}ednessPolicy\ POLICY>}
+\DoxyCodeLine{00219\ \textcolor{keyword}{inline}\ real\ \mbox{\hyperlink{classph_1_1lta_1_1_t_direct_light_estimator_ae264d6fc1c916e86aa96e788b6d8a9f6}{TDirectLightEstimator<POLICY>::neeSamplePdfWUnoccluded}}(}
+\DoxyCodeLine{00220\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_surface_hit}{SurfaceHit}}\&\ \ \ \ \ X,}
+\DoxyCodeLine{00221\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_surface_hit}{SurfaceHit}}\&\ \ \ \ \ Xe)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00222\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00223\ \ \ \ \ PH\_ASSERT(isNeeSamplable(X));}
+\DoxyCodeLine{00224\ \ \ \ \ PH\_ASSERT(Xe.\mbox{\hyperlink{classph_1_1_surface_hit_a65af3adb7f79bb7f6ac996983af46e73}{getSurfaceEmitter}}());}
+\DoxyCodeLine{00225\ }
+\DoxyCodeLine{00226\ \ \ \ \ \mbox{\hyperlink{classph_1_1_direct_energy_pdf_query}{DirectEnergyPdfQuery}}\ pdfQuery;}
+\DoxyCodeLine{00227\ \ \ \ \ pdfQuery.\mbox{\hyperlink{classph_1_1_direct_energy_pdf_query_a4daf0243fd001366cfc804200046a44f}{inputs}}.\mbox{\hyperlink{classph_1_1_direct_energy_pdf_input_a18e1f8e623f2d71788282860f8c64643}{set}}(X,\ Xe);}
+\DoxyCodeLine{00228\ \ \ \ \ getScene().calcDirectPdf(pdfQuery);}
+\DoxyCodeLine{00229\ \ \ \ \ \textcolor{keywordflow}{return}\ pdfQuery.\mbox{\hyperlink{classph_1_1_direct_energy_pdf_query_a0568d9ee0926fc79dd847995f093ed8f}{outputs}}\ ?\ pdfQuery.\mbox{\hyperlink{classph_1_1_direct_energy_pdf_query_a0568d9ee0926fc79dd847995f093ed8f}{outputs}}.\mbox{\hyperlink{classph_1_1_direct_energy_pdf_output_acfd52691469e934912314e4232989f27}{getPdfW}}()\ :\ 0;}
+\DoxyCodeLine{00230\ \}}
+\DoxyCodeLine{00231\ }
+\DoxyCodeLine{00232\ \textcolor{keyword}{template}<ES\textcolor{keywordtype}{id}ednessPolicy\ POLICY>}
+\DoxyCodeLine{00233\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1lta_1_1_t_direct_light_estimator_a6fd335f50bce1a71748affc54b550d0f}{TDirectLightEstimator<POLICY>::isNeeSamplable}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_surface_hit}{SurfaceHit}}\&\ X)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00234\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00235\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_surface_optics}{SurfaceOptics}}*\ optics\ =\ X.\mbox{\hyperlink{classph_1_1_surface_hit_a75da2f51e2142ca3e24859620965333c}{getSurfaceOptics}}();}
+\DoxyCodeLine{00236\ \ \ \ \ \textcolor{keywordflow}{return}\ optics\ \&\&\ optics-\/>\mbox{\hyperlink{classph_1_1_surface_optics_adac0e938a47756775943ff1e5f4bb9fa}{getAllPhenomena}}().\mbox{\hyperlink{classph_1_1_t_bit_flags_a847a820da08c5b1d624bfa3c3c8bc96d}{hasNone}}(\mbox{\hyperlink{namespaceph_a4fc648c9255debfc7f2fc587b7c017cc}{DELTA\_SURFACE\_PHENOMENA}});}
+\DoxyCodeLine{00237\ \}}
+\DoxyCodeLine{00238\ }
+\DoxyCodeLine{00239\ \textcolor{keyword}{template}<ES\textcolor{keywordtype}{id}ednessPolicy\ POLICY>}
+\DoxyCodeLine{00240\ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_scene}{Scene}}\&\ \mbox{\hyperlink{classph_1_1lta_1_1_t_direct_light_estimator}{TDirectLightEstimator<POLICY>::getScene}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00241\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00242\ \ \ \ \ PH\_ASSERT(m\_scene);}
+\DoxyCodeLine{00243\ }
+\DoxyCodeLine{00244\ \ \ \ \ \textcolor{keywordflow}{return}\ *m\_scene;}
+\DoxyCodeLine{00245\ \}}
+\DoxyCodeLine{00246\ }
+\DoxyCodeLine{00247\ \}\textcolor{comment}{//\ end\ namespace\ ph::lta}}
 
 \end{DoxyCode}

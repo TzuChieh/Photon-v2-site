@@ -26,9 +26,10 @@ var searchData=
   ['graphicsobjectmanager_23',['GraphicsObjectManager',['../../../EditorLib/html/classph_1_1editor_1_1ghi_1_1_graphics_object_manager.html',1,'ph::editor::ghi']]],
   ['grectangle_24',['GRectangle',['../../../Engine/html/classph_1_1_g_rectangle.html',1,'ph']]],
   ['gridscheduler_25',['GridScheduler',['../../../Engine/html/classph_1_1_grid_scheduler.html',1,'ph']]],
-  ['groupedtimerecord_26',['GroupedTimeRecord',['../../../Common/html/structph_1_1_timer_stats_report_1_1_grouped_time_record.html',1,'ph::TimerStatsReport']]],
-  ['gsphere_27',['GSphere',['../../../Engine/html/classph_1_1_g_sphere.html',1,'ph']]],
-  ['gtriangle_28',['GTriangle',['../../../Engine/html/classph_1_1_g_triangle.html',1,'ph']]],
-  ['gtrianglemesh_29',['GTriangleMesh',['../../../Engine/html/classph_1_1_g_triangle_mesh.html',1,'ph']]],
-  ['gwave_30',['GWave',['../../../Engine/html/classph_1_1_g_wave.html',1,'ph']]]
+  ['groupeddiffusesurfaceemitter_26',['GroupedDiffuseSurfaceEmitter',['../../../Engine/html/classph_1_1_grouped_diffuse_surface_emitter.html',1,'ph']]],
+  ['groupedtimerecord_27',['GroupedTimeRecord',['../../../Common/html/structph_1_1_timer_stats_report_1_1_grouped_time_record.html',1,'ph::TimerStatsReport']]],
+  ['gsphere_28',['GSphere',['../../../Engine/html/classph_1_1_g_sphere.html',1,'ph']]],
+  ['gtriangle_29',['GTriangle',['../../../Engine/html/classph_1_1_g_triangle.html',1,'ph']]],
+  ['gtrianglemesh_30',['GTriangleMesh',['../../../Engine/html/classph_1_1_g_triangle_mesh.html',1,'ph']]],
+  ['gwave_31',['GWave',['../../../Engine/html/classph_1_1_g_wave.html',1,'ph']]]
 ];

@@ -35,7 +35,5 @@ var searchData=
   ['modelsource_2eh_32',['ModelSource.h',['../_model_source_8h.html',1,'']]],
   ['motionsource_2ecpp_33',['MotionSource.cpp',['../_motion_source_8cpp.html',1,'']]],
   ['motionsource_2edox_34',['MotionSource.dox',['../_motion_source_8dox.html',1,'']]],
-  ['motionsource_2eh_35',['MotionSource.h',['../_motion_source_8h.html',1,'']]],
-  ['multidiffusesurfaceemitter_2ecpp_36',['MultiDiffuseSurfaceEmitter.cpp',['../_multi_diffuse_surface_emitter_8cpp.html',1,'']]],
-  ['multidiffusesurfaceemitter_2eh_37',['MultiDiffuseSurfaceEmitter.h',['../_multi_diffuse_surface_emitter_8h.html',1,'']]]
+  ['motionsource_2eh_35',['MotionSource.h',['../_motion_source_8h.html',1,'']]]
 ];

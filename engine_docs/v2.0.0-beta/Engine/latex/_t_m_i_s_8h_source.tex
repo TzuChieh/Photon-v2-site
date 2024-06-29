@@ -1,0 +1,45 @@
+\doxysection{TMIS.\+h}
+\hypertarget{_t_m_i_s_8h_source}{}\label{_t_m_i_s_8h_source}\index{Source/Core/LTA/TMIS.h@{Source/Core/LTA/TMIS.h}}
+\mbox{\hyperlink{_t_m_i_s_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{enums_8h}{Core/LTA/enums.h}}"{}}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <Common/assertion.h>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <Common/primitive\_type.h>}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph_1_1lta}{ph::lta}}}
+\DoxyCodeLine{00011\ \{}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{template}<EMISStyle\ STYLE>}
+\DoxyCodeLine{00017\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1lta_1_1_t_m_i_s}{TMIS}}\ final}
+\DoxyCodeLine{00018\ \{}
+\DoxyCodeLine{00019\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00020\ \ \ \ \ real\ \mbox{\hyperlink{classph_1_1lta_1_1_t_m_i_s_abb6b32ed2c4b67f4b3be64011f309676}{weight}}(\textcolor{keyword}{const}\ real\ pdf0,\ \textcolor{keyword}{const}\ real\ pdf1)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00021\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ PH\_ASSERT\_MSG(pdf0\ >=\ 0.0\_r\ \&\&\ pdf1\ >=\ 0.0\_r\ \&\&\ pdf0\ +\ pdf1\ !=\ 0.0\_r,\ }
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}pdf0\ =\ "{}}\ +\ std::to\_string(pdf0)\ +\ \textcolor{stringliteral}{"{},\ "{}}}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}pdf1\ =\ "{}}\ +\ std::to\_string(pdf1));}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(STYLE\ ==\ \mbox{\hyperlink{namespaceph_1_1lta_a780154430f4189e2ebe4fadc88efd0bba99a808d8d16122d70e44bd7f709d30fb}{EMISStyle::Balance}})}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ pdf0\ /\ (pdf0\ +\ pdf1);}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Power\ heuristic\ with\ beta\ =\ 2}}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(STYLE\ ==\ \mbox{\hyperlink{namespaceph_1_1lta_a780154430f4189e2ebe4fadc88efd0bbadd4fe0cc913f704600b97d1f5dd285de}{EMISStyle::Power}})}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (pdf0\ *\ pdf0)\ /\ (pdf0\ *\ pdf0\ +\ pdf1\ *\ pdf1);}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ PH\_ASSERT\_UNREACHABLE\_SECTION();}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0.0\_r;}
+\DoxyCodeLine{00039\ \ \ \ \ \}}
+\DoxyCodeLine{00040\ \};}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \}\textcolor{comment}{//\ end\ namespace\ ph::lta}}
+
+\end{DoxyCode}

@@ -8,7 +8,7 @@ var classph_1_1_surface_hit =
     [ "getGeometryNormal", "classph_1_1_surface_hit.html#a03950ddbe22d5c8bcf72c04306660f36", null ],
     [ "getIncidentRay", "classph_1_1_surface_hit.html#a61d656616db630197f8b06093705fba6", null ],
     [ "getInteriorOptics", "classph_1_1_surface_hit.html#a92c607f245db419e4a49cae5e93c1544", null ],
-    [ "getPosition", "classph_1_1_surface_hit.html#ab9436d2c3f6530722d402edb487f87f1", null ],
+    [ "getPos", "classph_1_1_surface_hit.html#ab6da2653e522e20b368900dd55121362", null ],
     [ "getRay", "classph_1_1_surface_hit.html#a49a643c1fa327421d9e4fc665ad6982d", null ],
     [ "getReason", "classph_1_1_surface_hit.html#ac3682ffd128991eba27bf658b07ddbd5", null ],
     [ "getShadingNormal", "classph_1_1_surface_hit.html#a189bd3896f87838eea8b7e06f5e71286", null ],

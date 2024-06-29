@@ -76590,31 +76590,31 @@
     <filename>classph_1_1editor_1_1_object_transform.html</filename>
     <member kind="function">
       <type>ObjectTransform &amp;</type>
-      <name>setPosition</name>
+      <name>setPos</name>
       <anchorfile>classph_1_1editor_1_1_object_transform.html</anchorfile>
-      <anchor>a66ef2a90dd201e8960045e36f4a87880</anchor>
+      <anchor>af35487a82b5e8b915445be461e5ff93a</anchor>
       <arglist>(real x, real y, real z)</arglist>
     </member>
     <member kind="function">
       <type>ObjectTransform &amp;</type>
-      <name>setPosition</name>
+      <name>setPos</name>
       <anchorfile>classph_1_1editor_1_1_object_transform.html</anchorfile>
-      <anchor>a43fddedd5f2606638bbee1da0f32e455</anchor>
-      <arglist>(const math::Vector3R &amp;position)</arglist>
+      <anchor>ab2dd98e92d82f84ef37c6c43ae674a4e</anchor>
+      <arglist>(const math::Vector3R &amp;pos)</arglist>
     </member>
     <member kind="function">
       <type>ObjectTransform &amp;</type>
-      <name>setRotation</name>
+      <name>setRot</name>
       <anchorfile>classph_1_1editor_1_1_object_transform.html</anchorfile>
-      <anchor>ad63f7bda89b4ef79831570e7109d06ea</anchor>
+      <anchor>a76cf53686b57e66618c20c6d9dbaf24a</anchor>
       <arglist>(const math::Vector3R &amp;axis, real degrees)</arglist>
     </member>
     <member kind="function">
       <type>ObjectTransform &amp;</type>
-      <name>setRotation</name>
+      <name>setRot</name>
       <anchorfile>classph_1_1editor_1_1_object_transform.html</anchorfile>
-      <anchor>a0087116fafb2841c3ec00de671a329bb</anchor>
-      <arglist>(const math::QuaternionR &amp;rotation)</arglist>
+      <anchor>a54e109b24919fff2c50d1026024cf77e</anchor>
+      <arglist>(const math::QuaternionR &amp;rot)</arglist>
     </member>
     <member kind="function">
       <type>ObjectTransform &amp;</type>
@@ -76688,16 +76688,16 @@
     </member>
     <member kind="function">
       <type>math::Vector3R</type>
-      <name>getPosition</name>
+      <name>getPos</name>
       <anchorfile>classph_1_1editor_1_1_object_transform.html</anchorfile>
-      <anchor>aeb7c9f3c5f4154f6d7d5a854c73cc9e6</anchor>
+      <anchor>ad0419e512165da904a66652ae283f90e</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
       <type>math::QuaternionR</type>
-      <name>getRotation</name>
+      <name>getRot</name>
       <anchorfile>classph_1_1editor_1_1_object_transform.html</anchorfile>
-      <anchor>aaea99c386473c537203aba92dc3e14f7</anchor>
+      <anchor>a7b305dcac792d281572656a8cf7182a4</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">

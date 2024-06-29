@@ -64,12 +64,14 @@ var searchData=
   ['grectangle_2ecpp_61',['GRectangle.cpp',['../../../Engine/html/_g_rectangle_8cpp.html',1,'']]],
   ['grectangle_2eh_62',['GRectangle.h',['../../../Engine/html/_g_rectangle_8h.html',1,'']]],
   ['gridscheduler_2eh_63',['GridScheduler.h',['../../../Engine/html/_grid_scheduler_8h.html',1,'']]],
-  ['gsphere_2ecpp_64',['GSphere.cpp',['../../../Engine/html/_g_sphere_8cpp.html',1,'']]],
-  ['gsphere_2eh_65',['GSphere.h',['../../../Engine/html/_g_sphere_8h.html',1,'']]],
-  ['gtriangle_2ecpp_66',['GTriangle.cpp',['../../../Engine/html/_g_triangle_8cpp.html',1,'']]],
-  ['gtriangle_2eh_67',['GTriangle.h',['../../../Engine/html/_g_triangle_8h.html',1,'']]],
-  ['gtrianglemesh_2ecpp_68',['GTriangleMesh.cpp',['../../../Engine/html/_g_triangle_mesh_8cpp.html',1,'']]],
-  ['gtrianglemesh_2eh_69',['GTriangleMesh.h',['../../../Engine/html/_g_triangle_mesh_8h.html',1,'']]],
-  ['gwave_2ecpp_70',['GWave.cpp',['../../../Engine/html/_g_wave_8cpp.html',1,'']]],
-  ['gwave_2eh_71',['GWave.h',['../../../Engine/html/_g_wave_8h.html',1,'']]]
+  ['groupeddiffusesurfaceemitter_2ecpp_64',['GroupedDiffuseSurfaceEmitter.cpp',['../../../Engine/html/_grouped_diffuse_surface_emitter_8cpp.html',1,'']]],
+  ['groupeddiffusesurfaceemitter_2eh_65',['GroupedDiffuseSurfaceEmitter.h',['../../../Engine/html/_grouped_diffuse_surface_emitter_8h.html',1,'']]],
+  ['gsphere_2ecpp_66',['GSphere.cpp',['../../../Engine/html/_g_sphere_8cpp.html',1,'']]],
+  ['gsphere_2eh_67',['GSphere.h',['../../../Engine/html/_g_sphere_8h.html',1,'']]],
+  ['gtriangle_2ecpp_68',['GTriangle.cpp',['../../../Engine/html/_g_triangle_8cpp.html',1,'']]],
+  ['gtriangle_2eh_69',['GTriangle.h',['../../../Engine/html/_g_triangle_8h.html',1,'']]],
+  ['gtrianglemesh_2ecpp_70',['GTriangleMesh.cpp',['../../../Engine/html/_g_triangle_mesh_8cpp.html',1,'']]],
+  ['gtrianglemesh_2eh_71',['GTriangleMesh.h',['../../../Engine/html/_g_triangle_mesh_8h.html',1,'']]],
+  ['gwave_2ecpp_72',['GWave.cpp',['../../../Engine/html/_g_wave_8cpp.html',1,'']]],
+  ['gwave_2eh_73',['GWave.h',['../../../Engine/html/_g_wave_8h.html',1,'']]]
 ];

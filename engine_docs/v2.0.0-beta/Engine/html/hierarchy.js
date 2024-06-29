@@ -42,11 +42,11 @@ var hierarchy =
     [ "ph::math::DefaultSpectralSampleProps", "classph_1_1math_1_1_default_spectral_sample_props.html", null ],
     [ "ph::math::DeterministicSeeder", "classph_1_1math_1_1_deterministic_seeder.html", null ],
     [ "ph::DielectricInterfaceInfo", "classph_1_1_dielectric_interface_info.html", null ],
+    [ "ph::DirectEnergyPdfInput", "classph_1_1_direct_energy_pdf_input.html", null ],
+    [ "ph::DirectEnergyPdfOutput", "classph_1_1_direct_energy_pdf_output.html", null ],
+    [ "ph::DirectEnergyPdfQuery", "classph_1_1_direct_energy_pdf_query.html", null ],
     [ "ph::DirectEnergySampleInput", "classph_1_1_direct_energy_sample_input.html", null ],
     [ "ph::DirectEnergySampleOutput", "classph_1_1_direct_energy_sample_output.html", null ],
-    [ "ph::DirectEnergySamplePdfInput", "classph_1_1_direct_energy_sample_pdf_input.html", null ],
-    [ "ph::DirectEnergySamplePdfOutput", "classph_1_1_direct_energy_sample_pdf_output.html", null ],
-    [ "ph::DirectEnergySamplePdfQuery", "classph_1_1_direct_energy_sample_pdf_query.html", null ],
     [ "ph::DirectEnergySampleQuery", "classph_1_1_direct_energy_sample_query.html", null ],
     [ "ph::DomeRadianceFunctionInfo", "structph_1_1_dome_radiance_function_info.html", null ],
     [ "ph::EmbeddedPrimitiveMetaGetter", "structph_1_1_embedded_primitive_meta_getter.html", null ],
@@ -54,9 +54,11 @@ var hierarchy =
     [ "ph::Emitter", "classph_1_1_emitter.html", [
       [ "ph::OmniModulatedEmitter", "classph_1_1_omni_modulated_emitter.html", null ],
       [ "ph::SurfaceEmitter", "classph_1_1_surface_emitter.html", [
-        [ "ph::DiffuseSurfaceEmitter", "classph_1_1_diffuse_surface_emitter.html", null ],
-        [ "ph::LatLongEnvEmitter", "classph_1_1_lat_long_env_emitter.html", null ],
-        [ "ph::MultiDiffuseSurfaceEmitter", "classph_1_1_multi_diffuse_surface_emitter.html", null ]
+        [ "ph::DiffuseSurfaceEmitterBase", "classph_1_1_diffuse_surface_emitter_base.html", [
+          [ "ph::DiffuseSurfaceEmitter", "classph_1_1_diffuse_surface_emitter.html", null ],
+          [ "ph::GroupedDiffuseSurfaceEmitter", "classph_1_1_grouped_diffuse_surface_emitter.html", null ]
+        ] ],
+        [ "ph::LatLongEnvEmitter", "classph_1_1_lat_long_env_emitter.html", null ]
       ] ]
     ] ],
     [ "ph::EmitterBuildingMaterial", "classph_1_1_emitter_building_material.html", null ],
@@ -395,6 +397,7 @@ var hierarchy =
     [ "ph::VolumeDistanceSample::Output", "classph_1_1_volume_distance_sample_1_1_output.html", null ],
     [ "ph::halton_detail::OwenScrambledPermuter", "classph_1_1halton__detail_1_1_owen_scrambled_permuter.html", null ],
     [ "ph::math::detail::Pcg64UInt128", "classph_1_1math_1_1detail_1_1_pcg64_u_int128.html", null ],
+    [ "ph::lta::PDF", "classph_1_1lta_1_1_p_d_f.html", null ],
     [ "ph::halton_detail::PerDigitPermuter", "classph_1_1halton__detail_1_1_per_digit_permuter.html", null ],
     [ "ph::PeriodicSingleThreadExecutor", "classph_1_1_periodic_single_thread_executor.html", null ],
     [ "ph::PfmFile", "classph_1_1_pfm_file.html", null ],
@@ -417,11 +420,11 @@ var hierarchy =
     [ "ph::PrimitiveBuildingMaterial", "classph_1_1_primitive_building_material.html", null ],
     [ "ph::PrimitiveChannel", "classph_1_1_primitive_channel.html", null ],
     [ "ph::PrimitiveMetadata", "classph_1_1_primitive_metadata.html", null ],
+    [ "ph::PrimitivePosPdfInput", "classph_1_1_primitive_pos_pdf_input.html", null ],
+    [ "ph::PrimitivePosPdfOutput", "classph_1_1_primitive_pos_pdf_output.html", null ],
+    [ "ph::PrimitivePosPdfQuery", "classph_1_1_primitive_pos_pdf_query.html", null ],
     [ "ph::PrimitivePosSampleInput", "classph_1_1_primitive_pos_sample_input.html", null ],
     [ "ph::PrimitivePosSampleOutput", "classph_1_1_primitive_pos_sample_output.html", null ],
-    [ "ph::PrimitivePosSamplePdfInput", "classph_1_1_primitive_pos_sample_pdf_input.html", null ],
-    [ "ph::PrimitivePosSamplePdfOutput", "classph_1_1_primitive_pos_sample_pdf_output.html", null ],
-    [ "ph::PrimitivePosSamplePdfQuery", "classph_1_1_primitive_pos_sample_pdf_query.html", null ],
     [ "ph::PrimitivePosSampleQuery", "classph_1_1_primitive_pos_sample_query.html", null ],
     [ "ph::lta::PtVolumetricEstimator", "classph_1_1lta_1_1_pt_volumetric_estimator.html", null ],
     [ "ph::RadianceSensor", "classph_1_1_radiance_sensor.html", null ],
@@ -741,6 +744,7 @@ var hierarchy =
       [ "ph::math::TWatertightTriangle< real >", "classph_1_1math_1_1_t_watertight_triangle.html", null ]
     ] ],
     [ "ph::TBitFlags< Value, Input >", "classph_1_1_t_bit_flags.html", null ],
+    [ "ph::TBitFlags< EEmitterFeatureSet >", "classph_1_1_t_bit_flags.html", null ],
     [ "ph::TBitFlags< EFaceTopology >", "classph_1_1_t_bit_flags.html", null ],
     [ "ph::TBitFlags< ESurfaceHitReason >", "classph_1_1_t_bit_flags.html", null ],
     [ "ph::TBitFlags< ESurfacePhenomenon >", "classph_1_1_t_bit_flags.html", null ],
@@ -827,7 +831,7 @@ var hierarchy =
       ] ]
     ] ],
     [ "ph::TMergeableFilmProxy< Sample >", "classph_1_1_t_mergeable_film_proxy.html", null ],
-    [ "ph::lta::TMis< STYLE >", "classph_1_1lta_1_1_t_mis.html", null ],
+    [ "ph::lta::TMIS< STYLE >", "classph_1_1lta_1_1_t_m_i_s.html", null ],
     [ "ph::texfunc::TMultiply< InputTypeA, InputTypeB, OutputType >", "classph_1_1texfunc_1_1_t_multiply.html", null ],
     [ "ph::TNonTypeTemplateArgDummy< T, VALUE >", "structph_1_1_t_non_type_template_arg_dummy.html", null ],
     [ "ph::Tokenizer", "classph_1_1_tokenizer.html", null ],

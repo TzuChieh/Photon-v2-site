@@ -20,6 +20,5 @@ var searchData=
   ['moduleattachmentinfo_17',['ModuleAttachmentInfo',['../../../EditorLib/html/classph_1_1editor_1_1_module_attachment_info.html',1,'ph::editor']]],
   ['moduleexception_18',['ModuleException',['../../../EditorLib/html/classph_1_1editor_1_1_module_exception.html',1,'ph::editor']]],
   ['motioncookconfig_19',['MotionCookConfig',['../../../Engine/html/classph_1_1_motion_cook_config.html',1,'ph']]],
-  ['motionsource_20',['MotionSource',['../../../Engine/html/classph_1_1_motion_source.html',1,'ph']]],
-  ['multidiffusesurfaceemitter_21',['MultiDiffuseSurfaceEmitter',['../../../Engine/html/classph_1_1_multi_diffuse_surface_emitter.html',1,'ph']]]
+  ['motionsource_20',['MotionSource',['../../../Engine/html/classph_1_1_motion_source.html',1,'ph']]]
 ];

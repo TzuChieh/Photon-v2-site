@@ -1,7 +1,7 @@
 var searchData=
 [
   ['b_0',['B',['../classph_1_1_ies_file.html#aad491b64ff23f630764f05db028a2f67a9d5ed678fe57bcca610140957afab571',1,'ph::IesFile::B'],['../namespaceph_1_1pixel__texture.html#a3b167f72734af6e016a66878c539bd9da9d5ed678fe57bcca610140957afab571',1,'ph::pixel_texture::B'],['../namespaceph_1_1math.html#ac8bbf5c13da6b60663011e0be1acb6c4a9d5ed678fe57bcca610140957afab571',1,'ph::math::B']]],
-  ['balance_1',['Balance',['../namespaceph_1_1lta.html#a61430bac8f881a2704ade2e078883195a99a808d8d16122d70e44bd7f709d30fb',1,'ph::lta']]],
+  ['balance_1',['Balance',['../namespaceph_1_1lta.html#a780154430f4189e2ebe4fadc88efd0bba99a808d8d16122d70e44bd7f709d30fb',1,'ph::lta']]],
   ['beckmann_2',['Beckmann',['../namespaceph.html#adc27a9e67654dae7969a693c5a098a3aad2709c197188889c61725cecd7e02d08',1,'ph']]],
   ['bgr_3',['BGR',['../namespaceph_1_1pixel__texture.html#a3b167f72734af6e016a66878c539bd9da2ad5640ebdec72fc79531d1778c6c2dc',1,'ph::pixel_texture']]],
   ['bgra_4',['BGRA',['../namespaceph_1_1pixel__texture.html#a3b167f72734af6e016a66878c539bd9da5a1fe3c61c9e2fd6dbbc823589f6e697',1,'ph::pixel_texture']]],
@@ -15,9 +15,10 @@ var searchData=
   ['box_12',['Box',['../namespaceph.html#a89a12b6c4ceab0a76aa0b86762750b07a3cfce651e667ab85486dd42a8185f98a',1,'ph']]],
   ['bradford_13',['Bradford',['../namespaceph_1_1math.html#aeb6d400f8c4f85be266ab51b3cd65951aaa6039aa9501f740afe28823ab6a2419',1,'ph::math']]],
   ['bruteforce_14',['BruteForce',['../namespaceph.html#ae3bb0a7d6923b55d615af996ece4e2c4a434d59f863a023077b7d8e8d9607a955',1,'ph']]],
-  ['bulk_15',['Bulk',['../namespaceph.html#aee2a083456e7081b6351a649a27bc9c1a4c3246a186dddf08c2c1165f04c2276d',1,'ph']]],
-  ['bundle_16',['Bundle',['../namespaceph.html#a13cdff6c8d3b4261e594c78d87e970bfa94c51f19c37f96ed231f5a0ae512b2a8',1,'ph']]],
-  ['bvh_17',['BVH',['../namespaceph.html#ae3bb0a7d6923b55d615af996ece4e2c4a9f81c52bdd5797801a0bd46508fa27a6',1,'ph']]],
-  ['bvpt_18',['BVPT',['../namespaceph.html#ad2b2972641b7279cac3ed861bfd53962ae3e04c1e37661f65affb615b35725e17',1,'ph']]],
-  ['bvptdl_19',['BVPTDL',['../namespaceph.html#ad2b2972641b7279cac3ed861bfd53962a920171568786ba0c4b69411e8bd37cc7',1,'ph']]]
+  ['bsdfsample_15',['BsdfSample',['../namespaceph.html#a16b931b405833c11fca5c86a7514e603a5009a2197d7e7d6a3fd59251182bea9e',1,'ph']]],
+  ['bulk_16',['Bulk',['../namespaceph.html#aee2a083456e7081b6351a649a27bc9c1a4c3246a186dddf08c2c1165f04c2276d',1,'ph']]],
+  ['bundle_17',['Bundle',['../namespaceph.html#a13cdff6c8d3b4261e594c78d87e970bfa94c51f19c37f96ed231f5a0ae512b2a8',1,'ph']]],
+  ['bvh_18',['BVH',['../namespaceph.html#ae3bb0a7d6923b55d615af996ece4e2c4a9f81c52bdd5797801a0bd46508fa27a6',1,'ph']]],
+  ['bvpt_19',['BVPT',['../namespaceph.html#ad2b2972641b7279cac3ed861bfd53962ae3e04c1e37661f65affb615b35725e17',1,'ph']]],
+  ['bvptdl_20',['BVPTDL',['../namespaceph.html#ad2b2972641b7279cac3ed861bfd53962a920171568786ba0c4b69411e8bd37cc7',1,'ph']]]
 ];

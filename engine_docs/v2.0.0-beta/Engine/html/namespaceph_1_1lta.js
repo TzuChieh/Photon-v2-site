@@ -1,5 +1,6 @@
 var namespaceph_1_1lta =
 [
+    [ "PDF", "classph_1_1lta_1_1_p_d_f.html", "classph_1_1lta_1_1_p_d_f" ],
     [ "PtVolumetricEstimator", "classph_1_1lta_1_1_pt_volumetric_estimator.html", null ],
     [ "RussianRoulette", "classph_1_1lta_1_1_russian_roulette.html", "classph_1_1lta_1_1_russian_roulette" ],
     [ "SenseEvent", "classph_1_1lta_1_1_sense_event.html", "classph_1_1lta_1_1_sense_event" ],
@@ -8,10 +9,18 @@ var namespaceph_1_1lta =
     [ "SurfaceTracer", "classph_1_1lta_1_1_surface_tracer.html", "classph_1_1lta_1_1_surface_tracer" ],
     [ "TDirectLightEstimator", "classph_1_1lta_1_1_t_direct_light_estimator.html", "classph_1_1lta_1_1_t_direct_light_estimator" ],
     [ "TIndirectLightEstimator", "classph_1_1lta_1_1_t_indirect_light_estimator.html", "classph_1_1lta_1_1_t_indirect_light_estimator" ],
-    [ "TMis", "classph_1_1lta_1_1_t_mis.html", "classph_1_1lta_1_1_t_mis" ],
-    [ "EMisStyle", "namespaceph_1_1lta.html#a61430bac8f881a2704ade2e078883195", [
-      [ "Balance", "namespaceph_1_1lta.html#a61430bac8f881a2704ade2e078883195a99a808d8d16122d70e44bd7f709d30fb", null ],
-      [ "Power", "namespaceph_1_1lta.html#a61430bac8f881a2704ade2e078883195add4fe0cc913f704600b97d1f5dd285de", null ]
+    [ "TMIS", "classph_1_1lta_1_1_t_m_i_s.html", "classph_1_1lta_1_1_t_m_i_s" ],
+    [ "EDomain", "namespaceph_1_1lta.html#a517f9714c97ec4a5bcdd5beae0eaf9dd", [
+      [ "Empty", "namespaceph_1_1lta.html#a517f9714c97ec4a5bcdd5beae0eaf9ddace2c8aed9c2fa0cfbed56cbda4d8bf07", null ],
+      [ "SolidAngle", "namespaceph_1_1lta.html#a517f9714c97ec4a5bcdd5beae0eaf9dda3f8ffe43765c1baeaa1f3644b48e23b2", null ],
+      [ "Area", "namespaceph_1_1lta.html#a517f9714c97ec4a5bcdd5beae0eaf9ddadeec4ff19974f12ed781cb9a59064214", null ],
+      [ "UV01", "namespaceph_1_1lta.html#a517f9714c97ec4a5bcdd5beae0eaf9ddaf3d7d007f2c4d9612c4128a2a6a8b011", null ],
+      [ "UVW01", "namespaceph_1_1lta.html#a517f9714c97ec4a5bcdd5beae0eaf9ddac75c6f8c5e1c2970cf2feaf8a7331651", null ],
+      [ "Discrete", "namespaceph_1_1lta.html#a517f9714c97ec4a5bcdd5beae0eaf9dda4984667940802dedc139aa7a430a6553", null ]
+    ] ],
+    [ "EMISStyle", "namespaceph_1_1lta.html#a780154430f4189e2ebe4fadc88efd0bb", [
+      [ "Balance", "namespaceph_1_1lta.html#a780154430f4189e2ebe4fadc88efd0bba99a808d8d16122d70e44bd7f709d30fb", null ],
+      [ "Power", "namespaceph_1_1lta.html#a780154430f4189e2ebe4fadc88efd0bbadd4fe0cc913f704600b97d1f5dd285de", null ]
     ] ],
     [ "ESidednessPolicy", "namespaceph_1_1lta.html#a1d33ee239cb49375e222139a0fe1c17d", [
       [ "DoNotCare", "namespaceph_1_1lta.html#a1d33ee239cb49375e222139a0fe1c17dae9bfe1a1271065147039d9a297a4c785", null ],

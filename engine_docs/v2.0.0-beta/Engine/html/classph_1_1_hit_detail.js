@@ -13,7 +13,7 @@ var classph_1_1_hit_detail =
     [ "getGeometryNormal", "classph_1_1_hit_detail.html#aeb2c56bef7db1ef1d68557405fbd814d", null ],
     [ "getHitInfo", "classph_1_1_hit_detail.html#af6e4d677ab0d5d3846484c60d8b252ea", null ],
     [ "getHitInfo", "classph_1_1_hit_detail.html#aeb5a6edc287e88399235abb9456f9759", null ],
-    [ "getPosition", "classph_1_1_hit_detail.html#ad3b7b47b289b386f503a922d5ee19f68", null ],
+    [ "getPos", "classph_1_1_hit_detail.html#ac769f6237ee49f3bfbfd7c038d546053", null ],
     [ "getPrimitive", "classph_1_1_hit_detail.html#a4227114111e5325f96dfdc83e8a98da3", null ],
     [ "getRayT", "classph_1_1_hit_detail.html#aa3dede6dce1e8dbff595646e5c89101a", null ],
     [ "getShadingBasis", "classph_1_1_hit_detail.html#a602780b72af64cb2cec5fd045523d354", null ],

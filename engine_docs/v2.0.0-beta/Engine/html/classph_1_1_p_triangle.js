@@ -4,7 +4,7 @@ var classph_1_1_p_triangle =
     [ "calcAABB", "classph_1_1_p_triangle.html#ac8552d3dd854599a6b0c74fc07c85a5f", null ],
     [ "calcExtendedArea", "classph_1_1_p_triangle.html#ad2715bcab6e94d46a7a0f92465b98b73", null ],
     [ "calcHitDetail", "classph_1_1_p_triangle.html#af51854a66ab313bd99caf88407ac2a37", null ],
-    [ "calcPosSamplePdfA", "classph_1_1_p_triangle.html#ae2742ff4e361c71241aeb4e3bb59138e", null ],
+    [ "calcPosPdf", "classph_1_1_p_triangle.html#afc95e249741ee9b00b003ef820794366", null ],
     [ "genPosSample", "classph_1_1_p_triangle.html#a551a73fc5c95f7c7f0384cecc663398b", null ],
     [ "getUVWa", "classph_1_1_p_triangle.html#a66c95bc851a87bfe5db8159442620491", null ],
     [ "getUVWb", "classph_1_1_p_triangle.html#a3e38f0ec558d59bceebd49a26ed1d64b", null ],

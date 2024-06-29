@@ -23,27 +23,28 @@
 \DoxyCodeLine{00019\ \textcolor{keyword}{\ \ \ \ }\{}
 \DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ PH\_ASSERT(out\_weightedS);}
 \DoxyCodeLine{00021\ }
-\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Survive\ rate\ is\ not\ allowed\ to\ be\ 100\%\ to\ avoid\ immortal\ rays\ (e.g.,\ TIR)}}
-\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ real\ rrSurviveRate\ =\ \mbox{\hyperlink{namespaceph_1_1math_a9e5d8a7a977115813ceeba3f0c00cbdb}{math::clamp}}(s.\mbox{\hyperlink{classph_1_1math_1_1_t_spectrum_base_a5120053ee6a7d02f4d1f38119552ac2d}{relativeLuminance}}(),\ 0.0\_r,\ 0.95\_r);}
-\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ real\ rrSpin\ \ \ \ \ \ \ \ =\ sampleFlow.\mbox{\hyperlink{classph_1_1_sample_flow_a8d93ef2d1e1d131e8c735e2224d3dd00}{flow1D}}();\textcolor{comment}{//\ FIXME:\ use\ something\ like\ sampleFlow.binaryPick()}}
-\DoxyCodeLine{00025\ }
-\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Survived}}
-\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(rrSpin\ <\ rrSurviveRate)}
-\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ PH\_ASSERT(0.0\_r\ <\ rrSurviveRate\ \&\&\ rrSurviveRate\ <=\ 1.0\_r);}
-\DoxyCodeLine{00030\ }
-\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ real\ rrScale\ =\ 1.0\_r\ /\ rrSurviveRate;}
-\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ *out\_weightedS\ =\ s\ *\ rrScale;}
-\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
-\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Dead}}
-\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
-\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00040\ \ \ \ \ \}}
-\DoxyCodeLine{00041\ \};}
-\DoxyCodeLine{00042\ }
-\DoxyCodeLine{00043\ \}\textcolor{comment}{//\ end\ namespace\ ph::lta}}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Survive\ rate\ is\ not\ allowed\ to\ be\ 100\%\ to\ avoid\ immortal\ rays\ (e.g.,\ TIR);}}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ the\ rate\ should\ also\ kill\ non-\/finite\ luminance\ as\ this\ is\ a\ good\ place\ to\ do\ it}}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ real\ rrSurviveRate\ =\ \mbox{\hyperlink{namespaceph_1_1math_a0090b0ad2b7785d02c6761c1766066cc}{math::safe\_clamp}}(s.\mbox{\hyperlink{classph_1_1math_1_1_t_spectrum_base_a5120053ee6a7d02f4d1f38119552ac2d}{relativeLuminance}}(),\ 0.0\_r,\ 0.95\_r);}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ real\ rrSpin\ \ \ \ \ \ \ \ =\ sampleFlow.\mbox{\hyperlink{classph_1_1_sample_flow_a8d93ef2d1e1d131e8c735e2224d3dd00}{flow1D}}();\textcolor{comment}{//\ FIXME:\ use\ something\ like\ sampleFlow.binaryPick()}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Survived}}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(rrSpin\ <\ rrSurviveRate)}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ PH\_ASSERT(0.0\_r\ <\ rrSurviveRate\ \&\&\ rrSurviveRate\ <=\ 1.0\_r);}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ real\ rrScale\ =\ 1.0\_r\ /\ rrSurviveRate;}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ *out\_weightedS\ =\ s\ *\ rrScale;}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Dead}}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00041\ \ \ \ \ \}}
+\DoxyCodeLine{00042\ \};}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \}\textcolor{comment}{//\ end\ namespace\ ph::lta}}
 
 \end{DoxyCode}

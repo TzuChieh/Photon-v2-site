@@ -22,12 +22,14 @@ var searchData=
   ['grectangle_2ecpp_19',['GRectangle.cpp',['../_g_rectangle_8cpp.html',1,'']]],
   ['grectangle_2eh_20',['GRectangle.h',['../_g_rectangle_8h.html',1,'']]],
   ['gridscheduler_2eh_21',['GridScheduler.h',['../_grid_scheduler_8h.html',1,'']]],
-  ['gsphere_2ecpp_22',['GSphere.cpp',['../_g_sphere_8cpp.html',1,'']]],
-  ['gsphere_2eh_23',['GSphere.h',['../_g_sphere_8h.html',1,'']]],
-  ['gtriangle_2ecpp_24',['GTriangle.cpp',['../_g_triangle_8cpp.html',1,'']]],
-  ['gtriangle_2eh_25',['GTriangle.h',['../_g_triangle_8h.html',1,'']]],
-  ['gtrianglemesh_2ecpp_26',['GTriangleMesh.cpp',['../_g_triangle_mesh_8cpp.html',1,'']]],
-  ['gtrianglemesh_2eh_27',['GTriangleMesh.h',['../_g_triangle_mesh_8h.html',1,'']]],
-  ['gwave_2ecpp_28',['GWave.cpp',['../_g_wave_8cpp.html',1,'']]],
-  ['gwave_2eh_29',['GWave.h',['../_g_wave_8h.html',1,'']]]
+  ['groupeddiffusesurfaceemitter_2ecpp_22',['GroupedDiffuseSurfaceEmitter.cpp',['../_grouped_diffuse_surface_emitter_8cpp.html',1,'']]],
+  ['groupeddiffusesurfaceemitter_2eh_23',['GroupedDiffuseSurfaceEmitter.h',['../_grouped_diffuse_surface_emitter_8h.html',1,'']]],
+  ['gsphere_2ecpp_24',['GSphere.cpp',['../_g_sphere_8cpp.html',1,'']]],
+  ['gsphere_2eh_25',['GSphere.h',['../_g_sphere_8h.html',1,'']]],
+  ['gtriangle_2ecpp_26',['GTriangle.cpp',['../_g_triangle_8cpp.html',1,'']]],
+  ['gtriangle_2eh_27',['GTriangle.h',['../_g_triangle_8h.html',1,'']]],
+  ['gtrianglemesh_2ecpp_28',['GTriangleMesh.cpp',['../_g_triangle_mesh_8cpp.html',1,'']]],
+  ['gtrianglemesh_2eh_29',['GTriangleMesh.h',['../_g_triangle_mesh_8h.html',1,'']]],
+  ['gwave_2ecpp_30',['GWave.cpp',['../_g_wave_8cpp.html',1,'']]],
+  ['gwave_2eh_31',['GWave.h',['../_g_wave_8h.html',1,'']]]
 ];

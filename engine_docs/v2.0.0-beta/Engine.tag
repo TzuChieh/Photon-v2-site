@@ -821,13 +821,14 @@
     <filename>_a_area_light_8cpp.html</filename>
     <includes id="_a_area_light_8h" name="AAreaLight.h" local="yes" import="no" module="no" objc="no">Actor/Light/AAreaLight.h</includes>
     <includes id="_diffuse_surface_emitter_8h" name="DiffuseSurfaceEmitter.h" local="yes" import="no" module="no" objc="no">Core/Emitter/DiffuseSurfaceEmitter.h</includes>
-    <includes id="_multi_diffuse_surface_emitter_8h" name="MultiDiffuseSurfaceEmitter.h" local="yes" import="no" module="no" objc="no">Core/Emitter/MultiDiffuseSurfaceEmitter.h</includes>
+    <includes id="_grouped_diffuse_surface_emitter_8h" name="GroupedDiffuseSurfaceEmitter.h" local="yes" import="no" module="no" objc="no">Core/Emitter/GroupedDiffuseSurfaceEmitter.h</includes>
     <includes id="_constant_image_8h" name="ConstantImage.h" local="yes" import="no" module="no" objc="no">Actor/Image/ConstantImage.h</includes>
     <includes id="constant_8h" name="constant.h" local="yes" import="no" module="no" objc="no">Math/constant.h</includes>
     <includes id="_cooking_context_8h" name="CookingContext.h" local="yes" import="no" module="no" objc="no">World/Foundation/CookingContext.h</includes>
     <includes id="_cooked_resource_collection_8h" name="CookedResourceCollection.h" local="yes" import="no" module="no" objc="no">World/Foundation/CookedResourceCollection.h</includes>
     <includes id="constant__textures_8h" name="constant_textures.h" local="yes" import="no" module="no" objc="no">Core/Texture/constant_textures.h</includes>
     <includes id="_ideal_substance_8h" name="IdealSubstance.h" local="yes" import="no" module="no" objc="no">Actor/Material/IdealSubstance.h</includes>
+    <includes id="spectral__samples_8h" name="spectral_samples.h" local="yes" import="no" module="no" objc="no">Math/Color/spectral_samples.h</includes>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
@@ -849,8 +850,6 @@
     <includes id="math_8h" name="math.h" local="yes" import="no" module="no" objc="no">Math/math.h</includes>
     <includes id="_matte_opaque_8h" name="MatteOpaque.h" local="yes" import="no" module="no" objc="no">Actor/Material/MatteOpaque.h</includes>
     <includes id="_transient_visual_element_8h" name="TransientVisualElement.h" local="yes" import="no" module="no" objc="no">World/Foundation/TransientVisualElement.h</includes>
-    <includes id="_primitive_building_material_8h" name="PrimitiveBuildingMaterial.h" local="yes" import="no" module="no" objc="no">Actor/Geometry/PrimitiveBuildingMaterial.h</includes>
-    <includes id="_emitter_building_material_8h" name="EmitterBuildingMaterial.h" local="yes" import="no" module="no" objc="no">Actor/LightSource/EmitterBuildingMaterial.h</includes>
     <includes id="_primitive_metadata_8h" name="PrimitiveMetadata.h" local="yes" import="no" module="no" objc="no">Core/Intersection/PrimitiveMetadata.h</includes>
     <includes id="_transformed_intersectable_8h" name="TransformedIntersectable.h" local="yes" import="no" module="no" objc="no">Core/Intersection/TransformedIntersectable.h</includes>
     <includes id="_transformed_primitive_8h" name="TransformedPrimitive.h" local="yes" import="no" module="no" objc="no">Core/Intersection/TransformedPrimitive.h</includes>
@@ -860,8 +859,6 @@
     <includes id="_pre_cook_report_8h" name="PreCookReport.h" local="yes" import="no" module="no" objc="no">World/Foundation/PreCookReport.h</includes>
     <includes id="_cooking_context_8h" name="CookingContext.h" local="yes" import="no" module="no" objc="no">World/Foundation/CookingContext.h</includes>
     <includes id="_cooked_resource_collection_8h" name="CookedResourceCollection.h" local="yes" import="no" module="no" objc="no">World/Foundation/CookedResourceCollection.h</includes>
-    <includes id="_diffuse_surface_emitter_8h" name="DiffuseSurfaceEmitter.h" local="yes" import="no" module="no" objc="no">Core/Emitter/DiffuseSurfaceEmitter.h</includes>
-    <includes id="_multi_diffuse_surface_emitter_8h" name="MultiDiffuseSurfaceEmitter.h" local="yes" import="no" module="no" objc="no">Core/Emitter/MultiDiffuseSurfaceEmitter.h</includes>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
@@ -871,6 +868,7 @@
     <includes id="_a_light_8h" name="ALight.h" local="yes" import="no" module="no" objc="no">Actor/Light/ALight.h</includes>
     <includes id="_material_8h" name="Material.h" local="yes" import="no" module="no" objc="no">Actor/Material/Material.h</includes>
     <includes id="_actor_2_geometry_2_geometry_8h" name="Geometry.h" local="yes" import="no" module="no" objc="no">Actor/Geometry/Geometry.h</includes>
+    <includes id="_emitter_8h" name="Emitter.h" local="yes" import="no" module="no" objc="no">Core/Emitter/Emitter.h</includes>
     <includes id="_t_span_8h" name="TSpan.h" local="yes" import="no" module="no" objc="no">Utility/TSpan.h</includes>
     <includes id="sdl__interface_8h" name="sdl_interface.h" local="yes" import="no" module="no" objc="no">SDL/sdl_interface.h</includes>
     <class kind="class">ph::AGeometricLight</class>
@@ -931,10 +929,11 @@
     <filename>_a_model_light_8cpp.html</filename>
     <includes id="_a_model_light_8h" name="AModelLight.h" local="yes" import="no" module="no" objc="no">Actor/Light/AModelLight.h</includes>
     <includes id="_diffuse_surface_emitter_8h" name="DiffuseSurfaceEmitter.h" local="yes" import="no" module="no" objc="no">Core/Emitter/DiffuseSurfaceEmitter.h</includes>
-    <includes id="_multi_diffuse_surface_emitter_8h" name="MultiDiffuseSurfaceEmitter.h" local="yes" import="no" module="no" objc="no">Core/Emitter/MultiDiffuseSurfaceEmitter.h</includes>
+    <includes id="_grouped_diffuse_surface_emitter_8h" name="GroupedDiffuseSurfaceEmitter.h" local="yes" import="no" module="no" objc="no">Core/Emitter/GroupedDiffuseSurfaceEmitter.h</includes>
     <includes id="_cooking_context_8h" name="CookingContext.h" local="yes" import="no" module="no" objc="no">World/Foundation/CookingContext.h</includes>
     <includes id="_cooked_resource_collection_8h" name="CookedResourceCollection.h" local="yes" import="no" module="no" objc="no">World/Foundation/CookedResourceCollection.h</includes>
     <includes id="constant__textures_8h" name="constant_textures.h" local="yes" import="no" module="no" objc="no">Core/Texture/constant_textures.h</includes>
+    <includes id="spectral__samples_8h" name="spectral_samples.h" local="yes" import="no" module="no" objc="no">Math/Color/spectral_samples.h</includes>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
@@ -1015,7 +1014,7 @@
     <includes id="_transformed_primitive_8h" name="TransformedPrimitive.h" local="yes" import="no" module="no" objc="no">Core/Intersection/TransformedPrimitive.h</includes>
     <includes id="_primitive_metadata_8h" name="PrimitiveMetadata.h" local="yes" import="no" module="no" objc="no">Core/Intersection/PrimitiveMetadata.h</includes>
     <includes id="_diffuse_surface_emitter_8h" name="DiffuseSurfaceEmitter.h" local="yes" import="no" module="no" objc="no">Core/Emitter/DiffuseSurfaceEmitter.h</includes>
-    <includes id="_multi_diffuse_surface_emitter_8h" name="MultiDiffuseSurfaceEmitter.h" local="yes" import="no" module="no" objc="no">Core/Emitter/MultiDiffuseSurfaceEmitter.h</includes>
+    <includes id="_grouped_diffuse_surface_emitter_8h" name="GroupedDiffuseSurfaceEmitter.h" local="yes" import="no" module="no" objc="no">Core/Emitter/GroupedDiffuseSurfaceEmitter.h</includes>
     <includes id="_lambertian_diffuse_8h" name="LambertianDiffuse.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/SurfaceOptics/LambertianDiffuse.h</includes>
     <includes id="_constant_image_8h" name="ConstantImage.h" local="yes" import="no" module="no" objc="no">Actor/Image/ConstantImage.h</includes>
     <includes id="constant_8h" name="constant.h" local="yes" import="no" module="no" objc="no">Math/constant.h</includes>
@@ -1108,7 +1107,7 @@
     <includes id="_image_8h" name="Image.h" local="yes" import="no" module="no" objc="no">Actor/Image/Image.h</includes>
     <includes id="_constant_image_8h" name="ConstantImage.h" local="yes" import="no" module="no" objc="no">Actor/Image/ConstantImage.h</includes>
     <includes id="_raster_file_image_8h" name="RasterFileImage.h" local="yes" import="no" module="no" objc="no">Actor/Image/RasterFileImage.h</includes>
-    <includes id="_multi_diffuse_surface_emitter_8h" name="MultiDiffuseSurfaceEmitter.h" local="yes" import="no" module="no" objc="no">Core/Emitter/MultiDiffuseSurfaceEmitter.h</includes>
+    <includes id="_grouped_diffuse_surface_emitter_8h" name="GroupedDiffuseSurfaceEmitter.h" local="yes" import="no" module="no" objc="no">Core/Emitter/GroupedDiffuseSurfaceEmitter.h</includes>
     <includes id="_primitive_metadata_8h" name="PrimitiveMetadata.h" local="yes" import="no" module="no" objc="no">Core/Intersection/PrimitiveMetadata.h</includes>
     <includes id="_primitive_8h" name="Primitive.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Primitive.h</includes>
     <includes id="_matte_opaque_8h" name="MatteOpaque.h" local="yes" import="no" module="no" objc="no">Actor/Material/MatteOpaque.h</includes>
@@ -1987,14 +1986,39 @@
     <path>Source/Core/Emitter/</path>
     <filename>_diffuse_surface_emitter_8cpp.html</filename>
     <includes id="_diffuse_surface_emitter_8h" name="DiffuseSurfaceEmitter.h" local="yes" import="no" module="no" objc="no">Core/Emitter/DiffuseSurfaceEmitter.h</includes>
+    <includes id="_primitive_8h" name="Primitive.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Primitive.h</includes>
+    <includes id="_primitive_pos_sample_query_8h" name="PrimitivePosSampleQuery.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Query/PrimitivePosSampleQuery.h</includes>
+    <includes id="_hit_probe_8h" name="HitProbe.h" local="yes" import="no" module="no" objc="no">Core/HitProbe.h</includes>
+    <includes id="_hit_detail_8h" name="HitDetail.h" local="yes" import="no" module="no" objc="no">Core/HitDetail.h</includes>
+    <includes id="_t_sampler_8h" name="TSampler.h" local="yes" import="no" module="no" objc="no">Core/Texture/TSampler.h</includes>
+    <includes id="constant_8h" name="constant.h" local="yes" import="no" module="no" objc="no">Math/constant.h</includes>
+    <includes id="_sample_location_8h" name="SampleLocation.h" local="yes" import="no" module="no" objc="no">Core/Texture/SampleLocation.h</includes>
+    <includes id="_sample_flow_8h" name="SampleFlow.h" local="yes" import="no" module="no" objc="no">Core/SampleGenerator/SampleFlow.h</includes>
+    <includes id="color__spaces_8h" name="color_spaces.h" local="yes" import="no" module="no" objc="no">Math/Color/color_spaces.h</includes>
+    <namespace>ph</namespace>
+  </compound>
+  <compound kind="file">
+    <name>DiffuseSurfaceEmitter.h</name>
+    <path>Source/Core/Emitter/</path>
+    <filename>_diffuse_surface_emitter_8h.html</filename>
+    <includes id="_diffuse_surface_emitter_base_8h" name="DiffuseSurfaceEmitterBase.h" local="yes" import="no" module="no" objc="no">Core/Emitter/DiffuseSurfaceEmitterBase.h</includes>
+    <includes id="_spectrum_8h" name="Spectrum.h" local="yes" import="no" module="no" objc="no">Math/Color/Spectrum.h</includes>
+    <includes id="_t_texture_8h" name="TTexture.h" local="yes" import="no" module="no" objc="no">Core/Texture/TTexture.h</includes>
+    <class kind="class">ph::DiffuseSurfaceEmitter</class>
+    <namespace>ph</namespace>
+  </compound>
+  <compound kind="file">
+    <name>DiffuseSurfaceEmitterBase.cpp</name>
+    <path>Source/Core/Emitter/</path>
+    <filename>_diffuse_surface_emitter_base_8cpp.html</filename>
+    <includes id="_diffuse_surface_emitter_base_8h" name="DiffuseSurfaceEmitterBase.h" local="yes" import="no" module="no" objc="no">Core/Emitter/DiffuseSurfaceEmitterBase.h</includes>
     <includes id="_t_vector3_8h" name="TVector3.h" local="yes" import="no" module="no" objc="no">Math/TVector3.h</includes>
-    <includes id="_actor_2_geometry_2_geometry_8h" name="Geometry.h" local="yes" import="no" module="no" objc="no">Actor/Geometry/Geometry.h</includes>
     <includes id="constant__textures_8h" name="constant_textures.h" local="yes" import="no" module="no" objc="no">Core/Texture/constant_textures.h</includes>
     <includes id="_primitive_8h" name="Primitive.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Primitive.h</includes>
     <includes id="_primitive_pos_sample_query_8h" name="PrimitivePosSampleQuery.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Query/PrimitivePosSampleQuery.h</includes>
-    <includes id="_primitive_pos_sample_pdf_query_8h" name="PrimitivePosSamplePdfQuery.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Query/PrimitivePosSamplePdfQuery.h</includes>
+    <includes id="_primitive_pos_pdf_query_8h" name="PrimitivePosPdfQuery.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Query/PrimitivePosPdfQuery.h</includes>
     <includes id="_direct_energy_sample_query_8h" name="DirectEnergySampleQuery.h" local="yes" import="no" module="no" objc="no">Core/Emitter/Query/DirectEnergySampleQuery.h</includes>
-    <includes id="_direct_energy_sample_pdf_query_8h" name="DirectEnergySamplePdfQuery.h" local="yes" import="no" module="no" objc="no">Core/Emitter/Query/DirectEnergySamplePdfQuery.h</includes>
+    <includes id="_direct_energy_pdf_query_8h" name="DirectEnergyPdfQuery.h" local="yes" import="no" module="no" objc="no">Core/Emitter/Query/DirectEnergyPdfQuery.h</includes>
     <includes id="_energy_emission_sample_query_8h" name="EnergyEmissionSampleQuery.h" local="yes" import="no" module="no" objc="no">Core/Emitter/Query/EnergyEmissionSampleQuery.h</includes>
     <includes id="_ray_8h" name="Ray.h" local="yes" import="no" module="no" objc="no">Core/Ray.h</includes>
     <includes id="_hit_probe_8h" name="HitProbe.h" local="yes" import="no" module="no" objc="no">Core/HitProbe.h</includes>
@@ -2007,16 +2031,17 @@
     <includes id="_t_orthonormal_basis3_8h" name="TOrthonormalBasis3.h" local="yes" import="no" module="no" objc="no">Math/TOrthonormalBasis3.h</includes>
     <includes id="_sample_flow_8h" name="SampleFlow.h" local="yes" import="no" module="no" objc="no">Core/SampleGenerator/SampleFlow.h</includes>
     <includes id="lta_8h" name="lta.h" local="yes" import="no" module="no" objc="no">Core/LTA/lta.h</includes>
-    <includes id="spectral__samples_8h" name="spectral_samples.h" local="yes" import="no" module="no" objc="no">Math/Color/spectral_samples.h</includes>
     <includes id="color__spaces_8h" name="color_spaces.h" local="yes" import="no" module="no" objc="no">Math/Color/color_spaces.h</includes>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
-    <name>DiffuseSurfaceEmitter.h</name>
+    <name>DiffuseSurfaceEmitterBase.h</name>
     <path>Source/Core/Emitter/</path>
-    <filename>_diffuse_surface_emitter_8h.html</filename>
+    <filename>_diffuse_surface_emitter_base_8h.html</filename>
     <includes id="_surface_emitter_8h" name="SurfaceEmitter.h" local="yes" import="no" module="no" objc="no">Core/Emitter/SurfaceEmitter.h</includes>
-    <class kind="class">ph::DiffuseSurfaceEmitter</class>
+    <includes id="_spectrum_8h" name="Spectrum.h" local="yes" import="no" module="no" objc="no">Math/Color/Spectrum.h</includes>
+    <includes id="_t_texture_8h" name="TTexture.h" local="yes" import="no" module="no" objc="no">Core/Texture/TTexture.h</includes>
+    <class kind="class">ph::DiffuseSurfaceEmitterBase</class>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
@@ -2032,8 +2057,36 @@
     <path>Source/Core/Emitter/</path>
     <filename>_emitter_8h.html</filename>
     <includes id="math__fwd_8h" name="math_fwd.h" local="yes" import="no" module="no" objc="no">Math/math_fwd.h</includes>
+    <includes id="math_8h" name="math.h" local="yes" import="no" module="no" objc="no">Math/math.h</includes>
     <includes id="_spectrum_8h" name="Spectrum.h" local="yes" import="no" module="no" objc="no">Math/Color/Spectrum.h</includes>
+    <includes id="_t_bit_flags_8h" name="TBitFlags.h" local="yes" import="no" module="no" objc="no">Utility/TBitFlags.h</includes>
     <class kind="class">ph::Emitter</class>
+    <namespace>ph</namespace>
+    <namespace>ph::detail</namespace>
+  </compound>
+  <compound kind="file">
+    <name>GroupedDiffuseSurfaceEmitter.cpp</name>
+    <path>Source/Core/Emitter/</path>
+    <filename>_grouped_diffuse_surface_emitter_8cpp.html</filename>
+    <includes id="_grouped_diffuse_surface_emitter_8h" name="GroupedDiffuseSurfaceEmitter.h" local="yes" import="no" module="no" objc="no">Core/Emitter/GroupedDiffuseSurfaceEmitter.h</includes>
+    <includes id="_diffuse_surface_emitter_8h" name="DiffuseSurfaceEmitter.h" local="yes" import="no" module="no" objc="no">Core/Emitter/DiffuseSurfaceEmitter.h</includes>
+    <includes id="_primitive_8h" name="Primitive.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Primitive.h</includes>
+    <includes id="_t_sampler_8h" name="TSampler.h" local="yes" import="no" module="no" objc="no">Core/Texture/TSampler.h</includes>
+    <includes id="_random_8h" name="Random.h" local="yes" import="no" module="no" objc="no">Math/Random/Random.h</includes>
+    <includes id="_direct_energy_sample_query_8h" name="DirectEnergySampleQuery.h" local="yes" import="no" module="no" objc="no">Core/Emitter/Query/DirectEnergySampleQuery.h</includes>
+    <includes id="_direct_energy_pdf_query_8h" name="DirectEnergyPdfQuery.h" local="yes" import="no" module="no" objc="no">Core/Emitter/Query/DirectEnergyPdfQuery.h</includes>
+    <includes id="_energy_emission_sample_query_8h" name="EnergyEmissionSampleQuery.h" local="yes" import="no" module="no" objc="no">Core/Emitter/Query/EnergyEmissionSampleQuery.h</includes>
+    <namespace>ph</namespace>
+  </compound>
+  <compound kind="file">
+    <name>GroupedDiffuseSurfaceEmitter.h</name>
+    <path>Source/Core/Emitter/</path>
+    <filename>_grouped_diffuse_surface_emitter_8h.html</filename>
+    <includes id="_diffuse_surface_emitter_base_8h" name="DiffuseSurfaceEmitterBase.h" local="yes" import="no" module="no" objc="no">Core/Emitter/DiffuseSurfaceEmitterBase.h</includes>
+    <includes id="_spectrum_8h" name="Spectrum.h" local="yes" import="no" module="no" objc="no">Math/Color/Spectrum.h</includes>
+    <includes id="_t_texture_8h" name="TTexture.h" local="yes" import="no" module="no" objc="no">Core/Texture/TTexture.h</includes>
+    <includes id="_t_span_8h" name="TSpan.h" local="yes" import="no" module="no" objc="no">Utility/TSpan.h</includes>
+    <class kind="class">ph::GroupedDiffuseSurfaceEmitter</class>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
@@ -2044,11 +2097,11 @@
     <includes id="_surface_hit_8h" name="SurfaceHit.h" local="yes" import="no" module="no" objc="no">Core/SurfaceHit.h</includes>
     <includes id="_t_sampler_8h" name="TSampler.h" local="yes" import="no" module="no" objc="no">Core/Texture/TSampler.h</includes>
     <includes id="_direct_energy_sample_query_8h" name="DirectEnergySampleQuery.h" local="yes" import="no" module="no" objc="no">Core/Emitter/Query/DirectEnergySampleQuery.h</includes>
-    <includes id="_direct_energy_sample_pdf_query_8h" name="DirectEnergySamplePdfQuery.h" local="yes" import="no" module="no" objc="no">Core/Emitter/Query/DirectEnergySamplePdfQuery.h</includes>
+    <includes id="_direct_energy_pdf_query_8h" name="DirectEnergyPdfQuery.h" local="yes" import="no" module="no" objc="no">Core/Emitter/Query/DirectEnergyPdfQuery.h</includes>
     <includes id="_energy_emission_sample_query_8h" name="EnergyEmissionSampleQuery.h" local="yes" import="no" module="no" objc="no">Core/Emitter/Query/EnergyEmissionSampleQuery.h</includes>
     <includes id="_primitive_pos_sample_query_8h" name="PrimitivePosSampleQuery.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Query/PrimitivePosSampleQuery.h</includes>
-    <includes id="_primitive_pos_sample_pdf_query_8h" name="PrimitivePosSamplePdfQuery.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Query/PrimitivePosSamplePdfQuery.h</includes>
-    <includes id="_p_lat_long_env_sphere_8h" name="PLatLongEnvSphere.h" local="yes" import="no" module="no" objc="no">Core/Intersection/PLatLongEnvSphere.h</includes>
+    <includes id="_primitive_pos_pdf_query_8h" name="PrimitivePosPdfQuery.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Query/PrimitivePosPdfQuery.h</includes>
+    <includes id="_primitive_8h" name="Primitive.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Primitive.h</includes>
     <includes id="lta_8h" name="lta.h" local="yes" import="no" module="no" objc="no">Core/LTA/lta.h</includes>
     <includes id="constant_8h" name="constant.h" local="yes" import="no" module="no" objc="no">Math/constant.h</includes>
     <includes id="math_8h" name="math.h" local="yes" import="no" module="no" objc="no">Math/math.h</includes>
@@ -2067,30 +2120,6 @@
     <includes id="_t_pwc_distribution2_d_8h" name="TPwcDistribution2D.h" local="yes" import="no" module="no" objc="no">Math/Random/TPwcDistribution2D.h</includes>
     <includes id="_t_vector2_8h" name="TVector2.h" local="yes" import="no" module="no" objc="no">Math/TVector2.h</includes>
     <class kind="class">ph::LatLongEnvEmitter</class>
-    <namespace>ph</namespace>
-  </compound>
-  <compound kind="file">
-    <name>MultiDiffuseSurfaceEmitter.cpp</name>
-    <path>Source/Core/Emitter/</path>
-    <filename>_multi_diffuse_surface_emitter_8cpp.html</filename>
-    <includes id="_multi_diffuse_surface_emitter_8h" name="MultiDiffuseSurfaceEmitter.h" local="yes" import="no" module="no" objc="no">Core/Emitter/MultiDiffuseSurfaceEmitter.h</includes>
-    <includes id="_primitive_8h" name="Primitive.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Primitive.h</includes>
-    <includes id="_t_sampler_8h" name="TSampler.h" local="yes" import="no" module="no" objc="no">Core/Texture/TSampler.h</includes>
-    <includes id="_spectrum_8h" name="Spectrum.h" local="yes" import="no" module="no" objc="no">Math/Color/Spectrum.h</includes>
-    <includes id="_t_texture_8h" name="TTexture.h" local="yes" import="no" module="no" objc="no">Core/Texture/TTexture.h</includes>
-    <includes id="_random_8h" name="Random.h" local="yes" import="no" module="no" objc="no">Math/Random/Random.h</includes>
-    <includes id="_direct_energy_sample_query_8h" name="DirectEnergySampleQuery.h" local="yes" import="no" module="no" objc="no">Core/Emitter/Query/DirectEnergySampleQuery.h</includes>
-    <includes id="_direct_energy_sample_pdf_query_8h" name="DirectEnergySamplePdfQuery.h" local="yes" import="no" module="no" objc="no">Core/Emitter/Query/DirectEnergySamplePdfQuery.h</includes>
-    <includes id="_energy_emission_sample_query_8h" name="EnergyEmissionSampleQuery.h" local="yes" import="no" module="no" objc="no">Core/Emitter/Query/EnergyEmissionSampleQuery.h</includes>
-    <namespace>ph</namespace>
-  </compound>
-  <compound kind="file">
-    <name>MultiDiffuseSurfaceEmitter.h</name>
-    <path>Source/Core/Emitter/</path>
-    <filename>_multi_diffuse_surface_emitter_8h.html</filename>
-    <includes id="_surface_emitter_8h" name="SurfaceEmitter.h" local="yes" import="no" module="no" objc="no">Core/Emitter/SurfaceEmitter.h</includes>
-    <includes id="_diffuse_surface_emitter_8h" name="DiffuseSurfaceEmitter.h" local="yes" import="no" module="no" objc="no">Core/Emitter/DiffuseSurfaceEmitter.h</includes>
-    <class kind="class">ph::MultiDiffuseSurfaceEmitter</class>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
@@ -2116,18 +2145,17 @@
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
-    <name>DirectEnergySamplePdfQuery.h</name>
+    <name>DirectEnergyPdfQuery.h</name>
     <path>Source/Core/Emitter/Query/</path>
-    <filename>_direct_energy_sample_pdf_query_8h.html</filename>
+    <filename>_direct_energy_pdf_query_8h.html</filename>
     <includes id="_t_vector3_8h" name="TVector3.h" local="yes" import="no" module="no" objc="no">Math/TVector3.h</includes>
-    <includes id="_ray_8h" name="Ray.h" local="yes" import="no" module="no" objc="no">Core/Ray.h</includes>
     <includes id="_core_2_quantity_2_time_8h" name="Time.h" local="yes" import="no" module="no" objc="no">Core/Quantity/Time.h</includes>
     <includes id="_hit_detail_8h" name="HitDetail.h" local="yes" import="no" module="no" objc="no">Core/HitDetail.h</includes>
     <includes id="_surface_hit_8h" name="SurfaceHit.h" local="yes" import="no" module="no" objc="no">Core/SurfaceHit.h</includes>
-    <includes id="_spectrum_8h" name="Spectrum.h" local="yes" import="no" module="no" objc="no">Math/Color/Spectrum.h</includes>
-    <class kind="class">ph::DirectEnergySamplePdfInput</class>
-    <class kind="class">ph::DirectEnergySamplePdfOutput</class>
-    <class kind="class">ph::DirectEnergySamplePdfQuery</class>
+    <includes id="_p_d_f_8h" name="PDF.h" local="yes" import="no" module="no" objc="no">Core/LTA/PDF.h</includes>
+    <class kind="class">ph::DirectEnergyPdfInput</class>
+    <class kind="class">ph::DirectEnergyPdfOutput</class>
+    <class kind="class">ph::DirectEnergyPdfQuery</class>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
@@ -2145,6 +2173,7 @@
     <includes id="_ray_8h" name="Ray.h" local="yes" import="no" module="no" objc="no">Core/Ray.h</includes>
     <includes id="_core_2_quantity_2_time_8h" name="Time.h" local="yes" import="no" module="no" objc="no">Core/Quantity/Time.h</includes>
     <includes id="_surface_hit_8h" name="SurfaceHit.h" local="yes" import="no" module="no" objc="no">Core/SurfaceHit.h</includes>
+    <includes id="_p_d_f_8h" name="PDF.h" local="yes" import="no" module="no" objc="no">Core/LTA/PDF.h</includes>
     <includes id="_spectrum_8h" name="Spectrum.h" local="yes" import="no" module="no" objc="no">Math/Color/Spectrum.h</includes>
     <class kind="class">ph::DirectEnergySampleInput</class>
     <class kind="class">ph::DirectEnergySampleOutput</class>
@@ -2158,6 +2187,7 @@
     <includes id="_t_vector3_8h" name="TVector3.h" local="yes" import="no" module="no" objc="no">Math/TVector3.h</includes>
     <includes id="_ray_8h" name="Ray.h" local="yes" import="no" module="no" objc="no">Core/Ray.h</includes>
     <includes id="_core_2_quantity_2_time_8h" name="Time.h" local="yes" import="no" module="no" objc="no">Core/Quantity/Time.h</includes>
+    <includes id="_p_d_f_8h" name="PDF.h" local="yes" import="no" module="no" objc="no">Core/LTA/PDF.h</includes>
     <includes id="_spectrum_8h" name="Spectrum.h" local="yes" import="no" module="no" objc="no">Math/Color/Spectrum.h</includes>
     <class kind="class">ph::EnergyEmissionSampleInput</class>
     <class kind="class">ph::EnergyEmissionSampleOutput</class>
@@ -2186,7 +2216,7 @@
     <filename>_e_s_power_favoring_8cpp.html</filename>
     <includes id="_e_s_power_favoring_8h" name="ESPowerFavoring.h" local="yes" import="no" module="no" objc="no">Core/Emitter/Sampler/ESPowerFavoring.h</includes>
     <includes id="_direct_energy_sample_query_8h" name="DirectEnergySampleQuery.h" local="yes" import="no" module="no" objc="no">Core/Emitter/Query/DirectEnergySampleQuery.h</includes>
-    <includes id="_direct_energy_sample_pdf_query_8h" name="DirectEnergySamplePdfQuery.h" local="yes" import="no" module="no" objc="no">Core/Emitter/Query/DirectEnergySamplePdfQuery.h</includes>
+    <includes id="_direct_energy_pdf_query_8h" name="DirectEnergyPdfQuery.h" local="yes" import="no" module="no" objc="no">Core/Emitter/Query/DirectEnergyPdfQuery.h</includes>
     <includes id="_t_vector3_8h" name="TVector3.h" local="yes" import="no" module="no" objc="no">Math/TVector3.h</includes>
     <includes id="_surface_hit_8h" name="SurfaceHit.h" local="yes" import="no" module="no" objc="no">Core/SurfaceHit.h</includes>
     <includes id="_primitive_metadata_8h" name="PrimitiveMetadata.h" local="yes" import="no" module="no" objc="no">Core/Intersection/PrimitiveMetadata.h</includes>
@@ -2210,7 +2240,7 @@
     <filename>_e_s_uniform_random_8cpp.html</filename>
     <includes id="_e_s_uniform_random_8h" name="ESUniformRandom.h" local="yes" import="no" module="no" objc="no">Core/Emitter/Sampler/ESUniformRandom.h</includes>
     <includes id="_direct_energy_sample_query_8h" name="DirectEnergySampleQuery.h" local="yes" import="no" module="no" objc="no">Core/Emitter/Query/DirectEnergySampleQuery.h</includes>
-    <includes id="_direct_energy_sample_pdf_query_8h" name="DirectEnergySamplePdfQuery.h" local="yes" import="no" module="no" objc="no">Core/Emitter/Query/DirectEnergySamplePdfQuery.h</includes>
+    <includes id="_direct_energy_pdf_query_8h" name="DirectEnergyPdfQuery.h" local="yes" import="no" module="no" objc="no">Core/Emitter/Query/DirectEnergyPdfQuery.h</includes>
     <includes id="_t_vector3_8h" name="TVector3.h" local="yes" import="no" module="no" objc="no">Math/TVector3.h</includes>
     <includes id="_surface_hit_8h" name="SurfaceHit.h" local="yes" import="no" module="no" objc="no">Core/SurfaceHit.h</includes>
     <includes id="_primitive_metadata_8h" name="PrimitiveMetadata.h" local="yes" import="no" module="no" objc="no">Core/Intersection/PrimitiveMetadata.h</includes>
@@ -2236,8 +2266,8 @@
     <includes id="_surface_hit_8h" name="SurfaceHit.h" local="yes" import="no" module="no" objc="no">Core/SurfaceHit.h</includes>
     <includes id="_hit_detail_8h" name="HitDetail.h" local="yes" import="no" module="no" objc="no">Core/HitDetail.h</includes>
     <includes id="_primitive_8h" name="Primitive.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Primitive.h</includes>
-    <includes id="_direct_energy_sample_pdf_query_8h" name="DirectEnergySamplePdfQuery.h" local="yes" import="no" module="no" objc="no">Core/Emitter/Query/DirectEnergySamplePdfQuery.h</includes>
-    <includes id="_primitive_pos_sample_pdf_query_8h" name="PrimitivePosSamplePdfQuery.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Query/PrimitivePosSamplePdfQuery.h</includes>
+    <includes id="_direct_energy_pdf_query_8h" name="DirectEnergyPdfQuery.h" local="yes" import="no" module="no" objc="no">Core/Emitter/Query/DirectEnergyPdfQuery.h</includes>
+    <includes id="_primitive_pos_pdf_query_8h" name="PrimitivePosPdfQuery.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Query/PrimitivePosPdfQuery.h</includes>
     <includes id="lta_8h" name="lta.h" local="yes" import="no" module="no" objc="no">Core/LTA/lta.h</includes>
     <namespace>ph</namespace>
   </compound>
@@ -2250,6 +2280,7 @@
     <includes id="_spectrum_8h" name="Spectrum.h" local="yes" import="no" module="no" objc="no">Math/Color/Spectrum.h</includes>
     <includes id="_emitter_8h" name="Emitter.h" local="yes" import="no" module="no" objc="no">Core/Emitter/Emitter.h</includes>
     <includes id="_t_texture_8h" name="TTexture.h" local="yes" import="no" module="no" objc="no">Core/Texture/TTexture.h</includes>
+    <includes id="_p_d_f_8h" name="PDF.h" local="yes" import="no" module="no" objc="no">Core/LTA/PDF.h</includes>
     <class kind="class">ph::SurfaceEmitter</class>
     <namespace>ph</namespace>
   </compound>
@@ -2317,7 +2348,7 @@
     <includes id="_bsdf_sample_query_8h" name="BsdfSampleQuery.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/BsdfSampleQuery.h</includes>
     <includes id="_bsdf_pdf_query_8h" name="BsdfPdfQuery.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/BsdfPdfQuery.h</includes>
     <includes id="_spectrum_8h" name="Spectrum.h" local="yes" import="no" module="no" objc="no">Math/Color/Spectrum.h</includes>
-    <includes id="_t_mis_8h" name="TMis.h" local="yes" import="no" module="no" objc="no">Core/LTA/TMis.h</includes>
+    <includes id="_t_m_i_s_8h" name="TMIS.h" local="yes" import="no" module="no" objc="no">Core/LTA/TMIS.h</includes>
     <includes id="_t_direct_light_estimator_8h" name="TDirectLightEstimator.h" local="yes" import="no" module="no" objc="no">Core/LTA/TDirectLightEstimator.h</includes>
     <includes id="_russian_roulette_8h" name="RussianRoulette.h" local="yes" import="no" module="no" objc="no">Core/LTA/RussianRoulette.h</includes>
     <includes id="_surface_tracer_8h" name="SurfaceTracer.h" local="yes" import="no" module="no" objc="no">Core/LTA/SurfaceTracer.h</includes>
@@ -3126,7 +3157,7 @@
     <includes id="_t_sphere_8h" name="TSphere.h" local="yes" import="no" module="no" objc="no">Math/Geometry/TSphere.h</includes>
     <includes id="_sample_flow_8h" name="SampleFlow.h" local="yes" import="no" module="no" objc="no">Core/SampleGenerator/SampleFlow.h</includes>
     <includes id="_primitive_pos_sample_query_8h" name="PrimitivePosSampleQuery.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Query/PrimitivePosSampleQuery.h</includes>
-    <includes id="_primitive_pos_sample_pdf_query_8h" name="PrimitivePosSamplePdfQuery.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Query/PrimitivePosSamplePdfQuery.h</includes>
+    <includes id="_primitive_pos_pdf_query_8h" name="PrimitivePosPdfQuery.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Query/PrimitivePosPdfQuery.h</includes>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
@@ -3153,7 +3184,7 @@
     <includes id="_t_orthonormal_basis3_8h" name="TOrthonormalBasis3.h" local="yes" import="no" module="no" objc="no">Math/TOrthonormalBasis3.h</includes>
     <includes id="constant_8h" name="constant.h" local="yes" import="no" module="no" objc="no">Math/constant.h</includes>
     <includes id="_primitive_pos_sample_query_8h" name="PrimitivePosSampleQuery.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Query/PrimitivePosSampleQuery.h</includes>
-    <includes id="_primitive_pos_sample_pdf_query_8h" name="PrimitivePosSamplePdfQuery.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Query/PrimitivePosSamplePdfQuery.h</includes>
+    <includes id="_primitive_pos_pdf_query_8h" name="PrimitivePosPdfQuery.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Query/PrimitivePosPdfQuery.h</includes>
     <includes id="_sample_flow_8h" name="SampleFlow.h" local="yes" import="no" module="no" objc="no">Core/SampleGenerator/SampleFlow.h</includes>
     <namespace>ph</namespace>
   </compound>
@@ -3175,7 +3206,7 @@
     <filename>_primitive_8cpp.html</filename>
     <includes id="_primitive_8h" name="Primitive.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Primitive.h</includes>
     <includes id="_primitive_pos_sample_query_8h" name="PrimitivePosSampleQuery.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Query/PrimitivePosSampleQuery.h</includes>
-    <includes id="_primitive_pos_sample_pdf_query_8h" name="PrimitivePosSamplePdfQuery.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Query/PrimitivePosSamplePdfQuery.h</includes>
+    <includes id="_primitive_pos_pdf_query_8h" name="PrimitivePosPdfQuery.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Query/PrimitivePosPdfQuery.h</includes>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
@@ -3235,7 +3266,7 @@
     <includes id="_hit_detail_8h" name="HitDetail.h" local="yes" import="no" module="no" objc="no">Core/HitDetail.h</includes>
     <includes id="_t_a_a_b_b3_d_8h" name="TAABB3D.h" local="yes" import="no" module="no" objc="no">Math/Geometry/TAABB3D.h</includes>
     <includes id="_primitive_pos_sample_query_8h" name="PrimitivePosSampleQuery.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Query/PrimitivePosSampleQuery.h</includes>
-    <includes id="_primitive_pos_sample_pdf_query_8h" name="PrimitivePosSamplePdfQuery.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Query/PrimitivePosSamplePdfQuery.h</includes>
+    <includes id="_primitive_pos_pdf_query_8h" name="PrimitivePosPdfQuery.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Query/PrimitivePosPdfQuery.h</includes>
     <includes id="_t_vector2_8h" name="TVector2.h" local="yes" import="no" module="no" objc="no">Math/TVector2.h</includes>
     <includes id="math_8h" name="math.h" local="yes" import="no" module="no" objc="no">Math/math.h</includes>
     <includes id="_sample_flow_8h" name="SampleFlow.h" local="yes" import="no" module="no" objc="no">Core/SampleGenerator/SampleFlow.h</includes>
@@ -3252,25 +3283,26 @@
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
-    <name>PrimitivePosSamplePdfQuery.cpp</name>
+    <name>PrimitivePosPdfQuery.cpp</name>
     <path>Source/Core/Intersection/Query/</path>
-    <filename>_primitive_pos_sample_pdf_query_8cpp.html</filename>
-    <includes id="_primitive_pos_sample_pdf_query_8h" name="PrimitivePosSamplePdfQuery.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Query/PrimitivePosSamplePdfQuery.h</includes>
+    <filename>_primitive_pos_pdf_query_8cpp.html</filename>
+    <includes id="_primitive_pos_pdf_query_8h" name="PrimitivePosPdfQuery.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Query/PrimitivePosPdfQuery.h</includes>
     <includes id="_primitive_pos_sample_query_8h" name="PrimitivePosSampleQuery.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Query/PrimitivePosSampleQuery.h</includes>
-    <includes id="_direct_energy_sample_pdf_query_8h" name="DirectEnergySamplePdfQuery.h" local="yes" import="no" module="no" objc="no">Core/Emitter/Query/DirectEnergySamplePdfQuery.h</includes>
+    <includes id="_direct_energy_pdf_query_8h" name="DirectEnergyPdfQuery.h" local="yes" import="no" module="no" objc="no">Core/Emitter/Query/DirectEnergyPdfQuery.h</includes>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
-    <name>PrimitivePosSamplePdfQuery.h</name>
+    <name>PrimitivePosPdfQuery.h</name>
     <path>Source/Core/Intersection/Query/</path>
-    <filename>_primitive_pos_sample_pdf_query_8h.html</filename>
+    <filename>_primitive_pos_pdf_query_8h.html</filename>
     <includes id="_t_vector3_8h" name="TVector3.h" local="yes" import="no" module="no" objc="no">Math/TVector3.h</includes>
     <includes id="_ray_8h" name="Ray.h" local="yes" import="no" module="no" objc="no">Core/Ray.h</includes>
     <includes id="_hit_detail_8h" name="HitDetail.h" local="yes" import="no" module="no" objc="no">Core/HitDetail.h</includes>
     <includes id="_surface_hit_8h" name="SurfaceHit.h" local="yes" import="no" module="no" objc="no">Core/SurfaceHit.h</includes>
-    <class kind="class">ph::PrimitivePosSamplePdfInput</class>
-    <class kind="class">ph::PrimitivePosSamplePdfOutput</class>
-    <class kind="class">ph::PrimitivePosSamplePdfQuery</class>
+    <includes id="_p_d_f_8h" name="PDF.h" local="yes" import="no" module="no" objc="no">Core/LTA/PDF.h</includes>
+    <class kind="class">ph::PrimitivePosPdfInput</class>
+    <class kind="class">ph::PrimitivePosPdfOutput</class>
+    <class kind="class">ph::PrimitivePosPdfQuery</class>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
@@ -3278,7 +3310,7 @@
     <path>Source/Core/Intersection/Query/</path>
     <filename>_primitive_pos_sample_query_8cpp.html</filename>
     <includes id="_primitive_pos_sample_query_8h" name="PrimitivePosSampleQuery.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Query/PrimitivePosSampleQuery.h</includes>
-    <includes id="_hit_detail_8h" name="HitDetail.h" local="yes" import="no" module="no" objc="no">Core/HitDetail.h</includes>
+    <includes id="_direct_energy_sample_query_8h" name="DirectEnergySampleQuery.h" local="yes" import="no" module="no" objc="no">Core/Emitter/Query/DirectEnergySampleQuery.h</includes>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
@@ -3288,6 +3320,7 @@
     <includes id="_t_vector3_8h" name="TVector3.h" local="yes" import="no" module="no" objc="no">Math/TVector3.h</includes>
     <includes id="_ray_8h" name="Ray.h" local="yes" import="no" module="no" objc="no">Core/Ray.h</includes>
     <includes id="_core_2_quantity_2_time_8h" name="Time.h" local="yes" import="no" module="no" objc="no">Core/Quantity/Time.h</includes>
+    <includes id="_p_d_f_8h" name="PDF.h" local="yes" import="no" module="no" objc="no">Core/LTA/PDF.h</includes>
     <class kind="class">ph::PrimitivePosSampleInput</class>
     <class kind="class">ph::PrimitivePosSampleOutput</class>
     <class kind="class">ph::PrimitivePosSampleQuery</class>
@@ -3383,7 +3416,7 @@
     <filename>_transformed_primitive_8cpp.html</filename>
     <includes id="_transformed_primitive_8h" name="TransformedPrimitive.h" local="yes" import="no" module="no" objc="no">Core/Intersection/TransformedPrimitive.h</includes>
     <includes id="_primitive_pos_sample_query_8h" name="PrimitivePosSampleQuery.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Query/PrimitivePosSampleQuery.h</includes>
-    <includes id="_primitive_pos_sample_pdf_query_8h" name="PrimitivePosSamplePdfQuery.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Query/PrimitivePosSamplePdfQuery.h</includes>
+    <includes id="_primitive_pos_pdf_query_8h" name="PrimitivePosPdfQuery.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Query/PrimitivePosPdfQuery.h</includes>
     <includes id="_hit_detail_8h" name="HitDetail.h" local="yes" import="no" module="no" objc="no">Core/HitDetail.h</includes>
     <namespace>ph</namespace>
   </compound>
@@ -3435,6 +3468,13 @@
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
+    <name>enums.h</name>
+    <path>Source/Core/LTA/</path>
+    <filename>enums_8h.html</filename>
+    <namespace>ph</namespace>
+    <namespace>ph::lta</namespace>
+  </compound>
+  <compound kind="file">
     <name>LTA.dox</name>
     <path>Source/Core/LTA/</path>
     <filename>_l_t_a_8dox.html</filename>
@@ -3445,6 +3485,15 @@
     <filename>lta_8h.html</filename>
     <includes id="_t_vector3_8h" name="TVector3.h" local="yes" import="no" module="no" objc="no">Math/TVector3.h</includes>
     <includes id="math_8h" name="math.h" local="yes" import="no" module="no" objc="no">Math/math.h</includes>
+    <namespace>ph</namespace>
+    <namespace>ph::lta</namespace>
+  </compound>
+  <compound kind="file">
+    <name>PDF.h</name>
+    <path>Source/Core/LTA/</path>
+    <filename>_p_d_f_8h.html</filename>
+    <includes id="enums_8h" name="enums.h" local="yes" import="no" module="no" objc="no">Core/LTA/enums.h</includes>
+    <class kind="class">ph::lta::PDF</class>
     <namespace>ph</namespace>
     <namespace>ph::lta</namespace>
   </compound>
@@ -3570,7 +3619,7 @@
     <includes id="_scene_8h" name="Scene.h" local="yes" import="no" module="no" objc="no">World/Scene.h</includes>
     <includes id="_emitter_8h" name="Emitter.h" local="yes" import="no" module="no" objc="no">Core/Emitter/Emitter.h</includes>
     <includes id="_direct_energy_sample_query_8h" name="DirectEnergySampleQuery.h" local="yes" import="no" module="no" objc="no">Core/Emitter/Query/DirectEnergySampleQuery.h</includes>
-    <includes id="_direct_energy_sample_pdf_query_8h" name="DirectEnergySamplePdfQuery.h" local="yes" import="no" module="no" objc="no">Core/Emitter/Query/DirectEnergySamplePdfQuery.h</includes>
+    <includes id="_direct_energy_pdf_query_8h" name="DirectEnergyPdfQuery.h" local="yes" import="no" module="no" objc="no">Core/Emitter/Query/DirectEnergyPdfQuery.h</includes>
     <includes id="_surface_hit_8h" name="SurfaceHit.h" local="yes" import="no" module="no" objc="no">Core/SurfaceHit.h</includes>
     <includes id="_primitive_8h" name="Primitive.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Primitive.h</includes>
     <includes id="_primitive_metadata_8h" name="PrimitiveMetadata.h" local="yes" import="no" module="no" objc="no">Core/Intersection/PrimitiveMetadata.h</includes>
@@ -3584,7 +3633,7 @@
     <includes id="_ray_8h" name="Ray.h" local="yes" import="no" module="no" objc="no">Core/Ray.h</includes>
     <includes id="lta_8h" name="lta.h" local="yes" import="no" module="no" objc="no">Core/LTA/lta.h</includes>
     <includes id="_surface_tracer_8h" name="SurfaceTracer.h" local="yes" import="no" module="no" objc="no">Core/LTA/SurfaceTracer.h</includes>
-    <includes id="_t_mis_8h" name="TMis.h" local="yes" import="no" module="no" objc="no">Core/LTA/TMis.h</includes>
+    <includes id="_t_m_i_s_8h" name="TMIS.h" local="yes" import="no" module="no" objc="no">Core/LTA/TMIS.h</includes>
     <includes id="_surface_hit_refinery_8h" name="SurfaceHitRefinery.h" local="yes" import="no" module="no" objc="no">Core/LTA/SurfaceHitRefinery.h</includes>
     <includes id="_t_vector3_8h" name="TVector3.h" local="yes" import="no" module="no" objc="no">Math/TVector3.h</includes>
     <namespace>ph</namespace>
@@ -3619,10 +3668,11 @@
     <namespace>ph::lta</namespace>
   </compound>
   <compound kind="file">
-    <name>TMis.h</name>
+    <name>TMIS.h</name>
     <path>Source/Core/LTA/</path>
-    <filename>_t_mis_8h.html</filename>
-    <class kind="class">ph::lta::TMis</class>
+    <filename>_t_m_i_s_8h.html</filename>
+    <includes id="enums_8h" name="enums.h" local="yes" import="no" module="no" objc="no">Core/LTA/enums.h</includes>
+    <class kind="class">ph::lta::TMIS</class>
     <namespace>ph</namespace>
     <namespace>ph::lta</namespace>
   </compound>
@@ -4996,6 +5046,7 @@
     <includes id="_bsdf_query_context_8h" name="BsdfQueryContext.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/BsdfQueryContext.h</includes>
     <includes id="_t_vector3_8h" name="TVector3.h" local="yes" import="no" module="no" objc="no">Math/TVector3.h</includes>
     <includes id="_surface_hit_8h" name="SurfaceHit.h" local="yes" import="no" module="no" objc="no">Core/SurfaceHit.h</includes>
+    <includes id="_p_d_f_8h" name="PDF.h" local="yes" import="no" module="no" objc="no">Core/LTA/PDF.h</includes>
     <class kind="class">ph::BsdfPdfInput</class>
     <class kind="class">ph::BsdfPdfOutput</class>
     <class kind="class">ph::BsdfPdfQuery</class>
@@ -5678,6 +5729,7 @@
     <includes id="_t_texture_8h" name="TTexture.h" local="yes" import="no" module="no" objc="no">Core/Texture/TTexture.h</includes>
     <includes id="_sample_location_8h" name="SampleLocation.h" local="yes" import="no" module="no" objc="no">Core/Texture/SampleLocation.h</includes>
     <includes id="traits_8h" name="traits.h" local="yes" import="no" module="no" objc="no">Utility/traits.h</includes>
+    <includes id="math_8h" name="math.h" local="yes" import="no" module="no" objc="no">Math/math.h</includes>
     <includes id="_spectrum_8h" name="Spectrum.h" local="yes" import="no" module="no" objc="no">Math/Color/Spectrum.h</includes>
     <includes id="_t_arithmetic_array_8h" name="TArithmeticArray.h" local="yes" import="no" module="no" objc="no">Math/TArithmeticArray.h</includes>
     <class kind="class">ph::texfunc::TClamp</class>
@@ -11870,6 +11922,41 @@
       <anchor>a886213a39e4eba1639c0b539a4427d0d</anchor>
       <arglist>(const std::shared_ptr&lt; Geometry &gt; &amp;srcGeometry, const TransformInfo &amp;srcLocalToWorld, math::TDecomposedTransform&lt; real &gt; *out_remainingLocalToWorld=nullptr)</arglist>
     </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual EmitterFeatureSet</type>
+      <name>getEmitterFeatureSet</name>
+      <anchorfile>classph_1_1_a_geometric_light.html</anchorfile>
+      <anchor>ab7b93aa1bfa2ec1f636cd8344c697fa3</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>bool</type>
+      <name>m_isDirectlyVisible</name>
+      <anchorfile>classph_1_1_a_geometric_light.html</anchorfile>
+      <anchor>a24a22f3c329ef2a8fee7cf72f886c61f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>bool</type>
+      <name>m_useBsdfSample</name>
+      <anchorfile>classph_1_1_a_geometric_light.html</anchorfile>
+      <anchor>aaf2d09afb7f0f910a64b3bea543b7e89</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>bool</type>
+      <name>m_useDirectSample</name>
+      <anchorfile>classph_1_1_a_geometric_light.html</anchorfile>
+      <anchor>aa0d6ecf582463c635f1113223c1ee829</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>bool</type>
+      <name>m_useEmissionSample</name>
+      <anchorfile>classph_1_1_a_geometric_light.html</anchorfile>
+      <anchor>a802db670401c6deeea2535c221663f68</anchor>
+      <arglist></arglist>
+    </member>
   </compound>
   <compound kind="class">
     <name>ph::AIesAttenuatedLight</name>
@@ -12271,6 +12358,13 @@
       <anchorfile>classph_1_1_a_point_light.html</anchorfile>
       <anchor>abbdb995333741737173bab0c68500206</anchor>
       <arglist>(TSdlOwnerClass&lt; APointLight &gt;)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>EmitterFeatureSet</type>
+      <name>getEmitterFeatureSet</name>
+      <anchorfile>classph_1_1_a_point_light.html</anchorfile>
+      <anchor>a8f0cc0579e55272b1cce822b0cc4aec5</anchor>
+      <arglist>() const override</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -13000,8 +13094,8 @@
       <type>void</type>
       <name>setBsdf</name>
       <anchorfile>classph_1_1_bsdf_eval_output.html</anchorfile>
-      <anchor>a8bedaa5b755929aae0a87153048a9141</anchor>
-      <arglist>(const math::Spectrum &amp;bsdf, bool inferMeasurabilityFromThis=true)</arglist>
+      <anchor>ae74dc2a76e0d5e941538ad2415691a29</anchor>
+      <arglist>(const math::Spectrum &amp;bsdf, bool inferMeasurability=true)</arglist>
     </member>
     <member kind="function">
       <type>const math::Spectrum &amp;</type>
@@ -13161,16 +13255,30 @@
     <filename>classph_1_1_bsdf_pdf_output.html</filename>
     <member kind="function">
       <type>void</type>
-      <name>setSampleDirPdfW</name>
+      <name>setSampleDirPdf</name>
       <anchorfile>classph_1_1_bsdf_pdf_output.html</anchorfile>
-      <anchor>a88edbc404c4d2f275da0a6804e926f00</anchor>
-      <arglist>(real pdfW)</arglist>
+      <anchor>a65be2da1a1107ed56cc8edef7bd9f9e0</anchor>
+      <arglist>(const lta::PDF &amp;pdf)</arglist>
     </member>
     <member kind="function">
       <type>real</type>
       <name>getSampleDirPdfW</name>
       <anchorfile>classph_1_1_bsdf_pdf_output.html</anchorfile>
       <anchor>aabc2fcd76c880df7f82899a48a0c6623</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>const lta::PDF &amp;</type>
+      <name>getSampleDirPdf</name>
+      <anchorfile>classph_1_1_bsdf_pdf_output.html</anchorfile>
+      <anchor>afd310403c16242357cffebf61537089d</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>operator bool</name>
+      <anchorfile>classph_1_1_bsdf_pdf_output.html</anchorfile>
+      <anchor>aace194eef7d2cb66a158cb6dcf993ef2</anchor>
       <arglist>() const</arglist>
     </member>
   </compound>
@@ -13324,10 +13432,10 @@
     </member>
     <member kind="function">
       <type>void</type>
-      <name>setPdfAppliedBsdf</name>
+      <name>setPdfAppliedBsdfCos</name>
       <anchorfile>classph_1_1_bsdf_sample_output.html</anchorfile>
-      <anchor>ad599c99a67978ba593c6511460f7bfdc</anchor>
-      <arglist>(const math::Spectrum &amp;pdfAppliedBsdf, bool inferMeasurabilityFromThis=true)</arglist>
+      <anchor>ad39af4c2760babbf805b6556c4127df4</anchor>
+      <arglist>(const math::Spectrum &amp;pdfAppliedBsdfCos, real cos, bool inferMeasurability=true)</arglist>
     </member>
     <member kind="function">
       <type>const math::Vector3R &amp;</type>
@@ -13337,10 +13445,24 @@
       <arglist>() const</arglist>
     </member>
     <member kind="function">
-      <type>const math::Spectrum &amp;</type>
+      <type>real</type>
+      <name>getCos</name>
+      <anchorfile>classph_1_1_bsdf_sample_output.html</anchorfile>
+      <anchor>aca3543074680a336fae8374e9ca7fb0a</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>math::Spectrum</type>
       <name>getPdfAppliedBsdf</name>
       <anchorfile>classph_1_1_bsdf_sample_output.html</anchorfile>
-      <anchor>a13bb80a89a3b32551ab3cbc2995f0ec5</anchor>
+      <anchor>ad0aa6a2f679ab8af98e75690cf760d11</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>const math::Spectrum &amp;</type>
+      <name>getPdfAppliedBsdfCos</name>
+      <anchorfile>classph_1_1_bsdf_sample_output.html</anchorfile>
+      <anchor>a9c16c0bf8d45ecda70092f985b5e25fd</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
@@ -15423,20 +15545,20 @@
   <compound kind="class">
     <name>ph::DiffuseSurfaceEmitter</name>
     <filename>classph_1_1_diffuse_surface_emitter.html</filename>
-    <base>ph::SurfaceEmitter</base>
+    <base>ph::DiffuseSurfaceEmitterBase</base>
     <member kind="function">
       <type></type>
       <name>DiffuseSurfaceEmitter</name>
       <anchorfile>classph_1_1_diffuse_surface_emitter.html</anchorfile>
-      <anchor>abcb2d6e154fed78c0e141f402acc5705</anchor>
-      <arglist>(const Primitive *surface)</arglist>
+      <anchor>aea0ef92ee0aecbe37f6cdd2d048fe868</anchor>
+      <arglist>(const Primitive *surface, const std::shared_ptr&lt; TTexture&lt; math::Spectrum &gt; &gt; &amp;emittedEnergy, EmitterFeatureSet featureSet=defaultFeatureSet)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
-      <name>evalEmittedRadiance</name>
+      <name>evalEmittedEnergy</name>
       <anchorfile>classph_1_1_diffuse_surface_emitter.html</anchorfile>
-      <anchor>a45026addfa17ab57a9a8b3dc8c15e598</anchor>
-      <arglist>(const SurfaceHit &amp;X, math::Spectrum *out_radiance) const override</arglist>
+      <anchor>a69918497a250e2e01a5c79b886e66ca1</anchor>
+      <arglist>(const SurfaceHit &amp;Xe, math::Spectrum *out_energy) const override</arglist>
     </member>
     <member kind="function">
       <type>void</type>
@@ -15447,10 +15569,10 @@
     </member>
     <member kind="function">
       <type>void</type>
-      <name>calcDirectSamplePdfW</name>
+      <name>calcDirectPdf</name>
       <anchorfile>classph_1_1_diffuse_surface_emitter.html</anchorfile>
-      <anchor>aa9c4de3ea34ecfe73110ead90eb81706</anchor>
-      <arglist>(DirectEnergySamplePdfQuery &amp;query, HitProbe &amp;probe) const override</arglist>
+      <anchor>ae7552db8437361c4629e0fd282812688</anchor>
+      <arglist>(DirectEnergyPdfQuery &amp;query) const override</arglist>
     </member>
     <member kind="function">
       <type>void</type>
@@ -15467,25 +15589,210 @@
       <arglist>() const override</arglist>
     </member>
     <member kind="function">
-      <type>const Primitive *</type>
+      <type>const Primitive &amp;</type>
       <name>getSurface</name>
       <anchorfile>classph_1_1_diffuse_surface_emitter.html</anchorfile>
-      <anchor>a63874b6658077a5965d1a15156c86008</anchor>
+      <anchor>adad4d6a5f8a41611035f6195a56c6bd9</anchor>
       <arglist>() const</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>setEmittedRadiance</name>
-      <anchorfile>classph_1_1_diffuse_surface_emitter.html</anchorfile>
-      <anchor>a7682f953e9f4117b26703709e89fc5b4</anchor>
-      <arglist>(const std::shared_ptr&lt; TTexture&lt; math::Spectrum &gt; &gt; &amp;emittedRadiance)</arglist>
     </member>
     <member kind="function">
       <type>const TTexture&lt; math::Spectrum &gt; &amp;</type>
-      <name>getEmittedRadiance</name>
+      <name>getEmittedEnergy</name>
       <anchorfile>classph_1_1_diffuse_surface_emitter.html</anchorfile>
-      <anchor>a754e4cfd8ca9b501d36897dd4c6a7045</anchor>
+      <anchor>aa80fcafd1a575ffbb268c39c7acd8507</anchor>
       <arglist>() const</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>ph::DiffuseSurfaceEmitterBase</name>
+    <filename>classph_1_1_diffuse_surface_emitter_base.html</filename>
+    <base>ph::SurfaceEmitter</base>
+    <member kind="function">
+      <type></type>
+      <name>DiffuseSurfaceEmitterBase</name>
+      <anchorfile>classph_1_1_diffuse_surface_emitter_base.html</anchorfile>
+      <anchor>a305c01b9a88c3b768da8460944c6a6c6</anchor>
+      <arglist>(EmitterFeatureSet featureSet=defaultFeatureSet)</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>void</type>
+      <name>evalEmittedEnergy</name>
+      <anchorfile>classph_1_1_diffuse_surface_emitter_base.html</anchorfile>
+      <anchor>a8271bc3401a849b32ee4c77e5da41519</anchor>
+      <arglist>(const SurfaceHit &amp;Xe, math::Spectrum *out_energy) const override=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>void</type>
+      <name>genDirectSample</name>
+      <anchorfile>classph_1_1_diffuse_surface_emitter_base.html</anchorfile>
+      <anchor>a5f5349144a54248ae52d6fcee23c6087</anchor>
+      <arglist>(DirectEnergySampleQuery &amp;query, SampleFlow &amp;sampleFlow, HitProbe &amp;probe) const override=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>void</type>
+      <name>calcDirectPdf</name>
+      <anchorfile>classph_1_1_diffuse_surface_emitter_base.html</anchorfile>
+      <anchor>aaeda771011a239e1933d89164044b988</anchor>
+      <arglist>(DirectEnergyPdfQuery &amp;query) const override=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>void</type>
+      <name>emitRay</name>
+      <anchorfile>classph_1_1_diffuse_surface_emitter_base.html</anchorfile>
+      <anchor>a07f634404c1a513d8179ea571b5e0602</anchor>
+      <arglist>(EnergyEmissionSampleQuery &amp;query, SampleFlow &amp;sampleFlow, HitProbe &amp;probe) const override=0</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>evalEnergyFromSurface</name>
+      <anchorfile>classph_1_1_diffuse_surface_emitter_base.html</anchorfile>
+      <anchor>adfc0fb666e18f39d258820b9a4e3d445</anchor>
+      <arglist>(const TTexture&lt; math::Spectrum &gt; &amp;energy, const SurfaceHit &amp;Xe, math::Spectrum *out_energy) const</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>genDirectSampleFromSurface</name>
+      <anchorfile>classph_1_1_diffuse_surface_emitter_base.html</anchorfile>
+      <anchor>a8362949a52025000b7c9328049143318</anchor>
+      <arglist>(const Primitive &amp;surface, const TTexture&lt; math::Spectrum &gt; &amp;energy, DirectEnergySampleQuery &amp;query, SampleFlow &amp;sampleFlow, HitProbe &amp;probe) const</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>emitRayFromSurface</name>
+      <anchorfile>classph_1_1_diffuse_surface_emitter_base.html</anchorfile>
+      <anchor>aba097be0ef787b503ce75eae7166c388</anchor>
+      <arglist>(const Primitive &amp;surface, const TTexture&lt; math::Spectrum &gt; &amp;energy, EnergyEmissionSampleQuery &amp;query, SampleFlow &amp;sampleFlow, HitProbe &amp;probe) const</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>ph::DirectEnergyPdfInput</name>
+    <filename>classph_1_1_direct_energy_pdf_input.html</filename>
+    <member kind="function">
+      <type>void</type>
+      <name>set</name>
+      <anchorfile>classph_1_1_direct_energy_pdf_input.html</anchorfile>
+      <anchor>a18e1f8e623f2d71788282860f8c64643</anchor>
+      <arglist>(const SurfaceHit &amp;X, const SurfaceHit &amp;Xe)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>set</name>
+      <anchorfile>classph_1_1_direct_energy_pdf_input.html</anchorfile>
+      <anchor>ae7dea29aa3cfa580276e433d8c6395a9</anchor>
+      <arglist>(const math::Vector3R &amp;targetPos, const SurfaceHit &amp;Xe)</arglist>
+    </member>
+    <member kind="function">
+      <type>const math::Vector3R &amp;</type>
+      <name>getTargetPos</name>
+      <anchorfile>classph_1_1_direct_energy_pdf_input.html</anchorfile>
+      <anchor>aa3981cdfcd836552915dec5269686768</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>const SurfaceHit &amp;</type>
+      <name>getXe</name>
+      <anchorfile>classph_1_1_direct_energy_pdf_input.html</anchorfile>
+      <anchor>a359d88d678eef93c23e3357e47c7efcc</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>math::Vector3R</type>
+      <name>getEmitPos</name>
+      <anchorfile>classph_1_1_direct_energy_pdf_input.html</anchorfile>
+      <anchor>a2144b9fde70010b679ca08dea134ae99</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>math::Vector3R</type>
+      <name>getEmitPosNormal</name>
+      <anchorfile>classph_1_1_direct_energy_pdf_input.html</anchorfile>
+      <anchor>ae1ae382a5c72a2dcffeec6a2646670d1</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>const Primitive &amp;</type>
+      <name>getSrcPrimitive</name>
+      <anchorfile>classph_1_1_direct_energy_pdf_input.html</anchorfile>
+      <anchor>a01590e32ceb2c69e6aea03d67f8e29e4</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>uint64</type>
+      <name>getSrcFaceID</name>
+      <anchorfile>classph_1_1_direct_energy_pdf_input.html</anchorfile>
+      <anchor>a3bc3af12e9578a6c173f707a7b721b67</anchor>
+      <arglist>() const</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>ph::DirectEnergyPdfOutput</name>
+    <filename>classph_1_1_direct_energy_pdf_output.html</filename>
+    <member kind="function">
+      <type>void</type>
+      <name>setPdf</name>
+      <anchorfile>classph_1_1_direct_energy_pdf_output.html</anchorfile>
+      <anchor>a6d51d154583f1c91f88db59d3ca6ba86</anchor>
+      <arglist>(const lta::PDF &amp;pdf)</arglist>
+    </member>
+    <member kind="function">
+      <type>real</type>
+      <name>getPdfW</name>
+      <anchorfile>classph_1_1_direct_energy_pdf_output.html</anchorfile>
+      <anchor>acfd52691469e934912314e4232989f27</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>const lta::PDF &amp;</type>
+      <name>getPdf</name>
+      <anchorfile>classph_1_1_direct_energy_pdf_output.html</anchorfile>
+      <anchor>af5c05da5bdd6f3d2be8929fd23998527</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>operator bool</name>
+      <anchorfile>classph_1_1_direct_energy_pdf_output.html</anchorfile>
+      <anchor>a2cd686e5527818412677d4d4a22c50ad</anchor>
+      <arglist>() const</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>ph::DirectEnergyPdfQuery</name>
+    <filename>classph_1_1_direct_energy_pdf_query.html</filename>
+    <member kind="typedef">
+      <type>DirectEnergyPdfInput</type>
+      <name>Input</name>
+      <anchorfile>classph_1_1_direct_energy_pdf_query.html</anchorfile>
+      <anchor>a871f77f3c050ef1a93e23e735d9bf88e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>DirectEnergyPdfOutput</type>
+      <name>Output</name>
+      <anchorfile>classph_1_1_direct_energy_pdf_query.html</anchorfile>
+      <anchor>a9d2364c2ed740bdd36541123de10d369</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>DirectEnergyPdfQuery</name>
+      <anchorfile>classph_1_1_direct_energy_pdf_query.html</anchorfile>
+      <anchor>a898b04123c7e31542c564acfe21c0d9c</anchor>
+      <arglist>()=default</arglist>
+    </member>
+    <member kind="variable">
+      <type>Input</type>
+      <name>inputs</name>
+      <anchorfile>classph_1_1_direct_energy_pdf_query.html</anchorfile>
+      <anchor>a4daf0243fd001366cfc804200046a44f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>Output</type>
+      <name>outputs</name>
+      <anchorfile>classph_1_1_direct_energy_pdf_query.html</anchorfile>
+      <anchor>a0568d9ee0926fc79dd847995f093ed8f</anchor>
+      <arglist></arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -15512,13 +15819,6 @@
       <anchor>ae05a96052f869c0bc3b235bc205437df</anchor>
       <arglist>() const</arglist>
     </member>
-    <member kind="function">
-      <type>const Time &amp;</type>
-      <name>getTime</name>
-      <anchorfile>classph_1_1_direct_energy_sample_input.html</anchorfile>
-      <anchor>a09860d31a4dbd5b7022b4ffef938664a</anchor>
-      <arglist>() const</arglist>
-    </member>
   </compound>
   <compound kind="class">
     <name>ph::DirectEnergySampleOutput</name>
@@ -15539,10 +15839,10 @@
     </member>
     <member kind="function">
       <type>void</type>
-      <name>setPdfW</name>
+      <name>setPdf</name>
       <anchorfile>classph_1_1_direct_energy_sample_output.html</anchorfile>
-      <anchor>ae72a5714a32bd24b9554d77e4bebe189</anchor>
-      <arglist>(real pdfW)</arglist>
+      <anchor>a6d38f01a088228113664830711767ebf</anchor>
+      <arglist>(const lta::PDF &amp;pdf)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
@@ -15557,13 +15857,6 @@
       <anchorfile>classph_1_1_direct_energy_sample_output.html</anchorfile>
       <anchor>ab982376c5766c7bd037494d55895e413</anchor>
       <arglist>(const Ray &amp;observationRay)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>invalidate</name>
-      <anchorfile>classph_1_1_direct_energy_sample_output.html</anchorfile>
-      <anchor>a382c8d53bb332ba85f58723c12aa500d</anchor>
-      <arglist>()</arglist>
     </member>
     <member kind="function">
       <type>const math::Vector3R &amp;</type>
@@ -15587,10 +15880,17 @@
       <arglist>() const</arglist>
     </member>
     <member kind="function">
-      <type>const Primitive *</type>
+      <type>const lta::PDF &amp;</type>
+      <name>getPdf</name>
+      <anchorfile>classph_1_1_direct_energy_sample_output.html</anchorfile>
+      <anchor>af4cf5ddcbb4f1a84c4b01ecb9f9a2187</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>const Primitive &amp;</type>
       <name>getSrcPrimitive</name>
       <anchorfile>classph_1_1_direct_energy_sample_output.html</anchorfile>
-      <anchor>a880b3a93758930fed5faaa4fbad074e1</anchor>
+      <anchor>acccbc7d51f5b709c50e30e2bf77378c5</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
@@ -15606,151 +15906,6 @@
       <anchorfile>classph_1_1_direct_energy_sample_output.html</anchorfile>
       <anchor>ae76596fbae4d7400e8c3344145027d26</anchor>
       <arglist>() const</arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>ph::DirectEnergySamplePdfInput</name>
-    <filename>classph_1_1_direct_energy_sample_pdf_input.html</filename>
-    <member kind="function">
-      <type>void</type>
-      <name>set</name>
-      <anchorfile>classph_1_1_direct_energy_sample_pdf_input.html</anchorfile>
-      <anchor>a16789c5f0ff1b07f333960a1b7dd786d</anchor>
-      <arglist>(const SurfaceHit &amp;X, const SurfaceHit &amp;Xe)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>set</name>
-      <anchorfile>classph_1_1_direct_energy_sample_pdf_input.html</anchorfile>
-      <anchor>a62007c02026e97e0ad0bf0fab0136515</anchor>
-      <arglist>(const SurfaceHit &amp;X, const SurfaceHit &amp;Xe, const Ray &amp;observationRay)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>set</name>
-      <anchorfile>classph_1_1_direct_energy_sample_pdf_input.html</anchorfile>
-      <anchor>af83069a6d7293ff95bf4bfd067cac87d</anchor>
-      <arglist>(const math::Vector3R &amp;targetPos, const SurfaceHit &amp;Xe, const Ray &amp;observationRay)</arglist>
-    </member>
-    <member kind="function">
-      <type>const math::Vector3R &amp;</type>
-      <name>getTargetPos</name>
-      <anchorfile>classph_1_1_direct_energy_sample_pdf_input.html</anchorfile>
-      <anchor>af48f1556dbe967c81d4c0e5faeb7228f</anchor>
-      <arglist>() const</arglist>
-    </member>
-    <member kind="function">
-      <type>const SurfaceHit &amp;</type>
-      <name>getXe</name>
-      <anchorfile>classph_1_1_direct_energy_sample_pdf_input.html</anchorfile>
-      <anchor>ae195ea714bde7f5a9ae420bb2eec0e27</anchor>
-      <arglist>() const</arglist>
-    </member>
-    <member kind="function">
-      <type>const Ray &amp;</type>
-      <name>getObservationRay</name>
-      <anchorfile>classph_1_1_direct_energy_sample_pdf_input.html</anchorfile>
-      <anchor>a99d11be6bd0d22447720dfc9e7889940</anchor>
-      <arglist>() const</arglist>
-    </member>
-    <member kind="function">
-      <type>math::Vector3R</type>
-      <name>getEmitPos</name>
-      <anchorfile>classph_1_1_direct_energy_sample_pdf_input.html</anchorfile>
-      <anchor>a09bc11cab7f4a36555a5bcd1ed0c3ec6</anchor>
-      <arglist>() const</arglist>
-    </member>
-    <member kind="function">
-      <type>math::Vector3R</type>
-      <name>getEmitPosNormal</name>
-      <anchorfile>classph_1_1_direct_energy_sample_pdf_input.html</anchorfile>
-      <anchor>a414fcb4be9bfb115a05a942255cead41</anchor>
-      <arglist>() const</arglist>
-    </member>
-    <member kind="function">
-      <type>const Primitive *</type>
-      <name>getSrcPrimitive</name>
-      <anchorfile>classph_1_1_direct_energy_sample_pdf_input.html</anchorfile>
-      <anchor>a3a65e1748bc725ad7897a27c430ec6f2</anchor>
-      <arglist>() const</arglist>
-    </member>
-    <member kind="function">
-      <type>uint64</type>
-      <name>getSrcFaceID</name>
-      <anchorfile>classph_1_1_direct_energy_sample_pdf_input.html</anchorfile>
-      <anchor>a1b07814e5d301c46415de9a5f110f788</anchor>
-      <arglist>() const</arglist>
-    </member>
-    <member kind="function">
-      <type>const Time &amp;</type>
-      <name>getTime</name>
-      <anchorfile>classph_1_1_direct_energy_sample_pdf_input.html</anchorfile>
-      <anchor>accaaf88554941232355b4e5e381a65ab</anchor>
-      <arglist>() const</arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>ph::DirectEnergySamplePdfOutput</name>
-    <filename>classph_1_1_direct_energy_sample_pdf_output.html</filename>
-    <member kind="function">
-      <type>void</type>
-      <name>setPdfW</name>
-      <anchorfile>classph_1_1_direct_energy_sample_pdf_output.html</anchorfile>
-      <anchor>a1221cf9dbb404e427fd8384e23ffb3cd</anchor>
-      <arglist>(real pdfW)</arglist>
-    </member>
-    <member kind="function">
-      <type>real</type>
-      <name>getPdfW</name>
-      <anchorfile>classph_1_1_direct_energy_sample_pdf_output.html</anchorfile>
-      <anchor>aaa4cc1444407f172d69c25d4257341a9</anchor>
-      <arglist>() const</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>operator bool</name>
-      <anchorfile>classph_1_1_direct_energy_sample_pdf_output.html</anchorfile>
-      <anchor>a88f098904beab2e8bfa65b162d343515</anchor>
-      <arglist>() const</arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>ph::DirectEnergySamplePdfQuery</name>
-    <filename>classph_1_1_direct_energy_sample_pdf_query.html</filename>
-    <member kind="typedef">
-      <type>DirectEnergySamplePdfInput</type>
-      <name>Input</name>
-      <anchorfile>classph_1_1_direct_energy_sample_pdf_query.html</anchorfile>
-      <anchor>a1d94096dad4fd8b4fecb5aa0065c93a9</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="typedef">
-      <type>DirectEnergySamplePdfOutput</type>
-      <name>Output</name>
-      <anchorfile>classph_1_1_direct_energy_sample_pdf_query.html</anchorfile>
-      <anchor>aea82594180842753d8da393dda92550c</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>DirectEnergySamplePdfQuery</name>
-      <anchorfile>classph_1_1_direct_energy_sample_pdf_query.html</anchorfile>
-      <anchor>abdef53aad408f349cc9bf70be04b7021</anchor>
-      <arglist>()=default</arglist>
-    </member>
-    <member kind="variable">
-      <type>Input</type>
-      <name>inputs</name>
-      <anchorfile>classph_1_1_direct_energy_sample_pdf_query.html</anchorfile>
-      <anchor>ab38b3f9332b42243eb2b6c88f5be6ce3</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>Output</type>
-      <name>outputs</name>
-      <anchorfile>classph_1_1_direct_energy_sample_pdf_query.html</anchorfile>
-      <anchor>a82ca50601454e81f87f9f869955e01e2</anchor>
-      <arglist></arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -15900,8 +16055,8 @@
       <type></type>
       <name>Emitter</name>
       <anchorfile>classph_1_1_emitter.html</anchorfile>
-      <anchor>a49a5fed302fc0def2c59948195416133</anchor>
-      <arglist>()</arglist>
+      <anchor>a4ba4df4fef7fa14fe4d4b541393b37e6</anchor>
+      <arglist>(EmitterFeatureSet featureSet=defaultFeatureSet)</arglist>
     </member>
     <member kind="function" virtualness="virtual">
       <type>virtual</type>
@@ -15912,10 +16067,10 @@
     </member>
     <member kind="function" virtualness="pure">
       <type>virtual void</type>
-      <name>evalEmittedRadiance</name>
+      <name>evalEmittedEnergy</name>
       <anchorfile>classph_1_1_emitter.html</anchorfile>
-      <anchor>a411feaf012b6fde9b14c995e0f146c99</anchor>
-      <arglist>(const SurfaceHit &amp;X, math::Spectrum *out_radiance) const =0</arglist>
+      <anchor>a3227615e9fa0f370b6668302603a8ed0</anchor>
+      <arglist>(const SurfaceHit &amp;Xe, math::Spectrum *out_energy) const =0</arglist>
     </member>
     <member kind="function" virtualness="pure">
       <type>virtual void</type>
@@ -15926,10 +16081,10 @@
     </member>
     <member kind="function" virtualness="pure">
       <type>virtual void</type>
-      <name>calcDirectSamplePdfW</name>
+      <name>calcDirectPdf</name>
       <anchorfile>classph_1_1_emitter.html</anchorfile>
-      <anchor>afee2cb13b18f2a98cdc8f90cb63568c2</anchor>
-      <arglist>(DirectEnergySamplePdfQuery &amp;query, HitProbe &amp;probe) const =0</arglist>
+      <anchor>a89da2023ddaf1d127acd897418f186c0</anchor>
+      <arglist>(DirectEnergyPdfQuery &amp;query) const =0</arglist>
     </member>
     <member kind="function" virtualness="pure">
       <type>virtual void</type>
@@ -15944,6 +16099,20 @@
       <anchorfile>classph_1_1_emitter.html</anchorfile>
       <anchor>a6ffe24481333559335e624a50bd04a0b</anchor>
       <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>EmitterFeatureSet</type>
+      <name>getFeatureSet</name>
+      <anchorfile>classph_1_1_emitter.html</anchorfile>
+      <anchor>a22739f580c4e70e93961d5eca8ddc80e</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static constexpr auto</type>
+      <name>defaultFeatureSet</name>
+      <anchorfile>classph_1_1_emitter.html</anchorfile>
+      <anchor>ae355733e5803507f222d2d57da95e1e5</anchor>
+      <arglist></arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -15992,8 +16161,8 @@
       <type>virtual const Emitter *</type>
       <name>pickEmitter</name>
       <anchorfile>classph_1_1_emitter_sampler.html</anchorfile>
-      <anchor>a7a8b20d932fc7e332301678499e824ff</anchor>
-      <arglist>(SampleFlow &amp;sampleFlow, real *const out_PDF) const =0</arglist>
+      <anchor>a99096fcbc680e77f38784ffd22fdbd75</anchor>
+      <arglist>(SampleFlow &amp;sampleFlow, real *out_PDF) const =0</arglist>
     </member>
     <member kind="function" virtualness="pure">
       <type>virtual void</type>
@@ -16004,10 +16173,10 @@
     </member>
     <member kind="function" virtualness="pure">
       <type>virtual void</type>
-      <name>calcDirectSamplePdfW</name>
+      <name>calcDirectPdf</name>
       <anchorfile>classph_1_1_emitter_sampler.html</anchorfile>
-      <anchor>a3c77451f0b7094e55b769bf1d3166aab</anchor>
-      <arglist>(DirectEnergySamplePdfQuery &amp;query, HitProbe &amp;probe) const =0</arglist>
+      <anchor>a831b54b01327db1f8d500cf1e225c832</anchor>
+      <arglist>(DirectEnergyPdfQuery &amp;query) const =0</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -16035,8 +16204,8 @@
       <type>void</type>
       <name>setPdf</name>
       <anchorfile>classph_1_1_energy_emission_sample_output.html</anchorfile>
-      <anchor>a36761625e3b716128a1267a18c04431f</anchor>
-      <arglist>(real pdfA, real pdfW)</arglist>
+      <anchor>adbff405717200008c61ecb4d778aac75</anchor>
+      <arglist>(const lta::PDF &amp;pdfPos, const lta::PDF &amp;pdfDir)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
@@ -16053,13 +16222,6 @@
       <arglist>(const math::Spectrum &amp;emittedEnergy)</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
-      <name>invalidate</name>
-      <anchorfile>classph_1_1_energy_emission_sample_output.html</anchorfile>
-      <anchor>af79b1d69e44792c60f918d29da17b40a</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
       <type>real</type>
       <name>getPdfA</name>
       <anchorfile>classph_1_1_energy_emission_sample_output.html</anchorfile>
@@ -16071,6 +16233,20 @@
       <name>getPdfW</name>
       <anchorfile>classph_1_1_energy_emission_sample_output.html</anchorfile>
       <anchor>ab04844b33696671c058cdb19ca0f30a2</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>const lta::PDF &amp;</type>
+      <name>getPdfPos</name>
+      <anchorfile>classph_1_1_energy_emission_sample_output.html</anchorfile>
+      <anchor>a3d456ca35092177ff6c9356726943135</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>const lta::PDF &amp;</type>
+      <name>getPdfDir</name>
+      <anchorfile>classph_1_1_energy_emission_sample_output.html</anchorfile>
+      <anchor>a3382a1017f78293a4a582a78831a73c3</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
@@ -16386,8 +16562,8 @@
       <type>const Emitter *</type>
       <name>pickEmitter</name>
       <anchorfile>classph_1_1_e_s_power_favoring.html</anchorfile>
-      <anchor>ad12450e2bcdae52e0903a4276f52b554</anchor>
-      <arglist>(SampleFlow &amp;sampleFlow, real *const out_PDF) const override</arglist>
+      <anchor>a051e0d172776410e048d9e322ab642fd</anchor>
+      <arglist>(SampleFlow &amp;sampleFlow, real *out_PDF) const override</arglist>
     </member>
     <member kind="function">
       <type>void</type>
@@ -16398,10 +16574,10 @@
     </member>
     <member kind="function">
       <type>void</type>
-      <name>calcDirectSamplePdfW</name>
+      <name>calcDirectPdf</name>
       <anchorfile>classph_1_1_e_s_power_favoring.html</anchorfile>
-      <anchor>ae0cc200961f5896fa776fd6356dc562e</anchor>
-      <arglist>(DirectEnergySamplePdfQuery &amp;query, HitProbe &amp;probe) const override</arglist>
+      <anchor>a524b327bcb1f6d0356004faed8ae0b63</anchor>
+      <arglist>(DirectEnergyPdfQuery &amp;query) const override</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -16419,8 +16595,8 @@
       <type>const Emitter *</type>
       <name>pickEmitter</name>
       <anchorfile>classph_1_1_e_s_uniform_random.html</anchorfile>
-      <anchor>a801d6afa0baec55835f2346277e0f1a7</anchor>
-      <arglist>(SampleFlow &amp;sampleFlow, real *const out_PDF) const override</arglist>
+      <anchor>a2c349ec64a3a3ab6b9439c762ec779c5</anchor>
+      <arglist>(SampleFlow &amp;sampleFlow, real *out_PDF) const override</arglist>
     </member>
     <member kind="function">
       <type>void</type>
@@ -16431,10 +16607,10 @@
     </member>
     <member kind="function">
       <type>void</type>
-      <name>calcDirectSamplePdfW</name>
+      <name>calcDirectPdf</name>
       <anchorfile>classph_1_1_e_s_uniform_random.html</anchorfile>
-      <anchor>a45a581d6984a8654f1b8b8374ce80415</anchor>
-      <arglist>(DirectEnergySamplePdfQuery &amp;query, HitProbe &amp;probe) const override</arglist>
+      <anchor>a61d342f74953327e81cff3ca5885ca62</anchor>
+      <arglist>(DirectEnergyPdfQuery &amp;query) const override</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -17763,6 +17939,74 @@
     </member>
   </compound>
   <compound kind="class">
+    <name>ph::GroupedDiffuseSurfaceEmitter</name>
+    <filename>classph_1_1_grouped_diffuse_surface_emitter.html</filename>
+    <base>ph::DiffuseSurfaceEmitterBase</base>
+    <member kind="function">
+      <type></type>
+      <name>GroupedDiffuseSurfaceEmitter</name>
+      <anchorfile>classph_1_1_grouped_diffuse_surface_emitter.html</anchorfile>
+      <anchor>a9fc3cea5a3d807392c4253a539b902d7</anchor>
+      <arglist>(TSpanView&lt; const Primitive * &gt; surfaces, const std::shared_ptr&lt; TTexture&lt; math::Spectrum &gt; &gt; &amp;emittedEnergy, EmitterFeatureSet featureSet=defaultFeatureSet)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>evalEmittedEnergy</name>
+      <anchorfile>classph_1_1_grouped_diffuse_surface_emitter.html</anchorfile>
+      <anchor>a8972457b747208e7098d2b558a671d8e</anchor>
+      <arglist>(const SurfaceHit &amp;Xe, math::Spectrum *out_energy) const override</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>genDirectSample</name>
+      <anchorfile>classph_1_1_grouped_diffuse_surface_emitter.html</anchorfile>
+      <anchor>a1692a189df97ee1f7cf22b101d74da3f</anchor>
+      <arglist>(DirectEnergySampleQuery &amp;query, SampleFlow &amp;sampleFlow, HitProbe &amp;probe) const override</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>calcDirectPdf</name>
+      <anchorfile>classph_1_1_grouped_diffuse_surface_emitter.html</anchorfile>
+      <anchor>ad73235b1e32ddd6b8489a8b2b4d60fcb</anchor>
+      <arglist>(DirectEnergyPdfQuery &amp;query) const override</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>emitRay</name>
+      <anchorfile>classph_1_1_grouped_diffuse_surface_emitter.html</anchorfile>
+      <anchor>adf7efb9413b61fbf01f0d887f05f069a</anchor>
+      <arglist>(EnergyEmissionSampleQuery &amp;query, SampleFlow &amp;sampleFlow, HitProbe &amp;probe) const override</arglist>
+    </member>
+    <member kind="function">
+      <type>real</type>
+      <name>calcRadiantFluxApprox</name>
+      <anchorfile>classph_1_1_grouped_diffuse_surface_emitter.html</anchorfile>
+      <anchor>a61b0b4c20fb042f0724f0c33751184a5</anchor>
+      <arglist>() const override</arglist>
+    </member>
+    <member kind="function">
+      <type>std::size_t</type>
+      <name>numSurfaces</name>
+      <anchorfile>classph_1_1_grouped_diffuse_surface_emitter.html</anchorfile>
+      <anchor>add287179a8c4db61588385843c1e2ecc</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>const Primitive &amp;</type>
+      <name>getSurface</name>
+      <anchorfile>classph_1_1_grouped_diffuse_surface_emitter.html</anchorfile>
+      <anchor>a12bc407da84de0f5afd77de443c75fec</anchor>
+      <arglist>(std::size_t surfaceIdx) const</arglist>
+    </member>
+    <member kind="function">
+      <type>const TTexture&lt; math::Spectrum &gt; &amp;</type>
+      <name>getEmittedEnergy</name>
+      <anchorfile>classph_1_1_grouped_diffuse_surface_emitter.html</anchorfile>
+      <anchor>a293d4ccf32baccf10ebdf2af51e98343</anchor>
+      <arglist>() const</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
     <name>ph::GSphere</name>
     <filename>classph_1_1_g_sphere.html</filename>
     <base>ph::Geometry</base>
@@ -18297,9 +18541,9 @@
     </member>
     <member kind="function">
       <type>math::Vector3R</type>
-      <name>getPosition</name>
+      <name>getPos</name>
       <anchorfile>classph_1_1_hit_detail.html</anchorfile>
-      <anchor>ad3b7b47b289b386f503a922d5ee19f68</anchor>
+      <anchor>ac769f6237ee49f3bfbfd7c038d546053</anchor>
       <arglist>(ECoordSys coordSys=ECoordSys::World) const</arglist>
     </member>
     <member kind="function">
@@ -18443,8 +18687,8 @@
       <type>void</type>
       <name>setAttributes</name>
       <anchorfile>classph_1_1_hit_info.html</anchorfile>
-      <anchor>a670961b5cd16dcbeb4d67d30d15b6bb4</anchor>
-      <arglist>(const math::Vector3R &amp;position, const math::Vector3R &amp;geometryNormal, const math::Vector3R &amp;shadingNormal)</arglist>
+      <anchor>afc21b88e4ee25dcae879d22505ee7e20</anchor>
+      <arglist>(const math::Vector3R &amp;pos, const math::Vector3R &amp;geometryNormal, const math::Vector3R &amp;shadingNormal)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
@@ -18462,9 +18706,9 @@
     </member>
     <member kind="function">
       <type>math::Vector3R</type>
-      <name>getPosition</name>
+      <name>getPos</name>
       <anchorfile>classph_1_1_hit_info.html</anchorfile>
-      <anchor>a33e9edd343a71166931309b0e20954d0</anchor>
+      <anchor>a6bdf82b65e4addeb01174e744101796d</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
@@ -20673,15 +20917,15 @@
       <type></type>
       <name>LatLongEnvEmitter</name>
       <anchorfile>classph_1_1_lat_long_env_emitter.html</anchorfile>
-      <anchor>a47ae2be96836f67dedff4b4425345b67</anchor>
-      <arglist>(const PLatLongEnvSphere *surface, const RadianceTexture &amp;radiance, const math::Vector2S &amp;resolution)</arglist>
+      <anchor>a9e59b59beacc74a10919eda41df489f6</anchor>
+      <arglist>(const Primitive *envSurface, const RadianceTexture &amp;radiance, const math::Vector2S &amp;resolution, EmitterFeatureSet featureSet=defaultFeatureSet)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
-      <name>evalEmittedRadiance</name>
+      <name>evalEmittedEnergy</name>
       <anchorfile>classph_1_1_lat_long_env_emitter.html</anchorfile>
-      <anchor>add14f9b88af19218247d7ce975ca6dae</anchor>
-      <arglist>(const SurfaceHit &amp;X, math::Spectrum *out_radiance) const override</arglist>
+      <anchor>adf767f73f56a372602b353c01506804b</anchor>
+      <arglist>(const SurfaceHit &amp;Xe, math::Spectrum *out_energy) const override</arglist>
     </member>
     <member kind="function">
       <type>void</type>
@@ -20692,10 +20936,10 @@
     </member>
     <member kind="function">
       <type>void</type>
-      <name>calcDirectSamplePdfW</name>
+      <name>calcDirectPdf</name>
       <anchorfile>classph_1_1_lat_long_env_emitter.html</anchorfile>
-      <anchor>a3e2c56c10d5ffb7536c733bf70392fdb</anchor>
-      <arglist>(DirectEnergySamplePdfQuery &amp;query, HitProbe &amp;probe) const override</arglist>
+      <anchor>ac36b614f0b762cc4933b1a7ccd241cce</anchor>
+      <arglist>(DirectEnergyPdfQuery &amp;query) const override</arglist>
     </member>
     <member kind="function">
       <type>void</type>
@@ -20710,6 +20954,20 @@
       <anchorfile>classph_1_1_lat_long_env_emitter.html</anchorfile>
       <anchor>a0dc5c7ac70f3930ee1dfac889b167bc5</anchor>
       <arglist>() const override</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setFrontFaceEmit</name>
+      <anchorfile>classph_1_1_lat_long_env_emitter.html</anchorfile>
+      <anchor>a652354f7c34c4ffce79ced9a5c034780</anchor>
+      <arglist>() override</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setBackFaceEmit</name>
+      <anchorfile>classph_1_1_lat_long_env_emitter.html</anchorfile>
+      <anchor>a81e07b74806d9c2af03dc48adaccee97</anchor>
+      <arglist>() override</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -21600,88 +21858,6 @@
     </member>
   </compound>
   <compound kind="class">
-    <name>ph::MultiDiffuseSurfaceEmitter</name>
-    <filename>classph_1_1_multi_diffuse_surface_emitter.html</filename>
-    <base>ph::SurfaceEmitter</base>
-    <member kind="function">
-      <type></type>
-      <name>MultiDiffuseSurfaceEmitter</name>
-      <anchorfile>classph_1_1_multi_diffuse_surface_emitter.html</anchorfile>
-      <anchor>a47ebc4d80e695e5688b86c459d57ade3</anchor>
-      <arglist>(const std::vector&lt; DiffuseSurfaceEmitter &gt; &amp;emitters)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>evalEmittedRadiance</name>
-      <anchorfile>classph_1_1_multi_diffuse_surface_emitter.html</anchorfile>
-      <anchor>a957106865331bce722f956f244b14e13</anchor>
-      <arglist>(const SurfaceHit &amp;X, math::Spectrum *out_radiance) const override</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>genDirectSample</name>
-      <anchorfile>classph_1_1_multi_diffuse_surface_emitter.html</anchorfile>
-      <anchor>a4dff4973c169ea76c358896300f0af7a</anchor>
-      <arglist>(DirectEnergySampleQuery &amp;query, SampleFlow &amp;sampleFlow, HitProbe &amp;probe) const override</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>calcDirectSamplePdfW</name>
-      <anchorfile>classph_1_1_multi_diffuse_surface_emitter.html</anchorfile>
-      <anchor>a1dac052b57372bfb877bae89d59c2659</anchor>
-      <arglist>(DirectEnergySamplePdfQuery &amp;query, HitProbe &amp;probe) const override</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>emitRay</name>
-      <anchorfile>classph_1_1_multi_diffuse_surface_emitter.html</anchorfile>
-      <anchor>ab3bdf048c3231da935ed6d6260b592c8</anchor>
-      <arglist>(EnergyEmissionSampleQuery &amp;query, SampleFlow &amp;sampleFlow, HitProbe &amp;probe) const override</arglist>
-    </member>
-    <member kind="function">
-      <type>real</type>
-      <name>calcRadiantFluxApprox</name>
-      <anchorfile>classph_1_1_multi_diffuse_surface_emitter.html</anchorfile>
-      <anchor>a867fbd68888a78e45dcaf52196c276a9</anchor>
-      <arglist>() const override</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>setFrontFaceEmit</name>
-      <anchorfile>classph_1_1_multi_diffuse_surface_emitter.html</anchorfile>
-      <anchor>aa9169595c22e508b57a97a25e0e48fbb</anchor>
-      <arglist>() override</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>setBackFaceEmit</name>
-      <anchorfile>classph_1_1_multi_diffuse_surface_emitter.html</anchorfile>
-      <anchor>afb1056c658717324a498877ebbfee68a</anchor>
-      <arglist>() override</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>addEmitter</name>
-      <anchorfile>classph_1_1_multi_diffuse_surface_emitter.html</anchorfile>
-      <anchor>afafff638d14a606de89d3816925a3d6d</anchor>
-      <arglist>(const DiffuseSurfaceEmitter &amp;emitter)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>setEmittedRadiance</name>
-      <anchorfile>classph_1_1_multi_diffuse_surface_emitter.html</anchorfile>
-      <anchor>a4d5c6561e59e735124c7e84071246857</anchor>
-      <arglist>(const std::shared_ptr&lt; TTexture&lt; math::Spectrum &gt; &gt; &amp;emittedRadiance)</arglist>
-    </member>
-    <member kind="function">
-      <type>const TTexture&lt; math::Spectrum &gt; &amp;</type>
-      <name>getEmittedRadiance</name>
-      <anchorfile>classph_1_1_multi_diffuse_surface_emitter.html</anchorfile>
-      <anchor>af4f0302f4538fcc66d9dbaf60a4a6eab</anchor>
-      <arglist>() const</arglist>
-    </member>
-  </compound>
-  <compound kind="class">
     <name>ph::NaiveReinhardToneMapping</name>
     <filename>classph_1_1_naive_reinhard_tone_mapping.html</filename>
     <base>ph::FrameOperator</base>
@@ -21817,11 +21993,18 @@
       <arglist>(const Emitter *source)</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
-      <name>evalEmittedRadiance</name>
+      <type></type>
+      <name>OmniModulatedEmitter</name>
       <anchorfile>classph_1_1_omni_modulated_emitter.html</anchorfile>
-      <anchor>ad8b45211df3f993928e90dccd0eecd2a</anchor>
-      <arglist>(const SurfaceHit &amp;X, math::Spectrum *out_radiance) const override</arglist>
+      <anchor>a597d4d6076c7e73cff13fbbee090b18a</anchor>
+      <arglist>(const Emitter *source, EmitterFeatureSet featureSet)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>evalEmittedEnergy</name>
+      <anchorfile>classph_1_1_omni_modulated_emitter.html</anchorfile>
+      <anchor>aa7551d107b45ebf97b50f51e65872097</anchor>
+      <arglist>(const SurfaceHit &amp;Xe, math::Spectrum *out_energy) const override</arglist>
     </member>
     <member kind="function">
       <type>void</type>
@@ -21832,10 +22015,10 @@
     </member>
     <member kind="function">
       <type>void</type>
-      <name>calcDirectSamplePdfW</name>
+      <name>calcDirectPdf</name>
       <anchorfile>classph_1_1_omni_modulated_emitter.html</anchorfile>
-      <anchor>a970f519023190cccddb580ec2e1b8f65</anchor>
-      <arglist>(DirectEnergySamplePdfQuery &amp;query, HitProbe &amp;probe) const override</arglist>
+      <anchor>a10c876e8ee3a92277c6731477bdb5952</anchor>
+      <arglist>(DirectEnergyPdfQuery &amp;query) const override</arglist>
     </member>
     <member kind="function">
       <type>void</type>
@@ -21857,6 +22040,13 @@
       <anchorfile>classph_1_1_omni_modulated_emitter.html</anchorfile>
       <anchor>a9c9a45d145589fa4e7f3be7a5d83e8e4</anchor>
       <arglist>(const std::shared_ptr&lt; TTexture&lt; math::Spectrum &gt; &gt; &amp;filter)</arglist>
+    </member>
+    <member kind="function">
+      <type>const Emitter &amp;</type>
+      <name>getSource</name>
+      <anchorfile>classph_1_1_omni_modulated_emitter.html</anchorfile>
+      <anchor>af2d7de511cffe1518b33f99496b6b48d</anchor>
+      <arglist>() const</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -21971,23 +22161,23 @@
     </member>
     <member kind="function" protection="protected">
       <type>math::Vector3D</type>
-      <name>makePosition</name>
+      <name>makePos</name>
       <anchorfile>classph_1_1_oriented_raster_observer.html</anchorfile>
-      <anchor>a0e9e6fc1d09265e40f19543265e4e483</anchor>
+      <anchor>a9b3e920b1eef505915ef71f1a6cc712b</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function" protection="protected">
       <type>math::QuaternionD</type>
-      <name>makeRotation</name>
+      <name>makeRot</name>
       <anchorfile>classph_1_1_oriented_raster_observer.html</anchorfile>
-      <anchor>a4e4e7c509f1a1c86d5a82f306407da72</anchor>
+      <anchor>a2d675951aa39b948091024c44e8970c5</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function" protection="protected">
       <type>math::Vector3D</type>
-      <name>makeDirection</name>
+      <name>makeDir</name>
       <anchorfile>classph_1_1_oriented_raster_observer.html</anchorfile>
-      <anchor>a8b696a77f6d379971dbb68ebb4b9668c</anchor>
+      <anchor>a6271cc1054c067505a8a606df398af4d</anchor>
       <arglist>() const</arglist>
     </member>
   </compound>
@@ -22327,6 +22517,143 @@
       <anchorfile>classph_1_1math_1_1detail_1_1_pcg64_u_int128.html</anchorfile>
       <anchor>a01f4eee7c7a928c2d17faa1f37b10e83</anchor>
       <arglist>(const Pcg64UInt128 &amp;rhs) const</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>ph::lta::PDF</name>
+    <filename>classph_1_1lta_1_1_p_d_f.html</filename>
+    <member kind="function">
+      <type>real</type>
+      <name>getPdfW</name>
+      <anchorfile>classph_1_1lta_1_1_p_d_f.html</anchorfile>
+      <anchor>a79495ff3c0dc93e4d61af767864cee84</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>real</type>
+      <name>getPdfA</name>
+      <anchorfile>classph_1_1lta_1_1_p_d_f.html</anchorfile>
+      <anchor>af730ab981da152e83eaa65330d40c8c1</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>real</type>
+      <name>getPdfD</name>
+      <anchorfile>classph_1_1lta_1_1_p_d_f.html</anchorfile>
+      <anchor>a35ec64656be1fa8ce1c8c32c982a8efd</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>isEmpty</name>
+      <anchorfile>classph_1_1lta_1_1_p_d_f.html</anchorfile>
+      <anchor>aea897fa02148220cb415fc0b87dcd4f3</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>real</type>
+      <name>operator*</name>
+      <anchorfile>classph_1_1lta_1_1_p_d_f.html</anchorfile>
+      <anchor>a6ee66bcf3daef5334b727be65700737e</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>operator bool</name>
+      <anchorfile>classph_1_1lta_1_1_p_d_f.html</anchorfile>
+      <anchor>a77e5c9adaa2c3dc259b338af60a4d9aa</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>PDF</type>
+      <name>operator+</name>
+      <anchorfile>classph_1_1lta_1_1_p_d_f.html</anchorfile>
+      <anchor>ad8fb60d59b7014d0310df59993e92cd6</anchor>
+      <arglist>(real rhs) const</arglist>
+    </member>
+    <member kind="function">
+      <type>PDF</type>
+      <name>operator-</name>
+      <anchorfile>classph_1_1lta_1_1_p_d_f.html</anchorfile>
+      <anchor>a20a76827ae78912c7e4657a48cc21f45</anchor>
+      <arglist>(real rhs) const</arglist>
+    </member>
+    <member kind="function">
+      <type>PDF</type>
+      <name>operator*</name>
+      <anchorfile>classph_1_1lta_1_1_p_d_f.html</anchorfile>
+      <anchor>a03816ffb001b127632f81f4d68071b09</anchor>
+      <arglist>(real rhs) const</arglist>
+    </member>
+    <member kind="function">
+      <type>PDF</type>
+      <name>operator/</name>
+      <anchorfile>classph_1_1lta_1_1_p_d_f.html</anchorfile>
+      <anchor>a24d6aff6ddc2c75b0282347e0a61a224</anchor>
+      <arglist>(real rhs) const</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static PDF</type>
+      <name>W</name>
+      <anchorfile>classph_1_1lta_1_1_p_d_f.html</anchorfile>
+      <anchor>a7e329956238271355a1ffd7f08997e42</anchor>
+      <arglist>(real pdfW)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static PDF</type>
+      <name>A</name>
+      <anchorfile>classph_1_1lta_1_1_p_d_f.html</anchorfile>
+      <anchor>a2e92e42099ce9850cfb1e7c645ba4096</anchor>
+      <arglist>(real pdfA)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static PDF</type>
+      <name>D</name>
+      <anchorfile>classph_1_1lta_1_1_p_d_f.html</anchorfile>
+      <anchor>a5362217faf3c93a4ac383551baa5b211</anchor>
+      <arglist>(real pdfD)</arglist>
+    </member>
+    <member kind="variable">
+      <type>real</type>
+      <name>value</name>
+      <anchorfile>classph_1_1lta_1_1_p_d_f.html</anchorfile>
+      <anchor>aae135dfc99b749911edd1ae77ba0ec03</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>EDomain</type>
+      <name>domain</name>
+      <anchorfile>classph_1_1lta_1_1_p_d_f.html</anchorfile>
+      <anchor>ac8e8e26a496a6b9b07092ca239888731</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>PDF</type>
+      <name>operator+</name>
+      <anchorfile>classph_1_1lta_1_1_p_d_f.html</anchorfile>
+      <anchor>ad8fb60d59b7014d0310df59993e92cd6</anchor>
+      <arglist>(real rhs) const</arglist>
+    </member>
+    <member kind="function">
+      <type>PDF</type>
+      <name>operator-</name>
+      <anchorfile>classph_1_1lta_1_1_p_d_f.html</anchorfile>
+      <anchor>a20a76827ae78912c7e4657a48cc21f45</anchor>
+      <arglist>(real rhs) const</arglist>
+    </member>
+    <member kind="function">
+      <type>PDF</type>
+      <name>operator*</name>
+      <anchorfile>classph_1_1lta_1_1_p_d_f.html</anchorfile>
+      <anchor>a03816ffb001b127632f81f4d68071b09</anchor>
+      <arglist>(real rhs) const</arglist>
+    </member>
+    <member kind="function">
+      <type>PDF</type>
+      <name>operator/</name>
+      <anchorfile>classph_1_1lta_1_1_p_d_f.html</anchorfile>
+      <anchor>a24d6aff6ddc2c75b0282347e0a61a224</anchor>
+      <arglist>(real rhs) const</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -23091,16 +23418,16 @@
     </member>
     <member kind="function">
       <type>void</type>
-      <name>calcPosSamplePdfA</name>
+      <name>calcPosPdf</name>
       <anchorfile>classph_1_1_p_lat_long01_sphere.html</anchorfile>
-      <anchor>aa4b2e82bf705059cd0790775198a0023</anchor>
-      <arglist>(PrimitivePosSamplePdfQuery &amp;query, HitProbe &amp;probe) const override</arglist>
+      <anchor>a908970d2dd0ebcd06384875395e6315f</anchor>
+      <arglist>(PrimitivePosPdfQuery &amp;query) const override</arglist>
     </member>
     <member kind="function">
       <type>math::Vector2R</type>
-      <name>positionToUV</name>
+      <name>posToUV</name>
       <anchorfile>classph_1_1_p_lat_long01_sphere.html</anchorfile>
-      <anchor>ad80942ceac60dda19dfc1d952a990870</anchor>
+      <anchor>ae7f9d3735c4fc2e9976c21f989c862bf</anchor>
       <arglist>(const math::Vector3R &amp;position) const</arglist>
     </member>
   </compound>
@@ -23144,6 +23471,20 @@
       <arglist>(const Ray &amp;ray, HitProbe &amp;probe, HitDetail *out_detail) const override</arglist>
     </member>
     <member kind="function">
+      <type>void</type>
+      <name>calcPosPdf</name>
+      <anchorfile>classph_1_1_p_lat_long_env_sphere.html</anchorfile>
+      <anchor>a8200d876050a6fc1f08e86b0a2110a87</anchor>
+      <arglist>(PrimitivePosPdfQuery &amp;query) const override</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>genPosSample</name>
+      <anchorfile>classph_1_1_p_lat_long_env_sphere.html</anchorfile>
+      <anchor>ab5b0f9014006aa9d15e6312c6ec46939</anchor>
+      <arglist>(PrimitivePosSampleQuery &amp;query, SampleFlow &amp;sampleFlow, HitProbe &amp;probe) const override</arglist>
+    </member>
+    <member kind="function">
       <type>bool</type>
       <name>mayOverlapVolume</name>
       <anchorfile>classph_1_1_p_lat_long_env_sphere.html</anchorfile>
@@ -23163,41 +23504,6 @@
       <anchorfile>classph_1_1_p_lat_long_env_sphere.html</anchorfile>
       <anchor>a82ef3186774036a140db3979d63d76aa</anchor>
       <arglist>() const override</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>genPosSampleWithObservationPos</name>
-      <anchorfile>classph_1_1_p_lat_long_env_sphere.html</anchorfile>
-      <anchor>af4f31d651dac7eb630d7edb0b82e4bbd</anchor>
-      <arglist>(const math::Vector2R &amp;latLong01, real latLong01Pdf, PrimitivePosSampleQuery &amp;query, HitProbe &amp;probe) const</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>calcPosSamplePdfWithObservationPos</name>
-      <anchorfile>classph_1_1_p_lat_long_env_sphere.html</anchorfile>
-      <anchor>ad2e3e8485fdc877d377c04c5f5ede71a</anchor>
-      <arglist>(const math::Vector2R &amp;latLong01, real latLong01Pdf, PrimitivePosSamplePdfQuery &amp;query, HitProbe &amp;probe) const</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>genPosSampleWithoutObservationPos</name>
-      <anchorfile>classph_1_1_p_lat_long_env_sphere.html</anchorfile>
-      <anchor>acdcd54ccd12934c5e629c73fab8d5ec2</anchor>
-      <arglist>(const math::Vector2R &amp;latLong01, real latLong01Pdf, PrimitivePosSampleQuery &amp;query, SampleFlow &amp;sampleFlow, HitProbe &amp;probe, math::Vector3R *out_unitObservationDir, real *out_pdfW) const</arglist>
-    </member>
-    <member kind="function">
-      <type>bool</type>
-      <name>latLong01ToSurface</name>
-      <anchorfile>classph_1_1_p_lat_long_env_sphere.html</anchorfile>
-      <anchor>a37d92e8b6993df63f170135bb52bf1f9</anchor>
-      <arglist>(const math::Vector2R &amp;latLong01, const math::Vector3R &amp;observationPos, math::Vector3R *out_surface, math::Vector3R *out_unitObservationDir) const</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>latLong01ToSurface</name>
-      <anchorfile>classph_1_1_p_lat_long_env_sphere.html</anchorfile>
-      <anchor>a2a70acd1480d2fd6ea656e840e5f09b9</anchor>
-      <arglist>(const math::Vector2R &amp;latLong01, const std::array&lt; real, 2 &gt; &amp;uniformSample, math::Vector3R *out_surface, math::Vector3R *out_unitObservationDir, real *out_pdfA) const</arglist>
     </member>
   </compound>
   <compound kind="struct">
@@ -24010,10 +24316,10 @@
     </member>
     <member kind="function" virtualness="virtual">
       <type>virtual void</type>
-      <name>calcPosSamplePdfA</name>
+      <name>calcPosPdf</name>
       <anchorfile>classph_1_1_primitive.html</anchorfile>
-      <anchor>a2f4f082548c743ffe1ed80fdc9f060b9</anchor>
-      <arglist>(PrimitivePosSamplePdfQuery &amp;query, HitProbe &amp;probe) const</arglist>
+      <anchor>aa1b961543e99677821a11ccadc588cc9</anchor>
+      <arglist>(PrimitivePosPdfQuery &amp;query) const</arglist>
     </member>
     <member kind="function" virtualness="virtual">
       <type>virtual real</type>
@@ -24021,13 +24327,6 @@
       <anchorfile>classph_1_1_primitive.html</anchorfile>
       <anchor>a2c352873161e8bab85ddb4a86eb489c8</anchor>
       <arglist>() const</arglist>
-    </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual bool</type>
-      <name>uvwToPosition</name>
-      <anchorfile>classph_1_1_primitive.html</anchorfile>
-      <anchor>a5f788c61aabe92e33a80524795c45cc5</anchor>
-      <arglist>(const math::Vector3R &amp;uvw, math::Vector3R *out_position) const</arglist>
     </member>
     <member kind="function" virtualness="virtual">
       <type>virtual const PrimitiveMetadata *</type>
@@ -24183,21 +24482,152 @@
     </member>
   </compound>
   <compound kind="class">
+    <name>ph::PrimitivePosPdfInput</name>
+    <filename>classph_1_1_primitive_pos_pdf_input.html</filename>
+    <member kind="function">
+      <type>void</type>
+      <name>set</name>
+      <anchorfile>classph_1_1_primitive_pos_pdf_input.html</anchorfile>
+      <anchor>a75d768b0c0e10a61170f52d0dc4e608a</anchor>
+      <arglist>(const PrimitivePosSampleInput &amp;posInput, const SurfaceHit &amp;X)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>set</name>
+      <anchorfile>classph_1_1_primitive_pos_pdf_input.html</anchorfile>
+      <anchor>a21ea5e2bc2f4d5b3987bfbba5f220f80</anchor>
+      <arglist>(const DirectEnergyPdfInput &amp;pdfInput, const lta::PDF &amp;uvwPdf={})</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>set</name>
+      <anchorfile>classph_1_1_primitive_pos_pdf_input.html</anchorfile>
+      <anchor>aa2aac8a7436e70a13d1412ae6632bb49</anchor>
+      <arglist>(const SurfaceHit &amp;X, const std::optional&lt; math::Vector3R &gt; &amp;observationPos=std::nullopt, const lta::PDF &amp;uvwPdf={})</arglist>
+    </member>
+    <member kind="function">
+      <type>const SurfaceHit &amp;</type>
+      <name>getX</name>
+      <anchorfile>classph_1_1_primitive_pos_pdf_input.html</anchorfile>
+      <anchor>a71f129c7fa6607cf288fa414486e3715</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>math::Vector3R</type>
+      <name>getPos</name>
+      <anchorfile>classph_1_1_primitive_pos_pdf_input.html</anchorfile>
+      <anchor>a1eda38710b960d6c8820d18d4958d431</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>math::Vector3R</type>
+      <name>getUvw</name>
+      <anchorfile>classph_1_1_primitive_pos_pdf_input.html</anchorfile>
+      <anchor>aa80beab69f9ecc35a846d26eccc8ca01</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>const lta::PDF &amp;</type>
+      <name>getUvwPdf</name>
+      <anchorfile>classph_1_1_primitive_pos_pdf_input.html</anchorfile>
+      <anchor>a3c20a5a7867bed2bfab686f5a1b9a1fa</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>const std::optional&lt; math::Vector3R &gt; &amp;</type>
+      <name>getObservationPos</name>
+      <anchorfile>classph_1_1_primitive_pos_pdf_input.html</anchorfile>
+      <anchor>a52ef9e4eb3e76a6eba3354467f73f03b</anchor>
+      <arglist>() const</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>ph::PrimitivePosPdfOutput</name>
+    <filename>classph_1_1_primitive_pos_pdf_output.html</filename>
+    <member kind="function">
+      <type>void</type>
+      <name>setPdf</name>
+      <anchorfile>classph_1_1_primitive_pos_pdf_output.html</anchorfile>
+      <anchor>aa54a3c2c5b8af38073e53c806afcc5c9</anchor>
+      <arglist>(const lta::PDF &amp;pdf)</arglist>
+    </member>
+    <member kind="function">
+      <type>real</type>
+      <name>getPdfA</name>
+      <anchorfile>classph_1_1_primitive_pos_pdf_output.html</anchorfile>
+      <anchor>a072658c795adaecc13915eb7b5b1c105</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>const lta::PDF &amp;</type>
+      <name>getPdf</name>
+      <anchorfile>classph_1_1_primitive_pos_pdf_output.html</anchorfile>
+      <anchor>addb136b006be104ae6ae29ffd825d063</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>operator bool</name>
+      <anchorfile>classph_1_1_primitive_pos_pdf_output.html</anchorfile>
+      <anchor>ac3f38aecc44b6cf175cbfa8e851f9899</anchor>
+      <arglist>() const</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>ph::PrimitivePosPdfQuery</name>
+    <filename>classph_1_1_primitive_pos_pdf_query.html</filename>
+    <member kind="typedef">
+      <type>PrimitivePosPdfInput</type>
+      <name>Input</name>
+      <anchorfile>classph_1_1_primitive_pos_pdf_query.html</anchorfile>
+      <anchor>aacf9d4e27d50c8946d5fd983bfd1d0c3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>PrimitivePosPdfOutput</type>
+      <name>Output</name>
+      <anchorfile>classph_1_1_primitive_pos_pdf_query.html</anchorfile>
+      <anchor>a201728418f3cbb79652762395e4f8cd7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>PrimitivePosPdfQuery</name>
+      <anchorfile>classph_1_1_primitive_pos_pdf_query.html</anchorfile>
+      <anchor>a41300103b5dcb9912b5c39ebfb784b1a</anchor>
+      <arglist>()=default</arglist>
+    </member>
+    <member kind="variable">
+      <type>Input</type>
+      <name>inputs</name>
+      <anchorfile>classph_1_1_primitive_pos_pdf_query.html</anchorfile>
+      <anchor>a166ecea704ab2328260b0e74511c50f0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>Output</type>
+      <name>outputs</name>
+      <anchorfile>classph_1_1_primitive_pos_pdf_query.html</anchorfile>
+      <anchor>a6ab49cbd8bcf50cd8f603d3d8f4d1c53</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
     <name>ph::PrimitivePosSampleInput</name>
     <filename>classph_1_1_primitive_pos_sample_input.html</filename>
     <member kind="function">
       <type>void</type>
       <name>set</name>
       <anchorfile>classph_1_1_primitive_pos_sample_input.html</anchorfile>
-      <anchor>a18e90a43bab24edfe90f305b0d985ac6</anchor>
-      <arglist>(const Time &amp;time, const math::Vector3R &amp;observationPos)</arglist>
+      <anchor>a0d342752e21121a00d8d545bf2f229b5</anchor>
+      <arglist>(const DirectEnergySampleInput &amp;directInput, const math::Vector3R &amp;uvw={0, 0, 0}, const lta::PDF &amp;uvwPdf={}, bool suggestDir=false)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>set</name>
       <anchorfile>classph_1_1_primitive_pos_sample_input.html</anchorfile>
-      <anchor>aed7a3c41814a94c71378a82f704a7c91</anchor>
-      <arglist>(const Time &amp;time)</arglist>
+      <anchor>a383c346e6440733c06ee85f1a7cd3c0f</anchor>
+      <arglist>(const Time &amp;time, const std::optional&lt; math::Vector3R &gt; &amp;observationPos=std::nullopt, const math::Vector3R &amp;uvw={0, 0, 0}, const lta::PDF &amp;uvwPdf={}, bool suggestDir=false)</arglist>
     </member>
     <member kind="function">
       <type>const Time &amp;</type>
@@ -24213,6 +24643,27 @@
       <anchor>a994dd6f13e557e918e4365be616066f2</anchor>
       <arglist>() const</arglist>
     </member>
+    <member kind="function">
+      <type>const math::Vector3R &amp;</type>
+      <name>getUvw</name>
+      <anchorfile>classph_1_1_primitive_pos_sample_input.html</anchorfile>
+      <anchor>ae735ea8356b1a6aed72c03130fcb1671</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>const lta::PDF &amp;</type>
+      <name>getUvwPdf</name>
+      <anchorfile>classph_1_1_primitive_pos_sample_input.html</anchorfile>
+      <anchor>ac239852d88bdf834c134377c97a661dd</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>suggestDir</name>
+      <anchorfile>classph_1_1_primitive_pos_sample_input.html</anchorfile>
+      <anchor>a182e12f4046a9ff09b7283ba51737321</anchor>
+      <arglist>() const</arglist>
+    </member>
   </compound>
   <compound kind="class">
     <name>ph::PrimitivePosSampleOutput</name>
@@ -24226,10 +24677,17 @@
     </member>
     <member kind="function">
       <type>void</type>
-      <name>setPdfA</name>
+      <name>setPdfPos</name>
       <anchorfile>classph_1_1_primitive_pos_sample_output.html</anchorfile>
-      <anchor>a7c7e2ed2c6d6ba7dffb8a83b2f51f3c1</anchor>
-      <arglist>(real pdfA)</arglist>
+      <anchor>a3484b3684364aef4b1cb3cbfe3ce2171</anchor>
+      <arglist>(const lta::PDF &amp;pdfPos)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setPdfDir</name>
+      <anchorfile>classph_1_1_primitive_pos_sample_output.html</anchorfile>
+      <anchor>a4705b1af3a94291cc50cd4e99374d513</anchor>
+      <arglist>(const lta::PDF &amp;pdfDir)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
@@ -24239,13 +24697,6 @@
       <arglist>(const Ray &amp;observationRay)</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
-      <name>invalidate</name>
-      <anchorfile>classph_1_1_primitive_pos_sample_output.html</anchorfile>
-      <anchor>ac3fa0b07ae0db13c537d2bb240b2de5c</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
       <type>const math::Vector3R &amp;</type>
       <name>getPos</name>
       <anchorfile>classph_1_1_primitive_pos_sample_output.html</anchorfile>
@@ -24253,10 +24704,38 @@
       <arglist>() const</arglist>
     </member>
     <member kind="function">
+      <type>const math::Vector3R &amp;</type>
+      <name>getDir</name>
+      <anchorfile>classph_1_1_primitive_pos_sample_output.html</anchorfile>
+      <anchor>a607a00dfb4a207ca10813aed54178385</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
       <type>real</type>
       <name>getPdfA</name>
       <anchorfile>classph_1_1_primitive_pos_sample_output.html</anchorfile>
       <anchor>aabf309275e64401a9c61c0ccea346fdb</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>real</type>
+      <name>getPdfW</name>
+      <anchorfile>classph_1_1_primitive_pos_sample_output.html</anchorfile>
+      <anchor>addab49805e0e436e5df164a5fc659509</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>const lta::PDF &amp;</type>
+      <name>getPdfPos</name>
+      <anchorfile>classph_1_1_primitive_pos_sample_output.html</anchorfile>
+      <anchor>a4af5ff02126f383b1a36c0b204f773f3</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>const lta::PDF &amp;</type>
+      <name>getPdfDir</name>
+      <anchorfile>classph_1_1_primitive_pos_sample_output.html</anchorfile>
+      <anchor>a71e4a449daeb1e15f62648d852d945f4</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
@@ -24272,116 +24751,6 @@
       <anchorfile>classph_1_1_primitive_pos_sample_output.html</anchorfile>
       <anchor>ad8cc36e1ca031fbfb9a981a61b5c0495</anchor>
       <arglist>() const</arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>ph::PrimitivePosSamplePdfInput</name>
-    <filename>classph_1_1_primitive_pos_sample_pdf_input.html</filename>
-    <member kind="function">
-      <type>void</type>
-      <name>set</name>
-      <anchorfile>classph_1_1_primitive_pos_sample_pdf_input.html</anchorfile>
-      <anchor>a32c8046d119c4bd064e9ea8213dc5eff</anchor>
-      <arglist>(const PrimitivePosSampleOutput &amp;sampleOutput, const SurfaceHit &amp;X)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>set</name>
-      <anchorfile>classph_1_1_primitive_pos_sample_pdf_input.html</anchorfile>
-      <anchor>ae6dcb3bc611251b0653f66681661f152</anchor>
-      <arglist>(const DirectEnergySamplePdfInput &amp;pdfInput)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>set</name>
-      <anchorfile>classph_1_1_primitive_pos_sample_pdf_input.html</anchorfile>
-      <anchor>aaf9e674ec41841e513e8ebf28d699812</anchor>
-      <arglist>(const math::Vector3R &amp;pos, const Ray &amp;observationRay, uint64 faceID)</arglist>
-    </member>
-    <member kind="function">
-      <type>const math::Vector3R &amp;</type>
-      <name>getPos</name>
-      <anchorfile>classph_1_1_primitive_pos_sample_pdf_input.html</anchorfile>
-      <anchor>a6383df9e942eae1104591e7f5f67ee45</anchor>
-      <arglist>() const</arglist>
-    </member>
-    <member kind="function">
-      <type>const Ray &amp;</type>
-      <name>getObservationRay</name>
-      <anchorfile>classph_1_1_primitive_pos_sample_pdf_input.html</anchorfile>
-      <anchor>a872d2e5ab445f3fd13b1f64f0f6d3d75</anchor>
-      <arglist>() const</arglist>
-    </member>
-    <member kind="function">
-      <type>uint64</type>
-      <name>getFaceID</name>
-      <anchorfile>classph_1_1_primitive_pos_sample_pdf_input.html</anchorfile>
-      <anchor>a3c3b7686f752aa78e360e239fcaf4a3f</anchor>
-      <arglist>() const</arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>ph::PrimitivePosSamplePdfOutput</name>
-    <filename>classph_1_1_primitive_pos_sample_pdf_output.html</filename>
-    <member kind="function">
-      <type>void</type>
-      <name>setPdfA</name>
-      <anchorfile>classph_1_1_primitive_pos_sample_pdf_output.html</anchorfile>
-      <anchor>a4450147945a58a5e18ce1e0ac947b59d</anchor>
-      <arglist>(real pdfA)</arglist>
-    </member>
-    <member kind="function">
-      <type>real</type>
-      <name>getPdfA</name>
-      <anchorfile>classph_1_1_primitive_pos_sample_pdf_output.html</anchorfile>
-      <anchor>a8068b957dda5fb6afd553720e7a31bf2</anchor>
-      <arglist>() const</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>operator bool</name>
-      <anchorfile>classph_1_1_primitive_pos_sample_pdf_output.html</anchorfile>
-      <anchor>a2b11b7a355d392c9f3c1f33cfb23ac63</anchor>
-      <arglist>() const</arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>ph::PrimitivePosSamplePdfQuery</name>
-    <filename>classph_1_1_primitive_pos_sample_pdf_query.html</filename>
-    <member kind="typedef">
-      <type>PrimitivePosSamplePdfInput</type>
-      <name>Input</name>
-      <anchorfile>classph_1_1_primitive_pos_sample_pdf_query.html</anchorfile>
-      <anchor>aa77f32705a56f67df3ba13c5e14138d7</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="typedef">
-      <type>PrimitivePosSamplePdfOutput</type>
-      <name>Output</name>
-      <anchorfile>classph_1_1_primitive_pos_sample_pdf_query.html</anchorfile>
-      <anchor>afd189bc3a32295ec7299570a113a8791</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>PrimitivePosSamplePdfQuery</name>
-      <anchorfile>classph_1_1_primitive_pos_sample_pdf_query.html</anchorfile>
-      <anchor>a85d594135612048f0d223d9d7275eaa1</anchor>
-      <arglist>()=default</arglist>
-    </member>
-    <member kind="variable">
-      <type>Input</type>
-      <name>inputs</name>
-      <anchorfile>classph_1_1_primitive_pos_sample_pdf_query.html</anchorfile>
-      <anchor>ac44da9ec176c3a1df5fbbf5070a58726</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>Output</type>
-      <name>outputs</name>
-      <anchorfile>classph_1_1_primitive_pos_sample_pdf_query.html</anchorfile>
-      <anchor>a7514ad0899f189799b0a850375900015</anchor>
-      <arglist></arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -24605,10 +24974,10 @@
     </member>
     <member kind="function">
       <type>void</type>
-      <name>calcPosSamplePdfA</name>
+      <name>calcPosPdf</name>
       <anchorfile>classph_1_1_p_triangle.html</anchorfile>
-      <anchor>ae2742ff4e361c71241aeb4e3bb59138e</anchor>
-      <arglist>(PrimitivePosSamplePdfQuery &amp;query, HitProbe &amp;probe) const override</arglist>
+      <anchor>afc95e249741ee9b00b003ef820794366</anchor>
+      <arglist>(PrimitivePosPdfQuery &amp;query) const override</arglist>
     </member>
     <member kind="function">
       <type>real</type>
@@ -25077,9 +25446,9 @@
     </member>
     <member kind="function">
       <type>void</type>
-      <name>setDirection</name>
+      <name>setDir</name>
       <anchorfile>classph_1_1_ray.html</anchorfile>
-      <anchor>a956a3031b54003096ba44823f1a08bcf</anchor>
+      <anchor>a564cdc532939db2f851e1f2ec7773cc8</anchor>
       <arglist>(const math::Vector3R &amp;dir)</arglist>
     </member>
     <member kind="function">
@@ -25112,9 +25481,9 @@
     </member>
     <member kind="function">
       <type>const math::Vector3R &amp;</type>
-      <name>getDirection</name>
+      <name>getDir</name>
       <anchorfile>classph_1_1_ray.html</anchorfile>
-      <anchor>a3f62b201c0015a647611282280130b52</anchor>
+      <anchor>a3c80f865b8ba404194a5afc268fe9651</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
@@ -25161,9 +25530,9 @@
     </member>
     <member kind="function">
       <type>const math::Vector3R &amp;</type>
-      <name>getDirection</name>
+      <name>getDir</name>
       <anchorfile>classph_1_1_ray.html</anchorfile>
-      <anchor>a3f62b201c0015a647611282280130b52</anchor>
+      <anchor>a3c80f865b8ba404194a5afc268fe9651</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
@@ -27592,8 +27961,8 @@
       <type>const Emitter *</type>
       <name>pickEmitter</name>
       <anchorfile>classph_1_1_scene.html</anchorfile>
-      <anchor>a64cf0bdf2320c90b343fcfa2a35bc070</anchor>
-      <arglist>(SampleFlow &amp;sampleFlow, real *const out_PDF) const</arglist>
+      <anchor>af2efec3c93d76b3dfc669d360acc5f33</anchor>
+      <arglist>(SampleFlow &amp;sampleFlow, real *out_PDF) const</arglist>
     </member>
     <member kind="function">
       <type>void</type>
@@ -27604,10 +27973,10 @@
     </member>
     <member kind="function">
       <type>void</type>
-      <name>calcDirectSamplePdfW</name>
+      <name>calcDirectPdf</name>
       <anchorfile>classph_1_1_scene.html</anchorfile>
-      <anchor>a2fb9579e47fa677e64a740e8f46437ff</anchor>
-      <arglist>(DirectEnergySamplePdfQuery &amp;query, HitProbe &amp;probe) const</arglist>
+      <anchor>a71c9457defa48599796d88951a185f67</anchor>
+      <arglist>(DirectEnergyPdfQuery &amp;query) const</arglist>
     </member>
     <member kind="function">
       <type>void</type>
@@ -30251,31 +30620,31 @@
     <base>ph::UvwMapper</base>
     <member kind="function">
       <type>void</type>
-      <name>positionToUvw</name>
+      <name>posToUvw</name>
       <anchorfile>classph_1_1_spherical_mapper.html</anchorfile>
-      <anchor>a34ddc6badaa64db007bf643bd5e5f1d6</anchor>
-      <arglist>(const math::Vector3R &amp;position, math::Vector3R *out_uvw) const override</arglist>
+      <anchor>ad7320e257efdd9cd70bd83bd5da2949b</anchor>
+      <arglist>(const math::Vector3R &amp;pos, math::Vector3R *out_uvw) const override</arglist>
     </member>
     <member kind="function">
       <type>void</type>
-      <name>directionToUvw</name>
+      <name>dirToUvw</name>
       <anchorfile>classph_1_1_spherical_mapper.html</anchorfile>
-      <anchor>ad792bdba2d8e5fb52968aa7e203d8692</anchor>
-      <arglist>(const math::Vector3R &amp;direction, math::Vector3R *out_uvw) const override</arglist>
+      <anchor>a1eb6471215c77e64e2ad7cbd9ea77740</anchor>
+      <arglist>(const math::Vector3R &amp;dir, math::Vector3R *out_uvw) const override</arglist>
     </member>
     <member kind="function">
       <type>bool</type>
-      <name>uvwToPosition</name>
+      <name>uvwToPos</name>
       <anchorfile>classph_1_1_spherical_mapper.html</anchorfile>
-      <anchor>a54e90f9aebb6b3b9fd3618920879055b</anchor>
-      <arglist>(const math::Vector3R &amp;uvw, math::Vector3R *out_position) const override</arglist>
+      <anchor>a7a5e0225f7f01598b7be04ef0a4ec6b3</anchor>
+      <arglist>(const math::Vector3R &amp;uvw, math::Vector3R *out_pos) const override</arglist>
     </member>
     <member kind="function">
       <type>bool</type>
-      <name>uvwToDirection</name>
+      <name>uvwToDir</name>
       <anchorfile>classph_1_1_spherical_mapper.html</anchorfile>
-      <anchor>af2b137a426965864066d8febcebbbe49</anchor>
-      <arglist>(const math::Vector3R &amp;uvw, math::Vector3R *out_direction) const override</arglist>
+      <anchor>a992ed753973c1a6ae9fbb49d8100dfc5</anchor>
+      <arglist>(const math::Vector3R &amp;uvw, math::Vector3R *out_dir) const override</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -30952,15 +31321,15 @@
       <type></type>
       <name>SurfaceEmitter</name>
       <anchorfile>classph_1_1_surface_emitter.html</anchorfile>
-      <anchor>ac62fecae3b6bf783389adce9c795e850</anchor>
-      <arglist>()</arglist>
+      <anchor>a93088ef770938c276ce9633edfd47117</anchor>
+      <arglist>(EmitterFeatureSet featureSet=defaultFeatureSet)</arglist>
     </member>
     <member kind="function" virtualness="pure">
       <type>void</type>
-      <name>evalEmittedRadiance</name>
+      <name>evalEmittedEnergy</name>
       <anchorfile>classph_1_1_surface_emitter.html</anchorfile>
-      <anchor>ad9097a8ce8eb793639643f901ccf8e38</anchor>
-      <arglist>(const SurfaceHit &amp;X, math::Spectrum *out_radiance) const override=0</arglist>
+      <anchor>ae9c5e92b9d2e808c2bb716ce77f2d703</anchor>
+      <arglist>(const SurfaceHit &amp;Xe, math::Spectrum *out_energy) const override=0</arglist>
     </member>
     <member kind="function" virtualness="pure">
       <type>void</type>
@@ -30971,10 +31340,10 @@
     </member>
     <member kind="function" virtualness="pure">
       <type>void</type>
-      <name>calcDirectSamplePdfW</name>
+      <name>calcDirectPdf</name>
       <anchorfile>classph_1_1_surface_emitter.html</anchorfile>
-      <anchor>a7b195e0362859e2da48c745b4e0ce9f2</anchor>
-      <arglist>(DirectEnergySamplePdfQuery &amp;query, HitProbe &amp;probe) const override=0</arglist>
+      <anchor>a1ab7e793cee461e021ff57e4fd5a7a05</anchor>
+      <arglist>(DirectEnergyPdfQuery &amp;query) const override=0</arglist>
     </member>
     <member kind="function" virtualness="pure">
       <type>void</type>
@@ -31001,15 +31370,15 @@
       <type>bool</type>
       <name>canEmit</name>
       <anchorfile>classph_1_1_surface_emitter.html</anchorfile>
-      <anchor>afd11a886f0eb29b216d11da16e6dd787</anchor>
-      <arglist>(const math::Vector3R &amp;emitDirection, const math::Vector3R &amp;N) const</arglist>
+      <anchor>abdb18866afce7af88f3494742cab422e</anchor>
+      <arglist>(const math::Vector3R &amp;emitDir, const math::Vector3R &amp;N) const</arglist>
     </member>
     <member kind="function" protection="protected">
       <type>void</type>
-      <name>calcDirectSamplePdfWForSingleSurface</name>
+      <name>calcDirectPdfWForSrcPrimitive</name>
       <anchorfile>classph_1_1_surface_emitter.html</anchorfile>
-      <anchor>ad1b88dc12fd9cd1aec6911f4306f1c71</anchor>
-      <arglist>(DirectEnergySamplePdfQuery &amp;query, HitProbe &amp;probe) const</arglist>
+      <anchor>a202e5a1e27951eda31d37d8b708f0bd8</anchor>
+      <arglist>(DirectEnergyPdfQuery &amp;query, const lta::PDF &amp;pickPdf=lta::PDF::D(1), const lta::PDF &amp;emitPosUvwPdf={}) const</arglist>
     </member>
     <member kind="variable" protection="protected">
       <type>bool</type>
@@ -31115,9 +31484,9 @@
     </member>
     <member kind="function">
       <type>math::Vector3R</type>
-      <name>getPosition</name>
+      <name>getPos</name>
       <anchorfile>classph_1_1_surface_hit.html</anchorfile>
-      <anchor>ab9436d2c3f6530722d402edb487f87f1</anchor>
+      <anchor>ab6da2653e522e20b368900dd55121362</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
@@ -31377,16 +31746,16 @@
     </member>
     <member kind="function">
       <type>void</type>
-      <name>calcBsdfSample</name>
+      <name>genBsdfSample</name>
       <anchorfile>classph_1_1_surface_optics.html</anchorfile>
-      <anchor>aedd40a9bb65f592940538623d1acbcbd</anchor>
+      <anchor>a52f55e3a73d1ab32b412ce6a4f328965</anchor>
       <arglist>(BsdfSampleQuery &amp;sample, SampleFlow &amp;sampleFlow) const</arglist>
     </member>
     <member kind="function">
       <type>void</type>
-      <name>calcBsdfSamplePdfW</name>
+      <name>calcBsdfPdf</name>
       <anchorfile>classph_1_1_surface_optics.html</anchorfile>
-      <anchor>a603130ce2c84dc114a1f0693302c6394</anchor>
+      <anchor>aadd9f9f59af50d27cef10b87aab192b6</anchor>
       <arglist>(BsdfPdfQuery &amp;pdfQuery) const</arglist>
     </member>
     <member kind="function">
@@ -33125,6 +33494,34 @@
       <anchor>a4535032412a9de38c30eb5308b1d9769</anchor>
       <arglist>(const Derived &amp;lowerBound, const Derived &amp;upperBound)</arglist>
     </member>
+    <member kind="function" protection="protected">
+      <type>Derived</type>
+      <name>safeClamp</name>
+      <anchorfile>classph_1_1math_1_1_t_arithmetic_array_base.html</anchorfile>
+      <anchor>a5945374aaaee95ac178306ee3bcf1d5a</anchor>
+      <arglist>(T lowerBound, T upperBound) const</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>Derived &amp;</type>
+      <name>safeClampLocal</name>
+      <anchorfile>classph_1_1math_1_1_t_arithmetic_array_base.html</anchorfile>
+      <anchor>a54908315882651cc81ddbfeef0563c60</anchor>
+      <arglist>(T lowerBound, T upperBound)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>Derived</type>
+      <name>safeClamp</name>
+      <anchorfile>classph_1_1math_1_1_t_arithmetic_array_base.html</anchorfile>
+      <anchor>a877ad009e538b850c950464f73471e34</anchor>
+      <arglist>(const Derived &amp;lowerBound, const Derived &amp;upperBound) const</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>Derived &amp;</type>
+      <name>safeClampLocal</name>
+      <anchorfile>classph_1_1math_1_1_t_arithmetic_array_base.html</anchorfile>
+      <anchor>a666030e870acbd9666360893ca2049ce</anchor>
+      <arglist>(const Derived &amp;lowerBound, const Derived &amp;upperBound)</arglist>
+    </member>
     <member kind="variable" protection="protected">
       <type>std::array&lt; T, N &gt;</type>
       <name>m</name>
@@ -33165,6 +33562,34 @@
       <name>clampLocal</name>
       <anchorfile>classph_1_1math_1_1_t_arithmetic_array_base.html</anchorfile>
       <anchor>a4535032412a9de38c30eb5308b1d9769</anchor>
+      <arglist>(const Derived &amp;lowerBound, const Derived &amp;upperBound)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>Derived</type>
+      <name>safeClamp</name>
+      <anchorfile>classph_1_1math_1_1_t_arithmetic_array_base.html</anchorfile>
+      <anchor>a5945374aaaee95ac178306ee3bcf1d5a</anchor>
+      <arglist>(T lowerBound, T upperBound) const</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>Derived &amp;</type>
+      <name>safeClampLocal</name>
+      <anchorfile>classph_1_1math_1_1_t_arithmetic_array_base.html</anchorfile>
+      <anchor>a54908315882651cc81ddbfeef0563c60</anchor>
+      <arglist>(T lowerBound, T upperBound)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>Derived</type>
+      <name>safeClamp</name>
+      <anchorfile>classph_1_1math_1_1_t_arithmetic_array_base.html</anchorfile>
+      <anchor>a877ad009e538b850c950464f73471e34</anchor>
+      <arglist>(const Derived &amp;lowerBound, const Derived &amp;upperBound) const</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>Derived &amp;</type>
+      <name>safeClampLocal</name>
+      <anchorfile>classph_1_1math_1_1_t_arithmetic_array_base.html</anchorfile>
+      <anchor>a666030e870acbd9666360893ca2049ce</anchor>
       <arglist>(const Derived &amp;lowerBound, const Derived &amp;upperBound)</arglist>
     </member>
   </compound>
@@ -34539,8 +34964,8 @@
       <type></type>
       <name>TDecomposedTransform</name>
       <anchorfile>classph_1_1math_1_1_t_decomposed_transform.html</anchorfile>
-      <anchor>a9b4a0edc95e439bde4cc4d5ebe7d1165</anchor>
-      <arglist>(const TVector3&lt; T &gt; &amp;position, const TQuaternion&lt; T &gt; &amp;rotation, const TVector3&lt; T &gt; &amp;scale)</arglist>
+      <anchor>a4bf145f0350aa98124db15fb760c4a48</anchor>
+      <arglist>(const TVector3&lt; T &gt; &amp;pos, const TQuaternion&lt; T &gt; &amp;rot, const TVector3&lt; T &gt; &amp;scale)</arglist>
     </member>
     <member kind="function">
       <type>TDecomposedTransform &amp;</type>
@@ -34560,8 +34985,8 @@
       <type>TDecomposedTransform</type>
       <name>rotate</name>
       <anchorfile>classph_1_1math_1_1_t_decomposed_transform.html</anchorfile>
-      <anchor>ae94500cb6f789a57105dc7c287343756</anchor>
-      <arglist>(const TQuaternion&lt; T &gt; &amp;rotation)</arglist>
+      <anchor>a143df51b5a26df9b8a313cf0eaa577bb</anchor>
+      <arglist>(const TQuaternion&lt; T &gt; &amp;rot)</arglist>
     </member>
     <member kind="function">
       <type>TDecomposedTransform &amp;</type>
@@ -34586,17 +35011,17 @@
     </member>
     <member kind="function">
       <type>TDecomposedTransform &amp;</type>
-      <name>setPosition</name>
+      <name>setPos</name>
       <anchorfile>classph_1_1math_1_1_t_decomposed_transform.html</anchorfile>
-      <anchor>a7be6adb9e40b1c5419661f45df560d5a</anchor>
-      <arglist>(const TVector3&lt; T &gt; &amp;position)</arglist>
+      <anchor>ad517325a624f347514d7ad1c12fcd2aa</anchor>
+      <arglist>(const TVector3&lt; T &gt; &amp;pos)</arglist>
     </member>
     <member kind="function">
       <type>TDecomposedTransform &amp;</type>
-      <name>setRotation</name>
+      <name>setRot</name>
       <anchorfile>classph_1_1math_1_1_t_decomposed_transform.html</anchorfile>
-      <anchor>ae5cb9740c481d3589b5adb74e486d84b</anchor>
-      <arglist>(const TQuaternion&lt; T &gt; &amp;rotation)</arglist>
+      <anchor>a82c6ce3790e83341846a17557b0e244f</anchor>
+      <arglist>(const TQuaternion&lt; T &gt; &amp;rot)</arglist>
     </member>
     <member kind="function">
       <type>TDecomposedTransform &amp;</type>
@@ -34614,16 +35039,16 @@
     </member>
     <member kind="function">
       <type>TVector3&lt; T &gt;</type>
-      <name>getPosition</name>
+      <name>getPos</name>
       <anchorfile>classph_1_1math_1_1_t_decomposed_transform.html</anchorfile>
-      <anchor>ae26bddbc1f6f188a7bfd099bfea396b9</anchor>
+      <anchor>ae86239944148d5af53d9a257414361f5</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
       <type>TQuaternion&lt; T &gt;</type>
-      <name>getRotation</name>
+      <name>getRot</name>
       <anchorfile>classph_1_1math_1_1_t_decomposed_transform.html</anchorfile>
-      <anchor>aa1141eb212fbfc3f8e6c4d1f73354ec4</anchor>
+      <anchor>a3632ded414cc31be81565376111faa56</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
@@ -36842,8 +37267,8 @@
       <type></type>
       <name>TLineSegment</name>
       <anchorfile>classph_1_1math_1_1_t_line_segment.html</anchorfile>
-      <anchor>a951fb411f996f13e8e886e47adf416f0</anchor>
-      <arglist>(const TVector3&lt; T &gt; &amp;origin, const TVector3&lt; T &gt; &amp;direction, T minT, T maxT)</arglist>
+      <anchor>a57474330aa822982543e7e84395615a5</anchor>
+      <arglist>(const TVector3&lt; T &gt; &amp;origin, const TVector3&lt; T &gt; &amp;dir, T minT, T maxT)</arglist>
     </member>
     <member kind="function">
       <type>TLineSegment &amp;</type>
@@ -36889,9 +37314,9 @@
     </member>
     <member kind="function">
       <type>void</type>
-      <name>setDirection</name>
+      <name>setDir</name>
       <anchorfile>classph_1_1math_1_1_t_line_segment.html</anchorfile>
-      <anchor>a3e300aa4e2f90096cee0e846f7c97ea0</anchor>
+      <anchor>a83d9e7807d94d76ae434e96b93b38a91</anchor>
       <arglist>(const TVector3&lt; T &gt; &amp;dir)</arglist>
     </member>
     <member kind="function">
@@ -36903,9 +37328,9 @@
     </member>
     <member kind="function">
       <type>const TVector3&lt; T &gt; &amp;</type>
-      <name>getDirection</name>
+      <name>getDir</name>
       <anchorfile>classph_1_1math_1_1_t_line_segment.html</anchorfile>
-      <anchor>a385cef7e7ba5c22d61e0f9f55a661608</anchor>
+      <anchor>a82d600951a74de4eec8a63baabe282e8</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
@@ -36959,9 +37384,9 @@
     </member>
     <member kind="function">
       <type>const TVector3&lt; T &gt; &amp;</type>
-      <name>getDirection</name>
+      <name>getDir</name>
       <anchorfile>classph_1_1math_1_1_t_line_segment.html</anchorfile>
-      <anchor>a385cef7e7ba5c22d61e0f9f55a661608</anchor>
+      <anchor>a82d600951a74de4eec8a63baabe282e8</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
@@ -37736,10 +38161,10 @@
     </member>
     <member kind="function">
       <type>void</type>
-      <name>calcPosSamplePdfA</name>
+      <name>calcPosPdf</name>
       <anchorfile>classph_1_1_t_meta_injection_primitive.html</anchorfile>
-      <anchor>a25665086299fbbfa7e1d71b67e6e2b36</anchor>
-      <arglist>(PrimitivePosSamplePdfQuery &amp;query, HitProbe &amp;probe) const override</arglist>
+      <anchor>a293fc1e42d62b1df14afef77797dc600</anchor>
+      <arglist>(PrimitivePosPdfQuery &amp;query) const override</arglist>
     </member>
     <member kind="function">
       <type>real</type>
@@ -37747,13 +38172,6 @@
       <anchorfile>classph_1_1_t_meta_injection_primitive.html</anchorfile>
       <anchor>a929a93a8cf18107053441a979252f582</anchor>
       <arglist>() const override</arglist>
-    </member>
-    <member kind="function">
-      <type>bool</type>
-      <name>uvwToPosition</name>
-      <anchorfile>classph_1_1_t_meta_injection_primitive.html</anchorfile>
-      <anchor>ac66da1913eb9b1cc8a59928f12c6278e</anchor>
-      <arglist>(const math::Vector3R &amp;uvw, math::Vector3R *const out_position) const override</arglist>
     </member>
     <member kind="function">
       <type>const PrimitiveMetadata *</type>
@@ -37827,14 +38245,14 @@
     </member>
   </compound>
   <compound kind="class">
-    <name>ph::lta::TMis</name>
-    <filename>classph_1_1lta_1_1_t_mis.html</filename>
-    <templarg>EMisStyle STYLE</templarg>
+    <name>ph::lta::TMIS</name>
+    <filename>classph_1_1lta_1_1_t_m_i_s.html</filename>
+    <templarg>EMISStyle STYLE</templarg>
     <member kind="function">
       <type>real</type>
       <name>weight</name>
-      <anchorfile>classph_1_1lta_1_1_t_mis.html</anchorfile>
-      <anchor>acd4456d4d455e606c2b635b2ec62014d</anchor>
+      <anchorfile>classph_1_1lta_1_1_t_m_i_s.html</anchorfile>
+      <anchor>abb6b32ed2c4b67f4b3be64011f309676</anchor>
       <arglist>(const real pdf0, const real pdf1) const</arglist>
     </member>
   </compound>
@@ -39498,17 +39916,10 @@
     </member>
     <member kind="function">
       <type>void</type>
-      <name>calcPosSamplePdfA</name>
+      <name>calcPosPdf</name>
       <anchorfile>classph_1_1_transformed_primitive.html</anchorfile>
-      <anchor>a07040bb60533c6a0282454290df26d08</anchor>
-      <arglist>(PrimitivePosSamplePdfQuery &amp;query, HitProbe &amp;probe) const override</arglist>
-    </member>
-    <member kind="function">
-      <type>bool</type>
-      <name>uvwToPosition</name>
-      <anchorfile>classph_1_1_transformed_primitive.html</anchorfile>
-      <anchor>af3c733f69962ac9686af531b6d4d80ca</anchor>
-      <arglist>(const math::Vector3R &amp;uvw, math::Vector3R *out_position) const override</arglist>
+      <anchor>af05b71bdeb8fcc9d9be965bf6e3bb370</anchor>
+      <arglist>(PrimitivePosPdfQuery &amp;query) const override</arglist>
     </member>
     <member kind="function">
       <type>real</type>
@@ -39530,31 +39941,31 @@
     <filename>classph_1_1_transform_info.html</filename>
     <member kind="function">
       <type>TransformInfo &amp;</type>
-      <name>setPosition</name>
+      <name>setPos</name>
       <anchorfile>classph_1_1_transform_info.html</anchorfile>
-      <anchor>a4b50024a41ed218063365a73f33bf679</anchor>
+      <anchor>ae2b7e7a410a7d6438c4c66f198b84087</anchor>
       <arglist>(real x, real y, real z)</arglist>
     </member>
     <member kind="function">
       <type>TransformInfo &amp;</type>
-      <name>setPosition</name>
+      <name>setPos</name>
       <anchorfile>classph_1_1_transform_info.html</anchorfile>
-      <anchor>af16dbd22337aef05d5e694647e2e42ff</anchor>
-      <arglist>(const math::Vector3R &amp;position)</arglist>
+      <anchor>a99d5c8f281ac4f1c7a17eba9858a3b57</anchor>
+      <arglist>(const math::Vector3R &amp;pos)</arglist>
     </member>
     <member kind="function">
       <type>TransformInfo &amp;</type>
-      <name>setRotation</name>
+      <name>setRot</name>
       <anchorfile>classph_1_1_transform_info.html</anchorfile>
-      <anchor>a64eed943df8f2f4041efa0a2bbca586a</anchor>
+      <anchor>a48f7355ce186b95ee2385be1be1864a9</anchor>
       <arglist>(const math::Vector3R &amp;axis, real degrees)</arglist>
     </member>
     <member kind="function">
       <type>TransformInfo &amp;</type>
-      <name>setRotation</name>
+      <name>setRot</name>
       <anchorfile>classph_1_1_transform_info.html</anchorfile>
-      <anchor>ae4b2790ce7f812de6750544ab20446ff</anchor>
-      <arglist>(const math::QuaternionR &amp;rotation)</arglist>
+      <anchor>a6767f21ff35035b00d17570022de2d91</anchor>
+      <arglist>(const math::QuaternionR &amp;rot)</arglist>
     </member>
     <member kind="function">
       <type>TransformInfo &amp;</type>
@@ -39602,8 +40013,8 @@
       <type>TransformInfo &amp;</type>
       <name>rotate</name>
       <anchorfile>classph_1_1_transform_info.html</anchorfile>
-      <anchor>a7cc8cb47093fd06eb9ddcf76bf416ad6</anchor>
-      <arglist>(const math::QuaternionR &amp;additionalRotation)</arglist>
+      <anchor>a3c90ff24adf5821c62e13a8848d040ac</anchor>
+      <arglist>(const math::QuaternionR &amp;additionalRot)</arglist>
     </member>
     <member kind="function">
       <type>TransformInfo &amp;</type>
@@ -39628,16 +40039,16 @@
     </member>
     <member kind="function">
       <type>math::Vector3R</type>
-      <name>getPosition</name>
+      <name>getPos</name>
       <anchorfile>classph_1_1_transform_info.html</anchorfile>
-      <anchor>aa6443717068968e60d0e2ec2749741b8</anchor>
+      <anchor>a7561ab1af66f735c5e2e1bc2fc12eb30</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
       <type>math::QuaternionR</type>
-      <name>getRotation</name>
+      <name>getRot</name>
       <anchorfile>classph_1_1_transform_info.html</anchorfile>
-      <anchor>a11a27259ebb2ce94d06bcd5a3177ddf2</anchor>
+      <anchor>a014d806cdce896538f9543661205c0b8</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
@@ -43487,6 +43898,34 @@
     </member>
     <member kind="function">
       <type>Derived</type>
+      <name>safeClamp</name>
+      <anchorfile>classph_1_1math_1_1_t_spectrum_base.html</anchorfile>
+      <anchor>a5945374aaaee95ac178306ee3bcf1d5a</anchor>
+      <arglist>(T lowerBound, T upperBound) const</arglist>
+    </member>
+    <member kind="function">
+      <type>Derived</type>
+      <name>safeClamp</name>
+      <anchorfile>classph_1_1math_1_1_t_spectrum_base.html</anchorfile>
+      <anchor>a877ad009e538b850c950464f73471e34</anchor>
+      <arglist>(const Derived &amp;lowerBound, const Derived &amp;upperBound) const</arglist>
+    </member>
+    <member kind="function">
+      <type>Derived &amp;</type>
+      <name>safeClampLocal</name>
+      <anchorfile>classph_1_1math_1_1_t_spectrum_base.html</anchorfile>
+      <anchor>a54908315882651cc81ddbfeef0563c60</anchor>
+      <arglist>(T lowerBound, T upperBound)</arglist>
+    </member>
+    <member kind="function">
+      <type>Derived &amp;</type>
+      <name>safeClampLocal</name>
+      <anchorfile>classph_1_1math_1_1_t_spectrum_base.html</anchorfile>
+      <anchor>a666030e870acbd9666360893ca2049ce</anchor>
+      <arglist>(const Derived &amp;lowerBound, const Derived &amp;upperBound)</arglist>
+    </member>
+    <member kind="function">
+      <type>Derived</type>
       <name>abs</name>
       <anchorfile>classph_1_1math_1_1_t_spectrum_base.html</anchorfile>
       <anchor>a9dc304b7c2933c68133bf76c8683b4d2</anchor>
@@ -46030,6 +46469,34 @@
     </member>
     <member kind="function">
       <type>Derived</type>
+      <name>safeClamp</name>
+      <anchorfile>classph_1_1math_1_1_t_vector_n_base.html</anchorfile>
+      <anchor>a5945374aaaee95ac178306ee3bcf1d5a</anchor>
+      <arglist>(T lowerBound, T upperBound) const</arglist>
+    </member>
+    <member kind="function">
+      <type>Derived</type>
+      <name>safeClamp</name>
+      <anchorfile>classph_1_1math_1_1_t_vector_n_base.html</anchorfile>
+      <anchor>a877ad009e538b850c950464f73471e34</anchor>
+      <arglist>(const Derived &amp;lowerBound, const Derived &amp;upperBound) const</arglist>
+    </member>
+    <member kind="function">
+      <type>Derived &amp;</type>
+      <name>safeClampLocal</name>
+      <anchorfile>classph_1_1math_1_1_t_vector_n_base.html</anchorfile>
+      <anchor>a54908315882651cc81ddbfeef0563c60</anchor>
+      <arglist>(T lowerBound, T upperBound)</arglist>
+    </member>
+    <member kind="function">
+      <type>Derived &amp;</type>
+      <name>safeClampLocal</name>
+      <anchorfile>classph_1_1math_1_1_t_vector_n_base.html</anchorfile>
+      <anchor>a666030e870acbd9666360893ca2049ce</anchor>
+      <arglist>(const Derived &amp;lowerBound, const Derived &amp;upperBound)</arglist>
+    </member>
+    <member kind="function">
+      <type>Derived</type>
       <name>abs</name>
       <anchorfile>classph_1_1math_1_1_t_vector_n_base.html</anchorfile>
       <anchor>a9dc304b7c2933c68133bf76c8683b4d2</anchor>
@@ -46551,31 +47018,31 @@
     </member>
     <member kind="function" virtualness="pure">
       <type>virtual void</type>
-      <name>positionToUvw</name>
+      <name>posToUvw</name>
       <anchorfile>classph_1_1_uvw_mapper.html</anchorfile>
-      <anchor>a8a3841c5cc97b74fa7e7f8c2f123fef1</anchor>
-      <arglist>(const math::Vector3R &amp;position, math::Vector3R *out_uvw) const =0</arglist>
+      <anchor>af0947bf95d083e9b80366c8a45244981</anchor>
+      <arglist>(const math::Vector3R &amp;pos, math::Vector3R *out_uvw) const =0</arglist>
     </member>
     <member kind="function" virtualness="virtual">
       <type>virtual void</type>
-      <name>directionToUvw</name>
+      <name>dirToUvw</name>
       <anchorfile>classph_1_1_uvw_mapper.html</anchorfile>
-      <anchor>a2492c824219bc48242b54a3a4808a78c</anchor>
-      <arglist>(const math::Vector3R &amp;direction, math::Vector3R *out_uvw) const</arglist>
+      <anchor>abb742ae00d391e1ef7bcae3ca3689964</anchor>
+      <arglist>(const math::Vector3R &amp;dir, math::Vector3R *out_uvw) const</arglist>
     </member>
     <member kind="function" virtualness="virtual">
       <type>virtual bool</type>
-      <name>uvwToPosition</name>
+      <name>uvwToPos</name>
       <anchorfile>classph_1_1_uvw_mapper.html</anchorfile>
-      <anchor>a171134f6193bf379028ea2dbdcd46b1b</anchor>
-      <arglist>(const math::Vector3R &amp;uvw, math::Vector3R *out_position) const</arglist>
+      <anchor>a8c979067f00f5d573ef3d7cbf9a7f6a0</anchor>
+      <arglist>(const math::Vector3R &amp;uvw, math::Vector3R *out_pos) const</arglist>
     </member>
     <member kind="function" virtualness="virtual">
       <type>virtual bool</type>
-      <name>uvwToDirection</name>
+      <name>uvwToDir</name>
       <anchorfile>classph_1_1_uvw_mapper.html</anchorfile>
-      <anchor>af2ca5ae7e6da26efd840f4757d28b20f</anchor>
-      <arglist>(const math::Vector3R &amp;uvw, math::Vector3R *out_direction) const</arglist>
+      <anchor>aff92783b50ae6005683c47124a54bddb</anchor>
+      <arglist>(const math::Vector3R &amp;uvw, math::Vector3R *out_dir) const</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -47745,11 +48212,12 @@
     <class kind="class">ph::DielectricFresnel</class>
     <class kind="class">ph::DielectricInterfaceInfo</class>
     <class kind="class">ph::DiffuseSurfaceEmitter</class>
+    <class kind="class">ph::DiffuseSurfaceEmitterBase</class>
+    <class kind="class">ph::DirectEnergyPdfInput</class>
+    <class kind="class">ph::DirectEnergyPdfOutput</class>
+    <class kind="class">ph::DirectEnergyPdfQuery</class>
     <class kind="class">ph::DirectEnergySampleInput</class>
     <class kind="class">ph::DirectEnergySampleOutput</class>
-    <class kind="class">ph::DirectEnergySamplePdfInput</class>
-    <class kind="class">ph::DirectEnergySamplePdfOutput</class>
-    <class kind="class">ph::DirectEnergySamplePdfQuery</class>
     <class kind="class">ph::DirectEnergySampleQuery</class>
     <class kind="struct">ph::DomeRadianceFunctionInfo</class>
     <class kind="struct">ph::EmbeddedPrimitiveMetaGetter</class>
@@ -47796,6 +48264,7 @@
     <class kind="class">ph::GradientImage</class>
     <class kind="class">ph::GRectangle</class>
     <class kind="class">ph::GridScheduler</class>
+    <class kind="class">ph::GroupedDiffuseSurfaceEmitter</class>
     <class kind="class">ph::GSphere</class>
     <class kind="class">ph::GTriangle</class>
     <class kind="class">ph::GTriangleMesh</class>
@@ -47870,7 +48339,6 @@
     <class kind="class">ph::ModelSource</class>
     <class kind="class">ph::MotionCookConfig</class>
     <class kind="class">ph::MotionSource</class>
-    <class kind="class">ph::MultiDiffuseSurfaceEmitter</class>
     <class kind="class">ph::NaiveReinhardToneMapping</class>
     <class kind="class">ph::Object</class>
     <class kind="class">ph::Observer</class>
@@ -47911,11 +48379,11 @@
     <class kind="class">ph::PrimitiveBuildingMaterial</class>
     <class kind="class">ph::PrimitiveChannel</class>
     <class kind="class">ph::PrimitiveMetadata</class>
+    <class kind="class">ph::PrimitivePosPdfInput</class>
+    <class kind="class">ph::PrimitivePosPdfOutput</class>
+    <class kind="class">ph::PrimitivePosPdfQuery</class>
     <class kind="class">ph::PrimitivePosSampleInput</class>
     <class kind="class">ph::PrimitivePosSampleOutput</class>
-    <class kind="class">ph::PrimitivePosSamplePdfInput</class>
-    <class kind="class">ph::PrimitivePosSamplePdfOutput</class>
-    <class kind="class">ph::PrimitivePosSamplePdfQuery</class>
     <class kind="class">ph::PrimitivePosSampleQuery</class>
     <class kind="class">ph::ProbabilisticProgressivePMRenderer</class>
     <class kind="class">ph::ProgressivePMRenderer</class>
@@ -48184,6 +48652,13 @@
       <name>TSdlOptionalSpectrum</name>
       <anchorfile>namespaceph.html</anchorfile>
       <anchor>af0ff42b7c3e8f2de030bf56ef56d4183</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>TEnumFlags&lt; EEmitterFeatureSet &gt;</type>
+      <name>EmitterFeatureSet</name>
+      <anchorfile>namespaceph.html</anchorfile>
+      <anchor>a4616be60c1aeff887439d1133975d273</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
@@ -48795,6 +49270,18 @@
     </member>
     <member kind="enumeration">
       <type></type>
+      <name>EEmitterFeatureSet</name>
+      <anchorfile>namespaceph.html</anchorfile>
+      <anchor>a16b931b405833c11fca5c86a7514e603</anchor>
+      <arglist></arglist>
+      <enumvalue file="namespaceph.html" anchor="a16b931b405833c11fca5c86a7514e603aca9f7df16118c955d832641a24a208d1">ZeroBounceSample</enumvalue>
+      <enumvalue file="namespaceph.html" anchor="a16b931b405833c11fca5c86a7514e603a5009a2197d7e7d6a3fd59251182bea9e">BsdfSample</enumvalue>
+      <enumvalue file="namespaceph.html" anchor="a16b931b405833c11fca5c86a7514e603aa3757c2711f95523b455cc8d06863a00">DirectSample</enumvalue>
+      <enumvalue file="namespaceph.html" anchor="a16b931b405833c11fca5c86a7514e603ad535f71962b1df95f5984de5ea462309">EmissionSample</enumvalue>
+      <enumvalue file="namespaceph.html" anchor="a16b931b405833c11fca5c86a7514e603a7a1920d61156abc05a60135aefe8bc67">Default</enumvalue>
+    </member>
+    <member kind="enumeration">
+      <type></type>
       <name>EFaceTopology</name>
       <anchorfile>namespaceph.html</anchorfile>
       <anchor>a1dc2c49d4eab6261d803a5e3ec99dfb9</anchor>
@@ -48877,7 +49364,7 @@
       <anchor>a2f105bf7a6233cdb646a691b6055d71d</anchor>
       <arglist></arglist>
       <enumvalue file="namespaceph.html" anchor="a2f105bf7a6233cdb646a691b6055d71da41fafd368452a2128ac8bdc3934d4cb5">ThroughputRadiance</enumvalue>
-      <enumvalue file="namespaceph.html" anchor="a2f105bf7a6233cdb646a691b6055d71da52f5e0bc3859bc5f5e25130b6c7e8881">Position</enumvalue>
+      <enumvalue file="namespaceph.html" anchor="a2f105bf7a6233cdb646a691b6055d71dafea4e0fe069dc6f6171dd6044abb2365">Pos</enumvalue>
       <enumvalue file="namespaceph.html" anchor="a2f105bf7a6233cdb646a691b6055d71daee99ad64c489a5fa63f46f42f78e37e2">FromDir</enumvalue>
       <enumvalue file="namespaceph.html" anchor="a2f105bf7a6233cdb646a691b6055d71da551879a34d6ed879f4716e33d7b1cd92">GeometryNormal</enumvalue>
       <enumvalue file="namespaceph.html" anchor="a2f105bf7a6233cdb646a691b6055d71da1a383a1c74749bfaaabb286b854b2f4c">PathLength</enumvalue>
@@ -49240,9 +49727,9 @@
       <anchorfile>namespaceph.html</anchorfile>
       <anchor>a201cf6953978d616dd79db826163626d</anchor>
       <arglist></arglist>
-      <enumvalue file="namespaceph.html" anchor="a201cf6953978d616dd79db826163626dab89de3b4b81c4facfac906edf29aec8c">HIGH</enumvalue>
-      <enumvalue file="namespaceph.html" anchor="a201cf6953978d616dd79db826163626da1e23852820b9154316c7c06e2b7ba051">NORMAL</enumvalue>
-      <enumvalue file="namespaceph.html" anchor="a201cf6953978d616dd79db826163626da41bc94cbd8eebea13ce0491b2ac11b88">LOW</enumvalue>
+      <enumvalue file="namespaceph.html" anchor="a201cf6953978d616dd79db826163626da655d20c1ca69519ca647684edbb2db35">High</enumvalue>
+      <enumvalue file="namespaceph.html" anchor="a201cf6953978d616dd79db826163626da960b44c579bc2f6818d2daaf9e4c16f0">Normal</enumvalue>
+      <enumvalue file="namespaceph.html" anchor="a201cf6953978d616dd79db826163626da28d0edd045e05cf5af64e35ae0c4c6ef">Low</enumvalue>
     </member>
     <member kind="enumeration">
       <type></type>
@@ -49250,9 +49737,9 @@
       <anchorfile>namespaceph.html</anchorfile>
       <anchor>a6f9f9c205359845b3b02105599f9355e</anchor>
       <arglist></arglist>
-      <enumvalue file="namespaceph.html" anchor="a6f9f9c205359845b3b02105599f9355ea2c2624a5059934a947d6e25fe8332ade">FIRST</enumvalue>
-      <enumvalue file="namespaceph.html" anchor="a6f9f9c205359845b3b02105599f9355ea1e23852820b9154316c7c06e2b7ba051">NORMAL</enumvalue>
-      <enumvalue file="namespaceph.html" anchor="a6f9f9c205359845b3b02105599f9355eaf447f5c03508de4d88e340390ba7c78f">LAST</enumvalue>
+      <enumvalue file="namespaceph.html" anchor="a6f9f9c205359845b3b02105599f9355ea7fb55ed0b7a30342ba6da306428cae04">First</enumvalue>
+      <enumvalue file="namespaceph.html" anchor="a6f9f9c205359845b3b02105599f9355ea960b44c579bc2f6818d2daaf9e4c16f0">Normal</enumvalue>
+      <enumvalue file="namespaceph.html" anchor="a6f9f9c205359845b3b02105599f9355ead55b30607c2a9a2616347d6edb789f6b">Last</enumvalue>
     </member>
     <member kind="function">
       <type>std::string_view</type>
@@ -49386,6 +49873,13 @@
       <anchorfile>namespaceph.html</anchorfile>
       <anchor>a701e045c0f76b6407417880756078adb</anchor>
       <arglist>(BlackBodyRadiationImage, Image)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>PH_DEFINE_INTERNAL_LOG_GROUP</name>
+      <anchorfile>namespaceph.html</anchorfile>
+      <anchor>aa9011132dc975c828adf0e1be60ccde7</anchor>
+      <arglist>(CheckerboardImage, Image)</arglist>
     </member>
     <member kind="function">
       <type></type>
@@ -49638,6 +50132,13 @@
       <anchorfile>namespaceph.html</anchorfile>
       <anchor>afe50265099a40986dd7370928dbf868f</anchor>
       <arglist>(VisualWorld *const out_world)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>PH_DEFINE_INLINE_ENUM_FLAG_OPERATORS</name>
+      <anchorfile>namespaceph.html</anchorfile>
+      <anchor>aeca242d059b1e6a4c6ea726cada61526</anchor>
+      <arglist>(EEmitterFeatureSet)</arglist>
     </member>
     <member kind="function">
       <type></type>
@@ -50376,6 +50877,13 @@
     <concept>ph::detail::CPrimitiveGetter</concept>
     <member kind="typedef">
       <type>uint8</type>
+      <name>EmitterFlagIntType</name>
+      <anchorfile>namespaceph_1_1detail.html</anchorfile>
+      <anchor>a28be57d5ff0fc9e06d3980ebb8e7409f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>uint8</type>
       <name>SurfaceHitReasonIntType</name>
       <anchorfile>namespaceph_1_1detail.html</anchorfile>
       <anchor>a66cc86df67a0c260b76459b78264b580</anchor>
@@ -50394,6 +50902,34 @@
       <anchorfile>namespaceph_1_1detail.html</anchorfile>
       <anchor>a5eb2dcf1450d496ce75711442c1d6051</anchor>
       <arglist>(const std::shared_ptr&lt; ISdlResource &gt; &amp;resource, const Path &amp;file)</arglist>
+    </member>
+    <member kind="variable">
+      <type>constexpr auto</type>
+      <name>efs_zero_bounce_sample_bits</name>
+      <anchorfile>namespaceph_1_1detail.html</anchorfile>
+      <anchor>a45553709e22a4c60edbb6b00ff8cb84f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>constexpr auto</type>
+      <name>efs_bsdf_sample_bits</name>
+      <anchorfile>namespaceph_1_1detail.html</anchorfile>
+      <anchor>a3fec5995c96eb8d32ac8126f52738ef8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>constexpr auto</type>
+      <name>efs_direct_sample_bits</name>
+      <anchorfile>namespaceph_1_1detail.html</anchorfile>
+      <anchor>a0901b0fd2f114bc743b4445259c9f262</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>constexpr auto</type>
+      <name>efs_emission_sample_bits</name>
+      <anchorfile>namespaceph_1_1detail.html</anchorfile>
+      <anchor>a1051864e1a0147b9c6b2d8cd917eea2e</anchor>
+      <arglist></arglist>
     </member>
     <member kind="variable">
       <type>constexpr auto</type>
@@ -50750,6 +51286,7 @@
   <compound kind="namespace">
     <name>ph::lta</name>
     <filename>namespaceph_1_1lta.html</filename>
+    <class kind="class">ph::lta::PDF</class>
     <class kind="class">ph::lta::PtVolumetricEstimator</class>
     <class kind="class">ph::lta::RussianRoulette</class>
     <class kind="class">ph::lta::SenseEvent</class>
@@ -50758,7 +51295,29 @@
     <class kind="class">ph::lta::SurfaceTracer</class>
     <class kind="class">ph::lta::TDirectLightEstimator</class>
     <class kind="class">ph::lta::TIndirectLightEstimator</class>
-    <class kind="class">ph::lta::TMis</class>
+    <class kind="class">ph::lta::TMIS</class>
+    <member kind="enumeration">
+      <type></type>
+      <name>EMISStyle</name>
+      <anchorfile>namespaceph_1_1lta.html</anchorfile>
+      <anchor>a780154430f4189e2ebe4fadc88efd0bb</anchor>
+      <arglist></arglist>
+      <enumvalue file="namespaceph_1_1lta.html" anchor="a780154430f4189e2ebe4fadc88efd0bba99a808d8d16122d70e44bd7f709d30fb">Balance</enumvalue>
+      <enumvalue file="namespaceph_1_1lta.html" anchor="a780154430f4189e2ebe4fadc88efd0bbadd4fe0cc913f704600b97d1f5dd285de">Power</enumvalue>
+    </member>
+    <member kind="enumeration">
+      <type></type>
+      <name>EDomain</name>
+      <anchorfile>namespaceph_1_1lta.html</anchorfile>
+      <anchor>a517f9714c97ec4a5bcdd5beae0eaf9dd</anchor>
+      <arglist></arglist>
+      <enumvalue file="namespaceph_1_1lta.html" anchor="a517f9714c97ec4a5bcdd5beae0eaf9ddace2c8aed9c2fa0cfbed56cbda4d8bf07">Empty</enumvalue>
+      <enumvalue file="namespaceph_1_1lta.html" anchor="a517f9714c97ec4a5bcdd5beae0eaf9dda3f8ffe43765c1baeaa1f3644b48e23b2">SolidAngle</enumvalue>
+      <enumvalue file="namespaceph_1_1lta.html" anchor="a517f9714c97ec4a5bcdd5beae0eaf9ddadeec4ff19974f12ed781cb9a59064214">Area</enumvalue>
+      <enumvalue file="namespaceph_1_1lta.html" anchor="a517f9714c97ec4a5bcdd5beae0eaf9ddaf3d7d007f2c4d9612c4128a2a6a8b011">UV01</enumvalue>
+      <enumvalue file="namespaceph_1_1lta.html" anchor="a517f9714c97ec4a5bcdd5beae0eaf9ddac75c6f8c5e1c2970cf2feaf8a7331651">UVW01</enumvalue>
+      <enumvalue file="namespaceph_1_1lta.html" anchor="a517f9714c97ec4a5bcdd5beae0eaf9dda4984667940802dedc139aa7a430a6553">Discrete</enumvalue>
+    </member>
     <member kind="enumeration">
       <type></type>
       <name>ESidednessPolicy</name>
@@ -50769,15 +51328,6 @@
       <enumvalue file="namespaceph_1_1lta.html" anchor="a1d33ee239cb49375e222139a0fe1c17da2e979835dd62324f5bfe217449ba4974">Strict</enumvalue>
       <enumvalue file="namespaceph_1_1lta.html" anchor="a1d33ee239cb49375e222139a0fe1c17da4a2e14f37fb676f4c83b874ddeaf35e3">TrustGeometry</enumvalue>
       <enumvalue file="namespaceph_1_1lta.html" anchor="a1d33ee239cb49375e222139a0fe1c17dab6e0902c88f013423a338605519edaf4">TrustShading</enumvalue>
-    </member>
-    <member kind="enumeration">
-      <type></type>
-      <name>EMisStyle</name>
-      <anchorfile>namespaceph_1_1lta.html</anchorfile>
-      <anchor>a61430bac8f881a2704ade2e078883195</anchor>
-      <arglist></arglist>
-      <enumvalue file="namespaceph_1_1lta.html" anchor="a61430bac8f881a2704ade2e078883195a99a808d8d16122d70e44bd7f709d30fb">Balance</enumvalue>
-      <enumvalue file="namespaceph_1_1lta.html" anchor="a61430bac8f881a2704ade2e078883195add4fe0cc913f704600b97d1f5dd285de">Power</enumvalue>
     </member>
     <member kind="function">
       <type>real</type>
@@ -51678,6 +52228,13 @@
       <arglist>(const Vector3R &amp;vector, const Vector3R &amp;N)</arglist>
     </member>
     <member kind="function">
+      <type>bool</type>
+      <name>is_opposite_hemisphere</name>
+      <anchorfile>namespaceph_1_1math.html</anchorfile>
+      <anchor>ae427fc90cb46f14b52a5cdc7a738ab69</anchor>
+      <arglist>(const Vector3R &amp;vector, const Vector3R &amp;N)</arglist>
+    </member>
+    <member kind="function">
       <type>auto</type>
       <name>matrix2x2</name>
       <anchorfile>namespaceph_1_1math.html</anchorfile>
@@ -51695,7 +52252,14 @@
       <type>T</type>
       <name>clamp</name>
       <anchorfile>namespaceph_1_1math.html</anchorfile>
-      <anchor>a9e5d8a7a977115813ceeba3f0c00cbdb</anchor>
+      <anchor>af8f390358e5ac8042dde889f48d9aaa4</anchor>
+      <arglist>(const T value, const T lowerBound, const T upperBound)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>safe_clamp</name>
+      <anchorfile>namespaceph_1_1math.html</anchorfile>
+      <anchor>a0090b0ad2b7785d02c6761c1766066cc</anchor>
       <arglist>(const T value, const T lowerBound, const T upperBound)</arglist>
     </member>
     <member kind="function">

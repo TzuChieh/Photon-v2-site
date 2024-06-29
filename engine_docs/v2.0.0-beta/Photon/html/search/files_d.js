@@ -47,7 +47,5 @@ var searchData=
   ['motionsource_2eh_44',['MotionSource.h',['../../../Engine/html/_motion_source_8h.html',1,'']]],
   ['mousebuttonevent_2eh_45',['MouseButtonEvent.h',['../../../EditorLib/html/_mouse_button_event_8h.html',1,'']]],
   ['mousebuttonpressedevent_2eh_46',['MouseButtonPressedEvent.h',['../../../EditorLib/html/_mouse_button_pressed_event_8h.html',1,'']]],
-  ['mousebuttonreleasedevent_2eh_47',['MouseButtonReleasedEvent.h',['../../../EditorLib/html/_mouse_button_released_event_8h.html',1,'']]],
-  ['multidiffusesurfaceemitter_2ecpp_48',['MultiDiffuseSurfaceEmitter.cpp',['../../../Engine/html/_multi_diffuse_surface_emitter_8cpp.html',1,'']]],
-  ['multidiffusesurfaceemitter_2eh_49',['MultiDiffuseSurfaceEmitter.h',['../../../Engine/html/_multi_diffuse_surface_emitter_8h.html',1,'']]]
+  ['mousebuttonreleasedevent_2eh_47',['MouseButtonReleasedEvent.h',['../../../EditorLib/html/_mouse_button_released_event_8h.html',1,'']]]
 ];

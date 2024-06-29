@@ -2,6 +2,11 @@
 \hypertarget{classph_1_1_bsdf_sample_output}{}\label{classph_1_1_bsdf_sample_output}\index{ph::BsdfSampleOutput@{ph::BsdfSampleOutput}}
 
 
+Output for {\ttfamily \doxylink{classph_1_1_bsdf_sample_query}{Bsdf\+Sample\+Query}}.  
+
+
+
+
 {\ttfamily \#include $<$Bsdf\+Sample\+Query.\+h$>$}
 
 \doxysubsubsection*{Public Member Functions}
@@ -9,14 +14,18 @@
 \item 
 void \mbox{\hyperlink{classph_1_1_bsdf_sample_output_a01f9a1a81a87562ee67ed8195389ba91}{setL}} (const \mbox{\hyperlink{namespaceph_1_1math_a7f5d9bea70db00eb52ece79b05e544c8}{math\+::\+Vector3R}} \&L)
 \item 
-void \mbox{\hyperlink{classph_1_1_bsdf_sample_output_ad599c99a67978ba593c6511460f7bfdc}{set\+Pdf\+Applied\+Bsdf}} (const \mbox{\hyperlink{namespaceph_1_1math_ad1ddf3801f5a9ea201227d49747987ed}{math\+::\+Spectrum}} \&pdf\+Applied\+Bsdf, bool infer\+Measurability\+From\+This=true)
+void \mbox{\hyperlink{classph_1_1_bsdf_sample_output_ad39af4c2760babbf805b6556c4127df4}{set\+Pdf\+Applied\+Bsdf\+Cos}} (const \mbox{\hyperlink{namespaceph_1_1math_ad1ddf3801f5a9ea201227d49747987ed}{math\+::\+Spectrum}} \&pdf\+Applied\+Bsdf\+Cos, real cos, bool infer\+Measurability=true)
 \item 
 const \mbox{\hyperlink{namespaceph_1_1math_a7f5d9bea70db00eb52ece79b05e544c8}{math\+::\+Vector3R}} \& \mbox{\hyperlink{classph_1_1_bsdf_sample_output_a60ec597b8df470ac4c45a064fb1fd23c}{getL}} () const
 \item 
-const \mbox{\hyperlink{namespaceph_1_1math_ad1ddf3801f5a9ea201227d49747987ed}{math\+::\+Spectrum}} \& \mbox{\hyperlink{classph_1_1_bsdf_sample_output_a13bb80a89a3b32551ab3cbc2995f0ec5}{get\+Pdf\+Applied\+Bsdf}} () const
+real \mbox{\hyperlink{classph_1_1_bsdf_sample_output_aca3543074680a336fae8374e9ca7fb0a}{get\+Cos}} () const
+\item 
+\mbox{\hyperlink{namespaceph_1_1math_ad1ddf3801f5a9ea201227d49747987ed}{math\+::\+Spectrum}} \mbox{\hyperlink{classph_1_1_bsdf_sample_output_ad0aa6a2f679ab8af98e75690cf760d11}{get\+Pdf\+Applied\+Bsdf}} () const
+\item 
+const \mbox{\hyperlink{namespaceph_1_1math_ad1ddf3801f5a9ea201227d49747987ed}{math\+::\+Spectrum}} \& \mbox{\hyperlink{classph_1_1_bsdf_sample_output_a9c16c0bf8d45ecda70092f985b5e25fd}{get\+Pdf\+Applied\+Bsdf\+Cos}} () const
 \item 
 bool \mbox{\hyperlink{classph_1_1_bsdf_sample_output_ab8a034ca50318eaf24b20ef8523a572e}{is\+Measurable}} () const
-\begin{DoxyCompactList}\small\item\em Tells whether this sample has sane contribution. All sampled data should be usable if true is returned; otherwise, zero contribution is implied, and sampled data is undefined. This method is an efficient way to decide whether the BSDF sample has potential to contribute. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Tells whether this sample has potential to contribute. All sampled data should be usable if true is returned; otherwise, zero contribution is implied, and sampled data is undefined. This method is also an efficient way to decide whether the BSDF sample has sane value (compared to manually testing its value). \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classph_1_1_bsdf_sample_output_a40fd24fddc782e7a6341979e3a4f6d23}{set\+Measurability}} (bool measurability)
 \begin{DoxyCompactList}\small\item\em Set measurability directly. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classph_1_1_bsdf_sample_output_aa3e8dcb5e830b1bebe483aaddfc65c80}{set\+Measurability}} (const \mbox{\hyperlink{namespaceph_1_1math_ad1ddf3801f5a9ea201227d49747987ed}{math\+::\+Spectrum}} \&reference)
@@ -24,9 +33,26 @@ void \mbox{\hyperlink{classph_1_1_bsdf_sample_output_aa3e8dcb5e830b1bebe483aaddf
 
 
 \doxysubsection{Detailed Description}
+Output for {\ttfamily \doxylink{classph_1_1_bsdf_sample_query}{Bsdf\+Sample\+Query}}. 
+
+\begin{DoxyNote}{Note}
 It is an error to get output data if {\ttfamily \doxylink{classph_1_1_bsdf_sample_output_ab8a034ca50318eaf24b20ef8523a572e}{is\+Measurable()}} returns {\ttfamily false}. 
+\end{DoxyNote}
+
 
 \doxysubsection{Member Function Documentation}
+\Hypertarget{classph_1_1_bsdf_sample_output_aca3543074680a336fae8374e9ca7fb0a}\index{ph::BsdfSampleOutput@{ph::BsdfSampleOutput}!getCos@{getCos}}
+\index{getCos@{getCos}!ph::BsdfSampleOutput@{ph::BsdfSampleOutput}}
+\doxysubsubsection{\texorpdfstring{getCos()}{getCos()}}
+{\footnotesize\ttfamily \label{classph_1_1_bsdf_sample_output_aca3543074680a336fae8374e9ca7fb0a} 
+real ph\+::\+Bsdf\+Sample\+Output\+::get\+Cos (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+Lambert\textquotesingle{}s cosine term. Guaranteed to be \texorpdfstring{$>$}{>} 0. This is the absolute value of $ N \cdot L $, where $ N $ is the normal vector and $ L $ is the sampled direction. 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+This cosine term is an absolute value. You may need to consult the corresponding {\ttfamily \doxylink{classph_1_1_surface_hit}{Surface\+Hit}} if its sign is needed. 
+\end{DoxyNote}
 \Hypertarget{classph_1_1_bsdf_sample_output_a60ec597b8df470ac4c45a064fb1fd23c}\index{ph::BsdfSampleOutput@{ph::BsdfSampleOutput}!getL@{getL}}
 \index{getL@{getL}!ph::BsdfSampleOutput@{ph::BsdfSampleOutput}}
 \doxysubsubsection{\texorpdfstring{getL()}{getL()}}
@@ -36,15 +62,27 @@ const \mbox{\hyperlink{namespaceph_1_1math_a7f5d9bea70db00eb52ece79b05e544c8}{ma
 \begin{DoxyReturn}{Returns}
 Sampled direction (normalized). 
 \end{DoxyReturn}
-\Hypertarget{classph_1_1_bsdf_sample_output_a13bb80a89a3b32551ab3cbc2995f0ec5}\index{ph::BsdfSampleOutput@{ph::BsdfSampleOutput}!getPdfAppliedBsdf@{getPdfAppliedBsdf}}
+\Hypertarget{classph_1_1_bsdf_sample_output_ad0aa6a2f679ab8af98e75690cf760d11}\index{ph::BsdfSampleOutput@{ph::BsdfSampleOutput}!getPdfAppliedBsdf@{getPdfAppliedBsdf}}
 \index{getPdfAppliedBsdf@{getPdfAppliedBsdf}!ph::BsdfSampleOutput@{ph::BsdfSampleOutput}}
 \doxysubsubsection{\texorpdfstring{getPdfAppliedBsdf()}{getPdfAppliedBsdf()}}
-{\footnotesize\ttfamily \label{classph_1_1_bsdf_sample_output_a13bb80a89a3b32551ab3cbc2995f0ec5} 
-const \mbox{\hyperlink{namespaceph_1_1math_ad1ddf3801f5a9ea201227d49747987ed}{math\+::\+Spectrum}} \& ph\+::\+Bsdf\+Sample\+Output\+::get\+Pdf\+Applied\+Bsdf (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily \label{classph_1_1_bsdf_sample_output_ad0aa6a2f679ab8af98e75690cf760d11} 
+\mbox{\hyperlink{namespaceph_1_1math_ad1ddf3801f5a9ea201227d49747987ed}{math\+::\+Spectrum}} ph\+::\+Bsdf\+Sample\+Output\+::get\+Pdf\+Applied\+Bsdf (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 \begin{DoxyReturn}{Returns}
-Sampled BSDF with PDF (solid angle domain) applied. Guaranteed to be finite. 
+Sampled BSDF with PDF (on the same domain) applied. Guaranteed to be finite. Specifically, it is equivalent to $ BSDF / PDF_{\omega} $. 
 \end{DoxyReturn}
+\Hypertarget{classph_1_1_bsdf_sample_output_a9c16c0bf8d45ecda70092f985b5e25fd}\index{ph::BsdfSampleOutput@{ph::BsdfSampleOutput}!getPdfAppliedBsdfCos@{getPdfAppliedBsdfCos}}
+\index{getPdfAppliedBsdfCos@{getPdfAppliedBsdfCos}!ph::BsdfSampleOutput@{ph::BsdfSampleOutput}}
+\doxysubsubsection{\texorpdfstring{getPdfAppliedBsdfCos()}{getPdfAppliedBsdfCos()}}
+{\footnotesize\ttfamily \label{classph_1_1_bsdf_sample_output_a9c16c0bf8d45ecda70092f985b5e25fd} 
+const \mbox{\hyperlink{namespaceph_1_1math_ad1ddf3801f5a9ea201227d49747987ed}{math\+::\+Spectrum}} \& ph\+::\+Bsdf\+Sample\+Output\+::get\+Pdf\+Applied\+Bsdf\+Cos (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Prefer using this method when applicable instead of applying the cosine term manually. The coupled form often results in less computation and potentially offers better numerical stability as some terms can often be canceled out. \begin{DoxyReturn}{Returns}
+Sampled BSDF with Lambert\textquotesingle{}s cosine law and PDF (on the same domain) applied. Guaranteed to be finite. Specifically, it is equivalent to $ BSDF * \lvert\cos\theta\rvert / PDF_{\omega} $. 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+This cosine term is an absolute value. You may need to consult the corresponding {\ttfamily \doxylink{classph_1_1_surface_hit}{Surface\+Hit}} if its sign is needed. 
+\end{DoxyNote}
 \Hypertarget{classph_1_1_bsdf_sample_output_ab8a034ca50318eaf24b20ef8523a572e}\index{ph::BsdfSampleOutput@{ph::BsdfSampleOutput}!isMeasurable@{isMeasurable}}
 \index{isMeasurable@{isMeasurable}!ph::BsdfSampleOutput@{ph::BsdfSampleOutput}}
 \doxysubsubsection{\texorpdfstring{isMeasurable()}{isMeasurable()}}
@@ -53,7 +91,7 @@ bool ph\+::\+Bsdf\+Sample\+Output\+::is\+Measurable (\begin{DoxyParamCaption}{}{
 
 
 
-Tells whether this sample has sane contribution. All sampled data should be usable if true is returned; otherwise, zero contribution is implied, and sampled data is undefined. This method is an efficient way to decide whether the BSDF sample has potential to contribute. 
+Tells whether this sample has potential to contribute. All sampled data should be usable if true is returned; otherwise, zero contribution is implied, and sampled data is undefined. This method is also an efficient way to decide whether the BSDF sample has sane value (compared to manually testing its value). 
 
 \begin{DoxyNote}{Note}
 Measurability has nothing to do with whether the sampled value is 0 or not. 
@@ -84,12 +122,21 @@ void ph\+::\+Bsdf\+Sample\+Output\+::set\+Measurability (\begin{DoxyParamCaption
 
 Set measurability based on a reference spectrum. 
 
-\Hypertarget{classph_1_1_bsdf_sample_output_ad599c99a67978ba593c6511460f7bfdc}\index{ph::BsdfSampleOutput@{ph::BsdfSampleOutput}!setPdfAppliedBsdf@{setPdfAppliedBsdf}}
-\index{setPdfAppliedBsdf@{setPdfAppliedBsdf}!ph::BsdfSampleOutput@{ph::BsdfSampleOutput}}
-\doxysubsubsection{\texorpdfstring{setPdfAppliedBsdf()}{setPdfAppliedBsdf()}}
-{\footnotesize\ttfamily \label{classph_1_1_bsdf_sample_output_ad599c99a67978ba593c6511460f7bfdc} 
-void ph\+::\+Bsdf\+Sample\+Output\+::set\+Pdf\+Applied\+Bsdf (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespaceph_1_1math_ad1ddf3801f5a9ea201227d49747987ed}{math\+::\+Spectrum}} \&}]{pdf\+Applied\+Bsdf}{, }\item[{bool}]{infer\+Measurability\+From\+This}{ = {\ttfamily true}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+\Hypertarget{classph_1_1_bsdf_sample_output_ad39af4c2760babbf805b6556c4127df4}\index{ph::BsdfSampleOutput@{ph::BsdfSampleOutput}!setPdfAppliedBsdfCos@{setPdfAppliedBsdfCos}}
+\index{setPdfAppliedBsdfCos@{setPdfAppliedBsdfCos}!ph::BsdfSampleOutput@{ph::BsdfSampleOutput}}
+\doxysubsubsection{\texorpdfstring{setPdfAppliedBsdfCos()}{setPdfAppliedBsdfCos()}}
+{\footnotesize\ttfamily \label{classph_1_1_bsdf_sample_output_ad39af4c2760babbf805b6556c4127df4} 
+void ph\+::\+Bsdf\+Sample\+Output\+::set\+Pdf\+Applied\+Bsdf\+Cos (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespaceph_1_1math_ad1ddf3801f5a9ea201227d49747987ed}{math\+::\+Spectrum}} \&}]{pdf\+Applied\+Bsdf\+Cos}{, }\item[{real}]{cos}{, }\item[{bool}]{infer\+Measurability}{ = {\ttfamily true}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
+
+\begin{DoxyParams}{Parameters}
+{\em pdf\+Applied\+Bsdf\+Cos} & The sampled BSDF in a coupled form. See {\ttfamily \doxylink{classph_1_1_bsdf_sample_output_a9c16c0bf8d45ecda70092f985b5e25fd}{get\+Pdf\+Applied\+Bsdf\+Cos()}} for more information. \\
+\hline
+{\em cos} & The contained Lambert\textquotesingle{}s cosine term (absolute value). See {\ttfamily \doxylink{classph_1_1_bsdf_sample_output_aca3543074680a336fae8374e9ca7fb0a}{get\+Cos()}} for more information. \\
+\hline
+{\em infer\+Measurability} & Whether to determine measurability from the supplied data. All supplied data must be sane for the sample to be measurable. \\
+\hline
+\end{DoxyParams}
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}

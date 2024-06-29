@@ -13,9 +13,11 @@ var searchData=
   ['dielectricinterfaceinfo_2eh_10',['DielectricInterfaceInfo.h',['../_dielectric_interface_info_8h.html',1,'']]],
   ['diffusesurfaceemitter_2ecpp_11',['DiffuseSurfaceEmitter.cpp',['../_diffuse_surface_emitter_8cpp.html',1,'']]],
   ['diffusesurfaceemitter_2eh_12',['DiffuseSurfaceEmitter.h',['../_diffuse_surface_emitter_8h.html',1,'']]],
-  ['directenergysamplepdfquery_2eh_13',['DirectEnergySamplePdfQuery.h',['../_direct_energy_sample_pdf_query_8h.html',1,'']]],
-  ['directenergysamplequery_2ecpp_14',['DirectEnergySampleQuery.cpp',['../_direct_energy_sample_query_8cpp.html',1,'']]],
-  ['directenergysamplequery_2eh_15',['DirectEnergySampleQuery.h',['../_direct_energy_sample_query_8h.html',1,'']]],
-  ['dynamiclineartranslation_2ecpp_16',['DynamicLinearTranslation.cpp',['../_dynamic_linear_translation_8cpp.html',1,'']]],
-  ['dynamiclineartranslation_2eh_17',['DynamicLinearTranslation.h',['../_dynamic_linear_translation_8h.html',1,'']]]
+  ['diffusesurfaceemitterbase_2ecpp_13',['DiffuseSurfaceEmitterBase.cpp',['../_diffuse_surface_emitter_base_8cpp.html',1,'']]],
+  ['diffusesurfaceemitterbase_2eh_14',['DiffuseSurfaceEmitterBase.h',['../_diffuse_surface_emitter_base_8h.html',1,'']]],
+  ['directenergypdfquery_2eh_15',['DirectEnergyPdfQuery.h',['../_direct_energy_pdf_query_8h.html',1,'']]],
+  ['directenergysamplequery_2ecpp_16',['DirectEnergySampleQuery.cpp',['../_direct_energy_sample_query_8cpp.html',1,'']]],
+  ['directenergysamplequery_2eh_17',['DirectEnergySampleQuery.h',['../_direct_energy_sample_query_8h.html',1,'']]],
+  ['dynamiclineartranslation_2ecpp_18',['DynamicLinearTranslation.cpp',['../_dynamic_linear_translation_8cpp.html',1,'']]],
+  ['dynamiclineartranslation_2eh_19',['DynamicLinearTranslation.h',['../_dynamic_linear_translation_8h.html',1,'']]]
 ];

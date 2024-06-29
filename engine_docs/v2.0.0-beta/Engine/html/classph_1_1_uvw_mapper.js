@@ -1,8 +1,8 @@
 var classph_1_1_uvw_mapper =
 [
     [ "~UvwMapper", "classph_1_1_uvw_mapper.html#a737514062ad8db6e32afe481c0c52541", null ],
-    [ "directionToUvw", "classph_1_1_uvw_mapper.html#a2492c824219bc48242b54a3a4808a78c", null ],
-    [ "positionToUvw", "classph_1_1_uvw_mapper.html#a8a3841c5cc97b74fa7e7f8c2f123fef1", null ],
-    [ "uvwToDirection", "classph_1_1_uvw_mapper.html#af2ca5ae7e6da26efd840f4757d28b20f", null ],
-    [ "uvwToPosition", "classph_1_1_uvw_mapper.html#a171134f6193bf379028ea2dbdcd46b1b", null ]
+    [ "dirToUvw", "classph_1_1_uvw_mapper.html#abb742ae00d391e1ef7bcae3ca3689964", null ],
+    [ "posToUvw", "classph_1_1_uvw_mapper.html#af0947bf95d083e9b80366c8a45244981", null ],
+    [ "uvwToDir", "classph_1_1_uvw_mapper.html#aff92783b50ae6005683c47124a54bddb", null ],
+    [ "uvwToPos", "classph_1_1_uvw_mapper.html#a8c979067f00f5d573ef3d7cbf9a7f6a0", null ]
 ];

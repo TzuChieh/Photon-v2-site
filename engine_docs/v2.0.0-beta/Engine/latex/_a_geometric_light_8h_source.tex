@@ -7,15 +7,15 @@
 \DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_a_light_8h}{Actor/Light/ALight.h}}"{}}}
 \DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_material_8h}{Actor/Material/Material.h}}"{}}}
 \DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_actor_2_geometry_2_geometry_8h}{Actor/Geometry/Geometry.h}}"{}}}
-\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_span_8h}{Utility/TSpan.h}}"{}}}
-\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{sdl__interface_8h}{SDL/sdl\_interface.h}}"{}}}
-\DoxyCodeLine{00008\ }
-\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <memory>}}
-\DoxyCodeLine{00010\ }
-\DoxyCodeLine{00011\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
-\DoxyCodeLine{00012\ \{}
-\DoxyCodeLine{00013\ }
-\DoxyCodeLine{00014\ \textcolor{keyword}{class\ }Emitter;}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_emitter_8h}{Core/Emitter/Emitter.h}}"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_span_8h}{Utility/TSpan.h}}"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{sdl__interface_8h}{SDL/sdl\_interface.h}}"{}}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00013\ \{}
+\DoxyCodeLine{00014\ }
 \DoxyCodeLine{00015\ \textcolor{keyword}{class\ }Primitive;}
 \DoxyCodeLine{00016\ }
 \DoxyCodeLine{00017\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1_a_geometric_light}{AGeometricLight}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classph_1_1_a_light}{ALight}}}
@@ -37,18 +37,58 @@
 \DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_transform_info}{TransformInfo}}\&\ srcLocalToWorld,}
 \DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_decomposed_transform}{math::TDecomposedTransform<real>}}*\ out\_remainingLocalToWorld\ =\ \textcolor{keyword}{nullptr});}
 \DoxyCodeLine{00040\ }
-\DoxyCodeLine{00041\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00042\ \ \ \ \ \mbox{\hyperlink{classph_1_1_a_geometric_light_a88768136bd0f2195abe2eabecbd77705}{PH\_DEFINE\_SDL\_CLASS}}(\mbox{\hyperlink{classph_1_1_t_sdl_owner_class}{TSdlOwnerClass<AGeometricLight>}})}
-\DoxyCodeLine{00043\ \ \ \ \ \{}
-\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ ClassType\ clazz(\textcolor{stringliteral}{"{}geometric-\/light"{}});}
-\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ clazz.docName(\textcolor{stringliteral}{"{}Geometric\ Light\ Actor"{}});}
-\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ clazz.description(\textcolor{stringliteral}{"{}Energy\ emitters\ that\ come\ with\ a\ physical\ geometry."{}});}
-\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ clazz.baseOn<\mbox{\hyperlink{classph_1_1_a_light}{ALight}}>();}
-\DoxyCodeLine{00048\ }
-\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ clazz;}
-\DoxyCodeLine{00050\ \ \ \ \ \}}
-\DoxyCodeLine{00051\ \};}
-\DoxyCodeLine{00052\ }
-\DoxyCodeLine{00053\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+\DoxyCodeLine{00041\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classph_1_1_t_bit_flags}{EmitterFeatureSet}}\ \mbox{\hyperlink{classph_1_1_a_geometric_light_ab7b93aa1bfa2ec1f636cd8344c697fa3}{getEmitterFeatureSet}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_a_geometric_light_a24a22f3c329ef2a8fee7cf72f886c61f}{m\_isDirectlyVisible}};}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_a_geometric_light_aaf2d09afb7f0f910a64b3bea543b7e89}{m\_useBsdfSample}};}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_a_geometric_light_aa0d6ecf582463c635f1113223c1ee829}{m\_useDirectSample}};}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_a_geometric_light_a802db670401c6deeea2535c221663f68}{m\_useEmissionSample}};}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00053\ \ \ \ \ \mbox{\hyperlink{classph_1_1_a_geometric_light_a88768136bd0f2195abe2eabecbd77705}{PH\_DEFINE\_SDL\_CLASS}}(\mbox{\hyperlink{classph_1_1_t_sdl_owner_class}{TSdlOwnerClass<AGeometricLight>}})}
+\DoxyCodeLine{00054\ \ \ \ \ \{}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ ClassType\ clazz(\textcolor{stringliteral}{"{}geometric-\/light"{}});}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ clazz.docName(\textcolor{stringliteral}{"{}Geometric\ Light\ Actor"{}});}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ clazz.description(\textcolor{stringliteral}{"{}Energy\ emitters\ that\ come\ with\ a\ physical\ geometry."{}});}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ clazz.baseOn<\mbox{\hyperlink{classph_1_1_a_light}{ALight}}>();}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_sdl_bool}{TSdlBool<OwnerType>}}\ directlyVisible(\textcolor{stringliteral}{"{}directly-\/visible"{}},\ \&OwnerType::m\_isDirectlyVisible);}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ directlyVisible.description(}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Whether\ the\ light\ is\ directly\ visible.\ For\ example,\ you\ can\ see\ a\ bright\ sphere\ "{}}}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}for\ a\ directly\ visible\ spherical\ area\ light."{}});}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ directlyVisible.defaultTo(\textcolor{keyword}{true});}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ directlyVisible.optional();}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ clazz.addField(directlyVisible);}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_sdl_bool}{TSdlBool<OwnerType>}}\ bsdfSample(\textcolor{stringliteral}{"{}bsdf-\/sample"{}},\ \&OwnerType::m\_useBsdfSample);}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ bsdfSample.\mbox{\hyperlink{classph_1_1_t_sdl_value_a16526e9153d5b25f6c4747a0dc7c1a03}{description}}(}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Whether\ to\ use\ BSDF\ sampling\ technique\ for\ rendering\ the\ light,\ i.e.,\ choosing\ a\ "{}}}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}direction\ based\ on\ BSDF\ and\ relying\ on\ randomly\ hitting\ a\ light."{}});}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ bsdfSample.\mbox{\hyperlink{classph_1_1_t_sdl_value_a8fd4f58c79486f537e2b5be3e5fea90d}{defaultTo}}(\textcolor{keyword}{true});}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ bsdfSample.\mbox{\hyperlink{classph_1_1_t_sdl_value_a8bee7662ed734bc6b6a57594bf3db536}{optional}}();}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ clazz.addField(bsdfSample);}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_sdl_bool}{TSdlBool<OwnerType>}}\ directSample(\textcolor{stringliteral}{"{}direct-\/sample"{}},\ \&OwnerType::m\_useDirectSample);}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ directSample.\mbox{\hyperlink{classph_1_1_t_sdl_value_a16526e9153d5b25f6c4747a0dc7c1a03}{description}}(}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Whether\ to\ use\ direct\ sampling\ technique\ for\ rendering\ the\ light,\ i.e.,\ directly\ "{}}}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}establish\ a\ connection\ from\ a\ light\ to\ the\ illuminated\ location."{}});}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ directSample.\mbox{\hyperlink{classph_1_1_t_sdl_value_a8fd4f58c79486f537e2b5be3e5fea90d}{defaultTo}}(\textcolor{keyword}{true});}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ directSample.\mbox{\hyperlink{classph_1_1_t_sdl_value_a8bee7662ed734bc6b6a57594bf3db536}{optional}}();}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ clazz.addField(directSample);}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_sdl_bool}{TSdlBool<OwnerType>}}\ emissionSample(\textcolor{stringliteral}{"{}emission-\/sample"{}},\ \&OwnerType::m\_useEmissionSample);}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ emissionSample.\mbox{\hyperlink{classph_1_1_t_sdl_value_a16526e9153d5b25f6c4747a0dc7c1a03}{description}}(}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Whether\ to\ use\ emission\ sampling\ technique\ for\ rendering\ the\ light,\ i.e.,\ start\ "{}}}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}rendering\ the\ light\ from\ the\ light\ source\ itself."{}});}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ emissionSample.\mbox{\hyperlink{classph_1_1_t_sdl_value_a8fd4f58c79486f537e2b5be3e5fea90d}{defaultTo}}(\textcolor{keyword}{true});}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ emissionSample.\mbox{\hyperlink{classph_1_1_t_sdl_value_a8bee7662ed734bc6b6a57594bf3db536}{optional}}();}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ clazz.addField(emissionSample);}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ clazz;}
+\DoxyCodeLine{00093\ \ \ \ \ \}}
+\DoxyCodeLine{00094\ \};}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
 
 \end{DoxyCode}

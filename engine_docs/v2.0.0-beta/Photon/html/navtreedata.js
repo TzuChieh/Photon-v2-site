@@ -33,7 +33,6 @@ var NAVTREE =
       [ "Scene Description Language", "index.html#autotoc_md3", null ],
       [ "About the Author", "index.html#autotoc_md4", null ]
     ] ],
-    [ "Engine Directories", "../../Engine/html/engine_directories.html", null ],
     [ "Build From Source", "main_build_from_source.html", [
       [ "Prerequisites", "main_build_from_source.html#autotoc_md5", null ],
       [ "Step 1: Run the Setup Script", "main_build_from_source.html#autotoc_md6", null ],

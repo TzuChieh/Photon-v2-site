@@ -1,6 +1,8 @@
 var dir_876372e7514744a0c8fd41860433ee3d =
 [
+    [ "enums.h", "enums_8h.html", "enums_8h" ],
     [ "lta.h", "lta_8h.html", "lta_8h" ],
+    [ "PDF.h", "_p_d_f_8h.html", "_p_d_f_8h" ],
     [ "PtVolumetricEstimator.cpp", "_pt_volumetric_estimator_8cpp.html", null ],
     [ "PtVolumetricEstimator.h", "_pt_volumetric_estimator_8h.html", "_pt_volumetric_estimator_8h" ],
     [ "RussianRoulette.h", "_russian_roulette_8h.html", "_russian_roulette_8h" ],
@@ -13,5 +15,5 @@ var dir_876372e7514744a0c8fd41860433ee3d =
     [ "TDirectLightEstimator.ipp", "_t_direct_light_estimator_8ipp.html", null ],
     [ "TIndirectLightEstimator.h", "_t_indirect_light_estimator_8h.html", "_t_indirect_light_estimator_8h" ],
     [ "TIndirectLightEstimator.ipp", "_t_indirect_light_estimator_8ipp.html", null ],
-    [ "TMis.h", "_t_mis_8h.html", "_t_mis_8h" ]
+    [ "TMIS.h", "_t_m_i_s_8h.html", "_t_m_i_s_8h" ]
 ];

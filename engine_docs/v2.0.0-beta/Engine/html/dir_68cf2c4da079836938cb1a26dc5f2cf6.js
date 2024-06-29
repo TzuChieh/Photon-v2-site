@@ -4,7 +4,7 @@ var dir_68cf2c4da079836938cb1a26dc5f2cf6 =
     [ "BinaryMixedImage.h", "_binary_mixed_image_8h.html", "_binary_mixed_image_8h" ],
     [ "BlackBodyRadiationImage.cpp", "_black_body_radiation_image_8cpp.html", "_black_body_radiation_image_8cpp" ],
     [ "BlackBodyRadiationImage.h", "_black_body_radiation_image_8h.html", "_black_body_radiation_image_8h" ],
-    [ "CheckerboardImage.cpp", "_checkerboard_image_8cpp.html", null ],
+    [ "CheckerboardImage.cpp", "_checkerboard_image_8cpp.html", "_checkerboard_image_8cpp" ],
     [ "CheckerboardImage.h", "_checkerboard_image_8h.html", "_checkerboard_image_8h" ],
     [ "ConstantImage.cpp", "_constant_image_8cpp.html", "_constant_image_8cpp" ],
     [ "ConstantImage.h", "_constant_image_8h.html", "_constant_image_8h" ],

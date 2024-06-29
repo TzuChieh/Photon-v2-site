@@ -32,12 +32,10 @@ bool \mbox{\hyperlink{classph_1_1_p_empty_a3ee88ed8bdb84f4bd93aec95e19fc3cd}{may
 \item 
 virtual void \mbox{\hyperlink{classph_1_1_primitive_adf10fb27ccbff49031a7ad82b19f1417}{gen\+Pos\+Sample}} (\mbox{\hyperlink{classph_1_1_primitive_pos_sample_query}{Primitive\+Pos\+Sample\+Query}} \&query, \mbox{\hyperlink{classph_1_1_sample_flow}{Sample\+Flow}} \&sample\+Flow, \mbox{\hyperlink{classph_1_1_hit_probe}{Hit\+Probe}} \&probe) const
 \begin{DoxyCompactList}\small\item\em Generates a sample point on the surface of this primitive. \end{DoxyCompactList}\item 
-virtual void \mbox{\hyperlink{classph_1_1_primitive_a2f4f082548c743ffe1ed80fdc9f060b9}{calc\+Pos\+Sample\+PdfA}} (\mbox{\hyperlink{classph_1_1_primitive_pos_sample_pdf_query}{Primitive\+Pos\+Sample\+Pdf\+Query}} \&query, \mbox{\hyperlink{classph_1_1_hit_probe}{Hit\+Probe}} \&probe) const
+virtual void \mbox{\hyperlink{classph_1_1_primitive_aa1b961543e99677821a11ccadc588cc9}{calc\+Pos\+Pdf}} (\mbox{\hyperlink{classph_1_1_primitive_pos_pdf_query}{Primitive\+Pos\+Pdf\+Query}} \&query) const
 \begin{DoxyCompactList}\small\item\em Given a point on the surface of this primitive, calculates the PDF of sampling this point. \end{DoxyCompactList}\item 
 virtual real \mbox{\hyperlink{classph_1_1_primitive_a2c352873161e8bab85ddb4a86eb489c8}{calc\+Extended\+Area}} () const
-\begin{DoxyCompactList}\small\item\em Calculates the area extended by this primitive. \end{DoxyCompactList}\item 
-virtual bool \mbox{\hyperlink{classph_1_1_primitive_a5f788c61aabe92e33a80524795c45cc5}{uvw\+To\+Position}} (const \mbox{\hyperlink{namespaceph_1_1math_a7f5d9bea70db00eb52ece79b05e544c8}{math\+::\+Vector3R}} \&uvw, \mbox{\hyperlink{namespaceph_1_1math_a7f5d9bea70db00eb52ece79b05e544c8}{math\+::\+Vector3R}} \texorpdfstring{$\ast$}{*}out\+\_\+position) const
-\item 
+\begin{DoxyCompactList}\small\item\em Calculates the area extended by this primitive. The term "{}extended"{} implies single-\/sided, e.\+g., a triangle\textquotesingle{}s extended area is half the absolute value of the cross product of its two edge vectors. To treat it as double-\/sided, you need to multiply the result by 2 manually. \end{DoxyCompactList}\item 
 virtual const \mbox{\hyperlink{classph_1_1_primitive_metadata}{Primitive\+Metadata}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classph_1_1_primitive_a967b40614b286c46aed37e9cd81fec0e}{get\+Metadata}} () const
 \end{DoxyCompactItemize}
 \doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classph_1_1_intersectable}{ph\+::\+Intersectable}}}
@@ -95,6 +93,9 @@ This method calculates a detailed description of a hit from the ray and probe in
 \begin{DoxyNote}{Note}
 See {\ttfamily \doxylink{classph_1_1_primitive}{Primitive}} for more methods that can generate a hit event. 
 \end{DoxyNote}
+\begin{DoxyWarning}{Warning}
+This method will destroy the probe. 
+\end{DoxyWarning}
 
 
 Implements \mbox{\hyperlink{classph_1_1_primitive_a68c3a4877450bbc0bf0230558b1bbb67}{ph\+::\+Primitive}}.
@@ -109,7 +110,7 @@ bool ph\+::\+PEmpty\+::is\+Intersecting (\begin{DoxyParamCaption}\item[{const \m
 
 Determine whether a given ray hits the object. 
 
-Checks whether the specified ray intersects this intersectable. If there is an intersection, true is returned and a brief hit report is stored inside the probe. If there is no intersection, false is returned and the state of the probe is undefined. {\ttfamily ray} and {\ttfamily probe} can be used for obtaining hit detail if an intersection is found.
+Checks whether the specified ray intersects this intersectable. If there is an intersection, {\ttfamily true} is returned and a brief hit report is stored inside the probe. If there is no intersection, {\ttfamily false} is returned and the state of the probe is undefined. {\ttfamily ray} and {\ttfamily probe} can be used for obtaining hit detail if an intersection is found.
 
 \begin{DoxyNote}{Note}
 Generates hit event (with {\ttfamily ray} and {\ttfamily probe}). 
@@ -166,7 +167,7 @@ This method is different to is\+Intersecting(const Ray, Hit\+Probe\&) const. Giv
 \hline
 {\em probe} & The probe to record the intersection. \\
 \hline
-{\em src\+Ray} & The ray from a hit event. \\
+{\em src\+Ray} & The ray from a previous hit event. \\
 \hline
 {\em src\+Probe} & The probe from a hit event. The process of re-\/intersect will destroy the probe. \\
 \hline
@@ -177,6 +178,9 @@ Whether {\ttfamily ray} intersects the object.
 \begin{DoxyNote}{Note}
 Generates hit event (with {\ttfamily ray} and {\ttfamily probe}). 
 \end{DoxyNote}
+\begin{DoxyWarning}{Warning}
+This method will destroy {\ttfamily src\+Probe}. 
+\end{DoxyWarning}
 
 
 Implements \mbox{\hyperlink{classph_1_1_primitive_a9ab017656ee45d0df91922f3f4f94ff9}{ph\+::\+Primitive}}.

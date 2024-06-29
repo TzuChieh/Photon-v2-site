@@ -11,8 +11,9 @@ var searchData=
   ['gradientimage_8',['GradientImage',['../classph_1_1_gradient_image.html',1,'ph']]],
   ['grectangle_9',['GRectangle',['../classph_1_1_g_rectangle.html',1,'ph']]],
   ['gridscheduler_10',['GridScheduler',['../classph_1_1_grid_scheduler.html',1,'ph']]],
-  ['gsphere_11',['GSphere',['../classph_1_1_g_sphere.html',1,'ph']]],
-  ['gtriangle_12',['GTriangle',['../classph_1_1_g_triangle.html',1,'ph']]],
-  ['gtrianglemesh_13',['GTriangleMesh',['../classph_1_1_g_triangle_mesh.html',1,'ph']]],
-  ['gwave_14',['GWave',['../classph_1_1_g_wave.html',1,'ph']]]
+  ['groupeddiffusesurfaceemitter_11',['GroupedDiffuseSurfaceEmitter',['../classph_1_1_grouped_diffuse_surface_emitter.html',1,'ph']]],
+  ['gsphere_12',['GSphere',['../classph_1_1_g_sphere.html',1,'ph']]],
+  ['gtriangle_13',['GTriangle',['../classph_1_1_g_triangle.html',1,'ph']]],
+  ['gtrianglemesh_14',['GTriangleMesh',['../classph_1_1_g_triangle_mesh.html',1,'ph']]],
+  ['gwave_15',['GWave',['../classph_1_1_g_wave.html',1,'ph']]]
 ];

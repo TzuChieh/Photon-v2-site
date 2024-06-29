@@ -98,13 +98,13 @@
 \DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ surfaceHit\ =\ \mbox{\hyperlink{namespaceph_a7d646adaf4c44ccfcbbe787120a7cb1fa2eee368b673cbaedbb7a829562fa85d7}{SurfaceHit}}(tracingRay,\ probe,\ reason);}
 \DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \}}
 \DoxyCodeLine{00096\ }
-\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ PH\_ASSERT\_IN\_RANGE(tracingRay.getDirection().lengthSquared(),\ 0.9\_r,\ 1.1\_r);}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ PH\_ASSERT\_IN\_RANGE(tracingRay.getDir().lengthSquared(),\ 0.9\_r,\ 1.1\_r);}
 \DoxyCodeLine{00098\ }
 \DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Here\ 0-\/bounce\ lighting\ is\ never\ accounted\ for}}
 \DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceph_1_1math_ad1ddf3801f5a9ea201227d49747987ed}{math::Spectrum}}\ throughputRadiance(energyEmission.outputs.getEmittedEnergy());}
 \DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ throughputRadiance.divLocal(energyEmission.outputs.getPdfA());}
 \DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ throughputRadiance.divLocal(energyEmission.outputs.getPdfW());}
-\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ throughputRadiance.mulLocal(surfaceHit.getShadingNormal().absDot(tracingRay.getDirection()));}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ throughputRadiance.mulLocal(surfaceHit.getShadingNormal().absDot(tracingRay.getDir()));}
 \DoxyCodeLine{00104\ }
 \DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Start\ tracing\ single\ photon\ path\ with\ at\ least\ 1\ bounce}}
 \DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ uint32\ photonPathLength\ =\ 0;}
@@ -151,90 +151,89 @@
 \DoxyCodeLine{00147\ }
 \DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \ \ \ \ BsdfSampleQuery\ bsdfSample(bsdfContext);}
 \DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \ \ Ray\ sampledRay;}
-\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \ \ \ \ bsdfSample.inputs.set(surfaceHit,\ tracingRay.getDirection().mul(-\/1));}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \ \ \ \ bsdfSample.inputs.set(surfaceHit,\ tracingRay.getDir().mul(-\/1));}
 \DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!surfaceTracer.doBsdfSample(bsdfSample,\ sampleFlow,\ \&sampledRay))}
 \DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
 \DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
 \DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
 \DoxyCodeLine{00155\ }
-\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceph_1_1math_a7f5d9bea70db00eb52ece79b05e544c8}{math::Vector3R}}\ V\ =\ tracingRay.getDirection().\mbox{\hyperlink{classph_1_1math_1_1_t_vector_n_base_a15602e64861b8d4b90033e87b168b846}{mul}}(-\/1);}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceph_1_1math_a7f5d9bea70db00eb52ece79b05e544c8}{math::Vector3R}}\ V\ =\ tracingRay.getDir().\mbox{\hyperlink{classph_1_1math_1_1_t_vector_n_base_a15602e64861b8d4b90033e87b168b846}{mul}}(-\/1);}
 \DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceph_1_1math_a7f5d9bea70db00eb52ece79b05e544c8}{math::Vector3R}}\ L\ =\ bsdfSample.outputs.getL();}
 \DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceph_1_1math_a7f5d9bea70db00eb52ece79b05e544c8}{math::Vector3R}}\ Ng\ =\ surfaceHit.getGeometryNormal();}
 \DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceph_1_1math_a7f5d9bea70db00eb52ece79b05e544c8}{math::Vector3R}}\ Ns\ =\ surfaceHit.getShadingNormal();}
-\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \ \ throughputRadiance.\mbox{\hyperlink{classph_1_1math_1_1_t_vector_n_base_ab2c2c0e821a2752db5eab046a8b945a3}{mulLocal}}(bsdfSample.outputs.getPdfAppliedBsdf());}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \ \ throughputRadiance.\mbox{\hyperlink{classph_1_1math_1_1_t_vector_n_base_ab2c2c0e821a2752db5eab046a8b945a3}{mulLocal}}(bsdfSample.outputs.getPdfAppliedBsdfCos());}
 \DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \ \ \ \ throughputRadiance.\mbox{\hyperlink{classph_1_1math_1_1_t_vector_n_base_ab2c2c0e821a2752db5eab046a8b945a3}{mulLocal}}(\mbox{\hyperlink{namespaceph_1_1lta_ab2afad625c810a9f23c2d71d9c07031f}{lta::tamed\_importance\_scatter\_Ns\_corrector}}(Ns,\ Ng,\ L,\ V));}
-\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \ \ \ \ throughputRadiance.\mbox{\hyperlink{classph_1_1math_1_1_t_vector_n_base_ab2c2c0e821a2752db5eab046a8b945a3}{mulLocal}}(Ns.absDot(L));}
-\DoxyCodeLine{00163\ }
-\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \ \ \ \ tracingRay\ =\ sampledRay;}
-\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \}\textcolor{comment}{//\ end\ single\ photon\ path}}
-\DoxyCodeLine{00166\ }
-\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(photonStatsCounter\ >=\ 16384)}
-\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ timer.\mbox{\hyperlink{classph_1_1_timer_a806b8e6c88e04cb4b6551838a54f6371}{stop}}();}
-\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \ \ \ \ setElapsedMs(timer.\mbox{\hyperlink{classph_1_1_timer_a3e613d6459224760593463ec04ab44f0}{getDeltaMs}}());}
-\DoxyCodeLine{00171\ }
-\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(m\_statistics)}
-\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_statistics-\/>addNumTracedPhotons(photonStatsCounter);}
-\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00176\ }
-\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \ \ \ \ photonStatsCounter\ =\ 0;}
-\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00179\ \ \ \ \ \}\textcolor{comment}{//\ end\ while\ photon\ buffer\ is\ not\ full}}
-\DoxyCodeLine{00180\ }
-\DoxyCodeLine{00181\ \ \ \ \ timer.\mbox{\hyperlink{classph_1_1_timer_a806b8e6c88e04cb4b6551838a54f6371}{stop}}();}
-\DoxyCodeLine{00182\ \ \ \ \ setElapsedMs(timer.\mbox{\hyperlink{classph_1_1_timer_a3e613d6459224760593463ec04ab44f0}{getDeltaMs}}());}
-\DoxyCodeLine{00183\ }
-\DoxyCodeLine{00184\ \ \ \ \ \textcolor{keywordflow}{if}(m\_statistics)}
-\DoxyCodeLine{00185\ \ \ \ \ \{}
-\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ m\_statistics-\/>addNumTracedPhotons(photonStatsCounter);}
-\DoxyCodeLine{00187\ \ \ \ \ \}}
-\DoxyCodeLine{00188\ \}}
-\DoxyCodeLine{00189\ }
-\DoxyCodeLine{00190\ \textcolor{keyword}{template}<CPhoton\ Photon>}
-\DoxyCodeLine{00191\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_photon_path_tracing_work_a1f7b60472c8a764ec41aa2f8eac98d73}{TPhotonPathTracingWork<Photon>::setStatistics}}(\mbox{\hyperlink{classph_1_1_p_m_atomic_statistics}{PMAtomicStatistics}}*\ \textcolor{keyword}{const}\ statistics)}
-\DoxyCodeLine{00192\ \{}
-\DoxyCodeLine{00193\ \ \ \ \ m\_statistics\ =\ statistics;}
-\DoxyCodeLine{00194\ \}}
-\DoxyCodeLine{00195\ }
-\DoxyCodeLine{00196\ \textcolor{keyword}{template}<CPhoton\ Photon>}
-\DoxyCodeLine{00197\ \textcolor{keyword}{inline}\ std::size\_t\ \mbox{\hyperlink{classph_1_1_t_photon_path_tracing_work_a8c55189d38a579a28bdae9add7e9d061}{TPhotonPathTracingWork<Photon>::numPhotonPaths}}()\textcolor{keyword}{\ const}}
-\DoxyCodeLine{00198\ \textcolor{keyword}{}\{}
-\DoxyCodeLine{00199\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_numPhotonPaths;}
-\DoxyCodeLine{00200\ \}}
-\DoxyCodeLine{00201\ }
-\DoxyCodeLine{00202\ \textcolor{keyword}{template}<CPhoton\ Photon>}
-\DoxyCodeLine{00203\ \textcolor{keyword}{inline}\ Photon\ \mbox{\hyperlink{classph_1_1_t_photon_path_tracing_work}{TPhotonPathTracingWork<Photon>::makePhoton}}(}
-\DoxyCodeLine{00204\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_surface_hit}{SurfaceHit}}\&\ \ \ \ \ surfaceHit,\ }
-\DoxyCodeLine{00205\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_spectrum}{math::Spectrum}}\&\ throughputRadiance,}
-\DoxyCodeLine{00206\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_ray}{Ray}}\&\ \ \ \ \ \ \ \ \ \ \ \ tracingRay,}
-\DoxyCodeLine{00207\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ \ \ \ \ pathLength)}
-\DoxyCodeLine{00208\ \{}
-\DoxyCodeLine{00209\ \ \ \ \ Photon\ photon;}
-\DoxyCodeLine{00210\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(Photon::template\ has<EPhotonData::Position>())}
-\DoxyCodeLine{00211\ \ \ \ \ \{}
-\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ photon.template\ set<EPhotonData::Position>(surfaceHit.\mbox{\hyperlink{classph_1_1_surface_hit_ab9436d2c3f6530722d402edb487f87f1}{getPosition}}());}
-\DoxyCodeLine{00213\ \ \ \ \ \}}
-\DoxyCodeLine{00214\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(Photon::template\ has<EPhotonData::ThroughputRadiance>())}
-\DoxyCodeLine{00215\ \ \ \ \ \{}
-\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ photon.template\ set<EPhotonData::ThroughputRadiance>(throughputRadiance);}
-\DoxyCodeLine{00217\ \ \ \ \ \}}
-\DoxyCodeLine{00218\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(Photon::template\ has<EPhotonData::FromDir>())}
-\DoxyCodeLine{00219\ \ \ \ \ \{}
-\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ photon.template\ set<EPhotonData::FromDir>(tracingRay.\mbox{\hyperlink{classph_1_1_ray_a3f62b201c0015a647611282280130b52}{getDirection}}().\mbox{\hyperlink{classph_1_1math_1_1_t_vector_n_base_a15602e64861b8d4b90033e87b168b846}{mul}}(-\/1));}
-\DoxyCodeLine{00221\ \ \ \ \ \}}
-\DoxyCodeLine{00222\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(Photon::template\ has<EPhotonData::GeometryNormal>())}
-\DoxyCodeLine{00223\ \ \ \ \ \{}
-\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ photon.template\ set<EPhotonData::GeometryNormal>(surfaceHit.\mbox{\hyperlink{classph_1_1_surface_hit_a03950ddbe22d5c8bcf72c04306660f36}{getGeometryNormal}}());}
-\DoxyCodeLine{00225\ \ \ \ \ \}}
-\DoxyCodeLine{00226\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(Photon::template\ has<EPhotonData::PathLength>())}
-\DoxyCodeLine{00227\ \ \ \ \ \{}
-\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ photon.template\ set<EPhotonData::PathLength>(pathLength);}
-\DoxyCodeLine{00229\ \ \ \ \ \}}
-\DoxyCodeLine{00230\ }
-\DoxyCodeLine{00231\ \ \ \ \ \textcolor{keywordflow}{return}\ photon;}
-\DoxyCodeLine{00232\ \}}
-\DoxyCodeLine{00233\ }
-\DoxyCodeLine{00234\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \ \ \ \ tracingRay\ =\ sampledRay;}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \}\textcolor{comment}{//\ end\ single\ photon\ path}}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(photonStatsCounter\ >=\ 16384)}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ timer.\mbox{\hyperlink{classph_1_1_timer_a806b8e6c88e04cb4b6551838a54f6371}{stop}}();}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ setElapsedMs(timer.\mbox{\hyperlink{classph_1_1_timer_a3e613d6459224760593463ec04ab44f0}{getDeltaMs}}());}
+\DoxyCodeLine{00170\ }
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(m\_statistics)}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_statistics-\/>addNumTracedPhotons(photonStatsCounter);}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00175\ }
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \ \ \ photonStatsCounter\ =\ 0;}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00178\ \ \ \ \ \}\textcolor{comment}{//\ end\ while\ photon\ buffer\ is\ not\ full}}
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00180\ \ \ \ \ timer.\mbox{\hyperlink{classph_1_1_timer_a806b8e6c88e04cb4b6551838a54f6371}{stop}}();}
+\DoxyCodeLine{00181\ \ \ \ \ setElapsedMs(timer.\mbox{\hyperlink{classph_1_1_timer_a3e613d6459224760593463ec04ab44f0}{getDeltaMs}}());}
+\DoxyCodeLine{00182\ }
+\DoxyCodeLine{00183\ \ \ \ \ \textcolor{keywordflow}{if}(m\_statistics)}
+\DoxyCodeLine{00184\ \ \ \ \ \{}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ m\_statistics-\/>addNumTracedPhotons(photonStatsCounter);}
+\DoxyCodeLine{00186\ \ \ \ \ \}}
+\DoxyCodeLine{00187\ \}}
+\DoxyCodeLine{00188\ }
+\DoxyCodeLine{00189\ \textcolor{keyword}{template}<CPhoton\ Photon>}
+\DoxyCodeLine{00190\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_photon_path_tracing_work_a1f7b60472c8a764ec41aa2f8eac98d73}{TPhotonPathTracingWork<Photon>::setStatistics}}(\mbox{\hyperlink{classph_1_1_p_m_atomic_statistics}{PMAtomicStatistics}}*\ \textcolor{keyword}{const}\ statistics)}
+\DoxyCodeLine{00191\ \{}
+\DoxyCodeLine{00192\ \ \ \ \ m\_statistics\ =\ statistics;}
+\DoxyCodeLine{00193\ \}}
+\DoxyCodeLine{00194\ }
+\DoxyCodeLine{00195\ \textcolor{keyword}{template}<CPhoton\ Photon>}
+\DoxyCodeLine{00196\ \textcolor{keyword}{inline}\ std::size\_t\ \mbox{\hyperlink{classph_1_1_t_photon_path_tracing_work_a8c55189d38a579a28bdae9add7e9d061}{TPhotonPathTracingWork<Photon>::numPhotonPaths}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00197\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00198\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_numPhotonPaths;}
+\DoxyCodeLine{00199\ \}}
+\DoxyCodeLine{00200\ }
+\DoxyCodeLine{00201\ \textcolor{keyword}{template}<CPhoton\ Photon>}
+\DoxyCodeLine{00202\ \textcolor{keyword}{inline}\ Photon\ \mbox{\hyperlink{classph_1_1_t_photon_path_tracing_work}{TPhotonPathTracingWork<Photon>::makePhoton}}(}
+\DoxyCodeLine{00203\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_surface_hit}{SurfaceHit}}\&\ \ \ \ \ surfaceHit,\ }
+\DoxyCodeLine{00204\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_spectrum}{math::Spectrum}}\&\ throughputRadiance,}
+\DoxyCodeLine{00205\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_ray}{Ray}}\&\ \ \ \ \ \ \ \ \ \ \ \ tracingRay,}
+\DoxyCodeLine{00206\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ \ \ \ \ pathLength)}
+\DoxyCodeLine{00207\ \{}
+\DoxyCodeLine{00208\ \ \ \ \ Photon\ photon;}
+\DoxyCodeLine{00209\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(Photon::template\ has<EPhotonData::Pos>())}
+\DoxyCodeLine{00210\ \ \ \ \ \{}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ photon.template\ set<EPhotonData::Pos>(surfaceHit.\mbox{\hyperlink{classph_1_1_surface_hit_ab6da2653e522e20b368900dd55121362}{getPos}}());}
+\DoxyCodeLine{00212\ \ \ \ \ \}}
+\DoxyCodeLine{00213\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(Photon::template\ has<EPhotonData::ThroughputRadiance>())}
+\DoxyCodeLine{00214\ \ \ \ \ \{}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ photon.template\ set<EPhotonData::ThroughputRadiance>(throughputRadiance);}
+\DoxyCodeLine{00216\ \ \ \ \ \}}
+\DoxyCodeLine{00217\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(Photon::template\ has<EPhotonData::FromDir>())}
+\DoxyCodeLine{00218\ \ \ \ \ \{}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ photon.template\ set<EPhotonData::FromDir>(tracingRay.\mbox{\hyperlink{classph_1_1_ray_a3c80f865b8ba404194a5afc268fe9651}{getDir}}().\mbox{\hyperlink{classph_1_1math_1_1_t_vector_n_base_a15602e64861b8d4b90033e87b168b846}{mul}}(-\/1));}
+\DoxyCodeLine{00220\ \ \ \ \ \}}
+\DoxyCodeLine{00221\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(Photon::template\ has<EPhotonData::GeometryNormal>())}
+\DoxyCodeLine{00222\ \ \ \ \ \{}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ photon.template\ set<EPhotonData::GeometryNormal>(surfaceHit.\mbox{\hyperlink{classph_1_1_surface_hit_a03950ddbe22d5c8bcf72c04306660f36}{getGeometryNormal}}());}
+\DoxyCodeLine{00224\ \ \ \ \ \}}
+\DoxyCodeLine{00225\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(Photon::template\ has<EPhotonData::PathLength>())}
+\DoxyCodeLine{00226\ \ \ \ \ \{}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ photon.template\ set<EPhotonData::PathLength>(pathLength);}
+\DoxyCodeLine{00228\ \ \ \ \ \}}
+\DoxyCodeLine{00229\ }
+\DoxyCodeLine{00230\ \ \ \ \ \textcolor{keywordflow}{return}\ photon;}
+\DoxyCodeLine{00231\ \}}
+\DoxyCodeLine{00232\ }
+\DoxyCodeLine{00233\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
 
 \end{DoxyCode}

@@ -14,6 +14,7 @@ var annotated_dup =
         [ "PerDigitPermuter", "classph_1_1halton__detail_1_1_per_digit_permuter.html", "classph_1_1halton__detail_1_1_per_digit_permuter" ]
       ] ],
       [ "lta", "namespaceph_1_1lta.html", [
+        [ "PDF", "classph_1_1lta_1_1_p_d_f.html", "classph_1_1lta_1_1_p_d_f" ],
         [ "PtVolumetricEstimator", "classph_1_1lta_1_1_pt_volumetric_estimator.html", null ],
         [ "RussianRoulette", "classph_1_1lta_1_1_russian_roulette.html", "classph_1_1lta_1_1_russian_roulette" ],
         [ "SenseEvent", "classph_1_1lta_1_1_sense_event.html", "classph_1_1lta_1_1_sense_event" ],
@@ -22,7 +23,7 @@ var annotated_dup =
         [ "SurfaceTracer", "classph_1_1lta_1_1_surface_tracer.html", "classph_1_1lta_1_1_surface_tracer" ],
         [ "TDirectLightEstimator", "classph_1_1lta_1_1_t_direct_light_estimator.html", "classph_1_1lta_1_1_t_direct_light_estimator" ],
         [ "TIndirectLightEstimator", "classph_1_1lta_1_1_t_indirect_light_estimator.html", "classph_1_1lta_1_1_t_indirect_light_estimator" ],
-        [ "TMis", "classph_1_1lta_1_1_t_mis.html", "classph_1_1lta_1_1_t_mis" ]
+        [ "TMIS", "classph_1_1lta_1_1_t_m_i_s.html", "classph_1_1lta_1_1_t_m_i_s" ]
       ] ],
       [ "math", "namespaceph_1_1math.html", [
         [ "detail", "namespaceph_1_1math_1_1detail.html", [
@@ -210,11 +211,12 @@ var annotated_dup =
       [ "DielectricFresnel", "classph_1_1_dielectric_fresnel.html", "classph_1_1_dielectric_fresnel" ],
       [ "DielectricInterfaceInfo", "classph_1_1_dielectric_interface_info.html", "classph_1_1_dielectric_interface_info" ],
       [ "DiffuseSurfaceEmitter", "classph_1_1_diffuse_surface_emitter.html", "classph_1_1_diffuse_surface_emitter" ],
+      [ "DiffuseSurfaceEmitterBase", "classph_1_1_diffuse_surface_emitter_base.html", "classph_1_1_diffuse_surface_emitter_base" ],
+      [ "DirectEnergyPdfInput", "classph_1_1_direct_energy_pdf_input.html", "classph_1_1_direct_energy_pdf_input" ],
+      [ "DirectEnergyPdfOutput", "classph_1_1_direct_energy_pdf_output.html", "classph_1_1_direct_energy_pdf_output" ],
+      [ "DirectEnergyPdfQuery", "classph_1_1_direct_energy_pdf_query.html", "classph_1_1_direct_energy_pdf_query" ],
       [ "DirectEnergySampleInput", "classph_1_1_direct_energy_sample_input.html", "classph_1_1_direct_energy_sample_input" ],
       [ "DirectEnergySampleOutput", "classph_1_1_direct_energy_sample_output.html", "classph_1_1_direct_energy_sample_output" ],
-      [ "DirectEnergySamplePdfInput", "classph_1_1_direct_energy_sample_pdf_input.html", "classph_1_1_direct_energy_sample_pdf_input" ],
-      [ "DirectEnergySamplePdfOutput", "classph_1_1_direct_energy_sample_pdf_output.html", "classph_1_1_direct_energy_sample_pdf_output" ],
-      [ "DirectEnergySamplePdfQuery", "classph_1_1_direct_energy_sample_pdf_query.html", "classph_1_1_direct_energy_sample_pdf_query" ],
       [ "DirectEnergySampleQuery", "classph_1_1_direct_energy_sample_query.html", "classph_1_1_direct_energy_sample_query" ],
       [ "DomeRadianceFunctionInfo", "structph_1_1_dome_radiance_function_info.html", "structph_1_1_dome_radiance_function_info" ],
       [ "EmbeddedPrimitiveMetaGetter", "structph_1_1_embedded_primitive_meta_getter.html", "structph_1_1_embedded_primitive_meta_getter" ],
@@ -261,6 +263,7 @@ var annotated_dup =
       [ "GradientImage", "classph_1_1_gradient_image.html", "classph_1_1_gradient_image" ],
       [ "GRectangle", "classph_1_1_g_rectangle.html", "classph_1_1_g_rectangle" ],
       [ "GridScheduler", "classph_1_1_grid_scheduler.html", "classph_1_1_grid_scheduler" ],
+      [ "GroupedDiffuseSurfaceEmitter", "classph_1_1_grouped_diffuse_surface_emitter.html", "classph_1_1_grouped_diffuse_surface_emitter" ],
       [ "GSphere", "classph_1_1_g_sphere.html", "classph_1_1_g_sphere" ],
       [ "GTriangle", "classph_1_1_g_triangle.html", "classph_1_1_g_triangle" ],
       [ "GTriangleMesh", "classph_1_1_g_triangle_mesh.html", "classph_1_1_g_triangle_mesh" ],
@@ -335,7 +338,6 @@ var annotated_dup =
       [ "ModelSource", "classph_1_1_model_source.html", "classph_1_1_model_source" ],
       [ "MotionCookConfig", "classph_1_1_motion_cook_config.html", "classph_1_1_motion_cook_config" ],
       [ "MotionSource", "classph_1_1_motion_source.html", "classph_1_1_motion_source" ],
-      [ "MultiDiffuseSurfaceEmitter", "classph_1_1_multi_diffuse_surface_emitter.html", "classph_1_1_multi_diffuse_surface_emitter" ],
       [ "NaiveReinhardToneMapping", "classph_1_1_naive_reinhard_tone_mapping.html", "classph_1_1_naive_reinhard_tone_mapping" ],
       [ "Object", "classph_1_1_object.html", "classph_1_1_object" ],
       [ "Observer", "classph_1_1_observer.html", "classph_1_1_observer" ],
@@ -376,11 +378,11 @@ var annotated_dup =
       [ "PrimitiveBuildingMaterial", "classph_1_1_primitive_building_material.html", "classph_1_1_primitive_building_material" ],
       [ "PrimitiveChannel", "classph_1_1_primitive_channel.html", "classph_1_1_primitive_channel" ],
       [ "PrimitiveMetadata", "classph_1_1_primitive_metadata.html", "classph_1_1_primitive_metadata" ],
+      [ "PrimitivePosPdfInput", "classph_1_1_primitive_pos_pdf_input.html", "classph_1_1_primitive_pos_pdf_input" ],
+      [ "PrimitivePosPdfOutput", "classph_1_1_primitive_pos_pdf_output.html", "classph_1_1_primitive_pos_pdf_output" ],
+      [ "PrimitivePosPdfQuery", "classph_1_1_primitive_pos_pdf_query.html", "classph_1_1_primitive_pos_pdf_query" ],
       [ "PrimitivePosSampleInput", "classph_1_1_primitive_pos_sample_input.html", "classph_1_1_primitive_pos_sample_input" ],
       [ "PrimitivePosSampleOutput", "classph_1_1_primitive_pos_sample_output.html", "classph_1_1_primitive_pos_sample_output" ],
-      [ "PrimitivePosSamplePdfInput", "classph_1_1_primitive_pos_sample_pdf_input.html", "classph_1_1_primitive_pos_sample_pdf_input" ],
-      [ "PrimitivePosSamplePdfOutput", "classph_1_1_primitive_pos_sample_pdf_output.html", "classph_1_1_primitive_pos_sample_pdf_output" ],
-      [ "PrimitivePosSamplePdfQuery", "classph_1_1_primitive_pos_sample_pdf_query.html", "classph_1_1_primitive_pos_sample_pdf_query" ],
       [ "PrimitivePosSampleQuery", "classph_1_1_primitive_pos_sample_query.html", "classph_1_1_primitive_pos_sample_query" ],
       [ "ProbabilisticProgressivePMRenderer", "classph_1_1_probabilistic_progressive_p_m_renderer.html", "classph_1_1_probabilistic_progressive_p_m_renderer" ],
       [ "ProgressivePMRenderer", "classph_1_1_progressive_p_m_renderer.html", "classph_1_1_progressive_p_m_renderer" ],

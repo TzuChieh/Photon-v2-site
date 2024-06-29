@@ -152,11 +152,12 @@ var namespaceph =
     [ "DielectricFresnel", "classph_1_1_dielectric_fresnel.html", "classph_1_1_dielectric_fresnel" ],
     [ "DielectricInterfaceInfo", "classph_1_1_dielectric_interface_info.html", "classph_1_1_dielectric_interface_info" ],
     [ "DiffuseSurfaceEmitter", "classph_1_1_diffuse_surface_emitter.html", "classph_1_1_diffuse_surface_emitter" ],
+    [ "DiffuseSurfaceEmitterBase", "classph_1_1_diffuse_surface_emitter_base.html", "classph_1_1_diffuse_surface_emitter_base" ],
+    [ "DirectEnergyPdfInput", "classph_1_1_direct_energy_pdf_input.html", "classph_1_1_direct_energy_pdf_input" ],
+    [ "DirectEnergyPdfOutput", "classph_1_1_direct_energy_pdf_output.html", "classph_1_1_direct_energy_pdf_output" ],
+    [ "DirectEnergyPdfQuery", "classph_1_1_direct_energy_pdf_query.html", "classph_1_1_direct_energy_pdf_query" ],
     [ "DirectEnergySampleInput", "classph_1_1_direct_energy_sample_input.html", "classph_1_1_direct_energy_sample_input" ],
     [ "DirectEnergySampleOutput", "classph_1_1_direct_energy_sample_output.html", "classph_1_1_direct_energy_sample_output" ],
-    [ "DirectEnergySamplePdfInput", "classph_1_1_direct_energy_sample_pdf_input.html", "classph_1_1_direct_energy_sample_pdf_input" ],
-    [ "DirectEnergySamplePdfOutput", "classph_1_1_direct_energy_sample_pdf_output.html", "classph_1_1_direct_energy_sample_pdf_output" ],
-    [ "DirectEnergySamplePdfQuery", "classph_1_1_direct_energy_sample_pdf_query.html", "classph_1_1_direct_energy_sample_pdf_query" ],
     [ "DirectEnergySampleQuery", "classph_1_1_direct_energy_sample_query.html", "classph_1_1_direct_energy_sample_query" ],
     [ "DomeRadianceFunctionInfo", "structph_1_1_dome_radiance_function_info.html", "structph_1_1_dome_radiance_function_info" ],
     [ "EmbeddedPrimitiveMetaGetter", "structph_1_1_embedded_primitive_meta_getter.html", "structph_1_1_embedded_primitive_meta_getter" ],
@@ -203,6 +204,7 @@ var namespaceph =
     [ "GradientImage", "classph_1_1_gradient_image.html", "classph_1_1_gradient_image" ],
     [ "GRectangle", "classph_1_1_g_rectangle.html", "classph_1_1_g_rectangle" ],
     [ "GridScheduler", "classph_1_1_grid_scheduler.html", "classph_1_1_grid_scheduler" ],
+    [ "GroupedDiffuseSurfaceEmitter", "classph_1_1_grouped_diffuse_surface_emitter.html", "classph_1_1_grouped_diffuse_surface_emitter" ],
     [ "GSphere", "classph_1_1_g_sphere.html", "classph_1_1_g_sphere" ],
     [ "GTriangle", "classph_1_1_g_triangle.html", "classph_1_1_g_triangle" ],
     [ "GTriangleMesh", "classph_1_1_g_triangle_mesh.html", "classph_1_1_g_triangle_mesh" ],
@@ -277,7 +279,6 @@ var namespaceph =
     [ "ModelSource", "classph_1_1_model_source.html", "classph_1_1_model_source" ],
     [ "MotionCookConfig", "classph_1_1_motion_cook_config.html", "classph_1_1_motion_cook_config" ],
     [ "MotionSource", "classph_1_1_motion_source.html", "classph_1_1_motion_source" ],
-    [ "MultiDiffuseSurfaceEmitter", "classph_1_1_multi_diffuse_surface_emitter.html", "classph_1_1_multi_diffuse_surface_emitter" ],
     [ "NaiveReinhardToneMapping", "classph_1_1_naive_reinhard_tone_mapping.html", "classph_1_1_naive_reinhard_tone_mapping" ],
     [ "Object", "classph_1_1_object.html", "classph_1_1_object" ],
     [ "Observer", "classph_1_1_observer.html", "classph_1_1_observer" ],
@@ -318,11 +319,11 @@ var namespaceph =
     [ "PrimitiveBuildingMaterial", "classph_1_1_primitive_building_material.html", "classph_1_1_primitive_building_material" ],
     [ "PrimitiveChannel", "classph_1_1_primitive_channel.html", "classph_1_1_primitive_channel" ],
     [ "PrimitiveMetadata", "classph_1_1_primitive_metadata.html", "classph_1_1_primitive_metadata" ],
+    [ "PrimitivePosPdfInput", "classph_1_1_primitive_pos_pdf_input.html", "classph_1_1_primitive_pos_pdf_input" ],
+    [ "PrimitivePosPdfOutput", "classph_1_1_primitive_pos_pdf_output.html", "classph_1_1_primitive_pos_pdf_output" ],
+    [ "PrimitivePosPdfQuery", "classph_1_1_primitive_pos_pdf_query.html", "classph_1_1_primitive_pos_pdf_query" ],
     [ "PrimitivePosSampleInput", "classph_1_1_primitive_pos_sample_input.html", "classph_1_1_primitive_pos_sample_input" ],
     [ "PrimitivePosSampleOutput", "classph_1_1_primitive_pos_sample_output.html", "classph_1_1_primitive_pos_sample_output" ],
-    [ "PrimitivePosSamplePdfInput", "classph_1_1_primitive_pos_sample_pdf_input.html", "classph_1_1_primitive_pos_sample_pdf_input" ],
-    [ "PrimitivePosSamplePdfOutput", "classph_1_1_primitive_pos_sample_pdf_output.html", "classph_1_1_primitive_pos_sample_pdf_output" ],
-    [ "PrimitivePosSamplePdfQuery", "classph_1_1_primitive_pos_sample_pdf_query.html", "classph_1_1_primitive_pos_sample_pdf_query" ],
     [ "PrimitivePosSampleQuery", "classph_1_1_primitive_pos_sample_query.html", "classph_1_1_primitive_pos_sample_query" ],
     [ "ProbabilisticProgressivePMRenderer", "classph_1_1_probabilistic_progressive_p_m_renderer.html", "classph_1_1_probabilistic_progressive_p_m_renderer" ],
     [ "ProgressivePMRenderer", "classph_1_1_progressive_p_m_renderer.html", "classph_1_1_progressive_p_m_renderer" ],
@@ -590,6 +591,7 @@ var namespaceph =
     [ "AnyNonConstPtr", "namespaceph.html#a0fb0ff3cce7d4159198bcdf8a935d1b2", null ],
     [ "CookLevel", "namespaceph.html#ad15caa8691cbb04e085ff3914e3f4df1", null ],
     [ "CookPriority", "namespaceph.html#a286db9e0c70df683dcdccbb66275ec24", null ],
+    [ "EmitterFeatureSet", "namespaceph.html#a4616be60c1aeff887439d1133975d273", null ],
     [ "FaceTopology", "namespaceph.html#a11ef37ef626d3b16e84e3c1fd09563be", null ],
     [ "HdrComponent", "namespaceph.html#a7a9db669761b3f363c93db64cf5e6d0e", null ],
     [ "HdrRgbFrame", "namespaceph.html#a6cb342b38d32fd46d08ca0ec0f69fe3e", null ],
@@ -680,19 +682,26 @@ var namespaceph =
       [ "SAH_EDGE", "namespaceph.html#a905055bd65c81f2ec4e8c000e033722aaab7566cd685ce0d9856d8e5a24992ada", null ]
     ] ],
     [ "ECookLevel", "namespaceph.html#a6f9f9c205359845b3b02105599f9355e", [
-      [ "FIRST", "namespaceph.html#a6f9f9c205359845b3b02105599f9355ea2c2624a5059934a947d6e25fe8332ade", null ],
-      [ "NORMAL", "namespaceph.html#a6f9f9c205359845b3b02105599f9355ea1e23852820b9154316c7c06e2b7ba051", null ],
-      [ "LAST", "namespaceph.html#a6f9f9c205359845b3b02105599f9355eaf447f5c03508de4d88e340390ba7c78f", null ]
+      [ "First", "namespaceph.html#a6f9f9c205359845b3b02105599f9355ea7fb55ed0b7a30342ba6da306428cae04", null ],
+      [ "Normal", "namespaceph.html#a6f9f9c205359845b3b02105599f9355ea960b44c579bc2f6818d2daaf9e4c16f0", null ],
+      [ "Last", "namespaceph.html#a6f9f9c205359845b3b02105599f9355ead55b30607c2a9a2616347d6edb789f6b", null ]
     ] ],
     [ "ECookPriority", "namespaceph.html#a201cf6953978d616dd79db826163626d", [
-      [ "HIGH", "namespaceph.html#a201cf6953978d616dd79db826163626dab89de3b4b81c4facfac906edf29aec8c", null ],
-      [ "NORMAL", "namespaceph.html#a201cf6953978d616dd79db826163626da1e23852820b9154316c7c06e2b7ba051", null ],
-      [ "LOW", "namespaceph.html#a201cf6953978d616dd79db826163626da41bc94cbd8eebea13ce0491b2ac11b88", null ]
+      [ "High", "namespaceph.html#a201cf6953978d616dd79db826163626da655d20c1ca69519ca647684edbb2db35", null ],
+      [ "Normal", "namespaceph.html#a201cf6953978d616dd79db826163626da960b44c579bc2f6818d2daaf9e4c16f0", null ],
+      [ "Low", "namespaceph.html#a201cf6953978d616dd79db826163626da28d0edd045e05cf5af64e35ae0c4c6ef", null ]
     ] ],
     [ "ECoordSys", "namespaceph.html#a586c922092ae1fe5b4123bee53c9a404", [
       [ "World", "namespaceph.html#a586c922092ae1fe5b4123bee53c9a404af5a7924e621e84c9280a9a27e1bcb7f6", null ],
       [ "Local", "namespaceph.html#a586c922092ae1fe5b4123bee53c9a404a509820290d57f333403f490dde7316f4", null ],
       [ "SIZE", "namespaceph.html#a586c922092ae1fe5b4123bee53c9a404a62e5cef85d46f1a5a2144d9fd463b79e", null ]
+    ] ],
+    [ "EEmitterFeatureSet", "namespaceph.html#a16b931b405833c11fca5c86a7514e603", [
+      [ "ZeroBounceSample", "namespaceph.html#a16b931b405833c11fca5c86a7514e603aca9f7df16118c955d832641a24a208d1", null ],
+      [ "BsdfSample", "namespaceph.html#a16b931b405833c11fca5c86a7514e603a5009a2197d7e7d6a3fd59251182bea9e", null ],
+      [ "DirectSample", "namespaceph.html#a16b931b405833c11fca5c86a7514e603aa3757c2711f95523b455cc8d06863a00", null ],
+      [ "EmissionSample", "namespaceph.html#a16b931b405833c11fca5c86a7514e603ad535f71962b1df95f5984de5ea462309", null ],
+      [ "Default", "namespaceph.html#a16b931b405833c11fca5c86a7514e603a7a1920d61156abc05a60135aefe8bc67", null ]
     ] ],
     [ "EEngineProject", "namespaceph.html#aff42ef94a4b6b6f5c793abc70beee644", [
       [ "Engine", "namespaceph.html#aff42ef94a4b6b6f5c793abc70beee644a7bfa30721c5e726ff17e3f972237a82c", null ],
@@ -770,7 +779,7 @@ var namespaceph =
     ] ],
     [ "EPhotonData", "namespaceph.html#a2f105bf7a6233cdb646a691b6055d71d", [
       [ "ThroughputRadiance", "namespaceph.html#a2f105bf7a6233cdb646a691b6055d71da41fafd368452a2128ac8bdc3934d4cb5", null ],
-      [ "Position", "namespaceph.html#a2f105bf7a6233cdb646a691b6055d71da52f5e0bc3859bc5f5e25130b6c7e8881", null ],
+      [ "Pos", "namespaceph.html#a2f105bf7a6233cdb646a691b6055d71dafea4e0fe069dc6f6171dd6044abb2365", null ],
       [ "FromDir", "namespaceph.html#a2f105bf7a6233cdb646a691b6055d71daee99ad64c489a5fa63f46f42f78e37e2", null ],
       [ "GeometryNormal", "namespaceph.html#a2f105bf7a6233cdb646a691b6055d71da551879a34d6ed879f4716e33d7b1cd92", null ],
       [ "PathLength", "namespaceph.html#a2f105bf7a6233cdb646a691b6055d71da1a383a1c74749bfaaabb286b854b2f4c", null ]
@@ -1048,6 +1057,7 @@ var namespaceph =
     [ "PH_DEFINE_EXTERNAL_LOG_GROUP", "namespaceph.html#a4a128256e0d0ed6f58830c7065c2245a", null ],
     [ "PH_DEFINE_EXTERNAL_LOG_GROUP", "namespaceph.html#a5a9b4a28e77e0964885aff0ac9522131", null ],
     [ "PH_DEFINE_EXTERNAL_LOG_GROUP", "namespaceph.html#ab3bdb6d266747ed655c241d71728c0dd", null ],
+    [ "PH_DEFINE_INLINE_ENUM_FLAG_OPERATORS", "namespaceph.html#aeca242d059b1e6a4c6ea726cada61526", null ],
     [ "PH_DEFINE_INLINE_ENUM_FLAG_OPERATORS", "namespaceph.html#a2a664f656f69f203a6328c8930e607d8", null ],
     [ "PH_DEFINE_INLINE_ENUM_FLAG_OPERATORS", "namespaceph.html#ad4dde21b6fca2c67970845292bc452e0", null ],
     [ "PH_DEFINE_INLINE_ENUM_FLAG_OPERATORS", "namespaceph.html#a0e94768bd94280304bcdd6840fcef7f7", null ],
@@ -1059,6 +1069,7 @@ var namespaceph =
     [ "PH_DEFINE_INTERNAL_LOG_GROUP", "namespaceph.html#a5d5c372527b62fa2fd6d65f60656f957", null ],
     [ "PH_DEFINE_INTERNAL_LOG_GROUP", "namespaceph.html#aedf07b8b26894d1609136f15fa75f0ea", null ],
     [ "PH_DEFINE_INTERNAL_LOG_GROUP", "namespaceph.html#a701e045c0f76b6407417880756078adb", null ],
+    [ "PH_DEFINE_INTERNAL_LOG_GROUP", "namespaceph.html#aa9011132dc975c828adf0e1be60ccde7", null ],
     [ "PH_DEFINE_INTERNAL_LOG_GROUP", "namespaceph.html#a5a269ea92e79d65f15f6f383e8b0e14e", null ],
     [ "PH_DEFINE_INTERNAL_LOG_GROUP", "namespaceph.html#ae837306a665092ee1742aa9bddd08c12", null ],
     [ "PH_DEFINE_INTERNAL_LOG_GROUP", "namespaceph.html#a2b9ecdafbf7b0658a51ce38ed886914b", null ],

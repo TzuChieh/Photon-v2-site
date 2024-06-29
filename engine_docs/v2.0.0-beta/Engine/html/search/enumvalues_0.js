@@ -8,6 +8,7 @@ var searchData=
   ['acescg_5',['ACEScg',['../namespaceph_1_1math.html#a957eab3ceed525ebce5c24b6b57eb975a1cd2db83c1165ec3c7e7ca28694c92ee',1,'ph::math']]],
   ['actor_6',['Actor',['../namespaceph.html#ada33bb2d4bc26b3ec1da2acb348ef4eba1cc84619677de81ee6e44149845270a3',1,'ph']]],
   ['add_7',['Add',['../namespaceph.html#a57a17c5b6ec3b4a3672d77c819377fabaec211f7c20af43e742bf2570c3cb84f9',1,'ph']]],
-  ['argb_8',['ARGB',['../namespaceph_1_1pixel__texture.html#a3b167f72734af6e016a66878c539bd9dae192297ecf3602fabbec5f0a38ede758',1,'ph::pixel_texture']]],
-  ['ascii_9',['ASCII',['../namespaceph.html#a9e6ed9b88a8d1405f78b22272a97d9fead2cd8253361a9c732d21ca1d336599cc',1,'ph']]]
+  ['area_8',['Area',['../namespaceph_1_1lta.html#a517f9714c97ec4a5bcdd5beae0eaf9ddadeec4ff19974f12ed781cb9a59064214',1,'ph::lta']]],
+  ['argb_9',['ARGB',['../namespaceph_1_1pixel__texture.html#a3b167f72734af6e016a66878c539bd9dae192297ecf3602fabbec5f0a38ede758',1,'ph::pixel_texture']]],
+  ['ascii_10',['ASCII',['../namespaceph.html#a9e6ed9b88a8d1405f78b22272a97d9fead2cd8253361a9c732d21ca1d336599cc',1,'ph']]]
 ];

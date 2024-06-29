@@ -64,7 +64,7 @@ var searchData=
   ['henyeygreenstein_61',['HenyeyGreenstein',['../classph_1_1_henyey_greenstein.html',1,'ph::HenyeyGreenstein'],['../classph_1_1_henyey_greenstein.html#aa49611b3c11a7a0ca653ae47f7dd3bfb',1,'ph::HenyeyGreenstein::HenyeyGreenstein(real g)'],['../classph_1_1_henyey_greenstein.html#ac9d507b12161653b1242c615d638c5b0',1,'ph::HenyeyGreenstein::HenyeyGreenstein(const std::shared_ptr&lt; TTexture&lt; real &gt; &gt; &amp;g)']]],
   ['henyeygreenstein_2ecpp_62',['HenyeyGreenstein.cpp',['../_henyey_greenstein_8cpp.html',1,'']]],
   ['henyeygreenstein_2eh_63',['HenyeyGreenstein.h',['../_henyey_greenstein_8h.html',1,'']]],
-  ['high_64',['HIGH',['../namespaceph.html#a201cf6953978d616dd79db826163626dab89de3b4b81c4facfac906edf29aec8c',1,'ph']]],
+  ['high_64',['High',['../namespaceph.html#a201cf6953978d616dd79db826163626da655d20c1ca69519ca647684edbb2db35',1,'ph']]],
   ['highprecisionexr_65',['HighPrecisionEXR',['../namespaceph.html#ad8edde251ef79a653acc8df14db78b9eabe58eaf3213b73159d62141db01075e8',1,'ph']]],
   ['hitdetail_66',['HitDetail',['../classph_1_1_hit_detail.html',1,'ph::HitDetail'],['../classph_1_1_hit_detail.html#a644f23b11276b386d5217dc3412fdef9',1,'ph::HitDetail::HitDetail()']]],
   ['hitdetail_2ecpp_67',['HitDetail.cpp',['../_hit_detail_8cpp.html',1,'']]],
