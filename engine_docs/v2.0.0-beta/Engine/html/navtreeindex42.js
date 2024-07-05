@@ -1,5 +1,15 @@
 var NAVTREEINDEX42 =
 {
+"classph_1_1math_1_1_t_basic_triangle.html#a0c6c4a57ff528925082f340e47525d57":[5,0,0,11,23,6],
+"classph_1_1math_1_1_t_basic_triangle.html#a0c6c4a57ff528925082f340e47525d57":[7,0,0,4,19,6],
+"classph_1_1math_1_1_t_basic_triangle.html#a1dfcd144b891189050377f5afaf85907":[5,0,0,11,23,5],
+"classph_1_1math_1_1_t_basic_triangle.html#a1dfcd144b891189050377f5afaf85907":[7,0,0,4,19,5],
+"classph_1_1math_1_1_t_basic_triangle.html#a218c98c0421beb5060cb339fb412adec":[5,0,0,11,23,18],
+"classph_1_1math_1_1_t_basic_triangle.html#a218c98c0421beb5060cb339fb412adec":[7,0,0,4,19,18],
+"classph_1_1math_1_1_t_basic_triangle.html#a265d0e3578abe559ed0647bcd6ae261b":[5,0,0,11,23,8],
+"classph_1_1math_1_1_t_basic_triangle.html#a265d0e3578abe559ed0647bcd6ae261b":[7,0,0,4,19,8],
+"classph_1_1math_1_1_t_basic_triangle.html#a2745c6dba44e705f82030246eeb47178":[5,0,0,11,23,1],
+"classph_1_1math_1_1_t_basic_triangle.html#a2745c6dba44e705f82030246eeb47178":[7,0,0,4,19,1],
 "classph_1_1math_1_1_t_basic_triangle.html#a62b7f151ddf9b914b6bed55384eb4f94":[5,0,0,11,23,10],
 "classph_1_1math_1_1_t_basic_triangle.html#a62b7f151ddf9b914b6bed55384eb4f94":[7,0,0,4,19,10],
 "classph_1_1math_1_1_t_basic_triangle.html#a6fc14f5262f3594bb0aad3724d17580d":[5,0,0,11,23,12],
@@ -239,15 +249,5 @@ var NAVTREEINDEX42 =
 "classph_1_1math_1_1_t_indexed_point_kdtree.html#aac4a7a12e85819b95c001619a9b9c8c5":[5,0,0,11,48,2],
 "classph_1_1math_1_1_t_indexed_point_kdtree.html#aac4a7a12e85819b95c001619a9b9c8c5":[7,0,0,4,44,2],
 "classph_1_1math_1_1_t_indexed_point_kdtree.html#aedee1c3e0d192cb2a793ddbf1c587713":[5,0,0,11,48,6],
-"classph_1_1math_1_1_t_indexed_point_kdtree.html#aedee1c3e0d192cb2a793ddbf1c587713":[7,0,0,4,44,6],
-"classph_1_1math_1_1_t_indexed_vector3.html":[5,0,0,11,49],
-"classph_1_1math_1_1_t_indexed_vector3.html":[7,0,0,4,45],
-"classph_1_1math_1_1_t_line_segment.html":[5,0,0,11,51],
-"classph_1_1math_1_1_t_line_segment.html":[7,0,0,4,47],
-"classph_1_1math_1_1_t_line_segment.html#a259eb54a360327a01d002f9ccfb0e940":[5,0,0,11,51,14],
-"classph_1_1math_1_1_t_line_segment.html#a259eb54a360327a01d002f9ccfb0e940":[7,0,0,4,47,14],
-"classph_1_1math_1_1_t_line_segment.html#a4bfd982487825dce403e61385af5a71e":[5,0,0,11,51,5],
-"classph_1_1math_1_1_t_line_segment.html#a4bfd982487825dce403e61385af5a71e":[7,0,0,4,47,5],
-"classph_1_1math_1_1_t_line_segment.html#a4f1d7d83b56d27e3f6edad58baa55e00":[5,0,0,11,51,13],
-"classph_1_1math_1_1_t_line_segment.html#a4f1d7d83b56d27e3f6edad58baa55e00":[7,0,0,4,47,13]
+"classph_1_1math_1_1_t_indexed_point_kdtree.html#aedee1c3e0d192cb2a793ddbf1c587713":[7,0,0,4,44,6]
 };

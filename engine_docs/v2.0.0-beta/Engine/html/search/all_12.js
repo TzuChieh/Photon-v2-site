@@ -2,7 +2,7 @@ var searchData=
 [
   ['r_0',['R',['../namespaceph_1_1pixel__texture.html#a3b167f72734af6e016a66878c539bd9dae1e1d3d40573127e9ee0480caf1283d6',1,'ph::pixel_texture']]],
   ['r_1',['r',['../classph_1_1math_1_1_t_vector3.html#ab7d370df0f9a455f564b783ef06b2a59',1,'ph::math::TVector3::r()'],['../classph_1_1math_1_1_t_vector3.html#a2531cf6d15cb33bb184c1cdcc17f0a67',1,'ph::math::TVector3::r() const'],['../classph_1_1math_1_1_t_vector4.html#a1fa28093fecb4f8c04617cdd44deb90a',1,'ph::math::TVector4::r()'],['../classph_1_1math_1_1_t_vector4.html#aede5c57e0bd1d3f964c43071bf9b1e80',1,'ph::math::TVector4::r() const']]],
-  ['radiance_2',['Radiance',['../namespaceph.html#a77d951ca57b4e319e083ebddd4695213a955d9ba35580bdcc7bed3f11736b0f76',1,'ph']]],
+  ['radiance_2',['Radiance',['../namespaceph_1_1lta.html#a3f1c39ae8879cc69ac22c3be15f9669ba955d9ba35580bdcc7bed3f11736b0f76',1,'ph::lta']]],
   ['radiance_3',['radiance',['../classph_1_1lta_1_1_sense_event.html#a68ada6e668854bf3ada2943b9affd82f',1,'ph::lta::SenseEvent']]],
   ['radiancesensor_4',['RadianceSensor',['../classph_1_1_radiance_sensor.html',1,'ph::RadianceSensor'],['../classph_1_1_radiance_sensor.html#a0ea61b47bfb1f5d5d170fe7a30ce6670',1,'ph::RadianceSensor::RadianceSensor()']]],
   ['radiancesensor_2eh_5',['RadianceSensor.h',['../_radiance_sensor_8h.html',1,'']]],

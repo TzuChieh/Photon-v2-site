@@ -15,11 +15,12 @@ var searchData=
   ['depthstencilformat_12',['depthStencilFormat',['../../../EditorLib/html/classph_1_1editor_1_1ghi_1_1_framebuffer_desc.html#a51abb4aa2122d5fadca6ec649ae492ac',1,'ph::editor::ghi::FramebufferDesc']]],
   ['desc_13',['desc',['../../../EditorLib/html/classph_1_1editor_1_1render_1_1_texture.html#a4c4ee77c371f4439d85226fca8c82631',1,'ph::editor::render::Texture']]],
   ['detail_14',['detail',['../../../EditorLib/html/structph_1_1editor_1_1_buffered_frame_info.html#aa18e13635670d635811799c428143079',1,'ph::editor::BufferedFrameInfo']]],
-  ['dimensionhints_15',['dimensionHints',['../../../EditorLib/html/classph_1_1editor_1_1_editor.html#a0f7529c3ec17972e717fd28d993a7df3',1,'ph::editor::Editor']]],
-  ['displaysizepx_16',['displaySizePx',['../../../EditorLib/html/classph_1_1editor_1_1_app_settings.html#adc1b26e22a078c4e7ac3f7ddef53eab7',1,'ph::editor::AppSettings']]],
-  ['dist_17',['dist',['../../../Engine/html/classph_1_1_volume_distance_sample_1_1_output.html#a90f73e7a13e1b13e392fb11e8e7dd8b2',1,'ph::VolumeDistanceSample::Output']]],
-  ['domain_18',['domain',['../../../Engine/html/classph_1_1lta_1_1_p_d_f.html#ac8e8e26a496a6b9b07092ca239888731',1,'ph::lta::PDF']]],
-  ['drawdata_19',['drawData',['../../../EditorLib/html/structph_1_1editor_1_1render_1_1_imgui_render_content_1_1_imgui_render_data.html#a82f9f2b48ee3f213889b1c644c31bee6',1,'ph::editor::render::ImguiRenderContent::ImguiRenderData']]],
-  ['drawlistbuffer_20',['drawListBuffer',['../../../EditorLib/html/structph_1_1editor_1_1render_1_1_imgui_render_content_1_1_imgui_render_data.html#aa569745798c41239df730602779d5e17',1,'ph::editor::render::ImguiRenderContent::ImguiRenderData']]],
-  ['drawlistptrbuffer_21',['drawListPtrBuffer',['../../../EditorLib/html/structph_1_1editor_1_1render_1_1_imgui_render_content_1_1_imgui_render_data.html#aff2861b83e388048d68e96167030ec23',1,'ph::editor::render::ImguiRenderContent::ImguiRenderData']]]
+  ['diffuse_5fsurface_5fphenomena_15',['DIFFUSE_SURFACE_PHENOMENA',['../../../Engine/html/namespaceph.html#aaaa32f41a9ebef78b7140b84be224e33',1,'ph']]],
+  ['dimensionhints_16',['dimensionHints',['../../../EditorLib/html/classph_1_1editor_1_1_editor.html#a0f7529c3ec17972e717fd28d993a7df3',1,'ph::editor::Editor']]],
+  ['displaysizepx_17',['displaySizePx',['../../../EditorLib/html/classph_1_1editor_1_1_app_settings.html#adc1b26e22a078c4e7ac3f7ddef53eab7',1,'ph::editor::AppSettings']]],
+  ['dist_18',['dist',['../../../Engine/html/classph_1_1_volume_distance_sample_1_1_output.html#a90f73e7a13e1b13e392fb11e8e7dd8b2',1,'ph::VolumeDistanceSample::Output']]],
+  ['domain_19',['domain',['../../../Engine/html/classph_1_1lta_1_1_p_d_f.html#ac8e8e26a496a6b9b07092ca239888731',1,'ph::lta::PDF']]],
+  ['drawdata_20',['drawData',['../../../EditorLib/html/structph_1_1editor_1_1render_1_1_imgui_render_content_1_1_imgui_render_data.html#a82f9f2b48ee3f213889b1c644c31bee6',1,'ph::editor::render::ImguiRenderContent::ImguiRenderData']]],
+  ['drawlistbuffer_21',['drawListBuffer',['../../../EditorLib/html/structph_1_1editor_1_1render_1_1_imgui_render_content_1_1_imgui_render_data.html#aa569745798c41239df730602779d5e17',1,'ph::editor::render::ImguiRenderContent::ImguiRenderData']]],
+  ['drawlistptrbuffer_22',['drawListPtrBuffer',['../../../EditorLib/html/structph_1_1editor_1_1render_1_1_imgui_render_content_1_1_imgui_render_data.html#aff2861b83e388048d68e96167030ec23',1,'ph::editor::render::ImguiRenderContent::ImguiRenderData']]]
 ];

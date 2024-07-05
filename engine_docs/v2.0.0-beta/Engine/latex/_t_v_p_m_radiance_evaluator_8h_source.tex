@@ -160,174 +160,179 @@
 \DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ m\_maxFullPathLength);}
 \DoxyCodeLine{00168\ \ \ \ \ m\_sampledRadiance\ +=\ unaccountedEnergy;}
 \DoxyCodeLine{00169\ }
-\DoxyCodeLine{00170\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ phenomena\ =\ optics-\/>\mbox{\hyperlink{classph_1_1_surface_optics_adac0e938a47756775943ff1e5f4bb9fa}{getAllPhenomena}}();}
-\DoxyCodeLine{00171\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ isSufficientlyDiffuse\ =\ pathLength\ >=\ m\_glossyMergeBeginLength}
-\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ ?\ phenomena.\mbox{\hyperlink{classph_1_1_t_bit_flags_a7597f0560d17c6647429a0e07b38afb9}{hasAny}}(\mbox{\hyperlink{namespaceph_a596116c16341de64c97b20395d758456a96b6d5999da0dee7f6be9ed568bb11b3}{ESurfacePhenomenon::DiffuseReflection}})}
-\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ :\ phenomena.hasExactly(\mbox{\hyperlink{namespaceph_a596116c16341de64c97b20395d758456a96b6d5999da0dee7f6be9ed568bb11b3}{ESurfacePhenomenon::DiffuseReflection}});}
+\DoxyCodeLine{00170\ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ smoothEnoughPhenomena\ =\ \{}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceph_aaaa32f41a9ebef78b7140b84be224e33}{DIFFUSE\_SURFACE\_PHENOMENA}},}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceph_a596116c16341de64c97b20395d758456a0d9b4e1d210bf9c211c445814263df99}{ESurfacePhenomenon::NearDiffuseReflection}},}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceph_a596116c16341de64c97b20395d758456a30697ad6a8d3ed45c8c2e64df6bd82f9}{ESurfacePhenomenon::NearDiffuseTransmission}}\};}
 \DoxyCodeLine{00174\ }
-\DoxyCodeLine{00175\ \ \ \ \ \textcolor{keywordflow}{if}(m\_photonMap-\/>canContribute(pathLength,\ m\_minFullPathLength,\ m\_maxFullPathLength)\ \&\&}
-\DoxyCodeLine{00176\ \ \ \ \ \ \ \ phenomena.hasNone(\mbox{\hyperlink{namespaceph_a4fc648c9255debfc7f2fc587b7c017cc}{DELTA\_SURFACE\_PHENOMENA}})\ \&\&}
-\DoxyCodeLine{00177\ \ \ \ \ \ \ \ isSufficientlyDiffuse)}
-\DoxyCodeLine{00178\ \ \ \ \ \{}
-\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_bsdf_query_context}{BsdfQueryContext}}\ bsdfContext(}
-\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceph_ac2562eda4f90efe4267c1f774fd211bb}{ALL\_SURFACE\_ELEMENTALS}},\ \mbox{\hyperlink{namespaceph_a77d951ca57b4e319e083ebddd4695213af0d806461f33568d758feb27d468352a}{ETransport::Importance}},\ \mbox{\hyperlink{namespaceph_1_1lta_a1d33ee239cb49375e222139a0fe1c17da2e979835dd62324f5bfe217449ba4974}{lta::ESidednessPolicy::Strict}});}
-\DoxyCodeLine{00181\ }
-\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ For\ path\ length\ =\ N,\ we\ can\ construct\ light\ transport\ path\ lengths\ with\ photon\ map,}}
-\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ all\ at\ once,\ for\ the\ range\ [N\_min,\ N\_max]\ =\ }}
-\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ [`N\ +\ m\_photonMap-\/>minPathLength`,\ \`{}N\ +\ m\_photonMap-\/>maxPathLength`].}}
-\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ m\_sampledRadiance\ +=\ estimateRadianceWithPhotonMap(}
-\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \ \ \ \ surfaceHit,\ bsdfContext,\ pathThroughput);}
-\DoxyCodeLine{00187\ }
-\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ unaccountedEnergy\ =\ \mbox{\hyperlink{namespaceph_a45199b25a540099512e7209137092fdf}{estimate\_lost\_energy\_for\_merging}}(}
-\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ pathLength,}
-\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \ \ \ \ surfaceHit,}
-\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \ \ \ \ pathThroughput,}
-\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \ \ \ \ m\_photonMap-\/>getInfo(),}
-\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \ \ \ \ m\_scene,}
-\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \ \ \ \ m\_minFullPathLength,}
-\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \ \ \ \ m\_maxFullPathLength);}
-\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ m\_sampledRadiance\ +=\ unaccountedEnergy;}
-\DoxyCodeLine{00197\ }
-\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1_view_path_tracing_policy}{ViewPathTracingPolicy}}().\mbox{\hyperlink{classph_1_1_view_path_tracing_policy_a271c1f9cf115af124dd6a36f911768d0}{kill}}();}
-\DoxyCodeLine{00199\ \ \ \ \ \}}
-\DoxyCodeLine{00200\ \ \ \ \ \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00201\ \ \ \ \ \{}
-\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ unaccountedEnergy\ =\ \mbox{\hyperlink{namespaceph_a4157e74ef0b3f83ee81fb342f3cdb0b8}{estimate\_lost\_energy\_for\_extending}}(}
-\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \ \ \ \ pathLength,}
-\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \ \ \ \ surfaceHit,}
-\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \ \ \ \ pathThroughput,}
-\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \ \ \ \ m\_photonMap-\/>getInfo(),}
-\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \ \ \ \ m\_scene,}
-\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \ \ \ \ m\_minFullPathLength,}
-\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \ \ \ \ m\_maxFullPathLength);}
-\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ m\_sampledRadiance\ +=\ unaccountedEnergy;}
-\DoxyCodeLine{00211\ }
-\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(pathLength\ <\ m\_stochasticSampleBeginLength)}
-\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1_view_path_tracing_policy}{ViewPathTracingPolicy}}().}
-\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ traceBranchedPathFor(\mbox{\hyperlink{namespaceph_aa6c0768badc216b23bd8e33df21325ce}{SurfacePhenomena}}(\mbox{\hyperlink{namespaceph_aabe77df4e760c2bcfffe395279637254}{ALL\_SURFACE\_PHENOMENA}})).}
-\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ useRussianRoulette(\textcolor{keyword}{false});}
-\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1_view_path_tracing_policy}{ViewPathTracingPolicy}}().}
-\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ traceSinglePathFor(\mbox{\hyperlink{namespaceph_ac2562eda4f90efe4267c1f774fd211bb}{ALL\_SURFACE\_ELEMENTALS}}).}
-\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ useRussianRoulette(\textcolor{keyword}{true});}
-\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00224\ \ \ \ \ \}}
-\DoxyCodeLine{00225\ \}}
-\DoxyCodeLine{00226\ }
-\DoxyCodeLine{00227\ \textcolor{keyword}{template}<CPhoton\ Photon,\ \textcolor{keyword}{typename}\ PhotonMap>}
-\DoxyCodeLine{00228\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_v_p_m_radiance_evaluator}{TVPMRadianceEvaluator<Photon,\ PhotonMap>}}}
-\DoxyCodeLine{00229\ \mbox{\hyperlink{classph_1_1_t_v_p_m_radiance_evaluator}{::impl\_onReceiverSampleEnd}}()}
-\DoxyCodeLine{00230\ \{}
-\DoxyCodeLine{00231\ \ \ \ \ m\_film-\/>addSample(m\_rasterCoord.x(),\ m\_rasterCoord.y(),\ m\_sampledRadiance);}
-\DoxyCodeLine{00232\ \}}
-\DoxyCodeLine{00233\ }
-\DoxyCodeLine{00234\ \textcolor{keyword}{template}<CPhoton\ Photon,\ \textcolor{keyword}{typename}\ PhotonMap>}
-\DoxyCodeLine{00235\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_v_p_m_radiance_evaluator}{TVPMRadianceEvaluator<Photon,\ PhotonMap>}}}
-\DoxyCodeLine{00236\ \mbox{\hyperlink{classph_1_1_t_v_p_m_radiance_evaluator}{::impl\_onSampleBatchFinished}}()}
-\DoxyCodeLine{00237\ \{}
-\DoxyCodeLine{00238\ \ \ \ \ \textcolor{keywordflow}{if}(m\_statistics)}
-\DoxyCodeLine{00239\ \ \ \ \ \{}
-\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ m\_statistics-\/>incrementNumProcessedSteps();}
-\DoxyCodeLine{00241\ \ \ \ \ \}}
-\DoxyCodeLine{00242\ \}}
-\DoxyCodeLine{00243\ }
-\DoxyCodeLine{00244\ \textcolor{keyword}{template}<CPhoton\ Photon,\ \textcolor{keyword}{typename}\ PhotonMap>}
-\DoxyCodeLine{00245\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_spectrum}{math::Spectrum}}\ \mbox{\hyperlink{classph_1_1_t_v_p_m_radiance_evaluator}{TVPMRadianceEvaluator<Photon,\ PhotonMap>}}}
-\DoxyCodeLine{00246\ \mbox{\hyperlink{classph_1_1_t_v_p_m_radiance_evaluator}{::estimateRadianceWithPhotonMap}}(}
-\DoxyCodeLine{00247\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_surface_hit}{SurfaceHit}}\&\ X,}
-\DoxyCodeLine{00248\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_bsdf_query_context}{BsdfQueryContext}}\&\ bsdfContext,}
-\DoxyCodeLine{00249\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_spectrum}{math::Spectrum}}\&\ viewPathThroughput)}
-\DoxyCodeLine{00250\ \{}
-\DoxyCodeLine{00251\ \ \ \ \ m\_photonCache.clear();}
-\DoxyCodeLine{00252\ \ \ \ \ m\_photonMap-\/>find(X.\mbox{\hyperlink{classph_1_1_surface_hit_ab6da2653e522e20b368900dd55121362}{getPos}}(),\ m\_kernelRadius,\ m\_photonCache);}
-\DoxyCodeLine{00253\ }
-\DoxyCodeLine{00254\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1lta_1_1_surface_tracer}{lta::SurfaceTracer}}\ surfaceTracer\{m\_scene\};}
-\DoxyCodeLine{00255\ }
-\DoxyCodeLine{00256\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_1_1math_a7f5d9bea70db00eb52ece79b05e544c8}{math::Vector3R}}\ L\ \ =\ X.\mbox{\hyperlink{classph_1_1_surface_hit_a61d656616db630197f8b06093705fba6}{getIncidentRay}}().\mbox{\hyperlink{classph_1_1_ray_a3c80f865b8ba404194a5afc268fe9651}{getDir}}().\mbox{\hyperlink{classph_1_1math_1_1_t_vector_n_base_a15602e64861b8d4b90033e87b168b846}{mul}}(-\/1);}
-\DoxyCodeLine{00257\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_1_1math_a7f5d9bea70db00eb52ece79b05e544c8}{math::Vector3R}}\ Ns\ =\ X.\mbox{\hyperlink{classph_1_1_surface_hit_a189bd3896f87838eea8b7e06f5e71286}{getShadingNormal}}();}
-\DoxyCodeLine{00258\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_1_1math_a7f5d9bea70db00eb52ece79b05e544c8}{math::Vector3R}}\ Ng\ =\ X.\mbox{\hyperlink{classph_1_1_surface_hit_a03950ddbe22d5c8bcf72c04306660f36}{getGeometryNormal}}();}
-\DoxyCodeLine{00259\ }
-\DoxyCodeLine{00260\ \ \ \ \ BsdfEvalQuery\ \ bsdfEval(bsdfContext);}
-\DoxyCodeLine{00261\ \ \ \ \ \mbox{\hyperlink{namespaceph_1_1math_ad1ddf3801f5a9ea201227d49747987ed}{math::Spectrum}}\ radiance(0);}
-\DoxyCodeLine{00262\ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ photon\ :\ m\_photonCache)}
-\DoxyCodeLine{00263\ \ \ \ \ \{}
-\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_1_1math_a7f5d9bea70db00eb52ece79b05e544c8}{math::Vector3R}}\ V\ =\ photon.get<\mbox{\hyperlink{namespaceph_a2f105bf7a6233cdb646a691b6055d71daee99ad64c489a5fa63f46f42f78e37e2}{EPhotonData::FromDir}}>();}
-\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!\mbox{\hyperlink{namespaceph_ab9d4b27758a195a566ee213c1f41f96f}{accept\_photon\_by\_surface\_topology}}(photon,\ Ng,\ Ns,\ L,\ V,\ bsdfContext.\mbox{\hyperlink{classph_1_1_bsdf_query_context_a196b7ca35f245baa24f992393707d0ea}{sidedness}}))}
-\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
-\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00269\ }
-\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ bsdfEval.inputs.\mbox{\hyperlink{classph_1_1math_1_1_t_vector_n_base_a66bef10def6b7cfc11adea52b28094e0}{set}}(X,\ L,\ V);}
-\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!surfaceTracer.doBsdfEvaluation(bsdfEval))}
-\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
-\DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00275\ }
-\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceph_1_1math_ad1ddf3801f5a9ea201227d49747987ed}{math::Spectrum}}\ throughput(viewPathThroughput);}
-\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ throughput.mulLocal(bsdfEval.outputs.getBsdf());}
-\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ throughput.mulLocal(\mbox{\hyperlink{namespaceph_1_1lta_ac017a110ee09b8cb7c2d5b0b1ff10f11}{lta::tamed\_importance\_BSDF\_Ns\_corrector}}(Ns,\ Ng,\ V));}
-\DoxyCodeLine{00279\ }
-\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ radiance.addLocal(throughput\ *\ photon.template\ get<EPhotonData::ThroughputRadiance>());}
-\DoxyCodeLine{00281\ \ \ \ \ \}}
-\DoxyCodeLine{00282\ \ \ \ \ radiance.mulLocal(m\_kernelDensityNormalizer);}
-\DoxyCodeLine{00283\ }
-\DoxyCodeLine{00284\ \ \ \ \ \textcolor{keywordflow}{return}\ radiance;}
-\DoxyCodeLine{00285\ \}}
-\DoxyCodeLine{00286\ }
-\DoxyCodeLine{00287\ \textcolor{keyword}{template}<CPhoton\ Photon,\ \textcolor{keyword}{typename}\ PhotonMap>}
-\DoxyCodeLine{00288\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ TVPMRadianceEvaluator<Photon,\ PhotonMap>}
-\DoxyCodeLine{00289\ ::setStatistics(\mbox{\hyperlink{classph_1_1_p_m_atomic_statistics}{PMAtomicStatistics}}*\ \textcolor{keyword}{const}\ statistics)}
-\DoxyCodeLine{00290\ \{}
-\DoxyCodeLine{00291\ \ \ \ \ m\_statistics\ =\ statistics;}
-\DoxyCodeLine{00292\ \}}
-\DoxyCodeLine{00293\ }
-\DoxyCodeLine{00294\ \textcolor{keyword}{template}<CPhoton\ Photon,\ \textcolor{keyword}{typename}\ PhotonMap>}
-\DoxyCodeLine{00295\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_v_p_m_radiance_evaluator}{TVPMRadianceEvaluator<Photon,\ PhotonMap>}}}
-\DoxyCodeLine{00296\ \mbox{\hyperlink{classph_1_1_t_v_p_m_radiance_evaluator}{::setKernelRadius}}(\textcolor{keyword}{const}\ real\ radius)}
-\DoxyCodeLine{00297\ \{}
-\DoxyCodeLine{00298\ \ \ \ \ PH\_ASSERT\_GT(radius,\ 0.0\_r);}
-\DoxyCodeLine{00299\ }
-\DoxyCodeLine{00300\ \ \ \ \ m\_kernelRadius\ =\ radius;}
-\DoxyCodeLine{00301\ }
-\DoxyCodeLine{00302\ \ \ \ \ \textcolor{keyword}{const}\ real\ kernelArea\ =\ radius\ *\ radius\ *\ \mbox{\hyperlink{namespaceph_1_1math_1_1constant_aeb217ecd643bb14c638c3d0457a031e0}{math::constant::pi<real>}};}
-\DoxyCodeLine{00303\ \ \ \ \ m\_kernelDensityNormalizer\ =\ 1.0\_r\ /\ (kernelArea\ *\ \textcolor{keyword}{static\_cast<}real\textcolor{keyword}{>}(m\_photonMap-\/>numPaths));}
-\DoxyCodeLine{00304\ \}}
-\DoxyCodeLine{00305\ }
-\DoxyCodeLine{00306\ \textcolor{keyword}{template}<CPhoton\ Photon,\ \textcolor{keyword}{typename}\ PhotonMap>}
-\DoxyCodeLine{00307\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_v_p_m_radiance_evaluator}{TVPMRadianceEvaluator<Photon,\ PhotonMap>}}}
-\DoxyCodeLine{00308\ \mbox{\hyperlink{classph_1_1_t_v_p_m_radiance_evaluator}{::setStochasticSampleBeginLength}}(}
-\DoxyCodeLine{00309\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ stochasticSampleBeginLength)}
-\DoxyCodeLine{00310\ \{}
-\DoxyCodeLine{00311\ \ \ \ \ PH\_ASSERT\_GE(stochasticSampleBeginLength,\ 1);}
-\DoxyCodeLine{00312\ }
-\DoxyCodeLine{00313\ \ \ \ \ m\_stochasticSampleBeginLength\ =\ stochasticSampleBeginLength;}
-\DoxyCodeLine{00314\ \}}
-\DoxyCodeLine{00315\ }
-\DoxyCodeLine{00316\ \textcolor{keyword}{template}<CPhoton\ Photon,\ \textcolor{keyword}{typename}\ PhotonMap>}
-\DoxyCodeLine{00317\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_v_p_m_radiance_evaluator}{TVPMRadianceEvaluator<Photon,\ PhotonMap>}}}
-\DoxyCodeLine{00318\ \mbox{\hyperlink{classph_1_1_t_v_p_m_radiance_evaluator}{::setFullPathLengthRange}}(}
-\DoxyCodeLine{00319\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ minFullPathLength,\ \textcolor{keyword}{const}\ std::size\_t\ maxFullPathLength)}
-\DoxyCodeLine{00320\ \{}
-\DoxyCodeLine{00321\ \ \ \ \ PH\_ASSERT\_GE(minFullPathLength,\ 1);}
-\DoxyCodeLine{00322\ \ \ \ \ PH\_ASSERT\_LE(minFullPathLength,\ maxFullPathLength);}
-\DoxyCodeLine{00323\ }
-\DoxyCodeLine{00324\ \ \ \ \ m\_minFullPathLength\ =\ minFullPathLength;}
-\DoxyCodeLine{00325\ \ \ \ \ m\_maxFullPathLength\ =\ maxFullPathLength;}
-\DoxyCodeLine{00326\ \}}
-\DoxyCodeLine{00327\ }
-\DoxyCodeLine{00328\ \textcolor{keyword}{template}<CPhoton\ Photon,\ \textcolor{keyword}{typename}\ PhotonMap>}
-\DoxyCodeLine{00329\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_v_p_m_radiance_evaluator}{TVPMRadianceEvaluator<Photon,\ PhotonMap>}}}
-\DoxyCodeLine{00330\ \mbox{\hyperlink{classph_1_1_t_v_p_m_radiance_evaluator}{::setGlossyMergeBeginLength}}(}
-\DoxyCodeLine{00331\ \ \ \ \ \textcolor{keyword}{const}\ uint32\ glossyMergeBeginLength)}
-\DoxyCodeLine{00332\ \{}
-\DoxyCodeLine{00333\ \ \ \ \ PH\_ASSERT\_GE(glossyMergeBeginLength,\ 1);}
-\DoxyCodeLine{00334\ }
-\DoxyCodeLine{00335\ \ \ \ \ m\_glossyMergeBeginLength\ =\ glossyMergeBeginLength;}
-\DoxyCodeLine{00336\ \}}
-\DoxyCodeLine{00337\ }
-\DoxyCodeLine{00338\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+\DoxyCodeLine{00175\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ phenomena\ =\ optics-\/>\mbox{\hyperlink{classph_1_1_surface_optics_adac0e938a47756775943ff1e5f4bb9fa}{getAllPhenomena}}();}
+\DoxyCodeLine{00176\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ isSufficientlyDiffuse\ =\ pathLength\ >=\ m\_glossyMergeBeginLength}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ ?\ phenomena.\mbox{\hyperlink{classph_1_1_t_bit_flags_a7597f0560d17c6647429a0e07b38afb9}{hasAny}}(smoothEnoughPhenomena)}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ :\ phenomena.hasExactly(\mbox{\hyperlink{namespaceph_aaaa32f41a9ebef78b7140b84be224e33}{DIFFUSE\_SURFACE\_PHENOMENA}});}
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00180\ \ \ \ \ \textcolor{keywordflow}{if}(m\_photonMap-\/>canContribute(pathLength,\ m\_minFullPathLength,\ m\_maxFullPathLength)\ \&\&}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ phenomena.hasNone(\mbox{\hyperlink{namespaceph_a4fc648c9255debfc7f2fc587b7c017cc}{DELTA\_SURFACE\_PHENOMENA}})\ \&\&}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ isSufficientlyDiffuse)}
+\DoxyCodeLine{00183\ \ \ \ \ \{}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_bsdf_query_context}{BsdfQueryContext}}\ bsdfContext(}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceph_ac2562eda4f90efe4267c1f774fd211bb}{ALL\_SURFACE\_ELEMENTALS}},\ \mbox{\hyperlink{namespaceph_1_1lta_a3f1c39ae8879cc69ac22c3be15f9669baf0d806461f33568d758feb27d468352a}{lta::ETransport::Importance}},\ \mbox{\hyperlink{namespaceph_1_1lta_a1d33ee239cb49375e222139a0fe1c17da2e979835dd62324f5bfe217449ba4974}{lta::ESidednessPolicy::Strict}});}
+\DoxyCodeLine{00186\ }
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ For\ path\ length\ =\ N,\ we\ can\ construct\ light\ transport\ path\ lengths\ with\ photon\ map,}}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ all\ at\ once,\ for\ the\ range\ [N\_min,\ N\_max]\ =\ }}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ [`N\ +\ m\_photonMap-\/>minPathLength`,\ \`{}N\ +\ m\_photonMap-\/>maxPathLength`].}}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ m\_sampledRadiance\ +=\ estimateRadianceWithPhotonMap(}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \ \ \ \ surfaceHit,\ bsdfContext,\ pathThroughput);}
+\DoxyCodeLine{00192\ }
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ unaccountedEnergy\ =\ \mbox{\hyperlink{namespaceph_a45199b25a540099512e7209137092fdf}{estimate\_lost\_energy\_for\_merging}}(}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \ \ \ \ pathLength,}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \ \ \ \ surfaceHit,}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \ \ \ \ pathThroughput,}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \ \ \ \ m\_photonMap-\/>getInfo(),}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \ \ \ \ m\_scene,}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \ \ \ \ m\_minFullPathLength,}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \ \ \ \ m\_maxFullPathLength);}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ m\_sampledRadiance\ +=\ unaccountedEnergy;}
+\DoxyCodeLine{00202\ }
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1_view_path_tracing_policy}{ViewPathTracingPolicy}}().\mbox{\hyperlink{classph_1_1_view_path_tracing_policy_a271c1f9cf115af124dd6a36f911768d0}{kill}}();}
+\DoxyCodeLine{00204\ \ \ \ \ \}}
+\DoxyCodeLine{00205\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00206\ \ \ \ \ \{}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ unaccountedEnergy\ =\ \mbox{\hyperlink{namespaceph_a4157e74ef0b3f83ee81fb342f3cdb0b8}{estimate\_lost\_energy\_for\_extending}}(}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \ \ \ \ pathLength,}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \ \ \ \ surfaceHit,}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \ \ \ \ pathThroughput,}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \ \ \ \ m\_photonMap-\/>getInfo(),}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \ \ \ \ m\_scene,}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \ \ \ \ m\_minFullPathLength,}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \ \ \ \ m\_maxFullPathLength);}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ m\_sampledRadiance\ +=\ unaccountedEnergy;}
+\DoxyCodeLine{00216\ }
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(pathLength\ <\ m\_stochasticSampleBeginLength)}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1_view_path_tracing_policy}{ViewPathTracingPolicy}}().}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ traceBranchedPathFor(\mbox{\hyperlink{namespaceph_aa6c0768badc216b23bd8e33df21325ce}{SurfacePhenomena}}(\mbox{\hyperlink{namespaceph_aabe77df4e760c2bcfffe395279637254}{ALL\_SURFACE\_PHENOMENA}})).}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ useRussianRoulette(\textcolor{keyword}{false});}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classph_1_1_view_path_tracing_policy}{ViewPathTracingPolicy}}().}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ traceSinglePathFor(\mbox{\hyperlink{namespaceph_ac2562eda4f90efe4267c1f774fd211bb}{ALL\_SURFACE\_ELEMENTALS}}).}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ useRussianRoulette(\textcolor{keyword}{true});}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00229\ \ \ \ \ \}}
+\DoxyCodeLine{00230\ \}}
+\DoxyCodeLine{00231\ }
+\DoxyCodeLine{00232\ \textcolor{keyword}{template}<CPhoton\ Photon,\ \textcolor{keyword}{typename}\ PhotonMap>}
+\DoxyCodeLine{00233\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_v_p_m_radiance_evaluator}{TVPMRadianceEvaluator<Photon,\ PhotonMap>}}}
+\DoxyCodeLine{00234\ \mbox{\hyperlink{classph_1_1_t_v_p_m_radiance_evaluator}{::impl\_onReceiverSampleEnd}}()}
+\DoxyCodeLine{00235\ \{}
+\DoxyCodeLine{00236\ \ \ \ \ m\_film-\/>addSample(m\_rasterCoord.x(),\ m\_rasterCoord.y(),\ m\_sampledRadiance);}
+\DoxyCodeLine{00237\ \}}
+\DoxyCodeLine{00238\ }
+\DoxyCodeLine{00239\ \textcolor{keyword}{template}<CPhoton\ Photon,\ \textcolor{keyword}{typename}\ PhotonMap>}
+\DoxyCodeLine{00240\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_v_p_m_radiance_evaluator}{TVPMRadianceEvaluator<Photon,\ PhotonMap>}}}
+\DoxyCodeLine{00241\ \mbox{\hyperlink{classph_1_1_t_v_p_m_radiance_evaluator}{::impl\_onSampleBatchFinished}}()}
+\DoxyCodeLine{00242\ \{}
+\DoxyCodeLine{00243\ \ \ \ \ \textcolor{keywordflow}{if}(m\_statistics)}
+\DoxyCodeLine{00244\ \ \ \ \ \{}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ m\_statistics-\/>incrementNumProcessedSteps();}
+\DoxyCodeLine{00246\ \ \ \ \ \}}
+\DoxyCodeLine{00247\ \}}
+\DoxyCodeLine{00248\ }
+\DoxyCodeLine{00249\ \textcolor{keyword}{template}<CPhoton\ Photon,\ \textcolor{keyword}{typename}\ PhotonMap>}
+\DoxyCodeLine{00250\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_spectrum}{math::Spectrum}}\ \mbox{\hyperlink{classph_1_1_t_v_p_m_radiance_evaluator}{TVPMRadianceEvaluator<Photon,\ PhotonMap>}}}
+\DoxyCodeLine{00251\ \mbox{\hyperlink{classph_1_1_t_v_p_m_radiance_evaluator}{::estimateRadianceWithPhotonMap}}(}
+\DoxyCodeLine{00252\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_surface_hit}{SurfaceHit}}\&\ X,}
+\DoxyCodeLine{00253\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_bsdf_query_context}{BsdfQueryContext}}\&\ bsdfContext,}
+\DoxyCodeLine{00254\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_spectrum}{math::Spectrum}}\&\ viewPathThroughput)}
+\DoxyCodeLine{00255\ \{}
+\DoxyCodeLine{00256\ \ \ \ \ m\_photonCache.clear();}
+\DoxyCodeLine{00257\ \ \ \ \ m\_photonMap-\/>find(X.\mbox{\hyperlink{classph_1_1_surface_hit_ab6da2653e522e20b368900dd55121362}{getPos}}(),\ m\_kernelRadius,\ m\_photonCache);}
+\DoxyCodeLine{00258\ }
+\DoxyCodeLine{00259\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1lta_1_1_surface_tracer}{lta::SurfaceTracer}}\ surfaceTracer\{m\_scene\};}
+\DoxyCodeLine{00260\ }
+\DoxyCodeLine{00261\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_1_1math_a7f5d9bea70db00eb52ece79b05e544c8}{math::Vector3R}}\ L\ \ =\ X.\mbox{\hyperlink{classph_1_1_surface_hit_a61d656616db630197f8b06093705fba6}{getIncidentRay}}().\mbox{\hyperlink{classph_1_1_ray_a3c80f865b8ba404194a5afc268fe9651}{getDir}}().\mbox{\hyperlink{classph_1_1math_1_1_t_vector_n_base_a15602e64861b8d4b90033e87b168b846}{mul}}(-\/1);}
+\DoxyCodeLine{00262\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_1_1math_a7f5d9bea70db00eb52ece79b05e544c8}{math::Vector3R}}\ Ns\ =\ X.\mbox{\hyperlink{classph_1_1_surface_hit_a189bd3896f87838eea8b7e06f5e71286}{getShadingNormal}}();}
+\DoxyCodeLine{00263\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_1_1math_a7f5d9bea70db00eb52ece79b05e544c8}{math::Vector3R}}\ Ng\ =\ X.\mbox{\hyperlink{classph_1_1_surface_hit_a03950ddbe22d5c8bcf72c04306660f36}{getGeometryNormal}}();}
+\DoxyCodeLine{00264\ }
+\DoxyCodeLine{00265\ \ \ \ \ BsdfEvalQuery\ \ bsdfEval(bsdfContext);}
+\DoxyCodeLine{00266\ \ \ \ \ \mbox{\hyperlink{namespaceph_1_1math_ad1ddf3801f5a9ea201227d49747987ed}{math::Spectrum}}\ radiance(0);}
+\DoxyCodeLine{00267\ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ photon\ :\ m\_photonCache)}
+\DoxyCodeLine{00268\ \ \ \ \ \{}
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_1_1math_a7f5d9bea70db00eb52ece79b05e544c8}{math::Vector3R}}\ V\ =\ photon.get<\mbox{\hyperlink{namespaceph_a2f105bf7a6233cdb646a691b6055d71daee99ad64c489a5fa63f46f42f78e37e2}{EPhotonData::FromDir}}>();}
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!\mbox{\hyperlink{namespaceph_ab9d4b27758a195a566ee213c1f41f96f}{accept\_photon\_by\_surface\_topology}}(photon,\ Ng,\ Ns,\ L,\ V,\ bsdfContext.\mbox{\hyperlink{classph_1_1_bsdf_query_context_a196b7ca35f245baa24f992393707d0ea}{sidedness}}))}
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00274\ }
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ bsdfEval.inputs.\mbox{\hyperlink{classph_1_1math_1_1_t_vector_n_base_a66bef10def6b7cfc11adea52b28094e0}{set}}(X,\ L,\ V);}
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!surfaceTracer.doBsdfEvaluation(bsdfEval))}
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00280\ }
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceph_1_1math_ad1ddf3801f5a9ea201227d49747987ed}{math::Spectrum}}\ throughput(viewPathThroughput);}
+\DoxyCodeLine{00282\ \ \ \ \ \ \ \ \ throughput.mulLocal(bsdfEval.outputs.getBsdf());}
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ throughput.mulLocal(\mbox{\hyperlink{namespaceph_1_1lta_ac017a110ee09b8cb7c2d5b0b1ff10f11}{lta::tamed\_importance\_BSDF\_Ns\_corrector}}(Ns,\ Ng,\ V));}
+\DoxyCodeLine{00284\ }
+\DoxyCodeLine{00285\ \ \ \ \ \ \ \ \ radiance.addLocal(throughput\ *\ photon.template\ get<EPhotonData::ThroughputRadiance>());}
+\DoxyCodeLine{00286\ \ \ \ \ \}}
+\DoxyCodeLine{00287\ \ \ \ \ radiance.mulLocal(m\_kernelDensityNormalizer);}
+\DoxyCodeLine{00288\ }
+\DoxyCodeLine{00289\ \ \ \ \ \textcolor{keywordflow}{return}\ radiance;}
+\DoxyCodeLine{00290\ \}}
+\DoxyCodeLine{00291\ }
+\DoxyCodeLine{00292\ \textcolor{keyword}{template}<CPhoton\ Photon,\ \textcolor{keyword}{typename}\ PhotonMap>}
+\DoxyCodeLine{00293\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ TVPMRadianceEvaluator<Photon,\ PhotonMap>}
+\DoxyCodeLine{00294\ ::setStatistics(\mbox{\hyperlink{classph_1_1_p_m_atomic_statistics}{PMAtomicStatistics}}*\ \textcolor{keyword}{const}\ statistics)}
+\DoxyCodeLine{00295\ \{}
+\DoxyCodeLine{00296\ \ \ \ \ m\_statistics\ =\ statistics;}
+\DoxyCodeLine{00297\ \}}
+\DoxyCodeLine{00298\ }
+\DoxyCodeLine{00299\ \textcolor{keyword}{template}<CPhoton\ Photon,\ \textcolor{keyword}{typename}\ PhotonMap>}
+\DoxyCodeLine{00300\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_v_p_m_radiance_evaluator}{TVPMRadianceEvaluator<Photon,\ PhotonMap>}}}
+\DoxyCodeLine{00301\ \mbox{\hyperlink{classph_1_1_t_v_p_m_radiance_evaluator}{::setKernelRadius}}(\textcolor{keyword}{const}\ real\ radius)}
+\DoxyCodeLine{00302\ \{}
+\DoxyCodeLine{00303\ \ \ \ \ PH\_ASSERT\_GT(radius,\ 0.0\_r);}
+\DoxyCodeLine{00304\ }
+\DoxyCodeLine{00305\ \ \ \ \ m\_kernelRadius\ =\ radius;}
+\DoxyCodeLine{00306\ }
+\DoxyCodeLine{00307\ \ \ \ \ \textcolor{keyword}{const}\ real\ kernelArea\ =\ radius\ *\ radius\ *\ \mbox{\hyperlink{namespaceph_1_1math_1_1constant_aeb217ecd643bb14c638c3d0457a031e0}{math::constant::pi<real>}};}
+\DoxyCodeLine{00308\ \ \ \ \ m\_kernelDensityNormalizer\ =\ 1.0\_r\ /\ (kernelArea\ *\ \textcolor{keyword}{static\_cast<}real\textcolor{keyword}{>}(m\_photonMap-\/>numPaths));}
+\DoxyCodeLine{00309\ \}}
+\DoxyCodeLine{00310\ }
+\DoxyCodeLine{00311\ \textcolor{keyword}{template}<CPhoton\ Photon,\ \textcolor{keyword}{typename}\ PhotonMap>}
+\DoxyCodeLine{00312\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_v_p_m_radiance_evaluator}{TVPMRadianceEvaluator<Photon,\ PhotonMap>}}}
+\DoxyCodeLine{00313\ \mbox{\hyperlink{classph_1_1_t_v_p_m_radiance_evaluator}{::setStochasticSampleBeginLength}}(}
+\DoxyCodeLine{00314\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ stochasticSampleBeginLength)}
+\DoxyCodeLine{00315\ \{}
+\DoxyCodeLine{00316\ \ \ \ \ PH\_ASSERT\_GE(stochasticSampleBeginLength,\ 1);}
+\DoxyCodeLine{00317\ }
+\DoxyCodeLine{00318\ \ \ \ \ m\_stochasticSampleBeginLength\ =\ stochasticSampleBeginLength;}
+\DoxyCodeLine{00319\ \}}
+\DoxyCodeLine{00320\ }
+\DoxyCodeLine{00321\ \textcolor{keyword}{template}<CPhoton\ Photon,\ \textcolor{keyword}{typename}\ PhotonMap>}
+\DoxyCodeLine{00322\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_v_p_m_radiance_evaluator}{TVPMRadianceEvaluator<Photon,\ PhotonMap>}}}
+\DoxyCodeLine{00323\ \mbox{\hyperlink{classph_1_1_t_v_p_m_radiance_evaluator}{::setFullPathLengthRange}}(}
+\DoxyCodeLine{00324\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ minFullPathLength,\ \textcolor{keyword}{const}\ std::size\_t\ maxFullPathLength)}
+\DoxyCodeLine{00325\ \{}
+\DoxyCodeLine{00326\ \ \ \ \ PH\_ASSERT\_GE(minFullPathLength,\ 1);}
+\DoxyCodeLine{00327\ \ \ \ \ PH\_ASSERT\_LE(minFullPathLength,\ maxFullPathLength);}
+\DoxyCodeLine{00328\ }
+\DoxyCodeLine{00329\ \ \ \ \ m\_minFullPathLength\ =\ minFullPathLength;}
+\DoxyCodeLine{00330\ \ \ \ \ m\_maxFullPathLength\ =\ maxFullPathLength;}
+\DoxyCodeLine{00331\ \}}
+\DoxyCodeLine{00332\ }
+\DoxyCodeLine{00333\ \textcolor{keyword}{template}<CPhoton\ Photon,\ \textcolor{keyword}{typename}\ PhotonMap>}
+\DoxyCodeLine{00334\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_v_p_m_radiance_evaluator}{TVPMRadianceEvaluator<Photon,\ PhotonMap>}}}
+\DoxyCodeLine{00335\ \mbox{\hyperlink{classph_1_1_t_v_p_m_radiance_evaluator}{::setGlossyMergeBeginLength}}(}
+\DoxyCodeLine{00336\ \ \ \ \ \textcolor{keyword}{const}\ uint32\ glossyMergeBeginLength)}
+\DoxyCodeLine{00337\ \{}
+\DoxyCodeLine{00338\ \ \ \ \ PH\_ASSERT\_GE(glossyMergeBeginLength,\ 1);}
+\DoxyCodeLine{00339\ }
+\DoxyCodeLine{00340\ \ \ \ \ m\_glossyMergeBeginLength\ =\ glossyMergeBeginLength;}
+\DoxyCodeLine{00341\ \}}
+\DoxyCodeLine{00342\ }
+\DoxyCodeLine{00343\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
 
 \end{DoxyCode}

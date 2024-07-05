@@ -28,6 +28,10 @@ var namespaceph_1_1lta =
       [ "TrustGeometry", "namespaceph_1_1lta.html#a1d33ee239cb49375e222139a0fe1c17da4a2e14f37fb676f4c83b874ddeaf35e3", null ],
       [ "TrustShading", "namespaceph_1_1lta.html#a1d33ee239cb49375e222139a0fe1c17dab6e0902c88f013423a338605519edaf4", null ]
     ] ],
+    [ "ETransport", "namespaceph_1_1lta.html#a3f1c39ae8879cc69ac22c3be15f9669b", [
+      [ "Radiance", "namespaceph_1_1lta.html#a3f1c39ae8879cc69ac22c3be15f9669ba955d9ba35580bdcc7bed3f11736b0f76", null ],
+      [ "Importance", "namespaceph_1_1lta.html#a3f1c39ae8879cc69ac22c3be15f9669baf0d806461f33568d758feb27d468352a", null ]
+    ] ],
     [ "importance_BSDF_Ns_corrector", "namespaceph_1_1lta.html#af768ce875381b972a702a221c9800a50", null ],
     [ "importance_scatter_Ns_corrector", "namespaceph_1_1lta.html#a1669152400e7fb4f968fae1a6211cc2c", null ],
     [ "pdfA_to_pdfW", "namespaceph_1_1lta.html#a90b17b807b0048a147f97ee48bbaa6bd", null ],

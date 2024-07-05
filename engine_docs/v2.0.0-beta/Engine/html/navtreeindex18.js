@@ -1,5 +1,15 @@
 var NAVTREEINDEX18 =
 {
+"classph_1_1_initially_paused_thread.html#a5db222ca2cf1736517c5475b63ded8ed":[5,0,0,181,5],
+"classph_1_1_initially_paused_thread.html#a5db222ca2cf1736517c5475b63ded8ed":[7,0,0,171,5],
+"classph_1_1_initially_paused_thread.html#a77d8f5f18a06fe43174f03f34cd46a31":[5,0,0,181,2],
+"classph_1_1_initially_paused_thread.html#a77d8f5f18a06fe43174f03f34cd46a31":[7,0,0,171,2],
+"classph_1_1_initially_paused_thread.html#a8efeae7b622bc07689341107d4528550":[5,0,0,181,3],
+"classph_1_1_initially_paused_thread.html#a8efeae7b622bc07689341107d4528550":[7,0,0,171,3],
+"classph_1_1_initially_paused_thread.html#a9239a4c2236b290891ca00d7566635bd":[5,0,0,181,8],
+"classph_1_1_initially_paused_thread.html#a9239a4c2236b290891ca00d7566635bd":[7,0,0,171,8],
+"classph_1_1_initially_paused_thread.html#aa5ad510aeaca8abbf7107a28a4fdf1b9":[5,0,0,181,7],
+"classph_1_1_initially_paused_thread.html#aa5ad510aeaca8abbf7107a28a4fdf1b9":[7,0,0,171,7],
 "classph_1_1_initially_paused_thread.html#aacc8da38d38fa892417ae50197b0995e":[5,0,0,181,9],
 "classph_1_1_initially_paused_thread.html#aacc8da38d38fa892417ae50197b0995e":[7,0,0,171,9],
 "classph_1_1_initially_paused_thread.html#ab3bfd8676ead9b59a5ae0fec6ec1a7c5":[5,0,0,181,0],
@@ -239,15 +249,5 @@ var NAVTREEINDEX18 =
 "classph_1_1_ldr_rgb_texture2_d.html#a426f41ef1db575d951aeefbdab03fb80":[5,0,0,212,2],
 "classph_1_1_ldr_rgb_texture2_d.html#a426f41ef1db575d951aeefbdab03fb80":[7,0,0,202,2],
 "classph_1_1_ldr_rgb_texture2_d.html#a7bb9d904d3b91a54eae9fe623761b336":[5,0,0,212,1],
-"classph_1_1_ldr_rgb_texture2_d.html#a7bb9d904d3b91a54eae9fe623761b336":[7,0,0,202,1],
-"classph_1_1_lerped_surface_optics.html":[5,0,0,213],
-"classph_1_1_lerped_surface_optics.html":[7,0,0,203],
-"classph_1_1_lerped_surface_optics.html#a0938823c91b62242d03b7b24947271b1":[5,0,0,213,2],
-"classph_1_1_lerped_surface_optics.html#a0938823c91b62242d03b7b24947271b1":[7,0,0,203,2],
-"classph_1_1_lerped_surface_optics.html#a1df9befcf92155a6091bb0874aff1578":[5,0,0,213,4],
-"classph_1_1_lerped_surface_optics.html#a1df9befcf92155a6091bb0874aff1578":[7,0,0,203,4],
-"classph_1_1_lerped_surface_optics.html#a5018e6cc63a0ce1fc88646c2f43594f5":[5,0,0,213,1],
-"classph_1_1_lerped_surface_optics.html#a5018e6cc63a0ce1fc88646c2f43594f5":[7,0,0,203,1],
-"classph_1_1_lerped_surface_optics.html#add84d3b68f6d632b32d86bacdffdcec5":[5,0,0,213,0],
-"classph_1_1_lerped_surface_optics.html#add84d3b68f6d632b32d86bacdffdcec5":[7,0,0,203,0]
+"classph_1_1_ldr_rgb_texture2_d.html#a7bb9d904d3b91a54eae9fe623761b336":[7,0,0,202,1]
 };

@@ -5058,6 +5058,7 @@
     <filename>_bsdf_query_context_8h.html</filename>
     <includes id="surface__optics__fwd_8h" name="surface_optics_fwd.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/surface_optics_fwd.h</includes>
     <includes id="_sidedness_agreement_8h" name="SidednessAgreement.h" local="yes" import="no" module="no" objc="no">Core/LTA/SidednessAgreement.h</includes>
+    <includes id="enums_8h" name="enums.h" local="yes" import="no" module="no" objc="no">Core/LTA/enums.h</includes>
     <class kind="class">ph::BsdfQueryContext</class>
     <namespace>ph</namespace>
   </compound>
@@ -13125,6 +13126,13 @@
       <anchor>a39b4da97dd35457898a36f7916dac75f</anchor>
       <arglist>(const math::Spectrum &amp;reference)</arglist>
     </member>
+    <member kind="function">
+      <type></type>
+      <name>operator bool</name>
+      <anchorfile>classph_1_1_bsdf_eval_output.html</anchorfile>
+      <anchor>aa5169f231dd0fcaa83895f986c6f77c4</anchor>
+      <arglist>() const</arglist>
+    </member>
   </compound>
   <compound kind="class">
     <name>ph::BsdfEvalQuery</name>
@@ -13363,8 +13371,8 @@
       <type></type>
       <name>BsdfQueryContext</name>
       <anchorfile>classph_1_1_bsdf_query_context.html</anchorfile>
-      <anchor>a7d7b88ad552956705c27d03e189bebf5</anchor>
-      <arglist>(SurfaceElemental elemental, ETransport transport, lta::ESidednessPolicy sidednessPolicy=lta::ESidednessPolicy::Strict)</arglist>
+      <anchor>a3fb46c95af0dfd95625bab9b0d662007</anchor>
+      <arglist>(SurfaceElemental elemental, lta::ETransport transport, lta::ESidednessPolicy sidednessPolicy=lta::ESidednessPolicy::Strict)</arglist>
     </member>
     <member kind="variable">
       <type>SurfaceElemental</type>
@@ -13374,10 +13382,10 @@
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>ETransport</type>
+      <type>lta::ETransport</type>
       <name>transport</name>
       <anchorfile>classph_1_1_bsdf_query_context.html</anchorfile>
-      <anchor>aef563c5590ff5629188ec5803534178e</anchor>
+      <anchor>aac67199cc599bf4970cbb70100f945fc</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
@@ -13466,6 +13474,20 @@
       <arglist>() const</arglist>
     </member>
     <member kind="function">
+      <type>real</type>
+      <name>getRelativeIor</name>
+      <anchorfile>classph_1_1_bsdf_sample_output.html</anchorfile>
+      <anchor>a369b992957228850495c4ff1fd871a9b</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>real</type>
+      <name>getRelativeIor2</name>
+      <anchorfile>classph_1_1_bsdf_sample_output.html</anchorfile>
+      <anchor>a2a9def6cfad0fb5fd993b6b0f00e396a</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
       <type>bool</type>
       <name>isMeasurable</name>
       <anchorfile>classph_1_1_bsdf_sample_output.html</anchorfile>
@@ -13485,6 +13507,20 @@
       <anchorfile>classph_1_1_bsdf_sample_output.html</anchorfile>
       <anchor>aa3e8dcb5e830b1bebe483aaddfc65c80</anchor>
       <arglist>(const math::Spectrum &amp;reference)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setRelativeIor</name>
+      <anchorfile>classph_1_1_bsdf_sample_output.html</anchorfile>
+      <anchor>a31e902ffab25dc433a9709a6a457de36</anchor>
+      <arglist>(real relativeIor)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>operator bool</name>
+      <anchorfile>classph_1_1_bsdf_sample_output.html</anchorfile>
+      <anchor>ad99a29a0a9940a472ac63bd7d7260aa9</anchor>
+      <arglist>() const</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -26932,8 +26968,8 @@
       <type>bool</type>
       <name>surviveOnLuminance</name>
       <anchorfile>classph_1_1lta_1_1_russian_roulette.html</anchorfile>
-      <anchor>a23dbf1483999b91aa772ebb117e1dd91</anchor>
-      <arglist>(const math::Spectrum &amp;s, SampleFlow &amp;sampleFlow, math::Spectrum *const out_weightedS) const</arglist>
+      <anchor>aa26e51b98be1903cb062a9b4634234eb</anchor>
+      <arglist>(const math::Spectrum &amp;s, SampleFlow &amp;sampleFlow, real *out_survivalProbability) const</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -49436,19 +49472,13 @@
       <anchor>a596116c16341de64c97b20395d758456</anchor>
       <arglist></arglist>
       <enumvalue file="namespaceph.html" anchor="a596116c16341de64c97b20395d758456a96b6d5999da0dee7f6be9ed568bb11b3">DiffuseReflection</enumvalue>
+      <enumvalue file="namespaceph.html" anchor="a596116c16341de64c97b20395d758456a0d9b4e1d210bf9c211c445814263df99">NearDiffuseReflection</enumvalue>
       <enumvalue file="namespaceph.html" anchor="a596116c16341de64c97b20395d758456a6a08e398f84e0c348effb4341042b207">DeltaReflection</enumvalue>
       <enumvalue file="namespaceph.html" anchor="a596116c16341de64c97b20395d758456ac8e33f42e15c4d38920faff1dd1ca4e5">GlossyReflection</enumvalue>
+      <enumvalue file="namespaceph.html" anchor="a596116c16341de64c97b20395d758456a3699ab93b11d737252d3587b2355bcb9">DiffuseTransmission</enumvalue>
+      <enumvalue file="namespaceph.html" anchor="a596116c16341de64c97b20395d758456a30697ad6a8d3ed45c8c2e64df6bd82f9">NearDiffuseTransmission</enumvalue>
       <enumvalue file="namespaceph.html" anchor="a596116c16341de64c97b20395d758456a1b72c07dc09193b5c23aec91a665a751">DeltaTransmission</enumvalue>
       <enumvalue file="namespaceph.html" anchor="a596116c16341de64c97b20395d758456abfc8a569b7687c064e61b4cf701cc0c8">GlossyTransmission</enumvalue>
-    </member>
-    <member kind="enumeration">
-      <type></type>
-      <name>ETransport</name>
-      <anchorfile>namespaceph.html</anchorfile>
-      <anchor>a77d951ca57b4e319e083ebddd4695213</anchor>
-      <arglist></arglist>
-      <enumvalue file="namespaceph.html" anchor="a77d951ca57b4e319e083ebddd4695213a955d9ba35580bdcc7bed3f11736b0f76">Radiance</enumvalue>
-      <enumvalue file="namespaceph.html" anchor="a77d951ca57b4e319e083ebddd4695213af0d806461f33568d758feb27d468352a">Importance</enumvalue>
     </member>
     <member kind="enumeration">
       <type></type>
@@ -50821,9 +50851,23 @@
     </member>
     <member kind="variable">
       <type>constexpr ESurfacePhenomenon</type>
+      <name>DIFFUSE_SURFACE_PHENOMENA</name>
+      <anchorfile>namespaceph.html</anchorfile>
+      <anchor>aaaa32f41a9ebef78b7140b84be224e33</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>constexpr ESurfacePhenomenon</type>
       <name>DELTA_SURFACE_PHENOMENA</name>
       <anchorfile>namespaceph.html</anchorfile>
       <anchor>a4fc648c9255debfc7f2fc587b7c017cc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>constexpr ESurfacePhenomenon</type>
+      <name>GLOSSY_SURFACE_PHENOMENA</name>
+      <anchorfile>namespaceph.html</anchorfile>
+      <anchor>a977d196601c9db7f3b1b7be34769d1a1</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
@@ -51317,6 +51361,15 @@
       <enumvalue file="namespaceph_1_1lta.html" anchor="a517f9714c97ec4a5bcdd5beae0eaf9ddaf3d7d007f2c4d9612c4128a2a6a8b011">UV01</enumvalue>
       <enumvalue file="namespaceph_1_1lta.html" anchor="a517f9714c97ec4a5bcdd5beae0eaf9ddac75c6f8c5e1c2970cf2feaf8a7331651">UVW01</enumvalue>
       <enumvalue file="namespaceph_1_1lta.html" anchor="a517f9714c97ec4a5bcdd5beae0eaf9dda4984667940802dedc139aa7a430a6553">Discrete</enumvalue>
+    </member>
+    <member kind="enumeration">
+      <type></type>
+      <name>ETransport</name>
+      <anchorfile>namespaceph_1_1lta.html</anchorfile>
+      <anchor>a3f1c39ae8879cc69ac22c3be15f9669b</anchor>
+      <arglist></arglist>
+      <enumvalue file="namespaceph_1_1lta.html" anchor="a3f1c39ae8879cc69ac22c3be15f9669ba955d9ba35580bdcc7bed3f11736b0f76">Radiance</enumvalue>
+      <enumvalue file="namespaceph_1_1lta.html" anchor="a3f1c39ae8879cc69ac22c3be15f9669baf0d806461f33568d758feb27d468352a">Importance</enumvalue>
     </member>
     <member kind="enumeration">
       <type></type>

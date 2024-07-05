@@ -964,8 +964,11 @@ var namespaceph =
     ] ],
     [ "ESurfacePhenomenon", "namespaceph.html#a596116c16341de64c97b20395d758456", [
       [ "DiffuseReflection", "namespaceph.html#a596116c16341de64c97b20395d758456a96b6d5999da0dee7f6be9ed568bb11b3", null ],
+      [ "NearDiffuseReflection", "namespaceph.html#a596116c16341de64c97b20395d758456a0d9b4e1d210bf9c211c445814263df99", null ],
       [ "DeltaReflection", "namespaceph.html#a596116c16341de64c97b20395d758456a6a08e398f84e0c348effb4341042b207", null ],
       [ "GlossyReflection", "namespaceph.html#a596116c16341de64c97b20395d758456ac8e33f42e15c4d38920faff1dd1ca4e5", null ],
+      [ "DiffuseTransmission", "namespaceph.html#a596116c16341de64c97b20395d758456a3699ab93b11d737252d3587b2355bcb9", null ],
+      [ "NearDiffuseTransmission", "namespaceph.html#a596116c16341de64c97b20395d758456a30697ad6a8d3ed45c8c2e64df6bd82f9", null ],
       [ "DeltaTransmission", "namespaceph.html#a596116c16341de64c97b20395d758456a1b72c07dc09193b5c23aec91a665a751", null ],
       [ "GlossyTransmission", "namespaceph.html#a596116c16341de64c97b20395d758456abfc8a569b7687c064e61b4cf701cc0c8", null ]
     ] ],
@@ -978,10 +981,6 @@ var namespaceph =
     [ "ETexWrapMode", "namespaceph.html#a688ddbdef5155c5446bd8547de456e02", [
       [ "REPEAT", "namespaceph.html#a688ddbdef5155c5446bd8547de456e02a5be68175be14dfaa080165456c2e9555", null ],
       [ "CLAMP_TO_EDGE", "namespaceph.html#a688ddbdef5155c5446bd8547de456e02aca305cdc5d749d643055111218063f26", null ]
-    ] ],
-    [ "ETransport", "namespaceph.html#a77d951ca57b4e319e083ebddd4695213", [
-      [ "Radiance", "namespaceph.html#a77d951ca57b4e319e083ebddd4695213a955d9ba35580bdcc7bed3f11736b0f76", null ],
-      [ "Importance", "namespaceph.html#a77d951ca57b4e319e083ebddd4695213af0d806461f33568d758feb27d468352a", null ]
     ] ],
     [ "EVertexAttribute", "namespaceph.html#a7e33dd6c4833698ef95d3dcfe04f0a0f", [
       [ "Position_0", "namespaceph.html#a7e33dd6c4833698ef95d3dcfe04f0a0fa2bcdbedf7a76a5d8d76873d033caff0a", null ],
@@ -1171,5 +1170,7 @@ var namespaceph =
     [ "ALL_SURFACE_ELEMENTALS", "namespaceph.html#ac2562eda4f90efe4267c1f774fd211bb", null ],
     [ "ALL_SURFACE_PHENOMENA", "namespaceph.html#aabe77df4e760c2bcfffe395279637254", null ],
     [ "DELTA_SURFACE_PHENOMENA", "namespaceph.html#a4fc648c9255debfc7f2fc587b7c017cc", null ],
-    [ "EMPTY_SDL_RESOURCE_ID", "namespaceph.html#ae9a4a45222070d004082cfbcfc6fd9e9", null ]
+    [ "DIFFUSE_SURFACE_PHENOMENA", "namespaceph.html#aaaa32f41a9ebef78b7140b84be224e33", null ],
+    [ "EMPTY_SDL_RESOURCE_ID", "namespaceph.html#ae9a4a45222070d004082cfbcfc6fd9e9", null ],
+    [ "GLOSSY_SURFACE_PHENOMENA", "namespaceph.html#a977d196601c9db7f3b1b7be34769d1a1", null ]
 ];

@@ -62,88 +62,91 @@
 \DoxyCodeLine{00058\ }
 \DoxyCodeLine{00059\ \ \ \ \ sanitizeVariables();}
 \DoxyCodeLine{00060\ }
-\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_bsdf_query_context}{BsdfQueryContext}}\ bsdfContext(\mbox{\hyperlink{namespaceph_ac2562eda4f90efe4267c1f774fd211bb}{ALL\_SURFACE\_ELEMENTALS}},\ \mbox{\hyperlink{namespaceph_a77d951ca57b4e319e083ebddd4695213af0d806461f33568d758feb27d468352a}{ETransport::Importance}},\ \mbox{\hyperlink{namespaceph_1_1lta_a1d33ee239cb49375e222139a0fe1c17da2e979835dd62324f5bfe217449ba4974}{lta::ESidednessPolicy::Strict}});}
-\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1lta_1_1_surface_tracer}{lta::SurfaceTracer}}\ surfaceTracer\{m\_scene\};}
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ transport\ =\ \mbox{\hyperlink{namespaceph_1_1lta_a3f1c39ae8879cc69ac22c3be15f9669baf0d806461f33568d758feb27d468352a}{lta::ETransport::Importance}};}
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ sidednessPolicy\ =\ \mbox{\hyperlink{namespaceph_1_1lta_a1d33ee239cb49375e222139a0fe1c17da2e979835dd62324f5bfe217449ba4974}{lta::ESidednessPolicy::Strict}};}
 \DoxyCodeLine{00063\ }
-\DoxyCodeLine{00064\ \ \ \ \ \textcolor{comment}{//\ For\ each\ viewpoint,\ evaluate\ radiance\ using\ collected\ data.\ If\ the\ viewpoint\ is\ for}}
-\DoxyCodeLine{00065\ \ \ \ \ \textcolor{comment}{//\ view\ radiance\ only\ (and\ is\ on\ a\ delta\ optics),\ the\ evaluation\ would\ still\ work\ fine}}
-\DoxyCodeLine{00066\ \ \ \ \ \textcolor{comment}{//\ (just\ the\ radius\ cannot\ shrink).}}
-\DoxyCodeLine{00067\ }
-\DoxyCodeLine{00068\ \ \ \ \ std::vector<FullPhoton>\ photonCache;}
-\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keywordflow}{for}(Viewpoint\&\ viewpoint\ :\ m\_viewpoints)}
-\DoxyCodeLine{00070\ \ \ \ \ \{}
-\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_a7d646adaf4c44ccfcbbe787120a7cb1fa2eee368b673cbaedbb7a829562fa85d7}{SurfaceHit}}\&\ \ \ \ surfaceHit\ =\ viewpoint.get<\mbox{\hyperlink{namespaceph_a7d646adaf4c44ccfcbbe787120a7cb1fa2eee368b673cbaedbb7a829562fa85d7}{EViewpointData::SurfaceHit}}>();}
-\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_1_1math_a7f5d9bea70db00eb52ece79b05e544c8}{math::Vector3R}}\ L\ \ \ \ \ \ \ \ \ \ =\ viewpoint.get<\mbox{\hyperlink{namespaceph_a7d646adaf4c44ccfcbbe787120a7cb1fa19eec7ab9f3a463f76c6b158371b05c5}{EViewpointData::ViewDir}}>();}
-\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_1_1math_a7f5d9bea70db00eb52ece79b05e544c8}{math::Vector3R}}\ Ng\ \ \ \ \ \ \ \ \ =\ surfaceHit.getGeometryNormal();}
-\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_1_1math_a7f5d9bea70db00eb52ece79b05e544c8}{math::Vector3R}}\ Ns\ \ \ \ \ \ \ \ \ =\ surfaceHit.getShadingNormal();}
-\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ real\ \ \ \ \ \ \ \ \ \ \ R\ \ \ \ \ \ \ \ \ \ =\ viewpoint.get<\mbox{\hyperlink{namespaceph_a7d646adaf4c44ccfcbbe787120a7cb1fad1106ccca74e98877ed6d7890c70bb2c}{EViewpointData::Radius}}>();}
-\DoxyCodeLine{00076\ }
-\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ photonCache.clear();}
-\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ m\_photonMap-\/>find(surfaceHit.getPos(),\ R,\ photonCache);}
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_bsdf_query_context}{BsdfQueryContext}}\ bsdfContext(\mbox{\hyperlink{namespaceph_ac2562eda4f90efe4267c1f774fd211bb}{ALL\_SURFACE\_ELEMENTALS}},\ transport,\ sidednessPolicy);}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1lta_1_1_surface_tracer}{lta::SurfaceTracer}}\ surfaceTracer\{m\_scene\};}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{comment}{//\ For\ each\ viewpoint,\ evaluate\ radiance\ using\ collected\ data.\ If\ the\ viewpoint\ is\ for}}
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{comment}{//\ view\ radiance\ only\ (and\ is\ on\ a\ delta\ optics),\ the\ evaluation\ would\ still\ work\ fine}}
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{comment}{//\ (just\ the\ radius\ cannot\ shrink).}}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ std::vector<FullPhoton>\ photonCache;}
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordflow}{for}(Viewpoint\&\ viewpoint\ :\ m\_viewpoints)}
+\DoxyCodeLine{00073\ \ \ \ \ \{}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_a7d646adaf4c44ccfcbbe787120a7cb1fa2eee368b673cbaedbb7a829562fa85d7}{SurfaceHit}}\&\ \ \ \ surfaceHit\ =\ viewpoint.get<\mbox{\hyperlink{namespaceph_a7d646adaf4c44ccfcbbe787120a7cb1fa2eee368b673cbaedbb7a829562fa85d7}{EViewpointData::SurfaceHit}}>();}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_1_1math_a7f5d9bea70db00eb52ece79b05e544c8}{math::Vector3R}}\ L\ \ \ \ \ \ \ \ \ \ =\ viewpoint.get<\mbox{\hyperlink{namespaceph_a7d646adaf4c44ccfcbbe787120a7cb1fa19eec7ab9f3a463f76c6b158371b05c5}{EViewpointData::ViewDir}}>();}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_1_1math_a7f5d9bea70db00eb52ece79b05e544c8}{math::Vector3R}}\ Ng\ \ \ \ \ \ \ \ \ =\ surfaceHit.getGeometryNormal();}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_1_1math_a7f5d9bea70db00eb52ece79b05e544c8}{math::Vector3R}}\ Ns\ \ \ \ \ \ \ \ \ =\ surfaceHit.getShadingNormal();}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ real\ \ \ \ \ \ \ \ \ \ \ R\ \ \ \ \ \ \ \ \ \ =\ viewpoint.get<\mbox{\hyperlink{namespaceph_a7d646adaf4c44ccfcbbe787120a7cb1fad1106ccca74e98877ed6d7890c70bb2c}{EViewpointData::Radius}}>();}
 \DoxyCodeLine{00079\ }
-\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ real\ N\ \ \ \ =\ viewpoint.get<\mbox{\hyperlink{namespaceph_a7d646adaf4c44ccfcbbe787120a7cb1fa119fba41118f04e03c5f46ff06b79da1}{EViewpointData::NumPhotons}}>();}
-\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ real\ M\ \ \ \ =\ \textcolor{keyword}{static\_cast<}real\textcolor{keyword}{>}(photonCache.size());}
-\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ real\ newN\ =\ N\ +\ m\_alpha\ *\ M;}
-\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ real\ newR\ =\ (N\ +\ M)\ !=\ 0.0\_r\ ?\ R\ *\ std::sqrt(newN\ /\ (N\ +\ M))\ :\ R;}
-\DoxyCodeLine{00084\ }
-\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceph_1_1math_ad1ddf3801f5a9ea201227d49747987ed}{math::Spectrum}}\ tauM(0);}
-\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ BsdfEvalQuery\ \ bsdfEval(bsdfContext);}
-\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ photon\ :\ photonCache)}
-\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_1_1math_a7f5d9bea70db00eb52ece79b05e544c8}{math::Vector3R}}\ V\ =\ photon.get<\mbox{\hyperlink{namespaceph_a2f105bf7a6233cdb646a691b6055d71daee99ad64c489a5fa63f46f42f78e37e2}{EPhotonData::FromDir}}>();}
-\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!\mbox{\hyperlink{namespaceph_ab9d4b27758a195a566ee213c1f41f96f}{accept\_photon\_by\_surface\_topology}}(photon,\ Ng,\ Ns,\ L,\ V,\ bsdfContext.sidedness))}
-\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
-\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00094\ }
-\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ bsdfEval.inputs.\mbox{\hyperlink{classph_1_1math_1_1_t_vector_n_base_a66bef10def6b7cfc11adea52b28094e0}{set}}(surfaceHit,\ L,\ V);}
-\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!surfaceTracer.doBsdfEvaluation(bsdfEval))}
-\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
-\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00100\ }
-\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceph_1_1math_ad1ddf3801f5a9ea201227d49747987ed}{math::Spectrum}}\ tau\ =\ photon.get<\mbox{\hyperlink{namespaceph_a2f105bf7a6233cdb646a691b6055d71da41fafd368452a2128ac8bdc3934d4cb5}{EPhotonData::ThroughputRadiance}}>();}
-\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ tau.\mbox{\hyperlink{classph_1_1math_1_1_t_spectrum_base_ab2c2c0e821a2752db5eab046a8b945a3}{mulLocal}}(bsdfEval.outputs.getBsdf());}
-\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ tau.mulLocal(\mbox{\hyperlink{namespaceph_1_1lta_ac017a110ee09b8cb7c2d5b0b1ff10f11}{lta::tamed\_importance\_BSDF\_Ns\_corrector}}(Ns,\ Ng,\ V));}
-\DoxyCodeLine{00104\ }
-\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ tauM.addLocal(tau);}
-\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_1_1math_ad1ddf3801f5a9ea201227d49747987ed}{math::Spectrum}}\ tauN\ \ \ =\ viewpoint.get<\mbox{\hyperlink{namespaceph_a7d646adaf4c44ccfcbbe787120a7cb1faf3f155d55288e275dbad53d835b03757}{EViewpointData::Tau}}>();}
-\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_1_1math_ad1ddf3801f5a9ea201227d49747987ed}{math::Spectrum}}\ newTau\ =\ (N\ +\ M)\ !=\ 0.0\_r\ ?\ (tauN\ +\ tauM)\ *\ (newN\ /\ (N\ +\ M))\ :\ \mbox{\hyperlink{namespaceph_1_1math_ad1ddf3801f5a9ea201227d49747987ed}{math::Spectrum}}(0);}
-\DoxyCodeLine{00109\ }
-\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ viewpoint.set<\mbox{\hyperlink{namespaceph_a7d646adaf4c44ccfcbbe787120a7cb1fad1106ccca74e98877ed6d7890c70bb2c}{EViewpointData::Radius}}>(newR);}
-\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ viewpoint.set<\mbox{\hyperlink{namespaceph_a7d646adaf4c44ccfcbbe787120a7cb1fa119fba41118f04e03c5f46ff06b79da1}{EViewpointData::NumPhotons}}>(newN);}
-\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ viewpoint.set<\mbox{\hyperlink{namespaceph_a7d646adaf4c44ccfcbbe787120a7cb1faf3f155d55288e275dbad53d835b03757}{EViewpointData::Tau}}>(newTau);}
-\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Evaluate\ radiance\ using\ current\ iteration's\ data}}
-\DoxyCodeLine{00115\ }
-\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ real\ kernelArea\ \ \ \ \ \ \ \ \ =\ newR\ *\ newR\ *\ \mbox{\hyperlink{namespaceph_1_1math_1_1constant_aeb217ecd643bb14c638c3d0457a031e0}{math::constant::pi<real>}};}
-\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ real\ radianceMultiplier\ =\ m\_rcpTotalPhotonPaths\ /\ kernelArea;}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ photonCache.clear();}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ m\_photonMap-\/>find(surfaceHit.getPos(),\ R,\ photonCache);}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ real\ N\ \ \ \ =\ viewpoint.get<\mbox{\hyperlink{namespaceph_a7d646adaf4c44ccfcbbe787120a7cb1fa119fba41118f04e03c5f46ff06b79da1}{EViewpointData::NumPhotons}}>();}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ real\ M\ \ \ \ =\ \textcolor{keyword}{static\_cast<}real\textcolor{keyword}{>}(photonCache.size());}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ real\ newN\ =\ N\ +\ m\_alpha\ *\ M;}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ real\ newR\ =\ (N\ +\ M)\ !=\ 0.0\_r\ ?\ R\ *\ std::sqrt(newN\ /\ (N\ +\ M))\ :\ R;}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceph_1_1math_ad1ddf3801f5a9ea201227d49747987ed}{math::Spectrum}}\ tauM(0);}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ BsdfEvalQuery\ \ bsdfEval(bsdfContext);}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ photon\ :\ photonCache)}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_1_1math_a7f5d9bea70db00eb52ece79b05e544c8}{math::Vector3R}}\ V\ =\ photon.get<\mbox{\hyperlink{namespaceph_a2f105bf7a6233cdb646a691b6055d71daee99ad64c489a5fa63f46f42f78e37e2}{EPhotonData::FromDir}}>();}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!\mbox{\hyperlink{namespaceph_ab9d4b27758a195a566ee213c1f41f96f}{accept\_photon\_by\_surface\_topology}}(photon,\ Ng,\ Ns,\ L,\ V,\ bsdfContext.sidedness))}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ bsdfEval.inputs.\mbox{\hyperlink{classph_1_1math_1_1_t_vector_n_base_a66bef10def6b7cfc11adea52b28094e0}{set}}(surfaceHit,\ L,\ V);}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!surfaceTracer.doBsdfEvaluation(bsdfEval))}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceph_1_1math_ad1ddf3801f5a9ea201227d49747987ed}{math::Spectrum}}\ tau\ =\ photon.get<\mbox{\hyperlink{namespaceph_a2f105bf7a6233cdb646a691b6055d71da41fafd368452a2128ac8bdc3934d4cb5}{EPhotonData::ThroughputRadiance}}>();}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ tau.\mbox{\hyperlink{classph_1_1math_1_1_t_spectrum_base_ab2c2c0e821a2752db5eab046a8b945a3}{mulLocal}}(bsdfEval.outputs.getBsdf());}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ tau.mulLocal(\mbox{\hyperlink{namespaceph_1_1lta_ac017a110ee09b8cb7c2d5b0b1ff10f11}{lta::tamed\_importance\_BSDF\_Ns\_corrector}}(Ns,\ Ng,\ V));}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ tauM.addLocal(tau);}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_1_1math_ad1ddf3801f5a9ea201227d49747987ed}{math::Spectrum}}\ tauN\ \ \ =\ viewpoint.get<\mbox{\hyperlink{namespaceph_a7d646adaf4c44ccfcbbe787120a7cb1faf3f155d55288e275dbad53d835b03757}{EViewpointData::Tau}}>();}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_1_1math_ad1ddf3801f5a9ea201227d49747987ed}{math::Spectrum}}\ newTau\ =\ (N\ +\ M)\ !=\ 0.0\_r\ ?\ (tauN\ +\ tauM)\ *\ (newN\ /\ (N\ +\ M))\ :\ \mbox{\hyperlink{namespaceph_1_1math_ad1ddf3801f5a9ea201227d49747987ed}{math::Spectrum}}(0);}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ viewpoint.set<\mbox{\hyperlink{namespaceph_a7d646adaf4c44ccfcbbe787120a7cb1fad1106ccca74e98877ed6d7890c70bb2c}{EViewpointData::Radius}}>(newR);}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ viewpoint.set<\mbox{\hyperlink{namespaceph_a7d646adaf4c44ccfcbbe787120a7cb1fa119fba41118f04e03c5f46ff06b79da1}{EViewpointData::NumPhotons}}>(newN);}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ viewpoint.set<\mbox{\hyperlink{namespaceph_a7d646adaf4c44ccfcbbe787120a7cb1faf3f155d55288e275dbad53d835b03757}{EViewpointData::Tau}}>(newTau);}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Evaluate\ radiance\ using\ current\ iteration's\ data}}
 \DoxyCodeLine{00118\ }
-\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceph_1_1math_ad1ddf3801f5a9ea201227d49747987ed}{math::Spectrum}}\ radiance(viewpoint.get<\mbox{\hyperlink{namespaceph_a7d646adaf4c44ccfcbbe787120a7cb1faf3f155d55288e275dbad53d835b03757}{EViewpointData::Tau}}>()\ *\ radianceMultiplier);}
-\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ radiance.mulLocal(viewpoint.get<\mbox{\hyperlink{namespaceph_a7d646adaf4c44ccfcbbe787120a7cb1fa0737ad937b6f497fd48cf5b484ed4c9b}{EViewpointData::ViewThroughput}}>());}
-\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ radiance.addLocal(viewpoint.get<\mbox{\hyperlink{namespaceph_a7d646adaf4c44ccfcbbe787120a7cb1fa5aefb2b156a27259f3f640c349bf6f93}{EViewpointData::ViewRadiance}}>());}
-\DoxyCodeLine{00122\ }
-\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_1_1math_a130315e9eff82a9a70624253b5e6de50}{math::Vector2D}}\ rasterCoord\ =\ viewpoint.get<\mbox{\hyperlink{namespaceph_a7d646adaf4c44ccfcbbe787120a7cb1faa03022bf680492c4c7e9a0723ed7cd71}{EViewpointData::RasterCoord}}>();}
-\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ m\_film-\/>addSample(rasterCoord.x(),\ rasterCoord.y(),\ radiance);}
-\DoxyCodeLine{00125\ \ \ \ \ \}}
-\DoxyCodeLine{00126\ \}}
-\DoxyCodeLine{00127\ }
-\DoxyCodeLine{00128\ \textcolor{keyword}{template}<CPhoton\ Photon,\ CViewpo\textcolor{keywordtype}{int}\ Viewpo\textcolor{keywordtype}{int}>}
-\DoxyCodeLine{00129\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ TPPMRadianceEvaluationWork<Photon,\ Viewpoint>}
-\DoxyCodeLine{00130\ ::sanitizeVariables()}
-\DoxyCodeLine{00131\ \{}
-\DoxyCodeLine{00132\ \ \ \ \ real\ sanitizedAlpha\ =\ m\_alpha;}
-\DoxyCodeLine{00133\ \ \ \ \ \textcolor{keywordflow}{if}(m\_alpha\ <\ 0.0\_r\ ||\ m\_alpha\ >\ 1.0\_r)}
-\DoxyCodeLine{00134\ \ \ \ \ \{}
-\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ PH\_DEFAULT\_LOG(Warning,}
-\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}alpha\ must\ be\ in\ [0,\ 1],\ \{\}\ provided,\ clamping"{}},\ m\_alpha);}
-\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ sanitizedAlpha\ =\ \mbox{\hyperlink{namespaceph_1_1math_af8f390358e5ac8042dde889f48d9aaa4}{math::clamp}}(m\_alpha,\ 0.0\_r,\ 1.0\_r);}
-\DoxyCodeLine{00138\ \ \ \ \ \}}
-\DoxyCodeLine{00139\ }
-\DoxyCodeLine{00140\ \ \ \ \ m\_alpha\ =\ sanitizedAlpha;}
-\DoxyCodeLine{00141\ \}}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ real\ kernelArea\ \ \ \ \ \ \ \ \ =\ newR\ *\ newR\ *\ \mbox{\hyperlink{namespaceph_1_1math_1_1constant_aeb217ecd643bb14c638c3d0457a031e0}{math::constant::pi<real>}};}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ real\ radianceMultiplier\ =\ m\_rcpTotalPhotonPaths\ /\ kernelArea;}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceph_1_1math_ad1ddf3801f5a9ea201227d49747987ed}{math::Spectrum}}\ radiance(viewpoint.get<\mbox{\hyperlink{namespaceph_a7d646adaf4c44ccfcbbe787120a7cb1faf3f155d55288e275dbad53d835b03757}{EViewpointData::Tau}}>()\ *\ radianceMultiplier);}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ radiance.mulLocal(viewpoint.get<\mbox{\hyperlink{namespaceph_a7d646adaf4c44ccfcbbe787120a7cb1fa0737ad937b6f497fd48cf5b484ed4c9b}{EViewpointData::ViewThroughput}}>());}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ radiance.addLocal(viewpoint.get<\mbox{\hyperlink{namespaceph_a7d646adaf4c44ccfcbbe787120a7cb1fa5aefb2b156a27259f3f640c349bf6f93}{EViewpointData::ViewRadiance}}>());}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_1_1math_a130315e9eff82a9a70624253b5e6de50}{math::Vector2D}}\ rasterCoord\ =\ viewpoint.get<\mbox{\hyperlink{namespaceph_a7d646adaf4c44ccfcbbe787120a7cb1faa03022bf680492c4c7e9a0723ed7cd71}{EViewpointData::RasterCoord}}>();}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ m\_film-\/>addSample(rasterCoord.x(),\ rasterCoord.y(),\ radiance);}
+\DoxyCodeLine{00128\ \ \ \ \ \}}
+\DoxyCodeLine{00129\ \}}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ \textcolor{keyword}{template}<CPhoton\ Photon,\ CViewpo\textcolor{keywordtype}{int}\ Viewpo\textcolor{keywordtype}{int}>}
+\DoxyCodeLine{00132\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ TPPMRadianceEvaluationWork<Photon,\ Viewpoint>}
+\DoxyCodeLine{00133\ ::sanitizeVariables()}
+\DoxyCodeLine{00134\ \{}
+\DoxyCodeLine{00135\ \ \ \ \ real\ sanitizedAlpha\ =\ m\_alpha;}
+\DoxyCodeLine{00136\ \ \ \ \ \textcolor{keywordflow}{if}(m\_alpha\ <\ 0.0\_r\ ||\ m\_alpha\ >\ 1.0\_r)}
+\DoxyCodeLine{00137\ \ \ \ \ \{}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ PH\_DEFAULT\_LOG(Warning,}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}alpha\ must\ be\ in\ [0,\ 1],\ \{\}\ provided,\ clamping"{}},\ m\_alpha);}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ sanitizedAlpha\ =\ \mbox{\hyperlink{namespaceph_1_1math_af8f390358e5ac8042dde889f48d9aaa4}{math::clamp}}(m\_alpha,\ 0.0\_r,\ 1.0\_r);}
+\DoxyCodeLine{00141\ \ \ \ \ \}}
 \DoxyCodeLine{00142\ }
-\DoxyCodeLine{00143\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+\DoxyCodeLine{00143\ \ \ \ \ m\_alpha\ =\ sanitizedAlpha;}
+\DoxyCodeLine{00144\ \}}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00146\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
 
 \end{DoxyCode}

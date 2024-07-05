@@ -1,4 +1,4 @@
 var classph_1_1lta_1_1_russian_roulette =
 [
-    [ "surviveOnLuminance", "classph_1_1lta_1_1_russian_roulette.html#a23dbf1483999b91aa772ebb117e1dd91", null ]
+    [ "surviveOnLuminance", "classph_1_1lta_1_1_russian_roulette.html#aa26e51b98be1903cb062a9b4634234eb", null ]
 ];

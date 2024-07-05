@@ -74,35 +74,46 @@ var NAVTREE =
         [ "Reading and Writing", "main_feature_overview.html#autotoc_md27", null ],
         [ "Merging", "main_feature_overview.html#autotoc_md28", null ]
       ] ],
-      [ "Material", "main_feature_overview.html#autotoc_md29", [
-        [ "Surface Behavior", "main_feature_overview.html#autotoc_md30", null ],
-        [ "Volume Behavior", "main_feature_overview.html#autotoc_md31", null ]
+      [ "Material", "main_feature_overview.html#material", [
+        [ "Matte Opaque", "main_feature_overview.html#autotoc_md29", null ],
+        [ "Ideal Substance", "main_feature_overview.html#autotoc_md30", null ],
+        [ "Ideal Substance", "main_feature_overview.html#autotoc_md31", null ],
+        [ "Abraded Opaque", "main_feature_overview.html#autotoc_md32", null ],
+        [ "Abraded Translucent", "main_feature_overview.html#autotoc_md33", null ],
+        [ "Binary Mixed Surface", "main_feature_overview.html#autotoc_md34", null ],
+        [ "Layered Material", "main_feature_overview.html#autotoc_md35", null ],
+        [ "Surface Behavior", "main_feature_overview.html#autotoc_md36", null ],
+        [ "Volume Behavior", "main_feature_overview.html#autotoc_md37", null ]
       ] ],
-      [ "Geometry", "main_feature_overview.html#autotoc_md32", [
-        [ "Intersectable and Primitive", "main_feature_overview.html#autotoc_md33", null ],
-        [ "Basic Shapes", "main_feature_overview.html#autotoc_md34", null ],
-        [ "Advanced Shapes", "main_feature_overview.html#autotoc_md35", null ],
-        [ "Acceleration Structure", "main_feature_overview.html#autotoc_md36", null ]
+      [ "Geometry", "main_feature_overview.html#geometry", [
+        [ "Intersectable and Primitive", "main_feature_overview.html#autotoc_md38", null ],
+        [ "Basic Shapes", "main_feature_overview.html#autotoc_md39", null ],
+        [ "Advanced Shapes", "main_feature_overview.html#autotoc_md40", null ],
+        [ "Acceleration Structure", "main_feature_overview.html#autotoc_md41", null ]
       ] ],
-      [ "Light", "main_feature_overview.html#autotoc_md37", [
-        [ "Emitter", "main_feature_overview.html#autotoc_md38", null ]
+      [ "Light", "main_feature_overview.html#autotoc_md42", [
+        [ "Area Light", "main_feature_overview.html#autotoc_md43", null ],
+        [ "Point Light", "main_feature_overview.html#autotoc_md44", null ],
+        [ "Model Light", "main_feature_overview.html#autotoc_md45", null ],
+        [ "IES Light Profiles", "main_feature_overview.html#autotoc_md46", null ],
+        [ "Sky Dome", "main_feature_overview.html#autotoc_md47", null ]
       ] ],
-      [ "Sample Source", "main_feature_overview.html#autotoc_md39", [
-        [ "Sample Generator", "main_feature_overview.html#autotoc_md40", null ]
+      [ "Sample Source", "main_feature_overview.html#autotoc_md48", [
+        [ "Sample Generator", "main_feature_overview.html#autotoc_md49", null ]
       ] ]
     ] ],
     [ "Project Structure", "main_project_structure.html", [
-      [ "Programs", "main_project_structure.html#autotoc_md41", null ],
-      [ "Plugins", "main_project_structure.html#autotoc_md42", null ],
-      [ "Libraries", "main_project_structure.html#autotoc_md43", null ],
-      [ "Tests", "main_project_structure.html#autotoc_md44", null ],
-      [ "Miscellaneous", "main_project_structure.html#autotoc_md45", null ],
-      [ "Deprecated Modules", "main_project_structure.html#autotoc_md46", null ]
+      [ "Programs", "main_project_structure.html#autotoc_md50", null ],
+      [ "Plugins", "main_project_structure.html#autotoc_md51", null ],
+      [ "Libraries", "main_project_structure.html#autotoc_md52", null ],
+      [ "Tests", "main_project_structure.html#autotoc_md53", null ],
+      [ "Miscellaneous", "main_project_structure.html#autotoc_md54", null ],
+      [ "Deprecated Modules", "main_project_structure.html#autotoc_md55", null ]
     ] ],
     [ "Photon Render Test", "md__render_test_2_r_e_a_d_m_e.html", [
-      [ "Parallel Test Execution", "md__render_test_2_r_e_a_d_m_e.html#autotoc_md48", null ],
-      [ "Run Specified Tests Only", "md__render_test_2_r_e_a_d_m_e.html#autotoc_md49", null ],
-      [ "Writing New Tests", "md__render_test_2_r_e_a_d_m_e.html#autotoc_md50", null ]
+      [ "Parallel Test Execution", "md__render_test_2_r_e_a_d_m_e.html#autotoc_md57", null ],
+      [ "Run Specified Tests Only", "md__render_test_2_r_e_a_d_m_e.html#autotoc_md58", null ],
+      [ "Writing New Tests", "md__render_test_2_r_e_a_d_m_e.html#autotoc_md59", null ]
     ] ],
     [ "Bibliography", "citelist.html", null ]
   ] ]

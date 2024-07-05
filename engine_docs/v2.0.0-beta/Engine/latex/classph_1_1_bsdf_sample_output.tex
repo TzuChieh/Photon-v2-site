@@ -24,12 +24,20 @@ real \mbox{\hyperlink{classph_1_1_bsdf_sample_output_aca3543074680a336fae8374e9c
 \item 
 const \mbox{\hyperlink{namespaceph_1_1math_ad1ddf3801f5a9ea201227d49747987ed}{math\+::\+Spectrum}} \& \mbox{\hyperlink{classph_1_1_bsdf_sample_output_a9c16c0bf8d45ecda70092f985b5e25fd}{get\+Pdf\+Applied\+Bsdf\+Cos}} () const
 \item 
+real \mbox{\hyperlink{classph_1_1_bsdf_sample_output_a369b992957228850495c4ff1fd871a9b}{get\+Relative\+Ior}} () const
+\item 
+real \mbox{\hyperlink{classph_1_1_bsdf_sample_output_a2a9def6cfad0fb5fd993b6b0f00e396a}{get\+Relative\+Ior2}} () const
+\item 
 bool \mbox{\hyperlink{classph_1_1_bsdf_sample_output_ab8a034ca50318eaf24b20ef8523a572e}{is\+Measurable}} () const
 \begin{DoxyCompactList}\small\item\em Tells whether this sample has potential to contribute. All sampled data should be usable if true is returned; otherwise, zero contribution is implied, and sampled data is undefined. This method is also an efficient way to decide whether the BSDF sample has sane value (compared to manually testing its value). \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classph_1_1_bsdf_sample_output_a40fd24fddc782e7a6341979e3a4f6d23}{set\+Measurability}} (bool measurability)
 \begin{DoxyCompactList}\small\item\em Set measurability directly. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classph_1_1_bsdf_sample_output_aa3e8dcb5e830b1bebe483aaddfc65c80}{set\+Measurability}} (const \mbox{\hyperlink{namespaceph_1_1math_ad1ddf3801f5a9ea201227d49747987ed}{math\+::\+Spectrum}} \&reference)
-\begin{DoxyCompactList}\small\item\em Set measurability based on a reference spectrum. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Set measurability based on a reference spectrum. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classph_1_1_bsdf_sample_output_a31e902ffab25dc433a9709a6a457de36}{set\+Relative\+Ior}} (real relative\+Ior)
+\item 
+\mbox{\hyperlink{classph_1_1_bsdf_sample_output_ad99a29a0a9940a472ac63bd7d7260aa9}{operator bool}} () const
+\begin{DoxyCompactList}\small\item\em Convenient method for {\ttfamily \doxylink{classph_1_1_bsdf_sample_output_ab8a034ca50318eaf24b20ef8523a572e}{is\+Measurable()}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -60,7 +68,7 @@ This cosine term is an absolute value. You may need to consult the corresponding
 const \mbox{\hyperlink{namespaceph_1_1math_a7f5d9bea70db00eb52ece79b05e544c8}{math\+::\+Vector3R}} \& ph\+::\+Bsdf\+Sample\+Output\+::getL (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 \begin{DoxyReturn}{Returns}
-Sampled direction (normalized). 
+Sampled direction (normalized) of the incident ray. 
 \end{DoxyReturn}
 \Hypertarget{classph_1_1_bsdf_sample_output_ad0aa6a2f679ab8af98e75690cf760d11}\index{ph::BsdfSampleOutput@{ph::BsdfSampleOutput}!getPdfAppliedBsdf@{getPdfAppliedBsdf}}
 \index{getPdfAppliedBsdf@{getPdfAppliedBsdf}!ph::BsdfSampleOutput@{ph::BsdfSampleOutput}}
@@ -83,6 +91,24 @@ Sampled BSDF with Lambert\textquotesingle{}s cosine law and PDF (on the same dom
 \begin{DoxyNote}{Note}
 This cosine term is an absolute value. You may need to consult the corresponding {\ttfamily \doxylink{classph_1_1_surface_hit}{Surface\+Hit}} if its sign is needed. 
 \end{DoxyNote}
+\Hypertarget{classph_1_1_bsdf_sample_output_a369b992957228850495c4ff1fd871a9b}\index{ph::BsdfSampleOutput@{ph::BsdfSampleOutput}!getRelativeIor@{getRelativeIor}}
+\index{getRelativeIor@{getRelativeIor}!ph::BsdfSampleOutput@{ph::BsdfSampleOutput}}
+\doxysubsubsection{\texorpdfstring{getRelativeIor()}{getRelativeIor()}}
+{\footnotesize\ttfamily \label{classph_1_1_bsdf_sample_output_a369b992957228850495c4ff1fd871a9b} 
+real ph\+::\+Bsdf\+Sample\+Output\+::get\+Relative\+Ior (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+Relative index of refraction of the sampled interface. The value is calculated as $ \eta_V / \eta_L $, with $ V $ on the exiting side and $ L $ on the incident side. If the ray does not cross an interface, 1 is returned. 
+\end{DoxyReturn}
+\Hypertarget{classph_1_1_bsdf_sample_output_a2a9def6cfad0fb5fd993b6b0f00e396a}\index{ph::BsdfSampleOutput@{ph::BsdfSampleOutput}!getRelativeIor2@{getRelativeIor2}}
+\index{getRelativeIor2@{getRelativeIor2}!ph::BsdfSampleOutput@{ph::BsdfSampleOutput}}
+\doxysubsubsection{\texorpdfstring{getRelativeIor2()}{getRelativeIor2()}}
+{\footnotesize\ttfamily \label{classph_1_1_bsdf_sample_output_a2a9def6cfad0fb5fd993b6b0f00e396a} 
+real ph\+::\+Bsdf\+Sample\+Output\+::get\+Relative\+Ior2 (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+Squared value of {\ttfamily \doxylink{classph_1_1_bsdf_sample_output_a369b992957228850495c4ff1fd871a9b}{get\+Relative\+Ior()}}. 
+\end{DoxyReturn}
 \Hypertarget{classph_1_1_bsdf_sample_output_ab8a034ca50318eaf24b20ef8523a572e}\index{ph::BsdfSampleOutput@{ph::BsdfSampleOutput}!isMeasurable@{isMeasurable}}
 \index{isMeasurable@{isMeasurable}!ph::BsdfSampleOutput@{ph::BsdfSampleOutput}}
 \doxysubsubsection{\texorpdfstring{isMeasurable()}{isMeasurable()}}
@@ -96,6 +122,16 @@ Tells whether this sample has potential to contribute. All sampled data should b
 \begin{DoxyNote}{Note}
 Measurability has nothing to do with whether the sampled value is 0 or not. 
 \end{DoxyNote}
+\Hypertarget{classph_1_1_bsdf_sample_output_ad99a29a0a9940a472ac63bd7d7260aa9}\index{ph::BsdfSampleOutput@{ph::BsdfSampleOutput}!operator bool@{operator bool}}
+\index{operator bool@{operator bool}!ph::BsdfSampleOutput@{ph::BsdfSampleOutput}}
+\doxysubsubsection{\texorpdfstring{operator bool()}{operator bool()}}
+{\footnotesize\ttfamily \label{classph_1_1_bsdf_sample_output_ad99a29a0a9940a472ac63bd7d7260aa9} 
+ph\+::\+Bsdf\+Sample\+Output\+::operator bool (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Convenient method for {\ttfamily \doxylink{classph_1_1_bsdf_sample_output_ab8a034ca50318eaf24b20ef8523a572e}{is\+Measurable()}}. 
+
 \Hypertarget{classph_1_1_bsdf_sample_output_a01f9a1a81a87562ee67ed8195389ba91}\index{ph::BsdfSampleOutput@{ph::BsdfSampleOutput}!setL@{setL}}
 \index{setL@{setL}!ph::BsdfSampleOutput@{ph::BsdfSampleOutput}}
 \doxysubsubsection{\texorpdfstring{setL()}{setL()}}
@@ -135,6 +171,17 @@ void ph\+::\+Bsdf\+Sample\+Output\+::set\+Pdf\+Applied\+Bsdf\+Cos (\begin{DoxyPa
 {\em cos} & The contained Lambert\textquotesingle{}s cosine term (absolute value). See {\ttfamily \doxylink{classph_1_1_bsdf_sample_output_aca3543074680a336fae8374e9ca7fb0a}{get\+Cos()}} for more information. \\
 \hline
 {\em infer\+Measurability} & Whether to determine measurability from the supplied data. All supplied data must be sane for the sample to be measurable. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classph_1_1_bsdf_sample_output_a31e902ffab25dc433a9709a6a457de36}\index{ph::BsdfSampleOutput@{ph::BsdfSampleOutput}!setRelativeIor@{setRelativeIor}}
+\index{setRelativeIor@{setRelativeIor}!ph::BsdfSampleOutput@{ph::BsdfSampleOutput}}
+\doxysubsubsection{\texorpdfstring{setRelativeIor()}{setRelativeIor()}}
+{\footnotesize\ttfamily \label{classph_1_1_bsdf_sample_output_a31e902ffab25dc433a9709a6a457de36} 
+void ph\+::\+Bsdf\+Sample\+Output\+::set\+Relative\+Ior (\begin{DoxyParamCaption}\item[{real}]{relative\+Ior}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em relative\+Ior} & See {\ttfamily \doxylink{classph_1_1_bsdf_sample_output_a369b992957228850495c4ff1fd871a9b}{get\+Relative\+Ior()}} for more information. \\
 \hline
 \end{DoxyParams}
 

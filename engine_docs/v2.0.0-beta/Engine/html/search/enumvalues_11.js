@@ -1,7 +1,7 @@
 var searchData=
 [
   ['r_0',['R',['../namespaceph_1_1pixel__texture.html#a3b167f72734af6e016a66878c539bd9dae1e1d3d40573127e9ee0480caf1283d6',1,'ph::pixel_texture']]],
-  ['radiance_1',['Radiance',['../namespaceph.html#a77d951ca57b4e319e083ebddd4695213a955d9ba35580bdcc7bed3f11736b0f76',1,'ph']]],
+  ['radiance_1',['Radiance',['../namespaceph_1_1lta.html#a3f1c39ae8879cc69ac22c3be15f9669ba955d9ba35580bdcc7bed3f11736b0f76',1,'ph::lta']]],
   ['radius_2',['Radius',['../namespaceph.html#a7d646adaf4c44ccfcbbe787120a7cb1fad1106ccca74e98877ed6d7890c70bb2c',1,'ph']]],
   ['randomleap_3',['RandomLeap',['../namespaceph.html#a8cbd49e3924f328a4384a500016945a2accacf7f98607883290a38afb9b5b5428',1,'ph']]],
   ['randomstart_4',['RandomStart',['../namespaceph.html#a8cbd49e3924f328a4384a500016945a2ac571ee7c6e4a91dc6a3bff6a54778b80',1,'ph']]],

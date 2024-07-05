@@ -140,20 +140,31 @@ $(function(){initNavTree('main_feature_overview.html',''); initResizable(true); 
 <li class="level2"><a href="#autotoc_md28">Merging</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md29">Material</a><ul><li class="level2"><a href="#autotoc_md30">Surface Behavior</a></li>
-<li class="level2"><a href="#autotoc_md31">Volume Behavior</a></li>
+<li class="level1"><a href="#material">Material</a><ul><li class="level2"><a href="#autotoc_md29">Matte Opaque</a></li>
+<li class="level2"><a href="#autotoc_md30">Ideal Substance</a></li>
+<li class="level2"><a href="#autotoc_md31">Ideal Substance</a></li>
+<li class="level2"><a href="#autotoc_md32">Abraded Opaque</a></li>
+<li class="level2"><a href="#autotoc_md33">Abraded Translucent</a></li>
+<li class="level2"><a href="#autotoc_md34">Binary Mixed Surface</a></li>
+<li class="level2"><a href="#autotoc_md35">Layered Material</a></li>
+<li class="level2"><a href="#autotoc_md36">Surface Behavior</a></li>
+<li class="level2"><a href="#autotoc_md37">Volume Behavior</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md32">Geometry</a><ul><li class="level2"><a href="#autotoc_md33">Intersectable and Primitive</a></li>
-<li class="level2"><a href="#autotoc_md34">Basic Shapes</a></li>
-<li class="level2"><a href="#autotoc_md35">Advanced Shapes</a></li>
-<li class="level2"><a href="#autotoc_md36">Acceleration Structure</a></li>
+<li class="level1"><a href="#geometry">Geometry</a><ul><li class="level2"><a href="#autotoc_md38">Intersectable and Primitive</a></li>
+<li class="level2"><a href="#autotoc_md39">Basic Shapes</a></li>
+<li class="level2"><a href="#autotoc_md40">Advanced Shapes</a></li>
+<li class="level2"><a href="#autotoc_md41">Acceleration Structure</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md37">Light</a><ul><li class="level2"><a href="#autotoc_md38">Emitter</a></li>
+<li class="level1"><a href="#autotoc_md42">Light</a><ul><li class="level2"><a href="#autotoc_md43">Area Light</a></li>
+<li class="level2"><a href="#autotoc_md44">Point Light</a></li>
+<li class="level2"><a href="#autotoc_md45">Model Light</a></li>
+<li class="level2"><a href="#autotoc_md46">IES Light Profiles</a></li>
+<li class="level2"><a href="#autotoc_md47">Sky Dome</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md39">Sample Source</a><ul><li class="level2"><a href="#autotoc_md40">Sample Generator</a></li>
+<li class="level1"><a href="#autotoc_md48">Sample Source</a><ul><li class="level2"><a href="#autotoc_md49">Sample Generator</a></li>
 </ul>
 </li>
 </ul>
@@ -176,7 +187,7 @@ Unidirectional Path Tracing with NEE</h2>
 <img src="bathroom_based_on_Salle_de_bain_by_nacimus.jpg" alt=""/>
 <div class="caption">
 NEE can handle more complex scenes.</div></div>
-    <p>With the addition of Next Event Estimation (NEE), unidirectional path tracing can become more adept at handling complex scenes. While this method largely builds on the same principle as the non-NEE variant, this renderer incorporates additional sampling techniques, as described by Veach <a class="el" href="citelist.html#CITEREF_Veach:1995:Optimally">[6]</a>, to improve the rendering of scenes with smaller light sources (as these scenes are often challenging for unidirectional path tracing). In a similar way, create a <a class="elRef" href="../../Engine/html/classph_1_1_path_tracing_visualizer.html">PathTracingVisualizer</a> with <a class="elRef" href="../../Engine/html/namespaceph.html#ad2b2972641b7279cac3ed861bfd53962">BNEEPT</a> energy estimator to leverage the benefits of NEE.</p>
+    <p>With the addition of Next Event Estimation (NEE), unidirectional path tracing can become more adept at handling complex scenes. While this method largely builds on the same principle as the non-NEE variant, this renderer incorporates additional sampling techniques, as described by Veach <a class="el" href="citelist.html#CITEREF_Veach:1995:Optimally">[10]</a>, to improve the rendering of scenes with smaller light sources (as these scenes are often challenging for unidirectional path tracing). In a similar way, create a <a class="elRef" href="../../Engine/html/classph_1_1_path_tracing_visualizer.html">PathTracingVisualizer</a> with <a class="elRef" href="../../Engine/html/namespaceph.html#ad2b2972641b7279cac3ed861bfd53962">BNEEPT</a> energy estimator to leverage the benefits of NEE.</p>
 <h2><a class="anchor" id="vpm"></a>
 Vanilla Photon Mapping</h2>
 <div class="image">
@@ -260,20 +271,59 @@ Tone-mapping</h2>
 Reading and Writing</h2>
 <h2><a class="anchor" id="autotoc_md28"></a>
 Merging</h2>
-<h1><a class="anchor" id="autotoc_md29"></a>
+<h1><a class="anchor" id="material"></a>
 Material</h1>
+<p>We present material implementations with a professional test scene standardized by André Mazzone and Chris Rydalch <a class="el" href="citelist.html#CITEREF_Mazzone:2023:Standard">[7]</a>. This scene is specifically designed to facilitate the observation and comparison of material appearances. There is an inset object within the main model that has a 18% albedo (this value is the current VFX industry standard), which serves as a neutral color comparator. For scene dimensions and other parameters, the <a href="https://github.com/usd-wg">Universal Scene Description Working Group</a> has a <a href="https://github.com/usd-wg/assets/tree/main/full_assets/StandardShaderBall">nice entry</a> for it, which is more up-to-date than the <a href="https://dl.acm.org/doi/10.1145/3610543.3626181">original paper</a>.</p>
+<p>Materials are represented by <a class="elRef" href="../../Engine/html/classph_1_1_material.html">material data containers</a>. These containers generate <a class="elRef" href="../../Engine/html/classph_1_1_surface_optics.html">SurfaceOptics</a> to describe <a class="elRef" href="../../Engine/html/classph_1_1_surface_behavior.html">SurfaceBehavior</a> and <a class="elRef" href="../../Engine/html/classph_1_1_volume_optics.html">VolumeOptics</a> to describe <a class="elRef" href="../../Engine/html/classph_1_1_volume_behavior.html">VolumeBehavior</a>. Surface and volume behavior objects are typically defined with respect to a <a class="elRef" href="../../Engine/html/classph_1_1_primitive.html">Primitive</a>. See the <a class="el" href="#geometry">Geometry</a> section for more details.</p>
+<h2><a class="anchor" id="autotoc_md29"></a>
+Matte Opaque</h2>
+<p>A classic material that is present in almost every renderer, whether offline or real-time, is the Lambertian-based diffuse BRDF, first described over 200 years ago by Lambert <a class="el" href="citelist.html#CITEREF_Lambert:1760:Photometria">[6]</a>. A generalization of Lambert's model is also implemented, which is often referred to as the Oren-Nayar reflectance model <a class="el" href="citelist.html#CITEREF_Oren:1994:Generalization">[8]</a>. This model describes the surface as a collection of small Lambertian facets, each having a different orientation. We implement these material models as <a class="elRef" href="../../Engine/html/classph_1_1_matte_opaque.html">MatteOpqaue</a>. Some examples are shown below:</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadCenter"><img src="lambertian_diffuse_0p5.jpg" alt="" class="inline" title="Lambertian Material"/>       </th><th class="markdownTableHeadCenter"><img src="oren_nayar_0p5_120deg.jpg" alt="" class="inline" title="Oren Nayar Material"/>        </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyCenter" colspan="2"><b>Left: Lambertian diffuse BRDF with 50% albedo. Right: Oren-Nayar diffuse BRDF with 50% albedo and 120° facet standard deviation.</b>   </td></tr>
+</table>
 <h2><a class="anchor" id="autotoc_md30"></a>
+Ideal Substance</h2>
+<p>We can simulate some materials that do not exist in the real world. One common example is the idealization of surface roughness, where a perfectly smooth interface is modeled. <a class="elRef" href="../../Engine/html/classph_1_1_ideal_substance.html">IdealSubstance</a> makes the visualization of these kinds of materials possible, which is of great interest for both theoretical and practical applications.</p>
+<div class="image">
+<img src="ideal_dielectric.jpg" alt="" width="50%"/>
+<div class="caption">
+Ideal glass (index of refraction = 1.51714).</div></div>
+    <p>Photon also supports tinting reflectance and transmittance with user-specified values. Note that this is not physically correct since the color of dielectrics comes from internal volume absorption, not from interfaces. This feature is implemented for performance and artistic reasons only.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadCenter"><img src="ideal_dielectric_blue_refl_tint.jpg" alt="" class="inline" title="Ideal Dielectric Blue Reflection Tint"/>       </th><th class="markdownTableHeadCenter"><img src="ideal_dielectric_green_refr_tint.jpg" alt="" class="inline" title="Ideal Substance Green Refraction Tint"/>        </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyCenter" colspan="2"><b>Left: Ideal glass with blue reflection tint. Right: Ideal glass with green transmission tint.</b>   </td></tr>
+</table>
+<div class="image">
+<img src="ideal_dielectric_blue_refl_green_refr_tint.jpg" alt="" width="50%"/>
+<div class="caption">
+Ideal glass with blue reflection and green transmission tint.</div></div>
+    <h2><a class="anchor" id="autotoc_md31"></a>
+Ideal Substance</h2>
+<h2><a class="anchor" id="autotoc_md32"></a>
+Abraded Opaque</h2>
+<h2><a class="anchor" id="autotoc_md33"></a>
+Abraded Translucent</h2>
+<h2><a class="anchor" id="autotoc_md34"></a>
+Binary Mixed Surface</h2>
+<h2><a class="anchor" id="autotoc_md35"></a>
+Layered Material</h2>
+<h2><a class="anchor" id="autotoc_md36"></a>
 Surface Behavior</h2>
-<h2><a class="anchor" id="autotoc_md31"></a>
+<h2><a class="anchor" id="autotoc_md37"></a>
 Volume Behavior</h2>
-<h1><a class="anchor" id="autotoc_md32"></a>
+<h1><a class="anchor" id="geometry"></a>
 Geometry</h1>
 <p>To represent a ball in the scene, you can use a <a class="elRef" href="../../Engine/html/classph_1_1_g_sphere.html">sphere geometry</a>; for a piece of paper on a table, a <a class="elRef" href="../../Engine/html/classph_1_1_g_rectangle.html">rectangle geometry</a> can model it pretty well. Geometries are the core components of a scene, providing the structural framework for all other elements like materials, lights and physical motions. In the following sections, we will explore some common types of geometries available in Photon, giving you a rough idea of how these foundational elements are constructed and used in rendering.</p>
-<h2><a class="anchor" id="autotoc_md33"></a>
+<h2><a class="anchor" id="autotoc_md38"></a>
 Intersectable and Primitive</h2>
 <p>When a <a class="elRef" href="../../Engine/html/classph_1_1_geometry.html">Geometry</a> is defined in the scene, it will be converted to an <a class="elRef" href="../../Engine/html/classph_1_1_intersectable.html">Intersectable</a> before the actual rendering process begins. The renderer further treat some intersectable types as <a class="elRef" href="../../Engine/html/classph_1_1_primitive.html">Primitive</a> from which a richer set of functionalities are expected. In a similar way, some intersectable types are being classified as <a class="elRef" href="../../Engine/html/classph_1_1_intersector.html">Intersector</a> and they typically act as an aggregate of intersectables.</p>
 <dl class="section note"><dt>Note</dt><dd>While these distinctions are not crucial from a user's perspective, they are important for developers or researchers who wish to delve deeper into the source code. Understanding these classifications also makes engine modifications easier.</dd></dl>
-<h2><a class="anchor" id="autotoc_md34"></a>
+<h2><a class="anchor" id="autotoc_md39"></a>
 Basic Shapes</h2>
 <p>These are common shapes to have in a renderer and are frequently found in other render engines as well. They are useful not only for modeling objects but also for defining the shape of light sources (or anything that requires a shape). Tessellation is also supported on some types of geometries. We start by introducing the rectangular shape, which can be created by <a class="elRef" href="../../Engine/html/classph_1_1_g_rectangle.html">rectangle geometry</a>.</p>
 <div class="image">
@@ -306,7 +356,7 @@ Test render of a Minecraft level parser.</div></div>
 <img src="triangle_mesh.jpg" alt=""/>
 <div class="caption">
 Stanford bunny built from a triangle mesh.</div></div>
-    <h2><a class="anchor" id="autotoc_md35"></a>
+    <h2><a class="anchor" id="autotoc_md40"></a>
 Advanced Shapes</h2>
 <p>We also support some interesting shapes such as wave and fractals. These special geometries are sometimes useful for modeling a scene. One of them is the <a href="https://en.wikipedia.org/wiki/Menger_sponge">Menger sponge</a>, a famous fractal shape. It can be created by <a class="elRef" href="../../Engine/html/classph_1_1_g_menger_sponge.html">Menger sponge geometry</a>.</p>
 <div class="image">
@@ -315,13 +365,13 @@ Advanced Shapes</h2>
 A fractal geometry (Menger sponge).</div></div>
     <p>The wave shape is basically a cuboid with its top surface tessellated according to a superposition of 2-D sine and cosine functions. It can be created by <a class="elRef" href="../../Engine/html/classph_1_1_g_wave.html">wave geometry</a>.</p>
 <div class="image">
-<img src="045_water_dragon_color_light.jpg" alt=""/>
+<img src="045_water_dragon_color_light.jpg" alt="" width="80%"/>
 <div class="caption">
 A triangle mesh submerged inside a wave geometry.</div></div>
     <p>These advanced shapes add versatility to scene modeling in Photon.</p>
-<h2><a class="anchor" id="autotoc_md36"></a>
+<h2><a class="anchor" id="autotoc_md41"></a>
 Acceleration Structure</h2>
-<h1><a class="anchor" id="autotoc_md37"></a>
+<h1><a class="anchor" id="autotoc_md42"></a>
 Light</h1>
 <p>Lighting is a crucial component in rendering a virtual world. Photon provides various types of light sources and emphasizes the use of physically based units for input parameters. This approach is supported by three primary reasons:</p>
 <ul>
@@ -329,12 +379,54 @@ Light</h1>
 <li>Users can expect consistent renderings between different versions of the software with identical inputs.</li>
 <li>It is easier to validate the results against real world measurements.</li>
 </ul>
-<p>In Photon, lights are represented by a base actor type <code><a class="elRef" href="../../Engine/html/classph_1_1_a_light.html">ph::ALight</a></code>. These light actors will be converted to a series of cooked data, including <code><a class="elRef" href="../../Engine/html/classph_1_1_primitive.html">ph::Primitive</a></code> (the geometric shape of the light), <code><a class="elRef" href="../../Engine/html/classph_1_1_surface_optics.html">ph::SurfaceOptics</a></code> (the surface material of the light), <code><a class="elRef" href="../../Engine/html/classph_1_1_emitter.html">ph::Emitter</a></code> (the energy source of the light), etc. The following sections give a brief overview on the types of light sources implemented in Photon.</p>
-<h2><a class="anchor" id="autotoc_md38"></a>
-Emitter</h2>
-<h1><a class="anchor" id="autotoc_md39"></a>
+<p>In Photon, lights are represented by a base actor type <a class="elRef" href="../../Engine/html/classph_1_1_a_light.html">ALight</a>. These light actors will be converted to a series of cooked data, including <a class="elRef" href="../../Engine/html/classph_1_1_primitive.html">Primitive</a> (the geometric shape of the light), <a class="elRef" href="../../Engine/html/classph_1_1_surface_optics.html">SurfaceOptics</a> (the surface material of the light), <a class="elRef" href="../../Engine/html/classph_1_1_emitter.html">Emitter</a> (the energy source of the light), etc. The following sections give a brief overview on the types of light sources implemented in Photon.</p>
+<h2><a class="anchor" id="autotoc_md43"></a>
+Area Light</h2>
+<p>Photon currently supports <a class="elRef" href="../../Engine/html/classph_1_1_a_rectangle_light.html">rectangular</a> and <a class="elRef" href="../../Engine/html/classph_1_1_a_sphere_light.html">spherical</a> area lights. An <a class="elRef" href="../../Engine/html/classph_1_1_a_area_light.html">area light</a> emits energy uniformly across its surface, producing a visually pleasing transition between umbra and penumbra. The amount of energy emitted is specified in <a href="https://en.wikipedia.org/wiki/Watt">Watt</a>.</p>
+<div class="image">
+<img src="rectangle_light_175W.jpg" alt=""/>
+<div class="caption">
+A 175 W rectangle light.</div></div>
+    <p>A spherical area light illuminating the same teapots:</p>
+<div class="image">
+<img src="sphere_light_300W.jpg" alt=""/>
+<div class="caption">
+A 300 W sphere light (1 m radius).</div></div>
+    <h2><a class="anchor" id="autotoc_md44"></a>
+Point Light</h2>
+<p>In Photon, <a class="elRef" href="../../Engine/html/classph_1_1_a_point_light.html">point light</a> is implemented as a special spherical area light. This may suprise some, as we treat point lights as a subtype of area lights. The rationale is that traditional point light introduces an additional singularity in the rendering equation, and we already have quite a lot of singularities in the system, e.g., pinhole camera and mirror reflection/transmission. Moreover, traditional point lights are not physically possible anyway. Each singularity often requires special routines or conditions to handle properly, and managing them all as the renderer's complexity grows can be cumbersome. The idea is to give point lights a finite surface area, typically a sphere with a 1- to 3-cm diameter resembling the size of common light bulbs. <a href="http://www.nextlimit.com/maxwell/">Maxwell Renderer</a> has adopted a similar design decision, although the reason behind it may differ. Below is a 300 W point light, emitting roughly the same brightness as the 300 W sphere light shown earlier:</p>
+<div class="image">
+<img src="point_light_300W.jpg" alt=""/>
+<div class="caption">
+A 300 W point light (0.5 cm radius).</div></div>
+    <h2><a class="anchor" id="autotoc_md45"></a>
+Model Light</h2>
+<p><a class="elRef" href="../../Engine/html/classph_1_1_a_model_light.html">Model light</a> can be considered a superset of <a class="elRef" href="../../Engine/html/classph_1_1_a_area_light.html">area light</a>. A key difference between them is that while area light need to have a constant emission profile, model light lifted this limitation and allow using variable emission profiles (such as <a class="elRef" href="../../Engine/html/classph_1_1_image.html">images</a>) on arbitrary <a class="elRef" href="../../Engine/html/classph_1_1_geometry.html">geometry</a>.</p>
+<div class="image">
+<img src="model_light.jpg" alt=""/>
+<div class="caption">
+A model light in action: the textured teapot is emitting energy from its surface.</div></div>
+    <h2><a class="anchor" id="autotoc_md46"></a>
+IES Light Profiles</h2>
+<p>An IES light profile stores the distribution of emitted energy of a light fixture. The majority of the datasets are provided by lighting manufacturers and are particularly useful for interior design and architecture visualization. Most commercial renderers can parse and render IES-based lights, and even some game engines support them. Photon does not treat IES light profiles as energy distribution functions, rather, they are interpreted as energy attenuating filters (effectively normalizing energy values to [0, 1], see <a class="elRef" href="../../Engine/html/classph_1_1_a_ies_attenuated_light.html">IES attenuated light</a>). This approach allows users to adjust total energy emitted by a light source freely, without being constrained by the absolute energy values stroed in the IES light profile. Still, it is always possible to extract the maximum energy density from an IES data file then applying the attenuation to faithfully reproduce the light fixture in the renderer.</p>
+<div class="image">
+<img src="ies_point_light_300W.jpg" alt=""/>
+<div class="caption">
+An interesting IES light profile applied on a 300 W point light.</div></div>
+    <h2><a class="anchor" id="autotoc_md47"></a>
+Sky Dome</h2>
+<p>A powerful method of lighting is image based techniques, also known as environment map or HDRI lighting. The main idea is to assume energy from far regions can be tabulated with direction vectors as entries. Lighting up a scene with HDRIs is usually the fastest and the most effective way to achieve natural-looking results. In photon, we call this type of light source a <a class="elRef" href="../../Engine/html/classph_1_1_a_dome.html">dome light</a>. For a nice collection of HDR environment maps, visit <a href="https://hdrihaven.com/">https://hdrihaven.com/</a>. Shown below is the same demo scene lit with an <a class="elRef" href="../../Engine/html/classph_1_1_a_image_dome.html">image dome</a> source:</p>
+<div class="image">
+<img src="env_light.jpg" alt=""/>
+</div>
+    <p>Another approach to lighting a scene is to physically model the energy coming from the sky. When it comes to sun-sky models, a classic example is the model by Preetham et al. <a class="el" href="citelist.html#CITEREF_Preetham:1999:Practical">[9]</a> This model approximates the absolute value of radiant energy coming from the sky using a set of formulae. Given the latitude, longitude, date and time of the target location, we can analytically generate the sun and sky using <a class="elRef" href="../../Engine/html/classph_1_1_a_preetham_dome.html">Preetham dome</a>.</p>
+<div class="image">
+<img src="preetham_light.jpg" alt=""/>
+<div class="caption">
+New York City illuminated by the morning sunlight at Helsinki (60.2° N, 24.9° E) on Dec. 20.</div></div>
+    <h1><a class="anchor" id="autotoc_md48"></a>
 Sample Source</h1>
-<h2><a class="anchor" id="autotoc_md40"></a>
+<h2><a class="anchor" id="autotoc_md49"></a>
 Sample Generator</h2>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->

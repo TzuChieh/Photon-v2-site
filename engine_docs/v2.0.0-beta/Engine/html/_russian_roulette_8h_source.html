@@ -123,53 +123,58 @@ $(function(){initNavTree('_russian_roulette_8h_source.html',''); initResizable(t
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="_sample_flow_8h.html">Core/SampleGenerator/SampleFlow.h</a>&quot;</span></div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;Common/assertion.h&gt;</span></div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceph_1_1lta.html">ph::lta</a></div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>{</div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
-<div class="foldopen" id="foldopen00012" data-start="{" data-end="};">
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno"><a class="line" href="classph_1_1lta_1_1_russian_roulette.html">   12</a></span><span class="keyword">class </span><a class="code hl_class" href="classph_1_1lta_1_1_russian_roulette.html">RussianRoulette</a> final</div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>{</div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="keyword">public</span>:</div>
-<div class="foldopen" id="foldopen00015" data-start="{" data-end="}">
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="classph_1_1lta_1_1_russian_roulette.html#a23dbf1483999b91aa772ebb117e1dd91">   15</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classph_1_1lta_1_1_russian_roulette.html#a23dbf1483999b91aa772ebb117e1dd91">surviveOnLuminance</a>(</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>        <span class="keyword">const</span> <a class="code hl_class" href="classph_1_1math_1_1_t_tristimulus_spectrum.html">math::Spectrum</a>&amp; s,</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>        <a class="code hl_class" href="classph_1_1_sample_flow.html">SampleFlow</a>&amp;           sampleFlow,</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>        <a class="code hl_class" href="classph_1_1math_1_1_t_tristimulus_spectrum.html">math::Spectrum</a>* <span class="keyword">const</span> out_weightedS)<span class="keyword"> const</span></div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="keyword">    </span>{</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>        PH_ASSERT(out_weightedS);</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>        <span class="comment">// Survive rate is not allowed to be 100% to avoid immortal rays (e.g., TIR);</span></div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>        <span class="comment">// the rate should also kill non-finite luminance as this is a good place to do it</span></div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>        <span class="keyword">const</span> real rrSurviveRate = <a class="code hl_function" href="namespaceph_1_1math.html#a0090b0ad2b7785d02c6761c1766066cc">math::safe_clamp</a>(s.<a class="code hl_function" href="classph_1_1math_1_1_t_spectrum_base.html#a5120053ee6a7d02f4d1f38119552ac2d">relativeLuminance</a>(), 0.0_r, 0.95_r);</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>        <span class="keyword">const</span> real rrSpin        = sampleFlow.<a class="code hl_function" href="classph_1_1_sample_flow.html#a8d93ef2d1e1d131e8c735e2224d3dd00">flow1D</a>();<span class="comment">// FIXME: use something like sampleFlow.binaryPick()</span></div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>        <span class="comment">// Survived</span></div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>        <span class="keywordflow">if</span>(rrSpin &lt; rrSurviveRate)</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>        {</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>            PH_ASSERT(0.0_r &lt; rrSurviveRate &amp;&amp; rrSurviveRate &lt;= 1.0_r);</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>            <span class="keyword">const</span> real rrScale = 1.0_r / rrSurviveRate;</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>            *out_weightedS = s * rrScale;</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>            <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        }</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        <span class="comment">// Dead</span></div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        <span class="keywordflow">else</span></div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>        {</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>        }</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    }</div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;Common/primitive_type.h&gt;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceph_1_1lta.html">ph::lta</a></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>{</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="foldopen" id="foldopen00015" data-start="{" data-end="};">
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="classph_1_1lta_1_1_russian_roulette.html">   15</a></span><span class="keyword">class </span><a class="code hl_class" href="classph_1_1lta_1_1_russian_roulette.html">RussianRoulette</a> final</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>{</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classph_1_1lta_1_1_russian_roulette.html#aa26e51b98be1903cb062a9b4634234eb">surviveOnLuminance</a>(</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>        <span class="keyword">const</span> <a class="code hl_class" href="classph_1_1math_1_1_t_tristimulus_spectrum.html">math::Spectrum</a>&amp; s,</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>        <a class="code hl_class" href="classph_1_1_sample_flow.html">SampleFlow</a>&amp; sampleFlow,</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>        real* out_survivalProbability) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>};</div>
 </div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>};</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="foldopen" id="foldopen00030" data-start="{" data-end="}">
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="classph_1_1lta_1_1_russian_roulette.html#aa26e51b98be1903cb062a9b4634234eb">   30</a></span><span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="classph_1_1lta_1_1_russian_roulette.html#aa26e51b98be1903cb062a9b4634234eb">RussianRoulette::surviveOnLuminance</a>(</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <span class="keyword">const</span> <a class="code hl_class" href="classph_1_1math_1_1_t_tristimulus_spectrum.html">math::Spectrum</a>&amp; s,</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <a class="code hl_class" href="classph_1_1_sample_flow.html">SampleFlow</a>&amp; sampleFlow,</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    real* <span class="keyword">const</span> out_survivalProbability)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="keyword"></span>{</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    PH_ASSERT(out_survivalProbability);</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <span class="comment">// Survival rate is not allowed to be 100% to avoid immortal rays (e.g., TIR);</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="comment">// the rate should also kill non-finite luminance as this is a good place to do it</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <span class="keyword">const</span> real rrSurvivalRate = <a class="code hl_function" href="namespaceph_1_1math.html#a0090b0ad2b7785d02c6761c1766066cc">math::safe_clamp</a>(s.<a class="code hl_function" href="classph_1_1math_1_1_t_spectrum_base.html#a5120053ee6a7d02f4d1f38119552ac2d">relativeLuminance</a>(), 0.0_r, 0.95_r);</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="keyword">const</span> real rrSpin = sampleFlow.<a class="code hl_function" href="classph_1_1_sample_flow.html#a8d93ef2d1e1d131e8c735e2224d3dd00">flow1D</a>();<span class="comment">// FIXME: use something like sampleFlow.binaryPick()</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <span class="comment">// Survived</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <span class="keywordflow">if</span>(rrSpin &lt; rrSurvivalRate)</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    {</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>        PH_ASSERT(0.0_r &lt; rrSurvivalRate &amp;&amp; rrSurvivalRate &lt;= 1.0_r);</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>        *out_survivalProbability = rrSurvivalRate;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    }</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <span class="comment">// Dead</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    {</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    }</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>}</div>
 </div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>}<span class="comment">// end namespace ph::lta</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>}<span class="comment">// end namespace ph::lta</span></div>
 <div class="ttc" id="a_sample_flow_8h_html"><div class="ttname"><a href="_sample_flow_8h.html">SampleFlow.h</a></div></div>
 <div class="ttc" id="a_spectrum_8h_html"><div class="ttname"><a href="_spectrum_8h.html">Spectrum.h</a></div></div>
 <div class="ttc" id="aclassph_1_1_sample_flow_html"><div class="ttname"><a href="classph_1_1_sample_flow.html">ph::SampleFlow</a></div><div class="ttdoc">A sample with arbitrary dimensions with fine-grained sampling control.</div><div class="ttdef"><b>Definition</b> SampleFlow.h:19</div></div>
-<div class="ttc" id="aclassph_1_1_sample_flow_html_a8d93ef2d1e1d131e8c735e2224d3dd00"><div class="ttname"><a href="classph_1_1_sample_flow.html#a8d93ef2d1e1d131e8c735e2224d3dd00">ph::SampleFlow::flow1D</a></div><div class="ttdeci">real flow1D()</div><div class="ttdef"><b>Definition</b> SampleFlow.h:70</div></div>
-<div class="ttc" id="aclassph_1_1lta_1_1_russian_roulette_html"><div class="ttname"><a href="classph_1_1lta_1_1_russian_roulette.html">ph::lta::RussianRoulette</a></div><div class="ttdef"><b>Definition</b> RussianRoulette.h:13</div></div>
-<div class="ttc" id="aclassph_1_1lta_1_1_russian_roulette_html_a23dbf1483999b91aa772ebb117e1dd91"><div class="ttname"><a href="classph_1_1lta_1_1_russian_roulette.html#a23dbf1483999b91aa772ebb117e1dd91">ph::lta::RussianRoulette::surviveOnLuminance</a></div><div class="ttdeci">bool surviveOnLuminance(const math::Spectrum &amp;s, SampleFlow &amp;sampleFlow, math::Spectrum *const out_weightedS) const</div><div class="ttdef"><b>Definition</b> RussianRoulette.h:15</div></div>
+<div class="ttc" id="aclassph_1_1_sample_flow_html_a8d93ef2d1e1d131e8c735e2224d3dd00"><div class="ttname"><a href="classph_1_1_sample_flow.html#a8d93ef2d1e1d131e8c735e2224d3dd00">ph::SampleFlow::flow1D</a></div><div class="ttdeci">real flow1D()</div><div class="ttdoc">Makes a 1-D sample by consuming the next dimension.</div><div class="ttdef"><b>Definition</b> SampleFlow.h:105</div></div>
+<div class="ttc" id="aclassph_1_1lta_1_1_russian_roulette_html"><div class="ttname"><a href="classph_1_1lta_1_1_russian_roulette.html">ph::lta::RussianRoulette</a></div><div class="ttdoc">Russian roulette random termination scheme.</div><div class="ttdef"><b>Definition</b> RussianRoulette.h:16</div></div>
+<div class="ttc" id="aclassph_1_1lta_1_1_russian_roulette_html_aa26e51b98be1903cb062a9b4634234eb"><div class="ttname"><a href="classph_1_1lta_1_1_russian_roulette.html#aa26e51b98be1903cb062a9b4634234eb">ph::lta::RussianRoulette::surviveOnLuminance</a></div><div class="ttdeci">bool surviveOnLuminance(const math::Spectrum &amp;s, SampleFlow &amp;sampleFlow, real *out_survivalProbability) const</div><div class="ttdef"><b>Definition</b> RussianRoulette.h:30</div></div>
 <div class="ttc" id="aclassph_1_1math_1_1_t_spectrum_base_html_a5120053ee6a7d02f4d1f38119552ac2d"><div class="ttname"><a href="classph_1_1math_1_1_t_spectrum_base.html#a5120053ee6a7d02f4d1f38119552ac2d">ph::math::TSpectrumBase::relativeLuminance</a></div><div class="ttdeci">T relativeLuminance(EColorUsage usage=EColorUsage::EMR) const</div><div class="ttdef"><b>Definition</b> TSpectrumBase.ipp:124</div></div>
 <div class="ttc" id="aclassph_1_1math_1_1_t_tristimulus_spectrum_html"><div class="ttname"><a href="classph_1_1math_1_1_t_tristimulus_spectrum.html">ph::math::TTristimulusSpectrum</a></div><div class="ttdef"><b>Definition</b> TTristimulusSpectrum.h:11</div></div>
 <div class="ttc" id="amath_8h_html"><div class="ttname"><a href="math_8h.html">math.h</a></div><div class="ttdoc">Miscellaneous math utilities.</div></div>

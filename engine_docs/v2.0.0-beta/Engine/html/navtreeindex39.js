@@ -1,5 +1,15 @@
 var NAVTREEINDEX39 =
 {
+"classph_1_1_volume_optics.html":[5,0,0,508],
+"classph_1_1_volume_optics.html":[7,0,0,498],
+"classph_1_1_volume_optics.html#a91b7acf2fb10f2e0d7b21aaf62f99a9c":[5,0,0,508,1],
+"classph_1_1_volume_optics.html#a91b7acf2fb10f2e0d7b21aaf62f99a9c":[7,0,0,498,1],
+"classph_1_1_volume_optics.html#ad79d2dc2144855fed49be305ea2816f9":[5,0,0,508,0],
+"classph_1_1_volume_optics.html#ad79d2dc2144855fed49be305ea2816f9":[7,0,0,498,0],
+"classph_1_1_work_scheduler.html":[5,0,0,510],
+"classph_1_1_work_scheduler.html":[7,0,0,500],
+"classph_1_1_work_scheduler.html#a02ce4ce0c4ce2bc5c55216aae0aa4676":[5,0,0,510,10],
+"classph_1_1_work_scheduler.html#a02ce4ce0c4ce2bc5c55216aae0aa4676":[7,0,0,500,10],
 "classph_1_1_work_scheduler.html#a2903b9d4d450a47d397d2450ee56d8ee":[5,0,0,510,6],
 "classph_1_1_work_scheduler.html#a2903b9d4d450a47d397d2450ee56d8ee":[7,0,0,500,6],
 "classph_1_1_work_scheduler.html#a4cd851df1c4ab76ec2b4c25cc2c6fabb":[5,0,0,510,13],
@@ -194,8 +204,8 @@ var NAVTREEINDEX39 =
 "classph_1_1lta_1_1_pt_volumetric_estimator.html":[7,0,0,3,1],
 "classph_1_1lta_1_1_russian_roulette.html":[5,0,0,10,2],
 "classph_1_1lta_1_1_russian_roulette.html":[7,0,0,3,2],
-"classph_1_1lta_1_1_russian_roulette.html#a23dbf1483999b91aa772ebb117e1dd91":[5,0,0,10,2,0],
-"classph_1_1lta_1_1_russian_roulette.html#a23dbf1483999b91aa772ebb117e1dd91":[7,0,0,3,2,0],
+"classph_1_1lta_1_1_russian_roulette.html#aa26e51b98be1903cb062a9b4634234eb":[5,0,0,10,2,0],
+"classph_1_1lta_1_1_russian_roulette.html#aa26e51b98be1903cb062a9b4634234eb":[7,0,0,3,2,0],
 "classph_1_1lta_1_1_sense_event.html":[5,0,0,10,3],
 "classph_1_1lta_1_1_sense_event.html":[7,0,0,3,3],
 "classph_1_1lta_1_1_sense_event.html#a68ada6e668854bf3ada2943b9affd82f":[5,0,0,10,3,1],
@@ -239,15 +249,5 @@ var NAVTREEINDEX39 =
 "classph_1_1lta_1_1_surface_hit_refinery.html#a7fc66945eebeb48706fa6c3a976971ee":[5,0,0,10,5,7],
 "classph_1_1lta_1_1_surface_hit_refinery.html#a7fc66945eebeb48706fa6c3a976971ee":[7,0,0,3,5,7],
 "classph_1_1lta_1_1_surface_hit_refinery.html#aa5035449fd9bfbf84082e2b14766df4e":[5,0,0,10,5,8],
-"classph_1_1lta_1_1_surface_hit_refinery.html#aa5035449fd9bfbf84082e2b14766df4e":[7,0,0,3,5,8],
-"classph_1_1lta_1_1_surface_hit_refinery.html#abb31e47187595d2ba876e5c772367aa8":[5,0,0,10,5,2],
-"classph_1_1lta_1_1_surface_hit_refinery.html#abb31e47187595d2ba876e5c772367aa8":[7,0,0,3,5,2],
-"classph_1_1lta_1_1_surface_tracer.html":[5,0,0,10,6],
-"classph_1_1lta_1_1_surface_tracer.html":[7,0,0,3,6],
-"classph_1_1lta_1_1_surface_tracer.html#a3ecf82246725fa997fcaa3bf56d977bb":[5,0,0,10,6,3],
-"classph_1_1lta_1_1_surface_tracer.html#a3ecf82246725fa997fcaa3bf56d977bb":[7,0,0,3,6,3],
-"classph_1_1lta_1_1_surface_tracer.html#a54b19a97532cc7e70364750054f4b460":[5,0,0,10,6,2],
-"classph_1_1lta_1_1_surface_tracer.html#a54b19a97532cc7e70364750054f4b460":[7,0,0,3,6,2],
-"classph_1_1lta_1_1_surface_tracer.html#a65191d2bc821e0d846227a5d4b65d164":[5,0,0,10,6,8],
-"classph_1_1lta_1_1_surface_tracer.html#a65191d2bc821e0d846227a5d4b65d164":[7,0,0,3,6,8]
+"classph_1_1lta_1_1_surface_hit_refinery.html#aa5035449fd9bfbf84082e2b14766df4e":[7,0,0,3,5,8]
 };

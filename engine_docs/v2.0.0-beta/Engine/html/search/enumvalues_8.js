@@ -1,7 +1,7 @@
 var searchData=
 [
   ['image_0',['Image',['../namespaceph.html#ada33bb2d4bc26b3ec1da2acb348ef4ebabe53a0541a6d36f6ecb879fa2c584b08',1,'ph']]],
-  ['importance_1',['Importance',['../namespaceph.html#a77d951ca57b4e319e083ebddd4695213af0d806461f33568d758feb27d468352a',1,'ph']]],
+  ['importance_1',['Importance',['../namespaceph_1_1lta.html#a3f1c39ae8879cc69ac22c3be15f9669baf0d806461f33568d758feb27d468352a',1,'ph::lta']]],
   ['incidentray_2',['IncidentRay',['../namespaceph.html#a3624e7ffb99b556c1cf59f3bbfbc6afaad0fa933fa8c2bf79571c16d657ee0383',1,'ph']]],
   ['indexedkdtree_3',['IndexedKdtree',['../namespaceph.html#ae3bb0a7d6923b55d615af996ece4e2c4a3e6d462fa076c0f260b12ecc21222ddc',1,'ph']]],
   ['int16_4',['Int16',['../namespaceph.html#aa337ebb3d9ef8a3f187703426deebe77a39bc2ae44b184207f560ff8619823208',1,'ph::Int16'],['../namespaceph.html#a97a9109e30bbf746d1cc750fd37866b7a39bc2ae44b184207f560ff8619823208',1,'ph::Int16'],['../namespaceph.html#a23ecfa075f794993e5d9436e0d54d5f0a39bc2ae44b184207f560ff8619823208',1,'ph::Int16'],['../namespaceph.html#ada33bb2d4bc26b3ec1da2acb348ef4eba39bc2ae44b184207f560ff8619823208',1,'ph::Int16']]],

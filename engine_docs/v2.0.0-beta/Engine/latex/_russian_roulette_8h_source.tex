@@ -9,42 +9,47 @@
 \DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_sample_flow_8h}{Core/SampleGenerator/SampleFlow.h}}"{}}}
 \DoxyCodeLine{00006\ }
 \DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <Common/assertion.h>}}
-\DoxyCodeLine{00008\ }
-\DoxyCodeLine{00009\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph_1_1lta}{ph::lta}}}
-\DoxyCodeLine{00010\ \{}
-\DoxyCodeLine{00011\ }
-\DoxyCodeLine{00012\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1lta_1_1_russian_roulette}{RussianRoulette}}\ final}
-\DoxyCodeLine{00013\ \{}
-\DoxyCodeLine{00014\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1lta_1_1_russian_roulette_a23dbf1483999b91aa772ebb117e1dd91}{surviveOnLuminance}}(}
-\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_spectrum}{math::Spectrum}}\&\ s,}
-\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_sample_flow}{SampleFlow}}\&\ \ \ \ \ \ \ \ \ \ \ sampleFlow,}
-\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_spectrum}{math::Spectrum}}*\ \textcolor{keyword}{const}\ out\_weightedS)\textcolor{keyword}{\ const}}
-\DoxyCodeLine{00019\ \textcolor{keyword}{\ \ \ \ }\{}
-\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ PH\_ASSERT(out\_weightedS);}
-\DoxyCodeLine{00021\ }
-\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Survive\ rate\ is\ not\ allowed\ to\ be\ 100\%\ to\ avoid\ immortal\ rays\ (e.g.,\ TIR);}}
-\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ the\ rate\ should\ also\ kill\ non-\/finite\ luminance\ as\ this\ is\ a\ good\ place\ to\ do\ it}}
-\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ real\ rrSurviveRate\ =\ \mbox{\hyperlink{namespaceph_1_1math_a0090b0ad2b7785d02c6761c1766066cc}{math::safe\_clamp}}(s.\mbox{\hyperlink{classph_1_1math_1_1_t_spectrum_base_a5120053ee6a7d02f4d1f38119552ac2d}{relativeLuminance}}(),\ 0.0\_r,\ 0.95\_r);}
-\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ real\ rrSpin\ \ \ \ \ \ \ \ =\ sampleFlow.\mbox{\hyperlink{classph_1_1_sample_flow_a8d93ef2d1e1d131e8c735e2224d3dd00}{flow1D}}();\textcolor{comment}{//\ FIXME:\ use\ something\ like\ sampleFlow.binaryPick()}}
-\DoxyCodeLine{00026\ }
-\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Survived}}
-\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(rrSpin\ <\ rrSurviveRate)}
-\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ PH\_ASSERT(0.0\_r\ <\ rrSurviveRate\ \&\&\ rrSurviveRate\ <=\ 1.0\_r);}
-\DoxyCodeLine{00031\ }
-\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ real\ rrScale\ =\ 1.0\_r\ /\ rrSurviveRate;}
-\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ *out\_weightedS\ =\ s\ *\ rrScale;}
-\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
-\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Dead}}
-\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
-\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00041\ \ \ \ \ \}}
-\DoxyCodeLine{00042\ \};}
-\DoxyCodeLine{00043\ }
-\DoxyCodeLine{00044\ \}\textcolor{comment}{//\ end\ namespace\ ph::lta}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <Common/primitive\_type.h>}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph_1_1lta}{ph::lta}}}
+\DoxyCodeLine{00011\ \{}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1lta_1_1_russian_roulette}{RussianRoulette}}\ final}
+\DoxyCodeLine{00016\ \{}
+\DoxyCodeLine{00017\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1lta_1_1_russian_roulette_aa26e51b98be1903cb062a9b4634234eb}{surviveOnLuminance}}(}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_spectrum}{math::Spectrum}}\&\ s,}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_sample_flow}{SampleFlow}}\&\ sampleFlow,}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ real*\ out\_survivalProbability)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00028\ \};}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1lta_1_1_russian_roulette_aa26e51b98be1903cb062a9b4634234eb}{RussianRoulette::surviveOnLuminance}}(}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_tristimulus_spectrum}{math::Spectrum}}\&\ s,}
+\DoxyCodeLine{00032\ \ \ \ \ \mbox{\hyperlink{classph_1_1_sample_flow}{SampleFlow}}\&\ sampleFlow,}
+\DoxyCodeLine{00033\ \ \ \ \ real*\ \textcolor{keyword}{const}\ out\_survivalProbability)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00034\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00035\ \ \ \ \ PH\_ASSERT(out\_survivalProbability);}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{comment}{//\ Survival\ rate\ is\ not\ allowed\ to\ be\ 100\%\ to\ avoid\ immortal\ rays\ (e.g.,\ TIR);}}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{comment}{//\ the\ rate\ should\ also\ kill\ non-\/finite\ luminance\ as\ this\ is\ a\ good\ place\ to\ do\ it}}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{const}\ real\ rrSurvivalRate\ =\ \mbox{\hyperlink{namespaceph_1_1math_a0090b0ad2b7785d02c6761c1766066cc}{math::safe\_clamp}}(s.\mbox{\hyperlink{classph_1_1math_1_1_t_spectrum_base_a5120053ee6a7d02f4d1f38119552ac2d}{relativeLuminance}}(),\ 0.0\_r,\ 0.95\_r);}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{const}\ real\ rrSpin\ =\ sampleFlow.\mbox{\hyperlink{classph_1_1_sample_flow_a8d93ef2d1e1d131e8c735e2224d3dd00}{flow1D}}();\textcolor{comment}{//\ FIXME:\ use\ something\ like\ sampleFlow.binaryPick()}}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{comment}{//\ Survived}}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordflow}{if}(rrSpin\ <\ rrSurvivalRate)}
+\DoxyCodeLine{00044\ \ \ \ \ \{}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ PH\_ASSERT(0.0\_r\ <\ rrSurvivalRate\ \&\&\ rrSurvivalRate\ <=\ 1.0\_r);}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ *out\_survivalProbability\ =\ rrSurvivalRate;}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00049\ \ \ \ \ \}}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{comment}{//\ Dead}}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00052\ \ \ \ \ \{}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00054\ \ \ \ \ \}}
+\DoxyCodeLine{00055\ \}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \}\textcolor{comment}{//\ end\ namespace\ ph::lta}}
 
 \end{DoxyCode}

@@ -126,238 +126,285 @@ $(function(){initNavTree('_bsdf_sample_query_8h_source.html',''); initResizable(
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;Common/assertion.h&gt;</span></div>
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;utility&gt;</span></div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceph.html">ph</a></div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>{</div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
-<div class="foldopen" id="foldopen00018" data-start="{" data-end="};">
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="classph_1_1_bsdf_sample_input.html">   18</a></span><span class="keyword">class </span><a class="code hl_class" href="classph_1_1_bsdf_sample_input.html">BsdfSampleInput</a> final</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>{</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classph_1_1_bsdf_sample_input.html#ac45066366eca9aa0f45e4fd92273608e">set</a>(<span class="keyword">const</span> <a class="code hl_class" href="classph_1_1_bsdf_eval_input.html">BsdfEvalInput</a>&amp; evalInput);</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classph_1_1_bsdf_sample_input.html#ac45066366eca9aa0f45e4fd92273608e">set</a>(<span class="keyword">const</span> <a class="code hl_class" href="classph_1_1_surface_hit.html">SurfaceHit</a>&amp; X, <span class="keyword">const</span> <a class="code hl_class" href="classph_1_1math_1_1_t_vector3.html">math::Vector3R</a>&amp; V);</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    <span class="keyword">const</span> <a class="code hl_class" href="classph_1_1_surface_hit.html">SurfaceHit</a>&amp; <a class="code hl_function" href="classph_1_1_bsdf_sample_input.html#a80e452c090e68a1448ebaf303140cf4d">getX</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <span class="keyword">const</span> <a class="code hl_class" href="classph_1_1math_1_1_t_vector3.html">math::Vector3R</a>&amp; <a class="code hl_function" href="classph_1_1_bsdf_sample_input.html#a999434683795edf114b2705e869aba64">getV</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    <a class="code hl_class" href="classph_1_1_surface_hit.html">SurfaceHit</a>     m_X;</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <a class="code hl_class" href="classph_1_1math_1_1_t_vector3.html">math::Vector3R</a> m_V;</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="preprocessor">#if PH_DEBUG</span></div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <span class="keywordtype">bool</span>           m_hasSet{<span class="keyword">false</span>};</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="preprocessor">#endif</span></div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>};</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;cmath&gt;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;utility&gt;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceph.html">ph</a></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>{</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="foldopen" id="foldopen00020" data-start="{" data-end="};">
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="classph_1_1_bsdf_sample_input.html">   20</a></span><span class="keyword">class </span><a class="code hl_class" href="classph_1_1_bsdf_sample_input.html">BsdfSampleInput</a> final</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>{</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classph_1_1_bsdf_sample_input.html#ac45066366eca9aa0f45e4fd92273608e">set</a>(<span class="keyword">const</span> <a class="code hl_class" href="classph_1_1_bsdf_eval_input.html">BsdfEvalInput</a>&amp; evalInput);</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classph_1_1_bsdf_sample_input.html#ac45066366eca9aa0f45e4fd92273608e">set</a>(<span class="keyword">const</span> <a class="code hl_class" href="classph_1_1_surface_hit.html">SurfaceHit</a>&amp; X, <span class="keyword">const</span> <a class="code hl_class" href="classph_1_1math_1_1_t_vector3.html">math::Vector3R</a>&amp; V);</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <span class="keyword">const</span> <a class="code hl_class" href="classph_1_1_surface_hit.html">SurfaceHit</a>&amp; <a class="code hl_function" href="classph_1_1_bsdf_sample_input.html#a80e452c090e68a1448ebaf303140cf4d">getX</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <span class="keyword">const</span> <a class="code hl_class" href="classph_1_1math_1_1_t_vector3.html">math::Vector3R</a>&amp; <a class="code hl_function" href="classph_1_1_bsdf_sample_input.html#a999434683795edf114b2705e869aba64">getV</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <a class="code hl_class" href="classph_1_1_surface_hit.html">SurfaceHit</a>     m_X;</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <a class="code hl_class" href="classph_1_1math_1_1_t_vector3.html">math::Vector3R</a> m_V;</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="preprocessor">#if PH_DEBUG</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <span class="keywordtype">bool</span>           m_hasSet{<span class="keyword">false</span>};</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>};</div>
 </div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
-<div class="foldopen" id="foldopen00038" data-start="{" data-end="};">
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="classph_1_1_bsdf_sample_output.html">   38</a></span><span class="keyword">class </span><a class="code hl_class" href="classph_1_1_bsdf_sample_output.html">BsdfSampleOutput</a> final</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>{</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classph_1_1_bsdf_sample_output.html#a01f9a1a81a87562ee67ed8195389ba91">setL</a>(<span class="keyword">const</span> <a class="code hl_class" href="classph_1_1math_1_1_t_vector3.html">math::Vector3R</a>&amp; L);</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classph_1_1_bsdf_sample_output.html#ad39af4c2760babbf805b6556c4127df4">setPdfAppliedBsdfCos</a>(</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>        <span class="keyword">const</span> <a class="code hl_class" href="classph_1_1math_1_1_t_tristimulus_spectrum.html">math::Spectrum</a>&amp; pdfAppliedBsdfCos,</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        real cos,</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>        <span class="keywordtype">bool</span> inferMeasurability = <span class="keyword">true</span>);</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    <span class="keyword">const</span> <a class="code hl_class" href="classph_1_1math_1_1_t_vector3.html">math::Vector3R</a>&amp; <a class="code hl_function" href="classph_1_1_bsdf_sample_output.html#a60ec597b8df470ac4c45a064fb1fd23c">getL</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    real <a class="code hl_function" href="classph_1_1_bsdf_sample_output.html#aca3543074680a336fae8374e9ca7fb0a">getCos</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    <a class="code hl_class" href="classph_1_1math_1_1_t_tristimulus_spectrum.html">math::Spectrum</a> <a class="code hl_function" href="classph_1_1_bsdf_sample_output.html#ad0aa6a2f679ab8af98e75690cf760d11">getPdfAppliedBsdf</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
+<div class="foldopen" id="foldopen00044" data-start="{" data-end="};">
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="classph_1_1_bsdf_sample_output.html">   44</a></span><span class="keyword">class </span><a class="code hl_class" href="classph_1_1_bsdf_sample_output.html">BsdfSampleOutput</a> final</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>{</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classph_1_1_bsdf_sample_output.html#a01f9a1a81a87562ee67ed8195389ba91">setL</a>(<span class="keyword">const</span> <a class="code hl_class" href="classph_1_1math_1_1_t_vector3.html">math::Vector3R</a>&amp; L);</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classph_1_1_bsdf_sample_output.html#ad39af4c2760babbf805b6556c4127df4">setPdfAppliedBsdfCos</a>(</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        <span class="keyword">const</span> <a class="code hl_class" href="classph_1_1math_1_1_t_tristimulus_spectrum.html">math::Spectrum</a>&amp; pdfAppliedBsdfCos,</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>        real cos,</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>        <span class="keywordtype">bool</span> inferMeasurability = <span class="keyword">true</span>);</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    <span class="keyword">const</span> <a class="code hl_class" href="classph_1_1math_1_1_t_vector3.html">math::Vector3R</a>&amp; <a class="code hl_function" href="classph_1_1_bsdf_sample_output.html#a60ec597b8df470ac4c45a064fb1fd23c">getL</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    real <a class="code hl_function" href="classph_1_1_bsdf_sample_output.html#aca3543074680a336fae8374e9ca7fb0a">getCos</a>() <span class="keyword">const</span>;</div>
 <div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    <span class="keyword">const</span> <a class="code hl_class" href="classph_1_1math_1_1_t_tristimulus_spectrum.html">math::Spectrum</a>&amp; <a class="code hl_function" href="classph_1_1_bsdf_sample_output.html#a9c16c0bf8d45ecda70092f985b5e25fd">getPdfAppliedBsdfCos</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> </div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classph_1_1_bsdf_sample_output.html#ab8a034ca50318eaf24b20ef8523a572e">isMeasurable</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span> </div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classph_1_1_bsdf_sample_output.html#a40fd24fddc782e7a6341979e3a4f6d23">setMeasurability</a>(<span class="keywordtype">bool</span> measurability);</div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span> </div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classph_1_1_bsdf_sample_output.html#a40fd24fddc782e7a6341979e3a4f6d23">setMeasurability</a>(<span class="keyword">const</span> <a class="code hl_class" href="classph_1_1math_1_1_t_tristimulus_spectrum.html">math::Spectrum</a>&amp; reference);</div>
-<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span> </div>
-<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    <a class="code hl_class" href="classph_1_1math_1_1_t_vector3.html">math::Vector3R</a> m_L{0};</div>
-<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    <a class="code hl_class" href="classph_1_1math_1_1_t_tristimulus_spectrum.html">math::Spectrum</a> m_pdfAppliedBsdfCos{0};</div>
-<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    real           m_cos{0};</div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    <span class="keywordtype">bool</span>           m_isMeasurable{<span class="keyword">false</span>};</div>
-<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>};</div>
-</div>
-<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span> </div>
-<div class="foldopen" id="foldopen00112" data-start="{" data-end="};">
-<div class="line"><a id="l00112" name="l00112"></a><span class="lineno"><a class="line" href="classph_1_1_bsdf_sample_query.html">  112</a></span><span class="keyword">class </span><a class="code hl_class" href="classph_1_1_bsdf_sample_query.html">BsdfSampleQuery</a> final</div>
-<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>{</div>
-<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00115" name="l00115"></a><span class="lineno"><a class="line" href="classph_1_1_bsdf_sample_query.html#a95e3f19c27f25c4b1ed7b7276f3741f8">  115</a></span>    <span class="keyword">using </span><a class="code hl_class" href="classph_1_1_bsdf_sample_input.html">Input</a>  = <a class="code hl_class" href="classph_1_1_bsdf_sample_input.html">BsdfSampleInput</a>;</div>
-<div class="line"><a id="l00116" name="l00116"></a><span class="lineno"><a class="line" href="classph_1_1_bsdf_sample_query.html#a32910c5039b51a336e07a4f8ee2ebe4b">  116</a></span>    <span class="keyword">using </span><a class="code hl_class" href="classph_1_1_bsdf_sample_output.html">Output</a> = <a class="code hl_class" href="classph_1_1_bsdf_sample_output.html">BsdfSampleOutput</a>;</div>
-<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span> </div>
-<div class="line"><a id="l00118" name="l00118"></a><span class="lineno"><a class="line" href="classph_1_1_bsdf_sample_query.html#a1bfaa61482d5266d1e8fe1f0dfd3b372">  118</a></span>    <a class="code hl_class" href="classph_1_1_bsdf_query_context.html">BsdfQueryContext</a> <a class="code hl_variable" href="classph_1_1_bsdf_sample_query.html#a1bfaa61482d5266d1e8fe1f0dfd3b372">context</a> = <a class="code hl_class" href="classph_1_1_bsdf_query_context.html">BsdfQueryContext</a>{};</div>
-<div class="line"><a id="l00119" name="l00119"></a><span class="lineno"><a class="line" href="classph_1_1_bsdf_sample_query.html#a15de1880de1bfef9ac195e1f7c072164">  119</a></span>    <a class="code hl_class" href="classph_1_1_bsdf_sample_input.html">Input</a>            <a class="code hl_variable" href="classph_1_1_bsdf_sample_query.html#a15de1880de1bfef9ac195e1f7c072164">inputs</a>;</div>
-<div class="line"><a id="l00120" name="l00120"></a><span class="lineno"><a class="line" href="classph_1_1_bsdf_sample_query.html#ae5f5dce90d4b33005528d3725d8f2ede">  120</a></span>    <a class="code hl_class" href="classph_1_1_bsdf_sample_output.html">Output</a>           <a class="code hl_variable" href="classph_1_1_bsdf_sample_query.html#ae5f5dce90d4b33005528d3725d8f2ede">outputs</a>;</div>
-<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span> </div>
-<div class="line"><a id="l00122" name="l00122"></a><span class="lineno"><a class="line" href="classph_1_1_bsdf_sample_query.html#a3d81c1bbcd2fac224e5ff83640374c24">  122</a></span>    <a class="code hl_function" href="classph_1_1_bsdf_sample_query.html#a3d81c1bbcd2fac224e5ff83640374c24">BsdfSampleQuery</a>() = <span class="keywordflow">default</span>;</div>
-<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>    <span class="keyword">explicit</span> <a class="code hl_function" href="classph_1_1_bsdf_sample_query.html#a3d81c1bbcd2fac224e5ff83640374c24">BsdfSampleQuery</a>(<a class="code hl_class" href="classph_1_1_bsdf_query_context.html">BsdfQueryContext</a> <a class="code hl_variable" href="classph_1_1_bsdf_sample_query.html#a1bfaa61482d5266d1e8fe1f0dfd3b372">context</a>);</div>
-<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>};</div>
-</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    <a class="code hl_class" href="classph_1_1math_1_1_t_tristimulus_spectrum.html">math::Spectrum</a> <a class="code hl_function" href="classph_1_1_bsdf_sample_output.html#ad0aa6a2f679ab8af98e75690cf760d11">getPdfAppliedBsdf</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    <span class="keyword">const</span> <a class="code hl_class" href="classph_1_1math_1_1_t_tristimulus_spectrum.html">math::Spectrum</a>&amp; <a class="code hl_function" href="classph_1_1_bsdf_sample_output.html#a9c16c0bf8d45ecda70092f985b5e25fd">getPdfAppliedBsdfCos</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span> </div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    real <a class="code hl_function" href="classph_1_1_bsdf_sample_output.html#a369b992957228850495c4ff1fd871a9b">getRelativeIor</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span> </div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>    real <a class="code hl_function" href="classph_1_1_bsdf_sample_output.html#a2a9def6cfad0fb5fd993b6b0f00e396a">getRelativeIor2</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span> </div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classph_1_1_bsdf_sample_output.html#ab8a034ca50318eaf24b20ef8523a572e">isMeasurable</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span> </div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classph_1_1_bsdf_sample_output.html#a40fd24fddc782e7a6341979e3a4f6d23">setMeasurability</a>(<span class="keywordtype">bool</span> measurability);</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span> </div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classph_1_1_bsdf_sample_output.html#a40fd24fddc782e7a6341979e3a4f6d23">setMeasurability</a>(<span class="keyword">const</span> <a class="code hl_class" href="classph_1_1math_1_1_t_tristimulus_spectrum.html">math::Spectrum</a>&amp; reference);</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span> </div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classph_1_1_bsdf_sample_output.html#a31e902ffab25dc433a9709a6a457de36">setRelativeIor</a>(real relativeIor);</div>
 <div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span> </div>
-<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span><span class="comment">// In-header Implementations:</span></div>
-<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span> </div>
-<div class="foldopen" id="foldopen00128" data-start="{" data-end="}">
-<div class="line"><a id="l00128" name="l00128"></a><span class="lineno"><a class="line" href="classph_1_1_bsdf_sample_query.html#a79e83563de7486ee375e42f47570f39f">  128</a></span><span class="keyword">inline</span> <a class="code hl_function" href="classph_1_1_bsdf_sample_query.html#a3d81c1bbcd2fac224e5ff83640374c24">BsdfSampleQuery::BsdfSampleQuery</a>(<a class="code hl_class" href="classph_1_1_bsdf_query_context.html">BsdfQueryContext</a> context)</div>
-<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>    : <a class="code hl_class" href="classph_1_1_bsdf_sample_query.html">BsdfSampleQuery</a>()</div>
-<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>{</div>
-<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    this-&gt;context = std::move(<a class="code hl_variable" href="classph_1_1_bsdf_sample_query.html#a1bfaa61482d5266d1e8fe1f0dfd3b372">context</a>);</div>
-<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span> </div>
-<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>    <span class="comment">// (rest of the fields are initialized via setters)</span></div>
-<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>}</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>    <span class="keyword">operator</span> bool () <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span> </div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    <a class="code hl_class" href="classph_1_1math_1_1_t_vector3.html">math::Vector3R</a> m_L{0};</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>    <a class="code hl_class" href="classph_1_1math_1_1_t_tristimulus_spectrum.html">math::Spectrum</a> m_pdfAppliedBsdfCos{0};</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>    real           m_cos{0};</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>    real           m_relativeIor{1};</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>    <span class="keywordtype">bool</span>           m_isMeasurable{<span class="keyword">false</span>};</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>};</div>
 </div>
-<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span> </div>
-<div class="foldopen" id="foldopen00136" data-start="{" data-end="}">
-<div class="line"><a id="l00136" name="l00136"></a><span class="lineno"><a class="line" href="classph_1_1_bsdf_sample_input.html#a3e3b253d58d8c3bf44226f8699a400c1">  136</a></span><span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classph_1_1_bsdf_sample_input.html#ac45066366eca9aa0f45e4fd92273608e">BsdfSampleInput::set</a>(<span class="keyword">const</span> <a class="code hl_class" href="classph_1_1_surface_hit.html">SurfaceHit</a>&amp; X, <span class="keyword">const</span> <a class="code hl_class" href="classph_1_1math_1_1_t_vector3.html">math::Vector3R</a>&amp; V)</div>
-<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>{</div>
-<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>    <span class="comment">// Not querying from uninitialized surface hit</span></div>
-<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>    PH_ASSERT(!X.<a class="code hl_function" href="classph_1_1_surface_hit.html#ac3682ffd128991eba27bf658b07ddbd5">getReason</a>().<a class="code hl_function" href="classph_1_1_t_bit_flags.html#a35e98dd171cbc7aecfc237e6d1621a12">hasExactly</a>(<a class="code hl_enumvalue" href="namespaceph.html#a3624e7ffb99b556c1cf59f3bbfbc6afaa4bbb8f967da6d1a610596d7257179c2b">ESurfaceHitReason::Invalid</a>));</div>
-<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span> </div>
-<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>    PH_ASSERT_IN_RANGE(V.<a class="code hl_function" href="classph_1_1math_1_1_t_vector_n_base.html#acfa70203a3b892f2a545a344d5ab9e43">lengthSquared</a>(), 0.9_r, 1.1_r);</div>
-<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span> </div>
-<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>    m_X = X;</div>
-<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>    m_V = V;</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span> </div>
+<div class="foldopen" id="foldopen00140" data-start="{" data-end="};">
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno"><a class="line" href="classph_1_1_bsdf_sample_query.html">  140</a></span><span class="keyword">class </span><a class="code hl_class" href="classph_1_1_bsdf_sample_query.html">BsdfSampleQuery</a> final</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>{</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno"><a class="line" href="classph_1_1_bsdf_sample_query.html#a95e3f19c27f25c4b1ed7b7276f3741f8">  143</a></span>    <span class="keyword">using </span><a class="code hl_class" href="classph_1_1_bsdf_sample_input.html">Input</a>  = <a class="code hl_class" href="classph_1_1_bsdf_sample_input.html">BsdfSampleInput</a>;</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno"><a class="line" href="classph_1_1_bsdf_sample_query.html#a32910c5039b51a336e07a4f8ee2ebe4b">  144</a></span>    <span class="keyword">using </span><a class="code hl_class" href="classph_1_1_bsdf_sample_output.html">Output</a> = <a class="code hl_class" href="classph_1_1_bsdf_sample_output.html">BsdfSampleOutput</a>;</div>
 <div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span> </div>
-<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span><span class="preprocessor">#if PH_DEBUG</span></div>
-<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>    m_hasSet = <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span><span class="preprocessor">#endif</span></div>
-<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>}</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno"><a class="line" href="classph_1_1_bsdf_sample_query.html#a1bfaa61482d5266d1e8fe1f0dfd3b372">  146</a></span>    <a class="code hl_class" href="classph_1_1_bsdf_query_context.html">BsdfQueryContext</a> <a class="code hl_variable" href="classph_1_1_bsdf_sample_query.html#a1bfaa61482d5266d1e8fe1f0dfd3b372">context</a> = <a class="code hl_class" href="classph_1_1_bsdf_query_context.html">BsdfQueryContext</a>{};</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno"><a class="line" href="classph_1_1_bsdf_sample_query.html#a15de1880de1bfef9ac195e1f7c072164">  147</a></span>    <a class="code hl_class" href="classph_1_1_bsdf_sample_input.html">Input</a>            <a class="code hl_variable" href="classph_1_1_bsdf_sample_query.html#a15de1880de1bfef9ac195e1f7c072164">inputs</a>;</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno"><a class="line" href="classph_1_1_bsdf_sample_query.html#ae5f5dce90d4b33005528d3725d8f2ede">  148</a></span>    <a class="code hl_class" href="classph_1_1_bsdf_sample_output.html">Output</a>           <a class="code hl_variable" href="classph_1_1_bsdf_sample_query.html#ae5f5dce90d4b33005528d3725d8f2ede">outputs</a>;</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span> </div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno"><a class="line" href="classph_1_1_bsdf_sample_query.html#a3d81c1bbcd2fac224e5ff83640374c24">  150</a></span>    <a class="code hl_function" href="classph_1_1_bsdf_sample_query.html#a3d81c1bbcd2fac224e5ff83640374c24">BsdfSampleQuery</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>    <span class="keyword">explicit</span> <a class="code hl_function" href="classph_1_1_bsdf_sample_query.html#a3d81c1bbcd2fac224e5ff83640374c24">BsdfSampleQuery</a>(<a class="code hl_class" href="classph_1_1_bsdf_query_context.html">BsdfQueryContext</a> <a class="code hl_variable" href="classph_1_1_bsdf_sample_query.html#a1bfaa61482d5266d1e8fe1f0dfd3b372">context</a>);</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>};</div>
 </div>
-<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span> </div>
-<div class="foldopen" id="foldopen00151" data-start="{" data-end="}">
-<div class="line"><a id="l00151" name="l00151"></a><span class="lineno"><a class="line" href="classph_1_1_bsdf_sample_input.html#a80e452c090e68a1448ebaf303140cf4d">  151</a></span><span class="keyword">inline</span> <span class="keyword">const</span> <a class="code hl_class" href="classph_1_1_surface_hit.html">SurfaceHit</a>&amp; <a class="code hl_function" href="classph_1_1_bsdf_sample_input.html#a80e452c090e68a1448ebaf303140cf4d">BsdfSampleInput::getX</a>()<span class="keyword"> const</span></div>
-<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span><span class="keyword"></span>{</div>
-<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>    PH_ASSERT(m_hasSet);</div>
-<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span> </div>
-<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>    <span class="keywordflow">return</span> m_X;</div>
-<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>}</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span> </div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span><span class="comment">// In-header Implementations:</span></div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span> </div>
+<div class="foldopen" id="foldopen00156" data-start="{" data-end="}">
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno"><a class="line" href="classph_1_1_bsdf_sample_query.html#a79e83563de7486ee375e42f47570f39f">  156</a></span><span class="keyword">inline</span> <a class="code hl_function" href="classph_1_1_bsdf_sample_query.html#a3d81c1bbcd2fac224e5ff83640374c24">BsdfSampleQuery::BsdfSampleQuery</a>(<a class="code hl_class" href="classph_1_1_bsdf_query_context.html">BsdfQueryContext</a> context)</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>    : <a class="code hl_class" href="classph_1_1_bsdf_sample_query.html">BsdfSampleQuery</a>()</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>{</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>    this-&gt;context = std::move(<a class="code hl_variable" href="classph_1_1_bsdf_sample_query.html#a1bfaa61482d5266d1e8fe1f0dfd3b372">context</a>);</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span> </div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>    <span class="comment">// (rest of the fields are initialized via setters)</span></div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>}</div>
 </div>
-<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span> </div>
-<div class="foldopen" id="foldopen00158" data-start="{" data-end="}">
-<div class="line"><a id="l00158" name="l00158"></a><span class="lineno"><a class="line" href="classph_1_1_bsdf_sample_input.html#a999434683795edf114b2705e869aba64">  158</a></span><span class="keyword">inline</span> <span class="keyword">const</span> <a class="code hl_class" href="classph_1_1math_1_1_t_vector3.html">math::Vector3R</a>&amp; <a class="code hl_function" href="classph_1_1_bsdf_sample_input.html#a999434683795edf114b2705e869aba64">BsdfSampleInput::getV</a>()<span class="keyword"> const</span></div>
-<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span><span class="keyword"></span>{</div>
-<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>    PH_ASSERT(m_hasSet);</div>
-<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span> </div>
-<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>    <span class="keywordflow">return</span> m_V;</div>
-<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>}</div>
-</div>
-<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span> </div>
-<div class="foldopen" id="foldopen00165" data-start="{" data-end="}">
-<div class="line"><a id="l00165" name="l00165"></a><span class="lineno"><a class="line" href="classph_1_1_bsdf_sample_output.html#a01f9a1a81a87562ee67ed8195389ba91">  165</a></span><span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classph_1_1_bsdf_sample_output.html#a01f9a1a81a87562ee67ed8195389ba91">BsdfSampleOutput::setL</a>(<span class="keyword">const</span> <a class="code hl_class" href="classph_1_1math_1_1_t_vector3.html">math::Vector3R</a>&amp; L)</div>
-<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>{</div>
-<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>    PH_ASSERT_IN_RANGE(L.<a class="code hl_function" href="classph_1_1math_1_1_t_vector_n_base.html#acfa70203a3b892f2a545a344d5ab9e43">lengthSquared</a>(), 0.9_r, 1.1_r);</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span> </div>
+<div class="foldopen" id="foldopen00164" data-start="{" data-end="}">
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno"><a class="line" href="classph_1_1_bsdf_sample_input.html#a3e3b253d58d8c3bf44226f8699a400c1">  164</a></span><span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classph_1_1_bsdf_sample_input.html#ac45066366eca9aa0f45e4fd92273608e">BsdfSampleInput::set</a>(<span class="keyword">const</span> <a class="code hl_class" href="classph_1_1_surface_hit.html">SurfaceHit</a>&amp; X, <span class="keyword">const</span> <a class="code hl_class" href="classph_1_1math_1_1_t_vector3.html">math::Vector3R</a>&amp; V)</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>{</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>    <span class="comment">// Not querying from uninitialized surface hit</span></div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>    PH_ASSERT(!X.<a class="code hl_function" href="classph_1_1_surface_hit.html#ac3682ffd128991eba27bf658b07ddbd5">getReason</a>().<a class="code hl_function" href="classph_1_1_t_bit_flags.html#a35e98dd171cbc7aecfc237e6d1621a12">hasExactly</a>(<a class="code hl_enumvalue" href="namespaceph.html#a3624e7ffb99b556c1cf59f3bbfbc6afaa4bbb8f967da6d1a610596d7257179c2b">ESurfaceHitReason::Invalid</a>));</div>
 <div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span> </div>
-<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>    m_L = L;</div>
-<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>}</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>    PH_ASSERT_IN_RANGE(V.<a class="code hl_function" href="classph_1_1math_1_1_t_vector_n_base.html#acfa70203a3b892f2a545a344d5ab9e43">lengthSquared</a>(), 0.9_r, 1.1_r);</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span> </div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>    m_X = X;</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>    m_V = V;</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span> </div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span><span class="preprocessor">#if PH_DEBUG</span></div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>    m_hasSet = <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>}</div>
 </div>
-<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span> </div>
-<div class="foldopen" id="foldopen00172" data-start="{" data-end="}">
-<div class="line"><a id="l00172" name="l00172"></a><span class="lineno"><a class="line" href="classph_1_1_bsdf_sample_output.html#ad39af4c2760babbf805b6556c4127df4">  172</a></span><span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classph_1_1_bsdf_sample_output.html#ad39af4c2760babbf805b6556c4127df4">BsdfSampleOutput::setPdfAppliedBsdfCos</a>(</div>
-<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>    <span class="keyword">const</span> <a class="code hl_class" href="classph_1_1math_1_1_t_tristimulus_spectrum.html">math::Spectrum</a>&amp; pdfAppliedBsdfCos,</div>
-<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>    <span class="keyword">const</span> real cos,</div>
-<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>    <span class="keyword">const</span> <span class="keywordtype">bool</span> inferMeasurability)</div>
-<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>{</div>
-<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>    m_pdfAppliedBsdfCos = pdfAppliedBsdfCos;</div>
-<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>    m_cos = cos;</div>
-<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span> </div>
-<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>    <span class="keywordflow">if</span>(inferMeasurability)</div>
-<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>    {</div>
-<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>        <a class="code hl_function" href="classph_1_1_bsdf_sample_output.html#a40fd24fddc782e7a6341979e3a4f6d23">setMeasurability</a>(pdfAppliedBsdfCos);</div>
-<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>        <a class="code hl_function" href="classph_1_1_bsdf_sample_output.html#a40fd24fddc782e7a6341979e3a4f6d23">setMeasurability</a>(<a class="code hl_function" href="classph_1_1_bsdf_sample_output.html#ab8a034ca50318eaf24b20ef8523a572e">isMeasurable</a>() &amp;&amp; 0.0_r &lt; cos &amp;&amp; cos &lt; 1.1_r);</div>
-<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>    }</div>
-<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>}</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span> </div>
+<div class="foldopen" id="foldopen00179" data-start="{" data-end="}">
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno"><a class="line" href="classph_1_1_bsdf_sample_input.html#a80e452c090e68a1448ebaf303140cf4d">  179</a></span><span class="keyword">inline</span> <span class="keyword">const</span> <a class="code hl_class" href="classph_1_1_surface_hit.html">SurfaceHit</a>&amp; <a class="code hl_function" href="classph_1_1_bsdf_sample_input.html#a80e452c090e68a1448ebaf303140cf4d">BsdfSampleInput::getX</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span><span class="keyword"></span>{</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>    PH_ASSERT(m_hasSet);</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span> </div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>    <span class="keywordflow">return</span> m_X;</div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>}</div>
 </div>
-<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span> </div>
-<div class="foldopen" id="foldopen00187" data-start="{" data-end="}">
-<div class="line"><a id="l00187" name="l00187"></a><span class="lineno"><a class="line" href="classph_1_1_bsdf_sample_output.html#a60ec597b8df470ac4c45a064fb1fd23c">  187</a></span><span class="keyword">inline</span> <span class="keyword">const</span> <a class="code hl_class" href="classph_1_1math_1_1_t_vector3.html">math::Vector3R</a>&amp; <a class="code hl_function" href="classph_1_1_bsdf_sample_output.html#a60ec597b8df470ac4c45a064fb1fd23c">BsdfSampleOutput::getL</a>()<span class="keyword"> const</span></div>
-<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span><span class="keyword"></span>{</div>
-<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>    PH_ASSERT(m_isMeasurable);</div>
-<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>    PH_ASSERT_IN_RANGE(m_L.<a class="code hl_function" href="classph_1_1math_1_1_t_vector_n_base.html#acfa70203a3b892f2a545a344d5ab9e43">lengthSquared</a>(), 0.9_r, 1.1_r);</div>
-<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span> </div>
-<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>    <span class="keywordflow">return</span> m_L;</div>
-<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>}</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span> </div>
+<div class="foldopen" id="foldopen00186" data-start="{" data-end="}">
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno"><a class="line" href="classph_1_1_bsdf_sample_input.html#a999434683795edf114b2705e869aba64">  186</a></span><span class="keyword">inline</span> <span class="keyword">const</span> <a class="code hl_class" href="classph_1_1math_1_1_t_vector3.html">math::Vector3R</a>&amp; <a class="code hl_function" href="classph_1_1_bsdf_sample_input.html#a999434683795edf114b2705e869aba64">BsdfSampleInput::getV</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span><span class="keyword"></span>{</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>    PH_ASSERT(m_hasSet);</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span> </div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>    <span class="keywordflow">return</span> m_V;</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>}</div>
 </div>
-<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span> </div>
-<div class="foldopen" id="foldopen00195" data-start="{" data-end="}">
-<div class="line"><a id="l00195" name="l00195"></a><span class="lineno"><a class="line" href="classph_1_1_bsdf_sample_output.html#aca3543074680a336fae8374e9ca7fb0a">  195</a></span><span class="keyword">inline</span> real <a class="code hl_function" href="classph_1_1_bsdf_sample_output.html#aca3543074680a336fae8374e9ca7fb0a">BsdfSampleOutput::getCos</a>()<span class="keyword"> const</span></div>
-<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span><span class="keyword"></span>{</div>
-<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>    PH_ASSERT(m_isMeasurable);</div>
-<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>    PH_ASSERT_IN_RANGE_EXCLUSIVE(m_cos, 0.0_r, 1.1_r);</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span> </div>
+<div class="foldopen" id="foldopen00193" data-start="{" data-end="}">
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno"><a class="line" href="classph_1_1_bsdf_sample_output.html#a01f9a1a81a87562ee67ed8195389ba91">  193</a></span><span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classph_1_1_bsdf_sample_output.html#a01f9a1a81a87562ee67ed8195389ba91">BsdfSampleOutput::setL</a>(<span class="keyword">const</span> <a class="code hl_class" href="classph_1_1math_1_1_t_vector3.html">math::Vector3R</a>&amp; L)</div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>{</div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>    PH_ASSERT_IN_RANGE(L.<a class="code hl_function" href="classph_1_1math_1_1_t_vector_n_base.html#acfa70203a3b892f2a545a344d5ab9e43">lengthSquared</a>(), 0.9_r, 1.1_r);</div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span> </div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>    m_L = L;</div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>}</div>
+</div>
 <div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span> </div>
-<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>    <span class="keywordflow">return</span> m_cos;</div>
-<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>}</div>
+<div class="foldopen" id="foldopen00200" data-start="{" data-end="}">
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno"><a class="line" href="classph_1_1_bsdf_sample_output.html#ad39af4c2760babbf805b6556c4127df4">  200</a></span><span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classph_1_1_bsdf_sample_output.html#ad39af4c2760babbf805b6556c4127df4">BsdfSampleOutput::setPdfAppliedBsdfCos</a>(</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>    <span class="keyword">const</span> <a class="code hl_class" href="classph_1_1math_1_1_t_tristimulus_spectrum.html">math::Spectrum</a>&amp; pdfAppliedBsdfCos,</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>    <span class="keyword">const</span> real cos,</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>    <span class="keyword">const</span> <span class="keywordtype">bool</span> inferMeasurability)</div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>{</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>    m_pdfAppliedBsdfCos = pdfAppliedBsdfCos;</div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>    m_cos = cos;</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span> </div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>    <span class="keywordflow">if</span>(inferMeasurability)</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>    {</div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>        <a class="code hl_function" href="classph_1_1_bsdf_sample_output.html#a40fd24fddc782e7a6341979e3a4f6d23">setMeasurability</a>(pdfAppliedBsdfCos);</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>        <a class="code hl_function" href="classph_1_1_bsdf_sample_output.html#a40fd24fddc782e7a6341979e3a4f6d23">setMeasurability</a>(<a class="code hl_function" href="classph_1_1_bsdf_sample_output.html#ab8a034ca50318eaf24b20ef8523a572e">isMeasurable</a>() &amp;&amp; 0.0_r &lt; cos &amp;&amp; cos &lt; 1.1_r);</div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>    }</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>}</div>
 </div>
-<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span> </div>
-<div class="foldopen" id="foldopen00203" data-start="{" data-end="}">
-<div class="line"><a id="l00203" name="l00203"></a><span class="lineno"><a class="line" href="classph_1_1_bsdf_sample_output.html#ad0aa6a2f679ab8af98e75690cf760d11">  203</a></span><span class="keyword">inline</span> <a class="code hl_class" href="classph_1_1math_1_1_t_tristimulus_spectrum.html">math::Spectrum</a> <a class="code hl_function" href="classph_1_1_bsdf_sample_output.html#ad0aa6a2f679ab8af98e75690cf760d11">BsdfSampleOutput::getPdfAppliedBsdf</a>()<span class="keyword"> const</span></div>
-<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span><span class="keyword"></span>{</div>
-<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>    <span class="keyword">const</span> <span class="keyword">auto</span> pdfAppliedBsdf = <a class="code hl_function" href="classph_1_1_bsdf_sample_output.html#a9c16c0bf8d45ecda70092f985b5e25fd">getPdfAppliedBsdfCos</a>() / <a class="code hl_function" href="classph_1_1_bsdf_sample_output.html#aca3543074680a336fae8374e9ca7fb0a">getCos</a>();</div>
-<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>    <span class="keywordflow">return</span> pdfAppliedBsdf.isFinite() ? pdfAppliedBsdf : <a class="code hl_typedef" href="namespaceph_1_1math.html#ad1ddf3801f5a9ea201227d49747987ed">math::Spectrum</a>(0);</div>
-<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>}</div>
-</div>
-<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span> </div>
-<div class="foldopen" id="foldopen00209" data-start="{" data-end="}">
-<div class="line"><a id="l00209" name="l00209"></a><span class="lineno"><a class="line" href="classph_1_1_bsdf_sample_output.html#a9c16c0bf8d45ecda70092f985b5e25fd">  209</a></span><span class="keyword">inline</span> <span class="keyword">const</span> <a class="code hl_class" href="classph_1_1math_1_1_t_tristimulus_spectrum.html">math::Spectrum</a>&amp; <a class="code hl_function" href="classph_1_1_bsdf_sample_output.html#a9c16c0bf8d45ecda70092f985b5e25fd">BsdfSampleOutput::getPdfAppliedBsdfCos</a>()<span class="keyword"> const</span></div>
-<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span><span class="keyword"></span>{</div>
-<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>    <span class="comment">// When a sample report being measurable, it must not be some crazy values</span></div>
-<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>    PH_ASSERT(m_isMeasurable);</div>
-<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>    PH_ASSERT_MSG(m_pdfAppliedBsdfCos.<a class="code hl_function" href="classph_1_1math_1_1_t_spectrum_base.html#aabbf0b0d4f4d90122f70331d072aaaa5">isFinite</a>(), m_pdfAppliedBsdfCos.<a class="code hl_function" href="classph_1_1math_1_1_t_spectrum_base.html#a945f66ed8e65964d232f259b223debd1">toString</a>());</div>
 <div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span> </div>
-<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>    <span class="keywordflow">return</span> m_pdfAppliedBsdfCos;</div>
-<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>}</div>
-</div>
-<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span> </div>
-<div class="foldopen" id="foldopen00218" data-start="{" data-end="}">
-<div class="line"><a id="l00218" name="l00218"></a><span class="lineno"><a class="line" href="classph_1_1_bsdf_sample_output.html#ab8a034ca50318eaf24b20ef8523a572e">  218</a></span><span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="classph_1_1_bsdf_sample_output.html#ab8a034ca50318eaf24b20ef8523a572e">BsdfSampleOutput::isMeasurable</a>()<span class="keyword"> const</span></div>
-<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span><span class="keyword"></span>{</div>
-<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>    <span class="keywordflow">return</span> m_isMeasurable;</div>
+<div class="foldopen" id="foldopen00215" data-start="{" data-end="}">
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno"><a class="line" href="classph_1_1_bsdf_sample_output.html#a60ec597b8df470ac4c45a064fb1fd23c">  215</a></span><span class="keyword">inline</span> <span class="keyword">const</span> <a class="code hl_class" href="classph_1_1math_1_1_t_vector3.html">math::Vector3R</a>&amp; <a class="code hl_function" href="classph_1_1_bsdf_sample_output.html#a60ec597b8df470ac4c45a064fb1fd23c">BsdfSampleOutput::getL</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span><span class="keyword"></span>{</div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>    PH_ASSERT(<a class="code hl_function" href="classph_1_1_bsdf_sample_output.html#ab8a034ca50318eaf24b20ef8523a572e">isMeasurable</a>());</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>    PH_ASSERT_IN_RANGE(m_L.<a class="code hl_function" href="classph_1_1math_1_1_t_vector_n_base.html#acfa70203a3b892f2a545a344d5ab9e43">lengthSquared</a>(), 0.9_r, 1.1_r);</div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span> </div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>    <span class="keywordflow">return</span> m_L;</div>
 <div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>}</div>
 </div>
 <div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span> </div>
 <div class="foldopen" id="foldopen00223" data-start="{" data-end="}">
-<div class="line"><a id="l00223" name="l00223"></a><span class="lineno"><a class="line" href="classph_1_1_bsdf_sample_output.html#a40fd24fddc782e7a6341979e3a4f6d23">  223</a></span><span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classph_1_1_bsdf_sample_output.html#a40fd24fddc782e7a6341979e3a4f6d23">BsdfSampleOutput::setMeasurability</a>(<span class="keyword">const</span> <span class="keywordtype">bool</span> measurability)</div>
-<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>{</div>
-<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>    m_isMeasurable = measurability;</div>
-<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>}</div>
-</div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno"><a class="line" href="classph_1_1_bsdf_sample_output.html#aca3543074680a336fae8374e9ca7fb0a">  223</a></span><span class="keyword">inline</span> real <a class="code hl_function" href="classph_1_1_bsdf_sample_output.html#aca3543074680a336fae8374e9ca7fb0a">BsdfSampleOutput::getCos</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span><span class="keyword"></span>{</div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>    PH_ASSERT(<a class="code hl_function" href="classph_1_1_bsdf_sample_output.html#ab8a034ca50318eaf24b20ef8523a572e">isMeasurable</a>());</div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>    PH_ASSERT_IN_RANGE_EXCLUSIVE(m_cos, 0.0_r, 1.1_r);</div>
 <div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span> </div>
-<div class="foldopen" id="foldopen00228" data-start="{" data-end="}">
-<div class="line"><a id="l00228" name="l00228"></a><span class="lineno"><a class="line" href="classph_1_1_bsdf_sample_output.html#aa3e8dcb5e830b1bebe483aaddfc65c80">  228</a></span><span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classph_1_1_bsdf_sample_output.html#a40fd24fddc782e7a6341979e3a4f6d23">BsdfSampleOutput::setMeasurability</a>(<span class="keyword">const</span> <a class="code hl_class" href="classph_1_1math_1_1_t_tristimulus_spectrum.html">math::Spectrum</a>&amp; reference)</div>
-<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>{</div>
-<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>    <a class="code hl_function" href="classph_1_1_bsdf_sample_output.html#a40fd24fddc782e7a6341979e3a4f6d23">setMeasurability</a>(reference.<a class="code hl_function" href="classph_1_1math_1_1_t_spectrum_base.html#aabbf0b0d4f4d90122f70331d072aaaa5">isFinite</a>());</div>
-<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>}</div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>    <span class="keywordflow">return</span> m_cos;</div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>}</div>
 </div>
-<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span> </div>
-<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>}<span class="comment">// end namespace ph</span></div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span> </div>
+<div class="foldopen" id="foldopen00231" data-start="{" data-end="}">
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno"><a class="line" href="classph_1_1_bsdf_sample_output.html#ad0aa6a2f679ab8af98e75690cf760d11">  231</a></span><span class="keyword">inline</span> <a class="code hl_class" href="classph_1_1math_1_1_t_tristimulus_spectrum.html">math::Spectrum</a> <a class="code hl_function" href="classph_1_1_bsdf_sample_output.html#ad0aa6a2f679ab8af98e75690cf760d11">BsdfSampleOutput::getPdfAppliedBsdf</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span><span class="keyword"></span>{</div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>    <span class="keyword">const</span> <span class="keyword">auto</span> pdfAppliedBsdf = <a class="code hl_function" href="classph_1_1_bsdf_sample_output.html#a9c16c0bf8d45ecda70092f985b5e25fd">getPdfAppliedBsdfCos</a>() / <a class="code hl_function" href="classph_1_1_bsdf_sample_output.html#aca3543074680a336fae8374e9ca7fb0a">getCos</a>();</div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>    <span class="keywordflow">return</span> pdfAppliedBsdf.isFinite() ? pdfAppliedBsdf : <a class="code hl_typedef" href="namespaceph_1_1math.html#ad1ddf3801f5a9ea201227d49747987ed">math::Spectrum</a>(0);</div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>}</div>
+</div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span> </div>
+<div class="foldopen" id="foldopen00237" data-start="{" data-end="}">
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno"><a class="line" href="classph_1_1_bsdf_sample_output.html#a9c16c0bf8d45ecda70092f985b5e25fd">  237</a></span><span class="keyword">inline</span> <span class="keyword">const</span> <a class="code hl_class" href="classph_1_1math_1_1_t_tristimulus_spectrum.html">math::Spectrum</a>&amp; <a class="code hl_function" href="classph_1_1_bsdf_sample_output.html#a9c16c0bf8d45ecda70092f985b5e25fd">BsdfSampleOutput::getPdfAppliedBsdfCos</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span><span class="keyword"></span>{</div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>    <span class="comment">// When a sample report being measurable, it must not be some crazy values</span></div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>    PH_ASSERT(<a class="code hl_function" href="classph_1_1_bsdf_sample_output.html#ab8a034ca50318eaf24b20ef8523a572e">isMeasurable</a>());</div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>    PH_ASSERT_MSG(m_pdfAppliedBsdfCos.<a class="code hl_function" href="classph_1_1math_1_1_t_spectrum_base.html#aabbf0b0d4f4d90122f70331d072aaaa5">isFinite</a>(), m_pdfAppliedBsdfCos.<a class="code hl_function" href="classph_1_1math_1_1_t_spectrum_base.html#a945f66ed8e65964d232f259b223debd1">toString</a>());</div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span> </div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>    <span class="keywordflow">return</span> m_pdfAppliedBsdfCos;</div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>}</div>
+</div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span> </div>
+<div class="foldopen" id="foldopen00246" data-start="{" data-end="}">
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno"><a class="line" href="classph_1_1_bsdf_sample_output.html#a369b992957228850495c4ff1fd871a9b">  246</a></span><span class="keyword">inline</span> real <a class="code hl_function" href="classph_1_1_bsdf_sample_output.html#a369b992957228850495c4ff1fd871a9b">BsdfSampleOutput::getRelativeIor</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span><span class="keyword"></span>{</div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>    PH_ASSERT(<a class="code hl_function" href="classph_1_1_bsdf_sample_output.html#ab8a034ca50318eaf24b20ef8523a572e">isMeasurable</a>());</div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>    PH_ASSERT_MSG(std::isfinite(m_relativeIor) &amp;&amp; m_relativeIor &gt; 0, std::to_string(m_relativeIor));</div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span> </div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>    <span class="keywordflow">return</span> m_relativeIor;</div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>}</div>
+</div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span> </div>
+<div class="foldopen" id="foldopen00254" data-start="{" data-end="}">
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno"><a class="line" href="classph_1_1_bsdf_sample_output.html#a2a9def6cfad0fb5fd993b6b0f00e396a">  254</a></span><span class="keyword">inline</span> real <a class="code hl_function" href="classph_1_1_bsdf_sample_output.html#a2a9def6cfad0fb5fd993b6b0f00e396a">BsdfSampleOutput::getRelativeIor2</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span><span class="keyword"></span>{</div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>    <span class="keyword">const</span> real relativeIor = <a class="code hl_function" href="classph_1_1_bsdf_sample_output.html#a369b992957228850495c4ff1fd871a9b">getRelativeIor</a>();</div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>    <span class="keywordflow">return</span> relativeIor * relativeIor;</div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>}</div>
+</div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span> </div>
+<div class="foldopen" id="foldopen00260" data-start="{" data-end="}">
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno"><a class="line" href="classph_1_1_bsdf_sample_output.html#ab8a034ca50318eaf24b20ef8523a572e">  260</a></span><span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="classph_1_1_bsdf_sample_output.html#ab8a034ca50318eaf24b20ef8523a572e">BsdfSampleOutput::isMeasurable</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span><span class="keyword"></span>{</div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>    <span class="keywordflow">return</span> m_isMeasurable;</div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>}</div>
+</div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span> </div>
+<div class="foldopen" id="foldopen00265" data-start="{" data-end="}">
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno"><a class="line" href="classph_1_1_bsdf_sample_output.html#a40fd24fddc782e7a6341979e3a4f6d23">  265</a></span><span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classph_1_1_bsdf_sample_output.html#a40fd24fddc782e7a6341979e3a4f6d23">BsdfSampleOutput::setMeasurability</a>(<span class="keyword">const</span> <span class="keywordtype">bool</span> measurability)</div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>{</div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>    m_isMeasurable = measurability;</div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>}</div>
+</div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span> </div>
+<div class="foldopen" id="foldopen00270" data-start="{" data-end="}">
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno"><a class="line" href="classph_1_1_bsdf_sample_output.html#aa3e8dcb5e830b1bebe483aaddfc65c80">  270</a></span><span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classph_1_1_bsdf_sample_output.html#a40fd24fddc782e7a6341979e3a4f6d23">BsdfSampleOutput::setMeasurability</a>(<span class="keyword">const</span> <a class="code hl_class" href="classph_1_1math_1_1_t_tristimulus_spectrum.html">math::Spectrum</a>&amp; reference)</div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span>{</div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>    <a class="code hl_function" href="classph_1_1_bsdf_sample_output.html#a40fd24fddc782e7a6341979e3a4f6d23">setMeasurability</a>(reference.<a class="code hl_function" href="classph_1_1math_1_1_t_spectrum_base.html#aabbf0b0d4f4d90122f70331d072aaaa5">isFinite</a>());</div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>}</div>
+</div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span> </div>
+<div class="foldopen" id="foldopen00275" data-start="{" data-end="}">
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno"><a class="line" href="classph_1_1_bsdf_sample_output.html#a31e902ffab25dc433a9709a6a457de36">  275</a></span><span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classph_1_1_bsdf_sample_output.html#a31e902ffab25dc433a9709a6a457de36">BsdfSampleOutput::setRelativeIor</a>(<span class="keyword">const</span> real relativeIor)</div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>{</div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>    m_relativeIor = relativeIor;</div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>}</div>
+</div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span> </div>
+<div class="foldopen" id="foldopen00280" data-start="{" data-end="}">
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno"><a class="line" href="classph_1_1_bsdf_sample_output.html#ad99a29a0a9940a472ac63bd7d7260aa9">  280</a></span><span class="keyword">inline</span> BsdfSampleOutput::operator bool ()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span><span class="keyword"></span>{</div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span>    <span class="keywordflow">return</span> isMeasurable();</div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span>}</div>
+</div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span> </div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span>}<span class="comment">// end namespace ph</span></div>
 <div class="ttc" id="a_bsdf_query_context_8h_html"><div class="ttname"><a href="_bsdf_query_context_8h.html">BsdfQueryContext.h</a></div></div>
 <div class="ttc" id="a_spectrum_8h_html"><div class="ttname"><a href="_spectrum_8h.html">Spectrum.h</a></div></div>
 <div class="ttc" id="a_surface_hit_8h_html"><div class="ttname"><a href="_surface_hit_8h.html">SurfaceHit.h</a></div></div>
 <div class="ttc" id="a_t_vector3_8h_html"><div class="ttname"><a href="_t_vector3_8h.html">TVector3.h</a></div></div>
 <div class="ttc" id="absdf__query__fwd_8h_html"><div class="ttname"><a href="bsdf__query__fwd_8h.html">bsdf_query_fwd.h</a></div></div>
 <div class="ttc" id="aclassph_1_1_bsdf_eval_input_html"><div class="ttname"><a href="classph_1_1_bsdf_eval_input.html">ph::BsdfEvalInput</a></div><div class="ttdoc">Input for BsdfEvalQuery.</div><div class="ttdef"><b>Definition</b> BsdfEvalQuery.h:20</div></div>
-<div class="ttc" id="aclassph_1_1_bsdf_query_context_html"><div class="ttname"><a href="classph_1_1_bsdf_query_context.html">ph::BsdfQueryContext</a></div><div class="ttdoc">The environment a BSDF query is performed under.</div><div class="ttdef"><b>Definition</b> BsdfQueryContext.h:12</div></div>
-<div class="ttc" id="aclassph_1_1_bsdf_sample_input_html"><div class="ttname"><a href="classph_1_1_bsdf_sample_input.html">ph::BsdfSampleInput</a></div><div class="ttdoc">Input for BsdfSampleQuery.</div><div class="ttdef"><b>Definition</b> BsdfSampleQuery.h:19</div></div>
-<div class="ttc" id="aclassph_1_1_bsdf_sample_input_html_a80e452c090e68a1448ebaf303140cf4d"><div class="ttname"><a href="classph_1_1_bsdf_sample_input.html#a80e452c090e68a1448ebaf303140cf4d">ph::BsdfSampleInput::getX</a></div><div class="ttdeci">const SurfaceHit &amp; getX() const</div><div class="ttdef"><b>Definition</b> BsdfSampleQuery.h:151</div></div>
-<div class="ttc" id="aclassph_1_1_bsdf_sample_input_html_a999434683795edf114b2705e869aba64"><div class="ttname"><a href="classph_1_1_bsdf_sample_input.html#a999434683795edf114b2705e869aba64">ph::BsdfSampleInput::getV</a></div><div class="ttdeci">const math::Vector3R &amp; getV() const</div><div class="ttdef"><b>Definition</b> BsdfSampleQuery.h:158</div></div>
+<div class="ttc" id="aclassph_1_1_bsdf_query_context_html"><div class="ttname"><a href="classph_1_1_bsdf_query_context.html">ph::BsdfQueryContext</a></div><div class="ttdoc">The environment a BSDF query is performed under.</div><div class="ttdef"><b>Definition</b> BsdfQueryContext.h:13</div></div>
+<div class="ttc" id="aclassph_1_1_bsdf_sample_input_html"><div class="ttname"><a href="classph_1_1_bsdf_sample_input.html">ph::BsdfSampleInput</a></div><div class="ttdoc">Input for BsdfSampleQuery.</div><div class="ttdef"><b>Definition</b> BsdfSampleQuery.h:21</div></div>
+<div class="ttc" id="aclassph_1_1_bsdf_sample_input_html_a80e452c090e68a1448ebaf303140cf4d"><div class="ttname"><a href="classph_1_1_bsdf_sample_input.html#a80e452c090e68a1448ebaf303140cf4d">ph::BsdfSampleInput::getX</a></div><div class="ttdeci">const SurfaceHit &amp; getX() const</div><div class="ttdef"><b>Definition</b> BsdfSampleQuery.h:179</div></div>
+<div class="ttc" id="aclassph_1_1_bsdf_sample_input_html_a999434683795edf114b2705e869aba64"><div class="ttname"><a href="classph_1_1_bsdf_sample_input.html#a999434683795edf114b2705e869aba64">ph::BsdfSampleInput::getV</a></div><div class="ttdeci">const math::Vector3R &amp; getV() const</div><div class="ttdef"><b>Definition</b> BsdfSampleQuery.h:186</div></div>
 <div class="ttc" id="aclassph_1_1_bsdf_sample_input_html_ac45066366eca9aa0f45e4fd92273608e"><div class="ttname"><a href="classph_1_1_bsdf_sample_input.html#ac45066366eca9aa0f45e4fd92273608e">ph::BsdfSampleInput::set</a></div><div class="ttdeci">void set(const BsdfEvalInput &amp;evalInput)</div><div class="ttdef"><b>Definition</b> BsdfSampleQuery.cpp:7</div></div>
-<div class="ttc" id="aclassph_1_1_bsdf_sample_output_html"><div class="ttname"><a href="classph_1_1_bsdf_sample_output.html">ph::BsdfSampleOutput</a></div><div class="ttdoc">Output for BsdfSampleQuery.</div><div class="ttdef"><b>Definition</b> BsdfSampleQuery.h:39</div></div>
-<div class="ttc" id="aclassph_1_1_bsdf_sample_output_html_a01f9a1a81a87562ee67ed8195389ba91"><div class="ttname"><a href="classph_1_1_bsdf_sample_output.html#a01f9a1a81a87562ee67ed8195389ba91">ph::BsdfSampleOutput::setL</a></div><div class="ttdeci">void setL(const math::Vector3R &amp;L)</div><div class="ttdef"><b>Definition</b> BsdfSampleQuery.h:165</div></div>
-<div class="ttc" id="aclassph_1_1_bsdf_sample_output_html_a40fd24fddc782e7a6341979e3a4f6d23"><div class="ttname"><a href="classph_1_1_bsdf_sample_output.html#a40fd24fddc782e7a6341979e3a4f6d23">ph::BsdfSampleOutput::setMeasurability</a></div><div class="ttdeci">void setMeasurability(bool measurability)</div><div class="ttdoc">Set measurability directly.</div><div class="ttdef"><b>Definition</b> BsdfSampleQuery.h:223</div></div>
-<div class="ttc" id="aclassph_1_1_bsdf_sample_output_html_a60ec597b8df470ac4c45a064fb1fd23c"><div class="ttname"><a href="classph_1_1_bsdf_sample_output.html#a60ec597b8df470ac4c45a064fb1fd23c">ph::BsdfSampleOutput::getL</a></div><div class="ttdeci">const math::Vector3R &amp; getL() const</div><div class="ttdef"><b>Definition</b> BsdfSampleQuery.h:187</div></div>
-<div class="ttc" id="aclassph_1_1_bsdf_sample_output_html_a9c16c0bf8d45ecda70092f985b5e25fd"><div class="ttname"><a href="classph_1_1_bsdf_sample_output.html#a9c16c0bf8d45ecda70092f985b5e25fd">ph::BsdfSampleOutput::getPdfAppliedBsdfCos</a></div><div class="ttdeci">const math::Spectrum &amp; getPdfAppliedBsdfCos() const</div><div class="ttdef"><b>Definition</b> BsdfSampleQuery.h:209</div></div>
-<div class="ttc" id="aclassph_1_1_bsdf_sample_output_html_ab8a034ca50318eaf24b20ef8523a572e"><div class="ttname"><a href="classph_1_1_bsdf_sample_output.html#ab8a034ca50318eaf24b20ef8523a572e">ph::BsdfSampleOutput::isMeasurable</a></div><div class="ttdeci">bool isMeasurable() const</div><div class="ttdoc">Tells whether this sample has potential to contribute. All sampled data should be usable if true is r...</div><div class="ttdef"><b>Definition</b> BsdfSampleQuery.h:218</div></div>
-<div class="ttc" id="aclassph_1_1_bsdf_sample_output_html_aca3543074680a336fae8374e9ca7fb0a"><div class="ttname"><a href="classph_1_1_bsdf_sample_output.html#aca3543074680a336fae8374e9ca7fb0a">ph::BsdfSampleOutput::getCos</a></div><div class="ttdeci">real getCos() const</div><div class="ttdef"><b>Definition</b> BsdfSampleQuery.h:195</div></div>
-<div class="ttc" id="aclassph_1_1_bsdf_sample_output_html_ad0aa6a2f679ab8af98e75690cf760d11"><div class="ttname"><a href="classph_1_1_bsdf_sample_output.html#ad0aa6a2f679ab8af98e75690cf760d11">ph::BsdfSampleOutput::getPdfAppliedBsdf</a></div><div class="ttdeci">math::Spectrum getPdfAppliedBsdf() const</div><div class="ttdef"><b>Definition</b> BsdfSampleQuery.h:203</div></div>
-<div class="ttc" id="aclassph_1_1_bsdf_sample_output_html_ad39af4c2760babbf805b6556c4127df4"><div class="ttname"><a href="classph_1_1_bsdf_sample_output.html#ad39af4c2760babbf805b6556c4127df4">ph::BsdfSampleOutput::setPdfAppliedBsdfCos</a></div><div class="ttdeci">void setPdfAppliedBsdfCos(const math::Spectrum &amp;pdfAppliedBsdfCos, real cos, bool inferMeasurability=true)</div><div class="ttdef"><b>Definition</b> BsdfSampleQuery.h:172</div></div>
-<div class="ttc" id="aclassph_1_1_bsdf_sample_query_html"><div class="ttname"><a href="classph_1_1_bsdf_sample_query.html">ph::BsdfSampleQuery</a></div><div class="ttdoc">Information for generating a BSDF sample.</div><div class="ttdef"><b>Definition</b> BsdfSampleQuery.h:113</div></div>
-<div class="ttc" id="aclassph_1_1_bsdf_sample_query_html_a15de1880de1bfef9ac195e1f7c072164"><div class="ttname"><a href="classph_1_1_bsdf_sample_query.html#a15de1880de1bfef9ac195e1f7c072164">ph::BsdfSampleQuery::inputs</a></div><div class="ttdeci">Input inputs</div><div class="ttdef"><b>Definition</b> BsdfSampleQuery.h:119</div></div>
-<div class="ttc" id="aclassph_1_1_bsdf_sample_query_html_a1bfaa61482d5266d1e8fe1f0dfd3b372"><div class="ttname"><a href="classph_1_1_bsdf_sample_query.html#a1bfaa61482d5266d1e8fe1f0dfd3b372">ph::BsdfSampleQuery::context</a></div><div class="ttdeci">BsdfQueryContext context</div><div class="ttdef"><b>Definition</b> BsdfSampleQuery.h:118</div></div>
+<div class="ttc" id="aclassph_1_1_bsdf_sample_output_html"><div class="ttname"><a href="classph_1_1_bsdf_sample_output.html">ph::BsdfSampleOutput</a></div><div class="ttdoc">Output for BsdfSampleQuery.</div><div class="ttdef"><b>Definition</b> BsdfSampleQuery.h:45</div></div>
+<div class="ttc" id="aclassph_1_1_bsdf_sample_output_html_a01f9a1a81a87562ee67ed8195389ba91"><div class="ttname"><a href="classph_1_1_bsdf_sample_output.html#a01f9a1a81a87562ee67ed8195389ba91">ph::BsdfSampleOutput::setL</a></div><div class="ttdeci">void setL(const math::Vector3R &amp;L)</div><div class="ttdef"><b>Definition</b> BsdfSampleQuery.h:193</div></div>
+<div class="ttc" id="aclassph_1_1_bsdf_sample_output_html_a2a9def6cfad0fb5fd993b6b0f00e396a"><div class="ttname"><a href="classph_1_1_bsdf_sample_output.html#a2a9def6cfad0fb5fd993b6b0f00e396a">ph::BsdfSampleOutput::getRelativeIor2</a></div><div class="ttdeci">real getRelativeIor2() const</div><div class="ttdef"><b>Definition</b> BsdfSampleQuery.h:254</div></div>
+<div class="ttc" id="aclassph_1_1_bsdf_sample_output_html_a31e902ffab25dc433a9709a6a457de36"><div class="ttname"><a href="classph_1_1_bsdf_sample_output.html#a31e902ffab25dc433a9709a6a457de36">ph::BsdfSampleOutput::setRelativeIor</a></div><div class="ttdeci">void setRelativeIor(real relativeIor)</div><div class="ttdef"><b>Definition</b> BsdfSampleQuery.h:275</div></div>
+<div class="ttc" id="aclassph_1_1_bsdf_sample_output_html_a369b992957228850495c4ff1fd871a9b"><div class="ttname"><a href="classph_1_1_bsdf_sample_output.html#a369b992957228850495c4ff1fd871a9b">ph::BsdfSampleOutput::getRelativeIor</a></div><div class="ttdeci">real getRelativeIor() const</div><div class="ttdef"><b>Definition</b> BsdfSampleQuery.h:246</div></div>
+<div class="ttc" id="aclassph_1_1_bsdf_sample_output_html_a40fd24fddc782e7a6341979e3a4f6d23"><div class="ttname"><a href="classph_1_1_bsdf_sample_output.html#a40fd24fddc782e7a6341979e3a4f6d23">ph::BsdfSampleOutput::setMeasurability</a></div><div class="ttdeci">void setMeasurability(bool measurability)</div><div class="ttdoc">Set measurability directly.</div><div class="ttdef"><b>Definition</b> BsdfSampleQuery.h:265</div></div>
+<div class="ttc" id="aclassph_1_1_bsdf_sample_output_html_a60ec597b8df470ac4c45a064fb1fd23c"><div class="ttname"><a href="classph_1_1_bsdf_sample_output.html#a60ec597b8df470ac4c45a064fb1fd23c">ph::BsdfSampleOutput::getL</a></div><div class="ttdeci">const math::Vector3R &amp; getL() const</div><div class="ttdef"><b>Definition</b> BsdfSampleQuery.h:215</div></div>
+<div class="ttc" id="aclassph_1_1_bsdf_sample_output_html_a9c16c0bf8d45ecda70092f985b5e25fd"><div class="ttname"><a href="classph_1_1_bsdf_sample_output.html#a9c16c0bf8d45ecda70092f985b5e25fd">ph::BsdfSampleOutput::getPdfAppliedBsdfCos</a></div><div class="ttdeci">const math::Spectrum &amp; getPdfAppliedBsdfCos() const</div><div class="ttdef"><b>Definition</b> BsdfSampleQuery.h:237</div></div>
+<div class="ttc" id="aclassph_1_1_bsdf_sample_output_html_ab8a034ca50318eaf24b20ef8523a572e"><div class="ttname"><a href="classph_1_1_bsdf_sample_output.html#ab8a034ca50318eaf24b20ef8523a572e">ph::BsdfSampleOutput::isMeasurable</a></div><div class="ttdeci">bool isMeasurable() const</div><div class="ttdoc">Tells whether this sample has potential to contribute. All sampled data should be usable if true is r...</div><div class="ttdef"><b>Definition</b> BsdfSampleQuery.h:260</div></div>
+<div class="ttc" id="aclassph_1_1_bsdf_sample_output_html_aca3543074680a336fae8374e9ca7fb0a"><div class="ttname"><a href="classph_1_1_bsdf_sample_output.html#aca3543074680a336fae8374e9ca7fb0a">ph::BsdfSampleOutput::getCos</a></div><div class="ttdeci">real getCos() const</div><div class="ttdef"><b>Definition</b> BsdfSampleQuery.h:223</div></div>
+<div class="ttc" id="aclassph_1_1_bsdf_sample_output_html_ad0aa6a2f679ab8af98e75690cf760d11"><div class="ttname"><a href="classph_1_1_bsdf_sample_output.html#ad0aa6a2f679ab8af98e75690cf760d11">ph::BsdfSampleOutput::getPdfAppliedBsdf</a></div><div class="ttdeci">math::Spectrum getPdfAppliedBsdf() const</div><div class="ttdef"><b>Definition</b> BsdfSampleQuery.h:231</div></div>
+<div class="ttc" id="aclassph_1_1_bsdf_sample_output_html_ad39af4c2760babbf805b6556c4127df4"><div class="ttname"><a href="classph_1_1_bsdf_sample_output.html#ad39af4c2760babbf805b6556c4127df4">ph::BsdfSampleOutput::setPdfAppliedBsdfCos</a></div><div class="ttdeci">void setPdfAppliedBsdfCos(const math::Spectrum &amp;pdfAppliedBsdfCos, real cos, bool inferMeasurability=true)</div><div class="ttdef"><b>Definition</b> BsdfSampleQuery.h:200</div></div>
+<div class="ttc" id="aclassph_1_1_bsdf_sample_query_html"><div class="ttname"><a href="classph_1_1_bsdf_sample_query.html">ph::BsdfSampleQuery</a></div><div class="ttdoc">Information for generating a BSDF sample.</div><div class="ttdef"><b>Definition</b> BsdfSampleQuery.h:141</div></div>
+<div class="ttc" id="aclassph_1_1_bsdf_sample_query_html_a15de1880de1bfef9ac195e1f7c072164"><div class="ttname"><a href="classph_1_1_bsdf_sample_query.html#a15de1880de1bfef9ac195e1f7c072164">ph::BsdfSampleQuery::inputs</a></div><div class="ttdeci">Input inputs</div><div class="ttdef"><b>Definition</b> BsdfSampleQuery.h:147</div></div>
+<div class="ttc" id="aclassph_1_1_bsdf_sample_query_html_a1bfaa61482d5266d1e8fe1f0dfd3b372"><div class="ttname"><a href="classph_1_1_bsdf_sample_query.html#a1bfaa61482d5266d1e8fe1f0dfd3b372">ph::BsdfSampleQuery::context</a></div><div class="ttdeci">BsdfQueryContext context</div><div class="ttdef"><b>Definition</b> BsdfSampleQuery.h:146</div></div>
 <div class="ttc" id="aclassph_1_1_bsdf_sample_query_html_a3d81c1bbcd2fac224e5ff83640374c24"><div class="ttname"><a href="classph_1_1_bsdf_sample_query.html#a3d81c1bbcd2fac224e5ff83640374c24">ph::BsdfSampleQuery::BsdfSampleQuery</a></div><div class="ttdeci">BsdfSampleQuery()=default</div></div>
-<div class="ttc" id="aclassph_1_1_bsdf_sample_query_html_ae5f5dce90d4b33005528d3725d8f2ede"><div class="ttname"><a href="classph_1_1_bsdf_sample_query.html#ae5f5dce90d4b33005528d3725d8f2ede">ph::BsdfSampleQuery::outputs</a></div><div class="ttdeci">Output outputs</div><div class="ttdef"><b>Definition</b> BsdfSampleQuery.h:120</div></div>
+<div class="ttc" id="aclassph_1_1_bsdf_sample_query_html_ae5f5dce90d4b33005528d3725d8f2ede"><div class="ttname"><a href="classph_1_1_bsdf_sample_query.html#ae5f5dce90d4b33005528d3725d8f2ede">ph::BsdfSampleQuery::outputs</a></div><div class="ttdeci">Output outputs</div><div class="ttdef"><b>Definition</b> BsdfSampleQuery.h:148</div></div>
 <div class="ttc" id="aclassph_1_1_surface_hit_html"><div class="ttname"><a href="classph_1_1_surface_hit.html">ph::SurfaceHit</a></div><div class="ttdef"><b>Definition</b> SurfaceHit.h:57</div></div>
 <div class="ttc" id="aclassph_1_1_surface_hit_html_ac3682ffd128991eba27bf658b07ddbd5"><div class="ttname"><a href="classph_1_1_surface_hit.html#ac3682ffd128991eba27bf658b07ddbd5">ph::SurfaceHit::getReason</a></div><div class="ttdeci">SurfaceHitReason getReason() const</div><div class="ttdef"><b>Definition</b> SurfaceHit.h:162</div></div>
 <div class="ttc" id="aclassph_1_1_t_bit_flags_html_a35e98dd171cbc7aecfc237e6d1621a12"><div class="ttname"><a href="classph_1_1_t_bit_flags.html#a35e98dd171cbc7aecfc237e6d1621a12">ph::TBitFlags::hasExactly</a></div><div class="ttdeci">constexpr bool hasExactly(const FlagsSet &amp;flagsSet) const</div><div class="ttdoc">Checks whether this instance contains exactly the specified flags. No more, no less.</div><div class="ttdef"><b>Definition</b> TBitFlags.ipp:99</div></div>

@@ -125,17 +125,102 @@ For thin lens camera, as its name suggests, the lens system in this camera is as
 \hypertarget{main_feature_overview_autotoc_md26}{}\doxysubsection{\texorpdfstring{Tone-\/mapping}{Tone-\/mapping}}\label{main_feature_overview_autotoc_md26}
 \hypertarget{main_feature_overview_autotoc_md27}{}\doxysubsection{\texorpdfstring{Reading and Writing}{Reading and Writing}}\label{main_feature_overview_autotoc_md27}
 \hypertarget{main_feature_overview_autotoc_md28}{}\doxysubsection{\texorpdfstring{Merging}{Merging}}\label{main_feature_overview_autotoc_md28}
-\hypertarget{main_feature_overview_autotoc_md29}{}\doxysection{\texorpdfstring{Material}{Material}}\label{main_feature_overview_autotoc_md29}
-\hypertarget{main_feature_overview_autotoc_md30}{}\doxysubsection{\texorpdfstring{Surface Behavior}{Surface Behavior}}\label{main_feature_overview_autotoc_md30}
-\hypertarget{main_feature_overview_autotoc_md31}{}\doxysubsection{\texorpdfstring{Volume Behavior}{Volume Behavior}}\label{main_feature_overview_autotoc_md31}
-\hypertarget{main_feature_overview_autotoc_md32}{}\doxysection{\texorpdfstring{Geometry}{Geometry}}\label{main_feature_overview_autotoc_md32}
-To represent a ball in the scene, you can use a \textbf{ sphere geometry}; for a piece of paper on a table, a \textbf{ rectangle geometry} can model it pretty well. Geometries are the core components of a scene, providing the structural framework for all other elements like materials, lights and physical motions. In the following sections, we will explore some common types of geometries available in Photon, giving you a rough idea of how these foundational elements are constructed and used in rendering.\hypertarget{main_feature_overview_autotoc_md33}{}\doxysubsection{\texorpdfstring{Intersectable and Primitive}{Intersectable and Primitive}}\label{main_feature_overview_autotoc_md33}
+\hypertarget{main_feature_overview_material}{}\doxysection{\texorpdfstring{Material}{Material}}\label{main_feature_overview_material}
+We present material implementations with a professional test scene standardized by André Mazzone and Chris Rydalch \cite{Mazzone:2023:Standard}. This scene is specifically designed to facilitate the observation and comparison of material appearances. There is an inset object within the main model that has a 18\% albedo (this value is the current VFX industry standard), which serves as a neutral color comparator. For scene dimensions and other parameters, the \href{https://github.com/usd-wg}{\texttt{ Universal Scene Description Working Group}} has a \href{https://github.com/usd-wg/assets/tree/main/full_assets/StandardShaderBall}{\texttt{ nice entry}} for it, which is more up-\/to-\/date than the \href{https://dl.acm.org/doi/10.1145/3610543.3626181}{\texttt{ original paper}}.
+
+Materials are represented by \textbf{ material data containers}. These containers generate \textbf{ Surface\+Optics} to describe \textbf{ Surface\+Behavior} and \textbf{ Volume\+Optics} to describe \textbf{ Volume\+Behavior}. Surface and volume behavior objects are typically defined with respect to a \textbf{ Primitive}. See the \doxysectlink{main_feature_overview_geometry}{Geometry}{1} section for more details.\hypertarget{main_feature_overview_autotoc_md29}{}\doxysubsection{\texorpdfstring{Matte Opaque}{Matte Opaque}}\label{main_feature_overview_autotoc_md29}
+A classic material that is present in almost every renderer, whether offline or real-\/time, is the Lambertian-\/based diffuse BRDF, first described over 200 years ago by Lambert \cite{Lambert:1760:Photometria}. A generalization of Lambert\textquotesingle{}s model is also implemented, which is often referred to as the Oren-\/\+Nayar reflectance model \cite{Oren:1994:Generalization}. This model describes the surface as a collection of small Lambertian facets, each having a different orientation. We implement these material models as \textbf{ Matte\+Opqaue}. Some examples are shown below\+:
+
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{  
+\begin{DoxyInlineImage}
+\includegraphics[height=\baselineskip,keepaspectratio=true]{lambertian_diffuse_0p5.jpg}%Lambertian Material
+\end{DoxyInlineImage}
+      }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{  
+\begin{DoxyInlineImage}
+\includegraphics[height=\baselineskip,keepaspectratio=true]{oren_nayar_0p5_120deg.jpg}%Oren Nayar Material
+\end{DoxyInlineImage}
+       }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{  
+\begin{DoxyInlineImage}
+\includegraphics[height=\baselineskip,keepaspectratio=true]{lambertian_diffuse_0p5.jpg}%Lambertian Material
+\end{DoxyInlineImage}
+      }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{  
+\begin{DoxyInlineImage}
+\includegraphics[height=\baselineskip,keepaspectratio=true]{oren_nayar_0p5_120deg.jpg}%Oren Nayar Material
+\end{DoxyInlineImage}
+       }\\\cline{1-2}
+\endhead
+\multicolumn{2}{|c|}{\PBS\centering {\bfseries{Left\+: Lambertian diffuse BRDF with 50\% albedo. Right\+: Oren-\/\+Nayar diffuse BRDF with 50\% albedo and 120° facet standard deviation.}}   }\\\cline{1-2}
+\end{longtabu}
+\hypertarget{main_feature_overview_autotoc_md30}{}\doxysubsection{\texorpdfstring{Ideal Substance}{Ideal Substance}}\label{main_feature_overview_autotoc_md30}
+We can simulate some materials that do not exist in the real world. One common example is the idealization of surface roughness, where a perfectly smooth interface is modeled. \textbf{ Ideal\+Substance} makes the visualization of these kinds of materials possible, which is of great interest for both theoretical and practical applications.
+
+ 
+\begin{DoxyImage}
+\includegraphics[width=\textwidth,height=\textheight/2,keepaspectratio=true]{ideal_dielectric.jpg}
+\doxyfigcaption{Ideal glass (index of refraction = 1.51714).}
+\end{DoxyImage}
+   
+
+Photon also supports tinting reflectance and transmittance with user-\/specified values. Note that this is not physically correct since the color of dielectrics comes from internal volume absorption, not from interfaces. This feature is implemented for performance and artistic reasons only.
+
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{  
+\begin{DoxyInlineImage}
+\includegraphics[height=\baselineskip,keepaspectratio=true]{ideal_dielectric_blue_refl_tint.jpg}%Ideal Dielectric Blue Reflection Tint
+\end{DoxyInlineImage}
+      }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{  
+\begin{DoxyInlineImage}
+\includegraphics[height=\baselineskip,keepaspectratio=true]{ideal_dielectric_green_refr_tint.jpg}%Ideal Substance Green Refraction Tint
+\end{DoxyInlineImage}
+       }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{  
+\begin{DoxyInlineImage}
+\includegraphics[height=\baselineskip,keepaspectratio=true]{ideal_dielectric_blue_refl_tint.jpg}%Ideal Dielectric Blue Reflection Tint
+\end{DoxyInlineImage}
+      }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{  
+\begin{DoxyInlineImage}
+\includegraphics[height=\baselineskip,keepaspectratio=true]{ideal_dielectric_green_refr_tint.jpg}%Ideal Substance Green Refraction Tint
+\end{DoxyInlineImage}
+       }\\\cline{1-2}
+\endhead
+\multicolumn{2}{|c|}{\PBS\centering {\bfseries{Left\+: Ideal glass with blue reflection tint. Right\+: Ideal glass with green transmission tint.}}   }\\\cline{1-2}
+\end{longtabu}
+
+
+ 
+\begin{DoxyImage}
+\includegraphics[width=\textwidth,height=\textheight/2,keepaspectratio=true]{ideal_dielectric_blue_refl_green_refr_tint.jpg}
+\doxyfigcaption{Ideal glass with blue reflection and green transmission tint.}
+\end{DoxyImage}
+   \hypertarget{main_feature_overview_autotoc_md31}{}\doxysubsection{\texorpdfstring{Ideal Substance}{Ideal Substance}}\label{main_feature_overview_autotoc_md31}
+\hypertarget{main_feature_overview_autotoc_md32}{}\doxysubsection{\texorpdfstring{Abraded Opaque}{Abraded Opaque}}\label{main_feature_overview_autotoc_md32}
+\hypertarget{main_feature_overview_autotoc_md33}{}\doxysubsection{\texorpdfstring{Abraded Translucent}{Abraded Translucent}}\label{main_feature_overview_autotoc_md33}
+\hypertarget{main_feature_overview_autotoc_md34}{}\doxysubsection{\texorpdfstring{Binary Mixed Surface}{Binary Mixed Surface}}\label{main_feature_overview_autotoc_md34}
+\hypertarget{main_feature_overview_autotoc_md35}{}\doxysubsection{\texorpdfstring{Layered Material}{Layered Material}}\label{main_feature_overview_autotoc_md35}
+\hypertarget{main_feature_overview_autotoc_md36}{}\doxysubsection{\texorpdfstring{Surface Behavior}{Surface Behavior}}\label{main_feature_overview_autotoc_md36}
+\hypertarget{main_feature_overview_autotoc_md37}{}\doxysubsection{\texorpdfstring{Volume Behavior}{Volume Behavior}}\label{main_feature_overview_autotoc_md37}
+\hypertarget{main_feature_overview_geometry}{}\doxysection{\texorpdfstring{Geometry}{Geometry}}\label{main_feature_overview_geometry}
+To represent a ball in the scene, you can use a \textbf{ sphere geometry}; for a piece of paper on a table, a \textbf{ rectangle geometry} can model it pretty well. Geometries are the core components of a scene, providing the structural framework for all other elements like materials, lights and physical motions. In the following sections, we will explore some common types of geometries available in Photon, giving you a rough idea of how these foundational elements are constructed and used in rendering.\hypertarget{main_feature_overview_autotoc_md38}{}\doxysubsection{\texorpdfstring{Intersectable and Primitive}{Intersectable and Primitive}}\label{main_feature_overview_autotoc_md38}
 When a \textbf{ Geometry} is defined in the scene, it will be converted to an \textbf{ Intersectable} before the actual rendering process begins. The renderer further treat some intersectable types as \textbf{ Primitive} from which a richer set of functionalities are expected. In a similar way, some intersectable types are being classified as \textbf{ Intersector} and they typically act as an aggregate of intersectables.
 
 \begin{DoxyNote}{Note}
 While these distinctions are not crucial from a user\textquotesingle{}s perspective, they are important for developers or researchers who wish to delve deeper into the source code. Understanding these classifications also makes engine modifications easier.
 \end{DoxyNote}
-\hypertarget{main_feature_overview_autotoc_md34}{}\doxysubsection{\texorpdfstring{Basic Shapes}{Basic Shapes}}\label{main_feature_overview_autotoc_md34}
+\hypertarget{main_feature_overview_autotoc_md39}{}\doxysubsection{\texorpdfstring{Basic Shapes}{Basic Shapes}}\label{main_feature_overview_autotoc_md39}
 These are common shapes to have in a renderer and are frequently found in other render engines as well. They are useful not only for modeling objects but also for defining the shape of light sources (or anything that requires a shape). Tessellation is also supported on some types of geometries. We start by introducing the rectangular shape, which can be created by \textbf{ rectangle geometry}.
 
  
@@ -191,7 +276,7 @@ Almost all shapes are built from triangle meshes for a typical scene. Games, mod
 \includegraphics[width=\textwidth,height=\textheight/2,keepaspectratio=true]{triangle_mesh.jpg}
 \doxyfigcaption{Stanford bunny built from a triangle mesh.}
 \end{DoxyImage}
-   \hypertarget{main_feature_overview_autotoc_md35}{}\doxysubsection{\texorpdfstring{Advanced Shapes}{Advanced Shapes}}\label{main_feature_overview_autotoc_md35}
+   \hypertarget{main_feature_overview_autotoc_md40}{}\doxysubsection{\texorpdfstring{Advanced Shapes}{Advanced Shapes}}\label{main_feature_overview_autotoc_md40}
 We also support some interesting shapes such as wave and fractals. These special geometries are sometimes useful for modeling a scene. One of them is the \href{https://en.wikipedia.org/wiki/Menger_sponge}{\texttt{ Menger sponge}}, a famous fractal shape. It can be created by \textbf{ Menger sponge geometry}.
 
  
@@ -210,8 +295,8 @@ The wave shape is basically a cuboid with its top surface tessellated according 
 \end{DoxyImage}
    
 
-These advanced shapes add versatility to scene modeling in Photon.\hypertarget{main_feature_overview_autotoc_md36}{}\doxysubsection{\texorpdfstring{Acceleration Structure}{Acceleration Structure}}\label{main_feature_overview_autotoc_md36}
-\hypertarget{main_feature_overview_autotoc_md37}{}\doxysection{\texorpdfstring{Light}{Light}}\label{main_feature_overview_autotoc_md37}
+These advanced shapes add versatility to scene modeling in Photon.\hypertarget{main_feature_overview_autotoc_md41}{}\doxysubsection{\texorpdfstring{Acceleration Structure}{Acceleration Structure}}\label{main_feature_overview_autotoc_md41}
+\hypertarget{main_feature_overview_autotoc_md42}{}\doxysection{\texorpdfstring{Light}{Light}}\label{main_feature_overview_autotoc_md42}
 Lighting is a crucial component in rendering a virtual world. Photon provides various types of light sources and emphasizes the use of physically based units for input parameters. This approach is supported by three primary reasons\+:
 
 
@@ -221,6 +306,62 @@ Lighting is a crucial component in rendering a virtual world. Photon provides va
 \item It is easier to validate the results against real world measurements.
 \end{DoxyItemize}
 
-In Photon, lights are represented by a base actor type {\ttfamily \textbf{ ph\+::\+ALight}}. These light actors will be converted to a series of cooked data, including {\ttfamily \textbf{ ph\+::\+Primitive}} (the geometric shape of the light), {\ttfamily \textbf{ ph\+::\+Surface\+Optics}} (the surface material of the light), {\ttfamily \textbf{ ph\+::\+Emitter}} (the energy source of the light), etc. The following sections give a brief overview on the types of light sources implemented in Photon.\hypertarget{main_feature_overview_autotoc_md38}{}\doxysubsection{\texorpdfstring{Emitter}{Emitter}}\label{main_feature_overview_autotoc_md38}
-\hypertarget{main_feature_overview_autotoc_md39}{}\doxysection{\texorpdfstring{Sample Source}{Sample Source}}\label{main_feature_overview_autotoc_md39}
-\hypertarget{main_feature_overview_autotoc_md40}{}\doxysubsection{\texorpdfstring{Sample Generator}{Sample Generator}}\label{main_feature_overview_autotoc_md40}
+In Photon, lights are represented by a base actor type \textbf{ ALight}. These light actors will be converted to a series of cooked data, including \textbf{ Primitive} (the geometric shape of the light), \textbf{ Surface\+Optics} (the surface material of the light), \textbf{ Emitter} (the energy source of the light), etc. The following sections give a brief overview on the types of light sources implemented in Photon.\hypertarget{main_feature_overview_autotoc_md43}{}\doxysubsection{\texorpdfstring{Area Light}{Area Light}}\label{main_feature_overview_autotoc_md43}
+Photon currently supports \textbf{ rectangular} and \textbf{ spherical} area lights. An \textbf{ area light} emits energy uniformly across its surface, producing a visually pleasing transition between umbra and penumbra. The amount of energy emitted is specified in \href{https://en.wikipedia.org/wiki/Watt}{\texttt{ Watt}}.
+
+ 
+\begin{DoxyImage}
+\includegraphics[width=\textwidth,height=\textheight/2,keepaspectratio=true]{rectangle_light_175W.jpg}
+\doxyfigcaption{A 175 W rectangle light.}
+\end{DoxyImage}
+   
+
+A spherical area light illuminating the same teapots\+:
+
+ 
+\begin{DoxyImage}
+\includegraphics[width=\textwidth,height=\textheight/2,keepaspectratio=true]{sphere_light_300W.jpg}
+\doxyfigcaption{A 300 W sphere light (1 m radius).}
+\end{DoxyImage}
+   \hypertarget{main_feature_overview_autotoc_md44}{}\doxysubsection{\texorpdfstring{Point Light}{Point Light}}\label{main_feature_overview_autotoc_md44}
+In Photon, \textbf{ point light} is implemented as a special spherical area light. This may suprise some, as we treat point lights as a subtype of area lights. The rationale is that traditional point light introduces an additional singularity in the rendering equation, and we already have quite a lot of singularities in the system, e.\+g., pinhole camera and mirror reflection/transmission. Moreover, traditional point lights are not physically possible anyway. Each singularity often requires special routines or conditions to handle properly, and managing them all as the renderer\textquotesingle{}s complexity grows can be cumbersome. The idea is to give point lights a finite surface area, typically a sphere with a 1-\/ to 3-\/cm diameter resembling the size of common light bulbs. \href{http://www.nextlimit.com/maxwell/}{\texttt{ Maxwell Renderer}} has adopted a similar design decision, although the reason behind it may differ. Below is a 300 W point light, emitting roughly the same brightness as the 300 W sphere light shown earlier\+:
+
+ 
+\begin{DoxyImage}
+\includegraphics[width=\textwidth,height=\textheight/2,keepaspectratio=true]{point_light_300W.jpg}
+\doxyfigcaption{A 300 W point light (0.5 cm radius).}
+\end{DoxyImage}
+   \hypertarget{main_feature_overview_autotoc_md45}{}\doxysubsection{\texorpdfstring{Model Light}{Model Light}}\label{main_feature_overview_autotoc_md45}
+\textbf{ Model light} can be considered a superset of \textbf{ area light}. A key difference between them is that while area light need to have a constant emission profile, model light lifted this limitation and allow using variable emission profiles (such as \textbf{ images}) on arbitrary \textbf{ geometry}.
+
+ 
+\begin{DoxyImage}
+\includegraphics[width=\textwidth,height=\textheight/2,keepaspectratio=true]{model_light.jpg}
+\doxyfigcaption{A model light in action\+: the textured teapot is emitting energy from its surface.}
+\end{DoxyImage}
+   \hypertarget{main_feature_overview_autotoc_md46}{}\doxysubsection{\texorpdfstring{IES Light Profiles}{IES Light Profiles}}\label{main_feature_overview_autotoc_md46}
+An IES light profile stores the distribution of emitted energy of a light fixture. The majority of the datasets are provided by lighting manufacturers and are particularly useful for interior design and architecture visualization. Most commercial renderers can parse and render IES-\/based lights, and even some game engines support them. Photon does not treat IES light profiles as energy distribution functions, rather, they are interpreted as energy attenuating filters (effectively normalizing energy values to \mbox{[}0, 1\mbox{]}, see \textbf{ IES attenuated light}). This approach allows users to adjust total energy emitted by a light source freely, without being constrained by the absolute energy values stroed in the IES light profile. Still, it is always possible to extract the maximum energy density from an IES data file then applying the attenuation to faithfully reproduce the light fixture in the renderer.
+
+ 
+\begin{DoxyImage}
+\includegraphics[width=\textwidth,height=\textheight/2,keepaspectratio=true]{ies_point_light_300W.jpg}
+\doxyfigcaption{An interesting IES light profile applied on a 300 W point light.}
+\end{DoxyImage}
+   \hypertarget{main_feature_overview_autotoc_md47}{}\doxysubsection{\texorpdfstring{Sky Dome}{Sky Dome}}\label{main_feature_overview_autotoc_md47}
+A powerful method of lighting is image based techniques, also known as environment map or HDRI lighting. The main idea is to assume energy from far regions can be tabulated with direction vectors as entries. Lighting up a scene with HDRIs is usually the fastest and the most effective way to achieve natural-\/looking results. In photon, we call this type of light source a \textbf{ dome light}. For a nice collection of HDR environment maps, visit \href{https://hdrihaven.com/}{\texttt{ https\+://hdrihaven.\+com/}}. Shown below is the same demo scene lit with an \textbf{ image dome} source\+:
+
+ 
+\begin{DoxyImageNoCaption}
+  \mbox{\includegraphics[width=\textwidth,height=\textheight/2,keepaspectratio=true]{env_light.jpg}}
+\end{DoxyImageNoCaption}
+   
+
+Another approach to lighting a scene is to physically model the energy coming from the sky. When it comes to sun-\/sky models, a classic example is the model by Preetham et al. \cite{Preetham:1999:Practical} This model approximates the absolute value of radiant energy coming from the sky using a set of formulae. Given the latitude, longitude, date and time of the target location, we can analytically generate the sun and sky using \textbf{ Preetham dome}.
+
+ 
+\begin{DoxyImage}
+\includegraphics[width=\textwidth,height=\textheight/2,keepaspectratio=true]{preetham_light.jpg}
+\doxyfigcaption{New York City illuminated by the morning sunlight at Helsinki (60.2° N, 24.9° E) on Dec. 20.}
+\end{DoxyImage}
+   \hypertarget{main_feature_overview_autotoc_md48}{}\doxysection{\texorpdfstring{Sample Source}{Sample Source}}\label{main_feature_overview_autotoc_md48}
+\hypertarget{main_feature_overview_autotoc_md49}{}\doxysubsection{\texorpdfstring{Sample Generator}{Sample Generator}}\label{main_feature_overview_autotoc_md49}

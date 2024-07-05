@@ -11,5 +11,9 @@ var enums_8h =
     [ "EMISStyle", "enums_8h.html#a780154430f4189e2ebe4fadc88efd0bb", [
       [ "Balance", "enums_8h.html#a780154430f4189e2ebe4fadc88efd0bba99a808d8d16122d70e44bd7f709d30fb", null ],
       [ "Power", "enums_8h.html#a780154430f4189e2ebe4fadc88efd0bbadd4fe0cc913f704600b97d1f5dd285de", null ]
+    ] ],
+    [ "ETransport", "enums_8h.html#a3f1c39ae8879cc69ac22c3be15f9669b", [
+      [ "Radiance", "enums_8h.html#a3f1c39ae8879cc69ac22c3be15f9669ba955d9ba35580bdcc7bed3f11736b0f76", null ],
+      [ "Importance", "enums_8h.html#a3f1c39ae8879cc69ac22c3be15f9669baf0d806461f33568d758feb27d468352a", null ]
     ] ]
 ];

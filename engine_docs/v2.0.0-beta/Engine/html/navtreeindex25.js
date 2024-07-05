@@ -1,5 +1,15 @@
 var NAVTREEINDEX25 =
 {
+"classph_1_1_sample_generator.html#a9edb109e3a59ca98916a04396bd18f64":[5,0,0,305,11],
+"classph_1_1_sample_generator.html#a9edb109e3a59ca98916a04396bd18f64":[7,0,0,295,11],
+"classph_1_1_sample_generator.html#aa4f9f004fb02f33836562de91ce1fae2":[5,0,0,305,8],
+"classph_1_1_sample_generator.html#aa4f9f004fb02f33836562de91ce1fae2":[7,0,0,295,8],
+"classph_1_1_sample_generator.html#ac3def52a89b46c93603a96f084dca43b":[5,0,0,305,1],
+"classph_1_1_sample_generator.html#ac3def52a89b46c93603a96f084dca43b":[7,0,0,295,1],
+"classph_1_1_sample_generator.html#ad18e2cc85a9bb8f4fc8df6031e60cdeb":[5,0,0,305,0],
+"classph_1_1_sample_generator.html#ad18e2cc85a9bb8f4fc8df6031e60cdeb":[7,0,0,295,0],
+"classph_1_1_sample_generator.html#ada73517fb696bb7daccdbf26d0fc53cc":[5,0,0,305,6],
+"classph_1_1_sample_generator.html#ada73517fb696bb7daccdbf26d0fc53cc":[7,0,0,295,6],
 "classph_1_1_sample_generator.html#adbca8efb8c2ee12f0da1b714a77e12bd":[5,0,0,305,7],
 "classph_1_1_sample_generator.html#adbca8efb8c2ee12f0da1b714a77e12bd":[7,0,0,295,7],
 "classph_1_1_sample_generator.html#af3a0506e6f463c5a63d67c424e36304c":[5,0,0,305,5],
@@ -239,15 +249,5 @@ var NAVTREEINDEX25 =
 "classph_1_1_schlick_approx_conductor_fresnel.html#acb45d60cef073e37b5732be0efc5d38f":[5,0,0,319,2],
 "classph_1_1_schlick_approx_conductor_fresnel.html#acb45d60cef073e37b5732be0efc5d38f":[7,0,0,309,2],
 "classph_1_1_schlick_approx_dielectric_fresnel.html":[5,0,0,320],
-"classph_1_1_schlick_approx_dielectric_fresnel.html":[7,0,0,310],
-"classph_1_1_schlick_approx_dielectric_fresnel.html#a96b394e875a5eec68a941c6b0c35ba43":[5,0,0,320,1],
-"classph_1_1_schlick_approx_dielectric_fresnel.html#a96b394e875a5eec68a941c6b0c35ba43":[7,0,0,310,1],
-"classph_1_1_schlick_approx_dielectric_fresnel.html#ac5d39450798c7af10ff50edc22743480":[5,0,0,320,0],
-"classph_1_1_schlick_approx_dielectric_fresnel.html#ac5d39450798c7af10ff50edc22743480":[7,0,0,310,0],
-"classph_1_1_sdl_class.html":[5,0,0,321],
-"classph_1_1_sdl_class.html":[7,0,0,311],
-"classph_1_1_sdl_class.html#a13121b39121583a751c3f16cf82a2233":[5,0,0,321,25],
-"classph_1_1_sdl_class.html#a13121b39121583a751c3f16cf82a2233":[7,0,0,311,25],
-"classph_1_1_sdl_class.html#a1b596f34643d7bbede7a591f5bd659d1":[5,0,0,321,27],
-"classph_1_1_sdl_class.html#a1b596f34643d7bbede7a591f5bd659d1":[7,0,0,311,27]
+"classph_1_1_schlick_approx_dielectric_fresnel.html":[7,0,0,310]
 };

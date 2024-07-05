@@ -1,5 +1,15 @@
 var NAVTREEINDEX43 =
 {
+"classph_1_1math_1_1_t_indexed_vector3.html":[5,0,0,11,49],
+"classph_1_1math_1_1_t_indexed_vector3.html":[7,0,0,4,45],
+"classph_1_1math_1_1_t_line_segment.html":[5,0,0,11,51],
+"classph_1_1math_1_1_t_line_segment.html":[7,0,0,4,47],
+"classph_1_1math_1_1_t_line_segment.html#a259eb54a360327a01d002f9ccfb0e940":[5,0,0,11,51,14],
+"classph_1_1math_1_1_t_line_segment.html#a259eb54a360327a01d002f9ccfb0e940":[7,0,0,4,47,14],
+"classph_1_1math_1_1_t_line_segment.html#a4bfd982487825dce403e61385af5a71e":[5,0,0,11,51,5],
+"classph_1_1math_1_1_t_line_segment.html#a4bfd982487825dce403e61385af5a71e":[7,0,0,4,47,5],
+"classph_1_1math_1_1_t_line_segment.html#a4f1d7d83b56d27e3f6edad58baa55e00":[5,0,0,11,51,13],
+"classph_1_1math_1_1_t_line_segment.html#a4f1d7d83b56d27e3f6edad58baa55e00":[7,0,0,4,47,13],
 "classph_1_1math_1_1_t_line_segment.html#a57474330aa822982543e7e84395615a5":[5,0,0,11,51,2],
 "classph_1_1math_1_1_t_line_segment.html#a57474330aa822982543e7e84395615a5":[7,0,0,4,47,2],
 "classph_1_1math_1_1_t_line_segment.html#a588ff84da8c9cf249fd988d174c9c186":[5,0,0,11,51,7],
@@ -239,15 +249,5 @@ var NAVTREEINDEX43 =
 "classph_1_1math_1_1_t_orthonormal_basis3.html#a0ef75a37f90af1da0b37f77b970c8dcc":[5,0,0,11,60,2],
 "classph_1_1math_1_1_t_orthonormal_basis3.html#a0ef75a37f90af1da0b37f77b970c8dcc":[7,0,0,4,56,2],
 "classph_1_1math_1_1_t_orthonormal_basis3.html#a0f7cfe829b14de51d6b0992331cef087":[5,0,0,11,60,28],
-"classph_1_1math_1_1_t_orthonormal_basis3.html#a0f7cfe829b14de51d6b0992331cef087":[7,0,0,4,56,28],
-"classph_1_1math_1_1_t_orthonormal_basis3.html#a292a84d14f5ded9fcb640de83d2289d0":[5,0,0,11,60,9],
-"classph_1_1math_1_1_t_orthonormal_basis3.html#a292a84d14f5ded9fcb640de83d2289d0":[7,0,0,4,56,9],
-"classph_1_1math_1_1_t_orthonormal_basis3.html#a2da892795c848c0801eb782650117d3b":[5,0,0,11,60,10],
-"classph_1_1math_1_1_t_orthonormal_basis3.html#a2da892795c848c0801eb782650117d3b":[7,0,0,4,56,10],
-"classph_1_1math_1_1_t_orthonormal_basis3.html#a437c567a018e401b7b26d2d6247359f7":[5,0,0,11,60,16],
-"classph_1_1math_1_1_t_orthonormal_basis3.html#a437c567a018e401b7b26d2d6247359f7":[7,0,0,4,56,16],
-"classph_1_1math_1_1_t_orthonormal_basis3.html#a4cf958e335bc7a1d634e6a16d0355853":[5,0,0,11,60,12],
-"classph_1_1math_1_1_t_orthonormal_basis3.html#a4cf958e335bc7a1d634e6a16d0355853":[7,0,0,4,56,12],
-"classph_1_1math_1_1_t_orthonormal_basis3.html#a55e62a1e93af1285f0f9bab36b8f0b6e":[5,0,0,11,60,8],
-"classph_1_1math_1_1_t_orthonormal_basis3.html#a55e62a1e93af1285f0f9bab36b8f0b6e":[7,0,0,4,56,8]
+"classph_1_1math_1_1_t_orthonormal_basis3.html#a0f7cfe829b14de51d6b0992331cef087":[7,0,0,4,56,28]
 };
