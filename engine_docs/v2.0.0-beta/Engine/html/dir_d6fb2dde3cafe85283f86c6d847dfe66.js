@@ -6,6 +6,7 @@ var dir_d6fb2dde3cafe85283f86c6d847dfe66 =
     [ "ConductorFresnel.h", "_conductor_fresnel_8h.html", "_conductor_fresnel_8h" ],
     [ "DielectricFresnel.cpp", "_dielectric_fresnel_8cpp.html", null ],
     [ "DielectricFresnel.h", "_dielectric_fresnel_8h.html", "_dielectric_fresnel_8h" ],
+    [ "enums.h", "_surface_behavior_2_property_2enums_8h.html", "_surface_behavior_2_property_2enums_8h" ],
     [ "ExactConductorFresnel.cpp", "_exact_conductor_fresnel_8cpp.html", null ],
     [ "ExactConductorFresnel.h", "_exact_conductor_fresnel_8h.html", "_exact_conductor_fresnel_8h" ],
     [ "ExactDielectricFresnel.cpp", "_exact_dielectric_fresnel_8cpp.html", null ],
@@ -21,5 +22,9 @@ var dir_d6fb2dde3cafe85283f86c6d847dfe66 =
     [ "SchlickApproxConductorFresnel.cpp", "_schlick_approx_conductor_fresnel_8cpp.html", null ],
     [ "SchlickApproxConductorFresnel.h", "_schlick_approx_conductor_fresnel_8h.html", "_schlick_approx_conductor_fresnel_8h" ],
     [ "SchlickApproxDielectricFresnel.cpp", "_schlick_approx_dielectric_fresnel_8cpp.html", null ],
-    [ "SchlickApproxDielectricFresnel.h", "_schlick_approx_dielectric_fresnel_8h.html", "_schlick_approx_dielectric_fresnel_8h" ]
+    [ "SchlickApproxDielectricFresnel.h", "_schlick_approx_dielectric_fresnel_8h.html", "_schlick_approx_dielectric_fresnel_8h" ],
+    [ "ShapeInvariantMicrofacet.cpp", "_shape_invariant_microfacet_8cpp.html", null ],
+    [ "ShapeInvariantMicrofacet.h", "_shape_invariant_microfacet_8h.html", "_shape_invariant_microfacet_8h" ],
+    [ "TrowbridgeReitz.cpp", "_trowbridge_reitz_8cpp.html", null ],
+    [ "TrowbridgeReitz.h", "_trowbridge_reitz_8h.html", "_trowbridge_reitz_8h" ]
 ];

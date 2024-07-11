@@ -13,6 +13,7 @@ var namespaceph_1_1lta =
     [ "EDomain", "namespaceph_1_1lta.html#a517f9714c97ec4a5bcdd5beae0eaf9dd", [
       [ "Empty", "namespaceph_1_1lta.html#a517f9714c97ec4a5bcdd5beae0eaf9ddace2c8aed9c2fa0cfbed56cbda4d8bf07", null ],
       [ "SolidAngle", "namespaceph_1_1lta.html#a517f9714c97ec4a5bcdd5beae0eaf9dda3f8ffe43765c1baeaa1f3644b48e23b2", null ],
+      [ "HalfSolidAngle", "namespaceph_1_1lta.html#a517f9714c97ec4a5bcdd5beae0eaf9dda7f68bd71d0f54b4dd0197456b146ff75", null ],
       [ "Area", "namespaceph_1_1lta.html#a517f9714c97ec4a5bcdd5beae0eaf9ddadeec4ff19974f12ed781cb9a59064214", null ],
       [ "UV01", "namespaceph_1_1lta.html#a517f9714c97ec4a5bcdd5beae0eaf9ddaf3d7d007f2c4d9612c4128a2a6a8b011", null ],
       [ "UVW01", "namespaceph_1_1lta.html#a517f9714c97ec4a5bcdd5beae0eaf9ddac75c6f8c5e1c2970cf2feaf8a7331651", null ],

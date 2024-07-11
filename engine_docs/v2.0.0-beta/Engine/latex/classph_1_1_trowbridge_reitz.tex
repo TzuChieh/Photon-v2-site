@@ -1,0 +1,210 @@
+\doxysection{ph\+::Trowbridge\+Reitz Class Reference}
+\hypertarget{classph_1_1_trowbridge_reitz}{}\label{classph_1_1_trowbridge_reitz}\index{ph::TrowbridgeReitz@{ph::TrowbridgeReitz}}
+
+
+Trowbridge-\/\+Reitz distribution (GGX). See the original paper by Trowbridge et al. \cite{Trowbridge:1975:Average}. The paper "{}\+Microfacet Models for Refraction through Rough Surfaces"{} by Walter et al. \cite{Walter:2007:Microfacet} provides a nice explanation, too.  
+
+
+
+
+{\ttfamily \#include $<$Trowbridge\+Reitz.\+h$>$}
+
+Inheritance diagram for ph\+::Trowbridge\+Reitz\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.761905cm]{classph_1_1_trowbridge_reitz}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classph_1_1_trowbridge_reitz_aa767f1d57eeef778bc84b2f5d3a91915}{Trowbridge\+Reitz}} (\mbox{\hyperlink{namespaceph_a0c0fa392ffb753722f245acbe724095f}{EMasking\+Shadowing}} masking\+Shadowing\+Type)
+\item 
+std\+::array$<$ real, 2 $>$ \mbox{\hyperlink{classph_1_1_trowbridge_reitz_a0ffebe60527177de92f632fc0effd28f}{get\+Alphas}} (const \mbox{\hyperlink{classph_1_1_surface_hit}{Surface\+Hit}} \&X) const override=0
+\item 
+real \mbox{\hyperlink{classph_1_1_trowbridge_reitz_a6c878329d85a7adeea045e0204e496ee}{lambda}} (const \mbox{\hyperlink{classph_1_1_surface_hit}{Surface\+Hit}} \&X, const \mbox{\hyperlink{namespaceph_1_1math_a7f5d9bea70db00eb52ece79b05e544c8}{math\+::\+Vector3R}} \&N, const \mbox{\hyperlink{namespaceph_1_1math_a7f5d9bea70db00eb52ece79b05e544c8}{math\+::\+Vector3R}} \&H, const \mbox{\hyperlink{namespaceph_1_1math_a7f5d9bea70db00eb52ece79b05e544c8}{math\+::\+Vector3R}} \&unit\+Dir, const std\+::array$<$ real, 2 $>$ \&alphas) const override=0
+\begin{DoxyCompactList}\small\item\em The $ \Lambda \left( a \right) $ function that appears in the masking-\/shadowing term. For isotropic distributions, the variable $ a $ is normally calculated as $ a = \frac{1}{\alpha \tan \left( \theta \right)} $, where $ \frac{1}{\tan \left( \theta \right)} $ is the slope of the unit direction {\ttfamily unit\+Dir} (with respect to the macrosurface normal {\ttfamily N}. For anisotropic distributions, see the implementation of {\ttfamily \doxylink{classph_1_1_aniso_trowbridge_reitz}{Aniso\+Trowbridge\+Reitz}} as an example for calculating $ a $ from the parameters. \end{DoxyCompactList}\item 
+real \mbox{\hyperlink{classph_1_1_trowbridge_reitz_a2aa124197f17767b9c7b7b29ac061371}{distribution}} (const \mbox{\hyperlink{classph_1_1_surface_hit}{Surface\+Hit}} \&X, const \mbox{\hyperlink{namespaceph_1_1math_a7f5d9bea70db00eb52ece79b05e544c8}{math\+::\+Vector3R}} \&N, const \mbox{\hyperlink{namespaceph_1_1math_a7f5d9bea70db00eb52ece79b05e544c8}{math\+::\+Vector3R}} \&H) const override=0
+\begin{DoxyCompactList}\small\item\em Distribution of the microfacet normal. The $ D $ term. Also commonly knwon as the NDF (normal distribution function). This term is defined in the half-\/angle/microfacet space (the angle between {\ttfamily N} and {\ttfamily H}) unless otherwise noted. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classph_1_1_trowbridge_reitz_ab18b918f2bd6300ea031fa670c14ab1b}{sampleH}} (const \mbox{\hyperlink{classph_1_1_surface_hit}{Surface\+Hit}} \&X, const \mbox{\hyperlink{namespaceph_1_1math_a7f5d9bea70db00eb52ece79b05e544c8}{math\+::\+Vector3R}} \&N, const std\+::array$<$ real, 2 $>$ \&sample, \mbox{\hyperlink{namespaceph_1_1math_a7f5d9bea70db00eb52ece79b05e544c8}{math\+::\+Vector3R}} \texorpdfstring{$\ast$}{*}out\+\_\+H) const override=0
+\begin{DoxyCompactList}\small\item\em Generate a microfacet normal {\ttfamily H} for the distribution. This samples all possible {\ttfamily H} vectors for the distribution. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classph_1_1_trowbridge_reitz_a31b5c6a5165f4aec00aae2b704f6a951}{sample\+VisibleH}} (const \mbox{\hyperlink{classph_1_1_surface_hit}{Surface\+Hit}} \&X, const \mbox{\hyperlink{namespaceph_1_1math_a7f5d9bea70db00eb52ece79b05e544c8}{math\+::\+Vector3R}} \&N, const \mbox{\hyperlink{namespaceph_1_1math_a7f5d9bea70db00eb52ece79b05e544c8}{math\+::\+Vector3R}} \&V, const std\+::array$<$ real, 2 $>$ \&sample, \mbox{\hyperlink{namespaceph_1_1math_a7f5d9bea70db00eb52ece79b05e544c8}{math\+::\+Vector3R}} \texorpdfstring{$\ast$}{*}out\+\_\+H) const override
+\begin{DoxyCompactList}\small\item\em Same as {\ttfamily \doxylink{classph_1_1_trowbridge_reitz_ab18b918f2bd6300ea031fa670c14ab1b}{sample\+H()}}, but tries to take geometry term into consideration. This samples only potentially visible {\ttfamily H} vectors for the distribution. If unable to fully or partly incorporate visibility information from the geometry term, this method will fallback to {\ttfamily \doxylink{classph_1_1_trowbridge_reitz_ab18b918f2bd6300ea031fa670c14ab1b}{sample\+H()}}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classph_1_1lta_1_1_p_d_f}{lta\+::\+PDF}} \mbox{\hyperlink{classph_1_1_trowbridge_reitz_a6dbf40b5a8c21337a6bc76947b75214e}{pdf\+Sample\+VisibleH}} (const \mbox{\hyperlink{classph_1_1_surface_hit}{Surface\+Hit}} \&X, const \mbox{\hyperlink{namespaceph_1_1math_a7f5d9bea70db00eb52ece79b05e544c8}{math\+::\+Vector3R}} \&N, const \mbox{\hyperlink{namespaceph_1_1math_a7f5d9bea70db00eb52ece79b05e544c8}{math\+::\+Vector3R}} \&H, const \mbox{\hyperlink{namespaceph_1_1math_a7f5d9bea70db00eb52ece79b05e544c8}{math\+::\+Vector3R}} \&V) const override
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classph_1_1_shape_invariant_microfacet}{ph\+::\+Shape\+Invariant\+Microfacet}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classph_1_1_shape_invariant_microfacet_a97d959b7fa6f8992079eedd33fa9069d}{Shape\+Invariant\+Microfacet}} (\mbox{\hyperlink{namespaceph_a0c0fa392ffb753722f245acbe724095f}{EMasking\+Shadowing}} masking\+Shadowing\+Type)
+\item 
+real \mbox{\hyperlink{classph_1_1_shape_invariant_microfacet_a18f5cdb724cd59545dec58a98e9b4131}{geometry}} (const \mbox{\hyperlink{classph_1_1_surface_hit}{Surface\+Hit}} \&X, const \mbox{\hyperlink{namespaceph_1_1math_a7f5d9bea70db00eb52ece79b05e544c8}{math\+::\+Vector3R}} \&N, const \mbox{\hyperlink{namespaceph_1_1math_a7f5d9bea70db00eb52ece79b05e544c8}{math\+::\+Vector3R}} \&H, const \mbox{\hyperlink{namespaceph_1_1math_a7f5d9bea70db00eb52ece79b05e544c8}{math\+::\+Vector3R}} \&L, const \mbox{\hyperlink{namespaceph_1_1math_a7f5d9bea70db00eb52ece79b05e544c8}{math\+::\+Vector3R}} \&V) const override
+\begin{DoxyCompactList}\small\item\em Masking and shadowing due to nearby microfacets. The $ G $ term. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classph_1_1lta_1_1_p_d_f}{lta\+::\+PDF}} \mbox{\hyperlink{classph_1_1_shape_invariant_microfacet_a66942003496cff7c3d2c406b12b5c67c}{pdf\+SampleH}} (const \mbox{\hyperlink{classph_1_1_surface_hit}{Surface\+Hit}} \&X, const \mbox{\hyperlink{namespaceph_1_1math_a7f5d9bea70db00eb52ece79b05e544c8}{math\+::\+Vector3R}} \&N, const \mbox{\hyperlink{namespaceph_1_1math_a7f5d9bea70db00eb52ece79b05e544c8}{math\+::\+Vector3R}} \&H) const override
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classph_1_1_microfacet}{ph\+::\+Microfacet}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classph_1_1_microfacet_add0f4ae0b4ee374763dfb6de9e9c5ef5}{\texorpdfstring{$\sim$}{\string~}\+Microfacet}} ()=default
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Member Functions inherited from \mbox{\hyperlink{classph_1_1_shape_invariant_microfacet}{ph\+::\+Shape\+Invariant\+Microfacet}}}
+\begin{DoxyCompactItemize}
+\item 
+real \mbox{\hyperlink{classph_1_1_shape_invariant_microfacet_a7565e65c5fc49eefe1b773819da07b16}{smith\+G1}} (real lambda\+Value) const
+\item 
+real \mbox{\hyperlink{classph_1_1_shape_invariant_microfacet_a3924ed3af13bdd0b9d3c0edefa289387}{empirical\+Phi\+Correlation}} (const \mbox{\hyperlink{classph_1_1_surface_hit}{Surface\+Hit}} \&X, const \mbox{\hyperlink{namespaceph_1_1math_a7f5d9bea70db00eb52ece79b05e544c8}{math\+::\+Vector3R}} \&L, const \mbox{\hyperlink{namespaceph_1_1math_a7f5d9bea70db00eb52ece79b05e544c8}{math\+::\+Vector3R}} \&V) const
+\item 
+real \mbox{\hyperlink{classph_1_1_shape_invariant_microfacet_a4dff398df95cf9caecf0a05f0354243a}{projected\+Distribution}} (const \mbox{\hyperlink{classph_1_1_surface_hit}{Surface\+Hit}} \&X, const \mbox{\hyperlink{namespaceph_1_1math_a7f5d9bea70db00eb52ece79b05e544c8}{math\+::\+Vector3R}} \&N, const \mbox{\hyperlink{namespaceph_1_1math_a7f5d9bea70db00eb52ece79b05e544c8}{math\+::\+Vector3R}} \&H) const
+\item 
+real \mbox{\hyperlink{classph_1_1_shape_invariant_microfacet_a0e8fff5bd849b8a134d61c44350ea797}{visible\+Distribution}} (const \mbox{\hyperlink{classph_1_1_surface_hit}{Surface\+Hit}} \&X, const \mbox{\hyperlink{namespaceph_1_1math_a7f5d9bea70db00eb52ece79b05e544c8}{math\+::\+Vector3R}} \&N, const \mbox{\hyperlink{namespaceph_1_1math_a7f5d9bea70db00eb52ece79b05e544c8}{math\+::\+Vector3R}} \&H, const \mbox{\hyperlink{namespaceph_1_1math_a7f5d9bea70db00eb52ece79b05e544c8}{math\+::\+Vector3R}} \&V) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Protected Member Functions inherited from \mbox{\hyperlink{classph_1_1_microfacet}{ph\+::\+Microfacet}}}
+\begin{DoxyCompactItemize}
+\item 
+static bool \mbox{\hyperlink{classph_1_1_microfacet_aa9df79e36568c25023b8c1268b4a4995}{is\+Sidedness\+Agreed}} (real NoD, real HoD)
+\item 
+static bool \mbox{\hyperlink{classph_1_1_microfacet_a1316faadbc9d0e83a542612d925dff61}{is\+Sidedness\+Agreed}} (real NoL, real NoV, real HoL, real HoV)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classph_1_1_shape_invariant_microfacet}{ph\+::\+Shape\+Invariant\+Microfacet}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespaceph_a0c0fa392ffb753722f245acbe724095f}{EMasking\+Shadowing}} \mbox{\hyperlink{classph_1_1_shape_invariant_microfacet_a4a4d1dc8b281ce08df4c6f24c3f3c54e}{m\+\_\+masking\+Shadowing\+Type}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Trowbridge-\/\+Reitz distribution (GGX). See the original paper by Trowbridge et al. \cite{Trowbridge:1975:Average}. The paper "{}\+Microfacet Models for Refraction through Rough Surfaces"{} by Walter et al. \cite{Walter:2007:Microfacet} provides a nice explanation, too. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classph_1_1_trowbridge_reitz_aa767f1d57eeef778bc84b2f5d3a91915}\index{ph::TrowbridgeReitz@{ph::TrowbridgeReitz}!TrowbridgeReitz@{TrowbridgeReitz}}
+\index{TrowbridgeReitz@{TrowbridgeReitz}!ph::TrowbridgeReitz@{ph::TrowbridgeReitz}}
+\doxysubsubsection{\texorpdfstring{TrowbridgeReitz()}{TrowbridgeReitz()}}
+{\footnotesize\ttfamily \label{classph_1_1_trowbridge_reitz_aa767f1d57eeef778bc84b2f5d3a91915} 
+ph\+::\+Trowbridge\+Reitz\+::\+Trowbridge\+Reitz (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespaceph_a0c0fa392ffb753722f245acbe724095f}{EMasking\+Shadowing}}}]{masking\+Shadowing\+Type}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classph_1_1_trowbridge_reitz_a2aa124197f17767b9c7b7b29ac061371}\index{ph::TrowbridgeReitz@{ph::TrowbridgeReitz}!distribution@{distribution}}
+\index{distribution@{distribution}!ph::TrowbridgeReitz@{ph::TrowbridgeReitz}}
+\doxysubsubsection{\texorpdfstring{distribution()}{distribution()}}
+{\footnotesize\ttfamily \label{classph_1_1_trowbridge_reitz_a2aa124197f17767b9c7b7b29ac061371} 
+real ph\+::\+Trowbridge\+Reitz\+::distribution (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classph_1_1_surface_hit}{Surface\+Hit}} \&}]{X}{, }\item[{const \mbox{\hyperlink{namespaceph_1_1math_a7f5d9bea70db00eb52ece79b05e544c8}{math\+::\+Vector3R}} \&}]{N}{, }\item[{const \mbox{\hyperlink{namespaceph_1_1math_a7f5d9bea70db00eb52ece79b05e544c8}{math\+::\+Vector3R}} \&}]{H}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [pure virtual]}}
+
+
+
+Distribution of the microfacet normal. The $ D $ term. Also commonly knwon as the NDF (normal distribution function). This term is defined in the half-\/angle/microfacet space (the angle between {\ttfamily N} and {\ttfamily H}) unless otherwise noted. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em H} & The microfacet normal. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyRemark}{Remarks}
+Do not treat this term as the probability density of microfacet normal over solid angle. 
+\end{DoxyRemark}
+
+
+Implements \mbox{\hyperlink{classph_1_1_shape_invariant_microfacet_a319035a3f662a3496b9134b16fc28dde}{ph\+::\+Shape\+Invariant\+Microfacet}}.
+
+
+
+Implemented in \mbox{\hyperlink{classph_1_1_aniso_trowbridge_reitz_a178a10df769c510ece60b4166b917164}{ph\+::\+Aniso\+Trowbridge\+Reitz}}, and \mbox{\hyperlink{classph_1_1_iso_trowbridge_reitz_a66e9bc138e61238cb5a0339a29851ae6}{ph\+::\+Iso\+Trowbridge\+Reitz}}.
+
+\Hypertarget{classph_1_1_trowbridge_reitz_a0ffebe60527177de92f632fc0effd28f}\index{ph::TrowbridgeReitz@{ph::TrowbridgeReitz}!getAlphas@{getAlphas}}
+\index{getAlphas@{getAlphas}!ph::TrowbridgeReitz@{ph::TrowbridgeReitz}}
+\doxysubsubsection{\texorpdfstring{getAlphas()}{getAlphas()}}
+{\footnotesize\ttfamily \label{classph_1_1_trowbridge_reitz_a0ffebe60527177de92f632fc0effd28f} 
+std\+::array$<$ real, 2 $>$ ph\+::\+Trowbridge\+Reitz\+::get\+Alphas (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classph_1_1_surface_hit}{Surface\+Hit}} \&}]{X}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [pure virtual]}}
+
+\begin{DoxyReturn}{Returns}
+$ \left( \alpha_u, \alpha_v \right) $ in the U and V directions of the macrosirface parametrization. Guaranteed to have $ \alpha_u = \alpha_v $ for an isotropic distribution. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classph_1_1_shape_invariant_microfacet_a762ece4612e3f52f8f393f7ec51d399e}{ph\+::\+Shape\+Invariant\+Microfacet}}.
+
+
+
+Implemented in \mbox{\hyperlink{classph_1_1_aniso_trowbridge_reitz_a0c492973b6ca0a636b54803ed293a82e}{ph\+::\+Aniso\+Trowbridge\+Reitz}}, \mbox{\hyperlink{classph_1_1_iso_trowbridge_reitz_a39a86af27995e0bca098048297468b7a}{ph\+::\+Iso\+Trowbridge\+Reitz}}, \mbox{\hyperlink{classph_1_1_iso_trowbridge_reitz_constant_a6c54862e9e670832ab4aab7b79f1aef7}{ph\+::\+Iso\+Trowbridge\+Reitz\+Constant}}, and \mbox{\hyperlink{classph_1_1_iso_trowbridge_reitz_textured_a58914f20a8a428036f7c32d9058f8685}{ph\+::\+Iso\+Trowbridge\+Reitz\+Textured}}.
+
+\Hypertarget{classph_1_1_trowbridge_reitz_a6c878329d85a7adeea045e0204e496ee}\index{ph::TrowbridgeReitz@{ph::TrowbridgeReitz}!lambda@{lambda}}
+\index{lambda@{lambda}!ph::TrowbridgeReitz@{ph::TrowbridgeReitz}}
+\doxysubsubsection{\texorpdfstring{lambda()}{lambda()}}
+{\footnotesize\ttfamily \label{classph_1_1_trowbridge_reitz_a6c878329d85a7adeea045e0204e496ee} 
+real ph\+::\+Trowbridge\+Reitz\+::lambda (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classph_1_1_surface_hit}{Surface\+Hit}} \&}]{X}{, }\item[{const \mbox{\hyperlink{namespaceph_1_1math_a7f5d9bea70db00eb52ece79b05e544c8}{math\+::\+Vector3R}} \&}]{N}{, }\item[{const \mbox{\hyperlink{namespaceph_1_1math_a7f5d9bea70db00eb52ece79b05e544c8}{math\+::\+Vector3R}} \&}]{H}{, }\item[{const \mbox{\hyperlink{namespaceph_1_1math_a7f5d9bea70db00eb52ece79b05e544c8}{math\+::\+Vector3R}} \&}]{unit\+Dir}{, }\item[{const std\+::array$<$ real, 2 $>$ \&}]{alphas}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [pure virtual]}}
+
+
+
+The $ \Lambda \left( a \right) $ function that appears in the masking-\/shadowing term. For isotropic distributions, the variable $ a $ is normally calculated as $ a = \frac{1}{\alpha \tan \left( \theta \right)} $, where $ \frac{1}{\tan \left( \theta \right)} $ is the slope of the unit direction {\ttfamily unit\+Dir} (with respect to the macrosurface normal {\ttfamily N}. For anisotropic distributions, see the implementation of {\ttfamily \doxylink{classph_1_1_aniso_trowbridge_reitz}{Aniso\+Trowbridge\+Reitz}} as an example for calculating $ a $ from the parameters. 
+
+\begin{DoxyNote}{Note}
+This method does not handle sidedness agreement. 
+\end{DoxyNote}
+
+
+Implements \mbox{\hyperlink{classph_1_1_shape_invariant_microfacet_a04535a5d0a6a328d82129b9ed153b638}{ph\+::\+Shape\+Invariant\+Microfacet}}.
+
+
+
+Implemented in \mbox{\hyperlink{classph_1_1_aniso_trowbridge_reitz_a1bd9a7b2e74199166d8f72f5b0981fbb}{ph\+::\+Aniso\+Trowbridge\+Reitz}}, and \mbox{\hyperlink{classph_1_1_iso_trowbridge_reitz_a1a8d609d638babfcd61a43da1be1e0aa}{ph\+::\+Iso\+Trowbridge\+Reitz}}.
+
+\Hypertarget{classph_1_1_trowbridge_reitz_a6dbf40b5a8c21337a6bc76947b75214e}\index{ph::TrowbridgeReitz@{ph::TrowbridgeReitz}!pdfSampleVisibleH@{pdfSampleVisibleH}}
+\index{pdfSampleVisibleH@{pdfSampleVisibleH}!ph::TrowbridgeReitz@{ph::TrowbridgeReitz}}
+\doxysubsubsection{\texorpdfstring{pdfSampleVisibleH()}{pdfSampleVisibleH()}}
+{\footnotesize\ttfamily \label{classph_1_1_trowbridge_reitz_a6dbf40b5a8c21337a6bc76947b75214e} 
+\mbox{\hyperlink{classph_1_1lta_1_1_p_d_f}{lta\+::\+PDF}} ph\+::\+Trowbridge\+Reitz\+::pdf\+Sample\+VisibleH (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classph_1_1_surface_hit}{Surface\+Hit}} \&}]{X}{, }\item[{const \mbox{\hyperlink{namespaceph_1_1math_a7f5d9bea70db00eb52ece79b05e544c8}{math\+::\+Vector3R}} \&}]{N}{, }\item[{const \mbox{\hyperlink{namespaceph_1_1math_a7f5d9bea70db00eb52ece79b05e544c8}{math\+::\+Vector3R}} \&}]{H}{, }\item[{const \mbox{\hyperlink{namespaceph_1_1math_a7f5d9bea70db00eb52ece79b05e544c8}{math\+::\+Vector3R}} \&}]{V}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+\begin{DoxyReturn}{Returns}
+PDF of generating the specific microfacet normal {\ttfamily H} using {\ttfamily \doxylink{classph_1_1_trowbridge_reitz_a31b5c6a5165f4aec00aae2b704f6a951}{sample\+Visible\+H()}}. 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classph_1_1_microfacet_ae1daa8f290d4a5cb785fdd38ed465907}{ph\+::\+Microfacet}}.
+
+\Hypertarget{classph_1_1_trowbridge_reitz_ab18b918f2bd6300ea031fa670c14ab1b}\index{ph::TrowbridgeReitz@{ph::TrowbridgeReitz}!sampleH@{sampleH}}
+\index{sampleH@{sampleH}!ph::TrowbridgeReitz@{ph::TrowbridgeReitz}}
+\doxysubsubsection{\texorpdfstring{sampleH()}{sampleH()}}
+{\footnotesize\ttfamily \label{classph_1_1_trowbridge_reitz_ab18b918f2bd6300ea031fa670c14ab1b} 
+void ph\+::\+Trowbridge\+Reitz\+::sampleH (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classph_1_1_surface_hit}{Surface\+Hit}} \&}]{X}{, }\item[{const \mbox{\hyperlink{namespaceph_1_1math_a7f5d9bea70db00eb52ece79b05e544c8}{math\+::\+Vector3R}} \&}]{N}{, }\item[{const std\+::array$<$ real, 2 $>$ \&}]{sample}{, }\item[{\mbox{\hyperlink{namespaceph_1_1math_a7f5d9bea70db00eb52ece79b05e544c8}{math\+::\+Vector3R}} \texorpdfstring{$\ast$}{*}}]{out\+\_\+H}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [pure virtual]}}
+
+
+
+Generate a microfacet normal {\ttfamily H} for the distribution. This samples all possible {\ttfamily H} vectors for the distribution. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em out\+\_\+H} & The generated microfacet normal. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyRemark}{Remarks}
+Use {\ttfamily \doxylink{classph_1_1_shape_invariant_microfacet_a66942003496cff7c3d2c406b12b5c67c}{pdf\+Sample\+H()}} for the probability density of sampling the generated {\ttfamily H}. {\ttfamily \doxylink{classph_1_1_trowbridge_reitz_a2aa124197f17767b9c7b7b29ac061371}{distribution()}} is not a probability density of microfacet normal. 
+\end{DoxyRemark}
+
+
+Implements \mbox{\hyperlink{classph_1_1_shape_invariant_microfacet_a455abd61be1344105e1ef09e2975bd20}{ph\+::\+Shape\+Invariant\+Microfacet}}.
+
+
+
+Implemented in \mbox{\hyperlink{classph_1_1_aniso_trowbridge_reitz_a2f032e0b0d12ae42f5a2d241110444fc}{ph\+::\+Aniso\+Trowbridge\+Reitz}}, and \mbox{\hyperlink{classph_1_1_iso_trowbridge_reitz_ad8a59ac599a2a9863518f36da7e95410}{ph\+::\+Iso\+Trowbridge\+Reitz}}.
+
+\Hypertarget{classph_1_1_trowbridge_reitz_a31b5c6a5165f4aec00aae2b704f6a951}\index{ph::TrowbridgeReitz@{ph::TrowbridgeReitz}!sampleVisibleH@{sampleVisibleH}}
+\index{sampleVisibleH@{sampleVisibleH}!ph::TrowbridgeReitz@{ph::TrowbridgeReitz}}
+\doxysubsubsection{\texorpdfstring{sampleVisibleH()}{sampleVisibleH()}}
+{\footnotesize\ttfamily \label{classph_1_1_trowbridge_reitz_a31b5c6a5165f4aec00aae2b704f6a951} 
+void ph\+::\+Trowbridge\+Reitz\+::sample\+VisibleH (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classph_1_1_surface_hit}{Surface\+Hit}} \&}]{X}{, }\item[{const \mbox{\hyperlink{namespaceph_1_1math_a7f5d9bea70db00eb52ece79b05e544c8}{math\+::\+Vector3R}} \&}]{N}{, }\item[{const \mbox{\hyperlink{namespaceph_1_1math_a7f5d9bea70db00eb52ece79b05e544c8}{math\+::\+Vector3R}} \&}]{V}{, }\item[{const std\+::array$<$ real, 2 $>$ \&}]{sample}{, }\item[{\mbox{\hyperlink{namespaceph_1_1math_a7f5d9bea70db00eb52ece79b05e544c8}{math\+::\+Vector3R}} \texorpdfstring{$\ast$}{*}}]{out\+\_\+H}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Same as {\ttfamily \doxylink{classph_1_1_trowbridge_reitz_ab18b918f2bd6300ea031fa670c14ab1b}{sample\+H()}}, but tries to take geometry term into consideration. This samples only potentially visible {\ttfamily H} vectors for the distribution. If unable to fully or partly incorporate visibility information from the geometry term, this method will fallback to {\ttfamily \doxylink{classph_1_1_trowbridge_reitz_ab18b918f2bd6300ea031fa670c14ab1b}{sample\+H()}}. 
+
+
+
+Reimplemented from \mbox{\hyperlink{classph_1_1_microfacet_af5635973ab63178ac2e33a9d587e9c63}{ph\+::\+Microfacet}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Source/\+Core/\+Surface\+Behavior/\+Property/\mbox{\hyperlink{_trowbridge_reitz_8h}{Trowbridge\+Reitz.\+h}}\item 
+Source/\+Core/\+Surface\+Behavior/\+Property/\mbox{\hyperlink{_trowbridge_reitz_8cpp}{Trowbridge\+Reitz.\+cpp}}\end{DoxyCompactItemize}

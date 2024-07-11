@@ -406,6 +406,7 @@ var namespaceph =
     [ "SGStratified", "classph_1_1_s_g_stratified.html", "classph_1_1_s_g_stratified" ],
     [ "SGUniformRandom", "classph_1_1_s_g_uniform_random.html", "classph_1_1_s_g_uniform_random" ],
     [ "SGUtil", "classph_1_1_s_g_util.html", null ],
+    [ "ShapeInvariantMicrofacet", "classph_1_1_shape_invariant_microfacet.html", "classph_1_1_shape_invariant_microfacet" ],
     [ "SingleFrameRenderSession", "classph_1_1_single_frame_render_session.html", "classph_1_1_single_frame_render_session" ],
     [ "SingleLensObserver", "classph_1_1_single_lens_observer.html", "classph_1_1_single_lens_observer" ],
     [ "SphereSource", "classph_1_1_sphere_source.html", "classph_1_1_sphere_source" ],
@@ -492,6 +493,7 @@ var namespaceph =
     [ "TReferencedPrimitiveGetter", "structph_1_1_t_referenced_primitive_getter.html", "structph_1_1_t_referenced_primitive_getter" ],
     [ "TRelaxedAtomic", "classph_1_1_t_relaxed_atomic.html", "classph_1_1_t_relaxed_atomic" ],
     [ "TriFace", "classph_1_1_tri_face.html", "classph_1_1_tri_face" ],
+    [ "TrowbridgeReitz", "classph_1_1_trowbridge_reitz.html", "classph_1_1_trowbridge_reitz" ],
     [ "TSampler", "classph_1_1_t_sampler.html", "classph_1_1_t_sampler" ],
     [ "TSamplingFilm", "classph_1_1_t_sampling_film.html", "classph_1_1_t_sampling_film" ],
     [ "TScalarPixelTexture2D", "classph_1_1_t_scalar_pixel_texture2_d.html", "classph_1_1_t_scalar_pixel_texture2_d" ],
@@ -768,6 +770,12 @@ var namespaceph =
       [ "TrowbridgeReitz", "namespaceph.html#adc27a9e67654dae7969a693c5a098a3aa6a5e30a900a5a4e904a907cbc8c491d2", null ],
       [ "Beckmann", "namespaceph.html#adc27a9e67654dae7969a693c5a098a3aad2709c197188889c61725cecd7e02d08", null ]
     ] ],
+    [ "EMaskingShadowing", "namespaceph.html#a0c0fa392ffb753722f245acbe724095f", [
+      [ "HightCorrelated", "namespaceph.html#a0c0fa392ffb753722f245acbe724095faa87be3fbbfdee88228800d38d3c9246f", null ],
+      [ "Separable", "namespaceph.html#a0c0fa392ffb753722f245acbe724095fa218140cc94a645f77dd15a2af6f640c2", null ],
+      [ "DirectionCorrelated", "namespaceph.html#a0c0fa392ffb753722f245acbe724095fa825264b26cbc9ca8644b00dd60a302b7", null ],
+      [ "HeightDirectionCorrelated", "namespaceph.html#a0c0fa392ffb753722f245acbe724095fa64b4251e86241ad733ecea97639e9492", null ]
+    ] ],
     [ "EMathImageOp", "namespaceph.html#a57a17c5b6ec3b4a3672d77c819377fab", [
       [ "Add", "namespaceph.html#a57a17c5b6ec3b4a3672d77c819377fabaec211f7c20af43e742bf2570c3cb84f9", null ],
       [ "Subtract", "namespaceph.html#a57a17c5b6ec3b4a3672d77c819377faba1d9baf077ee87921f57a8fe42d510b65", null ],
@@ -1035,7 +1043,7 @@ var namespaceph =
     [ "get_script_directory", "namespaceph.html#a08e937fb6acacf601e7a5e5d40818fd3", null ],
     [ "init_engine_core", "namespaceph.html#a88835ac567e5eb62c8e75d6161ded599", null ],
     [ "init_engine_IO_infrastructure", "namespaceph.html#a899c29679777ed53118d557aa0e268ac", null ],
-    [ "init_render_engine", "namespaceph.html#ae0473d02550ea7234560578f101c2724", null ],
+    [ "init_render_engine", "namespaceph.html#a60da5e7ab42a0d3a36a7f295bc195104", null ],
     [ "is_big_endian", "namespaceph.html#a6c349a68b88d7c9de75e72be90894a84", null ],
     [ "load5bScene", "namespaceph.html#afe50265099a40986dd7370928dbf868f", null ],
     [ "loadCbox3ObjScene", "namespaceph.html#a10abe887f58a85052819b13c00a4b5cf", null ],
@@ -1150,6 +1158,7 @@ var namespaceph =
     [ "PH_DEFINE_SDL_ENUM", "namespaceph.html#a567a9e0fa9bc44956712408b3194601d", null ],
     [ "PH_DEFINE_SDL_ENUM", "namespaceph.html#a9891596228fa00362f4f2899dbc7df4a", null ],
     [ "PH_DEFINE_SDL_ENUM", "namespaceph.html#ac11403956e6e0d53db6acb19a893554d", null ],
+    [ "PH_DEFINE_SDL_ENUM", "namespaceph.html#ac9f39a9895e68929b346be8ffe2e2576", null ],
     [ "PH_DEFINE_SDL_ENUM", "namespaceph.html#aedf82d563067a357169d6507f995e4b5", null ],
     [ "PH_DEFINE_SDL_ENUM", "namespaceph.html#a221c34ac839ea8cbabfa16a0dd84ba1d", null ],
     [ "PH_DEFINE_SDL_ENUM", "namespaceph.html#a2753f9a35470869d59bf688e5fecb6c6", null ],

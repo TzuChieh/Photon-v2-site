@@ -18,6 +18,7 @@ var namespaceph =
         [ "Windows_8_1", "namespaceph_1_1os.html#a19b458c339590bd8d6525abd294ef2e7a0907e6dff6846372b331cd286daf673e", null ],
         [ "Windows_10", "namespaceph_1_1os.html#a19b458c339590bd8d6525abd294ef2e7a9b7bbc86709af6039f745e3fe7f93d5f", null ]
       ] ],
+      [ "get_executable_path", "namespaceph_1_1os.html#ae362f3365a6b4cff3caa3a1d2bb195a3", null ],
       [ "get_L1_cache_line_size_in_bytes", "namespaceph_1_1os.html#aeb0d82e12deb6d7cb5a40dd7c8f009f9", null ],
       [ "get_windows_version", "namespaceph_1_1os.html#a29851232837d7af4a262fdb1c88570e7", null ]
     ] ],

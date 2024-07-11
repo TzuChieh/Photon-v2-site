@@ -65,7 +65,7 @@ bool \mbox{\hyperlink{classph_1_1_sdl_command_generator_a0cf1d2831bccd4f0c93c3e9
 bool \mbox{\hyperlink{classph_1_1_sdl_scene_file_writer_a990742e87a6ee87e01e0a4078215c587}{begin\+Command}} (const \mbox{\hyperlink{classph_1_1_sdl_class}{Sdl\+Class}} \texorpdfstring{$\ast$}{*}target\+Class, \mbox{\hyperlink{classph_1_1_sdl_output_context}{Sdl\+Output\+Context}} \texorpdfstring{$\ast$}{*}out\+\_\+ctx) override
 \begin{DoxyCompactList}\small\item\em Called when the generator starts producing a command. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classph_1_1_sdl_scene_file_writer_a6379f8fc2694fd61c1cc87e384960ee3}{end\+Command}} () override
-\begin{DoxyCompactList}\small\item\em Called when the generator finishes producing a command. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Called when the generator finishes producing a command. This is called last in the sequence of handler calls for a command. Will not be called on error or if the command is canceled (see {\ttfamily \doxylink{classph_1_1_sdl_scene_file_writer_a990742e87a6ee87e01e0a4078215c587}{begin\+Command()}}). \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classph_1_1_sdl_scene_file_writer_a7feb6759c8a7888dc89dd82e82f4233c}{save\+Resource}} (const \mbox{\hyperlink{classph_1_1_i_sdl_resource}{ISdl\+Resource}} \texorpdfstring{$\ast$}{*}resource, const \mbox{\hyperlink{classph_1_1_sdl_output_context}{Sdl\+Output\+Context}} \&ctx, \mbox{\hyperlink{classph_1_1_sdl_output_clauses}{Sdl\+Output\+Clauses}} \&clauses) override
 \begin{DoxyCompactList}\small\item\em Save target resource into output clauses. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classph_1_1_sdl_scene_file_writer_a63b988be7bd6c7aa2578cc8145f41afe}{command\+Generated}} (std\+::string\+\_\+view command\+Str, const \mbox{\hyperlink{classph_1_1_sdl_output_context}{Sdl\+Output\+Context}} \&ctx) override
@@ -115,8 +115,13 @@ bool ph\+::\+Sdl\+Scene\+File\+Writer\+::begin\+Command (\begin{DoxyParamCaption
 
 Called when the generator starts producing a command. 
 
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em out\+\_\+ctx} & Stores the context for the command. This context will be used for subsequent handlers ({\ttfamily \doxylink{classph_1_1_sdl_scene_file_writer_a7feb6759c8a7888dc89dd82e82f4233c}{save\+Resource()}}, {\ttfamily \doxylink{classph_1_1_sdl_scene_file_writer_a63b988be7bd6c7aa2578cc8145f41afe}{command\+Generated()}}, {\ttfamily \doxylink{classph_1_1_sdl_scene_file_writer_a63b988be7bd6c7aa2578cc8145f41afe}{command\+Generated()}}) for the same command. \\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-Whether to generate command for this class. 
+Whether to generate command for this class. If {\ttfamily false}, this command will be skipped and {\ttfamily \doxylink{classph_1_1_sdl_scene_file_writer_a6379f8fc2694fd61c1cc87e384960ee3}{end\+Command()}} will not be called. 
 \end{DoxyReturn}
 
 
@@ -136,6 +141,8 @@ Called when one or more commands are generated.
 \begin{DoxyParams}{Parameters}
 {\em command\+Str} & The newly generated command(s). \\
 \hline
+{\em ctx} & Context for the command. \\
+\hline
 \end{DoxyParams}
 
 
@@ -149,7 +156,7 @@ void ph\+::\+Sdl\+Scene\+File\+Writer\+::end\+Command (\begin{DoxyParamCaption}{
 
 
 
-Called when the generator finishes producing a command. 
+Called when the generator finishes producing a command. This is called last in the sequence of handler calls for a command. Will not be called on error or if the command is canceled (see {\ttfamily \doxylink{classph_1_1_sdl_scene_file_writer_a990742e87a6ee87e01e0a4078215c587}{begin\+Command()}}). 
 
 
 
@@ -165,6 +172,15 @@ void ph\+::\+Sdl\+Scene\+File\+Writer\+::save\+Resource (\begin{DoxyParamCaption
 
 Save target resource into output clauses. 
 
+
+\begin{DoxyParams}[1]{Parameters}
+ & {\em resource} & The resource to save. \\
+\hline
+ & {\em ctx} & Context for the command. \\
+\hline
+\mbox{\texttt{ out}}  & {\em clauses} & Buffer to append the generated clauses. \\
+\hline
+\end{DoxyParams}
 
 
 Implements \mbox{\hyperlink{classph_1_1_sdl_command_generator_acd4ac424be26d4a1549bdfc44bf5538b}{ph\+::\+Sdl\+Command\+Generator}}.

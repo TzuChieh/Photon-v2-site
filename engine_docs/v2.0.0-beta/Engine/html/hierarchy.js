@@ -383,11 +383,15 @@ var hierarchy =
     [ "ph::KdtreeNode", "classph_1_1_kdtree_node.html", null ],
     [ "ph::LbLayer", "classph_1_1_lb_layer.html", null ],
     [ "ph::Microfacet", "classph_1_1_microfacet.html", [
-      [ "ph::AnisoTrowbridgeReitz", "classph_1_1_aniso_trowbridge_reitz.html", null ],
-      [ "ph::IsoBeckmann", "classph_1_1_iso_beckmann.html", null ],
-      [ "ph::IsoTrowbridgeReitz", "classph_1_1_iso_trowbridge_reitz.html", [
-        [ "ph::IsoTrowbridgeReitzConstant", "classph_1_1_iso_trowbridge_reitz_constant.html", null ],
-        [ "ph::IsoTrowbridgeReitzTextured", "classph_1_1_iso_trowbridge_reitz_textured.html", null ]
+      [ "ph::ShapeInvariantMicrofacet", "classph_1_1_shape_invariant_microfacet.html", [
+        [ "ph::IsoBeckmann", "classph_1_1_iso_beckmann.html", null ],
+        [ "ph::TrowbridgeReitz", "classph_1_1_trowbridge_reitz.html", [
+          [ "ph::AnisoTrowbridgeReitz", "classph_1_1_aniso_trowbridge_reitz.html", null ],
+          [ "ph::IsoTrowbridgeReitz", "classph_1_1_iso_trowbridge_reitz.html", [
+            [ "ph::IsoTrowbridgeReitzConstant", "classph_1_1_iso_trowbridge_reitz_constant.html", null ],
+            [ "ph::IsoTrowbridgeReitzTextured", "classph_1_1_iso_trowbridge_reitz_textured.html", null ]
+          ] ]
+        ] ]
       ] ]
     ] ],
     [ "ph::MicrosurfaceInfo", "classph_1_1_microsurface_info.html", null ],

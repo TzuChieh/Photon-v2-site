@@ -555,9 +555,23 @@
     </member>
     <member kind="define">
       <type>#define</type>
+      <name>PH_DEBUG_LOG_STRING_ONCE</name>
+      <anchorfile>logging_8h.html</anchorfile>
+      <anchor>a897b7befdf8e221357aaea94eacada90</anchor>
+      <arglist>(groupName, rawString)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
       <name>PH_DEBUG_LOG</name>
       <anchorfile>logging_8h.html</anchorfile>
       <anchor>a56d16cb63909e3b26b3fcce541d970e1</anchor>
+      <arglist>(groupName, formatString,...)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>PH_DEBUG_LOG_ONCE</name>
+      <anchorfile>logging_8h.html</anchorfile>
+      <anchor>a45a4d18e54d1fbc96463a15383799760</anchor>
       <arglist>(groupName, formatString,...)</arglist>
     </member>
     <member kind="define">
@@ -583,9 +597,23 @@
     </member>
     <member kind="define">
       <type>#define</type>
+      <name>PH_DEFAULT_DEBUG_LOG_STRING_ONCE</name>
+      <anchorfile>logging_8h.html</anchorfile>
+      <anchor>a4a2be2334b686ce2938ced5773e9b73e</anchor>
+      <arglist>(rawString,...)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
       <name>PH_DEFAULT_DEBUG_LOG</name>
       <anchorfile>logging_8h.html</anchorfile>
       <anchor>afc54042a5c2e11ea4fa8b2ff57553a98</anchor>
+      <arglist>(formatString,...)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>PH_DEFAULT_DEBUG_LOG_ONCE</name>
+      <anchorfile>logging_8h.html</anchorfile>
+      <anchor>ac9ed85818122ac459a7006c8e22581ba</anchor>
       <arglist>(formatString,...)</arglist>
     </member>
     <member kind="define">
@@ -611,9 +639,23 @@
     </member>
     <member kind="define">
       <type>#define</type>
+      <name>PH_DEFAULT_DEBUG_LOG_STRING_ONCE</name>
+      <anchorfile>logging_8h.html</anchorfile>
+      <anchor>a4a2be2334b686ce2938ced5773e9b73e</anchor>
+      <arglist>(rawString,...)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
       <name>PH_DEFAULT_DEBUG_LOG</name>
       <anchorfile>logging_8h.html</anchorfile>
       <anchor>afc54042a5c2e11ea4fa8b2ff57553a98</anchor>
+      <arglist>(formatString,...)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>PH_DEFAULT_DEBUG_LOG_ONCE</name>
+      <anchorfile>logging_8h.html</anchorfile>
+      <anchor>ac9ed85818122ac459a7006c8e22581ba</anchor>
       <arglist>(formatString,...)</arglist>
     </member>
     <member kind="define">
@@ -2855,6 +2897,13 @@
       <name>get_L1_cache_line_size_in_bytes</name>
       <anchorfile>namespaceph_1_1os.html</anchorfile>
       <anchor>aeb0d82e12deb6d7cb5a40dd7c8f009f9</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>std::filesystem::path</type>
+      <name>get_executable_path</name>
+      <anchorfile>namespaceph_1_1os.html</anchorfile>
+      <anchor>ae362f3365a6b4cff3caa3a1d2bb195a3</anchor>
       <arglist>()</arglist>
     </member>
   </compound>

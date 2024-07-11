@@ -1271,7 +1271,7 @@
     <path>Source/Actor/Material/Component/</path>
     <filename>_conductive_interface_info_8h.html</filename>
     <includes id="_spectrum_8h" name="Spectrum.h" local="yes" import="no" module="no" objc="no">Math/Color/Spectrum.h</includes>
-    <includes id="_e_interface_fresnel_8h" name="EInterfaceFresnel.h" local="yes" import="no" module="no" objc="no">Actor/Material/Component/EInterfaceFresnel.h</includes>
+    <includes id="sdl__component__enums_8h" name="sdl_component_enums.h" local="yes" import="no" module="no" objc="no">Actor/Material/Component/sdl_component_enums.h</includes>
     <includes id="_t_sdl_spectrum_8h" name="TSdlSpectrum.h" local="yes" import="no" module="no" objc="no">Actor/SDLExtension/TSdlSpectrum.h</includes>
     <class kind="class">ph::ConductiveInterfaceInfo</class>
     <namespace>ph</namespace>
@@ -1289,30 +1289,9 @@
     <name>DielectricInterfaceInfo.h</name>
     <path>Source/Actor/Material/Component/</path>
     <filename>_dielectric_interface_info_8h.html</filename>
-    <includes id="_e_interface_fresnel_8h" name="EInterfaceFresnel.h" local="yes" import="no" module="no" objc="no">Actor/Material/Component/EInterfaceFresnel.h</includes>
+    <includes id="sdl__component__enums_8h" name="sdl_component_enums.h" local="yes" import="no" module="no" objc="no">Actor/Material/Component/sdl_component_enums.h</includes>
     <includes id="sdl__interface_8h" name="sdl_interface.h" local="yes" import="no" module="no" objc="no">SDL/sdl_interface.h</includes>
     <class kind="class">ph::DielectricInterfaceInfo</class>
-    <namespace>ph</namespace>
-  </compound>
-  <compound kind="file">
-    <name>EInterfaceFresnel.h</name>
-    <path>Source/Actor/Material/Component/</path>
-    <filename>_e_interface_fresnel_8h.html</filename>
-    <includes id="sdl__interface_8h" name="sdl_interface.h" local="yes" import="no" module="no" objc="no">SDL/sdl_interface.h</includes>
-    <namespace>ph</namespace>
-  </compound>
-  <compound kind="file">
-    <name>EInterfaceMicrosurface.h</name>
-    <path>Source/Actor/Material/Component/</path>
-    <filename>_e_interface_microsurface_8h.html</filename>
-    <includes id="sdl__interface_8h" name="sdl_interface.h" local="yes" import="no" module="no" objc="no">SDL/sdl_interface.h</includes>
-    <namespace>ph</namespace>
-  </compound>
-  <compound kind="file">
-    <name>ERoughnessToAlpha.h</name>
-    <path>Source/Actor/Material/Component/</path>
-    <filename>_e_roughness_to_alpha_8h.html</filename>
-    <includes id="sdl__interface_8h" name="sdl_interface.h" local="yes" import="no" module="no" objc="no">SDL/sdl_interface.h</includes>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
@@ -1335,8 +1314,7 @@
     <name>MicrosurfaceInfo.h</name>
     <path>Source/Actor/Material/Component/</path>
     <filename>_microsurface_info_8h.html</filename>
-    <includes id="_e_interface_microsurface_8h" name="EInterfaceMicrosurface.h" local="yes" import="no" module="no" objc="no">Actor/Material/Component/EInterfaceMicrosurface.h</includes>
-    <includes id="_e_roughness_to_alpha_8h" name="ERoughnessToAlpha.h" local="yes" import="no" module="no" objc="no">Actor/Material/Component/ERoughnessToAlpha.h</includes>
+    <includes id="sdl__component__enums_8h" name="sdl_component_enums.h" local="yes" import="no" module="no" objc="no">Actor/Material/Component/sdl_component_enums.h</includes>
     <includes id="sdl__interface_8h" name="sdl_interface.h" local="yes" import="no" module="no" objc="no">SDL/sdl_interface.h</includes>
     <class kind="class">ph::MicrosurfaceInfo</class>
     <namespace>ph</namespace>
@@ -1345,8 +1323,16 @@
     <name>RoughnessToAlphaMapping.h</name>
     <path>Source/Actor/Material/Component/</path>
     <filename>_roughness_to_alpha_mapping_8h.html</filename>
-    <includes id="_e_roughness_to_alpha_8h" name="ERoughnessToAlpha.h" local="yes" import="no" module="no" objc="no">Actor/Material/Component/ERoughnessToAlpha.h</includes>
+    <includes id="sdl__component__enums_8h" name="sdl_component_enums.h" local="yes" import="no" module="no" objc="no">Actor/Material/Component/sdl_component_enums.h</includes>
     <class kind="class">ph::RoughnessToAlphaMapping</class>
+    <namespace>ph</namespace>
+  </compound>
+  <compound kind="file">
+    <name>sdl_component_enums.h</name>
+    <path>Source/Actor/Material/Component/</path>
+    <filename>sdl__component__enums_8h.html</filename>
+    <includes id="_surface_behavior_2_property_2enums_8h" name="enums.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/Property/enums.h</includes>
+    <includes id="sdl__interface_8h" name="sdl_interface.h" local="yes" import="no" module="no" objc="no">SDL/sdl_interface.h</includes>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
@@ -1415,7 +1401,7 @@
     <includes id="_spectrum_8h" name="Spectrum.h" local="yes" import="no" module="no" objc="no">Math/Color/Spectrum.h</includes>
     <includes id="_t_vector3_8h" name="TVector3.h" local="yes" import="no" module="no" objc="no">Math/TVector3.h</includes>
     <includes id="sdl__interface_8h" name="sdl_interface.h" local="yes" import="no" module="no" objc="no">SDL/sdl_interface.h</includes>
-    <includes id="_e_interface_fresnel_8h" name="EInterfaceFresnel.h" local="yes" import="no" module="no" objc="no">Actor/Material/Component/EInterfaceFresnel.h</includes>
+    <includes id="sdl__component__enums_8h" name="sdl_component_enums.h" local="yes" import="no" module="no" objc="no">Actor/Material/Component/sdl_component_enums.h</includes>
     <includes id="_t_sdl_spectrum_8h" name="TSdlSpectrum.h" local="yes" import="no" module="no" objc="no">Actor/SDLExtension/TSdlSpectrum.h</includes>
     <class kind="class">ph::IdealSubstance</class>
     <namespace>ph</namespace>
@@ -1898,9 +1884,7 @@
     <includes id="sdl__photon__mapping__mode_8h" name="sdl_photon_mapping_mode.h" local="yes" import="no" module="no" objc="no">EngineEnv/Visualizer/sdl_photon_mapping_mode.h</includes>
     <includes id="sdl__image__enums_8h" name="sdl_image_enums.h" local="yes" import="no" module="no" objc="no">Actor/Image/sdl_image_enums.h</includes>
     <includes id="sdl__color__enums_8h" name="sdl_color_enums.h" local="yes" import="no" module="no" objc="no">Actor/SDLExtension/sdl_color_enums.h</includes>
-    <includes id="_e_interface_fresnel_8h" name="EInterfaceFresnel.h" local="yes" import="no" module="no" objc="no">Actor/Material/Component/EInterfaceFresnel.h</includes>
-    <includes id="_e_interface_microsurface_8h" name="EInterfaceMicrosurface.h" local="yes" import="no" module="no" objc="no">Actor/Material/Component/EInterfaceMicrosurface.h</includes>
-    <includes id="_e_roughness_to_alpha_8h" name="ERoughnessToAlpha.h" local="yes" import="no" module="no" objc="no">Actor/Material/Component/ERoughnessToAlpha.h</includes>
+    <includes id="sdl__component__enums_8h" name="sdl_component_enums.h" local="yes" import="no" module="no" objc="no">Actor/Material/Component/sdl_component_enums.h</includes>
     <includes id="sdl__picture__file__type_8h" name="sdl_picture_file_type.h" local="yes" import="no" module="no" objc="no">DataIO/sdl_picture_file_type.h</includes>
     <namespace>ph</namespace>
   </compound>
@@ -3470,9 +3454,15 @@
   <compound kind="file">
     <name>enums.h</name>
     <path>Source/Core/LTA/</path>
-    <filename>enums_8h.html</filename>
+    <filename>_l_t_a_2enums_8h.html</filename>
     <namespace>ph</namespace>
     <namespace>ph::lta</namespace>
+  </compound>
+  <compound kind="file">
+    <name>enums.h</name>
+    <path>Source/Core/SurfaceBehavior/Property/</path>
+    <filename>_surface_behavior_2_property_2enums_8h.html</filename>
+    <namespace>ph</namespace>
   </compound>
   <compound kind="file">
     <name>LTA.dox</name>
@@ -3492,7 +3482,7 @@
     <name>PDF.h</name>
     <path>Source/Core/LTA/</path>
     <filename>_p_d_f_8h.html</filename>
-    <includes id="enums_8h" name="enums.h" local="yes" import="no" module="no" objc="no">Core/LTA/enums.h</includes>
+    <includes id="_l_t_a_2enums_8h" name="enums.h" local="yes" import="no" module="no" objc="no">Core/LTA/enums.h</includes>
     <class kind="class">ph::lta::PDF</class>
     <namespace>ph</namespace>
     <namespace>ph::lta</namespace>
@@ -3671,7 +3661,7 @@
     <name>TMIS.h</name>
     <path>Source/Core/LTA/</path>
     <filename>_t_m_i_s_8h.html</filename>
-    <includes id="enums_8h" name="enums.h" local="yes" import="no" module="no" objc="no">Core/LTA/enums.h</includes>
+    <includes id="_l_t_a_2enums_8h" name="enums.h" local="yes" import="no" module="no" objc="no">Core/LTA/enums.h</includes>
     <class kind="class">ph::lta::TMIS</class>
     <namespace>ph</namespace>
     <namespace>ph::lta</namespace>
@@ -5058,7 +5048,7 @@
     <filename>_bsdf_query_context_8h.html</filename>
     <includes id="surface__optics__fwd_8h" name="surface_optics_fwd.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/surface_optics_fwd.h</includes>
     <includes id="_sidedness_agreement_8h" name="SidednessAgreement.h" local="yes" import="no" module="no" objc="no">Core/LTA/SidednessAgreement.h</includes>
-    <includes id="enums_8h" name="enums.h" local="yes" import="no" module="no" objc="no">Core/LTA/enums.h</includes>
+    <includes id="_l_t_a_2enums_8h" name="enums.h" local="yes" import="no" module="no" objc="no">Core/LTA/enums.h</includes>
     <class kind="class">ph::BsdfQueryContext</class>
     <namespace>ph</namespace>
   </compound>
@@ -5097,7 +5087,7 @@
     <name>AnisoTrowbridgeReitz.h</name>
     <path>Source/Core/SurfaceBehavior/Property/</path>
     <filename>_aniso_trowbridge_reitz_8h.html</filename>
-    <includes id="_microfacet_8h" name="Microfacet.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/Property/Microfacet.h</includes>
+    <includes id="_trowbridge_reitz_8h" name="TrowbridgeReitz.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/Property/TrowbridgeReitz.h</includes>
     <class kind="class">ph::AnisoTrowbridgeReitz</class>
     <namespace>ph</namespace>
   </compound>
@@ -5186,7 +5176,7 @@
     <name>IsoBeckmann.h</name>
     <path>Source/Core/SurfaceBehavior/Property/</path>
     <filename>_iso_beckmann_8h.html</filename>
-    <includes id="_microfacet_8h" name="Microfacet.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/Property/Microfacet.h</includes>
+    <includes id="_shape_invariant_microfacet_8h" name="ShapeInvariantMicrofacet.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/Property/ShapeInvariantMicrofacet.h</includes>
     <class kind="class">ph::IsoBeckmann</class>
     <namespace>ph</namespace>
   </compound>
@@ -5195,6 +5185,7 @@
     <path>Source/Core/SurfaceBehavior/Property/</path>
     <filename>_iso_trowbridge_reitz_8cpp.html</filename>
     <includes id="_iso_trowbridge_reitz_8h" name="IsoTrowbridgeReitz.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/Property/IsoTrowbridgeReitz.h</includes>
+    <includes id="constant_8h" name="constant.h" local="yes" import="no" module="no" objc="no">Math/constant.h</includes>
     <includes id="math_8h" name="math.h" local="yes" import="no" module="no" objc="no">Math/math.h</includes>
     <includes id="_t_orthonormal_basis3_8h" name="TOrthonormalBasis3.h" local="yes" import="no" module="no" objc="no">Math/TOrthonormalBasis3.h</includes>
     <namespace>ph</namespace>
@@ -5203,7 +5194,7 @@
     <name>IsoTrowbridgeReitz.h</name>
     <path>Source/Core/SurfaceBehavior/Property/</path>
     <filename>_iso_trowbridge_reitz_8h.html</filename>
-    <includes id="_microfacet_8h" name="Microfacet.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/Property/Microfacet.h</includes>
+    <includes id="_trowbridge_reitz_8h" name="TrowbridgeReitz.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/Property/TrowbridgeReitz.h</includes>
     <class kind="class">ph::IsoTrowbridgeReitz</class>
     <namespace>ph</namespace>
   </compound>
@@ -5231,6 +5222,7 @@
     <filename>_microfacet_8h.html</filename>
     <includes id="_t_vector3_8h" name="TVector3.h" local="yes" import="no" module="no" objc="no">Math/TVector3.h</includes>
     <includes id="_surface_hit_8h" name="SurfaceHit.h" local="yes" import="no" module="no" objc="no">Core/SurfaceHit.h</includes>
+    <includes id="_p_d_f_8h" name="PDF.h" local="yes" import="no" module="no" objc="no">Core/LTA/PDF.h</includes>
     <class kind="class">ph::Microfacet</class>
     <namespace>ph</namespace>
   </compound>
@@ -5262,6 +5254,42 @@
     <filename>_schlick_approx_dielectric_fresnel_8h.html</filename>
     <includes id="_dielectric_fresnel_8h" name="DielectricFresnel.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/Property/DielectricFresnel.h</includes>
     <class kind="class">ph::SchlickApproxDielectricFresnel</class>
+    <namespace>ph</namespace>
+  </compound>
+  <compound kind="file">
+    <name>ShapeInvariantMicrofacet.cpp</name>
+    <path>Source/Core/SurfaceBehavior/Property/</path>
+    <filename>_shape_invariant_microfacet_8cpp.html</filename>
+    <includes id="_shape_invariant_microfacet_8h" name="ShapeInvariantMicrofacet.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/Property/ShapeInvariantMicrofacet.h</includes>
+    <includes id="constant_8h" name="constant.h" local="yes" import="no" module="no" objc="no">Math/constant.h</includes>
+    <includes id="math_8h" name="math.h" local="yes" import="no" module="no" objc="no">Math/math.h</includes>
+    <namespace>ph</namespace>
+  </compound>
+  <compound kind="file">
+    <name>ShapeInvariantMicrofacet.h</name>
+    <path>Source/Core/SurfaceBehavior/Property/</path>
+    <filename>_shape_invariant_microfacet_8h.html</filename>
+    <includes id="_microfacet_8h" name="Microfacet.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/Property/Microfacet.h</includes>
+    <includes id="_surface_behavior_2_property_2enums_8h" name="enums.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/Property/enums.h</includes>
+    <class kind="class">ph::ShapeInvariantMicrofacet</class>
+    <namespace>ph</namespace>
+  </compound>
+  <compound kind="file">
+    <name>TrowbridgeReitz.cpp</name>
+    <path>Source/Core/SurfaceBehavior/Property/</path>
+    <filename>_trowbridge_reitz_8cpp.html</filename>
+    <includes id="_trowbridge_reitz_8h" name="TrowbridgeReitz.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/Property/TrowbridgeReitz.h</includes>
+    <includes id="constant_8h" name="constant.h" local="yes" import="no" module="no" objc="no">Math/constant.h</includes>
+    <includes id="math_8h" name="math.h" local="yes" import="no" module="no" objc="no">Math/math.h</includes>
+    <includes id="_t_orthonormal_basis3_8h" name="TOrthonormalBasis3.h" local="yes" import="no" module="no" objc="no">Math/TOrthonormalBasis3.h</includes>
+    <namespace>ph</namespace>
+  </compound>
+  <compound kind="file">
+    <name>TrowbridgeReitz.h</name>
+    <path>Source/Core/SurfaceBehavior/Property/</path>
+    <filename>_trowbridge_reitz_8h.html</filename>
+    <includes id="_shape_invariant_microfacet_8h" name="ShapeInvariantMicrofacet.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/Property/ShapeInvariantMicrofacet.h</includes>
+    <class kind="class">ph::TrowbridgeReitz</class>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
@@ -12243,13 +12271,27 @@
   <compound kind="class">
     <name>ph::AnisoTrowbridgeReitz</name>
     <filename>classph_1_1_aniso_trowbridge_reitz.html</filename>
-    <base>ph::Microfacet</base>
+    <base>ph::TrowbridgeReitz</base>
     <member kind="function">
       <type></type>
       <name>AnisoTrowbridgeReitz</name>
       <anchorfile>classph_1_1_aniso_trowbridge_reitz.html</anchorfile>
-      <anchor>a9a724a1c2d5edb9d52f2847916cc1a8d</anchor>
-      <arglist>(real alphaU, real alphaV)</arglist>
+      <anchor>a95f559e7a053e39e471a123d00e95320</anchor>
+      <arglist>(real alphaU, real alphaV, EMaskingShadowing maskingShadowingType)</arglist>
+    </member>
+    <member kind="function">
+      <type>std::array&lt; real, 2 &gt;</type>
+      <name>getAlphas</name>
+      <anchorfile>classph_1_1_aniso_trowbridge_reitz.html</anchorfile>
+      <anchor>a0c492973b6ca0a636b54803ed293a82e</anchor>
+      <arglist>(const SurfaceHit &amp;X) const override</arglist>
+    </member>
+    <member kind="function">
+      <type>real</type>
+      <name>lambda</name>
+      <anchorfile>classph_1_1_aniso_trowbridge_reitz.html</anchorfile>
+      <anchor>a1bd9a7b2e74199166d8f72f5b0981fbb</anchor>
+      <arglist>(const SurfaceHit &amp;X, const math::Vector3R &amp;N, const math::Vector3R &amp;H, const math::Vector3R &amp;unitDir, const std::array&lt; real, 2 &gt; &amp;alphas) const override</arglist>
     </member>
     <member kind="function">
       <type>real</type>
@@ -12259,17 +12301,10 @@
       <arglist>(const SurfaceHit &amp;X, const math::Vector3R &amp;N, const math::Vector3R &amp;H) const override</arglist>
     </member>
     <member kind="function">
-      <type>real</type>
-      <name>shadowing</name>
-      <anchorfile>classph_1_1_aniso_trowbridge_reitz.html</anchorfile>
-      <anchor>a7622e2a28d5b3f0a262cb881319ba5bf</anchor>
-      <arglist>(const SurfaceHit &amp;X, const math::Vector3R &amp;N, const math::Vector3R &amp;H, const math::Vector3R &amp;L, const math::Vector3R &amp;V) const override</arglist>
-    </member>
-    <member kind="function">
       <type>void</type>
-      <name>genDistributedH</name>
+      <name>sampleH</name>
       <anchorfile>classph_1_1_aniso_trowbridge_reitz.html</anchorfile>
-      <anchor>ad659dea5e8e0c9b7e7ea78ba5d2ae03c</anchor>
+      <anchor>a2f032e0b0d12ae42f5a2d241110444fc</anchor>
       <arglist>(const SurfaceHit &amp;X, const math::Vector3R &amp;N, const std::array&lt; real, 2 &gt; &amp;sample, math::Vector3R *out_H) const override</arglist>
     </member>
   </compound>
@@ -20547,13 +20582,27 @@
   <compound kind="class">
     <name>ph::IsoBeckmann</name>
     <filename>classph_1_1_iso_beckmann.html</filename>
-    <base>ph::Microfacet</base>
+    <base>ph::ShapeInvariantMicrofacet</base>
     <member kind="function">
       <type></type>
       <name>IsoBeckmann</name>
       <anchorfile>classph_1_1_iso_beckmann.html</anchorfile>
-      <anchor>aefd82eeebc1c5b3db2301dfe969def29</anchor>
-      <arglist>(real alpha)</arglist>
+      <anchor>a31d39c99b8ae4c0c56505e3f3e08c7d5</anchor>
+      <arglist>(real alpha, EMaskingShadowing maskingShadowingType)</arglist>
+    </member>
+    <member kind="function">
+      <type>std::array&lt; real, 2 &gt;</type>
+      <name>getAlphas</name>
+      <anchorfile>classph_1_1_iso_beckmann.html</anchorfile>
+      <anchor>a1a20a44b08773c91312c286756624dde</anchor>
+      <arglist>(const SurfaceHit &amp;X) const override</arglist>
+    </member>
+    <member kind="function">
+      <type>real</type>
+      <name>lambda</name>
+      <anchorfile>classph_1_1_iso_beckmann.html</anchorfile>
+      <anchor>a9fb87924bfd02ef461078548ab886476</anchor>
+      <arglist>(const SurfaceHit &amp;X, const math::Vector3R &amp;N, const math::Vector3R &amp;H, const math::Vector3R &amp;unitDir, const std::array&lt; real, 2 &gt; &amp;alphas) const override</arglist>
     </member>
     <member kind="function">
       <type>real</type>
@@ -20563,30 +20612,37 @@
       <arglist>(const SurfaceHit &amp;X, const math::Vector3R &amp;N, const math::Vector3R &amp;H) const override</arglist>
     </member>
     <member kind="function">
-      <type>real</type>
-      <name>shadowing</name>
-      <anchorfile>classph_1_1_iso_beckmann.html</anchorfile>
-      <anchor>a6fa31bee4bbce8c4d86cdb1262477dfb</anchor>
-      <arglist>(const SurfaceHit &amp;X, const math::Vector3R &amp;N, const math::Vector3R &amp;H, const math::Vector3R &amp;L, const math::Vector3R &amp;V) const override</arglist>
-    </member>
-    <member kind="function">
       <type>void</type>
-      <name>genDistributedH</name>
+      <name>sampleH</name>
       <anchorfile>classph_1_1_iso_beckmann.html</anchorfile>
-      <anchor>a0c182ab4216c8d6639419f9c9e785a3b</anchor>
+      <anchor>ab5d59e9f3e51787ab8868e7a40d265ba</anchor>
       <arglist>(const SurfaceHit &amp;X, const math::Vector3R &amp;N, const std::array&lt; real, 2 &gt; &amp;sample, math::Vector3R *out_H) const override</arglist>
     </member>
   </compound>
   <compound kind="class">
     <name>ph::IsoTrowbridgeReitz</name>
     <filename>classph_1_1_iso_trowbridge_reitz.html</filename>
-    <base>ph::Microfacet</base>
-    <member kind="function" virtualness="pure">
-      <type>virtual real</type>
-      <name>getAlpha</name>
+    <base>ph::TrowbridgeReitz</base>
+    <member kind="function">
+      <type></type>
+      <name>IsoTrowbridgeReitz</name>
       <anchorfile>classph_1_1_iso_trowbridge_reitz.html</anchorfile>
-      <anchor>a0bf885df35b769e7ce790aade4bf152d</anchor>
-      <arglist>(const SurfaceHit &amp;X) const =0</arglist>
+      <anchor>a14c5611b7a5f521af12af2c4b5e2768c</anchor>
+      <arglist>(EMaskingShadowing maskingShadowingType)</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>std::array&lt; real, 2 &gt;</type>
+      <name>getAlphas</name>
+      <anchorfile>classph_1_1_iso_trowbridge_reitz.html</anchorfile>
+      <anchor>a39a86af27995e0bca098048297468b7a</anchor>
+      <arglist>(const SurfaceHit &amp;X) const override=0</arglist>
+    </member>
+    <member kind="function">
+      <type>real</type>
+      <name>lambda</name>
+      <anchorfile>classph_1_1_iso_trowbridge_reitz.html</anchorfile>
+      <anchor>a1a8d609d638babfcd61a43da1be1e0aa</anchor>
+      <arglist>(const SurfaceHit &amp;X, const math::Vector3R &amp;N, const math::Vector3R &amp;H, const math::Vector3R &amp;unitDir, const std::array&lt; real, 2 &gt; &amp;alphas) const override</arglist>
     </member>
     <member kind="function">
       <type>real</type>
@@ -20596,17 +20652,10 @@
       <arglist>(const SurfaceHit &amp;X, const math::Vector3R &amp;N, const math::Vector3R &amp;H) const override</arglist>
     </member>
     <member kind="function">
-      <type>real</type>
-      <name>shadowing</name>
-      <anchorfile>classph_1_1_iso_trowbridge_reitz.html</anchorfile>
-      <anchor>aa003bbd64af56ef5f88fa9f4204a8b8a</anchor>
-      <arglist>(const SurfaceHit &amp;X, const math::Vector3R &amp;N, const math::Vector3R &amp;H, const math::Vector3R &amp;L, const math::Vector3R &amp;V) const override</arglist>
-    </member>
-    <member kind="function">
       <type>void</type>
-      <name>genDistributedH</name>
+      <name>sampleH</name>
       <anchorfile>classph_1_1_iso_trowbridge_reitz.html</anchorfile>
-      <anchor>a1511accfa31a4e7daebe98e66420c7d9</anchor>
+      <anchor>ad8a59ac599a2a9863518f36da7e95410</anchor>
       <arglist>(const SurfaceHit &amp;X, const math::Vector3R &amp;N, const std::array&lt; real, 2 &gt; &amp;sample, math::Vector3R *out_H) const override</arglist>
     </member>
   </compound>
@@ -20618,14 +20667,14 @@
       <type></type>
       <name>IsoTrowbridgeReitzConstant</name>
       <anchorfile>classph_1_1_iso_trowbridge_reitz_constant.html</anchorfile>
-      <anchor>a72bb9496c5c3b762477e48dcc5d0e9d0</anchor>
-      <arglist>(real alpha)</arglist>
+      <anchor>aa9084d4799b836b7df54081d09fc15fc</anchor>
+      <arglist>(real alpha, EMaskingShadowing maskingShadowingType)</arglist>
     </member>
     <member kind="function">
-      <type>real</type>
-      <name>getAlpha</name>
+      <type>std::array&lt; real, 2 &gt;</type>
+      <name>getAlphas</name>
       <anchorfile>classph_1_1_iso_trowbridge_reitz_constant.html</anchorfile>
-      <anchor>a873299dc20c09afa9b2d5ccb45901ae9</anchor>
+      <anchor>a6c54862e9e670832ab4aab7b79f1aef7</anchor>
       <arglist>(const SurfaceHit &amp;X) const override</arglist>
     </member>
   </compound>
@@ -20637,14 +20686,14 @@
       <type></type>
       <name>IsoTrowbridgeReitzTextured</name>
       <anchorfile>classph_1_1_iso_trowbridge_reitz_textured.html</anchorfile>
-      <anchor>a2eec19d8d5187d9f8fbc460fa2a004c8</anchor>
-      <arglist>(std::shared_ptr&lt; TTexture&lt; real &gt; &gt; alpha)</arglist>
+      <anchor>a102f3498f78b185f390390f078291330</anchor>
+      <arglist>(const std::shared_ptr&lt; TTexture&lt; real &gt; &gt; &amp;alpha, EMaskingShadowing maskingShadowingType)</arglist>
     </member>
     <member kind="function">
-      <type>real</type>
-      <name>getAlpha</name>
+      <type>std::array&lt; real, 2 &gt;</type>
+      <name>getAlphas</name>
       <anchorfile>classph_1_1_iso_trowbridge_reitz_textured.html</anchorfile>
-      <anchor>a4d50698d9c968b3fa7bd26da268ff776</anchor>
+      <anchor>a58914f20a8a428036f7c32d9058f8685</anchor>
       <arglist>(const SurfaceHit &amp;X) const override</arglist>
     </member>
   </compound>
@@ -21643,42 +21692,63 @@
     </member>
     <member kind="function" virtualness="pure">
       <type>virtual real</type>
-      <name>shadowing</name>
+      <name>geometry</name>
       <anchorfile>classph_1_1_microfacet.html</anchorfile>
-      <anchor>ad31290f3257657b4195696668898b453</anchor>
+      <anchor>a4fa386b9ae127ec77b447aaa2f298f12</anchor>
       <arglist>(const SurfaceHit &amp;X, const math::Vector3R &amp;N, const math::Vector3R &amp;H, const math::Vector3R &amp;L, const math::Vector3R &amp;V) const =0</arglist>
     </member>
     <member kind="function" virtualness="pure">
       <type>virtual void</type>
-      <name>genDistributedH</name>
+      <name>sampleH</name>
       <anchorfile>classph_1_1_microfacet.html</anchorfile>
-      <anchor>a9e7b84330a6ec9a98e0f14689529da68</anchor>
+      <anchor>ac3ae68c29eb05aeb85b1a68fc4600239</anchor>
       <arglist>(const SurfaceHit &amp;X, const math::Vector3R &amp;N, const std::array&lt; real, 2 &gt; &amp;sample, math::Vector3R *out_H) const =0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual lta::PDF</type>
+      <name>pdfSampleH</name>
+      <anchorfile>classph_1_1_microfacet.html</anchorfile>
+      <anchor>a9186f999c6cc737ff2f2918db79722ac</anchor>
+      <arglist>(const SurfaceHit &amp;X, const math::Vector3R &amp;N, const math::Vector3R &amp;H) const =0</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>sampleVisibleH</name>
+      <anchorfile>classph_1_1_microfacet.html</anchorfile>
+      <anchor>af5635973ab63178ac2e33a9d587e9c63</anchor>
+      <arglist>(const SurfaceHit &amp;X, const math::Vector3R &amp;N, const math::Vector3R &amp;V, const std::array&lt; real, 2 &gt; &amp;sample, math::Vector3R *out_H) const</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual lta::PDF</type>
+      <name>pdfSampleVisibleH</name>
+      <anchorfile>classph_1_1_microfacet.html</anchorfile>
+      <anchor>ae1daa8f290d4a5cb785fdd38ed465907</anchor>
+      <arglist>(const SurfaceHit &amp;X, const math::Vector3R &amp;N, const math::Vector3R &amp;H, const math::Vector3R &amp;V) const</arglist>
     </member>
     <member kind="function" protection="protected" static="yes">
       <type>static bool</type>
       <name>isSidednessAgreed</name>
       <anchorfile>classph_1_1_microfacet.html</anchorfile>
-      <anchor>af29b6b4f682461c97d739329e2e2268f</anchor>
-      <arglist>(const real NoL, const real NoV, const real HoL, const real HoV)</arglist>
+      <anchor>aa9df79e36568c25023b8c1268b4a4995</anchor>
+      <arglist>(real NoD, real HoD)</arglist>
+    </member>
+    <member kind="function" protection="protected" static="yes">
+      <type>static bool</type>
+      <name>isSidednessAgreed</name>
+      <anchorfile>classph_1_1_microfacet.html</anchorfile>
+      <anchor>a1316faadbc9d0e83a542612d925dff61</anchor>
+      <arglist>(real NoL, real NoV, real HoL, real HoV)</arglist>
     </member>
   </compound>
   <compound kind="class">
     <name>ph::MicrosurfaceInfo</name>
     <filename>classph_1_1_microsurface_info.html</filename>
     <member kind="function">
-      <type></type>
-      <name>MicrosurfaceInfo</name>
-      <anchorfile>classph_1_1_microsurface_info.html</anchorfile>
-      <anchor>a32d4b60aee058bf02edb14b9fb2c72e9</anchor>
-      <arglist>()=default</arglist>
-    </member>
-    <member kind="function">
       <type>std::unique_ptr&lt; Microfacet &gt;</type>
       <name>genMicrofacet</name>
       <anchorfile>classph_1_1_microsurface_info.html</anchorfile>
-      <anchor>ac2a2f92682044bb36002372576835e0b</anchor>
-      <arglist>() const</arglist>
+      <anchor>aeb771e3aa8ffe946b0faf8f373a726c6</anchor>
+      <arglist>(EInterfaceMicrosurface defaultType=EInterfaceMicrosurface::TrowbridgeReitz) const</arglist>
     </member>
     <member kind="function">
       <type>bool</type>
@@ -30394,6 +30464,95 @@
     </member>
   </compound>
   <compound kind="class">
+    <name>ph::ShapeInvariantMicrofacet</name>
+    <filename>classph_1_1_shape_invariant_microfacet.html</filename>
+    <base>ph::Microfacet</base>
+    <member kind="function">
+      <type></type>
+      <name>ShapeInvariantMicrofacet</name>
+      <anchorfile>classph_1_1_shape_invariant_microfacet.html</anchorfile>
+      <anchor>a97d959b7fa6f8992079eedd33fa9069d</anchor>
+      <arglist>(EMaskingShadowing maskingShadowingType)</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual std::array&lt; real, 2 &gt;</type>
+      <name>getAlphas</name>
+      <anchorfile>classph_1_1_shape_invariant_microfacet.html</anchorfile>
+      <anchor>a762ece4612e3f52f8f393f7ec51d399e</anchor>
+      <arglist>(const SurfaceHit &amp;X) const =0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual real</type>
+      <name>lambda</name>
+      <anchorfile>classph_1_1_shape_invariant_microfacet.html</anchorfile>
+      <anchor>a04535a5d0a6a328d82129b9ed153b638</anchor>
+      <arglist>(const SurfaceHit &amp;X, const math::Vector3R &amp;N, const math::Vector3R &amp;H, const math::Vector3R &amp;unitDir, const std::array&lt; real, 2 &gt; &amp;alphas) const =0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>real</type>
+      <name>distribution</name>
+      <anchorfile>classph_1_1_shape_invariant_microfacet.html</anchorfile>
+      <anchor>a319035a3f662a3496b9134b16fc28dde</anchor>
+      <arglist>(const SurfaceHit &amp;X, const math::Vector3R &amp;N, const math::Vector3R &amp;H) const override=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>void</type>
+      <name>sampleH</name>
+      <anchorfile>classph_1_1_shape_invariant_microfacet.html</anchorfile>
+      <anchor>a455abd61be1344105e1ef09e2975bd20</anchor>
+      <arglist>(const SurfaceHit &amp;X, const math::Vector3R &amp;N, const std::array&lt; real, 2 &gt; &amp;sample, math::Vector3R *out_H) const override=0</arglist>
+    </member>
+    <member kind="function">
+      <type>real</type>
+      <name>geometry</name>
+      <anchorfile>classph_1_1_shape_invariant_microfacet.html</anchorfile>
+      <anchor>a18f5cdb724cd59545dec58a98e9b4131</anchor>
+      <arglist>(const SurfaceHit &amp;X, const math::Vector3R &amp;N, const math::Vector3R &amp;H, const math::Vector3R &amp;L, const math::Vector3R &amp;V) const override</arglist>
+    </member>
+    <member kind="function">
+      <type>lta::PDF</type>
+      <name>pdfSampleH</name>
+      <anchorfile>classph_1_1_shape_invariant_microfacet.html</anchorfile>
+      <anchor>a66942003496cff7c3d2c406b12b5c67c</anchor>
+      <arglist>(const SurfaceHit &amp;X, const math::Vector3R &amp;N, const math::Vector3R &amp;H) const override</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>real</type>
+      <name>smithG1</name>
+      <anchorfile>classph_1_1_shape_invariant_microfacet.html</anchorfile>
+      <anchor>a7565e65c5fc49eefe1b773819da07b16</anchor>
+      <arglist>(real lambdaValue) const</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>real</type>
+      <name>empiricalPhiCorrelation</name>
+      <anchorfile>classph_1_1_shape_invariant_microfacet.html</anchorfile>
+      <anchor>a3924ed3af13bdd0b9d3c0edefa289387</anchor>
+      <arglist>(const SurfaceHit &amp;X, const math::Vector3R &amp;L, const math::Vector3R &amp;V) const</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>real</type>
+      <name>projectedDistribution</name>
+      <anchorfile>classph_1_1_shape_invariant_microfacet.html</anchorfile>
+      <anchor>a4dff398df95cf9caecf0a05f0354243a</anchor>
+      <arglist>(const SurfaceHit &amp;X, const math::Vector3R &amp;N, const math::Vector3R &amp;H) const</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>real</type>
+      <name>visibleDistribution</name>
+      <anchorfile>classph_1_1_shape_invariant_microfacet.html</anchorfile>
+      <anchor>a0e8fff5bd849b8a134d61c44350ea797</anchor>
+      <arglist>(const SurfaceHit &amp;X, const math::Vector3R &amp;N, const math::Vector3R &amp;H, const math::Vector3R &amp;V) const</arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>EMaskingShadowing</type>
+      <name>m_maskingShadowingType</name>
+      <anchorfile>classph_1_1_shape_invariant_microfacet.html</anchorfile>
+      <anchor>a4a4d1dc8b281ce08df4c6f24c3f3c54e</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
     <name>ph::lta::SidednessAgreement</name>
     <filename>classph_1_1lta_1_1_sidedness_agreement.html</filename>
     <member kind="function">
@@ -38568,27 +38727,6 @@
     </member>
     <member kind="function">
       <type>T</type>
-      <name>cosPhi</name>
-      <anchorfile>classph_1_1math_1_1_t_orthonormal_basis3.html</anchorfile>
-      <anchor>ae61ee338d90a34485c3065f9ef50f8d8</anchor>
-      <arglist>(const TVector3&lt; T &gt; &amp;unitVec) const</arglist>
-    </member>
-    <member kind="function">
-      <type>T</type>
-      <name>sinPhi</name>
-      <anchorfile>classph_1_1math_1_1_t_orthonormal_basis3.html</anchorfile>
-      <anchor>a910aca8952c85562e162c93877547b4c</anchor>
-      <arglist>(const TVector3&lt; T &gt; &amp;unitVec) const</arglist>
-    </member>
-    <member kind="function">
-      <type>T</type>
-      <name>tanPhi</name>
-      <anchorfile>classph_1_1math_1_1_t_orthonormal_basis3.html</anchorfile>
-      <anchor>a63e2ac8a48a523843377756a6b235b33</anchor>
-      <arglist>(const TVector3&lt; T &gt; &amp;unitVec) const</arglist>
-    </member>
-    <member kind="function">
-      <type>T</type>
       <name>cos2Phi</name>
       <anchorfile>classph_1_1math_1_1_t_orthonormal_basis3.html</anchorfile>
       <anchor>ac0ae89d5156f0f8b15623584144d05e0</anchor>
@@ -38606,27 +38744,6 @@
       <name>tan2Phi</name>
       <anchorfile>classph_1_1math_1_1_t_orthonormal_basis3.html</anchorfile>
       <anchor>adf2b94a34f4d96add15967aebefb6b95</anchor>
-      <arglist>(const TVector3&lt; T &gt; &amp;unitVec) const</arglist>
-    </member>
-    <member kind="function">
-      <type>T</type>
-      <name>cosTheta</name>
-      <anchorfile>classph_1_1math_1_1_t_orthonormal_basis3.html</anchorfile>
-      <anchor>ab00ce530fd0a2d81b1fc764f5e1eeae1</anchor>
-      <arglist>(const TVector3&lt; T &gt; &amp;unitVec) const</arglist>
-    </member>
-    <member kind="function">
-      <type>T</type>
-      <name>sinTheta</name>
-      <anchorfile>classph_1_1math_1_1_t_orthonormal_basis3.html</anchorfile>
-      <anchor>a7f91a957c54f874c0d0bf6516b5a81d8</anchor>
-      <arglist>(const TVector3&lt; T &gt; &amp;unitVec) const</arglist>
-    </member>
-    <member kind="function">
-      <type>T</type>
-      <name>tanTheta</name>
-      <anchorfile>classph_1_1math_1_1_t_orthonormal_basis3.html</anchorfile>
-      <anchor>a5e69fd64023fe5b4c44a55622415d472</anchor>
       <arglist>(const TVector3&lt; T &gt; &amp;unitVec) const</arglist>
     </member>
     <member kind="function">
@@ -38741,12 +38858,96 @@
       <anchor>a2da892795c848c0801eb782650117d3b</anchor>
       <arglist>() const</arglist>
     </member>
+    <member kind="function">
+      <type>T</type>
+      <name>cosPhi</name>
+      <anchorfile>classph_1_1math_1_1_t_orthonormal_basis3.html</anchorfile>
+      <anchor>ae61ee338d90a34485c3065f9ef50f8d8</anchor>
+      <arglist>(const TVector3&lt; T &gt; &amp;unitVec) const</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>sinPhi</name>
+      <anchorfile>classph_1_1math_1_1_t_orthonormal_basis3.html</anchorfile>
+      <anchor>a910aca8952c85562e162c93877547b4c</anchor>
+      <arglist>(const TVector3&lt; T &gt; &amp;unitVec) const</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>tanPhi</name>
+      <anchorfile>classph_1_1math_1_1_t_orthonormal_basis3.html</anchorfile>
+      <anchor>a63e2ac8a48a523843377756a6b235b33</anchor>
+      <arglist>(const TVector3&lt; T &gt; &amp;unitVec) const</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>cosTheta</name>
+      <anchorfile>classph_1_1math_1_1_t_orthonormal_basis3.html</anchorfile>
+      <anchor>ab00ce530fd0a2d81b1fc764f5e1eeae1</anchor>
+      <arglist>(const TVector3&lt; T &gt; &amp;unitVec) const</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>sinTheta</name>
+      <anchorfile>classph_1_1math_1_1_t_orthonormal_basis3.html</anchorfile>
+      <anchor>a7f91a957c54f874c0d0bf6516b5a81d8</anchor>
+      <arglist>(const TVector3&lt; T &gt; &amp;unitVec) const</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>tanTheta</name>
+      <anchorfile>classph_1_1math_1_1_t_orthonormal_basis3.html</anchorfile>
+      <anchor>a5e69fd64023fe5b4c44a55622415d472</anchor>
+      <arglist>(const TVector3&lt; T &gt; &amp;unitVec) const</arglist>
+    </member>
     <member kind="function" static="yes">
       <type>static TOrthonormalBasis3</type>
       <name>makeFromUnitY</name>
       <anchorfile>classph_1_1math_1_1_t_orthonormal_basis3.html</anchorfile>
       <anchor>a4c527b1dd22229b5cb47d55b8a804592</anchor>
       <arglist>(const TVector3&lt; T &gt; &amp;unitYAxis)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>cosPhi</name>
+      <anchorfile>classph_1_1math_1_1_t_orthonormal_basis3.html</anchorfile>
+      <anchor>ae61ee338d90a34485c3065f9ef50f8d8</anchor>
+      <arglist>(const TVector3&lt; T &gt; &amp;unitVec) const</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>sinPhi</name>
+      <anchorfile>classph_1_1math_1_1_t_orthonormal_basis3.html</anchorfile>
+      <anchor>a910aca8952c85562e162c93877547b4c</anchor>
+      <arglist>(const TVector3&lt; T &gt; &amp;unitVec) const</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>tanPhi</name>
+      <anchorfile>classph_1_1math_1_1_t_orthonormal_basis3.html</anchorfile>
+      <anchor>a63e2ac8a48a523843377756a6b235b33</anchor>
+      <arglist>(const TVector3&lt; T &gt; &amp;unitVec) const</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>cosTheta</name>
+      <anchorfile>classph_1_1math_1_1_t_orthonormal_basis3.html</anchorfile>
+      <anchor>ab00ce530fd0a2d81b1fc764f5e1eeae1</anchor>
+      <arglist>(const TVector3&lt; T &gt; &amp;unitVec) const</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>sinTheta</name>
+      <anchorfile>classph_1_1math_1_1_t_orthonormal_basis3.html</anchorfile>
+      <anchor>a7f91a957c54f874c0d0bf6516b5a81d8</anchor>
+      <arglist>(const TVector3&lt; T &gt; &amp;unitVec) const</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>tanTheta</name>
+      <anchorfile>classph_1_1math_1_1_t_orthonormal_basis3.html</anchorfile>
+      <anchor>a5e69fd64023fe5b4c44a55622415d472</anchor>
+      <arglist>(const TVector3&lt; T &gt; &amp;unitVec) const</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -40541,6 +40742,60 @@
       <anchorfile>classph_1_1_tri_face.html</anchorfile>
       <anchor>a2f3c5d78bfb04e8f1a373012e1f9af88</anchor>
       <arglist>() const</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>ph::TrowbridgeReitz</name>
+    <filename>classph_1_1_trowbridge_reitz.html</filename>
+    <base>ph::ShapeInvariantMicrofacet</base>
+    <member kind="function">
+      <type></type>
+      <name>TrowbridgeReitz</name>
+      <anchorfile>classph_1_1_trowbridge_reitz.html</anchorfile>
+      <anchor>aa767f1d57eeef778bc84b2f5d3a91915</anchor>
+      <arglist>(EMaskingShadowing maskingShadowingType)</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>std::array&lt; real, 2 &gt;</type>
+      <name>getAlphas</name>
+      <anchorfile>classph_1_1_trowbridge_reitz.html</anchorfile>
+      <anchor>a0ffebe60527177de92f632fc0effd28f</anchor>
+      <arglist>(const SurfaceHit &amp;X) const override=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>real</type>
+      <name>lambda</name>
+      <anchorfile>classph_1_1_trowbridge_reitz.html</anchorfile>
+      <anchor>a6c878329d85a7adeea045e0204e496ee</anchor>
+      <arglist>(const SurfaceHit &amp;X, const math::Vector3R &amp;N, const math::Vector3R &amp;H, const math::Vector3R &amp;unitDir, const std::array&lt; real, 2 &gt; &amp;alphas) const override=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>real</type>
+      <name>distribution</name>
+      <anchorfile>classph_1_1_trowbridge_reitz.html</anchorfile>
+      <anchor>a2aa124197f17767b9c7b7b29ac061371</anchor>
+      <arglist>(const SurfaceHit &amp;X, const math::Vector3R &amp;N, const math::Vector3R &amp;H) const override=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>void</type>
+      <name>sampleH</name>
+      <anchorfile>classph_1_1_trowbridge_reitz.html</anchorfile>
+      <anchor>ab18b918f2bd6300ea031fa670c14ab1b</anchor>
+      <arglist>(const SurfaceHit &amp;X, const math::Vector3R &amp;N, const std::array&lt; real, 2 &gt; &amp;sample, math::Vector3R *out_H) const override=0</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>sampleVisibleH</name>
+      <anchorfile>classph_1_1_trowbridge_reitz.html</anchorfile>
+      <anchor>a31b5c6a5165f4aec00aae2b704f6a951</anchor>
+      <arglist>(const SurfaceHit &amp;X, const math::Vector3R &amp;N, const math::Vector3R &amp;V, const std::array&lt; real, 2 &gt; &amp;sample, math::Vector3R *out_H) const override</arglist>
+    </member>
+    <member kind="function">
+      <type>lta::PDF</type>
+      <name>pdfSampleVisibleH</name>
+      <anchorfile>classph_1_1_trowbridge_reitz.html</anchorfile>
+      <anchor>a6dbf40b5a8c21337a6bc76947b75214e</anchor>
+      <arglist>(const SurfaceHit &amp;X, const math::Vector3R &amp;N, const math::Vector3R &amp;H, const math::Vector3R &amp;V) const override</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -48502,6 +48757,7 @@
     <class kind="class">ph::SGStratified</class>
     <class kind="class">ph::SGUniformRandom</class>
     <class kind="class">ph::SGUtil</class>
+    <class kind="class">ph::ShapeInvariantMicrofacet</class>
     <class kind="class">ph::SingleFrameRenderSession</class>
     <class kind="class">ph::SingleLensObserver</class>
     <class kind="class">ph::SphereSource</class>
@@ -48588,6 +48844,7 @@
     <class kind="struct">ph::TReferencedPrimitiveGetter</class>
     <class kind="class">ph::TRelaxedAtomic</class>
     <class kind="class">ph::TriFace</class>
+    <class kind="class">ph::TrowbridgeReitz</class>
     <class kind="class">ph::TSampler</class>
     <class kind="class">ph::TSamplingFilm</class>
     <class kind="class">ph::TScalarPixelTexture2D</class>
@@ -49467,6 +49724,17 @@
     </member>
     <member kind="enumeration">
       <type></type>
+      <name>EMaskingShadowing</name>
+      <anchorfile>namespaceph.html</anchorfile>
+      <anchor>a0c0fa392ffb753722f245acbe724095f</anchor>
+      <arglist></arglist>
+      <enumvalue file="namespaceph.html" anchor="a0c0fa392ffb753722f245acbe724095faa87be3fbbfdee88228800d38d3c9246f">HightCorrelated</enumvalue>
+      <enumvalue file="namespaceph.html" anchor="a0c0fa392ffb753722f245acbe724095fa218140cc94a645f77dd15a2af6f640c2">Separable</enumvalue>
+      <enumvalue file="namespaceph.html" anchor="a0c0fa392ffb753722f245acbe724095fa825264b26cbc9ca8644b00dd60a302b7">DirectionCorrelated</enumvalue>
+      <enumvalue file="namespaceph.html" anchor="a0c0fa392ffb753722f245acbe724095fa64b4251e86241ad733ecea97639e9492">HeightDirectionCorrelated</enumvalue>
+    </member>
+    <member kind="enumeration">
+      <type></type>
       <name>ESurfacePhenomenon</name>
       <anchorfile>namespaceph.html</anchorfile>
       <anchor>a596116c16341de64c97b20395d758456</anchor>
@@ -49796,8 +50064,8 @@
       <type>bool</type>
       <name>init_render_engine</name>
       <anchorfile>namespaceph.html</anchorfile>
-      <anchor>ae0473d02550ea7234560578f101c2724</anchor>
-      <arglist>(EngineInitSettings settings)</arglist>
+      <anchor>a60da5e7ab42a0d3a36a7f295bc195104</anchor>
+      <arglist>(std::optional&lt; EngineInitSettings &gt; settings=std::nullopt)</arglist>
     </member>
     <member kind="function">
       <type>bool</type>
@@ -50018,6 +50286,13 @@
     </member>
     <member kind="function">
       <type></type>
+      <name>PH_DEFINE_INTERNAL_LOG_GROUP</name>
+      <anchorfile>namespaceph.html</anchorfile>
+      <anchor>aaa72f09a432d6cc7eee4e55ed2227cd3</anchor>
+      <arglist>(MicrosurfaceInfo, BSDF)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
       <name>PH_DEFINE_SDL_ENUM</name>
       <anchorfile>namespaceph.html</anchorfile>
       <anchor>a9891596228fa00362f4f2899dbc7df4a</anchor>
@@ -50039,10 +50314,10 @@
     </member>
     <member kind="function">
       <type></type>
-      <name>PH_DEFINE_INTERNAL_LOG_GROUP</name>
+      <name>PH_DEFINE_SDL_ENUM</name>
       <anchorfile>namespaceph.html</anchorfile>
-      <anchor>aaa72f09a432d6cc7eee4e55ed2227cd3</anchor>
-      <arglist>(MicrosurfaceInfo, BSDF)</arglist>
+      <anchor>ac9f39a9895e68929b346be8ffe2e2576</anchor>
+      <arglist>(TSdlGeneralEnum&lt; EMaskingShadowing &gt;)</arglist>
     </member>
     <member kind="function">
       <type></type>
@@ -51357,6 +51632,7 @@
       <arglist></arglist>
       <enumvalue file="namespaceph_1_1lta.html" anchor="a517f9714c97ec4a5bcdd5beae0eaf9ddace2c8aed9c2fa0cfbed56cbda4d8bf07">Empty</enumvalue>
       <enumvalue file="namespaceph_1_1lta.html" anchor="a517f9714c97ec4a5bcdd5beae0eaf9dda3f8ffe43765c1baeaa1f3644b48e23b2">SolidAngle</enumvalue>
+      <enumvalue file="namespaceph_1_1lta.html" anchor="a517f9714c97ec4a5bcdd5beae0eaf9dda7f68bd71d0f54b4dd0197456b146ff75">HalfSolidAngle</enumvalue>
       <enumvalue file="namespaceph_1_1lta.html" anchor="a517f9714c97ec4a5bcdd5beae0eaf9ddadeec4ff19974f12ed781cb9a59064214">Area</enumvalue>
       <enumvalue file="namespaceph_1_1lta.html" anchor="a517f9714c97ec4a5bcdd5beae0eaf9ddaf3d7d007f2c4d9612c4128a2a6a8b011">UV01</enumvalue>
       <enumvalue file="namespaceph_1_1lta.html" anchor="a517f9714c97ec4a5bcdd5beae0eaf9ddac75c6f8c5e1c2970cf2feaf8a7331651">UVW01</enumvalue>

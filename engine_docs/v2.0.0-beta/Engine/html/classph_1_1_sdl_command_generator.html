@@ -169,7 +169,7 @@ Protected Member Functions</h2></td></tr>
 <tr class="memdesc:a1d8d53aa96c3242b55b43163ea7376ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called when the generator starts producing a command.  <br /></td></tr>
 <tr class="separator:a1d8d53aa96c3242b55b43163ea7376ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a577b7e3153929a5a78845be6bac1dddd" id="r_a577b7e3153929a5a78845be6bac1dddd"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a577b7e3153929a5a78845be6bac1dddd">endCommand</a> ()=0</td></tr>
-<tr class="memdesc:a577b7e3153929a5a78845be6bac1dddd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called when the generator finishes producing a command.  <br /></td></tr>
+<tr class="memdesc:a577b7e3153929a5a78845be6bac1dddd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called when the generator finishes producing a command. This is called last in the sequence of handler calls for a command. Will not be called on error or if the command is canceled (see <code><a class="el" href="#a1d8d53aa96c3242b55b43163ea7376ff" title="Called when the generator starts producing a command.">beginCommand()</a></code>).  <br /></td></tr>
 <tr class="separator:a577b7e3153929a5a78845be6bac1dddd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acd4ac424be26d4a1549bdfc44bf5538b" id="r_acd4ac424be26d4a1549bdfc44bf5538b"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acd4ac424be26d4a1549bdfc44bf5538b">saveResource</a> (const <a class="el" href="classph_1_1_i_sdl_resource.html">ISdlResource</a> *resource, const <a class="el" href="classph_1_1_sdl_output_context.html">SdlOutputContext</a> &amp;ctx, <a class="el" href="classph_1_1_sdl_output_clauses.html">SdlOutputClauses</a> &amp;clauses)=0</td></tr>
 <tr class="memdesc:acd4ac424be26d4a1549bdfc44bf5538b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Save target resource into output clauses.  <br /></td></tr>
@@ -279,7 +279,13 @@ Protected Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Called when the generator starts producing a command. </p>
-<dl class="section return"><dt>Returns</dt><dd>Whether to generate command for this class. </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">out_ctx</td><td>Stores the context for the command. This context will be used for subsequent handlers (<code><a class="el" href="#acd4ac424be26d4a1549bdfc44bf5538b" title="Save target resource into output clauses.">saveResource()</a></code>, <code><a class="el" href="#a72af8a28923b6be64cc374d7eb97c247" title="Called when one or more commands are generated.">commandGenerated()</a></code>, <code><a class="el" href="#a72af8a28923b6be64cc374d7eb97c247" title="Called when one or more commands are generated.">commandGenerated()</a></code>) for the same command. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Whether to generate command for this class. If <code>false</code>, this command will be skipped and <code><a class="el" href="#a577b7e3153929a5a78845be6bac1dddd" title="Called when the generator finishes producing a command. This is called last in the sequence of handle...">endCommand()</a></code> will not be called. </dd></dl>
 
 <p>Implemented in <a class="el" href="classph_1_1_sdl_scene_file_writer.html#a990742e87a6ee87e01e0a4078215c587">ph::SdlSceneFileWriter</a>.</p>
 
@@ -333,6 +339,7 @@ Protected Member Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">commandStr</td><td>The newly generated command(s). </td></tr>
+    <tr><td class="paramname">ctx</td><td>Context for the command. </td></tr>
   </table>
   </dd>
 </dl>
@@ -364,7 +371,7 @@ Protected Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Called when the generator finishes producing a command. </p>
+<p>Called when the generator finishes producing a command. This is called last in the sequence of handler calls for a command. Will not be called on error or if the command is canceled (see <code><a class="el" href="#a1d8d53aa96c3242b55b43163ea7376ff" title="Called when the generator starts producing a command.">beginCommand()</a></code>). </p>
 
 <p>Implemented in <a class="el" href="classph_1_1_sdl_scene_file_writer.html#a6379f8fc2694fd61c1cc87e384960ee3">ph::SdlSceneFileWriter</a>.</p>
 
@@ -567,6 +574,14 @@ Protected Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Save target resource into output clauses. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir"></td><td class="paramname">resource</td><td>The resource to save. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">ctx</td><td>Context for the command. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">clauses</td><td>Buffer to append the generated clauses. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p>Implemented in <a class="el" href="classph_1_1_sdl_scene_file_writer.html#a7feb6759c8a7888dc89dd82e82f4233c">ph::SdlSceneFileWriter</a>.</p>
 

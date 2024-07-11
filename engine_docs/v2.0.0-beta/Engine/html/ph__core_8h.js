@@ -7,5 +7,5 @@ var ph__core_8h =
     [ "get_registered_engine_enums", "ph__core_8h.html#a8f595262f727d42186f93246a4c8c59e", null ],
     [ "get_resource_directory", "ph__core_8h.html#aa1a778265943c0debe5b5629b88232f2", null ],
     [ "get_script_directory", "ph__core_8h.html#a08e937fb6acacf601e7a5e5d40818fd3", null ],
-    [ "init_render_engine", "ph__core_8h.html#ae0473d02550ea7234560578f101c2724", null ]
+    [ "init_render_engine", "ph__core_8h.html#a60da5e7ab42a0d3a36a7f295bc195104", null ]
 ];
