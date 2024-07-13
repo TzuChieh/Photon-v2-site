@@ -68,10 +68,10 @@ var searchData=
   ['genvector3rtexture_65',['genVector3RTexture',['../../../Engine/html/classph_1_1_swizzled_image.html#ad12a378143ea6cdad18094bccb65d83f',1,'ph::SwizzledImage::genVector3RTexture(const CookingContext &amp;ctx)'],['../../../Engine/html/classph_1_1_swizzled_image.html#ad12a378143ea6cdad18094bccb65d83f',1,'ph::SwizzledImage::genVector3RTexture(const CookingContext &amp;ctx)']]],
   ['genvector4rtexture_66',['genVector4RTexture',['../../../Engine/html/classph_1_1_swizzled_image.html#acd05764d4917bf58630bab8ed4425263',1,'ph::SwizzledImage::genVector4RTexture(const CookingContext &amp;ctx)'],['../../../Engine/html/classph_1_1_swizzled_image.html#acd05764d4917bf58630bab8ed4425263',1,'ph::SwizzledImage::genVector4RTexture(const CookingContext &amp;ctx)']]],
   ['genvolume_67',['genVolume',['../../../Engine/html/classph_1_1_v_absorption_only.html#a76d73124344b5d2b314bca19f96c2aa8',1,'ph::VAbsorptionOnly::genVolume()'],['../../../Engine/html/classph_1_1_volume_material.html#a0ec45c858e0859f44d6ceb094032a2da',1,'ph::VolumeMaterial::genVolume()']]],
-  ['geometric_20light_20actor_68',['Geometric Light Actor',['../main_sdl_full_interface.html#autotoc_md103',1,'']]],
-  ['geometry_69',['Geometry',['../main_sdl_full_interface.html#autotoc_md60',1,'Cuboid Geometry'],['../../../Engine/html/classph_1_1_geometry.html',1,'ph::Geometry'],['../main_feature_overview.html#geometry',1,'Geometry'],['../main_sdl_full_interface.html#autotoc_md55',1,'Geometry'],['../main_sdl_full_interface.html#autotoc_md61',1,'Menger Sponge Geometry'],['../main_sdl_full_interface.html#autotoc_md57',1,'Rectangular Geometry'],['../main_sdl_full_interface.html#autotoc_md56',1,'Spherical Geometry'],['../main_sdl_full_interface.html#autotoc_md58',1,'Triangle Geometry']]],
+  ['geometric_20light_20actor_68',['Geometric Light Actor',['../main_scene_description_reference.html#autotoc_md110',1,'']]],
+  ['geometry_69',['Geometry',['../main_scene_description_reference.html#autotoc_md67',1,'Cuboid Geometry'],['../../../Engine/html/classph_1_1_geometry.html',1,'ph::Geometry'],['../main_feature_overview.html#geometry',1,'Geometry'],['../main_scene_description_reference.html#autotoc_md62',1,'Geometry'],['../main_scene_description_reference.html#autotoc_md68',1,'Menger Sponge Geometry'],['../main_scene_description_reference.html#autotoc_md64',1,'Rectangular Geometry'],['../main_scene_description_reference.html#autotoc_md63',1,'Spherical Geometry'],['../main_scene_description_reference.html#autotoc_md65',1,'Triangle Geometry']]],
   ['geometry_70',['geometry',['../../../Engine/html/classph_1_1_microfacet.html#a4fa386b9ae127ec77b447aaa2f298f12',1,'ph::Microfacet::geometry()'],['../../../Engine/html/classph_1_1_shape_invariant_microfacet.html#a18f5cdb724cd59545dec58a98e9b4131',1,'ph::ShapeInvariantMicrofacet::geometry()']]],
-  ['geometry_20soup_71',['Geometry Soup',['../main_sdl_full_interface.html#autotoc_md62',1,'']]],
+  ['geometry_20soup_71',['Geometry Soup',['../main_scene_description_reference.html#autotoc_md69',1,'']]],
   ['geometry_2ecpp_72',['Geometry.cpp',['../../../Engine/html/_geometry_8cpp.html',1,'']]],
   ['geometry_2edox_73',['Geometry.dox',['../../../Engine/html/_actor_2_geometry_2_geometry_8dox.html',1,'(Global Namespace)'],['../../../Engine/html/_math_2_geometry_2_geometry_8dox.html',1,'(Global Namespace)']]],
   ['geometry_2eh_74',['Geometry.h',['../../../Engine/html/_actor_2_geometry_2_geometry_8h.html',1,'']]],
@@ -717,7 +717,8 @@ var searchData=
   ['gtrianglemesh_2eh_714',['GTriangleMesh.h',['../../../Engine/html/_g_triangle_mesh_8h.html',1,'']]],
   ['guardedconsume_715',['guardedConsume',['../../../Engine/html/classph_1_1_t_s_p_s_c_ring_buffer.html#ad8d4ab3891c65448e057e03cd8c454f3',1,'ph::TSPSCRingBuffer']]],
   ['guardedproduce_716',['guardedProduce',['../../../Engine/html/classph_1_1_t_s_p_s_c_ring_buffer.html#aa2d1a5f241e2ac3e19301357343428a9',1,'ph::TSPSCRingBuffer']]],
-  ['gwave_717',['GWave',['../../../Engine/html/classph_1_1_g_wave.html',1,'ph::GWave'],['../../../Engine/html/classph_1_1_g_wave.html#aa7f1b9566b33dd8c150d2e3de22877ba',1,'ph::GWave::GWave()']]],
-  ['gwave_2ecpp_718',['GWave.cpp',['../../../Engine/html/_g_wave_8cpp.html',1,'']]],
-  ['gwave_2eh_719',['GWave.h',['../../../Engine/html/_g_wave_8h.html',1,'']]]
+  ['guide_717',['Scene Description Guide',['../main_scene_description_guide.html',1,'']]],
+  ['gwave_718',['GWave',['../../../Engine/html/classph_1_1_g_wave.html',1,'ph::GWave'],['../../../Engine/html/classph_1_1_g_wave.html#aa7f1b9566b33dd8c150d2e3de22877ba',1,'ph::GWave::GWave()']]],
+  ['gwave_2ecpp_719',['GWave.cpp',['../../../Engine/html/_g_wave_8cpp.html',1,'']]],
+  ['gwave_2eh_720',['GWave.h',['../../../Engine/html/_g_wave_8h.html',1,'']]]
 ];
