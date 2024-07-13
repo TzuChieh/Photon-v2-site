@@ -5463,7 +5463,7 @@
     <filename>conversions_8h.html</filename>
     <includes id="math_8h" name="math.h" local="yes" import="no" module="no" objc="no">Math/math.h</includes>
     <namespace>ph</namespace>
-    <namespace>ph::conversions</namespace>
+    <namespace>ph::lbconv</namespace>
   </compound>
   <compound kind="file">
     <name>InterfaceStatistics.cpp</name>
@@ -48404,7 +48404,6 @@
     <name>ph</name>
     <filename>namespaceph.html</filename>
     <namespace>ph::constant</namespace>
-    <namespace>ph::conversions</namespace>
     <namespace>ph::detail</namespace>
     <namespace>ph::field_set_op</namespace>
     <namespace>ph::fixed_integer_map_detail</namespace>
@@ -48413,6 +48412,7 @@
     <namespace>ph::function_detail</namespace>
     <namespace>ph::halton_detail</namespace>
     <namespace>ph::io_utils</namespace>
+    <namespace>ph::lbconv</namespace>
     <namespace>ph::lta</namespace>
     <namespace>ph::math</namespace>
     <namespace>ph::pixel_buffer</namespace>
@@ -51165,31 +51165,6 @@
     <filename>namespaceph_1_1constant.html</filename>
   </compound>
   <compound kind="namespace">
-    <name>ph::conversions</name>
-    <filename>namespaceph_1_1conversions.html</filename>
-    <member kind="function">
-      <type>real</type>
-      <name>alphaToVariance</name>
-      <anchorfile>namespaceph_1_1conversions.html</anchorfile>
-      <anchor>aedf27d781104d866656a212a60d7d444</anchor>
-      <arglist>(const real alpha)</arglist>
-    </member>
-    <member kind="function">
-      <type>real</type>
-      <name>varianceToAlpha</name>
-      <anchorfile>namespaceph_1_1conversions.html</anchorfile>
-      <anchor>a785572cd3d36e7cc2fd14098306ef17f</anchor>
-      <arglist>(const real variance)</arglist>
-    </member>
-    <member kind="function">
-      <type>real</type>
-      <name>gToVariance</name>
-      <anchorfile>namespaceph_1_1conversions.html</anchorfile>
-      <anchor>a2c044a5ed45a9153ffdbf1300eeaa699</anchor>
-      <arglist>(const real g)</arglist>
-    </member>
-  </compound>
-  <compound kind="namespace">
     <name>ph::detail</name>
     <filename>namespaceph_1_1detail.html</filename>
     <concept>ph::detail::CPrimitiveMetaGetter</concept>
@@ -51600,6 +51575,31 @@
       <anchorfile>namespaceph_1_1io__utils_1_1detail.html</anchorfile>
       <anchor>ad67053f85a8c15c85846346d2b20167a</anchor>
       <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="namespace">
+    <name>ph::lbconv</name>
+    <filename>namespaceph_1_1lbconv.html</filename>
+    <member kind="function">
+      <type>real</type>
+      <name>alpha_to_variance</name>
+      <anchorfile>namespaceph_1_1lbconv.html</anchorfile>
+      <anchor>a3e87387ee1246eabc22e211cf54b31b9</anchor>
+      <arglist>(const real alpha)</arglist>
+    </member>
+    <member kind="function">
+      <type>real</type>
+      <name>variance_to_alpha</name>
+      <anchorfile>namespaceph_1_1lbconv.html</anchorfile>
+      <anchor>a36b32626e9521491cc4911d1ae561591</anchor>
+      <arglist>(const real variance)</arglist>
+    </member>
+    <member kind="function">
+      <type>real</type>
+      <name>g_to_variance</name>
+      <anchorfile>namespaceph_1_1lbconv.html</anchorfile>
+      <anchor>adcc40348c1973e9b7f78dc9637dc9b4b</anchor>
+      <arglist>(const real g)</arglist>
     </member>
   </compound>
   <compound kind="namespace">

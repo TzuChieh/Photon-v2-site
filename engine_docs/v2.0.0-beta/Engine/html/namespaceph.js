@@ -1,11 +1,6 @@
 var namespaceph =
 [
     [ "constant", "namespaceph_1_1constant.html", null ],
-    [ "conversions", "namespaceph_1_1conversions.html", [
-      [ "alphaToVariance", "namespaceph_1_1conversions.html#aedf27d781104d866656a212a60d7d444", null ],
-      [ "gToVariance", "namespaceph_1_1conversions.html#a2c044a5ed45a9153ffdbf1300eeaa699", null ],
-      [ "varianceToAlpha", "namespaceph_1_1conversions.html#a785572cd3d36e7cc2fd14098306ef17f", null ]
-    ] ],
     [ "detail", "namespaceph_1_1detail.html", "namespaceph_1_1detail" ],
     [ "field_set_op", "namespaceph_1_1field__set__op.html", "namespaceph_1_1field__set__op" ],
     [ "fixed_integer_map_detail", "namespaceph_1_1fixed__integer__map__detail.html", [
@@ -22,6 +17,11 @@ var namespaceph =
     [ "function_detail", "namespaceph_1_1function__detail.html", "namespaceph_1_1function__detail" ],
     [ "halton_detail", "namespaceph_1_1halton__detail.html", "namespaceph_1_1halton__detail" ],
     [ "io_utils", "namespaceph_1_1io__utils.html", "namespaceph_1_1io__utils" ],
+    [ "lbconv", "namespaceph_1_1lbconv.html", [
+      [ "alpha_to_variance", "namespaceph_1_1lbconv.html#a3e87387ee1246eabc22e211cf54b31b9", null ],
+      [ "g_to_variance", "namespaceph_1_1lbconv.html#adcc40348c1973e9b7f78dc9637dc9b4b", null ],
+      [ "variance_to_alpha", "namespaceph_1_1lbconv.html#a36b32626e9521491cc4911d1ae561591", null ]
+    ] ],
     [ "lta", "namespaceph_1_1lta.html", "namespaceph_1_1lta" ],
     [ "math", "namespaceph_1_1math.html", "namespaceph_1_1math" ],
     [ "pixel_buffer", "namespaceph_1_1pixel__buffer.html", "namespaceph_1_1pixel__buffer" ],

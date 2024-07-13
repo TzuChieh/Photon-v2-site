@@ -1,6 +1,6 @@
 var conversions_8h =
 [
-    [ "alphaToVariance", "conversions_8h.html#aedf27d781104d866656a212a60d7d444", null ],
-    [ "gToVariance", "conversions_8h.html#a2c044a5ed45a9153ffdbf1300eeaa699", null ],
-    [ "varianceToAlpha", "conversions_8h.html#a785572cd3d36e7cc2fd14098306ef17f", null ]
+    [ "alpha_to_variance", "conversions_8h.html#a3e87387ee1246eabc22e211cf54b31b9", null ],
+    [ "g_to_variance", "conversions_8h.html#adcc40348c1973e9b7f78dc9637dc9b4b", null ],
+    [ "variance_to_alpha", "conversions_8h.html#a36b32626e9521491cc4911d1ae561591", null ]
 ];

@@ -121,7 +121,7 @@ var searchData=
   ['allowcreatefromclass_118',['allowCreateFromClass',['../classph_1_1_sdl_class.html#a5981e83bbf50e724728155754f89badc',1,'ph::SdlClass::allowCreateFromClass()'],['../classph_1_1_t_sdl_owner_class.html#a4442a8e40663d4f43d05c016af8d3be2',1,'ph::TSdlOwnerClass::allowCreateFromClass(bool allowCreateFromClass) -&gt; TSdlOwnerClass &amp;'],['../classph_1_1_t_sdl_owner_class.html#a5981e83bbf50e724728155754f89badc',1,'ph::TSdlOwnerClass::allowCreateFromClass() const']]],
   ['alpha_119',['alpha',['../classph_1_1_p_m_common_params.html#a8bec8052cefff4dfbafe8b69bbe4361d',1,'ph::PMCommonParams']]],
   ['alpha_5fchannel_5findex_120',['alpha_channel_index',['../namespaceph_1_1pixel__texture.html#abc5f13d575b092591865a60bba13e816',1,'ph::pixel_texture']]],
-  ['alphatovariance_121',['alphaToVariance',['../namespaceph_1_1conversions.html#aedf27d781104d866656a212a60d7d444',1,'ph::conversions']]],
+  ['alpha_5fto_5fvariance_121',['alpha_to_variance',['../namespaceph_1_1lbconv.html#a3e87387ee1246eabc22e211cf54b31b9',1,'ph::lbconv']]],
   ['altpath_122',['AltPath',['../classph_1_1_alt_path.html',1,'ph::AltPath'],['../classph_1_1_alt_path.html#a32adee97c5ec3bcdc9af08f2d96e43d0',1,'ph::AltPath::AltPath()'],['../classph_1_1_alt_path.html#a563b3c8696b6cb4c1af82bb0e6351dee',1,'ph::AltPath::AltPath(const std::string &amp;path)']]],
   ['altpath_2eh_123',['AltPath.h',['../_alt_path_8h.html',1,'']]],
   ['amodel_124',['AModel',['../classph_1_1_a_model.html',1,'ph']]],

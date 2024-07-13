@@ -267,7 +267,7 @@ Real-\/world surfaces are seldom perfectly smooth. Therefore, \textbf{ Abraded\+
 \end{DoxyInlineImage}
       }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{  
 \begin{DoxyInlineImage}
-\includegraphics[height=\baselineskip,keepaspectratio=true]{microfacet_gold_0p5.jpg}%Microfacet Gold
+\includegraphics[height=\baselineskip,keepaspectratio=true]{microfacet_gold_0p5.jpg}%Microfacet Gold Rougher
 \end{DoxyInlineImage}
        }\\\cline{1-2}
 \endfirsthead
@@ -280,7 +280,7 @@ Real-\/world surfaces are seldom perfectly smooth. Therefore, \textbf{ Abraded\+
 \end{DoxyInlineImage}
       }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{  
 \begin{DoxyInlineImage}
-\includegraphics[height=\baselineskip,keepaspectratio=true]{microfacet_gold_0p5.jpg}%Microfacet Gold
+\includegraphics[height=\baselineskip,keepaspectratio=true]{microfacet_gold_0p5.jpg}%Microfacet Gold Rougher
 \end{DoxyInlineImage}
        }\\\cline{1-2}
 \endhead
@@ -295,10 +295,146 @@ Real-\/world surfaces are seldom perfectly smooth. Therefore, \textbf{ Abraded\+
 \end{DoxyImage}
    
 
-NDFs other than Trowbridge-\/\+Reitz are also supported, see \textbf{ here}. Roughness values are often remapped to the $ \alpha $ parameter in the NDF, we have implementations for some \textbf{ common mappings}. The masking and shadowing terms in a microfacet BRDF often have some kind of correlation \cite{Heitz:2014:Microfacet}, and we provide some \textbf{ common forms} to choose from.\hypertarget{main_feature_overview_autotoc_md32}{}\doxysubsection{\texorpdfstring{Abraded Translucent}{Abraded Translucent}}\label{main_feature_overview_autotoc_md32}
-A good reference of microfacet models is the paper (“\+Microfacet Models for Refraction through Rough Surfaces”, EGSR07) written by Walter et al.\hypertarget{main_feature_overview_autotoc_md33}{}\doxysubsection{\texorpdfstring{Binary Mixed Surface}{Binary Mixed Surface}}\label{main_feature_overview_autotoc_md33}
+NDFs other than Trowbridge-\/\+Reitz are also supported, see \textbf{ here}. Roughness values are often remapped to the $ \alpha $ parameter in the NDF, we have implementations for some \textbf{ common mappings}. The masking and shadowing terms in a microfacet BRDF often have some kind of correlation \cite{Heitz:2014:Microfacet}, and we provide some \textbf{ common forms} to choose from.
+
+The generalized form of Trowbridge-\/\+Reitz is anisotropic, which is described thoroughly in Disney\textquotesingle{}s course note at SIGGRAPH 2012 \cite{Burley:2012:Physicallybased}. For anisotropic NDFs, we have an implementation of the $ D_{GTR} $ variant with $ \gamma = 2 $. A sharp edge of anisotropic materials is that they require properly mapped UV coordinates across the mesh in order to form a local basis around the shading point, which is necessary for determining the value of the NDF. Below is some renderings of anisotropic microfacet materials\+:
+
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{  
+\begin{DoxyInlineImage}
+\includegraphics[height=\baselineskip,keepaspectratio=true]{microfacet_titanium_0p05_0p25.jpg}%Microfacet Titanium
+\end{DoxyInlineImage}
+      }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{  
+\begin{DoxyInlineImage}
+\includegraphics[height=\baselineskip,keepaspectratio=true]{microfacet_titanium_0p25_0p05.jpg}%Microfacet Titanium
+\end{DoxyInlineImage}
+       }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{  
+\begin{DoxyInlineImage}
+\includegraphics[height=\baselineskip,keepaspectratio=true]{microfacet_titanium_0p05_0p25.jpg}%Microfacet Titanium
+\end{DoxyInlineImage}
+      }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{  
+\begin{DoxyInlineImage}
+\includegraphics[height=\baselineskip,keepaspectratio=true]{microfacet_titanium_0p25_0p05.jpg}%Microfacet Titanium
+\end{DoxyInlineImage}
+       }\\\cline{1-2}
+\endhead
+\multicolumn{2}{|c|}{\PBS\centering {\bfseries{Brushed titanium. Left\+: Roughness = (0.\+05, 0.\+25). Right\+: Roughness = (0.\+25, 0.\+05).}}   }\\\cline{1-2}
+\end{longtabu}
+
+
+ 
+\begin{DoxyImage}
+\includegraphics[width=\textwidth,height=\textheight/2,keepaspectratio=true]{anisotropic_0_0p2.jpg}
+\doxyfigcaption{A comparison between anisotropic microfacet BRDFs. Left\+: Roughness = (0.2, 0). Middle\+: Roughness = (0.2, 0.2). Right\+: Roughness = (0, 0.2).}
+\end{DoxyImage}
+   \hypertarget{main_feature_overview_autotoc_md32}{}\doxysubsection{\texorpdfstring{Abraded Translucent}{Abraded Translucent}}\label{main_feature_overview_autotoc_md32}
+Since the aforementioned microfacet theory is just a description of microgeometry, it can be applied to the case of light transmission with some modifications \cite{Walter:2007:Microfacet}. The most prominent change is that for each shading point, we now need to trace two paths instead of one, for reflection and transmission, respectively. Much of the code for handling reflection can be reused, but not for transmission (it requires an additional BTDF). This is one of the reasons why the abraded \textbf{ opaque} and \textbf{ translucent} materials do not share a common base class. This microfacet-\/based translucent material is effective for modeling frosted glass. Currently, only single-\/bounce lighting inside the microgeometry is simulated. Multi-\/bounce lighting within the microgeometry will be incorporated in the near future.
+
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{  
+\begin{DoxyInlineImage}
+\includegraphics[height=\baselineskip,keepaspectratio=true]{microfacet_glass_0p2.jpg}%Microfacet Glass
+\end{DoxyInlineImage}
+      }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{  
+\begin{DoxyInlineImage}
+\includegraphics[height=\baselineskip,keepaspectratio=true]{microfacet_glass_0p6.jpg}%Microfacet Glass Rougher
+\end{DoxyInlineImage}
+       }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{  
+\begin{DoxyInlineImage}
+\includegraphics[height=\baselineskip,keepaspectratio=true]{microfacet_glass_0p2.jpg}%Microfacet Glass
+\end{DoxyInlineImage}
+      }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{  
+\begin{DoxyInlineImage}
+\includegraphics[height=\baselineskip,keepaspectratio=true]{microfacet_glass_0p6.jpg}%Microfacet Glass Rougher
+\end{DoxyInlineImage}
+       }\\\cline{1-2}
+\endhead
+\multicolumn{2}{|c|}{\PBS\centering {\bfseries{Frosted glass. Left\+: Roughness = 0.\+2. Right\+: Roughness = 0.\+6.}}   }\\\cline{1-2}
+\end{longtabu}
+\hypertarget{main_feature_overview_autotoc_md33}{}\doxysubsection{\texorpdfstring{Binary Mixed Surface}{Binary Mixed Surface}}\label{main_feature_overview_autotoc_md33}
+Being able to \textbf{ mix two different materials} greatly increases the diversity of possible materials. The mixing process can be nested, e.\+g., a mixed material can participate in another mixing process just like an ordinary, single material. Some material appearances, such as plastic and ceramic, can be achieved easily by this model (though it may not be accurate). As many other material attributes in Photon, the weighting factor for the mix can be mapped by an image.
+
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{  
+\begin{DoxyInlineImage}
+\includegraphics[height=\baselineskip,keepaspectratio=true]{ceramic_0p8_0p2_float.jpg}%Ceramic Float Mix
+\end{DoxyInlineImage}
+      }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{  
+\begin{DoxyInlineImage}
+\includegraphics[height=\baselineskip,keepaspectratio=true]{ceramic_0p8_0p2_textured.jpg}%Ceramic Texture Mix
+\end{DoxyInlineImage}
+       }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{  
+\begin{DoxyInlineImage}
+\includegraphics[height=\baselineskip,keepaspectratio=true]{ceramic_0p8_0p2_float.jpg}%Ceramic Float Mix
+\end{DoxyInlineImage}
+      }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{  
+\begin{DoxyInlineImage}
+\includegraphics[height=\baselineskip,keepaspectratio=true]{ceramic_0p8_0p2_textured.jpg}%Ceramic Texture Mix
+\end{DoxyInlineImage}
+       }\\\cline{1-2}
+\endhead
+\multicolumn{2}{|c|}{\PBS\centering {\bfseries{Left\+: Mixing matte opaque with abraded opaque materials with a (0.\+8, 0.\+2) weighting, producing a ceramic-\/like appearance. Right\+: Using an image to weight the same two materials.}}   }\\\cline{1-2}
+\end{longtabu}
 \hypertarget{main_feature_overview_autotoc_md34}{}\doxysubsection{\texorpdfstring{Layered Material}{Layered Material}}\label{main_feature_overview_autotoc_md34}
-\hypertarget{main_feature_overview_autotoc_md35}{}\doxysubsection{\texorpdfstring{Surface Behavior}{Surface Behavior}}\label{main_feature_overview_autotoc_md35}
+Layered material models have become prevalent in the graphics community for quite some time. The solution by Jakob et al. \cite{Jakob:2014:Comprehensive} requires larger memory space to store some BSDFs, while the model developed by Weidlich et al. \cite{Weidlich:2007:Arbitrarily} requires little space but does not obey the law of energy conservation. Laurent Belcour developed a series of atomic statistical operators for simulating light transport within layers \cite{Belcour:2018:Efficient}. His solution is still not exact but is energy conserving, space efficient, and plays well with texture mapping. Photon has an implementation of Belcour\textquotesingle{}s layered material model, which follows his original implementation closely, with some refactoring and improvements on numerical robustness.
+
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{  
+\begin{DoxyInlineImage}
+\includegraphics[height=\baselineskip,keepaspectratio=true]{belcour_teaser.jpg}%Belcour Mug
+\end{DoxyInlineImage}
+      }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{  
+\begin{DoxyInlineImage}
+\includegraphics[height=\baselineskip,keepaspectratio=true]{belcour_grease_iron.jpg}%Belcour Grease Iron
+\end{DoxyInlineImage}
+       }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{  
+\begin{DoxyInlineImage}
+\includegraphics[height=\baselineskip,keepaspectratio=true]{belcour_teaser.jpg}%Belcour Mug
+\end{DoxyInlineImage}
+      }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{  
+\begin{DoxyInlineImage}
+\includegraphics[height=\baselineskip,keepaspectratio=true]{belcour_grease_iron.jpg}%Belcour Grease Iron
+\end{DoxyInlineImage}
+       }\\\cline{1-2}
+\endhead
+\multicolumn{2}{|c|}{\PBS\centering {\bfseries{Left\+: Simulating a mug material. Right\+: Polished iron with 2 layers of coating. One of the coating layer simulates grease with volumetric light transport.}}   }\\\cline{1-2}
+\end{longtabu}
+
+
+ 
+\begin{DoxyImage}
+\includegraphics[width=\textwidth,height=\textheight/2,keepaspectratio=true]{beclour_mug_param.jpg}
+\doxyfigcaption{Note that the mug material (the left image above) uses the same parameters taken from the teaser image of Belcour\textquotesingle{}s paper.}
+\end{DoxyImage}
+   \hypertarget{main_feature_overview_autotoc_md35}{}\doxysubsection{\texorpdfstring{Surface Behavior}{Surface Behavior}}\label{main_feature_overview_autotoc_md35}
 \hypertarget{main_feature_overview_autotoc_md36}{}\doxysubsection{\texorpdfstring{Volume Behavior}{Volume Behavior}}\label{main_feature_overview_autotoc_md36}
 \hypertarget{main_feature_overview_geometry}{}\doxysection{\texorpdfstring{Geometry}{Geometry}}\label{main_feature_overview_geometry}
 To represent a ball in the scene, you can use a \textbf{ sphere geometry}; for a piece of paper on a table, a \textbf{ rectangle geometry} can model it pretty well. Geometries are the core components of a scene, providing the structural framework for all other elements like materials, lights and physical motions. In the following sections, we will explore some common types of geometries available in Photon, giving you a rough idea of how these foundational elements are constructed and used in rendering.\hypertarget{main_feature_overview_autotoc_md37}{}\doxysubsection{\texorpdfstring{Intersectable and Primitive}{Intersectable and Primitive}}\label{main_feature_overview_autotoc_md37}

@@ -14,7 +14,7 @@ var searchData=
   ['vanillapmrenderer_11',['VanillaPMRenderer',['../classph_1_1_vanilla_p_m_renderer.html',1,'ph::VanillaPMRenderer'],['../classph_1_1_vanilla_p_m_renderer.html#ab310c6eca41e3f7cdae1291bb4e8858c',1,'ph::VanillaPMRenderer::VanillaPMRenderer()']]],
   ['vanillapmrenderer_2ecpp_12',['VanillaPMRenderer.cpp',['../_vanilla_p_m_renderer_8cpp.html',1,'']]],
   ['vanillapmrenderer_2eh_13',['VanillaPMRenderer.h',['../_vanilla_p_m_renderer_8h.html',1,'']]],
-  ['variancetoalpha_14',['varianceToAlpha',['../namespaceph_1_1conversions.html#a785572cd3d36e7cc2fd14098306ef17f',1,'ph::conversions']]],
+  ['variance_5fto_5falpha_14',['variance_to_alpha',['../namespaceph_1_1lbconv.html#a36b32626e9521491cc4911d1ae561591',1,'ph::lbconv']]],
   ['varianttype_15',['VariantType',['../classph_1_1_t_sdl_accessor_variant.html#a1ea9fcce9f59b55084433d360dd840de',1,'ph::TSdlAccessorVariant']]],
   ['vector_16',['Vector',['../namespaceph.html#ace69f5c0a73308d2c88c512f8b70016ea57dea6f5039281b7fee517fc43bf3110',1,'ph']]],
   ['vector2_17',['Vector2',['../namespaceph.html#ace69f5c0a73308d2c88c512f8b70016ea1bebc5ae2822f8e361fb0ce57b5e09e2',1,'ph']]],
