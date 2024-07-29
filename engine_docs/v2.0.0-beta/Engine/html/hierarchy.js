@@ -61,7 +61,6 @@ var hierarchy =
         [ "ph::LatLongEnvEmitter", "classph_1_1_lat_long_env_emitter.html", null ]
       ] ]
     ] ],
-    [ "ph::EmitterBuildingMaterial", "classph_1_1_emitter_building_material.html", null ],
     [ "ph::EmitterSampler", "classph_1_1_emitter_sampler.html", [
       [ "ph::ESPowerFavoring", "classph_1_1_e_s_power_favoring.html", null ],
       [ "ph::ESUniformRandom", "classph_1_1_e_s_uniform_random.html", null ]
@@ -171,6 +170,7 @@ var hierarchy =
         [ "ph::KdtreeIntersector", "classph_1_1_kdtree_intersector.html", null ],
         [ "ph::TIndexedKdtreeIntersector< Index >", "classph_1_1_t_indexed_kdtree_intersector.html", null ]
       ] ],
+      [ "ph::MaskedIntersectable", "classph_1_1_masked_intersectable.html", null ],
       [ "ph::Primitive", "classph_1_1_primitive.html", [
         [ "ph::PBasicSphere", "classph_1_1_p_basic_sphere.html", [
           [ "ph::PLatLong01Sphere", "classph_1_1_p_lat_long01_sphere.html", null ],
@@ -215,6 +215,7 @@ var hierarchy =
       [ "ph::SdlResourceBase", "classph_1_1_sdl_resource_base.html", [
         [ "ph::TSdlResourceBase< ESdlTypeCategory::Ref_Actor >", "classph_1_1_t_sdl_resource_base.html", [
           [ "ph::Actor", "classph_1_1_actor.html", [
+            [ "ph::AMaskedModel", "classph_1_1_a_masked_model.html", null ],
             [ "ph::PhysicalActor", "classph_1_1_physical_actor.html", [
               [ "ph::ADome", "classph_1_1_a_dome.html", [
                 [ "ph::AImageDome", "classph_1_1_a_image_dome.html", null ],
@@ -268,17 +269,6 @@ var hierarchy =
             [ "ph::SwizzledImage", "classph_1_1_swizzled_image.html", null ]
           ] ]
         ] ],
-        [ "ph::TSdlResourceBase< ESdlTypeCategory::Ref_LightSource >", "classph_1_1_t_sdl_resource_base.html", [
-          [ "ph::LightSource", "classph_1_1_light_source.html", [
-            [ "ph::AreaSource", "classph_1_1_area_source.html", [
-              [ "ph::PointSource", "classph_1_1_point_source.html", null ],
-              [ "ph::RectangleSource", "classph_1_1_rectangle_source.html", null ],
-              [ "ph::SphereSource", "classph_1_1_sphere_source.html", null ]
-            ] ],
-            [ "ph::IesAttenuatedSource", "classph_1_1_ies_attenuated_source.html", null ],
-            [ "ph::ModelSource", "classph_1_1_model_source.html", null ]
-          ] ]
-        ] ],
         [ "ph::TSdlResourceBase< ESdlTypeCategory::Ref_Material >", "classph_1_1_t_sdl_resource_base.html", [
           [ "ph::Material", "classph_1_1_material.html", [
             [ "ph::FullMaterial", "classph_1_1_full_material.html", null ],
@@ -290,6 +280,7 @@ var hierarchy =
               [ "ph::IdealSubstance", "classph_1_1_ideal_substance.html", null ],
               [ "ph::LayeredSurface", "classph_1_1_layered_surface.html", null ],
               [ "ph::MatteOpaque", "classph_1_1_matte_opaque.html", null ],
+              [ "ph::ThinDielectricSurface", "classph_1_1_thin_dielectric_surface.html", null ],
               [ "ph::ThinFilm", "classph_1_1_thin_film.html", null ]
             ] ],
             [ "ph::VolumeMaterial", "classph_1_1_volume_material.html", [
@@ -397,6 +388,7 @@ var hierarchy =
     [ "ph::MicrosurfaceInfo", "classph_1_1_microsurface_info.html", null ],
     [ "ph::ModelParser", "classph_1_1_model_parser.html", null ],
     [ "ph::MotionCookConfig", "classph_1_1_motion_cook_config.html", null ],
+    [ "ph::math::Murmur3BitMixer32", "structph_1_1math_1_1_murmur3_bit_mixer32.html", null ],
     [ "ph::field_set_op::NoOpNoticeReceiver", "structph_1_1field__set__op_1_1_no_op_notice_receiver.html", null ],
     [ "ph::VolumeDistanceSample::Output", "classph_1_1_volume_distance_sample_1_1_output.html", null ],
     [ "ph::halton_detail::OwenScrambledPermuter", "classph_1_1halton__detail_1_1_owen_scrambled_permuter.html", null ],
@@ -615,14 +607,15 @@ var hierarchy =
     [ "ph::SurfaceOptics", "classph_1_1_surface_optics.html", [
       [ "ph::IdealAbsorber", "classph_1_1_ideal_absorber.html", null ],
       [ "ph::IdealDielectric", "classph_1_1_ideal_dielectric.html", null ],
+      [ "ph::IdealDielectricTransmitter", "classph_1_1_ideal_dielectric_transmitter.html", null ],
       [ "ph::IdealReflector", "classph_1_1_ideal_reflector.html", null ],
-      [ "ph::IdealTransmitter", "classph_1_1_ideal_transmitter.html", null ],
-      [ "ph::LambertianDiffuse", "classph_1_1_lambertian_diffuse.html", null ],
+      [ "ph::LambertianReflector", "classph_1_1_lambertian_reflector.html", null ],
       [ "ph::LbLayeredSurface", "classph_1_1_lb_layered_surface.html", null ],
       [ "ph::LerpedSurfaceOptics", "classph_1_1_lerped_surface_optics.html", null ],
       [ "ph::OpaqueMicrofacet", "classph_1_1_opaque_microfacet.html", null ],
       [ "ph::OrenNayar", "classph_1_1_oren_nayar.html", null ],
       [ "ph::ThinDielectricFilm", "classph_1_1_thin_dielectric_film.html", null ],
+      [ "ph::ThinDielectricShell", "classph_1_1_thin_dielectric_shell.html", null ],
       [ "ph::TranslucentMicrofacet", "classph_1_1_translucent_microfacet.html", null ]
     ] ],
     [ "ph::lta::SurfaceTracer", "classph_1_1lta_1_1_surface_tracer.html", null ],

@@ -1,0 +1,169 @@
+\doxysection{ph\+::Masked\+Intersectable Class Reference}
+\hypertarget{classph_1_1_masked_intersectable}{}\label{classph_1_1_masked_intersectable}\index{ph::MaskedIntersectable@{ph::MaskedIntersectable}}
+
+
+Carve out some part of an intersectable. This is a masking approach based on intersection routine. Another common approach to shape masking is BSDF-\/based, where the mask determines whether the incoming light simply passes through (a no-\/op, perfectly transmitting BSDF). There is a trade-\/off between these approaches\+: masking in intersection routine samples the mask texture (usually a slower operation) in the tight loop of acceleration structure traversal, while masking in BSDF will need to re-\/enter the acceleration structure multiple times (such as when rendering a forest) which can also be slow.  
+
+
+
+
+{\ttfamily \#include $<$Masked\+Intersectable.\+h$>$}
+
+Inheritance diagram for ph\+::Masked\+Intersectable\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classph_1_1_masked_intersectable}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classph_1_1_masked_intersectable_aabfe3b2454628f528b48bd722178d7b6}{Masked\+Intersectable}} (const \mbox{\hyperlink{classph_1_1_intersectable}{Intersectable}} \texorpdfstring{$\ast$}{*}intersectable, const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classph_1_1_t_texture}{TTexture}}$<$ real $>$ $>$ \&mask, uint8 max\+Iterations=4)
+\item 
+bool \mbox{\hyperlink{classph_1_1_masked_intersectable_adad666ad7c33abb35a2dbcd090c3dcc0}{is\+Intersecting}} (const \mbox{\hyperlink{classph_1_1_ray}{Ray}} \&ray, \mbox{\hyperlink{classph_1_1_hit_probe}{Hit\+Probe}} \&probe) const override
+\begin{DoxyCompactList}\small\item\em Determine whether a given ray hits the object. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classph_1_1_masked_intersectable_ade4d9a762986bea9ae643f1094c15928}{reintersect}} (const \mbox{\hyperlink{classph_1_1_ray}{Ray}} \&ray, \mbox{\hyperlink{classph_1_1_hit_probe}{Hit\+Probe}} \&probe, const \mbox{\hyperlink{classph_1_1_ray}{Ray}} \&src\+Ray, \mbox{\hyperlink{classph_1_1_hit_probe}{Hit\+Probe}} \&src\+Probe) const override
+\begin{DoxyCompactList}\small\item\em Intersect the intersected object again with a different ray. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classph_1_1_masked_intersectable_a3b00c1fef653d95bf81d2f8e9e15329f}{calc\+Hit\+Detail}} (const \mbox{\hyperlink{classph_1_1_ray}{Ray}} \&ray, \mbox{\hyperlink{classph_1_1_hit_probe}{Hit\+Probe}} \&probe, \mbox{\hyperlink{classph_1_1_hit_detail}{Hit\+Detail}} \texorpdfstring{$\ast$}{*}out\+\_\+detail) const override
+\begin{DoxyCompactList}\small\item\em Calculates properties of a hit, such as coordinates and normal. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespaceph_1_1math_a79409e9e8aea24d984f98f3acb483937}{math\+::\+AABB3D}} \mbox{\hyperlink{classph_1_1_masked_intersectable_a48de70806f178a078d5f8f38b5d5687f}{calc\+AABB}} () const override
+\begin{DoxyCompactList}\small\item\em Calculates Axis-\/\+Aligned Bounding Box (AABB) of itself. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classph_1_1_intersectable}{ph\+::\+Intersectable}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classph_1_1_intersectable_a92ed92752294dbb4940ab3262fe971c7}{\texorpdfstring{$\sim$}{\string~}\+Intersectable}} ()=default
+\item 
+virtual bool \mbox{\hyperlink{classph_1_1_intersectable_ab2704ced51a4d65af7030b1a45a4fdda}{is\+Occluding}} (const \mbox{\hyperlink{classph_1_1_ray}{Ray}} \&ray) const
+\begin{DoxyCompactList}\small\item\em Determines whether this object blocks the ray. \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classph_1_1_intersectable_a86fce4c0b0c1f99a50380ce41ad2875a}{may\+Overlap\+Volume}} (const \mbox{\hyperlink{namespaceph_1_1math_a79409e9e8aea24d984f98f3acb483937}{math\+::\+AABB3D}} \&volume) const
+\begin{DoxyCompactList}\small\item\em Conservatively checks whether this object overlaps a volume. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Carve out some part of an intersectable. This is a masking approach based on intersection routine. Another common approach to shape masking is BSDF-\/based, where the mask determines whether the incoming light simply passes through (a no-\/op, perfectly transmitting BSDF). There is a trade-\/off between these approaches\+: masking in intersection routine samples the mask texture (usually a slower operation) in the tight loop of acceleration structure traversal, while masking in BSDF will need to re-\/enter the acceleration structure multiple times (such as when rendering a forest) which can also be slow. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classph_1_1_masked_intersectable_aabfe3b2454628f528b48bd722178d7b6}\index{ph::MaskedIntersectable@{ph::MaskedIntersectable}!MaskedIntersectable@{MaskedIntersectable}}
+\index{MaskedIntersectable@{MaskedIntersectable}!ph::MaskedIntersectable@{ph::MaskedIntersectable}}
+\doxysubsubsection{\texorpdfstring{MaskedIntersectable()}{MaskedIntersectable()}}
+{\footnotesize\ttfamily \label{classph_1_1_masked_intersectable_aabfe3b2454628f528b48bd722178d7b6} 
+ph\+::\+Masked\+Intersectable\+::\+Masked\+Intersectable (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classph_1_1_intersectable}{Intersectable}} \texorpdfstring{$\ast$}{*}}]{intersectable}{, }\item[{const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classph_1_1_t_texture}{TTexture}}$<$ real $>$ $>$ \&}]{mask}{, }\item[{uint8}]{max\+Iterations}{ = {\ttfamily 4}}\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em intersectable} & The intersectable to apply the mask on. \\
+\hline
+{\em mask} & The mask to apply. Commonly called alpha mask or opacity mask. \\
+\hline
+{\em max\+Iterations} & For some shape, such as sphere, ray intersection must be performed iteratively if earlier intersections are being rejected by the mask. The default value should be plenty for most shapes (e.\+g., a sphere has at most 2 intersections for a single ray). \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classph_1_1_masked_intersectable_a48de70806f178a078d5f8f38b5d5687f}\index{ph::MaskedIntersectable@{ph::MaskedIntersectable}!calcAABB@{calcAABB}}
+\index{calcAABB@{calcAABB}!ph::MaskedIntersectable@{ph::MaskedIntersectable}}
+\doxysubsubsection{\texorpdfstring{calcAABB()}{calcAABB()}}
+{\footnotesize\ttfamily \label{classph_1_1_masked_intersectable_a48de70806f178a078d5f8f38b5d5687f} 
+\mbox{\hyperlink{namespaceph_1_1math_a79409e9e8aea24d984f98f3acb483937}{math\+::\+AABB3D}} ph\+::\+Masked\+Intersectable\+::calc\+AABB (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Calculates Axis-\/\+Aligned Bounding Box (AABB) of itself. 
+
+
+
+Implements \mbox{\hyperlink{classph_1_1_intersectable_a704f250ee94d802e853748d97dd6722f}{ph\+::\+Intersectable}}.
+
+\Hypertarget{classph_1_1_masked_intersectable_a3b00c1fef653d95bf81d2f8e9e15329f}\index{ph::MaskedIntersectable@{ph::MaskedIntersectable}!calcHitDetail@{calcHitDetail}}
+\index{calcHitDetail@{calcHitDetail}!ph::MaskedIntersectable@{ph::MaskedIntersectable}}
+\doxysubsubsection{\texorpdfstring{calcHitDetail()}{calcHitDetail()}}
+{\footnotesize\ttfamily \label{classph_1_1_masked_intersectable_a3b00c1fef653d95bf81d2f8e9e15329f} 
+void ph\+::\+Masked\+Intersectable\+::calc\+Hit\+Detail (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classph_1_1_ray}{Ray}} \&}]{ray}{, }\item[{\mbox{\hyperlink{classph_1_1_hit_probe}{Hit\+Probe}} \&}]{probe}{, }\item[{\mbox{\hyperlink{classph_1_1_hit_detail}{Hit\+Detail}} \texorpdfstring{$\ast$}{*}}]{out\+\_\+detail}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Calculates properties of a hit, such as coordinates and normal. 
+
+This method calculates a detailed description of a hit from the ray and probe involved in a hit event. For example, the ray and probe used for calling \doxylink{classph_1_1_masked_intersectable_adad666ad7c33abb35a2dbcd090c3dcc0}{is\+Intersecting()} can be the inputs of this method (if an intersection is found). The process of calculating intersection detail will destroy the input probe.
+
+
+\begin{DoxyParams}{Parameters}
+{\em ray} & The ray from a hit event. \\
+\hline
+{\em probe} & The probe from a hit event. The process of detail calculation will destroy the probe. \\
+\hline
+{\em out\+\_\+detail} & Stores the calculated details. This method calculates the essential details only. Some information such as coordinate bases will only be available if specifically requested afterwards (for an example, see {\ttfamily \doxylink{classph_1_1_hit_detail_a7d6b13b545866a192fcece1d2df022b8}{Hit\+Detail\+::compute\+Bases()}}).\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+See {\ttfamily \doxylink{classph_1_1_primitive}{Primitive}} for more methods that can generate a hit event. 
+\end{DoxyNote}
+\begin{DoxyWarning}{Warning}
+This method will destroy the probe. 
+\end{DoxyWarning}
+
+
+Implements \mbox{\hyperlink{classph_1_1_intersectable_ad1df6e972a7cb71e2c0a99f28a80c810}{ph\+::\+Intersectable}}.
+
+\Hypertarget{classph_1_1_masked_intersectable_adad666ad7c33abb35a2dbcd090c3dcc0}\index{ph::MaskedIntersectable@{ph::MaskedIntersectable}!isIntersecting@{isIntersecting}}
+\index{isIntersecting@{isIntersecting}!ph::MaskedIntersectable@{ph::MaskedIntersectable}}
+\doxysubsubsection{\texorpdfstring{isIntersecting()}{isIntersecting()}}
+{\footnotesize\ttfamily \label{classph_1_1_masked_intersectable_adad666ad7c33abb35a2dbcd090c3dcc0} 
+bool ph\+::\+Masked\+Intersectable\+::is\+Intersecting (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classph_1_1_ray}{Ray}} \&}]{ray}{, }\item[{\mbox{\hyperlink{classph_1_1_hit_probe}{Hit\+Probe}} \&}]{probe}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Determine whether a given ray hits the object. 
+
+Checks whether the specified ray intersects this intersectable. If there is an intersection, {\ttfamily true} is returned and a brief hit report is stored inside the probe. If there is no intersection, {\ttfamily false} is returned and the state of the probe is undefined. {\ttfamily ray} and {\ttfamily probe} can be used for obtaining hit detail if an intersection is found.
+
+\begin{DoxyNote}{Note}
+Generates hit event (with {\ttfamily ray} and {\ttfamily probe}). 
+\end{DoxyNote}
+
+
+Implements \mbox{\hyperlink{classph_1_1_intersectable_ae445743ad48751b06f89a08cd8910b3e}{ph\+::\+Intersectable}}.
+
+\Hypertarget{classph_1_1_masked_intersectable_ade4d9a762986bea9ae643f1094c15928}\index{ph::MaskedIntersectable@{ph::MaskedIntersectable}!reintersect@{reintersect}}
+\index{reintersect@{reintersect}!ph::MaskedIntersectable@{ph::MaskedIntersectable}}
+\doxysubsubsection{\texorpdfstring{reintersect()}{reintersect()}}
+{\footnotesize\ttfamily \label{classph_1_1_masked_intersectable_ade4d9a762986bea9ae643f1094c15928} 
+bool ph\+::\+Masked\+Intersectable\+::reintersect (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classph_1_1_ray}{Ray}} \&}]{ray}{, }\item[{\mbox{\hyperlink{classph_1_1_hit_probe}{Hit\+Probe}} \&}]{probe}{, }\item[{const \mbox{\hyperlink{classph_1_1_ray}{Ray}} \&}]{src\+Ray}{, }\item[{\mbox{\hyperlink{classph_1_1_hit_probe}{Hit\+Probe}} \&}]{src\+Probe}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Intersect the intersected object again with a different ray. 
+
+This method is different to is\+Intersecting(const Ray, Hit\+Probe\&) const. Given {\ttfamily src\+Ray} and {\ttfamily src\+Probe}, this method performs an intersection test against the chain of intersectables recorded in {\ttfamily src\+Probe} (so it is impossible to "{}discover"{} new intersectables with this method). Taking BVH as an example, the implementation may only record the intersected object in the probe so this method can bypass the entire BVH traversal.
+
+
+\begin{DoxyParams}{Parameters}
+{\em ray} & The ray to test for intersection. \\
+\hline
+{\em probe} & The probe to record the intersection. \\
+\hline
+{\em src\+Ray} & The ray from a previous hit event. \\
+\hline
+{\em src\+Probe} & The probe from a hit event. The process of re-\/intersect will destroy the probe. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Whether {\ttfamily ray} intersects the object.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Generates hit event (with {\ttfamily ray} and {\ttfamily probe}). 
+\end{DoxyNote}
+\begin{DoxyWarning}{Warning}
+This method will destroy {\ttfamily src\+Probe}. 
+\end{DoxyWarning}
+
+
+Implements \mbox{\hyperlink{classph_1_1_intersectable_a4d9858adbc05eabea428bca36a11cfad}{ph\+::\+Intersectable}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Source/\+Core/\+Intersection/\mbox{\hyperlink{_masked_intersectable_8h}{Masked\+Intersectable.\+h}}\item 
+Source/\+Core/\+Intersection/\mbox{\hyperlink{_masked_intersectable_8cpp}{Masked\+Intersectable.\+cpp}}\end{DoxyCompactItemize}

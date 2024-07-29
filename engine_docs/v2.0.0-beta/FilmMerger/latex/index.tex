@@ -1,0 +1,59 @@
+\chapter{Film Merger}
+\hypertarget{index}{}\label{index}\index{Film Merger@{Film Merger}}
+\label{index_photon_film_merger_readme}%
+\Hypertarget{index_photon_film_merger_readme}%
+ This is a tool for combining render output from multiple render sessions. A typical use case is the same scene being rendered by multiple machines, each producing a different render output. We call these render outputs "{}films"{}. Multiple films can be merged into a single film in various ways. For example, statistically independent films can be merged into a more converged film with reduced noise and bias.
+
+\begin{DoxyNote}{Note}
+If you are building the engine from source, you may need to enable the CMake option {\ttfamily PH\+\_\+\+BUILD\+\_\+\+OPTIONAL\+\_\+\+TOOLS} to build this tool.
+\end{DoxyNote}
+\hypertarget{index_autotoc_md0}{}\doxysection{\texorpdfstring{Available Options}{Available Options}}\label{index_autotoc_md0}
+Primary usage\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{[<film-\/path>\ [-\/w\ <weight>]]...\ [-\/o\ <image-\/path>]\ [-\/of\ <image-\/format>]\ [-\/-\/help]}
+
+\end{DoxyCode}
+
+
+See below for more information about the arguments.
+
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Options   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Effects    }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Options   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Effects    }\\\cline{1-2}
+\endhead
+{\ttfamily \texorpdfstring{$<$}{<}film-\/path\texorpdfstring{$>$}{>}}   &File path of the film to merge.    \\\cline{1-2}
+{\ttfamily -\/w \texorpdfstring{$<$}{<}weight\texorpdfstring{$>$}{>}}   &Specify a weighting factor for the film. If the film format does not come with weighting factors, 1 will be used.    \\\cline{1-2}
+{\ttfamily -\/o \texorpdfstring{$<$}{<}image-\/path\texorpdfstring{$>$}{>}}   &Specify output path for the merged image. This should be a filename without the extension part. Note that the application will not create the directory for you if it is not already exists. (default path\+: {\ttfamily "{}./merged\+\_\+image"{}})    \\\cline{1-2}
+{\ttfamily -\/of \texorpdfstring{$<$}{<}image-\/format\texorpdfstring{$>$}{>}}   &Specify the format of the merged image. Supported formats are\+: png, jpg, bmp, tga, hdr, exr, pfm. (default format\+: exr)    \\\cline{1-2}
+{\ttfamily -\/-\/help}   &Print this help message then exit.   \\\cline{1-2}
+\end{longtabu}
+\hypertarget{index_autotoc_md1}{}\doxysection{\texorpdfstring{Examples}{Examples}}\label{index_autotoc_md1}
+All following commands are expected to be executed from the build/install directory.
+
+To merge three films into a new one named {\ttfamily "{}./merged.\+exr"{}}, use the following command\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{./bin/FilmMerger\ "{}./film1.exr"{}\ "{}./film2.exr"{}\ "{}./film3.exr"{}\ -\/o\ "{}./merged"{}}
+
+\end{DoxyCode}
+
+
+You can also specify a weighting factor for each film. In the following example, two films are merged with a 1\+:2 ratio\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{./bin/FilmMerger\ "{}./film1.exr"{}\ -\/w\ 1\ "{}./film2.exr"{}\ -\/w\ 2}
+
+\end{DoxyCode}
+
+
+The film merger tool accepts an arbitrary number of films. 

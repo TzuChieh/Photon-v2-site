@@ -22,7 +22,6 @@ var _e_sdl_data_type_8h =
       [ "Geometry", "_e_sdl_data_type_8h.html#ada33bb2d4bc26b3ec1da2acb348ef4ebad9c6333623e6357515fcbf17be806273", null ],
       [ "Material", "_e_sdl_data_type_8h.html#ada33bb2d4bc26b3ec1da2acb348ef4ebad92a8333dd3ccb895cc65f7455b71206", null ],
       [ "Motion", "_e_sdl_data_type_8h.html#ada33bb2d4bc26b3ec1da2acb348ef4eba8226588f03da49b857e5ddf8c508dd2d", null ],
-      [ "LightSource", "_e_sdl_data_type_8h.html#ada33bb2d4bc26b3ec1da2acb348ef4eba4cbb187bee11b3b06558284cd3e17d8d", null ],
       [ "Actor", "_e_sdl_data_type_8h.html#ada33bb2d4bc26b3ec1da2acb348ef4eba1cc84619677de81ee6e44149845270a3", null ],
       [ "Image", "_e_sdl_data_type_8h.html#ada33bb2d4bc26b3ec1da2acb348ef4ebabe53a0541a6d36f6ecb879fa2c584b08", null ],
       [ "FrameProcessor", "_e_sdl_data_type_8h.html#ada33bb2d4bc26b3ec1da2acb348ef4eba3c61c04825dd7c0cc614b51840b0e433", null ],

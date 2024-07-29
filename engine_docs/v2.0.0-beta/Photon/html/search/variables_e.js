@@ -18,7 +18,7 @@ var searchData=
   ['preloadmemorythreshold_15',['preloadMemoryThreshold',['../../../Engine/html/structph_1_1_ply_i_o_config.html#a6bc00e209ce16e142ea5365a97f9dd67',1,'ph::PlyIOConfig']]],
   ['prime_16',['PRIME',['../../../Engine/html/namespaceph_1_1math_1_1table.html#a6a102bd18125b6cb1b96692f49d6ef3d',1,'ph::math::table']]],
   ['primitive_17',['primitive',['../../../Engine/html/structph_1_1_t_embedded_primitive_getter.html#aeb73ac0e5c15058973b86cd4871a32e1',1,'ph::TEmbeddedPrimitiveGetter::primitive'],['../../../Engine/html/structph_1_1_t_referenced_primitive_getter.html#a6774c00b784ae9e7bd1eb7b9725369e3',1,'ph::TReferencedPrimitiveGetter::primitive']]],
-  ['primitives_18',['primitives',['../../../Engine/html/classph_1_1_cooked_geometry.html#a16d263e377142d4dbc995eee30cd1fa8',1,'ph::CookedGeometry::primitives'],['../../../Engine/html/classph_1_1_emitter_building_material.html#a443e95670d1c67091b38bceb5406fc71',1,'ph::EmitterBuildingMaterial::primitives']]],
+  ['primitives_18',['primitives',['../../../Engine/html/classph_1_1_cooked_geometry.html#a16d263e377142d4dbc995eee30cd1fa8',1,'ph::CookedGeometry']]],
   ['primitivesoffset_19',['primitivesOffset',['../../../Engine/html/classph_1_1_bvh_linear_node.html#a5a41b6bd3dedd4b9123b13be675b53e0',1,'ph::BvhLinearNode']]],
   ['primitivesview_20',['primitivesView',['../../../Engine/html/classph_1_1_transient_visual_element.html#ae67280bebc8f8357e3372babab763897',1,'ph::TransientVisualElement']]],
   ['priority_21',['priority',['../../../Engine/html/classph_1_1_cook_order.html#afaa65ccd49eab065c50ca2a4b1d3eb4d',1,'ph::CookOrder']]],

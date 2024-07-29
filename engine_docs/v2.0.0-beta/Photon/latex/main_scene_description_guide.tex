@@ -4,7 +4,7 @@
 \Hypertarget{main_scene_description_guide_md__documentation_2scene__description__guide}%
 
 
-Here, you will learn about the scene description language used in Photon, sometimes referred to as PSDL (Photon Scene Description Language). It is a special format created for storing scene data as well as controlling the behavior of the render engine. We also have \href{https://github.com/TzuChieh/Photon-v2/tree/master/SDLGenerator/SDLGen}{\texttt{ API generators}} for different programming languages, allowing users to programmatically build scene descriptions and output customized formats for various applications. The reference for all engine features exposed as PSDL can be found \doxysectlink{main_scene_description_reference}{here}{0}.\hypertarget{main_scene_description_guide_autotoc_md55}{}\doxysection{\texorpdfstring{Introduction}{Introduction}}\label{main_scene_description_guide_autotoc_md55}
+Here, you will learn about the scene description language used in Photon, sometimes referred to as PSDL (Photon Scene Description Language). It is a special format created for storing scene data as well as controlling the behavior of the render engine. We also have \href{https://github.com/TzuChieh/Photon-v2/tree/master/SDLGenerator/SDLGen}{\texttt{ API generators}} for different programming languages, allowing users to programmatically build scene descriptions and output customized formats for various applications. The reference for all engine features exposed as PSDL can be found \doxysectlink{main_scene_description_reference}{here}{0}.\hypertarget{main_scene_description_guide_autotoc_md56}{}\doxysection{\texorpdfstring{Introduction}{Introduction}}\label{main_scene_description_guide_autotoc_md56}
 Let us first see how a simple scene would be represented in PSDL. The hello-\/world scene that will be rendered by Photon looks like this
 
  
@@ -82,7 +82,7 @@ After saving the scene description as {\ttfamily hello\+\_\+world.\+p2} under th
 \begin{DoxyNote}{Note}
 Most components of Photon expect the build/install directory to be their working directory, not the directory that contains the executable.
 \end{DoxyNote}
-\hypertarget{main_scene_description_guide_autotoc_md56}{}\doxysection{\texorpdfstring{Language Basics}{Language Basics}}\label{main_scene_description_guide_autotoc_md56}
+\hypertarget{main_scene_description_guide_autotoc_md57}{}\doxysection{\texorpdfstring{Language Basics}{Language Basics}}\label{main_scene_description_guide_autotoc_md57}
 PSDL is a command-\/like system and the commands can be roughly categorized into two parts\+: {\bfseries{header}} and {\bfseries{clause}}. Commands are normally structured in the following way\+:
 
 {\ttfamily type-\/category}({\ttfamily type-\/name}) @{\ttfamily name} = {\ttfamily clauses};
@@ -121,13 +121,13 @@ As you may have noticed, all commands end with a trailing semi-\/colon. To disab
 \begin{DoxyNote}{Note}
 As long as you do not break any keyword or symbol of PSDL, a single command can be dissected into multiple lines. Cramming multiple commands into a single line is also supported.
 \end{DoxyNote}
-In the next sections, we will formally introduce the syntactic structures of PSDL commands.\hypertarget{main_scene_description_guide_autotoc_md57}{}\doxysection{\texorpdfstring{Type Category}{Type Category}}\label{main_scene_description_guide_autotoc_md57}
+In the next sections, we will formally introduce the syntactic structures of PSDL commands.\hypertarget{main_scene_description_guide_autotoc_md58}{}\doxysection{\texorpdfstring{Type Category}{Type Category}}\label{main_scene_description_guide_autotoc_md58}
 {\ttfamily type-\/category}(type-\/name) @name = clauses;
 
-Describes the category to which the current command belongs. For example, the command that creates a geometry states that its category is {\ttfamily geometry} in its type category section. There are many categories in PSDL. In addition to the ones seen in the above hello-\/world scene description, we also have {\ttfamily image}, {\ttfamily object} and much more.\hypertarget{main_scene_description_guide_autotoc_md58}{}\doxysection{\texorpdfstring{Type Name}{Type Name}}\label{main_scene_description_guide_autotoc_md58}
+Describes the category to which the current command belongs. For example, the command that creates a geometry states that its category is {\ttfamily geometry} in its type category section. There are many categories in PSDL. In addition to the ones seen in the above hello-\/world scene description, we also have {\ttfamily image}, {\ttfamily object} and much more.\hypertarget{main_scene_description_guide_autotoc_md59}{}\doxysection{\texorpdfstring{Type Name}{Type Name}}\label{main_scene_description_guide_autotoc_md59}
 type-\/category({\ttfamily type-\/name}) @name = clauses;
 
-Type names generally {\itshape add details} to the type category. Again, in the command that creates a geometry, we know that we are now creating a {\ttfamily rectangle} geometry from the command fragment {\ttfamily geometry(rectangle)}. Type category and type name are often combined and are called {\bfseries{full type name}} together. Full type name is only needed if the underlying engine operation requires it (such as creating a resource). For executor calls (see the later section), type name can be omitted (will be automatically deduced from the referenced resource) sometimes.\hypertarget{main_scene_description_guide_autotoc_md59}{}\doxysection{\texorpdfstring{Data Name}{Data Name}}\label{main_scene_description_guide_autotoc_md59}
+Type names generally {\itshape add details} to the type category. Again, in the command that creates a geometry, we know that we are now creating a {\ttfamily rectangle} geometry from the command fragment {\ttfamily geometry(rectangle)}. Type category and type name are often combined and are called {\bfseries{full type name}} together. Full type name is only needed if the underlying engine operation requires it (such as creating a resource). For executor calls (see the later section), type name can be omitted (will be automatically deduced from the referenced resource) sometimes.\hypertarget{main_scene_description_guide_autotoc_md60}{}\doxysection{\texorpdfstring{Data Name}{Data Name}}\label{main_scene_description_guide_autotoc_md60}
 type-\/category(type-\/name) @{\ttfamily name} = clauses;
 
 The data name is the name given to the command (e.\+g., as a resource name, or a reference name) and is always prefixed by {\ttfamily @}. Note that {\ttfamily @} is part of the syntax rather than part of the name. Also, names with whitespace characters should be enclosed by double quotes, see the following example to understand more clearly\+:
@@ -140,14 +140,14 @@ The data name is the name given to the command (e.\+g., as a resource name, or a
 \DoxyCodeLine{actor(model)\ @balloon\ =\ [geometry\ geometry\ \textcolor{stringliteral}{@"{}ball\ name\ with\ spaces"{}}];}
 
 \end{DoxyCode}
-\hypertarget{main_scene_description_guide_autotoc_md60}{}\doxysection{\texorpdfstring{Clauses}{Clauses}}\label{main_scene_description_guide_autotoc_md60}
+\hypertarget{main_scene_description_guide_autotoc_md61}{}\doxysection{\texorpdfstring{Clauses}{Clauses}}\label{main_scene_description_guide_autotoc_md61}
 type-\/category(type-\/name) @name = {\ttfamily clauses};
 
 Clause is a structure that stores parameters for a command. It has the following form\+:
 
 \mbox{[}{\ttfamily type-\/category} {\ttfamily parameter-\/name}\+:{\ttfamily tag} {\ttfamily values}\mbox{]}
 
-It is worth pointing out that the {\ttfamily parameter-\/name} does not need to start with {\ttfamily @}. The {\ttfamily values} section can have many forms such as numerical values (as seen earlier), arrays, and even stand-\/alone data files (we call them {\bfseries{PSDL Resource Identifier}}). Details of this section will be introduced in \doxysectlink{main_scene_description_guide_psdl_resource_identifier}{later part}{1} of the guide.
+It is worth pointing out that the {\ttfamily parameter-\/name} does not need to start with {\ttfamily @}. The {\ttfamily values} section can have many forms such as numerical values (as seen earlier), arrays, and even stand-\/alone data files (we call them {\bfseries{PSDL Resource Identifier}}). Details for resource identifiers will be introduced in \doxysectlink{main_scene_description_guide_psdl_resource_identifier}{later part}{1} of the guide.
 
 
 \begin{DoxyCode}{0}
@@ -162,10 +162,43 @@ It is worth pointing out that the {\ttfamily parameter-\/name} does not need to 
 \end{DoxyCode}
 
 
+When defining a clause, {\ttfamily type-\/category} can be classified into {\itshape value} and {\itshape reference}. \doxysectlink{main_scene_description_guide_sdl_value_types}{Value types}{2} do not share data and create a new block of data each time a clause is instantiated. On the other hand, \doxysectlink{main_scene_description_guide_sdl_reference_types}{reference types}{2} can share their data by instance names, with automatic reference counting.\hypertarget{main_scene_description_guide_sdl_value_types}{}\doxysubsection{\texorpdfstring{Value Types}{Value Types}}\label{main_scene_description_guide_sdl_value_types}
+These are common value types used in a SDL clause\+:
+
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{3}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Type   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Value Syntax   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Notes    }\\\cline{1-3}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Type   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Value Syntax   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Notes    }\\\cline{1-3}
+\endhead
+{\ttfamily integer}   &An optionally double-\/quoted single integer literal. {\ttfamily 42}, {\ttfamily "{}6789"{}} are all valid inputs. Base 16 input like {\ttfamily 0x\+FF} is also supported.   &Internally, the clause may bind to a lower precision field such as {\ttfamily uin16}. Incompatible value literals will be detected and reported.\texorpdfstring{$\ast$}{*}    \\\cline{1-3}
+{\ttfamily real}   &An optionally double-\/quoted single floating-\/point literal. {\ttfamily -\/123}, {\ttfamily "{}3.\+1415926"{}} are all valid literals.   &Internally, the clause may bind to a field with a type different from {\ttfamily float}. Incompatible value literals will be detected and reported.\texorpdfstring{$\ast$}{*}    \\\cline{1-3}
+{\ttfamily bool}   &{\ttfamily true}, {\ttfamily True}, or {\ttfamily TRUE} for true; {\ttfamily false}, {\ttfamily False}, or {\ttfamily FALSE} for false.   &\\\cline{1-3}
+{\ttfamily string}   &A string without whitespaces can be specified directly like {\ttfamily nospace}. Whitespaces like spaces, tabs, etc. can be included using double quotes like {\ttfamily "{}  lots of  spaces  "{}}.   &\\\cline{1-3}
+{\ttfamily vector2}   &Two floating-\/point literals enclosed by a pair of double quotes. The literals should be separated by whitespace(s) like {\ttfamily "{}-\/1.\+2 3.\+4"{}}. If only a single literal is provided, it will be applied to all components. For example, {\ttfamily 0.\+5} is equivalent to {\ttfamily "{}0.\+5 0.\+5"{}}.   &\\\cline{1-3}
+{\ttfamily vector3}   &Similar to {\ttfamily vector2}, except that three literals are allowed.   &\\\cline{1-3}
+{\ttfamily vector4}   &Similar to {\ttfamily vector3}, except that four literals are allowed.   &\\\cline{1-3}
+{\ttfamily quaternion}   &Exactly the same as {\ttfamily vector4}.   &This type represents a quaternion. For vectors or tuples, use {\ttfamily vector4}.    \\\cline{1-3}
+{\ttfamily real-\/array}   &Array variant of {\ttfamily real} that can accept N (N \texorpdfstring{$>$}{>}= 0) floating-\/point literals. All literals are separated by whitespace(s) and should be enclosed by curly braces. For example, an increasing series of 5 elements can be written as {\ttfamily \{1.\+1 2.\+2 3.\+3 4.\+4 5.\+5\}}.   &Accepts \doxysectlink{main_scene_description_guide_psdl_resource_identifier}{resource identifier}{1} as input. In this case, it is expected to be a file that contains the value part of the clause.    \\\cline{1-3}
+{\ttfamily vector3-\/array}   &Array variant of {\ttfamily vector3} that can accept N (N \texorpdfstring{$>$}{>}= 0) {\ttfamily vector3} values. For example, {\ttfamily \{"{}7 7 7"{} "{}7"{}\}} defines two {\ttfamily vector3} values, where all components == 7.   &\\\cline{1-3}
+{\ttfamily path}   &Basically a {\ttfamily string}, except that its value is interpreted as a filesystem path.   &It is recommended to use \doxysectlink{main_scene_description_guide_psdl_resource_identifier}{resource identifier}{1} where possible so the scene file can be easily distributed without broken links.    \\\cline{1-3}
+{\ttfamily enum}   &A {\ttfamily string} that identifies an enumeration entry.   &See the \doxysectlink{main_scene_description_reference}{scene description reference}{0} for valid enumeration identifiers.   \\\cline{1-3}
+\end{longtabu}
+
+
+All values can be double-\/quoted unless otherwise noted.
+
+\texorpdfstring{$\ast$}{*}\+: Depending on the settings of the bound field and the parser, such warnings/errors may be disabled.\hypertarget{main_scene_description_guide_sdl_reference_types}{}\doxysubsection{\texorpdfstring{Reference Types}{Reference Types}}\label{main_scene_description_guide_sdl_reference_types}
+\hypertarget{main_scene_description_guide_autotoc_md62}{}\doxysubsection{\texorpdfstring{Struct Types}{Struct Types}}\label{main_scene_description_guide_autotoc_md62}
 With PSDL, you can create almost all kinds of objects the rendering system has to offer. In later sections, we will see that it is also possible to perform \doxysectlink{main_scene_description_guide_operations}{operations}{1} on these objects via PSDL.\hypertarget{main_scene_description_guide_operations}{}\doxysection{\texorpdfstring{Operations}{Operations}}\label{main_scene_description_guide_operations}
 \begin{DoxyRemark}{Remarks}
 Go back and check the hello-\/world scene description again. You should be able to understand most of the lines now.
 \end{DoxyRemark}
 \hypertarget{main_scene_description_guide_psdl_resource_identifier}{}\doxysection{\texorpdfstring{PSDL Resource Identifier}{PSDL Resource Identifier}}\label{main_scene_description_guide_psdl_resource_identifier}
-\hypertarget{main_scene_description_guide_autotoc_md61}{}\doxysection{\texorpdfstring{Appendix}{Appendix}}\label{main_scene_description_guide_autotoc_md61}
+\hypertarget{main_scene_description_guide_autotoc_md63}{}\doxysection{\texorpdfstring{Serialization}{Serialization}}\label{main_scene_description_guide_autotoc_md63}
+\hypertarget{main_scene_description_guide_autotoc_md64}{}\doxysection{\texorpdfstring{Appendix}{Appendix}}\label{main_scene_description_guide_autotoc_md64}
 \doxysectlink{main_scene_description_reference}{Full documentation of PSDL commands}{0}. 

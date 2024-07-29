@@ -20,7 +20,7 @@ var color__enums_8h =
     ] ],
     [ "EColorUsage", "color__enums_8h.html#a821af6da20aaed56cc09ad440633d067", [
       [ "Unspecified", "color__enums_8h.html#a821af6da20aaed56cc09ad440633d067a6fcdc090caeade09d0efd6253932b6f5", null ],
-      [ "RAW", "color__enums_8h.html#a821af6da20aaed56cc09ad440633d067a633d6abff0a3fc22404347728d195059", null ],
+      [ "Raw", "color__enums_8h.html#a821af6da20aaed56cc09ad440633d067a65e65c8ab0d8609ce12fc68a03cb8e00", null ],
       [ "EMR", "color__enums_8h.html#a821af6da20aaed56cc09ad440633d067a8d4c0b2cef256d21ab680366c8b1c6bf", null ],
       [ "ECF", "color__enums_8h.html#a821af6da20aaed56cc09ad440633d067a13eb1af433fe09e8ee2e6b89001c3843", null ]
     ] ],

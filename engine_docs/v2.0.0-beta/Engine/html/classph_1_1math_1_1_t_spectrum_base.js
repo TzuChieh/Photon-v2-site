@@ -45,6 +45,8 @@ var classph_1_1math_1_1_t_spectrum_base =
     [ "mul", "classph_1_1math_1_1_t_spectrum_base.html#a3531b3d72cdee209df8075de302399ec", null ],
     [ "mulLocal", "classph_1_1math_1_1_t_spectrum_base.html#ab2c2c0e821a2752db5eab046a8b945a3", null ],
     [ "mulLocal", "classph_1_1math_1_1_t_spectrum_base.html#aef2162b043c6e34587709916774a931d", null ],
+    [ "negate", "classph_1_1math_1_1_t_spectrum_base.html#aca37c7d5052887f50da319a6e3a33b3c", null ],
+    [ "negateLocal", "classph_1_1math_1_1_t_spectrum_base.html#a4532d5dec359d2a5f3c9207f77137d34", null ],
     [ "PH_DEFINE_INLINE_RULE_OF_5_MEMBERS", "classph_1_1math_1_1_t_spectrum_base.html#aabf79a07f5f8811adc3f182a846c5c63", null ],
     [ "pow", "classph_1_1math_1_1_t_spectrum_base.html#a1baaf83772ecee9aef92d76686ed2b1f", null ],
     [ "pow", "classph_1_1math_1_1_t_spectrum_base.html#a262f8eb4c31cc5be7ae32135320e1ee7", null ],
@@ -84,5 +86,9 @@ var classph_1_1math_1_1_t_spectrum_base =
     [ "toVector", "classph_1_1math_1_1_t_spectrum_base.html#a423d2b7e2c2207fdad5cdc3e027d3caf", null ],
     [ "transformFrom", "classph_1_1math_1_1_t_spectrum_base.html#a5a8a4e57d88958c9e9768ecc8cc0d4bf", null ],
     [ "transformTo", "classph_1_1math_1_1_t_spectrum_base.html#a234c98f5c092b5e01c88e07d6bd11571", null ],
+    [ "operator*", "classph_1_1math_1_1_t_spectrum_base.html#a21897b9caecda85922629eb674e4005a", null ],
+    [ "operator+", "classph_1_1math_1_1_t_spectrum_base.html#a5ab34c33199ae40a2ee6913619191e77", null ],
+    [ "operator-", "classph_1_1math_1_1_t_spectrum_base.html#a353d9e6ad7cc551253b221650f8482bf", null ],
+    [ "operator/", "classph_1_1math_1_1_t_spectrum_base.html#af7b1fcfb2c6e6aa596d5106f88b991f6", null ],
     [ "m", "classph_1_1math_1_1_t_spectrum_base.html#a3da28ca9690edd63fd4536e2f01b5b14", null ]
 ];

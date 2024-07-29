@@ -20,10 +20,12 @@ Inheritance diagram for ph\+::Dielectric\+Fresnel\+:\begin{figure}[H]
 \item 
 \mbox{\hyperlink{classph_1_1_dielectric_fresnel_aec2a4679f261983dc673e0884f29379e}{Dielectric\+Fresnel}} (real ior\+Outer, real ior\+Inner)
 \item 
-void \mbox{\hyperlink{classph_1_1_dielectric_fresnel_a4908340e13e7aeac56c59000ba37fd56}{calc\+Reflectance}} (real cos\+Theta\+Incident, \mbox{\hyperlink{namespaceph_1_1math_ad1ddf3801f5a9ea201227d49747987ed}{math\+::\+Spectrum}} \texorpdfstring{$\ast$}{*}out\+\_\+reflectance) const override=0
+\mbox{\hyperlink{namespaceph_1_1math_ad1ddf3801f5a9ea201227d49747987ed}{math\+::\+Spectrum}} \mbox{\hyperlink{classph_1_1_dielectric_fresnel_ace66b3ed978a60cd9dc780b90fafdbd5}{calc\+Reflectance}} (real cos\+Theta\+Incident) const override=0
 \item 
-bool \mbox{\hyperlink{classph_1_1_dielectric_fresnel_a53ca71e04eb5a14704a4f38f2106c6c1}{calc\+Refract\+Dir}} (const \mbox{\hyperlink{namespaceph_1_1math_a7f5d9bea70db00eb52ece79b05e544c8}{math\+::\+Vector3R}} \&I, const \mbox{\hyperlink{namespaceph_1_1math_a7f5d9bea70db00eb52ece79b05e544c8}{math\+::\+Vector3R}} \&N, \mbox{\hyperlink{namespaceph_1_1math_a7f5d9bea70db00eb52ece79b05e544c8}{math\+::\+Vector3R}} \texorpdfstring{$\ast$}{*}out\+\_\+refract\+Dir) const
-\item 
+std\+::optional$<$ \mbox{\hyperlink{namespaceph_1_1math_a7f5d9bea70db00eb52ece79b05e544c8}{math\+::\+Vector3R}} $>$ \mbox{\hyperlink{classph_1_1_dielectric_fresnel_ae2e084490b7024f14be7f95e8e45f5fb}{calc\+Refract\+Dir}} (const \mbox{\hyperlink{namespaceph_1_1math_a7f5d9bea70db00eb52ece79b05e544c8}{math\+::\+Vector3R}} \&I, const \mbox{\hyperlink{namespaceph_1_1math_a7f5d9bea70db00eb52ece79b05e544c8}{math\+::\+Vector3R}} \&N) const
+\begin{DoxyCompactList}\small\item\em Calculates the normalized refraction direction. \end{DoxyCompactList}\item 
+std\+::optional$<$ real $>$ \mbox{\hyperlink{classph_1_1_dielectric_fresnel_a77e3459c6f02ec847935e5e927f7e14f}{calc\+Refract\+Cos}} (const \mbox{\hyperlink{namespaceph_1_1math_a7f5d9bea70db00eb52ece79b05e544c8}{math\+::\+Vector3R}} \&I, const \mbox{\hyperlink{namespaceph_1_1math_a7f5d9bea70db00eb52ece79b05e544c8}{math\+::\+Vector3R}} \&N) const
+\begin{DoxyCompactList}\small\item\em Calculates the cosine (signed) of refraction direction. This method is similar to {\ttfamily \doxylink{classph_1_1_dielectric_fresnel_ae2e084490b7024f14be7f95e8e45f5fb}{calc\+Refract\+Dir()}}, but is slightly more efficient as it returns the cosine of refraction direction only. \end{DoxyCompactList}\item 
 real \mbox{\hyperlink{classph_1_1_dielectric_fresnel_a2b74745aa96b224aff103c575b76470c}{get\+Ior\+Outer}} () const
 \item 
 real \mbox{\hyperlink{classph_1_1_dielectric_fresnel_a91f3a927a703ca178accd1d196258a5c}{get\+Ior\+Inner}} () const
@@ -33,7 +35,7 @@ real \mbox{\hyperlink{classph_1_1_dielectric_fresnel_a91f3a927a703ca178accd1d196
 \item 
 virtual \mbox{\hyperlink{classph_1_1_fresnel_effect_ab4cf7c98d650006bd89d9e4cb89abcc2}{\texorpdfstring{$\sim$}{\string~}\+Fresnel\+Effect}} ()=default
 \item 
-void \mbox{\hyperlink{classph_1_1_fresnel_effect_a216640225e4629805d3d6a02a7616190}{calc\+Transmittance}} (real cos\+Theta\+Incident, \mbox{\hyperlink{namespaceph_1_1math_ad1ddf3801f5a9ea201227d49747987ed}{math\+::\+Spectrum}} \texorpdfstring{$\ast$}{*}out\+\_\+transmittance) const
+\mbox{\hyperlink{namespaceph_1_1math_ad1ddf3801f5a9ea201227d49747987ed}{math\+::\+Spectrum}} \mbox{\hyperlink{classph_1_1_fresnel_effect_a6af98d70f64a3aac156e5252a9f2a5b2}{calc\+Transmittance}} (real cos\+Theta\+Incident) const
 \end{DoxyCompactItemize}
 \doxysubsubsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
@@ -59,36 +61,71 @@ ph\+::\+Dielectric\+Fresnel\+::\+Dielectric\+Fresnel (\begin{DoxyParamCaption}\i
 
 
 \doxysubsection{Member Function Documentation}
-\Hypertarget{classph_1_1_dielectric_fresnel_a4908340e13e7aeac56c59000ba37fd56}\index{ph::DielectricFresnel@{ph::DielectricFresnel}!calcReflectance@{calcReflectance}}
+\Hypertarget{classph_1_1_dielectric_fresnel_ace66b3ed978a60cd9dc780b90fafdbd5}\index{ph::DielectricFresnel@{ph::DielectricFresnel}!calcReflectance@{calcReflectance}}
 \index{calcReflectance@{calcReflectance}!ph::DielectricFresnel@{ph::DielectricFresnel}}
 \doxysubsubsection{\texorpdfstring{calcReflectance()}{calcReflectance()}}
-{\footnotesize\ttfamily \label{classph_1_1_dielectric_fresnel_a4908340e13e7aeac56c59000ba37fd56} 
-void ph\+::\+Dielectric\+Fresnel\+::calc\+Reflectance (\begin{DoxyParamCaption}\item[{real}]{cos\+Theta\+Incident}{, }\item[{\mbox{\hyperlink{namespaceph_1_1math_ad1ddf3801f5a9ea201227d49747987ed}{math\+::\+Spectrum}} \texorpdfstring{$\ast$}{*}}]{out\+\_\+reflectance}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [pure virtual]}}
+{\footnotesize\ttfamily \label{classph_1_1_dielectric_fresnel_ace66b3ed978a60cd9dc780b90fafdbd5} 
+\mbox{\hyperlink{namespaceph_1_1math_ad1ddf3801f5a9ea201227d49747987ed}{math\+::\+Spectrum}} ph\+::\+Dielectric\+Fresnel\+::calc\+Reflectance (\begin{DoxyParamCaption}\item[{real}]{cos\+Theta\+Incident}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [pure virtual]}}
 
 
-\begin{DoxyParams}[1]{Parameters}
- & {\em cos\+Theta\+Incident} & Cosine of the incident angle. \\
-\hline
-\mbox{\texttt{ out}}  & {\em out\+\_\+reflectance} & The reflectance of the interface on the specified angle. \\
+\begin{DoxyParams}{Parameters}
+{\em cos\+Theta\+Incident} & Cosine of the incident angle. \\
 \hline
 \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The reflectance of the interface on the specified angle. 
+\end{DoxyReturn}
 \begin{DoxyNote}{Note}
 {\ttfamily cos\+Theta\+Incident} is signed, so inner and outer sides can be determined. 
 \end{DoxyNote}
 
 
-Implements \mbox{\hyperlink{classph_1_1_fresnel_effect_ad49f2ddcfc3ab2b0602eb5e7da979fe3}{ph\+::\+Fresnel\+Effect}}.
+Implements \mbox{\hyperlink{classph_1_1_fresnel_effect_aee3e20a1d7eba622933345fd68eb51a4}{ph\+::\+Fresnel\+Effect}}.
 
 
 
-Implemented in \mbox{\hyperlink{classph_1_1_exact_dielectric_fresnel_a238710748c5f4fcf357b34ce60452b0b}{ph\+::\+Exact\+Dielectric\+Fresnel}}, and \mbox{\hyperlink{classph_1_1_schlick_approx_dielectric_fresnel_a96b394e875a5eec68a941c6b0c35ba43}{ph\+::\+Schlick\+Approx\+Dielectric\+Fresnel}}.
+Implemented in \mbox{\hyperlink{classph_1_1_exact_dielectric_fresnel_af3f56a9763f9f50357a0ab2a3f7a6175}{ph\+::\+Exact\+Dielectric\+Fresnel}}, and \mbox{\hyperlink{classph_1_1_schlick_approx_dielectric_fresnel_a264fc2b030cf012b0439092e75705249}{ph\+::\+Schlick\+Approx\+Dielectric\+Fresnel}}.
 
-\Hypertarget{classph_1_1_dielectric_fresnel_a53ca71e04eb5a14704a4f38f2106c6c1}\index{ph::DielectricFresnel@{ph::DielectricFresnel}!calcRefractDir@{calcRefractDir}}
+\Hypertarget{classph_1_1_dielectric_fresnel_a77e3459c6f02ec847935e5e927f7e14f}\index{ph::DielectricFresnel@{ph::DielectricFresnel}!calcRefractCos@{calcRefractCos}}
+\index{calcRefractCos@{calcRefractCos}!ph::DielectricFresnel@{ph::DielectricFresnel}}
+\doxysubsubsection{\texorpdfstring{calcRefractCos()}{calcRefractCos()}}
+{\footnotesize\ttfamily \label{classph_1_1_dielectric_fresnel_a77e3459c6f02ec847935e5e927f7e14f} 
+std\+::optional$<$ real $>$ ph\+::\+Dielectric\+Fresnel\+::calc\+Refract\+Cos (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespaceph_1_1math_a7f5d9bea70db00eb52ece79b05e544c8}{math\+::\+Vector3R}} \&}]{I}{, }\item[{const \mbox{\hyperlink{namespaceph_1_1math_a7f5d9bea70db00eb52ece79b05e544c8}{math\+::\+Vector3R}} \&}]{N}{}\end{DoxyParamCaption}) const}
+
+
+
+Calculates the cosine (signed) of refraction direction. This method is similar to {\ttfamily \doxylink{classph_1_1_dielectric_fresnel_ae2e084490b7024f14be7f95e8e45f5fb}{calc\+Refract\+Dir()}}, but is slightly more efficient as it returns the cosine of refraction direction only. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em I} & The normalized incident direction. Pointing away from the interface. \\
+\hline
+{\em N} & The normalized normal. Pointing to the outer side of the interface. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The cosine of the angle between refraction direction and {\ttfamily N}. May be empty if refraction is not possible, e.\+g., due to TIR. 
+\end{DoxyReturn}
+\Hypertarget{classph_1_1_dielectric_fresnel_ae2e084490b7024f14be7f95e8e45f5fb}\index{ph::DielectricFresnel@{ph::DielectricFresnel}!calcRefractDir@{calcRefractDir}}
 \index{calcRefractDir@{calcRefractDir}!ph::DielectricFresnel@{ph::DielectricFresnel}}
 \doxysubsubsection{\texorpdfstring{calcRefractDir()}{calcRefractDir()}}
-{\footnotesize\ttfamily \label{classph_1_1_dielectric_fresnel_a53ca71e04eb5a14704a4f38f2106c6c1} 
-bool ph\+::\+Dielectric\+Fresnel\+::calc\+Refract\+Dir (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespaceph_1_1math_a7f5d9bea70db00eb52ece79b05e544c8}{math\+::\+Vector3R}} \&}]{I}{, }\item[{const \mbox{\hyperlink{namespaceph_1_1math_a7f5d9bea70db00eb52ece79b05e544c8}{math\+::\+Vector3R}} \&}]{N}{, }\item[{\mbox{\hyperlink{namespaceph_1_1math_a7f5d9bea70db00eb52ece79b05e544c8}{math\+::\+Vector3R}} \texorpdfstring{$\ast$}{*}}]{out\+\_\+refract\+Dir}{}\end{DoxyParamCaption}) const}
+{\footnotesize\ttfamily \label{classph_1_1_dielectric_fresnel_ae2e084490b7024f14be7f95e8e45f5fb} 
+std\+::optional$<$ \mbox{\hyperlink{namespaceph_1_1math_a7f5d9bea70db00eb52ece79b05e544c8}{math\+::\+Vector3R}} $>$ ph\+::\+Dielectric\+Fresnel\+::calc\+Refract\+Dir (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespaceph_1_1math_a7f5d9bea70db00eb52ece79b05e544c8}{math\+::\+Vector3R}} \&}]{I}{, }\item[{const \mbox{\hyperlink{namespaceph_1_1math_a7f5d9bea70db00eb52ece79b05e544c8}{math\+::\+Vector3R}} \&}]{N}{}\end{DoxyParamCaption}) const}
 
+
+
+Calculates the normalized refraction direction. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em I} & The normalized incident direction. Pointing away from the interface. \\
+\hline
+{\em N} & The normalized normal. Pointing to the outer side of the interface. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The normalized refraction direction. May be empty if refraction is not possible, e.\+g., due to TIR. 
+\end{DoxyReturn}
 \Hypertarget{classph_1_1_dielectric_fresnel_a91f3a927a703ca178accd1d196258a5c}\index{ph::DielectricFresnel@{ph::DielectricFresnel}!getIorInner@{getIorInner}}
 \index{getIorInner@{getIorInner}!ph::DielectricFresnel@{ph::DielectricFresnel}}
 \doxysubsubsection{\texorpdfstring{getIorInner()}{getIorInner()}}

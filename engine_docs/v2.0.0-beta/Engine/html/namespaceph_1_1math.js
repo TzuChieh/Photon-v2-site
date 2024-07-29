@@ -56,6 +56,7 @@ var namespaceph_1_1math =
     [ "DynamicLinearTranslation", "classph_1_1math_1_1_dynamic_linear_translation.html", "classph_1_1math_1_1_dynamic_linear_translation" ],
     [ "IndexedKdtreeParams", "classph_1_1math_1_1_indexed_kdtree_params.html", "classph_1_1math_1_1_indexed_kdtree_params" ],
     [ "MathException", "classph_1_1math_1_1_math_exception.html", "classph_1_1math_1_1_math_exception" ],
+    [ "Murmur3BitMixer32", "structph_1_1math_1_1_murmur3_bit_mixer32.html", "structph_1_1math_1_1_murmur3_bit_mixer32" ],
     [ "Pcg32", "classph_1_1math_1_1_pcg32.html", "classph_1_1math_1_1_pcg32" ],
     [ "Pcg64DXSM", "classph_1_1math_1_1_pcg64_d_x_s_m.html", "classph_1_1math_1_1_pcg64_d_x_s_m" ],
     [ "Random", "classph_1_1math_1_1_random.html", null ],
@@ -210,7 +211,7 @@ var namespaceph_1_1math =
     ] ],
     [ "EColorUsage", "namespaceph_1_1math.html#a821af6da20aaed56cc09ad440633d067", [
       [ "Unspecified", "namespaceph_1_1math.html#a821af6da20aaed56cc09ad440633d067a6fcdc090caeade09d0efd6253932b6f5", null ],
-      [ "RAW", "namespaceph_1_1math.html#a821af6da20aaed56cc09ad440633d067a633d6abff0a3fc22404347728d195059", null ],
+      [ "Raw", "namespaceph_1_1math.html#a821af6da20aaed56cc09ad440633d067a65e65c8ab0d8609ce12fc68a03cb8e00", null ],
       [ "EMR", "namespaceph_1_1math.html#a821af6da20aaed56cc09ad440633d067a8d4c0b2cef256d21ab680366c8b1c6bf", null ],
       [ "ECF", "namespaceph_1_1math.html#a821af6da20aaed56cc09ad440633d067a13eb1af433fe09e8ee2e6b89001c3843", null ]
     ] ],
@@ -258,6 +259,7 @@ var namespaceph_1_1math =
       [ "PiecewiseAveraged", "namespaceph_1_1math.html#a74a2188a938a5c0a52127f654cfa8b06a53cbb44cfbee2ac4966344016112465a", null ],
       [ "Default", "namespaceph_1_1math.html#a74a2188a938a5c0a52127f654cfa8b06a7a1920d61156abc05a60135aefe8bc67", null ]
     ] ],
+    [ "bits_to_sample", "namespaceph_1_1math.html#a014400849d68cde852fc7ca309fee274", null ],
     [ "black_body_spectral_radiance_at", "namespaceph_1_1math.html#ab6c812780186db6fffc4e5b25946f17e", null ],
     [ "black_body_spectral_radiance_curve", "namespaceph_1_1math.html#a2e1994639e2978dc226efa4ef08cbec5", null ],
     [ "bytes_to_GiB", "namespaceph_1_1math.html#a2da02d8fd55ff426905d97c7297a08ad", null ],
@@ -312,8 +314,8 @@ var namespaceph_1_1math =
     [ "mean_solar_time_to_solar_time_24H", "namespaceph_1_1math.html#a71267e6e44c796151b9e81a747ad4860", null ],
     [ "milliseconds_to_HMS", "namespaceph_1_1math.html#ac3266fe3771e481e88ebfd4f2582001b", null ],
     [ "moremur_bit_mix_64", "namespaceph_1_1math.html#a5e096044157a72ac3ed27025b65cc274", null ],
-    [ "murmur3_32", "namespaceph_1_1math.html#a45d86025b912ecd026e05d1aa6130d2c", null ],
-    [ "murmur3_32", "namespaceph_1_1math.html#a7c4434683d9ec2d4fb691f52d4433f85", null ],
+    [ "murmur3_32", "namespaceph_1_1math.html#ad40619473691d9138cd353ca4723ab28", null ],
+    [ "murmur3_32", "namespaceph_1_1math.html#a87848e4d8b24cfb28547a43eaad25258", null ],
     [ "murmur3_bit_mix_32", "namespaceph_1_1math.html#a9c59773f54074f6e5f0e32c5ef4c0a96", null ],
     [ "murmur3_bit_mix_64", "namespaceph_1_1math.html#a01043fa9b4769c1a7444e7e8fb143535", null ],
     [ "murmur3_v13_bit_mix_64", "namespaceph_1_1math.html#acb56174f050862060121bd5462dfe1bb", null ],
@@ -326,7 +328,6 @@ var namespaceph_1_1math =
     [ "normalize_samples_energy", "namespaceph_1_1math.html#a413c0ea914fc11e1f26bfabd44d2c162", null ],
     [ "octahedron_unit_vector_decode", "namespaceph_1_1math.html#a97853fb83b95a1bd4eb7c30cfce31938", null ],
     [ "octahedron_unit_vector_encode", "namespaceph_1_1math.html#a726764d140f2eb38f51cca01a6e0740a", null ],
-    [ "operator*", "namespaceph_1_1math.html#aa5b5d7a200e1fac56baf6a626fafecdc", null ],
     [ "p_norm", "namespaceph_1_1math.html#a4ff51da9284135e078f892589a4816cc", null ],
     [ "p_norm", "namespaceph_1_1math.html#a2f4af840af27b7877140cb250d0b2cba", null ],
     [ "p_norm", "namespaceph_1_1math.html#a41e68b91f571234574a62deddcf6b47e", null ],

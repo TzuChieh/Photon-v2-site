@@ -13,6 +13,8 @@ var dir_750d3e9a071fdf48397f198fd5d2b351 =
     [ "Intersectable.h", "_intersectable_8h.html", "_intersectable_8h" ],
     [ "Intersector.cpp", "_intersector_8cpp.html", null ],
     [ "Intersector.h", "_intersector_8h.html", "_intersector_8h" ],
+    [ "MaskedIntersectable.cpp", "_masked_intersectable_8cpp.html", null ],
+    [ "MaskedIntersectable.h", "_masked_intersectable_8h.html", "_masked_intersectable_8h" ],
     [ "PBasicSphere.cpp", "_p_basic_sphere_8cpp.html", null ],
     [ "PBasicSphere.h", "_p_basic_sphere_8h.html", "_p_basic_sphere_8h" ],
     [ "PEmpty.h", "_p_empty_8h.html", "_p_empty_8h" ],

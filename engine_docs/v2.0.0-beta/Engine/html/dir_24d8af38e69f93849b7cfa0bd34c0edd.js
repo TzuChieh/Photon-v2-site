@@ -22,6 +22,8 @@ var dir_24d8af38e69f93849b7cfa0bd34c0edd =
     [ "MatteOpaque.h", "_matte_opaque_8h.html", "_matte_opaque_8h" ],
     [ "SurfaceMaterial.cpp", "_surface_material_8cpp.html", null ],
     [ "SurfaceMaterial.h", "_surface_material_8h.html", "_surface_material_8h" ],
+    [ "ThinDielectricSurface.cpp", "_thin_dielectric_surface_8cpp.html", null ],
+    [ "ThinDielectricSurface.h", "_thin_dielectric_surface_8h.html", "_thin_dielectric_surface_8h" ],
     [ "ThinFilm.cpp", "_thin_film_8cpp.html", null ],
     [ "ThinFilm.h", "_thin_film_8h.html", "_thin_film_8h" ],
     [ "VolumeMaterial.cpp", "_volume_material_8cpp.html", null ],

@@ -4,62 +4,98 @@
 \begin{DoxyCode}{0}
 \DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
 \DoxyCodeLine{00002\ }
-\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{math_8h}{Math/math.h}}"{}}}
-\DoxyCodeLine{00004\ }
-\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <Common/assertion.h>}}
-\DoxyCodeLine{00006\ }
-\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <cstddef>}}
-\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <array>}}
-\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <utility>}}
-\DoxyCodeLine{00010\ }
-\DoxyCodeLine{00011\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph_1_1math}{ph::math}}}
-\DoxyCodeLine{00012\ \{}
-\DoxyCodeLine{00013\ }
-\DoxyCodeLine{00014\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ To,\ \textcolor{keyword}{typename}\ From,\ std::\textcolor{keywordtype}{size\_t}\ N>}
-\DoxyCodeLine{00015\ \textcolor{keyword}{inline}\ std::array<To,\ N>\ \mbox{\hyperlink{namespaceph_1_1math_a9155e57616e76e5b400e6052093e491e}{sample\_cast}}(\textcolor{keyword}{const}\ std::array<From,\ N>\&\ sample)}
-\DoxyCodeLine{00016\ \{}
-\DoxyCodeLine{00017\ \ \ \ \ std::array<To,\ N>\ casted;}
-\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ i\ =\ 0;\ i\ <\ N;\ ++i)}
-\DoxyCodeLine{00019\ \ \ \ \ \{}
-\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ casted[i]\ =\ \textcolor{keyword}{static\_cast<}To\textcolor{keyword}{>}(sample[i]);}
-\DoxyCodeLine{00021\ \ \ \ \ \}}
-\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordflow}{return}\ casted;}
-\DoxyCodeLine{00023\ \}}
-\DoxyCodeLine{00024\ }
-\DoxyCodeLine{00025\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00026\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespaceph_1_1math_a85eb3c66273614f6751cba5c227ee7df}{pick}}(\textcolor{keyword}{const}\ T\ pickProbability,\ \textcolor{keyword}{const}\ T\ sample)}
-\DoxyCodeLine{00027\ \{}
-\DoxyCodeLine{00028\ \ \ \ \ PH\_ASSERT\_IN\_RANGE\_INCLUSIVE(sample,\ T(0),\ T(1));}
-\DoxyCodeLine{00029\ \ \ \ \ PH\_ASSERT\_IN\_RANGE\_INCLUSIVE(pickProbability,\ T(0),\ T(1));}
-\DoxyCodeLine{00030\ }
-\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordflow}{return}\ sample\ <\ pickProbability;}
-\DoxyCodeLine{00032\ \}}
-\DoxyCodeLine{00033\ }
-\DoxyCodeLine{00034\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00035\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespaceph_1_1math_ae25c59a2b1c21e3de88ce32499d3fa2f}{reused\_pick}}(\textcolor{keyword}{const}\ T\ pickProbability,\ T\&\ sample)}
-\DoxyCodeLine{00036\ \{}
-\DoxyCodeLine{00037\ \ \ \ \ \textcolor{comment}{//\ Note\ that\ <sample>\ is\ already\ on\ the\ correct\ scale\ if\ picking\ probability}}
-\DoxyCodeLine{00038\ \ \ \ \ \textcolor{comment}{//\ is\ 0\ or\ 1,\ hence\ the\ ternary\ conditionals;\ division\ by\ 0\ is\ also\ handled.}}
-\DoxyCodeLine{00039\ }
-\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{namespaceph_1_1math_a85eb3c66273614f6751cba5c227ee7df}{pick}}(pickProbability,\ sample))}
-\DoxyCodeLine{00041\ \ \ \ \ \{}
-\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ sample\ =\ pickProbability\ !=\ T(0)\ ?\ }
-\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceph_1_1math_af8f390358e5ac8042dde889f48d9aaa4}{math::clamp}}(sample\ /\ pickProbability,\ T(0),\ T(1))\ :\ sample;}
-\DoxyCodeLine{00044\ }
-\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
-\DoxyCodeLine{00046\ \ \ \ \ \}}
-\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00048\ \ \ \ \ \{}
-\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ denominator\ should\ never\ be\ 0}}
-\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ PH\_ASSERT\_NE(pickProbability\ !=\ T(1)\ ?\ (T(1)\ -\/\ pickProbability)\ :\ T(1),\ T(0));}
-\DoxyCodeLine{00051\ }
-\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ sample\ =\ pickProbability\ !=\ T(1)\ ?\ }
-\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceph_1_1math_af8f390358e5ac8042dde889f48d9aaa4}{math::clamp}}((sample\ -\/\ pickProbability)\ /\ (T(1)\ -\/\ pickProbability),\ T(0),\ T(1))\ :\ sample;}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{math_8h}{Math/math.h}}"{}}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <Common/assertion.h>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <Common/primitive\_type.h>}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <cstddef>}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <array>}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ <type\_traits>}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ <climits>}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph_1_1math}{ph::math}}}
+\DoxyCodeLine{00022\ \{}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ To,\ \textcolor{keyword}{typename}\ From,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00025\ \textcolor{keyword}{inline}\ std::array<To,\ N>\ \mbox{\hyperlink{namespaceph_1_1math_a9155e57616e76e5b400e6052093e491e}{sample\_cast}}(\textcolor{keyword}{const}\ std::array<From,\ N>\&\ sample)}
+\DoxyCodeLine{00026\ \{}
+\DoxyCodeLine{00027\ \ \ \ \ std::array<To,\ N>\ casted;}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ i\ =\ 0;\ i\ <\ N;\ ++i)}
+\DoxyCodeLine{00029\ \ \ \ \ \{}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ casted[i]\ =\ \textcolor{keyword}{static\_cast<}To\textcolor{keyword}{>}(sample[i]);}
+\DoxyCodeLine{00031\ \ \ \ \ \}}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordflow}{return}\ casted;}
+\DoxyCodeLine{00033\ \}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00040\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00041\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespaceph_1_1math_a85eb3c66273614f6751cba5c227ee7df}{pick}}(\textcolor{keyword}{const}\ T\ pickProbability,\ \textcolor{keyword}{const}\ T\ sample)}
+\DoxyCodeLine{00042\ \{}
+\DoxyCodeLine{00043\ \ \ \ \ PH\_ASSERT\_IN\_RANGE\_INCLUSIVE(sample,\ T(0),\ T(1));}
+\DoxyCodeLine{00044\ \ \ \ \ PH\_ASSERT\_IN\_RANGE\_INCLUSIVE(pickProbability,\ T(0),\ T(1));}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordflow}{return}\ sample\ <\ pickProbability;}
+\DoxyCodeLine{00047\ \}}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00050\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespaceph_1_1math_ae25c59a2b1c21e3de88ce32499d3fa2f}{reused\_pick}}(\textcolor{keyword}{const}\ T\ pickProbability,\ T\&\ sample)}
+\DoxyCodeLine{00051\ \{}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{comment}{//\ Note\ that\ <sample>\ is\ already\ on\ the\ correct\ scale\ if\ picking\ probability}}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{comment}{//\ is\ 0\ or\ 1,\ hence\ the\ ternary\ conditionals;\ division\ by\ 0\ is\ also\ handled.}}
 \DoxyCodeLine{00054\ }
-\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
-\DoxyCodeLine{00056\ \ \ \ \ \}}
-\DoxyCodeLine{00057\ \}}
-\DoxyCodeLine{00058\ }
-\DoxyCodeLine{00059\ \}\textcolor{comment}{//\ end\ namespace\ ph::math}}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{namespaceph_1_1math_a85eb3c66273614f6751cba5c227ee7df}{pick}}(pickProbability,\ sample))}
+\DoxyCodeLine{00056\ \ \ \ \ \{}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ sample\ =\ pickProbability\ !=\ T(0)\ ?\ }
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceph_1_1math_af8f390358e5ac8042dde889f48d9aaa4}{math::clamp}}(sample\ /\ pickProbability,\ T(0),\ T(1))\ :\ sample;}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00061\ \ \ \ \ \}}
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00063\ \ \ \ \ \{}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ denominator\ should\ never\ be\ 0}}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ PH\_ASSERT\_NE(pickProbability\ !=\ T(1)\ ?\ (T(1)\ -\/\ pickProbability)\ :\ T(1),\ T(0));}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ sample\ =\ pickProbability\ !=\ T(1)\ ?\ }
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceph_1_1math_af8f390358e5ac8042dde889f48d9aaa4}{math::clamp}}((sample\ -\/\ pickProbability)\ /\ (T(1)\ -\/\ pickProbability),\ T(0),\ T(1))\ :\ sample;}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00071\ \ \ \ \ \}}
+\DoxyCodeLine{00072\ \}}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00079\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ \textcolor{keyword}{typename}\ BitsType>}
+\DoxyCodeLine{00080\ \textcolor{keyword}{inline}\ T\ \mbox{\hyperlink{namespaceph_1_1math_a014400849d68cde852fc7ca309fee274}{bits\_to\_sample}}(\textcolor{keyword}{const}\ BitsType\&\ bits)}
+\DoxyCodeLine{00081\ \{}
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keyword}{static\_assert}(CHAR\_BIT\ ==\ 8);}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \ \ \ \ T\ normalizer\ =\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(0);}
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(std::is\_same\_v<BitsType,\ uint8>)}
+\DoxyCodeLine{00086\ \ \ \ \ \{}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ normalizer\ =\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(0x1p-\/8);}
+\DoxyCodeLine{00088\ \ \ \ \ \}}
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(std::is\_same\_v<BitsType,\ uint16>)}
+\DoxyCodeLine{00090\ \ \ \ \ \{}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ normalizer\ =\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(0x1p-\/16);}
+\DoxyCodeLine{00092\ \ \ \ \ \}}
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(std::is\_same\_v<BitsType,\ uint32>)}
+\DoxyCodeLine{00094\ \ \ \ \ \{}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ normalizer\ =\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(0x1p-\/32);}
+\DoxyCodeLine{00096\ \ \ \ \ \}}
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(std::is\_same\_v<BitsType,\ uint64>)}
+\DoxyCodeLine{00098\ \ \ \ \ \{}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ normalizer\ =\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(0x1p-\/64);}
+\DoxyCodeLine{00100\ \ \ \ \ \}}
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00102\ \ \ \ \ \{}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ PH\_STATIC\_ASSERT\_DEPENDENT\_FALSE(T,}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}No\ existing\ implementation\ can\ do\ \`{}BitsType`\ -\/>\ sample\ type\ \`{}T`."{}});}
+\DoxyCodeLine{00105\ \ \ \ \ \}}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{keyword}{const}\ T\ sample\ =\ bits\ *\ normalizer;}
+\DoxyCodeLine{00108\ \ \ \ \ PH\_ASSERT\_IN\_RANGE\_INCLUSIVE(sample,\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(0.0),\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(1.0));}
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{keywordflow}{return}\ sample;}
+\DoxyCodeLine{00110\ \}}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \}\textcolor{comment}{//\ end\ namespace\ ph::math}}
 
 \end{DoxyCode}

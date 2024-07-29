@@ -5,7 +5,6 @@ var _e_sdl_type_category_8h =
       [ "Ref_Geometry", "_e_sdl_type_category_8h.html#aee9d551563491bc7930c4ca21e22204ba7b77aed5146529c3116a67b97c3a3ee3", null ],
       [ "Ref_Material", "_e_sdl_type_category_8h.html#aee9d551563491bc7930c4ca21e22204ba4bd225eceaf89433e0bc847a60b185da", null ],
       [ "Ref_Motion", "_e_sdl_type_category_8h.html#aee9d551563491bc7930c4ca21e22204bae532102d42b963b65896f61673c0709b", null ],
-      [ "Ref_LightSource", "_e_sdl_type_category_8h.html#aee9d551563491bc7930c4ca21e22204ba82ffa509a63f0d2c294e6de3ccc31573", null ],
       [ "Ref_Image", "_e_sdl_type_category_8h.html#aee9d551563491bc7930c4ca21e22204baefde95994b59471d0a11721ea557c049", null ],
       [ "Ref_Actor", "_e_sdl_type_category_8h.html#aee9d551563491bc7930c4ca21e22204bad9bad7a78004290b75b7e614b273807e", null ],
       [ "Ref_FrameProcessor", "_e_sdl_type_category_8h.html#aee9d551563491bc7930c4ca21e22204ba5a81d2b7ba0d731c083d2528a88be222", null ],

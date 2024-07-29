@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['lambertiandiffuse_2ecpp_0',['LambertianDiffuse.cpp',['../_lambertian_diffuse_8cpp.html',1,'']]],
-  ['lambertiandiffuse_2eh_1',['LambertianDiffuse.h',['../_lambertian_diffuse_8h.html',1,'']]],
+  ['lambertianreflector_2ecpp_0',['LambertianReflector.cpp',['../_lambertian_reflector_8cpp.html',1,'']]],
+  ['lambertianreflector_2eh_1',['LambertianReflector.h',['../_lambertian_reflector_8h.html',1,'']]],
   ['latlongenvemitter_2ecpp_2',['LatLongEnvEmitter.cpp',['../_lat_long_env_emitter_8cpp.html',1,'']]],
   ['latlongenvemitter_2eh_3',['LatLongEnvEmitter.h',['../_lat_long_env_emitter_8h.html',1,'']]],
   ['layeredsurface_2ecpp_4',['LayeredSurface.cpp',['../_layered_surface_8cpp.html',1,'']]],
@@ -17,12 +17,9 @@ var searchData=
   ['lib_5fstb_2eh_14',['lib_stb.h',['../lib__stb_8h.html',1,'']]],
   ['lib_5fstb_5fimpl_2ecpp_15',['lib_stb_impl.cpp',['../lib__stb__impl_8cpp.html',1,'']]],
   ['light_2edox_16',['Light.dox',['../_light_8dox.html',1,'']]],
-  ['lightsource_2ecpp_17',['LightSource.cpp',['../_light_source_8cpp.html',1,'']]],
-  ['lightsource_2edox_18',['LightSource.dox',['../_light_source_8dox.html',1,'']]],
-  ['lightsource_2eh_19',['LightSource.h',['../_light_source_8h.html',1,'']]],
-  ['lighttracingintegrator_2ecpp_20',['LightTracingIntegrator.cpp',['../_light_tracing_integrator_8cpp.html',1,'']]],
-  ['lighttracingintegrator_2eh_21',['LightTracingIntegrator.h',['../_light_tracing_integrator_8h.html',1,'']]],
-  ['location_2eh_22',['location.h',['../location_8h.html',1,'']]],
-  ['lta_2edox_23',['LTA.dox',['../_l_t_a_8dox.html',1,'']]],
-  ['lta_2eh_24',['lta.h',['../lta_8h.html',1,'']]]
+  ['lighttracingintegrator_2ecpp_17',['LightTracingIntegrator.cpp',['../_light_tracing_integrator_8cpp.html',1,'']]],
+  ['lighttracingintegrator_2eh_18',['LightTracingIntegrator.h',['../_light_tracing_integrator_8h.html',1,'']]],
+  ['location_2eh_19',['location.h',['../location_8h.html',1,'']]],
+  ['lta_2edox_20',['LTA.dox',['../_l_t_a_8dox.html',1,'']]],
+  ['lta_2eh_21',['lta.h',['../lta_8h.html',1,'']]]
 ];

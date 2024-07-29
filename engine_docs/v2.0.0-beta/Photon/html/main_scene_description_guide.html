@@ -117,20 +117,25 @@ $(function(){initNavTree('main_scene_description_guide.html',''); initResizable(
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md55">Introduction</a></li>
-<li class="level1"><a href="#autotoc_md56">Language Basics</a></li>
-<li class="level1"><a href="#autotoc_md57">Type Category</a></li>
-<li class="level1"><a href="#autotoc_md58">Type Name</a></li>
-<li class="level1"><a href="#autotoc_md59">Data Name</a></li>
-<li class="level1"><a href="#autotoc_md60">Clauses</a></li>
+<ul><li class="level1"><a href="#autotoc_md56">Introduction</a></li>
+<li class="level1"><a href="#autotoc_md57">Language Basics</a></li>
+<li class="level1"><a href="#autotoc_md58">Type Category</a></li>
+<li class="level1"><a href="#autotoc_md59">Type Name</a></li>
+<li class="level1"><a href="#autotoc_md60">Data Name</a></li>
+<li class="level1"><a href="#autotoc_md61">Clauses</a><ul><li class="level2"><a href="#sdl_value_types">Value Types</a></li>
+<li class="level2"><a href="#sdl_reference_types">Reference Types</a></li>
+<li class="level2"><a href="#autotoc_md62">Struct Types</a></li>
+</ul>
+</li>
 <li class="level1"><a href="#operations">Operations</a></li>
 <li class="level1"><a href="#psdl_resource_identifier">PSDL Resource Identifier</a></li>
-<li class="level1"><a href="#autotoc_md61">Appendix</a></li>
+<li class="level1"><a href="#autotoc_md63">Serialization</a></li>
+<li class="level1"><a href="#autotoc_md64">Appendix</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md__documentation_2scene__description__guide"></a></p>
 <p>Here, you will learn about the scene description language used in Photon, sometimes referred to as PSDL (Photon Scene Description Language). It is a special format created for storing scene data as well as controlling the behavior of the render engine. We also have <a href="https://github.com/TzuChieh/Photon-v2/tree/master/SDLGenerator/SDLGen">API generators</a> for different programming languages, allowing users to programmatically build scene descriptions and output customized formats for various applications. The reference for all engine features exposed as PSDL can be found <a class="el" href="main_scene_description_reference.html">here</a>.</p>
-<h1><a class="anchor" id="autotoc_md55"></a>
+<h1><a class="anchor" id="autotoc_md56"></a>
 Introduction</h1>
 <p>Let us first see how a simple scene would be represented in PSDL. The hello-world scene that will be rendered by Photon looks like this</p>
 <div class="image">
@@ -184,7 +189,7 @@ Rendered hello-world scene.</div></div>
 <p>After saving the scene description as <code>hello_world.p2</code> under the build/install directory, you can run the following command in the same directory to render the scene as described:</p>
 <div class="fragment"><div class="line">./bin/PhotonCLI -s ./hello_world.p2 -t 8</div>
 </div><!-- fragment --><dl class="section note"><dt>Note</dt><dd>Most components of Photon expect the build/install directory to be their working directory, not the directory that contains the executable.</dd></dl>
-<h1><a class="anchor" id="autotoc_md56"></a>
+<h1><a class="anchor" id="autotoc_md57"></a>
 Language Basics</h1>
 <p>PSDL is a command-like system and the commands can be roughly categorized into two parts: <b>header</b> and <b>clause</b>. Commands are normally structured in the following way:</p>
 <p><code>type-category</code>(<code>type-name</code>) @<code>name</code> = <code>clauses</code>;</p>
@@ -199,15 +204,15 @@ Language Basics</h1>
 <div class="line"><span class="comment">//actor(model).scale(@ground) = [vector3 amount &quot;10 10 10&quot;];</span></div>
 </div><!-- fragment --><dl class="section note"><dt>Note</dt><dd>As long as you do not break any keyword or symbol of PSDL, a single command can be dissected into multiple lines. Cramming multiple commands into a single line is also supported.</dd></dl>
 <p>In the next sections, we will formally introduce the syntactic structures of PSDL commands.</p>
-<h1><a class="anchor" id="autotoc_md57"></a>
+<h1><a class="anchor" id="autotoc_md58"></a>
 Type Category</h1>
 <p><code>type-category</code>(type-name) @name = clauses;</p>
 <p>Describes the category to which the current command belongs. For example, the command that creates a geometry states that its category is <code>geometry</code> in its type category section. There are many categories in PSDL. In addition to the ones seen in the above hello-world scene description, we also have <code>image</code>, <code>object</code> and much more.</p>
-<h1><a class="anchor" id="autotoc_md58"></a>
+<h1><a class="anchor" id="autotoc_md59"></a>
 Type Name</h1>
 <p>type-category(<code>type-name</code>) @name = clauses;</p>
 <p>Type names generally <em>add details</em> to the type category. Again, in the command that creates a geometry, we know that we are now creating a <code>rectangle</code> geometry from the command fragment <code>geometry(rectangle)</code>. Type category and type name are often combined and are called <b>full type name</b> together. Full type name is only needed if the underlying engine operation requires it (such as creating a resource). For executor calls (see the later section), type name can be omitted (will be automatically deduced from the referenced resource) sometimes.</p>
-<h1><a class="anchor" id="autotoc_md59"></a>
+<h1><a class="anchor" id="autotoc_md60"></a>
 Data Name</h1>
 <p>type-category(type-name) @<code>name</code> = clauses;</p>
 <p>The data name is the name given to the command (e.g., as a resource name, or a reference name) and is always prefixed by <code>@</code>. Note that <code>@</code> is part of the syntax rather than part of the name. Also, names with whitespace characters should be enclosed by double quotes, see the following example to understand more clearly:</p>
@@ -215,12 +220,12 @@ Data Name</h1>
 <div class="line"><span class="comment">// example, we created a sphere named &quot;ball name with spaces&quot;.</span></div>
 <div class="line">geometry(sphere) <span class="stringliteral">@&quot;ball name with spaces&quot;</span> = [real radius 2.5];</div>
 <div class="line">actor(model) @balloon = [geometry geometry <span class="stringliteral">@&quot;ball name with spaces&quot;</span>];</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md60"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md61"></a>
 Clauses</h1>
 <p>type-category(type-name) @name = <code>clauses</code>;</p>
 <p>Clause is a structure that stores parameters for a command. It has the following form:</p>
 <p>[<code>type-category</code> <code>parameter-name</code>:<code>tag</code> <code>values</code>]</p>
-<p>It is worth pointing out that the <code>parameter-name</code> does not need to start with <code>@</code>. The <code>values</code> section can have many forms such as numerical values (as seen earlier), arrays, and even stand-alone data files (we call them <b>PSDL Resource Identifier</b>). Details of this section will be introduced in <a class="el" href="#psdl_resource_identifier">later part</a> of the guide.</p>
+<p>It is worth pointing out that the <code>parameter-name</code> does not need to start with <code>@</code>. The <code>values</code> section can have many forms such as numerical values (as seen earlier), arrays, and even stand-alone data files (we call them <b>PSDL Resource Identifier</b>). Details for resource identifiers will be introduced in <a class="el" href="#psdl_resource_identifier">later part</a> of the guide.</p>
 <div class="fragment"><div class="line"><span class="comment">// By writing these, we now added a plane, a ball and a material to the scene!</span></div>
 <div class="line"><span class="comment">// At this stage, they are like props and are not visible. They still need</span></div>
 <div class="line"><span class="comment">// actors to show up in the rendered scene.</span></div>
@@ -228,13 +233,53 @@ Clauses</h1>
 <div class="line">geometry(sphere)       @ball    = [real radius 2.5];</div>
 <div class="line">image(constant)        @white   = [real-array values 0.9];</div>
 <div class="line">material(matte-opaque) @diffuse = [image albedo @white];</div>
-</div><!-- fragment --><p>With PSDL, you can create almost all kinds of objects the rendering system has to offer. In later sections, we will see that it is also possible to perform <a class="el" href="#operations">operations</a> on these objects via PSDL.</p>
+</div><!-- fragment --><p>When defining a clause, <code>type-category</code> can be classified into <em>value</em> and <em>reference</em>. <a class="el" href="#sdl_value_types">Value types</a> do not share data and create a new block of data each time a clause is instantiated. On the other hand, <a class="el" href="#sdl_reference_types">reference types</a> can share their data by instance names, with automatic reference counting.</p>
+<h2><a class="anchor" id="sdl_value_types"></a>
+Value Types</h2>
+<p>These are common value types used in a SDL clause:</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Type   </th><th class="markdownTableHeadNone">Value Syntax   </th><th class="markdownTableHeadNone">Notes    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><code>integer</code>   </td><td class="markdownTableBodyNone">An optionally double-quoted single integer literal. <code>42</code>, <code>"6789"</code> are all valid inputs. Base 16 input like <code>0xFF</code> is also supported.   </td><td class="markdownTableBodyNone">Internally, the clause may bind to a lower precision field such as <code>uin16</code>. Incompatible value literals will be detected and reported.*    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><code>real</code>   </td><td class="markdownTableBodyNone">An optionally double-quoted single floating-point literal. <code>-123</code>, <code>"3.1415926"</code> are all valid literals.   </td><td class="markdownTableBodyNone">Internally, the clause may bind to a field with a type different from <code>float</code>. Incompatible value literals will be detected and reported.*    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><code>bool</code>   </td><td class="markdownTableBodyNone"><code>true</code>, <code>True</code>, or <code>TRUE</code> for true; <code>false</code>, <code>False</code>, or <code>FALSE</code> for false.   </td><td class="markdownTableBodyNone"></td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><code>string</code>   </td><td class="markdownTableBodyNone">A string without whitespaces can be specified directly like <code>nospace</code>. Whitespaces like spaces, tabs, etc. can be included using double quotes like <code>"  lots of  spaces  "</code>.   </td><td class="markdownTableBodyNone"></td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><code>vector2</code>   </td><td class="markdownTableBodyNone">Two floating-point literals enclosed by a pair of double quotes. The literals should be separated by whitespace(s) like <code>"-1.2 3.4"</code>. If only a single literal is provided, it will be applied to all components. For example, <code>0.5</code> is equivalent to <code>"0.5 0.5"</code>.   </td><td class="markdownTableBodyNone"></td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><code>vector3</code>   </td><td class="markdownTableBodyNone">Similar to <code>vector2</code>, except that three literals are allowed.   </td><td class="markdownTableBodyNone"></td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><code>vector4</code>   </td><td class="markdownTableBodyNone">Similar to <code>vector3</code>, except that four literals are allowed.   </td><td class="markdownTableBodyNone"></td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><code>quaternion</code>   </td><td class="markdownTableBodyNone">Exactly the same as <code>vector4</code>.   </td><td class="markdownTableBodyNone">This type represents a quaternion. For vectors or tuples, use <code>vector4</code>.    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><code>real-array</code>   </td><td class="markdownTableBodyNone">Array variant of <code>real</code> that can accept N (N &gt;= 0) floating-point literals. All literals are separated by whitespace(s) and should be enclosed by curly braces. For example, an increasing series of 5 elements can be written as <code>{1.1 2.2 3.3 4.4 5.5}</code>.   </td><td class="markdownTableBodyNone">Accepts <a class="el" href="#psdl_resource_identifier">resource identifier</a> as input. In this case, it is expected to be a file that contains the value part of the clause.    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><code>vector3-array</code>   </td><td class="markdownTableBodyNone">Array variant of <code>vector3</code> that can accept N (N &gt;= 0) <code>vector3</code> values. For example, <code>{"7 7 7" "7"}</code> defines two <code>vector3</code> values, where all components == 7.   </td><td class="markdownTableBodyNone"></td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><code>path</code>   </td><td class="markdownTableBodyNone">Basically a <code>string</code>, except that its value is interpreted as a filesystem path.   </td><td class="markdownTableBodyNone">It is recommended to use <a class="el" href="#psdl_resource_identifier">resource identifier</a> where possible so the scene file can be easily distributed without broken links.    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><code>enum</code>   </td><td class="markdownTableBodyNone">A <code>string</code> that identifies an enumeration entry.   </td><td class="markdownTableBodyNone">See the <a class="el" href="main_scene_description_reference.html">scene description reference</a> for valid enumeration identifiers.   </td></tr>
+</table>
+<p>All values can be double-quoted unless otherwise noted.</p>
+<p>*: Depending on the settings of the bound field and the parser, such warnings/errors may be disabled.</p>
+<h2><a class="anchor" id="sdl_reference_types"></a>
+Reference Types</h2>
+<h2><a class="anchor" id="autotoc_md62"></a>
+Struct Types</h2>
+<p>With PSDL, you can create almost all kinds of objects the rendering system has to offer. In later sections, we will see that it is also possible to perform <a class="el" href="#operations">operations</a> on these objects via PSDL.</p>
 <h1><a class="anchor" id="operations"></a>
 Operations</h1>
 <dl class="section remark"><dt>Remarks</dt><dd>Go back and check the hello-world scene description again. You should be able to understand most of the lines now.</dd></dl>
 <h1><a class="anchor" id="psdl_resource_identifier"></a>
 PSDL Resource Identifier</h1>
-<h1><a class="anchor" id="autotoc_md61"></a>
+<h1><a class="anchor" id="autotoc_md63"></a>
+Serialization</h1>
+<h1><a class="anchor" id="autotoc_md64"></a>
 Appendix</h1>
 <p><a class="el" href="main_scene_description_reference.html">Full documentation of PSDL commands</a>. </p>
 </div></div><!-- contents -->

@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['lambertiandiffuse_2ecpp_0',['LambertianDiffuse.cpp',['../../../Engine/html/_lambertian_diffuse_8cpp.html',1,'']]],
-  ['lambertiandiffuse_2eh_1',['LambertianDiffuse.h',['../../../Engine/html/_lambertian_diffuse_8h.html',1,'']]],
+  ['lambertianreflector_2ecpp_0',['LambertianReflector.cpp',['../../../Engine/html/_lambertian_reflector_8cpp.html',1,'']]],
+  ['lambertianreflector_2eh_1',['LambertianReflector.h',['../../../Engine/html/_lambertian_reflector_8h.html',1,'']]],
   ['latlongenvemitter_2ecpp_2',['LatLongEnvEmitter.cpp',['../../../Engine/html/_lat_long_env_emitter_8cpp.html',1,'']]],
   ['latlongenvemitter_2eh_3',['LatLongEnvEmitter.h',['../../../Engine/html/_lat_long_env_emitter_8h.html',1,'']]],
   ['layeredsurface_2ecpp_4',['LayeredSurface.cpp',['../../../Engine/html/_layered_surface_8cpp.html',1,'']]],
@@ -18,17 +18,14 @@ var searchData=
   ['lib_5fstb_5fimpl_2ecpp_15',['lib_stb_impl.cpp',['../../../Engine/html/lib__stb__impl_8cpp.html',1,'']]],
   ['lib_5ftracy_2eh_16',['lib_tracy.h',['../../../Common/html/lib__tracy_8h.html',1,'']]],
   ['light_2edox_17',['Light.dox',['../../../Engine/html/_light_8dox.html',1,'']]],
-  ['lightsource_2ecpp_18',['LightSource.cpp',['../../../Engine/html/_light_source_8cpp.html',1,'']]],
-  ['lightsource_2edox_19',['LightSource.dox',['../../../Engine/html/_light_source_8dox.html',1,'']]],
-  ['lightsource_2eh_20',['LightSource.h',['../../../Engine/html/_light_source_8h.html',1,'']]],
-  ['lighttracingintegrator_2ecpp_21',['LightTracingIntegrator.cpp',['../../../Engine/html/_light_tracing_integrator_8cpp.html',1,'']]],
-  ['lighttracingintegrator_2eh_22',['LightTracingIntegrator.h',['../../../Engine/html/_light_tracing_integrator_8h.html',1,'']]],
-  ['location_2eh_23',['location.h',['../../../Engine/html/location_8h.html',1,'']]],
-  ['logger_2ecpp_24',['Logger.cpp',['../../../Common/html/_logger_8cpp.html',1,'']]],
-  ['logger_2eh_25',['Logger.h',['../../../Common/html/_logger_8h.html',1,'']]],
-  ['logger_5ffwd_2eh_26',['logger_fwd.h',['../../../Common/html/logger__fwd_8h.html',1,'']]],
-  ['logging_2ecpp_27',['logging.cpp',['../../../Common/html/logging_8cpp.html',1,'']]],
-  ['logging_2eh_28',['logging.h',['../../../Common/html/logging_8h.html',1,'']]],
-  ['lta_2edox_29',['LTA.dox',['../../../Engine/html/_l_t_a_8dox.html',1,'']]],
-  ['lta_2eh_30',['lta.h',['../../../Engine/html/lta_8h.html',1,'']]]
+  ['lighttracingintegrator_2ecpp_18',['LightTracingIntegrator.cpp',['../../../Engine/html/_light_tracing_integrator_8cpp.html',1,'']]],
+  ['lighttracingintegrator_2eh_19',['LightTracingIntegrator.h',['../../../Engine/html/_light_tracing_integrator_8h.html',1,'']]],
+  ['location_2eh_20',['location.h',['../../../Engine/html/location_8h.html',1,'']]],
+  ['logger_2ecpp_21',['Logger.cpp',['../../../Common/html/_logger_8cpp.html',1,'']]],
+  ['logger_2eh_22',['Logger.h',['../../../Common/html/_logger_8h.html',1,'']]],
+  ['logger_5ffwd_2eh_23',['logger_fwd.h',['../../../Common/html/logger__fwd_8h.html',1,'']]],
+  ['logging_2ecpp_24',['logging.cpp',['../../../Common/html/logging_8cpp.html',1,'']]],
+  ['logging_2eh_25',['logging.h',['../../../Common/html/logging_8h.html',1,'']]],
+  ['lta_2edox_26',['LTA.dox',['../../../Engine/html/_l_t_a_8dox.html',1,'']]],
+  ['lta_2eh_27',['lta.h',['../../../Engine/html/lta_8h.html',1,'']]]
 ];

@@ -124,17 +124,18 @@ $(function(){initNavTree('utility_8h.html',''); initResizable(true); });
 <div class="textblock"><code>#include &quot;<a class="el" href="traits_8h_source.html">Utility/traits.h</a>&quot;</code><br />
 <code>#include &lt;Common/assertion.h&gt;</code><br />
 <code>#include &lt;Common/exceptions.h&gt;</code><br />
-<code>#include &lt;utility&gt;</code><br />
-<code>#include &lt;type_traits&gt;</code><br />
+<code>#include &lt;bit&gt;</code><br />
+<code>#include &lt;climits&gt;</code><br />
+<code>#include &lt;concepts&gt;</code><br />
+<code>#include &lt;cstddef&gt;</code><br />
 <code>#include &lt;cstring&gt;</code><br />
+<code>#include &lt;limits&gt;</code><br />
 <code>#include &lt;string&gt;</code><br />
 <code>#include &lt;string_view&gt;</code><br />
-<code>#include &lt;climits&gt;</code><br />
-<code>#include &lt;limits&gt;</code><br />
-<code>#include &lt;concepts&gt;</code><br />
-<code>#include &lt;bit&gt;</code><br />
-<code>#include &lt;version&gt;</code><br />
+<code>#include &lt;type_traits&gt;</code><br />
+<code>#include &lt;utility&gt;</code><br />
 <code>#include &lt;variant&gt;</code><br />
+<code>#include &lt;version&gt;</code><br />
 </div>
 <p><a href="utility_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
@@ -172,12 +173,6 @@ Macros</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:adc22002ce22a2c36d495dbc0eae3f103" id="r_adc22002ce22a2c36d495dbc0eae3f103"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
-<tr class="memitem:adc22002ce22a2c36d495dbc0eae3f103"><td class="memTemplItemLeft" align="right" valign="top">decltype(auto)&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceph.html#adc22002ce22a2c36d495dbc0eae3f103">ph::pointer_access</a> (T &amp;t)</td></tr>
-<tr class="separator:adc22002ce22a2c36d495dbc0eae3f103"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a088f88ce0c13cb136e0578ba5e45627d" id="r_a088f88ce0c13cb136e0578ba5e45627d"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
-<tr class="memitem:a088f88ce0c13cb136e0578ba5e45627d"><td class="memTemplItemLeft" align="right" valign="top">decltype(auto)&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceph.html#a088f88ce0c13cb136e0578ba5e45627d">ph::regular_access</a> (T &amp;t)</td></tr>
-<tr class="separator:a088f88ce0c13cb136e0578ba5e45627d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a74286ca8596f0e37fdc3650c3e72c691" id="r_a74286ca8596f0e37fdc3650c3e72c691"><td class="memTemplParams" colspan="2">template&lt;typename Target , typename Source &gt; </td></tr>
 <tr class="memitem:a74286ca8596f0e37fdc3650c3e72c691"><td class="memTemplItemLeft" align="right" valign="top">Target&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceph.html#a74286ca8596f0e37fdc3650c3e72c691">ph::bitwise_cast</a> (const Source &amp;source)</td></tr>
 <tr class="separator:a74286ca8596f0e37fdc3650c3e72c691"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -195,6 +190,28 @@ Functions</h2></td></tr>
 <tr class="memitem:a0d3e015dc9f7674dbf795a75385cda0a" id="r_a0d3e015dc9f7674dbf795a75385cda0a"><td class="memTemplParams" colspan="2">template&lt;CEnumWithSizeInfo EnumType&gt; </td></tr>
 <tr class="memitem:a0d3e015dc9f7674dbf795a75385cda0a"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceph.html#a0d3e015dc9f7674dbf795a75385cda0a">ph::enum_size</a> ()</td></tr>
 <tr class="separator:a0d3e015dc9f7674dbf795a75385cda0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr class="memitem:a88bc0d52718506077c4752738e833235" id="r_a88bc0d52718506077c4752738e833235"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a88bc0d52718506077c4752738e833235"><td class="memTemplItemLeft" align="right" valign="top">T *&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceph.html#a88bc0d52718506077c4752738e833235">ph::ptr_access</a> (T *const ptr)</td></tr>
+<tr class="memdesc:a88bc0d52718506077c4752738e833235"><td class="mdescLeft">&#160;</td><td class="mdescRight">Access a target's member consistently using <code>.</code> or <code>-&gt;</code> operators. Note that these functions treat smart pointers as regular objects (<code><a class="el" href="namespaceph.html#a88bc0d52718506077c4752738e833235" title="Access a target&#39;s member consistently using . or -&gt; operators. Note that these functions treat smart ...">ptr_access()</a></code> and <code><a class="el" href="namespaceph.html#a23d56151345e21e253f6d2894ea08a7f">ref_access()</a></code> will refer to the object itself, not its managed data). A nice discussion for the topic: <a href="https://stackoverflow.com/questions/14466620/c-template-specialization-calling-methods-on-types-that-could-be-pointers-or">https://stackoverflow.com/questions/14466620/c-template-specialization-calling-methods-on-types-that-could-be-pointers-or</a>.  <br /></td></tr>
+<tr class="separator:a88bc0d52718506077c4752738e833235"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1331f56249b565cedee1ca5996f725a8" id="r_a1331f56249b565cedee1ca5996f725a8"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a1331f56249b565cedee1ca5996f725a8"><td class="memTemplItemLeft" align="right" valign="top">T *&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceph.html#a1331f56249b565cedee1ca5996f725a8">ph::ptr_access</a> (T &amp;ref)</td></tr>
+<tr class="separator:a1331f56249b565cedee1ca5996f725a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3f8d3b88dfcd683429e5b7746e2b7870" id="r_a3f8d3b88dfcd683429e5b7746e2b7870"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a3f8d3b88dfcd683429e5b7746e2b7870"><td class="memTemplItemLeft" align="right" valign="top">T *&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceph.html#a3f8d3b88dfcd683429e5b7746e2b7870">ph::ptr_access</a> (T &amp;&amp;ref)=delete</td></tr>
+<tr class="separator:a3f8d3b88dfcd683429e5b7746e2b7870"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a23d56151345e21e253f6d2894ea08a7f" id="r_a23d56151345e21e253f6d2894ea08a7f"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a23d56151345e21e253f6d2894ea08a7f"><td class="memTemplItemLeft" align="right" valign="top">T &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceph.html#a23d56151345e21e253f6d2894ea08a7f">ph::ref_access</a> (T &amp;ref)</td></tr>
+<tr class="separator:a23d56151345e21e253f6d2894ea08a7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7bf7e9c4cbddb280ac62f62273ba7190" id="r_a7bf7e9c4cbddb280ac62f62273ba7190"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a7bf7e9c4cbddb280ac62f62273ba7190"><td class="memTemplItemLeft" align="right" valign="top">T &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceph.html#a7bf7e9c4cbddb280ac62f62273ba7190">ph::ref_access</a> (T *const ptr)</td></tr>
+<tr class="separator:a7bf7e9c4cbddb280ac62f62273ba7190"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0039ee751942515e2c957dbd4e622066" id="r_a0039ee751942515e2c957dbd4e622066"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceph.html#a0039ee751942515e2c957dbd4e622066">ph::ref_access</a> (std::nullptr_t)=delete</td></tr>
+<tr class="separator:a0039ee751942515e2c957dbd4e622066"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6e8f02147c6f4d0334ae89dcfd24801a" id="r_a6e8f02147c6f4d0334ae89dcfd24801a"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a6e8f02147c6f4d0334ae89dcfd24801a"><td class="memTemplItemLeft" align="right" valign="top">T &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceph.html#a6e8f02147c6f4d0334ae89dcfd24801a">ph::ref_access</a> (T &amp;&amp;ref)=delete</td></tr>
+<tr class="separator:a6e8f02147c6f4d0334ae89dcfd24801a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
 <a id="a68432c8d4ab2916cfb74c4640ee88f6f" name="a68432c8d4ab2916cfb74c4640ee88f6f"></a>
@@ -213,7 +230,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 <b>Value:</b><div class="fragment"><div class="line">    <a class="code hl_define" href="#aa0635783c7f744c190efe53784387031">PH_DECLARE_RULE_OF_5_MEMBERS_NO_DTOR</a>(ClassType);\</div>
 <div class="line">    ~ClassType()</div>
-<div class="ttc" id="autility_8h_html_aa0635783c7f744c190efe53784387031"><div class="ttname"><a href="#aa0635783c7f744c190efe53784387031">PH_DECLARE_RULE_OF_5_MEMBERS_NO_DTOR</a></div><div class="ttdeci">#define PH_DECLARE_RULE_OF_5_MEMBERS_NO_DTOR(ClassType)</div><div class="ttdoc">Helper to declare rule of 5 special class members. Destructor is not included.</div><div class="ttdef"><b>Definition</b> utility.h:23</div></div>
+<div class="ttc" id="autility_8h_html_aa0635783c7f744c190efe53784387031"><div class="ttname"><a href="#aa0635783c7f744c190efe53784387031">PH_DECLARE_RULE_OF_5_MEMBERS_NO_DTOR</a></div><div class="ttdeci">#define PH_DECLARE_RULE_OF_5_MEMBERS_NO_DTOR(ClassType)</div><div class="ttdoc">Helper to declare rule of 5 special class members. Destructor is not included.</div><div class="ttdef"><b>Definition</b> utility.h:24</div></div>
 </div><!-- fragment -->
 <p>Helper to declare rule of 5 special class members. </p>
 
@@ -259,7 +276,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 <b>Value:</b><div class="fragment"><div class="line">    <a class="code hl_define" href="#ad8e10a0e23436665e9b124f942489cbe">PH_DEFINE_INLINE_RULE_OF_5_MEMBERS_NO_DTOR</a>(ClassType);\</div>
 <div class="line">    <span class="keyword">inline</span> ~ClassType() = <span class="keywordflow">default</span></div>
-<div class="ttc" id="autility_8h_html_ad8e10a0e23436665e9b124f942489cbe"><div class="ttname"><a href="#ad8e10a0e23436665e9b124f942489cbe">PH_DEFINE_INLINE_RULE_OF_5_MEMBERS_NO_DTOR</a></div><div class="ttdeci">#define PH_DEFINE_INLINE_RULE_OF_5_MEMBERS_NO_DTOR(ClassType)</div><div class="ttdoc">Helper to define defaulted rule of 5 special class members (inlined). Destructor is not included.</div><div class="ttdef"><b>Definition</b> utility.h:43</div></div>
+<div class="ttc" id="autility_8h_html_ad8e10a0e23436665e9b124f942489cbe"><div class="ttname"><a href="#ad8e10a0e23436665e9b124f942489cbe">PH_DEFINE_INLINE_RULE_OF_5_MEMBERS_NO_DTOR</a></div><div class="ttdeci">#define PH_DEFINE_INLINE_RULE_OF_5_MEMBERS_NO_DTOR(ClassType)</div><div class="ttdoc">Helper to define defaulted rule of 5 special class members (inlined). Destructor is not included.</div><div class="ttdef"><b>Definition</b> utility.h:44</div></div>
 </div><!-- fragment -->
 <p>Helper to define defaulted rule of 5 special class members (inlined). </p>
 
@@ -305,7 +322,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 <b>Value:</b><div class="fragment"><div class="line">    <a class="code hl_define" href="#ac188ab6d555beb38f456af994f05ad72">PH_DEFINE_RULE_OF_5_MEMBERS_NO_DTOR</a>(ClassType);\</div>
 <div class="line">    ClassType::~ClassType() = <span class="keywordflow">default</span></div>
-<div class="ttc" id="autility_8h_html_ac188ab6d555beb38f456af994f05ad72"><div class="ttname"><a href="#ac188ab6d555beb38f456af994f05ad72">PH_DEFINE_RULE_OF_5_MEMBERS_NO_DTOR</a></div><div class="ttdeci">#define PH_DEFINE_RULE_OF_5_MEMBERS_NO_DTOR(ClassType)</div><div class="ttdoc">Helper to define defaulted rule of 5 special class members. Destructor is not included.</div><div class="ttdef"><b>Definition</b> utility.h:33</div></div>
+<div class="ttc" id="autility_8h_html_ac188ab6d555beb38f456af994f05ad72"><div class="ttname"><a href="#ac188ab6d555beb38f456af994f05ad72">PH_DEFINE_RULE_OF_5_MEMBERS_NO_DTOR</a></div><div class="ttdeci">#define PH_DEFINE_RULE_OF_5_MEMBERS_NO_DTOR(ClassType)</div><div class="ttdoc">Helper to define defaulted rule of 5 special class members. Destructor is not included.</div><div class="ttdef"><b>Definition</b> utility.h:34</div></div>
 </div><!-- fragment -->
 <p>Helper to define defaulted rule of 5 special class members. </p>
 

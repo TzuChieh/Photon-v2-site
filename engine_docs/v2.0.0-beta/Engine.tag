@@ -138,6 +138,31 @@
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
+    <name>AMaskedModel.cpp</name>
+    <path>Source/Actor/</path>
+    <filename>_a_masked_model_8cpp.html</filename>
+    <includes id="_a_masked_model_8h" name="AMaskedModel.h" local="yes" import="no" module="no" objc="no">Actor/AMaskedModel.h</includes>
+    <includes id="_pre_cook_report_8h" name="PreCookReport.h" local="yes" import="no" module="no" objc="no">World/Foundation/PreCookReport.h</includes>
+    <includes id="_transient_visual_element_8h" name="TransientVisualElement.h" local="yes" import="no" module="no" objc="no">World/Foundation/TransientVisualElement.h</includes>
+    <includes id="_cooking_context_8h" name="CookingContext.h" local="yes" import="no" module="no" objc="no">World/Foundation/CookingContext.h</includes>
+    <includes id="_cooked_resource_collection_8h" name="CookedResourceCollection.h" local="yes" import="no" module="no" objc="no">World/Foundation/CookedResourceCollection.h</includes>
+    <includes id="_transient_resource_cache_8h" name="TransientResourceCache.h" local="yes" import="no" module="no" objc="no">World/Foundation/TransientResourceCache.h</includes>
+    <includes id="_masked_intersectable_8h" name="MaskedIntersectable.h" local="yes" import="no" module="no" objc="no">Core/Intersection/MaskedIntersectable.h</includes>
+    <includes id="_swizzled_image_8h" name="SwizzledImage.h" local="yes" import="no" module="no" objc="no">Actor/Image/SwizzledImage.h</includes>
+    <namespace>ph</namespace>
+  </compound>
+  <compound kind="file">
+    <name>AMaskedModel.h</name>
+    <path>Source/Actor/</path>
+    <filename>_a_masked_model_8h.html</filename>
+    <includes id="_actor_8h" name="Actor.h" local="yes" import="no" module="no" objc="no">Actor/Actor.h</includes>
+    <includes id="_a_model_8h" name="AModel.h" local="yes" import="no" module="no" objc="no">Actor/AModel.h</includes>
+    <includes id="_image_8h" name="Image.h" local="yes" import="no" module="no" objc="no">Actor/Image/Image.h</includes>
+    <includes id="sdl__interface_8h" name="sdl_interface.h" local="yes" import="no" module="no" objc="no">SDL/sdl_interface.h</includes>
+    <class kind="class">ph::AMaskedModel</class>
+    <namespace>ph</namespace>
+  </compound>
+  <compound kind="file">
     <name>AModel.cpp</name>
     <path>Source/Actor/</path>
     <filename>_a_model_8cpp.html</filename>
@@ -642,6 +667,7 @@
     <filename>_checkerboard_image_8cpp.html</filename>
     <includes id="_checkerboard_image_8h" name="CheckerboardImage.h" local="yes" import="no" module="no" objc="no">Actor/Image/CheckerboardImage.h</includes>
     <includes id="_t_checkerboard_texture_8h" name="TCheckerboardTexture.h" local="yes" import="no" module="no" objc="no">Core/Texture/TCheckerboardTexture.h</includes>
+    <includes id="_constant_image_8h" name="ConstantImage.h" local="yes" import="no" module="no" objc="no">Actor/Image/ConstantImage.h</includes>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
@@ -649,6 +675,7 @@
     <path>Source/Actor/Image/</path>
     <filename>_checkerboard_image_8h.html</filename>
     <includes id="_image_8h" name="Image.h" local="yes" import="no" module="no" objc="no">Actor/Image/Image.h</includes>
+    <includes id="sdl__interface_8h" name="sdl_interface.h" local="yes" import="no" module="no" objc="no">SDL/sdl_interface.h</includes>
     <class kind="class">ph::CheckerboardImage</class>
     <namespace>ph</namespace>
   </compound>
@@ -1003,180 +1030,6 @@
     <filename>_light_8dox.html</filename>
   </compound>
   <compound kind="file">
-    <name>AreaSource.cpp</name>
-    <path>Source/Actor/LightSource/</path>
-    <filename>_area_source_8cpp.html</filename>
-    <includes id="_area_source_8h" name="AreaSource.h" local="yes" import="no" module="no" objc="no">Actor/LightSource/AreaSource.h</includes>
-    <includes id="_cooking_context_8h" name="CookingContext.h" local="yes" import="no" module="no" objc="no">World/Foundation/CookingContext.h</includes>
-    <includes id="_emitter_building_material_8h" name="EmitterBuildingMaterial.h" local="yes" import="no" module="no" objc="no">Actor/LightSource/EmitterBuildingMaterial.h</includes>
-    <includes id="_rigid_transform_8h" name="RigidTransform.h" local="yes" import="no" module="no" objc="no">Math/Transform/RigidTransform.h</includes>
-    <includes id="_static_rigid_transform_8h" name="StaticRigidTransform.h" local="yes" import="no" module="no" objc="no">Math/Transform/StaticRigidTransform.h</includes>
-    <includes id="_transformed_primitive_8h" name="TransformedPrimitive.h" local="yes" import="no" module="no" objc="no">Core/Intersection/TransformedPrimitive.h</includes>
-    <includes id="_primitive_metadata_8h" name="PrimitiveMetadata.h" local="yes" import="no" module="no" objc="no">Core/Intersection/PrimitiveMetadata.h</includes>
-    <includes id="_diffuse_surface_emitter_8h" name="DiffuseSurfaceEmitter.h" local="yes" import="no" module="no" objc="no">Core/Emitter/DiffuseSurfaceEmitter.h</includes>
-    <includes id="_grouped_diffuse_surface_emitter_8h" name="GroupedDiffuseSurfaceEmitter.h" local="yes" import="no" module="no" objc="no">Core/Emitter/GroupedDiffuseSurfaceEmitter.h</includes>
-    <includes id="_lambertian_diffuse_8h" name="LambertianDiffuse.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/SurfaceOptics/LambertianDiffuse.h</includes>
-    <includes id="_constant_image_8h" name="ConstantImage.h" local="yes" import="no" module="no" objc="no">Actor/Image/ConstantImage.h</includes>
-    <includes id="constant_8h" name="constant.h" local="yes" import="no" module="no" objc="no">Math/constant.h</includes>
-    <includes id="constant__textures_8h" name="constant_textures.h" local="yes" import="no" module="no" objc="no">Core/Texture/constant_textures.h</includes>
-    <includes id="_primitive_building_material_8h" name="PrimitiveBuildingMaterial.h" local="yes" import="no" module="no" objc="no">Actor/Geometry/PrimitiveBuildingMaterial.h</includes>
-    <includes id="color__spaces_8h" name="color_spaces.h" local="yes" import="no" module="no" objc="no">Math/Color/color_spaces.h</includes>
-    <namespace>ph</namespace>
-  </compound>
-  <compound kind="file">
-    <name>AreaSource.h</name>
-    <path>Source/Actor/LightSource/</path>
-    <filename>_area_source_8h.html</filename>
-    <includes id="_light_source_8h" name="LightSource.h" local="yes" import="no" module="no" objc="no">Actor/LightSource/LightSource.h</includes>
-    <includes id="_spectrum_8h" name="Spectrum.h" local="yes" import="no" module="no" objc="no">Math/Color/Spectrum.h</includes>
-    <includes id="_actor_2_geometry_2_geometry_8h" name="Geometry.h" local="yes" import="no" module="no" objc="no">Actor/Geometry/Geometry.h</includes>
-    <includes id="sdl__interface_8h" name="sdl_interface.h" local="yes" import="no" module="no" objc="no">SDL/sdl_interface.h</includes>
-    <includes id="_t_sdl_spectrum_8h" name="TSdlSpectrum.h" local="yes" import="no" module="no" objc="no">Actor/SDLExtension/TSdlSpectrum.h</includes>
-    <class kind="class">ph::AreaSource</class>
-    <namespace>ph</namespace>
-  </compound>
-  <compound kind="file">
-    <name>EmitterBuildingMaterial.h</name>
-    <path>Source/Actor/LightSource/</path>
-    <filename>_emitter_building_material_8h.html</filename>
-    <includes id="_rigid_transform_8h" name="RigidTransform.h" local="yes" import="no" module="no" objc="no">Math/Transform/RigidTransform.h</includes>
-    <class kind="class">ph::EmitterBuildingMaterial</class>
-    <namespace>ph</namespace>
-  </compound>
-  <compound kind="file">
-    <name>IesAttenuatedSource.cpp</name>
-    <path>Source/Actor/LightSource/</path>
-    <filename>_ies_attenuated_source_8cpp.html</filename>
-    <includes id="_ies_attenuated_source_8h" name="IesAttenuatedSource.h" local="yes" import="no" module="no" objc="no">Actor/LightSource/IesAttenuatedSource.h</includes>
-    <includes id="_ies_data_8h" name="IesData.h" local="yes" import="no" module="no" objc="no">DataIO/Data/IesData.h</includes>
-    <includes id="_primitive_metadata_8h" name="PrimitiveMetadata.h" local="yes" import="no" module="no" objc="no">Core/Intersection/PrimitiveMetadata.h</includes>
-    <includes id="_primitive_channel_8h" name="PrimitiveChannel.h" local="yes" import="no" module="no" objc="no">Core/Intersection/PrimitiveChannel.h</includes>
-    <includes id="_t_frame_8h" name="TFrame.h" local="yes" import="no" module="no" objc="no">Frame/TFrame.h</includes>
-    <includes id="_t_frame_buffer2_d_8h" name="TFrameBuffer2D.h" local="yes" import="no" module="no" objc="no">Core/Texture/Pixel/TFrameBuffer2D.h</includes>
-    <includes id="_t_scalar_pixel_texture2_d_8h" name="TScalarPixelTexture2D.h" local="yes" import="no" module="no" objc="no">Core/Texture/Pixel/TScalarPixelTexture2D.h</includes>
-    <includes id="unary__texture__operators_8h" name="unary_texture_operators.h" local="yes" import="no" module="no" objc="no">Core/Texture/Function/unary_texture_operators.h</includes>
-    <includes id="constant_8h" name="constant.h" local="yes" import="no" module="no" objc="no">Math/constant.h</includes>
-    <includes id="_omni_modulated_emitter_8h" name="OmniModulatedEmitter.h" local="yes" import="no" module="no" objc="no">Core/Emitter/OmniModulatedEmitter.h</includes>
-    <namespace>ph</namespace>
-  </compound>
-  <compound kind="file">
-    <name>IesAttenuatedSource.h</name>
-    <path>Source/Actor/LightSource/</path>
-    <filename>_ies_attenuated_source_8h.html</filename>
-    <includes id="_light_source_8h" name="LightSource.h" local="yes" import="no" module="no" objc="no">Actor/LightSource/LightSource.h</includes>
-    <includes id="_path_8h" name="Path.h" local="yes" import="no" module="no" objc="no">DataIO/FileSystem/Path.h</includes>
-    <class kind="class">ph::IesAttenuatedSource</class>
-    <namespace>ph</namespace>
-  </compound>
-  <compound kind="file">
-    <name>LightSource.cpp</name>
-    <path>Source/Actor/LightSource/</path>
-    <filename>_light_source_8cpp.html</filename>
-    <includes id="_light_source_8h" name="LightSource.h" local="yes" import="no" module="no" objc="no">Actor/LightSource/LightSource.h</includes>
-    <includes id="_actor_2_geometry_2_geometry_8h" name="Geometry.h" local="yes" import="no" module="no" objc="no">Actor/Geometry/Geometry.h</includes>
-    <includes id="_matte_opaque_8h" name="MatteOpaque.h" local="yes" import="no" module="no" objc="no">Actor/Material/MatteOpaque.h</includes>
-    <namespace>ph</namespace>
-  </compound>
-  <compound kind="file">
-    <name>LightSource.dox</name>
-    <path>Source/Actor/LightSource/</path>
-    <filename>_light_source_8dox.html</filename>
-  </compound>
-  <compound kind="file">
-    <name>LightSource.h</name>
-    <path>Source/Actor/LightSource/</path>
-    <filename>_light_source_8h.html</filename>
-    <includes id="_t_sdl_resource_base_8h" name="TSdlResourceBase.h" local="yes" import="no" module="no" objc="no">SDL/TSdlResourceBase.h</includes>
-    <includes id="_emitter_building_material_8h" name="EmitterBuildingMaterial.h" local="yes" import="no" module="no" objc="no">Actor/LightSource/EmitterBuildingMaterial.h</includes>
-    <includes id="sdl__interface_8h" name="sdl_interface.h" local="yes" import="no" module="no" objc="no">SDL/sdl_interface.h</includes>
-    <class kind="class">ph::LightSource</class>
-    <namespace>ph</namespace>
-  </compound>
-  <compound kind="file">
-    <name>ModelSource.cpp</name>
-    <path>Source/Actor/LightSource/</path>
-    <filename>_model_source_8cpp.html</filename>
-    <includes id="_model_source_8h" name="ModelSource.h" local="yes" import="no" module="no" objc="no">Actor/LightSource/ModelSource.h</includes>
-    <includes id="_a_model_8h" name="AModel.h" local="yes" import="no" module="no" objc="no">Actor/AModel.h</includes>
-    <includes id="_diffuse_surface_emitter_8h" name="DiffuseSurfaceEmitter.h" local="yes" import="no" module="no" objc="no">Core/Emitter/DiffuseSurfaceEmitter.h</includes>
-    <includes id="constant__textures_8h" name="constant_textures.h" local="yes" import="no" module="no" objc="no">Core/Texture/constant_textures.h</includes>
-    <includes id="_ldr_rgb_texture2_d_8h" name="LdrRgbTexture2D.h" local="yes" import="no" module="no" objc="no">Core/Texture/LdrRgbTexture2D.h</includes>
-    <includes id="_texture_loader_8h" name="TextureLoader.h" local="yes" import="no" module="no" objc="no">Core/Texture/TextureLoader.h</includes>
-    <includes id="_emitter_building_material_8h" name="EmitterBuildingMaterial.h" local="yes" import="no" module="no" objc="no">Actor/LightSource/EmitterBuildingMaterial.h</includes>
-    <includes id="_t_vector3_8h" name="TVector3.h" local="yes" import="no" module="no" objc="no">Math/TVector3.h</includes>
-    <includes id="_image_8h" name="Image.h" local="yes" import="no" module="no" objc="no">Actor/Image/Image.h</includes>
-    <includes id="_constant_image_8h" name="ConstantImage.h" local="yes" import="no" module="no" objc="no">Actor/Image/ConstantImage.h</includes>
-    <includes id="_raster_file_image_8h" name="RasterFileImage.h" local="yes" import="no" module="no" objc="no">Actor/Image/RasterFileImage.h</includes>
-    <includes id="_grouped_diffuse_surface_emitter_8h" name="GroupedDiffuseSurfaceEmitter.h" local="yes" import="no" module="no" objc="no">Core/Emitter/GroupedDiffuseSurfaceEmitter.h</includes>
-    <includes id="_primitive_metadata_8h" name="PrimitiveMetadata.h" local="yes" import="no" module="no" objc="no">Core/Intersection/PrimitiveMetadata.h</includes>
-    <includes id="_primitive_8h" name="Primitive.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Primitive.h</includes>
-    <includes id="_matte_opaque_8h" name="MatteOpaque.h" local="yes" import="no" module="no" objc="no">Actor/Material/MatteOpaque.h</includes>
-    <includes id="_actor_2_geometry_2_geometry_8h" name="Geometry.h" local="yes" import="no" module="no" objc="no">Actor/Geometry/Geometry.h</includes>
-    <namespace>ph</namespace>
-  </compound>
-  <compound kind="file">
-    <name>ModelSource.h</name>
-    <path>Source/Actor/LightSource/</path>
-    <filename>_model_source_8h.html</filename>
-    <includes id="_light_source_8h" name="LightSource.h" local="yes" import="no" module="no" objc="no">Actor/LightSource/LightSource.h</includes>
-    <includes id="math__fwd_8h" name="math_fwd.h" local="yes" import="no" module="no" objc="no">Math/math_fwd.h</includes>
-    <includes id="_path_8h" name="Path.h" local="yes" import="no" module="no" objc="no">DataIO/FileSystem/Path.h</includes>
-    <includes id="sdl__interface_8h" name="sdl_interface.h" local="yes" import="no" module="no" objc="no">SDL/sdl_interface.h</includes>
-    <class kind="class">ph::ModelSource</class>
-    <namespace>ph</namespace>
-  </compound>
-  <compound kind="file">
-    <name>PointSource.cpp</name>
-    <path>Source/Actor/LightSource/</path>
-    <filename>_point_source_8cpp.html</filename>
-    <includes id="_point_source_8h" name="PointSource.h" local="yes" import="no" module="no" objc="no">Actor/LightSource/PointSource.h</includes>
-    <includes id="_g_sphere_8h" name="GSphere.h" local="yes" import="no" module="no" objc="no">Actor/Geometry/GSphere.h</includes>
-    <namespace>ph</namespace>
-  </compound>
-  <compound kind="file">
-    <name>PointSource.h</name>
-    <path>Source/Actor/LightSource/</path>
-    <filename>_point_source_8h.html</filename>
-    <includes id="_area_source_8h" name="AreaSource.h" local="yes" import="no" module="no" objc="no">Actor/LightSource/AreaSource.h</includes>
-    <includes id="sdl__interface_8h" name="sdl_interface.h" local="yes" import="no" module="no" objc="no">SDL/sdl_interface.h</includes>
-    <class kind="class">ph::PointSource</class>
-    <namespace>ph</namespace>
-  </compound>
-  <compound kind="file">
-    <name>RectangleSource.cpp</name>
-    <path>Source/Actor/LightSource/</path>
-    <filename>_rectangle_source_8cpp.html</filename>
-    <includes id="_rectangle_source_8h" name="RectangleSource.h" local="yes" import="no" module="no" objc="no">Actor/LightSource/RectangleSource.h</includes>
-    <includes id="_g_rectangle_8h" name="GRectangle.h" local="yes" import="no" module="no" objc="no">Actor/Geometry/GRectangle.h</includes>
-    <namespace>ph</namespace>
-  </compound>
-  <compound kind="file">
-    <name>RectangleSource.h</name>
-    <path>Source/Actor/LightSource/</path>
-    <filename>_rectangle_source_8h.html</filename>
-    <includes id="_area_source_8h" name="AreaSource.h" local="yes" import="no" module="no" objc="no">Actor/LightSource/AreaSource.h</includes>
-    <includes id="sdl__interface_8h" name="sdl_interface.h" local="yes" import="no" module="no" objc="no">SDL/sdl_interface.h</includes>
-    <class kind="class">ph::RectangleSource</class>
-    <namespace>ph</namespace>
-  </compound>
-  <compound kind="file">
-    <name>SphereSource.cpp</name>
-    <path>Source/Actor/LightSource/</path>
-    <filename>_sphere_source_8cpp.html</filename>
-    <includes id="_sphere_source_8h" name="SphereSource.h" local="yes" import="no" module="no" objc="no">Actor/LightSource/SphereSource.h</includes>
-    <includes id="_g_sphere_8h" name="GSphere.h" local="yes" import="no" module="no" objc="no">Actor/Geometry/GSphere.h</includes>
-    <namespace>ph</namespace>
-  </compound>
-  <compound kind="file">
-    <name>SphereSource.h</name>
-    <path>Source/Actor/LightSource/</path>
-    <filename>_sphere_source_8h.html</filename>
-    <includes id="_area_source_8h" name="AreaSource.h" local="yes" import="no" module="no" objc="no">Actor/LightSource/AreaSource.h</includes>
-    <includes id="sdl__interface_8h" name="sdl_interface.h" local="yes" import="no" module="no" objc="no">SDL/sdl_interface.h</includes>
-    <class kind="class">ph::SphereSource</class>
-    <namespace>ph</namespace>
-  </compound>
-  <compound kind="file">
     <name>AbradedOpaque.cpp</name>
     <path>Source/Actor/Material/</path>
     <filename>_abraded_opaque_8cpp.html</filename>
@@ -1380,7 +1233,7 @@
     <filename>_ideal_substance_8cpp.html</filename>
     <includes id="_ideal_substance_8h" name="IdealSubstance.h" local="yes" import="no" module="no" objc="no">Actor/Material/IdealSubstance.h</includes>
     <includes id="_ideal_reflector_8h" name="IdealReflector.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/SurfaceOptics/IdealReflector.h</includes>
-    <includes id="_ideal_transmitter_8h" name="IdealTransmitter.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/SurfaceOptics/IdealTransmitter.h</includes>
+    <includes id="_ideal_dielectric_transmitter_8h" name="IdealDielectricTransmitter.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/SurfaceOptics/IdealDielectricTransmitter.h</includes>
     <includes id="_exact_dielectric_fresnel_8h" name="ExactDielectricFresnel.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/Property/ExactDielectricFresnel.h</includes>
     <includes id="_schlick_approx_conductor_fresnel_8h" name="SchlickApproxConductorFresnel.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/Property/SchlickApproxConductorFresnel.h</includes>
     <includes id="_t_vector3_8h" name="TVector3.h" local="yes" import="no" module="no" objc="no">Math/TVector3.h</includes>
@@ -1455,7 +1308,7 @@
     <includes id="_constant_image_8h" name="ConstantImage.h" local="yes" import="no" module="no" objc="no">Actor/Image/ConstantImage.h</includes>
     <includes id="_t_vector3_8h" name="TVector3.h" local="yes" import="no" module="no" objc="no">Math/TVector3.h</includes>
     <includes id="_surface_behavior_8h" name="SurfaceBehavior.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/SurfaceBehavior.h</includes>
-    <includes id="_lambertian_diffuse_8h" name="LambertianDiffuse.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/SurfaceOptics/LambertianDiffuse.h</includes>
+    <includes id="_lambertian_reflector_8h" name="LambertianReflector.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/SurfaceOptics/LambertianReflector.h</includes>
     <includes id="_oren_nayar_8h" name="OrenNayar.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/SurfaceOptics/OrenNayar.h</includes>
     <includes id="_swizzled_image_8h" name="SwizzledImage.h" local="yes" import="no" module="no" objc="no">Actor/Image/SwizzledImage.h</includes>
     <namespace>ph</namespace>
@@ -1487,6 +1340,27 @@
     <includes id="_material_8h" name="Material.h" local="yes" import="no" module="no" objc="no">Actor/Material/Material.h</includes>
     <includes id="sdl__interface_8h" name="sdl_interface.h" local="yes" import="no" module="no" objc="no">SDL/sdl_interface.h</includes>
     <class kind="class">ph::SurfaceMaterial</class>
+    <namespace>ph</namespace>
+  </compound>
+  <compound kind="file">
+    <name>ThinDielectricSurface.cpp</name>
+    <path>Source/Actor/Material/</path>
+    <filename>_thin_dielectric_surface_8cpp.html</filename>
+    <includes id="_thin_dielectric_surface_8h" name="ThinDielectricSurface.h" local="yes" import="no" module="no" objc="no">Actor/Material/ThinDielectricSurface.h</includes>
+    <includes id="_surface_behavior_8h" name="SurfaceBehavior.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/SurfaceBehavior.h</includes>
+    <includes id="_thin_dielectric_shell_8h" name="ThinDielectricShell.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/SurfaceOptics/ThinDielectricShell.h</includes>
+    <includes id="_swizzled_image_8h" name="SwizzledImage.h" local="yes" import="no" module="no" objc="no">Actor/Image/SwizzledImage.h</includes>
+    <namespace>ph</namespace>
+  </compound>
+  <compound kind="file">
+    <name>ThinDielectricSurface.h</name>
+    <path>Source/Actor/Material/</path>
+    <filename>_thin_dielectric_surface_8h.html</filename>
+    <includes id="_surface_material_8h" name="SurfaceMaterial.h" local="yes" import="no" module="no" objc="no">Actor/Material/SurfaceMaterial.h</includes>
+    <includes id="_dielectric_interface_info_8h" name="DielectricInterfaceInfo.h" local="yes" import="no" module="no" objc="no">Actor/Material/Component/DielectricInterfaceInfo.h</includes>
+    <includes id="_image_8h" name="Image.h" local="yes" import="no" module="no" objc="no">Actor/Image/Image.h</includes>
+    <includes id="sdl__interface_8h" name="sdl_interface.h" local="yes" import="no" module="no" objc="no">SDL/sdl_interface.h</includes>
+    <class kind="class">ph::ThinDielectricSurface</class>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
@@ -1833,6 +1707,7 @@
     <includes id="_v_absorption_only_8h" name="VAbsorptionOnly.h" local="yes" import="no" module="no" objc="no">Actor/Material/Volume/VAbsorptionOnly.h</includes>
     <includes id="_layered_surface_8h" name="LayeredSurface.h" local="yes" import="no" module="no" objc="no">Actor/Material/LayeredSurface.h</includes>
     <includes id="_thin_film_8h" name="ThinFilm.h" local="yes" import="no" module="no" objc="no">Actor/Material/ThinFilm.h</includes>
+    <includes id="_thin_dielectric_surface_8h" name="ThinDielectricSurface.h" local="yes" import="no" module="no" objc="no">Actor/Material/ThinDielectricSurface.h</includes>
     <includes id="_motion_source_8h" name="MotionSource.h" local="yes" import="no" module="no" objc="no">Actor/MotionSource/MotionSource.h</includes>
     <includes id="_constant_velocity_motion_8h" name="ConstantVelocityMotion.h" local="yes" import="no" module="no" objc="no">Actor/MotionSource/ConstantVelocityMotion.h</includes>
     <includes id="_image_8h" name="Image.h" local="yes" import="no" module="no" objc="no">Actor/Image/Image.h</includes>
@@ -1863,6 +1738,7 @@
     <includes id="_actor_8h" name="Actor.h" local="yes" import="no" module="no" objc="no">Actor/Actor.h</includes>
     <includes id="_physical_actor_8h" name="PhysicalActor.h" local="yes" import="no" module="no" objc="no">Actor/PhysicalActor.h</includes>
     <includes id="_a_model_8h" name="AModel.h" local="yes" import="no" module="no" objc="no">Actor/AModel.h</includes>
+    <includes id="_a_masked_model_8h" name="AMaskedModel.h" local="yes" import="no" module="no" objc="no">Actor/AMaskedModel.h</includes>
     <includes id="_a_dome_8h" name="ADome.h" local="yes" import="no" module="no" objc="no">Actor/ADome.h</includes>
     <includes id="_a_phantom_model_8h" name="APhantomModel.h" local="yes" import="no" module="no" objc="no">Actor/APhantomModel.h</includes>
     <includes id="_a_transformed_instance_8h" name="ATransformedInstance.h" local="yes" import="no" module="no" objc="no">Actor/ATransformedInstance.h</includes>
@@ -3099,6 +2975,30 @@
     <filename>_kdtree_node_8h.html</filename>
     <includes id="_kdtree_a_a_b_b_8h" name="KdtreeAABB.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Kdtree/KdtreeAABB.h</includes>
     <class kind="class">ph::KdtreeNode</class>
+    <namespace>ph</namespace>
+  </compound>
+  <compound kind="file">
+    <name>MaskedIntersectable.cpp</name>
+    <path>Source/Core/Intersection/</path>
+    <filename>_masked_intersectable_8cpp.html</filename>
+    <includes id="_masked_intersectable_8h" name="MaskedIntersectable.h" local="yes" import="no" module="no" objc="no">Core/Intersection/MaskedIntersectable.h</includes>
+    <includes id="_ray_8h" name="Ray.h" local="yes" import="no" module="no" objc="no">Core/Ray.h</includes>
+    <includes id="_hit_probe_8h" name="HitProbe.h" local="yes" import="no" module="no" objc="no">Core/HitProbe.h</includes>
+    <includes id="_hit_detail_8h" name="HitDetail.h" local="yes" import="no" module="no" objc="no">Core/HitDetail.h</includes>
+    <includes id="_surface_hit_8h" name="SurfaceHit.h" local="yes" import="no" module="no" objc="no">Core/SurfaceHit.h</includes>
+    <includes id="_t_sampler_8h" name="TSampler.h" local="yes" import="no" module="no" objc="no">Core/Texture/TSampler.h</includes>
+    <includes id="hash_8h" name="hash.h" local="yes" import="no" module="no" objc="no">Math/hash.h</includes>
+    <includes id="_math_2_random_2_sample_8h" name="sample.h" local="yes" import="no" module="no" objc="no">Math/Random/sample.h</includes>
+    <includes id="_surface_hit_refinery_8h" name="SurfaceHitRefinery.h" local="yes" import="no" module="no" objc="no">Core/LTA/SurfaceHitRefinery.h</includes>
+    <namespace>ph</namespace>
+  </compound>
+  <compound kind="file">
+    <name>MaskedIntersectable.h</name>
+    <path>Source/Core/Intersection/</path>
+    <filename>_masked_intersectable_8h.html</filename>
+    <includes id="_intersectable_8h" name="Intersectable.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Intersectable.h</includes>
+    <includes id="_t_texture_8h" name="TTexture.h" local="yes" import="no" module="no" objc="no">Core/Texture/TTexture.h</includes>
+    <class kind="class">ph::MaskedIntersectable</class>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
@@ -5111,6 +5011,7 @@
     <path>Source/Core/SurfaceBehavior/Property/</path>
     <filename>_dielectric_fresnel_8cpp.html</filename>
     <includes id="_dielectric_fresnel_8h" name="DielectricFresnel.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/Property/DielectricFresnel.h</includes>
+    <includes id="math_8h" name="math.h" local="yes" import="no" module="no" objc="no">Math/math.h</includes>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
@@ -5118,6 +5019,7 @@
     <path>Source/Core/SurfaceBehavior/Property/</path>
     <filename>_dielectric_fresnel_8h.html</filename>
     <includes id="_fresnel_effect_8h" name="FresnelEffect.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/Property/FresnelEffect.h</includes>
+    <includes id="_t_vector3_8h" name="TVector3.h" local="yes" import="no" module="no" objc="no">Math/TVector3.h</includes>
     <class kind="class">ph::DielectricFresnel</class>
     <namespace>ph</namespace>
   </compound>
@@ -5158,7 +5060,6 @@
     <path>Source/Core/SurfaceBehavior/Property/</path>
     <filename>_fresnel_effect_8h.html</filename>
     <includes id="_spectrum_8h" name="Spectrum.h" local="yes" import="no" module="no" objc="no">Math/Color/Spectrum.h</includes>
-    <includes id="_t_vector3_8h" name="TVector3.h" local="yes" import="no" module="no" objc="no">Math/TVector3.h</includes>
     <class kind="class">ph::FresnelEffect</class>
     <namespace>ph</namespace>
   </compound>
@@ -5382,6 +5283,30 @@
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
+    <name>IdealDielectricTransmitter.cpp</name>
+    <path>Source/Core/SurfaceBehavior/SurfaceOptics/</path>
+    <filename>_ideal_dielectric_transmitter_8cpp.html</filename>
+    <includes id="_ideal_dielectric_transmitter_8h" name="IdealDielectricTransmitter.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/SurfaceOptics/IdealDielectricTransmitter.h</includes>
+    <includes id="_bsdf_eval_query_8h" name="BsdfEvalQuery.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/BsdfEvalQuery.h</includes>
+    <includes id="_bsdf_sample_query_8h" name="BsdfSampleQuery.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/BsdfSampleQuery.h</includes>
+    <includes id="_bsdf_pdf_query_8h" name="BsdfPdfQuery.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/BsdfPdfQuery.h</includes>
+    <includes id="_exact_dielectric_fresnel_8h" name="ExactDielectricFresnel.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/Property/ExactDielectricFresnel.h</includes>
+    <includes id="constant__textures_8h" name="constant_textures.h" local="yes" import="no" module="no" objc="no">Core/Texture/constant_textures.h</includes>
+    <includes id="_t_sampler_8h" name="TSampler.h" local="yes" import="no" module="no" objc="no">Core/Texture/TSampler.h</includes>
+    <namespace>ph</namespace>
+  </compound>
+  <compound kind="file">
+    <name>IdealDielectricTransmitter.h</name>
+    <path>Source/Core/SurfaceBehavior/SurfaceOptics/</path>
+    <filename>_ideal_dielectric_transmitter_8h.html</filename>
+    <includes id="_surface_optics_8h" name="SurfaceOptics.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/SurfaceOptics.h</includes>
+    <includes id="_dielectric_fresnel_8h" name="DielectricFresnel.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/Property/DielectricFresnel.h</includes>
+    <includes id="_t_texture_8h" name="TTexture.h" local="yes" import="no" module="no" objc="no">Core/Texture/TTexture.h</includes>
+    <includes id="_spectrum_8h" name="Spectrum.h" local="yes" import="no" module="no" objc="no">Math/Color/Spectrum.h</includes>
+    <class kind="class">ph::IdealDielectricTransmitter</class>
+    <namespace>ph</namespace>
+  </compound>
+  <compound kind="file">
     <name>IdealReflector.cpp</name>
     <path>Source/Core/SurfaceBehavior/SurfaceOptics/</path>
     <filename>_ideal_reflector_8cpp.html</filename>
@@ -5406,34 +5331,10 @@
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
-    <name>IdealTransmitter.cpp</name>
+    <name>LambertianReflector.cpp</name>
     <path>Source/Core/SurfaceBehavior/SurfaceOptics/</path>
-    <filename>_ideal_transmitter_8cpp.html</filename>
-    <includes id="_ideal_transmitter_8h" name="IdealTransmitter.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/SurfaceOptics/IdealTransmitter.h</includes>
-    <includes id="_bsdf_eval_query_8h" name="BsdfEvalQuery.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/BsdfEvalQuery.h</includes>
-    <includes id="_bsdf_sample_query_8h" name="BsdfSampleQuery.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/BsdfSampleQuery.h</includes>
-    <includes id="_bsdf_pdf_query_8h" name="BsdfPdfQuery.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/BsdfPdfQuery.h</includes>
-    <includes id="_exact_dielectric_fresnel_8h" name="ExactDielectricFresnel.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/Property/ExactDielectricFresnel.h</includes>
-    <includes id="constant__textures_8h" name="constant_textures.h" local="yes" import="no" module="no" objc="no">Core/Texture/constant_textures.h</includes>
-    <includes id="_t_sampler_8h" name="TSampler.h" local="yes" import="no" module="no" objc="no">Core/Texture/TSampler.h</includes>
-    <namespace>ph</namespace>
-  </compound>
-  <compound kind="file">
-    <name>IdealTransmitter.h</name>
-    <path>Source/Core/SurfaceBehavior/SurfaceOptics/</path>
-    <filename>_ideal_transmitter_8h.html</filename>
-    <includes id="_surface_optics_8h" name="SurfaceOptics.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/SurfaceOptics.h</includes>
-    <includes id="_dielectric_fresnel_8h" name="DielectricFresnel.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/Property/DielectricFresnel.h</includes>
-    <includes id="_t_texture_8h" name="TTexture.h" local="yes" import="no" module="no" objc="no">Core/Texture/TTexture.h</includes>
-    <includes id="_spectrum_8h" name="Spectrum.h" local="yes" import="no" module="no" objc="no">Math/Color/Spectrum.h</includes>
-    <class kind="class">ph::IdealTransmitter</class>
-    <namespace>ph</namespace>
-  </compound>
-  <compound kind="file">
-    <name>LambertianDiffuse.cpp</name>
-    <path>Source/Core/SurfaceBehavior/SurfaceOptics/</path>
-    <filename>_lambertian_diffuse_8cpp.html</filename>
-    <includes id="_lambertian_diffuse_8h" name="LambertianDiffuse.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/SurfaceOptics/LambertianDiffuse.h</includes>
+    <filename>_lambertian_reflector_8cpp.html</filename>
+    <includes id="_lambertian_reflector_8h" name="LambertianReflector.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/SurfaceOptics/LambertianReflector.h</includes>
     <includes id="_bsdf_eval_query_8h" name="BsdfEvalQuery.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/BsdfEvalQuery.h</includes>
     <includes id="_bsdf_sample_query_8h" name="BsdfSampleQuery.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/BsdfSampleQuery.h</includes>
     <includes id="_bsdf_pdf_query_8h" name="BsdfPdfQuery.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/BsdfPdfQuery.h</includes>
@@ -5448,13 +5349,13 @@
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
-    <name>LambertianDiffuse.h</name>
+    <name>LambertianReflector.h</name>
     <path>Source/Core/SurfaceBehavior/SurfaceOptics/</path>
-    <filename>_lambertian_diffuse_8h.html</filename>
+    <filename>_lambertian_reflector_8h.html</filename>
     <includes id="_surface_optics_8h" name="SurfaceOptics.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/SurfaceOptics.h</includes>
     <includes id="_t_texture_8h" name="TTexture.h" local="yes" import="no" module="no" objc="no">Core/Texture/TTexture.h</includes>
     <includes id="_spectrum_8h" name="Spectrum.h" local="yes" import="no" module="no" objc="no">Math/Color/Spectrum.h</includes>
-    <class kind="class">ph::LambertianDiffuse</class>
+    <class kind="class">ph::LambertianReflector</class>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
@@ -5670,6 +5571,32 @@
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
+    <name>ThinDielectricShell.cpp</name>
+    <path>Source/Core/SurfaceBehavior/SurfaceOptics/</path>
+    <filename>_thin_dielectric_shell_8cpp.html</filename>
+    <includes id="_thin_dielectric_shell_8h" name="ThinDielectricShell.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/SurfaceOptics/ThinDielectricShell.h</includes>
+    <includes id="_bsdf_eval_query_8h" name="BsdfEvalQuery.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/BsdfEvalQuery.h</includes>
+    <includes id="_bsdf_sample_query_8h" name="BsdfSampleQuery.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/BsdfSampleQuery.h</includes>
+    <includes id="_bsdf_pdf_query_8h" name="BsdfPdfQuery.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/BsdfPdfQuery.h</includes>
+    <includes id="_sidedness_agreement_8h" name="SidednessAgreement.h" local="yes" import="no" module="no" objc="no">Core/LTA/SidednessAgreement.h</includes>
+    <includes id="_t_sampler_8h" name="TSampler.h" local="yes" import="no" module="no" objc="no">Core/Texture/TSampler.h</includes>
+    <includes id="constant__textures_8h" name="constant_textures.h" local="yes" import="no" module="no" objc="no">Core/Texture/constant_textures.h</includes>
+    <includes id="math_8h" name="math.h" local="yes" import="no" module="no" objc="no">Math/math.h</includes>
+    <includes id="_sample_flow_8h" name="SampleFlow.h" local="yes" import="no" module="no" objc="no">Core/SampleGenerator/SampleFlow.h</includes>
+    <namespace>ph</namespace>
+  </compound>
+  <compound kind="file">
+    <name>ThinDielectricShell.h</name>
+    <path>Source/Core/SurfaceBehavior/SurfaceOptics/</path>
+    <filename>_thin_dielectric_shell_8h.html</filename>
+    <includes id="_surface_optics_8h" name="SurfaceOptics.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/SurfaceOptics.h</includes>
+    <includes id="_dielectric_fresnel_8h" name="DielectricFresnel.h" local="yes" import="no" module="no" objc="no">Core/SurfaceBehavior/Property/DielectricFresnel.h</includes>
+    <includes id="_t_texture_8h" name="TTexture.h" local="yes" import="no" module="no" objc="no">Core/Texture/TTexture.h</includes>
+    <includes id="_spectrum_8h" name="Spectrum.h" local="yes" import="no" module="no" objc="no">Math/Color/Spectrum.h</includes>
+    <class kind="class">ph::ThinDielectricShell</class>
+    <namespace>ph</namespace>
+  </compound>
+  <compound kind="file">
     <name>TranslucentMicrofacet.cpp</name>
     <path>Source/Core/SurfaceBehavior/SurfaceOptics/</path>
     <filename>_translucent_microfacet_8cpp.html</filename>
@@ -5766,15 +5693,6 @@
     <namespace>ph</namespace>
     <namespace>ph::texfunc</namespace>
     <concept>ph::texfunc::CTernaryOperator</concept>
-  </compound>
-  <compound kind="file">
-    <name>texture_parametrics.h</name>
-    <path>Source/Core/Texture/Function/</path>
-    <filename>texture__parametrics_8h.html</filename>
-    <includes id="_t_texture_8h" name="TTexture.h" local="yes" import="no" module="no" objc="no">Core/Texture/TTexture.h</includes>
-    <includes id="_sample_location_8h" name="SampleLocation.h" local="yes" import="no" module="no" objc="no">Core/Texture/SampleLocation.h</includes>
-    <namespace>ph</namespace>
-    <namespace>ph::texfunc</namespace>
   </compound>
   <compound kind="file">
     <name>unary_texture_operators.h</name>
@@ -8157,6 +8075,7 @@
     <filename>hash_8h.html</filename>
     <includes id="math__fwd_8h" name="math_fwd.h" local="yes" import="no" module="no" objc="no">Math/math_fwd.h</includes>
     <includes id="hash_8ipp" name="hash.ipp" local="yes" import="no" module="no" objc="no">Math/hash.ipp</includes>
+    <class kind="struct">ph::math::Murmur3BitMixer32</class>
     <namespace>ph</namespace>
     <namespace>ph::math</namespace>
   </compound>
@@ -9049,6 +8968,7 @@
     <path>Source/Math/Random/</path>
     <filename>_t_uniform_random_bit_generator_8h.html</filename>
     <includes id="utility_8h" name="utility.h" local="yes" import="no" module="no" objc="no">Utility/utility.h</includes>
+    <includes id="_math_2_random_2_sample_8h" name="sample.h" local="yes" import="no" module="no" objc="no">Math/Random/sample.h</includes>
     <class kind="class">ph::math::TUniformRandomBitGenerator</class>
     <namespace>ph</namespace>
     <namespace>ph::math</namespace>
@@ -11360,6 +11280,104 @@
       <anchor>afa87532c3c11b8dad14d4cd25dfa00b7</anchor>
       <arglist>(ClassType)</arglist>
     </member>
+    <member kind="function">
+      <type>T *</type>
+      <name>ptr_access</name>
+      <anchorfile>namespaceph.html</anchorfile>
+      <anchor>a88bc0d52718506077c4752738e833235</anchor>
+      <arglist>(T *const ptr)</arglist>
+    </member>
+    <member kind="function">
+      <type>T *</type>
+      <name>ptr_access</name>
+      <anchorfile>namespaceph.html</anchorfile>
+      <anchor>a1331f56249b565cedee1ca5996f725a8</anchor>
+      <arglist>(T &amp;ref)</arglist>
+    </member>
+    <member kind="function">
+      <type>T *</type>
+      <name>ptr_access</name>
+      <anchorfile>namespaceph.html</anchorfile>
+      <anchor>a3f8d3b88dfcd683429e5b7746e2b7870</anchor>
+      <arglist>(T &amp;&amp;ref)=delete</arglist>
+    </member>
+    <member kind="function">
+      <type>T &amp;</type>
+      <name>ref_access</name>
+      <anchorfile>namespaceph.html</anchorfile>
+      <anchor>a23d56151345e21e253f6d2894ea08a7f</anchor>
+      <arglist>(T &amp;ref)</arglist>
+    </member>
+    <member kind="function">
+      <type>T &amp;</type>
+      <name>ref_access</name>
+      <anchorfile>namespaceph.html</anchorfile>
+      <anchor>a7bf7e9c4cbddb280ac62f62273ba7190</anchor>
+      <arglist>(T *const ptr)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>ref_access</name>
+      <anchorfile>namespaceph.html</anchorfile>
+      <anchor>a0039ee751942515e2c957dbd4e622066</anchor>
+      <arglist>(std::nullptr_t)=delete</arglist>
+    </member>
+    <member kind="function">
+      <type>T &amp;</type>
+      <name>ref_access</name>
+      <anchorfile>namespaceph.html</anchorfile>
+      <anchor>a6e8f02147c6f4d0334ae89dcfd24801a</anchor>
+      <arglist>(T &amp;&amp;ref)=delete</arglist>
+    </member>
+    <member kind="function">
+      <type>T *</type>
+      <name>ptr_access</name>
+      <anchorfile>namespaceph.html</anchorfile>
+      <anchor>a88bc0d52718506077c4752738e833235</anchor>
+      <arglist>(T *const ptr)</arglist>
+    </member>
+    <member kind="function">
+      <type>T *</type>
+      <name>ptr_access</name>
+      <anchorfile>namespaceph.html</anchorfile>
+      <anchor>a1331f56249b565cedee1ca5996f725a8</anchor>
+      <arglist>(T &amp;ref)</arglist>
+    </member>
+    <member kind="function">
+      <type>T *</type>
+      <name>ptr_access</name>
+      <anchorfile>namespaceph.html</anchorfile>
+      <anchor>a3f8d3b88dfcd683429e5b7746e2b7870</anchor>
+      <arglist>(T &amp;&amp;ref)=delete</arglist>
+    </member>
+    <member kind="function">
+      <type>T &amp;</type>
+      <name>ref_access</name>
+      <anchorfile>namespaceph.html</anchorfile>
+      <anchor>a23d56151345e21e253f6d2894ea08a7f</anchor>
+      <arglist>(T &amp;ref)</arglist>
+    </member>
+    <member kind="function">
+      <type>T &amp;</type>
+      <name>ref_access</name>
+      <anchorfile>namespaceph.html</anchorfile>
+      <anchor>a7bf7e9c4cbddb280ac62f62273ba7190</anchor>
+      <arglist>(T *const ptr)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>ref_access</name>
+      <anchorfile>namespaceph.html</anchorfile>
+      <anchor>a0039ee751942515e2c957dbd4e622066</anchor>
+      <arglist>(std::nullptr_t)=delete</arglist>
+    </member>
+    <member kind="function">
+      <type>T &amp;</type>
+      <name>ref_access</name>
+      <anchorfile>namespaceph.html</anchorfile>
+      <anchor>a6e8f02147c6f4d0334ae89dcfd24801a</anchor>
+      <arglist>(T &amp;&amp;ref)=delete</arglist>
+    </member>
   </compound>
   <compound kind="file">
     <name>CookedDataStorage.cpp</name>
@@ -12154,6 +12172,39 @@
     </member>
   </compound>
   <compound kind="class">
+    <name>ph::AMaskedModel</name>
+    <filename>classph_1_1_a_masked_model.html</filename>
+    <base>ph::Actor</base>
+    <member kind="function">
+      <type>PreCookReport</type>
+      <name>preCook</name>
+      <anchorfile>classph_1_1_a_masked_model.html</anchorfile>
+      <anchor>aaebd7b5ea6216333619214af2feb1f21</anchor>
+      <arglist>(const CookingContext &amp;ctx) const override</arglist>
+    </member>
+    <member kind="function">
+      <type>TransientVisualElement</type>
+      <name>cook</name>
+      <anchorfile>classph_1_1_a_masked_model.html</anchorfile>
+      <anchor>acdfd7f012c2a271b6aa3300f8a3849c4</anchor>
+      <arglist>(const CookingContext &amp;ctx, const PreCookReport &amp;report) const override</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setMask</name>
+      <anchorfile>classph_1_1_a_masked_model.html</anchorfile>
+      <anchor>abc4d80dda227e4b83751361d3204efa4</anchor>
+      <arglist>(const std::shared_ptr&lt; Image &gt; &amp;mask)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>PH_DEFINE_SDL_CLASS</name>
+      <anchorfile>classph_1_1_a_masked_model.html</anchorfile>
+      <anchor>a695f7223505b9a103db3d760c26655dc</anchor>
+      <arglist>(TSdlOwnerClass&lt; AMaskedModel &gt;)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
     <name>ph::AModel</name>
     <filename>classph_1_1_a_model.html</filename>
     <base>ph::PhysicalActor</base>
@@ -12420,60 +12471,6 @@
       <anchorfile>classph_1_1_a_preetham_dome.html</anchorfile>
       <anchor>a1749599ec7813940a5e68f13b0c32c6c</anchor>
       <arglist>(TSdlOwnerClass&lt; APreethamDome &gt;)</arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>ph::AreaSource</name>
-    <filename>classph_1_1_area_source.html</filename>
-    <base>ph::LightSource</base>
-    <member kind="function">
-      <type></type>
-      <name>AreaSource</name>
-      <anchorfile>classph_1_1_area_source.html</anchorfile>
-      <anchor>ad6992b833d83d29cf0e7f4e4523b9e06</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>AreaSource</name>
-      <anchorfile>classph_1_1_area_source.html</anchorfile>
-      <anchor>a71edb00c21ee4a6fb919fd53aad2f731</anchor>
-      <arglist>(const math::Vector3R &amp;linearSrgbColor, real numWatts)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>AreaSource</name>
-      <anchorfile>classph_1_1_area_source.html</anchorfile>
-      <anchor>ae001019453994ac04f68791b616b7995</anchor>
-      <arglist>(const math::Spectrum &amp;color, real numWatts)</arglist>
-    </member>
-    <member kind="function" virtualness="pure">
-      <type>virtual std::shared_ptr&lt; Geometry &gt;</type>
-      <name>genAreas</name>
-      <anchorfile>classph_1_1_area_source.html</anchorfile>
-      <anchor>a1db7e78c962759694a3699f557d14c7a</anchor>
-      <arglist>(CookingContext &amp;ctx) const =0</arglist>
-    </member>
-    <member kind="function">
-      <type>std::unique_ptr&lt; Emitter &gt;</type>
-      <name>genEmitter</name>
-      <anchorfile>classph_1_1_area_source.html</anchorfile>
-      <anchor>a55a4be964ad76225d6c1e2cabf72c39c</anchor>
-      <arglist>(CookingContext &amp;ctx, EmitterBuildingMaterial &amp;&amp;data) const override</arglist>
-    </member>
-    <member kind="function">
-      <type>std::shared_ptr&lt; Geometry &gt;</type>
-      <name>genGeometry</name>
-      <anchorfile>classph_1_1_area_source.html</anchorfile>
-      <anchor>aec9e53ba021873d9bcaff84fc6ba75f1</anchor>
-      <arglist>(CookingContext &amp;ctx) const final override</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>PH_DEFINE_SDL_CLASS</name>
-      <anchorfile>classph_1_1_area_source.html</anchorfile>
-      <anchor>ae0e5baf627fa23fa25c802bbe75e3330</anchor>
-      <arglist>(TSdlOwnerClass&lt; AreaSource &gt;)</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -14338,13 +14335,6 @@
     <filename>classph_1_1_checkerboard_image.html</filename>
     <base>ph::Image</base>
     <member kind="function">
-      <type></type>
-      <name>CheckerboardImage</name>
-      <anchorfile>classph_1_1_checkerboard_image.html</anchorfile>
-      <anchor>af7a59b5d8a91cff31961cbab43bd5c1f</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
       <type>std::shared_ptr&lt; TTexture&lt; Image::ArrayType &gt; &gt;</type>
       <name>genNumericTexture</name>
       <anchorfile>classph_1_1_checkerboard_image.html</anchorfile>
@@ -14362,22 +14352,29 @@
       <type>void</type>
       <name>setNumTiles</name>
       <anchorfile>classph_1_1_checkerboard_image.html</anchorfile>
-      <anchor>abc8d4dd6b6fe090272e3e885615b2afd</anchor>
-      <arglist>(real numTilesX, real numTilesY)</arglist>
+      <anchor>aa03af38a428ede34313fb9afe451372f</anchor>
+      <arglist>(real numTilesU, real numTilesV)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>setOddImage</name>
       <anchorfile>classph_1_1_checkerboard_image.html</anchorfile>
-      <anchor>ab0dfeb5652b92680b39ca70c7ee88012</anchor>
-      <arglist>(const std::weak_ptr&lt; Image &gt; &amp;oddImage)</arglist>
+      <anchor>a972aa7b2b1288688331f8533ff4067e8</anchor>
+      <arglist>(std::shared_ptr&lt; Image &gt; oddImage)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>setEvenImage</name>
       <anchorfile>classph_1_1_checkerboard_image.html</anchorfile>
-      <anchor>afc77e2ad01e211aaba9fafd0e29eb190</anchor>
-      <arglist>(const std::weak_ptr&lt; Image &gt; &amp;evenImage)</arglist>
+      <anchor>ac6096b2db45fb44cb82ce1af1f291bdd</anchor>
+      <arglist>(std::shared_ptr&lt; Image &gt; evenImage)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>PH_DEFINE_SDL_CLASS</name>
+      <anchorfile>classph_1_1_checkerboard_image.html</anchorfile>
+      <anchor>a208e6dd4cce507ac81454ea61f696163</anchor>
+      <arglist>(TSdlOwnerClass&lt; CheckerboardImage &gt;)</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -14504,11 +14501,11 @@
       <arglist>()=default</arglist>
     </member>
     <member kind="function" virtualness="pure">
-      <type>void</type>
+      <type>math::Spectrum</type>
       <name>calcReflectance</name>
       <anchorfile>classph_1_1_conductor_fresnel.html</anchorfile>
-      <anchor>a480338dc68356c887a5851f24a961f84</anchor>
-      <arglist>(real cosThetaIncident, math::Spectrum *out_reflectance) const override=0</arglist>
+      <anchor>ac34e0a85c5835f878d5f2282f3b25a53</anchor>
+      <arglist>(real cosThetaIncident) const override=0</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -15518,18 +15515,25 @@
       <arglist>(real iorOuter, real iorInner)</arglist>
     </member>
     <member kind="function" virtualness="pure">
-      <type>void</type>
+      <type>math::Spectrum</type>
       <name>calcReflectance</name>
       <anchorfile>classph_1_1_dielectric_fresnel.html</anchorfile>
-      <anchor>a4908340e13e7aeac56c59000ba37fd56</anchor>
-      <arglist>(real cosThetaIncident, math::Spectrum *out_reflectance) const override=0</arglist>
+      <anchor>ace66b3ed978a60cd9dc780b90fafdbd5</anchor>
+      <arglist>(real cosThetaIncident) const override=0</arglist>
     </member>
     <member kind="function">
-      <type>bool</type>
+      <type>std::optional&lt; math::Vector3R &gt;</type>
       <name>calcRefractDir</name>
       <anchorfile>classph_1_1_dielectric_fresnel.html</anchorfile>
-      <anchor>a53ca71e04eb5a14704a4f38f2106c6c1</anchor>
-      <arglist>(const math::Vector3R &amp;I, const math::Vector3R &amp;N, math::Vector3R *out_refractDir) const</arglist>
+      <anchor>ae2e084490b7024f14be7f95e8e45f5fb</anchor>
+      <arglist>(const math::Vector3R &amp;I, const math::Vector3R &amp;N) const</arglist>
+    </member>
+    <member kind="function">
+      <type>std::optional&lt; real &gt;</type>
+      <name>calcRefractCos</name>
+      <anchorfile>classph_1_1_dielectric_fresnel.html</anchorfile>
+      <anchor>a77e3459c6f02ec847935e5e927f7e14f</anchor>
+      <arglist>(const math::Vector3R &amp;I, const math::Vector3R &amp;N) const</arglist>
     </member>
     <member kind="function">
       <type>real</type>
@@ -16187,31 +16191,6 @@
     </member>
   </compound>
   <compound kind="class">
-    <name>ph::EmitterBuildingMaterial</name>
-    <filename>classph_1_1_emitter_building_material.html</filename>
-    <member kind="function">
-      <type></type>
-      <name>EmitterBuildingMaterial</name>
-      <anchorfile>classph_1_1_emitter_building_material.html</anchorfile>
-      <anchor>a15b585a3ddf5c346a90619bec614aee6</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="variable">
-      <type>std::vector&lt; const Primitive * &gt;</type>
-      <name>primitives</name>
-      <anchorfile>classph_1_1_emitter_building_material.html</anchorfile>
-      <anchor>a443e95670d1c67091b38bceb5406fc71</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>PrimitiveMetadata *</type>
-      <name>metadata</name>
-      <anchorfile>classph_1_1_emitter_building_material.html</anchorfile>
-      <anchor>a661e571d3d367a86e17c8be4b5756607</anchor>
-      <arglist></arglist>
-    </member>
-  </compound>
-  <compound kind="class">
     <name>ph::EmitterSampler</name>
     <filename>classph_1_1_emitter_sampler.html</filename>
     <member kind="function" virtualness="virtual">
@@ -16703,11 +16682,11 @@
       <arglist>(real iorOuter, const std::vector&lt; real &gt; &amp;iorWavelengthsNm, const std::vector&lt; real &gt; &amp;iorInnerNs, const std::vector&lt; real &gt; &amp;iorInnerKs)</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
+      <type>math::Spectrum</type>
       <name>calcReflectance</name>
       <anchorfile>classph_1_1_exact_conductor_fresnel.html</anchorfile>
-      <anchor>a9c8be3e7f66a34803f762fd9b058fe9c</anchor>
-      <arglist>(real cosThetaIncident, math::Spectrum *out_reflectance) const override</arglist>
+      <anchor>af75c7add476774283e21a67f5b40d709</anchor>
+      <arglist>(real cosThetaIncident) const override</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -16722,11 +16701,11 @@
       <arglist>(real iorOuter, real iorInner)</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
+      <type>math::Spectrum</type>
       <name>calcReflectance</name>
       <anchorfile>classph_1_1_exact_dielectric_fresnel.html</anchorfile>
-      <anchor>a238710748c5f4fcf357b34ce60452b0b</anchor>
-      <arglist>(real cosThetaIncident, math::Spectrum *out_reflectance) const override</arglist>
+      <anchor>af3f56a9763f9f50357a0ab2a3f7a6175</anchor>
+      <arglist>(real cosThetaIncident) const override</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -17387,18 +17366,18 @@
       <arglist>()=default</arglist>
     </member>
     <member kind="function" virtualness="pure">
-      <type>virtual void</type>
+      <type>virtual math::Spectrum</type>
       <name>calcReflectance</name>
       <anchorfile>classph_1_1_fresnel_effect.html</anchorfile>
-      <anchor>ad49f2ddcfc3ab2b0602eb5e7da979fe3</anchor>
-      <arglist>(real cosThetaIncident, math::Spectrum *out_reflectance) const =0</arglist>
+      <anchor>aee3e20a1d7eba622933345fd68eb51a4</anchor>
+      <arglist>(real cosThetaIncident) const =0</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
+      <type>math::Spectrum</type>
       <name>calcTransmittance</name>
       <anchorfile>classph_1_1_fresnel_effect.html</anchorfile>
-      <anchor>a216640225e4629805d3d6a02a7616190</anchor>
-      <arglist>(real cosThetaIncident, math::Spectrum *out_transmittance) const</arglist>
+      <anchor>a6af98d70f64a3aac156e5252a9f2a5b2</anchor>
+      <arglist>(real cosThetaIncident) const</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -18853,22 +18832,22 @@
       <type>void</type>
       <name>calcHitDetail</name>
       <anchorfile>classph_1_1_hit_probe.html</anchorfile>
-      <anchor>ad9fced029478af18b44b5fa91c6cd3d4</anchor>
-      <arglist>(const Ray &amp;ray, HitDetail *out_detail)</arglist>
+      <anchor>a8361e6bd2791aff00bb1934a3ca58ba3</anchor>
+      <arglist>(const Ray &amp;ray, HitDetail *out_detail) const</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>calcFullHitDetail</name>
       <anchorfile>classph_1_1_hit_probe.html</anchorfile>
-      <anchor>a6f0d930a1230e62b71c8de1989eda579</anchor>
-      <arglist>(const Ray &amp;ray, HitDetail *out_detail)</arglist>
+      <anchor>a50a585eef2673dcc4a7d37e7fbd31882</anchor>
+      <arglist>(const Ray &amp;ray, HitDetail *out_detail) const</arglist>
     </member>
     <member kind="function">
       <type>bool</type>
       <name>reintersect</name>
       <anchorfile>classph_1_1_hit_probe.html</anchorfile>
-      <anchor>a742e35ef23dc97258d91643f934bcda1</anchor>
-      <arglist>(const Ray &amp;ray, HitProbe &amp;probe, const Ray &amp;srcRay)</arglist>
+      <anchor>a007907840149db76d590456fbbfa129a</anchor>
+      <arglist>(const Ray &amp;ray, HitProbe &amp;probe, const Ray &amp;srcRay) const</arglist>
     </member>
     <member kind="function">
       <type>bool</type>
@@ -18900,17 +18879,17 @@
     </member>
     <member kind="function">
       <type>void</type>
-      <name>replaceCurrentHitWith</name>
+      <name>replaceTopHit</name>
       <anchorfile>classph_1_1_hit_probe.html</anchorfile>
-      <anchor>a8eb31aad8dd058a777c32affe176d03f</anchor>
-      <arglist>(const Intersectable *newCurrentHit)</arglist>
+      <anchor>a16f5f551f0df34bb4833421bb19df018</anchor>
+      <arglist>(const Intersectable *newTopHit)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
-      <name>replaceBaseHitRayTWith</name>
+      <name>replaceBaseHitRayT</name>
       <anchorfile>classph_1_1_hit_probe.html</anchorfile>
-      <anchor>ad3158adf7c7d16eae01d8e94e3f49864</anchor>
-      <arglist>(real hitRayT)</arglist>
+      <anchor>a811a8ffb45825854fef25b7d897758d5</anchor>
+      <arglist>(real newHitRayT)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
@@ -18928,9 +18907,9 @@
     </member>
     <member kind="function">
       <type>const Intersectable *</type>
-      <name>getCurrentHit</name>
+      <name>getTopHit</name>
       <anchorfile>classph_1_1_hit_probe.html</anchorfile>
-      <anchor>a1f9f623452257ca1b4bb5e64f8b1d1b0</anchor>
+      <anchor>a0f6ce38384e68a5e90626ef7632b1479</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
@@ -19026,6 +19005,32 @@
     </member>
   </compound>
   <compound kind="class">
+    <name>ph::IdealDielectricTransmitter</name>
+    <filename>classph_1_1_ideal_dielectric_transmitter.html</filename>
+    <base>ph::SurfaceOptics</base>
+    <member kind="function">
+      <type></type>
+      <name>IdealDielectricTransmitter</name>
+      <anchorfile>classph_1_1_ideal_dielectric_transmitter.html</anchorfile>
+      <anchor>afb06a7576bf538cea4ac035804543ece</anchor>
+      <arglist>(std::shared_ptr&lt; DielectricFresnel &gt; fresnel)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>IdealDielectricTransmitter</name>
+      <anchorfile>classph_1_1_ideal_dielectric_transmitter.html</anchorfile>
+      <anchor>a320d3d4d62d8f38bfffc7f6c7ff99185</anchor>
+      <arglist>(std::shared_ptr&lt; DielectricFresnel &gt; fresnel, std::shared_ptr&lt; TTexture&lt; math::Spectrum &gt; &gt; transmissionScale)</arglist>
+    </member>
+    <member kind="function">
+      <type>ESurfacePhenomenon</type>
+      <name>getPhenomenonOf</name>
+      <anchorfile>classph_1_1_ideal_dielectric_transmitter.html</anchorfile>
+      <anchor>add4afeac8fea09985df4fe7bae90ade1</anchor>
+      <arglist>(SurfaceElemental elemental) const override</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
     <name>ph::IdealReflector</name>
     <filename>classph_1_1_ideal_reflector.html</filename>
     <base>ph::SurfaceOptics</base>
@@ -19082,86 +19087,6 @@
       <anchorfile>classph_1_1_ideal_substance.html</anchorfile>
       <anchor>a0bb0476e26a2002defbce6f0acfcb92d</anchor>
       <arglist>(TSdlOwnerClass&lt; IdealSubstance &gt;)</arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>ph::IdealTransmitter</name>
-    <filename>classph_1_1_ideal_transmitter.html</filename>
-    <base>ph::SurfaceOptics</base>
-    <member kind="function">
-      <type></type>
-      <name>IdealTransmitter</name>
-      <anchorfile>classph_1_1_ideal_transmitter.html</anchorfile>
-      <anchor>a9e5a926a9457306a8258cb25b87c5cab</anchor>
-      <arglist>(std::shared_ptr&lt; DielectricFresnel &gt; fresnel)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>IdealTransmitter</name>
-      <anchorfile>classph_1_1_ideal_transmitter.html</anchorfile>
-      <anchor>a133c98da1db95dcb8b8ec14c5d360d3b</anchor>
-      <arglist>(std::shared_ptr&lt; DielectricFresnel &gt; fresnel, std::shared_ptr&lt; TTexture&lt; math::Spectrum &gt; &gt; transmissionScale)</arglist>
-    </member>
-    <member kind="function">
-      <type>ESurfacePhenomenon</type>
-      <name>getPhenomenonOf</name>
-      <anchorfile>classph_1_1_ideal_transmitter.html</anchorfile>
-      <anchor>a92963aec99033cbdf4ffbc9bf1196ada</anchor>
-      <arglist>(SurfaceElemental elemental) const override</arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>ph::IesAttenuatedSource</name>
-    <filename>classph_1_1_ies_attenuated_source.html</filename>
-    <base>ph::LightSource</base>
-    <member kind="function">
-      <type></type>
-      <name>IesAttenuatedSource</name>
-      <anchorfile>classph_1_1_ies_attenuated_source.html</anchorfile>
-      <anchor>a92eb9a27c0a7404b83d8047deef76c3e</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>IesAttenuatedSource</name>
-      <anchorfile>classph_1_1_ies_attenuated_source.html</anchorfile>
-      <anchor>ad0f9fe8b108ce521d3738ffc293242cd</anchor>
-      <arglist>(const std::shared_ptr&lt; LightSource &gt; &amp;source, const Path &amp;iesFile)</arglist>
-    </member>
-    <member kind="function">
-      <type>std::unique_ptr&lt; Emitter &gt;</type>
-      <name>genEmitter</name>
-      <anchorfile>classph_1_1_ies_attenuated_source.html</anchorfile>
-      <anchor>afb99378d4fee7bfd93cfafad0831913e</anchor>
-      <arglist>(CookingContext &amp;ctx, EmitterBuildingMaterial &amp;&amp;data) const override</arglist>
-    </member>
-    <member kind="function">
-      <type>std::shared_ptr&lt; Geometry &gt;</type>
-      <name>genGeometry</name>
-      <anchorfile>classph_1_1_ies_attenuated_source.html</anchorfile>
-      <anchor>ae7cf837d3b6d4101395d165f22c083c1</anchor>
-      <arglist>(CookingContext &amp;ctx) const override</arglist>
-    </member>
-    <member kind="function">
-      <type>std::shared_ptr&lt; Material &gt;</type>
-      <name>genMaterial</name>
-      <anchorfile>classph_1_1_ies_attenuated_source.html</anchorfile>
-      <anchor>a6ff4f53361959c3a7c800c070e9a4605</anchor>
-      <arglist>(CookingContext &amp;ctx) const override</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>setSource</name>
-      <anchorfile>classph_1_1_ies_attenuated_source.html</anchorfile>
-      <anchor>a177c4afef25a8aed15934def7e2a31e5</anchor>
-      <arglist>(const std::shared_ptr&lt; LightSource &gt; &amp;source)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>setIesFile</name>
-      <anchorfile>classph_1_1_ies_attenuated_source.html</anchorfile>
-      <anchor>a349e78a3bf9fe1a6e4a2b5d0aa98df59</anchor>
-      <arglist>(const Path &amp;iesFile)</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -20962,28 +20887,28 @@
     </member>
   </compound>
   <compound kind="class">
-    <name>ph::LambertianDiffuse</name>
-    <filename>classph_1_1_lambertian_diffuse.html</filename>
+    <name>ph::LambertianReflector</name>
+    <filename>classph_1_1_lambertian_reflector.html</filename>
     <base>ph::SurfaceOptics</base>
     <member kind="function">
       <type></type>
-      <name>LambertianDiffuse</name>
-      <anchorfile>classph_1_1_lambertian_diffuse.html</anchorfile>
-      <anchor>ae7d4d3135dfa58f5f542b57a635f1785</anchor>
+      <name>LambertianReflector</name>
+      <anchorfile>classph_1_1_lambertian_reflector.html</anchorfile>
+      <anchor>a16405960bd9bc5a699f2951ba477d5af</anchor>
       <arglist>(const std::shared_ptr&lt; TTexture&lt; math::Spectrum &gt; &gt; &amp;albedo)</arglist>
     </member>
     <member kind="function">
       <type>ESurfacePhenomenon</type>
       <name>getPhenomenonOf</name>
-      <anchorfile>classph_1_1_lambertian_diffuse.html</anchorfile>
-      <anchor>a76ae8546ba50c6bf92f49d0d4aba33fe</anchor>
+      <anchorfile>classph_1_1_lambertian_reflector.html</anchorfile>
+      <anchor>a0e4ce3bc593400a8d89c633fc8ce1cbf</anchor>
       <arglist>(SurfaceElemental elemental) const override</arglist>
     </member>
     <member kind="function">
       <type>std::string</type>
       <name>toString</name>
-      <anchorfile>classph_1_1_lambertian_diffuse.html</anchorfile>
-      <anchor>a9de9338419179c54ba9fca8be37abba2</anchor>
+      <anchorfile>classph_1_1_lambertian_reflector.html</anchorfile>
+      <anchor>a81f126a7e96536227b27f083576628bb</anchor>
       <arglist>() const override</arglist>
     </member>
   </compound>
@@ -21311,43 +21236,43 @@
     </member>
   </compound>
   <compound kind="class">
-    <name>ph::LightSource</name>
-    <filename>classph_1_1_light_source.html</filename>
-    <base>ph::TSdlResourceBase&lt; ESdlTypeCategory::Ref_LightSource &gt;</base>
+    <name>ph::MaskedIntersectable</name>
+    <filename>classph_1_1_masked_intersectable.html</filename>
+    <base>ph::Intersectable</base>
     <member kind="function">
       <type></type>
-      <name>LightSource</name>
-      <anchorfile>classph_1_1_light_source.html</anchorfile>
-      <anchor>a5d97e40ce1992473904121a84bc9f297</anchor>
-      <arglist>()=default</arglist>
-    </member>
-    <member kind="function" virtualness="pure">
-      <type>virtual std::unique_ptr&lt; Emitter &gt;</type>
-      <name>genEmitter</name>
-      <anchorfile>classph_1_1_light_source.html</anchorfile>
-      <anchor>a4dd9ac9e523717ac161ea27219dd4946</anchor>
-      <arglist>(CookingContext &amp;ctx, EmitterBuildingMaterial &amp;&amp;data) const =0</arglist>
-    </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual std::shared_ptr&lt; Geometry &gt;</type>
-      <name>genGeometry</name>
-      <anchorfile>classph_1_1_light_source.html</anchorfile>
-      <anchor>a61e05c0577ae37a4fd554e4a04cb8840</anchor>
-      <arglist>(CookingContext &amp;ctx) const</arglist>
-    </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual std::shared_ptr&lt; Material &gt;</type>
-      <name>genMaterial</name>
-      <anchorfile>classph_1_1_light_source.html</anchorfile>
-      <anchor>af6c8576264bfc90ea088df7325db72af</anchor>
-      <arglist>(CookingContext &amp;ctx) const</arglist>
+      <name>MaskedIntersectable</name>
+      <anchorfile>classph_1_1_masked_intersectable.html</anchorfile>
+      <anchor>aabfe3b2454628f528b48bd722178d7b6</anchor>
+      <arglist>(const Intersectable *intersectable, const std::shared_ptr&lt; TTexture&lt; real &gt; &gt; &amp;mask, uint8 maxIterations=4)</arglist>
     </member>
     <member kind="function">
-      <type></type>
-      <name>PH_DEFINE_SDL_CLASS</name>
-      <anchorfile>classph_1_1_light_source.html</anchorfile>
-      <anchor>a899aa99cf0ed0aa60f1c9086c09591b1</anchor>
-      <arglist>(TSdlOwnerClass&lt; LightSource &gt;)</arglist>
+      <type>bool</type>
+      <name>isIntersecting</name>
+      <anchorfile>classph_1_1_masked_intersectable.html</anchorfile>
+      <anchor>adad666ad7c33abb35a2dbcd090c3dcc0</anchor>
+      <arglist>(const Ray &amp;ray, HitProbe &amp;probe) const override</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>reintersect</name>
+      <anchorfile>classph_1_1_masked_intersectable.html</anchorfile>
+      <anchor>ade4d9a762986bea9ae643f1094c15928</anchor>
+      <arglist>(const Ray &amp;ray, HitProbe &amp;probe, const Ray &amp;srcRay, HitProbe &amp;srcProbe) const override</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>calcHitDetail</name>
+      <anchorfile>classph_1_1_masked_intersectable.html</anchorfile>
+      <anchor>a3b00c1fef653d95bf81d2f8e9e15329f</anchor>
+      <arglist>(const Ray &amp;ray, HitProbe &amp;probe, HitDetail *out_detail) const override</arglist>
+    </member>
+    <member kind="function">
+      <type>math::AABB3D</type>
+      <name>calcAABB</name>
+      <anchorfile>classph_1_1_masked_intersectable.html</anchorfile>
+      <anchor>a48de70806f178a078d5f8f38b5d5687f</anchor>
+      <arglist>() const override</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -21831,88 +21756,6 @@
     </member>
   </compound>
   <compound kind="class">
-    <name>ph::ModelSource</name>
-    <filename>classph_1_1_model_source.html</filename>
-    <base>ph::LightSource</base>
-    <member kind="function">
-      <type></type>
-      <name>ModelSource</name>
-      <anchorfile>classph_1_1_model_source.html</anchorfile>
-      <anchor>a88444d9d4b7cf71f0ef429949f98b04b</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>ModelSource</name>
-      <anchorfile>classph_1_1_model_source.html</anchorfile>
-      <anchor>a16eaaeb0976059b54f44b5c1571989c6</anchor>
-      <arglist>(const math::Vector3R &amp;emittedRgbRadiance)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>ModelSource</name>
-      <anchorfile>classph_1_1_model_source.html</anchorfile>
-      <anchor>a7eed4da57e6880a1501584c54a73b4cf</anchor>
-      <arglist>(const Path &amp;imagePath)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>ModelSource</name>
-      <anchorfile>classph_1_1_model_source.html</anchorfile>
-      <anchor>ad2b6c16310b25e05f4e9019dc498ce37</anchor>
-      <arglist>(const std::shared_ptr&lt; Image &gt; &amp;emittedRadiance)</arglist>
-    </member>
-    <member kind="function">
-      <type>std::unique_ptr&lt; Emitter &gt;</type>
-      <name>genEmitter</name>
-      <anchorfile>classph_1_1_model_source.html</anchorfile>
-      <anchor>a223ff15bfe3cd0542aa2007068f65084</anchor>
-      <arglist>(CookingContext &amp;ctx, EmitterBuildingMaterial &amp;&amp;data) const override</arglist>
-    </member>
-    <member kind="function">
-      <type>std::shared_ptr&lt; Geometry &gt;</type>
-      <name>genGeometry</name>
-      <anchorfile>classph_1_1_model_source.html</anchorfile>
-      <anchor>a65178d0d1c032ce120cd64554044a4b8</anchor>
-      <arglist>(CookingContext &amp;ctx) const override</arglist>
-    </member>
-    <member kind="function">
-      <type>std::shared_ptr&lt; Material &gt;</type>
-      <name>genMaterial</name>
-      <anchorfile>classph_1_1_model_source.html</anchorfile>
-      <anchor>a63282b08c3d2e96cf74c16d21b27df3c</anchor>
-      <arglist>(CookingContext &amp;ctx) const override</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>setGeometry</name>
-      <anchorfile>classph_1_1_model_source.html</anchorfile>
-      <anchor>aef3eb4a92d33f78d2829725d53b6be20</anchor>
-      <arglist>(const std::shared_ptr&lt; Geometry &gt; &amp;geometry)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>setMaterial</name>
-      <anchorfile>classph_1_1_model_source.html</anchorfile>
-      <anchor>a1a2d8f1a7de3359bdb1fc493709ab50c</anchor>
-      <arglist>(const std::shared_ptr&lt; Material &gt; &amp;material)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>setBackFaceEmit</name>
-      <anchorfile>classph_1_1_model_source.html</anchorfile>
-      <anchor>a945394f0720cd330088004be092eb2f1</anchor>
-      <arglist>(bool isBackFaceEmit)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>PH_DEFINE_SDL_CLASS</name>
-      <anchorfile>classph_1_1_model_source.html</anchorfile>
-      <anchor>a82eeca379c2e1570ccf78da540cdb06b</anchor>
-      <arglist>(TSdlOwnerClass&lt; ModelSource &gt;)</arglist>
-    </member>
-  </compound>
-  <compound kind="class">
     <name>ph::MotionCookConfig</name>
     <filename>classph_1_1_motion_cook_config.html</filename>
     <member kind="function">
@@ -21961,6 +21804,17 @@
       <anchorfile>classph_1_1_motion_source.html</anchorfile>
       <anchor>af8c74ac22fbc6764e7f6f21c02da7917</anchor>
       <arglist>(const CookingContext &amp;ctx, const MotionCookConfig &amp;config) const</arglist>
+    </member>
+  </compound>
+  <compound kind="struct">
+    <name>ph::math::Murmur3BitMixer32</name>
+    <filename>structph_1_1math_1_1_murmur3_bit_mixer32.html</filename>
+    <member kind="function">
+      <type>uint32</type>
+      <name>operator()</name>
+      <anchorfile>structph_1_1math_1_1_murmur3_bit_mixer32.html</anchorfile>
+      <anchor>ae04bad45dd8b531e31680e08ad5c85d9</anchor>
+      <arglist>(const uint32 v) const</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -24259,46 +24113,6 @@
     </member>
   </compound>
   <compound kind="class">
-    <name>ph::PointSource</name>
-    <filename>classph_1_1_point_source.html</filename>
-    <base>ph::AreaSource</base>
-    <member kind="function">
-      <type></type>
-      <name>PointSource</name>
-      <anchorfile>classph_1_1_point_source.html</anchorfile>
-      <anchor>a6c16e78b33d8f09eeb0a7d46b28665bc</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>PointSource</name>
-      <anchorfile>classph_1_1_point_source.html</anchorfile>
-      <anchor>aa758f9a76a08cf27f0bf9cd6e8b5f6e9</anchor>
-      <arglist>(const math::Vector3R &amp;linearSrgbColor, real numWatts)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>PointSource</name>
-      <anchorfile>classph_1_1_point_source.html</anchorfile>
-      <anchor>aa37a2d8ba60b3374bacbff2fb5a8e197</anchor>
-      <arglist>(const math::Spectrum &amp;color, real numWatts)</arglist>
-    </member>
-    <member kind="function">
-      <type>std::shared_ptr&lt; Geometry &gt;</type>
-      <name>genAreas</name>
-      <anchorfile>classph_1_1_point_source.html</anchorfile>
-      <anchor>add00935359bfde70e5c270577b179d53</anchor>
-      <arglist>(CookingContext &amp;ctx) const override</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>PH_DEFINE_SDL_CLASS</name>
-      <anchorfile>classph_1_1_point_source.html</anchorfile>
-      <anchor>aed24ea263ec5ea6d513fa297c3b0dc0b</anchor>
-      <arglist>(TSdlOwnerClass&lt; PointSource &gt;)</arglist>
-    </member>
-  </compound>
-  <compound kind="class">
     <name>ph::PreCookReport</name>
     <filename>classph_1_1_pre_cook_report.html</filename>
     <member kind="function">
@@ -25956,53 +25770,6 @@
       <anchorfile>classph_1_1_statistics_1_1_record.html</anchorfile>
       <anchor>af8cf2c07cc22cccda0fc99771c9813b5</anchor>
       <arglist></arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>ph::RectangleSource</name>
-    <filename>classph_1_1_rectangle_source.html</filename>
-    <base>ph::AreaSource</base>
-    <member kind="function">
-      <type></type>
-      <name>RectangleSource</name>
-      <anchorfile>classph_1_1_rectangle_source.html</anchorfile>
-      <anchor>a6b76ab2234695fe75ca2c4049fee4ef9</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>RectangleSource</name>
-      <anchorfile>classph_1_1_rectangle_source.html</anchorfile>
-      <anchor>a2e4961be895e39030fc90974f8739f12</anchor>
-      <arglist>(real width, real height, const math::Vector3R &amp;linearSrgbColor, real numWatts)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>RectangleSource</name>
-      <anchorfile>classph_1_1_rectangle_source.html</anchorfile>
-      <anchor>a258e42e8ab74f59d1b6b037cb9d62c85</anchor>
-      <arglist>(real width, real height, const math::Spectrum &amp;color, real numWatts)</arglist>
-    </member>
-    <member kind="function">
-      <type>std::shared_ptr&lt; Geometry &gt;</type>
-      <name>genAreas</name>
-      <anchorfile>classph_1_1_rectangle_source.html</anchorfile>
-      <anchor>ab0d154e27cf6f494368c1cd456a0a5e7</anchor>
-      <arglist>(CookingContext &amp;ctx) const override</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>setDimension</name>
-      <anchorfile>classph_1_1_rectangle_source.html</anchorfile>
-      <anchor>a44738801c2370a3400ff69ab40b1c1c7</anchor>
-      <arglist>(real width, real height)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>PH_DEFINE_SDL_CLASS</name>
-      <anchorfile>classph_1_1_rectangle_source.html</anchorfile>
-      <anchor>ac157edf239a515babf3c3d8aa0677e41</anchor>
-      <arglist>(TSdlOwnerClass&lt; RectangleSource &gt;)</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -28186,11 +27953,11 @@
       <arglist>(const math::Spectrum &amp;f0)</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
+      <type>math::Spectrum</type>
       <name>calcReflectance</name>
       <anchorfile>classph_1_1_schlick_approx_conductor_fresnel.html</anchorfile>
-      <anchor>acb45d60cef073e37b5732be0efc5d38f</anchor>
-      <arglist>(real cosThetaIncident, math::Spectrum *out_reflectance) const override</arglist>
+      <anchor>a7bcdc659d0795f54c603ba6e9608f92b</anchor>
+      <arglist>(real cosThetaIncident) const override</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -28205,11 +27972,11 @@
       <arglist>(real iorOuter, real iorInner)</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
+      <type>math::Spectrum</type>
       <name>calcReflectance</name>
       <anchorfile>classph_1_1_schlick_approx_dielectric_fresnel.html</anchorfile>
-      <anchor>a96b394e875a5eec68a941c6b0c35ba43</anchor>
-      <arglist>(real cosThetaIncident, math::Spectrum *out_reflectance) const override</arglist>
+      <anchor>a264fc2b030cf012b0439092e75705249</anchor>
+      <arglist>(real cosThetaIncident) const override</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -30763,53 +30530,6 @@
     </member>
   </compound>
   <compound kind="class">
-    <name>ph::SphereSource</name>
-    <filename>classph_1_1_sphere_source.html</filename>
-    <base>ph::AreaSource</base>
-    <member kind="function">
-      <type></type>
-      <name>SphereSource</name>
-      <anchorfile>classph_1_1_sphere_source.html</anchorfile>
-      <anchor>aec7c53476789f08515be22a6fbee8a6a</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>SphereSource</name>
-      <anchorfile>classph_1_1_sphere_source.html</anchorfile>
-      <anchor>a9170f06cd6f4ce6e64e7ec335ea82d78</anchor>
-      <arglist>(real radius, const math::Vector3R &amp;linearSrgbColor, real numWatts)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>SphereSource</name>
-      <anchorfile>classph_1_1_sphere_source.html</anchorfile>
-      <anchor>abbcf227d84a3e9f3541f23e42c123450</anchor>
-      <arglist>(real radius, const math::Spectrum &amp;color, real numWatts)</arglist>
-    </member>
-    <member kind="function">
-      <type>std::shared_ptr&lt; Geometry &gt;</type>
-      <name>genAreas</name>
-      <anchorfile>classph_1_1_sphere_source.html</anchorfile>
-      <anchor>aa1b24f0f2dd4a2ca8eb6e69aa5ac53de</anchor>
-      <arglist>(CookingContext &amp;ctx) const override</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>setRadius</name>
-      <anchorfile>classph_1_1_sphere_source.html</anchorfile>
-      <anchor>a9352a249f5f4c2d748f2a71ee2f3fc49</anchor>
-      <arglist>(real radius)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>PH_DEFINE_SDL_CLASS</name>
-      <anchorfile>classph_1_1_sphere_source.html</anchorfile>
-      <anchor>ad0efed9a856b29e13ab32e26ac5ac1ba</anchor>
-      <arglist>(TSdlOwnerClass&lt; SphereSource &gt;)</arglist>
-    </member>
-  </compound>
-  <compound kind="class">
     <name>ph::SphericalMapper</name>
     <filename>classph_1_1_spherical_mapper.html</filename>
     <base>ph::UvwMapper</base>
@@ -33075,10 +32795,31 @@
     </member>
     <member kind="function">
       <type>auto</type>
+      <name>negate</name>
+      <anchorfile>classph_1_1math_1_1_t_arithmetic_array_base.html</anchorfile>
+      <anchor>a158e36d638f907829166a82c56af60da</anchor>
+      <arglist>() const -&gt; Derived</arglist>
+    </member>
+    <member kind="function">
+      <type>auto</type>
+      <name>negateLocal</name>
+      <anchorfile>classph_1_1math_1_1_t_arithmetic_array_base.html</anchorfile>
+      <anchor>a1d6fabba8a377088bfb98cbce50901ed</anchor>
+      <arglist>() -&gt; Derived &amp;</arglist>
+    </member>
+    <member kind="function">
+      <type>auto</type>
       <name>lerp</name>
       <anchorfile>classph_1_1math_1_1_t_arithmetic_array_base.html</anchorfile>
       <anchor>a9634d0b951e35e73db89ab166783985a</anchor>
       <arglist>(const Derived &amp;rhs, const U factor) const -&gt; Derived</arglist>
+    </member>
+    <member kind="function">
+      <type>auto</type>
+      <name>operator-</name>
+      <anchorfile>classph_1_1math_1_1_t_arithmetic_array_base.html</anchorfile>
+      <anchor>add2ec7565f22031bd0961ac26ab60319</anchor>
+      <arglist>() const -&gt; Derived</arglist>
     </member>
     <member kind="function" protection="protected">
       <type></type>
@@ -33236,34 +32977,6 @@
     </member>
     <member kind="function" protection="protected">
       <type>Derived</type>
-      <name>exp</name>
-      <anchorfile>classph_1_1math_1_1_t_arithmetic_array_base.html</anchorfile>
-      <anchor>a10d20d0085c7f75c1cd09ea86baa357d</anchor>
-      <arglist>(U exponent) const</arglist>
-    </member>
-    <member kind="function" protection="protected">
-      <type>Derived &amp;</type>
-      <name>expLocal</name>
-      <anchorfile>classph_1_1math_1_1_t_arithmetic_array_base.html</anchorfile>
-      <anchor>a5892fd2200f9d6d190bafa0798998678</anchor>
-      <arglist>(U exponent)</arglist>
-    </member>
-    <member kind="function" protection="protected">
-      <type>Derived</type>
-      <name>exp</name>
-      <anchorfile>classph_1_1math_1_1_t_arithmetic_array_base.html</anchorfile>
-      <anchor>afc20a4a19b6712a79f08d4586fe4fcc7</anchor>
-      <arglist>(const Derived &amp;exponent) const</arglist>
-    </member>
-    <member kind="function" protection="protected">
-      <type>Derived &amp;</type>
-      <name>expLocal</name>
-      <anchorfile>classph_1_1math_1_1_t_arithmetic_array_base.html</anchorfile>
-      <anchor>a31bc3d0d7dcfa963b5bf88bdf7bd199b</anchor>
-      <arglist>(const Derived &amp;exponent)</arglist>
-    </member>
-    <member kind="function" protection="protected">
-      <type>Derived</type>
       <name>sqrt</name>
       <anchorfile>classph_1_1math_1_1_t_arithmetic_array_base.html</anchorfile>
       <anchor>a4083fab5bb93cfb01c24f9ac2f65ea98</anchor>
@@ -33302,20 +33015,6 @@
       <name>rcpLocal</name>
       <anchorfile>classph_1_1math_1_1_t_arithmetic_array_base.html</anchorfile>
       <anchor>a9d545dc5233a0f2cfc3fe8498ab2287e</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function" protection="protected">
-      <type>Derived</type>
-      <name>complement</name>
-      <anchorfile>classph_1_1math_1_1_t_arithmetic_array_base.html</anchorfile>
-      <anchor>a49a3930581705ba2c88558e3e301410f</anchor>
-      <arglist>() const</arglist>
-    </member>
-    <member kind="function" protection="protected">
-      <type>Derived &amp;</type>
-      <name>complementLocal</name>
-      <anchorfile>classph_1_1math_1_1_t_arithmetic_array_base.html</anchorfile>
-      <anchor>aee07bdd2bf6ad2a8fc6cccf2d9214c5d</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" protection="protected">
@@ -33599,6 +33298,13 @@
       <arglist>(T rhs)</arglist>
     </member>
     <member kind="function" protection="protected">
+      <type>Derived</type>
+      <name>operator-</name>
+      <anchorfile>classph_1_1math_1_1_t_arithmetic_array_base.html</anchorfile>
+      <anchor>a13d629dc7f5e089ccea742aac876940d</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function" protection="protected">
       <type>auto</type>
       <name>begin</name>
       <anchorfile>classph_1_1math_1_1_t_arithmetic_array_base.html</anchorfile>
@@ -33663,6 +33369,34 @@
     </member>
     <member kind="function" protection="protected">
       <type>Derived</type>
+      <name>exp</name>
+      <anchorfile>classph_1_1math_1_1_t_arithmetic_array_base.html</anchorfile>
+      <anchor>a10d20d0085c7f75c1cd09ea86baa357d</anchor>
+      <arglist>(U exponent) const</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>Derived &amp;</type>
+      <name>expLocal</name>
+      <anchorfile>classph_1_1math_1_1_t_arithmetic_array_base.html</anchorfile>
+      <anchor>a5892fd2200f9d6d190bafa0798998678</anchor>
+      <arglist>(U exponent)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>Derived</type>
+      <name>exp</name>
+      <anchorfile>classph_1_1math_1_1_t_arithmetic_array_base.html</anchorfile>
+      <anchor>afc20a4a19b6712a79f08d4586fe4fcc7</anchor>
+      <arglist>(const Derived &amp;exponent) const</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>Derived &amp;</type>
+      <name>expLocal</name>
+      <anchorfile>classph_1_1math_1_1_t_arithmetic_array_base.html</anchorfile>
+      <anchor>a31bc3d0d7dcfa963b5bf88bdf7bd199b</anchor>
+      <arglist>(const Derived &amp;exponent)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>Derived</type>
       <name>clamp</name>
       <anchorfile>classph_1_1math_1_1_t_arithmetic_array_base.html</anchorfile>
       <anchor>a7b50e0448ed7cc40e01ee77aed1ed0ac</anchor>
@@ -33716,6 +33450,34 @@
       <anchorfile>classph_1_1math_1_1_t_arithmetic_array_base.html</anchorfile>
       <anchor>a666030e870acbd9666360893ca2049ce</anchor>
       <arglist>(const Derived &amp;lowerBound, const Derived &amp;upperBound)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>Derived</type>
+      <name>complement</name>
+      <anchorfile>classph_1_1math_1_1_t_arithmetic_array_base.html</anchorfile>
+      <anchor>a49a3930581705ba2c88558e3e301410f</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>Derived &amp;</type>
+      <name>complementLocal</name>
+      <anchorfile>classph_1_1math_1_1_t_arithmetic_array_base.html</anchorfile>
+      <anchor>aee07bdd2bf6ad2a8fc6cccf2d9214c5d</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>Derived</type>
+      <name>negate</name>
+      <anchorfile>classph_1_1math_1_1_t_arithmetic_array_base.html</anchorfile>
+      <anchor>aca37c7d5052887f50da319a6e3a33b3c</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>Derived &amp;</type>
+      <name>negateLocal</name>
+      <anchorfile>classph_1_1math_1_1_t_arithmetic_array_base.html</anchorfile>
+      <anchor>a4532d5dec359d2a5f3c9207f77137d34</anchor>
+      <arglist>()</arglist>
     </member>
     <member kind="variable" protection="protected">
       <type>std::array&lt; T, N &gt;</type>
@@ -33733,6 +33495,34 @@
     </member>
     <member kind="function" protection="protected">
       <type>Derived</type>
+      <name>exp</name>
+      <anchorfile>classph_1_1math_1_1_t_arithmetic_array_base.html</anchorfile>
+      <anchor>a10d20d0085c7f75c1cd09ea86baa357d</anchor>
+      <arglist>(U exponent) const</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>Derived &amp;</type>
+      <name>expLocal</name>
+      <anchorfile>classph_1_1math_1_1_t_arithmetic_array_base.html</anchorfile>
+      <anchor>a5892fd2200f9d6d190bafa0798998678</anchor>
+      <arglist>(U exponent)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>Derived</type>
+      <name>exp</name>
+      <anchorfile>classph_1_1math_1_1_t_arithmetic_array_base.html</anchorfile>
+      <anchor>afc20a4a19b6712a79f08d4586fe4fcc7</anchor>
+      <arglist>(const Derived &amp;exponent) const</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>Derived &amp;</type>
+      <name>expLocal</name>
+      <anchorfile>classph_1_1math_1_1_t_arithmetic_array_base.html</anchorfile>
+      <anchor>a31bc3d0d7dcfa963b5bf88bdf7bd199b</anchor>
+      <arglist>(const Derived &amp;exponent)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>Derived</type>
       <name>clamp</name>
       <anchorfile>classph_1_1math_1_1_t_arithmetic_array_base.html</anchorfile>
       <anchor>a7b50e0448ed7cc40e01ee77aed1ed0ac</anchor>
@@ -33786,6 +33576,34 @@
       <anchorfile>classph_1_1math_1_1_t_arithmetic_array_base.html</anchorfile>
       <anchor>a666030e870acbd9666360893ca2049ce</anchor>
       <arglist>(const Derived &amp;lowerBound, const Derived &amp;upperBound)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>Derived</type>
+      <name>complement</name>
+      <anchorfile>classph_1_1math_1_1_t_arithmetic_array_base.html</anchorfile>
+      <anchor>a49a3930581705ba2c88558e3e301410f</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>Derived &amp;</type>
+      <name>complementLocal</name>
+      <anchorfile>classph_1_1math_1_1_t_arithmetic_array_base.html</anchorfile>
+      <anchor>aee07bdd2bf6ad2a8fc6cccf2d9214c5d</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>Derived</type>
+      <name>negate</name>
+      <anchorfile>classph_1_1math_1_1_t_arithmetic_array_base.html</anchorfile>
+      <anchor>aca37c7d5052887f50da319a6e3a33b3c</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>Derived &amp;</type>
+      <name>negateLocal</name>
+      <anchorfile>classph_1_1math_1_1_t_arithmetic_array_base.html</anchorfile>
+      <anchor>a4532d5dec359d2a5f3c9207f77137d34</anchor>
+      <arglist>()</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -34645,6 +34463,20 @@
       <anchorfile>classph_1_1_t_checkerboard_texture.html</anchorfile>
       <anchor>aaee1ee2a54826d4a602a3a16cdcd6355</anchor>
       <arglist>(const std::shared_ptr&lt; TTexture&lt; OutputType &gt; &gt; &amp;evenTexture)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setOddTextureScale</name>
+      <anchorfile>classph_1_1_t_checkerboard_texture.html</anchorfile>
+      <anchor>aae41757d88e18afa4648ca6e5e0e6f86</anchor>
+      <arglist>(const math::Vector3R &amp;sale)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setEvenTextureScale</name>
+      <anchorfile>classph_1_1_t_checkerboard_texture.html</anchorfile>
+      <anchor>a5ab686deb34aa7babd34a585e61e4a29</anchor>
+      <arglist>(const math::Vector3R &amp;scale)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
@@ -36532,6 +36364,65 @@
     </member>
   </compound>
   <compound kind="class">
+    <name>ph::ThinDielectricShell</name>
+    <filename>classph_1_1_thin_dielectric_shell.html</filename>
+    <base>ph::SurfaceOptics</base>
+    <member kind="function">
+      <type></type>
+      <name>ThinDielectricShell</name>
+      <anchorfile>classph_1_1_thin_dielectric_shell.html</anchorfile>
+      <anchor>a325441ac6f956248b2a0c0a7c2dd85d9</anchor>
+      <arglist>(std::shared_ptr&lt; DielectricFresnel &gt; fresnel)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>ThinDielectricShell</name>
+      <anchorfile>classph_1_1_thin_dielectric_shell.html</anchorfile>
+      <anchor>abaa1d9b62bb72abd397d31a38f262f82</anchor>
+      <arglist>(std::shared_ptr&lt; DielectricFresnel &gt; fresnel, std::shared_ptr&lt; TTexture&lt; real &gt; &gt; thickness, std::shared_ptr&lt; TTexture&lt; math::Spectrum &gt; &gt; sigmaT)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>ThinDielectricShell</name>
+      <anchorfile>classph_1_1_thin_dielectric_shell.html</anchorfile>
+      <anchor>a16e4b95f6799b4b41c75fe038e09cf27</anchor>
+      <arglist>(std::shared_ptr&lt; DielectricFresnel &gt; fresnel, std::shared_ptr&lt; TTexture&lt; math::Spectrum &gt; &gt; reflectionScale, std::shared_ptr&lt; TTexture&lt; math::Spectrum &gt; &gt; transmissionScale)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>ThinDielectricShell</name>
+      <anchorfile>classph_1_1_thin_dielectric_shell.html</anchorfile>
+      <anchor>ac461c10a5c0be20b3dd09bad186074e1</anchor>
+      <arglist>(std::shared_ptr&lt; DielectricFresnel &gt; fresnel, std::shared_ptr&lt; TTexture&lt; real &gt; &gt; thickness, std::shared_ptr&lt; TTexture&lt; math::Spectrum &gt; &gt; sigmaT, std::shared_ptr&lt; TTexture&lt; math::Spectrum &gt; &gt; reflectionScale, std::shared_ptr&lt; TTexture&lt; math::Spectrum &gt; &gt; transmissionScale)</arglist>
+    </member>
+    <member kind="function">
+      <type>ESurfacePhenomenon</type>
+      <name>getPhenomenonOf</name>
+      <anchorfile>classph_1_1_thin_dielectric_shell.html</anchorfile>
+      <anchor>acdadcb7ec0f4f39afaa4acf04c5365ac</anchor>
+      <arglist>(SurfaceElemental elemental) const override</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>ph::ThinDielectricSurface</name>
+    <filename>classph_1_1_thin_dielectric_surface.html</filename>
+    <base>ph::SurfaceMaterial</base>
+    <member kind="function">
+      <type>void</type>
+      <name>genSurface</name>
+      <anchorfile>classph_1_1_thin_dielectric_surface.html</anchorfile>
+      <anchor>aa5518552cb5fb6fdbd04f1bbe835d611</anchor>
+      <arglist>(const CookingContext &amp;ctx, SurfaceBehavior &amp;behavior) const override</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>PH_DEFINE_SDL_CLASS</name>
+      <anchorfile>classph_1_1_thin_dielectric_surface.html</anchorfile>
+      <anchor>aa6fbb7c67e42c9065844ca22bb01d037</anchor>
+      <arglist>(TSdlOwnerClass&lt; ThinDielectricSurface &gt;)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
     <name>ph::ThinFilm</name>
     <filename>classph_1_1_thin_film.html</filename>
     <base>ph::SurfaceMaterial</base>
@@ -37571,6 +37462,27 @@
       <arglist>(T t) const</arglist>
     </member>
     <member kind="function">
+      <type>T</type>
+      <name>getProjectedT</name>
+      <anchorfile>classph_1_1math_1_1_t_line_segment.html</anchorfile>
+      <anchor>aff450f708b7fe0eedd32dc442495a377</anchor>
+      <arglist>(const TVector3&lt; T &gt; &amp;point) const</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>getFoldedT</name>
+      <anchorfile>classph_1_1math_1_1_t_line_segment.html</anchorfile>
+      <anchor>ada4ffa7717ae958768098e0b08c33895</anchor>
+      <arglist>(const TVector3&lt; T &gt; &amp;point) const</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>getDeltaT</name>
+      <anchorfile>classph_1_1math_1_1_t_line_segment.html</anchorfile>
+      <anchor>abab20acc952371c9a05f1e9dd9ea0917</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
       <type>const TVector3&lt; T &gt; &amp;</type>
       <name>getOrigin</name>
       <anchorfile>classph_1_1math_1_1_t_line_segment.html</anchorfile>
@@ -37625,6 +37537,27 @@
       <anchorfile>classph_1_1math_1_1_t_line_segment.html</anchorfile>
       <anchor>a911de7baded48e928c4a1bdcd2538cd8</anchor>
       <arglist>(T t) const</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>getProjectedT</name>
+      <anchorfile>classph_1_1math_1_1_t_line_segment.html</anchorfile>
+      <anchor>aff450f708b7fe0eedd32dc442495a377</anchor>
+      <arglist>(const TVector3&lt; T &gt; &amp;point) const</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>getFoldedT</name>
+      <anchorfile>classph_1_1math_1_1_t_line_segment.html</anchorfile>
+      <anchor>ada4ffa7717ae958768098e0b08c33895</anchor>
+      <arglist>(const TVector3&lt; T &gt; &amp;point) const</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>getDeltaT</name>
+      <anchorfile>classph_1_1math_1_1_t_line_segment.html</anchorfile>
+      <anchor>abab20acc952371c9a05f1e9dd9ea0917</anchor>
+      <arglist>() const</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -40950,6 +40883,13 @@
       <anchor>aa6bffad35350f2f99106e35045a748d7</anchor>
       <arglist>(const TTexture&lt; OutputType &gt; &amp;texture, const math::Vector2R &amp;uv) const</arglist>
     </member>
+    <member kind="function">
+      <type>OutputType</type>
+      <name>sampleOrDefault</name>
+      <anchorfile>classph_1_1_t_sampler.html</anchorfile>
+      <anchor>afab5b536e0f740bf1ccaeacc5d83b012</anchor>
+      <arglist>(const TTexture&lt; OutputType &gt; *texture, const SurfaceHit &amp;X, const OutputType &amp;defaultValue) const</arglist>
+    </member>
   </compound>
   <compound kind="class">
     <name>ph::TSamplingFilm</name>
@@ -44258,6 +44198,20 @@
       <arglist>()</arglist>
     </member>
     <member kind="function">
+      <type>Derived</type>
+      <name>negate</name>
+      <anchorfile>classph_1_1math_1_1_t_spectrum_base.html</anchorfile>
+      <anchor>aca37c7d5052887f50da319a6e3a33b3c</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>Derived &amp;</type>
+      <name>negateLocal</name>
+      <anchorfile>classph_1_1math_1_1_t_spectrum_base.html</anchorfile>
+      <anchor>a4532d5dec359d2a5f3c9207f77137d34</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
       <type>T</type>
       <name>sum</name>
       <anchorfile>classph_1_1math_1_1_t_spectrum_base.html</anchorfile>
@@ -44453,6 +44407,34 @@
       <anchor>a3da28ca9690edd63fd4536e2f01b5b14</anchor>
       <arglist></arglist>
     </member>
+    <member kind="friend">
+      <type>friend Derived</type>
+      <name>operator+</name>
+      <anchorfile>classph_1_1math_1_1_t_spectrum_base.html</anchorfile>
+      <anchor>a5ab34c33199ae40a2ee6913619191e77</anchor>
+      <arglist>(const T rhs, const Derived &amp;lhs)</arglist>
+    </member>
+    <member kind="friend">
+      <type>friend Derived</type>
+      <name>operator-</name>
+      <anchorfile>classph_1_1math_1_1_t_spectrum_base.html</anchorfile>
+      <anchor>a353d9e6ad7cc551253b221650f8482bf</anchor>
+      <arglist>(const T rhs, const Derived &amp;lhs)</arglist>
+    </member>
+    <member kind="friend">
+      <type>friend Derived</type>
+      <name>operator*</name>
+      <anchorfile>classph_1_1math_1_1_t_spectrum_base.html</anchorfile>
+      <anchor>a21897b9caecda85922629eb674e4005a</anchor>
+      <arglist>(const T rhs, const Derived &amp;lhs)</arglist>
+    </member>
+    <member kind="friend">
+      <type>friend Derived</type>
+      <name>operator/</name>
+      <anchorfile>classph_1_1math_1_1_t_spectrum_base.html</anchorfile>
+      <anchor>af7b1fcfb2c6e6aa596d5106f88b991f6</anchor>
+      <arglist>(const T rhs, const Derived &amp;lhs)</arglist>
+    </member>
     <member kind="function">
       <type>Derived &amp;</type>
       <name>setColorValues</name>
@@ -44473,6 +44455,34 @@
       <anchorfile>classph_1_1math_1_1_t_spectrum_base.html</anchorfile>
       <anchor>a52a9f52ef8dc1e125266d8e492af633d</anchor>
       <arglist>() const</arglist>
+    </member>
+    <member kind="friend">
+      <type>friend Derived</type>
+      <name>operator+</name>
+      <anchorfile>classph_1_1math_1_1_t_spectrum_base.html</anchorfile>
+      <anchor>a5ab34c33199ae40a2ee6913619191e77</anchor>
+      <arglist>(const T rhs, const Derived &amp;lhs)</arglist>
+    </member>
+    <member kind="friend">
+      <type>friend Derived</type>
+      <name>operator-</name>
+      <anchorfile>classph_1_1math_1_1_t_spectrum_base.html</anchorfile>
+      <anchor>a353d9e6ad7cc551253b221650f8482bf</anchor>
+      <arglist>(const T rhs, const Derived &amp;lhs)</arglist>
+    </member>
+    <member kind="friend">
+      <type>friend Derived</type>
+      <name>operator*</name>
+      <anchorfile>classph_1_1math_1_1_t_spectrum_base.html</anchorfile>
+      <anchor>a21897b9caecda85922629eb674e4005a</anchor>
+      <arglist>(const T rhs, const Derived &amp;lhs)</arglist>
+    </member>
+    <member kind="friend">
+      <type>friend Derived</type>
+      <name>operator/</name>
+      <anchorfile>classph_1_1math_1_1_t_spectrum_base.html</anchorfile>
+      <anchor>af7b1fcfb2c6e6aa596d5106f88b991f6</anchor>
+      <arglist>(const T rhs, const Derived &amp;lhs)</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -46486,20 +46496,6 @@
       <arglist>(const Derived &amp;fallback=Derived{}) const</arglist>
     </member>
     <member kind="function">
-      <type>Derived</type>
-      <name>negate</name>
-      <anchorfile>classph_1_1math_1_1_t_vector_n_base.html</anchorfile>
-      <anchor>a95415915a06f92953d0b06baba7a87f9</anchor>
-      <arglist>() const</arglist>
-    </member>
-    <member kind="function">
-      <type>Derived &amp;</type>
-      <name>negateLocal</name>
-      <anchorfile>classph_1_1math_1_1_t_vector_n_base.html</anchorfile>
-      <anchor>acea949ae92d8c2b7c572f8618f9d1465</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
       <type>std::size_t</type>
       <name>minDimension</name>
       <anchorfile>classph_1_1math_1_1_t_vector_n_base.html</anchorfile>
@@ -46512,34 +46508,6 @@
       <anchorfile>classph_1_1math_1_1_t_vector_n_base.html</anchorfile>
       <anchor>ad68c91765bd85291c0ff2ba9c825e8e8</anchor>
       <arglist>() const</arglist>
-    </member>
-    <member kind="function">
-      <type>Derived</type>
-      <name>operator-</name>
-      <anchorfile>classph_1_1math_1_1_t_vector_n_base.html</anchorfile>
-      <anchor>aca4b3d38136802c92e4872ffe526695a</anchor>
-      <arglist>() const</arglist>
-    </member>
-    <member kind="function">
-      <type>auto</type>
-      <name>negate</name>
-      <anchorfile>classph_1_1math_1_1_t_vector_n_base.html</anchorfile>
-      <anchor>a080bf9a6d99ac90c30ab6d41d55548cb</anchor>
-      <arglist>() const -&gt; Derived</arglist>
-    </member>
-    <member kind="function">
-      <type>auto</type>
-      <name>negateLocal</name>
-      <anchorfile>classph_1_1math_1_1_t_vector_n_base.html</anchorfile>
-      <anchor>af52afeeb4a5271c971468fd830eae289</anchor>
-      <arglist>() -&gt; Derived &amp;</arglist>
-    </member>
-    <member kind="function">
-      <type>auto</type>
-      <name>operator-</name>
-      <anchorfile>classph_1_1math_1_1_t_vector_n_base.html</anchorfile>
-      <anchor>aef98b3ffebf23a93abe97513e4413eb4</anchor>
-      <arglist>() const -&gt; Derived</arglist>
     </member>
     <member kind="function">
       <type>constexpr std::size_t</type>
@@ -46829,6 +46797,20 @@
       <arglist>()</arglist>
     </member>
     <member kind="function">
+      <type>Derived</type>
+      <name>negate</name>
+      <anchorfile>classph_1_1math_1_1_t_vector_n_base.html</anchorfile>
+      <anchor>aca37c7d5052887f50da319a6e3a33b3c</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>Derived &amp;</type>
+      <name>negateLocal</name>
+      <anchorfile>classph_1_1math_1_1_t_vector_n_base.html</anchorfile>
+      <anchor>a4532d5dec359d2a5f3c9207f77137d34</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
       <type>T</type>
       <name>sum</name>
       <anchorfile>classph_1_1math_1_1_t_vector_n_base.html</anchorfile>
@@ -47066,6 +47048,34 @@
       <anchor>a3da28ca9690edd63fd4536e2f01b5b14</anchor>
       <arglist></arglist>
     </member>
+    <member kind="friend">
+      <type>friend Derived</type>
+      <name>operator+</name>
+      <anchorfile>classph_1_1math_1_1_t_vector_n_base.html</anchorfile>
+      <anchor>a5ab34c33199ae40a2ee6913619191e77</anchor>
+      <arglist>(const T rhs, const Derived &amp;lhs)</arglist>
+    </member>
+    <member kind="friend">
+      <type>friend Derived</type>
+      <name>operator-</name>
+      <anchorfile>classph_1_1math_1_1_t_vector_n_base.html</anchorfile>
+      <anchor>a353d9e6ad7cc551253b221650f8482bf</anchor>
+      <arglist>(const T rhs, const Derived &amp;lhs)</arglist>
+    </member>
+    <member kind="friend">
+      <type>friend Derived</type>
+      <name>operator*</name>
+      <anchorfile>classph_1_1math_1_1_t_vector_n_base.html</anchorfile>
+      <anchor>a21897b9caecda85922629eb674e4005a</anchor>
+      <arglist>(const T rhs, const Derived &amp;lhs)</arglist>
+    </member>
+    <member kind="friend">
+      <type>friend Derived</type>
+      <name>operator/</name>
+      <anchorfile>classph_1_1math_1_1_t_vector_n_base.html</anchorfile>
+      <anchor>af7b1fcfb2c6e6aa596d5106f88b991f6</anchor>
+      <arglist>(const T rhs, const Derived &amp;lhs)</arglist>
+    </member>
     <member kind="function">
       <type>Derived</type>
       <name>normalize</name>
@@ -47079,6 +47089,34 @@
       <anchorfile>classph_1_1math_1_1_t_vector_n_base.html</anchorfile>
       <anchor>a6266290d05c9bfe92d324e39f0c316fb</anchor>
       <arglist>()</arglist>
+    </member>
+    <member kind="friend">
+      <type>friend Derived</type>
+      <name>operator+</name>
+      <anchorfile>classph_1_1math_1_1_t_vector_n_base.html</anchorfile>
+      <anchor>a5ab34c33199ae40a2ee6913619191e77</anchor>
+      <arglist>(const T rhs, const Derived &amp;lhs)</arglist>
+    </member>
+    <member kind="friend">
+      <type>friend Derived</type>
+      <name>operator-</name>
+      <anchorfile>classph_1_1math_1_1_t_vector_n_base.html</anchorfile>
+      <anchor>a353d9e6ad7cc551253b221650f8482bf</anchor>
+      <arglist>(const T rhs, const Derived &amp;lhs)</arglist>
+    </member>
+    <member kind="friend">
+      <type>friend Derived</type>
+      <name>operator*</name>
+      <anchorfile>classph_1_1math_1_1_t_vector_n_base.html</anchorfile>
+      <anchor>a21897b9caecda85922629eb674e4005a</anchor>
+      <arglist>(const T rhs, const Derived &amp;lhs)</arglist>
+    </member>
+    <member kind="friend">
+      <type>friend Derived</type>
+      <name>operator/</name>
+      <anchorfile>classph_1_1math_1_1_t_vector_n_base.html</anchorfile>
+      <anchor>af7b1fcfb2c6e6aa596d5106f88b991f6</anchor>
+      <arglist>(const T rhs, const Derived &amp;lhs)</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -48433,6 +48471,7 @@
     <class kind="class">ph::AImageDome</class>
     <class kind="class">ph::ALight</class>
     <class kind="class">ph::AltPath</class>
+    <class kind="class">ph::AMaskedModel</class>
     <class kind="class">ph::AModel</class>
     <class kind="class">ph::AModelLight</class>
     <class kind="class">ph::AnisoTrowbridgeReitz</class>
@@ -48441,7 +48480,6 @@
     <class kind="class">ph::ApiHelper</class>
     <class kind="class">ph::APointLight</class>
     <class kind="class">ph::APreethamDome</class>
-    <class kind="class">ph::AreaSource</class>
     <class kind="class">ph::ARectangleLight</class>
     <class kind="class">ph::ASphereLight</class>
     <class kind="class">ph::ATransformedInstance</class>
@@ -48514,7 +48552,6 @@
     <class kind="struct">ph::EmbeddedPrimitiveMetaGetter</class>
     <class kind="class">ph::EmitFunction</class>
     <class kind="class">ph::Emitter</class>
-    <class kind="class">ph::EmitterBuildingMaterial</class>
     <class kind="class">ph::EmitterSampler</class>
     <class kind="class">ph::EnergyEmissionSampleInput</class>
     <class kind="class">ph::EnergyEmissionSampleOutput</class>
@@ -48571,10 +48608,9 @@
     <class kind="class">ph::IDataStream</class>
     <class kind="class">ph::IdealAbsorber</class>
     <class kind="class">ph::IdealDielectric</class>
+    <class kind="class">ph::IdealDielectricTransmitter</class>
     <class kind="class">ph::IdealReflector</class>
     <class kind="class">ph::IdealSubstance</class>
-    <class kind="class">ph::IdealTransmitter</class>
-    <class kind="class">ph::IesAttenuatedSource</class>
     <class kind="class">ph::IesData</class>
     <class kind="class">ph::IesFile</class>
     <class kind="class">ph::IInputStream</class>
@@ -48610,14 +48646,14 @@
     <class kind="class">ph::KdtreeAABB</class>
     <class kind="class">ph::KdtreeIntersector</class>
     <class kind="class">ph::KdtreeNode</class>
-    <class kind="class">ph::LambertianDiffuse</class>
+    <class kind="class">ph::LambertianReflector</class>
     <class kind="class">ph::LatLongEnvEmitter</class>
     <class kind="class">ph::LayeredSurface</class>
     <class kind="class">ph::LbLayer</class>
     <class kind="class">ph::LbLayeredSurface</class>
     <class kind="class">ph::LdrRgbTexture2D</class>
     <class kind="class">ph::LerpedSurfaceOptics</class>
-    <class kind="class">ph::LightSource</class>
+    <class kind="class">ph::MaskedIntersectable</class>
     <class kind="class">ph::Material</class>
     <class kind="class">ph::MathImage</class>
     <class kind="class">ph::MatteOpaque</class>
@@ -48627,7 +48663,6 @@
     <class kind="class">ph::MicrosurfaceInfo</class>
     <class kind="class">ph::mipmapgen</class>
     <class kind="class">ph::ModelParser</class>
-    <class kind="class">ph::ModelSource</class>
     <class kind="class">ph::MotionCookConfig</class>
     <class kind="class">ph::MotionSource</class>
     <class kind="class">ph::NaiveReinhardToneMapping</class>
@@ -48662,7 +48697,6 @@
     <class kind="class">ph::PMAtomicStatistics</class>
     <class kind="class">ph::PMCommonParams</class>
     <class kind="class">ph::PMRendererBase</class>
-    <class kind="class">ph::PointSource</class>
     <class kind="class">ph::PreCookReport</class>
     <class kind="class">ph::PreCookResourceCollectionProxy</class>
     <class kind="class">ph::PreethamTexture</class>
@@ -48687,7 +48721,6 @@
     <class kind="class">ph::RayDifferential</class>
     <class kind="class">ph::Receiver</class>
     <class kind="class">ph::ReceiverSamplingWork</class>
-    <class kind="class">ph::RectangleSource</class>
     <class kind="class">ph::RectangularSensorReceiver</class>
     <class kind="struct">ph::ReferencedPrimitiveMetaGetter</class>
     <class kind="class">ph::RegularPicture</class>
@@ -48760,7 +48793,6 @@
     <class kind="class">ph::ShapeInvariantMicrofacet</class>
     <class kind="class">ph::SingleFrameRenderSession</class>
     <class kind="class">ph::SingleLensObserver</class>
-    <class kind="class">ph::SphereSource</class>
     <class kind="class">ph::SphericalMapper</class>
     <class kind="class">ph::SpiralGridScheduler</class>
     <class kind="class">ph::SpiralScheduler</class>
@@ -48806,6 +48838,8 @@
     <class kind="class">ph::TFrame</class>
     <class kind="class">ph::TFrameBuffer2D</class>
     <class kind="class">ph::ThinDielectricFilm</class>
+    <class kind="class">ph::ThinDielectricShell</class>
+    <class kind="class">ph::ThinDielectricSurface</class>
     <class kind="class">ph::ThinFilm</class>
     <class kind="class">ph::ThinLensCamera</class>
     <class kind="class">ph::TileScheduler</class>
@@ -49547,8 +49581,8 @@
       <arglist></arglist>
       <enumvalue file="namespaceph.html" anchor="a2aa26a9c11d0ea8479e4535a280a8f7ea59988751eea31359e0983b22e1531b70">Absorber</enumvalue>
       <enumvalue file="namespaceph.html" anchor="a2aa26a9c11d0ea8479e4535a280a8f7ea1af0f6884fdf4904994be2202a0f2ee6">DielectricReflector</enumvalue>
+      <enumvalue file="namespaceph.html" anchor="a2aa26a9c11d0ea8479e4535a280a8f7ea4f184e98653f3fa5823287cabb74fc9c">DielectricTransmitter</enumvalue>
       <enumvalue file="namespaceph.html" anchor="a2aa26a9c11d0ea8479e4535a280a8f7ea3f21e5ccdd3297eea03afc7025b0eeed">MetallicReflector</enumvalue>
-      <enumvalue file="namespaceph.html" anchor="a2aa26a9c11d0ea8479e4535a280a8f7ea39d6734cb0fef11456b9b52a03ed7a15">Transmitter</enumvalue>
       <enumvalue file="namespaceph.html" anchor="a2aa26a9c11d0ea8479e4535a280a8f7ea9d5ce2208818f6863beffd5f8834ca32">Dielectric</enumvalue>
     </member>
     <member kind="enumeration">
@@ -49927,7 +49961,6 @@
       <enumvalue file="namespaceph.html" anchor="ada33bb2d4bc26b3ec1da2acb348ef4ebad9c6333623e6357515fcbf17be806273">Geometry</enumvalue>
       <enumvalue file="namespaceph.html" anchor="ada33bb2d4bc26b3ec1da2acb348ef4ebad92a8333dd3ccb895cc65f7455b71206">Material</enumvalue>
       <enumvalue file="namespaceph.html" anchor="ada33bb2d4bc26b3ec1da2acb348ef4eba8226588f03da49b857e5ddf8c508dd2d">Motion</enumvalue>
-      <enumvalue file="namespaceph.html" anchor="ada33bb2d4bc26b3ec1da2acb348ef4eba4cbb187bee11b3b06558284cd3e17d8d">LightSource</enumvalue>
       <enumvalue file="namespaceph.html" anchor="ada33bb2d4bc26b3ec1da2acb348ef4eba1cc84619677de81ee6e44149845270a3">Actor</enumvalue>
       <enumvalue file="namespaceph.html" anchor="ada33bb2d4bc26b3ec1da2acb348ef4ebabe53a0541a6d36f6ecb879fa2c584b08">Image</enumvalue>
       <enumvalue file="namespaceph.html" anchor="ada33bb2d4bc26b3ec1da2acb348ef4eba3c61c04825dd7c0cc614b51840b0e433">FrameProcessor</enumvalue>
@@ -49948,7 +49981,6 @@
       <enumvalue file="namespaceph.html" anchor="aee9d551563491bc7930c4ca21e22204ba7b77aed5146529c3116a67b97c3a3ee3">Ref_Geometry</enumvalue>
       <enumvalue file="namespaceph.html" anchor="aee9d551563491bc7930c4ca21e22204ba4bd225eceaf89433e0bc847a60b185da">Ref_Material</enumvalue>
       <enumvalue file="namespaceph.html" anchor="aee9d551563491bc7930c4ca21e22204bae532102d42b963b65896f61673c0709b">Ref_Motion</enumvalue>
-      <enumvalue file="namespaceph.html" anchor="aee9d551563491bc7930c4ca21e22204ba82ffa509a63f0d2c294e6de3ccc31573">Ref_LightSource</enumvalue>
       <enumvalue file="namespaceph.html" anchor="aee9d551563491bc7930c4ca21e22204baefde95994b59471d0a11721ea557c049">Ref_Image</enumvalue>
       <enumvalue file="namespaceph.html" anchor="aee9d551563491bc7930c4ca21e22204bad9bad7a78004290b75b7e614b273807e">Ref_Actor</enumvalue>
       <enumvalue file="namespaceph.html" anchor="aee9d551563491bc7930c4ca21e22204ba5a81d2b7ba0d731c083d2528a88be222">Ref_FrameProcessor</enumvalue>
@@ -50118,6 +50150,20 @@
     </member>
     <member kind="function">
       <type></type>
+      <name>PH_DEFINE_LOG_GROUP</name>
+      <anchorfile>namespaceph.html</anchorfile>
+      <anchor>ab6290819029d59c586c546712e843a62</anchor>
+      <arglist>(ActorCooking, Actor)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>PH_DECLARE_LOG_GROUP</name>
+      <anchorfile>namespaceph.html</anchorfile>
+      <anchor>a38955db82f26cf3dd98432bfe5f2f2aa</anchor>
+      <arglist>(ActorCooking)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
       <name>PH_DEFINE_INTERNAL_LOG_GROUP</name>
       <anchorfile>namespaceph.html</anchorfile>
       <anchor>a22de7fa53c3e037a2cc035ebf920a11a</anchor>
@@ -50234,27 +50280,6 @@
       <anchorfile>namespaceph.html</anchorfile>
       <anchor>aad121cfbb57a4fdbeb7cc74161a59efc</anchor>
       <arglist>(AGeometricLight, Actor)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>PH_DEFINE_INTERNAL_LOG_GROUP</name>
-      <anchorfile>namespaceph.html</anchorfile>
-      <anchor>aee54c3b850419b0ecd478fbf41be2546</anchor>
-      <arglist>(AIesAttenuatedLight, Actor)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>PH_DEFINE_INTERNAL_LOG_GROUP</name>
-      <anchorfile>namespaceph.html</anchorfile>
-      <anchor>a72d6d07a034be5296df43ed89b04b87e</anchor>
-      <arglist>(IESAttenuatedSource, Light)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>PH_DEFINE_INTERNAL_LOG_GROUP</name>
-      <anchorfile>namespaceph.html</anchorfile>
-      <anchor>a280d69cc78031c56bfbe34915e9b5c5c</anchor>
-      <arglist>(ModelSource, Light)</arglist>
     </member>
     <member kind="function">
       <type></type>
@@ -50999,20 +51024,6 @@
       <arglist>(Workflow, Concurrent)</arglist>
     </member>
     <member kind="function">
-      <type>decltype(auto)</type>
-      <name>pointer_access</name>
-      <anchorfile>namespaceph.html</anchorfile>
-      <anchor>adc22002ce22a2c36d495dbc0eae3f103</anchor>
-      <arglist>(T &amp;t)</arglist>
-    </member>
-    <member kind="function">
-      <type>decltype(auto)</type>
-      <name>regular_access</name>
-      <anchorfile>namespaceph.html</anchorfile>
-      <anchor>a088f88ce0c13cb136e0578ba5e45627d</anchor>
-      <arglist>(T &amp;t)</arglist>
-    </member>
-    <member kind="function">
       <type>Target</type>
       <name>bitwise_cast</name>
       <anchorfile>namespaceph.html</anchorfile>
@@ -51117,6 +51128,55 @@
       <anchor>a9c558c75ee7803f435576aa26cd04c81</anchor>
       <arglist>(UpdateLightSamplers, VisualWorld)</arglist>
     </member>
+    <member kind="function">
+      <type>T *</type>
+      <name>ptr_access</name>
+      <anchorfile>namespaceph.html</anchorfile>
+      <anchor>a88bc0d52718506077c4752738e833235</anchor>
+      <arglist>(T *const ptr)</arglist>
+    </member>
+    <member kind="function">
+      <type>T *</type>
+      <name>ptr_access</name>
+      <anchorfile>namespaceph.html</anchorfile>
+      <anchor>a1331f56249b565cedee1ca5996f725a8</anchor>
+      <arglist>(T &amp;ref)</arglist>
+    </member>
+    <member kind="function">
+      <type>T *</type>
+      <name>ptr_access</name>
+      <anchorfile>namespaceph.html</anchorfile>
+      <anchor>a3f8d3b88dfcd683429e5b7746e2b7870</anchor>
+      <arglist>(T &amp;&amp;ref)=delete</arglist>
+    </member>
+    <member kind="function">
+      <type>T &amp;</type>
+      <name>ref_access</name>
+      <anchorfile>namespaceph.html</anchorfile>
+      <anchor>a23d56151345e21e253f6d2894ea08a7f</anchor>
+      <arglist>(T &amp;ref)</arglist>
+    </member>
+    <member kind="function">
+      <type>T &amp;</type>
+      <name>ref_access</name>
+      <anchorfile>namespaceph.html</anchorfile>
+      <anchor>a7bf7e9c4cbddb280ac62f62273ba7190</anchor>
+      <arglist>(T *const ptr)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>ref_access</name>
+      <anchorfile>namespaceph.html</anchorfile>
+      <anchor>a0039ee751942515e2c957dbd4e622066</anchor>
+      <arglist>(std::nullptr_t)=delete</arglist>
+    </member>
+    <member kind="function">
+      <type>T &amp;</type>
+      <name>ref_access</name>
+      <anchorfile>namespaceph.html</anchorfile>
+      <anchor>a6e8f02147c6f4d0334ae89dcfd24801a</anchor>
+      <arglist>(T &amp;&amp;ref)=delete</arglist>
+    </member>
     <member kind="variable">
       <type>constexpr ESurfacePhenomenon</type>
       <name>ALL_SURFACE_PHENOMENA</name>
@@ -51158,6 +51218,55 @@
       <anchorfile>namespaceph.html</anchorfile>
       <anchor>ae9a4a45222070d004082cfbcfc6fd9e9</anchor>
       <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>T *</type>
+      <name>ptr_access</name>
+      <anchorfile>namespaceph.html</anchorfile>
+      <anchor>a88bc0d52718506077c4752738e833235</anchor>
+      <arglist>(T *const ptr)</arglist>
+    </member>
+    <member kind="function">
+      <type>T *</type>
+      <name>ptr_access</name>
+      <anchorfile>namespaceph.html</anchorfile>
+      <anchor>a1331f56249b565cedee1ca5996f725a8</anchor>
+      <arglist>(T &amp;ref)</arglist>
+    </member>
+    <member kind="function">
+      <type>T *</type>
+      <name>ptr_access</name>
+      <anchorfile>namespaceph.html</anchorfile>
+      <anchor>a3f8d3b88dfcd683429e5b7746e2b7870</anchor>
+      <arglist>(T &amp;&amp;ref)=delete</arglist>
+    </member>
+    <member kind="function">
+      <type>T &amp;</type>
+      <name>ref_access</name>
+      <anchorfile>namespaceph.html</anchorfile>
+      <anchor>a23d56151345e21e253f6d2894ea08a7f</anchor>
+      <arglist>(T &amp;ref)</arglist>
+    </member>
+    <member kind="function">
+      <type>T &amp;</type>
+      <name>ref_access</name>
+      <anchorfile>namespaceph.html</anchorfile>
+      <anchor>a7bf7e9c4cbddb280ac62f62273ba7190</anchor>
+      <arglist>(T *const ptr)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>ref_access</name>
+      <anchorfile>namespaceph.html</anchorfile>
+      <anchor>a0039ee751942515e2c957dbd4e622066</anchor>
+      <arglist>(std::nullptr_t)=delete</arglist>
+    </member>
+    <member kind="function">
+      <type>T &amp;</type>
+      <name>ref_access</name>
+      <anchorfile>namespaceph.html</anchorfile>
+      <anchor>a6e8f02147c6f4d0334ae89dcfd24801a</anchor>
+      <arglist>(T &amp;&amp;ref)=delete</arglist>
     </member>
   </compound>
   <compound kind="namespace">
@@ -51708,6 +51817,7 @@
     <class kind="class">ph::math::DynamicLinearTranslation</class>
     <class kind="class">ph::math::IndexedKdtreeParams</class>
     <class kind="class">ph::math::MathException</class>
+    <class kind="struct">ph::math::Murmur3BitMixer32</class>
     <class kind="class">ph::math::Pcg32</class>
     <class kind="class">ph::math::Pcg64DXSM</class>
     <class kind="class">ph::math::Random</class>
@@ -52220,7 +52330,7 @@
       <anchor>a821af6da20aaed56cc09ad440633d067</anchor>
       <arglist></arglist>
       <enumvalue file="namespaceph_1_1math.html" anchor="a821af6da20aaed56cc09ad440633d067a6fcdc090caeade09d0efd6253932b6f5">Unspecified</enumvalue>
-      <enumvalue file="namespaceph_1_1math.html" anchor="a821af6da20aaed56cc09ad440633d067a633d6abff0a3fc22404347728d195059">RAW</enumvalue>
+      <enumvalue file="namespaceph_1_1math.html" anchor="a821af6da20aaed56cc09ad440633d067a65e65c8ab0d8609ce12fc68a03cb8e00">Raw</enumvalue>
       <enumvalue file="namespaceph_1_1math.html" anchor="a821af6da20aaed56cc09ad440633d067a8d4c0b2cef256d21ab680366c8b1c6bf">EMR</enumvalue>
       <enumvalue file="namespaceph_1_1math.html" anchor="a821af6da20aaed56cc09ad440633d067a13eb1af433fe09e8ee2e6b89001c3843">ECF</enumvalue>
     </member>
@@ -52525,15 +52635,15 @@
       <type>uint32</type>
       <name>murmur3_32</name>
       <anchorfile>namespaceph_1_1math.html</anchorfile>
-      <anchor>a45d86025b912ecd026e05d1aa6130d2c</anchor>
+      <anchor>ad40619473691d9138cd353ca4723ab28</anchor>
       <arglist>(const T &amp;data, uint32 seed)</arglist>
     </member>
     <member kind="function">
       <type>uint32</type>
       <name>murmur3_32</name>
       <anchorfile>namespaceph_1_1math.html</anchorfile>
-      <anchor>a7c4434683d9ec2d4fb691f52d4433f85</anchor>
-      <arglist>(const T *data, std::size_t dataSize, uint32 seed)</arglist>
+      <anchor>a87848e4d8b24cfb28547a43eaad25258</anchor>
+      <arglist>(const T *data, std::size_t dataSize, BitMixerType &amp;&amp;bitMixer, uint32 seed)</arglist>
     </member>
     <member kind="function">
       <type>uint32</type>
@@ -52816,6 +52926,13 @@
       <arglist>(const T pickProbability, T &amp;sample)</arglist>
     </member>
     <member kind="function">
+      <type>T</type>
+      <name>bits_to_sample</name>
+      <anchorfile>namespaceph_1_1math.html</anchorfile>
+      <anchor>a014400849d68cde852fc7ca309fee274</anchor>
+      <arglist>(const BitsType &amp;bits)</arglist>
+    </member>
+    <member kind="function">
       <type>void</type>
       <name>shuffle_durstenfeld_index_pairs</name>
       <anchorfile>namespaceph_1_1math.html</anchorfile>
@@ -52863,13 +52980,6 @@
       <anchorfile>namespaceph_1_1math.html</anchorfile>
       <anchor>a56bf3598ef20de4b6333e2987bfc7bda</anchor>
       <arglist>(StaticRigidTransform, Math)</arglist>
-    </member>
-    <member kind="function">
-      <type>TVector3&lt; T &gt;</type>
-      <name>operator*</name>
-      <anchorfile>namespaceph_1_1math.html</anchorfile>
-      <anchor>aa5b5d7a200e1fac56baf6a626fafecdc</anchor>
-      <arglist>(T rhs, const TVector3&lt; T &gt; &amp;lhs)</arglist>
     </member>
     <member kind="function">
       <type>TSpectralSampleValues&lt; T, SampleProps &gt;</type>

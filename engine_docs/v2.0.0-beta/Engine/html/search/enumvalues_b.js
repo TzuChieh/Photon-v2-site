@@ -15,14 +15,13 @@ var searchData=
   ['light_5fenergy_12',['LIGHT_ENERGY',['../namespaceph.html#a11c9affc6f83fcc2a03443c050b0224ba8ff93218b26ccf6cee0593b2531b4eb5',1,'ph']]],
   ['light_5fenergy_5fhalf_5feffort_13',['LIGHT_ENERGY_HALF_EFFORT',['../namespaceph.html#a11c9affc6f83fcc2a03443c050b0224ba0673ac94786c19bbdef2c51acb6d16a6',1,'ph']]],
   ['light_5fenergy_5findexed_14',['LIGHT_ENERGY_INDEXED',['../namespaceph.html#a11c9affc6f83fcc2a03443c050b0224ba7b5bc857edd70b3792c8f96f0f9d0f02',1,'ph']]],
-  ['lightsource_15',['LightSource',['../namespaceph.html#ada33bb2d4bc26b3ec1da2acb348ef4eba4cbb187bee11b3b06558284cd3e17d8d',1,'ph']]],
-  ['linear_5fsrgb_16',['Linear_sRGB',['../namespaceph_1_1math.html#a957eab3ceed525ebce5c24b6b57eb975a09459a025b9bd3e49c14a141f26f1168',1,'ph::math']]],
-  ['lm_5f63_5f1986_17',['LM_63_1986',['../classph_1_1_ies_file.html#a90f6227147b3673129122672f0d586b5af29bf828c44fdb68f115739c25acc383',1,'ph::IesFile']]],
-  ['lm_5f63_5f1991_18',['LM_63_1991',['../classph_1_1_ies_file.html#a90f6227147b3673129122672f0d586b5a7d0a68ead8c17ccbf0e9513488ec2819',1,'ph::IesFile']]],
-  ['lm_5f63_5f1995_19',['LM_63_1995',['../classph_1_1_ies_file.html#a90f6227147b3673129122672f0d586b5ae4ea047d1131fd1471abe632dab881a9',1,'ph::IesFile']]],
-  ['load_20',['Load',['../namespaceph.html#a748a9a96952018f789a076563beb0eeaaf19dbf2edb3a0bd74b0524d960ff21eb',1,'ph']]],
-  ['local_21',['Local',['../namespaceph.html#a586c922092ae1fe5b4123bee53c9a404a509820290d57f333403f490dde7316f4',1,'ph']]],
-  ['low_22',['Low',['../namespaceph.html#a201cf6953978d616dd79db826163626da28d0edd045e05cf5af64e35ae0c4c6ef',1,'ph']]],
-  ['lower_5fleft_23',['LOWER_LEFT',['../classph_1_1_grid_scheduler.html#a62143d34f0260721a1d597abb9afd04ea56052100a4c3a420907d2fc77f1227a8',1,'ph::GridScheduler::LOWER_LEFT'],['../classph_1_1_tile_scheduler.html#abc3dbcfa9f572e40ea3b6ba24adb2f24a56052100a4c3a420907d2fc77f1227a8',1,'ph::TileScheduler::LOWER_LEFT']]],
-  ['lower_5fright_24',['LOWER_RIGHT',['../classph_1_1_grid_scheduler.html#a62143d34f0260721a1d597abb9afd04ea9434fe4878cd007b366fa72d3694f1b4',1,'ph::GridScheduler::LOWER_RIGHT'],['../classph_1_1_tile_scheduler.html#abc3dbcfa9f572e40ea3b6ba24adb2f24a9434fe4878cd007b366fa72d3694f1b4',1,'ph::TileScheduler::LOWER_RIGHT']]]
+  ['linear_5fsrgb_15',['Linear_sRGB',['../namespaceph_1_1math.html#a957eab3ceed525ebce5c24b6b57eb975a09459a025b9bd3e49c14a141f26f1168',1,'ph::math']]],
+  ['lm_5f63_5f1986_16',['LM_63_1986',['../classph_1_1_ies_file.html#a90f6227147b3673129122672f0d586b5af29bf828c44fdb68f115739c25acc383',1,'ph::IesFile']]],
+  ['lm_5f63_5f1991_17',['LM_63_1991',['../classph_1_1_ies_file.html#a90f6227147b3673129122672f0d586b5a7d0a68ead8c17ccbf0e9513488ec2819',1,'ph::IesFile']]],
+  ['lm_5f63_5f1995_18',['LM_63_1995',['../classph_1_1_ies_file.html#a90f6227147b3673129122672f0d586b5ae4ea047d1131fd1471abe632dab881a9',1,'ph::IesFile']]],
+  ['load_19',['Load',['../namespaceph.html#a748a9a96952018f789a076563beb0eeaaf19dbf2edb3a0bd74b0524d960ff21eb',1,'ph']]],
+  ['local_20',['Local',['../namespaceph.html#a586c922092ae1fe5b4123bee53c9a404a509820290d57f333403f490dde7316f4',1,'ph']]],
+  ['low_21',['Low',['../namespaceph.html#a201cf6953978d616dd79db826163626da28d0edd045e05cf5af64e35ae0c4c6ef',1,'ph']]],
+  ['lower_5fleft_22',['LOWER_LEFT',['../classph_1_1_grid_scheduler.html#a62143d34f0260721a1d597abb9afd04ea56052100a4c3a420907d2fc77f1227a8',1,'ph::GridScheduler::LOWER_LEFT'],['../classph_1_1_tile_scheduler.html#abc3dbcfa9f572e40ea3b6ba24adb2f24a56052100a4c3a420907d2fc77f1227a8',1,'ph::TileScheduler::LOWER_LEFT']]],
+  ['lower_5fright_23',['LOWER_RIGHT',['../classph_1_1_grid_scheduler.html#a62143d34f0260721a1d597abb9afd04ea9434fe4878cd007b366fa72d3694f1b4',1,'ph::GridScheduler::LOWER_RIGHT'],['../classph_1_1_tile_scheduler.html#abc3dbcfa9f572e40ea3b6ba24adb2f24a9434fe4878cd007b366fa72d3694f1b4',1,'ph::TileScheduler::LOWER_RIGHT']]]
 ];

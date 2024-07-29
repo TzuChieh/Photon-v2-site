@@ -153,37 +153,30 @@
 \DoxyCodeLine{00149\ \textcolor{keyword}{}\{}
 \DoxyCodeLine{00150\ \ \ \ \ \textcolor{keyword}{static\_assert}(!std::numeric\_limits<T>::is\_integer);}
 \DoxyCodeLine{00151\ }
-\DoxyCodeLine{00152\ \ \ \ \ PH\_ASSERT(out\_xs);}
+\DoxyCodeLine{00152\ \ \ \ \ \textcolor{keyword}{const}\ T\ rcpDet\ =\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(1)\ /\ determinant();}
 \DoxyCodeLine{00153\ }
-\DoxyCodeLine{00154\ \ \ \ \ \textcolor{keyword}{const}\ T\ det\ =\ determinant();}
-\DoxyCodeLine{00155\ \ \ \ \ \textcolor{keywordflow}{if}(std::abs(det)\ <=\ std::numeric\_limits<T>::epsilon())}
+\DoxyCodeLine{00154\ \ \ \ \ PH\_ASSERT(out\_xs);}
+\DoxyCodeLine{00155\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ i\ =\ 0;\ i\ <\ N;\ ++i)}
 \DoxyCodeLine{00156\ \ \ \ \ \{}
-\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
-\DoxyCodeLine{00158\ \ \ \ \ \}}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ (*out\_xs)[i][0]\ =\ (m[1][1]\ *\ bs[i][0]\ -\/\ m[0][1]\ *\ bs[i][1])\ *\ rcpDet;}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ (*out\_xs)[i][1]\ =\ (m[0][0]\ *\ bs[i][1]\ -\/\ m[1][0]\ *\ bs[i][0])\ *\ rcpDet;}
 \DoxyCodeLine{00159\ }
-\DoxyCodeLine{00160\ \ \ \ \ \textcolor{keyword}{const}\ T\ rcpDeterminant\ =\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(1)\ /\ det;}
-\DoxyCodeLine{00161\ }
-\DoxyCodeLine{00162\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ i\ =\ 0;\ i\ <\ N;\ ++i)}
-\DoxyCodeLine{00163\ \ \ \ \ \{}
-\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ (*out\_xs)[i][0]\ =\ (m[1][1]\ *\ bs[i][0]\ -\/\ m[0][1]\ *\ bs[i][1])\ *\ rcpDeterminant;}
-\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ (*out\_xs)[i][1]\ =\ (m[0][0]\ *\ bs[i][1]\ -\/\ m[1][0]\ *\ bs[i][0])\ *\ rcpDeterminant;}
-\DoxyCodeLine{00166\ }
-\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!std::isfinite((*out\_xs)[i][0])\ ||\ !std::isfinite((*out\_xs)[i][1]))}
-\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
-\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00171\ \ \ \ \ \}}
-\DoxyCodeLine{00172\ }
-\DoxyCodeLine{00173\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!std::isfinite((*out\_xs)[i][0])\ ||\ !std::isfinite((*out\_xs)[i][1]))}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00164\ \ \ \ \ \}}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00166\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00167\ \}}
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00169\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00170\ \textcolor{keyword}{inline}\ std::string\ \mbox{\hyperlink{classph_1_1math_1_1_t_matrix2_a648d805f57865f3faca4c09198e189c4}{TMatrix2<T>::toString}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00171\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00172\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}["{}}\ +\ std::to\_string(m[0][0])\ +\ \textcolor{stringliteral}{"{},\ "{}}\ +\ std::to\_string(m[0][1])\ +\ \textcolor{stringliteral}{"{}]"{}}\ +\ }
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}["{}}\ +\ std::to\_string(m[1][0])\ +\ \textcolor{stringliteral}{"{},\ "{}}\ +\ std::to\_string(m[1][1])\ +\ \textcolor{stringliteral}{"{}]"{}};}
 \DoxyCodeLine{00174\ \}}
 \DoxyCodeLine{00175\ }
-\DoxyCodeLine{00176\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00177\ \textcolor{keyword}{inline}\ std::string\ \mbox{\hyperlink{classph_1_1math_1_1_t_matrix2_a648d805f57865f3faca4c09198e189c4}{TMatrix2<T>::toString}}()\textcolor{keyword}{\ const}}
-\DoxyCodeLine{00178\ \textcolor{keyword}{}\{}
-\DoxyCodeLine{00179\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}["{}}\ +\ std::to\_string(m[0][0])\ +\ \textcolor{stringliteral}{"{},\ "{}}\ +\ std::to\_string(m[0][1])\ +\ \textcolor{stringliteral}{"{}]"{}}\ +\ }
-\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}["{}}\ +\ std::to\_string(m[1][0])\ +\ \textcolor{stringliteral}{"{},\ "{}}\ +\ std::to\_string(m[1][1])\ +\ \textcolor{stringliteral}{"{}]"{}};}
-\DoxyCodeLine{00181\ \}}
-\DoxyCodeLine{00182\ }
-\DoxyCodeLine{00183\ \}\textcolor{comment}{//\ end\ namespace\ ph::math}}
+\DoxyCodeLine{00176\ \}\textcolor{comment}{//\ end\ namespace\ ph::math}}
 
 \end{DoxyCode}
