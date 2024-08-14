@@ -1,0 +1,59 @@
+\doxysection{TLinear\+Depth\+First\+Binary\+Bvh.\+h}
+\hypertarget{_t_linear_depth_first_binary_bvh_8h_source}{}\label{_t_linear_depth_first_binary_bvh_8h_source}\index{Source/Math/Algorithm/BVH/TLinearDepthFirstBinaryBvh.h@{Source/Math/Algorithm/BVH/TLinearDepthFirstBinaryBvh.h}}
+\mbox{\hyperlink{_t_linear_depth_first_binary_bvh_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_binary_bvh_node_8h}{Math/Algorithm/BVH/TBinaryBvhNode.h}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_line_segment_8h}{Math/Geometry/TLineSegment.h}}"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <Common/primitive\_type.h>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <Common/utility.h>}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <cstddef>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph_1_1math}{ph::math}}}
+\DoxyCodeLine{00014\ \{}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Item>}
+\DoxyCodeLine{00017\ \textcolor{keyword}{class\ }TBvhInfoNode;}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Item,\ \textcolor{keyword}{typename}\ Index>}
+\DoxyCodeLine{00020\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1math_1_1_t_linear_depth_first_binary_bvh}{TLinearDepthFirstBinaryBvh}}\ final}
+\DoxyCodeLine{00021\ \{}
+\DoxyCodeLine{00022\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classph_1_1math_1_1_t_binary_bvh_node}{NodeType}}\ =\ \mbox{\hyperlink{classph_1_1math_1_1_t_binary_bvh_node}{TBinaryBvhNode<Item,\ Index>}};}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{static}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1math_1_1_t_linear_depth_first_binary_bvh_a086282f34f09cc1fd13d65ede4677abf}{TRAVERSAL\_STACK\_SIZE}}\ =\ std::min<std::size\_t>(}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ sizeof\_in\_bits<Index>()\ *\ 3\ /\ 2,\ 48);}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1math_1_1_t_linear_depth_first_binary_bvh_adf8fa257900f30f3f3c82a99941178de}{build}}(}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node}{TBvhInfoNode<2,\ Item>}}*\ \textcolor{keyword}{const}\ rootNode,}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ std::size\_t\ totalInfoNodes,}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ std::size\_t\ totalItems);}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ TesterFunc,\ \textcolor{keywordtype}{bool}\ IS\_ROBUST\ =\ true>}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1math_1_1_t_linear_depth_first_binary_bvh_ab897c6f7acd7e0ee1bc111128786b51f}{nearestTraversal}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_line_segment}{TLineSegment<real>}}\&\ segment,\ TesterFunc\&\&\ intersectionTester)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1math_1_1_t_linear_depth_first_binary_bvh_a265e5ef06192980ae83ab46dc22b3685}{isEmpty}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_binary_bvh_node}{NodeType}}\&\ \mbox{\hyperlink{classph_1_1math_1_1_t_linear_depth_first_binary_bvh_aaff196e96c206d2f1fda82a4714581f8}{getRoot}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00040\ \ \ \ \ std::size\_t\ \mbox{\hyperlink{classph_1_1math_1_1_t_linear_depth_first_binary_bvh_adfb32afa97fac35ef21c859e1b2f9166}{numNodes}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00041\ \ \ \ \ std::size\_t\ \mbox{\hyperlink{classph_1_1math_1_1_t_linear_depth_first_binary_bvh_a14fcdfaa03885a7c71d8bede3f3e87f1}{numItems}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordtype}{void}\ buildNodesRecursive(}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node}{TBvhInfoNode<2,\ Item>}}*\ infoNode);}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ std::unique\_ptr<NodeType[]>\ m\_nodes;}
+\DoxyCodeLine{00048\ \ \ \ \ std::unique\_ptr<Item[]>\ m\_items;}
+\DoxyCodeLine{00049\ \ \ \ \ Index\ m\_numNodes\ =\ 0;}
+\DoxyCodeLine{00050\ \ \ \ \ Index\ m\_numItems\ =\ 0;}
+\DoxyCodeLine{00051\ \};}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \}\textcolor{comment}{//\ end\ namespace\ ph::math}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_linear_depth_first_binary_bvh_8ipp}{Math/Algorithm/BVH/TLinearDepthFirstBinaryBvh.ipp}}"{}}}
+
+\end{DoxyCode}

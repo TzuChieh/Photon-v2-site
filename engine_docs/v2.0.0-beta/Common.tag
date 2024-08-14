@@ -29,7 +29,7 @@
     <path>Include/Common/</path>
     <filename>assertion_8h.html</filename>
     <includes id="config_8h" name="config.h" local="yes" import="no" module="no" objc="no">Common/config.h</includes>
-    <includes id="utility_8h" name="utility.h" local="yes" import="no" module="no" objc="no">Common/utility.h</includes>
+    <includes id="macro_8h" name="macro.h" local="yes" import="no" module="no" objc="no">Common/macro.h</includes>
     <namespace>ph</namespace>
     <namespace>ph::detail</namespace>
     <member kind="define">
@@ -491,7 +491,7 @@
     <includes id="logger__fwd_8h" name="logger_fwd.h" local="yes" import="no" module="no" objc="no">Common/Log/logger_fwd.h</includes>
     <includes id="_e_log_level_8h" name="ELogLevel.h" local="yes" import="no" module="no" objc="no">Common/Log/ELogLevel.h</includes>
     <includes id="config_8h" name="config.h" local="yes" import="no" module="no" objc="no">Common/config.h</includes>
-    <includes id="utility_8h" name="utility.h" local="yes" import="no" module="no" objc="no">Common/utility.h</includes>
+    <includes id="macro_8h" name="macro.h" local="yes" import="no" module="no" objc="no">Common/macro.h</includes>
     <class kind="struct">ph::LogGroup</class>
     <class kind="class">ph::LogGroups</class>
     <namespace>ph</namespace>
@@ -671,6 +671,67 @@
       <anchorfile>logging_8h.html</anchorfile>
       <anchor>a822d71b834d3f3a387225ca9de6a985c</anchor>
       <arglist>(level, formatString,...)</arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>macro.h</name>
+    <path>Include/Common/</path>
+    <filename>macro_8h.html</filename>
+    <member kind="define">
+      <type>#define</type>
+      <name>PH_CONCAT_2</name>
+      <anchorfile>macro_8h.html</anchorfile>
+      <anchor>ad91bac2ae774a87c0d9ea35f29fa9242</anchor>
+      <arglist>(a, b)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>PH_CONCAT_3</name>
+      <anchorfile>macro_8h.html</anchorfile>
+      <anchor>acd1d5fd7cd71234a78fff9f4bb1df453</anchor>
+      <arglist>(a, b, c)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>PH_CONCAT_4</name>
+      <anchorfile>macro_8h.html</anchorfile>
+      <anchor>afeeed7a6be5acdcb00d3f6f6d2fe9d6a</anchor>
+      <arglist>(a, b, c, d)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>PH_CONCAT_5</name>
+      <anchorfile>macro_8h.html</anchorfile>
+      <anchor>a9bee0a3c5d8740da6ba3ee8cd132bd92</anchor>
+      <arglist>(a, b, c, d, e)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>PH_CONCAT_6</name>
+      <anchorfile>macro_8h.html</anchorfile>
+      <anchor>acdd79b307e0e84985c82dcfadb5ae4b5</anchor>
+      <arglist>(a, b, c, d, e, f)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>PH_CONCAT_7</name>
+      <anchorfile>macro_8h.html</anchorfile>
+      <anchor>a0283f7de8e686f7a8dcf4890da7b932e</anchor>
+      <arglist>(a, b, c, d, e, f, g)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>PH_CONCAT_8</name>
+      <anchorfile>macro_8h.html</anchorfile>
+      <anchor>a06ea3b7082381378b14f8343853c1f8f</anchor>
+      <arglist>(a, b, c, d, e, f, g, h)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>PH_NO_OP</name>
+      <anchorfile>macro_8h.html</anchorfile>
+      <anchor>a58d6d0664e5c76c51ebd57905e76eca7</anchor>
+      <arglist>()</arglist>
     </member>
   </compound>
   <compound kind="file">
@@ -992,7 +1053,7 @@
     <path>Include/Common/</path>
     <filename>profiling_8h.html</filename>
     <includes id="config_8h" name="config.h" local="yes" import="no" module="no" objc="no">Common/config.h</includes>
-    <includes id="utility_8h" name="utility.h" local="yes" import="no" module="no" objc="no">Common/utility.h</includes>
+    <includes id="macro_8h" name="macro.h" local="yes" import="no" module="no" objc="no">Common/macro.h</includes>
     <includes id="lib__tracy_8h" name="lib_tracy.h" local="yes" import="no" module="no" objc="no">Common/ThirdParty/lib_tracy.h</includes>
     <member kind="define">
       <type>#define</type>
@@ -1095,57 +1156,9 @@
     <path>Include/Common/</path>
     <filename>utility_8h.html</filename>
     <includes id="config_8h" name="config.h" local="yes" import="no" module="no" objc="no">Common/config.h</includes>
+    <includes id="utility_8ipp" name="utility.ipp" local="yes" import="no" module="no" objc="no">Common/utility.ipp</includes>
     <namespace>ph</namespace>
     <namespace>ph::detail</namespace>
-    <member kind="define">
-      <type>#define</type>
-      <name>PH_CONCAT_2</name>
-      <anchorfile>utility_8h.html</anchorfile>
-      <anchor>ad91bac2ae774a87c0d9ea35f29fa9242</anchor>
-      <arglist>(a, b)</arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>PH_CONCAT_3</name>
-      <anchorfile>utility_8h.html</anchorfile>
-      <anchor>acd1d5fd7cd71234a78fff9f4bb1df453</anchor>
-      <arglist>(a, b, c)</arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>PH_CONCAT_4</name>
-      <anchorfile>utility_8h.html</anchorfile>
-      <anchor>afeeed7a6be5acdcb00d3f6f6d2fe9d6a</anchor>
-      <arglist>(a, b, c, d)</arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>PH_CONCAT_5</name>
-      <anchorfile>utility_8h.html</anchorfile>
-      <anchor>a9bee0a3c5d8740da6ba3ee8cd132bd92</anchor>
-      <arglist>(a, b, c, d, e)</arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>PH_CONCAT_6</name>
-      <anchorfile>utility_8h.html</anchorfile>
-      <anchor>acdd79b307e0e84985c82dcfadb5ae4b5</anchor>
-      <arglist>(a, b, c, d, e, f)</arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>PH_CONCAT_7</name>
-      <anchorfile>utility_8h.html</anchorfile>
-      <anchor>a0283f7de8e686f7a8dcf4890da7b932e</anchor>
-      <arglist>(a, b, c, d, e, f, g)</arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>PH_CONCAT_8</name>
-      <anchorfile>utility_8h.html</anchorfile>
-      <anchor>a06ea3b7082381378b14f8343853c1f8f</anchor>
-      <arglist>(a, b, c, d, e, f, g, h)</arglist>
-    </member>
     <member kind="define">
       <type>#define</type>
       <name>PH_NOT_IMPLEMENTED_WARNING</name>
@@ -1153,13 +1166,16 @@
       <anchor>a9606a731ad538fc32118bbef00693bfb</anchor>
       <arglist>()</arglist>
     </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>PH_NO_OP</name>
-      <anchorfile>utility_8h.html</anchorfile>
-      <anchor>a58d6d0664e5c76c51ebd57905e76eca7</anchor>
-      <arglist>()</arglist>
-    </member>
+  </compound>
+  <compound kind="file">
+    <name>utility.ipp</name>
+    <path>Include/Common/</path>
+    <filename>utility_8ipp.html</filename>
+    <includes id="utility_8h" name="utility.h" local="yes" import="no" module="no" objc="no">Common/utility.h</includes>
+    <includes id="assertion_8h" name="assertion.h" local="yes" import="no" module="no" objc="no">Common/assertion.h</includes>
+    <includes id="exceptions_8h" name="exceptions.h" local="yes" import="no" module="no" objc="no">Common/exceptions.h</includes>
+    <namespace>ph</namespace>
+    <namespace>ph::detail</namespace>
   </compound>
   <compound kind="file">
     <name>CommandLineArguments.h</name>
@@ -2606,6 +2622,48 @@
       <arglist>(const long double cookedValue)</arglist>
     </member>
     <member kind="function">
+      <type>consteval std::size_t</type>
+      <name>sizeof_in_bits</name>
+      <anchorfile>namespaceph.html</anchorfile>
+      <anchor>af8b01b99e42b7dd15dca28359ac1bf9e</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr std::array&lt; T, N &gt;</type>
+      <name>make_array</name>
+      <anchorfile>namespaceph.html</anchorfile>
+      <anchor>a96d1a9ca77754d997377840c0b423dc4</anchor>
+      <arglist>(const T &amp;element)</arglist>
+    </member>
+    <member kind="function">
+      <type>DstType</type>
+      <name>lossless_integer_cast</name>
+      <anchorfile>namespaceph.html</anchorfile>
+      <anchor>a4806dbf054a612410313840c89e8a217</anchor>
+      <arglist>(const SrcType &amp;src)</arglist>
+    </member>
+    <member kind="function">
+      <type>DstType</type>
+      <name>lossless_float_cast</name>
+      <anchorfile>namespaceph.html</anchorfile>
+      <anchor>ab0fc55d35bf6e0cbb749f1fb84bbfc34</anchor>
+      <arglist>(const SrcType &amp;src)</arglist>
+    </member>
+    <member kind="function">
+      <type>DstType</type>
+      <name>lossless_cast</name>
+      <anchorfile>namespaceph.html</anchorfile>
+      <anchor>aad954dce308503eb1494c51dad51253d</anchor>
+      <arglist>(const SrcType &amp;src)</arglist>
+    </member>
+    <member kind="function">
+      <type>DstType</type>
+      <name>lossless_cast</name>
+      <anchorfile>namespaceph.html</anchorfile>
+      <anchor>a4ef1c172ecd9fbe71b9034ac1d1ab027</anchor>
+      <arglist>(const SrcType &amp;src, DstType *const out_dst)</arglist>
+    </member>
+    <member kind="function">
       <type></type>
       <name>PH_DEFINE_LOG_GROUP</name>
       <anchorfile>namespaceph.html</anchorfile>
@@ -2781,6 +2839,13 @@
       <anchorfile>namespaceph_1_1detail.html</anchorfile>
       <anchor>a469aa47e4b2da92f0b9bd9be352af784</anchor>
       <arglist>(const std::string &amp;filename, const std::string &amp;lineNumber)</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr std::array&lt; T, sizeof...(Is)&gt;</type>
+      <name>make_array</name>
+      <anchorfile>namespaceph_1_1detail.html</anchorfile>
+      <anchor>aeac0188071f26c9ff4471db8f6a4225f</anchor>
+      <arglist>(T element, std::index_sequence&lt; Is... &gt;)</arglist>
     </member>
     <member kind="variable">
       <type>constexpr bool</type>

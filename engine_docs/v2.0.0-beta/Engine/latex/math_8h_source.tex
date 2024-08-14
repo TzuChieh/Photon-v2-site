@@ -15,638 +15,656 @@
 \DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ <Common/primitive\_type.h>}}
 \DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ <Common/compiler.h>}}
 \DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ <Common/math\_basics.h>}}
-\DoxyCodeLine{00023\ }
-\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ <cmath>}}
-\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ <algorithm>}}
-\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ <numeric>}}
-\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ <type\_traits>}}
-\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#include\ <utility>}}
-\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#include\ <limits>}}
-\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#include\ <array>}}
-\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#include\ <vector>}}
-\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#include\ <cstdint>}}
-\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#include\ <climits>}}
-\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#include\ <bit>}}
-\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#include\ <concepts>}}
-\DoxyCodeLine{00036\ }
-\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#if\ PH\_COMPILER\_IS\_MSVC}}
-\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#include\ <intrin.h>}}
-\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#pragma\ intrinsic(\_BitScanReverse)}}
-\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#pragma\ intrinsic(\_umul128)}}
-\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#endif}}
-\DoxyCodeLine{00042\ }
-\DoxyCodeLine{00043\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph_1_1math}{ph::math}}}
-\DoxyCodeLine{00044\ \{}
-\DoxyCodeLine{00045\ }
-\DoxyCodeLine{00046\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00047\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespaceph_1_1math_af09fabd051200745fc83ab8e6119be17}{matrix2x2}}(\textcolor{keyword}{const}\ T\ e00,\ \textcolor{keyword}{const}\ T\ e01,\ \textcolor{keyword}{const}\ T\ e10,\ \textcolor{keyword}{const}\ T\ e11)}
-\DoxyCodeLine{00048\ \ \ \ \ -\/>\ std::array<std::array<T,\ 2>,\ 2>}
-\DoxyCodeLine{00049\ \{}
-\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordflow}{return}}
-\DoxyCodeLine{00051\ \ \ \ \ \{\{}
-\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \{\{e00,\ e01\}\},}
-\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \{\{e10,\ e11\}\}}
-\DoxyCodeLine{00054\ \ \ \ \ \}\};}
-\DoxyCodeLine{00055\ \}}
-\DoxyCodeLine{00056\ }
-\DoxyCodeLine{00057\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00058\ \textcolor{keyword}{inline}\ T\ \mbox{\hyperlink{namespaceph_1_1math_a3d95f12613138cf607ca4b4b0c04ea48}{squared}}(\textcolor{keyword}{const}\ T\ value)}
-\DoxyCodeLine{00059\ \{}
-\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordflow}{return}\ value\ *\ value;}
-\DoxyCodeLine{00061\ \}}
-\DoxyCodeLine{00062\ }
-\DoxyCodeLine{00063\ \textcolor{comment}{//\ A\ fast,\ without\ sqrt(),\ nearly\ branchless\ method.\ Notice\ that\ Photon\ uses\ y-\/axis\ as\ the\ up/normal\ vector.\ }}
-\DoxyCodeLine{00064\ \textcolor{comment}{//\ This\ static\ method\ implements\ the\ y-\/is-\/normal\ version\ which\ is\ different\ from\ the\ original\ paper.}}
-\DoxyCodeLine{00065\ \textcolor{comment}{//\ (Reference:\ Frisvad,\ Jeppe\ Revall,\ "{}Building\ an\ Orthonormal\ Basis\ from\ a\ 3D\ Unit\ Vector\ Without\ Normalization"{},\ }}
-\DoxyCodeLine{00066\ \textcolor{comment}{//\ Journal\ of\ Graphics\ Tools,\ 2012)}}
-\DoxyCodeLine{00067\ \textcolor{comment}{//\ Note:\ This\ method\ seems\ to\ have\ larger\ numerical\ error\ (at\ least\ 10\string^3\ larger\ than\ my\ naive\ method),\ }}
-\DoxyCodeLine{00068\ \textcolor{comment}{//\ thus\ it\ is\ not\ used\ currently.}}
-\DoxyCodeLine{00069\ \textcolor{comment}{//}}
-\DoxyCodeLine{00070\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespaceph_1_1math_a14234263f1191fde0644069273c63a87}{form\_orthonormal\_basis\_frisvad}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{Vector3R}}\&\ unitYaxis,\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{Vector3R}}*\ \textcolor{keyword}{const}\ out\_unitXaxis,\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{Vector3R}}*\ \textcolor{keyword}{const}\ out\_unitZaxis);}
-\DoxyCodeLine{00071\ }
-\DoxyCodeLine{00075\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00076\ \textcolor{keyword}{inline}\ T\ \mbox{\hyperlink{namespaceph_1_1math_af8f390358e5ac8042dde889f48d9aaa4}{clamp}}(\textcolor{keyword}{const}\ T\ value,\ \textcolor{keyword}{const}\ T\ lowerBound,\ \textcolor{keyword}{const}\ T\ upperBound)}
-\DoxyCodeLine{00077\ \{}
-\DoxyCodeLine{00078\ \ \ \ \ \textcolor{comment}{//\ VS\ does\ not\ like\ integers\ in\ \`{}std::isnan()`,}}
-\DoxyCodeLine{00079\ \ \ \ \ \textcolor{comment}{//\ see:\ https://stackoverflow.com/questions/61646166/how-\/to-\/resolve-\/fpclassify-\/ambiguous-\/call-\/to-\/overloaded-\/function}}
-\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(std::is\_floating\_point\_v<T>)}
-\DoxyCodeLine{00081\ \ \ \ \ \{}
-\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ PH\_ASSERT(!std::isnan(value));}
-\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ PH\_ASSERT(!std::isnan(lowerBound));}
-\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ PH\_ASSERT(!std::isnan(upperBound));}
-\DoxyCodeLine{00085\ \ \ \ \ \}}
-\DoxyCodeLine{00086\ \ \ \ \ }
-\DoxyCodeLine{00087\ \ \ \ \ PH\_ASSERT\_LE(lowerBound,\ upperBound);}
-\DoxyCodeLine{00088\ }
-\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keywordflow}{return}\ std::clamp(value,\ lowerBound,\ upperBound);}
-\DoxyCodeLine{00090\ \}}
-\DoxyCodeLine{00091\ }
-\DoxyCodeLine{00096\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00097\ \textcolor{keyword}{inline}\ T\ \mbox{\hyperlink{namespaceph_1_1math_a0090b0ad2b7785d02c6761c1766066cc}{safe\_clamp}}(\textcolor{keyword}{const}\ T\ value,\ \textcolor{keyword}{const}\ T\ lowerBound,\ \textcolor{keyword}{const}\ T\ upperBound)}
-\DoxyCodeLine{00098\ \{}
-\DoxyCodeLine{00099\ \ \ \ \ \textcolor{comment}{//\ VS\ does\ not\ like\ integers\ in\ \`{}std::isnan()`,}}
-\DoxyCodeLine{00100\ \ \ \ \ \textcolor{comment}{//\ see:\ https://stackoverflow.com/questions/61646166/how-\/to-\/resolve-\/fpclassify-\/ambiguous-\/call-\/to-\/overloaded-\/function}}
-\DoxyCodeLine{00101\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(std::is\_floating\_point\_v<T>)}
-\DoxyCodeLine{00102\ \ \ \ \ \{}
-\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ PH\_ASSERT(!std::isnan(lowerBound));}
-\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ PH\_ASSERT(!std::isnan(upperBound));}
-\DoxyCodeLine{00105\ \ \ \ \ \}}
-\DoxyCodeLine{00106\ }
-\DoxyCodeLine{00107\ \ \ \ \ PH\_ASSERT\_LE(lowerBound,\ upperBound);}
-\DoxyCodeLine{00108\ }
-\DoxyCodeLine{00109\ \ \ \ \ \textcolor{keywordflow}{return}\ std::isfinite(value)\ ?\ std::clamp(value,\ lowerBound,\ upperBound)\ :\ lowerBound;}
-\DoxyCodeLine{00110\ \}}
-\DoxyCodeLine{00111\ }
-\DoxyCodeLine{00114\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00115\ \textcolor{keyword}{inline}\ T\ \mbox{\hyperlink{namespaceph_1_1math_a3b5aeb6bb0f2f3339e033d34fa70a894}{to\_degrees}}(\textcolor{keyword}{const}\ T\ radians)}
-\DoxyCodeLine{00116\ \{}
-\DoxyCodeLine{00117\ \ \ \ \ \textcolor{keywordflow}{return}\ radians\ *\ (\mbox{\hyperlink{namespaceph_1_1math_1_1constant_a1bb40d89d819a550a57dbdb5bf950ae2}{constant::rcp\_pi<T>}}\ *\ T(180));}
-\DoxyCodeLine{00118\ \}}
-\DoxyCodeLine{00119\ }
-\DoxyCodeLine{00122\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00123\ \textcolor{keyword}{inline}\ T\ \mbox{\hyperlink{namespaceph_1_1math_a8d924d614efcdd92fcce816a3f8eebf3}{to\_radians}}(\textcolor{keyword}{const}\ T\ degrees)}
-\DoxyCodeLine{00124\ \{}
-\DoxyCodeLine{00125\ \ \ \ \ \textcolor{keywordflow}{return}\ degrees\ *\ (\mbox{\hyperlink{namespaceph_1_1math_1_1constant_aeb217ecd643bb14c638c3d0457a031e0}{constant::pi<T>}}\ /\ T(180));}
-\DoxyCodeLine{00126\ \}}
-\DoxyCodeLine{00127\ }
-\DoxyCodeLine{00136\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00137\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{namespaceph_1_1math_a7377d0dddd537e4e7a04f98bd8e1114e}{sign}}(\textcolor{keyword}{const}\ T\ value)}
-\DoxyCodeLine{00138\ \{}
-\DoxyCodeLine{00139\ \ \ \ \ \textcolor{keywordflow}{return}\ (\textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(0)\ <\ value)\ -\/\ (\textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(0)\ >\ value);}
-\DoxyCodeLine{00140\ \}}
-\DoxyCodeLine{00141\ }
-\DoxyCodeLine{00149\ \textcolor{comment}{//\ TODO:\ templatize}}
-\DoxyCodeLine{00150\ \textcolor{keyword}{inline}\ uint32\ \mbox{\hyperlink{namespaceph_1_1math_a2dd1eb154bffce7df042dbdd88aa161b}{next\_power\_of\_2}}(uint32\ value)}
-\DoxyCodeLine{00151\ \{}
-\DoxyCodeLine{00152\ \ \ \ \ PH\_ASSERT(value\ <=\ (1UL\ <<\ 31));}
-\DoxyCodeLine{00153\ }
-\DoxyCodeLine{00154\ \ \ \ \ -\/-\/value;}
-\DoxyCodeLine{00155\ }
-\DoxyCodeLine{00156\ \ \ \ \ value\ |=\ value\ >>\ 1;}
-\DoxyCodeLine{00157\ \ \ \ \ value\ |=\ value\ >>\ 2;}
-\DoxyCodeLine{00158\ \ \ \ \ value\ |=\ value\ >>\ 4;}
-\DoxyCodeLine{00159\ \ \ \ \ value\ |=\ value\ >>\ 8;}
-\DoxyCodeLine{00160\ \ \ \ \ value\ |=\ value\ >>\ 16;}
-\DoxyCodeLine{00161\ }
-\DoxyCodeLine{00162\ \ \ \ \ \textcolor{keywordflow}{return}\ value\ +\ 1;}
-\DoxyCodeLine{00163\ \}}
-\DoxyCodeLine{00164\ }
-\DoxyCodeLine{00169\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00170\ \textcolor{keyword}{inline}\ T\ \mbox{\hyperlink{namespaceph_1_1math_aef693a3af48988419e383d739b935a4b}{log2\_floor}}(\textcolor{keyword}{const}\ T\ value)}
-\DoxyCodeLine{00171\ \{}
-\DoxyCodeLine{00172\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(std::is\_floating\_point\_v<T>)}
-\DoxyCodeLine{00173\ \ \ \ \ \{}
-\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ PH\_ASSERT\_GT(value,\ T(0));}
-\DoxyCodeLine{00175\ }
-\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(std::floor(std::log2(value)));}
-\DoxyCodeLine{00177\ \ \ \ \ \}}
-\DoxyCodeLine{00178\ \ \ \ \ \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00179\ \ \ \ \ \{}
-\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \textcolor{keyword}{constexpr}\ T\ NUM\_BITS\ =\ \textcolor{keyword}{sizeof}(T)\ *\ CHAR\_BIT;}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ <Common/utility.h>}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ <cmath>}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ <numeric>}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#include\ <type\_traits>}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#include\ <limits>}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#include\ <array>}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#include\ <cstdint>}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#include\ <climits>}}
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#include\ <bit>}}
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#include\ <concepts>}}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#if\ PH\_COMPILER\_IS\_MSVC}}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#include\ <intrin.h>}}
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#pragma\ intrinsic(\_BitScanReverse)}}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#pragma\ intrinsic(\_umul128)}}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph_1_1math}{ph::math}}}
+\DoxyCodeLine{00045\ \{}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00048\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespaceph_1_1math_af09fabd051200745fc83ab8e6119be17}{matrix2x2}}(\textcolor{keyword}{const}\ T\ e00,\ \textcolor{keyword}{const}\ T\ e01,\ \textcolor{keyword}{const}\ T\ e10,\ \textcolor{keyword}{const}\ T\ e11)}
+\DoxyCodeLine{00049\ \ \ \ \ -\/>\ std::array<std::array<T,\ 2>,\ 2>}
+\DoxyCodeLine{00050\ \{}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordflow}{return}}
+\DoxyCodeLine{00052\ \ \ \ \ \{\{}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \{\{e00,\ e01\}\},}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \{\{e10,\ e11\}\}}
+\DoxyCodeLine{00055\ \ \ \ \ \}\};}
+\DoxyCodeLine{00056\ \}}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00059\ \textcolor{keyword}{inline}\ T\ \mbox{\hyperlink{namespaceph_1_1math_a3d95f12613138cf607ca4b4b0c04ea48}{squared}}(\textcolor{keyword}{const}\ T\ value)}
+\DoxyCodeLine{00060\ \{}
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordflow}{return}\ value\ *\ value;}
+\DoxyCodeLine{00062\ \}}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \textcolor{comment}{//\ A\ fast,\ without\ sqrt(),\ nearly\ branchless\ method.\ Notice\ that\ Photon\ uses\ y-\/axis\ as\ the\ up/normal\ vector.\ }}
+\DoxyCodeLine{00065\ \textcolor{comment}{//\ This\ static\ method\ implements\ the\ y-\/is-\/normal\ version\ which\ is\ different\ from\ the\ original\ paper.}}
+\DoxyCodeLine{00066\ \textcolor{comment}{//\ (Reference:\ Frisvad,\ Jeppe\ Revall,\ "{}Building\ an\ Orthonormal\ Basis\ from\ a\ 3D\ Unit\ Vector\ Without\ Normalization"{},\ }}
+\DoxyCodeLine{00067\ \textcolor{comment}{//\ Journal\ of\ Graphics\ Tools,\ 2012)}}
+\DoxyCodeLine{00068\ \textcolor{comment}{//\ Note:\ This\ method\ seems\ to\ have\ larger\ numerical\ error\ (at\ least\ 10\string^3\ larger\ than\ my\ naive\ method),\ }}
+\DoxyCodeLine{00069\ \textcolor{comment}{//\ thus\ it\ is\ not\ used\ currently.}}
+\DoxyCodeLine{00070\ \textcolor{comment}{//}}
+\DoxyCodeLine{00071\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespaceph_1_1math_a14234263f1191fde0644069273c63a87}{form\_orthonormal\_basis\_frisvad}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{Vector3R}}\&\ unitYaxis,\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{Vector3R}}*\ \textcolor{keyword}{const}\ out\_unitXaxis,\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{Vector3R}}*\ \textcolor{keyword}{const}\ out\_unitZaxis);}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00076\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00077\ \textcolor{keyword}{inline}\ T\ \mbox{\hyperlink{namespaceph_1_1math_af8f390358e5ac8042dde889f48d9aaa4}{clamp}}(\textcolor{keyword}{const}\ T\ value,\ \textcolor{keyword}{const}\ T\ lowerBound,\ \textcolor{keyword}{const}\ T\ upperBound)}
+\DoxyCodeLine{00078\ \{}
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{comment}{//\ VS\ does\ not\ like\ integers\ in\ \`{}std::isnan()`,}}
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{comment}{//\ see:\ https://stackoverflow.com/questions/61646166/how-\/to-\/resolve-\/fpclassify-\/ambiguous-\/call-\/to-\/overloaded-\/function}}
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(std::is\_floating\_point\_v<T>)}
+\DoxyCodeLine{00082\ \ \ \ \ \{}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ PH\_ASSERT(!std::isnan(value));}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ PH\_ASSERT(!std::isnan(lowerBound));}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ PH\_ASSERT(!std::isnan(upperBound));}
+\DoxyCodeLine{00086\ \ \ \ \ \}}
+\DoxyCodeLine{00087\ \ \ \ \ }
+\DoxyCodeLine{00088\ \ \ \ \ PH\_ASSERT\_LE(lowerBound,\ upperBound);}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keywordflow}{return}\ std::clamp(value,\ lowerBound,\ upperBound);}
+\DoxyCodeLine{00091\ \}}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00097\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00098\ \textcolor{keyword}{inline}\ T\ \mbox{\hyperlink{namespaceph_1_1math_a0090b0ad2b7785d02c6761c1766066cc}{safe\_clamp}}(\textcolor{keyword}{const}\ T\ value,\ \textcolor{keyword}{const}\ T\ lowerBound,\ \textcolor{keyword}{const}\ T\ upperBound)}
+\DoxyCodeLine{00099\ \{}
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{comment}{//\ VS\ does\ not\ like\ integers\ in\ \`{}std::isnan()`,}}
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{comment}{//\ see:\ https://stackoverflow.com/questions/61646166/how-\/to-\/resolve-\/fpclassify-\/ambiguous-\/call-\/to-\/overloaded-\/function}}
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(std::is\_floating\_point\_v<T>)}
+\DoxyCodeLine{00103\ \ \ \ \ \{}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ PH\_ASSERT(!std::isnan(lowerBound));}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ PH\_ASSERT(!std::isnan(upperBound));}
+\DoxyCodeLine{00106\ \ \ \ \ \}}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \ \ \ \ PH\_ASSERT\_LE(lowerBound,\ upperBound);}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \ \ \ \ \textcolor{keywordflow}{return}\ std::isfinite(value)\ ?\ std::clamp(value,\ lowerBound,\ upperBound)\ :\ lowerBound;}
+\DoxyCodeLine{00111\ \}}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00116\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00117\ \textcolor{keyword}{inline}\ T\ \mbox{\hyperlink{namespaceph_1_1math_a1e5270d420e04a11bbeafa6da0b6849b}{safe\_rcp}}(\textcolor{keyword}{const}\ T\ value)}
+\DoxyCodeLine{00118\ \{}
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(std::is\_floating\_point\_v<T>)}
+\DoxyCodeLine{00120\ \ \ \ \ \{}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::isfinite(value)\ \&\&\ value\ !=\ 0\ ?\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(1)\ /\ value\ :\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(0);}
+\DoxyCodeLine{00122\ \ \ \ \ \}}
+\DoxyCodeLine{00123\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00124\ \ \ \ \ \{}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::abs(value)\ ==\ 1\ ?\ value\ :\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(0);}
+\DoxyCodeLine{00126\ \ \ \ \ \}}
+\DoxyCodeLine{00127\ \}}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00131\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00132\ \textcolor{keyword}{inline}\ T\ \mbox{\hyperlink{namespaceph_1_1math_a3b5aeb6bb0f2f3339e033d34fa70a894}{to\_degrees}}(\textcolor{keyword}{const}\ T\ radians)}
+\DoxyCodeLine{00133\ \{}
+\DoxyCodeLine{00134\ \ \ \ \ \textcolor{keywordflow}{return}\ radians\ *\ (\mbox{\hyperlink{namespaceph_1_1math_1_1constant_a1bb40d89d819a550a57dbdb5bf950ae2}{constant::rcp\_pi<T>}}\ *\ T(180));}
+\DoxyCodeLine{00135\ \}}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00139\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00140\ \textcolor{keyword}{inline}\ T\ \mbox{\hyperlink{namespaceph_1_1math_a8d924d614efcdd92fcce816a3f8eebf3}{to\_radians}}(\textcolor{keyword}{const}\ T\ degrees)}
+\DoxyCodeLine{00141\ \{}
+\DoxyCodeLine{00142\ \ \ \ \ \textcolor{keywordflow}{return}\ degrees\ *\ (\mbox{\hyperlink{namespaceph_1_1math_1_1constant_aeb217ecd643bb14c638c3d0457a031e0}{constant::pi<T>}}\ /\ T(180));}
+\DoxyCodeLine{00143\ \}}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00153\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00154\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{namespaceph_1_1math_a7377d0dddd537e4e7a04f98bd8e1114e}{sign}}(\textcolor{keyword}{const}\ T\ value)}
+\DoxyCodeLine{00155\ \{}
+\DoxyCodeLine{00156\ \ \ \ \ \textcolor{keywordflow}{return}\ (\textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(0)\ <\ value)\ -\/\ (\textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(0)\ >\ value);}
+\DoxyCodeLine{00157\ \}}
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00166\ \textcolor{comment}{//\ TODO:\ templatize}}
+\DoxyCodeLine{00167\ \textcolor{keyword}{inline}\ uint32\ \mbox{\hyperlink{namespaceph_1_1math_a2dd1eb154bffce7df042dbdd88aa161b}{next\_power\_of\_2}}(uint32\ value)}
+\DoxyCodeLine{00168\ \{}
+\DoxyCodeLine{00169\ \ \ \ \ PH\_ASSERT(value\ <=\ (1UL\ <<\ 31));}
+\DoxyCodeLine{00170\ }
+\DoxyCodeLine{00171\ \ \ \ \ -\/-\/value;}
+\DoxyCodeLine{00172\ }
+\DoxyCodeLine{00173\ \ \ \ \ value\ |=\ value\ >>\ 1;}
+\DoxyCodeLine{00174\ \ \ \ \ value\ |=\ value\ >>\ 2;}
+\DoxyCodeLine{00175\ \ \ \ \ value\ |=\ value\ >>\ 4;}
+\DoxyCodeLine{00176\ \ \ \ \ value\ |=\ value\ >>\ 8;}
+\DoxyCodeLine{00177\ \ \ \ \ value\ |=\ value\ >>\ 16;}
+\DoxyCodeLine{00178\ }
+\DoxyCodeLine{00179\ \ \ \ \ \textcolor{keywordflow}{return}\ value\ +\ 1;}
+\DoxyCodeLine{00180\ \}}
 \DoxyCodeLine{00181\ }
-\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_integral\_v<T>);}
-\DoxyCodeLine{00183\ }
-\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ PH\_ASSERT\_GT(value,\ T(0));}
-\DoxyCodeLine{00185\ }
-\DoxyCodeLine{00186\ \textcolor{preprocessor}{\#if\ PH\_COMPILER\_IS\_MSVC}}
-\DoxyCodeLine{00187\ }
-\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ first1BitFromLeftIndex\ =\ std::numeric\_limits<unsigned\ long>::max();}
-\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(\textcolor{keyword}{sizeof}(T)\ <=\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}))}
-\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ isIndexSet\ =\ \_BitScanReverse(}
-\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&first1BitFromLeftIndex,\ }
-\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\textcolor{keyword}{>}(value));}
-\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \ \ \ \ PH\_ASSERT\_GT(isIndexSet,\ 0);}
-\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_assert}(\textcolor{keyword}{sizeof}(T)\ <=\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{unsigned}\ \_\_int64),}
-\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}size\ of\ T\ is\ too\ large"{}});}
+\DoxyCodeLine{00186\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00187\ \textcolor{keyword}{inline}\ T\ \mbox{\hyperlink{namespaceph_1_1math_aef693a3af48988419e383d739b935a4b}{log2\_floor}}(\textcolor{keyword}{const}\ T\ value)}
+\DoxyCodeLine{00188\ \{}
+\DoxyCodeLine{00189\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(std::is\_floating\_point\_v<T>)}
+\DoxyCodeLine{00190\ \ \ \ \ \{}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ PH\_ASSERT\_GT(value,\ T(0));}
+\DoxyCodeLine{00192\ }
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(std::floor(std::log2(value)));}
+\DoxyCodeLine{00194\ \ \ \ \ \}}
+\DoxyCodeLine{00195\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00196\ \ \ \ \ \{}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \textcolor{keyword}{constexpr}\ T\ NUM\_BITS\ =\ \textcolor{keyword}{sizeof}(T)\ *\ CHAR\_BIT;}
+\DoxyCodeLine{00198\ }
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_integral\_v<T>);}
 \DoxyCodeLine{00200\ }
-\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ isIndexSet\ =\ \_BitScanReverse64(}
-\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&first1BitFromLeftIndex,\ }
-\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{unsigned}\ \_\_int64\textcolor{keyword}{>}(value));}
-\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \ \ \ \ PH\_ASSERT\_GT(isIndexSet,\ 0);}
-\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ PH\_ASSERT\_IN\_RANGE\_INCLUSIVE(first1BitFromLeftIndex,\ T(0),\ NUM\_BITS\ -\/\ 1);}
-\DoxyCodeLine{00207\ }
-\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(first1BitFromLeftIndex);}
-\DoxyCodeLine{00209\ }
-\DoxyCodeLine{00210\ \textcolor{preprocessor}{\#elif\ PH\_COMPILER\_IS\_CLANG\ ||\ PH\_COMPILER\_IS\_GCC}}
-\DoxyCodeLine{00211\ }
-\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(\textcolor{keyword}{sizeof}(T)\ <=\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}))}
-\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ numLeftZeros\ =\ \_\_builtin\_clz(\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\textcolor{keyword}{>}(value));}
-\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(\textcolor{keyword}{sizeof}(\textcolor{keywordtype}{unsigned}\ int)\ *\ CHAR\_BIT\ -\/\ 1\ -\/\ numLeftZeros);}
-\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(\textcolor{keyword}{sizeof}(T)\ <=\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}))}
-\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ numLeftZeros\ =\ \_\_builtin\_clzl(\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\textcolor{keyword}{>}(value));}
-\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(\textcolor{keyword}{sizeof}(\textcolor{keywordtype}{unsigned}\ long)\ *\ CHAR\_BIT\ -\/\ 1\ -\/\ numLeftZeros);}
-\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_assert}(\textcolor{keyword}{sizeof}(T)\ <=\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}),}
-\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}size\ of\ T\ is\ too\ large"{}});}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ PH\_ASSERT\_GT(value,\ T(0));}
+\DoxyCodeLine{00202\ }
+\DoxyCodeLine{00203\ \textcolor{preprocessor}{\#if\ PH\_COMPILER\_IS\_MSVC}}
+\DoxyCodeLine{00204\ }
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ first1BitFromLeftIndex\ =\ std::numeric\_limits<unsigned\ long>::max();}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(\textcolor{keyword}{sizeof}(T)\ <=\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}))}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ isIndexSet\ =\ \_BitScanReverse(}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&first1BitFromLeftIndex,\ }
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\textcolor{keyword}{>}(value));}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \ \ \ \ PH\_ASSERT\_GT(isIndexSet,\ 0);}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_assert}(\textcolor{keyword}{sizeof}(T)\ <=\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{unsigned}\ \_\_int64),}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}size\ of\ T\ is\ too\ large"{}});}
+\DoxyCodeLine{00217\ }
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ isIndexSet\ =\ \_BitScanReverse64(}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&first1BitFromLeftIndex,\ }
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{unsigned}\ \_\_int64\textcolor{keyword}{>}(value));}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \ \ \ \ PH\_ASSERT\_GT(isIndexSet,\ 0);}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ PH\_ASSERT\_IN\_RANGE\_INCLUSIVE(first1BitFromLeftIndex,\ T(0),\ NUM\_BITS\ -\/\ 1);}
+\DoxyCodeLine{00224\ }
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(first1BitFromLeftIndex);}
 \DoxyCodeLine{00226\ }
-\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ numLeftZeros\ =\ \_\_builtin\_clzll(\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\textcolor{keyword}{>}(value));}
-\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(\textcolor{keyword}{sizeof}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ long)\ *\ CHAR\_BIT\ -\/\ 1\ -\/\ numLeftZeros);}
-\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00230\ }
-\DoxyCodeLine{00231\ \textcolor{preprocessor}{\#endif}}
-\DoxyCodeLine{00232\ \ \ \ \ \}}
-\DoxyCodeLine{00233\ \}}
-\DoxyCodeLine{00234\ }
-\DoxyCodeLine{00240\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::enable\_if\_t<std::is\_\textcolor{keywordtype}{float}ing\_po\textcolor{keywordtype}{int}\_v<T>,\ \textcolor{keywordtype}{int}>\ =\ 0>}
-\DoxyCodeLine{00241\ \textcolor{keyword}{inline}\ T\ \mbox{\hyperlink{namespaceph_1_1math_a9460c87b6dab3097ee4d084d9b59a604}{fractional\_part}}(\textcolor{keyword}{const}\ T\ value)}
-\DoxyCodeLine{00242\ \{}
-\DoxyCodeLine{00243\ \ \ \ \ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ integralPart;}
-\DoxyCodeLine{00244\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(std::modf(\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\textcolor{keyword}{>}(value),\ \&integralPart));}
-\DoxyCodeLine{00245\ \}}
-\DoxyCodeLine{00246\ }
-\DoxyCodeLine{00250\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::enable\_if\_t<std::is\_\textcolor{keywordtype}{int}egral\_v<T>,\ \textcolor{keywordtype}{int}>\ =\ 0>}
-\DoxyCodeLine{00251\ \textcolor{keyword}{inline}\ T\ \mbox{\hyperlink{namespaceph_1_1math_a48cf078fd719072dfc9c27d67a730c3c}{wrap}}(T\ value,\ \textcolor{keyword}{const}\ T\ lowerBound,\ \textcolor{keyword}{const}\ T\ upperBound)}
-\DoxyCodeLine{00252\ \{}
-\DoxyCodeLine{00253\ \ \ \ \ PH\_ASSERT\_GE(upperBound,\ lowerBound);}
-\DoxyCodeLine{00254\ }
-\DoxyCodeLine{00255\ \ \ \ \ \textcolor{keyword}{const}\ T\ rangeSize\ =\ upperBound\ -\/\ lowerBound\ +\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(1);}
-\DoxyCodeLine{00256\ }
-\DoxyCodeLine{00257\ \ \ \ \ \textcolor{keywordflow}{if}(value\ <\ lowerBound)}
-\DoxyCodeLine{00258\ \ \ \ \ \{}
-\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ value\ +=\ rangeSize\ *\ ((lowerBound\ -\/\ value)\ /\ rangeSize\ +\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(1));}
-\DoxyCodeLine{00260\ }
-\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Possibly\ fail\ if\ <value>\ overflow}}
-\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ PH\_ASSERT\_GE(value,\ lowerBound);}
-\DoxyCodeLine{00263\ \ \ \ \ \}}
-\DoxyCodeLine{00264\ }
-\DoxyCodeLine{00265\ \ \ \ \ \textcolor{keywordflow}{return}\ lowerBound\ +\ (value\ -\/\ lowerBound)\ \%\ rangeSize;}
-\DoxyCodeLine{00266\ \}}
-\DoxyCodeLine{00267\ }
-\DoxyCodeLine{00271\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00272\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespaceph_1_1math_a3d787dce79dfdd2614927831c40ab231}{is\_even}}(\textcolor{keyword}{const}\ T\ value)}
-\DoxyCodeLine{00273\ \{}
-\DoxyCodeLine{00274\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_integral\_v<T>,}
-\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}T\ must\ be\ an\ integer\ type."{}});}
-\DoxyCodeLine{00276\ }
-\DoxyCodeLine{00277\ \ \ \ \ \textcolor{keywordflow}{return}\ value\ \%\ 2\ ==\ 0;}
-\DoxyCodeLine{00278\ \}}
-\DoxyCodeLine{00279\ }
-\DoxyCodeLine{00283\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00284\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespaceph_1_1math_a00dacdca0d6501e4506f1e80350c6529}{is\_odd}}(\textcolor{keyword}{const}\ T\ value)}
-\DoxyCodeLine{00285\ \{}
-\DoxyCodeLine{00286\ \ \ \ \ \textcolor{keywordflow}{return}\ !\mbox{\hyperlink{namespaceph_1_1math_a3d787dce79dfdd2614927831c40ab231}{is\_even}}(value);}
-\DoxyCodeLine{00287\ \}}
-\DoxyCodeLine{00288\ }
-\DoxyCodeLine{00292\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespaceph_1_1math_a885a24bd55e37b45410ec47a89bfb55e}{is\_same\_hemisphere}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{Vector3R}}\&\ vector,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{Vector3R}}\&\ N);}
+\DoxyCodeLine{00227\ \textcolor{preprocessor}{\#elif\ PH\_COMPILER\_IS\_CLANG\ ||\ PH\_COMPILER\_IS\_GCC}}
+\DoxyCodeLine{00228\ }
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(\textcolor{keyword}{sizeof}(T)\ <=\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}))}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ numLeftZeros\ =\ \_\_builtin\_clz(\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\textcolor{keyword}{>}(value));}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(\textcolor{keyword}{sizeof}(\textcolor{keywordtype}{unsigned}\ int)\ *\ CHAR\_BIT\ -\/\ 1\ -\/\ numLeftZeros);}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(\textcolor{keyword}{sizeof}(T)\ <=\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}))}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ numLeftZeros\ =\ \_\_builtin\_clzl(\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\textcolor{keyword}{>}(value));}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(\textcolor{keyword}{sizeof}(\textcolor{keywordtype}{unsigned}\ long)\ *\ CHAR\_BIT\ -\/\ 1\ -\/\ numLeftZeros);}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_assert}(\textcolor{keyword}{sizeof}(T)\ <=\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}),}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}size\ of\ T\ is\ too\ large"{}});}
+\DoxyCodeLine{00243\ }
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ numLeftZeros\ =\ \_\_builtin\_clzll(\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\textcolor{keyword}{>}(value));}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(\textcolor{keyword}{sizeof}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ long)\ *\ CHAR\_BIT\ -\/\ 1\ -\/\ numLeftZeros);}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00247\ }
+\DoxyCodeLine{00248\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00249\ \ \ \ \ \}}
+\DoxyCodeLine{00250\ \}}
+\DoxyCodeLine{00251\ }
+\DoxyCodeLine{00257\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::enable\_if\_t<std::is\_\textcolor{keywordtype}{float}ing\_po\textcolor{keywordtype}{int}\_v<T>,\ \textcolor{keywordtype}{int}>\ =\ 0>}
+\DoxyCodeLine{00258\ \textcolor{keyword}{inline}\ T\ \mbox{\hyperlink{namespaceph_1_1math_a9460c87b6dab3097ee4d084d9b59a604}{fractional\_part}}(\textcolor{keyword}{const}\ T\ value)}
+\DoxyCodeLine{00259\ \{}
+\DoxyCodeLine{00260\ \ \ \ \ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ integralPart;}
+\DoxyCodeLine{00261\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(std::modf(\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\textcolor{keyword}{>}(value),\ \&integralPart));}
+\DoxyCodeLine{00262\ \}}
+\DoxyCodeLine{00263\ }
+\DoxyCodeLine{00267\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::enable\_if\_t<std::is\_\textcolor{keywordtype}{int}egral\_v<T>,\ \textcolor{keywordtype}{int}>\ =\ 0>}
+\DoxyCodeLine{00268\ \textcolor{keyword}{inline}\ T\ \mbox{\hyperlink{namespaceph_1_1math_a48cf078fd719072dfc9c27d67a730c3c}{wrap}}(T\ value,\ \textcolor{keyword}{const}\ T\ lowerBound,\ \textcolor{keyword}{const}\ T\ upperBound)}
+\DoxyCodeLine{00269\ \{}
+\DoxyCodeLine{00270\ \ \ \ \ PH\_ASSERT\_GE(upperBound,\ lowerBound);}
+\DoxyCodeLine{00271\ }
+\DoxyCodeLine{00272\ \ \ \ \ \textcolor{keyword}{const}\ T\ rangeSize\ =\ upperBound\ -\/\ lowerBound\ +\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(1);}
+\DoxyCodeLine{00273\ }
+\DoxyCodeLine{00274\ \ \ \ \ \textcolor{keywordflow}{if}(value\ <\ lowerBound)}
+\DoxyCodeLine{00275\ \ \ \ \ \{}
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ value\ +=\ rangeSize\ *\ ((lowerBound\ -\/\ value)\ /\ rangeSize\ +\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(1));}
+\DoxyCodeLine{00277\ }
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Possibly\ fail\ if\ <value>\ overflow}}
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ PH\_ASSERT\_GE(value,\ lowerBound);}
+\DoxyCodeLine{00280\ \ \ \ \ \}}
+\DoxyCodeLine{00281\ }
+\DoxyCodeLine{00282\ \ \ \ \ \textcolor{keywordflow}{return}\ lowerBound\ +\ (value\ -\/\ lowerBound)\ \%\ rangeSize;}
+\DoxyCodeLine{00283\ \}}
+\DoxyCodeLine{00284\ }
+\DoxyCodeLine{00288\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00289\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespaceph_1_1math_a3d787dce79dfdd2614927831c40ab231}{is\_even}}(\textcolor{keyword}{const}\ T\ value)}
+\DoxyCodeLine{00290\ \{}
+\DoxyCodeLine{00291\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_integral\_v<T>,}
+\DoxyCodeLine{00292\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}T\ must\ be\ an\ integer\ type."{}});}
 \DoxyCodeLine{00293\ }
-\DoxyCodeLine{00299\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespaceph_1_1math_ae427fc90cb46f14b52a5cdc7a738ab69}{is\_opposite\_hemisphere}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{Vector3R}}\&\ vector,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{Vector3R}}\&\ N);}
-\DoxyCodeLine{00300\ }
-\DoxyCodeLine{00304\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
-\DoxyCodeLine{00305\ T\ \mbox{\hyperlink{namespaceph_1_1math_a423ca1404e587fb97e03569f02f95861}{summation}}(\textcolor{keyword}{const}\ std::array<T,\ N>\&\ values,\ T\ initialValue\ =\ 0);}
-\DoxyCodeLine{00306\ }
-\DoxyCodeLine{00307\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00308\ T\ \mbox{\hyperlink{namespaceph_1_1math_a423ca1404e587fb97e03569f02f95861}{summation}}(\textcolor{keyword}{const}\ std::vector<T>\&\ values,\ T\ initialValue\ =\ 0);}
-\DoxyCodeLine{00309\ }
-\DoxyCodeLine{00310\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ EXTENT\ =\ std::dynamic\_extent>}
-\DoxyCodeLine{00311\ T\ \mbox{\hyperlink{namespaceph_1_1math_a423ca1404e587fb97e03569f02f95861}{summation}}(\mbox{\hyperlink{namespaceph_a06c532bb78132f63638ec3ef52d46ff3}{TSpanView<T,\ EXTENT>}}\ values,\ T\ initialValue\ =\ 0);}
-\DoxyCodeLine{00313\ }
-\DoxyCodeLine{00317\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
-\DoxyCodeLine{00318\ T\ \mbox{\hyperlink{namespaceph_1_1math_a688dbf6563c86608204cf755dc0be5cd}{product}}(\textcolor{keyword}{const}\ std::array<T,\ N>\&\ values,\ T\ initialValue\ =\ 1);}
-\DoxyCodeLine{00319\ }
-\DoxyCodeLine{00320\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00321\ T\ \mbox{\hyperlink{namespaceph_1_1math_a688dbf6563c86608204cf755dc0be5cd}{product}}(\textcolor{keyword}{const}\ std::vector<T>\&\ values,\ T\ initialValue\ =\ 1);}
-\DoxyCodeLine{00322\ }
-\DoxyCodeLine{00323\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ EXTENT\ =\ std::dynamic\_extent>}
-\DoxyCodeLine{00324\ T\ \mbox{\hyperlink{namespaceph_1_1math_a688dbf6563c86608204cf755dc0be5cd}{product}}(\mbox{\hyperlink{namespaceph_a06c532bb78132f63638ec3ef52d46ff3}{TSpanView<T,\ EXTENT>}}\ values,\ T\ initialValue\ =\ 1);}
+\DoxyCodeLine{00294\ \ \ \ \ \textcolor{keywordflow}{return}\ value\ \%\ 2\ ==\ 0;}
+\DoxyCodeLine{00295\ \}}
+\DoxyCodeLine{00296\ }
+\DoxyCodeLine{00300\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00301\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespaceph_1_1math_a00dacdca0d6501e4506f1e80350c6529}{is\_odd}}(\textcolor{keyword}{const}\ T\ value)}
+\DoxyCodeLine{00302\ \{}
+\DoxyCodeLine{00303\ \ \ \ \ \textcolor{keywordflow}{return}\ !\mbox{\hyperlink{namespaceph_1_1math_a3d787dce79dfdd2614927831c40ab231}{is\_even}}(value);}
+\DoxyCodeLine{00304\ \}}
+\DoxyCodeLine{00305\ }
+\DoxyCodeLine{00309\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespaceph_1_1math_a885a24bd55e37b45410ec47a89bfb55e}{is\_same\_hemisphere}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{Vector3R}}\&\ vector,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{Vector3R}}\&\ N);}
+\DoxyCodeLine{00310\ }
+\DoxyCodeLine{00316\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespaceph_1_1math_ae427fc90cb46f14b52a5cdc7a738ab69}{is\_opposite\_hemisphere}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{Vector3R}}\&\ vector,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{Vector3R}}\&\ N);}
+\DoxyCodeLine{00317\ }
+\DoxyCodeLine{00321\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00322\ T\ \mbox{\hyperlink{namespaceph_1_1math_a423ca1404e587fb97e03569f02f95861}{summation}}(\textcolor{keyword}{const}\ std::array<T,\ N>\&\ values,\ T\ initialValue\ =\ 0);}
+\DoxyCodeLine{00323\ }
+\DoxyCodeLine{00324\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00325\ T\ \mbox{\hyperlink{namespaceph_1_1math_a423ca1404e587fb97e03569f02f95861}{summation}}(\textcolor{keyword}{const}\ std::vector<T>\&\ values,\ T\ initialValue\ =\ 0);}
 \DoxyCodeLine{00326\ }
-\DoxyCodeLine{00327\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ NumberType>}
-\DoxyCodeLine{00328\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ NumberType\ \mbox{\hyperlink{namespaceph_1_1math_adb4811e9be6e476d37c2db92e3d5a17a}{bytes\_to\_KiB}}(\textcolor{keyword}{const}\ std::size\_t\ numBytes)}
-\DoxyCodeLine{00329\ \{}
-\DoxyCodeLine{00330\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}NumberType\textcolor{keyword}{>}(numBytes)\ /\ \textcolor{keyword}{static\_cast<}NumberType\textcolor{keyword}{>}(\mbox{\hyperlink{namespaceph_1_1math_1_1constant_aec2814da28a7c9f64c26e54b610e2004}{constant::KiB}});}
-\DoxyCodeLine{00331\ \}}
-\DoxyCodeLine{00332\ }
-\DoxyCodeLine{00333\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ NumberType>}
-\DoxyCodeLine{00334\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ NumberType\ \mbox{\hyperlink{namespaceph_1_1math_a510bcaf07562b67f8897a55701399305}{bytes\_to\_MiB}}(\textcolor{keyword}{const}\ std::size\_t\ numBytes)}
-\DoxyCodeLine{00335\ \{}
-\DoxyCodeLine{00336\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}NumberType\textcolor{keyword}{>}(numBytes)\ /\ \textcolor{keyword}{static\_cast<}NumberType\textcolor{keyword}{>}(\mbox{\hyperlink{namespaceph_1_1math_1_1constant_a49ad38be8f3ddda440960e50cb5376db}{constant::MiB}});}
-\DoxyCodeLine{00337\ \}}
-\DoxyCodeLine{00338\ }
-\DoxyCodeLine{00339\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ NumberType>}
-\DoxyCodeLine{00340\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ NumberType\ \mbox{\hyperlink{namespaceph_1_1math_a2da02d8fd55ff426905d97c7297a08ad}{bytes\_to\_GiB}}(\textcolor{keyword}{const}\ std::size\_t\ numBytes)}
-\DoxyCodeLine{00341\ \{}
-\DoxyCodeLine{00342\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}NumberType\textcolor{keyword}{>}(numBytes)\ /\ \textcolor{keyword}{static\_cast<}NumberType\textcolor{keyword}{>}(\mbox{\hyperlink{namespaceph_1_1math_1_1constant_a5bd138de6e1289a88b5cc6109b0c6bda}{constant::GiB}});}
-\DoxyCodeLine{00343\ \}}
-\DoxyCodeLine{00344\ }
-\DoxyCodeLine{00345\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ NumberType>}
-\DoxyCodeLine{00346\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ NumberType\ \mbox{\hyperlink{namespaceph_1_1math_a37422f0d5ec9007755a40521c7bbf89d}{bytes\_to\_TiB}}(\textcolor{keyword}{const}\ std::size\_t\ numBytes)}
-\DoxyCodeLine{00347\ \{}
-\DoxyCodeLine{00348\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}NumberType\textcolor{keyword}{>}(numBytes)\ /\ \textcolor{keyword}{static\_cast<}NumberType\textcolor{keyword}{>}(\mbox{\hyperlink{namespaceph_1_1math_1_1constant_ac0d72c7c9b2610bd4c5b18bd289a48a9}{constant::TiB}});}
-\DoxyCodeLine{00349\ \}}
-\DoxyCodeLine{00350\ }
-\DoxyCodeLine{00351\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ NumberType>}
-\DoxyCodeLine{00352\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ NumberType\ \mbox{\hyperlink{namespaceph_1_1math_aabf2fd737aa55c1ff9ca0f2315eca5e2}{bytes\_to\_PiB}}(\textcolor{keyword}{const}\ std::size\_t\ numBytes)}
-\DoxyCodeLine{00353\ \{}
-\DoxyCodeLine{00354\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}NumberType\textcolor{keyword}{>}(numBytes)\ /\ \textcolor{keyword}{static\_cast<}NumberType\textcolor{keyword}{>}(\mbox{\hyperlink{namespaceph_1_1math_1_1constant_a6ada2c0aedc92f05b605e2fd6daf63e7}{constant::PiB}});}
-\DoxyCodeLine{00355\ \}}
-\DoxyCodeLine{00356\ }
-\DoxyCodeLine{00362\ \textcolor{keyword}{inline}\ std::pair<std::size\_t,\ std::size\_t>\ \mbox{\hyperlink{namespaceph_1_1math_a830bc8cab76b0720b0756fce21828b3f}{ith\_evenly\_divided\_range}}(}
-\DoxyCodeLine{00363\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ rangeIndex,\ }
-\DoxyCodeLine{00364\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ totalSize,}
-\DoxyCodeLine{00365\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ numDivisions)}
-\DoxyCodeLine{00366\ \{}
-\DoxyCodeLine{00367\ \ \ \ \ \textcolor{comment}{//\ TODO:\ it\ is\ possible\ to\ generalize\ to\ signed\ range}}
-\DoxyCodeLine{00368\ \ \ \ \ \textcolor{comment}{//\ maybe\ use\ ith\_evenly\_divided\_size()\ as\ function\ name\ and\ }}
-\DoxyCodeLine{00369\ \ \ \ \ \textcolor{comment}{//\ ith\_evenly\_divided\_range()\ for\ signed/unsigned\ range}}
-\DoxyCodeLine{00370\ }
-\DoxyCodeLine{00371\ \ \ \ \ PH\_ASSERT\_GT(numDivisions,\ 0);}
-\DoxyCodeLine{00372\ \ \ \ \ PH\_ASSERT\_LT(rangeIndex,\ numDivisions);}
+\DoxyCodeLine{00327\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ EXTENT\ =\ std::dynamic\_extent>}
+\DoxyCodeLine{00328\ T\ \mbox{\hyperlink{namespaceph_1_1math_a423ca1404e587fb97e03569f02f95861}{summation}}(\mbox{\hyperlink{namespaceph_a06c532bb78132f63638ec3ef52d46ff3}{TSpanView<T,\ EXTENT>}}\ values,\ T\ initialValue\ =\ 0);}
+\DoxyCodeLine{00330\ }
+\DoxyCodeLine{00334\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00335\ T\ \mbox{\hyperlink{namespaceph_1_1math_a688dbf6563c86608204cf755dc0be5cd}{product}}(\textcolor{keyword}{const}\ std::array<T,\ N>\&\ values,\ T\ initialValue\ =\ 1);}
+\DoxyCodeLine{00336\ }
+\DoxyCodeLine{00337\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00338\ T\ \mbox{\hyperlink{namespaceph_1_1math_a688dbf6563c86608204cf755dc0be5cd}{product}}(\textcolor{keyword}{const}\ std::vector<T>\&\ values,\ T\ initialValue\ =\ 1);}
+\DoxyCodeLine{00339\ }
+\DoxyCodeLine{00340\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ EXTENT\ =\ std::dynamic\_extent>}
+\DoxyCodeLine{00341\ T\ \mbox{\hyperlink{namespaceph_1_1math_a688dbf6563c86608204cf755dc0be5cd}{product}}(\mbox{\hyperlink{namespaceph_a06c532bb78132f63638ec3ef52d46ff3}{TSpanView<T,\ EXTENT>}}\ values,\ T\ initialValue\ =\ 1);}
+\DoxyCodeLine{00343\ }
+\DoxyCodeLine{00344\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ NumberType>}
+\DoxyCodeLine{00345\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ NumberType\ \mbox{\hyperlink{namespaceph_1_1math_adb4811e9be6e476d37c2db92e3d5a17a}{bytes\_to\_KiB}}(\textcolor{keyword}{const}\ std::size\_t\ numBytes)}
+\DoxyCodeLine{00346\ \{}
+\DoxyCodeLine{00347\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}NumberType\textcolor{keyword}{>}(numBytes)\ /\ \textcolor{keyword}{static\_cast<}NumberType\textcolor{keyword}{>}(\mbox{\hyperlink{namespaceph_1_1math_1_1constant_aec2814da28a7c9f64c26e54b610e2004}{constant::KiB}});}
+\DoxyCodeLine{00348\ \}}
+\DoxyCodeLine{00349\ }
+\DoxyCodeLine{00350\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ NumberType>}
+\DoxyCodeLine{00351\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ NumberType\ \mbox{\hyperlink{namespaceph_1_1math_a510bcaf07562b67f8897a55701399305}{bytes\_to\_MiB}}(\textcolor{keyword}{const}\ std::size\_t\ numBytes)}
+\DoxyCodeLine{00352\ \{}
+\DoxyCodeLine{00353\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}NumberType\textcolor{keyword}{>}(numBytes)\ /\ \textcolor{keyword}{static\_cast<}NumberType\textcolor{keyword}{>}(\mbox{\hyperlink{namespaceph_1_1math_1_1constant_a49ad38be8f3ddda440960e50cb5376db}{constant::MiB}});}
+\DoxyCodeLine{00354\ \}}
+\DoxyCodeLine{00355\ }
+\DoxyCodeLine{00356\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ NumberType>}
+\DoxyCodeLine{00357\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ NumberType\ \mbox{\hyperlink{namespaceph_1_1math_a2da02d8fd55ff426905d97c7297a08ad}{bytes\_to\_GiB}}(\textcolor{keyword}{const}\ std::size\_t\ numBytes)}
+\DoxyCodeLine{00358\ \{}
+\DoxyCodeLine{00359\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}NumberType\textcolor{keyword}{>}(numBytes)\ /\ \textcolor{keyword}{static\_cast<}NumberType\textcolor{keyword}{>}(\mbox{\hyperlink{namespaceph_1_1math_1_1constant_a5bd138de6e1289a88b5cc6109b0c6bda}{constant::GiB}});}
+\DoxyCodeLine{00360\ \}}
+\DoxyCodeLine{00361\ }
+\DoxyCodeLine{00362\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ NumberType>}
+\DoxyCodeLine{00363\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ NumberType\ \mbox{\hyperlink{namespaceph_1_1math_a37422f0d5ec9007755a40521c7bbf89d}{bytes\_to\_TiB}}(\textcolor{keyword}{const}\ std::size\_t\ numBytes)}
+\DoxyCodeLine{00364\ \{}
+\DoxyCodeLine{00365\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}NumberType\textcolor{keyword}{>}(numBytes)\ /\ \textcolor{keyword}{static\_cast<}NumberType\textcolor{keyword}{>}(\mbox{\hyperlink{namespaceph_1_1math_1_1constant_ac0d72c7c9b2610bd4c5b18bd289a48a9}{constant::TiB}});}
+\DoxyCodeLine{00366\ \}}
+\DoxyCodeLine{00367\ }
+\DoxyCodeLine{00368\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ NumberType>}
+\DoxyCodeLine{00369\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ NumberType\ \mbox{\hyperlink{namespaceph_1_1math_aabf2fd737aa55c1ff9ca0f2315eca5e2}{bytes\_to\_PiB}}(\textcolor{keyword}{const}\ std::size\_t\ numBytes)}
+\DoxyCodeLine{00370\ \{}
+\DoxyCodeLine{00371\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}NumberType\textcolor{keyword}{>}(numBytes)\ /\ \textcolor{keyword}{static\_cast<}NumberType\textcolor{keyword}{>}(\mbox{\hyperlink{namespaceph_1_1math_1_1constant_a6ada2c0aedc92f05b605e2fd6daf63e7}{constant::PiB}});}
+\DoxyCodeLine{00372\ \}}
 \DoxyCodeLine{00373\ }
-\DoxyCodeLine{00374\ \ \ \ \ \textcolor{keywordflow}{return}}
-\DoxyCodeLine{00375\ \ \ \ \ \{}
-\DoxyCodeLine{00376\ \ \ \ \ \ \ \ \ rangeIndex\ *\ totalSize\ /\ numDivisions,}
-\DoxyCodeLine{00377\ \ \ \ \ \ \ \ \ (rangeIndex\ +\ 1)\ *\ totalSize\ /\ numDivisions}
-\DoxyCodeLine{00378\ \ \ \ \ \};}
-\DoxyCodeLine{00379\ \}}
-\DoxyCodeLine{00380\ }
-\DoxyCodeLine{00390\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{namespaceph_1_1math_acc970fbe8bc77521af0103b29e524baa}{fast\_rcp\_sqrt}}(\textcolor{keywordtype}{float}\ x)}
-\DoxyCodeLine{00391\ \{}
-\DoxyCodeLine{00392\ \ \ \ \ \textcolor{comment}{//\ TODO:\ }}
-\DoxyCodeLine{00393\ \ \ \ \ \textcolor{comment}{//\ 1.\ implement\ double\ version\ in\ the\ reference\ paper\ and\ templatize\ iteration\ step}}
-\DoxyCodeLine{00394\ \ \ \ \ \textcolor{comment}{//\ 2.\ is\ more\ iteration\ steps\ better\ than\ doing\ it\ in\ double}}
-\DoxyCodeLine{00395\ \ \ \ \ \textcolor{comment}{//\ 3.\ establish\ a\ standard,\ e.g.,\ fast\_<X>()\ is\ guaranteed\ to\ have\ max.\ rel.\ error\ <\ 1\%}}
-\DoxyCodeLine{00396\ }
-\DoxyCodeLine{00397\ \ \ \ \ PH\_ASSERT\_GT(x,\ 0.0f);}
-\DoxyCodeLine{00398\ }
-\DoxyCodeLine{00399\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ halvedInput\ =\ 0.5f\ *\ x;}
-\DoxyCodeLine{00400\ }
-\DoxyCodeLine{00401\ \ \ \ \ \textcolor{comment}{//\ Gives\ initial\ guess\ for\ later\ refinements}}
-\DoxyCodeLine{00402\ \ \ \ \ \textcolor{keyword}{auto}\ bits\ =\ \mbox{\hyperlink{namespaceph_a74286ca8596f0e37fdc3650c3e72c691}{bitwise\_cast<std::uint32\_t>}}(x);}
-\DoxyCodeLine{00403\ \ \ \ \ bits\ =\ 0x5F375A86\ -\/\ (bits\ >>\ 1);}
-\DoxyCodeLine{00404\ \ \ \ \ x\ =\ \mbox{\hyperlink{namespaceph_a74286ca8596f0e37fdc3650c3e72c691}{bitwise\_cast<float>}}(bits);}
-\DoxyCodeLine{00405\ }
-\DoxyCodeLine{00406\ \ \ \ \ \textcolor{comment}{//\ Newton's\ method,\ each\ iteration\ increases\ accuracy.}}
-\DoxyCodeLine{00407\ }
-\DoxyCodeLine{00408\ \ \ \ \ \textcolor{comment}{//\ Iteration\ 1,\ max.\ relative\ error\ <\ 0.175125\%}}
-\DoxyCodeLine{00409\ \ \ \ \ x\ =\ x\ *\ (1.5f\ -\/\ halvedInput\ *\ x\ *\ x);}
-\DoxyCodeLine{00410\ }
-\DoxyCodeLine{00411\ \ \ \ \ \textcolor{comment}{//\ Iteration\ 2,\ disabled\ since\ <x>\ is\ already\ good\ enough}}
-\DoxyCodeLine{00412\ \ \ \ \ \textcolor{comment}{//x\ =\ x\ *\ (1.5f\ -\/\ halvedInput\ *\ x\ *\ x);}}
+\DoxyCodeLine{00379\ \textcolor{keyword}{inline}\ std::pair<std::size\_t,\ std::size\_t>\ \mbox{\hyperlink{namespaceph_1_1math_a830bc8cab76b0720b0756fce21828b3f}{ith\_evenly\_divided\_range}}(}
+\DoxyCodeLine{00380\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ rangeIndex,\ }
+\DoxyCodeLine{00381\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ totalSize,}
+\DoxyCodeLine{00382\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ numDivisions)}
+\DoxyCodeLine{00383\ \{}
+\DoxyCodeLine{00384\ \ \ \ \ \textcolor{comment}{//\ TODO:\ it\ is\ possible\ to\ generalize\ to\ signed\ range}}
+\DoxyCodeLine{00385\ \ \ \ \ \textcolor{comment}{//\ maybe\ use\ ith\_evenly\_divided\_size()\ as\ function\ name\ and\ }}
+\DoxyCodeLine{00386\ \ \ \ \ \textcolor{comment}{//\ ith\_evenly\_divided\_range()\ for\ signed/unsigned\ range}}
+\DoxyCodeLine{00387\ }
+\DoxyCodeLine{00388\ \ \ \ \ PH\_ASSERT\_GT(numDivisions,\ 0);}
+\DoxyCodeLine{00389\ \ \ \ \ PH\_ASSERT\_LT(rangeIndex,\ numDivisions);}
+\DoxyCodeLine{00390\ }
+\DoxyCodeLine{00391\ \ \ \ \ \textcolor{keywordflow}{return}}
+\DoxyCodeLine{00392\ \ \ \ \ \{}
+\DoxyCodeLine{00393\ \ \ \ \ \ \ \ \ rangeIndex\ *\ totalSize\ /\ numDivisions,}
+\DoxyCodeLine{00394\ \ \ \ \ \ \ \ \ (rangeIndex\ +\ 1)\ *\ totalSize\ /\ numDivisions}
+\DoxyCodeLine{00395\ \ \ \ \ \};}
+\DoxyCodeLine{00396\ \}}
+\DoxyCodeLine{00397\ }
+\DoxyCodeLine{00407\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{namespaceph_1_1math_acc970fbe8bc77521af0103b29e524baa}{fast\_rcp\_sqrt}}(\textcolor{keywordtype}{float}\ x)}
+\DoxyCodeLine{00408\ \{}
+\DoxyCodeLine{00409\ \ \ \ \ \textcolor{comment}{//\ TODO:\ }}
+\DoxyCodeLine{00410\ \ \ \ \ \textcolor{comment}{//\ 1.\ implement\ double\ version\ in\ the\ reference\ paper\ and\ templatize\ iteration\ step}}
+\DoxyCodeLine{00411\ \ \ \ \ \textcolor{comment}{//\ 2.\ is\ more\ iteration\ steps\ better\ than\ doing\ it\ in\ double}}
+\DoxyCodeLine{00412\ \ \ \ \ \textcolor{comment}{//\ 3.\ establish\ a\ standard,\ e.g.,\ fast\_<X>()\ is\ guaranteed\ to\ have\ max.\ rel.\ error\ <\ 1\%}}
 \DoxyCodeLine{00413\ }
-\DoxyCodeLine{00414\ \ \ \ \ \textcolor{keywordflow}{return}\ x;}
-\DoxyCodeLine{00415\ \}}
-\DoxyCodeLine{00416\ }
-\DoxyCodeLine{00419\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{namespaceph_1_1math_adb93254f78909d9fef4bc8d7326b7670}{fast\_sqrt}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ x)}
-\DoxyCodeLine{00420\ \{}
-\DoxyCodeLine{00421\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespaceph_1_1math_acc970fbe8bc77521af0103b29e524baa}{fast\_rcp\_sqrt}}(x)\ *\ x;}
-\DoxyCodeLine{00422\ \}}
-\DoxyCodeLine{00423\ }
-\DoxyCodeLine{00430\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ \textcolor{keyword}{typename}\ =\ std::enable\_if\_t<std::is\_\textcolor{keywordtype}{int}egral\_v<T>>>}
-\DoxyCodeLine{00431\ \textcolor{keyword}{inline}\ T\ \mbox{\hyperlink{namespaceph_1_1math_a2cf56679844b291df412ba311723c828}{reverse\_bits}}(\textcolor{keyword}{const}\ T\ value)}
-\DoxyCodeLine{00432\ \{}
-\DoxyCodeLine{00433\ \ \ \ \ \textcolor{keyword}{using\ namespace\ }detail;}
-\DoxyCodeLine{00434\ }
-\DoxyCodeLine{00435\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_integral\_v<T>\ \&\&\ std::is\_unsigned\_v<T>,}
-\DoxyCodeLine{00436\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Unsupported\ type\ detected"{}});}
-\DoxyCodeLine{00437\ }
-\DoxyCodeLine{00438\ \ \ \ \ \textcolor{keyword}{constexpr}\ std::size\_t\ NUM\_BITS\ =\ \textcolor{keyword}{sizeof}(T)\ *\ CHAR\_BIT;}
-\DoxyCodeLine{00439\ }
-\DoxyCodeLine{00440\ \ \ \ \ \textcolor{comment}{//\ Note\ that\ arbitrary\ number\ of\ bits\ can\ be\ supported\ by\ careful\ handling\ of\ bitwise\ operations}}
-\DoxyCodeLine{00441\ \ \ \ \ \textcolor{keyword}{static\_assert}(NUM\_BITS\ \%\ 8\ ==\ 0,}
-\DoxyCodeLine{00442\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Non-\/multiple-\/of-\/8\ integer\ bits\ are\ not\ supported"{}});}
-\DoxyCodeLine{00443\ }
-\DoxyCodeLine{00444\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(NUM\_BITS\ ==\ 8)}
-\DoxyCodeLine{00445\ \ \ \ \ \{}
-\DoxyCodeLine{00446\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ T(\mbox{\hyperlink{namespaceph_1_1math_1_1table_1_1detail_af06511c2d6e975a79a5f5a0f192f7379}{table::detail::BITS8\_REVERSE}}[value]);}
-\DoxyCodeLine{00447\ \ \ \ \ \}}
-\DoxyCodeLine{00448\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(NUM\_BITS\ ==\ 16)}
-\DoxyCodeLine{00449\ \ \ \ \ \{}
-\DoxyCodeLine{00450\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (T(\mbox{\hyperlink{namespaceph_1_1math_1_1table_1_1detail_af06511c2d6e975a79a5f5a0f192f7379}{table::detail::BITS8\_REVERSE}}[value\ \ \ \ \ \ \ \ \&\ 0xFF])\ <<\ 8)\ |}
-\DoxyCodeLine{00451\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (T(\mbox{\hyperlink{namespaceph_1_1math_1_1table_1_1detail_af06511c2d6e975a79a5f5a0f192f7379}{table::detail::BITS8\_REVERSE}}[(value\ >>\ 8)\ \&\ 0xFF]));}
-\DoxyCodeLine{00452\ \ \ \ \ \}}
-\DoxyCodeLine{00453\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(NUM\_BITS\ ==\ 32)}
-\DoxyCodeLine{00454\ \ \ \ \ \{}
-\DoxyCodeLine{00455\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (T(\mbox{\hyperlink{namespaceph_1_1math_1_1table_1_1detail_af06511c2d6e975a79a5f5a0f192f7379}{table::detail::BITS8\_REVERSE}}[value\ \ \ \ \ \ \ \ \ \&\ 0xFF])\ <<\ 24)\ |}
-\DoxyCodeLine{00456\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (T(\mbox{\hyperlink{namespaceph_1_1math_1_1table_1_1detail_af06511c2d6e975a79a5f5a0f192f7379}{table::detail::BITS8\_REVERSE}}[(value\ >>\ 8)\ \ \&\ 0xFF])\ <<\ 16)\ |}
-\DoxyCodeLine{00457\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (T(\mbox{\hyperlink{namespaceph_1_1math_1_1table_1_1detail_af06511c2d6e975a79a5f5a0f192f7379}{table::detail::BITS8\_REVERSE}}[(value\ >>\ 16)\ \&\ 0xFF])\ <<\ 8)\ \ |}
-\DoxyCodeLine{00458\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (T(\mbox{\hyperlink{namespaceph_1_1math_1_1table_1_1detail_af06511c2d6e975a79a5f5a0f192f7379}{table::detail::BITS8\_REVERSE}}[(value\ >>\ 24)\ \&\ 0xFF]));}
-\DoxyCodeLine{00459\ \ \ \ \ \}}
-\DoxyCodeLine{00460\ \ \ \ \ \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00461\ \ \ \ \ \{}
-\DoxyCodeLine{00462\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_assert}(NUM\_BITS\ ==\ 64);}
-\DoxyCodeLine{00463\ }
-\DoxyCodeLine{00464\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (T(\mbox{\hyperlink{namespaceph_1_1math_1_1table_1_1detail_af06511c2d6e975a79a5f5a0f192f7379}{table::detail::BITS8\_REVERSE}}[value\ \ \ \ \ \ \ \ \ \&\ 0xFF])\ <<\ 56)\ |}
-\DoxyCodeLine{00465\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (T(\mbox{\hyperlink{namespaceph_1_1math_1_1table_1_1detail_af06511c2d6e975a79a5f5a0f192f7379}{table::detail::BITS8\_REVERSE}}[(value\ >>\ 8)\ \ \&\ 0xFF])\ <<\ 48)\ |}
-\DoxyCodeLine{00466\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (T(\mbox{\hyperlink{namespaceph_1_1math_1_1table_1_1detail_af06511c2d6e975a79a5f5a0f192f7379}{table::detail::BITS8\_REVERSE}}[(value\ >>\ 16)\ \&\ 0xFF])\ <<\ 40)\ |}
-\DoxyCodeLine{00467\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (T(\mbox{\hyperlink{namespaceph_1_1math_1_1table_1_1detail_af06511c2d6e975a79a5f5a0f192f7379}{table::detail::BITS8\_REVERSE}}[(value\ >>\ 24)\ \&\ 0xFF])\ <<\ 32)\ |}
-\DoxyCodeLine{00468\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (T(\mbox{\hyperlink{namespaceph_1_1math_1_1table_1_1detail_af06511c2d6e975a79a5f5a0f192f7379}{table::detail::BITS8\_REVERSE}}[(value\ >>\ 32)\ \&\ 0xFF])\ <<\ 24)\ |}
-\DoxyCodeLine{00469\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (T(\mbox{\hyperlink{namespaceph_1_1math_1_1table_1_1detail_af06511c2d6e975a79a5f5a0f192f7379}{table::detail::BITS8\_REVERSE}}[(value\ >>\ 40)\ \&\ 0xFF])\ <<\ 16)\ |}
-\DoxyCodeLine{00470\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (T(\mbox{\hyperlink{namespaceph_1_1math_1_1table_1_1detail_af06511c2d6e975a79a5f5a0f192f7379}{table::detail::BITS8\_REVERSE}}[(value\ >>\ 48)\ \&\ 0xFF])\ <<\ 8)\ \ |}
-\DoxyCodeLine{00471\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (T(\mbox{\hyperlink{namespaceph_1_1math_1_1table_1_1detail_af06511c2d6e975a79a5f5a0f192f7379}{table::detail::BITS8\_REVERSE}}[(value\ >>\ 56)\ \&\ 0xFF]));}
-\DoxyCodeLine{00472\ \ \ \ \ \}}
-\DoxyCodeLine{00473\ \}}
-\DoxyCodeLine{00474\ }
-\DoxyCodeLine{00479\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{unsigned}\_\textcolor{keywordtype}{int}egral\ UIntType,\ std::\textcolor{keywordtype}{int}egral\ RangeType>}
-\DoxyCodeLine{00480\ \textcolor{keyword}{inline}\ UIntType\ \mbox{\hyperlink{namespaceph_1_1math_abbf29a619bc4b2cd6e88bbc5e3380a0f}{set\_bits\_in\_range}}(\textcolor{keyword}{const}\ UIntType\ bits,\ \textcolor{keyword}{const}\ RangeType\ beginBitIdx,\ \textcolor{keyword}{const}\ RangeType\ endBitIdx)}
-\DoxyCodeLine{00481\ \{}
-\DoxyCodeLine{00482\ \ \ \ \ \textcolor{comment}{//\ Inclusive\ as\ empty\ range\ is\ allowed,\ e.g.,\ \`{}beginBitIdx`\ ==\ \`{}endBitIdx`}}
-\DoxyCodeLine{00483\ \ \ \ \ PH\_ASSERT\_IN\_RANGE\_INCLUSIVE(beginBitIdx,\ 0,\ endBitIdx);}
-\DoxyCodeLine{00484\ \ \ \ \ PH\_ASSERT\_IN\_RANGE\_INCLUSIVE(endBitIdx,\ beginBitIdx,\ \mbox{\hyperlink{namespaceph_af8b01b99e42b7dd15dca28359ac1bf9e}{sizeof\_in\_bits<UIntType>}}());}
-\DoxyCodeLine{00485\ }
-\DoxyCodeLine{00486\ \ \ \ \ \textcolor{comment}{//\ Mask\ for\ the\ bits\ in\ range.\ Constructed\ by\ producing\ required\ number\ of\ 1's\ then\ shift}}
-\DoxyCodeLine{00487\ \ \ \ \ \textcolor{comment}{//\ by\ <beginBitIdx>.\ }}
-\DoxyCodeLine{00488\ \ \ \ \ \textcolor{comment}{//\ Note\ that\ if\ there\ is\ integer\ promotion\ to\ signed\ types,\ it\ should\ be\ fine-\/-\/promoted\ type}}
-\DoxyCodeLine{00489\ \ \ \ \ \textcolor{comment}{//\ must\ be\ wider\ than\ the\ original\ unsigned\ type,\ the\ bit\ shifts\ will\ never\ reach\ sign\ bit.\ }}
-\DoxyCodeLine{00490\ \ \ \ \ \textcolor{comment}{//}}
-\DoxyCodeLine{00491\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ bitMask\ =\ \textcolor{keyword}{static\_cast<}UIntType\textcolor{keyword}{>}(((UIntType(1)\ <<\ (endBitIdx\ -\/\ beginBitIdx))\ -\/\ 1)\ <<\ beginBitIdx);}
-\DoxyCodeLine{00492\ }
-\DoxyCodeLine{00493\ \ \ \ \ \textcolor{keywordflow}{return}\ bits\ |\ bitMask;}
-\DoxyCodeLine{00494\ \}}
-\DoxyCodeLine{00495\ }
-\DoxyCodeLine{00500\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{unsigned}\_\textcolor{keywordtype}{int}egral\ UIntType,\ std::\textcolor{keywordtype}{int}egral\ RangeType>}
-\DoxyCodeLine{00501\ \textcolor{keyword}{inline}\ UIntType\ \mbox{\hyperlink{namespaceph_1_1math_af11f191a13f32e5ff37ba539bb731029}{clear\_bits\_in\_range}}(\textcolor{keyword}{const}\ UIntType\ bits,\ \textcolor{keyword}{const}\ RangeType\ beginBitIdx,\ \textcolor{keyword}{const}\ RangeType\ endBitIdx)}
-\DoxyCodeLine{00502\ \{}
-\DoxyCodeLine{00503\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ bitMask\ =\ \mbox{\hyperlink{namespaceph_1_1math_abbf29a619bc4b2cd6e88bbc5e3380a0f}{set\_bits\_in\_range<UIntType,\ RangeType>}}(UIntType(0),\ beginBitIdx,\ endBitIdx);}
-\DoxyCodeLine{00504\ \ \ \ \ \textcolor{keywordflow}{return}\ bits\ \&\ (\string~bitMask);}
-\DoxyCodeLine{00505\ \}}
-\DoxyCodeLine{00506\ }
-\DoxyCodeLine{00511\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{unsigned}\_\textcolor{keywordtype}{int}egral\ UIntType>}
-\DoxyCodeLine{00512\ \textcolor{keyword}{inline}\ UIntType\ \mbox{\hyperlink{namespaceph_1_1math_a00c7265b62195ee8215d3a07ee97d8a6}{flag\_bit}}(\textcolor{keyword}{const}\ UIntType\ bitIdx)}
-\DoxyCodeLine{00513\ \{}
-\DoxyCodeLine{00514\ \ \ \ \ PH\_ASSERT\_IN\_RANGE(bitIdx,\ 0,\ \mbox{\hyperlink{namespaceph_af8b01b99e42b7dd15dca28359ac1bf9e}{sizeof\_in\_bits<UIntType>}}());}
-\DoxyCodeLine{00515\ }
-\DoxyCodeLine{00516\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}UIntType\textcolor{keyword}{>}(1)\ <<\ bitIdx;}
-\DoxyCodeLine{00517\ \}}
-\DoxyCodeLine{00518\ }
-\DoxyCodeLine{00519\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{unsigned}\_\textcolor{keywordtype}{int}egral\ UIntType,\ UIntType\ BIT\_IDX>}
-\DoxyCodeLine{00520\ \textcolor{keyword}{inline}\ \textcolor{keyword}{consteval}\ UIntType\ \mbox{\hyperlink{namespaceph_1_1math_a00c7265b62195ee8215d3a07ee97d8a6}{flag\_bit}}()}
-\DoxyCodeLine{00521\ \{}
-\DoxyCodeLine{00522\ \ \ \ \ \textcolor{keyword}{static\_assert}(0\ <=\ BIT\_IDX\ \&\&\ BIT\_IDX\ <\ sizeof\_in\_bits<UIntType>(),}
-\DoxyCodeLine{00523\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}BIT\_IDX\ must\ be\ within\ [0,\ \#\ bits\ in\ UIntType)"{}});}
-\DoxyCodeLine{00524\ }
-\DoxyCodeLine{00525\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}UIntType\textcolor{keyword}{>}(1)\ <<\ BIT\_IDX;}
-\DoxyCodeLine{00526\ \}}
-\DoxyCodeLine{00528\ }
-\DoxyCodeLine{00529\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ T\ MIN,\ T\ MAX,\ std::\textcolor{keywordtype}{size\_t}\ N>}
-\DoxyCodeLine{00530\ \textcolor{keyword}{inline}\ std::array<T,\ N>\ \mbox{\hyperlink{namespaceph_1_1math_a5ffba8a0fe5af3a10b2b568ff3f26124}{evenly\_spaced\_array}}()}
-\DoxyCodeLine{00531\ \{}
-\DoxyCodeLine{00532\ \ \ \ \ \textcolor{keyword}{static\_assert}(\mbox{\hyperlink{namespaceph_1_1math_ae7853802be4d35a3625b5f313151d1baa26a4b44a837bf97b972628509912b4a5}{MAX}}\ >\ \mbox{\hyperlink{namespaceph_1_1math_ae7853802be4d35a3625b5f313151d1baace31e2a082d17e038fcc6e3006166653}{MIN}});}
-\DoxyCodeLine{00533\ \ \ \ \ \textcolor{keyword}{static\_assert}(N\ >=\ 2);}
-\DoxyCodeLine{00534\ }
-\DoxyCodeLine{00535\ \ \ \ \ \textcolor{keyword}{constexpr}\ T\ TOTAL\_SIZE\ =\ \mbox{\hyperlink{namespaceph_1_1math_ae7853802be4d35a3625b5f313151d1baa26a4b44a837bf97b972628509912b4a5}{MAX}}\ -\/\ \mbox{\hyperlink{namespaceph_1_1math_ae7853802be4d35a3625b5f313151d1baace31e2a082d17e038fcc6e3006166653}{MIN}};}
-\DoxyCodeLine{00536\ }
-\DoxyCodeLine{00537\ \ \ \ \ std::array<T,\ N>\ arr;}
-\DoxyCodeLine{00538\ \ \ \ \ arr[0]\ =\ \mbox{\hyperlink{namespaceph_1_1math_ae7853802be4d35a3625b5f313151d1baace31e2a082d17e038fcc6e3006166653}{MIN}};}
-\DoxyCodeLine{00539\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ i\ =\ 1;\ i\ <\ N\ -\/\ 1;\ ++i)}
-\DoxyCodeLine{00540\ \ \ \ \ \{}
-\DoxyCodeLine{00541\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ current\ fraction\ i/(N-\/1),\ and\ multiply\ it\ with\ the\ total\ size}}
-\DoxyCodeLine{00542\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ (we\ multiply\ total\ size\ with\ i\ fist,\ otherwise\ integral\ types\ will\ always\ result\ in\ 0)}}
-\DoxyCodeLine{00543\ \ \ \ \ \ \ \ \ arr[i]\ =\ \mbox{\hyperlink{namespaceph_1_1math_ae7853802be4d35a3625b5f313151d1baace31e2a082d17e038fcc6e3006166653}{MIN}}\ +\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(i\ *\ TOTAL\_SIZE\ /\ (N\ -\/\ 1));}
-\DoxyCodeLine{00544\ }
-\DoxyCodeLine{00545\ \ \ \ \ \ \ \ \ PH\_ASSERT\_IN\_RANGE\_INCLUSIVE(arr[i],\ \mbox{\hyperlink{namespaceph_1_1math_ae7853802be4d35a3625b5f313151d1baace31e2a082d17e038fcc6e3006166653}{MIN}},\ \mbox{\hyperlink{namespaceph_1_1math_ae7853802be4d35a3625b5f313151d1baa26a4b44a837bf97b972628509912b4a5}{MAX}});}
-\DoxyCodeLine{00546\ \ \ \ \ \}}
-\DoxyCodeLine{00547\ \ \ \ \ arr[N\ -\/\ 1]\ =\ \mbox{\hyperlink{namespaceph_1_1math_ae7853802be4d35a3625b5f313151d1baa26a4b44a837bf97b972628509912b4a5}{MAX}};}
-\DoxyCodeLine{00548\ }
-\DoxyCodeLine{00549\ \ \ \ \ \textcolor{keywordflow}{return}\ arr;}
-\DoxyCodeLine{00550\ \}}
+\DoxyCodeLine{00414\ \ \ \ \ PH\_ASSERT\_GT(x,\ 0.0f);}
+\DoxyCodeLine{00415\ }
+\DoxyCodeLine{00416\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ halvedInput\ =\ 0.5f\ *\ x;}
+\DoxyCodeLine{00417\ }
+\DoxyCodeLine{00418\ \ \ \ \ \textcolor{comment}{//\ Gives\ initial\ guess\ for\ later\ refinements}}
+\DoxyCodeLine{00419\ \ \ \ \ \textcolor{keyword}{auto}\ bits\ =\ \mbox{\hyperlink{namespaceph_a74286ca8596f0e37fdc3650c3e72c691}{bitwise\_cast<std::uint32\_t>}}(x);}
+\DoxyCodeLine{00420\ \ \ \ \ bits\ =\ 0x5F375A86\ -\/\ (bits\ >>\ 1);}
+\DoxyCodeLine{00421\ \ \ \ \ x\ =\ \mbox{\hyperlink{namespaceph_a74286ca8596f0e37fdc3650c3e72c691}{bitwise\_cast<float>}}(bits);}
+\DoxyCodeLine{00422\ }
+\DoxyCodeLine{00423\ \ \ \ \ \textcolor{comment}{//\ Newton's\ method,\ each\ iteration\ increases\ accuracy.}}
+\DoxyCodeLine{00424\ }
+\DoxyCodeLine{00425\ \ \ \ \ \textcolor{comment}{//\ Iteration\ 1,\ max.\ relative\ error\ <\ 0.175125\%}}
+\DoxyCodeLine{00426\ \ \ \ \ x\ =\ x\ *\ (1.5f\ -\/\ halvedInput\ *\ x\ *\ x);}
+\DoxyCodeLine{00427\ }
+\DoxyCodeLine{00428\ \ \ \ \ \textcolor{comment}{//\ Iteration\ 2,\ disabled\ since\ <x>\ is\ already\ good\ enough}}
+\DoxyCodeLine{00429\ \ \ \ \ \textcolor{comment}{//x\ =\ x\ *\ (1.5f\ -\/\ halvedInput\ *\ x\ *\ x);}}
+\DoxyCodeLine{00430\ }
+\DoxyCodeLine{00431\ \ \ \ \ \textcolor{keywordflow}{return}\ x;}
+\DoxyCodeLine{00432\ \}}
+\DoxyCodeLine{00433\ }
+\DoxyCodeLine{00436\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{namespaceph_1_1math_adb93254f78909d9fef4bc8d7326b7670}{fast\_sqrt}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ x)}
+\DoxyCodeLine{00437\ \{}
+\DoxyCodeLine{00438\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespaceph_1_1math_acc970fbe8bc77521af0103b29e524baa}{fast\_rcp\_sqrt}}(x)\ *\ x;}
+\DoxyCodeLine{00439\ \}}
+\DoxyCodeLine{00440\ }
+\DoxyCodeLine{00447\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ \textcolor{keyword}{typename}\ =\ std::enable\_if\_t<std::is\_\textcolor{keywordtype}{int}egral\_v<T>>>}
+\DoxyCodeLine{00448\ \textcolor{keyword}{inline}\ T\ \mbox{\hyperlink{namespaceph_1_1math_a2cf56679844b291df412ba311723c828}{reverse\_bits}}(\textcolor{keyword}{const}\ T\ value)}
+\DoxyCodeLine{00449\ \{}
+\DoxyCodeLine{00450\ \ \ \ \ \textcolor{keyword}{using\ namespace\ }detail;}
+\DoxyCodeLine{00451\ }
+\DoxyCodeLine{00452\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_integral\_v<T>\ \&\&\ std::is\_unsigned\_v<T>,}
+\DoxyCodeLine{00453\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Unsupported\ type\ detected"{}});}
+\DoxyCodeLine{00454\ }
+\DoxyCodeLine{00455\ \ \ \ \ \textcolor{keyword}{constexpr}\ std::size\_t\ NUM\_BITS\ =\ \textcolor{keyword}{sizeof}(T)\ *\ CHAR\_BIT;}
+\DoxyCodeLine{00456\ }
+\DoxyCodeLine{00457\ \ \ \ \ \textcolor{comment}{//\ Note\ that\ arbitrary\ number\ of\ bits\ can\ be\ supported\ by\ careful\ handling\ of\ bitwise\ operations}}
+\DoxyCodeLine{00458\ \ \ \ \ \textcolor{keyword}{static\_assert}(NUM\_BITS\ \%\ 8\ ==\ 0,}
+\DoxyCodeLine{00459\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Non-\/multiple-\/of-\/8\ integer\ bits\ are\ not\ supported"{}});}
+\DoxyCodeLine{00460\ }
+\DoxyCodeLine{00461\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(NUM\_BITS\ ==\ 8)}
+\DoxyCodeLine{00462\ \ \ \ \ \{}
+\DoxyCodeLine{00463\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ T(\mbox{\hyperlink{namespaceph_1_1math_1_1table_1_1detail_af06511c2d6e975a79a5f5a0f192f7379}{table::detail::BITS8\_REVERSE}}[value]);}
+\DoxyCodeLine{00464\ \ \ \ \ \}}
+\DoxyCodeLine{00465\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(NUM\_BITS\ ==\ 16)}
+\DoxyCodeLine{00466\ \ \ \ \ \{}
+\DoxyCodeLine{00467\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (T(\mbox{\hyperlink{namespaceph_1_1math_1_1table_1_1detail_af06511c2d6e975a79a5f5a0f192f7379}{table::detail::BITS8\_REVERSE}}[value\ \ \ \ \ \ \ \ \&\ 0xFF])\ <<\ 8)\ |}
+\DoxyCodeLine{00468\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (T(\mbox{\hyperlink{namespaceph_1_1math_1_1table_1_1detail_af06511c2d6e975a79a5f5a0f192f7379}{table::detail::BITS8\_REVERSE}}[(value\ >>\ 8)\ \&\ 0xFF]));}
+\DoxyCodeLine{00469\ \ \ \ \ \}}
+\DoxyCodeLine{00470\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(NUM\_BITS\ ==\ 32)}
+\DoxyCodeLine{00471\ \ \ \ \ \{}
+\DoxyCodeLine{00472\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (T(\mbox{\hyperlink{namespaceph_1_1math_1_1table_1_1detail_af06511c2d6e975a79a5f5a0f192f7379}{table::detail::BITS8\_REVERSE}}[value\ \ \ \ \ \ \ \ \ \&\ 0xFF])\ <<\ 24)\ |}
+\DoxyCodeLine{00473\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (T(\mbox{\hyperlink{namespaceph_1_1math_1_1table_1_1detail_af06511c2d6e975a79a5f5a0f192f7379}{table::detail::BITS8\_REVERSE}}[(value\ >>\ 8)\ \ \&\ 0xFF])\ <<\ 16)\ |}
+\DoxyCodeLine{00474\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (T(\mbox{\hyperlink{namespaceph_1_1math_1_1table_1_1detail_af06511c2d6e975a79a5f5a0f192f7379}{table::detail::BITS8\_REVERSE}}[(value\ >>\ 16)\ \&\ 0xFF])\ <<\ 8)\ \ |}
+\DoxyCodeLine{00475\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (T(\mbox{\hyperlink{namespaceph_1_1math_1_1table_1_1detail_af06511c2d6e975a79a5f5a0f192f7379}{table::detail::BITS8\_REVERSE}}[(value\ >>\ 24)\ \&\ 0xFF]));}
+\DoxyCodeLine{00476\ \ \ \ \ \}}
+\DoxyCodeLine{00477\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00478\ \ \ \ \ \{}
+\DoxyCodeLine{00479\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_assert}(NUM\_BITS\ ==\ 64);}
+\DoxyCodeLine{00480\ }
+\DoxyCodeLine{00481\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (T(\mbox{\hyperlink{namespaceph_1_1math_1_1table_1_1detail_af06511c2d6e975a79a5f5a0f192f7379}{table::detail::BITS8\_REVERSE}}[value\ \ \ \ \ \ \ \ \ \&\ 0xFF])\ <<\ 56)\ |}
+\DoxyCodeLine{00482\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (T(\mbox{\hyperlink{namespaceph_1_1math_1_1table_1_1detail_af06511c2d6e975a79a5f5a0f192f7379}{table::detail::BITS8\_REVERSE}}[(value\ >>\ 8)\ \ \&\ 0xFF])\ <<\ 48)\ |}
+\DoxyCodeLine{00483\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (T(\mbox{\hyperlink{namespaceph_1_1math_1_1table_1_1detail_af06511c2d6e975a79a5f5a0f192f7379}{table::detail::BITS8\_REVERSE}}[(value\ >>\ 16)\ \&\ 0xFF])\ <<\ 40)\ |}
+\DoxyCodeLine{00484\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (T(\mbox{\hyperlink{namespaceph_1_1math_1_1table_1_1detail_af06511c2d6e975a79a5f5a0f192f7379}{table::detail::BITS8\_REVERSE}}[(value\ >>\ 24)\ \&\ 0xFF])\ <<\ 32)\ |}
+\DoxyCodeLine{00485\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (T(\mbox{\hyperlink{namespaceph_1_1math_1_1table_1_1detail_af06511c2d6e975a79a5f5a0f192f7379}{table::detail::BITS8\_REVERSE}}[(value\ >>\ 32)\ \&\ 0xFF])\ <<\ 24)\ |}
+\DoxyCodeLine{00486\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (T(\mbox{\hyperlink{namespaceph_1_1math_1_1table_1_1detail_af06511c2d6e975a79a5f5a0f192f7379}{table::detail::BITS8\_REVERSE}}[(value\ >>\ 40)\ \&\ 0xFF])\ <<\ 16)\ |}
+\DoxyCodeLine{00487\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (T(\mbox{\hyperlink{namespaceph_1_1math_1_1table_1_1detail_af06511c2d6e975a79a5f5a0f192f7379}{table::detail::BITS8\_REVERSE}}[(value\ >>\ 48)\ \&\ 0xFF])\ <<\ 8)\ \ |}
+\DoxyCodeLine{00488\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (T(\mbox{\hyperlink{namespaceph_1_1math_1_1table_1_1detail_af06511c2d6e975a79a5f5a0f192f7379}{table::detail::BITS8\_REVERSE}}[(value\ >>\ 56)\ \&\ 0xFF]));}
+\DoxyCodeLine{00489\ \ \ \ \ \}}
+\DoxyCodeLine{00490\ \}}
+\DoxyCodeLine{00491\ }
+\DoxyCodeLine{00496\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{unsigned}\_\textcolor{keywordtype}{int}egral\ UIntType,\ std::\textcolor{keywordtype}{int}egral\ RangeType>}
+\DoxyCodeLine{00497\ \textcolor{keyword}{inline}\ UIntType\ \mbox{\hyperlink{namespaceph_1_1math_abbf29a619bc4b2cd6e88bbc5e3380a0f}{set\_bits\_in\_range}}(\textcolor{keyword}{const}\ UIntType\ bits,\ \textcolor{keyword}{const}\ RangeType\ beginBitIdx,\ \textcolor{keyword}{const}\ RangeType\ endBitIdx)}
+\DoxyCodeLine{00498\ \{}
+\DoxyCodeLine{00499\ \ \ \ \ \textcolor{comment}{//\ Inclusive\ as\ empty\ range\ is\ allowed,\ e.g.,\ \`{}beginBitIdx`\ ==\ \`{}endBitIdx`}}
+\DoxyCodeLine{00500\ \ \ \ \ PH\_ASSERT\_IN\_RANGE\_INCLUSIVE(beginBitIdx,\ 0,\ endBitIdx);}
+\DoxyCodeLine{00501\ \ \ \ \ PH\_ASSERT\_IN\_RANGE\_INCLUSIVE(endBitIdx,\ beginBitIdx,\ sizeof\_in\_bits<UIntType>());}
+\DoxyCodeLine{00502\ }
+\DoxyCodeLine{00503\ \ \ \ \ \textcolor{comment}{//\ Mask\ for\ the\ bits\ in\ range.\ Constructed\ by\ producing\ required\ number\ of\ 1's\ then\ shift}}
+\DoxyCodeLine{00504\ \ \ \ \ \textcolor{comment}{//\ by\ <beginBitIdx>.\ }}
+\DoxyCodeLine{00505\ \ \ \ \ \textcolor{comment}{//\ Note\ that\ if\ there\ is\ integer\ promotion\ to\ signed\ types,\ it\ should\ be\ fine-\/-\/promoted\ type}}
+\DoxyCodeLine{00506\ \ \ \ \ \textcolor{comment}{//\ must\ be\ wider\ than\ the\ original\ unsigned\ type,\ the\ bit\ shifts\ will\ never\ reach\ sign\ bit.\ }}
+\DoxyCodeLine{00507\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00508\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ bitMask\ =\ \textcolor{keyword}{static\_cast<}UIntType\textcolor{keyword}{>}(((UIntType(1)\ <<\ (endBitIdx\ -\/\ beginBitIdx))\ -\/\ 1)\ <<\ beginBitIdx);}
+\DoxyCodeLine{00509\ }
+\DoxyCodeLine{00510\ \ \ \ \ \textcolor{keywordflow}{return}\ bits\ |\ bitMask;}
+\DoxyCodeLine{00511\ \}}
+\DoxyCodeLine{00512\ }
+\DoxyCodeLine{00517\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{unsigned}\_\textcolor{keywordtype}{int}egral\ UIntType,\ std::\textcolor{keywordtype}{int}egral\ RangeType>}
+\DoxyCodeLine{00518\ \textcolor{keyword}{inline}\ UIntType\ \mbox{\hyperlink{namespaceph_1_1math_af11f191a13f32e5ff37ba539bb731029}{clear\_bits\_in\_range}}(\textcolor{keyword}{const}\ UIntType\ bits,\ \textcolor{keyword}{const}\ RangeType\ beginBitIdx,\ \textcolor{keyword}{const}\ RangeType\ endBitIdx)}
+\DoxyCodeLine{00519\ \{}
+\DoxyCodeLine{00520\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ bitMask\ =\ \mbox{\hyperlink{namespaceph_1_1math_abbf29a619bc4b2cd6e88bbc5e3380a0f}{set\_bits\_in\_range<UIntType,\ RangeType>}}(UIntType(0),\ beginBitIdx,\ endBitIdx);}
+\DoxyCodeLine{00521\ \ \ \ \ \textcolor{keywordflow}{return}\ bits\ \&\ (\string~bitMask);}
+\DoxyCodeLine{00522\ \}}
+\DoxyCodeLine{00523\ }
+\DoxyCodeLine{00528\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{unsigned}\_\textcolor{keywordtype}{int}egral\ UIntType>}
+\DoxyCodeLine{00529\ \textcolor{keyword}{inline}\ UIntType\ \mbox{\hyperlink{namespaceph_1_1math_a00c7265b62195ee8215d3a07ee97d8a6}{flag\_bit}}(\textcolor{keyword}{const}\ UIntType\ bitIdx)}
+\DoxyCodeLine{00530\ \{}
+\DoxyCodeLine{00531\ \ \ \ \ PH\_ASSERT\_IN\_RANGE(bitIdx,\ 0,\ sizeof\_in\_bits<UIntType>());}
+\DoxyCodeLine{00532\ }
+\DoxyCodeLine{00533\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}UIntType\textcolor{keyword}{>}(1)\ <<\ bitIdx;}
+\DoxyCodeLine{00534\ \}}
+\DoxyCodeLine{00535\ }
+\DoxyCodeLine{00536\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{unsigned}\_\textcolor{keywordtype}{int}egral\ UIntType,\ UIntType\ BIT\_IDX>}
+\DoxyCodeLine{00537\ \textcolor{keyword}{inline}\ \textcolor{keyword}{consteval}\ UIntType\ \mbox{\hyperlink{namespaceph_1_1math_a00c7265b62195ee8215d3a07ee97d8a6}{flag\_bit}}()}
+\DoxyCodeLine{00538\ \{}
+\DoxyCodeLine{00539\ \ \ \ \ \textcolor{keyword}{static\_assert}(0\ <=\ BIT\_IDX\ \&\&\ BIT\_IDX\ <\ sizeof\_in\_bits<UIntType>(),}
+\DoxyCodeLine{00540\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}BIT\_IDX\ must\ be\ within\ [0,\ \#\ bits\ in\ UIntType)"{}});}
+\DoxyCodeLine{00541\ }
+\DoxyCodeLine{00542\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}UIntType\textcolor{keyword}{>}(1)\ <<\ BIT\_IDX;}
+\DoxyCodeLine{00543\ \}}
+\DoxyCodeLine{00545\ }
+\DoxyCodeLine{00546\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ T\ MIN,\ T\ MAX,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00547\ \textcolor{keyword}{inline}\ std::array<T,\ N>\ \mbox{\hyperlink{namespaceph_1_1math_a5ffba8a0fe5af3a10b2b568ff3f26124}{evenly\_spaced\_array}}()}
+\DoxyCodeLine{00548\ \{}
+\DoxyCodeLine{00549\ \ \ \ \ \textcolor{keyword}{static\_assert}(\mbox{\hyperlink{namespaceph_1_1math_ae7853802be4d35a3625b5f313151d1baa26a4b44a837bf97b972628509912b4a5}{MAX}}\ >\ \mbox{\hyperlink{namespaceph_1_1math_ae7853802be4d35a3625b5f313151d1baace31e2a082d17e038fcc6e3006166653}{MIN}});}
+\DoxyCodeLine{00550\ \ \ \ \ \textcolor{keyword}{static\_assert}(N\ >=\ 2);}
 \DoxyCodeLine{00551\ }
-\DoxyCodeLine{00552\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00553\ \textcolor{keyword}{inline}\ std::vector<T>\ \mbox{\hyperlink{namespaceph_1_1math_a95653bcb43b37e51af4fe120f25e9099}{evenly\_spaced\_vector}}(\textcolor{keyword}{const}\ T\ min,\ \textcolor{keyword}{const}\ T\ max,\ \textcolor{keyword}{const}\ std::size\_t\ n)}
-\DoxyCodeLine{00554\ \{}
-\DoxyCodeLine{00555\ \ \ \ \ PH\_ASSERT\_GT(max,\ min);}
-\DoxyCodeLine{00556\ \ \ \ \ PH\_ASSERT\_GE(n,\ 2);}
-\DoxyCodeLine{00557\ }
-\DoxyCodeLine{00558\ \ \ \ \ \textcolor{keyword}{const}\ T\ totalSize\ =\ max\ -\/\ min;}
-\DoxyCodeLine{00559\ }
-\DoxyCodeLine{00560\ \ \ \ \ std::vector<T>\ vec(n,\ 0);}
-\DoxyCodeLine{00561\ \ \ \ \ vec[0]\ =\ min;}
-\DoxyCodeLine{00562\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ i\ =\ 0;\ i\ <\ n;\ ++i)}
-\DoxyCodeLine{00563\ \ \ \ \ \{}
-\DoxyCodeLine{00564\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ current\ fraction\ i/(n-\/1),\ and\ multiply\ it\ with\ the\ total\ size}}
-\DoxyCodeLine{00565\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ (we\ multiply\ total\ size\ with\ i\ fist,\ otherwise\ integral\ types\ will\ always\ result\ in\ 0)}}
-\DoxyCodeLine{00566\ \ \ \ \ \ \ \ \ vec[i]\ =\ min\ +\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(i\ *\ totalSize\ /\ (n\ -\/\ 1));}
-\DoxyCodeLine{00567\ }
-\DoxyCodeLine{00568\ \ \ \ \ \ \ \ \ PH\_ASSERT\_IN\_RANGE\_INCLUSIVE(vec[i],\ min,\ max);}
-\DoxyCodeLine{00569\ \ \ \ \ \}}
-\DoxyCodeLine{00570\ \ \ \ \ vec[n\ -\/\ 1]\ =\ max;}
-\DoxyCodeLine{00571\ \ \ \ \ \textcolor{keywordflow}{return}\ vec;}
-\DoxyCodeLine{00572\ \}}
-\DoxyCodeLine{00573\ }
-\DoxyCodeLine{00580\ \textcolor{comment}{//\ TODO:\ handle\ denormalized\ value\ and\ others\ (std::frexp\ seems\ interesting)}}
-\DoxyCodeLine{00581\ \textcolor{comment}{//\ https://stackoverflow.com/questions/6162651/half-\/precision-\/floating-\/point-\/in-\/java}}
-\DoxyCodeLine{00583\ }
-\DoxyCodeLine{00585\ \textcolor{keyword}{inline}\ uint16\ \mbox{\hyperlink{namespaceph_1_1math_a91780ac8e52ddfdd3f0314cc36b882c2}{fp32\_to\_fp16\_bits}}(\textcolor{keyword}{const}\ float32\ value)}
-\DoxyCodeLine{00586\ \{}
-\DoxyCodeLine{00587\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::numeric\_limits<float32>::is\_iec559);}
-\DoxyCodeLine{00588\ }
-\DoxyCodeLine{00589\ \ \ \ \ \textcolor{keywordflow}{if}(std::abs(value)\ <\ 0.0000610352f)}
-\DoxyCodeLine{00590\ \ \ \ \ \{}
-\DoxyCodeLine{00591\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::signbit(value)\ ?\ 0x8000\ :\ 0x0000;}
-\DoxyCodeLine{00592\ \ \ \ \ \}}
-\DoxyCodeLine{00593\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00594\ \ \ \ \ uint16\ fp16Bits;}
-\DoxyCodeLine{00595\ \ \ \ \ uint32\ fp32Bits;}
-\DoxyCodeLine{00596\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00597\ \ \ \ \ fp32Bits\ =\ std::bit\_cast<uint32>(value);}
-\DoxyCodeLine{00598\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00599\ \ \ \ \ \textcolor{comment}{//\ truncate\ the\ mantissa\ and\ doing\ (exp\ -\/\ 127\ +\ 15)}}
-\DoxyCodeLine{00600\ \ \ \ \ fp16Bits\ =\ \ \textcolor{keyword}{static\_cast<}uint16\textcolor{keyword}{>}((((fp32Bits\ \&\ 0x7FFFFFFF)\ >>\ 13)\ -\/\ (0x38000000\ >>\ 13)));}
-\DoxyCodeLine{00601\ \ \ \ \ fp16Bits\ |=\ ((fp32Bits\ \&\ 0x80000000)\ >>\ 16);\textcolor{comment}{//\ sign}}
-\DoxyCodeLine{00602\ }
-\DoxyCodeLine{00603\ \ \ \ \ \textcolor{keywordflow}{return}\ fp16Bits;}
-\DoxyCodeLine{00604\ \}}
-\DoxyCodeLine{00605\ }
-\DoxyCodeLine{00608\ \textcolor{keyword}{inline}\ float32\ \mbox{\hyperlink{namespaceph_1_1math_a050fd048afd360173b15c10a05c21f7c}{fp16\_bits\_to\_fp32}}(\textcolor{keyword}{const}\ uint16\ fp16Bits)}
-\DoxyCodeLine{00609\ \{}
-\DoxyCodeLine{00610\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::numeric\_limits<float32>::is\_iec559);}
-\DoxyCodeLine{00611\ }
-\DoxyCodeLine{00612\ \ \ \ \ \textcolor{comment}{//\ 0\ if\ all\ bits\ other\ than\ the\ sign\ bit\ are\ 0}}
-\DoxyCodeLine{00613\ \ \ \ \ \textcolor{keywordflow}{if}((fp16Bits\ \&\ 0x7FFF)\ ==\ 0)}
-\DoxyCodeLine{00614\ \ \ \ \ \{}
-\DoxyCodeLine{00615\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (fp16Bits\ \&\ 0x8000)\ ==\ 0\ ?\ 0.0f\ :\ -\/0.0f;}
-\DoxyCodeLine{00616\ \ \ \ \ \}}
-\DoxyCodeLine{00617\ }
-\DoxyCodeLine{00618\ \ \ \ \ uint32\ fp32Bits\ =\ ((fp16Bits\ \&\ 0x8000)\ <<\ 16);}
-\DoxyCodeLine{00619\ \ \ \ \ fp32Bits\ |=\ (((fp16Bits\ \&\ 0x7FFF)\ <<\ 13)\ +\ 0x38000000);}
+\DoxyCodeLine{00552\ \ \ \ \ \textcolor{keyword}{constexpr}\ T\ TOTAL\_SIZE\ =\ \mbox{\hyperlink{namespaceph_1_1math_ae7853802be4d35a3625b5f313151d1baa26a4b44a837bf97b972628509912b4a5}{MAX}}\ -\/\ \mbox{\hyperlink{namespaceph_1_1math_ae7853802be4d35a3625b5f313151d1baace31e2a082d17e038fcc6e3006166653}{MIN}};}
+\DoxyCodeLine{00553\ }
+\DoxyCodeLine{00554\ \ \ \ \ std::array<T,\ N>\ arr;}
+\DoxyCodeLine{00555\ \ \ \ \ arr[0]\ =\ \mbox{\hyperlink{namespaceph_1_1math_ae7853802be4d35a3625b5f313151d1baace31e2a082d17e038fcc6e3006166653}{MIN}};}
+\DoxyCodeLine{00556\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ i\ =\ 1;\ i\ <\ N\ -\/\ 1;\ ++i)}
+\DoxyCodeLine{00557\ \ \ \ \ \{}
+\DoxyCodeLine{00558\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ current\ fraction\ i/(N-\/1),\ and\ multiply\ it\ with\ the\ total\ size}}
+\DoxyCodeLine{00559\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ (we\ multiply\ total\ size\ with\ i\ fist,\ otherwise\ integral\ types\ will\ always\ result\ in\ 0)}}
+\DoxyCodeLine{00560\ \ \ \ \ \ \ \ \ arr[i]\ =\ \mbox{\hyperlink{namespaceph_1_1math_ae7853802be4d35a3625b5f313151d1baace31e2a082d17e038fcc6e3006166653}{MIN}}\ +\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(i\ *\ TOTAL\_SIZE\ /\ (N\ -\/\ 1));}
+\DoxyCodeLine{00561\ }
+\DoxyCodeLine{00562\ \ \ \ \ \ \ \ \ PH\_ASSERT\_IN\_RANGE\_INCLUSIVE(arr[i],\ \mbox{\hyperlink{namespaceph_1_1math_ae7853802be4d35a3625b5f313151d1baace31e2a082d17e038fcc6e3006166653}{MIN}},\ \mbox{\hyperlink{namespaceph_1_1math_ae7853802be4d35a3625b5f313151d1baa26a4b44a837bf97b972628509912b4a5}{MAX}});}
+\DoxyCodeLine{00563\ \ \ \ \ \}}
+\DoxyCodeLine{00564\ \ \ \ \ arr[N\ -\/\ 1]\ =\ \mbox{\hyperlink{namespaceph_1_1math_ae7853802be4d35a3625b5f313151d1baa26a4b44a837bf97b972628509912b4a5}{MAX}};}
+\DoxyCodeLine{00565\ }
+\DoxyCodeLine{00566\ \ \ \ \ \textcolor{keywordflow}{return}\ arr;}
+\DoxyCodeLine{00567\ \}}
+\DoxyCodeLine{00568\ }
+\DoxyCodeLine{00569\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00570\ \textcolor{keyword}{inline}\ std::vector<T>\ \mbox{\hyperlink{namespaceph_1_1math_a95653bcb43b37e51af4fe120f25e9099}{evenly\_spaced\_vector}}(\textcolor{keyword}{const}\ T\ min,\ \textcolor{keyword}{const}\ T\ max,\ \textcolor{keyword}{const}\ std::size\_t\ n)}
+\DoxyCodeLine{00571\ \{}
+\DoxyCodeLine{00572\ \ \ \ \ PH\_ASSERT\_GT(max,\ min);}
+\DoxyCodeLine{00573\ \ \ \ \ PH\_ASSERT\_GE(n,\ 2);}
+\DoxyCodeLine{00574\ }
+\DoxyCodeLine{00575\ \ \ \ \ \textcolor{keyword}{const}\ T\ totalSize\ =\ max\ -\/\ min;}
+\DoxyCodeLine{00576\ }
+\DoxyCodeLine{00577\ \ \ \ \ std::vector<T>\ vec(n,\ 0);}
+\DoxyCodeLine{00578\ \ \ \ \ vec[0]\ =\ min;}
+\DoxyCodeLine{00579\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ i\ =\ 0;\ i\ <\ n;\ ++i)}
+\DoxyCodeLine{00580\ \ \ \ \ \{}
+\DoxyCodeLine{00581\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ current\ fraction\ i/(n-\/1),\ and\ multiply\ it\ with\ the\ total\ size}}
+\DoxyCodeLine{00582\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ (we\ multiply\ total\ size\ with\ i\ fist,\ otherwise\ integral\ types\ will\ always\ result\ in\ 0)}}
+\DoxyCodeLine{00583\ \ \ \ \ \ \ \ \ vec[i]\ =\ min\ +\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(i\ *\ totalSize\ /\ (n\ -\/\ 1));}
+\DoxyCodeLine{00584\ }
+\DoxyCodeLine{00585\ \ \ \ \ \ \ \ \ PH\_ASSERT\_IN\_RANGE\_INCLUSIVE(vec[i],\ min,\ max);}
+\DoxyCodeLine{00586\ \ \ \ \ \}}
+\DoxyCodeLine{00587\ \ \ \ \ vec[n\ -\/\ 1]\ =\ max;}
+\DoxyCodeLine{00588\ \ \ \ \ \textcolor{keywordflow}{return}\ vec;}
+\DoxyCodeLine{00589\ \}}
+\DoxyCodeLine{00590\ }
+\DoxyCodeLine{00598\ }
+\DoxyCodeLine{00600\ \textcolor{keyword}{inline}\ uint16\ \mbox{\hyperlink{namespaceph_1_1math_a91780ac8e52ddfdd3f0314cc36b882c2}{fp32\_to\_fp16\_bits}}(\textcolor{keyword}{const}\ float32\ value)}
+\DoxyCodeLine{00601\ \{}
+\DoxyCodeLine{00602\ \ \ \ \ \textcolor{comment}{//\ TODO:\ handle\ denormalized\ value\ and\ others\ (std::frexp\ seems\ interesting)}}
+\DoxyCodeLine{00603\ \ \ \ \ \textcolor{comment}{//\ https://stackoverflow.com/questions/6162651/half-\/precision-\/floating-\/point-\/in-\/java}}
+\DoxyCodeLine{00604\ }
+\DoxyCodeLine{00605\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::numeric\_limits<float32>::is\_iec559);}
+\DoxyCodeLine{00606\ }
+\DoxyCodeLine{00607\ \ \ \ \ \textcolor{keywordflow}{if}(std::abs(value)\ <\ 0.0000610352f)}
+\DoxyCodeLine{00608\ \ \ \ \ \{}
+\DoxyCodeLine{00609\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::signbit(value)\ ?\ 0x8000\ :\ 0x0000;}
+\DoxyCodeLine{00610\ \ \ \ \ \}}
+\DoxyCodeLine{00611\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00612\ \ \ \ \ uint16\ fp16Bits;}
+\DoxyCodeLine{00613\ \ \ \ \ uint32\ fp32Bits;}
+\DoxyCodeLine{00614\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00615\ \ \ \ \ fp32Bits\ =\ std::bit\_cast<uint32>(value);}
+\DoxyCodeLine{00616\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00617\ \ \ \ \ \textcolor{comment}{//\ truncate\ the\ mantissa\ and\ doing\ (exp\ -\/\ 127\ +\ 15)}}
+\DoxyCodeLine{00618\ \ \ \ \ fp16Bits\ =\ \ \textcolor{keyword}{static\_cast<}uint16\textcolor{keyword}{>}((((fp32Bits\ \&\ 0x7FFFFFFF)\ >>\ 13)\ -\/\ (0x38000000\ >>\ 13)));}
+\DoxyCodeLine{00619\ \ \ \ \ fp16Bits\ |=\ ((fp32Bits\ \&\ 0x80000000)\ >>\ 16);\textcolor{comment}{//\ sign}}
 \DoxyCodeLine{00620\ }
-\DoxyCodeLine{00621\ \ \ \ \ \textcolor{keywordflow}{return}\ std::bit\_cast<float32>(fp32Bits);}
+\DoxyCodeLine{00621\ \ \ \ \ \textcolor{keywordflow}{return}\ fp16Bits;}
 \DoxyCodeLine{00622\ \}}
-\DoxyCodeLine{00624\ }
-\DoxyCodeLine{00630\ \textcolor{comment}{//\ TODO:\ numeric\ analysis}}
-\DoxyCodeLine{00631\ \textcolor{comment}{//\ TODO:\ long\ double\ is\ not\ needed\ for\ shorter\ integer\ types}}
-\DoxyCodeLine{00632\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{float}ing\_po\textcolor{keywordtype}{int}\ FloatType,\ std::\textcolor{keywordtype}{int}egral\ IntType>}
-\DoxyCodeLine{00633\ \textcolor{keyword}{inline}\ FloatType\ \mbox{\hyperlink{namespaceph_1_1math_a4690860b243fe5e072ff6048732ae2a3}{normalize\_integer}}(\textcolor{keyword}{const}\ IntType\ intVal)}
-\DoxyCodeLine{00634\ \{}
-\DoxyCodeLine{00635\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(std::is\_unsigned\_v<IntType>)}
-\DoxyCodeLine{00636\ \ \ \ \ \{}
-\DoxyCodeLine{00637\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}FloatType\textcolor{keyword}{>}(}
-\DoxyCodeLine{00638\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\textcolor{keyword}{>}(intVal)\ /\ std::numeric\_limits<IntType>::max());}
-\DoxyCodeLine{00639\ \ \ \ \ \}}
-\DoxyCodeLine{00640\ \ \ \ \ \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00641\ \ \ \ \ \{}
-\DoxyCodeLine{00642\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}FloatType\textcolor{keyword}{>}(intVal\ >=\ 0}
-\DoxyCodeLine{00643\ \ \ \ \ \ \ \ \ \ \ \ \ ?\ \ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\textcolor{keyword}{>}(intVal)\ /\ std::numeric\_limits<IntType>::max()}
-\DoxyCodeLine{00644\ \ \ \ \ \ \ \ \ \ \ \ \ :\ -\/\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\textcolor{keyword}{>}(intVal)\ /\ std::numeric\_limits<IntType>::min());}
-\DoxyCodeLine{00645\ \ \ \ \ \}}
-\DoxyCodeLine{00646\ \}}
-\DoxyCodeLine{00647\ }
-\DoxyCodeLine{00648\ \textcolor{comment}{//\ TODO:\ numeric\ analysis}}
-\DoxyCodeLine{00649\ \textcolor{comment}{//\ TODO:\ long\ double\ is\ not\ needed\ for\ shorter\ integer\ types}}
-\DoxyCodeLine{00650\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{int}egral\ IntType,\ std::\textcolor{keywordtype}{float}ing\_po\textcolor{keywordtype}{int}\ FloatType>}
-\DoxyCodeLine{00651\ \textcolor{keyword}{inline}\ IntType\ \mbox{\hyperlink{namespaceph_1_1math_a403680d6446383625398ed0c057c43fd}{quantize\_normalized\_float}}(\textcolor{keyword}{const}\ FloatType\ floatVal)}
-\DoxyCodeLine{00652\ \{}
-\DoxyCodeLine{00653\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(std::is\_unsigned\_v<IntType>)}
-\DoxyCodeLine{00654\ \ \ \ \ \{}
-\DoxyCodeLine{00655\ \ \ \ \ \ \ \ \ PH\_ASSERT\_IN\_RANGE\_INCLUSIVE(floatVal,\ 0.0f,\ 1.0f);}
-\DoxyCodeLine{00656\ }
-\DoxyCodeLine{00657\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}IntType\textcolor{keyword}{>}(}
-\DoxyCodeLine{00658\ \ \ \ \ \ \ \ \ \ \ \ \ std::round(\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\textcolor{keyword}{>}(floatVal)\ *\ std::numeric\_limits<IntType>::max()));}
-\DoxyCodeLine{00659\ \ \ \ \ \}}
-\DoxyCodeLine{00660\ \ \ \ \ \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00661\ \ \ \ \ \{}
-\DoxyCodeLine{00662\ \ \ \ \ \ \ \ \ PH\_ASSERT\_IN\_RANGE\_INCLUSIVE(floatVal,\ -\/1.0f,\ 1.0f);}
-\DoxyCodeLine{00663\ }
-\DoxyCodeLine{00664\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}IntType\textcolor{keyword}{>}(floatVal\ >=\ 0}
-\DoxyCodeLine{00665\ \ \ \ \ \ \ \ \ \ \ \ \ ?\ std::round(\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\textcolor{keyword}{>}(floatVal)\ *\ std::numeric\_limits<IntType>::max())}
-\DoxyCodeLine{00666\ \ \ \ \ \ \ \ \ \ \ \ \ :\ std::round(-\/\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\textcolor{keyword}{>}(floatVal)\ *\ std::numeric\_limits<IntType>::min()));}
-\DoxyCodeLine{00667\ \ \ \ \ \}}
-\DoxyCodeLine{00668\ \}}
-\DoxyCodeLine{00669\ }
-\DoxyCodeLine{00674\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespaceph_1_1math_a996b8aaa152f5e58eea616b7340f7659}{uint64\_mul}}(\textcolor{keyword}{const}\ uint64\ lhs,\ \textcolor{keyword}{const}\ uint64\ rhs,\ uint64\&\ out\_high64,\ uint64\&\ out\_low64)}
-\DoxyCodeLine{00675\ \{}
-\DoxyCodeLine{00676\ \textcolor{preprocessor}{\#if\ defined(\_\_SIZEOF\_INT128\_\_)}}
-\DoxyCodeLine{00677\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ result128\ =\ \_\_uint128\_t(lhs)\ +\ \_\_uint128\_t(rhs);}
-\DoxyCodeLine{00678\ \ \ \ \ out\_high64\ =\ \textcolor{keyword}{static\_cast<}uint64\textcolor{keyword}{>}(result128\ >>\ 64);}
-\DoxyCodeLine{00679\ \ \ \ \ out\_low64\ =\ \textcolor{keyword}{static\_cast<}uint64\textcolor{keyword}{>}(result128);}
-\DoxyCodeLine{00680\ \textcolor{preprocessor}{\#elif\ PH\_COMPILER\_IS\_MSVC}}
-\DoxyCodeLine{00681\ \ \ \ \ out\_low64\ =\ \_umul128(lhs,\ rhs,\ \&out\_high64);}
-\DoxyCodeLine{00682\ \textcolor{preprocessor}{\#else}}
-\DoxyCodeLine{00683\ \ \ \ \ \textcolor{comment}{/*}}
-\DoxyCodeLine{00684\ \textcolor{comment}{\ \ \ \ Divide\ each\ 64-\/bit\ number\ into\ two\ 32-\/bit\ parts,\ then\ multiplying\ (or\ adding)\ any\ 32-\/bit}}
-\DoxyCodeLine{00685\ \textcolor{comment}{\ \ \ \ pairs\ cannot\ overflow\ if\ done\ using\ 64-\/bit\ arithmetic.\ If\ we\ multiply\ them\ using\ base\ 2\string^32\ }}
-\DoxyCodeLine{00686\ \textcolor{comment}{\ \ \ \ arithmetic,\ a\ total\ of\ 4\ products\ must\ be\ shifted\ and\ added\ to\ obtain\ the\ final\ result.\ }}
-\DoxyCodeLine{00687\ \textcolor{comment}{\ \ \ \ Here\ is\ a\ simple\ illustration\ of\ the\ algorithm:}}
-\DoxyCodeLine{00688\ \textcolor{comment}{}}
-\DoxyCodeLine{00689\ \textcolor{comment}{\ \ \ \ lhs\ =\ [\ a\ ][\ b\ ]}}
-\DoxyCodeLine{00690\ \textcolor{comment}{\ \ \ \ rhs\ =\ [\ c\ ][\ d\ ]}}
-\DoxyCodeLine{00691\ \textcolor{comment}{}}
-\DoxyCodeLine{00692\ \textcolor{comment}{\ \ \ \ Treat\ this\ like\ performing\ a\ regular\ multiplication\ on\ paper.\ Note\ that\ the\ multiplication}}
-\DoxyCodeLine{00693\ \textcolor{comment}{\ \ \ \ is\ done\ in\ base\ 2\string^32:}}
-\DoxyCodeLine{00694\ \textcolor{comment}{}}
-\DoxyCodeLine{00695\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ [\ a\ ][\ b\ ]}}
-\DoxyCodeLine{00696\ \textcolor{comment}{\ \ \ \ \ \ x\ \ \ \ \ \ \ \ [\ c\ ][\ d\ ]}}
-\DoxyCodeLine{00697\ \textcolor{comment}{\ \ \ \ \ \ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{00698\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ [a*d][b*d]}}
-\DoxyCodeLine{00699\ \textcolor{comment}{\ \ \ \ \ \ +\ \ \ [a*c][b*c]}}
-\DoxyCodeLine{00700\ \textcolor{comment}{\ \ \ \ \ \ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{00701\ \textcolor{comment}{}}
-\DoxyCodeLine{00702\ \textcolor{comment}{\ \ \ \ \ \ The\ overflowing\ part\ of\ each\ partial\ product\ is\ the\ carry\ (32-\/bit\ carry).\ This\ is\ a\ good\ reference:}}
-\DoxyCodeLine{00703\ \textcolor{comment}{\ \ \ \ \ \ https://stackoverflow.com/questions/26852435/reasonably-\/portable-\/way-\/to-\/get-\/top-\/64-\/bits-\/from-\/64x64-\/bit-\/multiply}}
-\DoxyCodeLine{00704\ \textcolor{comment}{\ \ \ \ */}}
-\DoxyCodeLine{00705\ }
-\DoxyCodeLine{00706\ \ \ \ \ \textcolor{keyword}{const}\ uint64\ a\ =\ lhs\ >>\ 32,\ b\ =\ lhs\ \&\ 0xFFFFFFFF;}
-\DoxyCodeLine{00707\ \ \ \ \ \textcolor{keyword}{const}\ uint64\ c\ =\ rhs\ >>\ 32,\ d\ =\ rhs\ \&\ 0xFFFFFFFF;}
-\DoxyCodeLine{00708\ }
-\DoxyCodeLine{00709\ \ \ \ \ \textcolor{keyword}{const}\ uint64\ ac\ =\ a\ *\ c;}
-\DoxyCodeLine{00710\ \ \ \ \ \textcolor{keyword}{const}\ uint64\ bc\ =\ b\ *\ c;}
-\DoxyCodeLine{00711\ \ \ \ \ \textcolor{keyword}{const}\ uint64\ ad\ =\ a\ *\ d;}
-\DoxyCodeLine{00712\ \ \ \ \ \textcolor{keyword}{const}\ uint64\ bd\ =\ b\ *\ d;}
-\DoxyCodeLine{00713\ }
-\DoxyCodeLine{00714\ \ \ \ \ \textcolor{comment}{//\ This\ is\ the\ middle\ part\ of\ the\ above\ illustration,\ which\ is\ a\ sum\ of\ three\ 32-\/bit\ numbers\ }}
-\DoxyCodeLine{00715\ \ \ \ \ \textcolor{comment}{//\ (so\ it\ is\ 34-\/bit\ at\ most):\ two\ products\ b*c\ and\ a*d,\ and\ the\ carry\ from\ b*d}}
-\DoxyCodeLine{00716\ \ \ \ \ \textcolor{keyword}{const}\ uint64\ mid34\ =\ (bd\ >>\ 32)\ +\ (bc\ \&\ 0xFFFFFFFF)\ +\ (ad\ \&\ 0xFFFFFFFF);}
-\DoxyCodeLine{00717\ }
-\DoxyCodeLine{00718\ \ \ \ \ out\_high64\ =\ ac\ +\ (bc\ >>\ 32)\ +\ (ad\ >>\ 32)\ +\ (mid34\ >>\ 32);}
-\DoxyCodeLine{00719\ \ \ \ \ out\_low64\ =\ (mid34\ <<\ 32)\ |\ (bd\ \&\ 0xFFFFFFFF);}
-\DoxyCodeLine{00720\ \textcolor{preprocessor}{\#endif}}
-\DoxyCodeLine{00721\ \}}
-\DoxyCodeLine{00722\ }
-\DoxyCodeLine{00726\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
-\DoxyCodeLine{00727\ T\ \mbox{\hyperlink{namespaceph_1_1math_a5e1143174acd6afb8b6c9be755307c4b}{length}}(\textcolor{keyword}{const}\ std::array<T,\ N>\&\ vec);}
-\DoxyCodeLine{00728\ }
-\DoxyCodeLine{00729\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00730\ T\ \mbox{\hyperlink{namespaceph_1_1math_a5e1143174acd6afb8b6c9be755307c4b}{length}}(\textcolor{keyword}{const}\ std::vector<T>\&\ vec);}
-\DoxyCodeLine{00731\ }
-\DoxyCodeLine{00732\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ EXTENT\ =\ std::dynamic\_extent>}
-\DoxyCodeLine{00733\ T\ \mbox{\hyperlink{namespaceph_1_1math_a5e1143174acd6afb8b6c9be755307c4b}{length}}(\mbox{\hyperlink{namespaceph_a06c532bb78132f63638ec3ef52d46ff3}{TSpanView<T,\ EXTENT>}}\ vec);}
-\DoxyCodeLine{00735\ }
-\DoxyCodeLine{00739\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
-\DoxyCodeLine{00740\ T\ \mbox{\hyperlink{namespaceph_1_1math_a271473c0e491fe4c7c0cb02fcfa88bb0}{length\_squared}}(\textcolor{keyword}{const}\ std::array<T,\ N>\&\ vec);}
-\DoxyCodeLine{00741\ }
-\DoxyCodeLine{00742\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00743\ T\ \mbox{\hyperlink{namespaceph_1_1math_a271473c0e491fe4c7c0cb02fcfa88bb0}{length\_squared}}(\textcolor{keyword}{const}\ std::vector<T>\&\ vec);}
-\DoxyCodeLine{00744\ }
-\DoxyCodeLine{00745\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ EXTENT\ =\ std::dynamic\_extent>}
-\DoxyCodeLine{00746\ T\ \mbox{\hyperlink{namespaceph_1_1math_a271473c0e491fe4c7c0cb02fcfa88bb0}{length\_squared}}(\mbox{\hyperlink{namespaceph_a06c532bb78132f63638ec3ef52d46ff3}{TSpanView<T,\ EXTENT>}}\ vec);}
-\DoxyCodeLine{00748\ }
-\DoxyCodeLine{00752\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
-\DoxyCodeLine{00753\ T\ \mbox{\hyperlink{namespaceph_1_1math_a4ff51da9284135e078f892589a4816cc}{p\_norm}}(\textcolor{keyword}{const}\ std::array<T,\ N>\&\ vec);}
-\DoxyCodeLine{00754\ }
-\DoxyCodeLine{00755\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00756\ T\ \mbox{\hyperlink{namespaceph_1_1math_a4ff51da9284135e078f892589a4816cc}{p\_norm}}(\textcolor{keyword}{const}\ std::vector<T>\&\ vec);}
-\DoxyCodeLine{00757\ }
-\DoxyCodeLine{00758\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ P,\ \textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ EXTENT\ =\ std::dynamic\_extent>}
-\DoxyCodeLine{00759\ T\ \mbox{\hyperlink{namespaceph_1_1math_a4ff51da9284135e078f892589a4816cc}{p\_norm}}(\mbox{\hyperlink{namespaceph_a06c532bb78132f63638ec3ef52d46ff3}{TSpanView<T,\ EXTENT>}}\ vec);}
-\DoxyCodeLine{00761\ }
-\DoxyCodeLine{00767\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
-\DoxyCodeLine{00768\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespaceph_1_1math_a4f0591b11fba7210f6dd38cfbbcbc9f7}{normalize}}(std::array<T,\ N>\&\ vec);}
+\DoxyCodeLine{00623\ }
+\DoxyCodeLine{00626\ \textcolor{keyword}{inline}\ float32\ \mbox{\hyperlink{namespaceph_1_1math_a050fd048afd360173b15c10a05c21f7c}{fp16\_bits\_to\_fp32}}(\textcolor{keyword}{const}\ uint16\ fp16Bits)}
+\DoxyCodeLine{00627\ \{}
+\DoxyCodeLine{00628\ \ \ \ \ \textcolor{comment}{//\ TODO:\ handle\ denormalized\ value\ and\ others\ (std::frexp\ seems\ interesting)}}
+\DoxyCodeLine{00629\ \ \ \ \ \textcolor{comment}{//\ https://stackoverflow.com/questions/6162651/half-\/precision-\/floating-\/point-\/in-\/java}}
+\DoxyCodeLine{00630\ }
+\DoxyCodeLine{00631\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::numeric\_limits<float32>::is\_iec559);}
+\DoxyCodeLine{00632\ }
+\DoxyCodeLine{00633\ \ \ \ \ \textcolor{comment}{//\ 0\ if\ all\ bits\ other\ than\ the\ sign\ bit\ are\ 0}}
+\DoxyCodeLine{00634\ \ \ \ \ \textcolor{keywordflow}{if}((fp16Bits\ \&\ 0x7FFF)\ ==\ 0)}
+\DoxyCodeLine{00635\ \ \ \ \ \{}
+\DoxyCodeLine{00636\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (fp16Bits\ \&\ 0x8000)\ ==\ 0\ ?\ 0.0f\ :\ -\/0.0f;}
+\DoxyCodeLine{00637\ \ \ \ \ \}}
+\DoxyCodeLine{00638\ }
+\DoxyCodeLine{00639\ \ \ \ \ uint32\ fp32Bits\ =\ ((fp16Bits\ \&\ 0x8000)\ <<\ 16);}
+\DoxyCodeLine{00640\ \ \ \ \ fp32Bits\ |=\ (((fp16Bits\ \&\ 0x7FFF)\ <<\ 13)\ +\ 0x38000000);}
+\DoxyCodeLine{00641\ }
+\DoxyCodeLine{00642\ \ \ \ \ \textcolor{keywordflow}{return}\ std::bit\_cast<float32>(fp32Bits);}
+\DoxyCodeLine{00643\ \}}
+\DoxyCodeLine{00645\ }
+\DoxyCodeLine{00651\ \textcolor{comment}{//\ TODO:\ numeric\ analysis}}
+\DoxyCodeLine{00652\ \textcolor{comment}{//\ TODO:\ long\ double\ is\ not\ needed\ for\ shorter\ integer\ types}}
+\DoxyCodeLine{00653\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{float}ing\_po\textcolor{keywordtype}{int}\ FloatType,\ std::\textcolor{keywordtype}{int}egral\ IntType>}
+\DoxyCodeLine{00654\ \textcolor{keyword}{inline}\ FloatType\ \mbox{\hyperlink{namespaceph_1_1math_a4690860b243fe5e072ff6048732ae2a3}{normalize\_integer}}(\textcolor{keyword}{const}\ IntType\ intVal)}
+\DoxyCodeLine{00655\ \{}
+\DoxyCodeLine{00656\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(std::is\_unsigned\_v<IntType>)}
+\DoxyCodeLine{00657\ \ \ \ \ \{}
+\DoxyCodeLine{00658\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}FloatType\textcolor{keyword}{>}(}
+\DoxyCodeLine{00659\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\textcolor{keyword}{>}(intVal)\ /\ std::numeric\_limits<IntType>::max());}
+\DoxyCodeLine{00660\ \ \ \ \ \}}
+\DoxyCodeLine{00661\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00662\ \ \ \ \ \{}
+\DoxyCodeLine{00663\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}FloatType\textcolor{keyword}{>}(intVal\ >=\ 0}
+\DoxyCodeLine{00664\ \ \ \ \ \ \ \ \ \ \ \ \ ?\ \ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\textcolor{keyword}{>}(intVal)\ /\ std::numeric\_limits<IntType>::max()}
+\DoxyCodeLine{00665\ \ \ \ \ \ \ \ \ \ \ \ \ :\ -\/\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\textcolor{keyword}{>}(intVal)\ /\ std::numeric\_limits<IntType>::min());}
+\DoxyCodeLine{00666\ \ \ \ \ \}}
+\DoxyCodeLine{00667\ \}}
+\DoxyCodeLine{00668\ }
+\DoxyCodeLine{00669\ \textcolor{comment}{//\ TODO:\ numeric\ analysis}}
+\DoxyCodeLine{00670\ \textcolor{comment}{//\ TODO:\ long\ double\ is\ not\ needed\ for\ shorter\ integer\ types}}
+\DoxyCodeLine{00671\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{int}egral\ IntType,\ std::\textcolor{keywordtype}{float}ing\_po\textcolor{keywordtype}{int}\ FloatType>}
+\DoxyCodeLine{00672\ \textcolor{keyword}{inline}\ IntType\ \mbox{\hyperlink{namespaceph_1_1math_a403680d6446383625398ed0c057c43fd}{quantize\_normalized\_float}}(\textcolor{keyword}{const}\ FloatType\ floatVal)}
+\DoxyCodeLine{00673\ \{}
+\DoxyCodeLine{00674\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(std::is\_unsigned\_v<IntType>)}
+\DoxyCodeLine{00675\ \ \ \ \ \{}
+\DoxyCodeLine{00676\ \ \ \ \ \ \ \ \ PH\_ASSERT\_IN\_RANGE\_INCLUSIVE(floatVal,\ 0.0f,\ 1.0f);}
+\DoxyCodeLine{00677\ }
+\DoxyCodeLine{00678\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}IntType\textcolor{keyword}{>}(}
+\DoxyCodeLine{00679\ \ \ \ \ \ \ \ \ \ \ \ \ std::round(\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\textcolor{keyword}{>}(floatVal)\ *\ std::numeric\_limits<IntType>::max()));}
+\DoxyCodeLine{00680\ \ \ \ \ \}}
+\DoxyCodeLine{00681\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00682\ \ \ \ \ \{}
+\DoxyCodeLine{00683\ \ \ \ \ \ \ \ \ PH\_ASSERT\_IN\_RANGE\_INCLUSIVE(floatVal,\ -\/1.0f,\ 1.0f);}
+\DoxyCodeLine{00684\ }
+\DoxyCodeLine{00685\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}IntType\textcolor{keyword}{>}(floatVal\ >=\ 0}
+\DoxyCodeLine{00686\ \ \ \ \ \ \ \ \ \ \ \ \ ?\ std::round(\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\textcolor{keyword}{>}(floatVal)\ *\ std::numeric\_limits<IntType>::max())}
+\DoxyCodeLine{00687\ \ \ \ \ \ \ \ \ \ \ \ \ :\ std::round(-\/\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\textcolor{keyword}{>}(floatVal)\ *\ std::numeric\_limits<IntType>::min()));}
+\DoxyCodeLine{00688\ \ \ \ \ \}}
+\DoxyCodeLine{00689\ \}}
+\DoxyCodeLine{00690\ }
+\DoxyCodeLine{00695\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespaceph_1_1math_a996b8aaa152f5e58eea616b7340f7659}{uint64\_mul}}(\textcolor{keyword}{const}\ uint64\ lhs,\ \textcolor{keyword}{const}\ uint64\ rhs,\ uint64\&\ out\_high64,\ uint64\&\ out\_low64)}
+\DoxyCodeLine{00696\ \{}
+\DoxyCodeLine{00697\ \textcolor{preprocessor}{\#if\ defined(\_\_SIZEOF\_INT128\_\_)}}
+\DoxyCodeLine{00698\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ result128\ =\ \_\_uint128\_t(lhs)\ +\ \_\_uint128\_t(rhs);}
+\DoxyCodeLine{00699\ \ \ \ \ out\_high64\ =\ \textcolor{keyword}{static\_cast<}uint64\textcolor{keyword}{>}(result128\ >>\ 64);}
+\DoxyCodeLine{00700\ \ \ \ \ out\_low64\ =\ \textcolor{keyword}{static\_cast<}uint64\textcolor{keyword}{>}(result128);}
+\DoxyCodeLine{00701\ \textcolor{preprocessor}{\#elif\ PH\_COMPILER\_IS\_MSVC}}
+\DoxyCodeLine{00702\ \ \ \ \ out\_low64\ =\ \_umul128(lhs,\ rhs,\ \&out\_high64);}
+\DoxyCodeLine{00703\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00704\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00705\ \textcolor{comment}{\ \ \ \ Divide\ each\ 64-\/bit\ number\ into\ two\ 32-\/bit\ parts,\ then\ multiplying\ (or\ adding)\ any\ 32-\/bit}}
+\DoxyCodeLine{00706\ \textcolor{comment}{\ \ \ \ pairs\ cannot\ overflow\ if\ done\ using\ 64-\/bit\ arithmetic.\ If\ we\ multiply\ them\ using\ base\ 2\string^32\ }}
+\DoxyCodeLine{00707\ \textcolor{comment}{\ \ \ \ arithmetic,\ a\ total\ of\ 4\ products\ must\ be\ shifted\ and\ added\ to\ obtain\ the\ final\ result.\ }}
+\DoxyCodeLine{00708\ \textcolor{comment}{\ \ \ \ Here\ is\ a\ simple\ illustration\ of\ the\ algorithm:}}
+\DoxyCodeLine{00709\ \textcolor{comment}{}}
+\DoxyCodeLine{00710\ \textcolor{comment}{\ \ \ \ lhs\ =\ [\ a\ ][\ b\ ]}}
+\DoxyCodeLine{00711\ \textcolor{comment}{\ \ \ \ rhs\ =\ [\ c\ ][\ d\ ]}}
+\DoxyCodeLine{00712\ \textcolor{comment}{}}
+\DoxyCodeLine{00713\ \textcolor{comment}{\ \ \ \ Treat\ this\ like\ performing\ a\ regular\ multiplication\ on\ paper.\ Note\ that\ the\ multiplication}}
+\DoxyCodeLine{00714\ \textcolor{comment}{\ \ \ \ is\ done\ in\ base\ 2\string^32:}}
+\DoxyCodeLine{00715\ \textcolor{comment}{}}
+\DoxyCodeLine{00716\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ [\ a\ ][\ b\ ]}}
+\DoxyCodeLine{00717\ \textcolor{comment}{\ \ \ \ \ \ x\ \ \ \ \ \ \ \ [\ c\ ][\ d\ ]}}
+\DoxyCodeLine{00718\ \textcolor{comment}{\ \ \ \ \ \ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00719\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ [a*d][b*d]}}
+\DoxyCodeLine{00720\ \textcolor{comment}{\ \ \ \ \ \ +\ \ \ [a*c][b*c]}}
+\DoxyCodeLine{00721\ \textcolor{comment}{\ \ \ \ \ \ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00722\ \textcolor{comment}{}}
+\DoxyCodeLine{00723\ \textcolor{comment}{\ \ \ \ \ \ The\ overflowing\ part\ of\ each\ partial\ product\ is\ the\ carry\ (32-\/bit\ carry).\ This\ is\ a\ good\ reference:}}
+\DoxyCodeLine{00724\ \textcolor{comment}{\ \ \ \ \ \ https://stackoverflow.com/questions/26852435/reasonably-\/portable-\/way-\/to-\/get-\/top-\/64-\/bits-\/from-\/64x64-\/bit-\/multiply}}
+\DoxyCodeLine{00725\ \textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{00726\ }
+\DoxyCodeLine{00727\ \ \ \ \ \textcolor{keyword}{const}\ uint64\ a\ =\ lhs\ >>\ 32,\ b\ =\ lhs\ \&\ 0xFFFFFFFF;}
+\DoxyCodeLine{00728\ \ \ \ \ \textcolor{keyword}{const}\ uint64\ c\ =\ rhs\ >>\ 32,\ d\ =\ rhs\ \&\ 0xFFFFFFFF;}
+\DoxyCodeLine{00729\ }
+\DoxyCodeLine{00730\ \ \ \ \ \textcolor{keyword}{const}\ uint64\ ac\ =\ a\ *\ c;}
+\DoxyCodeLine{00731\ \ \ \ \ \textcolor{keyword}{const}\ uint64\ bc\ =\ b\ *\ c;}
+\DoxyCodeLine{00732\ \ \ \ \ \textcolor{keyword}{const}\ uint64\ ad\ =\ a\ *\ d;}
+\DoxyCodeLine{00733\ \ \ \ \ \textcolor{keyword}{const}\ uint64\ bd\ =\ b\ *\ d;}
+\DoxyCodeLine{00734\ }
+\DoxyCodeLine{00735\ \ \ \ \ \textcolor{comment}{//\ This\ is\ the\ middle\ part\ of\ the\ above\ illustration,\ which\ is\ a\ sum\ of\ three\ 32-\/bit\ numbers\ }}
+\DoxyCodeLine{00736\ \ \ \ \ \textcolor{comment}{//\ (so\ it\ is\ 34-\/bit\ at\ most):\ two\ products\ b*c\ and\ a*d,\ and\ the\ carry\ from\ b*d}}
+\DoxyCodeLine{00737\ \ \ \ \ \textcolor{keyword}{const}\ uint64\ mid34\ =\ (bd\ >>\ 32)\ +\ (bc\ \&\ 0xFFFFFFFF)\ +\ (ad\ \&\ 0xFFFFFFFF);}
+\DoxyCodeLine{00738\ }
+\DoxyCodeLine{00739\ \ \ \ \ out\_high64\ =\ ac\ +\ (bc\ >>\ 32)\ +\ (ad\ >>\ 32)\ +\ (mid34\ >>\ 32);}
+\DoxyCodeLine{00740\ \ \ \ \ out\_low64\ =\ (mid34\ <<\ 32)\ |\ (bd\ \&\ 0xFFFFFFFF);}
+\DoxyCodeLine{00741\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00742\ \}}
+\DoxyCodeLine{00743\ }
+\DoxyCodeLine{00747\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00748\ T\ \mbox{\hyperlink{namespaceph_1_1math_a5e1143174acd6afb8b6c9be755307c4b}{length}}(\textcolor{keyword}{const}\ std::array<T,\ N>\&\ vec);}
+\DoxyCodeLine{00749\ }
+\DoxyCodeLine{00750\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00751\ T\ \mbox{\hyperlink{namespaceph_1_1math_a5e1143174acd6afb8b6c9be755307c4b}{length}}(\textcolor{keyword}{const}\ std::vector<T>\&\ vec);}
+\DoxyCodeLine{00752\ }
+\DoxyCodeLine{00753\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ EXTENT\ =\ std::dynamic\_extent>}
+\DoxyCodeLine{00754\ T\ \mbox{\hyperlink{namespaceph_1_1math_a5e1143174acd6afb8b6c9be755307c4b}{length}}(\mbox{\hyperlink{namespaceph_a06c532bb78132f63638ec3ef52d46ff3}{TSpanView<T,\ EXTENT>}}\ vec);}
+\DoxyCodeLine{00756\ }
+\DoxyCodeLine{00760\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00761\ T\ \mbox{\hyperlink{namespaceph_1_1math_a271473c0e491fe4c7c0cb02fcfa88bb0}{length\_squared}}(\textcolor{keyword}{const}\ std::array<T,\ N>\&\ vec);}
+\DoxyCodeLine{00762\ }
+\DoxyCodeLine{00763\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00764\ T\ \mbox{\hyperlink{namespaceph_1_1math_a271473c0e491fe4c7c0cb02fcfa88bb0}{length\_squared}}(\textcolor{keyword}{const}\ std::vector<T>\&\ vec);}
+\DoxyCodeLine{00765\ }
+\DoxyCodeLine{00766\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ EXTENT\ =\ std::dynamic\_extent>}
+\DoxyCodeLine{00767\ T\ \mbox{\hyperlink{namespaceph_1_1math_a271473c0e491fe4c7c0cb02fcfa88bb0}{length\_squared}}(\mbox{\hyperlink{namespaceph_a06c532bb78132f63638ec3ef52d46ff3}{TSpanView<T,\ EXTENT>}}\ vec);}
 \DoxyCodeLine{00769\ }
-\DoxyCodeLine{00770\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00771\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespaceph_1_1math_a4f0591b11fba7210f6dd38cfbbcbc9f7}{normalize}}(std::vector<T>\&\ vec);}
-\DoxyCodeLine{00772\ }
-\DoxyCodeLine{00773\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ EXTENT\ =\ std::dynamic\_extent>}
-\DoxyCodeLine{00774\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespaceph_1_1math_a4f0591b11fba7210f6dd38cfbbcbc9f7}{normalize}}(\mbox{\hyperlink{namespaceph_a5390437e1d7fd7d167c847677ea146e6}{TSpan<T,\ EXTENT>}}\ vec);}
-\DoxyCodeLine{00776\ }
-\DoxyCodeLine{00780\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
-\DoxyCodeLine{00781\ T\ \mbox{\hyperlink{namespaceph_1_1math_a03f8a077523cb1f8d667a39529300e98}{dot\_product}}(\textcolor{keyword}{const}\ std::array<T,\ N>\&\ vecA,\ \textcolor{keyword}{const}\ std::array<T,\ N>\&\ vecB);}
+\DoxyCodeLine{00773\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00774\ T\ \mbox{\hyperlink{namespaceph_1_1math_a4ff51da9284135e078f892589a4816cc}{p\_norm}}(\textcolor{keyword}{const}\ std::array<T,\ N>\&\ vec);}
+\DoxyCodeLine{00775\ }
+\DoxyCodeLine{00776\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00777\ T\ \mbox{\hyperlink{namespaceph_1_1math_a4ff51da9284135e078f892589a4816cc}{p\_norm}}(\textcolor{keyword}{const}\ std::vector<T>\&\ vec);}
+\DoxyCodeLine{00778\ }
+\DoxyCodeLine{00779\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ P,\ \textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ EXTENT\ =\ std::dynamic\_extent>}
+\DoxyCodeLine{00780\ T\ \mbox{\hyperlink{namespaceph_1_1math_a4ff51da9284135e078f892589a4816cc}{p\_norm}}(\mbox{\hyperlink{namespaceph_a06c532bb78132f63638ec3ef52d46ff3}{TSpanView<T,\ EXTENT>}}\ vec);}
 \DoxyCodeLine{00782\ }
-\DoxyCodeLine{00783\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00784\ T\ \mbox{\hyperlink{namespaceph_1_1math_a03f8a077523cb1f8d667a39529300e98}{dot\_product}}(\textcolor{keyword}{const}\ std::vector<T>\&\ vecA,\ \textcolor{keyword}{const}\ std::vector<T>\&\ vecB);}
-\DoxyCodeLine{00785\ }
-\DoxyCodeLine{00786\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ EXTENT\ =\ std::dynamic\_extent>}
-\DoxyCodeLine{00787\ T\ \mbox{\hyperlink{namespaceph_1_1math_a03f8a077523cb1f8d667a39529300e98}{dot\_product}}(\mbox{\hyperlink{namespaceph_a06c532bb78132f63638ec3ef52d46ff3}{TSpanView<T,\ EXTENT>}}\ vecA,\ \mbox{\hyperlink{namespaceph_a06c532bb78132f63638ec3ef52d46ff3}{TSpanView<T,\ EXTENT>}}\ vecB);}
-\DoxyCodeLine{00789\ }
-\DoxyCodeLine{00790\ \}\textcolor{comment}{//\ end\ namespace\ ph::math}}
-\DoxyCodeLine{00791\ }
-\DoxyCodeLine{00792\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{math_8ipp}{Math/math.ipp}}"{}}}
+\DoxyCodeLine{00788\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00789\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespaceph_1_1math_a4f0591b11fba7210f6dd38cfbbcbc9f7}{normalize}}(std::array<T,\ N>\&\ vec);}
+\DoxyCodeLine{00790\ }
+\DoxyCodeLine{00791\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00792\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespaceph_1_1math_a4f0591b11fba7210f6dd38cfbbcbc9f7}{normalize}}(std::vector<T>\&\ vec);}
+\DoxyCodeLine{00793\ }
+\DoxyCodeLine{00794\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ EXTENT\ =\ std::dynamic\_extent>}
+\DoxyCodeLine{00795\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespaceph_1_1math_a4f0591b11fba7210f6dd38cfbbcbc9f7}{normalize}}(\mbox{\hyperlink{namespaceph_a5390437e1d7fd7d167c847677ea146e6}{TSpan<T,\ EXTENT>}}\ vec);}
+\DoxyCodeLine{00797\ }
+\DoxyCodeLine{00801\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00802\ T\ \mbox{\hyperlink{namespaceph_1_1math_a03f8a077523cb1f8d667a39529300e98}{dot\_product}}(\textcolor{keyword}{const}\ std::array<T,\ N>\&\ vecA,\ \textcolor{keyword}{const}\ std::array<T,\ N>\&\ vecB);}
+\DoxyCodeLine{00803\ }
+\DoxyCodeLine{00804\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00805\ T\ \mbox{\hyperlink{namespaceph_1_1math_a03f8a077523cb1f8d667a39529300e98}{dot\_product}}(\textcolor{keyword}{const}\ std::vector<T>\&\ vecA,\ \textcolor{keyword}{const}\ std::vector<T>\&\ vecB);}
+\DoxyCodeLine{00806\ }
+\DoxyCodeLine{00807\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ EXTENT\ =\ std::dynamic\_extent>}
+\DoxyCodeLine{00808\ T\ \mbox{\hyperlink{namespaceph_1_1math_a03f8a077523cb1f8d667a39529300e98}{dot\_product}}(\mbox{\hyperlink{namespaceph_a06c532bb78132f63638ec3ef52d46ff3}{TSpanView<T,\ EXTENT>}}\ vecA,\ \mbox{\hyperlink{namespaceph_a06c532bb78132f63638ec3ef52d46ff3}{TSpanView<T,\ EXTENT>}}\ vecB);}
+\DoxyCodeLine{00810\ }
+\DoxyCodeLine{00811\ \}\textcolor{comment}{//\ end\ namespace\ ph::math}}
+\DoxyCodeLine{00812\ }
+\DoxyCodeLine{00813\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{math_8ipp}{Math/math.ipp}}"{}}}
 
 \end{DoxyCode}

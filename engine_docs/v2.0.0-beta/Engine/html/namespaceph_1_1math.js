@@ -1,7 +1,6 @@
 var namespaceph_1_1math =
 [
     [ "constant", "namespaceph_1_1math_1_1constant.html", [
-      [ "AxisIndexType", "namespaceph_1_1math_1_1constant.html#a6399d62eb40c0ceee94dfcb7b77cb85c", null ],
       [ "c_light", "namespaceph_1_1math_1_1constant.html#ab356262e329bf2351ca691b824a0d351", null ],
       [ "four_pi", "namespaceph_1_1math_1_1constant.html#a74df15a988474294266e06f83a0f51fe", null ],
       [ "GiB", "namespaceph_1_1math_1_1constant.html#a5bd138de6e1289a88b5cc6109b0c6bda", null ],
@@ -19,10 +18,10 @@ var namespaceph_1_1math =
       [ "sqrt_2", "namespaceph_1_1math_1_1constant.html#a8d0417484c0b9b7716b4d5272bf1646a", null ],
       [ "TiB", "namespaceph_1_1math_1_1constant.html#ac0d72c7c9b2610bd4c5b18bd289a48a9", null ],
       [ "two_pi", "namespaceph_1_1math_1_1constant.html#ad8b55217fcc8198b83c50375e1120c8a", null ],
-      [ "UNKNOWN_AXIS", "namespaceph_1_1math_1_1constant.html#a2c2f5d7f6b274f594b7b09ba38ed3ae0", null ],
-      [ "X_AXIS", "namespaceph_1_1math_1_1constant.html#a700e65439fa95e5ea186c96d06614a47", null ],
-      [ "Y_AXIS", "namespaceph_1_1math_1_1constant.html#a111d5e146845b82d5e977e6d0cf6fd0f", null ],
-      [ "Z_AXIS", "namespaceph_1_1math_1_1constant.html#a2eaa067caf050a0557eae1109de58e15", null ]
+      [ "UNKNOWN_AXIS", "namespaceph_1_1math_1_1constant.html#a5c38ce40358da812fa94d244fde664cb", null ],
+      [ "X_AXIS", "namespaceph_1_1math_1_1constant.html#a633099a259bffb958d8394be85abc6ee", null ],
+      [ "Y_AXIS", "namespaceph_1_1math_1_1constant.html#a02d97e4be2bd520fb35947c7c9ce0b2c", null ],
+      [ "Z_AXIS", "namespaceph_1_1math_1_1constant.html#a15bdc859ca6d66f04a20564583418404", null ]
     ] ],
     [ "detail", "namespaceph_1_1math_1_1detail.html", "namespaceph_1_1math_1_1detail" ],
     [ "radical_inverse_detail", "namespaceph_1_1math_1_1radical__inverse__detail.html", [
@@ -50,6 +49,7 @@ var namespaceph_1_1math =
       [ "XYZ_CMF_CIE_1931_2_degree_Z", "namespaceph_1_1math_1_1spectral__data.html#a36e24cdf78208f05728b17a8c246720e", null ]
     ] ],
     [ "table", "namespaceph_1_1math_1_1table.html", "namespaceph_1_1math_1_1table" ],
+    [ "BvhParams", "classph_1_1math_1_1_bvh_params.html", "classph_1_1math_1_1_bvh_params" ],
     [ "ColorError", "classph_1_1math_1_1_color_error.html", null ],
     [ "DefaultSpectralSampleProps", "classph_1_1math_1_1_default_spectral_sample_props.html", null ],
     [ "DeterministicSeeder", "classph_1_1math_1_1_deterministic_seeder.html", null ],
@@ -70,7 +70,11 @@ var namespaceph_1_1math =
     [ "TArithmeticArray", "classph_1_1math_1_1_t_arithmetic_array.html", "classph_1_1math_1_1_t_arithmetic_array" ],
     [ "TArithmeticArrayBase", "classph_1_1math_1_1_t_arithmetic_array_base.html", "classph_1_1math_1_1_t_arithmetic_array_base" ],
     [ "TBasicTriangle", "classph_1_1math_1_1_t_basic_triangle.html", "classph_1_1math_1_1_t_basic_triangle" ],
+    [ "TBinaryBvhNode", "classph_1_1math_1_1_t_binary_bvh_node.html", "classph_1_1math_1_1_t_binary_bvh_node" ],
     [ "TBlackmanHarris2D", "classph_1_1math_1_1_t_blackman_harris2_d.html", "classph_1_1math_1_1_t_blackman_harris2_d" ],
+    [ "TBvhBuilder", "classph_1_1math_1_1_t_bvh_builder.html", "classph_1_1math_1_1_t_bvh_builder" ],
+    [ "TBvhInfoNode", "classph_1_1math_1_1_t_bvh_info_node.html", "classph_1_1math_1_1_t_bvh_info_node" ],
+    [ "TBvhItemInfo", "classph_1_1math_1_1_t_bvh_item_info.html", "classph_1_1math_1_1_t_bvh_item_info" ],
     [ "TChromaticAdaptationDefinition", "classph_1_1math_1_1_t_chromatic_adaptation_definition.html", null ],
     [ "TChromaticAdaptationDefinition< EChromaticAdaptation::Bradford, T >", "classph_1_1math_1_1_t_chromatic_adaptation_definition_3_01_e_chromatic_adaptation_1_1_bradford_00_01_t_01_4.html", null ],
     [ "TChromaticAdaptationDefinition< EChromaticAdaptation::VonKries, T >", "classph_1_1math_1_1_t_chromatic_adaptation_definition_3_01_e_chromatic_adaptation_1_1_von_kries_00_01_t_01_4.html", null ],
@@ -96,6 +100,8 @@ var namespaceph_1_1math =
     [ "TIndexedKdtreeNode", "classph_1_1math_1_1_t_indexed_kdtree_node.html", "classph_1_1math_1_1_t_indexed_kdtree_node" ],
     [ "TIndexedPointKdtree", "classph_1_1math_1_1_t_indexed_point_kdtree.html", "classph_1_1math_1_1_t_indexed_point_kdtree" ],
     [ "TIndexedVector3", "classph_1_1math_1_1_t_indexed_vector3.html", null ],
+    [ "TLinearDepthFirstBinaryBvh", "classph_1_1math_1_1_t_linear_depth_first_binary_bvh.html", "classph_1_1math_1_1_t_linear_depth_first_binary_bvh" ],
+    [ "TLinearDepthFirstWideBvh", "classph_1_1math_1_1_t_linear_depth_first_wide_bvh.html", "classph_1_1math_1_1_t_linear_depth_first_wide_bvh" ],
     [ "TLinearGradient2D", "classph_1_1math_1_1_t_linear_gradient2_d.html", "classph_1_1math_1_1_t_linear_gradient2_d" ],
     [ "TLineSegment", "classph_1_1math_1_1_t_line_segment.html", "classph_1_1math_1_1_t_line_segment" ],
     [ "TMathFunction2D", "classph_1_1math_1_1_t_math_function2_d.html", "classph_1_1math_1_1_t_math_function2_d" ],
@@ -127,10 +133,11 @@ var namespaceph_1_1math =
     [ "TVectorN", "classph_1_1math_1_1_t_vector_n.html", "classph_1_1math_1_1_t_vector_n" ],
     [ "TVectorNBase", "classph_1_1math_1_1_t_vector_n_base.html", "classph_1_1math_1_1_t_vector_n_base" ],
     [ "TWatertightTriangle", "classph_1_1math_1_1_t_watertight_triangle.html", "classph_1_1math_1_1_t_watertight_triangle" ],
+    [ "TWideBvhNode", "classph_1_1math_1_1_t_wide_bvh_node.html", "classph_1_1math_1_1_t_wide_bvh_node" ],
+    [ "CIndexedPointKdtreeItemStorage", "conceptph_1_1math_1_1_c_indexed_point_kdtree_item_storage.html", null ],
     [ "CItemSegmentIntersectionTesterVanilla", "conceptph_1_1math_1_1_c_item_segment_intersection_tester_vanilla.html", null ],
     [ "CItemSegmentIntersectionTesterWithIndex", "conceptph_1_1math_1_1_c_item_segment_intersection_tester_with_index.html", null ],
     [ "CItemSegmentIntersectionTester", "conceptph_1_1math_1_1_c_item_segment_intersection_tester.html", null ],
-    [ "CIndexedPointKdtreeItemStorage", "conceptph_1_1math_1_1_c_indexed_point_kdtree_item_storage.html", null ],
     [ "CChromaticAdaptationDefinition", "conceptph_1_1math_1_1_c_chromatic_adaptation_definition.html", null ],
     [ "CSpectralSampleProps", "conceptph_1_1math_1_1_c_spectral_sample_props.html", null ],
     [ "CColorValuesInterface", "conceptph_1_1math_1_1_c_color_values_interface.html", null ],
@@ -191,6 +198,12 @@ var namespaceph_1_1math =
     [ "Vector4F", "namespaceph_1_1math.html#aeecd95f45574f3a4ea7df770904ba904", null ],
     [ "Vector4R", "namespaceph_1_1math.html#a71b2e063e0bf4831b58dfea00fe62214", null ],
     [ "Vector4S", "namespaceph_1_1math.html#aee456ded8cdfb7b2adad0565ecefad84", null ],
+    [ "EBvhNodeSplitMethod", "namespaceph_1_1math.html#a6b85157eabe1403cdf9b1e45c8c7e368", [
+      [ "EqualItems", "namespaceph_1_1math.html#a6b85157eabe1403cdf9b1e45c8c7e368ade447f76aa569e5e8c5a1ac54791e00c", null ],
+      [ "Midpoint", "namespaceph_1_1math.html#a6b85157eabe1403cdf9b1e45c8c7e368a7f56c02b34d312867e3f63c9f21fe5c8", null ],
+      [ "SAH_Buckets", "namespaceph_1_1math.html#a6b85157eabe1403cdf9b1e45c8c7e368a8d2112cc82f6f3b791a79299c553f85c", null ],
+      [ "SAH_EdgeSort", "namespaceph_1_1math.html#a6b85157eabe1403cdf9b1e45c8c7e368abeddd82e566c2f6f7e03453458fefe6d", null ]
+    ] ],
     [ "EChromaticAdaptation", "namespaceph_1_1math.html#aeb6d400f8c4f85be266ab51b3cd65951", [
       [ "Unspecified", "namespaceph_1_1math.html#aeb6d400f8c4f85be266ab51b3cd65951a6fcdc090caeade09d0efd6253932b6f5", null ],
       [ "XYZScaling", "namespaceph_1_1math.html#aeb6d400f8c4f85be266ab51b3cd65951a3fd49dab43044bf83a81e5e7ab067402", null ],
@@ -351,6 +364,7 @@ var namespaceph_1_1math =
     [ "reused_pick", "namespaceph_1_1math.html#ae25c59a2b1c21e3de88ce32499d3fa2f", null ],
     [ "reverse_bits", "namespaceph_1_1math.html#a2cf56679844b291df412ba311723c828", null ],
     [ "safe_clamp", "namespaceph_1_1math.html#a0090b0ad2b7785d02c6761c1766066cc", null ],
+    [ "safe_rcp", "namespaceph_1_1math.html#a1e5270d420e04a11bbeafa6da0b6849b", null ],
     [ "sample_cast", "namespaceph_1_1math.html#a9155e57616e76e5b400e6052093e491e", null ],
     [ "seconds_to_HMS", "namespaceph_1_1math.html#a481f56f49006955302fbd2c45928849b", null ],
     [ "set_bits_in_range", "namespaceph_1_1math.html#abbf29a619bc4b2cd6e88bbc5e3380a0f", null ],

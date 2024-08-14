@@ -47,6 +47,7 @@ var math_8h =
     [ "quantize_normalized_float", "math_8h.html#a403680d6446383625398ed0c057c43fd", null ],
     [ "reverse_bits", "math_8h.html#a2cf56679844b291df412ba311723c828", null ],
     [ "safe_clamp", "math_8h.html#a0090b0ad2b7785d02c6761c1766066cc", null ],
+    [ "safe_rcp", "math_8h.html#a1e5270d420e04a11bbeafa6da0b6849b", null ],
     [ "set_bits_in_range", "math_8h.html#abbf29a619bc4b2cd6e88bbc5e3380a0f", null ],
     [ "sign", "math_8h.html#a7377d0dddd537e4e7a04f98bd8e1114e", null ],
     [ "squared", "math_8h.html#a3d95f12613138cf607ca4b4b0c04ea48", null ],

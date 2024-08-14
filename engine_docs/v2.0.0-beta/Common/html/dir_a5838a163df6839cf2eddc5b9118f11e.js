@@ -12,6 +12,7 @@ var dir_a5838a163df6839cf2eddc5b9118f11e =
     [ "exceptions.h", "exceptions_8h.html", "exceptions_8h" ],
     [ "io_exceptions.h", "io__exceptions_8h.html", "io__exceptions_8h" ],
     [ "logging.h", "logging_8h.html", "logging_8h" ],
+    [ "macro.h", "macro_8h.html", "macro_8h" ],
     [ "math_basics.h", "math__basics_8h.html", "math__basics_8h" ],
     [ "memory.h", "memory_8h.html", "memory_8h" ],
     [ "memory.ipp", "memory_8ipp.html", "memory_8ipp" ],
@@ -19,5 +20,6 @@ var dir_a5838a163df6839cf2eddc5b9118f11e =
     [ "primitive_type.h", "primitive__type_8h.html", "primitive__type_8h" ],
     [ "profiling.h", "profiling_8h.html", "profiling_8h" ],
     [ "stats.h", "stats_8h.html", "stats_8h" ],
-    [ "utility.h", "utility_8h.html", "utility_8h" ]
+    [ "utility.h", "utility_8h.html", "utility_8h" ],
+    [ "utility.ipp", "utility_8ipp.html", "utility_8ipp" ]
 ];

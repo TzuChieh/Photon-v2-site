@@ -11,5 +11,6 @@ var searchData=
   ['uninitializedobjectexception_8',['UninitializedObjectException',['../classph_1_1_uninitialized_object_exception.html',1,'ph']]],
   ['unknown_9',['Unknown',['../namespaceph_1_1os.html#a19b458c339590bd8d6525abd294ef2e7a88183b946cc5f0e8c96b2e66e1c74a7e',1,'ph::os']]],
   ['utility_2ecpp_10',['utility.cpp',['../utility_8cpp.html',1,'']]],
-  ['utility_2eh_11',['utility.h',['../utility_8h.html',1,'']]]
+  ['utility_2eh_11',['utility.h',['../utility_8h.html',1,'']]],
+  ['utility_2eipp_12',['utility.ipp',['../utility_8ipp.html',1,'']]]
 ];

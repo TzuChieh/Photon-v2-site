@@ -1,6 +1,5 @@
 var classph_1_1_render_session =
 [
-    [ "RenderSession", "classph_1_1_render_session.html#afaa2e2068147e3519f219e83e320925f", null ],
     [ "applyToContext", "classph_1_1_render_session.html#a892c7f4afc0ff0aa1a46809563ddeb9f", null ],
     [ "gatherResources", "classph_1_1_render_session.html#a939fb2912a0ffbfa917920171ecca9bd", null ],
     [ "numWorkers", "classph_1_1_render_session.html#aec604dc615d3539c99e4e2185216f9b6", null ],

@@ -3,7 +3,7 @@ var searchData=
   ['eaccelerator_0',['EAccelerator',['../../../Engine/html/namespaceph.html#ae3bb0a7d6923b55d615af996ece4e2c4',1,'ph']]],
   ['eappmoduleaction_1',['EAppModuleAction',['../../../EditorLib/html/namespaceph_1_1editor.html#a3c934f89a5056c53fffc8ecd9f288b44',1,'ph::editor']]],
   ['eattribute_2',['EAttribute',['../../../Engine/html/namespaceph.html#a11c9affc6f83fcc2a03443c050b0224b',1,'ph']]],
-  ['ebvhtype_3',['EBvhType',['../../../Engine/html/namespaceph.html#a905055bd65c81f2ec4e8c000e033722a',1,'ph']]],
+  ['ebvhnodesplitmethod_3',['EBvhNodeSplitMethod',['../../../Engine/html/namespaceph_1_1math.html#a6b85157eabe1403cdf9b1e45c8c7e368',1,'ph::math']]],
   ['echromaticadaptation_4',['EChromaticAdaptation',['../../../Engine/html/namespaceph_1_1math.html#aeb6d400f8c4f85be266ab51b3cd65951',1,'ph::math']]],
   ['ecleartarget_5',['EClearTarget',['../../../EditorLib/html/namespaceph_1_1editor_1_1ghi.html#a3afcd30d72696198855210893487ca85',1,'ph::editor::ghi']]],
   ['ecolorspace_6',['EColorSpace',['../../../Engine/html/namespaceph_1_1math.html#a957eab3ceed525ebce5c24b6b57eb975',1,'ph::math']]],

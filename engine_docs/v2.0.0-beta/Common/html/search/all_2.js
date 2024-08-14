@@ -11,12 +11,13 @@ var searchData=
   ['common_20library_8',['Photon Common Library',['../index.html',1,'']]],
   ['common_5fwhitespaces_9',['common_whitespaces',['../namespaceph_1_1string__utils_1_1table.html#acd8715506deba83040765aab07f7febf',1,'ph::string_utils::table']]],
   ['compiler_2eh_10',['compiler.h',['../compiler_8h.html',1,'']]],
-  ['config_11',['Config',['../classph_1_1_config.html',1,'ph']]],
-  ['config_2ecpp_12',['config.cpp',['../config_8cpp.html',1,'']]],
-  ['config_2eh_13',['config.h',['../config_8h.html',1,'']]],
-  ['count_14',['count',['../structph_1_1detail_1_1stats_1_1_time_counter.html#af66670948d29000c8ca200926bcef9ae',1,'ph::detail::stats::TimeCounter::count'],['../structph_1_1_timer_stats_report_1_1_time_record.html#a9d14e6083784d773bf3211ed63c44386',1,'ph::TimerStatsReport::TimeRecord::count'],['../structph_1_1_timer_stats_report_1_1_grouped_time_record.html#a769048b745768f80da2682ffb2bc0cca',1,'ph::TimerStatsReport::GroupedTimeRecord::count']]],
-  ['counter_15',['counter',['../structph_1_1detail_1_1stats_1_1_scoped_timer.html#a7289a8f4cf729cc1bd83e779ca6ab9aa',1,'ph::detail::stats::ScopedTimer']]],
-  ['cut_5fends_16',['cut_ends',['../namespaceph_1_1string__utils.html#acf3002d33a3e83703b6339c3f7498a84',1,'ph::string_utils']]],
-  ['cut_5fhead_17',['cut_head',['../namespaceph_1_1string__utils.html#a9c2bcc67e48025ac25d858e2ab1dad9f',1,'ph::string_utils']]],
-  ['cut_5ftail_18',['cut_tail',['../namespaceph_1_1string__utils.html#aa6a55db1a3744e229f772719f2078f45',1,'ph::string_utils']]]
+  ['compilers_11',['Definitions for Detecting Compilers',['../compiler_8h.html#autotoc_md1',1,'']]],
+  ['config_12',['Config',['../classph_1_1_config.html',1,'ph']]],
+  ['config_2ecpp_13',['config.cpp',['../config_8cpp.html',1,'']]],
+  ['config_2eh_14',['config.h',['../config_8h.html',1,'']]],
+  ['count_15',['count',['../structph_1_1detail_1_1stats_1_1_time_counter.html#af66670948d29000c8ca200926bcef9ae',1,'ph::detail::stats::TimeCounter::count'],['../structph_1_1_timer_stats_report_1_1_time_record.html#a9d14e6083784d773bf3211ed63c44386',1,'ph::TimerStatsReport::TimeRecord::count'],['../structph_1_1_timer_stats_report_1_1_grouped_time_record.html#a769048b745768f80da2682ffb2bc0cca',1,'ph::TimerStatsReport::GroupedTimeRecord::count']]],
+  ['counter_16',['counter',['../structph_1_1detail_1_1stats_1_1_scoped_timer.html#a7289a8f4cf729cc1bd83e779ca6ab9aa',1,'ph::detail::stats::ScopedTimer']]],
+  ['cut_5fends_17',['cut_ends',['../namespaceph_1_1string__utils.html#acf3002d33a3e83703b6339c3f7498a84',1,'ph::string_utils']]],
+  ['cut_5fhead_18',['cut_head',['../namespaceph_1_1string__utils.html#a9c2bcc67e48025ac25d858e2ab1dad9f',1,'ph::string_utils']]],
+  ['cut_5ftail_19',['cut_tail',['../namespaceph_1_1string__utils.html#aa6a55db1a3744e229f772719f2078f45',1,'ph::string_utils']]]
 ];

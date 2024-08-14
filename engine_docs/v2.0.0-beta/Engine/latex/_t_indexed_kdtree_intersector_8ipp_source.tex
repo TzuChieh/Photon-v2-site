@@ -34,64 +34,54 @@
 \DoxyCodeLine{00030\ \ \ \ \ IndexedIntersectables\ indexedIntersectables;}
 \DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_intersectable}{Intersectable}}*\ intersectable\ :\ intersectables)}
 \DoxyCodeLine{00032\ \ \ \ \ \{}
-\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ HACK}}
-\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!intersectable-\/>calcAABB().isFiniteVolume())}
-\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
-\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00038\ }
-\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ indexedIntersectables.vec.push\_back(intersectable);}
-\DoxyCodeLine{00040\ \ \ \ \ \}}
-\DoxyCodeLine{00041\ }
-\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ numIntersectables\ =\ indexedIntersectables.vec.size();}
-\DoxyCodeLine{00043\ \ \ \ \ m\_tree\ =\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_kdtree}{Tree}}(}
-\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ numIntersectables,}
-\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ std::move(indexedIntersectables),}
-\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ IntersectableAABBCalculator(),}
-\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ m\_params);}
-\DoxyCodeLine{00048\ \}}
-\DoxyCodeLine{00049\ }
-\DoxyCodeLine{00050\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Index>}
-\DoxyCodeLine{00051\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1_t_indexed_kdtree_intersector_a7e661abc7fe76c05118eedf5399b0a75}{TIndexedKdtreeIntersector<Index>::}}}
-\DoxyCodeLine{00052\ \mbox{\hyperlink{classph_1_1_t_indexed_kdtree_intersector_a7e661abc7fe76c05118eedf5399b0a75}{isIntersecting}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_ray}{Ray}}\&\ ray,\ \mbox{\hyperlink{classph_1_1_hit_probe}{HitProbe}}\&\ probe)\ \textcolor{keyword}{const}}
-\DoxyCodeLine{00053\ -\/>\ \textcolor{keywordtype}{bool}}
-\DoxyCodeLine{00054\ \{}
-\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_tree.nearestTraversal(}
-\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ ray.getSegment(),\ }
-\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ [ray,\ \&probe,\ originalProbe\ =\ probe](}
-\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_intersectable}{Intersectable}}*\ \textcolor{keyword}{const}\ \ \ \ \ \ intersectable,}
-\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_line_segment}{math::TLineSegment<real>}}\&\ segment)}
-\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ -\/>\ std::optional<real>}
-\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ PH\_ASSERT(intersectable);}
-\DoxyCodeLine{00063\ }
-\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ const\ Ray\ raySegment(segment,\ ray.getTime());}
-\DoxyCodeLine{00065\ }
-\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ HitProbe\ trialProbe\ =\ originalProbe;}
-\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ if(intersectable-\/>isIntersecting(raySegment,\ trialProbe))}
-\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if(trialProbe.getHitRayT()\ <\ probe.getHitRayT())}
-\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ probe\ =\ trialProbe;}
-\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00073\ }
-\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ return\ trialProbe.getHitRayT();}
-\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ return\ \{\};}
-\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \});}
-\DoxyCodeLine{00081\ \}}
-\DoxyCodeLine{00082\ }
-\DoxyCodeLine{00083\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Index>}
-\DoxyCodeLine{00084\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1_t_indexed_kdtree_intersector}{TIndexedKdtreeIntersector<Index>::}}}
-\DoxyCodeLine{00085\ \mbox{\hyperlink{classph_1_1_t_indexed_kdtree_intersector}{calcAABB}}()\ const}
-\DoxyCodeLine{00086\ -\/>\ math::\mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d}{AABB3D}}}
-\DoxyCodeLine{00087\ \{}
-\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_tree.getAABB();}
-\DoxyCodeLine{00089\ \}}
-\DoxyCodeLine{00090\ }
-\DoxyCodeLine{00091\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ indexedIntersectables.vec.push\_back(intersectable);}
+\DoxyCodeLine{00034\ \ \ \ \ \}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ numIntersectables\ =\ indexedIntersectables.vec.size();}
+\DoxyCodeLine{00037\ \ \ \ \ m\_tree\ =\ \mbox{\hyperlink{classph_1_1math_1_1_t_indexed_kdtree}{Tree}}(}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ numIntersectables,}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ std::move(indexedIntersectables),}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ IntersectableAABBCalculator(),}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ m\_params);}
+\DoxyCodeLine{00042\ \}}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Index>}
+\DoxyCodeLine{00045\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1_t_indexed_kdtree_intersector_a7e661abc7fe76c05118eedf5399b0a75}{TIndexedKdtreeIntersector<Index>::}}}
+\DoxyCodeLine{00046\ \mbox{\hyperlink{classph_1_1_t_indexed_kdtree_intersector_a7e661abc7fe76c05118eedf5399b0a75}{isIntersecting}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_ray}{Ray}}\&\ ray,\ \mbox{\hyperlink{classph_1_1_hit_probe}{HitProbe}}\&\ probe)\ \textcolor{keyword}{const}}
+\DoxyCodeLine{00047\ -\/>\ \textcolor{keywordtype}{bool}}
+\DoxyCodeLine{00048\ \{}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_tree.nearestTraversal(}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ ray.getSegment(),\ }
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ [ray,\ \&probe,\ originalProbe\ =\ probe](}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_intersectable}{Intersectable}}*\ \textcolor{keyword}{const}\ \ \ \ \ \ intersectable,}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_line_segment}{math::TLineSegment<real>}}\&\ segment)}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ -\/>\ std::optional<real>}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ PH\_ASSERT(intersectable);}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ const\ Ray\ raySegment(segment,\ ray.getTime());}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ HitProbe\ trialProbe\ =\ originalProbe;}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ if(intersectable-\/>isIntersecting(raySegment,\ trialProbe))}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ probe\ =\ trialProbe;}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ return\ trialProbe.getHitRayT();}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ return\ std::nullopt;}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00071\ \}}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Index>}
+\DoxyCodeLine{00074\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1_t_indexed_kdtree_intersector}{TIndexedKdtreeIntersector<Index>::}}}
+\DoxyCodeLine{00075\ \mbox{\hyperlink{classph_1_1_t_indexed_kdtree_intersector}{calcAABB}}()\ const}
+\DoxyCodeLine{00076\ -\/>\ math::\mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d}{AABB3D}}}
+\DoxyCodeLine{00077\ \{}
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_tree.getAABB();}
+\DoxyCodeLine{00079\ \}}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
 
 \end{DoxyCode}

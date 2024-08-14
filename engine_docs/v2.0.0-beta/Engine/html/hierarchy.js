@@ -21,11 +21,7 @@ var hierarchy =
     [ "ph::BsdfSampleOutput", "classph_1_1_bsdf_sample_output.html", null ],
     [ "ph::BsdfSampleQuery", "classph_1_1_bsdf_sample_query.html", null ],
     [ "ph::math::TIndexedPointKdtree< Item, Index, PointCalculator, ItemStorage >::BuildCache", "structph_1_1math_1_1_t_indexed_point_kdtree_1_1_build_cache.html", null ],
-    [ "ph::BvhBuilder", "classph_1_1_bvh_builder.html", null ],
-    [ "ph::BvhInfoNode", "classph_1_1_bvh_info_node.html", null ],
-    [ "ph::BvhIntersectableInfo", "classph_1_1_bvh_intersectable_info.html", null ],
-    [ "ph::BvhLinearNode", "classph_1_1_bvh_linear_node.html", null ],
-    [ "ph::BvhSahBucket", "classph_1_1_bvh_sah_bucket.html", null ],
+    [ "ph::math::BvhParams", "classph_1_1math_1_1_bvh_params.html", null ],
     [ "ph::ByteBuffer", "classph_1_1_byte_buffer.html", null ],
     [ "ph::ConductiveInterfaceInfo", "classph_1_1_conductive_interface_info.html", null ],
     [ "ph::CookedDataStorage", "classph_1_1_cooked_data_storage.html", null ],
@@ -166,8 +162,8 @@ var hierarchy =
     [ "ph::Intersectable", "classph_1_1_intersectable.html", [
       [ "ph::Intersector", "classph_1_1_intersector.html", [
         [ "ph::BruteForceIntersector", "classph_1_1_brute_force_intersector.html", null ],
-        [ "ph::ClassicBvhIntersector", "classph_1_1_classic_bvh_intersector.html", null ],
         [ "ph::KdtreeIntersector", "classph_1_1_kdtree_intersector.html", null ],
+        [ "ph::TClassicBvhIntersector< Index >", "classph_1_1_t_classic_bvh_intersector.html", null ],
         [ "ph::TIndexedKdtreeIntersector< Index >", "classph_1_1_t_indexed_kdtree_intersector.html", null ]
       ] ],
       [ "ph::MaskedIntersectable", "classph_1_1_masked_intersectable.html", null ],
@@ -740,6 +736,7 @@ var hierarchy =
     [ "ph::math::TBasicTriangle< real >", "classph_1_1math_1_1_t_basic_triangle.html", [
       [ "ph::math::TWatertightTriangle< real >", "classph_1_1math_1_1_t_watertight_triangle.html", null ]
     ] ],
+    [ "ph::math::TBinaryBvhNode< Item, Index >", "classph_1_1math_1_1_t_binary_bvh_node.html", null ],
     [ "ph::TBitFlags< Value, Input >", "classph_1_1_t_bit_flags.html", null ],
     [ "ph::TBitFlags< EEmitterFeatureSet >", "classph_1_1_t_bit_flags.html", null ],
     [ "ph::TBitFlags< EFaceTopology >", "classph_1_1_t_bit_flags.html", null ],
@@ -747,6 +744,9 @@ var hierarchy =
     [ "ph::TBitFlags< ESurfacePhenomenon >", "classph_1_1_t_bit_flags.html", null ],
     [ "ph::TBlockableAtomicQuasiQueue< T >", "classph_1_1_t_blockable_atomic_quasi_queue.html", null ],
     [ "ph::TBlockableAtomicQuasiQueue< Workload >", "classph_1_1_t_blockable_atomic_quasi_queue.html", null ],
+    [ "ph::math::TBvhBuilder< N, Item, ItemToAABB >", "classph_1_1math_1_1_t_bvh_builder.html", null ],
+    [ "ph::math::TBvhInfoNode< N, Item >", "classph_1_1math_1_1_t_bvh_info_node.html", null ],
+    [ "ph::math::TBvhItemInfo< Item >", "classph_1_1math_1_1_t_bvh_item_info.html", null ],
     [ "ph::math::TChromaticAdaptationDefinition< ALGORITHM, T >", "classph_1_1math_1_1_t_chromatic_adaptation_definition.html", null ],
     [ "ph::math::detail::TCIEXYZCmfKernel< T, SampleProps >", "structph_1_1math_1_1detail_1_1_t_c_i_e_x_y_z_cmf_kernel.html", null ],
     [ "ph::texfunc::TClamp< InputTypeA, InputTypeB, InputTypeC, OutputType >", "classph_1_1texfunc_1_1_t_clamp.html", null ],
@@ -785,7 +785,7 @@ var hierarchy =
     [ "ph::math::TIndexedKdtree< IndexToTriangle, TriangleToAABB, Index >", "classph_1_1math_1_1_t_indexed_kdtree.html", null ],
     [ "ph::math::TIndexedKdtreeNode< Index, USE_SINGLE_ITEM_OPT >", "classph_1_1math_1_1_t_indexed_kdtree_node.html", null ],
     [ "ph::math::TIndexedPointKdtree< Item, Index, PointCalculator, ItemStorage >", "classph_1_1math_1_1_t_indexed_point_kdtree.html", null ],
-    [ "ph::math::TIndexedPointKdtree< Photon, int, PhotonCenterCalculator, std::vector< Photon > >", "classph_1_1math_1_1_t_indexed_point_kdtree.html", null ],
+    [ "ph::math::TIndexedPointKdtree< Photon, uint32, PhotonCenterCalculator, std::vector< Photon > >", "classph_1_1math_1_1_t_indexed_point_kdtree.html", null ],
     [ "ph::TIndexedPolygonBuffer< N >", "classph_1_1_t_indexed_polygon_buffer.html", null ],
     [ "ph::math::TIndexedVector3< T >", "classph_1_1math_1_1_t_indexed_vector3.html", null ],
     [ "ph::lta::TIndirectLightEstimator< POLICY >", "classph_1_1lta_1_1_t_indirect_light_estimator.html", null ],
@@ -805,6 +805,9 @@ var hierarchy =
       [ "ph::SurfaceAttributeEstimator", "classph_1_1_surface_attribute_estimator.html", null ]
     ] ],
     [ "ph::TIteratorProxy< ContainerType >", "classph_1_1_t_iterator_proxy.html", null ],
+    [ "ph::math::TLinearDepthFirstBinaryBvh< Item, Index >", "classph_1_1math_1_1_t_linear_depth_first_binary_bvh.html", null ],
+    [ "ph::math::TLinearDepthFirstBinaryBvh< const ph::Intersectable *, Index >", "classph_1_1math_1_1_t_linear_depth_first_binary_bvh.html", null ],
+    [ "ph::math::TLinearDepthFirstWideBvh< N, Item, Index >", "classph_1_1math_1_1_t_linear_depth_first_wide_bvh.html", null ],
     [ "ph::math::TLineSegment< T >", "classph_1_1math_1_1_t_line_segment.html", null ],
     [ "ph::math::TLineSegment< real >", "classph_1_1math_1_1_t_line_segment.html", null ],
     [ "ph::math::TMathFunction2D< Value >", "classph_1_1math_1_1_t_math_function2_d.html", [
@@ -955,6 +958,7 @@ var hierarchy =
     [ "ph::TViewpoint< FullViewpoint >", "classph_1_1_t_viewpoint.html", [
       [ "ph::FullViewpoint", "classph_1_1_full_viewpoint.html", null ]
     ] ],
+    [ "ph::math::TWideBvhNode< N, Item, Index >", "classph_1_1math_1_1_t_wide_bvh_node.html", null ],
     [ "ph::UvwMapper", "classph_1_1_uvw_mapper.html", [
       [ "ph::SphericalMapper", "classph_1_1_spherical_mapper.html", null ]
     ] ],

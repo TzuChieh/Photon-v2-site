@@ -1,6 +1,6 @@
 var dir_750d3e9a071fdf48397f198fd5d2b351 =
 [
-    [ "Bvh", "dir_2f9d0e9619c64f70e04321e1bd9a94e5.html", "dir_2f9d0e9619c64f70e04321e1bd9a94e5" ],
+    [ "BVH", "dir_8e677310d1e69d98506af2c94241a37a.html", "dir_8e677310d1e69d98506af2c94241a37a" ],
     [ "DataStructure", "dir_95ddc442d909b1bccb87af28ffbde4a3.html", "dir_95ddc442d909b1bccb87af28ffbde4a3" ],
     [ "Intersector", "dir_996145bcbb084d296f9c2b3649eb280d.html", "dir_996145bcbb084d296f9c2b3649eb280d" ],
     [ "Kdtree", "dir_3aee53fa66f054e947f1256ee47d1a98.html", "dir_3aee53fa66f054e947f1256ee47d1a98" ],

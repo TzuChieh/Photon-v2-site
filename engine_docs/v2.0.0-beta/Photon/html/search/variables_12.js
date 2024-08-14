@@ -1,11 +1,11 @@
 var searchData=
 [
-  ['u0_5findex_0',['u0_index',['../../../Engine/html/classph_1_1math_1_1_t_indexed_kdtree_node.html#a469cb8b792cb4fb1a5e8d47b264df886',1,'ph::math::TIndexedKdtreeNode']]],
-  ['u0_5fsplitpos_1',['u0_splitPos',['../../../Engine/html/classph_1_1math_1_1_t_indexed_kdtree_node.html#ae41e6e4af858606df3d5b08fb0335957',1,'ph::math::TIndexedKdtreeNode']]],
-  ['u1_5fflags_2',['u1_flags',['../../../Engine/html/classph_1_1math_1_1_t_indexed_kdtree_node.html#acc17332ce5825165f3720007c8f5acc8',1,'ph::math::TIndexedKdtreeNode']]],
-  ['u1_5fnumitems_3',['u1_numItems',['../../../Engine/html/classph_1_1math_1_1_t_indexed_kdtree_node.html#ae1fe3f240606e24811633f5fb2c3a8a6',1,'ph::math::TIndexedKdtreeNode']]],
-  ['u1_5fpositivechildindex_4',['u1_positiveChildIndex',['../../../Engine/html/classph_1_1math_1_1_t_indexed_kdtree_node.html#ad2349dd670554434eb9fc57cbd1947d8',1,'ph::math::TIndexedKdtreeNode']]],
-  ['unknown_5faxis_5',['UNKNOWN_AXIS',['../../../Engine/html/namespaceph_1_1math_1_1constant.html#a2c2f5d7f6b274f594b7b09ba38ed3ae0',1,'ph::math::constant::UNKNOWN_AXIS'],['../../../Engine/html/namespaceph_1_1math_1_1constant.html#a2c2f5d7f6b274f594b7b09ba38ed3ae0',1,'ph::math::constant::UNKNOWN_AXIS']]],
+  ['u0_5fchildoffset_0',['u0_childOffset',['../../../Engine/html/classph_1_1math_1_1_t_binary_bvh_node.html#ae9f8f37b5e9785debf1aa3375f6cac76',1,'ph::math::TBinaryBvhNode']]],
+  ['u0_5findexbufferoffset_1',['u0_indexBufferOffset',['../../../Engine/html/classph_1_1math_1_1_t_indexed_kdtree_node.html#aa3ccbca8b620480331e017a6e5391b89',1,'ph::math::TIndexedKdtreeNode']]],
+  ['u0_5fitembufferoffset_2',['u0_itemBufferOffset',['../../../Engine/html/classph_1_1math_1_1_t_indexed_kdtree_node.html#a90ed47e0e505dd740fad002aa58c9b9b',1,'ph::math::TIndexedKdtreeNode']]],
+  ['u0_5fitemoffset_3',['u0_itemOffset',['../../../Engine/html/classph_1_1math_1_1_t_binary_bvh_node.html#a923a50c99c5ba68f27e2ad3ca1293c00',1,'ph::math::TBinaryBvhNode']]],
+  ['u0_5fsplitpos_4',['u0_splitPos',['../../../Engine/html/classph_1_1math_1_1_t_indexed_kdtree_node.html#ae41e6e4af858606df3d5b08fb0335957',1,'ph::math::TIndexedKdtreeNode']]],
+  ['unknown_5faxis_5',['UNKNOWN_AXIS',['../../../Engine/html/namespaceph_1_1math_1_1constant.html#a5c38ce40358da812fa94d244fde664cb',1,'ph::math::constant::UNKNOWN_AXIS'],['../../../Engine/html/namespaceph_1_1math_1_1constant.html#a5c38ce40358da812fa94d244fde664cb',1,'ph::math::constant::UNKNOWN_AXIS']]],
   ['updatectx_6',['updateCtx',['../../../EditorLib/html/classph_1_1editor_1_1render_1_1_system.html#a9d99b47e5c3999f8b3f501b4add161aa',1,'ph::editor::render::System']]],
   ['updatingregions_7',['updatingRegions',['../../../EditorLib/html/structph_1_1editor_1_1render_1_1_offline_render_peek_1_1_output.html#a087c5a4035c0c05c88fd2ee29d681445',1,'ph::editor::render::OfflineRenderPeek::Output']]],
   ['upperright_8',['UpperRight',['../../../EditorLib/html/namespaceph_1_1editor.html#abb2b33df71500bcdb64cd584decaef14a3f46a554805f85ffa8076f3fb4a1e98f',1,'ph::editor']]],

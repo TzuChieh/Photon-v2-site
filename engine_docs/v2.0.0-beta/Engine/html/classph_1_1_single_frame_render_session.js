@@ -1,6 +1,5 @@
 var classph_1_1_single_frame_render_session =
 [
-    [ "SingleFrameRenderSession", "classph_1_1_single_frame_render_session.html#a658b3b8f1accf541da1b5ccf2836f29e", null ],
     [ "applyToContext", "classph_1_1_single_frame_render_session.html#a636b4d1446acd6fd14a4085f8ff19c1a", null ],
     [ "gatherResources", "classph_1_1_single_frame_render_session.html#a13c31f40255c3045683c80aafe8ade7d", null ],
     [ "getObserverName", "classph_1_1_single_frame_render_session.html#ad6178bf99a44c4d0d19c9dcaf4647080", null ],

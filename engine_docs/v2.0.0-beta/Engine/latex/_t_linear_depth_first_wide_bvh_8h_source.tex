@@ -1,0 +1,64 @@
+\doxysection{TLinear\+Depth\+First\+Wide\+Bvh.\+h}
+\hypertarget{_t_linear_depth_first_wide_bvh_8h_source}{}\label{_t_linear_depth_first_wide_bvh_8h_source}\index{Source/Math/Algorithm/BVH/TLinearDepthFirstWideBvh.h@{Source/Math/Algorithm/BVH/TLinearDepthFirstWideBvh.h}}
+\mbox{\hyperlink{_t_linear_depth_first_wide_bvh_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_wide_bvh_node_8h}{Math/Algorithm/BVH/TWideBvhNode.h}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_line_segment_8h}{Math/Geometry/TLineSegment.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{utility_8h}{Utility/utility.h}}"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <Common/primitive\_type.h>}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <cstddef>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph_1_1math}{ph::math}}}
+\DoxyCodeLine{00014\ \{}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Item>}
+\DoxyCodeLine{00017\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node}{TBvhInfoNode}};}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Item,\ \textcolor{keyword}{typename}\ Index>}
+\DoxyCodeLine{00020\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1math_1_1_t_linear_depth_first_wide_bvh}{TLinearDepthFirstWideBvh}}\ final}
+\DoxyCodeLine{00021\ \{}
+\DoxyCodeLine{00022\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classph_1_1math_1_1_t_wide_bvh_node}{NodeType}}\ =\ \mbox{\hyperlink{classph_1_1math_1_1_t_wide_bvh_node}{TWideBvhNode<N,\ Item,\ Index>}};}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{static}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1math_1_1_t_linear_depth_first_wide_bvh_ab2e15bdb1ab31e7555a2808be637ffb0}{TRAVERSAL\_STACK\_SIZE}}\ =\ std::min<std::size\_t>(}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ sizeof\_in\_bits<Index>()\ *\ 3\ /\ 2,\ 48);}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ SrcN>}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1math_1_1_t_linear_depth_first_wide_bvh_a0a147e247d26c1bc4d135b47b45190f4}{build}}(}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node}{TBvhInfoNode<SrcN,\ Item>}}*\ \textcolor{keyword}{const}\ rootNode,}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ std::size\_t\ totalInfoNodes,}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ std::size\_t\ totalItems);}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ TesterFunc,\ \textcolor{keywordtype}{bool}\ IS\_ROBUST\ =\ true>}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1math_1_1_t_linear_depth_first_wide_bvh_ae85384ec149535fff61ae89ea1379426}{nearestTraversal}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_line_segment}{TLineSegment<real>}}\&\ segment,\ TesterFunc\&\&\ intersectionTester)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1math_1_1_t_linear_depth_first_wide_bvh_a8bba2ab3ed94c1842ada5c4995395f2d}{isEmpty}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_wide_bvh_node}{NodeType}}\&\ \mbox{\hyperlink{classph_1_1math_1_1_t_linear_depth_first_wide_bvh_ad108f5d43292757a532733fd9b4c3023}{getRoot}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordtype}{void}\ convertChildNodesRecursive(}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node}{TBvhInfoNode<N,\ Item>}}*\ infoNode);}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ SrcN>}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordtype}{void}\ collapseNodesRecursive(}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node}{TBvhInfoNode<SrcN,\ Item>}}*\ infoNode);}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordtype}{void}\ refitBuffer(std::size\_t\ nodeBufferSize,\ std::size\_t\ itemBufferSize);}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ std::unique\_ptr<NodeType[]>\ m\_nodes;}
+\DoxyCodeLine{00055\ \ \ \ \ std::unique\_ptr<Item[]>\ m\_items;}
+\DoxyCodeLine{00056\ \ \ \ \ Index\ m\_numNodes\ =\ 0;}
+\DoxyCodeLine{00057\ \ \ \ \ Index\ m\_numItems\ =\ 0;}
+\DoxyCodeLine{00058\ \};}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \}\textcolor{comment}{//\ end\ namespace\ ph::math}}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_linear_depth_first_binary_bvh_8ipp}{Math/Algorithm/BVH/TLinearDepthFirstBinaryBvh.ipp}}"{}}}
+
+\end{DoxyCode}

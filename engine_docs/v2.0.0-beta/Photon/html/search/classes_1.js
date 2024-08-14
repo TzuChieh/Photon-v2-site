@@ -26,13 +26,9 @@ var searchData=
   ['bsdfsamplequery_23',['BsdfSampleQuery',['../../../Engine/html/classph_1_1_bsdf_sample_query.html',1,'ph']]],
   ['bufferedframeinfo_24',['BufferedFrameInfo',['../../../EditorLib/html/structph_1_1editor_1_1_buffered_frame_info.html',1,'ph::editor']]],
   ['buildcache_25',['BuildCache',['../../../Engine/html/structph_1_1math_1_1_t_indexed_point_kdtree_1_1_build_cache.html',1,'ph::math::TIndexedPointKdtree']]],
-  ['bvhbuilder_26',['BvhBuilder',['../../../Engine/html/classph_1_1_bvh_builder.html',1,'ph']]],
-  ['bvhinfonode_27',['BvhInfoNode',['../../../Engine/html/classph_1_1_bvh_info_node.html',1,'ph']]],
-  ['bvhintersectableinfo_28',['BvhIntersectableInfo',['../../../Engine/html/classph_1_1_bvh_intersectable_info.html',1,'ph']]],
-  ['bvhlinearnode_29',['BvhLinearNode',['../../../Engine/html/classph_1_1_bvh_linear_node.html',1,'ph']]],
-  ['bvhsahbucket_30',['BvhSahBucket',['../../../Engine/html/classph_1_1_bvh_sah_bucket.html',1,'ph']]],
-  ['bvptdlestimator_31',['BVPTDLEstimator',['../../../Engine/html/classph_1_1_b_v_p_t_d_l_estimator.html',1,'ph']]],
-  ['bvptestimator_32',['BVPTEstimator',['../../../Engine/html/classph_1_1_b_v_p_t_estimator.html',1,'ph']]],
-  ['bytebuffer_33',['ByteBuffer',['../../../Engine/html/classph_1_1_byte_buffer.html',1,'ph']]],
-  ['bytebufferinputstream_34',['ByteBufferInputStream',['../../../Engine/html/classph_1_1_byte_buffer_input_stream.html',1,'ph']]]
+  ['bvhparams_26',['BvhParams',['../../../Engine/html/classph_1_1math_1_1_bvh_params.html',1,'ph::math']]],
+  ['bvptdlestimator_27',['BVPTDLEstimator',['../../../Engine/html/classph_1_1_b_v_p_t_d_l_estimator.html',1,'ph']]],
+  ['bvptestimator_28',['BVPTEstimator',['../../../Engine/html/classph_1_1_b_v_p_t_estimator.html',1,'ph']]],
+  ['bytebuffer_29',['ByteBuffer',['../../../Engine/html/classph_1_1_byte_buffer.html',1,'ph']]],
+  ['bytebufferinputstream_30',['ByteBufferInputStream',['../../../Engine/html/classph_1_1_byte_buffer_input_stream.html',1,'ph']]]
 ];

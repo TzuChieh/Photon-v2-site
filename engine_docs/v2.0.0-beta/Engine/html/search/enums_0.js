@@ -2,7 +2,7 @@ var searchData=
 [
   ['eaccelerator_0',['EAccelerator',['../namespaceph.html#ae3bb0a7d6923b55d615af996ece4e2c4',1,'ph']]],
   ['eattribute_1',['EAttribute',['../namespaceph.html#a11c9affc6f83fcc2a03443c050b0224b',1,'ph']]],
-  ['ebvhtype_2',['EBvhType',['../namespaceph.html#a905055bd65c81f2ec4e8c000e033722a',1,'ph']]],
+  ['ebvhnodesplitmethod_2',['EBvhNodeSplitMethod',['../namespaceph_1_1math.html#a6b85157eabe1403cdf9b1e45c8c7e368',1,'ph::math']]],
   ['echromaticadaptation_3',['EChromaticAdaptation',['../namespaceph_1_1math.html#aeb6d400f8c4f85be266ab51b3cd65951',1,'ph::math']]],
   ['ecolorspace_4',['EColorSpace',['../namespaceph_1_1math.html#a957eab3ceed525ebce5c24b6b57eb975',1,'ph::math']]],
   ['ecolorusage_5',['EColorUsage',['../namespaceph_1_1math.html#a821af6da20aaed56cc09ad440633d067',1,'ph::math']]],

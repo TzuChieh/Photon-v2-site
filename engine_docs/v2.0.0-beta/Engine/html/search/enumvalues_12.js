@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['sah_5fbucket_0',['SAH_BUCKET',['../namespaceph.html#a905055bd65c81f2ec4e8c000e033722aa253aea2d07611aeb89ce012571903289',1,'ph']]],
-  ['sah_5fedge_1',['SAH_EDGE',['../namespaceph.html#a905055bd65c81f2ec4e8c000e033722aaab7566cd685ce0d9856d8e5a24992ada',1,'ph']]],
+  ['sah_5fbuckets_0',['SAH_Buckets',['../namespaceph_1_1math.html#a6b85157eabe1403cdf9b1e45c8c7e368a8d2112cc82f6f3b791a79299c553f85c',1,'ph::math']]],
+  ['sah_5fedgesort_1',['SAH_EdgeSort',['../namespaceph_1_1math.html#a6b85157eabe1403cdf9b1e45c8c7e368abeddd82e566c2f6f7e03453458fefe6d',1,'ph::math']]],
   ['sampleddir_2',['SampledDir',['../namespaceph.html#a3624e7ffb99b556c1cf59f3bbfbc6afaa1dffcca819566351b10a22017129b9d2',1,'ph']]],
   ['sampledpos_3',['SampledPos',['../namespaceph.html#a3624e7ffb99b556c1cf59f3bbfbc6afaa6ffca551d875be000c71d6ae0ceea16d',1,'ph']]],
   ['sampledposdir_4',['SampledPosDir',['../namespaceph.html#a3624e7ffb99b556c1cf59f3bbfbc6afaa60bb5154dab623db355be36cf93cfdf2',1,'ph']]],

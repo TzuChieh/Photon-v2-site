@@ -13,6 +13,7 @@ var namespaceph_1_1detail =
     [ "CPermissiveImplicitLifetime", "conceptph_1_1detail_1_1_c_permissive_implicit_lifetime.html", null ],
     [ "allocate_aligned_memory", "namespaceph_1_1detail.html#a9d92e2667b84b33138b9090f433e48cf", null ],
     [ "free_aligned_memory", "namespaceph_1_1detail.html#a0f0be026a79079ba575ac780a8735598", null ],
+    [ "make_array", "namespaceph_1_1detail.html#aeac0188071f26c9ff4471db8f6a4225f", null ],
     [ "on_assertion_failed", "namespaceph_1_1detail.html#afb2c097abc4ae73683151fc3a4497ba4", null ],
     [ "output_assertion_message", "namespaceph_1_1detail.html#a1e235d766376bc6db0c81e8b2515bc84", null ],
     [ "output_not_implemented_warning", "namespaceph_1_1detail.html#a469aa47e4b2da92f0b9bd9be352af784", null ],

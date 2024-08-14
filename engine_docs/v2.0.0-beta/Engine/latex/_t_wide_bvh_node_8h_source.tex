@@ -1,0 +1,71 @@
+\doxysection{TWide\+Bvh\+Node.\+h}
+\hypertarget{_t_wide_bvh_node_8h_source}{}\label{_t_wide_bvh_node_8h_source}\index{Source/Math/Algorithm/BVH/TWideBvhNode.h@{Source/Math/Algorithm/BVH/TWideBvhNode.h}}
+\mbox{\hyperlink{_t_wide_bvh_node_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_a_a_b_b3_d_8h}{Math/Geometry/TAABB3D.h}}"{}}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <Common/primitive\_type.h>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <Common/utility.h>}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <cstddef>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <type\_traits>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <array>}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph_1_1math}{ph::math}}}
+\DoxyCodeLine{00013\ \{}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00019\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Item,\ \textcolor{keyword}{typename}\ Index>}
+\DoxyCodeLine{00020\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1math_1_1_t_wide_bvh_node}{TWideBvhNode}}\ final}
+\DoxyCodeLine{00021\ \{}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keyword}{static\_assert}(N\ >=\ 2);}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_unsigned\_v<Index>);}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ std::size\_t\ NUM\_FLAG\_BITS\ \ =\ 2;}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ std::size\_t\ NUM\_ITEMS\_BITS\ =\ sizeof\_in\_bits<uint8>()\ -\/\ NUM\_FLAG\_BITS;}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ uint8\ FLAG\_BITS\_MASK\ =\ 0b11;}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ uint8\ X\_AXIS\_FLAG\ \ \ \ =\ 0b00;}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ uint8\ Y\_AXIS\_FLAG\ \ \ \ =\ 0b01;}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ uint8\ Z\_AXIS\_FLAG\ \ \ \ =\ 0b10;}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ uint8\ LEAF\_FLAG\ \ \ \ \ \ =\ 0b11;}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ std::size\_t\ \mbox{\hyperlink{classph_1_1math_1_1_t_wide_bvh_node_abc38ab8dfbe06402b55b8c51d39a3133}{MAX\_NODE\_ITEMS}}\ =\ (std::size\_t(1)\ <<\ NUM\_ITEMS\_BITS)\ -\/\ 1;}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00040\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_wide_bvh_node_a0bd53b7ac95e2c991488188bca6f4afe}{TWideBvhNode}}();}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d}{AABB3D}}\&\ \mbox{\hyperlink{classph_1_1math_1_1_t_wide_bvh_node_a407c1510b6edac49f95933657d5bfe18}{getAABB}}(std::size\_t\ childIdx)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1math_1_1_t_wide_bvh_node_a925f8eacc8c5e136e915b43c1622006c}{isLeaf}}(std::size\_t\ childIdx)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1math_1_1_t_wide_bvh_node_aeb77ee005b8c5ae573fc4516c3f55914}{isInternal}}(std::size\_t\ childIdx)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00045\ \ \ \ \ std::size\_t\ \mbox{\hyperlink{classph_1_1math_1_1_t_wide_bvh_node_a76da73f676864a6466472f87e93cbff7}{getChildOffset}}(std::size\_t\ childIdx)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00046\ \ \ \ \ std::size\_t\ \mbox{\hyperlink{classph_1_1math_1_1_t_wide_bvh_node_a0a56e35bb0dc6f5f7d10f9fdc321fa63}{getSplitAxis}}(std::size\_t\ childIdx)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00047\ \ \ \ \ std::size\_t\ \mbox{\hyperlink{classph_1_1math_1_1_t_wide_bvh_node_a7293167d3649588e09ed8894286eac06}{getItemOffset}}(std::size\_t\ childIdx)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00048\ \ \ \ \ std::size\_t\ \mbox{\hyperlink{classph_1_1math_1_1_t_wide_bvh_node_a2035a757d76349f1efad0ac5e53782d7}{numItems}}(std::size\_t\ childIdx)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_wide_bvh_node}{TWideBvhNode}}\&\ \mbox{\hyperlink{classph_1_1math_1_1_t_wide_bvh_node_adb14ec0b6257976793c35a0d2c88563e}{setInternal}}(}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ std::size\_t\ childIdx,}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d}{AABB3D}}\&\ childAABB,}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ std::size\_t\ childOffset,}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ std::size\_t\ splitAxis);}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_wide_bvh_node}{TWideBvhNode}}\&\ \mbox{\hyperlink{classph_1_1math_1_1_t_wide_bvh_node_ab8ea049aa82d70bb438bc8c667b0be70}{setLeaf}}(}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ std::size\_t\ childIdx,}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d}{AABB3D}}\&\ childAABB,}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ std::size\_t\ itemOffset,}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ std::size\_t\ \mbox{\hyperlink{classph_1_1math_1_1_t_wide_bvh_node_a2035a757d76349f1efad0ac5e53782d7}{numItems}});}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00063\ \ \ \ \ std::array<AABB3D,\ N>\ m\_aabbs;}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00071\ \ \ \ \ std::array<Index,\ N>\ m\_offsets;}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00085\ \ \ \ \ std::array<uint8,\ N>\ m\_numItemsAndFlags;}
+\DoxyCodeLine{00086\ \};}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \}\textcolor{comment}{//\ end\ namespace\ ph::math}}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_wide_bvh_node_8ipp}{Math/Algorithm/BVH/TWideBvhNode.ipp}}"{}}}
+
+\end{DoxyCode}

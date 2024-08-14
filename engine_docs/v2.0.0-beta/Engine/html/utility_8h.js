@@ -18,6 +18,5 @@ var utility_8h =
     [ "ref_access", "utility_8h.html#a0039ee751942515e2c957dbd4e622066", null ],
     [ "ref_access", "utility_8h.html#a6e8f02147c6f4d0334ae89dcfd24801a", null ],
     [ "ref_access", "utility_8h.html#a23d56151345e21e253f6d2894ea08a7f", null ],
-    [ "ref_access", "utility_8h.html#a7bf7e9c4cbddb280ac62f62273ba7190", null ],
-    [ "sizeof_in_bits", "utility_8h.html#af8b01b99e42b7dd15dca28359ac1bf9e", null ]
+    [ "ref_access", "utility_8h.html#a7bf7e9c4cbddb280ac62f62273ba7190", null ]
 ];

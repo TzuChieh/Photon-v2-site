@@ -1,0 +1,116 @@
+\doxysection{TBvh\+Builder.\+h}
+\hypertarget{_t_bvh_builder_8h_source}{}\label{_t_bvh_builder_8h_source}\index{Source/Math/Algorithm/BVH/TBvhBuilder.h@{Source/Math/Algorithm/BVH/TBvhBuilder.h}}
+\mbox{\hyperlink{_t_bvh_builder_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_bvh_item_info_8h}{Math/Algorithm/BVH/TBvhItemInfo.h}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_bvh_params_8h}{Math/Algorithm/BVH/BvhParams.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{constant_8h}{Math/constant.h}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_a_a_b_b3_d_8h}{Math/Geometry/TAABB3D.h}}"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_vector3_8h}{Math/TVector3.h}}"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_span_8h}{Utility/TSpan.h}}"{}}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <cstddef>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <type\_traits>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <concepts>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph_1_1math}{ph::math}}}
+\DoxyCodeLine{00017\ \{}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{keyword}{enum\ class}\ \mbox{\hyperlink{namespaceph_1_1math_a6b85157eabe1403cdf9b1e45c8c7e368}{EBvhNodeSplitMethod}}}
+\DoxyCodeLine{00020\ \{}
+\DoxyCodeLine{00021\ \ \ \ \ \mbox{\hyperlink{namespaceph_1_1math_a6b85157eabe1403cdf9b1e45c8c7e368ade447f76aa569e5e8c5a1ac54791e00c}{EqualItems}},}
+\DoxyCodeLine{00022\ \ \ \ \ \mbox{\hyperlink{namespaceph_1_1math_a6b85157eabe1403cdf9b1e45c8c7e368a7f56c02b34d312867e3f63c9f21fe5c8}{Midpoint}},}
+\DoxyCodeLine{00023\ \ \ \ \ \mbox{\hyperlink{namespaceph_1_1math_a6b85157eabe1403cdf9b1e45c8c7e368a8d2112cc82f6f3b791a79299c553f85c}{SAH\_Buckets}},}
+\DoxyCodeLine{00024\ \ \ \ \ \mbox{\hyperlink{namespaceph_1_1math_a6b85157eabe1403cdf9b1e45c8c7e368abeddd82e566c2f6f7e03453458fefe6d}{SAH\_EdgeSort}}}
+\DoxyCodeLine{00025\ \};}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Item>}
+\DoxyCodeLine{00028\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node}{TBvhInfoNode}};}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Item,\ \textcolor{keyword}{typename}\ ItemToAABB>}
+\DoxyCodeLine{00031\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1math_1_1_t_bvh_builder}{TBvhBuilder}}\ final}
+\DoxyCodeLine{00032\ \{}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_invocable\_r\_v<AABB3D,\ ItemToAABB,\ Item>);}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node}{InfoNodeType}}\ =\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node}{TBvhInfoNode<N,\ Item>}};}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classph_1_1math_1_1_t_bvh_item_info}{ItemInfoType}}\ =\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_item_info}{TBvhItemInfo<Item>}};}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{static}\ std::size\_t\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_builder_ade09d7f6ddff0a82eb6649f2fdff7d39}{calcTotalNodes}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node}{InfoNodeType}}*\ node);}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keyword}{static}\ std::size\_t\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_builder_a8e61f780c0b0cb8bf380df34493c5c8c}{calcTotalItems}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node}{InfoNodeType}}*\ node);}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keyword}{static}\ std::size\_t\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_builder_aff9f9d25a29c0160bf669e809dc49177}{calcMaxDepth}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node}{InfoNodeType}}*\ node);}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_builder_aa36d84940b97110a5ac5b32a22278b26}{TBvhBuilder}}(}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceph_1_1math_a6b85157eabe1403cdf9b1e45c8c7e368}{EBvhNodeSplitMethod}}\ splitMethod,}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_bvh_params}{BvhParams}}\ params\ =\ \mbox{\hyperlink{classph_1_1math_1_1_bvh_params}{BvhParams}}())}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \textcolor{keyword}{requires}\ \mbox{\hyperlink{namespacestd}{std}}::default\_initializable<ItemToAABB>}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_builder}{TBvhBuilder}}(splitMethod,\ ItemToAABB\{\},\ params)}
+\DoxyCodeLine{00051\ \ \ \ \ \{\}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_builder_aa36d84940b97110a5ac5b32a22278b26}{TBvhBuilder}}(}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceph_1_1math_a6b85157eabe1403cdf9b1e45c8c7e368}{EBvhNodeSplitMethod}}\ splitMethod,}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ ItemToAABB\ itemToAABB,}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_bvh_params}{BvhParams}}\ params\ =\ \mbox{\hyperlink{classph_1_1math_1_1_bvh_params}{BvhParams}}\{\});}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_builder_a1b10e9f751a905bbb8639fa97513dba3}{buildInformativeBvh}}(\mbox{\hyperlink{namespaceph_a06c532bb78132f63638ec3ef52d46ff3}{TSpanView<Item>}}\ items)}
+\DoxyCodeLine{00063\ \ \ \ \ -\/>\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_builder_a942965525c77f4ee5e2c28b0c9cfa54f}{InfoNodeType}}*;}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_builder_a29b9fa82f5da760b35e5bf13f951576f}{clearBuildData}}();}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_builder_a3940d389ca3f5e6711622970182a4808}{totalInfoNodes}}()\ const}
+\DoxyCodeLine{00071\ \ \ \ \ -\/>\ \mbox{\hyperlink{namespacestd}{std}}::\textcolor{keywordtype}{size\_t};}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00076\ \ \ \ \ auto\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_builder_a5a65c15a4cab35cd595919f0efef744e}{totalItems}}()\ const}
+\DoxyCodeLine{00077\ \ \ \ \ -\/>\ \mbox{\hyperlink{namespacestd}{std}}::\textcolor{keywordtype}{size\_t};}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ private:}
+\DoxyCodeLine{00080\ \ \ \ \ struct\ SahBucket}
+\DoxyCodeLine{00081\ \ \ \ \ \{}
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceph_1_1math_a79409e9e8aea24d984f98f3acb483937}{AABB3D}}\ \ \ \ \ \ aabb\ \ \ \ \ =\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d_acd1ef6d19364c61bd5d10e513ed8ad29}{AABB3D::makeEmpty}}();}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ std::size\_t\ numItems\ =\ 0;}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ isEmpty()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00087\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ numItems\ ==\ 0;}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00090\ \ \ \ \ \};}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keyword}{template}<EBvhNodeSplitMethod\ SPLIT\_METHOD>}
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{keyword}{auto}\ buildBinaryBvhInfoNodeRecursive(}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceph_a5390437e1d7fd7d167c847677ea146e6}{TSpan<ItemInfoType>}}\ itemInfos)}
+\DoxyCodeLine{00098\ \ \ \ \ -\/>\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_builder_a942965525c77f4ee5e2c28b0c9cfa54f}{InfoNodeType}}*;}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keywordtype}{bool}\ binarySplitWithEqualIntersectables(}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceph_a5390437e1d7fd7d167c847677ea146e6}{TSpan<ItemInfoType>}}\ itemInfos,}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ std::size\_t\ splitDimension,}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceph_a5390437e1d7fd7d167c847677ea146e6}{TSpan<ItemInfoType>}}*\ out\_negativePart,}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceph_a5390437e1d7fd7d167c847677ea146e6}{TSpan<ItemInfoType>}}*\ out\_positivePart);}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keywordtype}{bool}\ binarySplitWithSahBuckets(}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceph_a5390437e1d7fd7d167c847677ea146e6}{TSpan<ItemInfoType>}}\ itemInfos,}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ std::size\_t\ splitDimension,}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_1_1math_a79409e9e8aea24d984f98f3acb483937}{AABB3D}}\&\ itemsAABB,}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_1_1math_a79409e9e8aea24d984f98f3acb483937}{AABB3D}}\&\ itemsCentroidAABB,}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceph_a5390437e1d7fd7d167c847677ea146e6}{TSpan<ItemInfoType>}}*\ out\_negativePart,}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceph_a5390437e1d7fd7d167c847677ea146e6}{TSpan<ItemInfoType>}}*\ out\_positivePart);}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \ \ \ \ std::vector<ItemInfoType>\ m\_infoBuffer;}
+\DoxyCodeLine{00115\ \ \ \ \ std::vector<InfoNodeType>\ m\_infoNodes;}
+\DoxyCodeLine{00116\ \ \ \ \ BvhParams\ m\_params;}
+\DoxyCodeLine{00117\ \ \ \ \ ItemToAABB\ m\_itemToAABB;}
+\DoxyCodeLine{00118\ \ \ \ \ \mbox{\hyperlink{namespaceph_1_1math_a6b85157eabe1403cdf9b1e45c8c7e368}{EBvhNodeSplitMethod}}\ m\_splitMethod;}
+\DoxyCodeLine{00119\ \};}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ \}\textcolor{comment}{//\ end\ namespace\ ph::math}}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00123\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_bvh_builder_8ipp}{Math/Algorithm/BVH/TBvhBuilder.ipp}}"{}}}
+
+\end{DoxyCode}

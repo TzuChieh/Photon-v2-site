@@ -1,6 +1,5 @@
 var constant_8h =
 [
-    [ "AxisIndexType", "constant_8h.html#a6399d62eb40c0ceee94dfcb7b77cb85c", null ],
     [ "c_light", "constant_8h.html#ab356262e329bf2351ca691b824a0d351", null ],
     [ "four_pi", "constant_8h.html#a74df15a988474294266e06f83a0f51fe", null ],
     [ "GiB", "constant_8h.html#a5bd138de6e1289a88b5cc6109b0c6bda", null ],
@@ -18,8 +17,8 @@ var constant_8h =
     [ "sqrt_2", "constant_8h.html#a8d0417484c0b9b7716b4d5272bf1646a", null ],
     [ "TiB", "constant_8h.html#ac0d72c7c9b2610bd4c5b18bd289a48a9", null ],
     [ "two_pi", "constant_8h.html#ad8b55217fcc8198b83c50375e1120c8a", null ],
-    [ "UNKNOWN_AXIS", "constant_8h.html#a2c2f5d7f6b274f594b7b09ba38ed3ae0", null ],
-    [ "X_AXIS", "constant_8h.html#a700e65439fa95e5ea186c96d06614a47", null ],
-    [ "Y_AXIS", "constant_8h.html#a111d5e146845b82d5e977e6d0cf6fd0f", null ],
-    [ "Z_AXIS", "constant_8h.html#a2eaa067caf050a0557eae1109de58e15", null ]
+    [ "UNKNOWN_AXIS", "constant_8h.html#a5c38ce40358da812fa94d244fde664cb", null ],
+    [ "X_AXIS", "constant_8h.html#a633099a259bffb958d8394be85abc6ee", null ],
+    [ "Y_AXIS", "constant_8h.html#a02d97e4be2bd520fb35947c7c9ce0b2c", null ],
+    [ "Z_AXIS", "constant_8h.html#a15bdc859ca6d66f04a20564583418404", null ]
 ];

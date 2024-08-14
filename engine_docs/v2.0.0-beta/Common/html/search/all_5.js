@@ -6,6 +6,7 @@ var searchData=
   ['findsectionindex_3',['findSectionIndex',['../classph_1_1_ini_file.html#a0f898d59858cc3f54456f8fa9bc0b3ae',1,'ph::IniFile']]],
   ['float32_4',['float32',['../namespaceph.html#a3779ce4521acb82cd56e42a5f734f2cc',1,'ph']]],
   ['float64_5',['float64',['../namespaceph.html#a04bef9f05ca43f57867c32b2b89a6d3a',1,'ph']]],
-  ['free_5faligned_5fmemory_6',['free_aligned_memory',['../namespaceph_1_1detail.html#a0f0be026a79079ba575ac780a8735598',1,'ph::detail']]],
-  ['from_5fbytes_7',['from_bytes',['../namespaceph.html#a62b38143a0224a40b52c286e746e7650',1,'ph']]]
+  ['for_20detecting_20compilers_6',['Definitions for Detecting Compilers',['../compiler_8h.html#autotoc_md1',1,'']]],
+  ['free_5faligned_5fmemory_7',['free_aligned_memory',['../namespaceph_1_1detail.html#a0f0be026a79079ba575ac780a8735598',1,'ph::detail']]],
+  ['from_5fbytes_8',['from_bytes',['../namespaceph.html#a62b38143a0224a40b52c286e746e7650',1,'ph']]]
 ];

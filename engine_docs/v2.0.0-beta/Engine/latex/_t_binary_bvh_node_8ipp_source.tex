@@ -1,0 +1,125 @@
+\doxysection{TBinary\+Bvh\+Node.\+ipp}
+\hypertarget{_t_binary_bvh_node_8ipp_source}{}\label{_t_binary_bvh_node_8ipp_source}\index{Source/Math/Algorithm/BVH/TBinaryBvhNode.ipp@{Source/Math/Algorithm/BVH/TBinaryBvhNode.ipp}}
+\mbox{\hyperlink{_t_binary_bvh_node_8ipp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_binary_bvh_node_8h}{Math/Algorithm/BVH/TBinaryBvhNode.h}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{constant_8h}{Math/constant.h}}"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph_1_1math}{ph::math}}}
+\DoxyCodeLine{00007\ \{}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Item,\ \textcolor{keyword}{typename}\ Index>}
+\DoxyCodeLine{00010\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ TBinaryBvhNode<Item,\ Index>}
+\DoxyCodeLine{00011\ ::makeInternal(}
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d}{AABB3D}}\&\ nodeAABB,}
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ childOffset,}
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ splitAxis)}
+\DoxyCodeLine{00015\ -\/>\ \mbox{\hyperlink{classph_1_1math_1_1_t_binary_bvh_node}{TBinaryBvhNode}}}
+\DoxyCodeLine{00016\ \{}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keyword}{static\_assert}(\mbox{\hyperlink{namespaceph_1_1math_1_1constant_a633099a259bffb958d8394be85abc6ee}{constant::X\_AXIS}}\ ==\ X\_AXIS\_FLAG);}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keyword}{static\_assert}(\mbox{\hyperlink{namespaceph_1_1math_1_1constant_a02d97e4be2bd520fb35947c7c9ce0b2c}{constant::Y\_AXIS}}\ ==\ Y\_AXIS\_FLAG);}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keyword}{static\_assert}(\mbox{\hyperlink{namespaceph_1_1math_1_1constant_a15bdc859ca6d66f04a20564583418404}{constant::Z\_AXIS}}\ ==\ Z\_AXIS\_FLAG);}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \ \ \ \ PH\_ASSERT\_IN\_RANGE\_INCLUSIVE(splitAxis,\ 0,\ 2);}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_binary_bvh_node}{TBinaryBvhNode}}\ node;}
+\DoxyCodeLine{00024\ \ \ \ \ node.m\_aabb\ \ \ \ \ \ \ \ \ \ \ \ \ =\ nodeAABB;}
+\DoxyCodeLine{00025\ \ \ \ \ node.\mbox{\hyperlink{classph_1_1math_1_1_t_binary_bvh_node_ae9f8f37b5e9785debf1aa3375f6cac76}{u0\_childOffset}}\ \ \ \ \ =\ lossless\_cast<\textcolor{keyword}{decltype}(node.\mbox{\hyperlink{classph_1_1math_1_1_t_binary_bvh_node_ae9f8f37b5e9785debf1aa3375f6cac76}{u0\_childOffset}})>(childOffset);}
+\DoxyCodeLine{00026\ \ \ \ \ node.m\_numItemsAndFlags\ =\ \textcolor{keyword}{static\_cast<}uint8\textcolor{keyword}{>}(splitAxis);}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordflow}{return}\ node;}
+\DoxyCodeLine{00029\ \}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Item,\ \textcolor{keyword}{typename}\ Index>}
+\DoxyCodeLine{00032\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1math_1_1_t_binary_bvh_node}{TBinaryBvhNode<Item,\ Index>}}}
+\DoxyCodeLine{00033\ \mbox{\hyperlink{classph_1_1math_1_1_t_binary_bvh_node}{::makeLeaf}}(}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d}{AABB3D}}\&\ nodeAABB,}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ itemOffset,}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ numItems)}
+\DoxyCodeLine{00037\ -\/>\ \mbox{\hyperlink{classph_1_1math_1_1_t_binary_bvh_node}{TBinaryBvhNode}}}
+\DoxyCodeLine{00038\ \{}
+\DoxyCodeLine{00039\ \ \ \ \ PH\_ASSERT\_LE(numItems,\ MAX\_NODE\_ITEMS);}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_binary_bvh_node}{TBinaryBvhNode}}\ node;}
+\DoxyCodeLine{00042\ \ \ \ \ node.m\_aabb\ \ \ \ \ \ \ \ \ \ \ \ \ =\ nodeAABB;}
+\DoxyCodeLine{00043\ \ \ \ \ node.\mbox{\hyperlink{classph_1_1math_1_1_t_binary_bvh_node_a923a50c99c5ba68f27e2ad3ca1293c00}{u0\_itemOffset}}\ \ \ \ \ \ =\ lossless\_cast<\textcolor{keyword}{decltype}(node.\mbox{\hyperlink{classph_1_1math_1_1_t_binary_bvh_node_a923a50c99c5ba68f27e2ad3ca1293c00}{u0\_itemOffset}})>(itemOffset);}
+\DoxyCodeLine{00044\ \ \ \ \ node.m\_numItemsAndFlags\ =\ \textcolor{keyword}{static\_cast<}uint8\textcolor{keyword}{>}((numItems\ <<\ NUM\_FLAG\_BITS)\ |\ LEAF\_FLAG);}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordflow}{return}\ node;}
+\DoxyCodeLine{00047\ \}}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Item,\ \textcolor{keyword}{typename}\ Index>}
+\DoxyCodeLine{00050\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1math_1_1_t_binary_bvh_node}{TBinaryBvhNode<Item,\ Index>}}}
+\DoxyCodeLine{00051\ \mbox{\hyperlink{classph_1_1math_1_1_t_binary_bvh_node}{::TBinaryBvhNode}}()}
+\DoxyCodeLine{00052\ \ \ \ \ :\ m\_aabb(\mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d}{AABB3D}}::makeEmpty())}
+\DoxyCodeLine{00053\ \ \ \ \ ,\ u0\_itemOffset(static\_cast<decltype(u0\_itemOffset)>(-\/1))}
+\DoxyCodeLine{00054\ \ \ \ \ ,\ m\_numItemsAndFlags(LEAF\_FLAG)\textcolor{comment}{//\ leaf\ with\ 0\ item}}
+\DoxyCodeLine{00055\ \{\}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Item,\ \textcolor{keyword}{typename}\ Index>}
+\DoxyCodeLine{00058\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1math_1_1_t_binary_bvh_node}{TBinaryBvhNode<Item,\ Index>}}}
+\DoxyCodeLine{00059\ \mbox{\hyperlink{classph_1_1math_1_1_t_binary_bvh_node}{::getAABB}}()\ const}
+\DoxyCodeLine{00060\ -\/>\ const\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d}{AABB3D}}\&}
+\DoxyCodeLine{00061\ \{}
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_aabb;}
+\DoxyCodeLine{00063\ \}}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Item,\ \textcolor{keyword}{typename}\ Index>}
+\DoxyCodeLine{00066\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1math_1_1_t_binary_bvh_node}{TBinaryBvhNode<Item,\ Index>}}}
+\DoxyCodeLine{00067\ \mbox{\hyperlink{classph_1_1math_1_1_t_binary_bvh_node}{::isLeaf}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00068\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keywordflow}{return}\ (m\_numItemsAndFlags\ \&\ FLAG\_BITS\_MASK)\ ==\ LEAF\_FLAG;}
+\DoxyCodeLine{00070\ \}}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Item,\ \textcolor{keyword}{typename}\ Index>}
+\DoxyCodeLine{00073\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1math_1_1_t_binary_bvh_node}{TBinaryBvhNode<Item,\ Index>}}}
+\DoxyCodeLine{00074\ \mbox{\hyperlink{classph_1_1math_1_1_t_binary_bvh_node}{::isInternal}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00075\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keywordflow}{return}\ !isLeaf();}
+\DoxyCodeLine{00077\ \}}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Item,\ \textcolor{keyword}{typename}\ Index>}
+\DoxyCodeLine{00080\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1math_1_1_t_binary_bvh_node}{TBinaryBvhNode<Item,\ Index>}}}
+\DoxyCodeLine{00081\ \mbox{\hyperlink{classph_1_1math_1_1_t_binary_bvh_node}{::getChildOffset}}()\ const}
+\DoxyCodeLine{00082\ -\/>\ \mbox{\hyperlink{namespacestd}{std}}::\textcolor{keywordtype}{size\_t}}
+\DoxyCodeLine{00083\ \{}
+\DoxyCodeLine{00084\ \ \ \ \ PH\_ASSERT(isInternal());}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}std::size\_t\textcolor{keyword}{>}(u0\_childOffset);}
+\DoxyCodeLine{00087\ \}}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Item,\ \textcolor{keyword}{typename}\ Index>}
+\DoxyCodeLine{00090\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1math_1_1_t_binary_bvh_node}{TBinaryBvhNode<Item,\ Index>}}}
+\DoxyCodeLine{00091\ \mbox{\hyperlink{classph_1_1math_1_1_t_binary_bvh_node}{::getSplitAxis}}()\ const}
+\DoxyCodeLine{00092\ -\/>\ \mbox{\hyperlink{namespacestd}{std}}::\textcolor{keywordtype}{size\_t}}
+\DoxyCodeLine{00093\ \{}
+\DoxyCodeLine{00094\ \ \ \ \ PH\_ASSERT(isInternal());}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}std::size\_t\textcolor{keyword}{>}(m\_numItemsAndFlags\ \&\ FLAG\_BITS\_MASK);}
+\DoxyCodeLine{00097\ \}}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Item,\ \textcolor{keyword}{typename}\ Index>}
+\DoxyCodeLine{00100\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1math_1_1_t_binary_bvh_node}{TBinaryBvhNode<Item,\ Index>}}}
+\DoxyCodeLine{00101\ \mbox{\hyperlink{classph_1_1math_1_1_t_binary_bvh_node}{::getItemOffset}}()\ const}
+\DoxyCodeLine{00102\ -\/>\ \mbox{\hyperlink{namespacestd}{std}}::\textcolor{keywordtype}{size\_t}}
+\DoxyCodeLine{00103\ \{}
+\DoxyCodeLine{00104\ \ \ \ \ PH\_ASSERT(isLeaf());}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}std::size\_t\textcolor{keyword}{>}(u0\_itemOffset);}
+\DoxyCodeLine{00107\ \}}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00109\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Item,\ \textcolor{keyword}{typename}\ Index>}
+\DoxyCodeLine{00110\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1math_1_1_t_binary_bvh_node}{TBinaryBvhNode<Item,\ Index>}}}
+\DoxyCodeLine{00111\ \mbox{\hyperlink{classph_1_1math_1_1_t_binary_bvh_node}{::numItems}}()\ const}
+\DoxyCodeLine{00112\ -\/>\ \mbox{\hyperlink{namespacestd}{std}}::\textcolor{keywordtype}{size\_t}}
+\DoxyCodeLine{00113\ \{}
+\DoxyCodeLine{00114\ \ \ \ \ PH\_ASSERT(isLeaf());}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00116\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}std::size\_t\textcolor{keyword}{>}(m\_numItemsAndFlags\ >>\ NUM\_FLAG\_BITS);}
+\DoxyCodeLine{00117\ \}}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ \}\textcolor{comment}{//\ end\ namespace\ ph::math}}
+
+\end{DoxyCode}

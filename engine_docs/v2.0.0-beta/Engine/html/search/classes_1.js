@@ -22,13 +22,9 @@ var searchData=
   ['bsdfsampleoutput_19',['BsdfSampleOutput',['../classph_1_1_bsdf_sample_output.html',1,'ph']]],
   ['bsdfsamplequery_20',['BsdfSampleQuery',['../classph_1_1_bsdf_sample_query.html',1,'ph']]],
   ['buildcache_21',['BuildCache',['../structph_1_1math_1_1_t_indexed_point_kdtree_1_1_build_cache.html',1,'ph::math::TIndexedPointKdtree']]],
-  ['bvhbuilder_22',['BvhBuilder',['../classph_1_1_bvh_builder.html',1,'ph']]],
-  ['bvhinfonode_23',['BvhInfoNode',['../classph_1_1_bvh_info_node.html',1,'ph']]],
-  ['bvhintersectableinfo_24',['BvhIntersectableInfo',['../classph_1_1_bvh_intersectable_info.html',1,'ph']]],
-  ['bvhlinearnode_25',['BvhLinearNode',['../classph_1_1_bvh_linear_node.html',1,'ph']]],
-  ['bvhsahbucket_26',['BvhSahBucket',['../classph_1_1_bvh_sah_bucket.html',1,'ph']]],
-  ['bvptdlestimator_27',['BVPTDLEstimator',['../classph_1_1_b_v_p_t_d_l_estimator.html',1,'ph']]],
-  ['bvptestimator_28',['BVPTEstimator',['../classph_1_1_b_v_p_t_estimator.html',1,'ph']]],
-  ['bytebuffer_29',['ByteBuffer',['../classph_1_1_byte_buffer.html',1,'ph']]],
-  ['bytebufferinputstream_30',['ByteBufferInputStream',['../classph_1_1_byte_buffer_input_stream.html',1,'ph']]]
+  ['bvhparams_22',['BvhParams',['../classph_1_1math_1_1_bvh_params.html',1,'ph::math']]],
+  ['bvptdlestimator_23',['BVPTDLEstimator',['../classph_1_1_b_v_p_t_d_l_estimator.html',1,'ph']]],
+  ['bvptestimator_24',['BVPTEstimator',['../classph_1_1_b_v_p_t_estimator.html',1,'ph']]],
+  ['bytebuffer_25',['ByteBuffer',['../classph_1_1_byte_buffer.html',1,'ph']]],
+  ['bytebufferinputstream_26',['ByteBufferInputStream',['../classph_1_1_byte_buffer_input_stream.html',1,'ph']]]
 ];

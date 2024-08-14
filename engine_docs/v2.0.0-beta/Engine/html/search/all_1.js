@@ -2,10 +2,10 @@ var searchData=
 [
   ['a_0',['A',['../classph_1_1lta_1_1_p_d_f.html#a2e92e42099ce9850cfb1e7c645ba4096',1,'ph::lta::PDF::A()'],['../classph_1_1_ies_file.html#aad491b64ff23f630764f05db028a2f67a7fc56270e7a70fa81a5935b72eacbe29',1,'ph::IesFile::A'],['../namespaceph_1_1pixel__texture.html#a3b167f72734af6e016a66878c539bd9da7fc56270e7a70fa81a5935b72eacbe29',1,'ph::pixel_texture::A'],['../namespaceph_1_1math.html#ac8bbf5c13da6b60663011e0be1acb6c4a7fc56270e7a70fa81a5935b72eacbe29',1,'ph::math::A']]],
   ['a_1',['a',['../classph_1_1math_1_1_t_vector4.html#afe487283d4928e86ca6ebdeb50922856',1,'ph::math::TVector4::a()'],['../classph_1_1math_1_1_t_vector4.html#aae3f38694e9d421ff70bae870a136ddd',1,'ph::math::TVector4::a() const']]],
-  ['aabb_2',['aabb',['../classph_1_1_bvh_sah_bucket.html#a0d7163aaf8a74b2a89e0e87a3d59de03',1,'ph::BvhSahBucket::aabb'],['../classph_1_1_bvh_info_node.html#a55bcd945962acc731246117ce6eec56d',1,'ph::BvhInfoNode::aabb'],['../classph_1_1_bvh_intersectable_info.html#a0545ca2193378809e3e365b37d0cf516',1,'ph::BvhIntersectableInfo::aabb'],['../classph_1_1_bvh_linear_node.html#a61f851f1e92b70de6c736ecd52eced21',1,'ph::BvhLinearNode::aabb']]],
+  ['aabb_2',['aabb',['../classph_1_1math_1_1_t_bvh_item_info.html#a79db48cb179533d074b37ccb58f8b8d8',1,'ph::math::TBvhItemInfo']]],
   ['aabb2d_3',['AABB2D',['../namespaceph_1_1math.html#aa27d1888edfba7c31c0f15d5160425d8',1,'ph::math']]],
-  ['aabb3d_4',['AABB3D',['../classph_1_1_bvh_info_node.html#addbd9393990c50a57a2ea297838ba452',1,'ph::BvhInfoNode::AABB3D'],['../namespaceph_1_1math.html#a79409e9e8aea24d984f98f3acb483937',1,'ph::math::AABB3D']]],
-  ['aabbcentroid_5',['aabbCentroid',['../classph_1_1_bvh_intersectable_info.html#a2d13b8fcd42af1b6dd3813782ba7b59c',1,'ph::BvhIntersectableInfo']]],
+  ['aabb3d_4',['AABB3D',['../namespaceph_1_1math.html#a79409e9e8aea24d984f98f3acb483937',1,'ph::math']]],
+  ['aabbcentroid_5',['aabbCentroid',['../classph_1_1math_1_1_t_bvh_item_info.html#aeb4d2eb19a690fbfd6f0327f0388d761',1,'ph::math::TBvhItemInfo']]],
   ['aarealight_6',['AAreaLight',['../classph_1_1_a_area_light.html',1,'ph']]],
   ['aarealight_2ecpp_7',['AAreaLight.cpp',['../_a_area_light_8cpp.html',1,'']]],
   ['aarealight_2eh_8',['AAreaLight.h',['../_a_area_light_8h.html',1,'']]],
@@ -198,6 +198,5 @@ var searchData=
   ['attributetags_2eh_195',['AttributeTags.h',['../_attribute_tags_8h.html',1,'']]],
   ['averageperpolygonmemoryusage_196',['averagePerPolygonMemoryUsage',['../classph_1_1_t_indexed_polygon_buffer.html#ab59e4339b10a6ee474c91bf287b83eb0',1,'ph::TIndexedPolygonBuffer']]],
   ['avg_197',['avg',['../classph_1_1math_1_1_t_arithmetic_array_base.html#a43155c4e80247cd2b2831599e9adbcba',1,'ph::math::TArithmeticArrayBase::avg()'],['../classph_1_1math_1_1_t_spectrum_base.html#a43155c4e80247cd2b2831599e9adbcba',1,'ph::math::TSpectrumBase::avg()'],['../classph_1_1math_1_1_t_vector_n_base.html#a43155c4e80247cd2b2831599e9adbcba',1,'ph::math::TVectorNBase::avg()']]],
-  ['axis_198',['axis',['../structph_1_1_physical_actor_1_1_sdl_rotate.html#a36db524ee4500ccf8db01f10c5dd85a1',1,'ph::PhysicalActor::SdlRotate']]],
-  ['axisindextype_199',['AxisIndexType',['../namespaceph_1_1math_1_1constant.html#a6399d62eb40c0ceee94dfcb7b77cb85c',1,'ph::math::constant']]]
+  ['axis_198',['axis',['../structph_1_1_physical_actor_1_1_sdl_rotate.html#a36db524ee4500ccf8db01f10c5dd85a1',1,'ph::PhysicalActor::SdlRotate']]]
 ];

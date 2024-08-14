@@ -3,6 +3,10 @@
 {\ttfamily \#include "{}Common/config.\+h"{}}\newline
 {\ttfamily \#include $<$string$>$}\newline
 {\ttfamily \#include $<$type\+\_\+traits$>$}\newline
+{\ttfamily \#include $<$array$>$}\newline
+{\ttfamily \#include $<$cstddef$>$}\newline
+{\ttfamily \#include $<$concepts$>$}\newline
+{\ttfamily \#include "{}Common/utility.\+ipp"{}}\newline
 \doxysubsubsection*{Namespaces}
 \begin{DoxyCompactItemize}
 \item 
@@ -13,84 +17,28 @@ namespace \mbox{\hyperlink{namespaceph_1_1detail}{ph\+::detail}}
 \doxysubsubsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
-\#define \mbox{\hyperlink{utility_8h_ad91bac2ae774a87c0d9ea35f29fa9242}{PH\+\_\+\+CONCAT\+\_\+2}}(a,  b)~a\#\#b
-\item 
-\#define \mbox{\hyperlink{utility_8h_acd1d5fd7cd71234a78fff9f4bb1df453}{PH\+\_\+\+CONCAT\+\_\+3}}(a,  b,  c)~a\#\#b\#\#c
-\item 
-\#define \mbox{\hyperlink{utility_8h_afeeed7a6be5acdcb00d3f6f6d2fe9d6a}{PH\+\_\+\+CONCAT\+\_\+4}}(a,  b,  c,  d)~a\#\#b\#\#c\#\#d
-\item 
-\#define \mbox{\hyperlink{utility_8h_a9bee0a3c5d8740da6ba3ee8cd132bd92}{PH\+\_\+\+CONCAT\+\_\+5}}(a,  b,  c,  d,  e)~a\#\#b\#\#c\#\#d\#\#e
-\item 
-\#define \mbox{\hyperlink{utility_8h_acdd79b307e0e84985c82dcfadb5ae4b5}{PH\+\_\+\+CONCAT\+\_\+6}}(a,  b,  c,  d,  e,  f)~a\#\#b\#\#c\#\#d\#\#e\#\#f
-\item 
-\#define \mbox{\hyperlink{utility_8h_a0283f7de8e686f7a8dcf4890da7b932e}{PH\+\_\+\+CONCAT\+\_\+7}}(a,  b,  c,  d,  e,  f,  g)~a\#\#b\#\#c\#\#d\#\#e\#\#f\#\#g
-\item 
-\#define \mbox{\hyperlink{utility_8h_a06ea3b7082381378b14f8343853c1f8f}{PH\+\_\+\+CONCAT\+\_\+8}}(a,  b,  c,  d,  e,  f,  g,  h)~a\#\#b\#\#c\#\#d\#\#e\#\#f\#\#g\#\#h
-\item 
 \#define \mbox{\hyperlink{utility_8h_a9606a731ad538fc32118bbef00693bfb}{PH\+\_\+\+NOT\+\_\+\+IMPLEMENTED\+\_\+\+WARNING}}()
-\item 
-\#define \mbox{\hyperlink{utility_8h_a58d6d0664e5c76c51ebd57905e76eca7}{PH\+\_\+\+NO\+\_\+\+OP}}()~((void)0)
-\begin{DoxyCompactList}\small\item\em Places an expression that does nothing. Useful in situations where the macro expansion is intended to mimic a function scope expression while doing nothing. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{DoxyCompactItemize}
 \doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
 void \mbox{\hyperlink{namespaceph_1_1detail_a469aa47e4b2da92f0b9bd9be352af784}{ph\+::detail\+::output\+\_\+not\+\_\+implemented\+\_\+warning}} (const std\+::string \&filename, const std\+::string \&line\+Number)
+\item 
+{\footnotesize template$<$typename T $>$ }\\consteval std\+::size\+\_\+t \mbox{\hyperlink{namespaceph_af8b01b99e42b7dd15dca28359ac1bf9e}{ph\+::sizeof\+\_\+in\+\_\+bits}} ()
+\begin{DoxyCompactList}\small\item\em Calculates number of bits an instance of type {\ttfamily T} occupies. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T , std\+::size\+\_\+t N$>$ }\\constexpr std\+::array$<$ T, N $>$ \mbox{\hyperlink{namespaceph_a96d1a9ca77754d997377840c0b423dc4}{ph\+::make\+\_\+array}} (const T \&element)
+\begin{DoxyCompactList}\small\item\em Creates an {\ttfamily std\+::array} filled with the same element. \end{DoxyCompactList}\item 
+{\footnotesize template$<$std\+::integral Dst\+Type, std\+::integral Src\+Type$>$ }\\Dst\+Type \mbox{\hyperlink{namespaceph_a4806dbf054a612410313840c89e8a217}{ph\+::lossless\+\_\+integer\+\_\+cast}} (const Src\+Type \&src)
+\item 
+{\footnotesize template$<$std\+::floating\+\_\+point Dst\+Type, std\+::floating\+\_\+point Src\+Type$>$ }\\Dst\+Type \mbox{\hyperlink{namespaceph_ab0fc55d35bf6e0cbb749f1fb84bbfc34}{ph\+::lossless\+\_\+float\+\_\+cast}} (const Src\+Type \&src)
+\item 
+{\footnotesize template$<$typename Dst\+Type , typename Src\+Type $>$ }\\Dst\+Type \mbox{\hyperlink{namespaceph_aad954dce308503eb1494c51dad51253d}{ph\+::lossless\+\_\+cast}} (const Src\+Type \&src)
+\begin{DoxyCompactList}\small\item\em Cast numeric value to another type without any loss of information. If there is any possible overflow or numeric precision loss, exception is thrown. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Dst\+Type , typename Src\+Type $>$ }\\Dst\+Type \mbox{\hyperlink{namespaceph_a4ef1c172ecd9fbe71b9034ac1d1ab027}{ph\+::lossless\+\_\+cast}} (const Src\+Type \&src, Dst\+Type \texorpdfstring{$\ast$}{*}const out\+\_\+dst)
 \end{DoxyCompactItemize}
 
 
 \doxysubsection{Macro Definition Documentation}
-\Hypertarget{utility_8h_ad91bac2ae774a87c0d9ea35f29fa9242}\index{utility.h@{utility.h}!PH\_CONCAT\_2@{PH\_CONCAT\_2}}
-\index{PH\_CONCAT\_2@{PH\_CONCAT\_2}!utility.h@{utility.h}}
-\doxysubsubsection{\texorpdfstring{PH\_CONCAT\_2}{PH\_CONCAT\_2}}
-{\footnotesize\ttfamily \label{utility_8h_ad91bac2ae774a87c0d9ea35f29fa9242} 
-\#define PH\+\_\+\+CONCAT\+\_\+2(\begin{DoxyParamCaption}\item[{}]{a}{, }\item[{}]{b}{}\end{DoxyParamCaption})~a\#\#b}
-
-\Hypertarget{utility_8h_acd1d5fd7cd71234a78fff9f4bb1df453}\index{utility.h@{utility.h}!PH\_CONCAT\_3@{PH\_CONCAT\_3}}
-\index{PH\_CONCAT\_3@{PH\_CONCAT\_3}!utility.h@{utility.h}}
-\doxysubsubsection{\texorpdfstring{PH\_CONCAT\_3}{PH\_CONCAT\_3}}
-{\footnotesize\ttfamily \label{utility_8h_acd1d5fd7cd71234a78fff9f4bb1df453} 
-\#define PH\+\_\+\+CONCAT\+\_\+3(\begin{DoxyParamCaption}\item[{}]{a}{, }\item[{}]{b}{, }\item[{}]{c}{}\end{DoxyParamCaption})~a\#\#b\#\#c}
-
-\Hypertarget{utility_8h_afeeed7a6be5acdcb00d3f6f6d2fe9d6a}\index{utility.h@{utility.h}!PH\_CONCAT\_4@{PH\_CONCAT\_4}}
-\index{PH\_CONCAT\_4@{PH\_CONCAT\_4}!utility.h@{utility.h}}
-\doxysubsubsection{\texorpdfstring{PH\_CONCAT\_4}{PH\_CONCAT\_4}}
-{\footnotesize\ttfamily \label{utility_8h_afeeed7a6be5acdcb00d3f6f6d2fe9d6a} 
-\#define PH\+\_\+\+CONCAT\+\_\+4(\begin{DoxyParamCaption}\item[{}]{a}{, }\item[{}]{b}{, }\item[{}]{c}{, }\item[{}]{d}{}\end{DoxyParamCaption})~a\#\#b\#\#c\#\#d}
-
-\Hypertarget{utility_8h_a9bee0a3c5d8740da6ba3ee8cd132bd92}\index{utility.h@{utility.h}!PH\_CONCAT\_5@{PH\_CONCAT\_5}}
-\index{PH\_CONCAT\_5@{PH\_CONCAT\_5}!utility.h@{utility.h}}
-\doxysubsubsection{\texorpdfstring{PH\_CONCAT\_5}{PH\_CONCAT\_5}}
-{\footnotesize\ttfamily \label{utility_8h_a9bee0a3c5d8740da6ba3ee8cd132bd92} 
-\#define PH\+\_\+\+CONCAT\+\_\+5(\begin{DoxyParamCaption}\item[{}]{a}{, }\item[{}]{b}{, }\item[{}]{c}{, }\item[{}]{d}{, }\item[{}]{e}{}\end{DoxyParamCaption})~a\#\#b\#\#c\#\#d\#\#e}
-
-\Hypertarget{utility_8h_acdd79b307e0e84985c82dcfadb5ae4b5}\index{utility.h@{utility.h}!PH\_CONCAT\_6@{PH\_CONCAT\_6}}
-\index{PH\_CONCAT\_6@{PH\_CONCAT\_6}!utility.h@{utility.h}}
-\doxysubsubsection{\texorpdfstring{PH\_CONCAT\_6}{PH\_CONCAT\_6}}
-{\footnotesize\ttfamily \label{utility_8h_acdd79b307e0e84985c82dcfadb5ae4b5} 
-\#define PH\+\_\+\+CONCAT\+\_\+6(\begin{DoxyParamCaption}\item[{}]{a}{, }\item[{}]{b}{, }\item[{}]{c}{, }\item[{}]{d}{, }\item[{}]{e}{, }\item[{}]{f}{}\end{DoxyParamCaption})~a\#\#b\#\#c\#\#d\#\#e\#\#f}
-
-\Hypertarget{utility_8h_a0283f7de8e686f7a8dcf4890da7b932e}\index{utility.h@{utility.h}!PH\_CONCAT\_7@{PH\_CONCAT\_7}}
-\index{PH\_CONCAT\_7@{PH\_CONCAT\_7}!utility.h@{utility.h}}
-\doxysubsubsection{\texorpdfstring{PH\_CONCAT\_7}{PH\_CONCAT\_7}}
-{\footnotesize\ttfamily \label{utility_8h_a0283f7de8e686f7a8dcf4890da7b932e} 
-\#define PH\+\_\+\+CONCAT\+\_\+7(\begin{DoxyParamCaption}\item[{}]{a}{, }\item[{}]{b}{, }\item[{}]{c}{, }\item[{}]{d}{, }\item[{}]{e}{, }\item[{}]{f}{, }\item[{}]{g}{}\end{DoxyParamCaption})~a\#\#b\#\#c\#\#d\#\#e\#\#f\#\#g}
-
-\Hypertarget{utility_8h_a06ea3b7082381378b14f8343853c1f8f}\index{utility.h@{utility.h}!PH\_CONCAT\_8@{PH\_CONCAT\_8}}
-\index{PH\_CONCAT\_8@{PH\_CONCAT\_8}!utility.h@{utility.h}}
-\doxysubsubsection{\texorpdfstring{PH\_CONCAT\_8}{PH\_CONCAT\_8}}
-{\footnotesize\ttfamily \label{utility_8h_a06ea3b7082381378b14f8343853c1f8f} 
-\#define PH\+\_\+\+CONCAT\+\_\+8(\begin{DoxyParamCaption}\item[{}]{a}{, }\item[{}]{b}{, }\item[{}]{c}{, }\item[{}]{d}{, }\item[{}]{e}{, }\item[{}]{f}{, }\item[{}]{g}{, }\item[{}]{h}{}\end{DoxyParamCaption})~a\#\#b\#\#c\#\#d\#\#e\#\#f\#\#g\#\#h}
-
-\Hypertarget{utility_8h_a58d6d0664e5c76c51ebd57905e76eca7}\index{utility.h@{utility.h}!PH\_NO\_OP@{PH\_NO\_OP}}
-\index{PH\_NO\_OP@{PH\_NO\_OP}!utility.h@{utility.h}}
-\doxysubsubsection{\texorpdfstring{PH\_NO\_OP}{PH\_NO\_OP}}
-{\footnotesize\ttfamily \label{utility_8h_a58d6d0664e5c76c51ebd57905e76eca7} 
-\#define PH\+\_\+\+NO\+\_\+\+OP(\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})~((void)0)}
-
-
-
-Places an expression that does nothing. Useful in situations where the macro expansion is intended to mimic a function scope expression while doing nothing. 
-
 \Hypertarget{utility_8h_a9606a731ad538fc32118bbef00693bfb}\index{utility.h@{utility.h}!PH\_NOT\_IMPLEMENTED\_WARNING@{PH\_NOT\_IMPLEMENTED\_WARNING}}
 \index{PH\_NOT\_IMPLEMENTED\_WARNING@{PH\_NOT\_IMPLEMENTED\_WARNING}!utility.h@{utility.h}}
 \doxysubsubsection{\texorpdfstring{PH\_NOT\_IMPLEMENTED\_WARNING}{PH\_NOT\_IMPLEMENTED\_WARNING}}

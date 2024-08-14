@@ -213,7 +213,7 @@
     <includes id="_core_2_quantity_2_time_8h" name="Time.h" local="yes" import="no" module="no" objc="no">Core/Quantity/Time.h</includes>
     <includes id="_model_builder_8h" name="ModelBuilder.h" local="yes" import="no" module="no" objc="no">Actor/ModelBuilder.h</includes>
     <includes id="_cooking_context_8h" name="CookingContext.h" local="yes" import="no" module="no" objc="no">World/Foundation/CookingContext.h</includes>
-    <includes id="_classic_bvh_intersector_8h" name="ClassicBvhIntersector.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Bvh/ClassicBvhIntersector.h</includes>
+    <includes id="_t_classic_bvh_intersector_8h" name="TClassicBvhIntersector.h" local="yes" import="no" module="no" objc="no">Core/Intersection/BVH/TClassicBvhIntersector.h</includes>
     <includes id="_cook_order_8h" name="CookOrder.h" local="yes" import="no" module="no" objc="no">World/Foundation/CookOrder.h</includes>
     <namespace>ph</namespace>
   </compound>
@@ -2630,103 +2630,24 @@
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
-    <name>BvhBuilder.cpp</name>
-    <path>Source/Core/Intersection/Bvh/</path>
-    <filename>_bvh_builder_8cpp.html</filename>
-    <includes id="_bvh_builder_8h" name="BvhBuilder.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Bvh/BvhBuilder.h</includes>
-    <includes id="_bvh_info_node_8h" name="BvhInfoNode.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Bvh/BvhInfoNode.h</includes>
-    <includes id="_intersectable_8h" name="Intersectable.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Intersectable.h</includes>
-    <includes id="_t_vector3_8h" name="TVector3.h" local="yes" import="no" module="no" objc="no">Math/TVector3.h</includes>
-    <includes id="_t_a_a_b_b3_d_8h" name="TAABB3D.h" local="yes" import="no" module="no" objc="no">Math/Geometry/TAABB3D.h</includes>
-    <class kind="class">ph::BvhSahBucket</class>
+    <name>TClassicBvhIntersector.h</name>
+    <path>Source/Core/Intersection/BVH/</path>
+    <filename>_t_classic_bvh_intersector_8h.html</filename>
+    <includes id="_intersector_8h" name="Intersector.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Intersector.h</includes>
+    <includes id="_t_linear_depth_first_binary_bvh_8h" name="TLinearDepthFirstBinaryBvh.h" local="yes" import="no" module="no" objc="no">Math/Algorithm/BVH/TLinearDepthFirstBinaryBvh.h</includes>
+    <includes id="_t_classic_bvh_intersector_8ipp" name="TClassicBvhIntersector.ipp" local="yes" import="no" module="no" objc="no">Core/Intersection/BVH/TClassicBvhIntersector.ipp</includes>
+    <class kind="class">ph::TClassicBvhIntersector</class>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
-    <name>BvhBuilder.h</name>
-    <path>Source/Core/Intersection/Bvh/</path>
-    <filename>_bvh_builder_8h.html</filename>
-    <includes id="_e_bvh_type_8h" name="EBvhType.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Bvh/EBvhType.h</includes>
-    <includes id="_bvh_intersectable_info_8h" name="BvhIntersectableInfo.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Bvh/BvhIntersectableInfo.h</includes>
-    <includes id="_bvh_linear_node_8h" name="BvhLinearNode.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Bvh/BvhLinearNode.h</includes>
-    <includes id="_t_a_a_b_b3_d_8h" name="TAABB3D.h" local="yes" import="no" module="no" objc="no">Math/Geometry/TAABB3D.h</includes>
-    <includes id="_t_span_8h" name="TSpan.h" local="yes" import="no" module="no" objc="no">Utility/TSpan.h</includes>
-    <class kind="class">ph::BvhBuilder</class>
-    <namespace>ph</namespace>
-  </compound>
-  <compound kind="file">
-    <name>BvhInfoNode.cpp</name>
-    <path>Source/Core/Intersection/Bvh/</path>
-    <filename>_bvh_info_node_8cpp.html</filename>
-    <includes id="_bvh_info_node_8h" name="BvhInfoNode.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Bvh/BvhInfoNode.h</includes>
-    <includes id="math_8h" name="math.h" local="yes" import="no" module="no" objc="no">Math/math.h</includes>
-    <namespace>ph</namespace>
-  </compound>
-  <compound kind="file">
-    <name>BvhInfoNode.h</name>
-    <path>Source/Core/Intersection/Bvh/</path>
-    <filename>_bvh_info_node_8h.html</filename>
-    <includes id="_t_a_a_b_b3_d_8h" name="TAABB3D.h" local="yes" import="no" module="no" objc="no">Math/Geometry/TAABB3D.h</includes>
-    <includes id="_bvh_intersectable_info_8h" name="BvhIntersectableInfo.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Bvh/BvhIntersectableInfo.h</includes>
-    <class kind="class">ph::BvhInfoNode</class>
-    <namespace>ph</namespace>
-  </compound>
-  <compound kind="file">
-    <name>BvhIntersectableInfo.cpp</name>
-    <path>Source/Core/Intersection/Bvh/</path>
-    <filename>_bvh_intersectable_info_8cpp.html</filename>
-    <includes id="_bvh_intersectable_info_8h" name="BvhIntersectableInfo.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Bvh/BvhIntersectableInfo.h</includes>
-    <includes id="_intersectable_8h" name="Intersectable.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Intersectable.h</includes>
-    <namespace>ph</namespace>
-  </compound>
-  <compound kind="file">
-    <name>BvhIntersectableInfo.h</name>
-    <path>Source/Core/Intersection/Bvh/</path>
-    <filename>_bvh_intersectable_info_8h.html</filename>
-    <includes id="_t_a_a_b_b3_d_8h" name="TAABB3D.h" local="yes" import="no" module="no" objc="no">Math/Geometry/TAABB3D.h</includes>
-    <includes id="_t_vector3_8h" name="TVector3.h" local="yes" import="no" module="no" objc="no">Math/TVector3.h</includes>
-    <class kind="class">ph::BvhIntersectableInfo</class>
-    <namespace>ph</namespace>
-  </compound>
-  <compound kind="file">
-    <name>BvhLinearNode.cpp</name>
-    <path>Source/Core/Intersection/Bvh/</path>
-    <filename>_bvh_linear_node_8cpp.html</filename>
-    <includes id="_bvh_linear_node_8h" name="BvhLinearNode.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Bvh/BvhLinearNode.h</includes>
-    <namespace>ph</namespace>
-  </compound>
-  <compound kind="file">
-    <name>BvhLinearNode.h</name>
-    <path>Source/Core/Intersection/Bvh/</path>
-    <filename>_bvh_linear_node_8h.html</filename>
-    <includes id="_t_a_a_b_b3_d_8h" name="TAABB3D.h" local="yes" import="no" module="no" objc="no">Math/Geometry/TAABB3D.h</includes>
-    <class kind="class">ph::BvhLinearNode</class>
-    <namespace>ph</namespace>
-  </compound>
-  <compound kind="file">
-    <name>ClassicBvhIntersector.cpp</name>
-    <path>Source/Core/Intersection/Bvh/</path>
-    <filename>_classic_bvh_intersector_8cpp.html</filename>
-    <includes id="_classic_bvh_intersector_8h" name="ClassicBvhIntersector.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Bvh/ClassicBvhIntersector.h</includes>
+    <name>TClassicBvhIntersector.ipp</name>
+    <path>Source/Core/Intersection/BVH/</path>
+    <filename>_t_classic_bvh_intersector_8ipp.html</filename>
+    <includes id="_t_classic_bvh_intersector_8h" name="TClassicBvhIntersector.h" local="yes" import="no" module="no" objc="no">Core/Intersection/BVH/TClassicBvhIntersector.h</includes>
     <includes id="_hit_probe_8h" name="HitProbe.h" local="yes" import="no" module="no" objc="no">Core/HitProbe.h</includes>
     <includes id="_ray_8h" name="Ray.h" local="yes" import="no" module="no" objc="no">Core/Ray.h</includes>
-    <includes id="_bvh_info_node_8h" name="BvhInfoNode.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Bvh/BvhInfoNode.h</includes>
-    <includes id="_bvh_builder_8h" name="BvhBuilder.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Bvh/BvhBuilder.h</includes>
+    <includes id="_t_bvh_builder_8h" name="TBvhBuilder.h" local="yes" import="no" module="no" objc="no">Math/Algorithm/BVH/TBvhBuilder.h</includes>
     <includes id="_t_a_a_b_b3_d_8h" name="TAABB3D.h" local="yes" import="no" module="no" objc="no">Math/Geometry/TAABB3D.h</includes>
-    <namespace>ph</namespace>
-  </compound>
-  <compound kind="file">
-    <name>ClassicBvhIntersector.h</name>
-    <path>Source/Core/Intersection/Bvh/</path>
-    <filename>_classic_bvh_intersector_8h.html</filename>
-    <includes id="_intersector_8h" name="Intersector.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Intersector.h</includes>
-    <includes id="_bvh_linear_node_8h" name="BvhLinearNode.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Bvh/BvhLinearNode.h</includes>
-    <class kind="class">ph::ClassicBvhIntersector</class>
-    <namespace>ph</namespace>
-  </compound>
-  <compound kind="file">
-    <name>EBvhType.h</name>
-    <path>Source/Core/Intersection/Bvh/</path>
-    <filename>_e_bvh_type_8h.html</filename>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
@@ -3249,7 +3170,6 @@
     <includes id="_hit_probe_8h" name="HitProbe.h" local="yes" import="no" module="no" objc="no">Core/HitProbe.h</includes>
     <includes id="_hit_detail_8h" name="HitDetail.h" local="yes" import="no" module="no" objc="no">Core/HitDetail.h</includes>
     <includes id="_t_vector3_8h" name="TVector3.h" local="yes" import="no" module="no" objc="no">Math/TVector3.h</includes>
-    <includes id="utility_8h" name="utility.h" local="yes" import="no" module="no" objc="no">Utility/utility.h</includes>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
@@ -3791,7 +3711,6 @@
     <includes id="_t_photon_8h" name="TPhoton.h" local="yes" import="no" module="no" objc="no">Core/Renderer/PM/TPhoton.h</includes>
     <includes id="_spectrum_8h" name="Spectrum.h" local="yes" import="no" module="no" objc="no">Math/Color/Spectrum.h</includes>
     <includes id="_t_vector3_8h" name="TVector3.h" local="yes" import="no" module="no" objc="no">Math/TVector3.h</includes>
-    <includes id="utility_8h" name="utility.h" local="yes" import="no" module="no" objc="no">Utility/utility.h</includes>
     <class kind="class">ph::FullPhoton</class>
     <namespace>ph</namespace>
   </compound>
@@ -7216,7 +7135,6 @@
     <filename>_picture_data_8ipp.html</filename>
     <includes id="_picture_data_8h" name="PictureData.h" local="yes" import="no" module="no" objc="no">Frame/PictureData.h</includes>
     <includes id="_t_frame_8h" name="TFrame.h" local="yes" import="no" module="no" objc="no">Frame/TFrame.h</includes>
-    <includes id="utility_8h" name="utility.h" local="yes" import="no" module="no" objc="no">Utility/utility.h</includes>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
@@ -7304,6 +7222,167 @@
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
+    <name>BvhParams.h</name>
+    <path>Source/Math/Algorithm/BVH/</path>
+    <filename>_bvh_params_8h.html</filename>
+    <class kind="class">ph::math::BvhParams</class>
+    <namespace>ph</namespace>
+    <namespace>ph::math</namespace>
+  </compound>
+  <compound kind="file">
+    <name>TBinaryBvhNode.h</name>
+    <path>Source/Math/Algorithm/BVH/</path>
+    <filename>_t_binary_bvh_node_8h.html</filename>
+    <includes id="_t_a_a_b_b3_d_8h" name="TAABB3D.h" local="yes" import="no" module="no" objc="no">Math/Geometry/TAABB3D.h</includes>
+    <includes id="_t_binary_bvh_node_8ipp" name="TBinaryBvhNode.ipp" local="yes" import="no" module="no" objc="no">Math/Algorithm/BVH/TBinaryBvhNode.ipp</includes>
+    <class kind="class">ph::math::TBinaryBvhNode</class>
+    <namespace>ph</namespace>
+    <namespace>ph::math</namespace>
+  </compound>
+  <compound kind="file">
+    <name>TBinaryBvhNode.ipp</name>
+    <path>Source/Math/Algorithm/BVH/</path>
+    <filename>_t_binary_bvh_node_8ipp.html</filename>
+    <includes id="_t_binary_bvh_node_8h" name="TBinaryBvhNode.h" local="yes" import="no" module="no" objc="no">Math/Algorithm/BVH/TBinaryBvhNode.h</includes>
+    <includes id="constant_8h" name="constant.h" local="yes" import="no" module="no" objc="no">Math/constant.h</includes>
+    <namespace>ph</namespace>
+    <namespace>ph::math</namespace>
+  </compound>
+  <compound kind="file">
+    <name>TBvhBuilder.h</name>
+    <path>Source/Math/Algorithm/BVH/</path>
+    <filename>_t_bvh_builder_8h.html</filename>
+    <includes id="_t_bvh_item_info_8h" name="TBvhItemInfo.h" local="yes" import="no" module="no" objc="no">Math/Algorithm/BVH/TBvhItemInfo.h</includes>
+    <includes id="_bvh_params_8h" name="BvhParams.h" local="yes" import="no" module="no" objc="no">Math/Algorithm/BVH/BvhParams.h</includes>
+    <includes id="constant_8h" name="constant.h" local="yes" import="no" module="no" objc="no">Math/constant.h</includes>
+    <includes id="_t_a_a_b_b3_d_8h" name="TAABB3D.h" local="yes" import="no" module="no" objc="no">Math/Geometry/TAABB3D.h</includes>
+    <includes id="_t_vector3_8h" name="TVector3.h" local="yes" import="no" module="no" objc="no">Math/TVector3.h</includes>
+    <includes id="_t_span_8h" name="TSpan.h" local="yes" import="no" module="no" objc="no">Utility/TSpan.h</includes>
+    <includes id="_t_bvh_builder_8ipp" name="TBvhBuilder.ipp" local="yes" import="no" module="no" objc="no">Math/Algorithm/BVH/TBvhBuilder.ipp</includes>
+    <class kind="class">ph::math::TBvhBuilder</class>
+    <namespace>ph</namespace>
+    <namespace>ph::math</namespace>
+  </compound>
+  <compound kind="file">
+    <name>TBvhBuilder.ipp</name>
+    <path>Source/Math/Algorithm/BVH/</path>
+    <filename>_t_bvh_builder_8ipp.html</filename>
+    <includes id="_t_bvh_builder_8h" name="TBvhBuilder.h" local="yes" import="no" module="no" objc="no">Math/Algorithm/BVH/TBvhBuilder.h</includes>
+    <includes id="_t_bvh_info_node_8h" name="TBvhInfoNode.h" local="yes" import="no" module="no" objc="no">Math/Algorithm/BVH/TBvhInfoNode.h</includes>
+    <includes id="_t_binary_bvh_node_8h" name="TBinaryBvhNode.h" local="yes" import="no" module="no" objc="no">Math/Algorithm/BVH/TBinaryBvhNode.h</includes>
+    <includes id="_t_linear_depth_first_binary_bvh_8h" name="TLinearDepthFirstBinaryBvh.h" local="yes" import="no" module="no" objc="no">Math/Algorithm/BVH/TLinearDepthFirstBinaryBvh.h</includes>
+    <includes id="math_8h" name="math.h" local="yes" import="no" module="no" objc="no">Math/math.h</includes>
+    <includes id="_intersectable_8h" name="Intersectable.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Intersectable.h</includes>
+    <namespace>ph</namespace>
+    <namespace>ph::math</namespace>
+  </compound>
+  <compound kind="file">
+    <name>TBvhInfoNode.h</name>
+    <path>Source/Math/Algorithm/BVH/</path>
+    <filename>_t_bvh_info_node_8h.html</filename>
+    <includes id="_t_a_a_b_b3_d_8h" name="TAABB3D.h" local="yes" import="no" module="no" objc="no">Math/Geometry/TAABB3D.h</includes>
+    <includes id="constant_8h" name="constant.h" local="yes" import="no" module="no" objc="no">Math/constant.h</includes>
+    <includes id="_t_span_8h" name="TSpan.h" local="yes" import="no" module="no" objc="no">Utility/TSpan.h</includes>
+    <includes id="_t_bvh_info_node_8ipp" name="TBvhInfoNode.ipp" local="yes" import="no" module="no" objc="no">Math/Algorithm/BVH/TBvhInfoNode.ipp</includes>
+    <class kind="class">ph::math::TBvhInfoNode</class>
+    <namespace>ph</namespace>
+    <namespace>ph::math</namespace>
+  </compound>
+  <compound kind="file">
+    <name>TBvhInfoNode.ipp</name>
+    <path>Source/Math/Algorithm/BVH/</path>
+    <filename>_t_bvh_info_node_8ipp.html</filename>
+    <includes id="_t_bvh_info_node_8h" name="TBvhInfoNode.h" local="yes" import="no" module="no" objc="no">Math/Algorithm/BVH/TBvhInfoNode.h</includes>
+    <includes id="math_8h" name="math.h" local="yes" import="no" module="no" objc="no">Math/math.h</includes>
+    <namespace>ph</namespace>
+    <namespace>ph::math</namespace>
+  </compound>
+  <compound kind="file">
+    <name>TBvhItemInfo.h</name>
+    <path>Source/Math/Algorithm/BVH/</path>
+    <filename>_t_bvh_item_info_8h.html</filename>
+    <includes id="_t_a_a_b_b3_d_8h" name="TAABB3D.h" local="yes" import="no" module="no" objc="no">Math/Geometry/TAABB3D.h</includes>
+    <includes id="_t_vector3_8h" name="TVector3.h" local="yes" import="no" module="no" objc="no">Math/TVector3.h</includes>
+    <includes id="_t_bvh_item_info_8ipp" name="TBvhItemInfo.ipp" local="yes" import="no" module="no" objc="no">Math/Algorithm/BVH/TBvhItemInfo.ipp</includes>
+    <class kind="class">ph::math::TBvhItemInfo</class>
+    <namespace>ph</namespace>
+    <namespace>ph::math</namespace>
+  </compound>
+  <compound kind="file">
+    <name>TBvhItemInfo.ipp</name>
+    <path>Source/Math/Algorithm/BVH/</path>
+    <filename>_t_bvh_item_info_8ipp.html</filename>
+    <includes id="_t_bvh_item_info_8h" name="TBvhItemInfo.h" local="yes" import="no" module="no" objc="no">Math/Algorithm/BVH/TBvhItemInfo.h</includes>
+    <namespace>ph</namespace>
+    <namespace>ph::math</namespace>
+  </compound>
+  <compound kind="file">
+    <name>TLinearDepthFirstBinaryBvh.h</name>
+    <path>Source/Math/Algorithm/BVH/</path>
+    <filename>_t_linear_depth_first_binary_bvh_8h.html</filename>
+    <includes id="_t_binary_bvh_node_8h" name="TBinaryBvhNode.h" local="yes" import="no" module="no" objc="no">Math/Algorithm/BVH/TBinaryBvhNode.h</includes>
+    <includes id="_t_line_segment_8h" name="TLineSegment.h" local="yes" import="no" module="no" objc="no">Math/Geometry/TLineSegment.h</includes>
+    <includes id="_t_linear_depth_first_binary_bvh_8ipp" name="TLinearDepthFirstBinaryBvh.ipp" local="yes" import="no" module="no" objc="no">Math/Algorithm/BVH/TLinearDepthFirstBinaryBvh.ipp</includes>
+    <class kind="class">ph::math::TLinearDepthFirstBinaryBvh</class>
+    <namespace>ph</namespace>
+    <namespace>ph::math</namespace>
+  </compound>
+  <compound kind="file">
+    <name>TLinearDepthFirstBinaryBvh.ipp</name>
+    <path>Source/Math/Algorithm/BVH/</path>
+    <filename>_t_linear_depth_first_binary_bvh_8ipp.html</filename>
+    <includes id="_t_linear_depth_first_binary_bvh_8h" name="TLinearDepthFirstBinaryBvh.h" local="yes" import="no" module="no" objc="no">Math/Algorithm/BVH/TLinearDepthFirstBinaryBvh.h</includes>
+    <includes id="_t_bvh_info_node_8h" name="TBvhInfoNode.h" local="yes" import="no" module="no" objc="no">Math/Algorithm/BVH/TBvhInfoNode.h</includes>
+    <includes id="_t_bvh_item_info_8h" name="TBvhItemInfo.h" local="yes" import="no" module="no" objc="no">Math/Algorithm/BVH/TBvhItemInfo.h</includes>
+    <includes id="traversal__concepts_8h" name="traversal_concepts.h" local="yes" import="no" module="no" objc="no">Math/Algorithm/traversal_concepts.h</includes>
+    <includes id="_t_array_stack_8h" name="TArrayStack.h" local="yes" import="no" module="no" objc="no">Utility/TArrayStack.h</includes>
+    <namespace>ph</namespace>
+    <namespace>ph::math</namespace>
+  </compound>
+  <compound kind="file">
+    <name>TLinearDepthFirstWideBvh.h</name>
+    <path>Source/Math/Algorithm/BVH/</path>
+    <filename>_t_linear_depth_first_wide_bvh_8h.html</filename>
+    <includes id="_t_wide_bvh_node_8h" name="TWideBvhNode.h" local="yes" import="no" module="no" objc="no">Math/Algorithm/BVH/TWideBvhNode.h</includes>
+    <includes id="_t_line_segment_8h" name="TLineSegment.h" local="yes" import="no" module="no" objc="no">Math/Geometry/TLineSegment.h</includes>
+    <includes id="utility_8h" name="utility.h" local="yes" import="no" module="no" objc="no">Utility/utility.h</includes>
+    <includes id="_t_linear_depth_first_binary_bvh_8ipp" name="TLinearDepthFirstBinaryBvh.ipp" local="yes" import="no" module="no" objc="no">Math/Algorithm/BVH/TLinearDepthFirstBinaryBvh.ipp</includes>
+    <class kind="class">ph::math::TLinearDepthFirstWideBvh</class>
+    <namespace>ph</namespace>
+    <namespace>ph::math</namespace>
+  </compound>
+  <compound kind="file">
+    <name>TLinearDepthFirstWideBvh.ipp</name>
+    <path>Source/Math/Algorithm/BVH/</path>
+    <filename>_t_linear_depth_first_wide_bvh_8ipp.html</filename>
+    <includes id="_t_linear_depth_first_wide_bvh_8h" name="TLinearDepthFirstWideBvh.h" local="yes" import="no" module="no" objc="no">Math/Algorithm/BVH/TLinearDepthFirstWideBvh.h</includes>
+    <includes id="_t_bvh_info_node_8h" name="TBvhInfoNode.h" local="yes" import="no" module="no" objc="no">Math/Algorithm/BVH/TBvhInfoNode.h</includes>
+    <includes id="_t_bvh_item_info_8h" name="TBvhItemInfo.h" local="yes" import="no" module="no" objc="no">Math/Algorithm/BVH/TBvhItemInfo.h</includes>
+    <includes id="traversal__concepts_8h" name="traversal_concepts.h" local="yes" import="no" module="no" objc="no">Math/Algorithm/traversal_concepts.h</includes>
+    <includes id="_t_array_stack_8h" name="TArrayStack.h" local="yes" import="no" module="no" objc="no">Utility/TArrayStack.h</includes>
+    <namespace>ph</namespace>
+    <namespace>ph::math</namespace>
+  </compound>
+  <compound kind="file">
+    <name>TWideBvhNode.h</name>
+    <path>Source/Math/Algorithm/BVH/</path>
+    <filename>_t_wide_bvh_node_8h.html</filename>
+    <includes id="_t_a_a_b_b3_d_8h" name="TAABB3D.h" local="yes" import="no" module="no" objc="no">Math/Geometry/TAABB3D.h</includes>
+    <includes id="_t_wide_bvh_node_8ipp" name="TWideBvhNode.ipp" local="yes" import="no" module="no" objc="no">Math/Algorithm/BVH/TWideBvhNode.ipp</includes>
+    <class kind="class">ph::math::TWideBvhNode</class>
+    <namespace>ph</namespace>
+    <namespace>ph::math</namespace>
+  </compound>
+  <compound kind="file">
+    <name>TWideBvhNode.ipp</name>
+    <path>Source/Math/Algorithm/BVH/</path>
+    <filename>_t_wide_bvh_node_8ipp.html</filename>
+    <includes id="_t_wide_bvh_node_8h" name="TWideBvhNode.h" local="yes" import="no" module="no" objc="no">Math/Algorithm/BVH/TWideBvhNode.h</includes>
+    <includes id="constant_8h" name="constant.h" local="yes" import="no" module="no" objc="no">Math/constant.h</includes>
+    <namespace>ph</namespace>
+    <namespace>ph::math</namespace>
+  </compound>
+  <compound kind="file">
     <name>IndexedKdtreeParams.h</name>
     <path>Source/Math/Algorithm/IndexedKdtree/</path>
     <filename>_indexed_kdtree_params_8h.html</filename>
@@ -7335,15 +7414,13 @@
     <class kind="class">ph::math::TIndexedKdtree</class>
     <namespace>ph</namespace>
     <namespace>ph::math</namespace>
-    <concept>ph::math::CItemSegmentIntersectionTesterVanilla</concept>
-    <concept>ph::math::CItemSegmentIntersectionTesterWithIndex</concept>
-    <concept>ph::math::CItemSegmentIntersectionTester</concept>
   </compound>
   <compound kind="file">
     <name>TIndexedKdtree.ipp</name>
     <path>Source/Math/Algorithm/IndexedKdtree/</path>
     <filename>_t_indexed_kdtree_8ipp.html</filename>
     <includes id="_t_indexed_kdtree_8h" name="TIndexedKdtree.h" local="yes" import="no" module="no" objc="no">Math/Algorithm/IndexedKdtree/TIndexedKdtree.h</includes>
+    <includes id="traversal__concepts_8h" name="traversal_concepts.h" local="yes" import="no" module="no" objc="no">Math/Algorithm/traversal_concepts.h</includes>
     <namespace>ph</namespace>
     <namespace>ph::math</namespace>
   </compound>
@@ -7377,6 +7454,17 @@
     <path>Source/Math/Algorithm/IndexedKdtree/</path>
     <filename>_t_sorted_n_n_result_8h.html</filename>
     <namespace>ph</namespace>
+  </compound>
+  <compound kind="file">
+    <name>traversal_concepts.h</name>
+    <path>Source/Math/Algorithm/</path>
+    <filename>traversal__concepts_8h.html</filename>
+    <includes id="_t_line_segment_8h" name="TLineSegment.h" local="yes" import="no" module="no" objc="no">Math/Geometry/TLineSegment.h</includes>
+    <namespace>ph</namespace>
+    <namespace>ph::math</namespace>
+    <concept>ph::math::CItemSegmentIntersectionTesterVanilla</concept>
+    <concept>ph::math::CItemSegmentIntersectionTesterWithIndex</concept>
+    <concept>ph::math::CItemSegmentIntersectionTester</concept>
   </compound>
   <compound kind="file">
     <name>chromatic_adaptations.h</name>
@@ -7660,59 +7748,59 @@
     <namespace>ph::math</namespace>
     <namespace>ph::math::constant</namespace>
     <member kind="variable">
-      <type>constexpr AxisIndexType</type>
+      <type>constexpr std::size_t</type>
       <name>UNKNOWN_AXIS</name>
       <anchorfile>namespaceph_1_1math_1_1constant.html</anchorfile>
-      <anchor>a2c2f5d7f6b274f594b7b09ba38ed3ae0</anchor>
+      <anchor>a5c38ce40358da812fa94d244fde664cb</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>constexpr AxisIndexType</type>
+      <type>constexpr std::size_t</type>
       <name>X_AXIS</name>
       <anchorfile>namespaceph_1_1math_1_1constant.html</anchorfile>
-      <anchor>a700e65439fa95e5ea186c96d06614a47</anchor>
+      <anchor>a633099a259bffb958d8394be85abc6ee</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>constexpr AxisIndexType</type>
+      <type>constexpr std::size_t</type>
       <name>Y_AXIS</name>
       <anchorfile>namespaceph_1_1math_1_1constant.html</anchorfile>
-      <anchor>a111d5e146845b82d5e977e6d0cf6fd0f</anchor>
+      <anchor>a02d97e4be2bd520fb35947c7c9ce0b2c</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>constexpr AxisIndexType</type>
+      <type>constexpr std::size_t</type>
       <name>Z_AXIS</name>
       <anchorfile>namespaceph_1_1math_1_1constant.html</anchorfile>
-      <anchor>a2eaa067caf050a0557eae1109de58e15</anchor>
+      <anchor>a15bdc859ca6d66f04a20564583418404</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>constexpr AxisIndexType</type>
+      <type>constexpr std::size_t</type>
       <name>UNKNOWN_AXIS</name>
       <anchorfile>namespaceph_1_1math_1_1constant.html</anchorfile>
-      <anchor>a2c2f5d7f6b274f594b7b09ba38ed3ae0</anchor>
+      <anchor>a5c38ce40358da812fa94d244fde664cb</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>constexpr AxisIndexType</type>
+      <type>constexpr std::size_t</type>
       <name>X_AXIS</name>
       <anchorfile>namespaceph_1_1math_1_1constant.html</anchorfile>
-      <anchor>a700e65439fa95e5ea186c96d06614a47</anchor>
+      <anchor>a633099a259bffb958d8394be85abc6ee</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>constexpr AxisIndexType</type>
+      <type>constexpr std::size_t</type>
       <name>Y_AXIS</name>
       <anchorfile>namespaceph_1_1math_1_1constant.html</anchorfile>
-      <anchor>a111d5e146845b82d5e977e6d0cf6fd0f</anchor>
+      <anchor>a02d97e4be2bd520fb35947c7c9ce0b2c</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>constexpr AxisIndexType</type>
+      <type>constexpr std::size_t</type>
       <name>Z_AXIS</name>
       <anchorfile>namespaceph_1_1math_1_1constant.html</anchorfile>
-      <anchor>a2eaa067caf050a0557eae1109de58e15</anchor>
+      <anchor>a15bdc859ca6d66f04a20564583418404</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -9270,7 +9358,6 @@
     <filename>_t_vector2_8ipp.html</filename>
     <includes id="_t_vector2_8h" name="TVector2.h" local="yes" import="no" module="no" objc="no">Math/TVector2.h</includes>
     <includes id="math_8h" name="math.h" local="yes" import="no" module="no" objc="no">Math/math.h</includes>
-    <includes id="utility_8h" name="utility.h" local="yes" import="no" module="no" objc="no">Utility/utility.h</includes>
     <namespace>ph</namespace>
     <namespace>ph::math</namespace>
   </compound>
@@ -10942,7 +11029,6 @@
     <filename>_t_s_p_s_c_ring_buffer_8h.html</filename>
     <includes id="math_8h" name="math.h" local="yes" import="no" module="no" objc="no">Math/math.h</includes>
     <includes id="_i_no_copy_and_move_8h" name="INoCopyAndMove.h" local="yes" import="no" module="no" objc="no">Utility/INoCopyAndMove.h</includes>
-    <includes id="utility_8h" name="utility.h" local="yes" import="no" module="no" objc="no">Utility/utility.h</includes>
     <class kind="class">ph::TSPSCRingBuffer</class>
     <class kind="class">ph::TSPSCRingBuffer::ProducerGuard</class>
     <class kind="class">ph::TSPSCRingBuffer::ConsumerGuard</class>
@@ -11629,7 +11715,7 @@
     <includes id="_core_cooked_unit_8h" name="CoreCookedUnit.h" local="yes" import="no" module="no" objc="no">EngineEnv/CoreCookedUnit.h</includes>
     <includes id="_actor_8h" name="Actor.h" local="yes" import="no" module="no" objc="no">Actor/Actor.h</includes>
     <includes id="_brute_force_intersector_8h" name="BruteForceIntersector.h" local="yes" import="no" module="no" objc="no">Core/Intersection/BruteForceIntersector.h</includes>
-    <includes id="_classic_bvh_intersector_8h" name="ClassicBvhIntersector.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Bvh/ClassicBvhIntersector.h</includes>
+    <includes id="_t_classic_bvh_intersector_8h" name="TClassicBvhIntersector.h" local="yes" import="no" module="no" objc="no">Core/Intersection/BVH/TClassicBvhIntersector.h</includes>
     <includes id="_t_indexed_kdtree_intersector_8h" name="TIndexedKdtreeIntersector.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Intersector/TIndexedKdtreeIntersector.h</includes>
     <includes id="_kdtree_intersector_8h" name="KdtreeIntersector.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Kdtree/KdtreeIntersector.h</includes>
     <includes id="_e_s_uniform_random_8h" name="ESUniformRandom.h" local="yes" import="no" module="no" objc="no">Core/Emitter/Sampler/ESUniformRandom.h</includes>
@@ -13627,275 +13713,35 @@
     </member>
   </compound>
   <compound kind="class">
-    <name>ph::BvhBuilder</name>
-    <filename>classph_1_1_bvh_builder.html</filename>
+    <name>ph::math::BvhParams</name>
+    <filename>classph_1_1math_1_1_bvh_params.html</filename>
     <member kind="function">
       <type></type>
-      <name>BvhBuilder</name>
-      <anchorfile>classph_1_1_bvh_builder.html</anchorfile>
-      <anchor>a7a0492f39333149d800c995e7a58031b</anchor>
-      <arglist>(EBvhType type)</arglist>
-    </member>
-    <member kind="function">
-      <type>const BvhInfoNode *</type>
-      <name>buildInformativeBinaryBvh</name>
-      <anchorfile>classph_1_1_bvh_builder.html</anchorfile>
-      <anchor>aa70855d052fa1c47d03cff667187d2dc</anchor>
-      <arglist>(TSpanView&lt; const Intersectable * &gt; intersectables)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>buildLinearDepthFirstBinaryBvh</name>
-      <anchorfile>classph_1_1_bvh_builder.html</anchorfile>
-      <anchor>ab3cc8dac9e80db066bb658637794261c</anchor>
-      <arglist>(const BvhInfoNode *rootNode, std::vector&lt; BvhLinearNode &gt; *out_linearNodes, std::vector&lt; const Intersectable * &gt; *out_intersectables)</arglist>
-    </member>
-    <member kind="function" static="yes">
-      <type>static std::size_t</type>
-      <name>calcTotalNodes</name>
-      <anchorfile>classph_1_1_bvh_builder.html</anchorfile>
-      <anchor>a0af1f5a2c0772af36a90b9883ad39288</anchor>
-      <arglist>(const BvhInfoNode *rootNode)</arglist>
-    </member>
-    <member kind="function" static="yes">
-      <type>static std::size_t</type>
-      <name>calcTotalIntersectables</name>
-      <anchorfile>classph_1_1_bvh_builder.html</anchorfile>
-      <anchor>a1a4bc24535ba0a41d1350f466a0a92e1</anchor>
-      <arglist>(const BvhInfoNode *rootNode)</arglist>
-    </member>
-    <member kind="function" static="yes">
-      <type>static std::size_t</type>
-      <name>calcMaxDepth</name>
-      <anchorfile>classph_1_1_bvh_builder.html</anchorfile>
-      <anchor>a8ee236a97816cd6944325af71085d2d4</anchor>
-      <arglist>(const BvhInfoNode *rootNode)</arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>ph::BvhInfoNode</name>
-    <filename>classph_1_1_bvh_info_node.html</filename>
-    <member kind="typedef">
-      <type>math::AABB3D</type>
-      <name>AABB3D</name>
-      <anchorfile>classph_1_1_bvh_info_node.html</anchorfile>
-      <anchor>addbd9393990c50a57a2ea297838ba452</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>BvhInfoNode</name>
-      <anchorfile>classph_1_1_bvh_info_node.html</anchorfile>
-      <anchor>ab1854584de4831406983d73e72827106</anchor>
+      <name>BvhParams</name>
+      <anchorfile>classph_1_1math_1_1_bvh_params.html</anchorfile>
+      <anchor>a866a05d4756bc432637a12a7b1d4d000</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
-      <type>bool</type>
-      <name>isBinaryLeaf</name>
-      <anchorfile>classph_1_1_bvh_info_node.html</anchorfile>
-      <anchor>af7295bf03632240b2731dc9ff1535d55</anchor>
+      <type>std::size_t</type>
+      <name>getMaxNodeItems</name>
+      <anchorfile>classph_1_1math_1_1_bvh_params.html</anchorfile>
+      <anchor>acd4687e752df126b0a6d9379d58fe4d1</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
-      <type>bool</type>
-      <name>isBinaryInternal</name>
-      <anchorfile>classph_1_1_bvh_info_node.html</anchorfile>
-      <anchor>a69081c3ec1398fff5b4aa06dd1999071</anchor>
-      <arglist>() const</arglist>
-    </member>
-    <member kind="function" static="yes">
-      <type>static BvhInfoNode</type>
-      <name>makeBinaryInternal</name>
-      <anchorfile>classph_1_1_bvh_info_node.html</anchorfile>
-      <anchor>af73d350ce4417fe2e0078495132a198a</anchor>
-      <arglist>(const BvhInfoNode *child1, const BvhInfoNode *child2, int32 splitAxis)</arglist>
-    </member>
-    <member kind="function" static="yes">
-      <type>static BvhInfoNode</type>
-      <name>makeBinaryLeaf</name>
-      <anchorfile>classph_1_1_bvh_info_node.html</anchorfile>
-      <anchor>a2d5bfa3405e13f708b5ceb979d5d5c41</anchor>
-      <arglist>(const std::vector&lt; BvhIntersectableInfo &gt; &amp;leafIntersectables, const AABB3D &amp;leafAabb)</arglist>
-    </member>
-    <member kind="variable">
-      <type>const BvhInfoNode *</type>
-      <name>children</name>
-      <anchorfile>classph_1_1_bvh_info_node.html</anchorfile>
-      <anchor>a973afb64e75422cf27dafef25952a364</anchor>
-      <arglist>[2]</arglist>
-    </member>
-    <member kind="variable">
-      <type>AABB3D</type>
-      <name>aabb</name>
-      <anchorfile>classph_1_1_bvh_info_node.html</anchorfile>
-      <anchor>a55bcd945962acc731246117ce6eec56d</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>int32</type>
-      <name>splitAxis</name>
-      <anchorfile>classph_1_1_bvh_info_node.html</anchorfile>
-      <anchor>a7fef43b817c80358d867a4e90fee2a88</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>std::vector&lt; BvhIntersectableInfo &gt;</type>
-      <name>intersectables</name>
-      <anchorfile>classph_1_1_bvh_info_node.html</anchorfile>
-      <anchor>aa34d2e33168d381934c5333a382c8fd4</anchor>
-      <arglist></arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>ph::BvhIntersectableInfo</name>
-    <filename>classph_1_1_bvh_intersectable_info.html</filename>
-    <member kind="function">
-      <type></type>
-      <name>BvhIntersectableInfo</name>
-      <anchorfile>classph_1_1_bvh_intersectable_info.html</anchorfile>
-      <anchor>ab76d8668957930beab8b205b10b0d242</anchor>
-      <arglist>()=default</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>BvhIntersectableInfo</name>
-      <anchorfile>classph_1_1_bvh_intersectable_info.html</anchorfile>
-      <anchor>a7ba4876045b20e549b65840f5f82892d</anchor>
-      <arglist>(const Intersectable *intersectable, std::size_t index)</arglist>
-    </member>
-    <member kind="variable">
-      <type>std::size_t</type>
-      <name>index</name>
-      <anchorfile>classph_1_1_bvh_intersectable_info.html</anchorfile>
-      <anchor>aa994b945ea01e70d197e8a204c7552d7</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>math::AABB3D</type>
-      <name>aabb</name>
-      <anchorfile>classph_1_1_bvh_intersectable_info.html</anchorfile>
-      <anchor>a0545ca2193378809e3e365b37d0cf516</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>math::Vector3R</type>
-      <name>aabbCentroid</name>
-      <anchorfile>classph_1_1_bvh_intersectable_info.html</anchorfile>
-      <anchor>a2d13b8fcd42af1b6dd3813782ba7b59c</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>const Intersectable *</type>
-      <name>intersectable</name>
-      <anchorfile>classph_1_1_bvh_intersectable_info.html</anchorfile>
-      <anchor>aa0d0993725c2a3f7dbfdf77627e8c1f2</anchor>
-      <arglist></arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>ph::BvhLinearNode</name>
-    <filename>classph_1_1_bvh_linear_node.html</filename>
-    <member kind="function">
-      <type></type>
-      <name>BvhLinearNode</name>
-      <anchorfile>classph_1_1_bvh_linear_node.html</anchorfile>
-      <anchor>ae4688470f66be39a7b256cb0679da638</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>bool</type>
-      <name>isLeaf</name>
-      <anchorfile>classph_1_1_bvh_linear_node.html</anchorfile>
-      <anchor>aad41c5cf3874972dee231998c32865d0</anchor>
+      <type>float</type>
+      <name>getTraversalCost</name>
+      <anchorfile>classph_1_1math_1_1_bvh_params.html</anchorfile>
+      <anchor>af5e104aad30e77519316efa8a313957f</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
-      <type>bool</type>
-      <name>isInternal</name>
-      <anchorfile>classph_1_1_bvh_linear_node.html</anchorfile>
-      <anchor>a6327f6f3749c8f8b00dc9d56ecdea111</anchor>
+      <type>float</type>
+      <name>getInteractCost</name>
+      <anchorfile>classph_1_1math_1_1_bvh_params.html</anchorfile>
+      <anchor>af491399f8823b0b8bbd8dda1b95066a6</anchor>
       <arglist>() const</arglist>
-    </member>
-    <member kind="function" static="yes">
-      <type>static BvhLinearNode</type>
-      <name>makeInternal</name>
-      <anchorfile>classph_1_1_bvh_linear_node.html</anchorfile>
-      <anchor>a8862bd4d2a7ea50d608a825074703a16</anchor>
-      <arglist>(const math::AABB3D &amp;nodeAABB, std::size_t secondChildOffset, int32 splittedAxis)</arglist>
-    </member>
-    <member kind="function" static="yes">
-      <type>static BvhLinearNode</type>
-      <name>makeLeaf</name>
-      <anchorfile>classph_1_1_bvh_linear_node.html</anchorfile>
-      <anchor>af4f5740ae6955e12469dde4981852fc0</anchor>
-      <arglist>(const math::AABB3D &amp;nodeAABB, std::size_t primitivesOffset, int32 numPrimitives)</arglist>
-    </member>
-    <member kind="variable">
-      <type>math::AABB3D</type>
-      <name>aabb</name>
-      <anchorfile>classph_1_1_bvh_linear_node.html</anchorfile>
-      <anchor>a61f851f1e92b70de6c736ecd52eced21</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>std::size_t</type>
-      <name>secondChildOffset</name>
-      <anchorfile>classph_1_1_bvh_linear_node.html</anchorfile>
-      <anchor>af1c1ff0465c27e60bfa2c636bc1b2457</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>std::size_t</type>
-      <name>primitivesOffset</name>
-      <anchorfile>classph_1_1_bvh_linear_node.html</anchorfile>
-      <anchor>a5a41b6bd3dedd4b9123b13be675b53e0</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>int32</type>
-      <name>splittedAxis</name>
-      <anchorfile>classph_1_1_bvh_linear_node.html</anchorfile>
-      <anchor>addb54ab453eca67c97e74cb4f53d62e7</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>int32</type>
-      <name>numPrimitives</name>
-      <anchorfile>classph_1_1_bvh_linear_node.html</anchorfile>
-      <anchor>a01efd7b0088da4be11de921b2ece5770</anchor>
-      <arglist></arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>ph::BvhSahBucket</name>
-    <filename>classph_1_1_bvh_sah_bucket.html</filename>
-    <member kind="function">
-      <type></type>
-      <name>BvhSahBucket</name>
-      <anchorfile>classph_1_1_bvh_sah_bucket.html</anchorfile>
-      <anchor>a9920b4c644b39c0d7b8a226d1240dd47</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>bool</type>
-      <name>isEmpty</name>
-      <anchorfile>classph_1_1_bvh_sah_bucket.html</anchorfile>
-      <anchor>a299a02563359e20b4475f8a7fab2939f</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="variable">
-      <type>math::AABB3D</type>
-      <name>aabb</name>
-      <anchorfile>classph_1_1_bvh_sah_bucket.html</anchorfile>
-      <anchor>a0d7163aaf8a74b2a89e0e87a3d59de03</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>std::size_t</type>
-      <name>numIntersectables</name>
-      <anchorfile>classph_1_1_bvh_sah_bucket.html</anchorfile>
-      <anchor>a42199a26da7cdd619426393c12ddaaa7</anchor>
-      <arglist></arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -14375,39 +14221,6 @@
       <anchorfile>classph_1_1_checkerboard_image.html</anchorfile>
       <anchor>a208e6dd4cce507ac81454ea61f696163</anchor>
       <arglist>(TSdlOwnerClass&lt; CheckerboardImage &gt;)</arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>ph::ClassicBvhIntersector</name>
-    <filename>classph_1_1_classic_bvh_intersector.html</filename>
-    <base>ph::Intersector</base>
-    <member kind="function">
-      <type>void</type>
-      <name>update</name>
-      <anchorfile>classph_1_1_classic_bvh_intersector.html</anchorfile>
-      <anchor>a5adcc109090c150fd800350ec9b30a82</anchor>
-      <arglist>(TSpanView&lt; const Intersectable * &gt; intersectables) override</arglist>
-    </member>
-    <member kind="function">
-      <type>bool</type>
-      <name>isIntersecting</name>
-      <anchorfile>classph_1_1_classic_bvh_intersector.html</anchorfile>
-      <anchor>aa6c0622694be9e2d095ce55bd2900b38</anchor>
-      <arglist>(const Ray &amp;ray, HitProbe &amp;probe) const override</arglist>
-    </member>
-    <member kind="function">
-      <type>math::AABB3D</type>
-      <name>calcAABB</name>
-      <anchorfile>classph_1_1_classic_bvh_intersector.html</anchorfile>
-      <anchor>a9a9bd6250eac152e59bbdbbef8d579f9</anchor>
-      <arglist>() const override</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>rebuildWithIntersectables</name>
-      <anchorfile>classph_1_1_classic_bvh_intersector.html</anchorfile>
-      <anchor>a9223711daceedb85aaa456f4660d73a0</anchor>
-      <arglist>(TSpanView&lt; const Intersectable * &gt; intersectables)</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -17954,10 +17767,10 @@
       <anchorfile>classph_1_1_grid_scheduler.html</anchorfile>
       <anchor>a62143d34f0260721a1d597abb9afd04e</anchor>
       <arglist></arglist>
-      <enumvalue file="classph_1_1_grid_scheduler.html" anchor="a62143d34f0260721a1d597abb9afd04ea56052100a4c3a420907d2fc77f1227a8">LOWER_LEFT</enumvalue>
-      <enumvalue file="classph_1_1_grid_scheduler.html" anchor="a62143d34f0260721a1d597abb9afd04ea9434fe4878cd007b366fa72d3694f1b4">LOWER_RIGHT</enumvalue>
-      <enumvalue file="classph_1_1_grid_scheduler.html" anchor="a62143d34f0260721a1d597abb9afd04eac122adb2ef4ea606a12c5af1b8ca5319">UPPER_LEFT</enumvalue>
-      <enumvalue file="classph_1_1_grid_scheduler.html" anchor="a62143d34f0260721a1d597abb9afd04ea24cd25dbc37d130d0a94554e560ead06">UPPER_RIGHT</enumvalue>
+      <enumvalue file="classph_1_1_grid_scheduler.html" anchor="a62143d34f0260721a1d597abb9afd04eaa8594fd8be60c94e1a2607fa0fa50fae">LowerLeft</enumvalue>
+      <enumvalue file="classph_1_1_grid_scheduler.html" anchor="a62143d34f0260721a1d597abb9afd04ea5ef0d4d135d5f2814b07feaf13fda653">LowerRight</enumvalue>
+      <enumvalue file="classph_1_1_grid_scheduler.html" anchor="a62143d34f0260721a1d597abb9afd04ea6f43ca0793e0c68184761673278f4ca4">UpperLeft</enumvalue>
+      <enumvalue file="classph_1_1_grid_scheduler.html" anchor="a62143d34f0260721a1d597abb9afd04ea894d4b94cedce8501ff5165b6863ea3a">UpperRight</enumvalue>
     </member>
     <member kind="function">
       <type></type>
@@ -17984,8 +17797,8 @@
       <type></type>
       <name>GridScheduler</name>
       <anchorfile>classph_1_1_grid_scheduler.html</anchorfile>
-      <anchor>af597a74a59daa77acfe4617df9c0ae2f</anchor>
-      <arglist>(std::size_t numWorkers, const WorkUnit &amp;totalWorkUnit, const math::Vector2S &amp;numCells, EOrigin origin, math::constant::AxisIndexType prioriAxis)</arglist>
+      <anchor>affba71a90c171205756c33c7df90052d</anchor>
+      <arglist>(std::size_t numWorkers, const WorkUnit &amp;totalWorkUnit, const math::Vector2S &amp;numCells, EOrigin origin, std::size_t prioriAxis)</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -19444,17 +19257,17 @@
       <arglist>() const</arglist>
     </member>
     <member kind="function">
-      <type>int</type>
+      <type>float</type>
       <name>getTraversalCost</name>
       <anchorfile>classph_1_1math_1_1_indexed_kdtree_params.html</anchorfile>
-      <anchor>a8a1344aab05df25505d32a9cbc0cd0c9</anchor>
+      <anchor>ad2c1aff7cfd352ca9a7f44838ecdb62e</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
-      <type>int</type>
+      <type>float</type>
       <name>getInteractCost</name>
       <anchorfile>classph_1_1math_1_1_indexed_kdtree_params.html</anchorfile>
-      <anchor>ab7cb35062fa9781a88b59ead1eb8f7f7</anchor>
+      <anchor>ab3777289d77f4fb4554579f24265da9b</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
@@ -24907,6 +24720,48 @@
       <arglist>() const override</arglist>
     </member>
     <member kind="function">
+      <type>const math::Vector3R &amp;</type>
+      <name>getNa</name>
+      <anchorfile>classph_1_1_p_triangle.html</anchorfile>
+      <anchor>acee9403a6499233574769f9d218305c4</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>const math::Vector3R &amp;</type>
+      <name>getNb</name>
+      <anchorfile>classph_1_1_p_triangle.html</anchorfile>
+      <anchor>a23fcd2242a2030ad03b09fc07be82074</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>const math::Vector3R &amp;</type>
+      <name>getNc</name>
+      <anchorfile>classph_1_1_p_triangle.html</anchorfile>
+      <anchor>a71f73e3ede3006d68ff3e4d9cd129ebd</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>const math::Vector3R &amp;</type>
+      <name>getUVWa</name>
+      <anchorfile>classph_1_1_p_triangle.html</anchorfile>
+      <anchor>a66c95bc851a87bfe5db8159442620491</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>const math::Vector3R &amp;</type>
+      <name>getUVWb</name>
+      <anchorfile>classph_1_1_p_triangle.html</anchorfile>
+      <anchor>a3e38f0ec558d59bceebd49a26ed1d64b</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>const math::Vector3R &amp;</type>
+      <name>getUVWc</name>
+      <anchorfile>classph_1_1_p_triangle.html</anchorfile>
+      <anchor>a9f02baa82fa398de288f4b73da6b02a7</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
       <type>void</type>
       <name>setNa</name>
       <anchorfile>classph_1_1_p_triangle.html</anchorfile>
@@ -24949,25 +24804,46 @@
       <arglist>(const math::Vector3R &amp;uvwC)</arglist>
     </member>
     <member kind="function">
-      <type>const math::Vector3R &amp;</type>
-      <name>getUVWa</name>
+      <type>void</type>
+      <name>setNa</name>
       <anchorfile>classph_1_1_p_triangle.html</anchorfile>
-      <anchor>a66c95bc851a87bfe5db8159442620491</anchor>
-      <arglist>() const</arglist>
+      <anchor>a6d556582774633a9d7a34c4f45096a2e</anchor>
+      <arglist>(const math::Vector3R &amp;nA)</arglist>
     </member>
     <member kind="function">
-      <type>const math::Vector3R &amp;</type>
-      <name>getUVWb</name>
+      <type>void</type>
+      <name>setNb</name>
       <anchorfile>classph_1_1_p_triangle.html</anchorfile>
-      <anchor>a3e38f0ec558d59bceebd49a26ed1d64b</anchor>
-      <arglist>() const</arglist>
+      <anchor>a74908ccfa979a0aa2d0ac5d8fe136797</anchor>
+      <arglist>(const math::Vector3R &amp;nB)</arglist>
     </member>
     <member kind="function">
-      <type>const math::Vector3R &amp;</type>
-      <name>getUVWc</name>
+      <type>void</type>
+      <name>setNc</name>
       <anchorfile>classph_1_1_p_triangle.html</anchorfile>
-      <anchor>a9f02baa82fa398de288f4b73da6b02a7</anchor>
-      <arglist>() const</arglist>
+      <anchor>a94e5b128f697107368c3101d0be673ac</anchor>
+      <arglist>(const math::Vector3R &amp;nC)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setUVWa</name>
+      <anchorfile>classph_1_1_p_triangle.html</anchorfile>
+      <anchor>a53ca3299f05872f3d821c317211ac10b</anchor>
+      <arglist>(const math::Vector3R &amp;uvwA)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setUVWb</name>
+      <anchorfile>classph_1_1_p_triangle.html</anchorfile>
+      <anchor>a100b02b329128a6b29f4477ebc55f899</anchor>
+      <arglist>(const math::Vector3R &amp;uvwB)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setUVWc</name>
+      <anchorfile>classph_1_1_p_triangle.html</anchorfile>
+      <anchor>abc359ab332bfea1e1244806ed3fe97ae</anchor>
+      <arglist>(const math::Vector3R &amp;uvwC)</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -26380,13 +26256,6 @@
     <name>ph::RenderSession</name>
     <filename>classph_1_1_render_session.html</filename>
     <base>ph::Option</base>
-    <member kind="function">
-      <type></type>
-      <name>RenderSession</name>
-      <anchorfile>classph_1_1_render_session.html</anchorfile>
-      <anchor>afaa2e2068147e3519f219e83e320925f</anchor>
-      <arglist>()=default</arglist>
-    </member>
     <member kind="function" virtualness="pure">
       <type>virtual void</type>
       <name>applyToContext</name>
@@ -30391,13 +30260,6 @@
     <filename>classph_1_1_single_frame_render_session.html</filename>
     <base>ph::RenderSession</base>
     <member kind="function">
-      <type></type>
-      <name>SingleFrameRenderSession</name>
-      <anchorfile>classph_1_1_single_frame_render_session.html</anchorfile>
-      <anchor>a658b3b8f1accf541da1b5ccf2836f29e</anchor>
-      <arglist>()=default</arglist>
-    </member>
-    <member kind="function">
       <type>void</type>
       <name>applyToContext</name>
       <anchorfile>classph_1_1_single_frame_render_session.html</anchorfile>
@@ -31152,8 +31014,8 @@
       <type></type>
       <name>StripeScheduler</name>
       <anchorfile>classph_1_1_stripe_scheduler.html</anchorfile>
-      <anchor>a2148e75d844e894eb8860cdfcb1da0d3</anchor>
-      <arglist>(std::size_t numWorkers, const WorkUnit &amp;totalWorkUnit, math::constant::AxisIndexType slicedAxis)</arglist>
+      <anchor>a2f3ef19974024d4325c8c7bd34f9b21d</anchor>
+      <arglist>(std::size_t numWorkers, const WorkUnit &amp;totalWorkUnit, std::size_t slicedAxis)</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -32207,15 +32069,29 @@
       <type>bool</type>
       <name>isIntersectingVolume</name>
       <anchorfile>classph_1_1math_1_1_t_a_a_b_b3_d.html</anchorfile>
-      <anchor>a61f8f534fe13793cba10fc7ef927e00a</anchor>
+      <anchor>a1c93bf688a352f2d2adf14d46c9a7141</anchor>
       <arglist>(const TLineSegment&lt; T &gt; &amp;segment) const</arglist>
     </member>
     <member kind="function">
       <type>bool</type>
       <name>isIntersectingVolume</name>
       <anchorfile>classph_1_1math_1_1_t_a_a_b_b3_d.html</anchorfile>
-      <anchor>a04875136f1971f746a8a5e835bde1e4c</anchor>
+      <anchor>ab77262859b951ff6a5c2856325f3cf82</anchor>
       <arglist>(const TLineSegment&lt; T &gt; &amp;segment, T *out_nearHitT, T *out_farHitT) const</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>isIntersectingVolume</name>
+      <anchorfile>classph_1_1math_1_1_t_a_a_b_b3_d.html</anchorfile>
+      <anchor>a95744af19c280579a2569772b74a26fc</anchor>
+      <arglist>(const TLineSegment&lt; T &gt; &amp;segment, const TVector3&lt; T &gt; &amp;rcpSegmentDir, T *out_nearHitT, T *out_farHitT) const</arglist>
+    </member>
+    <member kind="function">
+      <type>std::pair&lt; T, T &gt;</type>
+      <name>isIntersectingVolume</name>
+      <anchorfile>classph_1_1math_1_1_t_a_a_b_b3_d.html</anchorfile>
+      <anchor>a0d4df4571080a9ea7fbbe0f08e656e19</anchor>
+      <arglist>(const TLineSegment&lt; T &gt; &amp;segment, const TVector3&lt; T &gt; &amp;rcpSegmentDir) const</arglist>
     </member>
     <member kind="function">
       <type>bool</type>
@@ -32236,6 +32112,13 @@
       <name>isPoint</name>
       <anchorfile>classph_1_1math_1_1_t_a_a_b_b3_d.html</anchorfile>
       <anchor>af9ced1d62f056abf6f30a4dad3e03716</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>isVolume</name>
+      <anchorfile>classph_1_1math_1_1_t_a_a_b_b3_d.html</anchorfile>
+      <anchor>a5493fec6c598198eb33648250be2a42a</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
@@ -32312,8 +32195,8 @@
       <type>std::pair&lt; TAABB3D, TAABB3D &gt;</type>
       <name>getSplitted</name>
       <anchorfile>classph_1_1math_1_1_t_a_a_b_b3_d.html</anchorfile>
-      <anchor>aea05a658d36d416c1d04a6916a3f71f9</anchor>
-      <arglist>(constant::AxisIndexType axis, T splitPoint) const</arglist>
+      <anchor>aee6ef59ae50604081383997136bbd4a5</anchor>
+      <arglist>(std::size_t axis, T splitPoint) const</arglist>
     </member>
     <member kind="function">
       <type>std::string</type>
@@ -34084,6 +33967,103 @@
     </member>
   </compound>
   <compound kind="class">
+    <name>ph::math::TBinaryBvhNode</name>
+    <filename>classph_1_1math_1_1_t_binary_bvh_node.html</filename>
+    <templarg>typename Item</templarg>
+    <templarg>typename Index</templarg>
+    <member kind="function">
+      <type></type>
+      <name>TBinaryBvhNode</name>
+      <anchorfile>classph_1_1math_1_1_t_binary_bvh_node.html</anchorfile>
+      <anchor>acff21fecbddd740d17e71a99d60e7934</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>const AABB3D &amp;</type>
+      <name>getAABB</name>
+      <anchorfile>classph_1_1math_1_1_t_binary_bvh_node.html</anchorfile>
+      <anchor>afac41fab2ed261f6784b207d34b850ac</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>isLeaf</name>
+      <anchorfile>classph_1_1math_1_1_t_binary_bvh_node.html</anchorfile>
+      <anchor>aa092c0dd80c2762eefae228829491ef7</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>isInternal</name>
+      <anchorfile>classph_1_1math_1_1_t_binary_bvh_node.html</anchorfile>
+      <anchor>a71cb590408b26e064c593a1cccac402f</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>std::size_t</type>
+      <name>getChildOffset</name>
+      <anchorfile>classph_1_1math_1_1_t_binary_bvh_node.html</anchorfile>
+      <anchor>a6ee8db324d168421506d5e2eaadf2c61</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>std::size_t</type>
+      <name>getSplitAxis</name>
+      <anchorfile>classph_1_1math_1_1_t_binary_bvh_node.html</anchorfile>
+      <anchor>a5e23484372115609a71f27c425f4aa34</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>std::size_t</type>
+      <name>getItemOffset</name>
+      <anchorfile>classph_1_1math_1_1_t_binary_bvh_node.html</anchorfile>
+      <anchor>abb715796816f8c40768ef022dac30d41</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>std::size_t</type>
+      <name>numItems</name>
+      <anchorfile>classph_1_1math_1_1_t_binary_bvh_node.html</anchorfile>
+      <anchor>af1c63501cf4b2219c8b5de3e9e297383</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static auto</type>
+      <name>makeInternal</name>
+      <anchorfile>classph_1_1math_1_1_t_binary_bvh_node.html</anchorfile>
+      <anchor>a4d3ee3b1fdfc0ce176089fee71e8d97f</anchor>
+      <arglist>(const AABB3D &amp;nodeAABB, std::size_t childOffset, std::size_t splitAxis) -&gt; TBinaryBvhNode</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static auto</type>
+      <name>makeLeaf</name>
+      <anchorfile>classph_1_1math_1_1_t_binary_bvh_node.html</anchorfile>
+      <anchor>a881f65dbf658833a12249077557be12a</anchor>
+      <arglist>(const AABB3D &amp;nodeAABB, std::size_t itemOffset, std::size_t numItems) -&gt; TBinaryBvhNode</arglist>
+    </member>
+    <member kind="variable">
+      <type>Index</type>
+      <name>u0_childOffset</name>
+      <anchorfile>classph_1_1math_1_1_t_binary_bvh_node.html</anchorfile>
+      <anchor>ae9f8f37b5e9785debf1aa3375f6cac76</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>Index</type>
+      <name>u0_itemOffset</name>
+      <anchorfile>classph_1_1math_1_1_t_binary_bvh_node.html</anchorfile>
+      <anchor>a923a50c99c5ba68f27e2ad3ca1293c00</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static constexpr std::size_t</type>
+      <name>MAX_NODE_ITEMS</name>
+      <anchorfile>classph_1_1math_1_1_t_binary_bvh_node.html</anchorfile>
+      <anchor>a42a554412e99d3d79f1083d52bd7d096</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
     <name>ph::TBinaryTextureOperator</name>
     <filename>classph_1_1_t_binary_texture_operator.html</filename>
     <templarg>typename InputTypeA</templarg>
@@ -34425,6 +34405,234 @@
     </member>
   </compound>
   <compound kind="class">
+    <name>ph::math::TBvhBuilder</name>
+    <filename>classph_1_1math_1_1_t_bvh_builder.html</filename>
+    <templarg>std::size_t N</templarg>
+    <templarg>typename Item</templarg>
+    <templarg>typename ItemToAABB</templarg>
+    <member kind="typedef">
+      <type>TBvhInfoNode&lt; N, Item &gt;</type>
+      <name>InfoNodeType</name>
+      <anchorfile>classph_1_1math_1_1_t_bvh_builder.html</anchorfile>
+      <anchor>a942965525c77f4ee5e2c28b0c9cfa54f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>TBvhItemInfo&lt; Item &gt;</type>
+      <name>ItemInfoType</name>
+      <anchorfile>classph_1_1math_1_1_t_bvh_builder.html</anchorfile>
+      <anchor>a1312dcdecdef2b7f13ff5bb6d51c0fec</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>TBvhBuilder</name>
+      <anchorfile>classph_1_1math_1_1_t_bvh_builder.html</anchorfile>
+      <anchor>aa36d84940b97110a5ac5b32a22278b26</anchor>
+      <arglist>(EBvhNodeSplitMethod splitMethod, BvhParams params=BvhParams())</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>TBvhBuilder</name>
+      <anchorfile>classph_1_1math_1_1_t_bvh_builder.html</anchorfile>
+      <anchor>ab51a383407f00726e58e91a2f67fde79</anchor>
+      <arglist>(EBvhNodeSplitMethod splitMethod, ItemToAABB itemToAABB, BvhParams params=BvhParams{})</arglist>
+    </member>
+    <member kind="function">
+      <type>auto</type>
+      <name>buildInformativeBvh</name>
+      <anchorfile>classph_1_1math_1_1_t_bvh_builder.html</anchorfile>
+      <anchor>a1b10e9f751a905bbb8639fa97513dba3</anchor>
+      <arglist>(TSpanView&lt; Item &gt; items) -&gt; const InfoNodeType *</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>clearBuildData</name>
+      <anchorfile>classph_1_1math_1_1_t_bvh_builder.html</anchorfile>
+      <anchor>a29b9fa82f5da760b35e5bf13f951576f</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>auto</type>
+      <name>totalInfoNodes</name>
+      <anchorfile>classph_1_1math_1_1_t_bvh_builder.html</anchorfile>
+      <anchor>a3940d389ca3f5e6711622970182a4808</anchor>
+      <arglist>() const -&gt; std::size_t</arglist>
+    </member>
+    <member kind="function">
+      <type>auto</type>
+      <name>totalItems</name>
+      <anchorfile>classph_1_1math_1_1_t_bvh_builder.html</anchorfile>
+      <anchor>a5a65c15a4cab35cd595919f0efef744e</anchor>
+      <arglist>() const -&gt; std::size_t</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static std::size_t</type>
+      <name>calcTotalNodes</name>
+      <anchorfile>classph_1_1math_1_1_t_bvh_builder.html</anchorfile>
+      <anchor>ade09d7f6ddff0a82eb6649f2fdff7d39</anchor>
+      <arglist>(const InfoNodeType *node)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static std::size_t</type>
+      <name>calcTotalItems</name>
+      <anchorfile>classph_1_1math_1_1_t_bvh_builder.html</anchorfile>
+      <anchor>a8e61f780c0b0cb8bf380df34493c5c8c</anchor>
+      <arglist>(const InfoNodeType *node)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static std::size_t</type>
+      <name>calcMaxDepth</name>
+      <anchorfile>classph_1_1math_1_1_t_bvh_builder.html</anchorfile>
+      <anchor>aff9f9d25a29c0160bf669e809dc49177</anchor>
+      <arglist>(const InfoNodeType *node)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>ph::math::TBvhInfoNode</name>
+    <filename>classph_1_1math_1_1_t_bvh_info_node.html</filename>
+    <templarg>std::size_t N</templarg>
+    <templarg>typename Item</templarg>
+    <member kind="typedef">
+      <type>TBvhItemInfo&lt; Item &gt;</type>
+      <name>ItemInfoType</name>
+      <anchorfile>classph_1_1math_1_1_t_bvh_info_node.html</anchorfile>
+      <anchor>a6f1616f4067746fbcb25e8a676eb95c9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>TBvhInfoNode</name>
+      <anchorfile>classph_1_1math_1_1_t_bvh_info_node.html</anchorfile>
+      <anchor>a83e1db20c10cbd5bb7f5ed62deab1259</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>isBinaryLeaf</name>
+      <anchorfile>classph_1_1math_1_1_t_bvh_info_node.html</anchorfile>
+      <anchor>a37911e0232819ef1da9f9dc9294e7711</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>isBinaryInternal</name>
+      <anchorfile>classph_1_1math_1_1_t_bvh_info_node.html</anchorfile>
+      <anchor>a7601c0d767c61555312d36b08645cf46</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>isLeaf</name>
+      <anchorfile>classph_1_1math_1_1_t_bvh_info_node.html</anchorfile>
+      <anchor>a97724046ee4534fc865ee735684d7d83</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>isInternal</name>
+      <anchorfile>classph_1_1math_1_1_t_bvh_info_node.html</anchorfile>
+      <anchor>a45f3302acc4620bc625170b7011d5dc4</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>auto</type>
+      <name>getChild</name>
+      <anchorfile>classph_1_1math_1_1_t_bvh_info_node.html</anchorfile>
+      <anchor>a9859b29ce8075ca88c11c6bc2062121c</anchor>
+      <arglist>(std::size_t childIdx) const -&gt; const TBvhInfoNode *</arglist>
+    </member>
+    <member kind="function">
+      <type>auto</type>
+      <name>getItems</name>
+      <anchorfile>classph_1_1math_1_1_t_bvh_info_node.html</anchorfile>
+      <anchor>a382b4871c375e546477ed0ac430a2d52</anchor>
+      <arglist>() const -&gt; TSpanView&lt; ItemInfoType &gt;</arglist>
+    </member>
+    <member kind="function">
+      <type>auto</type>
+      <name>getAABB</name>
+      <anchorfile>classph_1_1math_1_1_t_bvh_info_node.html</anchorfile>
+      <anchor>a9459982c5a2b4f8748094676a98588b2</anchor>
+      <arglist>() const -&gt; const AABB3D &amp;</arglist>
+    </member>
+    <member kind="function">
+      <type>auto</type>
+      <name>getSplitAxis</name>
+      <anchorfile>classph_1_1math_1_1_t_bvh_info_node.html</anchorfile>
+      <anchor>a49e9b232e50aa9cf9b34c12fc8843b51</anchor>
+      <arglist>() const -&gt; std::size_t</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static auto</type>
+      <name>makeInternal</name>
+      <anchorfile>classph_1_1math_1_1_t_bvh_info_node.html</anchorfile>
+      <anchor>aeabf2539e4553e1b27f38db2067a5655</anchor>
+      <arglist>(const std::array&lt; const TBvhInfoNode *, N &gt; &amp;children, std::size_t splitAxis) -&gt; TBvhInfoNode</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static auto</type>
+      <name>makeLeaf</name>
+      <anchorfile>classph_1_1math_1_1_t_bvh_info_node.html</anchorfile>
+      <anchor>ad9110422219b29dfface7b93420250b9</anchor>
+      <arglist>(TSpanView&lt; ItemInfoType &gt; leafItems, const AABB3D &amp;leafAabb) -&gt; TBvhInfoNode</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static constexpr bool</type>
+      <name>isBinary</name>
+      <anchorfile>classph_1_1math_1_1_t_bvh_info_node.html</anchorfile>
+      <anchor>a7ccbfd940a1ec04c1931595bd6336c1c</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static constexpr std::size_t</type>
+      <name>numChildren</name>
+      <anchorfile>classph_1_1math_1_1_t_bvh_info_node.html</anchorfile>
+      <anchor>ad37e3b8eb2c1abdceef2a89dd561a981</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>ph::math::TBvhItemInfo</name>
+    <filename>classph_1_1math_1_1_t_bvh_item_info.html</filename>
+    <templarg>typename Item</templarg>
+    <member kind="function">
+      <type></type>
+      <name>TBvhItemInfo</name>
+      <anchorfile>classph_1_1math_1_1_t_bvh_item_info.html</anchorfile>
+      <anchor>a62fb35ad1d8763362ce92866bb2346f5</anchor>
+      <arglist>()=default</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>TBvhItemInfo</name>
+      <anchorfile>classph_1_1math_1_1_t_bvh_item_info.html</anchorfile>
+      <anchor>a981cb8f8a5711c22b779c138946910ef</anchor>
+      <arglist>(const AABB3D &amp;aabb, Item item)</arglist>
+    </member>
+    <member kind="variable">
+      <type>AABB3D</type>
+      <name>aabb</name>
+      <anchorfile>classph_1_1math_1_1_t_bvh_item_info.html</anchorfile>
+      <anchor>a79db48cb179533d074b37ccb58f8b8d8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>Vector3R</type>
+      <name>aabbCentroid</name>
+      <anchorfile>classph_1_1math_1_1_t_bvh_item_info.html</anchorfile>
+      <anchor>aeb4d2eb19a690fbfd6f0327f0388d761</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>Item</type>
+      <name>item</name>
+      <anchorfile>classph_1_1math_1_1_t_bvh_item_info.html</anchorfile>
+      <anchor>a0c81ef228e12cff7f1b2e3db107c174e</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
     <name>ph::TCheckerboardTexture</name>
     <filename>classph_1_1_t_checkerboard_texture.html</filename>
     <templarg>typename OutputType</templarg>
@@ -34647,6 +34855,40 @@
       <anchorfile>classph_1_1texfunc_1_1_t_clamp.html</anchorfile>
       <anchor>a920fcb5f611fbce0312c28874b150b1a</anchor>
       <arglist>(const InputTypeA &amp;inputValueA, const InputTypeB &amp;inputValueB, const InputTypeC &amp;inputValueC) const</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>ph::TClassicBvhIntersector</name>
+    <filename>classph_1_1_t_classic_bvh_intersector.html</filename>
+    <templarg>typename Index</templarg>
+    <base>ph::Intersector</base>
+    <member kind="function">
+      <type>void</type>
+      <name>update</name>
+      <anchorfile>classph_1_1_t_classic_bvh_intersector.html</anchorfile>
+      <anchor>a8a2f111f24e27fe8f351b4a2acea40bc</anchor>
+      <arglist>(TSpanView&lt; const Intersectable * &gt; intersectables) override</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>isIntersecting</name>
+      <anchorfile>classph_1_1_t_classic_bvh_intersector.html</anchorfile>
+      <anchor>a010957d3e6435d093c4ecf925e1143c3</anchor>
+      <arglist>(const Ray &amp;ray, HitProbe &amp;probe) const override</arglist>
+    </member>
+    <member kind="function">
+      <type>math::AABB3D</type>
+      <name>calcAABB</name>
+      <anchorfile>classph_1_1_t_classic_bvh_intersector.html</anchorfile>
+      <anchor>aae36b953f12b9d20ba538bd04a6a8af7</anchor>
+      <arglist>() const override</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>rebuildWithIntersectables</name>
+      <anchorfile>classph_1_1_t_classic_bvh_intersector.html</anchorfile>
+      <anchor>a8f17b47046df0f4d180fab72a1475022</anchor>
+      <arglist>(TSpanView&lt; const Intersectable * &gt; intersectables)</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -36484,10 +36726,10 @@
       <anchorfile>classph_1_1_tile_scheduler.html</anchorfile>
       <anchor>abc3dbcfa9f572e40ea3b6ba24adb2f24</anchor>
       <arglist></arglist>
-      <enumvalue file="classph_1_1_tile_scheduler.html" anchor="abc3dbcfa9f572e40ea3b6ba24adb2f24a56052100a4c3a420907d2fc77f1227a8">LOWER_LEFT</enumvalue>
-      <enumvalue file="classph_1_1_tile_scheduler.html" anchor="abc3dbcfa9f572e40ea3b6ba24adb2f24a9434fe4878cd007b366fa72d3694f1b4">LOWER_RIGHT</enumvalue>
-      <enumvalue file="classph_1_1_tile_scheduler.html" anchor="abc3dbcfa9f572e40ea3b6ba24adb2f24ac122adb2ef4ea606a12c5af1b8ca5319">UPPER_LEFT</enumvalue>
-      <enumvalue file="classph_1_1_tile_scheduler.html" anchor="abc3dbcfa9f572e40ea3b6ba24adb2f24a24cd25dbc37d130d0a94554e560ead06">UPPER_RIGHT</enumvalue>
+      <enumvalue file="classph_1_1_tile_scheduler.html" anchor="abc3dbcfa9f572e40ea3b6ba24adb2f24aa8594fd8be60c94e1a2607fa0fa50fae">LowerLeft</enumvalue>
+      <enumvalue file="classph_1_1_tile_scheduler.html" anchor="abc3dbcfa9f572e40ea3b6ba24adb2f24a5ef0d4d135d5f2814b07feaf13fda653">LowerRight</enumvalue>
+      <enumvalue file="classph_1_1_tile_scheduler.html" anchor="abc3dbcfa9f572e40ea3b6ba24adb2f24a6f43ca0793e0c68184761673278f4ca4">UpperLeft</enumvalue>
+      <enumvalue file="classph_1_1_tile_scheduler.html" anchor="abc3dbcfa9f572e40ea3b6ba24adb2f24a894d4b94cedce8501ff5165b6863ea3a">UpperRight</enumvalue>
     </member>
     <member kind="function">
       <type></type>
@@ -36507,8 +36749,8 @@
       <type></type>
       <name>TileScheduler</name>
       <anchorfile>classph_1_1_tile_scheduler.html</anchorfile>
-      <anchor>abc474d05d281698b94bb868c633661ca</anchor>
-      <arglist>(std::size_t numWorkers, const WorkUnit &amp;totalWorkUnit, const math::Vector2S &amp;tileSize, EOrigin origin, math::constant::AxisIndexType prioriAxis)</arglist>
+      <anchor>a339c2614f2bef08e44a4a279c939d7e0</anchor>
+      <arglist>(std::size_t numWorkers, const WorkUnit &amp;totalWorkUnit, const math::Vector2S &amp;tileSize, EOrigin origin, std::size_t prioriAxis)</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -36873,9 +37115,9 @@
     </member>
     <member kind="function">
       <type>std::size_t</type>
-      <name>positiveChildIndex</name>
+      <name>getPositiveChildIndex</name>
       <anchorfile>classph_1_1math_1_1_t_indexed_kdtree_node.html</anchorfile>
-      <anchor>a18ea605290d8f72b79ea11f819ee03c5</anchor>
+      <anchor>ad782092a2a7176badfbb90301a498f45</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
@@ -36887,52 +37129,45 @@
     </member>
     <member kind="function">
       <type>real</type>
-      <name>splitPos</name>
+      <name>getSplitPos</name>
       <anchorfile>classph_1_1math_1_1_t_indexed_kdtree_node.html</anchorfile>
-      <anchor>a9953f87c4a2775168a928b6d72c0cdd4</anchor>
-      <arglist>() const</arglist>
-    </member>
-    <member kind="function">
-      <type>int</type>
-      <name>splitAxisIndex</name>
-      <anchorfile>classph_1_1math_1_1_t_indexed_kdtree_node.html</anchorfile>
-      <anchor>a751eb1b8900850b1ea6f4b7af97270ec</anchor>
+      <anchor>aec17f3d65c45b0f25dfa4b71a8cb00f2</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
       <type>std::size_t</type>
-      <name>index</name>
+      <name>getSplitAxis</name>
       <anchorfile>classph_1_1math_1_1_t_indexed_kdtree_node.html</anchorfile>
-      <anchor>a16d603e46b03148759c5c160222a7902</anchor>
+      <anchor>a1d06c61c036717e0d08decbe54577501</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
       <type>std::size_t</type>
-      <name>singleItemDirectIndex</name>
+      <name>getSingleItemDirectIndex</name>
       <anchorfile>classph_1_1math_1_1_t_indexed_kdtree_node.html</anchorfile>
-      <anchor>a8b2d0afc453237b40cf8575c963336f3</anchor>
+      <anchor>a51f86e5b7e1420b6ee70430df10bcf0c</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
       <type>std::size_t</type>
-      <name>indexBufferOffset</name>
+      <name>getIndexBufferOffset</name>
       <anchorfile>classph_1_1math_1_1_t_indexed_kdtree_node.html</anchorfile>
-      <anchor>a5bc617d46dfd30f2db79662506aa0b8a</anchor>
+      <anchor>ab5cb89e07a98726ba691709d8f23dac1</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static TIndexedKdtreeNode</type>
       <name>makeInner</name>
       <anchorfile>classph_1_1math_1_1_t_indexed_kdtree_node.html</anchorfile>
-      <anchor>a513252ecccd5c64951324c1b903c328d</anchor>
-      <arglist>(real splitPos, math::constant::AxisIndexType splitAxisIndex, std::size_t positiveChildIndex)</arglist>
+      <anchor>a580ee34778018154d4c31b504b615d12</anchor>
+      <arglist>(real splitPos, std::size_t splitAxisIndex, std::size_t positiveChildIndex)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static TIndexedKdtreeNode</type>
       <name>makeLeaf</name>
       <anchorfile>classph_1_1math_1_1_t_indexed_kdtree_node.html</anchorfile>
-      <anchor>a9b0c5244b76fc2335d8d680e618abb6c</anchor>
-      <arglist>(Index index, std::size_t numItems)</arglist>
+      <anchor>aa134d099003371c064c6e553ea05fef6</anchor>
+      <arglist>(Index indexBufferOffset, std::size_t numItems)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static TIndexedKdtreeNode</type>
@@ -36950,30 +37185,37 @@
     </member>
     <member kind="variable">
       <type>Index</type>
-      <name>u0_index</name>
+      <name>u0_indexBufferOffset</name>
       <anchorfile>classph_1_1math_1_1_t_indexed_kdtree_node.html</anchorfile>
-      <anchor>a469cb8b792cb4fb1a5e8d47b264df886</anchor>
+      <anchor>aa3ccbca8b620480331e017a6e5391b89</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>Index</type>
-      <name>u1_flags</name>
+      <name>u0_itemBufferOffset</name>
       <anchorfile>classph_1_1math_1_1_t_indexed_kdtree_node.html</anchorfile>
-      <anchor>acc17332ce5825165f3720007c8f5acc8</anchor>
+      <anchor>a90ed47e0e505dd740fad002aa58c9b9b</anchor>
       <arglist></arglist>
     </member>
-    <member kind="variable">
-      <type>Index</type>
-      <name>u1_numItems</name>
+    <member kind="variable" static="yes">
+      <type>static constexpr std::size_t</type>
+      <name>MAX_NODE_ITEMS</name>
       <anchorfile>classph_1_1math_1_1_t_indexed_kdtree_node.html</anchorfile>
-      <anchor>ae1fe3f240606e24811633f5fb2c3a8a6</anchor>
+      <anchor>a0429542c99a27a774af3cd7a2486fe55</anchor>
       <arglist></arglist>
     </member>
-    <member kind="variable">
-      <type>Index</type>
-      <name>u1_positiveChildIndex</name>
+    <member kind="variable" static="yes">
+      <type>static constexpr std::size_t</type>
+      <name>MAX_NODE_INDEX</name>
       <anchorfile>classph_1_1math_1_1_t_indexed_kdtree_node.html</anchorfile>
-      <anchor>ad2349dd670554434eb9fc57cbd1947d8</anchor>
+      <anchor>af25946ba00ab25ca20a7fb5e82a03586</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static constexpr std::size_t</type>
+      <name>MAX_BUFFER_OFFSET</name>
+      <anchorfile>classph_1_1math_1_1_t_indexed_kdtree_node.html</anchorfile>
+      <anchor>a098f561ddff0dba256f2f946a7e89655</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -37261,6 +37503,117 @@
       <anchorfile>classph_1_1_t_iterator_proxy.html</anchorfile>
       <anchor>adcfe980078d4ad9f21a2d84dbc59fc50</anchor>
       <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>ph::math::TLinearDepthFirstBinaryBvh</name>
+    <filename>classph_1_1math_1_1_t_linear_depth_first_binary_bvh.html</filename>
+    <templarg>typename Item</templarg>
+    <templarg>typename Index</templarg>
+    <member kind="typedef">
+      <type>TBinaryBvhNode&lt; Item, Index &gt;</type>
+      <name>NodeType</name>
+      <anchorfile>classph_1_1math_1_1_t_linear_depth_first_binary_bvh.html</anchorfile>
+      <anchor>a39f845bd6070b7137ed670f4273d9d14</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>build</name>
+      <anchorfile>classph_1_1math_1_1_t_linear_depth_first_binary_bvh.html</anchorfile>
+      <anchor>adf8fa257900f30f3f3c82a99941178de</anchor>
+      <arglist>(const TBvhInfoNode&lt; 2, Item &gt; *const rootNode, std::size_t totalInfoNodes, std::size_t totalItems)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>nearestTraversal</name>
+      <anchorfile>classph_1_1math_1_1_t_linear_depth_first_binary_bvh.html</anchorfile>
+      <anchor>ab897c6f7acd7e0ee1bc111128786b51f</anchor>
+      <arglist>(const TLineSegment&lt; real &gt; &amp;segment, TesterFunc &amp;&amp;intersectionTester) const</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>isEmpty</name>
+      <anchorfile>classph_1_1math_1_1_t_linear_depth_first_binary_bvh.html</anchorfile>
+      <anchor>a265e5ef06192980ae83ab46dc22b3685</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>const NodeType &amp;</type>
+      <name>getRoot</name>
+      <anchorfile>classph_1_1math_1_1_t_linear_depth_first_binary_bvh.html</anchorfile>
+      <anchor>aaff196e96c206d2f1fda82a4714581f8</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>std::size_t</type>
+      <name>numNodes</name>
+      <anchorfile>classph_1_1math_1_1_t_linear_depth_first_binary_bvh.html</anchorfile>
+      <anchor>adfb32afa97fac35ef21c859e1b2f9166</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>std::size_t</type>
+      <name>numItems</name>
+      <anchorfile>classph_1_1math_1_1_t_linear_depth_first_binary_bvh.html</anchorfile>
+      <anchor>a14fcdfaa03885a7c71d8bede3f3e87f1</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static constexpr auto</type>
+      <name>TRAVERSAL_STACK_SIZE</name>
+      <anchorfile>classph_1_1math_1_1_t_linear_depth_first_binary_bvh.html</anchorfile>
+      <anchor>a086282f34f09cc1fd13d65ede4677abf</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>ph::math::TLinearDepthFirstWideBvh</name>
+    <filename>classph_1_1math_1_1_t_linear_depth_first_wide_bvh.html</filename>
+    <templarg>std::size_t N</templarg>
+    <templarg>typename Item</templarg>
+    <templarg>typename Index</templarg>
+    <member kind="typedef">
+      <type>TWideBvhNode&lt; N, Item, Index &gt;</type>
+      <name>NodeType</name>
+      <anchorfile>classph_1_1math_1_1_t_linear_depth_first_wide_bvh.html</anchorfile>
+      <anchor>abf2603eac3d634ca782c92244c94fea4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>build</name>
+      <anchorfile>classph_1_1math_1_1_t_linear_depth_first_wide_bvh.html</anchorfile>
+      <anchor>a0a147e247d26c1bc4d135b47b45190f4</anchor>
+      <arglist>(const TBvhInfoNode&lt; SrcN, Item &gt; *const rootNode, std::size_t totalInfoNodes, std::size_t totalItems)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>nearestTraversal</name>
+      <anchorfile>classph_1_1math_1_1_t_linear_depth_first_wide_bvh.html</anchorfile>
+      <anchor>ae85384ec149535fff61ae89ea1379426</anchor>
+      <arglist>(const TLineSegment&lt; real &gt; &amp;segment, TesterFunc &amp;&amp;intersectionTester) const</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>isEmpty</name>
+      <anchorfile>classph_1_1math_1_1_t_linear_depth_first_wide_bvh.html</anchorfile>
+      <anchor>a8bba2ab3ed94c1842ada5c4995395f2d</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>const NodeType &amp;</type>
+      <name>getRoot</name>
+      <anchorfile>classph_1_1math_1_1_t_linear_depth_first_wide_bvh.html</anchorfile>
+      <anchor>ad108f5d43292757a532733fd9b4c3023</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static constexpr auto</type>
+      <name>TRAVERSAL_STACK_SIZE</name>
+      <anchorfile>classph_1_1math_1_1_t_linear_depth_first_wide_bvh.html</anchorfile>
+      <anchor>ab2e15bdb1ab31e7555a2808be637ffb0</anchor>
+      <arglist></arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -38930,10 +39283,10 @@
     <templarg>math::CIndexedPointKdtreeItemStorage&lt; Photon &gt; PhotonStorage</templarg>
     <class kind="struct">ph::TPhotonMap::PhotonCenterCalculator</class>
     <member kind="typedef">
-      <type>math::TIndexedPointKdtree&lt; Photon, int, PhotonCenterCalculator, PhotonStorage &gt;</type>
+      <type>math::TIndexedPointKdtree&lt; Photon, uint32, PhotonCenterCalculator, PhotonStorage &gt;</type>
       <name>MapType</name>
       <anchorfile>classph_1_1_t_photon_map.html</anchorfile>
-      <anchor>ab4ca9b65cc8b68363e679daf4f42cd00</anchor>
+      <anchor>a3045a257a2e039aa6a9ae454e1a30728</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
@@ -47317,6 +47670,90 @@
     </member>
   </compound>
   <compound kind="class">
+    <name>ph::math::TWideBvhNode</name>
+    <filename>classph_1_1math_1_1_t_wide_bvh_node.html</filename>
+    <templarg>std::size_t N</templarg>
+    <templarg>typename Item</templarg>
+    <templarg>typename Index</templarg>
+    <member kind="function">
+      <type></type>
+      <name>TWideBvhNode</name>
+      <anchorfile>classph_1_1math_1_1_t_wide_bvh_node.html</anchorfile>
+      <anchor>a0bd53b7ac95e2c991488188bca6f4afe</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>const AABB3D &amp;</type>
+      <name>getAABB</name>
+      <anchorfile>classph_1_1math_1_1_t_wide_bvh_node.html</anchorfile>
+      <anchor>a407c1510b6edac49f95933657d5bfe18</anchor>
+      <arglist>(std::size_t childIdx) const</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>isLeaf</name>
+      <anchorfile>classph_1_1math_1_1_t_wide_bvh_node.html</anchorfile>
+      <anchor>a925f8eacc8c5e136e915b43c1622006c</anchor>
+      <arglist>(std::size_t childIdx) const</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>isInternal</name>
+      <anchorfile>classph_1_1math_1_1_t_wide_bvh_node.html</anchorfile>
+      <anchor>aeb77ee005b8c5ae573fc4516c3f55914</anchor>
+      <arglist>(std::size_t childIdx) const</arglist>
+    </member>
+    <member kind="function">
+      <type>std::size_t</type>
+      <name>getChildOffset</name>
+      <anchorfile>classph_1_1math_1_1_t_wide_bvh_node.html</anchorfile>
+      <anchor>a76da73f676864a6466472f87e93cbff7</anchor>
+      <arglist>(std::size_t childIdx) const</arglist>
+    </member>
+    <member kind="function">
+      <type>std::size_t</type>
+      <name>getSplitAxis</name>
+      <anchorfile>classph_1_1math_1_1_t_wide_bvh_node.html</anchorfile>
+      <anchor>a0a56e35bb0dc6f5f7d10f9fdc321fa63</anchor>
+      <arglist>(std::size_t childIdx) const</arglist>
+    </member>
+    <member kind="function">
+      <type>std::size_t</type>
+      <name>getItemOffset</name>
+      <anchorfile>classph_1_1math_1_1_t_wide_bvh_node.html</anchorfile>
+      <anchor>a7293167d3649588e09ed8894286eac06</anchor>
+      <arglist>(std::size_t childIdx) const</arglist>
+    </member>
+    <member kind="function">
+      <type>std::size_t</type>
+      <name>numItems</name>
+      <anchorfile>classph_1_1math_1_1_t_wide_bvh_node.html</anchorfile>
+      <anchor>a2035a757d76349f1efad0ac5e53782d7</anchor>
+      <arglist>(std::size_t childIdx) const</arglist>
+    </member>
+    <member kind="function">
+      <type>TWideBvhNode &amp;</type>
+      <name>setInternal</name>
+      <anchorfile>classph_1_1math_1_1_t_wide_bvh_node.html</anchorfile>
+      <anchor>adb14ec0b6257976793c35a0d2c88563e</anchor>
+      <arglist>(std::size_t childIdx, const AABB3D &amp;childAABB, std::size_t childOffset, std::size_t splitAxis)</arglist>
+    </member>
+    <member kind="function">
+      <type>TWideBvhNode &amp;</type>
+      <name>setLeaf</name>
+      <anchorfile>classph_1_1math_1_1_t_wide_bvh_node.html</anchorfile>
+      <anchor>ab8ea049aa82d70bb438bc8c667b0be70</anchor>
+      <arglist>(std::size_t childIdx, const AABB3D &amp;childAABB, std::size_t itemOffset, std::size_t numItems)</arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static constexpr std::size_t</type>
+      <name>MAX_NODE_ITEMS</name>
+      <anchorfile>classph_1_1math_1_1_t_wide_bvh_node.html</anchorfile>
+      <anchor>abc38ab8dfbe06402b55b8c51d39a3133</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
     <name>ph::UniformRandomSampleSource</name>
     <filename>classph_1_1_uniform_random_sample_source.html</filename>
     <base>ph::RuntimeSampleSource</base>
@@ -48506,17 +48943,11 @@
     <class kind="class">ph::BsdfSampleInput</class>
     <class kind="class">ph::BsdfSampleOutput</class>
     <class kind="class">ph::BsdfSampleQuery</class>
-    <class kind="class">ph::BvhBuilder</class>
-    <class kind="class">ph::BvhInfoNode</class>
-    <class kind="class">ph::BvhIntersectableInfo</class>
-    <class kind="class">ph::BvhLinearNode</class>
-    <class kind="class">ph::BvhSahBucket</class>
     <class kind="class">ph::BVPTDLEstimator</class>
     <class kind="class">ph::BVPTEstimator</class>
     <class kind="class">ph::ByteBuffer</class>
     <class kind="class">ph::ByteBufferInputStream</class>
     <class kind="class">ph::CheckerboardImage</class>
-    <class kind="class">ph::ClassicBvhIntersector</class>
     <class kind="class">ph::ConductiveInterfaceInfo</class>
     <class kind="class">ph::ConductorFresnel</class>
     <class kind="class">ph::ConstantImage</class>
@@ -48823,6 +49254,7 @@
     <class kind="class">ph::TBitFlags</class>
     <class kind="class">ph::TBlockableAtomicQuasiQueue</class>
     <class kind="class">ph::TCheckerboardTexture</class>
+    <class kind="class">ph::TClassicBvhIntersector</class>
     <class kind="class">ph::TColorPixelTexture2D</class>
     <class kind="class">ph::TConstantSpectralTexture</class>
     <class kind="class">ph::TConstantTexture</class>
@@ -49619,17 +50051,6 @@
       <enumvalue file="namespaceph.html" anchor="a1dc2c49d4eab6261d803a5e3ec99dfb9a1cb290ed5917afdbf2532bb2bf6f0192">Concave</enumvalue>
       <enumvalue file="namespaceph.html" anchor="a1dc2c49d4eab6261d803a5e3ec99dfb9a241f88afa7becb8633ca074c48e0d77c">Triangular</enumvalue>
       <enumvalue file="namespaceph.html" anchor="a1dc2c49d4eab6261d803a5e3ec99dfb9ab1aa854f21a681be6412a6df6340ab00">Quadrilateral</enumvalue>
-    </member>
-    <member kind="enumeration">
-      <type></type>
-      <name>EBvhType</name>
-      <anchorfile>namespaceph.html</anchorfile>
-      <anchor>a905055bd65c81f2ec4e8c000e033722a</anchor>
-      <arglist></arglist>
-      <enumvalue file="namespaceph.html" anchor="a905055bd65c81f2ec4e8c000e033722aa87e955627b59c274ec4cbdd3a130f9bb">HALF</enumvalue>
-      <enumvalue file="namespaceph.html" anchor="a905055bd65c81f2ec4e8c000e033722aaafa8fd4b90a3f8123b4bd30446518a7e">MIDPOINT</enumvalue>
-      <enumvalue file="namespaceph.html" anchor="a905055bd65c81f2ec4e8c000e033722aa253aea2d07611aeb89ce012571903289">SAH_BUCKET</enumvalue>
-      <enumvalue file="namespaceph.html" anchor="a905055bd65c81f2ec4e8c000e033722aaab7566cd685ce0d9856d8e5a24992ada">SAH_EDGE</enumvalue>
     </member>
     <member kind="enumeration">
       <type></type>
@@ -51038,13 +51459,6 @@
       <arglist>()</arglist>
     </member>
     <member kind="function">
-      <type>consteval std::size_t</type>
-      <name>sizeof_in_bits</name>
-      <anchorfile>namespaceph.html</anchorfile>
-      <anchor>af8b01b99e42b7dd15dca28359ac1bf9e</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
       <type>constexpr auto</type>
       <name>enum_to_value</name>
       <anchorfile>namespaceph.html</anchorfile>
@@ -51811,6 +52225,7 @@
     <namespace>ph::math::radical_inverse_detail</namespace>
     <namespace>ph::math::spectral_data</namespace>
     <namespace>ph::math::table</namespace>
+    <class kind="class">ph::math::BvhParams</class>
     <class kind="class">ph::math::ColorError</class>
     <class kind="class">ph::math::DefaultSpectralSampleProps</class>
     <class kind="class">ph::math::DeterministicSeeder</class>
@@ -51831,7 +52246,11 @@
     <class kind="class">ph::math::TArithmeticArray</class>
     <class kind="class">ph::math::TArithmeticArrayBase</class>
     <class kind="class">ph::math::TBasicTriangle</class>
+    <class kind="class">ph::math::TBinaryBvhNode</class>
     <class kind="class">ph::math::TBlackmanHarris2D</class>
+    <class kind="class">ph::math::TBvhBuilder</class>
+    <class kind="class">ph::math::TBvhInfoNode</class>
+    <class kind="class">ph::math::TBvhItemInfo</class>
     <class kind="class">ph::math::TChromaticAdaptationDefinition</class>
     <class kind="class">ph::math::TChromaticAdaptationDefinition&lt; EChromaticAdaptation::Bradford, T &gt;</class>
     <class kind="class">ph::math::TChromaticAdaptationDefinition&lt; EChromaticAdaptation::VonKries, T &gt;</class>
@@ -51857,6 +52276,8 @@
     <class kind="class">ph::math::TIndexedKdtreeNode</class>
     <class kind="class">ph::math::TIndexedPointKdtree</class>
     <class kind="class">ph::math::TIndexedVector3</class>
+    <class kind="class">ph::math::TLinearDepthFirstBinaryBvh</class>
+    <class kind="class">ph::math::TLinearDepthFirstWideBvh</class>
     <class kind="class">ph::math::TLinearGradient2D</class>
     <class kind="class">ph::math::TLineSegment</class>
     <class kind="class">ph::math::TMathFunction2D</class>
@@ -51888,10 +52309,11 @@
     <class kind="class">ph::math::TVectorN</class>
     <class kind="class">ph::math::TVectorNBase</class>
     <class kind="class">ph::math::TWatertightTriangle</class>
+    <class kind="class">ph::math::TWideBvhNode</class>
+    <concept>ph::math::CIndexedPointKdtreeItemStorage</concept>
     <concept>ph::math::CItemSegmentIntersectionTesterVanilla</concept>
     <concept>ph::math::CItemSegmentIntersectionTesterWithIndex</concept>
     <concept>ph::math::CItemSegmentIntersectionTester</concept>
-    <concept>ph::math::CIndexedPointKdtreeItemStorage</concept>
     <concept>ph::math::CChromaticAdaptationDefinition</concept>
     <concept>ph::math::CSpectralSampleProps</concept>
     <concept>ph::math::CColorValuesInterface</concept>
@@ -52245,6 +52667,17 @@
       <anchorfile>namespaceph_1_1math.html</anchorfile>
       <anchor>ad6e816c88c79b5542db5a724ffbffa13</anchor>
       <arglist></arglist>
+    </member>
+    <member kind="enumeration">
+      <type></type>
+      <name>EBvhNodeSplitMethod</name>
+      <anchorfile>namespaceph_1_1math.html</anchorfile>
+      <anchor>a6b85157eabe1403cdf9b1e45c8c7e368</anchor>
+      <arglist></arglist>
+      <enumvalue file="namespaceph_1_1math.html" anchor="a6b85157eabe1403cdf9b1e45c8c7e368ade447f76aa569e5e8c5a1ac54791e00c">EqualItems</enumvalue>
+      <enumvalue file="namespaceph_1_1math.html" anchor="a6b85157eabe1403cdf9b1e45c8c7e368a7f56c02b34d312867e3f63c9f21fe5c8">Midpoint</enumvalue>
+      <enumvalue file="namespaceph_1_1math.html" anchor="a6b85157eabe1403cdf9b1e45c8c7e368a8d2112cc82f6f3b791a79299c553f85c">SAH_Buckets</enumvalue>
+      <enumvalue file="namespaceph_1_1math.html" anchor="a6b85157eabe1403cdf9b1e45c8c7e368abeddd82e566c2f6f7e03453458fefe6d">SAH_EdgeSort</enumvalue>
     </member>
     <member kind="enumeration">
       <type></type>
@@ -52700,6 +53133,13 @@
       <anchorfile>namespaceph_1_1math.html</anchorfile>
       <anchor>a0090b0ad2b7785d02c6761c1766066cc</anchor>
       <arglist>(const T value, const T lowerBound, const T upperBound)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>safe_rcp</name>
+      <anchorfile>namespaceph_1_1math.html</anchorfile>
+      <anchor>a1e5270d420e04a11bbeafa6da0b6849b</anchor>
+      <arglist>(const T value)</arglist>
     </member>
     <member kind="function">
       <type>T</type>
@@ -53363,13 +53803,6 @@
   <compound kind="namespace">
     <name>ph::math::constant</name>
     <filename>namespaceph_1_1math_1_1constant.html</filename>
-    <member kind="typedef">
-      <type>std::size_t</type>
-      <name>AxisIndexType</name>
-      <anchorfile>namespaceph_1_1math_1_1constant.html</anchorfile>
-      <anchor>a6399d62eb40c0ceee94dfcb7b77cb85c</anchor>
-      <arglist></arglist>
-    </member>
     <member kind="variable">
       <type>constexpr T</type>
       <name>pi</name>
@@ -53490,59 +53923,59 @@
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>constexpr AxisIndexType</type>
+      <type>constexpr std::size_t</type>
       <name>UNKNOWN_AXIS</name>
       <anchorfile>namespaceph_1_1math_1_1constant.html</anchorfile>
-      <anchor>a2c2f5d7f6b274f594b7b09ba38ed3ae0</anchor>
+      <anchor>a5c38ce40358da812fa94d244fde664cb</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>constexpr AxisIndexType</type>
+      <type>constexpr std::size_t</type>
       <name>X_AXIS</name>
       <anchorfile>namespaceph_1_1math_1_1constant.html</anchorfile>
-      <anchor>a700e65439fa95e5ea186c96d06614a47</anchor>
+      <anchor>a633099a259bffb958d8394be85abc6ee</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>constexpr AxisIndexType</type>
+      <type>constexpr std::size_t</type>
       <name>Y_AXIS</name>
       <anchorfile>namespaceph_1_1math_1_1constant.html</anchorfile>
-      <anchor>a111d5e146845b82d5e977e6d0cf6fd0f</anchor>
+      <anchor>a02d97e4be2bd520fb35947c7c9ce0b2c</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>constexpr AxisIndexType</type>
+      <type>constexpr std::size_t</type>
       <name>Z_AXIS</name>
       <anchorfile>namespaceph_1_1math_1_1constant.html</anchorfile>
-      <anchor>a2eaa067caf050a0557eae1109de58e15</anchor>
+      <anchor>a15bdc859ca6d66f04a20564583418404</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>constexpr AxisIndexType</type>
+      <type>constexpr std::size_t</type>
       <name>UNKNOWN_AXIS</name>
       <anchorfile>namespaceph_1_1math_1_1constant.html</anchorfile>
-      <anchor>a2c2f5d7f6b274f594b7b09ba38ed3ae0</anchor>
+      <anchor>a5c38ce40358da812fa94d244fde664cb</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>constexpr AxisIndexType</type>
+      <type>constexpr std::size_t</type>
       <name>X_AXIS</name>
       <anchorfile>namespaceph_1_1math_1_1constant.html</anchorfile>
-      <anchor>a700e65439fa95e5ea186c96d06614a47</anchor>
+      <anchor>a633099a259bffb958d8394be85abc6ee</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>constexpr AxisIndexType</type>
+      <type>constexpr std::size_t</type>
       <name>Y_AXIS</name>
       <anchorfile>namespaceph_1_1math_1_1constant.html</anchorfile>
-      <anchor>a111d5e146845b82d5e977e6d0cf6fd0f</anchor>
+      <anchor>a02d97e4be2bd520fb35947c7c9ce0b2c</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>constexpr AxisIndexType</type>
+      <type>constexpr std::size_t</type>
       <name>Z_AXIS</name>
       <anchorfile>namespaceph_1_1math_1_1constant.html</anchorfile>
-      <anchor>a2eaa067caf050a0557eae1109de58e15</anchor>
+      <anchor>a15bdc859ca6d66f04a20564583418404</anchor>
       <arglist></arglist>
     </member>
   </compound>

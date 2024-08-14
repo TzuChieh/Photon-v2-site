@@ -9,9 +9,9 @@
 \DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_hit_probe_8h}{Core/HitProbe.h}}"{}}}
 \DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_hit_detail_8h}{Core/HitDetail.h}}"{}}}
 \DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_vector3_8h}{Math/TVector3.h}}"{}}}
-\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{utility_8h}{Utility/utility.h}}"{}}}
-\DoxyCodeLine{00009\ }
-\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <Common/logging.h>}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <Common/logging.h>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <Common/utility.h>}}
 \DoxyCodeLine{00011\ }
 \DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <utility>}}
 \DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <limits>}}
@@ -60,153 +60,150 @@
 \DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ math::Vector3R\ hitBary;}
 \DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ if(!triangle.isIntersecting(segment,\ \&hitT,\ \&hitBary))}
 \DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ return\ \{\};}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ return\ std::nullopt;}
 \DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
 \DoxyCodeLine{00061\ }
-\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(hitT\ <\ closestHitT)}
-\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ closestHitT\ =\ hitT;}
-\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ closestHit.bary\ =\ hitBary;}
-\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ closestHit.faceIdx\ =\ lossless\_cast<Index>(triangleIdx);}
-\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ closestHitT\ =\ hitT;}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ closestHit.bary\ =\ hitBary;}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ closestHit.faceIdx\ =\ lossless\_cast<Index>(triangleIdx);}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ hitT;}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \});}
 \DoxyCodeLine{00068\ }
-\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ hitT;}
-\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \});}
-\DoxyCodeLine{00071\ }
-\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordflow}{if}(hasHit)}
-\DoxyCodeLine{00073\ \ \ \ \ \{}
-\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ probe.pushBaseHit(\textcolor{keyword}{this},\ closestHitT);}
-\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ probe.pushCache(closestHit);}
-\DoxyCodeLine{00076\ }
-\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
-\DoxyCodeLine{00078\ \ \ \ \ \}}
-\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00080\ \ \ \ \ \{}
-\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
-\DoxyCodeLine{00082\ \ \ \ \ \}}
-\DoxyCodeLine{00083\ \}}
-\DoxyCodeLine{00084\ }
-\DoxyCodeLine{00085\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Index>}
-\DoxyCodeLine{00086\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_t_p_indexed_kd_tree_triangle_mesh}{TPIndexedKdTreeTriangleMesh<Index>::reintersect}}(}
-\DoxyCodeLine{00087\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_ray}{Ray}}\&\ ray,}
-\DoxyCodeLine{00088\ \ \ \ \ \mbox{\hyperlink{classph_1_1_hit_probe}{HitProbe}}\&\ probe,}
-\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_ray}{Ray}}\&\ \textcolor{comment}{/*\ srcRay\ */},}
-\DoxyCodeLine{00090\ \ \ \ \ \mbox{\hyperlink{classph_1_1_hit_probe}{HitProbe}}\&\ srcProbe)\textcolor{keyword}{\ const}}
-\DoxyCodeLine{00091\ \textcolor{keyword}{}\{}
-\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keyword}{auto}\ closestHit\ =\ srcProbe.\mbox{\hyperlink{classph_1_1_hit_probe_a68d5626b6856c97c8c30bea7e9f80b33}{popCache}}<ClosestHitProbeResult>();}
-\DoxyCodeLine{00093\ \ \ \ \ srcProbe.\mbox{\hyperlink{classph_1_1_hit_probe_a4c7120e462a6cc8e500bc8b2302c2989}{popHit}}();}
-\DoxyCodeLine{00094\ }
-\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_watertight_triangle}{Triangle}}\ triangle\ =\ m\_kdTree.getItem(closestHit.faceIdx);}
-\DoxyCodeLine{00096\ }
-\DoxyCodeLine{00097\ \ \ \ \ real\ hitT;}
-\DoxyCodeLine{00098\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\ hitBary;}
-\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keywordflow}{if}(triangle.\mbox{\hyperlink{classph_1_1math_1_1_t_watertight_triangle_adc72859ad8b10c66b5ef9a9e583f40ef}{isIntersecting}}(ray.\mbox{\hyperlink{classph_1_1_ray_ae19035096abdcda7a99d8e75b9862cd8}{getSegment}}(),\ \&hitT,\ \&hitBary))}
-\DoxyCodeLine{00100\ \ \ \ \ \{}
-\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ closestHit.bary\ =\ hitBary;}
-\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ probe.\mbox{\hyperlink{classph_1_1_hit_probe_a9465a13a3f4dc40bb55e45c8ffa4cbf6}{pushBaseHit}}(\textcolor{keyword}{this},\ hitT);}
-\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ probe.\mbox{\hyperlink{classph_1_1_hit_probe_a4ba00967fa180c7ec1890825a4675b17}{pushCache}}(closestHit);}
-\DoxyCodeLine{00104\ }
-\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
-\DoxyCodeLine{00106\ \ \ \ \ \}}
-\DoxyCodeLine{00107\ \ \ \ \ \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00108\ \ \ \ \ \{}
-\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
-\DoxyCodeLine{00110\ \ \ \ \ \}}
-\DoxyCodeLine{00111\ \}}
-\DoxyCodeLine{00112\ }
-\DoxyCodeLine{00113\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Index>}
-\DoxyCodeLine{00114\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_p_indexed_kd_tree_triangle_mesh}{TPIndexedKdTreeTriangleMesh<Index>::calcHitDetail}}(}
-\DoxyCodeLine{00115\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_ray}{Ray}}\&\ \ \ \ \ \ \ ray,}
-\DoxyCodeLine{00116\ \ \ \ \ \mbox{\hyperlink{classph_1_1_hit_probe}{HitProbe}}\&\ \ \ \ \ \ \ \ probe,}
-\DoxyCodeLine{00117\ \ \ \ \ \mbox{\hyperlink{classph_1_1_hit_detail}{HitDetail}}*\ \textcolor{keyword}{const}\ out\_detail)\textcolor{keyword}{\ const}}
-\DoxyCodeLine{00118\ \textcolor{keyword}{}\{}
-\DoxyCodeLine{00119\ \ \ \ \ PH\_ASSERT(out\_detail);}
-\DoxyCodeLine{00120\ \ \ \ \ PH\_ASSERT(m\_triangleBuffer);}
-\DoxyCodeLine{00121\ }
-\DoxyCodeLine{00122\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ closestHit\ =\ probe.\mbox{\hyperlink{classph_1_1_hit_probe_a68d5626b6856c97c8c30bea7e9f80b33}{popCache}}<ClosestHitProbeResult>();}
-\DoxyCodeLine{00123\ \ \ \ \ PH\_ASSERT\_MSG(!closestHit.bary.isZero()\ \&\&\ closestHit.bary.isFinite(),}
-\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ closestHit.bary.toString());}
-\DoxyCodeLine{00125\ }
-\DoxyCodeLine{00126\ \ \ \ \ probe.\mbox{\hyperlink{classph_1_1_hit_probe_a4c7120e462a6cc8e500bc8b2302c2989}{popHit}}();}
-\DoxyCodeLine{00127\ }
-\DoxyCodeLine{00128\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ positions\ =\ m\_triangleBuffer-\/>getPositions(closestHit.faceIdx);}
-\DoxyCodeLine{00129\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ texCoords\ =\ m\_triangleBuffer-\/>getTexCoords(closestHit.faceIdx);}
-\DoxyCodeLine{00130\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ normals\ =\ m\_triangleBuffer-\/>getNormals(closestHit.faceIdx);}
-\DoxyCodeLine{00131\ }
-\DoxyCodeLine{00132\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_watertight_triangle}{Triangle}}\ triangle(positions);}
-\DoxyCodeLine{00133\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\ position\ =\ triangle.\mbox{\hyperlink{classph_1_1math_1_1_t_basic_triangle_aa44b3b5f9abc3273c838e561e69bc2a3}{barycentricToSurface}}(closestHit.bary);}
-\DoxyCodeLine{00134\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\ faceNormal\ =\ triangle.\mbox{\hyperlink{classph_1_1math_1_1_t_basic_triangle_a265d0e3578abe559ed0647bcd6ae261b}{getFaceNormal}}();}
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keywordflow}{if}(hasHit)}
+\DoxyCodeLine{00070\ \ \ \ \ \{}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ probe.pushBaseHit(\textcolor{keyword}{this},\ closestHitT);}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ probe.pushCache(closestHit);}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00075\ \ \ \ \ \}}
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00077\ \ \ \ \ \{}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00079\ \ \ \ \ \}}
+\DoxyCodeLine{00080\ \}}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Index>}
+\DoxyCodeLine{00083\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_t_p_indexed_kd_tree_triangle_mesh}{TPIndexedKdTreeTriangleMesh<Index>::reintersect}}(}
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_ray}{Ray}}\&\ ray,}
+\DoxyCodeLine{00085\ \ \ \ \ \mbox{\hyperlink{classph_1_1_hit_probe}{HitProbe}}\&\ probe,}
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_ray}{Ray}}\&\ \textcolor{comment}{/*\ srcRay\ */},}
+\DoxyCodeLine{00087\ \ \ \ \ \mbox{\hyperlink{classph_1_1_hit_probe}{HitProbe}}\&\ srcProbe)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00088\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keyword}{auto}\ closestHit\ =\ srcProbe.\mbox{\hyperlink{classph_1_1_hit_probe_a68d5626b6856c97c8c30bea7e9f80b33}{popCache}}<ClosestHitProbeResult>();}
+\DoxyCodeLine{00090\ \ \ \ \ srcProbe.\mbox{\hyperlink{classph_1_1_hit_probe_a4c7120e462a6cc8e500bc8b2302c2989}{popHit}}();}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_watertight_triangle}{Triangle}}\ triangle\ =\ m\_kdTree.getItem(closestHit.faceIdx);}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \ \ \ \ real\ hitT;}
+\DoxyCodeLine{00095\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\ hitBary;}
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{keywordflow}{if}(triangle.\mbox{\hyperlink{classph_1_1math_1_1_t_watertight_triangle_adc72859ad8b10c66b5ef9a9e583f40ef}{isIntersecting}}(ray.\mbox{\hyperlink{classph_1_1_ray_ae19035096abdcda7a99d8e75b9862cd8}{getSegment}}(),\ \&hitT,\ \&hitBary))}
+\DoxyCodeLine{00097\ \ \ \ \ \{}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ closestHit.bary\ =\ hitBary;}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ probe.\mbox{\hyperlink{classph_1_1_hit_probe_a9465a13a3f4dc40bb55e45c8ffa4cbf6}{pushBaseHit}}(\textcolor{keyword}{this},\ hitT);}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ probe.\mbox{\hyperlink{classph_1_1_hit_probe_a4ba00967fa180c7ec1890825a4675b17}{pushCache}}(closestHit);}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00103\ \ \ \ \ \}}
+\DoxyCodeLine{00104\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00105\ \ \ \ \ \{}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00107\ \ \ \ \ \}}
+\DoxyCodeLine{00108\ \}}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Index>}
+\DoxyCodeLine{00111\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_p_indexed_kd_tree_triangle_mesh}{TPIndexedKdTreeTriangleMesh<Index>::calcHitDetail}}(}
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_ray}{Ray}}\&\ \ \ \ \ \ \ ray,}
+\DoxyCodeLine{00113\ \ \ \ \ \mbox{\hyperlink{classph_1_1_hit_probe}{HitProbe}}\&\ \ \ \ \ \ \ \ probe,}
+\DoxyCodeLine{00114\ \ \ \ \ \mbox{\hyperlink{classph_1_1_hit_detail}{HitDetail}}*\ \textcolor{keyword}{const}\ out\_detail)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00115\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00116\ \ \ \ \ PH\_ASSERT(out\_detail);}
+\DoxyCodeLine{00117\ \ \ \ \ PH\_ASSERT(m\_triangleBuffer);}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ closestHit\ =\ probe.\mbox{\hyperlink{classph_1_1_hit_probe_a68d5626b6856c97c8c30bea7e9f80b33}{popCache}}<ClosestHitProbeResult>();}
+\DoxyCodeLine{00120\ \ \ \ \ PH\_ASSERT\_MSG(!closestHit.bary.isZero()\ \&\&\ closestHit.bary.isFinite(),}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ closestHit.bary.toString());}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00123\ \ \ \ \ probe.\mbox{\hyperlink{classph_1_1_hit_probe_a4c7120e462a6cc8e500bc8b2302c2989}{popHit}}();}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ positions\ =\ m\_triangleBuffer-\/>getPositions(closestHit.faceIdx);}
+\DoxyCodeLine{00126\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ texCoords\ =\ m\_triangleBuffer-\/>getTexCoords(closestHit.faceIdx);}
+\DoxyCodeLine{00127\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ normals\ =\ m\_triangleBuffer-\/>getNormals(closestHit.faceIdx);}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00129\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_watertight_triangle}{Triangle}}\ triangle(positions);}
+\DoxyCodeLine{00130\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\ position\ =\ triangle.\mbox{\hyperlink{classph_1_1math_1_1_t_basic_triangle_aa44b3b5f9abc3273c838e561e69bc2a3}{barycentricToSurface}}(closestHit.bary);}
+\DoxyCodeLine{00131\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\ faceNormal\ =\ triangle.\mbox{\hyperlink{classph_1_1math_1_1_t_basic_triangle_a265d0e3578abe559ed0647bcd6ae261b}{getFaceNormal}}();}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00133\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ hasTexCoords\ =\ m\_triangleBuffer-\/>hasTexCoord();}
+\DoxyCodeLine{00134\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ hasShadingNormal\ =\ m\_triangleBuffer-\/>hasNormal();}
 \DoxyCodeLine{00135\ }
-\DoxyCodeLine{00136\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ hasTexCoords\ =\ m\_triangleBuffer-\/>hasTexCoord();}
-\DoxyCodeLine{00137\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ hasShadingNormal\ =\ m\_triangleBuffer-\/>hasNormal();}
-\DoxyCodeLine{00138\ }
-\DoxyCodeLine{00139\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ shadingNormal\ =\ hasShadingNormal}
-\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ ?\ Triangle::interpolate(normals,\ closestHit.bary).\mbox{\hyperlink{classph_1_1math_1_1_t_vector_n_base_a83faa5cec9beeb81bb58af4a8b1d13b1}{normalize}}()}
-\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ :\ faceNormal;}
-\DoxyCodeLine{00142\ }
-\DoxyCodeLine{00143\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ uvw\ =\ hasTexCoords}
-\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ ?\ Triangle::interpolate(texCoords,\ closestHit.bary)}
-\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}(0);}
-\DoxyCodeLine{00146\ }
-\DoxyCodeLine{00147\ \ \ \ \ PH\_ASSERT\_MSG(position.\mbox{\hyperlink{classph_1_1math_1_1_t_vector_n_base_aabbf0b0d4f4d90122f70331d072aaaa5}{isFinite}}()\ \&\&\ shadingNormal.isFinite()\ \&\&\ uvw.isFinite(),\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}}}
-\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}position\ \ \ \ \ \ \ =\ "{}}\ +\ position.\mbox{\hyperlink{classph_1_1math_1_1_t_vector_n_base_a945f66ed8e65964d232f259b223debd1}{toString}}()\ +\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}}}
-\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}shading-\/normal\ =\ "{}}\ +\ shadingNormal.toString()\ +\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}}}
-\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}uvw\ \ \ \ \ \ \ \ \ \ \ \ =\ "{}}\ +\ uvw.toString()\ +\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}});}
+\DoxyCodeLine{00136\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ shadingNormal\ =\ hasShadingNormal}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ ?\ Triangle::interpolate(normals,\ closestHit.bary).\mbox{\hyperlink{classph_1_1math_1_1_t_vector_n_base_a83faa5cec9beeb81bb58af4a8b1d13b1}{normalize}}()}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ :\ faceNormal;}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00140\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ uvw\ =\ hasTexCoords}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ ?\ Triangle::interpolate(texCoords,\ closestHit.bary)}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}(0);}
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00144\ \ \ \ \ PH\_ASSERT\_MSG(position.\mbox{\hyperlink{classph_1_1math_1_1_t_vector_n_base_aabbf0b0d4f4d90122f70331d072aaaa5}{isFinite}}()\ \&\&\ shadingNormal.isFinite()\ \&\&\ uvw.isFinite(),\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}}}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}position\ \ \ \ \ \ \ =\ "{}}\ +\ position.\mbox{\hyperlink{classph_1_1math_1_1_t_vector_n_base_a945f66ed8e65964d232f259b223debd1}{toString}}()\ +\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}}}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}shading-\/normal\ =\ "{}}\ +\ shadingNormal.toString()\ +\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}}}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}uvw\ \ \ \ \ \ \ \ \ \ \ \ =\ "{}}\ +\ uvw.toString()\ +\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}});}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00149\ \ \ \ \ \textcolor{comment}{//\ TODO:\ respect\ primitive\ channel}}
+\DoxyCodeLine{00150\ \ \ \ \ \textcolor{comment}{//\ (if\ it's\ default\ channel,\ use\ vertex\ uvw;\ otherwise,\ use\ mapper)}}
 \DoxyCodeLine{00151\ }
-\DoxyCodeLine{00152\ \ \ \ \ \textcolor{comment}{//\ TODO:\ respect\ primitive\ channel}}
-\DoxyCodeLine{00153\ \ \ \ \ \textcolor{comment}{//\ (if\ it's\ default\ channel,\ use\ vertex\ uvw;\ otherwise,\ use\ mapper)}}
-\DoxyCodeLine{00154\ }
-\DoxyCodeLine{00155\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\ dPdU(0.0\_r),\ dPdV(0.0\_r);}
-\DoxyCodeLine{00156\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\ dNdU(0.0\_r),\ dNdV(0.0\_r);}
-\DoxyCodeLine{00157\ \ \ \ \ \textcolor{keywordflow}{if}(hasTexCoords)}
-\DoxyCodeLine{00158\ \ \ \ \ \{}
-\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::array<math::Vector2R,\ 3>\ uvs\ =\ \{}
-\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{math::Vector2R}}(texCoords[0].x(),\ texCoords[0].y()),}
-\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{math::Vector2R}}(texCoords[1].x(),\ texCoords[1].y()),}
-\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{math::Vector2R}}(texCoords[2].x(),\ texCoords[2].y())\};}
-\DoxyCodeLine{00163\ }
-\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!Triangle::calcSurfaceParamDerivatives(}
-\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \ \ \ \ positions,\ uvs,\ \&dPdU,\ \&dPdV))}
-\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ dPdU.\mbox{\hyperlink{classph_1_1math_1_1_t_vector_n_base_a66bef10def6b7cfc11adea52b28094e0}{set}}(0);\ dPdV.\mbox{\hyperlink{classph_1_1math_1_1_t_vector_n_base_a66bef10def6b7cfc11adea52b28094e0}{set}}(0);}
-\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00169\ }
-\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(hasShadingNormal\ \&\&\ !Triangle::calcSurfaceParamDerivatives(}
-\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \ \ \ \ normals,\ uvs,\ \&dNdU,\ \&dNdV))}
-\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \ \ \ \ dNdU.\mbox{\hyperlink{classph_1_1math_1_1_t_vector_n_base_a66bef10def6b7cfc11adea52b28094e0}{set}}(0);\ dNdV.\mbox{\hyperlink{classph_1_1math_1_1_t_vector_n_base_a66bef10def6b7cfc11adea52b28094e0}{set}}(0);}
-\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00175\ \ \ \ \ \}}
-\DoxyCodeLine{00176\ }
-\DoxyCodeLine{00177\ \ \ \ \ PH\_ASSERT\_MSG(dPdU.isFinite()\ \&\&\ dPdV.\mbox{\hyperlink{classph_1_1math_1_1_t_vector_n_base_aabbf0b0d4f4d90122f70331d072aaaa5}{isFinite}}()\ \&\&}
-\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ dNdU.isFinite()\ \&\&\ dNdV.\mbox{\hyperlink{classph_1_1math_1_1_t_vector_n_base_aabbf0b0d4f4d90122f70331d072aaaa5}{isFinite}}(),\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}}}
-\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}dPdU\ =\ "{}}\ +\ dPdU.toString()\ +\ \textcolor{stringliteral}{"{},\ dPdV\ =\ "{}}\ +\ dPdV.\mbox{\hyperlink{classph_1_1math_1_1_t_vector_n_base_a945f66ed8e65964d232f259b223debd1}{toString}}()\ +\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}}}
-\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}dNdU\ =\ "{}}\ +\ dNdU.toString()\ +\ \textcolor{stringliteral}{"{},\ dNdV\ =\ "{}}\ +\ dNdV.\mbox{\hyperlink{classph_1_1math_1_1_t_vector_n_base_a945f66ed8e65964d232f259b223debd1}{toString}}()\ +\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}});}
-\DoxyCodeLine{00181\ \ \ \ \ }
-\DoxyCodeLine{00182\ \ \ \ \ out\_detail-\/>\mbox{\hyperlink{classph_1_1_hit_detail_ac65eefb38c426f807896dec82f2fb39c}{setHitIntrinsics}}(}
-\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \textcolor{keyword}{this},\ }
-\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ uvw,\ }
-\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ probe.\mbox{\hyperlink{classph_1_1_hit_probe_af9c96bd20f167c30fe8802524c563a21}{getHitRayT}}(),}
-\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ lossless\_cast<uint64>(closestHit.faceIdx),}
-\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_bit_flags}{FaceTopology}}(\{EFaceTopology::Planar,\ EFaceTopology::Triangular\}));}
-\DoxyCodeLine{00188\ \ \ \ \ out\_detail-\/>\mbox{\hyperlink{classph_1_1_hit_detail_aeb5a6edc287e88399235abb9456f9759}{getHitInfo}}(ECoordSys::Local).\mbox{\hyperlink{classph_1_1_hit_info_afc21b88e4ee25dcae879d22505ee7e20}{setAttributes}}(}
-\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ position,}
-\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ faceNormal,}
-\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ shadingNormal);}
-\DoxyCodeLine{00192\ \ \ \ \ out\_detail-\/>\mbox{\hyperlink{classph_1_1_hit_detail_aeb5a6edc287e88399235abb9456f9759}{getHitInfo}}(ECoordSys::Local).\mbox{\hyperlink{classph_1_1_hit_info_aa85b1ef50e4c631b3145ea69f9180f22}{setDerivatives}}(}
-\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ dPdU,\ dPdV,\ dNdU,\ dNdV);}
-\DoxyCodeLine{00194\ \ \ \ \ out\_detail-\/>\mbox{\hyperlink{classph_1_1_hit_detail_aeb5a6edc287e88399235abb9456f9759}{getHitInfo}}(ECoordSys::World)\ =\ out\_detail-\/>\mbox{\hyperlink{classph_1_1_hit_detail_aeb5a6edc287e88399235abb9456f9759}{getHitInfo}}(ECoordSys::Local);}
-\DoxyCodeLine{00195\ }
-\DoxyCodeLine{00196\ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ meanFactor\ =\ 5e-\/8\_r;}
-\DoxyCodeLine{00197\ \ \ \ \ out\_detail-\/>\mbox{\hyperlink{classph_1_1_hit_detail_a61a79e52716bc841b425fc96902b41c0}{setDistanceErrorFactors}}(meanFactor,\ meanFactor\ *\ 5e2\_r);}
-\DoxyCodeLine{00198\ \}}
-\DoxyCodeLine{00199\ }
-\DoxyCodeLine{00200\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Index>}
-\DoxyCodeLine{00201\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d}{math::AABB3D}}\ \mbox{\hyperlink{classph_1_1_t_p_indexed_kd_tree_triangle_mesh}{TPIndexedKdTreeTriangleMesh<Index>::calcAABB}}()\textcolor{keyword}{\ const}}
-\DoxyCodeLine{00202\ \textcolor{keyword}{}\{}
-\DoxyCodeLine{00203\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_kdTree.getAABB();}
-\DoxyCodeLine{00204\ \}}
-\DoxyCodeLine{00205\ }
-\DoxyCodeLine{00206\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+\DoxyCodeLine{00152\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\ dPdU(0.0\_r),\ dPdV(0.0\_r);}
+\DoxyCodeLine{00153\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{math::Vector3R}}\ dNdU(0.0\_r),\ dNdV(0.0\_r);}
+\DoxyCodeLine{00154\ \ \ \ \ \textcolor{keywordflow}{if}(hasTexCoords)}
+\DoxyCodeLine{00155\ \ \ \ \ \{}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::array<math::Vector2R,\ 3>\ uvs\ =\ \{}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{math::Vector2R}}(texCoords[0].x(),\ texCoords[0].y()),}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{math::Vector2R}}(texCoords[1].x(),\ texCoords[1].y()),}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_vector2}{math::Vector2R}}(texCoords[2].x(),\ texCoords[2].y())\};}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!Triangle::calcSurfaceParamDerivatives(}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \ \ \ \ positions,\ uvs,\ \&dPdU,\ \&dPdV))}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \ \ \ \ dPdU.\mbox{\hyperlink{classph_1_1math_1_1_t_vector_n_base_a66bef10def6b7cfc11adea52b28094e0}{set}}(0);\ dPdV.\mbox{\hyperlink{classph_1_1math_1_1_t_vector_n_base_a66bef10def6b7cfc11adea52b28094e0}{set}}(0);}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00166\ }
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(hasShadingNormal\ \&\&\ !Triangle::calcSurfaceParamDerivatives(}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ normals,\ uvs,\ \&dNdU,\ \&dNdV))}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \ \ \ \ dNdU.\mbox{\hyperlink{classph_1_1math_1_1_t_vector_n_base_a66bef10def6b7cfc11adea52b28094e0}{set}}(0);\ dNdV.\mbox{\hyperlink{classph_1_1math_1_1_t_vector_n_base_a66bef10def6b7cfc11adea52b28094e0}{set}}(0);}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00172\ \ \ \ \ \}}
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00174\ \ \ \ \ PH\_ASSERT\_MSG(dPdU.isFinite()\ \&\&\ dPdV.\mbox{\hyperlink{classph_1_1math_1_1_t_vector_n_base_aabbf0b0d4f4d90122f70331d072aaaa5}{isFinite}}()\ \&\&}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ dNdU.isFinite()\ \&\&\ dNdV.\mbox{\hyperlink{classph_1_1math_1_1_t_vector_n_base_aabbf0b0d4f4d90122f70331d072aaaa5}{isFinite}}(),\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}}}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}dPdU\ =\ "{}}\ +\ dPdU.toString()\ +\ \textcolor{stringliteral}{"{},\ dPdV\ =\ "{}}\ +\ dPdV.\mbox{\hyperlink{classph_1_1math_1_1_t_vector_n_base_a945f66ed8e65964d232f259b223debd1}{toString}}()\ +\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}}}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}dNdU\ =\ "{}}\ +\ dNdU.toString()\ +\ \textcolor{stringliteral}{"{},\ dNdV\ =\ "{}}\ +\ dNdV.\mbox{\hyperlink{classph_1_1math_1_1_t_vector_n_base_a945f66ed8e65964d232f259b223debd1}{toString}}()\ +\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}});}
+\DoxyCodeLine{00178\ \ \ \ \ }
+\DoxyCodeLine{00179\ \ \ \ \ out\_detail-\/>\mbox{\hyperlink{classph_1_1_hit_detail_ac65eefb38c426f807896dec82f2fb39c}{setHitIntrinsics}}(}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \textcolor{keyword}{this},\ }
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ uvw,\ }
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ probe.\mbox{\hyperlink{classph_1_1_hit_probe_af9c96bd20f167c30fe8802524c563a21}{getHitRayT}}(),}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ lossless\_cast<uint64>(closestHit.faceIdx),}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_bit_flags}{FaceTopology}}(\{EFaceTopology::Planar,\ EFaceTopology::Triangular\}));}
+\DoxyCodeLine{00185\ \ \ \ \ out\_detail-\/>\mbox{\hyperlink{classph_1_1_hit_detail_aeb5a6edc287e88399235abb9456f9759}{getHitInfo}}(ECoordSys::Local).\mbox{\hyperlink{classph_1_1_hit_info_afc21b88e4ee25dcae879d22505ee7e20}{setAttributes}}(}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ position,}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ faceNormal,}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ shadingNormal);}
+\DoxyCodeLine{00189\ \ \ \ \ out\_detail-\/>\mbox{\hyperlink{classph_1_1_hit_detail_aeb5a6edc287e88399235abb9456f9759}{getHitInfo}}(ECoordSys::Local).\mbox{\hyperlink{classph_1_1_hit_info_aa85b1ef50e4c631b3145ea69f9180f22}{setDerivatives}}(}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ dPdU,\ dPdV,\ dNdU,\ dNdV);}
+\DoxyCodeLine{00191\ \ \ \ \ out\_detail-\/>\mbox{\hyperlink{classph_1_1_hit_detail_aeb5a6edc287e88399235abb9456f9759}{getHitInfo}}(ECoordSys::World)\ =\ out\_detail-\/>\mbox{\hyperlink{classph_1_1_hit_detail_aeb5a6edc287e88399235abb9456f9759}{getHitInfo}}(ECoordSys::Local);}
+\DoxyCodeLine{00192\ }
+\DoxyCodeLine{00193\ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ meanFactor\ =\ 5e-\/8\_r;}
+\DoxyCodeLine{00194\ \ \ \ \ out\_detail-\/>\mbox{\hyperlink{classph_1_1_hit_detail_a61a79e52716bc841b425fc96902b41c0}{setDistanceErrorFactors}}(meanFactor,\ meanFactor\ *\ 5e2\_r);}
+\DoxyCodeLine{00195\ \}}
+\DoxyCodeLine{00196\ }
+\DoxyCodeLine{00197\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Index>}
+\DoxyCodeLine{00198\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d}{math::AABB3D}}\ \mbox{\hyperlink{classph_1_1_t_p_indexed_kd_tree_triangle_mesh}{TPIndexedKdTreeTriangleMesh<Index>::calcAABB}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00199\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00200\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_kdTree.getAABB();}
+\DoxyCodeLine{00201\ \}}
+\DoxyCodeLine{00202\ }
+\DoxyCodeLine{00203\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
 
 \end{DoxyCode}
