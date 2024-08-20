@@ -25,9 +25,9 @@
 \DoxyCodeLine{00024\ \textcolor{keyword}{public}:}
 \DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classph_1_1math_1_1_t_bvh_item_info}{ItemInfoType}}\ =\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_item_info}{TBvhItemInfo<Item>}};}
 \DoxyCodeLine{00026\ }
-\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node_aeabf2539e4553e1b27f38db2067a5655}{makeInternal}}(}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node_a5a0f8491e0cb5f092cf8226ce0b5dc64}{makeInternal}}(}
 \DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::array<const\ TBvhInfoNode*,\ N>\&\ children,}
-\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ std::size\_t\ splitAxis)\ }
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ std::size\_t\ singleSplitAxis)\ }
 \DoxyCodeLine{00030\ \ \ \ \ -\/>\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node_a83e1db20c10cbd5bb7f5ed62deab1259}{TBvhInfoNode}};}
 \DoxyCodeLine{00031\ \ \ \ \ }
 \DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node_ad9110422219b29dfface7b93420250b9}{makeLeaf}}(}
@@ -55,19 +55,40 @@
 \DoxyCodeLine{00054\ \ \ \ \ auto\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node_a9459982c5a2b4f8748094676a98588b2}{getAABB}}()\ const}
 \DoxyCodeLine{00055\ \ \ \ \ -\/>\ const\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d}{AABB3D}}\&;}
 \DoxyCodeLine{00056\ }
-\DoxyCodeLine{00057\ \ \ \ \ auto\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node_a49e9b232e50aa9cf9b34c12fc8843b51}{getSplitAxis}}()\ const}
+\DoxyCodeLine{00057\ \ \ \ \ auto\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node_a9318b2c17e561d2c2c65cd99c16a55b9}{getSingleSplitAxis}}()\ const}
 \DoxyCodeLine{00058\ \ \ \ \ -\/>\ \mbox{\hyperlink{namespacestd}{std}}::\textcolor{keywordtype}{size\_t};}
 \DoxyCodeLine{00059\ }
-\DoxyCodeLine{00060\ private:}
-\DoxyCodeLine{00061\ \ \ \ \ \mbox{\hyperlink{namespacestd}{std}}::array<const\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node}{TBvhInfoNode}}*,\ N>\ m\_children;}
-\DoxyCodeLine{00062\ \ \ \ \ \mbox{\hyperlink{namespaceph_a06c532bb78132f63638ec3ef52d46ff3}{TSpanView}}<\mbox{\hyperlink{classph_1_1math_1_1_t_bvh_item_info}{ItemInfoType}}>\ m\_items;}
-\DoxyCodeLine{00063\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d}{AABB3D}}\ m\_aabb;}
-\DoxyCodeLine{00064\ \ \ \ \ uint32f\ m\_splitAxis\ :\ 2;}
-\DoxyCodeLine{00065\ \ \ \ \ uint32f\ m\_isLeaf\ :\ 1;}
-\DoxyCodeLine{00066\ \};}
+\DoxyCodeLine{00063\ \ \ \ \ auto\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node_a156f83d359543f944c8fa05f2ff4ca97}{getSplitAxis}}(\mbox{\hyperlink{namespacestd}{std}}::\textcolor{keywordtype}{size\_t}\ childIdx)\ const}
+\DoxyCodeLine{00064\ \ \ \ \ -\/>\ \mbox{\hyperlink{namespacestd}{std}}::\textcolor{keywordtype}{size\_t};}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node_ad2297c9d02b560ccb8f15beef41a0ecb}{isSingleSplitAxis}}()\ const;}
 \DoxyCodeLine{00067\ }
-\DoxyCodeLine{00068\ \}\textcolor{comment}{//\ end\ namespace\ ph::math}}
-\DoxyCodeLine{00069\ }
-\DoxyCodeLine{00070\ \textcolor{preprocessor}{\#include\ "{}Math/Algorithm/BVH/TBvhInfoNode.ipp"{}}}
+\DoxyCodeLine{00068\ private:}
+\DoxyCodeLine{00069\ \ \ \ \ inline\ static\ constexpr\ uint8\ NO\_AXIS\_FLAG\ =\ 0b11;}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ static\_assert(}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ constant::X\_AXIS\ <\ NO\_AXIS\_FLAG\ \&\&}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ constant::Y\_AXIS\ <\ NO\_AXIS\_FLAG\ \&\&}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ constant::Z\_AXIS\ <\ NO\_AXIS\_FLAG);}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \ \ \ \ struct\ ChildFlags}
+\DoxyCodeLine{00077\ \ \ \ \ \{}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ uint8\ splitAxis\ :\ 2\ =\ NO\_AXIS\_FLAG;}
+\DoxyCodeLine{00079\ \ \ \ \ \};}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ \ \ std::array<const\ TBvhInfoNode*,\ N>\ m\_children;}
+\DoxyCodeLine{00082\ \ \ \ \ \mbox{\hyperlink{namespaceph_a06c532bb78132f63638ec3ef52d46ff3}{TSpanView<ItemInfoType>}}\ m\_items;}
+\DoxyCodeLine{00083\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d}{AABB3D}}\ m\_aabb;}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00086\ \ \ \ \ std::array<ChildFlags,\ N>\ m\_perChildFlags;}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00089\ \ \ \ \ uint32f\ m\_singleSplitAxis\ :\ 2;}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \ \ \ \ uint32f\ m\_isLeaf\ :\ 1;}
+\DoxyCodeLine{00092\ \};}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \}\textcolor{comment}{//\ end\ namespace\ ph::math}}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_bvh_info_node_8ipp}{Math/Algorithm/BVH/TBvhInfoNode.ipp}}"{}}}
 
 \end{DoxyCode}

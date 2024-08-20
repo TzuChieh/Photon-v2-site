@@ -17,139 +17,162 @@
 \DoxyCodeLine{00013\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ TBvhInfoNode<N,\ Item>}
 \DoxyCodeLine{00014\ ::makeInternal(}
 \DoxyCodeLine{00015\ \ \ \ \ \textcolor{keyword}{const}\ std::array<const\ TBvhInfoNode*,\ N>\&\ children,}
-\DoxyCodeLine{00016\ \ \ \ \ std::size\_t\ splitAxis)\ }
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ singleSplitAxis)}
 \DoxyCodeLine{00017\ -\/>\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node}{TBvhInfoNode}}}
 \DoxyCodeLine{00018\ \{}
-\DoxyCodeLine{00019\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node}{TBvhInfoNode}}\ internalNode\{\};}
-\DoxyCodeLine{00020\ \ \ \ \ internalNode.m\_children\ =\ children;}
-\DoxyCodeLine{00021\ \ \ \ \ internalNode.m\_splitAxis\ =\ lossless\_cast<\textcolor{keyword}{decltype}(internalNode.m\_splitAxis)>(splitAxis);}
-\DoxyCodeLine{00022\ \ \ \ \ internalNode.m\_isLeaf\ =\ \textcolor{keyword}{false};}
-\DoxyCodeLine{00023\ }
-\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ ci\ =\ 0;\ ci\ <\ children.size();\ ++ci)}
-\DoxyCodeLine{00025\ \ \ \ \ \{}
-\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(children[ci])}
-\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ internalNode.m\_aabb.unionWith(children[ci]-\/>getAABB());}
-\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00030\ \ \ \ \ \}}
-\DoxyCodeLine{00031\ }
-\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordflow}{return}\ internalNode;}
-\DoxyCodeLine{00033\ \}}
-\DoxyCodeLine{00034\ \ \ \ \ }
-\DoxyCodeLine{00035\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Item>}
-\DoxyCodeLine{00036\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node}{TBvhInfoNode<N,\ Item>}}}
-\DoxyCodeLine{00037\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node}{::makeLeaf}}(}
-\DoxyCodeLine{00038\ \ \ \ \ \mbox{\hyperlink{namespaceph_a06c532bb78132f63638ec3ef52d46ff3}{TSpanView<ItemInfoType>}}\ leafItems,}
-\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d}{AABB3D}}\&\ leafAabb)}
-\DoxyCodeLine{00040\ -\/>\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node}{TBvhInfoNode}}}
-\DoxyCodeLine{00041\ \{}
-\DoxyCodeLine{00042\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node}{TBvhInfoNode}}\ leafNode\{\};}
-\DoxyCodeLine{00043\ \ \ \ \ leafNode.m\_items\ =\ leafItems;}
-\DoxyCodeLine{00044\ \ \ \ \ leafNode.m\_aabb\ =\ leafAabb;}
-\DoxyCodeLine{00045\ \ \ \ \ leafNode.m\_isLeaf\ =\ \textcolor{keyword}{true};}
-\DoxyCodeLine{00046\ }
-\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordflow}{return}\ leafNode;}
-\DoxyCodeLine{00048\ \}}
-\DoxyCodeLine{00049\ }
-\DoxyCodeLine{00050\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Item>}
-\DoxyCodeLine{00051\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node}{TBvhInfoNode<N,\ Item>}}}
-\DoxyCodeLine{00052\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node}{::isBinary}}()}
-\DoxyCodeLine{00053\ \{}
-\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordflow}{return}\ numChildren()\ ==\ 2;}
-\DoxyCodeLine{00055\ \}}
-\DoxyCodeLine{00056\ }
-\DoxyCodeLine{00057\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Item>}
-\DoxyCodeLine{00058\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node}{TBvhInfoNode<N,\ Item>}}}
-\DoxyCodeLine{00059\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node}{::numChildren}}()}
-\DoxyCodeLine{00060\ -\/>\ std::size\_t}
-\DoxyCodeLine{00061\ \{}
-\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keywordflow}{return}\ N;}
-\DoxyCodeLine{00063\ \}}
-\DoxyCodeLine{00064\ }
-\DoxyCodeLine{00065\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Item>}
-\DoxyCodeLine{00066\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node_a83e1db20c10cbd5bb7f5ed62deab1259}{TBvhInfoNode<N,\ Item>::TBvhInfoNode}}()}
-\DoxyCodeLine{00067\ \ \ \ \ :\ m\_children\{\}}
-\DoxyCodeLine{00068\ \ \ \ \ ,\ m\_items\{\}}
-\DoxyCodeLine{00069\ \ \ \ \ ,\ m\_aabb(\mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d}{AABB3D}}::makeEmpty())}
-\DoxyCodeLine{00070\ \ \ \ \ ,\ m\_splitAxis(constant::X\_AXIS)}
-\DoxyCodeLine{00071\ \ \ \ \ ,\ m\_isLeaf(true)}
-\DoxyCodeLine{00072\ \{\}}
-\DoxyCodeLine{00073\ }
-\DoxyCodeLine{00074\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Item>}
-\DoxyCodeLine{00075\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node_a37911e0232819ef1da9f9dc9294e7711}{TBvhInfoNode<N,\ Item>::isBinaryLeaf}}()\textcolor{keyword}{\ const}}
-\DoxyCodeLine{00076\ \textcolor{keyword}{}\{}
-\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(!isBinary())}
-\DoxyCodeLine{00078\ \ \ \ \ \{}
-\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
-\DoxyCodeLine{00080\ \ \ \ \ \}}
-\DoxyCodeLine{00081\ }
-\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keywordflow}{return}\ isLeaf();}
-\DoxyCodeLine{00083\ \}}
-\DoxyCodeLine{00084\ }
-\DoxyCodeLine{00085\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Item>}
-\DoxyCodeLine{00086\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node}{TBvhInfoNode<N,\ Item>}}}
-\DoxyCodeLine{00087\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node}{::isBinaryInternal}}()\textcolor{keyword}{\ const}}
-\DoxyCodeLine{00088\ \textcolor{keyword}{}\{}
-\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(!isBinary())}
-\DoxyCodeLine{00090\ \ \ \ \ \{}
-\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
-\DoxyCodeLine{00092\ \ \ \ \ \}}
-\DoxyCodeLine{00093\ }
-\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keywordflow}{return}\ !isLeaf();}
-\DoxyCodeLine{00095\ \}}
-\DoxyCodeLine{00096\ }
-\DoxyCodeLine{00097\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Item>}
-\DoxyCodeLine{00098\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node_a97724046ee4534fc865ee735684d7d83}{TBvhInfoNode<N,\ Item>::isLeaf}}()\textcolor{keyword}{\ const}}
-\DoxyCodeLine{00099\ \textcolor{keyword}{}\{}
-\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_isLeaf;}
-\DoxyCodeLine{00101\ \}}
-\DoxyCodeLine{00102\ }
-\DoxyCodeLine{00103\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Item>}
-\DoxyCodeLine{00104\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node}{TBvhInfoNode<N,\ Item>}}}
-\DoxyCodeLine{00105\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node}{::isInternal}}()\textcolor{keyword}{\ const}}
-\DoxyCodeLine{00106\ \textcolor{keyword}{}\{}
-\DoxyCodeLine{00107\ \ \ \ \ \textcolor{keywordflow}{return}\ !isLeaf();}
-\DoxyCodeLine{00108\ \}}
-\DoxyCodeLine{00109\ }
-\DoxyCodeLine{00110\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Item>}
-\DoxyCodeLine{00111\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node}{TBvhInfoNode<N,\ Item>}}}
-\DoxyCodeLine{00112\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node}{::getChild}}(\textcolor{keyword}{const}\ std::size\_t\ childIdx)\ \textcolor{keyword}{const}}
-\DoxyCodeLine{00113\ -\/>\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node}{TBvhInfoNode}}*}
-\DoxyCodeLine{00114\ \{}
-\DoxyCodeLine{00115\ \ \ \ \ PH\_ASSERT(isInternal());}
-\DoxyCodeLine{00116\ \ \ \ \ PH\_ASSERT\_LT(childIdx,\ m\_children.size());}
-\DoxyCodeLine{00117\ }
-\DoxyCodeLine{00118\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_children[childIdx];}
-\DoxyCodeLine{00119\ \}}
-\DoxyCodeLine{00120\ }
-\DoxyCodeLine{00121\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Item>}
-\DoxyCodeLine{00122\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node}{TBvhInfoNode<N,\ Item>}}}
-\DoxyCodeLine{00123\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node}{::getItems}}()\ const}
-\DoxyCodeLine{00124\ -\/>\ \mbox{\hyperlink{namespaceph_a06c532bb78132f63638ec3ef52d46ff3}{TSpanView}}<\mbox{\hyperlink{classph_1_1math_1_1_t_bvh_item_info}{ItemInfoType}}>}
-\DoxyCodeLine{00125\ \{}
-\DoxyCodeLine{00126\ \ \ \ \ PH\_ASSERT(isLeaf());}
-\DoxyCodeLine{00127\ }
-\DoxyCodeLine{00128\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_items;}
-\DoxyCodeLine{00129\ \}}
-\DoxyCodeLine{00130\ }
-\DoxyCodeLine{00131\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Item>}
-\DoxyCodeLine{00132\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node}{TBvhInfoNode<N,\ Item>}}}
-\DoxyCodeLine{00133\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node}{::getAABB}}()\ const}
-\DoxyCodeLine{00134\ -\/>\ const\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d}{AABB3D}}\&}
-\DoxyCodeLine{00135\ \{}
-\DoxyCodeLine{00136\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_aabb;}
-\DoxyCodeLine{00137\ \}}
-\DoxyCodeLine{00138\ }
-\DoxyCodeLine{00139\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Item>}
-\DoxyCodeLine{00140\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node}{TBvhInfoNode<N,\ Item>}}}
-\DoxyCodeLine{00141\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node}{::getSplitAxis}}()\ const}
-\DoxyCodeLine{00142\ -\/>\ \mbox{\hyperlink{namespacestd}{std}}::\textcolor{keywordtype}{size\_t}}
-\DoxyCodeLine{00143\ \{}
-\DoxyCodeLine{00144\ \ \ \ \ PH\_ASSERT(isInternal());}
-\DoxyCodeLine{00145\ }
-\DoxyCodeLine{00146\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_splitAxis;}
-\DoxyCodeLine{00147\ \}}
+\DoxyCodeLine{00019\ \ \ \ \ PH\_ASSERT\_LT(singleSplitAxis,\ NO\_AXIS\_FLAG);}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node}{TBvhInfoNode}}\ internalNode\{\};}
+\DoxyCodeLine{00022\ \ \ \ \ internalNode.m\_children\ =\ children;}
+\DoxyCodeLine{00023\ \ \ \ \ internalNode.m\_singleSplitAxis\ =\ lossless\_cast<uint8>(singleSplitAxis);}
+\DoxyCodeLine{00024\ \ \ \ \ internalNode.m\_isLeaf\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ ci\ =\ 0;\ ci\ <\ children.size();\ ++ci)}
+\DoxyCodeLine{00027\ \ \ \ \ \{}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(children[ci])}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ internalNode.m\_aabb.unionWith(children[ci]-\/>getAABB());}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ internalNode.m\_perChildFlags[ci].splitAxis\ =\ lossless\_cast<uint8>(singleSplitAxis);}
+\DoxyCodeLine{00034\ \ \ \ \ \}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordflow}{return}\ internalNode;}
+\DoxyCodeLine{00037\ \}}
+\DoxyCodeLine{00038\ \ \ \ \ }
+\DoxyCodeLine{00039\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Item>}
+\DoxyCodeLine{00040\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node}{TBvhInfoNode<N,\ Item>}}}
+\DoxyCodeLine{00041\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node}{::makeLeaf}}(}
+\DoxyCodeLine{00042\ \ \ \ \ \mbox{\hyperlink{namespaceph_a06c532bb78132f63638ec3ef52d46ff3}{TSpanView<ItemInfoType>}}\ leafItems,}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d}{AABB3D}}\&\ leafAabb)}
+\DoxyCodeLine{00044\ -\/>\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node}{TBvhInfoNode}}}
+\DoxyCodeLine{00045\ \{}
+\DoxyCodeLine{00046\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node}{TBvhInfoNode}}\ leafNode\{\};}
+\DoxyCodeLine{00047\ \ \ \ \ leafNode.m\_items\ =\ leafItems;}
+\DoxyCodeLine{00048\ \ \ \ \ leafNode.m\_aabb\ =\ leafAabb;}
+\DoxyCodeLine{00049\ \ \ \ \ leafNode.m\_isLeaf\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordflow}{return}\ leafNode;}
+\DoxyCodeLine{00052\ \}}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Item>}
+\DoxyCodeLine{00055\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node}{TBvhInfoNode<N,\ Item>}}}
+\DoxyCodeLine{00056\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node}{::isBinary}}()}
+\DoxyCodeLine{00057\ \{}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordflow}{return}\ numChildren()\ ==\ 2;}
+\DoxyCodeLine{00059\ \}}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Item>}
+\DoxyCodeLine{00062\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node}{TBvhInfoNode<N,\ Item>}}}
+\DoxyCodeLine{00063\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node}{::numChildren}}()}
+\DoxyCodeLine{00064\ -\/>\ std::size\_t}
+\DoxyCodeLine{00065\ \{}
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keywordflow}{return}\ N;}
+\DoxyCodeLine{00067\ \}}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Item>}
+\DoxyCodeLine{00070\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node_a83e1db20c10cbd5bb7f5ed62deab1259}{TBvhInfoNode<N,\ Item>::TBvhInfoNode}}()}
+\DoxyCodeLine{00071\ \ \ \ \ :\ m\_children\{\}}
+\DoxyCodeLine{00072\ \ \ \ \ ,\ m\_items\{\}}
+\DoxyCodeLine{00073\ \ \ \ \ ,\ m\_aabb(\mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d}{AABB3D}}::makeEmpty())}
+\DoxyCodeLine{00074\ \ \ \ \ ,\ m\_perChildFlags\{\}}
+\DoxyCodeLine{00075\ \ \ \ \ ,\ m\_singleSplitAxis(NO\_AXIS\_FLAG)}
+\DoxyCodeLine{00076\ \ \ \ \ ,\ m\_isLeaf(true)}
+\DoxyCodeLine{00077\ \{\}}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Item>}
+\DoxyCodeLine{00080\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node_a37911e0232819ef1da9f9dc9294e7711}{TBvhInfoNode<N,\ Item>::isBinaryLeaf}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00081\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(!isBinary())}
+\DoxyCodeLine{00083\ \ \ \ \ \{}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00085\ \ \ \ \ \}}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{keywordflow}{return}\ isLeaf();}
+\DoxyCodeLine{00088\ \}}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Item>}
+\DoxyCodeLine{00091\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node}{TBvhInfoNode<N,\ Item>}}}
+\DoxyCodeLine{00092\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node}{::isBinaryInternal}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00093\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(!isBinary())}
+\DoxyCodeLine{00095\ \ \ \ \ \{}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00097\ \ \ \ \ \}}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keywordflow}{return}\ !isLeaf();}
+\DoxyCodeLine{00100\ \}}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Item>}
+\DoxyCodeLine{00103\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node_a97724046ee4534fc865ee735684d7d83}{TBvhInfoNode<N,\ Item>::isLeaf}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00104\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00105\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_isLeaf;}
+\DoxyCodeLine{00106\ \}}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Item>}
+\DoxyCodeLine{00109\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node}{TBvhInfoNode<N,\ Item>}}}
+\DoxyCodeLine{00110\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node}{::isInternal}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00111\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{keywordflow}{return}\ !isLeaf();}
+\DoxyCodeLine{00113\ \}}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Item>}
+\DoxyCodeLine{00116\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node}{TBvhInfoNode<N,\ Item>}}}
+\DoxyCodeLine{00117\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node}{::getChild}}(\textcolor{keyword}{const}\ std::size\_t\ childIdx)\ \textcolor{keyword}{const}}
+\DoxyCodeLine{00118\ -\/>\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node}{TBvhInfoNode}}*}
+\DoxyCodeLine{00119\ \{}
+\DoxyCodeLine{00120\ \ \ \ \ PH\_ASSERT\_LT(childIdx,\ m\_children.size());}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_children[childIdx];}
+\DoxyCodeLine{00123\ \}}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Item>}
+\DoxyCodeLine{00126\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node}{TBvhInfoNode<N,\ Item>}}}
+\DoxyCodeLine{00127\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node}{::getItems}}()\ const}
+\DoxyCodeLine{00128\ -\/>\ \mbox{\hyperlink{namespaceph_a06c532bb78132f63638ec3ef52d46ff3}{TSpanView}}<\mbox{\hyperlink{classph_1_1math_1_1_t_bvh_item_info}{ItemInfoType}}>}
+\DoxyCodeLine{00129\ \{}
+\DoxyCodeLine{00130\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_items;}
+\DoxyCodeLine{00131\ \}}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00133\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Item>}
+\DoxyCodeLine{00134\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node}{TBvhInfoNode<N,\ Item>}}}
+\DoxyCodeLine{00135\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node}{::getAABB}}()\ const}
+\DoxyCodeLine{00136\ -\/>\ const\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d}{AABB3D}}\&}
+\DoxyCodeLine{00137\ \{}
+\DoxyCodeLine{00138\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_aabb;}
+\DoxyCodeLine{00139\ \}}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00141\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Item>}
+\DoxyCodeLine{00142\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node}{TBvhInfoNode<N,\ Item>}}}
+\DoxyCodeLine{00143\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node}{::getSingleSplitAxis}}()\ const}
+\DoxyCodeLine{00144\ -\/>\ \mbox{\hyperlink{namespacestd}{std}}::\textcolor{keywordtype}{size\_t}}
+\DoxyCodeLine{00145\ \{}
+\DoxyCodeLine{00146\ \ \ \ \ PH\_ASSERT(isInternal());}
+\DoxyCodeLine{00147\ \ \ \ \ PH\_ASSERT(isSingleSplitAxis());}
 \DoxyCodeLine{00148\ }
-\DoxyCodeLine{00149\ \}\textcolor{comment}{//\ end\ namespace\ ph::math}}
+\DoxyCodeLine{00149\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_singleSplitAxis;}
+\DoxyCodeLine{00150\ \}}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00152\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Item>}
+\DoxyCodeLine{00153\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node}{TBvhInfoNode<N,\ Item>}}}
+\DoxyCodeLine{00154\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node}{::getSplitAxis}}(\textcolor{keyword}{const}\ std::size\_t\ childIdx)\ \textcolor{keyword}{const}}
+\DoxyCodeLine{00155\ -\/>\ std::size\_t}
+\DoxyCodeLine{00156\ \{}
+\DoxyCodeLine{00157\ \ \ \ \ PH\_ASSERT(isInternal());}
+\DoxyCodeLine{00158\ \ \ \ \ PH\_ASSERT\_LT(childIdx,\ m\_perChildFlags.size());}
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00160\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_perChildFlags[childIdx].splitAxis;}
+\DoxyCodeLine{00161\ \}}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00163\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Item>}
+\DoxyCodeLine{00164\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node}{TBvhInfoNode<N,\ Item>}}}
+\DoxyCodeLine{00165\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node}{::isSingleSplitAxis}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00166\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00167\ \ \ \ \ PH\_ASSERT(isInternal());}
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00169\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_singleSplitAxis\ !=\ NO\_AXIS\_FLAG;}
+\DoxyCodeLine{00170\ \}}
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00172\ \}\textcolor{comment}{//\ end\ namespace\ ph::math}}
 
 \end{DoxyCode}

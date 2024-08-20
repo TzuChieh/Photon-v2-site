@@ -164,6 +164,7 @@ var hierarchy =
         [ "ph::BruteForceIntersector", "classph_1_1_brute_force_intersector.html", null ],
         [ "ph::KdtreeIntersector", "classph_1_1_kdtree_intersector.html", null ],
         [ "ph::TClassicBvhIntersector< Index >", "classph_1_1_t_classic_bvh_intersector.html", null ],
+        [ "ph::TGeneralBvhIntersector< N, Index >", "classph_1_1_t_general_bvh_intersector.html", null ],
         [ "ph::TIndexedKdtreeIntersector< Index >", "classph_1_1_t_indexed_kdtree_intersector.html", null ]
       ] ],
       [ "ph::MaskedIntersectable", "classph_1_1_masked_intersectable.html", null ],
@@ -808,6 +809,7 @@ var hierarchy =
     [ "ph::math::TLinearDepthFirstBinaryBvh< Item, Index >", "classph_1_1math_1_1_t_linear_depth_first_binary_bvh.html", null ],
     [ "ph::math::TLinearDepthFirstBinaryBvh< const ph::Intersectable *, Index >", "classph_1_1math_1_1_t_linear_depth_first_binary_bvh.html", null ],
     [ "ph::math::TLinearDepthFirstWideBvh< N, Item, Index >", "classph_1_1math_1_1_t_linear_depth_first_wide_bvh.html", null ],
+    [ "ph::math::TLinearDepthFirstWideBvh< N, const ph::Intersectable *, Index >", "classph_1_1math_1_1_t_linear_depth_first_wide_bvh.html", null ],
     [ "ph::math::TLineSegment< T >", "classph_1_1math_1_1_t_line_segment.html", null ],
     [ "ph::math::TLineSegment< real >", "classph_1_1math_1_1_t_line_segment.html", null ],
     [ "ph::math::TMathFunction2D< Value >", "classph_1_1math_1_1_t_math_function2_d.html", [

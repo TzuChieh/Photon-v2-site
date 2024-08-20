@@ -1,7 +1,7 @@
 var classph_1_1math_1_1_bvh_params =
 [
-    [ "BvhParams", "classph_1_1math_1_1_bvh_params.html#a866a05d4756bc432637a12a7b1d4d000", null ],
-    [ "getInteractCost", "classph_1_1math_1_1_bvh_params.html#af491399f8823b0b8bbd8dda1b95066a6", null ],
-    [ "getMaxNodeItems", "classph_1_1math_1_1_bvh_params.html#acd4687e752df126b0a6d9379d58fe4d1", null ],
-    [ "getTraversalCost", "classph_1_1math_1_1_bvh_params.html#af5e104aad30e77519316efa8a313957f", null ]
+    [ "interactCost", "classph_1_1math_1_1_bvh_params.html#aef1aa876566e00e1961415d6a74357fb", null ],
+    [ "maxNodeItems", "classph_1_1math_1_1_bvh_params.html#a202f6840b47a800489ca166bf9e4c99d", null ],
+    [ "splitMethod", "classph_1_1math_1_1_bvh_params.html#a86e2ed25976445594bff5af67dd3c59a", null ],
+    [ "traversalCost", "classph_1_1math_1_1_bvh_params.html#af695b3116bf5096576b82f2449d99c67", null ]
 ];

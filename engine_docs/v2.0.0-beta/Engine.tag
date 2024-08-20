@@ -2651,6 +2651,27 @@
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
+    <name>TGeneralBvhIntersector.h</name>
+    <path>Source/Core/Intersection/BVH/</path>
+    <filename>_t_general_bvh_intersector_8h.html</filename>
+    <includes id="_intersector_8h" name="Intersector.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Intersector.h</includes>
+    <includes id="_t_linear_depth_first_wide_bvh_8h" name="TLinearDepthFirstWideBvh.h" local="yes" import="no" module="no" objc="no">Math/Algorithm/BVH/TLinearDepthFirstWideBvh.h</includes>
+    <includes id="_t_a_a_b_b3_d_8h" name="TAABB3D.h" local="yes" import="no" module="no" objc="no">Math/Geometry/TAABB3D.h</includes>
+    <includes id="_t_general_bvh_intersector_8ipp" name="TGeneralBvhIntersector.ipp" local="yes" import="no" module="no" objc="no">Core/Intersection/BVH/TGeneralBvhIntersector.ipp</includes>
+    <class kind="class">ph::TGeneralBvhIntersector</class>
+    <namespace>ph</namespace>
+  </compound>
+  <compound kind="file">
+    <name>TGeneralBvhIntersector.ipp</name>
+    <path>Source/Core/Intersection/BVH/</path>
+    <filename>_t_general_bvh_intersector_8ipp.html</filename>
+    <includes id="_t_general_bvh_intersector_8h" name="TGeneralBvhIntersector.h" local="yes" import="no" module="no" objc="no">Core/Intersection/BVH/TGeneralBvhIntersector.h</includes>
+    <includes id="_hit_probe_8h" name="HitProbe.h" local="yes" import="no" module="no" objc="no">Core/HitProbe.h</includes>
+    <includes id="_ray_8h" name="Ray.h" local="yes" import="no" module="no" objc="no">Core/Ray.h</includes>
+    <includes id="_t_bvh_builder_8h" name="TBvhBuilder.h" local="yes" import="no" module="no" objc="no">Math/Algorithm/BVH/TBvhBuilder.h</includes>
+    <namespace>ph</namespace>
+  </compound>
+  <compound kind="file">
     <name>data_structure_fwd.h</name>
     <path>Source/Core/Intersection/</path>
     <filename>data__structure__fwd_8h.html</filename>
@@ -7346,7 +7367,7 @@
     <includes id="_t_wide_bvh_node_8h" name="TWideBvhNode.h" local="yes" import="no" module="no" objc="no">Math/Algorithm/BVH/TWideBvhNode.h</includes>
     <includes id="_t_line_segment_8h" name="TLineSegment.h" local="yes" import="no" module="no" objc="no">Math/Geometry/TLineSegment.h</includes>
     <includes id="utility_8h" name="utility.h" local="yes" import="no" module="no" objc="no">Utility/utility.h</includes>
-    <includes id="_t_linear_depth_first_binary_bvh_8ipp" name="TLinearDepthFirstBinaryBvh.ipp" local="yes" import="no" module="no" objc="no">Math/Algorithm/BVH/TLinearDepthFirstBinaryBvh.ipp</includes>
+    <includes id="_t_linear_depth_first_wide_bvh_8ipp" name="TLinearDepthFirstWideBvh.ipp" local="yes" import="no" module="no" objc="no">Math/Algorithm/BVH/TLinearDepthFirstWideBvh.ipp</includes>
     <class kind="class">ph::math::TLinearDepthFirstWideBvh</class>
     <namespace>ph</namespace>
     <namespace>ph::math</namespace>
@@ -11713,9 +11734,11 @@
     <includes id="_cooking_context_8h" name="CookingContext.h" local="yes" import="no" module="no" objc="no">World/Foundation/CookingContext.h</includes>
     <includes id="_core_cooking_context_8h" name="CoreCookingContext.h" local="yes" import="no" module="no" objc="no">EngineEnv/CoreCookingContext.h</includes>
     <includes id="_core_cooked_unit_8h" name="CoreCookedUnit.h" local="yes" import="no" module="no" objc="no">EngineEnv/CoreCookedUnit.h</includes>
+    <includes id="sdl__accelerator__type_8h" name="sdl_accelerator_type.h" local="yes" import="no" module="no" objc="no">EngineEnv/sdl_accelerator_type.h</includes>
     <includes id="_actor_8h" name="Actor.h" local="yes" import="no" module="no" objc="no">Actor/Actor.h</includes>
     <includes id="_brute_force_intersector_8h" name="BruteForceIntersector.h" local="yes" import="no" module="no" objc="no">Core/Intersection/BruteForceIntersector.h</includes>
     <includes id="_t_classic_bvh_intersector_8h" name="TClassicBvhIntersector.h" local="yes" import="no" module="no" objc="no">Core/Intersection/BVH/TClassicBvhIntersector.h</includes>
+    <includes id="_t_general_bvh_intersector_8h" name="TGeneralBvhIntersector.h" local="yes" import="no" module="no" objc="no">Core/Intersection/BVH/TGeneralBvhIntersector.h</includes>
     <includes id="_t_indexed_kdtree_intersector_8h" name="TIndexedKdtreeIntersector.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Intersector/TIndexedKdtreeIntersector.h</includes>
     <includes id="_kdtree_intersector_8h" name="KdtreeIntersector.h" local="yes" import="no" module="no" objc="no">Core/Intersection/Kdtree/KdtreeIntersector.h</includes>
     <includes id="_e_s_uniform_random_8h" name="ESUniformRandom.h" local="yes" import="no" module="no" objc="no">Core/Emitter/Sampler/ESUniformRandom.h</includes>
@@ -11723,6 +11746,7 @@
     <includes id="_a_phantom_model_8h" name="APhantomModel.h" local="yes" import="no" module="no" objc="no">Actor/APhantomModel.h</includes>
     <includes id="_cook_order_8h" name="CookOrder.h" local="yes" import="no" module="no" objc="no">World/Foundation/CookOrder.h</includes>
     <includes id="_pre_cook_report_8h" name="PreCookReport.h" local="yes" import="no" module="no" objc="no">World/Foundation/PreCookReport.h</includes>
+    <includes id="sdl__helpers_8h" name="sdl_helpers.h" local="yes" import="no" module="no" objc="no">SDL/sdl_helpers.h</includes>
     <namespace>ph</namespace>
   </compound>
   <compound kind="file">
@@ -13715,33 +13739,33 @@
   <compound kind="class">
     <name>ph::math::BvhParams</name>
     <filename>classph_1_1math_1_1_bvh_params.html</filename>
-    <member kind="function">
-      <type></type>
-      <name>BvhParams</name>
-      <anchorfile>classph_1_1math_1_1_bvh_params.html</anchorfile>
-      <anchor>a866a05d4756bc432637a12a7b1d4d000</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
+    <member kind="variable">
       <type>std::size_t</type>
-      <name>getMaxNodeItems</name>
+      <name>maxNodeItems</name>
       <anchorfile>classph_1_1math_1_1_bvh_params.html</anchorfile>
-      <anchor>acd4687e752df126b0a6d9379d58fe4d1</anchor>
-      <arglist>() const</arglist>
+      <anchor>a202f6840b47a800489ca166bf9e4c99d</anchor>
+      <arglist></arglist>
     </member>
-    <member kind="function">
+    <member kind="variable">
       <type>float</type>
-      <name>getTraversalCost</name>
+      <name>traversalCost</name>
       <anchorfile>classph_1_1math_1_1_bvh_params.html</anchorfile>
-      <anchor>af5e104aad30e77519316efa8a313957f</anchor>
-      <arglist>() const</arglist>
+      <anchor>af695b3116bf5096576b82f2449d99c67</anchor>
+      <arglist></arglist>
     </member>
-    <member kind="function">
+    <member kind="variable">
       <type>float</type>
-      <name>getInteractCost</name>
+      <name>interactCost</name>
       <anchorfile>classph_1_1math_1_1_bvh_params.html</anchorfile>
-      <anchor>af491399f8823b0b8bbd8dda1b95066a6</anchor>
-      <arglist>() const</arglist>
+      <anchor>aef1aa876566e00e1961415d6a74357fb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>EBvhNodeSplitMethod</type>
+      <name>splitMethod</name>
+      <anchorfile>classph_1_1math_1_1_bvh_params.html</anchorfile>
+      <anchor>a86e2ed25976445594bff5af67dd3c59a</anchor>
+      <arglist></arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -34428,15 +34452,15 @@
       <type></type>
       <name>TBvhBuilder</name>
       <anchorfile>classph_1_1math_1_1_t_bvh_builder.html</anchorfile>
-      <anchor>aa36d84940b97110a5ac5b32a22278b26</anchor>
-      <arglist>(EBvhNodeSplitMethod splitMethod, BvhParams params=BvhParams())</arglist>
+      <anchor>a7acdf6297227d73ccc1b83ae4be6289e</anchor>
+      <arglist>(BvhParams params=BvhParams{})</arglist>
     </member>
     <member kind="function">
       <type></type>
       <name>TBvhBuilder</name>
       <anchorfile>classph_1_1math_1_1_t_bvh_builder.html</anchorfile>
-      <anchor>ab51a383407f00726e58e91a2f67fde79</anchor>
-      <arglist>(EBvhNodeSplitMethod splitMethod, ItemToAABB itemToAABB, BvhParams params=BvhParams{})</arglist>
+      <anchor>a35314d1c78d782e33ae7e5f0c10c3b15</anchor>
+      <arglist>(ItemToAABB itemToAABB, BvhParams params=BvhParams{})</arglist>
     </member>
     <member kind="function">
       <type>auto</type>
@@ -34558,17 +34582,31 @@
     </member>
     <member kind="function">
       <type>auto</type>
+      <name>getSingleSplitAxis</name>
+      <anchorfile>classph_1_1math_1_1_t_bvh_info_node.html</anchorfile>
+      <anchor>a9318b2c17e561d2c2c65cd99c16a55b9</anchor>
+      <arglist>() const -&gt; std::size_t</arglist>
+    </member>
+    <member kind="function">
+      <type>auto</type>
       <name>getSplitAxis</name>
       <anchorfile>classph_1_1math_1_1_t_bvh_info_node.html</anchorfile>
-      <anchor>a49e9b232e50aa9cf9b34c12fc8843b51</anchor>
-      <arglist>() const -&gt; std::size_t</arglist>
+      <anchor>a156f83d359543f944c8fa05f2ff4ca97</anchor>
+      <arglist>(std::size_t childIdx) const -&gt; std::size_t</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>isSingleSplitAxis</name>
+      <anchorfile>classph_1_1math_1_1_t_bvh_info_node.html</anchorfile>
+      <anchor>ad2297c9d02b560ccb8f15beef41a0ecb</anchor>
+      <arglist>() const</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static auto</type>
       <name>makeInternal</name>
       <anchorfile>classph_1_1math_1_1_t_bvh_info_node.html</anchorfile>
-      <anchor>aeabf2539e4553e1b27f38db2067a5655</anchor>
-      <arglist>(const std::array&lt; const TBvhInfoNode *, N &gt; &amp;children, std::size_t splitAxis) -&gt; TBvhInfoNode</arglist>
+      <anchor>a5a0f8491e0cb5f092cf8226ce0b5dc64</anchor>
+      <arglist>(const std::array&lt; const TBvhInfoNode *, N &gt; &amp;children, std::size_t singleSplitAxis) -&gt; TBvhInfoNode</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static auto</type>
@@ -36478,6 +36516,41 @@
     </member>
   </compound>
   <compound kind="class">
+    <name>ph::TGeneralBvhIntersector</name>
+    <filename>classph_1_1_t_general_bvh_intersector.html</filename>
+    <templarg>std::size_t N</templarg>
+    <templarg>typename Index</templarg>
+    <base>ph::Intersector</base>
+    <member kind="function">
+      <type>void</type>
+      <name>update</name>
+      <anchorfile>classph_1_1_t_general_bvh_intersector.html</anchorfile>
+      <anchor>a7948621270119e9fdb4b26d0645a229d</anchor>
+      <arglist>(TSpanView&lt; const Intersectable * &gt; intersectables) override</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>isIntersecting</name>
+      <anchorfile>classph_1_1_t_general_bvh_intersector.html</anchorfile>
+      <anchor>ad321d829515f8157056e2d5c271daec3</anchor>
+      <arglist>(const Ray &amp;ray, HitProbe &amp;probe) const override</arglist>
+    </member>
+    <member kind="function">
+      <type>math::AABB3D</type>
+      <name>calcAABB</name>
+      <anchorfile>classph_1_1_t_general_bvh_intersector.html</anchorfile>
+      <anchor>a968b6694ae6edaf3851811867e022619</anchor>
+      <arglist>() const override</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>rebuildWithIntersectables</name>
+      <anchorfile>classph_1_1_t_general_bvh_intersector.html</anchorfile>
+      <anchor>ad23154e635eb3726b505fdae4b6a3b8c</anchor>
+      <arglist>(TSpanView&lt; const Intersectable * &gt; intersectables)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
     <name>ph::math::THeavisideStep2D</name>
     <filename>classph_1_1math_1_1_t_heaviside_step2_d.html</filename>
     <templarg>typename Value</templarg>
@@ -37606,6 +37679,20 @@
       <name>getRoot</name>
       <anchorfile>classph_1_1math_1_1_t_linear_depth_first_wide_bvh.html</anchorfile>
       <anchor>ad108f5d43292757a532733fd9b4c3023</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>std::size_t</type>
+      <name>numNodes</name>
+      <anchorfile>classph_1_1math_1_1_t_linear_depth_first_wide_bvh.html</anchorfile>
+      <anchor>a0979f714297e729b3906dfd5974d60b1</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>std::size_t</type>
+      <name>numItems</name>
+      <anchorfile>classph_1_1math_1_1_t_linear_depth_first_wide_bvh.html</anchorfile>
+      <anchor>a08aae19348b978463e81b87c472e1924</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="variable" static="yes">
@@ -48153,9 +48240,9 @@
     </member>
     <member kind="function">
       <type>const Intersector *</type>
-      <name>getIntersector</name>
+      <name>getTLAS</name>
       <anchorfile>classph_1_1_visual_world.html</anchorfile>
-      <anchor>a5bbc20dad53090d24a4be34732f5268e</anchor>
+      <anchor>aee8ec77172a501a8b8af5796a1afc6fd</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
@@ -49269,6 +49356,7 @@
     <class kind="class">ph::TFixedMapEntry</class>
     <class kind="class">ph::TFrame</class>
     <class kind="class">ph::TFrameBuffer2D</class>
+    <class kind="class">ph::TGeneralBvhIntersector</class>
     <class kind="class">ph::ThinDielectricFilm</class>
     <class kind="class">ph::ThinDielectricShell</class>
     <class kind="class">ph::ThinDielectricSurface</class>
@@ -50278,6 +50366,7 @@
       <enumvalue file="namespaceph.html" anchor="ae3bb0a7d6923b55d615af996ece4e2c4a6fcdc090caeade09d0efd6253932b6f5">Unspecified</enumvalue>
       <enumvalue file="namespaceph.html" anchor="ae3bb0a7d6923b55d615af996ece4e2c4a434d59f863a023077b7d8e8d9607a955">BruteForce</enumvalue>
       <enumvalue file="namespaceph.html" anchor="ae3bb0a7d6923b55d615af996ece4e2c4a9f81c52bdd5797801a0bd46508fa27a6">BVH</enumvalue>
+      <enumvalue file="namespaceph.html" anchor="ae3bb0a7d6923b55d615af996ece4e2c4aae6b0b9721d1f27e9e21a9cc7fe5f3d1">BVH4</enumvalue>
       <enumvalue file="namespaceph.html" anchor="ae3bb0a7d6923b55d615af996ece4e2c4a811c1544db380e5715594be8ee0c958d">Kdtree</enumvalue>
       <enumvalue file="namespaceph.html" anchor="ae3bb0a7d6923b55d615af996ece4e2c4a3e6d462fa076c0f260b12ecc21222ddc">IndexedKdtree</enumvalue>
     </member>
@@ -52675,9 +52764,10 @@
       <anchor>a6b85157eabe1403cdf9b1e45c8c7e368</anchor>
       <arglist></arglist>
       <enumvalue file="namespaceph_1_1math.html" anchor="a6b85157eabe1403cdf9b1e45c8c7e368ade447f76aa569e5e8c5a1ac54791e00c">EqualItems</enumvalue>
-      <enumvalue file="namespaceph_1_1math.html" anchor="a6b85157eabe1403cdf9b1e45c8c7e368a7f56c02b34d312867e3f63c9f21fe5c8">Midpoint</enumvalue>
-      <enumvalue file="namespaceph_1_1math.html" anchor="a6b85157eabe1403cdf9b1e45c8c7e368a8d2112cc82f6f3b791a79299c553f85c">SAH_Buckets</enumvalue>
-      <enumvalue file="namespaceph_1_1math.html" anchor="a6b85157eabe1403cdf9b1e45c8c7e368abeddd82e566c2f6f7e03453458fefe6d">SAH_EdgeSort</enumvalue>
+      <enumvalue file="namespaceph_1_1math.html" anchor="a6b85157eabe1403cdf9b1e45c8c7e368ab4715ac4efd7652667bb4c98919cd440">EqualIntervals</enumvalue>
+      <enumvalue file="namespaceph_1_1math.html" anchor="a6b85157eabe1403cdf9b1e45c8c7e368aba1b71c9dc960e4e2f3392f8d0f46f97">SAH_Buckets_OneAxis</enumvalue>
+      <enumvalue file="namespaceph_1_1math.html" anchor="a6b85157eabe1403cdf9b1e45c8c7e368a46720ce32bec059ef18e9a8931f33189">SAH_Buckets_MultiAxis</enumvalue>
+      <enumvalue file="namespaceph_1_1math.html" anchor="a6b85157eabe1403cdf9b1e45c8c7e368a7328aad94deda29460cd2d482a3a5457">SAH_EdgeSort_OneAxis</enumvalue>
     </member>
     <member kind="enumeration">
       <type></type>

@@ -82,7 +82,7 @@ After saving the scene description as {\ttfamily hello\+\_\+world.\+p2} under th
 \begin{DoxyNote}{Note}
 Most components of Photon expect the build/install directory to be their working directory, not the directory that contains the executable.
 \end{DoxyNote}
-\hypertarget{main_scene_description_guide_autotoc_md56}{}\doxysection{\texorpdfstring{Language Basics}{Language Basics}}\label{main_scene_description_guide_autotoc_md56}
+\hypertarget{main_scene_description_guide_autotoc_md58}{}\doxysection{\texorpdfstring{Language Basics}{Language Basics}}\label{main_scene_description_guide_autotoc_md58}
 PSDL is a command-\/like system and the commands can be roughly categorized into two parts\+: {\bfseries{header}} and {\bfseries{clause}}. Commands are normally structured in the following way\+:
 
 {\ttfamily type-\/category}({\ttfamily type-\/name}) @{\ttfamily name} = {\ttfamily clauses};
@@ -121,13 +121,13 @@ As you may have noticed, all commands end with a trailing semi-\/colon. To disab
 \begin{DoxyNote}{Note}
 As long as you do not break any keyword or symbol of PSDL, a single command can be dissected into multiple lines. Cramming multiple commands into a single line is also supported.
 \end{DoxyNote}
-In the next sections, we will formally introduce the syntactic structures of PSDL commands.\hypertarget{main_scene_description_guide_autotoc_md57}{}\doxysubsection{\texorpdfstring{Type Category}{Type Category}}\label{main_scene_description_guide_autotoc_md57}
+In the next sections, we will formally introduce the syntactic structures of PSDL commands.\hypertarget{main_scene_description_guide_autotoc_md59}{}\doxysubsection{\texorpdfstring{Type Category}{Type Category}}\label{main_scene_description_guide_autotoc_md59}
 {\ttfamily type-\/category}(type-\/name) @name = clauses;
 
-Describes the category to which the current command belongs. For example, the command that creates a geometry states that its category is {\ttfamily geometry} in its type category section. There are many categories in PSDL. In addition to the ones seen in the above hello-\/world scene description, we also have {\ttfamily image}, {\ttfamily object} and much more.\hypertarget{main_scene_description_guide_autotoc_md58}{}\doxysubsection{\texorpdfstring{Type Name}{Type Name}}\label{main_scene_description_guide_autotoc_md58}
+Describes the category to which the current command belongs. For example, the command that creates a geometry states that its category is {\ttfamily geometry} in its type category section. There are many categories in PSDL. In addition to the ones seen in the above hello-\/world scene description, we also have {\ttfamily image}, {\ttfamily object} and much more.\hypertarget{main_scene_description_guide_autotoc_md60}{}\doxysubsection{\texorpdfstring{Type Name}{Type Name}}\label{main_scene_description_guide_autotoc_md60}
 type-\/category({\ttfamily type-\/name}) @name = clauses;
 
-Type names generally {\itshape add details} to the type category. Again, in the command that creates a geometry, we know that we are now creating a {\ttfamily rectangle} geometry from the command fragment {\ttfamily geometry(rectangle)}. Type category and type name are often combined and are called {\bfseries{full type name}} together. Full type name is only needed if the underlying engine operation requires it (such as creating a resource). For executor calls (see the later section), type name can be omitted (will be automatically deduced from the referenced resource) sometimes.\hypertarget{main_scene_description_guide_autotoc_md59}{}\doxysubsection{\texorpdfstring{Data Name}{Data Name}}\label{main_scene_description_guide_autotoc_md59}
+Type names generally {\itshape add details} to the type category. Again, in the command that creates a geometry, we know that we are now creating a {\ttfamily rectangle} geometry from the command fragment {\ttfamily geometry(rectangle)}. Type category and type name are often combined and are called {\bfseries{full type name}} together. Full type name is only needed if the underlying engine operation requires it (such as creating a resource). For executor calls (see the later section), type name can be omitted (will be automatically deduced from the referenced resource) sometimes.\hypertarget{main_scene_description_guide_autotoc_md61}{}\doxysubsection{\texorpdfstring{Data Name}{Data Name}}\label{main_scene_description_guide_autotoc_md61}
 type-\/category(type-\/name) @{\ttfamily name} = clauses;
 
 The data name is the name given to the command (e.\+g., as a resource name, or a reference name) and is always prefixed by {\ttfamily @}. Note that {\ttfamily @} is part of the syntax rather than part of the name. Also, names with whitespace characters should be enclosed by double quotes, see the following example to understand more clearly\+:
@@ -214,18 +214,18 @@ The reference {\ttfamily @plane} will uniquely identify the geometry resource, w
 
 A material resource named {\ttfamily diffuse} is being created by referencing an image named {\ttfamily white} as its albedo with the clause {\ttfamily \mbox{[}image albedo @white\mbox{]}}. Note that references can be used for resource sharing. For example, another diffuse material {\ttfamily diffuse2} can be created with the same clause (referencing {\ttfamily white}) and both {\ttfamily diffuse} and {\ttfamily diffuse2} will be using the same piece of data for their albedo.
 
-\texorpdfstring{$\ast$}{*}\+: We call this a {\itshape persistent specifier}. The named target will be persistent throughout the lifetime of the containing scene.\hypertarget{main_scene_description_guide_autotoc_md60}{}\doxysubsection{\texorpdfstring{Struct Types}{Struct Types}}\label{main_scene_description_guide_autotoc_md60}
+\texorpdfstring{$\ast$}{*}\+: We call this a {\itshape persistent specifier}. The named target will be persistent throughout the lifetime of the containing scene.\hypertarget{main_scene_description_guide_autotoc_md62}{}\doxysubsection{\texorpdfstring{Struct Types}{Struct Types}}\label{main_scene_description_guide_autotoc_md62}
 With PSDL, you can create almost all kinds of objects the rendering system has to offer. In later sections, we will see that it is also possible to perform \doxysectlink{main_scene_description_guide_operations}{operations}{1} on these objects via PSDL.\hypertarget{main_scene_description_guide_operations}{}\doxysection{\texorpdfstring{Operations}{Operations}}\label{main_scene_description_guide_operations}
 \begin{DoxyRemark}{Remarks}
 Go back and check the hello-\/world scene description again. You should be able to understand most of the lines now.
 \end{DoxyRemark}
 \hypertarget{main_scene_description_guide_psdl_resource_identifier}{}\doxysection{\texorpdfstring{PSDL Resource Identifier}{PSDL Resource Identifier}}\label{main_scene_description_guide_psdl_resource_identifier}
-\hypertarget{main_scene_description_guide_autotoc_md61}{}\doxysection{\texorpdfstring{C++ Binding}{C++ Binding}}\label{main_scene_description_guide_autotoc_md61}
-\hypertarget{main_scene_description_guide_autotoc_md62}{}\doxysubsection{\texorpdfstring{Owner Types}{Owner Types}}\label{main_scene_description_guide_autotoc_md62}
-\hypertarget{main_scene_description_guide_autotoc_md63}{}\doxysubsection{\texorpdfstring{Struct Types}{Struct Types}}\label{main_scene_description_guide_autotoc_md63}
-\hypertarget{main_scene_description_guide_autotoc_md64}{}\doxysubsection{\texorpdfstring{Enum Types}{Enum Types}}\label{main_scene_description_guide_autotoc_md64}
-\hypertarget{main_scene_description_guide_autotoc_md65}{}\doxysubsection{\texorpdfstring{Field Types}{Field Types}}\label{main_scene_description_guide_autotoc_md65}
-\hypertarget{main_scene_description_guide_autotoc_md66}{}\doxysubsection{\texorpdfstring{Function Types}{Function Types}}\label{main_scene_description_guide_autotoc_md66}
-\hypertarget{main_scene_description_guide_autotoc_md67}{}\doxysection{\texorpdfstring{Serialization}{Serialization}}\label{main_scene_description_guide_autotoc_md67}
-\hypertarget{main_scene_description_guide_autotoc_md68}{}\doxysection{\texorpdfstring{Appendix}{Appendix}}\label{main_scene_description_guide_autotoc_md68}
+\hypertarget{main_scene_description_guide_autotoc_md63}{}\doxysection{\texorpdfstring{C++ Binding}{C++ Binding}}\label{main_scene_description_guide_autotoc_md63}
+\hypertarget{main_scene_description_guide_autotoc_md64}{}\doxysubsection{\texorpdfstring{Owner Types}{Owner Types}}\label{main_scene_description_guide_autotoc_md64}
+\hypertarget{main_scene_description_guide_autotoc_md65}{}\doxysubsection{\texorpdfstring{Struct Types}{Struct Types}}\label{main_scene_description_guide_autotoc_md65}
+\hypertarget{main_scene_description_guide_autotoc_md66}{}\doxysubsection{\texorpdfstring{Enum Types}{Enum Types}}\label{main_scene_description_guide_autotoc_md66}
+\hypertarget{main_scene_description_guide_autotoc_md67}{}\doxysubsection{\texorpdfstring{Field Types}{Field Types}}\label{main_scene_description_guide_autotoc_md67}
+\hypertarget{main_scene_description_guide_autotoc_md68}{}\doxysubsection{\texorpdfstring{Function Types}{Function Types}}\label{main_scene_description_guide_autotoc_md68}
+\hypertarget{main_scene_description_guide_autotoc_md69}{}\doxysection{\texorpdfstring{Serialization}{Serialization}}\label{main_scene_description_guide_autotoc_md69}
+\hypertarget{main_scene_description_guide_autotoc_md70}{}\doxysection{\texorpdfstring{Appendix}{Appendix}}\label{main_scene_description_guide_autotoc_md70}
 \doxysectlink{main_scene_description_reference}{Full documentation of PSDL commands}{0}. 

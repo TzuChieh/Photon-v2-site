@@ -200,9 +200,10 @@ var namespaceph_1_1math =
     [ "Vector4S", "namespaceph_1_1math.html#aee456ded8cdfb7b2adad0565ecefad84", null ],
     [ "EBvhNodeSplitMethod", "namespaceph_1_1math.html#a6b85157eabe1403cdf9b1e45c8c7e368", [
       [ "EqualItems", "namespaceph_1_1math.html#a6b85157eabe1403cdf9b1e45c8c7e368ade447f76aa569e5e8c5a1ac54791e00c", null ],
-      [ "Midpoint", "namespaceph_1_1math.html#a6b85157eabe1403cdf9b1e45c8c7e368a7f56c02b34d312867e3f63c9f21fe5c8", null ],
-      [ "SAH_Buckets", "namespaceph_1_1math.html#a6b85157eabe1403cdf9b1e45c8c7e368a8d2112cc82f6f3b791a79299c553f85c", null ],
-      [ "SAH_EdgeSort", "namespaceph_1_1math.html#a6b85157eabe1403cdf9b1e45c8c7e368abeddd82e566c2f6f7e03453458fefe6d", null ]
+      [ "EqualIntervals", "namespaceph_1_1math.html#a6b85157eabe1403cdf9b1e45c8c7e368ab4715ac4efd7652667bb4c98919cd440", null ],
+      [ "SAH_Buckets_OneAxis", "namespaceph_1_1math.html#a6b85157eabe1403cdf9b1e45c8c7e368aba1b71c9dc960e4e2f3392f8d0f46f97", null ],
+      [ "SAH_Buckets_MultiAxis", "namespaceph_1_1math.html#a6b85157eabe1403cdf9b1e45c8c7e368a46720ce32bec059ef18e9a8931f33189", null ],
+      [ "SAH_EdgeSort_OneAxis", "namespaceph_1_1math.html#a6b85157eabe1403cdf9b1e45c8c7e368a7328aad94deda29460cd2d482a3a5457", null ]
     ] ],
     [ "EChromaticAdaptation", "namespaceph_1_1math.html#aeb6d400f8c4f85be266ab51b3cd65951", [
       [ "Unspecified", "namespaceph_1_1math.html#aeb6d400f8c4f85be266ab51b3cd65951a6fcdc090caeade09d0efd6253932b6f5", null ],

@@ -47,11 +47,12 @@ var searchData=
   ['max_5fpixel_5felements_44',['MAX_PIXEL_ELEMENTS',['../namespaceph_1_1pixel__buffer.html#ac1848420a959a4cce0717c35fe2520eb',1,'ph::pixel_buffer']]],
   ['max_5fwavelength_5fnm_45',['MAX_WAVELENGTH_NM',['../classph_1_1math_1_1_default_spectral_sample_props.html#ae1d578d73a41cbcdb4e6216aadbc01af',1,'ph::math::DefaultSpectralSampleProps']]],
   ['maxdist_46',['maxDist',['../classph_1_1_volume_distance_sample_1_1_input.html#a34ab4f4d0b9183ef3b78803dc4c0e78a',1,'ph::VolumeDistanceSample::Input']]],
-  ['maxpathlength_47',['maxPathLength',['../classph_1_1_t_photon_map_info.html#ab7590812266c3a9bde7c41112b46624a',1,'ph::TPhotonMapInfo::maxPathLength'],['../classph_1_1_t_photon_map.html#a064e7a9f4019a5a5444b058e80e8666a',1,'ph::TPhotonMap::maxPathLength']]],
-  ['maxphotonpathlength_48',['maxPhotonPathLength',['../classph_1_1_p_m_common_params.html#a4e1b17694b07b42c36985325b265f52e',1,'ph::PMCommonParams']]],
-  ['metadata_49',['metadata',['../classph_1_1_primitive_building_material.html#a51d6141753beaf8dc09a72f4ad68a1ab',1,'ph::PrimitiveBuildingMaterial::metadata'],['../structph_1_1_referenced_primitive_meta_getter.html#aeef3783180003454f2eaf9fd05cd770f',1,'ph::ReferencedPrimitiveMetaGetter::metadata'],['../structph_1_1_embedded_primitive_meta_getter.html#a1752230ab62de6aafa346f8ca7ed0a21',1,'ph::EmbeddedPrimitiveMetaGetter::metadata']]],
-  ['mib_50',['MiB',['../namespaceph_1_1math_1_1constant.html#a49ad38be8f3ddda440960e50cb5376db',1,'ph::math::constant']]],
-  ['min_5fwavelength_5fnm_51',['MIN_WAVELENGTH_NM',['../classph_1_1math_1_1_default_spectral_sample_props.html#a1007ecf3c8518009965f40623c8a2186',1,'ph::math::DefaultSpectralSampleProps']]],
-  ['minpathlength_52',['minPathLength',['../classph_1_1_t_photon_map_info.html#a48f21b98fbc3ae4fdec7b319665150f8',1,'ph::TPhotonMapInfo::minPathLength'],['../classph_1_1_t_photon_map.html#a1fc838f70a895e9af14a33d8773aafad',1,'ph::TPhotonMap::minPathLength']]],
-  ['minphotonpathlength_53',['minPhotonPathLength',['../classph_1_1_p_m_common_params.html#af4c882b6325ba8cf8d13266544a843b7',1,'ph::PMCommonParams']]]
+  ['maxnodeitems_47',['maxNodeItems',['../classph_1_1math_1_1_bvh_params.html#a202f6840b47a800489ca166bf9e4c99d',1,'ph::math::BvhParams']]],
+  ['maxpathlength_48',['maxPathLength',['../classph_1_1_t_photon_map_info.html#ab7590812266c3a9bde7c41112b46624a',1,'ph::TPhotonMapInfo::maxPathLength'],['../classph_1_1_t_photon_map.html#a064e7a9f4019a5a5444b058e80e8666a',1,'ph::TPhotonMap::maxPathLength']]],
+  ['maxphotonpathlength_49',['maxPhotonPathLength',['../classph_1_1_p_m_common_params.html#a4e1b17694b07b42c36985325b265f52e',1,'ph::PMCommonParams']]],
+  ['metadata_50',['metadata',['../classph_1_1_primitive_building_material.html#a51d6141753beaf8dc09a72f4ad68a1ab',1,'ph::PrimitiveBuildingMaterial::metadata'],['../structph_1_1_referenced_primitive_meta_getter.html#aeef3783180003454f2eaf9fd05cd770f',1,'ph::ReferencedPrimitiveMetaGetter::metadata'],['../structph_1_1_embedded_primitive_meta_getter.html#a1752230ab62de6aafa346f8ca7ed0a21',1,'ph::EmbeddedPrimitiveMetaGetter::metadata']]],
+  ['mib_51',['MiB',['../namespaceph_1_1math_1_1constant.html#a49ad38be8f3ddda440960e50cb5376db',1,'ph::math::constant']]],
+  ['min_5fwavelength_5fnm_52',['MIN_WAVELENGTH_NM',['../classph_1_1math_1_1_default_spectral_sample_props.html#a1007ecf3c8518009965f40623c8a2186',1,'ph::math::DefaultSpectralSampleProps']]],
+  ['minpathlength_53',['minPathLength',['../classph_1_1_t_photon_map_info.html#a48f21b98fbc3ae4fdec7b319665150f8',1,'ph::TPhotonMapInfo::minPathLength'],['../classph_1_1_t_photon_map.html#a1fc838f70a895e9af14a33d8773aafad',1,'ph::TPhotonMap::minPathLength']]],
+  ['minphotonpathlength_54',['minPhotonPathLength',['../classph_1_1_p_m_common_params.html#af4c882b6325ba8cf8d13266544a843b7',1,'ph::PMCommonParams']]]
 ];

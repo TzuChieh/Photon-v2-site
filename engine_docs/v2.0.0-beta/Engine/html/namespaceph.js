@@ -443,6 +443,7 @@ var namespaceph =
     [ "TFixedMapEntry", "classph_1_1_t_fixed_map_entry.html", "classph_1_1_t_fixed_map_entry" ],
     [ "TFrame", "classph_1_1_t_frame.html", "classph_1_1_t_frame" ],
     [ "TFrameBuffer2D", "classph_1_1_t_frame_buffer2_d.html", "classph_1_1_t_frame_buffer2_d" ],
+    [ "TGeneralBvhIntersector", "classph_1_1_t_general_bvh_intersector.html", "classph_1_1_t_general_bvh_intersector" ],
     [ "ThinDielectricFilm", "classph_1_1_thin_dielectric_film.html", "classph_1_1_thin_dielectric_film" ],
     [ "ThinDielectricShell", "classph_1_1_thin_dielectric_shell.html", "classph_1_1_thin_dielectric_shell" ],
     [ "ThinDielectricSurface", "classph_1_1_thin_dielectric_surface.html", "classph_1_1_thin_dielectric_surface" ],
@@ -655,6 +656,7 @@ var namespaceph =
       [ "Unspecified", "namespaceph.html#ae3bb0a7d6923b55d615af996ece4e2c4a6fcdc090caeade09d0efd6253932b6f5", null ],
       [ "BruteForce", "namespaceph.html#ae3bb0a7d6923b55d615af996ece4e2c4a434d59f863a023077b7d8e8d9607a955", null ],
       [ "BVH", "namespaceph.html#ae3bb0a7d6923b55d615af996ece4e2c4a9f81c52bdd5797801a0bd46508fa27a6", null ],
+      [ "BVH4", "namespaceph.html#ae3bb0a7d6923b55d615af996ece4e2c4aae6b0b9721d1f27e9e21a9cc7fe5f3d1", null ],
       [ "Kdtree", "namespaceph.html#ae3bb0a7d6923b55d615af996ece4e2c4a811c1544db380e5715594be8ee0c958d", null ],
       [ "IndexedKdtree", "namespaceph.html#ae3bb0a7d6923b55d615af996ece4e2c4a3e6d462fa076c0f260b12ecc21222ddc", null ]
     ] ],

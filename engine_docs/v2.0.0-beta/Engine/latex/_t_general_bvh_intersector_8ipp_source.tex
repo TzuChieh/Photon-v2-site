@@ -1,0 +1,110 @@
+\doxysection{TGeneral\+Bvh\+Intersector.\+ipp}
+\hypertarget{_t_general_bvh_intersector_8ipp_source}{}\label{_t_general_bvh_intersector_8ipp_source}\index{Source/Core/Intersection/BVH/TGeneralBvhIntersector.ipp@{Source/Core/Intersection/BVH/TGeneralBvhIntersector.ipp}}
+\mbox{\hyperlink{_t_general_bvh_intersector_8ipp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_general_bvh_intersector_8h}{Core/Intersection/BVH/TGeneralBvhIntersector.h}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_hit_probe_8h}{Core/HitProbe.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_ray_8h}{Core/Ray.h}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_bvh_builder_8h}{Math/Algorithm/BVH/TBvhBuilder.h}}"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <Common/assertion.h>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <Common/logging.h>}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <optional>}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph}{ph}}}
+\DoxyCodeLine{00014\ \{}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Index>}
+\DoxyCodeLine{00017\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ TGeneralBvhIntersector<N,\ Index>}
+\DoxyCodeLine{00018\ ::update(\mbox{\hyperlink{namespaceph_a06c532bb78132f63638ec3ef52d46ff3}{TSpanView<const\ Intersectable*>}}\ intersectables)}
+\DoxyCodeLine{00019\ \{}
+\DoxyCodeLine{00020\ \ \ \ \ rebuildWithIntersectables(intersectables);}
+\DoxyCodeLine{00021\ \}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Index>}
+\DoxyCodeLine{00024\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1_t_general_bvh_intersector}{TGeneralBvhIntersector<N,\ Index>}}}
+\DoxyCodeLine{00025\ \mbox{\hyperlink{classph_1_1_t_general_bvh_intersector}{::isIntersecting}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_ray}{Ray}}\&\ ray,\ \mbox{\hyperlink{classph_1_1_hit_probe}{HitProbe}}\&\ probe)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00026\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_bvh.nearestTraversal(}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ ray.\mbox{\hyperlink{classph_1_1_ray_ae19035096abdcda7a99d8e75b9862cd8}{getSegment}}(),}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ [ray,\ \&probe,\ originalProbe\ =\ probe](}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_intersectable}{Intersectable}}*\ \textcolor{keyword}{const}\ \ \ \ \ \ intersectable,}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_line_segment}{math::TLineSegment<real>}}\&\ segment)}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ -\/>\ std::optional<real>}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ PH\_ASSERT(intersectable);}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ const\ Ray\ raySegment(segment,\ ray.getTime());}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ HitProbe\ trialProbe\ =\ originalProbe;}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ if(intersectable-\/>isIntersecting(raySegment,\ trialProbe))}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ probe\ =\ trialProbe;}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ return\ trialProbe.getHitRayT();}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ return\ std::nullopt;}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00049\ \}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Index>}
+\DoxyCodeLine{00052\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ TGeneralBvhIntersector<N,\ Index>}
+\DoxyCodeLine{00053\ ::calcAABB()\ const}
+\DoxyCodeLine{00054\ -\/>\ math::\mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d}{AABB3D}}}
+\DoxyCodeLine{00055\ \{}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_rootAABB;}
+\DoxyCodeLine{00057\ \}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Index>}
+\DoxyCodeLine{00060\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1_t_general_bvh_intersector}{TGeneralBvhIntersector<N,\ Index>}}}
+\DoxyCodeLine{00061\ \mbox{\hyperlink{classph_1_1_t_general_bvh_intersector}{::rebuildWithIntersectables}}(\mbox{\hyperlink{namespaceph_a06c532bb78132f63638ec3ef52d46ff3}{TSpanView<const\ Intersectable*>}}\ intersectables)}
+\DoxyCodeLine{00062\ \{}
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ itemToAABB\ =}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ [](\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_intersectable}{Intersectable}}*\ item)}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ item-\/>\mbox{\hyperlink{classph_1_1_t_general_bvh_intersector_a968b6694ae6edaf3851811867e022619}{calcAABB}}();}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_bvh_params}{math::BvhParams}}\ params;}
+\DoxyCodeLine{00070\ \ \ \ \ params.\mbox{\hyperlink{classph_1_1math_1_1_bvh_params_a86e2ed25976445594bff5af67dd3c59a}{splitMethod}}\ =\ math::EBvhNodeSplitMethod::EqualItems;}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_builder}{math::TBvhBuilder}}<N,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1_intersectable}{Intersectable}}*,\ \textcolor{keyword}{decltype}(itemToAABB)>\ builder\{params\};}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keyword}{auto}\ \textcolor{keyword}{const}\ rootInfoNode\ =\ builder.buildInformativeBvh(intersectables);}
+\DoxyCodeLine{00075\ \ \ \ \ m\_bvh.build(rootInfoNode,\ builder.totalInfoNodes(),\ builder.totalItems());}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{comment}{//\ Wide\ BVH\ uses\ fat\ nodes,\ we\ need\ to\ calculate\ root\ AABB\ by\ ourselves}}
+\DoxyCodeLine{00078\ \ \ \ \ m\_rootAABB\ =\ math::AABB3D::makeEmpty();}
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keywordflow}{if}(!m\_bvh.isEmpty())}
+\DoxyCodeLine{00080\ \ \ \ \ \{}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ ci\ =\ 0;\ ci\ <\ N;\ ++ci)}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ m\_rootAABB.unionWith(m\_bvh.getRoot().getAABB(ci));}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00085\ \ \ \ \ \}}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{comment}{//\ Check\ the\ constructed\ BVH\ and\ print\ some\ information}}
+\DoxyCodeLine{00088\ \textcolor{preprocessor}{\#if\ PH\_DEBUG}}
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ treeDepth\ =\ builder.calcMaxDepth(rootInfoNode);}
+\DoxyCodeLine{00090\ \ \ \ \ }
+\DoxyCodeLine{00091\ \ \ \ \ PH\_DEFAULT\_LOG(Note,}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}intersector:\ BVH\{\}\ (\{\}-\/byte\ index),\ total\ intersectables:\ \{\},\ total\ nodes:\ \{\},\ "{}}}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}max\ tree\ depth:\ \{\}"{}},\ N,\ \textcolor{keyword}{sizeof}(Index),\ m\_bvh.numItems(),\ m\_bvh.numNodes(),\ treeDepth);}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keywordflow}{if}(treeDepth\ >\ m\_bvh.TRAVERSAL\_STACK\_SIZE)}
+\DoxyCodeLine{00096\ \ \ \ \ \{}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ PH\_DEFAULT\_LOG(Error,}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}BVH\{\}\ depth\ (\{\})\ exceeds\ traversal\ stack\ size\ (\{\})"{}},}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ N,\ treeDepth,\ m\_bvh.TRAVERSAL\_STACK\_SIZE);}
+\DoxyCodeLine{00100\ \ \ \ \ \}}
+\DoxyCodeLine{00101\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00102\ \}}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \}\textcolor{comment}{//\ end\ namespace\ ph}}
+
+\end{DoxyCode}

@@ -118,27 +118,27 @@ $(function(){initNavTree('main_scene_description_guide.html',''); initResizable(
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
 <ul><li class="level1"><a href="#sdl_introduction">Introduction</a></li>
-<li class="level1"><a href="#autotoc_md56">Language Basics</a><ul><li class="level2"><a href="#autotoc_md57">Type Category</a></li>
-<li class="level2"><a href="#autotoc_md58">Type Name</a></li>
-<li class="level2"><a href="#autotoc_md59">Data Name</a></li>
+<li class="level1"><a href="#autotoc_md58">Language Basics</a><ul><li class="level2"><a href="#autotoc_md59">Type Category</a></li>
+<li class="level2"><a href="#autotoc_md60">Type Name</a></li>
+<li class="level2"><a href="#autotoc_md61">Data Name</a></li>
 </ul>
 </li>
 <li class="level1"><a href="#sdl_clauses">Clauses</a><ul><li class="level2"><a href="#sdl_value_types">Value Types</a></li>
 <li class="level2"><a href="#sdl_reference_types">Reference Types</a></li>
-<li class="level2"><a href="#autotoc_md60">Struct Types</a></li>
+<li class="level2"><a href="#autotoc_md62">Struct Types</a></li>
 </ul>
 </li>
 <li class="level1"><a href="#operations">Operations</a></li>
 <li class="level1"><a href="#psdl_resource_identifier">PSDL Resource Identifier</a></li>
-<li class="level1"><a href="#autotoc_md61">C++ Binding</a><ul><li class="level2"><a href="#autotoc_md62">Owner Types</a></li>
-<li class="level2"><a href="#autotoc_md63">Struct Types</a></li>
-<li class="level2"><a href="#autotoc_md64">Enum Types</a></li>
-<li class="level2"><a href="#autotoc_md65">Field Types</a></li>
-<li class="level2"><a href="#autotoc_md66">Function Types</a></li>
+<li class="level1"><a href="#autotoc_md63">C++ Binding</a><ul><li class="level2"><a href="#autotoc_md64">Owner Types</a></li>
+<li class="level2"><a href="#autotoc_md65">Struct Types</a></li>
+<li class="level2"><a href="#autotoc_md66">Enum Types</a></li>
+<li class="level2"><a href="#autotoc_md67">Field Types</a></li>
+<li class="level2"><a href="#autotoc_md68">Function Types</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md67">Serialization</a></li>
-<li class="level1"><a href="#autotoc_md68">Appendix</a></li>
+<li class="level1"><a href="#autotoc_md69">Serialization</a></li>
+<li class="level1"><a href="#autotoc_md70">Appendix</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md__documentation_2scene__description__guide"></a></p>
@@ -197,7 +197,7 @@ Rendered hello-world scene.</div></div>
 <p>After saving the scene description as <code>hello_world.p2</code> under the build/install directory, you can run the following command in the same directory to render the scene as described:</p>
 <div class="fragment"><div class="line">./bin/PhotonCLI -s ./hello_world.p2 -t 8</div>
 </div><!-- fragment --><dl class="section note"><dt>Note</dt><dd>Most components of Photon expect the build/install directory to be their working directory, not the directory that contains the executable.</dd></dl>
-<h1><a class="anchor" id="autotoc_md56"></a>
+<h1><a class="anchor" id="autotoc_md58"></a>
 Language Basics</h1>
 <p>PSDL is a command-like system and the commands can be roughly categorized into two parts: <b>header</b> and <b>clause</b>. Commands are normally structured in the following way:</p>
 <p><code>type-category</code>(<code>type-name</code>) @<code>name</code> = <code>clauses</code>;</p>
@@ -212,15 +212,15 @@ Language Basics</h1>
 <div class="line"><span class="comment">//actor(model).scale(@ground) = [vector3 amount &quot;10 10 10&quot;];</span></div>
 </div><!-- fragment --><dl class="section note"><dt>Note</dt><dd>As long as you do not break any keyword or symbol of PSDL, a single command can be dissected into multiple lines. Cramming multiple commands into a single line is also supported.</dd></dl>
 <p>In the next sections, we will formally introduce the syntactic structures of PSDL commands.</p>
-<h2><a class="anchor" id="autotoc_md57"></a>
+<h2><a class="anchor" id="autotoc_md59"></a>
 Type Category</h2>
 <p><code>type-category</code>(type-name) @name = clauses;</p>
 <p>Describes the category to which the current command belongs. For example, the command that creates a geometry states that its category is <code>geometry</code> in its type category section. There are many categories in PSDL. In addition to the ones seen in the above hello-world scene description, we also have <code>image</code>, <code>object</code> and much more.</p>
-<h2><a class="anchor" id="autotoc_md58"></a>
+<h2><a class="anchor" id="autotoc_md60"></a>
 Type Name</h2>
 <p>type-category(<code>type-name</code>) @name = clauses;</p>
 <p>Type names generally <em>add details</em> to the type category. Again, in the command that creates a geometry, we know that we are now creating a <code>rectangle</code> geometry from the command fragment <code>geometry(rectangle)</code>. Type category and type name are often combined and are called <b>full type name</b> together. Full type name is only needed if the underlying engine operation requires it (such as creating a resource). For executor calls (see the later section), type name can be omitted (will be automatically deduced from the referenced resource) sometimes.</p>
-<h2><a class="anchor" id="autotoc_md59"></a>
+<h2><a class="anchor" id="autotoc_md61"></a>
 Data Name</h2>
 <p>type-category(type-name) @<code>name</code> = clauses;</p>
 <p>The data name is the name given to the command (e.g., as a resource name, or a reference name) and is always prefixed by <code>@</code>. Note that <code>@</code> is part of the syntax rather than part of the name. Also, names with whitespace characters should be enclosed by double quotes, see the following example to understand more clearly:</p>
@@ -284,7 +284,7 @@ Reference Types</h2>
 <div class="line">material(matte-opaque) @diffuse = [image albedo @white];</div>
 </div><!-- fragment --><p>A material resource named <code>diffuse</code> is being created by referencing an image named <code>white</code> as its albedo with the clause <code>[image albedo @white]</code>. Note that references can be used for resource sharing. For example, another diffuse material <code>diffuse2</code> can be created with the same clause (referencing <code>white</code>) and both <code>diffuse</code> and <code>diffuse2</code> will be using the same piece of data for their albedo.</p>
 <p>*: We call this a <em>persistent specifier</em>. The named target will be persistent throughout the lifetime of the containing scene.</p>
-<h2><a class="anchor" id="autotoc_md60"></a>
+<h2><a class="anchor" id="autotoc_md62"></a>
 Struct Types</h2>
 <p>With PSDL, you can create almost all kinds of objects the rendering system has to offer. In later sections, we will see that it is also possible to perform <a class="el" href="#operations">operations</a> on these objects via PSDL.</p>
 <h1><a class="anchor" id="operations"></a>
@@ -292,21 +292,21 @@ Operations</h1>
 <dl class="section remark"><dt>Remarks</dt><dd>Go back and check the hello-world scene description again. You should be able to understand most of the lines now.</dd></dl>
 <h1><a class="anchor" id="psdl_resource_identifier"></a>
 PSDL Resource Identifier</h1>
-<h1><a class="anchor" id="autotoc_md61"></a>
+<h1><a class="anchor" id="autotoc_md63"></a>
 C++ Binding</h1>
-<h2><a class="anchor" id="autotoc_md62"></a>
-Owner Types</h2>
-<h2><a class="anchor" id="autotoc_md63"></a>
-Struct Types</h2>
 <h2><a class="anchor" id="autotoc_md64"></a>
-Enum Types</h2>
+Owner Types</h2>
 <h2><a class="anchor" id="autotoc_md65"></a>
-Field Types</h2>
+Struct Types</h2>
 <h2><a class="anchor" id="autotoc_md66"></a>
+Enum Types</h2>
+<h2><a class="anchor" id="autotoc_md67"></a>
+Field Types</h2>
+<h2><a class="anchor" id="autotoc_md68"></a>
 Function Types</h2>
-<h1><a class="anchor" id="autotoc_md67"></a>
+<h1><a class="anchor" id="autotoc_md69"></a>
 Serialization</h1>
-<h1><a class="anchor" id="autotoc_md68"></a>
+<h1><a class="anchor" id="autotoc_md70"></a>
 Appendix</h1>
 <p><a class="el" href="main_scene_description_reference.html">Full documentation of PSDL commands</a>. </p>
 </div></div><!-- contents -->

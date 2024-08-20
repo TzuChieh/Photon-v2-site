@@ -5,11 +5,10 @@ var searchData=
   ['max_2',['MAX',['../namespaceph_1_1math.html#ae7853802be4d35a3625b5f313151d1baa26a4b44a837bf97b972628509912b4a5',1,'ph::math']]],
   ['metallicreflector_3',['MetallicReflector',['../namespaceph.html#a2aa26a9c11d0ea8479e4535a280a8f7ea3f21e5ccdd3297eea03afc7025b0eeed',1,'ph']]],
   ['midpoint_4',['MIDPOINT',['../classph_1_1_dammertz_dispatcher.html#a62c5b9712479377907d9b49898c0435faafa8fd4b90a3f8123b4bd30446518a7e',1,'ph::DammertzDispatcher']]],
-  ['midpoint_5',['Midpoint',['../namespaceph_1_1math.html#a6b85157eabe1403cdf9b1e45c8c7e368a7f56c02b34d312867e3f63c9f21fe5c8',1,'ph::math']]],
-  ['min_6',['MIN',['../namespaceph_1_1math.html#ae7853802be4d35a3625b5f313151d1baace31e2a082d17e038fcc6e3006166653',1,'ph::math']]],
-  ['min_5ferror_5fdifference_7',['MIN_ERROR_DIFFERENCE',['../classph_1_1_dammertz_dispatcher.html#a62c5b9712479377907d9b49898c0435fa7724ff6817fae0e67784a0a949d1689a',1,'ph::DammertzDispatcher']]],
-  ['mitchellnetravali_8',['MitchellNetravali',['../namespaceph.html#a89a12b6c4ceab0a76aa0b86762750b07a1c97f70353c86dda616b7fe5263322b1',1,'ph']]],
-  ['monochromatic_9',['Monochromatic',['../namespaceph_1_1pixel__texture.html#a3b167f72734af6e016a66878c539bd9dadaf3064a82bc412c0aedd99d024df0fc',1,'ph::pixel_texture']]],
-  ['motion_10',['Motion',['../namespaceph.html#ada33bb2d4bc26b3ec1da2acb348ef4eba8226588f03da49b857e5ddf8c508dd2d',1,'ph']]],
-  ['multiply_11',['Multiply',['../namespaceph.html#a57a17c5b6ec3b4a3672d77c819377fabae257376d913f3b53cbb4a9b19d770648',1,'ph']]]
+  ['min_5',['MIN',['../namespaceph_1_1math.html#ae7853802be4d35a3625b5f313151d1baace31e2a082d17e038fcc6e3006166653',1,'ph::math']]],
+  ['min_5ferror_5fdifference_6',['MIN_ERROR_DIFFERENCE',['../classph_1_1_dammertz_dispatcher.html#a62c5b9712479377907d9b49898c0435fa7724ff6817fae0e67784a0a949d1689a',1,'ph::DammertzDispatcher']]],
+  ['mitchellnetravali_7',['MitchellNetravali',['../namespaceph.html#a89a12b6c4ceab0a76aa0b86762750b07a1c97f70353c86dda616b7fe5263322b1',1,'ph']]],
+  ['monochromatic_8',['Monochromatic',['../namespaceph_1_1pixel__texture.html#a3b167f72734af6e016a66878c539bd9dadaf3064a82bc412c0aedd99d024df0fc',1,'ph::pixel_texture']]],
+  ['motion_9',['Motion',['../namespaceph.html#ada33bb2d4bc26b3ec1da2acb348ef4eba8226588f03da49b857e5ddf8c508dd2d',1,'ph']]],
+  ['multiply_10',['Multiply',['../namespaceph.html#a57a17c5b6ec3b4a3672d77c819377fabae257376d913f3b53cbb4a9b19d770648',1,'ph']]]
 ];

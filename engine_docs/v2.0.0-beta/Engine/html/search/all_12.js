@@ -61,7 +61,7 @@ var searchData=
   ['real_2eh_58',['Real.h',['../_real_8h.html',1,'']]],
   ['realtype_59',['RealType',['../classph_1_1_render_stats.html#a81b6621c0560e0efe5ddd1cbf9b070f3',1,'ph::RenderStats']]],
   ['rebirth_60',['rebirth',['../classph_1_1_sample_generator.html#a08d4fe62f9a5b30da204c7d66b586cc9',1,'ph::SampleGenerator']]],
-  ['rebuildwithintersectables_61',['rebuildWithIntersectables',['../classph_1_1_t_classic_bvh_intersector.html#a8f17b47046df0f4d180fab72a1475022',1,'ph::TClassicBvhIntersector']]],
+  ['rebuildwithintersectables_61',['rebuildWithIntersectables',['../classph_1_1_t_classic_bvh_intersector.html#a8f17b47046df0f4d180fab72a1475022',1,'ph::TClassicBvhIntersector::rebuildWithIntersectables()'],['../classph_1_1_t_general_bvh_intersector.html#ad23154e635eb3726b505fdae4b6a3b8c',1,'ph::TGeneralBvhIntersector::rebuildWithIntersectables()']]],
   ['receiver_62',['Receiver',['../classph_1_1_receiver.html',1,'ph::Receiver'],['../classph_1_1_receiver.html#a572047ccf2004d01a442de6a09fd4cdd',1,'ph::Receiver::Receiver()']]],
   ['receiver_2ecpp_63',['Receiver.cpp',['../_receiver_8cpp.html',1,'']]],
   ['receiver_2eh_64',['Receiver.h',['../_receiver_8h.html',1,'']]],

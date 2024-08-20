@@ -511,6 +511,7 @@ var annotated_dup =
       [ "TFixedMapEntry", "classph_1_1_t_fixed_map_entry.html", "classph_1_1_t_fixed_map_entry" ],
       [ "TFrame", "classph_1_1_t_frame.html", "classph_1_1_t_frame" ],
       [ "TFrameBuffer2D", "classph_1_1_t_frame_buffer2_d.html", "classph_1_1_t_frame_buffer2_d" ],
+      [ "TGeneralBvhIntersector", "classph_1_1_t_general_bvh_intersector.html", "classph_1_1_t_general_bvh_intersector" ],
       [ "ThinDielectricFilm", "classph_1_1_thin_dielectric_film.html", "classph_1_1_thin_dielectric_film" ],
       [ "ThinDielectricShell", "classph_1_1_thin_dielectric_shell.html", "classph_1_1_thin_dielectric_shell" ],
       [ "ThinDielectricSurface", "classph_1_1_thin_dielectric_surface.html", "classph_1_1_thin_dielectric_surface" ],
