@@ -1,6 +1,5 @@
 var dir_8986922865ea566a4552a837a8c2f5ff =
 [
-    [ "AltPath.h", "_alt_path_8h.html", "_alt_path_8h" ],
     [ "CoreResource.cpp", "_core_resource_8cpp.html", null ],
     [ "CoreResource.h", "_core_resource_8h.html", "_core_resource_8h" ],
     [ "Filesystem.cpp", "_filesystem_8cpp.html", null ],

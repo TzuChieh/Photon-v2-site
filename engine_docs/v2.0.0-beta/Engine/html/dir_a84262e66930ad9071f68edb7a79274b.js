@@ -13,6 +13,8 @@ var dir_a84262e66930ad9071f68edb7a79274b =
     [ "SemanticVersion.cpp", "_semantic_version_8cpp.html", null ],
     [ "SemanticVersion.h", "_semantic_version_8h.html", "_semantic_version_8h" ],
     [ "TAnyPtr.h", "_t_any_ptr_8h.html", "_t_any_ptr_8h" ],
+    [ "TArrayHeap.h", "_t_array_heap_8h.html", "_t_array_heap_8h" ],
+    [ "TArrayHeap.ipp", "_t_array_heap_8ipp.html", null ],
     [ "TArrayStack.h", "_t_array_stack_8h.html", "_t_array_stack_8h" ],
     [ "TArrayStack.ipp", "_t_array_stack_8ipp.html", null ],
     [ "TArrayVector.h", "_t_array_vector_8h.html", "_t_array_vector_8h" ],

@@ -25,6 +25,7 @@ var annotated_dup =
       [ "OutOfRangeException", "classph_1_1_out_of_range_exception.html", "classph_1_1_out_of_range_exception" ],
       [ "OverflowException", "classph_1_1_overflow_exception.html", null ],
       [ "RuntimeException", "classph_1_1_runtime_exception.html", "classph_1_1_runtime_exception" ],
+      [ "TAlignedArray", "structph_1_1_t_aligned_array.html", null ],
       [ "TimerStatsReport", "classph_1_1_timer_stats_report.html", "classph_1_1_timer_stats_report" ],
       [ "Timestamp", "classph_1_1_timestamp.html", "classph_1_1_timestamp" ],
       [ "UninitializedObjectException", "classph_1_1_uninitialized_object_exception.html", "classph_1_1_uninitialized_object_exception" ]

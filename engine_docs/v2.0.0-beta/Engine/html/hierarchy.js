@@ -1,6 +1,5 @@
 var hierarchy =
 [
-    [ "ph::AltPath", "classph_1_1_alt_path.html", null ],
     [ "ph::ApiDatabase", "classph_1_1_api_database.html", null ],
     [ "ph::ApiHelper", "classph_1_1_api_helper.html", null ],
     [ "ph::IndexedVertexBuffer::AttributeDeclaration", "structph_1_1_indexed_vertex_buffer_1_1_attribute_declaration.html", null ],
@@ -163,9 +162,9 @@ var hierarchy =
       [ "ph::Intersector", "classph_1_1_intersector.html", [
         [ "ph::BruteForceIntersector", "classph_1_1_brute_force_intersector.html", null ],
         [ "ph::KdtreeIntersector", "classph_1_1_kdtree_intersector.html", null ],
-        [ "ph::TClassicBvhIntersector< Index >", "classph_1_1_t_classic_bvh_intersector.html", null ],
-        [ "ph::TGeneralBvhIntersector< N, Index >", "classph_1_1_t_general_bvh_intersector.html", null ],
-        [ "ph::TIndexedKdtreeIntersector< Index >", "classph_1_1_t_indexed_kdtree_intersector.html", null ]
+        [ "ph::TBinaryBvhIntersector< Index >", "classph_1_1_t_binary_bvh_intersector.html", null ],
+        [ "ph::TIndexedKdtreeIntersector< Index >", "classph_1_1_t_indexed_kdtree_intersector.html", null ],
+        [ "ph::TWideBvhIntersector< N, Index >", "classph_1_1_t_wide_bvh_intersector.html", null ]
       ] ],
       [ "ph::MaskedIntersectable", "classph_1_1_masked_intersectable.html", null ],
       [ "ph::Primitive", "classph_1_1_primitive.html", [
@@ -181,6 +180,7 @@ var hierarchy =
       ] ],
       [ "ph::TransformedIntersectable", "classph_1_1_transformed_intersectable.html", null ]
     ] ],
+    [ "ph::IntersectorCommonParams", "classph_1_1_intersector_common_params.html", null ],
     [ "ph::IReceivedRayProcessor", "classph_1_1_i_received_ray_processor.html", [
       [ "ph::MetaRecordingProcessor", "classph_1_1_meta_recording_processor.html", null ],
       [ "ph::TReceiverMeasurementEstimator< SamplingFilmType, EstimationType >", "classph_1_1_t_receiver_measurement_estimator.html", [
@@ -389,6 +389,7 @@ var hierarchy =
     [ "ph::field_set_op::NoOpNoticeReceiver", "structph_1_1field__set__op_1_1_no_op_notice_receiver.html", null ],
     [ "ph::VolumeDistanceSample::Output", "classph_1_1_volume_distance_sample_1_1_output.html", null ],
     [ "ph::halton_detail::OwenScrambledPermuter", "classph_1_1halton__detail_1_1_owen_scrambled_permuter.html", null ],
+    [ "ph::Path", "classph_1_1_path.html", null ],
     [ "ph::math::detail::Pcg64UInt128", "classph_1_1math_1_1detail_1_1_pcg64_u_int128.html", null ],
     [ "ph::lta::PDF", "classph_1_1lta_1_1_p_d_f.html", null ],
     [ "ph::halton_detail::PerDigitPermuter", "classph_1_1halton__detail_1_1_per_digit_permuter.html", null ],
@@ -719,6 +720,7 @@ var hierarchy =
         [ "ph::math::TVectorN< T, N >", "classph_1_1math_1_1_t_vector_n.html", null ]
       ] ]
     ] ],
+    [ "ph::TArrayHeap< T, N, IsLess >", "classph_1_1_t_array_heap.html", null ],
     [ "ph::TArrayStack< T, N >", "classph_1_1_t_array_stack.html", null ],
     [ "ph::TArrayStack< const Intersectable *, PH_HIT_PROBE_DEPTH >", "classph_1_1_t_array_stack.html", null ],
     [ "ph::TArrayVector< T, N >", "classph_1_1_t_array_vector.html", null ],
@@ -748,6 +750,7 @@ var hierarchy =
     [ "ph::math::TBvhBuilder< N, Item, ItemToAABB >", "classph_1_1math_1_1_t_bvh_builder.html", null ],
     [ "ph::math::TBvhInfoNode< N, Item >", "classph_1_1math_1_1_t_bvh_info_node.html", null ],
     [ "ph::math::TBvhItemInfo< Item >", "classph_1_1math_1_1_t_bvh_item_info.html", null ],
+    [ "ph::math::TBvhSimdComputingContext< N, Index >", "classph_1_1math_1_1_t_bvh_simd_computing_context.html", null ],
     [ "ph::math::TChromaticAdaptationDefinition< ALGORITHM, T >", "classph_1_1math_1_1_t_chromatic_adaptation_definition.html", null ],
     [ "ph::math::detail::TCIEXYZCmfKernel< T, SampleProps >", "structph_1_1math_1_1detail_1_1_t_c_i_e_x_y_z_cmf_kernel.html", null ],
     [ "ph::texfunc::TClamp< InputTypeA, InputTypeB, InputTypeC, OutputType >", "classph_1_1texfunc_1_1_t_clamp.html", null ],
@@ -767,6 +770,7 @@ var hierarchy =
     [ "ph::TextureLoader", "classph_1_1_texture_loader.html", null ],
     [ "ph::TFixedMapBase< Entries >", "classph_1_1_t_fixed_map_base.html", null ],
     [ "ph::TFixedMapEntry< KeyType, KEY_VAL, ValueType >", "classph_1_1_t_fixed_map_entry.html", null ],
+    [ "ph::math::detail::bvh::TFloatN< N >", "structph_1_1math_1_1detail_1_1bvh_1_1_t_float_n.html", null ],
     [ "ph::math::TFraction< T >", "classph_1_1math_1_1_t_fraction.html", null ],
     [ "ph::TFrame< T, N >", "classph_1_1_t_frame.html", null ],
     [ "ph::TFrame< float32, 3 >", "classph_1_1_t_frame.html", null ],
@@ -960,7 +964,7 @@ var hierarchy =
     [ "ph::TViewpoint< FullViewpoint >", "classph_1_1_t_viewpoint.html", [
       [ "ph::FullViewpoint", "classph_1_1_full_viewpoint.html", null ]
     ] ],
-    [ "ph::math::TWideBvhNode< N, Item, Index >", "classph_1_1math_1_1_t_wide_bvh_node.html", null ],
+    [ "ph::math::TWideBvhNode< N, Index >", "classph_1_1math_1_1_t_wide_bvh_node.html", null ],
     [ "ph::UvwMapper", "classph_1_1_uvw_mapper.html", [
       [ "ph::SphericalMapper", "classph_1_1_spherical_mapper.html", null ]
     ] ],

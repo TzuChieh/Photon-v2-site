@@ -1,6 +1,9 @@
 var hierarchy =
 [
     [ "ph::detail::AlignedMemoryDeleter", "structph_1_1detail_1_1_aligned_memory_deleter.html", null ],
+    [ "std::array", null, [
+      [ "ph::TAlignedArray< T, N, ALIGNMENT_IN_BYTES >", "structph_1_1_t_aligned_array.html", null ]
+    ] ],
     [ "ph::CommandLineArguments", "classph_1_1_command_line_arguments.html", null ],
     [ "ph::Config", "classph_1_1_config.html", null ],
     [ "ph::TimerStatsReport::GroupedTimeRecord", "structph_1_1_timer_stats_report_1_1_grouped_time_record.html", null ],

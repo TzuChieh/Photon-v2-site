@@ -70388,7 +70388,7 @@
     <path>Source/ThirdParty/</path>
     <filename>_im_plot_8h.html</filename>
     <includes id="_dear_im_gui_8h" name="DearImGui.h" local="yes" import="no" module="no" objc="no">ThirdParty/DearImGui.h</includes>
-    <includes id="_im_plot_8h" name="ImPlot.h" local="no" import="no" module="no" objc="no">ImPlot.h</includes>
+    <includes id="_im_plot_8h" name="ImPlot.h" local="no" import="no" module="no" objc="no">implot.h</includes>
   </compound>
   <compound kind="file">
     <name>NLohmannJSON.h</name>
@@ -80844,7 +80844,7 @@
       <type>friend class</type>
       <name>TQuery</name>
       <anchorfile>classph_1_1editor_1_1_t_query.html</anchorfile>
-      <anchor>ae3bad6e23639833e44848d4a837c0a88</anchor>
+      <anchor>a83c3bc74c91fc666176cc8fe07373948</anchor>
       <arglist></arglist>
     </member>
   </compound>

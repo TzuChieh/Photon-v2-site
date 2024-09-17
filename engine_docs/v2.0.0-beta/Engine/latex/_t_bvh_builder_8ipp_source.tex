@@ -13,483 +13,671 @@
 \DoxyCodeLine{00009\ }
 \DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <Common/assertion.h>}}
 \DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <Common/logging.h>}}
-\DoxyCodeLine{00012\ }
-\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <algorithm>}}
-\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <cmath>}}
-\DoxyCodeLine{00015\ }
-\DoxyCodeLine{00016\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph_1_1math}{ph::math}}}
-\DoxyCodeLine{00017\ \{}
-\DoxyCodeLine{00018\ }
-\DoxyCodeLine{00019\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Item,\ \textcolor{keyword}{typename}\ ItemToAABB>}
-\DoxyCodeLine{00020\ \textcolor{keyword}{inline}\ TBvhBuilder<N,\ Item,\ ItemToAABB>}
-\DoxyCodeLine{00021\ ::TBvhBuilder(}
-\DoxyCodeLine{00022\ \ \ \ \ ItemToAABB\ itemToAABB,}
-\DoxyCodeLine{00023\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_bvh_params}{BvhParams}}\ params)}
-\DoxyCodeLine{00024\ }
-\DoxyCodeLine{00025\ \ \ \ \ :\ m\_infoBuffer()}
-\DoxyCodeLine{00026\ \ \ \ \ ,\ m\_infoNodes()}
-\DoxyCodeLine{00027\ \ \ \ \ ,\ m\_params(params)}
-\DoxyCodeLine{00028\ \ \ \ \ ,\ m\_itemToAABB(\mbox{\hyperlink{namespacestd}{std}}::move(itemToAABB))}
-\DoxyCodeLine{00029\ \{\}}
-\DoxyCodeLine{00030\ }
-\DoxyCodeLine{00031\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Item,\ \textcolor{keyword}{typename}\ ItemToAABB>}
-\DoxyCodeLine{00032\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_builder}{TBvhBuilder<N,\ Item,\ ItemToAABB>}}}
-\DoxyCodeLine{00033\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_builder}{::buildInformativeBvh}}(\mbox{\hyperlink{namespaceph_a06c532bb78132f63638ec3ef52d46ff3}{TSpanView<Item>}}\ items)}
-\DoxyCodeLine{00034\ -\/>\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node}{InfoNodeType}}*}
-\DoxyCodeLine{00035\ \{}
-\DoxyCodeLine{00036\ \ \ \ \ clearBuildData();}
-\DoxyCodeLine{00037\ }
-\DoxyCodeLine{00038\ \ \ \ \ m\_infoBuffer.resize(items.size());}
-\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ i\ =\ 0;\ i\ <\ items.size();\ i++)}
-\DoxyCodeLine{00040\ \ \ \ \ \{}
-\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ m\_infoBuffer[i]\ =\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_item_info}{ItemInfoType}}(m\_itemToAABB(items[i]),\ items[i]);}
-\DoxyCodeLine{00042\ \ \ \ \ \}}
-\DoxyCodeLine{00043\ }
-\DoxyCodeLine{00044\ \ \ \ \ \textcolor{comment}{//\ To\ have\ stable\ node\ pointers,\ pre-\/allocate\ enough\ nodes\ beforehand.\ We\ calculate\ the\ maximum}}
-\DoxyCodeLine{00045\ \ \ \ \ \textcolor{comment}{//\ nodes\ required\ for\ a\ BVH\ with\ maximum\ items\ in\ node\ =\ 1\ and\ branch\ factor\ =\ 2.\ This\ is\ quite}}
-\DoxyCodeLine{00046\ \ \ \ \ \textcolor{comment}{//\ pessimistic\ for\ wide\ BVHs,\ and\ a\ tighter\ bound\ is\ left\ for\ future\ work.}}
-\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ maxLeaves\ =\ items.size();}
-\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ maxNodes\ \ =\ 2\ *\ maxLeaves\ -\/\ 1;}
-\DoxyCodeLine{00049\ \ \ \ \ m\_infoNodes.reserve(maxNodes);}
-\DoxyCodeLine{00050\ }
-\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node}{InfoNodeType}}*\ rootNode\ =\ \textcolor{keyword}{nullptr};}
-\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordflow}{switch}(m\_params.splitMethod)}
-\DoxyCodeLine{00053\ \ \ \ \ \{}
-\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespaceph_1_1math_a6b85157eabe1403cdf9b1e45c8c7e368ade447f76aa569e5e8c5a1ac54791e00c}{EBvhNodeSplitMethod::EqualItems}}:}
-\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ rootNode\ =\ buildBvhInfoNodeRecursive<EBvhNodeSplitMethod::EqualItems>(}
-\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ m\_infoBuffer);}
-\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
-\DoxyCodeLine{00058\ }
-\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespaceph_1_1math_a6b85157eabe1403cdf9b1e45c8c7e368aba1b71c9dc960e4e2f3392f8d0f46f97}{EBvhNodeSplitMethod::SAH\_Buckets\_OneAxis}}:}
-\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ rootNode\ =\ buildBvhInfoNodeRecursive<EBvhNodeSplitMethod::SAH\_Buckets\_OneAxis>(}
-\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ m\_infoBuffer);}
-\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
-\DoxyCodeLine{00063\ }
-\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keywordflow}{default}:}
-\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ PH\_DEFAULT\_LOG(Warning,}
-\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}BVH\{\}\ builder:\ unsupported\ BVH\ split\ method"{}},\ N);}
-\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
-\DoxyCodeLine{00068\ \ \ \ \ \}}
-\DoxyCodeLine{00069\ }
-\DoxyCodeLine{00070\ \ \ \ \ PH\_ASSERT\_EQ(m\_infoBuffer.size(),\ items.size());}
-\DoxyCodeLine{00071\ \ \ \ \ PH\_ASSERT\_LE(m\_infoNodes.size(),\ maxNodes);}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <Common/utility.h>}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <cmath>}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph_1_1math}{ph::math}}}
+\DoxyCodeLine{00018\ \{}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Item,\ \textcolor{keyword}{typename}\ ItemToAABB>}
+\DoxyCodeLine{00021\ \textcolor{keyword}{inline}\ TBvhBuilder<N,\ Item,\ ItemToAABB>}
+\DoxyCodeLine{00022\ ::TBvhBuilder(}
+\DoxyCodeLine{00023\ \ \ \ \ ItemToAABB\ itemToAABB,}
+\DoxyCodeLine{00024\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_bvh_params}{BvhParams}}\ params)}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \ \ \ \ :\ m\_infoBuffer()}
+\DoxyCodeLine{00027\ \ \ \ \ ,\ m\_infoNodes()}
+\DoxyCodeLine{00028\ \ \ \ \ ,\ m\_params(params)}
+\DoxyCodeLine{00029\ \ \ \ \ ,\ m\_itemToAABB(\mbox{\hyperlink{namespacestd}{std}}::move(itemToAABB))}
+\DoxyCodeLine{00030\ \{}
+\DoxyCodeLine{00031\ \ \ \ \ PH\_ASSERT\_IN\_RANGE\_INCLUSIVE(params.\mbox{\hyperlink{classph_1_1math_1_1_bvh_params_a11cfdc16a4350f8d90e6d57853c017c8}{numSahBuckets}},\ 2,\ MAX\_SAH\_BUCKETS);}
+\DoxyCodeLine{00032\ \}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Item,\ \textcolor{keyword}{typename}\ ItemToAABB>}
+\DoxyCodeLine{00035\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_builder}{TBvhBuilder<N,\ Item,\ ItemToAABB>}}}
+\DoxyCodeLine{00036\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_builder}{::buildInformativeBvh}}(\mbox{\hyperlink{namespaceph_a06c532bb78132f63638ec3ef52d46ff3}{TSpanView<Item>}}\ items)}
+\DoxyCodeLine{00037\ -\/>\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node}{InfoNodeType}}*}
+\DoxyCodeLine{00038\ \{}
+\DoxyCodeLine{00039\ \ \ \ \ clearBuildData();}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \ \ m\_infoBuffer.resize(items.size());}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ i\ =\ 0;\ i\ <\ items.size();\ i++)}
+\DoxyCodeLine{00043\ \ \ \ \ \{}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ m\_infoBuffer[i]\ =\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_item_info}{ItemInfoType}}(m\_itemToAABB(items[i]),\ items[i]);}
+\DoxyCodeLine{00045\ \ \ \ \ \}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{comment}{//\ To\ have\ stable\ node\ pointers,\ pre-\/allocate\ enough\ nodes\ beforehand.\ We\ calculate\ the\ maximum}}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{comment}{//\ nodes\ required\ for\ a\ BVH\ with\ maximum\ items\ in\ node\ =\ 1\ and\ branch\ factor\ =\ 2.\ This\ is\ quite}}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{comment}{//\ pessimistic\ for\ wide\ BVHs,\ and\ a\ tighter\ bound\ is\ left\ for\ future\ work.}}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ maxLeaves\ =\ items.size();}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ maxNodes\ \ =\ 2\ *\ maxLeaves\ -\/\ 1;}
+\DoxyCodeLine{00052\ \ \ \ \ m\_infoNodes.reserve(maxNodes);}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node}{InfoNodeType}}*\ rootNode\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordflow}{switch}(m\_params.splitMethod)}
+\DoxyCodeLine{00056\ \ \ \ \ \{}
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespaceph_1_1math_a6b85157eabe1403cdf9b1e45c8c7e368ade447f76aa569e5e8c5a1ac54791e00c}{EBvhNodeSplitMethod::EqualItems}}:}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ rootNode\ =\ buildBvhInfoNodeRecursive<EBvhNodeSplitMethod::EqualItems>(}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ m\_infoBuffer);}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespaceph_1_1math_a6b85157eabe1403cdf9b1e45c8c7e368aba1b71c9dc960e4e2f3392f8d0f46f97}{EBvhNodeSplitMethod::SAH\_Buckets\_OneAxis}}:}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ rootNode\ =\ buildBvhInfoNodeRecursive<EBvhNodeSplitMethod::SAH\_Buckets\_OneAxis>(}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ m\_infoBuffer);}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ PH\_DEFAULT\_LOG(Warning,}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}BVH\{\}\ builder:\ unsupported\ BVH\ split\ method"{}},\ N);}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00071\ \ \ \ \ \}}
 \DoxyCodeLine{00072\ }
-\DoxyCodeLine{00073\ \ \ \ \ \textcolor{comment}{//\ Verify\ the\ nodes\ by\ doing\ a\ full\ traversal}}
-\DoxyCodeLine{00074\ \ \ \ \ PH\_ASSERT\_EQ(m\_infoNodes.size(),\ calcTotalNodes(rootNode));}
-\DoxyCodeLine{00075\ \ \ \ \ PH\_ASSERT\_EQ(m\_infoBuffer.size(),\ calcTotalItems(rootNode));}
-\DoxyCodeLine{00076\ }
-\DoxyCodeLine{00077\ \ \ \ \ \textcolor{comment}{//\ As\ noted\ earlier,\ we\ appreciate\ a\ tighter\ bound}}
-\DoxyCodeLine{00078\ \ \ \ \ PH\_DEFAULT\_DEBUG\_LOG(}
-\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}BVH\{\}\ builder:\ node\ buffer\ utilization\ =\ \{\}"{}},}
-\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ N,\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{float}\textcolor{keyword}{>}(m\_infoNodes.size())\ /\ maxNodes);}
-\DoxyCodeLine{00081\ }
-\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keywordflow}{return}\ rootNode;}
-\DoxyCodeLine{00083\ \}}
+\DoxyCodeLine{00073\ \ \ \ \ PH\_ASSERT\_EQ(m\_infoBuffer.size(),\ items.size());}
+\DoxyCodeLine{00074\ \ \ \ \ PH\_ASSERT\_LE(m\_infoNodes.size(),\ maxNodes);}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{comment}{//\ Verify\ the\ nodes\ by\ doing\ a\ full\ traversal}}
+\DoxyCodeLine{00077\ \ \ \ \ PH\_ASSERT\_EQ(m\_infoNodes.size(),\ calcTotalNodes(rootNode));}
+\DoxyCodeLine{00078\ \ \ \ \ PH\_ASSERT\_EQ(m\_infoBuffer.size(),\ calcTotalItems(rootNode));}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{comment}{//\ As\ noted\ earlier,\ we\ appreciate\ a\ tighter\ bound}}
+\DoxyCodeLine{00081\ \ \ \ \ PH\_DEFAULT\_DEBUG\_LOG(}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}BVH\{\}\ builder:\ node\ buffer\ utilization\ =\ \{\}"{}},}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ N,\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{float}\textcolor{keyword}{>}(m\_infoNodes.size())\ /\ maxNodes);}
 \DoxyCodeLine{00084\ }
-\DoxyCodeLine{00085\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Item,\ \textcolor{keyword}{typename}\ ItemToAABB>}
-\DoxyCodeLine{00086\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_builder}{TBvhBuilder<N,\ Item,\ ItemToAABB>}}}
-\DoxyCodeLine{00087\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_builder}{::clearBuildData}}()}
-\DoxyCodeLine{00088\ \{}
-\DoxyCodeLine{00089\ \ \ \ \ m\_infoBuffer.clear();}
-\DoxyCodeLine{00090\ \ \ \ \ m\_infoNodes.clear();}
-\DoxyCodeLine{00091\ \}}
-\DoxyCodeLine{00092\ }
-\DoxyCodeLine{00093\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Item,\ \textcolor{keyword}{typename}\ ItemToAABB>}
-\DoxyCodeLine{00094\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_builder}{TBvhBuilder<N,\ Item,\ ItemToAABB>}}}
-\DoxyCodeLine{00095\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_builder}{::totalInfoNodes}}()\ const}
-\DoxyCodeLine{00096\ -\/>\ \mbox{\hyperlink{namespacestd}{std}}::\textcolor{keywordtype}{size\_t}}
-\DoxyCodeLine{00097\ \{}
-\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_infoNodes.size();}
-\DoxyCodeLine{00099\ \}}
-\DoxyCodeLine{00100\ }
-\DoxyCodeLine{00101\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Item,\ \textcolor{keyword}{typename}\ ItemToAABB>}
-\DoxyCodeLine{00102\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_builder}{TBvhBuilder<N,\ Item,\ ItemToAABB>}}}
-\DoxyCodeLine{00103\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_builder}{::totalItems}}()\ const}
-\DoxyCodeLine{00104\ -\/>\ \mbox{\hyperlink{namespacestd}{std}}::\textcolor{keywordtype}{size\_t}}
-\DoxyCodeLine{00105\ \{}
-\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_infoBuffer.size();}
-\DoxyCodeLine{00107\ \}}
-\DoxyCodeLine{00108\ }
-\DoxyCodeLine{00109\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Item,\ \textcolor{keyword}{typename}\ ItemToAABB>}
-\DoxyCodeLine{00110\ \textcolor{keyword}{template}<EBvhNodeSplitMethod\ SPLIT\_METHOD>}
-\DoxyCodeLine{00111\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_builder}{TBvhBuilder<N,\ Item,\ ItemToAABB>}}}
-\DoxyCodeLine{00112\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_builder}{::buildBvhInfoNodeRecursive}}(}
-\DoxyCodeLine{00113\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_a5390437e1d7fd7d167c847677ea146e6}{TSpan<ItemInfoType>}}\ itemInfos)}
-\DoxyCodeLine{00114\ -\/>\ \textcolor{keyword}{const}\ InfoNodeType*}
-\DoxyCodeLine{00115\ \{}
-\DoxyCodeLine{00116\ \ \ \ \ \textcolor{comment}{//\ Creating\ a\ new\ node\ must\ not\ cause\ reallocation}}
-\DoxyCodeLine{00117\ \ \ \ \ PH\_ASSERT\_LT(m\_infoNodes.size(),\ m\_infoNodes.capacity());}
-\DoxyCodeLine{00118\ }
-\DoxyCodeLine{00119\ \ \ \ \ m\_infoNodes.push\_back(InfoNodeType\{\});}
-\DoxyCodeLine{00120\ \ \ \ \ InfoNodeType*\ \textcolor{keyword}{const}\ node\ =\ \&m\_infoNodes.back();}
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keywordflow}{return}\ rootNode;}
+\DoxyCodeLine{00086\ \}}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Item,\ \textcolor{keyword}{typename}\ ItemToAABB>}
+\DoxyCodeLine{00089\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_builder}{TBvhBuilder<N,\ Item,\ ItemToAABB>}}}
+\DoxyCodeLine{00090\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_builder}{::clearBuildData}}()}
+\DoxyCodeLine{00091\ \{}
+\DoxyCodeLine{00092\ \ \ \ \ m\_infoBuffer.clear();}
+\DoxyCodeLine{00093\ \ \ \ \ m\_infoNodes.clear();}
+\DoxyCodeLine{00094\ \}}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Item,\ \textcolor{keyword}{typename}\ ItemToAABB>}
+\DoxyCodeLine{00097\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_builder}{TBvhBuilder<N,\ Item,\ ItemToAABB>}}}
+\DoxyCodeLine{00098\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_builder}{::totalInfoNodes}}()\ const}
+\DoxyCodeLine{00099\ -\/>\ \mbox{\hyperlink{namespacestd}{std}}::\textcolor{keywordtype}{size\_t}}
+\DoxyCodeLine{00100\ \{}
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_infoNodes.size();}
+\DoxyCodeLine{00102\ \}}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Item,\ \textcolor{keyword}{typename}\ ItemToAABB>}
+\DoxyCodeLine{00105\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_builder}{TBvhBuilder<N,\ Item,\ ItemToAABB>}}}
+\DoxyCodeLine{00106\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_builder}{::totalItems}}()\ const}
+\DoxyCodeLine{00107\ -\/>\ \mbox{\hyperlink{namespacestd}{std}}::\textcolor{keywordtype}{size\_t}}
+\DoxyCodeLine{00108\ \{}
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_infoBuffer.size();}
+\DoxyCodeLine{00110\ \}}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Item,\ \textcolor{keyword}{typename}\ ItemToAABB>}
+\DoxyCodeLine{00113\ \textcolor{keyword}{template}<EBvhNodeSplitMethod\ SPLIT\_METHOD>}
+\DoxyCodeLine{00114\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_builder}{TBvhBuilder<N,\ Item,\ ItemToAABB>}}}
+\DoxyCodeLine{00115\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_builder}{::buildBvhInfoNodeRecursive}}(}
+\DoxyCodeLine{00116\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_a5390437e1d7fd7d167c847677ea146e6}{TSpan<ItemInfoType>}}\ itemInfos)}
+\DoxyCodeLine{00117\ -\/>\ \textcolor{keyword}{const}\ InfoNodeType*}
+\DoxyCodeLine{00118\ \{}
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{comment}{//\ Creating\ a\ new\ node\ must\ not\ cause\ reallocation}}
+\DoxyCodeLine{00120\ \ \ \ \ PH\_ASSERT\_LT(m\_infoNodes.size(),\ m\_infoNodes.capacity());}
 \DoxyCodeLine{00121\ }
-\DoxyCodeLine{00122\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d}{AABB3D}}\ nodeAABB(itemInfos.empty()\ ?\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d}{AABB3D}}(\mbox{\hyperlink{namespaceph_1_1math_a7f5d9bea70db00eb52ece79b05e544c8}{Vector3R}}(0))\ :\ itemInfos.front().aabb);}
-\DoxyCodeLine{00123\ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keyword}{const}\ ItemInfoType\&\ itemInfo\ :\ itemInfos)}
-\DoxyCodeLine{00124\ \ \ \ \ \{}
-\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ nodeAABB\ =\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d_ab8a4a18e04cd0077c5ae1bdfdec3752c}{AABB3D::makeUnioned}}(nodeAABB,\ itemInfo.aabb);}
-\DoxyCodeLine{00126\ \ \ \ \ \}}
-\DoxyCodeLine{00127\ }
-\DoxyCodeLine{00128\ \ \ \ \ \textcolor{comment}{//\ Makes\ no\ sense\ to\ split}}
-\DoxyCodeLine{00129\ \ \ \ \ \textcolor{keywordflow}{if}(itemInfos.size()\ <=\ 1)}
-\DoxyCodeLine{00130\ \ \ \ \ \{}
-\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ *node\ =\ InfoNodeType::makeLeaf(itemInfos,\ nodeAABB);}
-\DoxyCodeLine{00132\ }
-\DoxyCodeLine{00133\ \textcolor{preprocessor}{\#if\ PH\_DEBUG}}
-\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(itemInfos.empty())}
-\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ PH\_DEFAULT\_LOG(Warning,}
-\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}BVH\{\}\ builder:\ leaf\ node\ without\ item\ detected"{}},\ N);}
-\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00139\ \textcolor{preprocessor}{\#endif}}
-\DoxyCodeLine{00140\ \ \ \ \ \}}
-\DoxyCodeLine{00141\ \ \ \ \ \textcolor{comment}{//\ Try\ to\ split\ with\ \`{}SPLIT\_METHOD`}}
-\DoxyCodeLine{00142\ \ \ \ \ \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00143\ \ \ \ \ \{}
-\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceph_1_1math_a79409e9e8aea24d984f98f3acb483937}{AABB3D}}\ centroidsAABB(itemInfos.front().aabbCentroid);}
-\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keyword}{const}\ ItemInfoType\&\ itemInfo\ :\ itemInfos)}
-\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \ \ centroidsAABB\ =\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d_ab8a4a18e04cd0077c5ae1bdfdec3752c}{AABB3D::makeUnioned}}(centroidsAABB,\ \mbox{\hyperlink{namespaceph_1_1math_a79409e9e8aea24d984f98f3acb483937}{AABB3D}}(itemInfo.aabbCentroid));}
-\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00149\ }
-\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceph_1_1math_a7f5d9bea70db00eb52ece79b05e544c8}{Vector3R}}\ extents\ =\ centroidsAABB.getExtents();}
-\DoxyCodeLine{00151\ \textcolor{preprocessor}{\#if\ PH\_DEBUG}}
-\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!extents.isNonNegative())}
-\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ PH\_DEFAULT\_LOG(Warning,}
-\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}BVH\{\}\ builder:\ negative\ AABB\ extent\ detected"{}},\ N);}
-\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ extents.absLocal();}
-\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00158\ \textcolor{preprocessor}{\#endif}}
-\DoxyCodeLine{00159\ }
-\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ maxDimension\ =\ extents.maxDimension();}
-\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(centroidsAABB.getMinVertex()[maxDimension]\ ==\ centroidsAABB.getMaxVertex()[maxDimension])}
-\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \ \ \ \ *node\ =\ InfoNodeType::makeLeaf(itemInfos,\ nodeAABB);}
-\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Specialized\ binary\ node\ splitting}}
-\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(N\ ==\ 2)}
-\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ isSplitted\ =\ \textcolor{keyword}{false};}
-\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceph_a5390437e1d7fd7d167c847677ea146e6}{TSpan<ItemInfoType>}}\ negativeChildItems;}
-\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceph_a5390437e1d7fd7d167c847677ea146e6}{TSpan<ItemInfoType>}}\ positiveChildItems;}
-\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(SPLIT\_METHOD\ ==\ \mbox{\hyperlink{namespaceph_1_1math_a6b85157eabe1403cdf9b1e45c8c7e368ade447f76aa569e5e8c5a1ac54791e00c}{EBvhNodeSplitMethod::EqualItems}})}
-\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ isSplitted\ =\ binarySplitWithEqualItems(}
-\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ itemInfos,}
-\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ maxDimension,}
-\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&negativeChildItems,}
-\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&positiveChildItems);}
-\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(SPLIT\_METHOD\ ==\ \mbox{\hyperlink{namespaceph_1_1math_a6b85157eabe1403cdf9b1e45c8c7e368aba1b71c9dc960e4e2f3392f8d0f46f97}{EBvhNodeSplitMethod::SAH\_Buckets\_OneAxis}})}
-\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ isSplitted\ =\ binarySplitWithSahBuckets(}
-\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ itemInfos,}
-\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ maxDimension,}
-\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ nodeAABB,}
-\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ centroidsAABB,}
-\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&negativeChildItems,}
-\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&positiveChildItems);}
-\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ PH\_DEFAULT\_DEBUG\_LOG(}
-\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}BVH\{\}\ builder:\ unsupported\ BVH\ split\ method\ detected"{}},\ N);}
-\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ isSplitted\ =\ \textcolor{keyword}{false};}
-\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \ \ \ \ \}\textcolor{comment}{//\ end\ split\ method}}
-\DoxyCodeLine{00195\ }
-\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(isSplitted\ \&\&\ (negativeChildItems.empty()\ ||\ positiveChildItems.empty()))}
-\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ PH\_DEFAULT\_DEBUG\_LOG(}
-\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}BVH\{\}\ builder:\ bad\ split\ detected:\ \#neg-\/child=\{\},\ \#pos-\/child=\{\}"{}},}
-\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ N,\ negativeChildItems.size(),\ positiveChildItems.size());}
-\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ isSplitted\ =\ \textcolor{keyword}{false};}
-\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00203\ }
-\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(isSplitted)}
-\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *node\ =\ InfoNodeType::makeInternal(}
-\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ buildBvhInfoNodeRecursive<SPLIT\_METHOD>(negativeChildItems),}
-\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ buildBvhInfoNodeRecursive<SPLIT\_METHOD>(positiveChildItems)}
-\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \},}
-\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ maxDimension);}
-\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *node\ =\ InfoNodeType::makeLeaf(itemInfos,\ nodeAABB);}
+\DoxyCodeLine{00122\ \ \ \ \ m\_infoNodes.push\_back(InfoNodeType\{\});}
+\DoxyCodeLine{00123\ \ \ \ \ InfoNodeType*\ \textcolor{keyword}{const}\ node\ =\ \&m\_infoNodes.back();}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d}{AABB3D}}\ nodeAABB(itemInfos.empty()\ ?\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d}{AABB3D}}(\mbox{\hyperlink{namespaceph_1_1math_a7f5d9bea70db00eb52ece79b05e544c8}{Vector3R}}(0))\ :\ itemInfos.front().aabb);}
+\DoxyCodeLine{00126\ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keyword}{const}\ ItemInfoType\&\ itemInfo\ :\ itemInfos)}
+\DoxyCodeLine{00127\ \ \ \ \ \{}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ nodeAABB\ =\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d_ab8a4a18e04cd0077c5ae1bdfdec3752c}{AABB3D::makeUnioned}}(nodeAABB,\ itemInfo.aabb);}
+\DoxyCodeLine{00129\ \ \ \ \ \}}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ \ \ \ \ \textcolor{comment}{//\ Makes\ no\ sense\ to\ split}}
+\DoxyCodeLine{00132\ \ \ \ \ \textcolor{keywordflow}{if}(itemInfos.size()\ <=\ 1)}
+\DoxyCodeLine{00133\ \ \ \ \ \{}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ *node\ =\ InfoNodeType::makeLeaf(itemInfos,\ nodeAABB);}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00136\ \textcolor{preprocessor}{\#if\ PH\_DEBUG}}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(itemInfos.empty())}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ PH\_DEFAULT\_LOG(Warning,}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}BVH\{\}\ builder:\ leaf\ node\ without\ item\ detected"{}},\ N);}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00142\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00143\ \ \ \ \ \}}
+\DoxyCodeLine{00144\ \ \ \ \ \textcolor{comment}{//\ Try\ to\ split\ with\ \`{}SPLIT\_METHOD`}}
+\DoxyCodeLine{00145\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00146\ \ \ \ \ \{}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceph_1_1math_a79409e9e8aea24d984f98f3acb483937}{AABB3D}}\ centroidsAABB(itemInfos.front().aabbCentroid);}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keyword}{const}\ ItemInfoType\&\ itemInfo\ :\ itemInfos)}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \ \ \ \ centroidsAABB\ =\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d_ab8a4a18e04cd0077c5ae1bdfdec3752c}{AABB3D::makeUnioned}}(centroidsAABB,\ \mbox{\hyperlink{namespaceph_1_1math_a79409e9e8aea24d984f98f3acb483937}{AABB3D}}(itemInfo.aabbCentroid));}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceph_1_1math_a7f5d9bea70db00eb52ece79b05e544c8}{Vector3R}}\ extents\ =\ centroidsAABB.getExtents();}
+\DoxyCodeLine{00154\ \textcolor{preprocessor}{\#if\ PH\_DEBUG}}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!extents.isNonNegative())}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ PH\_DEFAULT\_LOG(Warning,}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}BVH\{\}\ builder:\ negative\ AABB\ extent\ detected"{}},\ N);}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \ \ \ \ extents.absLocal();}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00161\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ maxDimension\ =\ extents.maxDimension();}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(centroidsAABB.getMinVertex()[maxDimension]\ ==\ centroidsAABB.getMaxVertex()[maxDimension])}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ *node\ =\ InfoNodeType::makeLeaf(itemInfos,\ nodeAABB);}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Specialized\ binary\ node\ splitting}}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(N\ ==\ 2)}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ isSplitted\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceph_a5390437e1d7fd7d167c847677ea146e6}{TSpan<ItemInfoType>}}\ negativeChildItems;}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceph_a5390437e1d7fd7d167c847677ea146e6}{TSpan<ItemInfoType>}}\ positiveChildItems;}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(SPLIT\_METHOD\ ==\ \mbox{\hyperlink{namespaceph_1_1math_a6b85157eabe1403cdf9b1e45c8c7e368ade447f76aa569e5e8c5a1ac54791e00c}{EBvhNodeSplitMethod::EqualItems}})}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ isSplitted\ =\ binarySplitWithEqualItems(}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ itemInfos,}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ maxDimension,}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&negativeChildItems,}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&positiveChildItems);}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(SPLIT\_METHOD\ ==\ \mbox{\hyperlink{namespaceph_1_1math_a6b85157eabe1403cdf9b1e45c8c7e368aba1b71c9dc960e4e2f3392f8d0f46f97}{EBvhNodeSplitMethod::SAH\_Buckets\_OneAxis}})}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ isSplitted\ =\ binarySplitWithSahBuckets(}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ itemInfos,}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ maxDimension,}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ nodeAABB,}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ centroidsAABB,}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&negativeChildItems,}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&positiveChildItems);}
+\DoxyCodeLine{00191\ }
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Potentially\ fallback\ to\ equal-\/item\ split\ if\ needed}}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!isSplitted\ \&\&\ itemInfos.size()\ >\ m\_params.maxNodeItems)}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ isSplitted\ =\ binarySplitWithEqualItems(}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ itemInfos,}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ maxDimension,}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&negativeChildItems,}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&positiveChildItems);}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ PH\_DEFAULT\_DEBUG\_LOG(}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}BVH\{\}\ builder:\ unsupported\ BVH\ split\ method\ detected"{}},\ N);}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ isSplitted\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \ \ \ \ \}\textcolor{comment}{//\ end\ split\ method}}
+\DoxyCodeLine{00208\ }
+\DoxyCodeLine{00209\ \textcolor{preprocessor}{\#if\ PH\_DEBUG}}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(isSplitted\ \&\&\ (negativeChildItems.empty()\ ||\ positiveChildItems.empty()))}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ PH\_DEFAULT\_DEBUG\_LOG(}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}BVH\{\}\ builder:\ bad\ binary\ split\ detected:\ \#neg-\/child=\{\},\ \#pos-\/child=\{\}"{}},}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ N,\ negativeChildItems.size(),\ positiveChildItems.size());}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ isSplitted\ =\ \textcolor{keyword}{false};}
 \DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Generalized\ N-\/wide\ node\ splitting}}
-\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ isSplitted\ =\ \textcolor{keyword}{false};}
-\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \ \ \ \ std::array<TSpan<ItemInfoType>,\ N>\ itemParts;}
-\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(SPLIT\_METHOD\ ==\ \mbox{\hyperlink{namespaceph_1_1math_a6b85157eabe1403cdf9b1e45c8c7e368ade447f76aa569e5e8c5a1ac54791e00c}{EBvhNodeSplitMethod::EqualItems}})}
-\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ isSplitted\ =\ splitWithEqualItems(}
-\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ itemInfos,}
-\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ maxDimension,}
-\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&itemParts);}
-\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ PH\_DEFAULT\_DEBUG\_LOG(}
-\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}BVH\{\}\ builder:\ unsupported\ BVH\ split\ method\ detected"{}},\ N);}
-\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ isSplitted\ =\ \textcolor{keyword}{false};}
-\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \ \ \ \ \}\textcolor{comment}{//\ end\ split\ method}}
-\DoxyCodeLine{00236\ }
-\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(isSplitted)}
-\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::array<const\ InfoNodeType*,\ N>\ children\{\};}
-\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ ci\ =\ 0;\ ci\ <\ N;\ ++ci)}
-\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!itemParts[ci].empty())}
-\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ children[ci]\ =\ buildBvhInfoNodeRecursive<SPLIT\_METHOD>(itemParts[ci]);}
-\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00247\ }
-\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *node\ =\ InfoNodeType::makeInternal(}
-\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ children,}
-\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ maxDimension);}
-\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *node\ =\ InfoNodeType::makeLeaf(itemInfos,\ nodeAABB);}
-\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00257\ \ \ \ \ \}}
-\DoxyCodeLine{00258\ }
-\DoxyCodeLine{00259\ \ \ \ \ \textcolor{keywordflow}{return}\ node;}
-\DoxyCodeLine{00260\ \}}
-\DoxyCodeLine{00261\ }
-\DoxyCodeLine{00262\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Item,\ \textcolor{keyword}{typename}\ ItemToAABB>}
-\DoxyCodeLine{00263\ \textcolor{keyword}{inline}\ std::size\_t\ TBvhBuilder<N,\ Item,\ ItemToAABB>}
-\DoxyCodeLine{00264\ ::calcTotalNodes(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node}{InfoNodeType}}*\ \textcolor{keyword}{const}\ node)}
-\DoxyCodeLine{00265\ \{}
-\DoxyCodeLine{00266\ \ \ \ \ \textcolor{keywordflow}{if}(!node)}
-\DoxyCodeLine{00267\ \ \ \ \ \{}
-\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
-\DoxyCodeLine{00269\ \ \ \ \ \}}
-\DoxyCodeLine{00270\ }
-\DoxyCodeLine{00271\ \ \ \ \ std::size\_t\ result\ =\ 1;}
-\DoxyCodeLine{00272\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ ci\ =\ 0;\ ci\ <\ node-\/>\mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node_ad37e3b8eb2c1abdceef2a89dd561a981}{numChildren}}();\ ++ci)}
-\DoxyCodeLine{00273\ \ \ \ \ \{}
-\DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ result\ +=\ node-\/>\mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node_a9859b29ce8075ca88c11c6bc2062121c}{getChild}}(ci)\ ?\ calcTotalNodes(node-\/>\mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node_a9859b29ce8075ca88c11c6bc2062121c}{getChild}}(ci))\ :\ 0;}
-\DoxyCodeLine{00275\ \ \ \ \ \}}
-\DoxyCodeLine{00276\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
-\DoxyCodeLine{00277\ \}}
-\DoxyCodeLine{00278\ }
-\DoxyCodeLine{00279\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Item,\ \textcolor{keyword}{typename}\ ItemToAABB>}
-\DoxyCodeLine{00280\ \textcolor{keyword}{inline}\ std::size\_t\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_builder}{TBvhBuilder<N,\ Item,\ ItemToAABB>}}}
-\DoxyCodeLine{00281\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_builder}{::calcTotalItems}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node}{InfoNodeType}}*\ \textcolor{keyword}{const}\ node)}
-\DoxyCodeLine{00282\ \{}
-\DoxyCodeLine{00283\ \ \ \ \ \textcolor{keywordflow}{if}(!node)}
-\DoxyCodeLine{00284\ \ \ \ \ \{}
-\DoxyCodeLine{00285\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
-\DoxyCodeLine{00286\ \ \ \ \ \}}
-\DoxyCodeLine{00287\ }
-\DoxyCodeLine{00288\ \ \ \ \ std::size\_t\ result\ =\ node-\/>\mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node_a382b4871c375e546477ed0ac430a2d52}{getItems}}().size();}
-\DoxyCodeLine{00289\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ ci\ =\ 0;\ ci\ <\ node-\/>\mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node_ad37e3b8eb2c1abdceef2a89dd561a981}{numChildren}}();\ ++ci)}
-\DoxyCodeLine{00290\ \ \ \ \ \{}
-\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ result\ +=\ node-\/>\mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node_a9859b29ce8075ca88c11c6bc2062121c}{getChild}}(ci)\ ?\ calcTotalItems(node-\/>\mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node_a9859b29ce8075ca88c11c6bc2062121c}{getChild}}(ci))\ :\ 0;}
-\DoxyCodeLine{00292\ \ \ \ \ \}}
-\DoxyCodeLine{00293\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
-\DoxyCodeLine{00294\ \}}
-\DoxyCodeLine{00295\ }
-\DoxyCodeLine{00296\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Item,\ \textcolor{keyword}{typename}\ ItemToAABB>}
-\DoxyCodeLine{00297\ \textcolor{keyword}{inline}\ std::size\_t\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_builder}{TBvhBuilder<N,\ Item,\ ItemToAABB>}}}
-\DoxyCodeLine{00298\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_builder}{::calcMaxDepth}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node}{InfoNodeType}}*\ \textcolor{keyword}{const}\ node)}
-\DoxyCodeLine{00299\ \{}
-\DoxyCodeLine{00300\ \ \ \ \ \textcolor{keywordflow}{if}(!node)}
-\DoxyCodeLine{00301\ \ \ \ \ \{}
-\DoxyCodeLine{00302\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
-\DoxyCodeLine{00303\ \ \ \ \ \}}
-\DoxyCodeLine{00304\ }
-\DoxyCodeLine{00305\ \ \ \ \ std::size\_t\ maxDepth\ =\ 0;}
-\DoxyCodeLine{00306\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ ci\ =\ 0;\ ci\ <\ node-\/>\mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node_ad37e3b8eb2c1abdceef2a89dd561a981}{numChildren}}();\ ++ci)}
-\DoxyCodeLine{00307\ \ \ \ \ \{}
-\DoxyCodeLine{00308\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Only\ non-\/empty\ child\ can\ add\ one\ more\ depth}}
-\DoxyCodeLine{00309\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(node-\/>\mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node_a9859b29ce8075ca88c11c6bc2062121c}{getChild}}(ci))}
-\DoxyCodeLine{00310\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00311\ \ \ \ \ \ \ \ \ \ \ \ \ maxDepth\ =\ std::max(calcMaxDepth(node-\/>\mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node_a9859b29ce8075ca88c11c6bc2062121c}{getChild}}(ci))\ +\ 1,\ maxDepth);}
-\DoxyCodeLine{00312\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00313\ \ \ \ \ \}}
-\DoxyCodeLine{00314\ \ \ \ \ \textcolor{keywordflow}{return}\ maxDepth;}
-\DoxyCodeLine{00315\ \}}
-\DoxyCodeLine{00316\ }
-\DoxyCodeLine{00317\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Item,\ \textcolor{keyword}{typename}\ ItemToAABB>}
-\DoxyCodeLine{00318\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_builder}{TBvhBuilder<N,\ Item,\ ItemToAABB>}}}
-\DoxyCodeLine{00319\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_builder}{::binarySplitWithEqualItems}}(}
-\DoxyCodeLine{00320\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_a5390437e1d7fd7d167c847677ea146e6}{TSpan<ItemInfoType>}}\ itemInfos,}
-\DoxyCodeLine{00321\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ splitDimension,}
-\DoxyCodeLine{00322\ \ \ \ \ \mbox{\hyperlink{namespaceph_a5390437e1d7fd7d167c847677ea146e6}{TSpan<ItemInfoType>}}*\ \textcolor{keyword}{const}\ out\_negativePart,}
-\DoxyCodeLine{00323\ \ \ \ \ \mbox{\hyperlink{namespaceph_a5390437e1d7fd7d167c847677ea146e6}{TSpan<ItemInfoType>}}*\ \textcolor{keyword}{const}\ out\_positivePart)}
-\DoxyCodeLine{00324\ \{}
-\DoxyCodeLine{00325\ \ \ \ \ \textcolor{keyword}{static\_assert}(N\ ==\ 2,\ \textcolor{stringliteral}{"{}Requires\ a\ binary\ BVH\ builder."{}});}
-\DoxyCodeLine{00326\ }
-\DoxyCodeLine{00327\ \ \ \ \ \textcolor{keywordflow}{if}(itemInfos.size()\ <\ 2)}
-\DoxyCodeLine{00328\ \ \ \ \ \{}
-\DoxyCodeLine{00329\ \ \ \ \ \ \ \ \ PH\_DEFAULT\_LOG(Warning,}
-\DoxyCodeLine{00330\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}at\ \`{}BvhBuilder::splitWithEqualPrimitives()`,\ number\ of\ items\ <\ 2,\ cannot\ split"{}});}
-\DoxyCodeLine{00331\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
-\DoxyCodeLine{00332\ \ \ \ \ \}}
-\DoxyCodeLine{00333\ }
-\DoxyCodeLine{00334\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ midIndex\ =\ itemInfos.size()\ /\ 2\ -\/\ 1;}
-\DoxyCodeLine{00335\ }
-\DoxyCodeLine{00336\ \ \ \ \ \textcolor{keyword}{auto}\ sortedItemInfos\ =\ itemInfos;}
-\DoxyCodeLine{00337\ \ \ \ \ std::nth\_element(}
-\DoxyCodeLine{00338\ \ \ \ \ \ \ \ \ sortedItemInfos.begin(),}
-\DoxyCodeLine{00339\ \ \ \ \ \ \ \ \ sortedItemInfos.begin()\ +\ midIndex,}
-\DoxyCodeLine{00340\ \ \ \ \ \ \ \ \ sortedItemInfos.end(),}
-\DoxyCodeLine{00341\ \ \ \ \ \ \ \ \ [splitDimension](\textcolor{keyword}{const}\ ItemInfoType\&\ a,\ \textcolor{keyword}{const}\ ItemInfoType\&\ b)}
-\DoxyCodeLine{00342\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00343\ \ \ \ \ \ \ \ \ \ \ \ \ return\ a.aabbCentroid[splitDimension]\ <\ b.aabbCentroid[splitDimension];}
-\DoxyCodeLine{00344\ \ \ \ \ \ \ \ \ \});}
-\DoxyCodeLine{00345\ }
-\DoxyCodeLine{00346\ \ \ \ \ PH\_ASSERT(out\_negativePart);}
-\DoxyCodeLine{00347\ \ \ \ \ PH\_ASSERT(out\_positivePart);}
-\DoxyCodeLine{00348\ \ \ \ \ *out\_negativePart\ =\ sortedItemInfos.subspan(0,\ midIndex\ +\ 1);}
-\DoxyCodeLine{00349\ \ \ \ \ *out\_positivePart\ =\ sortedItemInfos.subspan(midIndex\ +\ 1);}
-\DoxyCodeLine{00350\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
-\DoxyCodeLine{00351\ \}}
-\DoxyCodeLine{00352\ }
-\DoxyCodeLine{00353\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Item,\ \textcolor{keyword}{typename}\ ItemToAABB>}
-\DoxyCodeLine{00354\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ TBvhBuilder<N,\ Item,\ ItemToAABB>}
-\DoxyCodeLine{00355\ ::binarySplitWithSahBuckets(}
-\DoxyCodeLine{00356\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_a5390437e1d7fd7d167c847677ea146e6}{TSpan<ItemInfoType>}}\ itemInfos,}
-\DoxyCodeLine{00357\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ splitDimension,}
-\DoxyCodeLine{00358\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_1_1math_a79409e9e8aea24d984f98f3acb483937}{AABB3D}}\&\ itemsAABB,}
-\DoxyCodeLine{00359\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_1_1math_a79409e9e8aea24d984f98f3acb483937}{AABB3D}}\&\ itemsCentroidAABB,}
-\DoxyCodeLine{00360\ \ \ \ \ \mbox{\hyperlink{namespaceph_a5390437e1d7fd7d167c847677ea146e6}{TSpan<ItemInfoType>}}*\ \textcolor{keyword}{const}\ out\_negativePart,}
-\DoxyCodeLine{00361\ \ \ \ \ \mbox{\hyperlink{namespaceph_a5390437e1d7fd7d167c847677ea146e6}{TSpan<ItemInfoType>}}*\ \textcolor{keyword}{const}\ out\_positivePart)}
-\DoxyCodeLine{00362\ \{}
-\DoxyCodeLine{00363\ \ \ \ \ \textcolor{keyword}{static\_assert}(N\ ==\ 2,\ \textcolor{stringliteral}{"{}Requires\ a\ binary\ BVH\ builder."{}});}
+\DoxyCodeLine{00217\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00218\ }
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(isSplitted)}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *node\ =\ InfoNodeType::makeInternal(}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ buildBvhInfoNodeRecursive<SPLIT\_METHOD>(negativeChildItems),}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ buildBvhInfoNodeRecursive<SPLIT\_METHOD>(positiveChildItems)}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \},}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ maxDimension);}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *node\ =\ InfoNodeType::makeLeaf(itemInfos,\ nodeAABB);}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Generalized\ N-\/wide\ node\ splitting}}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ isSplitted\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \ \ \ \ std::array<TSpan<ItemInfoType>,\ N>\ itemParts;}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(SPLIT\_METHOD\ ==\ \mbox{\hyperlink{namespaceph_1_1math_a6b85157eabe1403cdf9b1e45c8c7e368ade447f76aa569e5e8c5a1ac54791e00c}{EBvhNodeSplitMethod::EqualItems}})}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ isSplitted\ =\ splitWithEqualItems(}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ itemInfos,}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ maxDimension,}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&itemParts);}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(SPLIT\_METHOD\ ==\ \mbox{\hyperlink{namespaceph_1_1math_a6b85157eabe1403cdf9b1e45c8c7e368aba1b71c9dc960e4e2f3392f8d0f46f97}{EBvhNodeSplitMethod::SAH\_Buckets\_OneAxis}})}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ isSplitted\ =\ splitWithSahBuckets(}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ itemInfos,}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ maxDimension,}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ nodeAABB,}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ centroidsAABB,}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&itemParts);}
+\DoxyCodeLine{00253\ }
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Potentially\ fallback\ to\ equal-\/item\ split\ if\ needed}}
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!isSplitted\ \&\&\ itemInfos.size()\ >\ m\_params.maxNodeItems)}
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ isSplitted\ =\ splitWithEqualItems(}
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ itemInfos,}
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ maxDimension,}
+\DoxyCodeLine{00260\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&itemParts);}
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ PH\_DEFAULT\_DEBUG\_LOG(}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}BVH\{\}\ builder:\ unsupported\ BVH\ split\ method\ detected"{}},\ N);}
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ isSplitted\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ \ \ \ \ \}\textcolor{comment}{//\ end\ split\ method}}
+\DoxyCodeLine{00269\ }
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(isSplitted)}
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::array<const\ InfoNodeType*,\ N>\ children\{\};}
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ ci\ =\ 0;\ ci\ <\ N;\ ++ci)}
+\DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!itemParts[ci].empty())}
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ children[ci]\ =\ buildBvhInfoNodeRecursive<SPLIT\_METHOD>(itemParts[ci]);}
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00280\ }
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *node\ =\ InfoNodeType::makeInternal(}
+\DoxyCodeLine{00282\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ children,}
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ maxDimension);}
+\DoxyCodeLine{00284\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00285\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *node\ =\ InfoNodeType::makeLeaf(itemInfos,\ nodeAABB);}
+\DoxyCodeLine{00288\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00289\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00290\ \ \ \ \ \}}
+\DoxyCodeLine{00291\ }
+\DoxyCodeLine{00292\ \ \ \ \ \textcolor{keywordflow}{return}\ node;}
+\DoxyCodeLine{00293\ \}}
+\DoxyCodeLine{00294\ }
+\DoxyCodeLine{00295\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Item,\ \textcolor{keyword}{typename}\ ItemToAABB>}
+\DoxyCodeLine{00296\ \textcolor{keyword}{inline}\ std::size\_t\ TBvhBuilder<N,\ Item,\ ItemToAABB>}
+\DoxyCodeLine{00297\ ::calcTotalNodes(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node}{InfoNodeType}}*\ \textcolor{keyword}{const}\ node)}
+\DoxyCodeLine{00298\ \{}
+\DoxyCodeLine{00299\ \ \ \ \ \textcolor{keywordflow}{if}(!node)}
+\DoxyCodeLine{00300\ \ \ \ \ \{}
+\DoxyCodeLine{00301\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00302\ \ \ \ \ \}}
+\DoxyCodeLine{00303\ }
+\DoxyCodeLine{00304\ \ \ \ \ std::size\_t\ result\ =\ 1;}
+\DoxyCodeLine{00305\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ ci\ =\ 0;\ ci\ <\ node-\/>\mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node_ad37e3b8eb2c1abdceef2a89dd561a981}{numChildren}}();\ ++ci)}
+\DoxyCodeLine{00306\ \ \ \ \ \{}
+\DoxyCodeLine{00307\ \ \ \ \ \ \ \ \ result\ +=\ node-\/>\mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node_a9859b29ce8075ca88c11c6bc2062121c}{getChild}}(ci)\ ?\ calcTotalNodes(node-\/>\mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node_a9859b29ce8075ca88c11c6bc2062121c}{getChild}}(ci))\ :\ 0;}
+\DoxyCodeLine{00308\ \ \ \ \ \}}
+\DoxyCodeLine{00309\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00310\ \}}
+\DoxyCodeLine{00311\ }
+\DoxyCodeLine{00312\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Item,\ \textcolor{keyword}{typename}\ ItemToAABB>}
+\DoxyCodeLine{00313\ \textcolor{keyword}{inline}\ std::size\_t\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_builder}{TBvhBuilder<N,\ Item,\ ItemToAABB>}}}
+\DoxyCodeLine{00314\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_builder}{::calcTotalItems}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node}{InfoNodeType}}*\ \textcolor{keyword}{const}\ node)}
+\DoxyCodeLine{00315\ \{}
+\DoxyCodeLine{00316\ \ \ \ \ \textcolor{keywordflow}{if}(!node)}
+\DoxyCodeLine{00317\ \ \ \ \ \{}
+\DoxyCodeLine{00318\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00319\ \ \ \ \ \}}
+\DoxyCodeLine{00320\ }
+\DoxyCodeLine{00321\ \ \ \ \ std::size\_t\ result\ =\ node-\/>\mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node_a382b4871c375e546477ed0ac430a2d52}{getItems}}().size();}
+\DoxyCodeLine{00322\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ ci\ =\ 0;\ ci\ <\ node-\/>\mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node_ad37e3b8eb2c1abdceef2a89dd561a981}{numChildren}}();\ ++ci)}
+\DoxyCodeLine{00323\ \ \ \ \ \{}
+\DoxyCodeLine{00324\ \ \ \ \ \ \ \ \ result\ +=\ node-\/>\mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node_a9859b29ce8075ca88c11c6bc2062121c}{getChild}}(ci)\ ?\ calcTotalItems(node-\/>\mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node_a9859b29ce8075ca88c11c6bc2062121c}{getChild}}(ci))\ :\ 0;}
+\DoxyCodeLine{00325\ \ \ \ \ \}}
+\DoxyCodeLine{00326\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00327\ \}}
+\DoxyCodeLine{00328\ }
+\DoxyCodeLine{00329\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Item,\ \textcolor{keyword}{typename}\ ItemToAABB>}
+\DoxyCodeLine{00330\ \textcolor{keyword}{inline}\ std::size\_t\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_builder}{TBvhBuilder<N,\ Item,\ ItemToAABB>}}}
+\DoxyCodeLine{00331\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_builder}{::calcMaxDepth}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node}{InfoNodeType}}*\ \textcolor{keyword}{const}\ node)}
+\DoxyCodeLine{00332\ \{}
+\DoxyCodeLine{00333\ \ \ \ \ \textcolor{keywordflow}{if}(!node)}
+\DoxyCodeLine{00334\ \ \ \ \ \{}
+\DoxyCodeLine{00335\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00336\ \ \ \ \ \}}
+\DoxyCodeLine{00337\ }
+\DoxyCodeLine{00338\ \ \ \ \ std::size\_t\ maxDepth\ =\ 0;}
+\DoxyCodeLine{00339\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ ci\ =\ 0;\ ci\ <\ node-\/>\mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node_ad37e3b8eb2c1abdceef2a89dd561a981}{numChildren}}();\ ++ci)}
+\DoxyCodeLine{00340\ \ \ \ \ \{}
+\DoxyCodeLine{00341\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Only\ non-\/empty\ child\ can\ add\ one\ more\ depth}}
+\DoxyCodeLine{00342\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(node-\/>\mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node_a9859b29ce8075ca88c11c6bc2062121c}{getChild}}(ci))}
+\DoxyCodeLine{00343\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00344\ \ \ \ \ \ \ \ \ \ \ \ \ maxDepth\ =\ std::max(calcMaxDepth(node-\/>\mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node_a9859b29ce8075ca88c11c6bc2062121c}{getChild}}(ci))\ +\ 1,\ maxDepth);}
+\DoxyCodeLine{00345\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00346\ \ \ \ \ \}}
+\DoxyCodeLine{00347\ \ \ \ \ \textcolor{keywordflow}{return}\ maxDepth;}
+\DoxyCodeLine{00348\ \}}
+\DoxyCodeLine{00349\ }
+\DoxyCodeLine{00350\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Item,\ \textcolor{keyword}{typename}\ ItemToAABB>}
+\DoxyCodeLine{00351\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_builder}{TBvhBuilder<N,\ Item,\ ItemToAABB>}}}
+\DoxyCodeLine{00352\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_builder}{::binarySplitWithEqualItems}}(}
+\DoxyCodeLine{00353\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_a5390437e1d7fd7d167c847677ea146e6}{TSpan<ItemInfoType>}}\ itemInfos,}
+\DoxyCodeLine{00354\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ splitDimension,}
+\DoxyCodeLine{00355\ \ \ \ \ \mbox{\hyperlink{namespaceph_a5390437e1d7fd7d167c847677ea146e6}{TSpan<ItemInfoType>}}*\ \textcolor{keyword}{const}\ out\_negativePart,}
+\DoxyCodeLine{00356\ \ \ \ \ \mbox{\hyperlink{namespaceph_a5390437e1d7fd7d167c847677ea146e6}{TSpan<ItemInfoType>}}*\ \textcolor{keyword}{const}\ out\_positivePart)}
+\DoxyCodeLine{00357\ \{}
+\DoxyCodeLine{00358\ \ \ \ \ \textcolor{keyword}{static\_assert}(N\ ==\ 2,\ \textcolor{stringliteral}{"{}Requires\ a\ binary\ BVH\ builder."{}});}
+\DoxyCodeLine{00359\ }
+\DoxyCodeLine{00360\ \ \ \ \ \textcolor{comment}{//\ Binary\ variant\ is\ more\ strict:\ cannot\ split\ if\ number\ of\ items\ <\ 2}}
+\DoxyCodeLine{00361\ \ \ \ \ PH\_ASSERT\_GE(itemInfos.size(),\ 2);}
+\DoxyCodeLine{00362\ }
+\DoxyCodeLine{00363\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ midIndex\ =\ itemInfos.size()\ /\ 2\ -\/\ 1;}
 \DoxyCodeLine{00364\ }
-\DoxyCodeLine{00365\ \ \ \ \ \textcolor{keywordflow}{if}(itemInfos.size()\ <\ 2)}
-\DoxyCodeLine{00366\ \ \ \ \ \{}
-\DoxyCodeLine{00367\ \ \ \ \ \ \ \ \ PH\_DEFAULT\_LOG(Warning,}
-\DoxyCodeLine{00368\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}at\ \`{}BvhBuilder::binarySplitWithSahBuckets()`,\ number\ of\ items\ <\ 2,\ cannot\ split"{}});}
-\DoxyCodeLine{00369\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
-\DoxyCodeLine{00370\ \ \ \ \ \}}
-\DoxyCodeLine{00371\ }
-\DoxyCodeLine{00372\ \ \ \ \ \textcolor{keyword}{constexpr}\ std::size\_t\ numBuckets\ =\ 64;}
-\DoxyCodeLine{00373\ }
-\DoxyCodeLine{00374\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ dim\ \ \ \ \ \ \ \ \ \ \ \ =\ splitDimension;}
-\DoxyCodeLine{00375\ \ \ \ \ \textcolor{keyword}{const}\ real\ rcpSplitExtent\ =\ \mbox{\hyperlink{namespaceph_1_1math_a1e5270d420e04a11bbeafa6da0b6849b}{safe\_rcp}}(itemsCentroidAABB.getExtents()[dim]);}
-\DoxyCodeLine{00376\ }
-\DoxyCodeLine{00377\ \ \ \ \ PH\_ASSERT\_GE(rcpSplitExtent,\ 0.0\_r);}
-\DoxyCodeLine{00378\ }
-\DoxyCodeLine{00379\ \ \ \ \ SahBucket\ buckets[numBuckets];}
-\DoxyCodeLine{00380\ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keyword}{const}\ ItemInfoType\&\ itemInfo\ :\ itemInfos)}
-\DoxyCodeLine{00381\ \ \ \ \ \{}
-\DoxyCodeLine{00382\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ real\ factor\ =\ (itemInfo.aabbCentroid[dim]\ -\/\ itemsCentroidAABB.getMinVertex()[dim])\ *\ rcpSplitExtent;}
-\DoxyCodeLine{00383\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ bucketIndex\ =\ \textcolor{keyword}{static\_cast<}std::size\_t\textcolor{keyword}{>}(factor\ *\ numBuckets);}
-\DoxyCodeLine{00384\ \ \ \ \ \ \ \ \ bucketIndex\ =\ (bucketIndex\ ==\ numBuckets)\ ?\ bucketIndex\ -\/\ 1\ :\ bucketIndex;}
-\DoxyCodeLine{00385\ }
-\DoxyCodeLine{00386\ \ \ \ \ \ \ \ \ buckets[bucketIndex].aabb\ =\ buckets[bucketIndex].isEmpty()}
-\DoxyCodeLine{00387\ \ \ \ \ \ \ \ \ \ \ \ \ ?\ itemInfo.aabb:\ buckets[bucketIndex].aabb.unionWith(itemInfo.aabb);}
-\DoxyCodeLine{00388\ \ \ \ \ \ \ \ \ buckets[bucketIndex].numItems++;}
-\DoxyCodeLine{00389\ \ \ \ \ \}}
-\DoxyCodeLine{00390\ }
-\DoxyCodeLine{00391\ \ \ \ \ std::array<real,\ numBuckets\ -\/\ 1>\ splitCosts\{\};}
-\DoxyCodeLine{00392\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ i\ =\ 0;\ i\ <\ numBuckets\ -\/\ 1;\ ++i)}
-\DoxyCodeLine{00393\ \ \ \ \ \{}
-\DoxyCodeLine{00394\ \ \ \ \ \ \ \ \ std::size\_t\ numNegPartItems\ =\ 0;}
-\DoxyCodeLine{00395\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ negPartAABB\ =\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d_acd1ef6d19364c61bd5d10e513ed8ad29}{AABB3D::makeEmpty}}();}
-\DoxyCodeLine{00396\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ j\ =\ 0;\ j\ <=\ i;\ ++j)}
-\DoxyCodeLine{00397\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00398\ \ \ \ \ \ \ \ \ \ \ \ \ numNegPartItems\ +=\ buckets[j].numItems;}
-\DoxyCodeLine{00399\ \ \ \ \ \ \ \ \ \ \ \ \ negPartAABB.unionWith(buckets[j].aabb);}
-\DoxyCodeLine{00400\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00365\ \ \ \ \ \textcolor{keyword}{auto}\ sortedItemInfos\ =\ itemInfos;}
+\DoxyCodeLine{00366\ \ \ \ \ std::nth\_element(}
+\DoxyCodeLine{00367\ \ \ \ \ \ \ \ \ sortedItemInfos.begin(),}
+\DoxyCodeLine{00368\ \ \ \ \ \ \ \ \ sortedItemInfos.begin()\ +\ midIndex,}
+\DoxyCodeLine{00369\ \ \ \ \ \ \ \ \ sortedItemInfos.end(),}
+\DoxyCodeLine{00370\ \ \ \ \ \ \ \ \ [splitDimension](\textcolor{keyword}{const}\ ItemInfoType\&\ a,\ \textcolor{keyword}{const}\ ItemInfoType\&\ b)}
+\DoxyCodeLine{00371\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00372\ \ \ \ \ \ \ \ \ \ \ \ \ return\ a.aabbCentroid[splitDimension]\ <\ b.aabbCentroid[splitDimension];}
+\DoxyCodeLine{00373\ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00374\ }
+\DoxyCodeLine{00375\ \ \ \ \ PH\_ASSERT(out\_negativePart);}
+\DoxyCodeLine{00376\ \ \ \ \ PH\_ASSERT(out\_positivePart);}
+\DoxyCodeLine{00377\ \ \ \ \ *out\_negativePart\ =\ sortedItemInfos.subspan(0,\ midIndex\ +\ 1);}
+\DoxyCodeLine{00378\ \ \ \ \ *out\_positivePart\ =\ sortedItemInfos.subspan(midIndex\ +\ 1);}
+\DoxyCodeLine{00379\ }
+\DoxyCodeLine{00380\ \ \ \ \ PH\_ASSERT(!out\_negativePart-\/>empty()\ \&\&\ !out\_positivePart-\/>empty());}
+\DoxyCodeLine{00381\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00382\ \}}
+\DoxyCodeLine{00383\ }
+\DoxyCodeLine{00384\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Item,\ \textcolor{keyword}{typename}\ ItemToAABB>}
+\DoxyCodeLine{00385\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_builder}{TBvhBuilder<N,\ Item,\ ItemToAABB>}}}
+\DoxyCodeLine{00386\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_builder}{::binarySplitWithSahBuckets}}(}
+\DoxyCodeLine{00387\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_a5390437e1d7fd7d167c847677ea146e6}{TSpan<ItemInfoType>}}\ itemInfos,}
+\DoxyCodeLine{00388\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ splitDimension,}
+\DoxyCodeLine{00389\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d}{AABB3D}}\&\ itemsAABB,}
+\DoxyCodeLine{00390\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d}{AABB3D}}\&\ itemsCentroidAABB,}
+\DoxyCodeLine{00391\ \ \ \ \ \mbox{\hyperlink{namespaceph_a5390437e1d7fd7d167c847677ea146e6}{TSpan<ItemInfoType>}}*\ \textcolor{keyword}{const}\ out\_negativePart,}
+\DoxyCodeLine{00392\ \ \ \ \ \mbox{\hyperlink{namespaceph_a5390437e1d7fd7d167c847677ea146e6}{TSpan<ItemInfoType>}}*\ \textcolor{keyword}{const}\ out\_positivePart)}
+\DoxyCodeLine{00393\ \{}
+\DoxyCodeLine{00394\ \ \ \ \ \textcolor{keyword}{static\_assert}(N\ ==\ 2,\ \textcolor{stringliteral}{"{}Requires\ a\ binary\ BVH\ builder."{}});}
+\DoxyCodeLine{00395\ }
+\DoxyCodeLine{00396\ \ \ \ \ \textcolor{comment}{//\ Binary\ variant\ is\ more\ strict:\ cannot\ split\ if\ number\ of\ items\ <\ 2}}
+\DoxyCodeLine{00397\ \ \ \ \ PH\_ASSERT\_GE(itemInfos.size(),\ 2);}
+\DoxyCodeLine{00398\ }
+\DoxyCodeLine{00399\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ dim\ \ \ \ \ \ \ \ \ \ \ \ =\ splitDimension;}
+\DoxyCodeLine{00400\ \ \ \ \ \textcolor{keyword}{const}\ real\ rcpSplitExtent\ =\ \mbox{\hyperlink{namespaceph_1_1math_a1e5270d420e04a11bbeafa6da0b6849b}{safe\_rcp}}(itemsCentroidAABB.\mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d_ae6a2cecea2f301839e76c1222672b99e}{getExtents}}()[dim]);}
 \DoxyCodeLine{00401\ }
-\DoxyCodeLine{00402\ \ \ \ \ \ \ \ \ std::size\_t\ numPosPartItems\ =\ 0;}
-\DoxyCodeLine{00403\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ posPartAABB\ =\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d_acd1ef6d19364c61bd5d10e513ed8ad29}{AABB3D::makeEmpty}}();}
-\DoxyCodeLine{00404\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ j\ =\ i\ +\ 1;\ j\ <\ numBuckets;\ ++j)}
-\DoxyCodeLine{00405\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00406\ \ \ \ \ \ \ \ \ \ \ \ \ numPosPartItems\ +=\ buckets[j].numItems;}
-\DoxyCodeLine{00407\ \ \ \ \ \ \ \ \ \ \ \ \ posPartAABB.unionWith(buckets[j].aabb);}
-\DoxyCodeLine{00408\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00402\ \ \ \ \ PH\_ASSERT\_GE(rcpSplitExtent,\ 0.0\_r);}
+\DoxyCodeLine{00403\ }
+\DoxyCodeLine{00404\ \ \ \ \ std::array<SahBucket,\ MAX\_SAH\_BUCKETS>\ buckets\{\};}
+\DoxyCodeLine{00405\ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keyword}{const}\ ItemInfoType\&\ itemInfo\ :\ itemInfos)}
+\DoxyCodeLine{00406\ \ \ \ \ \{}
+\DoxyCodeLine{00407\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ real\ factor\ =\ (itemInfo.aabbCentroid[dim]\ -\/\ itemsCentroidAABB.\mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d_af374aa4e2c99cf83c5324f7e5f376fec}{getMinVertex}}()[dim])\ *\ rcpSplitExtent;}
+\DoxyCodeLine{00408\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ bucketIndex\ =\ \mbox{\hyperlink{namespaceph_1_1math_af8f390358e5ac8042dde889f48d9aaa4}{clamp<std::size\_t>}}(\textcolor{keyword}{static\_cast<}std::size\_t\textcolor{keyword}{>}(factor\ *\ m\_params.numSahBuckets),\ 0,\ m\_params.numSahBuckets\ -\/\ 1);}
 \DoxyCodeLine{00409\ }
-\DoxyCodeLine{00410\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Safe\ clamping\ probabilities\ to\ [0,\ 1]\ as\ the\ AABBs\ may\ be\ empty,\ point,\ plane,}}
-\DoxyCodeLine{00411\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ or\ being\ super\ large\ to\ be\ Inf/NaN}}
-\DoxyCodeLine{00412\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ real\ probTestingNegPart\ =\ \mbox{\hyperlink{namespaceph_1_1math_a0090b0ad2b7785d02c6761c1766066cc}{safe\_clamp}}(}
-\DoxyCodeLine{00413\ \ \ \ \ \ \ \ \ \ \ \ \ negPartAABB.getSurfaceArea()\ /\ itemsAABB.getSurfaceArea(),\ 0.0\_r,\ 1.0\_r);}
-\DoxyCodeLine{00414\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ real\ probTestingPosPart\ =\ \mbox{\hyperlink{namespaceph_1_1math_a0090b0ad2b7785d02c6761c1766066cc}{safe\_clamp}}(}
-\DoxyCodeLine{00415\ \ \ \ \ \ \ \ \ \ \ \ \ posPartAABB.getSurfaceArea()\ /\ itemsAABB.getSurfaceArea(),\ 0.0\_r,\ 1.0\_r);}
-\DoxyCodeLine{00416\ }
-\DoxyCodeLine{00417\ \ \ \ \ \ \ \ \ splitCosts[i]\ =}
-\DoxyCodeLine{00418\ \ \ \ \ \ \ \ \ \ \ \ \ m\_params.traversalCost\ +\ }
-\DoxyCodeLine{00419\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_cast<}real\textcolor{keyword}{>}(numNegPartItems)\ *\ m\_params.interactCost\ *\ probTestingNegPart\ +}
-\DoxyCodeLine{00420\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_cast<}real\textcolor{keyword}{>}(numPosPartItems)\ *\ m\_params.interactCost\ *\ probTestingPosPart;}
-\DoxyCodeLine{00421\ \ \ \ \ \}}
-\DoxyCodeLine{00422\ }
-\DoxyCodeLine{00423\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ minCostIndex\ =\ \textcolor{keyword}{static\_cast<}std::size\_t\textcolor{keyword}{>}(}
-\DoxyCodeLine{00424\ \ \ \ \ \ \ \ \ std::min\_element(splitCosts.begin(),\ splitCosts.end())\ -\/\ splitCosts.begin());}
-\DoxyCodeLine{00425\ \ \ \ \ \textcolor{keyword}{const}\ real\ minSplitCost\ =\ splitCosts[minCostIndex];}
-\DoxyCodeLine{00426\ \ \ \ \ \textcolor{keyword}{const}\ real\ noSplitCost\ \ =\ m\_params.interactCost\ *\ \textcolor{keyword}{static\_cast<}real\textcolor{keyword}{>}(itemInfos.size());}
-\DoxyCodeLine{00427\ }
-\DoxyCodeLine{00428\ \ \ \ \ PH\_ASSERT(out\_negativePart);}
-\DoxyCodeLine{00429\ \ \ \ \ PH\_ASSERT(out\_positivePart);}
-\DoxyCodeLine{00430\ \ \ \ \ \textcolor{keywordflow}{if}(minSplitCost\ <\ noSplitCost\ ||\ itemInfos.size()\ >\ m\_params.maxNodeItems)}
-\DoxyCodeLine{00431\ \ \ \ \ \{}
-\DoxyCodeLine{00432\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ sortedItemInfos\ =\ itemInfos;}
-\DoxyCodeLine{00433\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ posPartBegin\ =\ std::partition(}
-\DoxyCodeLine{00434\ \ \ \ \ \ \ \ \ \ \ \ \ sortedItemInfos.begin(),}
-\DoxyCodeLine{00435\ \ \ \ \ \ \ \ \ \ \ \ \ sortedItemInfos.end(),}
-\DoxyCodeLine{00436\ \ \ \ \ \ \ \ \ \ \ \ \ [itemsCentroidAABB,\ dim,\ rcpSplitExtent,\ minCostIndex](\textcolor{keyword}{const}\ ItemInfoType\&\ itemInfo)}
-\DoxyCodeLine{00437\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00438\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ const\ real\ factor\ =\ (itemInfo.aabbCentroid[dim]\ -\/\ itemsCentroidAABB.getMinVertex()[dim])\ *\ rcpSplitExtent;}
-\DoxyCodeLine{00439\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ auto\ bucketIndex\ =\ static\_cast<std::size\_t>(factor\ *\ numBuckets);}
-\DoxyCodeLine{00440\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ bucketIndex\ =\ (bucketIndex\ ==\ numBuckets)\ ?\ bucketIndex\ -\/\ 1\ :\ bucketIndex;}
-\DoxyCodeLine{00441\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ return\ bucketIndex\ <=\ minCostIndex;}
-\DoxyCodeLine{00442\ \ \ \ \ \ \ \ \ \ \ \ \ \});}
-\DoxyCodeLine{00443\ }
-\DoxyCodeLine{00444\ \ \ \ \ \ \ \ \ *out\_negativePart\ =\ sortedItemInfos.subspan(0,\ posPartBegin\ -\/\ sortedItemInfos.begin());}
-\DoxyCodeLine{00445\ \ \ \ \ \ \ \ \ *out\_positivePart\ =\ sortedItemInfos.subspan(posPartBegin\ -\/\ sortedItemInfos.begin());}
-\DoxyCodeLine{00446\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
-\DoxyCodeLine{00447\ \ \ \ \ \}}
-\DoxyCodeLine{00448\ \ \ \ \ \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00449\ \ \ \ \ \{}
-\DoxyCodeLine{00450\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
-\DoxyCodeLine{00451\ \ \ \ \ \}}
-\DoxyCodeLine{00452\ \}}
-\DoxyCodeLine{00453\ }
-\DoxyCodeLine{00454\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Item,\ \textcolor{keyword}{typename}\ ItemToAABB>}
-\DoxyCodeLine{00455\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ TBvhBuilder<N,\ Item,\ ItemToAABB>}
-\DoxyCodeLine{00456\ ::splitWithEqualItems(}
-\DoxyCodeLine{00457\ \ \ \ \ \mbox{\hyperlink{namespaceph_a5390437e1d7fd7d167c847677ea146e6}{TSpan<ItemInfoType>}}\ itemInfos,}
-\DoxyCodeLine{00458\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ splitDimension,}
-\DoxyCodeLine{00459\ \ \ \ \ std::array<\mbox{\hyperlink{namespaceph_a5390437e1d7fd7d167c847677ea146e6}{TSpan<ItemInfoType>}},\ N>*\ \textcolor{keyword}{const}\ out\_parts)}
-\DoxyCodeLine{00460\ \{}
-\DoxyCodeLine{00461\ \ \ \ \ PH\_ASSERT(out\_parts);}
-\DoxyCodeLine{00462\ }
-\DoxyCodeLine{00463\ \ \ \ \ \textcolor{comment}{//\ Partition\ \`{}itemInfos`\ into\ N\ parts.\ This\ is\ done\ by\ a\ O(n*N/2)\ method\ where\ n\ is\ the\ number\ of\ items.}}
-\DoxyCodeLine{00464\ \ \ \ \ \textcolor{comment}{//\ Divide\ and\ conquer\ can\ achieve\ O(n*logN),\ but\ the\ gain\ should\ only\ be\ significant\ for\ N\ >\ 4.\ We\ keep}}
-\DoxyCodeLine{00465\ \ \ \ \ \textcolor{comment}{//\ this\ simpler\ approach\ for\ now.}}
-\DoxyCodeLine{00466\ \ \ \ \ \textcolor{keyword}{auto}\ sortedItemInfos\ =\ itemInfos;}
-\DoxyCodeLine{00467\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ i\ =\ 0;\ i\ <\ N;\ ++i)}
-\DoxyCodeLine{00468\ \ \ \ \ \{}
-\DoxyCodeLine{00469\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ [beginIdx,\ endIdx]\ =\ \mbox{\hyperlink{namespaceph_1_1math_a830bc8cab76b0720b0756fce21828b3f}{ith\_evenly\_divided\_range}}(i,\ itemInfos.size(),\ N);}
-\DoxyCodeLine{00470\ }
-\DoxyCodeLine{00471\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ No\ need\ to\ rearrange\ for\ empty\ range\ and\ the\ last\ part}}
-\DoxyCodeLine{00472\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(beginIdx\ <\ endIdx\ \&\&\ i\ <\ N\ -\/\ 1)}
-\DoxyCodeLine{00473\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00474\ \ \ \ \ \ \ \ \ \ \ \ \ std::nth\_element(}
-\DoxyCodeLine{00475\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sortedItemInfos.begin()\ +\ beginIdx,}
-\DoxyCodeLine{00476\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sortedItemInfos.begin()\ +\ endIdx\ -\/\ 1,\textcolor{comment}{//\ nth,\ the\ last\ element\ in\ this\ interval}}
-\DoxyCodeLine{00477\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sortedItemInfos.end(),}
-\DoxyCodeLine{00478\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ [splitDimension](\textcolor{keyword}{const}\ ItemInfoType\&\ a,\ \textcolor{keyword}{const}\ ItemInfoType\&\ b)}
-\DoxyCodeLine{00479\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00480\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ return\ a.aabbCentroid[splitDimension]\ <\ b.aabbCentroid[splitDimension];}
-\DoxyCodeLine{00481\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \});}
-\DoxyCodeLine{00482\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00483\ }
-\DoxyCodeLine{00484\ \ \ \ \ \ \ \ \ (*out\_parts)[i]\ =\ sortedItemInfos.subspan(beginIdx,\ endIdx\ -\/\ beginIdx);}
-\DoxyCodeLine{00485\ \ \ \ \ \}}
-\DoxyCodeLine{00486\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
-\DoxyCodeLine{00487\ \}}
-\DoxyCodeLine{00488\ }
-\DoxyCodeLine{00489\ \}\textcolor{comment}{//\ end\ namespace\ ph::math}}
+\DoxyCodeLine{00410\ \ \ \ \ \ \ \ \ buckets[bucketIndex].aabb\ =\ buckets[bucketIndex].isEmpty()}
+\DoxyCodeLine{00411\ \ \ \ \ \ \ \ \ \ \ \ \ ?\ itemInfo.aabb:\ buckets[bucketIndex].aabb.unionWith(itemInfo.aabb);}
+\DoxyCodeLine{00412\ \ \ \ \ \ \ \ \ buckets[bucketIndex].numItems++;}
+\DoxyCodeLine{00413\ \ \ \ \ \}}
+\DoxyCodeLine{00414\ }
+\DoxyCodeLine{00415\ \ \ \ \ std::array<real,\ MAX\_SAH\_BUCKETS\ -\/\ 1>\ splitCosts\{\};}
+\DoxyCodeLine{00416\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ i\ =\ 0;\ i\ <\ m\_params.numSahBuckets\ -\/\ 1;\ ++i)}
+\DoxyCodeLine{00417\ \ \ \ \ \{}
+\DoxyCodeLine{00418\ \ \ \ \ \ \ \ \ std::size\_t\ numNegPartItems\ =\ 0;}
+\DoxyCodeLine{00419\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ negPartAABB\ =\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d_acd1ef6d19364c61bd5d10e513ed8ad29}{AABB3D::makeEmpty}}();}
+\DoxyCodeLine{00420\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ j\ =\ 0;\ j\ <=\ i;\ ++j)}
+\DoxyCodeLine{00421\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00422\ \ \ \ \ \ \ \ \ \ \ \ \ numNegPartItems\ +=\ buckets[j].numItems;}
+\DoxyCodeLine{00423\ \ \ \ \ \ \ \ \ \ \ \ \ negPartAABB.unionWith(buckets[j].aabb);}
+\DoxyCodeLine{00424\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00425\ }
+\DoxyCodeLine{00426\ \ \ \ \ \ \ \ \ std::size\_t\ numPosPartItems\ =\ 0;}
+\DoxyCodeLine{00427\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ posPartAABB\ =\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d_acd1ef6d19364c61bd5d10e513ed8ad29}{AABB3D::makeEmpty}}();}
+\DoxyCodeLine{00428\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ j\ =\ i\ +\ 1;\ j\ <\ m\_params.numSahBuckets;\ ++j)}
+\DoxyCodeLine{00429\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00430\ \ \ \ \ \ \ \ \ \ \ \ \ numPosPartItems\ +=\ buckets[j].numItems;}
+\DoxyCodeLine{00431\ \ \ \ \ \ \ \ \ \ \ \ \ posPartAABB.unionWith(buckets[j].aabb);}
+\DoxyCodeLine{00432\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00433\ }
+\DoxyCodeLine{00434\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Safe\ clamping\ probabilities\ to\ [0,\ 1]\ as\ the\ AABBs\ may\ be\ empty,\ point,\ plane,}}
+\DoxyCodeLine{00435\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ or\ being\ super\ large\ to\ be\ Inf/NaN}}
+\DoxyCodeLine{00436\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ real\ probTestingNegPart\ =\ \mbox{\hyperlink{namespaceph_1_1math_a0090b0ad2b7785d02c6761c1766066cc}{safe\_clamp}}(}
+\DoxyCodeLine{00437\ \ \ \ \ \ \ \ \ \ \ \ \ negPartAABB.getSurfaceArea()\ /\ itemsAABB.\mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d_a87a7e69b389f32ab59a020d816379314}{getSurfaceArea}}(),\ 0.0\_r,\ 1.0\_r);}
+\DoxyCodeLine{00438\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ real\ probTestingPosPart\ =\ \mbox{\hyperlink{namespaceph_1_1math_a0090b0ad2b7785d02c6761c1766066cc}{safe\_clamp}}(}
+\DoxyCodeLine{00439\ \ \ \ \ \ \ \ \ \ \ \ \ posPartAABB.getSurfaceArea()\ /\ itemsAABB.\mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d_a87a7e69b389f32ab59a020d816379314}{getSurfaceArea}}(),\ 0.0\_r,\ 1.0\_r);}
+\DoxyCodeLine{00440\ }
+\DoxyCodeLine{00441\ \ \ \ \ \ \ \ \ splitCosts[i]\ =}
+\DoxyCodeLine{00442\ \ \ \ \ \ \ \ \ \ \ \ \ m\_params.traversalCost\ +\ }
+\DoxyCodeLine{00443\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_cast<}real\textcolor{keyword}{>}(numNegPartItems)\ *\ m\_params.interactCost\ *\ probTestingNegPart\ +}
+\DoxyCodeLine{00444\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_cast<}real\textcolor{keyword}{>}(numPosPartItems)\ *\ m\_params.interactCost\ *\ probTestingPosPart;}
+\DoxyCodeLine{00445\ \ \ \ \ \}}
+\DoxyCodeLine{00446\ }
+\DoxyCodeLine{00447\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ minCostIndex\ =\ \textcolor{keyword}{static\_cast<}std::size\_t\textcolor{keyword}{>}(}
+\DoxyCodeLine{00448\ \ \ \ \ \ \ \ \ std::min\_element(splitCosts.begin(),\ splitCosts.begin()\ +\ m\_params.numSahBuckets)\ -\/\ splitCosts.begin());}
+\DoxyCodeLine{00449\ \ \ \ \ \textcolor{keyword}{const}\ real\ minSplitCost\ =\ splitCosts[minCostIndex];}
+\DoxyCodeLine{00450\ \ \ \ \ \textcolor{keyword}{const}\ real\ noSplitCost\ \ =\ m\_params.interactCost\ *\ \textcolor{keyword}{static\_cast<}real\textcolor{keyword}{>}(itemInfos.size());}
+\DoxyCodeLine{00451\ }
+\DoxyCodeLine{00452\ \ \ \ \ PH\_ASSERT(out\_negativePart);}
+\DoxyCodeLine{00453\ \ \ \ \ PH\_ASSERT(out\_positivePart);}
+\DoxyCodeLine{00454\ \ \ \ \ \textcolor{keywordflow}{if}(minSplitCost\ <\ noSplitCost\ ||\ itemInfos.size()\ >\ m\_params.maxNodeItems)}
+\DoxyCodeLine{00455\ \ \ \ \ \{}
+\DoxyCodeLine{00456\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ sortedItemInfos\ =\ itemInfos;}
+\DoxyCodeLine{00457\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ posPartBegin\ =\ std::partition(}
+\DoxyCodeLine{00458\ \ \ \ \ \ \ \ \ \ \ \ \ sortedItemInfos.begin(),}
+\DoxyCodeLine{00459\ \ \ \ \ \ \ \ \ \ \ \ \ sortedItemInfos.end(),}
+\DoxyCodeLine{00460\ \ \ \ \ \ \ \ \ \ \ \ \ [\textcolor{keyword}{this},\ itemsCentroidAABB,\ dim,\ rcpSplitExtent,\ minCostIndex](\textcolor{keyword}{const}\ ItemInfoType\&\ itemInfo)}
+\DoxyCodeLine{00461\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00462\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ const\ real\ factor\ =\ (itemInfo.aabbCentroid[dim]\ -\/\ itemsCentroidAABB.getMinVertex()[dim])\ *\ rcpSplitExtent;}
+\DoxyCodeLine{00463\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ const\ auto\ bucketIndex\ =\ clamp<std::size\_t>(static\_cast<std::size\_t>(factor\ *\ m\_params.numSahBuckets),\ 0,\ m\_params.numSahBuckets\ -\/\ 1);}
+\DoxyCodeLine{00464\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ return\ bucketIndex\ <=\ minCostIndex;}
+\DoxyCodeLine{00465\ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00466\ }
+\DoxyCodeLine{00467\ \ \ \ \ \ \ \ \ *out\_negativePart\ =\ sortedItemInfos.subspan(0,\ posPartBegin\ -\/\ sortedItemInfos.begin());}
+\DoxyCodeLine{00468\ \ \ \ \ \ \ \ \ *out\_positivePart\ =\ sortedItemInfos.subspan(posPartBegin\ -\/\ sortedItemInfos.begin());}
+\DoxyCodeLine{00469\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ !out\_negativePart-\/>empty()\ \&\&\ !out\_positivePart-\/>empty();}
+\DoxyCodeLine{00470\ \ \ \ \ \}}
+\DoxyCodeLine{00471\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00472\ \ \ \ \ \{}
+\DoxyCodeLine{00473\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00474\ \ \ \ \ \}}
+\DoxyCodeLine{00475\ \}}
+\DoxyCodeLine{00476\ }
+\DoxyCodeLine{00477\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Item,\ \textcolor{keyword}{typename}\ ItemToAABB>}
+\DoxyCodeLine{00478\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ TBvhBuilder<N,\ Item,\ ItemToAABB>}
+\DoxyCodeLine{00479\ ::splitWithEqualItems(}
+\DoxyCodeLine{00480\ \ \ \ \ \mbox{\hyperlink{namespaceph_a5390437e1d7fd7d167c847677ea146e6}{TSpan<ItemInfoType>}}\ itemInfos,}
+\DoxyCodeLine{00481\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ splitDimension,}
+\DoxyCodeLine{00482\ \ \ \ \ std::array<\mbox{\hyperlink{namespaceph_a5390437e1d7fd7d167c847677ea146e6}{TSpan<ItemInfoType>}},\ N>*\ \textcolor{keyword}{const}\ out\_parts)}
+\DoxyCodeLine{00483\ \{}
+\DoxyCodeLine{00484\ \ \ \ \ PH\_ASSERT(out\_parts);}
+\DoxyCodeLine{00485\ }
+\DoxyCodeLine{00486\ \ \ \ \ \textcolor{comment}{//\ Partition\ \`{}itemInfos`\ into\ N\ parts.\ This\ is\ done\ by\ a\ O(n*N/2)\ method\ where\ n\ is\ the\ number}}
+\DoxyCodeLine{00487\ \ \ \ \ \textcolor{comment}{//\ of\ items.\ Divide\ and\ conquer\ can\ achieve\ O(n*logN),\ but\ the\ gain\ should\ only\ be\ significant}}
+\DoxyCodeLine{00488\ \ \ \ \ \textcolor{comment}{//\ for\ N\ >\ 4.\ We\ keep\ this\ simpler\ approach\ for\ now.}}
+\DoxyCodeLine{00489\ \ \ \ \ \textcolor{keyword}{auto}\ sortedItemInfos\ =\ itemInfos;}
+\DoxyCodeLine{00490\ \ \ \ \ \textcolor{keywordtype}{bool}\ hasAnySplit\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00491\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ i\ =\ 0;\ i\ <\ N;\ ++i)}
+\DoxyCodeLine{00492\ \ \ \ \ \{}
+\DoxyCodeLine{00493\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ [beginIdx,\ endIdx]\ =\ \mbox{\hyperlink{namespaceph_1_1math_a830bc8cab76b0720b0756fce21828b3f}{ith\_evenly\_divided\_range}}(i,\ itemInfos.size(),\ N);}
+\DoxyCodeLine{00494\ }
+\DoxyCodeLine{00495\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ No\ need\ to\ rearrange\ for\ empty\ range\ and\ the\ last\ part}}
+\DoxyCodeLine{00496\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(beginIdx\ <\ endIdx\ \&\&\ i\ <\ N\ -\/\ 1)}
+\DoxyCodeLine{00497\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00498\ \ \ \ \ \ \ \ \ \ \ \ \ std::nth\_element(}
+\DoxyCodeLine{00499\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sortedItemInfos.begin()\ +\ beginIdx,}
+\DoxyCodeLine{00500\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sortedItemInfos.begin()\ +\ endIdx\ -\/\ 1,\textcolor{comment}{//\ nth,\ the\ last\ element\ in\ this\ interval}}
+\DoxyCodeLine{00501\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sortedItemInfos.end(),}
+\DoxyCodeLine{00502\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ [splitDimension](\textcolor{keyword}{const}\ ItemInfoType\&\ a,\ \textcolor{keyword}{const}\ ItemInfoType\&\ b)}
+\DoxyCodeLine{00503\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00504\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ return\ a.aabbCentroid[splitDimension]\ <\ b.aabbCentroid[splitDimension];}
+\DoxyCodeLine{00505\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00506\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00507\ }
+\DoxyCodeLine{00508\ \ \ \ \ \ \ \ \ (*out\_parts)[i]\ =\ sortedItemInfos.subspan(beginIdx,\ endIdx\ -\/\ beginIdx);}
+\DoxyCodeLine{00509\ \ \ \ \ \ \ \ \ hasAnySplit\ =\ hasAnySplit\ \&\&\ (*out\_parts)[i].size()\ <\ itemInfos.size();}
+\DoxyCodeLine{00510\ \ \ \ \ \}}
+\DoxyCodeLine{00511\ \ \ \ \ \textcolor{keywordflow}{return}\ hasAnySplit;}
+\DoxyCodeLine{00512\ \}}
+\DoxyCodeLine{00513\ }
+\DoxyCodeLine{00514\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Item,\ \textcolor{keyword}{typename}\ ItemToAABB>}
+\DoxyCodeLine{00515\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ TBvhBuilder<N,\ Item,\ ItemToAABB>}
+\DoxyCodeLine{00516\ ::splitWithSahBuckets(}
+\DoxyCodeLine{00517\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_a5390437e1d7fd7d167c847677ea146e6}{TSpan<ItemInfoType>}}\ itemInfos,}
+\DoxyCodeLine{00518\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ splitDimension,}
+\DoxyCodeLine{00519\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_1_1math_a79409e9e8aea24d984f98f3acb483937}{AABB3D}}\&\ itemsAABB,}
+\DoxyCodeLine{00520\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_1_1math_a79409e9e8aea24d984f98f3acb483937}{AABB3D}}\&\ itemsCentroidAABB,}
+\DoxyCodeLine{00521\ \ \ \ \ std::array<\mbox{\hyperlink{namespaceph_a5390437e1d7fd7d167c847677ea146e6}{TSpan<ItemInfoType>}},\ N>*\ \textcolor{keyword}{const}\ out\_parts)}
+\DoxyCodeLine{00522\ \{}
+\DoxyCodeLine{00523\ \ \ \ \ PH\_ASSERT(out\_parts);}
+\DoxyCodeLine{00524\ }
+\DoxyCodeLine{00525\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ dim\ \ \ \ \ \ \ \ \ \ \ \ =\ splitDimension;}
+\DoxyCodeLine{00526\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ rcpSplitExtent\ =\ \mbox{\hyperlink{namespaceph_1_1math_a1e5270d420e04a11bbeafa6da0b6849b}{safe\_rcp}}(itemsCentroidAABB.getExtents()[dim]);}
+\DoxyCodeLine{00527\ }
+\DoxyCodeLine{00528\ \ \ \ \ PH\_ASSERT\_GE(rcpSplitExtent,\ 0.0\_r);}
+\DoxyCodeLine{00529\ }
+\DoxyCodeLine{00530\ \ \ \ \ std::array<SahBucket,\ MAX\_SAH\_BUCKETS>\ buckets\{\};}
+\DoxyCodeLine{00531\ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keyword}{const}\ ItemInfoType\&\ itemInfo\ :\ itemInfos)}
+\DoxyCodeLine{00532\ \ \ \ \ \{}
+\DoxyCodeLine{00533\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ real\ factor\ =\ (itemInfo.aabbCentroid[dim]\ -\/\ itemsCentroidAABB.getMinVertex()[dim])\ *\ rcpSplitExtent;}
+\DoxyCodeLine{00534\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ bucketIndex\ =\ \mbox{\hyperlink{namespaceph_1_1math_af8f390358e5ac8042dde889f48d9aaa4}{clamp<std::size\_t>}}(\textcolor{keyword}{static\_cast<}std::size\_t\textcolor{keyword}{>}(factor\ *\ m\_params.numSahBuckets),\ 0,\ m\_params.numSahBuckets\ -\/\ 1);}
+\DoxyCodeLine{00535\ }
+\DoxyCodeLine{00536\ \ \ \ \ \ \ \ \ buckets[bucketIndex].aabb\ =\ buckets[bucketIndex].isEmpty()}
+\DoxyCodeLine{00537\ \ \ \ \ \ \ \ \ \ \ \ \ ?\ itemInfo.aabb:\ buckets[bucketIndex].aabb.unionWith(itemInfo.aabb);}
+\DoxyCodeLine{00538\ \ \ \ \ \ \ \ \ buckets[bucketIndex].numItems++;}
+\DoxyCodeLine{00539\ \ \ \ \ \}}
+\DoxyCodeLine{00540\ }
+\DoxyCodeLine{00541\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ noSplitCost\ =\ \textcolor{keyword}{static\_cast<}real\textcolor{keyword}{>}(m\_params.interactCost\ *\ itemInfos.size());}
+\DoxyCodeLine{00542\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ emptySplitEnds\ =\ make\_array<std::size\_t,\ N>(m\_params.numSahBuckets);}
+\DoxyCodeLine{00543\ }
+\DoxyCodeLine{00544\ \ \ \ \ \textcolor{keyword}{auto}\ bestSplitCost\ =\ noSplitCost;}
+\DoxyCodeLine{00545\ \ \ \ \ \textcolor{keyword}{auto}\ bestSplitEnds\ =\ emptySplitEnds;}
+\DoxyCodeLine{00546\ \ \ \ \ splitWithSahBucketsBacktracking(}
+\DoxyCodeLine{00547\ \ \ \ \ \ \ \ \ dim,}
+\DoxyCodeLine{00548\ \ \ \ \ \ \ \ \ itemsAABB,}
+\DoxyCodeLine{00549\ \ \ \ \ \ \ \ \ \{buckets.begin(),\ m\_params.numSahBuckets\},}
+\DoxyCodeLine{00550\ \ \ \ \ \ \ \ \ 0,}
+\DoxyCodeLine{00551\ \ \ \ \ \ \ \ \ 0,}
+\DoxyCodeLine{00552\ \ \ \ \ \ \ \ \ emptySplitEnds,}
+\DoxyCodeLine{00553\ \ \ \ \ \ \ \ \ m\_params.traversalCost,}
+\DoxyCodeLine{00554\ \ \ \ \ \ \ \ \ \&bestSplitCost,}
+\DoxyCodeLine{00555\ \ \ \ \ \ \ \ \ \&bestSplitEnds);}
+\DoxyCodeLine{00556\ }
+\DoxyCodeLine{00557\ \ \ \ \ \textcolor{keywordflow}{if}(bestSplitCost\ <\ noSplitCost\ ||\ itemInfos.size()\ >\ m\_params.maxNodeItems)}
+\DoxyCodeLine{00558\ \ \ \ \ \{}
+\DoxyCodeLine{00559\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Partition\ \`{}itemInfos`\ into\ N\ parts.\ The\ complexity\ of\ the\ current\ implementation\ is\ similar}}
+\DoxyCodeLine{00560\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ to\ \`{}splitWithEqualItems()`.}}
+\DoxyCodeLine{00561\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ sortedItemInfos\ =\ itemInfos;}
+\DoxyCodeLine{00562\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ hasAnySplit\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00563\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ i\ =\ 0;\ i\ <\ N;\ ++i)}
+\DoxyCodeLine{00564\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00565\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ splitBegin\ =\ i\ >\ 0\ ?\ bestSplitEnds[i\ -\/\ 1]\ :\ 0;}
+\DoxyCodeLine{00566\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ splitEnd\ =\ bestSplitEnds[i];}
+\DoxyCodeLine{00567\ }
+\DoxyCodeLine{00568\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ No\ need\ to\ rearrange\ for\ empty\ range\ and\ the\ last\ part}}
+\DoxyCodeLine{00569\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ nextPartBegin\ =\ sortedItemInfos.end();}
+\DoxyCodeLine{00570\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(splitBegin\ <\ splitEnd\ \&\&\ i\ <\ N\ -\/\ 1)}
+\DoxyCodeLine{00571\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00572\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ nextPartBegin\ =\ std::partition(}
+\DoxyCodeLine{00573\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sortedItemInfos.begin(),}
+\DoxyCodeLine{00574\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sortedItemInfos.end(),}
+\DoxyCodeLine{00575\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ [\textcolor{keyword}{this},\ itemsCentroidAABB,\ dim,\ rcpSplitExtent,\ splitEnd](\textcolor{keyword}{const}\ ItemInfoType\&\ itemInfo)}
+\DoxyCodeLine{00576\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00577\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ const\ auto\ factor\ =\ (itemInfo.aabbCentroid[dim]\ -\/\ itemsCentroidAABB.getMinVertex()[dim])\ *\ rcpSplitExtent;}
+\DoxyCodeLine{00578\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ const\ auto\ bucketIndex\ =\ clamp<std::size\_t>(static\_cast<std::size\_t>(factor\ *\ m\_params.numSahBuckets),\ 0,\ m\_params.numSahBuckets\ -\/\ 1);}
+\DoxyCodeLine{00579\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ return\ bucketIndex\ <\ splitEnd;}
+\DoxyCodeLine{00580\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00581\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00582\ }
+\DoxyCodeLine{00583\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ numPartItems\ =\ nextPartBegin\ -\/\ sortedItemInfos.begin();}
+\DoxyCodeLine{00584\ \ \ \ \ \ \ \ \ \ \ \ \ (*out\_parts)[i]\ =\ sortedItemInfos.subspan(0,\ numPartItems);}
+\DoxyCodeLine{00585\ \ \ \ \ \ \ \ \ \ \ \ \ sortedItemInfos\ =\ sortedItemInfos.subspan(numPartItems);}
+\DoxyCodeLine{00586\ \ \ \ \ \ \ \ \ \ \ \ \ hasAnySplit\ =\ hasAnySplit\ \&\&\ (*out\_parts)[i].size()\ <\ itemInfos.size();}
+\DoxyCodeLine{00587\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00588\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ hasAnySplit;}
+\DoxyCodeLine{00589\ \ \ \ \ \}}
+\DoxyCodeLine{00590\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00591\ \ \ \ \ \{}
+\DoxyCodeLine{00592\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00593\ \ \ \ \ \}}
+\DoxyCodeLine{00594\ \}}
+\DoxyCodeLine{00595\ }
+\DoxyCodeLine{00596\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Item,\ \textcolor{keyword}{typename}\ ItemToAABB>}
+\DoxyCodeLine{00597\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ TBvhBuilder<N,\ Item,\ ItemToAABB>}
+\DoxyCodeLine{00598\ ::splitWithSahBucketsBacktracking(}
+\DoxyCodeLine{00599\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ splitDimension,}
+\DoxyCodeLine{00600\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_1_1math_a79409e9e8aea24d984f98f3acb483937}{AABB3D}}\&\ itemsAABB,}
+\DoxyCodeLine{00601\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_a06c532bb78132f63638ec3ef52d46ff3}{TSpanView<SahBucket>}}\ buckets,}
+\DoxyCodeLine{00602\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ numSplits,}
+\DoxyCodeLine{00603\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ splitBegin,}
+\DoxyCodeLine{00604\ \ \ \ \ \textcolor{keyword}{const}\ std::array<std::size\_t,\ N>\&\ splitEnds,}
+\DoxyCodeLine{00605\ \ \ \ \ \textcolor{keyword}{const}\ real\ cost,}
+\DoxyCodeLine{00606\ \ \ \ \ real*\ \textcolor{keyword}{const}\ out\_bestCost,}
+\DoxyCodeLine{00607\ \ \ \ \ std::array<std::size\_t,\ N>*\ \textcolor{keyword}{const}\ out\_bestSplitEnds)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00608\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00609\ \ \ \ \ PH\_ASSERT(out\_bestCost);}
+\DoxyCodeLine{00610\ \ \ \ \ PH\_ASSERT(out\_bestSplitEnds);}
+\DoxyCodeLine{00611\ }
+\DoxyCodeLine{00612\ \ \ \ \ \textcolor{comment}{//\ No\ need\ to\ explore\ further\ if\ cost\ is\ already\ too\ high}}
+\DoxyCodeLine{00613\ \ \ \ \ \textcolor{keywordflow}{if}(cost\ >=\ *out\_bestCost)}
+\DoxyCodeLine{00614\ \ \ \ \ \{}
+\DoxyCodeLine{00615\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00616\ \ \ \ \ \}}
+\DoxyCodeLine{00617\ }
+\DoxyCodeLine{00618\ \ \ \ \ \textcolor{comment}{//\ Finish\ due\ to\ running\ out\ of\ bucket\ or\ no\ more\ split\ can\ be\ made}}
+\DoxyCodeLine{00619\ \ \ \ \ \textcolor{keywordflow}{if}(splitBegin\ ==\ buckets.size()\ ||\ numSplits\ ==\ N)}
+\DoxyCodeLine{00620\ \ \ \ \ \{}
+\DoxyCodeLine{00621\ \ \ \ \ \ \ \ \ PH\_ASSERT\_LT(cost,\ *out\_bestCost);}
+\DoxyCodeLine{00622\ \ \ \ \ \ \ \ \ *out\_bestCost\ =\ cost;}
+\DoxyCodeLine{00623\ \ \ \ \ \ \ \ \ *out\_bestSplitEnds\ =\ splitEnds;}
+\DoxyCodeLine{00624\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00625\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00626\ \ \ \ \ \}}
+\DoxyCodeLine{00627\ }
+\DoxyCodeLine{00628\ \ \ \ \ PH\_ASSERT\_LT(splitBegin,\ buckets.size());}
+\DoxyCodeLine{00629\ \ \ \ \ PH\_ASSERT\_LT(numSplits,\ N);}
+\DoxyCodeLine{00630\ }
+\DoxyCodeLine{00631\ \ \ \ \ \textcolor{comment}{//\ If\ this\ is\ the\ last\ split,\ the\ only\ choice\ is\ taking\ all\ remaining\ buckets}}
+\DoxyCodeLine{00632\ \ \ \ \ std::size\_t\ splitEnd\ =\ numSplits\ ==\ N\ -\/\ 1\ ?\ buckets.size()\ :\ splitBegin\ +\ 1;}
+\DoxyCodeLine{00633\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00634\ \ \ \ \ \textcolor{comment}{//\ Recursively\ explore\ all\ possible\ split\ ends}}
+\DoxyCodeLine{00635\ \ \ \ \ \textcolor{keywordflow}{while}(splitEnd\ <=\ buckets.size())}
+\DoxyCodeLine{00636\ \ \ \ \ \{}
+\DoxyCodeLine{00637\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ newSplitEnds\ =\ splitEnds;}
+\DoxyCodeLine{00638\ \ \ \ \ \ \ \ \ newSplitEnds[numSplits]\ =\ splitEnd;}
+\DoxyCodeLine{00639\ }
+\DoxyCodeLine{00640\ \ \ \ \ \ \ \ \ std::size\_t\ numItems\ =\ 0;}
+\DoxyCodeLine{00641\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ aabb\ =\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d_acd1ef6d19364c61bd5d10e513ed8ad29}{AABB3D::makeEmpty}}();}
+\DoxyCodeLine{00642\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ bi\ =\ splitBegin;\ bi\ <\ splitEnd;\ ++bi)}
+\DoxyCodeLine{00643\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00644\ \ \ \ \ \ \ \ \ \ \ \ \ numItems\ +=\ buckets[bi].numItems;}
+\DoxyCodeLine{00645\ \ \ \ \ \ \ \ \ \ \ \ \ aabb.unionWith(buckets[bi].aabb);}
+\DoxyCodeLine{00646\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00647\ }
+\DoxyCodeLine{00648\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Safe\ clamping\ probabilities\ to\ [0,\ 1]\ as\ the\ AABBs\ may\ be\ empty,\ point,\ plane,}}
+\DoxyCodeLine{00649\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ or\ being\ super\ large\ to\ be\ Inf/NaN}}
+\DoxyCodeLine{00650\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ testProb\ =\ \mbox{\hyperlink{namespaceph_1_1math_a0090b0ad2b7785d02c6761c1766066cc}{safe\_clamp}}(}
+\DoxyCodeLine{00651\ \ \ \ \ \ \ \ \ \ \ \ \ aabb.getSurfaceArea()\ /\ itemsAABB.getSurfaceArea(),\ 0.0\_r,\ 1.0\_r);}
+\DoxyCodeLine{00652\ }
+\DoxyCodeLine{00653\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ newCost\ =\ \textcolor{keyword}{static\_cast<}real\textcolor{keyword}{>}(}
+\DoxyCodeLine{00654\ \ \ \ \ \ \ \ \ \ \ \ \ cost\ +\ numItems\ *\ m\_params.interactCost\ *\ testProb);}
+\DoxyCodeLine{00655\ }
+\DoxyCodeLine{00656\ \ \ \ \ \ \ \ \ splitWithSahBucketsBacktracking(}
+\DoxyCodeLine{00657\ \ \ \ \ \ \ \ \ \ \ \ \ splitDimension,}
+\DoxyCodeLine{00658\ \ \ \ \ \ \ \ \ \ \ \ \ itemsAABB,}
+\DoxyCodeLine{00659\ \ \ \ \ \ \ \ \ \ \ \ \ buckets,}
+\DoxyCodeLine{00660\ \ \ \ \ \ \ \ \ \ \ \ \ numSplits\ +\ 1,}
+\DoxyCodeLine{00661\ \ \ \ \ \ \ \ \ \ \ \ \ splitEnd,}
+\DoxyCodeLine{00662\ \ \ \ \ \ \ \ \ \ \ \ \ newSplitEnds,}
+\DoxyCodeLine{00663\ \ \ \ \ \ \ \ \ \ \ \ \ newCost,}
+\DoxyCodeLine{00664\ \ \ \ \ \ \ \ \ \ \ \ \ out\_bestCost,}
+\DoxyCodeLine{00665\ \ \ \ \ \ \ \ \ \ \ \ \ out\_bestSplitEnds);}
+\DoxyCodeLine{00666\ }
+\DoxyCodeLine{00667\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ new\ cost\ is\ already\ worse,\ all\ further\ splits\ will\ only\ be\ of\ higher\ costs}}
+\DoxyCodeLine{00668\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(newCost\ >=\ *out\_bestCost)}
+\DoxyCodeLine{00669\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00670\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00671\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00672\ }
+\DoxyCodeLine{00673\ \ \ \ \ \ \ \ \ ++splitEnd;}
+\DoxyCodeLine{00674\ \ \ \ \ \}}
+\DoxyCodeLine{00675\ \}}
+\DoxyCodeLine{00676\ }
+\DoxyCodeLine{00677\ \}\textcolor{comment}{//\ end\ namespace\ ph::math}}
 
 \end{DoxyCode}

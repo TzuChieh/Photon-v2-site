@@ -28,51 +28,87 @@
 \DoxyCodeLine{00031\ \ \ \ \ \}}
 \DoxyCodeLine{00032\ \}}
 \DoxyCodeLine{00033\ }
-\DoxyCodeLine{00037\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{int}egral\ T>}
-\DoxyCodeLine{00038\ \textcolor{keyword}{inline}\ T\ \mbox{\hyperlink{namespaceph_1_1math_aa1639a1b307574d4434e62163f699d25}{ceil\_div}}(\textcolor{keyword}{const}\ T\ numerator,\ \textcolor{keyword}{const}\ T\ denominator)}
+\DoxyCodeLine{00037\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ BASE,\ \textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00038\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespaceph_1_1math_a10b1c6c83ac6604b41693b55c1a9706f}{is\_power\_of}}(\textcolor{keyword}{const}\ T\ value)}
 \DoxyCodeLine{00039\ \{}
-\DoxyCodeLine{00040\ \ \ \ \ \mbox{\hyperlink{assertion_8h_a084da468d1c2924edeb475ac2813a894}{PH\_ASSERT\_GE}}(numerator,\ 0);}
-\DoxyCodeLine{00041\ \ \ \ \ \mbox{\hyperlink{assertion_8h_a1bf4090e4920d4e6021e6480ed22a1d6}{PH\_ASSERT\_GT}}(denominator,\ 0);}
-\DoxyCodeLine{00042\ }
-\DoxyCodeLine{00043\ \ \ \ \ \textcolor{comment}{//\ Check\ for\ possible\ overflow\ when\ doing\ \`{}numerator`\ +\ (`denominator`\ -\/\ 1).}}
-\DoxyCodeLine{00044\ \ \ \ \ \textcolor{comment}{//\ (i.e.,\ MAX\ >=\ \`{}numerator`\ +\ (`denominator`\ -\/\ 1),\ rearranged\ to\ minimize\ overflow)}}
-\DoxyCodeLine{00045\ \ \ \ \ \mbox{\hyperlink{assertion_8h_a084da468d1c2924edeb475ac2813a894}{PH\_ASSERT\_GE}}(std::numeric\_limits<T>::max()\ -\/\ numerator,\ denominator\ -\/\ 1);}
-\DoxyCodeLine{00046\ }
-\DoxyCodeLine{00047\ \ \ \ \ \textcolor{comment}{//\ We\ group\ the\ (`denominator`\ -\/\ 1)\ together\ as\ \`{}numerator`\ is\ usually\ far\ larger\ than}}
-\DoxyCodeLine{00048\ \ \ \ \ \textcolor{comment}{//\ \`{}denominator`,\ doing\ (`denominator`\ -\/\ 1)\ first\ has\ better\ chance\ to\ avoid\ an\ overflow}}
-\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordflow}{return}\ (numerator\ +\ (denominator\ -\/\ 1))\ /\ denominator;}
-\DoxyCodeLine{00050\ \}}
-\DoxyCodeLine{00051\ }
-\DoxyCodeLine{00056\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{int}egral\ T>}
-\DoxyCodeLine{00057\ \textcolor{keyword}{inline}\ T\ \mbox{\hyperlink{namespaceph_1_1math_a09832832f991e284ec83b3531bbb2bdf}{next\_multiple}}(\textcolor{keyword}{const}\ T\ value,\ \textcolor{keyword}{const}\ T\ multiple)}
-\DoxyCodeLine{00058\ \{}
-\DoxyCodeLine{00059\ \ \ \ \ \mbox{\hyperlink{assertion_8h_a1bf4090e4920d4e6021e6480ed22a1d6}{PH\_ASSERT\_GT}}(multiple,\ 0);}
-\DoxyCodeLine{00060\ }
-\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespaceph_1_1math_aa1639a1b307574d4434e62163f699d25}{ceil\_div}}(value,\ multiple)\ *\ multiple;}
-\DoxyCodeLine{00062\ \}}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(BASE\ ==\ 0)}
+\DoxyCodeLine{00041\ \ \ \ \ \{}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ value\ ==\ 0;}
+\DoxyCodeLine{00043\ \ \ \ \ \}}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(BASE\ ==\ 1)}
+\DoxyCodeLine{00045\ \ \ \ \ \{}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ value\ ==\ 1;}
+\DoxyCodeLine{00047\ \ \ \ \ \}}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(BASE\ ==\ 2)}
+\DoxyCodeLine{00049\ \ \ \ \ \{}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespaceph_1_1math_a2db200d8e62c40799c3fff427b4d869d}{is\_power\_of\_2}}(value);}
+\DoxyCodeLine{00051\ \ \ \ \ \}}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00053\ \ \ \ \ \{}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(value\ >\ 0)}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_assert}(BASE\ <=\ std::numeric\_limits<T>::max());}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ T\ powVal\ =\ 1;}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}(powVal\ <\ value)}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ powVal\ *=\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(BASE);\textcolor{comment}{//\ TODO:\ overflow\ check}}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
 \DoxyCodeLine{00063\ }
-\DoxyCodeLine{00066\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{int}egral\ T>}
-\DoxyCodeLine{00067\ \textcolor{keyword}{inline}\ T\ \mbox{\hyperlink{namespaceph_1_1math_a97fd8863ca133b67190d7d2101f95918}{next\_power\_of\_2\_multiple}}(\textcolor{keyword}{const}\ T\ value,\ \textcolor{keyword}{const}\ T\ multiple)}
-\DoxyCodeLine{00068\ \{}
-\DoxyCodeLine{00069\ \ \ \ \ \mbox{\hyperlink{assertion_8h_a084da468d1c2924edeb475ac2813a894}{PH\_ASSERT\_GE}}(value,\ 0);}
-\DoxyCodeLine{00070\ \ \ \ \ \mbox{\hyperlink{assertion_8h_a558904c79650c33ffc88d08548193229}{PH\_ASSERT}}(\mbox{\hyperlink{namespaceph_1_1math_a2db200d8e62c40799c3fff427b4d869d}{is\_power\_of\_2}}(multiple));}
-\DoxyCodeLine{00071\ \ \ \ \ }
-\DoxyCodeLine{00072\ \ \ \ \ \textcolor{comment}{//\ Reference:\ https://stackoverflow.com/a/9194117}}
-\DoxyCodeLine{00073\ }
-\DoxyCodeLine{00074\ \ \ \ \ \textcolor{comment}{//\ Check\ for\ possible\ overflow\ when\ doing\ \`{}value`\ +\ (`multiple`\ -\/\ 1).}}
-\DoxyCodeLine{00075\ \ \ \ \ \textcolor{comment}{//\ (see\ the\ implementation\ of\ \`{}ceil\_div()`\ for\ details\ about\ this\ test)}}
-\DoxyCodeLine{00076\ \ \ \ \ \mbox{\hyperlink{assertion_8h_a084da468d1c2924edeb475ac2813a894}{PH\_ASSERT\_GE}}(std::numeric\_limits<T>::max()\ -\/\ value,\ multiple\ -\/\ 1);}
-\DoxyCodeLine{00077\ }
-\DoxyCodeLine{00078\ \ \ \ \ \textcolor{comment}{//\ \`{}\&\ \string~(multiple\ -\/\ 1)`\ is\ the\ same\ as\ \`{}\&\ -\/multiple`\ for\ two's\ complement\ arithmetic}}
-\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keywordflow}{return}\ (value\ +\ (multiple\ -\/\ 1))\ \&\ (0\ -\/\ multiple);}
-\DoxyCodeLine{00080\ }
-\DoxyCodeLine{00081\ \ \ \ \ \textcolor{comment}{//\ Note:}}
-\DoxyCodeLine{00082\ \ \ \ \ \textcolor{comment}{//\ MSVC\ may\ emit\ C4146\ warning\ on\ applying\ a\ unary\ negate\ operation\ on\ unsigned\ types.\ Subtracting\ a}}
-\DoxyCodeLine{00083\ \ \ \ \ \textcolor{comment}{//\ value\ from\ zero\ is\ the\ same\ as\ taking\ its\ negative,\ but\ using\ the\ binary\ subtraction\ operator\ avoids}}
-\DoxyCodeLine{00084\ \ \ \ \ \textcolor{comment}{//\ the\ warning\ about\ taking\ the\ negative\ of\ an\ unsigned\ value.\ Hence\ the\ \`{}0\ -\/\ multiple`\ instead\ of\ \`{}-\/multiple`.}}
-\DoxyCodeLine{00085\ \ \ \ \ \textcolor{comment}{//\ Reference:\ https://stackoverflow.com/a/26893482}}
-\DoxyCodeLine{00086\ \}}
-\DoxyCodeLine{00087\ }
-\DoxyCodeLine{00088\ \}\textcolor{comment}{//\ end\ namespace\ ph::math}}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ powVal\ ==\ value;}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00070\ \ \ \ \ \}}
+\DoxyCodeLine{00071\ \}}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00076\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{int}egral\ T>}
+\DoxyCodeLine{00077\ \textcolor{keyword}{inline}\ T\ \mbox{\hyperlink{namespaceph_1_1math_aa1639a1b307574d4434e62163f699d25}{ceil\_div}}(\textcolor{keyword}{const}\ T\ numerator,\ \textcolor{keyword}{const}\ T\ denominator)}
+\DoxyCodeLine{00078\ \{}
+\DoxyCodeLine{00079\ \ \ \ \ \mbox{\hyperlink{assertion_8h_a084da468d1c2924edeb475ac2813a894}{PH\_ASSERT\_GE}}(numerator,\ 0);}
+\DoxyCodeLine{00080\ \ \ \ \ \mbox{\hyperlink{assertion_8h_a1bf4090e4920d4e6021e6480ed22a1d6}{PH\_ASSERT\_GT}}(denominator,\ 0);}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{comment}{//\ Check\ for\ possible\ overflow\ when\ doing\ \`{}numerator`\ +\ (`denominator`\ -\/\ 1).}}
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{comment}{//\ (i.e.,\ MAX\ >=\ \`{}numerator`\ +\ (`denominator`\ -\/\ 1),\ rearranged\ to\ minimize\ overflow)}}
+\DoxyCodeLine{00084\ \ \ \ \ \mbox{\hyperlink{assertion_8h_a084da468d1c2924edeb475ac2813a894}{PH\_ASSERT\_GE}}(std::numeric\_limits<T>::max()\ -\/\ numerator,\ denominator\ -\/\ 1);}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{comment}{//\ We\ group\ the\ (`denominator`\ -\/\ 1)\ together\ as\ \`{}numerator`\ is\ usually\ far\ larger\ than}}
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{comment}{//\ \`{}denominator`,\ doing\ (`denominator`\ -\/\ 1)\ first\ has\ better\ chance\ to\ avoid\ an\ overflow}}
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keywordflow}{return}\ (numerator\ +\ (denominator\ -\/\ 1))\ /\ denominator;}
+\DoxyCodeLine{00089\ \}}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00095\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{int}egral\ T>}
+\DoxyCodeLine{00096\ \textcolor{keyword}{inline}\ T\ \mbox{\hyperlink{namespaceph_1_1math_a09832832f991e284ec83b3531bbb2bdf}{next\_multiple}}(\textcolor{keyword}{const}\ T\ value,\ \textcolor{keyword}{const}\ T\ multiple)}
+\DoxyCodeLine{00097\ \{}
+\DoxyCodeLine{00098\ \ \ \ \ \mbox{\hyperlink{assertion_8h_a1bf4090e4920d4e6021e6480ed22a1d6}{PH\_ASSERT\_GT}}(multiple,\ 0);}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespaceph_1_1math_aa1639a1b307574d4434e62163f699d25}{ceil\_div}}(value,\ multiple)\ *\ multiple;}
+\DoxyCodeLine{00101\ \}}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00105\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{int}egral\ T>}
+\DoxyCodeLine{00106\ \textcolor{keyword}{inline}\ T\ \mbox{\hyperlink{namespaceph_1_1math_a97fd8863ca133b67190d7d2101f95918}{next\_power\_of\_2\_multiple}}(\textcolor{keyword}{const}\ T\ value,\ \textcolor{keyword}{const}\ T\ multiple)}
+\DoxyCodeLine{00107\ \{}
+\DoxyCodeLine{00108\ \ \ \ \ \mbox{\hyperlink{assertion_8h_a084da468d1c2924edeb475ac2813a894}{PH\_ASSERT\_GE}}(value,\ 0);}
+\DoxyCodeLine{00109\ \ \ \ \ \mbox{\hyperlink{assertion_8h_a558904c79650c33ffc88d08548193229}{PH\_ASSERT}}(\mbox{\hyperlink{namespaceph_1_1math_a2db200d8e62c40799c3fff427b4d869d}{is\_power\_of\_2}}(multiple));}
+\DoxyCodeLine{00110\ \ \ \ \ }
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{comment}{//\ Reference:\ https://stackoverflow.com/a/9194117}}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{comment}{//\ Check\ for\ possible\ overflow\ when\ doing\ \`{}value`\ +\ (`multiple`\ -\/\ 1).}}
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{comment}{//\ (see\ the\ implementation\ of\ \`{}ceil\_div()`\ for\ details\ about\ this\ test)}}
+\DoxyCodeLine{00115\ \ \ \ \ \mbox{\hyperlink{assertion_8h_a084da468d1c2924edeb475ac2813a894}{PH\_ASSERT\_GE}}(std::numeric\_limits<T>::max()\ -\/\ value,\ multiple\ -\/\ 1);}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{comment}{//\ \`{}\&\ \string~(multiple\ -\/\ 1)`\ is\ the\ same\ as\ \`{}\&\ -\/multiple`\ for\ two's\ complement\ arithmetic}}
+\DoxyCodeLine{00118\ \ \ \ \ \textcolor{keywordflow}{return}\ (value\ +\ (multiple\ -\/\ 1))\ \&\ (0\ -\/\ multiple);}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \ \ \ \ \textcolor{comment}{//\ Note:}}
+\DoxyCodeLine{00121\ \ \ \ \ \textcolor{comment}{//\ MSVC\ may\ emit\ C4146\ warning\ on\ applying\ a\ unary\ negate\ operation\ on\ unsigned\ types.\ Subtracting\ a}}
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{comment}{//\ value\ from\ zero\ is\ the\ same\ as\ taking\ its\ negative,\ but\ using\ the\ binary\ subtraction\ operator\ avoids}}
+\DoxyCodeLine{00123\ \ \ \ \ \textcolor{comment}{//\ the\ warning\ about\ taking\ the\ negative\ of\ an\ unsigned\ value.\ Hence\ the\ \`{}0\ -\/\ multiple`\ instead\ of\ \`{}-\/multiple`.}}
+\DoxyCodeLine{00124\ \ \ \ \ \textcolor{comment}{//\ Reference:\ https://stackoverflow.com/a/26893482}}
+\DoxyCodeLine{00125\ \}}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00127\ \}\textcolor{comment}{//\ end\ namespace\ ph::math}}
 
 \end{DoxyCode}

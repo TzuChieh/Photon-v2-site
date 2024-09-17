@@ -7,255 +7,894 @@
 \DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_linear_depth_first_wide_bvh_8h}{Math/Algorithm/BVH/TLinearDepthFirstWideBvh.h}}"{}}}
 \DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_bvh_info_node_8h}{Math/Algorithm/BVH/TBvhInfoNode.h}}"{}}}
 \DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_bvh_item_info_8h}{Math/Algorithm/BVH/TBvhItemInfo.h}}"{}}}
-\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{traversal__concepts_8h}{Math/Algorithm/traversal\_concepts.h}}"{}}}
-\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_array_stack_8h}{Utility/TArrayStack.h}}"{}}}
-\DoxyCodeLine{00008\ }
-\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <Common/assertion.h>}}
-\DoxyCodeLine{00010\ }
-\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <type\_traits>}}
-\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <array>}}
-\DoxyCodeLine{00013\ }
-\DoxyCodeLine{00014\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph_1_1math}{ph::math}}}
-\DoxyCodeLine{00015\ \{}
-\DoxyCodeLine{00016\ }
-\DoxyCodeLine{00017\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Item,\ \textcolor{keyword}{typename}\ Index>}
-\DoxyCodeLine{00018\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ SrcN>}
-\DoxyCodeLine{00019\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ TLinearDepthFirstWideBvh<N,\ Item,\ Index>}
-\DoxyCodeLine{00020\ ::build(}
-\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node}{TBvhInfoNode<SrcN,\ Item>}}*\ \textcolor{keyword}{const}\ rootNode,}
-\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ totalInfoNodes,}
-\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ totalItems)}
-\DoxyCodeLine{00024\ \{}
-\DoxyCodeLine{00025\ \ \ \ \ *\textcolor{keyword}{this}\ =\ \mbox{\hyperlink{classph_1_1math_1_1_t_linear_depth_first_wide_bvh}{TLinearDepthFirstWideBvh}}\{\};}
-\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordflow}{if}(!rootNode)}
-\DoxyCodeLine{00027\ \ \ \ \ \{}
-\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
-\DoxyCodeLine{00029\ \ \ \ \ \}}
-\DoxyCodeLine{00030\ }
-\DoxyCodeLine{00031\ \ \ \ \ \textcolor{comment}{//\ Allocate\ memory\ for\ nodes\ and\ items}}
-\DoxyCodeLine{00032\ \ \ \ \ m\_nodes\ =\ std::make\_unique<TWideBvhNode<N,\ Item,\ Index>[]>(totalInfoNodes);}
-\DoxyCodeLine{00033\ \ \ \ \ m\_items\ =\ std::make\_unique<Item[]>(totalItems);}
-\DoxyCodeLine{00034\ }
-\DoxyCodeLine{00035\ \ \ \ \ \textcolor{comment}{//\ Can\ directly\ convert\ if\ the\ branch\ factor\ matches}}
-\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(SrcN\ ==\ N)}
-\DoxyCodeLine{00037\ \ \ \ \ \{}
-\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(rootNode-\/>\mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node_a97724046ee4534fc865ee735684d7d83}{isLeaf}}())}
-\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ itemOffset\ =\ m\_numItems;}
-\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ i\ =\ 0;\ i\ <\ rootNode-\/>\mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node_a382b4871c375e546477ed0ac430a2d52}{getItems}}().size();\ ++i)}
-\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_items[itemOffset\ +\ i]\ =\ rootNode-\/>\mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node_a382b4871c375e546477ed0ac430a2d52}{getItems}}()[i].item;}
-\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ m\_numItems\ +=\ rootNode-\/>\mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node_a382b4871c375e546477ed0ac430a2d52}{getItems}}().size();}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_bvh_simd_computing_context_8h}{Math/Algorithm/BVH/TBvhSimdComputingContext.h}}"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{acceleration__structure__basics_8h}{Math/Algorithm/acceleration\_structure\_basics.h}}"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_array_vector_8h}{Utility/TArrayVector.h}}"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_array_stack_8h}{Utility/TArrayStack.h}}"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_array_heap_8h}{Utility/TArrayHeap.h}}"{}}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <Common/assertion.h>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <Common/math\_basics.h>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <Common/logging.h>}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <type\_traits>}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ <limits>}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ <functional>}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ <cmath>}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph_1_1math}{ph::math}}}
+\DoxyCodeLine{00023\ \{}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Item,\ \textcolor{keyword}{typename}\ Index>}
+\DoxyCodeLine{00026\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ SrcN>}
+\DoxyCodeLine{00027\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ TLinearDepthFirstWideBvh<N,\ Item,\ Index>}
+\DoxyCodeLine{00028\ ::build(}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node}{TBvhInfoNode<SrcN,\ Item>}}*\ \textcolor{keyword}{const}\ rootNode,}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ totalInfoNodes,}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ totalItems)}
+\DoxyCodeLine{00032\ \{}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#if\ PH\_PROFILE\_ACCELERATION\_STRUCTURES}}
+\DoxyCodeLine{00034\ \ \ \ \ PH\_PROFILE\_SCOPE();}
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \ \ *\textcolor{keyword}{this}\ =\ \mbox{\hyperlink{classph_1_1math_1_1_t_linear_depth_first_wide_bvh}{TLinearDepthFirstWideBvh}}\{\};}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordflow}{if}(!rootNode)}
+\DoxyCodeLine{00039\ \ \ \ \ \{}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00041\ \ \ \ \ \}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{comment}{//\ Allocate\ memory\ for\ nodes\ and\ items}}
+\DoxyCodeLine{00044\ \ \ \ \ m\_nodes\ =\ std::make\_unique<TWideBvhNode<N,\ Index>[]>(totalInfoNodes);}
+\DoxyCodeLine{00045\ \ \ \ \ m\_items\ =\ std::make\_unique<Item[]>(totalItems);}
 \DoxyCodeLine{00046\ }
-\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ m\_numNodes\ =\ 1;}
-\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ m\_nodes[0].setLeaf(}
-\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0,}
-\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ rootNode-\/>\mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node_a9459982c5a2b4f8748094676a98588b2}{getAABB}}(),}
-\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ itemOffset,}
-\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ rootNode-\/>\mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node_a382b4871c375e546477ed0ac430a2d52}{getItems}}().size());}
-\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ convertChildNodesRecursive(rootNode);}
-\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00058\ \ \ \ \ \}}
-\DoxyCodeLine{00059\ \ \ \ \ \textcolor{comment}{//\ Try\ to\ collapse\ into\ target\ branch\ factor}}
-\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00061\ \ \ \ \ \{}
-\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ TODO}}
-\DoxyCodeLine{00063\ \ \ \ \ \}}
-\DoxyCodeLine{00064\ }
-\DoxyCodeLine{00065\ \ \ \ \ refitBuffer(totalInfoNodes,\ totalItems);}
-\DoxyCodeLine{00066\ \}}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{comment}{//\ Can\ directly\ convert\ if\ the\ branch\ factor\ matches}}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(SrcN\ ==\ N)}
+\DoxyCodeLine{00049\ \ \ \ \ \{}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ isSingleSplitAxisNodes\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ convertNodesRecursive(rootNode,\ isSingleSplitAxisNodes);}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ m\_order\ =\ isSingleSplitAxisNodes\ ?\ \mbox{\hyperlink{namespaceph_1_1math_aabe5079ad127a59984a75116b4c2b0f3a66ba162102bbf6ae31b522aec561735e}{EBvhSplitAxisOrder::Single}}\ :\ \mbox{\hyperlink{namespaceph_1_1math_aabe5079ad127a59984a75116b4c2b0f3a5cd8751eeac534908829566d37a72c8c}{EBvhSplitAxisOrder::Unbalanced}};}
+\DoxyCodeLine{00054\ \ \ \ \ \}}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{comment}{//\ Try\ to\ collapse\ into\ target\ branch\ factor}}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(is\_power\_of<SrcN>(N))}
+\DoxyCodeLine{00057\ \ \ \ \ \{}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ collapseNodesRecursive(rootNode);}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ m\_order\ =\ is\_power\_of\_2(N)\ ?\ \mbox{\hyperlink{namespaceph_1_1math_aabe5079ad127a59984a75116b4c2b0f3a5b328d4a5e7355b8c7161e3cc1073abf}{EBvhSplitAxisOrder::BalancedPow2}}\ :\ \mbox{\hyperlink{namespaceph_1_1math_aabe5079ad127a59984a75116b4c2b0f3ac6589f5236c0c434d0c63dc5f9a856f2}{EBvhSplitAxisOrder::Balanced}};}
+\DoxyCodeLine{00061\ \ \ \ \ \}}
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00063\ \ \ \ \ \{}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ PH\_DEFAULT\_LOG(Error,}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Cannot\ build\ BVH\{\}\ from\ BVH\{\}\ (\{\}-\/byte\ index)."{}},\ N,\ SrcN,\ \textcolor{keyword}{sizeof}(Index));}
+\DoxyCodeLine{00066\ \ \ \ \ \}}
 \DoxyCodeLine{00067\ }
-\DoxyCodeLine{00068\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Item,\ \textcolor{keyword}{typename}\ Index>}
-\DoxyCodeLine{00069\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ TesterFunc,\ \textcolor{keywordtype}{bool}\ IS\_ROBUST>}
-\DoxyCodeLine{00070\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ TLinearDepthFirstWideBvh<N,\ Item,\ Index>}
-\DoxyCodeLine{00071\ ::nearestTraversal(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_line_segment}{TLineSegment<real>}}\&\ segment,\ TesterFunc\&\&\ intersectionTester)\textcolor{keyword}{\ const}}
-\DoxyCodeLine{00072\ \textcolor{keyword}{}\{}
-\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keyword}{static\_assert}(\mbox{\hyperlink{conceptph_1_1math_1_1_c_item_segment_intersection_tester}{CItemSegmentIntersectionTester<TesterFunc,\ Item>}});}
-\DoxyCodeLine{00074\ }
-\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keywordflow}{if}(isEmpty())}
-\DoxyCodeLine{00076\ \ \ \ \ \{}
-\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
-\DoxyCodeLine{00078\ \ \ \ \ \}}
-\DoxyCodeLine{00079\ }
-\DoxyCodeLine{00080\ \ \ \ \ PH\_ASSERT(m\_nodes);}
-\DoxyCodeLine{00081\ \ \ \ \ PH\_ASSERT(m\_items);}
+\DoxyCodeLine{00068\ \ \ \ \ refitBuffer(totalInfoNodes,\ totalItems);}
+\DoxyCodeLine{00069\ \}}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Item,\ \textcolor{keyword}{typename}\ Index>}
+\DoxyCodeLine{00072\ \textcolor{keyword}{template}<\textcolor{keywordtype}{bool}\ IS\_ROBUST,\ \textcolor{keyword}{typename}\ TesterFunc>}
+\DoxyCodeLine{00073\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1math_1_1_t_linear_depth_first_wide_bvh}{TLinearDepthFirstWideBvh<N,\ Item,\ Index>}}}
+\DoxyCodeLine{00074\ \mbox{\hyperlink{classph_1_1math_1_1_t_linear_depth_first_wide_bvh}{::nearestTraversal}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_line_segment}{TLineSegment<real>}}\&\ segment,\ TesterFunc\&\&\ intersectionTester)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00075\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keyword}{static\_assert}(\mbox{\hyperlink{conceptph_1_1math_1_1_c_item_segment_intersection_tester}{CItemSegmentIntersectionTester<TesterFunc,\ Item>}});}
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::numeric\_limits<real>::has\_infinity);}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \textcolor{preprocessor}{\#if\ PH\_PROFILE\_ACCELERATION\_STRUCTURES}}
+\DoxyCodeLine{00080\ \ \ \ \ PH\_PROFILE\_SCOPE();}
+\DoxyCodeLine{00081\ \textcolor{preprocessor}{\#endif}}
 \DoxyCodeLine{00082\ }
-\DoxyCodeLine{00083\ \ \ \ \ \textcolor{comment}{//\ Traversal\ states}}
-\DoxyCodeLine{00084\ \ \ \ \ \mbox{\hyperlink{classph_1_1_t_array_stack}{TArrayStack<Index,\ TRAVERSAL\_STACK\_SIZE>}}\ todoNodes;}
-\DoxyCodeLine{00085\ \ \ \ \ Index\ currentNodeIndex\ =\ 0;}
-\DoxyCodeLine{00086\ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_line_segment}{TLineSegment<real>}}\ longestSegment(segment);}
-\DoxyCodeLine{00087\ \ \ \ \ \textcolor{keywordtype}{bool}\ hasHit\ =\ \textcolor{keyword}{false};}
-\DoxyCodeLine{00088\ }
-\DoxyCodeLine{00089\ \ \ \ \ \textcolor{comment}{//\ Precompute\ common\ values}}
-\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ rcpSegmentDir\ =\ segment.\mbox{\hyperlink{classph_1_1math_1_1_t_line_segment_a82d600951a74de4eec8a63baabe282e8}{getDir}}().rcp();}
-\DoxyCodeLine{00091\ }
-\DoxyCodeLine{00092\ \ \ \ \ \textcolor{comment}{//\ Traverse\ nodes}}
-\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keywordflow}{while}(\textcolor{keyword}{true})}
-\DoxyCodeLine{00094\ \ \ \ \ \{}
-\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ PH\_ASSERT\_LT(currentNodeIndex,\ m\_numNodes);}
-\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_wide_bvh_node}{NodeType}}\&\ node\ =\ m\_nodes[currentNodeIndex];}
-\DoxyCodeLine{00097\ }
-\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ ci\ =\ 0;\ ci\ <\ N;\ ++ci)}
-\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ [aabbMinT,\ aabbMaxT]\ =\ node.\mbox{\hyperlink{classph_1_1math_1_1_t_wide_bvh_node_a407c1510b6edac49f95933657d5bfe18}{getAABB}}(ci).\mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d_a1c93bf688a352f2d2adf14d46c9a7141}{isIntersectingVolume}}<IS\_ROBUST>(}
-\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ longestSegment,\ rcpSegmentDir);}
-\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(aabbMinT\ <=\ aabbMaxT)}
-\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(node.\mbox{\hyperlink{classph_1_1math_1_1_t_wide_bvh_node_a925f8eacc8c5e136e915b43c1622006c}{isLeaf}}(ci))}
-\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ numItems\ =\ node.\mbox{\hyperlink{classph_1_1math_1_1_t_wide_bvh_node_a2035a757d76349f1efad0ac5e53782d7}{numItems}}(ci);}
-\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ i\ =\ 0;\ i\ <\ numItems;\ ++i)}
-\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Item\&\ item\ =\ m\_items[node.\mbox{\hyperlink{classph_1_1math_1_1_t_wide_bvh_node_a7293167d3649588e09ed8894286eac06}{getItemOffset}}(ci)\ +\ i];}
-\DoxyCodeLine{00110\ }
-\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ optHitT\ =\ intersectionTester(item,\ longestSegment);}
-\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(optHitT)}
-\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ longestSegment.setMaxT(*optHitT);}
-\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ hasHit\ =\ \textcolor{keyword}{true};}
-\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ todoNodes.\mbox{\hyperlink{classph_1_1_t_array_stack_a51868f681542a61cd2d194c70401e3d4}{push}}(node.\mbox{\hyperlink{classph_1_1math_1_1_t_wide_bvh_node_a76da73f676864a6466472f87e93cbff7}{getChildOffset}}(ci));}
-\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00125\ }
-\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(todoNodes.\mbox{\hyperlink{classph_1_1_t_array_stack_ab4973a77ae764dd2805a89440b2f13f9}{isEmpty}}())}
-\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
-\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ currentNodeIndex\ =\ todoNodes.\mbox{\hyperlink{classph_1_1_t_array_stack_a72fa9c013874f5c283f294e30d1c605c}{top}}();}
-\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \ \ todoNodes.\mbox{\hyperlink{classph_1_1_t_array_stack_afbebdf469f1b9acfd39de1d07b602901}{pop}}();}
-\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00135\ \ \ \ \ \}}
-\DoxyCodeLine{00136\ \ \ \ \ }
-\DoxyCodeLine{00137\ \ \ \ \ \textcolor{keywordflow}{return}\ hasHit;}
-\DoxyCodeLine{00138\ \}}
-\DoxyCodeLine{00139\ }
-\DoxyCodeLine{00140\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Item,\ \textcolor{keyword}{typename}\ IndexType>}
-\DoxyCodeLine{00141\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1math_1_1_t_linear_depth_first_wide_bvh}{TLinearDepthFirstWideBvh<N,\ Item,\ IndexType>}}}
-\DoxyCodeLine{00142\ \mbox{\hyperlink{classph_1_1math_1_1_t_linear_depth_first_wide_bvh}{::isEmpty}}()\textcolor{keyword}{\ const}}
-\DoxyCodeLine{00143\ \textcolor{keyword}{}\{}
-\DoxyCodeLine{00144\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_numNodes\ ==\ 0;}
-\DoxyCodeLine{00145\ \}}
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keywordflow}{if}(isEmpty())}
+\DoxyCodeLine{00084\ \ \ \ \ \{}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00086\ \ \ \ \ \}}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \ \ \ \ PH\_ASSERT(m\_nodes);}
+\DoxyCodeLine{00089\ \ \ \ \ PH\_ASSERT(m\_items);}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keywordflow}{switch}(m\_order)}
+\DoxyCodeLine{00092\ \ \ \ \ \{}
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{comment}{//\ TODO:\ this\ order\ is\ not\ specialized/optimized\ yet}}
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespaceph_1_1math_aabe5079ad127a59984a75116b4c2b0f3a5cd8751eeac534908829566d37a72c8c}{EBvhSplitAxisOrder::Unbalanced}}:}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ nearestTraversalGeneral<IS\_ROBUST>(}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ segment,}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ std::forward<TesterFunc>(intersectionTester));}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{comment}{//\ TODO:\ this\ order\ is\ not\ specialized/optimized\ yet}}
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespaceph_1_1math_aabe5079ad127a59984a75116b4c2b0f3ac6589f5236c0c434d0c63dc5f9a856f2}{EBvhSplitAxisOrder::Balanced}}:}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ nearestTraversalGeneral<IS\_ROBUST>(}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ segment,}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ std::forward<TesterFunc>(intersectionTester));}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespaceph_1_1math_aabe5079ad127a59984a75116b4c2b0f3a5b328d4a5e7355b8c7161e3cc1073abf}{EBvhSplitAxisOrder::BalancedPow2}}:}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ This\ check\ is\ required,\ so\ unused\ code\ can\ be\ eliminated}}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(is\_power\_of\_2(N))}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ nearestTraversalOrdered<IS\_ROBUST,\ EBvhSplitAxisOrder::BalancedPow2>(}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ segment,}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::forward<TesterFunc>(intersectionTester));}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ PH\_DEFAULT\_LOG(ErrorOnce,}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}BVH\{\}\ (\{\}-\/byte\ index)\ tried\ to\ use\ \`{}BalancedPow2`\ order."{}},\ N,\ \textcolor{keyword}{sizeof}(Index));}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespaceph_1_1math_aabe5079ad127a59984a75116b4c2b0f3a66ba162102bbf6ae31b522aec561735e}{EBvhSplitAxisOrder::Single}}:}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ nearestTraversalOrdered<IS\_ROBUST,\ EBvhSplitAxisOrder::Single>(}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ segment,}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ std::forward<TesterFunc>(intersectionTester));}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ PH\_ASSERT\_UNREACHABLE\_SECTION();}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00128\ \ \ \ \ \}}
+\DoxyCodeLine{00129\ \}}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Item,\ \textcolor{keyword}{typename}\ Index>}
+\DoxyCodeLine{00132\ \textcolor{keyword}{template}<\textcolor{keywordtype}{bool}\ IS\_ROBUST,\ \textcolor{keyword}{typename}\ TesterFunc>}
+\DoxyCodeLine{00133\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1math_1_1_t_linear_depth_first_wide_bvh}{TLinearDepthFirstWideBvh<N,\ Item,\ Index>}}}
+\DoxyCodeLine{00134\ \mbox{\hyperlink{classph_1_1math_1_1_t_linear_depth_first_wide_bvh}{::nearestTraversalGeneral}}(}
+\DoxyCodeLine{00135\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_line_segment}{TLineSegment<real>}}\&\ segment,}
+\DoxyCodeLine{00136\ \ \ \ \ TesterFunc\&\&\ intersectionTester)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00137\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00138\ \textcolor{preprocessor}{\#if\ PH\_PROFILE\_ACCELERATION\_STRUCTURES}}
+\DoxyCodeLine{00139\ \ \ \ \ PH\_PROFILE\_SCOPE();}
+\DoxyCodeLine{00140\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00142\ \ \ \ \ \textcolor{keyword}{struct\ }GeneralTodoNode}
+\DoxyCodeLine{00143\ \ \ \ \ \{}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ real\ minT;}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ Index\ nodeIndex;}
 \DoxyCodeLine{00146\ }
-\DoxyCodeLine{00147\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Item,\ \textcolor{keyword}{typename}\ IndexType>}
-\DoxyCodeLine{00148\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1math_1_1_t_linear_depth_first_wide_bvh}{TLinearDepthFirstWideBvh<N,\ Item,\ IndexType>}}}
-\DoxyCodeLine{00149\ \mbox{\hyperlink{classph_1_1math_1_1_t_linear_depth_first_wide_bvh}{::getRoot}}()\ const}
-\DoxyCodeLine{00150\ -\/>\ const\ \mbox{\hyperlink{classph_1_1math_1_1_t_wide_bvh_node}{NodeType}}\&}
-\DoxyCodeLine{00151\ \{}
-\DoxyCodeLine{00152\ \ \ \ \ PH\_ASSERT(m\_nodes);}
-\DoxyCodeLine{00153\ \ \ \ \ PH\_ASSERT\_GT(m\_numNodes,\ 0);}
-\DoxyCodeLine{00154\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_nodes[0];}
-\DoxyCodeLine{00155\ \}}
-\DoxyCodeLine{00156\ }
-\DoxyCodeLine{00157\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Item,\ \textcolor{keyword}{typename}\ IndexType>}
-\DoxyCodeLine{00158\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1math_1_1_t_linear_depth_first_wide_bvh}{TLinearDepthFirstWideBvh<N,\ Item,\ IndexType>}}}
-\DoxyCodeLine{00159\ \mbox{\hyperlink{classph_1_1math_1_1_t_linear_depth_first_wide_bvh}{::numNodes}}()\ const}
-\DoxyCodeLine{00160\ -\/>\ \mbox{\hyperlink{namespacestd}{std}}::\textcolor{keywordtype}{size\_t}}
-\DoxyCodeLine{00161\ \{}
-\DoxyCodeLine{00162\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_numNodes;}
-\DoxyCodeLine{00163\ \}}
-\DoxyCodeLine{00164\ }
-\DoxyCodeLine{00165\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Item,\ \textcolor{keyword}{typename}\ IndexType>}
-\DoxyCodeLine{00166\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1math_1_1_t_linear_depth_first_wide_bvh}{TLinearDepthFirstWideBvh<N,\ Item,\ IndexType>}}}
-\DoxyCodeLine{00167\ \mbox{\hyperlink{classph_1_1math_1_1_t_linear_depth_first_wide_bvh}{::numItems}}()\ const}
-\DoxyCodeLine{00168\ -\/>\ \mbox{\hyperlink{namespacestd}{std}}::\textcolor{keywordtype}{size\_t}}
-\DoxyCodeLine{00169\ \{}
-\DoxyCodeLine{00170\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_numItems;}
-\DoxyCodeLine{00171\ \}}
-\DoxyCodeLine{00172\ }
-\DoxyCodeLine{00173\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Item,\ \textcolor{keyword}{typename}\ IndexType>}
-\DoxyCodeLine{00174\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1math_1_1_t_linear_depth_first_wide_bvh}{TLinearDepthFirstWideBvh<N,\ Item,\ IndexType>}}}
-\DoxyCodeLine{00175\ \mbox{\hyperlink{classph_1_1math_1_1_t_linear_depth_first_wide_bvh}{::convertChildNodesRecursive}}(}
-\DoxyCodeLine{00176\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node}{TBvhInfoNode<N,\ Item>}}*\ \textcolor{keyword}{const}\ infoNode)}
-\DoxyCodeLine{00177\ \{}
-\DoxyCodeLine{00178\ \ \ \ \ PH\_ASSERT(infoNode);}
-\DoxyCodeLine{00179\ }
-\DoxyCodeLine{00180\ \ \ \ \ \textcolor{comment}{//\ Leaf\ node\ should\ be\ converted\ already}}
-\DoxyCodeLine{00181\ \ \ \ \ PH\_ASSERT\_MSG(!infoNode-\/>\mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node_a97724046ee4534fc865ee735684d7d83}{isLeaf}}(),\ \textcolor{stringliteral}{"{}this\ method\ expects\ internal\ node\ as\ input"{}});}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ operator\ >\ (\textcolor{keyword}{const}\ GeneralTodoNode\&\ other)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00148\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ minT\ >\ other.minT;}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00151\ \ \ \ \ \};}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00153\ \ \ \ \ \textcolor{comment}{//\ Traversal\ states}}
+\DoxyCodeLine{00154\ }
+\DoxyCodeLine{00155\ \ \ \ \ \textcolor{comment}{//\ For\ general\ case:\ greedily\ extract\ minimum\ t\ using\ a\ min\ heap}}
+\DoxyCodeLine{00156\ \ \ \ \ TArrayHeap<GeneralTodoNode,\ TRAVERSAL\_STACK\_SIZE,\ std::greater<>>\ generalTodoNodes;}
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00158\ \ \ \ \ Index\ currentNodeIndex\ =\ 0;}
+\DoxyCodeLine{00159\ \ \ \ \ TLineSegment<real>\ longestSegment(segment);}
+\DoxyCodeLine{00160\ \ \ \ \ \textcolor{keywordtype}{bool}\ hasHit\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00162\ \ \ \ \ \textcolor{comment}{//\ Precompute\ common\ values}}
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00164\ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ largestHitT\ =\ std::numeric\_limits<real>::infinity();}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00166\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ rcpSegmentDir\ =\ segment.\mbox{\hyperlink{classph_1_1math_1_1_t_line_segment_a82d600951a74de4eec8a63baabe282e8}{getDir}}().rcp();}
+\DoxyCodeLine{00167\ }
+\DoxyCodeLine{00168\ \ \ \ \ TBvhSimdComputingContext<N,\ Index>\ simdCtx;}
+\DoxyCodeLine{00169\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(simdCtx.isSupported())}
+\DoxyCodeLine{00170\ \ \ \ \ \{}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ simdCtx.setSegment(segment.\mbox{\hyperlink{classph_1_1math_1_1_t_line_segment_a7eb6381eadee282d2f2afa035ddaba18}{getOrigin}}(),\ rcpSegmentDir);}
+\DoxyCodeLine{00172\ \ \ \ \ \}}
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00174\ \ \ \ \ \textcolor{comment}{//\ Traverse\ nodes}}
+\DoxyCodeLine{00175\ \ \ \ \ \textcolor{keywordflow}{while}(\textcolor{keyword}{true})}
+\DoxyCodeLine{00176\ \ \ \ \ \{}
+\DoxyCodeLine{00177\ \textcolor{preprocessor}{\#if\ PH\_PROFILE\_ACCELERATION\_STRUCTURES}}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ PH\_PROFILE\_NAMED\_SCOPE(\textcolor{stringliteral}{"{}Traversal\ loop\ body"{}});}
+\DoxyCodeLine{00179\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ PH\_ASSERT\_LT(currentNodeIndex,\ m\_numNodes);}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ NodeType\&\ node\ =\ m\_nodes[currentNodeIndex];}
 \DoxyCodeLine{00182\ }
-\DoxyCodeLine{00183\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ nodeIndex\ =\ m\_numNodes;}
-\DoxyCodeLine{00184\ \ \ \ \ NodeType*\ \textcolor{keyword}{const}\ node\ =\ \&(m\_nodes[nodeIndex]);}
-\DoxyCodeLine{00185\ \ \ \ \ m\_numNodes\ +=\ 1;}
-\DoxyCodeLine{00186\ }
-\DoxyCodeLine{00187\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ ci\ =\ 0;\ ci\ <\ infoNode-\/>\mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node_ad37e3b8eb2c1abdceef2a89dd561a981}{numChildren}}();\ ++ci)}
-\DoxyCodeLine{00188\ \ \ \ \ \{}
-\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node}{TBvhInfoNode<N,\ Item>}}*\ \textcolor{keyword}{const}\ childInfoNode\ =\ infoNode-\/>\mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node_a9859b29ce8075ca88c11c6bc2062121c}{getChild}}(ci);}
-\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!childInfoNode)}
-\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ std::array<real,\ N>\ hitTs;}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \textcolor{keyword}{decltype}(simdCtx.getIntersectResultAsMinTsOr(0))\ simdHitTs;}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(simdCtx.isSupported())}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00187\ \textcolor{preprocessor}{\#if\ PH\_PROFILE\_ACCELERATION\_STRUCTURES}}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \ \ \ \ PH\_PROFILE\_NAMED\_SCOPE(\textcolor{stringliteral}{"{}SIMD\ batched\ AABB\ intersection"{}});}
+\DoxyCodeLine{00189\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \ \ \ \ simdCtx.setNode(node);}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \ \ \ \ simdCtx.intersectAabbVolumes(longestSegment.getMinT(),\ longestSegment.getMaxT());}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \ \ \ \ simdHitTs\ =\ simdCtx.getIntersectResultAsMinTsOr(largestHitT);}
 \DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00194\ }
-\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(childInfoNode-\/>\mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node_a97724046ee4534fc865ee735684d7d83}{isLeaf}}())}
-\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ itemOffset\ =\ m\_numItems;}
-\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ i\ =\ 0;\ i\ <\ childInfoNode-\/>\mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node_a382b4871c375e546477ed0ac430a2d52}{getItems}}().size();\ ++i)}
-\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_items[itemOffset\ +\ i]\ =\ childInfoNode-\/>\mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node_a382b4871c375e546477ed0ac430a2d52}{getItems}}()[i].item;}
-\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \ \ \ \ m\_numItems\ +=\ childInfoNode-\/>\mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node_a382b4871c375e546477ed0ac430a2d52}{getItems}}().size();}
-\DoxyCodeLine{00203\ }
-\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \ \ \ \ node-\/>setLeaf(}
-\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ci,}
-\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ childInfoNode-\/>\mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node_a9459982c5a2b4f8748094676a98588b2}{getAABB}}(),}
-\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ itemOffset,}
-\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ childInfoNode-\/>\mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node_a382b4871c375e546477ed0ac430a2d52}{getItems}}().size());}
-\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(childInfoNode-\/>\mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node_a45f3302acc4620bc625170b7011d5dc4}{isInternal}}())}
-\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ childNodeIndex\ =\ m\_numNodes;}
-\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \ \ \ \ convertChildNodesRecursive(childInfoNode);}
-\DoxyCodeLine{00214\ }
-\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \ \ \ \ node-\/>setInternal(}
-\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ci,}
-\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ childInfoNode-\/>\mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node_a9459982c5a2b4f8748094676a98588b2}{getAABB}}(),}
-\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ childNodeIndex,}
-\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ childInfoNode-\/>\mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node_a156f83d359543f944c8fa05f2ff4ca97}{getSplitAxis}}(ci));}
-\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \ \ \ \ PH\_ASSERT\_UNREACHABLE\_SECTION();}
-\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00225\ \ \ \ \ \}}
-\DoxyCodeLine{00226\ \}}
-\DoxyCodeLine{00227\ }
-\DoxyCodeLine{00228\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Item,\ \textcolor{keyword}{typename}\ IndexType>}
-\DoxyCodeLine{00229\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ TLinearDepthFirstWideBvh<N,\ Item,\ IndexType>}
-\DoxyCodeLine{00230\ ::refitBuffer(\textcolor{keyword}{const}\ std::size\_t\ nodeBufferSize,\ \textcolor{keyword}{const}\ std::size\_t\ itemBufferSize)}
-\DoxyCodeLine{00231\ \{}
-\DoxyCodeLine{00232\ \ \ \ \ \textcolor{comment}{//\ For\ potentially\ better\ performance\ on\ buffer\ content\ copying}}
-\DoxyCodeLine{00233\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_trivially\_copy\_assignable\_v<NodeType>);}
-\DoxyCodeLine{00234\ }
-\DoxyCodeLine{00235\ \ \ \ \ PH\_ASSERT\_LE(m\_numNodes,\ nodeBufferSize);}
-\DoxyCodeLine{00236\ \ \ \ \ PH\_ASSERT\_LE(m\_numItems,\ itemBufferSize);}
-\DoxyCodeLine{00237\ }
-\DoxyCodeLine{00238\ \ \ \ \ \textcolor{keywordflow}{if}(m\_numNodes\ !=\ nodeBufferSize)}
-\DoxyCodeLine{00239\ \ \ \ \ \{}
-\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ nodes\ =\ std::make\_unique<NodeType[]>(m\_numNodes);}
-\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ std::copy\_n(m\_nodes.get(),\ m\_numNodes,\ nodes.get());}
-\DoxyCodeLine{00242\ }
-\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ m\_nodes\ =\ std::move(nodes);}
-\DoxyCodeLine{00244\ \ \ \ \ \}}
-\DoxyCodeLine{00245\ }
-\DoxyCodeLine{00246\ \ \ \ \ \textcolor{keywordflow}{if}(m\_numItems\ !=\ itemBufferSize)}
-\DoxyCodeLine{00247\ \ \ \ \ \{}
-\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ items\ =\ std::make\_unique<Item[]>(m\_numItems);}
-\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ std::copy\_n(m\_items.get(),\ m\_numItems,\ items.get());}
-\DoxyCodeLine{00250\ }
-\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ m\_items\ =\ std::move(items);}
-\DoxyCodeLine{00252\ \ \ \ \ \}}
-\DoxyCodeLine{00253\ \}}
-\DoxyCodeLine{00254\ }
-\DoxyCodeLine{00255\ \}\textcolor{comment}{//\ end\ namespace\ ph::math}}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00196\ \textcolor{preprocessor}{\#if\ PH\_PROFILE\_ACCELERATION\_STRUCTURES}}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \ \ \ \ PH\_PROFILE\_NAMED\_SCOPE(\textcolor{stringliteral}{"{}Batched\ AABB\ intersection"{}});}
+\DoxyCodeLine{00198\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(uint8\ i\ =\ 0;\ i\ <\ N;\ ++i)}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ [aabbMinT,\ aabbMaxT]\ =\ node.getAABB(i).template\ isIntersectingVolume<IS\_ROBUST>(}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ longestSegment,\ rcpSegmentDir);}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ hitTs[i]\ =\ aabbMinT\ <=\ aabbMaxT\ ?\ aabbMinT\ :\ largestHitT;}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00206\ }
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(uint8\ i\ =\ 0;\ i\ <\ N;\ ++i)}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Default\ is\ traversing\ with\ memory\ order\ (could\ be\ improved\ with\ some\ sorting\ mechanism)}}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ uint8\ ci\ =\ i;}
+\DoxyCodeLine{00211\ }
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \ \ \ \ real\ minT\ =\ hitTs[ci];}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(simdCtx.isSupported())}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ minT\ =\ simdHitTs[ci];}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00217\ }
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(minT\ <\ longestSegment.getMaxT())}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(node.isLeaf(ci))}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ numItems\ =\ node.numItems(ci);}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ ii\ =\ 0;\ ii\ <\ numItems;\ ++ii)}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Item\&\ item\ =\ m\_items[node.getItemOffset(ci)\ +\ ii];}
+\DoxyCodeLine{00226\ }
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ optHitT\ =\ intersectionTester(item,\ longestSegment);}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(optHitT)}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ longestSegment.setMaxT(*optHitT);}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ hasHit\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ PH\_ASSERT\_LE(node.getChildOffset(ci),\ std::numeric\_limits<Index>::max());}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ childNodeIndex\ =\ \textcolor{keyword}{static\_cast<}Index\textcolor{keyword}{>}(node.getChildOffset(ci));}
+\DoxyCodeLine{00239\ }
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ generalTodoNodes.push(GeneralTodoNode\{}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .minT\ =\ minT,}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .nodeIndex\ =\ childNodeIndex\});}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00246\ }
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Skip\ to\ a\ potentially\ closer\ node}}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}(!generalTodoNodes.isEmpty()\ \&\&\ generalTodoNodes.top().minT\ >=\ longestSegment.getMaxT())}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \ \ \ \ generalTodoNodes.pop();}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00252\ }
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(generalTodoNodes.isEmpty())}
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ \ \ \ \ currentNodeIndex\ =\ generalTodoNodes.top().nodeIndex;}
+\DoxyCodeLine{00260\ \ \ \ \ \ \ \ \ \ \ \ \ generalTodoNodes.pop();}
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00262\ \ \ \ \ \}}
+\DoxyCodeLine{00263\ \ \ \ \ }
+\DoxyCodeLine{00264\ \ \ \ \ \textcolor{keywordflow}{return}\ hasHit;}
+\DoxyCodeLine{00265\ \}}
+\DoxyCodeLine{00266\ }
+\DoxyCodeLine{00267\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Item,\ \textcolor{keyword}{typename}\ Index>}
+\DoxyCodeLine{00268\ \textcolor{keyword}{template}<\textcolor{keywordtype}{bool}\ IS\_ROBUST,\ EBvhSplitAxisOrder\ ORDER,\ \textcolor{keyword}{typename}\ TesterFunc>}
+\DoxyCodeLine{00269\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ TLinearDepthFirstWideBvh<N,\ Item,\ Index>}
+\DoxyCodeLine{00270\ ::nearestTraversalOrdered(}
+\DoxyCodeLine{00271\ \ \ \ \ \textcolor{keyword}{const}\ TLineSegment<real>\&\ segment,}
+\DoxyCodeLine{00272\ \ \ \ \ TesterFunc\&\&\ intersectionTester)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00273\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00274\ \textcolor{preprocessor}{\#if\ PH\_PROFILE\_ACCELERATION\_STRUCTURES}}
+\DoxyCodeLine{00275\ \ \ \ \ PH\_PROFILE\_SCOPE();}
+\DoxyCodeLine{00276\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00277\ }
+\DoxyCodeLine{00278\ \ \ \ \ \textcolor{comment}{//\ Traversal\ states}}
+\DoxyCodeLine{00279\ }
+\DoxyCodeLine{00280\ \ \ \ \ \textcolor{comment}{//\ Add\ pending\ nodes\ to\ a\ stack}}
+\DoxyCodeLine{00281\ \ \ \ \ TArrayStack<Index,\ TRAVERSAL\_STACK\_SIZE>\ todoNodes;}
+\DoxyCodeLine{00282\ }
+\DoxyCodeLine{00283\ \ \ \ \ Index\ currentNodeIndex\ =\ 0;}
+\DoxyCodeLine{00284\ \ \ \ \ TLineSegment<real>\ longestSegment(segment);}
+\DoxyCodeLine{00285\ \ \ \ \ \textcolor{keywordtype}{bool}\ hasHit\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00286\ }
+\DoxyCodeLine{00287\ \ \ \ \ \textcolor{comment}{//\ Precompute\ common\ values}}
+\DoxyCodeLine{00288\ }
+\DoxyCodeLine{00289\ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ largestHitT\ =\ std::numeric\_limits<real>::infinity();}
+\DoxyCodeLine{00290\ }
+\DoxyCodeLine{00291\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ rcpSegmentDir\ =\ segment.getDir().rcp();}
+\DoxyCodeLine{00292\ }
+\DoxyCodeLine{00293\ \ \ \ \ std::array<uint8,\ 3>\ isNegDir;}
+\DoxyCodeLine{00294\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(}
+\DoxyCodeLine{00295\ \ \ \ \ \ \ \ \ ORDER\ ==\ \mbox{\hyperlink{namespaceph_1_1math_aabe5079ad127a59984a75116b4c2b0f3a66ba162102bbf6ae31b522aec561735e}{EBvhSplitAxisOrder::Single}}\ ||}
+\DoxyCodeLine{00296\ \ \ \ \ \ \ \ \ ORDER\ ==\ \mbox{\hyperlink{namespaceph_1_1math_aabe5079ad127a59984a75116b4c2b0f3a5b328d4a5e7355b8c7161e3cc1073abf}{EBvhSplitAxisOrder::BalancedPow2}})}
+\DoxyCodeLine{00297\ \ \ \ \ \{}
+\DoxyCodeLine{00298\ \ \ \ \ \ \ \ \ isNegDir\ =\ \{}
+\DoxyCodeLine{00299\ \ \ \ \ \ \ \ \ \ \ \ \ segment.getDir().x()\ <\ 0,}
+\DoxyCodeLine{00300\ \ \ \ \ \ \ \ \ \ \ \ \ segment.getDir().y()\ <\ 0,}
+\DoxyCodeLine{00301\ \ \ \ \ \ \ \ \ \ \ \ \ segment.getDir().z()\ <\ 0\};}
+\DoxyCodeLine{00302\ \ \ \ \ \}}
+\DoxyCodeLine{00303\ }
+\DoxyCodeLine{00304\ \ \ \ \ TBvhSimdComputingContext<N,\ Index>\ simdCtx;}
+\DoxyCodeLine{00305\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(simdCtx.isSupported())}
+\DoxyCodeLine{00306\ \ \ \ \ \{}
+\DoxyCodeLine{00307\ \ \ \ \ \ \ \ \ simdCtx.setSegment(segment.getOrigin(),\ rcpSegmentDir);}
+\DoxyCodeLine{00308\ \ \ \ \ \}}
+\DoxyCodeLine{00309\ }
+\DoxyCodeLine{00310\ \ \ \ \ \textcolor{comment}{//\ Traverse\ nodes}}
+\DoxyCodeLine{00311\ \ \ \ \ \textcolor{keywordflow}{while}(\textcolor{keyword}{true})}
+\DoxyCodeLine{00312\ \ \ \ \ \{}
+\DoxyCodeLine{00313\ \textcolor{preprocessor}{\#if\ PH\_PROFILE\_ACCELERATION\_STRUCTURES}}
+\DoxyCodeLine{00314\ \ \ \ \ \ \ \ \ PH\_PROFILE\_NAMED\_SCOPE(\textcolor{stringliteral}{"{}Traversal\ loop\ body"{}});}
+\DoxyCodeLine{00315\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00316\ \ \ \ \ \ \ \ \ PH\_ASSERT\_LT(currentNodeIndex,\ m\_numNodes);}
+\DoxyCodeLine{00317\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ NodeType\&\ node\ =\ m\_nodes[currentNodeIndex];}
+\DoxyCodeLine{00318\ }
+\DoxyCodeLine{00319\ \ \ \ \ \ \ \ \ std::array<real,\ N>\ hitTs;}
+\DoxyCodeLine{00320\ \ \ \ \ \ \ \ \ \textcolor{keyword}{decltype}(simdCtx.getIntersectResultAsMinTsOr(0))\ simdHitTs;}
+\DoxyCodeLine{00321\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(simdCtx.isSupported())}
+\DoxyCodeLine{00322\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00323\ \textcolor{preprocessor}{\#if\ PH\_PROFILE\_ACCELERATION\_STRUCTURES}}
+\DoxyCodeLine{00324\ \ \ \ \ \ \ \ \ \ \ \ \ PH\_PROFILE\_NAMED\_SCOPE(\textcolor{stringliteral}{"{}SIMD\ batched\ AABB\ intersection"{}});}
+\DoxyCodeLine{00325\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00326\ \ \ \ \ \ \ \ \ \ \ \ \ simdCtx.setNode(node);}
+\DoxyCodeLine{00327\ \ \ \ \ \ \ \ \ \ \ \ \ simdCtx.intersectAabbVolumes(longestSegment.getMinT(),\ longestSegment.getMaxT());}
+\DoxyCodeLine{00328\ \ \ \ \ \ \ \ \ \ \ \ \ simdHitTs\ =\ simdCtx.getIntersectResultAsMinTsOr(largestHitT);}
+\DoxyCodeLine{00329\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00330\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00331\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00332\ \textcolor{preprocessor}{\#if\ PH\_PROFILE\_ACCELERATION\_STRUCTURES}}
+\DoxyCodeLine{00333\ \ \ \ \ \ \ \ \ \ \ \ \ PH\_PROFILE\_NAMED\_SCOPE(\textcolor{stringliteral}{"{}Batched\ AABB\ intersection"{}});}
+\DoxyCodeLine{00334\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00335\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(uint8\ i\ =\ 0;\ i\ <\ N;\ ++i)}
+\DoxyCodeLine{00336\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00337\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ [aabbMinT,\ aabbMaxT]\ =\ node.getAABB(i).template\ isIntersectingVolume<IS\_ROBUST>(}
+\DoxyCodeLine{00338\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ longestSegment,\ rcpSegmentDir);}
+\DoxyCodeLine{00339\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ hitTs[i]\ =\ aabbMinT\ <=\ aabbMaxT\ ?\ aabbMinT\ :\ largestHitT;}
+\DoxyCodeLine{00340\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00341\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00342\ }
+\DoxyCodeLine{00343\ \ \ \ \ \ \ \ \ std::array<uint8,\ N>\ orderTable;}
+\DoxyCodeLine{00344\ }
+\DoxyCodeLine{00345\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ All\ children\ have\ the\ same\ split\ axis,\ traverse\ from\ the\ nearest\ one}}
+\DoxyCodeLine{00346\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(ORDER\ ==\ \mbox{\hyperlink{namespaceph_1_1math_aabe5079ad127a59984a75116b4c2b0f3a66ba162102bbf6ae31b522aec561735e}{EBvhSplitAxisOrder::Single}})}
+\DoxyCodeLine{00347\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00348\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ table\ =\ makeSingleOrderTable();}
+\DoxyCodeLine{00349\ \ \ \ \ \ \ \ \ \ \ \ \ orderTable\ =\ table[isNegDir[node.getSplitAxis(0)]];}
+\DoxyCodeLine{00350\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00351\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Children\ are\ split\ by\ balanced\ axes\ (and\ N\ is\ power-\/of-\/2)}}
+\DoxyCodeLine{00352\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(ORDER\ ==\ \mbox{\hyperlink{namespaceph_1_1math_aabe5079ad127a59984a75116b4c2b0f3a5b328d4a5e7355b8c7161e3cc1073abf}{EBvhSplitAxisOrder::BalancedPow2}})}
+\DoxyCodeLine{00353\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00354\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ table\ =\ makeBalancedPow2OrderTable();}
+\DoxyCodeLine{00355\ }
+\DoxyCodeLine{00356\ \ \ \ \ \ \ \ \ \ \ \ \ uint32\ permutationIdx\ =\ 0;}
+\DoxyCodeLine{00357\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(uint32\ si\ =\ 0;\ si\ <\ N\ -\/\ 1;\ ++si)}
+\DoxyCodeLine{00358\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00359\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ permutationIdx\ <<=\ 1;}
+\DoxyCodeLine{00360\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ permutationIdx\ |=\ isNegDir[node.getSplitAxis(si)];}
+\DoxyCodeLine{00361\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00362\ }
+\DoxyCodeLine{00363\ \ \ \ \ \ \ \ \ \ \ \ \ orderTable\ =\ table[permutationIdx];}
+\DoxyCodeLine{00364\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00365\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00366\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00367\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ table\ =\ makeIdentityOrderTable();}
+\DoxyCodeLine{00368\ \ \ \ \ \ \ \ \ \ \ \ \ orderTable\ =\ table;}
+\DoxyCodeLine{00369\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00370\ }
+\DoxyCodeLine{00371\ \ \ \ \ \ \ \ \ std::array<Index,\ N>\ nextChildNodes;}
+\DoxyCodeLine{00372\ \ \ \ \ \ \ \ \ std::size\_t\ numNextChildNodes\ =\ 0;}
+\DoxyCodeLine{00373\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(uint8\ i\ =\ 0;\ i\ <\ N;\ ++i)}
+\DoxyCodeLine{00374\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00375\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Get\ the\ permuted\ child\ index}}
+\DoxyCodeLine{00376\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ uint8\ ci\ =\ orderTable[i];}
+\DoxyCodeLine{00377\ }
+\DoxyCodeLine{00378\ \ \ \ \ \ \ \ \ \ \ \ \ real\ minT\ =\ hitTs[ci];}
+\DoxyCodeLine{00379\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(simdCtx.isSupported())}
+\DoxyCodeLine{00380\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00381\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ minT\ =\ simdHitTs[ci];}
+\DoxyCodeLine{00382\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00383\ }
+\DoxyCodeLine{00384\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(minT\ <\ longestSegment.getMaxT())}
+\DoxyCodeLine{00385\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00386\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(node.isLeaf(ci))}
+\DoxyCodeLine{00387\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00388\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ numItems\ =\ node.numItems(ci);}
+\DoxyCodeLine{00389\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ ii\ =\ 0;\ ii\ <\ numItems;\ ++ii)}
+\DoxyCodeLine{00390\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00391\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Item\&\ item\ =\ m\_items[node.getItemOffset(ci)\ +\ ii];}
+\DoxyCodeLine{00392\ }
+\DoxyCodeLine{00393\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ optHitT\ =\ intersectionTester(item,\ longestSegment);}
+\DoxyCodeLine{00394\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(optHitT)}
+\DoxyCodeLine{00395\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00396\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ longestSegment.setMaxT(*optHitT);}
+\DoxyCodeLine{00397\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ hasHit\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00398\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00399\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00400\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00401\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00402\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00403\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ PH\_ASSERT\_LE(node.getChildOffset(ci),\ std::numeric\_limits<Index>::max());}
+\DoxyCodeLine{00404\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ childNodeIndex\ =\ \textcolor{keyword}{static\_cast<}Index\textcolor{keyword}{>}(node.getChildOffset(ci));}
+\DoxyCodeLine{00405\ }
+\DoxyCodeLine{00406\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ nextChildNodes[numNextChildNodes]\ =\ childNodeIndex;}
+\DoxyCodeLine{00407\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ++numNextChildNodes;}
+\DoxyCodeLine{00408\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00409\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00410\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00411\ }
+\DoxyCodeLine{00412\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Push\ nodes\ to\ stack\ such\ that\ the\ nearest\ one\ is\ on\ top}}
+\DoxyCodeLine{00413\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}(numNextChildNodes\ >\ 0)}
+\DoxyCodeLine{00414\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00415\ \ \ \ \ \ \ \ \ \ \ \ \ -\/-\/numNextChildNodes;}
+\DoxyCodeLine{00416\ \ \ \ \ \ \ \ \ \ \ \ \ todoNodes.push(nextChildNodes[numNextChildNodes]);}
+\DoxyCodeLine{00417\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00418\ }
+\DoxyCodeLine{00419\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(todoNodes.isEmpty())}
+\DoxyCodeLine{00420\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00421\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00422\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00423\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00424\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00425\ \ \ \ \ \ \ \ \ \ \ \ \ currentNodeIndex\ =\ todoNodes.top();}
+\DoxyCodeLine{00426\ \ \ \ \ \ \ \ \ \ \ \ \ todoNodes.pop();}
+\DoxyCodeLine{00427\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00428\ \ \ \ \ \}}
+\DoxyCodeLine{00429\ \ \ \ \ }
+\DoxyCodeLine{00430\ \ \ \ \ \textcolor{keywordflow}{return}\ hasHit;}
+\DoxyCodeLine{00431\ \}}
+\DoxyCodeLine{00432\ }
+\DoxyCodeLine{00433\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Item,\ \textcolor{keyword}{typename}\ Index>}
+\DoxyCodeLine{00434\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ TLinearDepthFirstWideBvh<N,\ Item,\ Index>}
+\DoxyCodeLine{00435\ ::isEmpty()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00436\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00437\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_numNodes\ ==\ 0;}
+\DoxyCodeLine{00438\ \}}
+\DoxyCodeLine{00439\ }
+\DoxyCodeLine{00440\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Item,\ \textcolor{keyword}{typename}\ Index>}
+\DoxyCodeLine{00441\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1math_1_1_t_linear_depth_first_wide_bvh}{TLinearDepthFirstWideBvh<N,\ Item,\ Index>}}}
+\DoxyCodeLine{00442\ \mbox{\hyperlink{classph_1_1math_1_1_t_linear_depth_first_wide_bvh}{::getRoot}}()\ const}
+\DoxyCodeLine{00443\ -\/>\ const\ \mbox{\hyperlink{classph_1_1math_1_1_t_wide_bvh_node}{NodeType}}\&}
+\DoxyCodeLine{00444\ \{}
+\DoxyCodeLine{00445\ \ \ \ \ PH\_ASSERT(m\_nodes);}
+\DoxyCodeLine{00446\ \ \ \ \ PH\_ASSERT\_GT(m\_numNodes,\ 0);}
+\DoxyCodeLine{00447\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_nodes[0];}
+\DoxyCodeLine{00448\ \}}
+\DoxyCodeLine{00449\ }
+\DoxyCodeLine{00450\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Item,\ \textcolor{keyword}{typename}\ Index>}
+\DoxyCodeLine{00451\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1math_1_1_t_linear_depth_first_wide_bvh}{TLinearDepthFirstWideBvh<N,\ Item,\ Index>}}}
+\DoxyCodeLine{00452\ \mbox{\hyperlink{classph_1_1math_1_1_t_linear_depth_first_wide_bvh}{::numNodes}}()\ const}
+\DoxyCodeLine{00453\ -\/>\ \mbox{\hyperlink{namespacestd}{std}}::\textcolor{keywordtype}{size\_t}}
+\DoxyCodeLine{00454\ \{}
+\DoxyCodeLine{00455\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_numNodes;}
+\DoxyCodeLine{00456\ \}}
+\DoxyCodeLine{00457\ }
+\DoxyCodeLine{00458\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Item,\ \textcolor{keyword}{typename}\ Index>}
+\DoxyCodeLine{00459\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1math_1_1_t_linear_depth_first_wide_bvh}{TLinearDepthFirstWideBvh<N,\ Item,\ Index>}}}
+\DoxyCodeLine{00460\ \mbox{\hyperlink{classph_1_1math_1_1_t_linear_depth_first_wide_bvh}{::numItems}}()\ const}
+\DoxyCodeLine{00461\ -\/>\ \mbox{\hyperlink{namespacestd}{std}}::\textcolor{keywordtype}{size\_t}}
+\DoxyCodeLine{00462\ \{}
+\DoxyCodeLine{00463\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_numItems;}
+\DoxyCodeLine{00464\ \}}
+\DoxyCodeLine{00465\ }
+\DoxyCodeLine{00466\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Item,\ \textcolor{keyword}{typename}\ Index>}
+\DoxyCodeLine{00467\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1math_1_1_t_linear_depth_first_wide_bvh}{TLinearDepthFirstWideBvh<N,\ Item,\ Index>}}}
+\DoxyCodeLine{00468\ \mbox{\hyperlink{classph_1_1math_1_1_t_linear_depth_first_wide_bvh}{::memoryUsage}}()\ const}
+\DoxyCodeLine{00469\ -\/>\ \mbox{\hyperlink{namespacestd}{std}}::\textcolor{keywordtype}{size\_t}}
+\DoxyCodeLine{00470\ \{}
+\DoxyCodeLine{00471\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{sizeof}(*this)\ +\ m\_numNodes\ *\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{classph_1_1math_1_1_t_wide_bvh_node}{NodeType}})\ +\ m\_numItems\ *\ \textcolor{keyword}{sizeof}(Item);}
+\DoxyCodeLine{00472\ \}}
+\DoxyCodeLine{00473\ }
+\DoxyCodeLine{00474\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Item,\ \textcolor{keyword}{typename}\ Index>}
+\DoxyCodeLine{00475\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1math_1_1_t_linear_depth_first_wide_bvh}{TLinearDepthFirstWideBvh<N,\ Item,\ Index>}}}
+\DoxyCodeLine{00476\ \mbox{\hyperlink{classph_1_1math_1_1_t_linear_depth_first_wide_bvh}{::balancedPow2OrderTableToString}}()\ const}
+\DoxyCodeLine{00477\ -\/>\ \mbox{\hyperlink{namespacestd}{std}}::\textcolor{keywordtype}{string}}
+\DoxyCodeLine{00478\ \{}
+\DoxyCodeLine{00479\ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ table\ =\ makeBalancedPow2OrderTable();}
+\DoxyCodeLine{00480\ }
+\DoxyCodeLine{00481\ \ \ \ \ std::string\ str\ =\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{00482\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ i\ =\ 0;\ i\ <\ BALANCED\_POW2\_ORDER\_TABLE\_SIZE;\ ++i)}
+\DoxyCodeLine{00483\ \ \ \ \ \{}
+\DoxyCodeLine{00484\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ j\ =\ 0;\ j\ <\ N;\ ++j)}
+\DoxyCodeLine{00485\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00486\ \ \ \ \ \ \ \ \ \ \ \ \ str\ +=\ std::to\_string(table[i][j]);}
+\DoxyCodeLine{00487\ \ \ \ \ \ \ \ \ \ \ \ \ str\ +=\ j\ <\ N\ -\/\ 1\ ?\ \textcolor{stringliteral}{"{},\ "{}}\ :\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{00488\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00489\ \ \ \ \ \}}
+\DoxyCodeLine{00490\ \ \ \ \ \textcolor{keywordflow}{return}\ str;}
+\DoxyCodeLine{00491\ \}}
+\DoxyCodeLine{00492\ }
+\DoxyCodeLine{00493\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Item,\ \textcolor{keyword}{typename}\ Index>}
+\DoxyCodeLine{00494\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1math_1_1_t_linear_depth_first_wide_bvh}{TLinearDepthFirstWideBvh<N,\ Item,\ Index>}}}
+\DoxyCodeLine{00495\ \mbox{\hyperlink{classph_1_1math_1_1_t_linear_depth_first_wide_bvh}{::convertNodesRecursive}}(}
+\DoxyCodeLine{00496\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node}{TBvhInfoNode<N,\ Item>}}*\ \textcolor{keyword}{const}\ infoNode,}
+\DoxyCodeLine{00497\ \ \ \ \ \textcolor{keywordtype}{bool}\&\ isSingleSplitAxisNodes)}
+\DoxyCodeLine{00498\ \{}
+\DoxyCodeLine{00499\ \ \ \ \ PH\_ASSERT(infoNode);}
+\DoxyCodeLine{00500\ }
+\DoxyCodeLine{00501\ \ \ \ \ \textcolor{comment}{//\ Basically\ this\ will\ only\ get\ called\ once\ (if\ the\ whole\ tree\ is\ a\ single\ leaf)}}
+\DoxyCodeLine{00502\ \ \ \ \ \textcolor{keywordflow}{if}(infoNode-\/>\mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node_a97724046ee4534fc865ee735684d7d83}{isLeaf}}())}
+\DoxyCodeLine{00503\ \ \ \ \ \{}
+\DoxyCodeLine{00504\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ itemOffset\ =\ m\_numItems;}
+\DoxyCodeLine{00505\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ i\ =\ 0;\ i\ <\ infoNode-\/>\mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node_a382b4871c375e546477ed0ac430a2d52}{getItems}}().size();\ ++i)}
+\DoxyCodeLine{00506\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00507\ \ \ \ \ \ \ \ \ \ \ \ \ m\_items[itemOffset\ +\ i]\ =\ infoNode-\/>\mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node_a382b4871c375e546477ed0ac430a2d52}{getItems}}()[i].item;}
+\DoxyCodeLine{00508\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00509\ \ \ \ \ \ \ \ \ m\_numItems\ +=\ \textcolor{keyword}{static\_cast<}Index\textcolor{keyword}{>}(infoNode-\/>\mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node_a382b4871c375e546477ed0ac430a2d52}{getItems}}().size());}
+\DoxyCodeLine{00510\ }
+\DoxyCodeLine{00511\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Does\ not\ matter\ as\ there\ is\ only\ a\ single\ child}}
+\DoxyCodeLine{00512\ \ \ \ \ \ \ \ \ \textcolor{keyword}{constexpr}\ std::size\_t\ singleLeafSplitAxis\ =\ \mbox{\hyperlink{namespaceph_1_1math_1_1constant_a633099a259bffb958d8394be85abc6ee}{constant::X\_AXIS}};}
+\DoxyCodeLine{00513\ }
+\DoxyCodeLine{00514\ \ \ \ \ \ \ \ \ m\_nodes[m\_numNodes].setLeaf(}
+\DoxyCodeLine{00515\ \ \ \ \ \ \ \ \ \ \ \ \ 0,}
+\DoxyCodeLine{00516\ \ \ \ \ \ \ \ \ \ \ \ \ infoNode-\/>\mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node_a9459982c5a2b4f8748094676a98588b2}{getAABB}}(),}
+\DoxyCodeLine{00517\ \ \ \ \ \ \ \ \ \ \ \ \ itemOffset,}
+\DoxyCodeLine{00518\ \ \ \ \ \ \ \ \ \ \ \ \ singleLeafSplitAxis,}
+\DoxyCodeLine{00519\ \ \ \ \ \ \ \ \ \ \ \ \ infoNode-\/>\mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node_a382b4871c375e546477ed0ac430a2d52}{getItems}}().size());}
+\DoxyCodeLine{00520\ \ \ \ \ \ \ \ \ PH\_ASSERT\_LT(m\_numNodes,\ m\_numNodes\ +\ 1);\textcolor{comment}{//\ overflow\ check}}
+\DoxyCodeLine{00521\ \ \ \ \ \ \ \ \ m\_numNodes\ +=\ 1;}
+\DoxyCodeLine{00522\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00523\ \ \ \ \ \}}
+\DoxyCodeLine{00524\ }
+\DoxyCodeLine{00525\ \ \ \ \ PH\_ASSERT(infoNode-\/>\mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node_a45f3302acc4620bc625170b7011d5dc4}{isInternal}}());}
+\DoxyCodeLine{00526\ }
+\DoxyCodeLine{00527\ \ \ \ \ isSingleSplitAxisNodes\ \&=\ infoNode-\/>\mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node_ad2297c9d02b560ccb8f15beef41a0ecb}{isSingleSplitAxis}}();}
+\DoxyCodeLine{00528\ }
+\DoxyCodeLine{00529\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ nodeOffset\ =\ m\_numNodes;}
+\DoxyCodeLine{00530\ \ \ \ \ NodeType*\ \textcolor{keyword}{const}\ node\ =\ \&(m\_nodes[nodeOffset]);}
+\DoxyCodeLine{00531\ \ \ \ \ PH\_ASSERT\_LT(m\_numNodes,\ m\_numNodes\ +\ 1);\textcolor{comment}{//\ overflow\ check}}
+\DoxyCodeLine{00532\ \ \ \ \ m\_numNodes\ +=\ 1;}
+\DoxyCodeLine{00533\ }
+\DoxyCodeLine{00534\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ ci\ =\ 0;\ ci\ <\ infoNode-\/>\mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node_ad37e3b8eb2c1abdceef2a89dd561a981}{numChildren}}();\ ++ci)}
+\DoxyCodeLine{00535\ \ \ \ \ \{}
+\DoxyCodeLine{00536\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ TBvhInfoNode<N,\ Item>*\ \textcolor{keyword}{const}\ childInfoNode\ =\ infoNode-\/>\mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node_a9859b29ce8075ca88c11c6bc2062121c}{getChild}}(ci);}
+\DoxyCodeLine{00537\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ splitAxis\ =\ infoNode-\/>\mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node_a156f83d359543f944c8fa05f2ff4ca97}{getSplitAxis}}(ci);}
+\DoxyCodeLine{00538\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!childInfoNode)}
+\DoxyCodeLine{00539\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00540\ \ \ \ \ \ \ \ \ \ \ \ \ node-\/>setEmptyLeaf(ci,\ splitAxis);}
+\DoxyCodeLine{00541\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00542\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00543\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00544\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(childInfoNode-\/>isLeaf())}
+\DoxyCodeLine{00545\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00546\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ itemOffset\ =\ m\_numItems;}
+\DoxyCodeLine{00547\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ i\ =\ 0;\ i\ <\ childInfoNode-\/>getItems().size();\ ++i)}
+\DoxyCodeLine{00548\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00549\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_items[itemOffset\ +\ i]\ =\ childInfoNode-\/>getItems()[i].item;}
+\DoxyCodeLine{00550\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00551\ \ \ \ \ \ \ \ \ \ \ \ \ m\_numItems\ +=\ \textcolor{keyword}{static\_cast<}Index\textcolor{keyword}{>}(childInfoNode-\/>getItems().size());}
+\DoxyCodeLine{00552\ }
+\DoxyCodeLine{00553\ \ \ \ \ \ \ \ \ \ \ \ \ node-\/>setLeaf(}
+\DoxyCodeLine{00554\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ci,}
+\DoxyCodeLine{00555\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ childInfoNode-\/>getAABB(),}
+\DoxyCodeLine{00556\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ itemOffset,}
+\DoxyCodeLine{00557\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ splitAxis,}
+\DoxyCodeLine{00558\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ childInfoNode-\/>getItems().size());}
+\DoxyCodeLine{00559\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00560\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(childInfoNode-\/>isInternal())}
+\DoxyCodeLine{00561\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00562\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ childNodeOffset\ =\ m\_numNodes;}
+\DoxyCodeLine{00563\ \ \ \ \ \ \ \ \ \ \ \ \ convertNodesRecursive(childInfoNode,\ isSingleSplitAxisNodes);}
+\DoxyCodeLine{00564\ }
+\DoxyCodeLine{00565\ \ \ \ \ \ \ \ \ \ \ \ \ node-\/>setInternal(}
+\DoxyCodeLine{00566\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ci,}
+\DoxyCodeLine{00567\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ childInfoNode-\/>getAABB(),}
+\DoxyCodeLine{00568\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ childNodeOffset,}
+\DoxyCodeLine{00569\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ splitAxis);}
+\DoxyCodeLine{00570\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00571\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00572\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00573\ \ \ \ \ \ \ \ \ \ \ \ \ PH\_ASSERT\_UNREACHABLE\_SECTION();}
+\DoxyCodeLine{00574\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00575\ \ \ \ \ \}}
+\DoxyCodeLine{00576\ \}}
+\DoxyCodeLine{00577\ }
+\DoxyCodeLine{00578\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Item,\ \textcolor{keyword}{typename}\ Index>}
+\DoxyCodeLine{00579\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ SrcN>}
+\DoxyCodeLine{00580\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ TLinearDepthFirstWideBvh<N,\ Item,\ Index>}
+\DoxyCodeLine{00581\ ::collapseNodesRecursive(}
+\DoxyCodeLine{00582\ \ \ \ \ \textcolor{keyword}{const}\ TBvhInfoNode<SrcN,\ Item>*\ \textcolor{keyword}{const}\ infoNode)}
+\DoxyCodeLine{00583\ \{}
+\DoxyCodeLine{00584\ \ \ \ \ PH\_ASSERT(infoNode);}
+\DoxyCodeLine{00585\ }
+\DoxyCodeLine{00586\ \ \ \ \ TCollapsedNodes<SrcN>\ collapsedNodes\ =\ collapseToSingleLevel<SrcN>(infoNode);}
+\DoxyCodeLine{00587\ }
+\DoxyCodeLine{00588\ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ emptyNodes\ =\ TCollapsedNodes<SrcN>\{\}.nodes;}
+\DoxyCodeLine{00589\ \ \ \ \ \textcolor{keywordflow}{if}(collapsedNodes.nodes\ ==\ emptyNodes)}
+\DoxyCodeLine{00590\ \ \ \ \ \{}
+\DoxyCodeLine{00591\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00592\ \ \ \ \ \}}
+\DoxyCodeLine{00593\ }
+\DoxyCodeLine{00594\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ nodeIndex\ =\ m\_numNodes;}
+\DoxyCodeLine{00595\ \ \ \ \ NodeType*\ \textcolor{keyword}{const}\ node\ =\ \&(m\_nodes[nodeIndex]);}
+\DoxyCodeLine{00596\ \ \ \ \ PH\_ASSERT\_LT(m\_numNodes,\ m\_numNodes\ +\ 1);\textcolor{comment}{//\ overflow\ check}}
+\DoxyCodeLine{00597\ \ \ \ \ m\_numNodes\ +=\ 1;}
+\DoxyCodeLine{00598\ }
+\DoxyCodeLine{00599\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ ci\ =\ 0;\ ci\ <\ N;\ ++ci)}
+\DoxyCodeLine{00600\ \ \ \ \ \{}
+\DoxyCodeLine{00601\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ TBvhInfoNode<SrcN,\ Item>*\ collapsedNode\ =\ collapsedNodes.nodes[ci];}
+\DoxyCodeLine{00602\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ collapsedSplitAxis\ =\ collapsedNodes.splitAxes[ci];}
+\DoxyCodeLine{00603\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(collapsedNode)}
+\DoxyCodeLine{00604\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00605\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(collapsedNode-\/>isLeaf())}
+\DoxyCodeLine{00606\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00607\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ itemOffset\ =\ m\_numItems;}
+\DoxyCodeLine{00608\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ i\ =\ 0;\ i\ <\ collapsedNode-\/>getItems().size();\ ++i)}
+\DoxyCodeLine{00609\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00610\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_items[itemOffset\ +\ i]\ =\ collapsedNode-\/>getItems()[i].item;}
+\DoxyCodeLine{00611\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00612\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_numItems\ +=\ \textcolor{keyword}{static\_cast<}Index\textcolor{keyword}{>}(collapsedNode-\/>getItems().size());}
+\DoxyCodeLine{00613\ }
+\DoxyCodeLine{00614\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ node-\/>setLeaf(}
+\DoxyCodeLine{00615\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ci,}
+\DoxyCodeLine{00616\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ collapsedNode-\/>getAABB(),}
+\DoxyCodeLine{00617\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ itemOffset,}
+\DoxyCodeLine{00618\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ collapsedSplitAxis,}
+\DoxyCodeLine{00619\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ collapsedNode-\/>getItems().size());}
+\DoxyCodeLine{00620\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00621\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(collapsedNode-\/>isInternal())}
+\DoxyCodeLine{00622\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00623\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ childNodeIndex\ =\ m\_numNodes;}
+\DoxyCodeLine{00624\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ collapseNodesRecursive(collapsedNode);}
+\DoxyCodeLine{00625\ }
+\DoxyCodeLine{00626\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ node-\/>setInternal(}
+\DoxyCodeLine{00627\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ci,}
+\DoxyCodeLine{00628\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ collapsedNode-\/>getAABB(),}
+\DoxyCodeLine{00629\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ childNodeIndex,}
+\DoxyCodeLine{00630\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ collapsedSplitAxis);}
+\DoxyCodeLine{00631\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00632\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00633\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00634\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00635\ \ \ \ \ \ \ \ \ \ \ \ \ node-\/>setEmptyLeaf(}
+\DoxyCodeLine{00636\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ci,}
+\DoxyCodeLine{00637\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ collapsedSplitAxis);}
+\DoxyCodeLine{00638\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00639\ \ \ \ \ \}}
+\DoxyCodeLine{00640\ \}}
+\DoxyCodeLine{00641\ }
+\DoxyCodeLine{00642\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Item,\ \textcolor{keyword}{typename}\ Index>}
+\DoxyCodeLine{00643\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ TLinearDepthFirstWideBvh<N,\ Item,\ Index>}
+\DoxyCodeLine{00644\ ::refitBuffer(\textcolor{keyword}{const}\ std::size\_t\ nodeBufferSize,\ \textcolor{keyword}{const}\ std::size\_t\ itemBufferSize)}
+\DoxyCodeLine{00645\ \{}
+\DoxyCodeLine{00646\ \ \ \ \ \textcolor{comment}{//\ For\ potentially\ better\ performance\ on\ buffer\ content\ copying}}
+\DoxyCodeLine{00647\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_trivially\_copy\_assignable\_v<NodeType>);}
+\DoxyCodeLine{00648\ }
+\DoxyCodeLine{00649\ \ \ \ \ PH\_ASSERT\_LE(m\_numNodes,\ nodeBufferSize);}
+\DoxyCodeLine{00650\ \ \ \ \ PH\_ASSERT\_LE(m\_numItems,\ itemBufferSize);}
+\DoxyCodeLine{00651\ }
+\DoxyCodeLine{00652\ \ \ \ \ \textcolor{keywordflow}{if}(m\_numNodes\ !=\ nodeBufferSize)}
+\DoxyCodeLine{00653\ \ \ \ \ \{}
+\DoxyCodeLine{00654\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ nodes\ =\ std::make\_unique<NodeType[]>(m\_numNodes);}
+\DoxyCodeLine{00655\ \ \ \ \ \ \ \ \ std::copy\_n(m\_nodes.get(),\ m\_numNodes,\ nodes.get());}
+\DoxyCodeLine{00656\ }
+\DoxyCodeLine{00657\ \ \ \ \ \ \ \ \ m\_nodes\ =\ std::move(nodes);}
+\DoxyCodeLine{00658\ \ \ \ \ \}}
+\DoxyCodeLine{00659\ }
+\DoxyCodeLine{00660\ \ \ \ \ \textcolor{keywordflow}{if}(m\_numItems\ !=\ itemBufferSize)}
+\DoxyCodeLine{00661\ \ \ \ \ \{}
+\DoxyCodeLine{00662\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ items\ =\ std::make\_unique<Item[]>(m\_numItems);}
+\DoxyCodeLine{00663\ \ \ \ \ \ \ \ \ std::copy\_n(m\_items.get(),\ m\_numItems,\ items.get());}
+\DoxyCodeLine{00664\ }
+\DoxyCodeLine{00665\ \ \ \ \ \ \ \ \ m\_items\ =\ std::move(items);}
+\DoxyCodeLine{00666\ \ \ \ \ \}}
+\DoxyCodeLine{00667\ \}}
+\DoxyCodeLine{00668\ }
+\DoxyCodeLine{00669\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Item,\ \textcolor{keyword}{typename}\ Index>}
+\DoxyCodeLine{00670\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ SrcN>}
+\DoxyCodeLine{00671\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ TLinearDepthFirstWideBvh<N,\ Item,\ Index>}
+\DoxyCodeLine{00672\ ::collapseToSingleLevel(}
+\DoxyCodeLine{00673\ \ \ \ \ \textcolor{keyword}{const}\ TBvhInfoNode<SrcN,\ Item>*\ \textcolor{keyword}{const}\ infoNode)}
+\DoxyCodeLine{00674\ -\/>\ TCollapsedNodes<SrcN>}
+\DoxyCodeLine{00675\ \{}
+\DoxyCodeLine{00676\ \ \ \ \ PH\_ASSERT(infoNode);}
+\DoxyCodeLine{00677\ }
+\DoxyCodeLine{00678\ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ numLevels\ =\ numTreeletLevels<SrcN>();}
+\DoxyCodeLine{00679\ }
+\DoxyCodeLine{00680\ \ \ \ \ \textcolor{comment}{//\ Collapse\ the\ treelet\ under\ \`{}infoNode`\ into\ a\ single\ level\ (with\ BFS)}}
+\DoxyCodeLine{00681\ }
+\DoxyCodeLine{00682\ \ \ \ \ TArrayVector<const\ TBvhInfoNode<SrcN,\ Item>*,\ N>\ levelNodes;}
+\DoxyCodeLine{00683\ \ \ \ \ levelNodes.pushBack(infoNode);}
+\DoxyCodeLine{00684\ }
+\DoxyCodeLine{00685\ \ \ \ \ TCollapsedNodes<SrcN>\ collapsedNodes\{\};}
+\DoxyCodeLine{00686\ \ \ \ \ std::size\_t\ nextSplitAxisIdx\ =\ 0;}
+\DoxyCodeLine{00687\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ levelIdx\ =\ 0;\ levelIdx\ <\ numLevels;\ ++levelIdx)}
+\DoxyCodeLine{00688\ \ \ \ \ \{}
+\DoxyCodeLine{00689\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ isFinalLevel\ =\ levelIdx\ +\ 1\ ==\ numLevels;}
+\DoxyCodeLine{00690\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(isFinalLevel)}
+\DoxyCodeLine{00691\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00692\ \ \ \ \ \ \ \ \ \ \ \ \ PH\_ASSERT\_EQ(levelNodes.size(),\ N);}
+\DoxyCodeLine{00693\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ li\ =\ 0;\ li\ <\ N;\ ++li)}
+\DoxyCodeLine{00694\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00695\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ collapsedNodes.nodes[li]\ =\ levelNodes[li];}
+\DoxyCodeLine{00696\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00697\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00698\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00699\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00700\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ noAxis\ =\ infoNode-\/>noAxisFlag();}
+\DoxyCodeLine{00701\ }
+\DoxyCodeLine{00702\ \ \ \ \ \ \ \ \ \ \ \ \ TArrayVector<const\ TBvhInfoNode<SrcN,\ Item>*,\ N>\ childNodes;}
+\DoxyCodeLine{00703\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keyword}{const}\ TBvhInfoNode<SrcN,\ Item>*\ parentNode\ :\ levelNodes)}
+\DoxyCodeLine{00704\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00705\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ ci\ =\ 0;\ ci\ <\ SrcN;\ ++ci)}
+\DoxyCodeLine{00706\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00707\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ isLastChild\ =\ ci\ +\ 1\ ==\ SrcN;}
+\DoxyCodeLine{00708\ }
+\DoxyCodeLine{00709\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Obtain\ split\ axis}}
+\DoxyCodeLine{00710\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!isLastChild)}
+\DoxyCodeLine{00711\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00712\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Does\ not\ matter\ which\ axis\ is\ chosen\ for\ empty\ and\ leaf\ nodes}}
+\DoxyCodeLine{00713\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ splitAxis\ =\ parentNode\ \&\&\ parentNode-\/>isInternal()}
+\DoxyCodeLine{00714\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ?\ parentNode-\/>getSplitAxis(ci)\ :\ noAxis;}
+\DoxyCodeLine{00715\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ splitAxis\ =\ splitAxis\ !=\ noAxis}
+\DoxyCodeLine{00716\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ?\ splitAxis\ :\ \mbox{\hyperlink{namespaceph_1_1math_1_1constant_a633099a259bffb958d8394be85abc6ee}{constant::X\_AXIS}};}
+\DoxyCodeLine{00717\ }
+\DoxyCodeLine{00718\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ collapsedNodes.splitAxes[nextSplitAxisIdx]\ =\ splitAxis;}
+\DoxyCodeLine{00719\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ++nextSplitAxisIdx;}
+\DoxyCodeLine{00720\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00721\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00722\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Obtain\ child\ node}}
+\DoxyCodeLine{00723\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00724\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ TBvhInfoNode<SrcN,\ Item>*\ childNode\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00725\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(parentNode)}
+\DoxyCodeLine{00726\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00727\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(parentNode-\/>isInternal())}
+\DoxyCodeLine{00728\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00729\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ childNode\ =\ parentNode-\/>getChild(ci);}
+\DoxyCodeLine{00730\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00731\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(parentNode-\/>isLeaf())}
+\DoxyCodeLine{00732\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00733\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Forward\ leaf\ node\ to\ next\ level\ (only\ do\ this\ for\ the\ first\ child}}
+\DoxyCodeLine{00734\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ index\ so\ we\ will\ not\ have\ duplicated\ leaf\ nodes)}}
+\DoxyCodeLine{00735\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ childNode\ =\ ci\ ==\ 0\ ?\ parentNode\ :\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00736\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00737\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00738\ }
+\DoxyCodeLine{00739\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ childNodes.pushBack(childNode);}
+\DoxyCodeLine{00740\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00741\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00742\ \ \ \ \ \ \ \ \ \ \ \ \ \}\textcolor{comment}{//\ end\ for\ each\ node\ in\ this\ level}}
+\DoxyCodeLine{00743\ }
+\DoxyCodeLine{00744\ \ \ \ \ \ \ \ \ \ \ \ \ levelNodes\ =\ childNodes;}
+\DoxyCodeLine{00745\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00746\ \ \ \ \ \}\textcolor{comment}{//\ end\ for\ each\ level}}
+\DoxyCodeLine{00747\ }
+\DoxyCodeLine{00748\ \ \ \ \ \textcolor{comment}{//\ Similar\ to\ info\ node,\ at\ most\ \`{}N\ -\/\ 1`\ split\ axis\ entries\ will\ be\ used}}
+\DoxyCodeLine{00749\ \ \ \ \ PH\_ASSERT\_LE(nextSplitAxisIdx\ +\ 1,\ N);}
+\DoxyCodeLine{00750\ }
+\DoxyCodeLine{00751\ \ \ \ \ \textcolor{keywordflow}{return}\ collapsedNodes;}
+\DoxyCodeLine{00752\ \}}
+\DoxyCodeLine{00753\ }
+\DoxyCodeLine{00754\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Item,\ \textcolor{keyword}{typename}\ Index>}
+\DoxyCodeLine{00755\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ SrcN>}
+\DoxyCodeLine{00756\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ TLinearDepthFirstWideBvh<N,\ Item,\ Index>}
+\DoxyCodeLine{00757\ ::numTreeletLevels()}
+\DoxyCodeLine{00758\ -\/>\ std::size\_t}
+\DoxyCodeLine{00759\ \{}
+\DoxyCodeLine{00760\ \ \ \ \ std::size\_t\ numLevels\ =\ 1;}
+\DoxyCodeLine{00761\ \ \ \ \ \{}
+\DoxyCodeLine{00762\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_assert}(is\_power\_of<SrcN>(N));}
+\DoxyCodeLine{00763\ }
+\DoxyCodeLine{00764\ \ \ \ \ \ \ \ \ std::size\_t\ n\ =\ 1;}
+\DoxyCodeLine{00765\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}(n\ <\ N)}
+\DoxyCodeLine{00766\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00767\ \ \ \ \ \ \ \ \ \ \ \ \ n\ *=\ SrcN;}
+\DoxyCodeLine{00768\ \ \ \ \ \ \ \ \ \ \ \ \ ++numLevels;}
+\DoxyCodeLine{00769\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00770\ \ \ \ \ \}}
+\DoxyCodeLine{00771\ }
+\DoxyCodeLine{00772\ \ \ \ \ \textcolor{keywordflow}{return}\ numLevels;}
+\DoxyCodeLine{00773\ \}}
+\DoxyCodeLine{00774\ }
+\DoxyCodeLine{00775\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Item,\ \textcolor{keyword}{typename}\ Index>}
+\DoxyCodeLine{00776\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ TLinearDepthFirstWideBvh<N,\ Item,\ Index>}
+\DoxyCodeLine{00777\ ::makeIdentityOrderTable()}
+\DoxyCodeLine{00778\ -\/>\ std::array<uint8,\ N>}
+\DoxyCodeLine{00779\ \{}
+\DoxyCodeLine{00780\ \ \ \ \ \textcolor{keyword}{static\_assert}(N\ -\/\ 1\ <=\ std::numeric\_limits<uint8>::max());}
+\DoxyCodeLine{00781\ }
+\DoxyCodeLine{00782\ \ \ \ \ std::array<uint8,\ N>\ table;}
+\DoxyCodeLine{00783\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ i\ =\ 0;\ i\ <\ N;\ ++i)}
+\DoxyCodeLine{00784\ \ \ \ \ \{}
+\DoxyCodeLine{00785\ \ \ \ \ \ \ \ \ table[i]\ =\ \textcolor{keyword}{static\_cast<}uint8\textcolor{keyword}{>}(i);}
+\DoxyCodeLine{00786\ \ \ \ \ \}}
+\DoxyCodeLine{00787\ \ \ \ \ \textcolor{keywordflow}{return}\ table;}
+\DoxyCodeLine{00788\ \}}
+\DoxyCodeLine{00789\ }
+\DoxyCodeLine{00790\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Item,\ \textcolor{keyword}{typename}\ Index>}
+\DoxyCodeLine{00791\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ TLinearDepthFirstWideBvh<N,\ Item,\ Index>}
+\DoxyCodeLine{00792\ ::makeSingleOrderTable()}
+\DoxyCodeLine{00793\ -\/>\ std::array<std::array<uint8,\ N>,\ 2>}
+\DoxyCodeLine{00794\ \{}
+\DoxyCodeLine{00795\ \ \ \ \ \textcolor{keyword}{static\_assert}(N\ -\/\ 1\ <=\ std::numeric\_limits<uint8>::max());}
+\DoxyCodeLine{00796\ }
+\DoxyCodeLine{00797\ \ \ \ \ std::array<std::array<uint8,\ N>,\ 2>\ table;}
+\DoxyCodeLine{00798\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ isNegDir\ =\ 0;\ isNegDir\ <\ 2;\ ++isNegDir)}
+\DoxyCodeLine{00799\ \ \ \ \ \{}
+\DoxyCodeLine{00800\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ i\ =\ 0;\ i\ <\ N;\ ++i)}
+\DoxyCodeLine{00801\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00802\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Negative\ segment\ direction:\ use\ reversed\ child\ order}}
+\DoxyCodeLine{00803\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(isNegDir)}
+\DoxyCodeLine{00804\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00805\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ table[isNegDir][i]\ =\ \textcolor{keyword}{static\_cast<}uint8\textcolor{keyword}{>}(N\ -\/\ 1\ -\/\ i);}
+\DoxyCodeLine{00806\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00807\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Positive\ segment\ direction:\ use\ original\ child\ order}}
+\DoxyCodeLine{00808\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00809\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00810\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ table[isNegDir][i]\ =\ \textcolor{keyword}{static\_cast<}uint8\textcolor{keyword}{>}(i);}
+\DoxyCodeLine{00811\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00812\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00813\ \ \ \ \ \}}
+\DoxyCodeLine{00814\ \ \ \ \ \textcolor{keywordflow}{return}\ table;}
+\DoxyCodeLine{00815\ \}}
+\DoxyCodeLine{00816\ }
+\DoxyCodeLine{00817\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Item,\ \textcolor{keyword}{typename}\ Index>}
+\DoxyCodeLine{00818\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ TLinearDepthFirstWideBvh<N,\ Item,\ Index>}
+\DoxyCodeLine{00819\ ::makeBalancedPow2OrderTable()}
+\DoxyCodeLine{00820\ -\/>\ std::array<std::array<uint8,\ N>,\ BALANCED\_POW2\_ORDER\_TABLE\_SIZE>}
+\DoxyCodeLine{00821\ \{}
+\DoxyCodeLine{00822\ \ \ \ \ \textcolor{keyword}{static\_assert}(is\_power\_of\_2(N));}
+\DoxyCodeLine{00823\ \ \ \ \ \textcolor{keyword}{static\_assert}(N\ -\/\ 1\ <=\ std::numeric\_limits<uint8>::max());}
+\DoxyCodeLine{00824\ }
+\DoxyCodeLine{00825\ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ reverseRange\ =}
+\DoxyCodeLine{00826\ \ \ \ \ \ \ \ \ [](\textcolor{keyword}{const}\ std::size\_t\ begin,\ \textcolor{keyword}{const}\ std::size\_t\ end,\ std::array<uint8,\ N>\&\ permutation)}
+\DoxyCodeLine{00827\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00828\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ size\ =\ end\ -\/\ begin;}
+\DoxyCodeLine{00829\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ halfSize\ =\ size\ /\ 2;}
+\DoxyCodeLine{00830\ }
+\DoxyCodeLine{00831\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Cache\ first\ half\ of\ the\ range}}
+\DoxyCodeLine{00832\ \ \ \ \ \ \ \ \ \ \ \ \ std::array<uint8,\ N>\ temp;}
+\DoxyCodeLine{00833\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ i\ =\ 0;\ i\ <\ halfSize;\ ++i)}
+\DoxyCodeLine{00834\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00835\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ temp[i]\ =\ permutation[begin\ +\ i];}
+\DoxyCodeLine{00836\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00837\ }
+\DoxyCodeLine{00838\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Copy\ second\ half\ of\ the\ range\ to\ first\ half}}
+\DoxyCodeLine{00839\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ i\ =\ 0;\ i\ <\ halfSize;\ ++i)}
+\DoxyCodeLine{00840\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00841\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ permutation[begin\ +\ i]\ =\ permutation[begin\ +\ halfSize\ +\ i];}
+\DoxyCodeLine{00842\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00843\ }
+\DoxyCodeLine{00844\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Copy\ cached\ first\ half\ of\ the\ range\ to\ second\ half}}
+\DoxyCodeLine{00845\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ i\ =\ 0;\ i\ <\ halfSize;\ ++i)}
+\DoxyCodeLine{00846\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00847\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ permutation[begin\ +\ halfSize\ +\ i]\ =\ temp[i];}
+\DoxyCodeLine{00848\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00849\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00850\ }
+\DoxyCodeLine{00851\ \ \ \ \ std::array<std::array<uint8,\ N>,\ BALANCED\_POW2\_ORDER\_TABLE\_SIZE>\ table;}
+\DoxyCodeLine{00852\ \ \ \ \ table.fill(makeIdentityOrderTable());}
+\DoxyCodeLine{00853\ }
+\DoxyCodeLine{00854\ \ \ \ \ \textcolor{comment}{//\ Minus\ one\ since\ the\ bottom\ level\ has\ no\ split\ axis}}
+\DoxyCodeLine{00855\ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ numLevels\ =\ numTreeletLevels<2>()\ -\/\ 1;}
+\DoxyCodeLine{00856\ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ numDirBits\ =\ N\ -\/\ 1;}
+\DoxyCodeLine{00857\ }
+\DoxyCodeLine{00858\ \ \ \ \ \textcolor{comment}{//\ Reverse\ child\ index\ permutations\ for\ each\ level\ recursively\ (from\ bottom\ to\ top,\ otherwise}}
+\DoxyCodeLine{00859\ \ \ \ \ \textcolor{comment}{//\ upper\ levels\ will\ affect\ the\ order\ of\ bottom\ level,\ which\ is\ more\ difficult\ to\ track)}}
+\DoxyCodeLine{00860\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ entryIdx\ =\ 0;\ entryIdx\ <\ table.size();\ ++entryIdx)}
+\DoxyCodeLine{00861\ \ \ \ \ \{}
+\DoxyCodeLine{00862\ \ \ \ \ \ \ \ \ std::size\_t\ numSplitsInLevel\ =\ N\ /\ 2;}
+\DoxyCodeLine{00863\ \ \ \ \ \ \ \ \ std::size\_t\ splitIdxInLevel\ =\ 0;}
+\DoxyCodeLine{00864\ \ \ \ \ \ \ \ \ std::size\_t\ permutationRange\ =\ 2;}
+\DoxyCodeLine{00865\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ bi\ =\ 0;\ bi\ <\ numDirBits;\ ++bi)}
+\DoxyCodeLine{00866\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00867\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ bit\ =\ (entryIdx\ >>\ bi)\ \&\ 0b1;}
+\DoxyCodeLine{00868\ }
+\DoxyCodeLine{00869\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Negative\ segment\ direction:\ use\ reversed\ child\ order}}
+\DoxyCodeLine{00870\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(bit)}
+\DoxyCodeLine{00871\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00872\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ reverseRange(}
+\DoxyCodeLine{00873\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ permutationRange\ *\ (numSplitsInLevel\ -\/\ splitIdxInLevel\ -\/\ 1),}
+\DoxyCodeLine{00874\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ permutationRange\ *\ (numSplitsInLevel\ -\/\ splitIdxInLevel),}
+\DoxyCodeLine{00875\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ table[entryIdx]);}
+\DoxyCodeLine{00876\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00877\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Positive\ segment\ direction:\ use\ original\ child\ order}}
+\DoxyCodeLine{00878\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00879\ \ \ \ \ \ \ \ \ \ \ \ \ \{\}}
+\DoxyCodeLine{00880\ }
+\DoxyCodeLine{00881\ \ \ \ \ \ \ \ \ \ \ \ \ ++splitIdxInLevel;}
+\DoxyCodeLine{00882\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(splitIdxInLevel\ ==\ numSplitsInLevel)}
+\DoxyCodeLine{00883\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00884\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ numSplitsInLevel\ /=\ 2;}
+\DoxyCodeLine{00885\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ splitIdxInLevel\ =\ 0;}
+\DoxyCodeLine{00886\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ permutationRange\ *=\ 2;}
+\DoxyCodeLine{00887\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00888\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00889\ \ \ \ \ \}}
+\DoxyCodeLine{00890\ }
+\DoxyCodeLine{00891\ \ \ \ \ \textcolor{keywordflow}{return}\ table;}
+\DoxyCodeLine{00892\ \}}
+\DoxyCodeLine{00893\ }
+\DoxyCodeLine{00894\ \}\textcolor{comment}{//\ end\ namespace\ ph::math}}
 
 \end{DoxyCode}

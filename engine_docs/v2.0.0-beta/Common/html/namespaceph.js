@@ -3,6 +3,7 @@ var namespaceph =
     [ "detail", "namespaceph_1_1detail.html", "namespaceph_1_1detail" ],
     [ "math", "namespaceph_1_1math.html", [
       [ "ceil_div", "namespaceph_1_1math.html#aa1639a1b307574d4434e62163f699d25", null ],
+      [ "is_power_of", "namespaceph_1_1math.html#a10b1c6c83ac6604b41693b55c1a9706f", null ],
       [ "is_power_of_2", "namespaceph_1_1math.html#a2db200d8e62c40799c3fff427b4d869d", null ],
       [ "next_multiple", "namespaceph_1_1math.html#a09832832f991e284ec83b3531bbb2bdf", null ],
       [ "next_power_of_2_multiple", "namespaceph_1_1math.html#a97fd8863ca133b67190d7d2101f95918", null ]
@@ -39,6 +40,7 @@ var namespaceph =
     [ "OutOfRangeException", "classph_1_1_out_of_range_exception.html", "classph_1_1_out_of_range_exception" ],
     [ "OverflowException", "classph_1_1_overflow_exception.html", null ],
     [ "RuntimeException", "classph_1_1_runtime_exception.html", "classph_1_1_runtime_exception" ],
+    [ "TAlignedArray", "structph_1_1_t_aligned_array.html", null ],
     [ "TimerStatsReport", "classph_1_1_timer_stats_report.html", "classph_1_1_timer_stats_report" ],
     [ "Timestamp", "classph_1_1_timestamp.html", "classph_1_1_timestamp" ],
     [ "UninitializedObjectException", "classph_1_1_uninitialized_object_exception.html", "classph_1_1_uninitialized_object_exception" ],

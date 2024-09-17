@@ -1,5 +1,5 @@
 var _path_8h =
 [
-    [ "PH_USE_ALTERNATIVE_PATH_IMPL", "_path_8h.html#a5939549a7f38df9d131df2fbbc88610e", null ],
-    [ "Path", "_path_8h.html#ad4d517b7c9bbb562004680aeb970abaa", null ]
+    [ "ph::Path", "classph_1_1_path.html", "classph_1_1_path" ],
+    [ "PH_DEFINE_INLINE_TO_STRING_FORMATTER", "_path_8h.html#a1ad4594229c71839d57556e2c4868bdc", null ]
 ];

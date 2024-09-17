@@ -6,61 +6,118 @@
 \DoxyCodeLine{00002\ }
 \DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_wide_bvh_node_8h}{Math/Algorithm/BVH/TWideBvhNode.h}}"{}}}
 \DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_line_segment_8h}{Math/Geometry/TLineSegment.h}}"{}}}
-\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{utility_8h}{Utility/utility.h}}"{}}}
-\DoxyCodeLine{00006\ }
-\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <Common/primitive\_type.h>}}
-\DoxyCodeLine{00008\ }
-\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <cstddef>}}
-\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <algorithm>}}
-\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <memory>}}
-\DoxyCodeLine{00012\ }
-\DoxyCodeLine{00013\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph_1_1math}{ph::math}}}
-\DoxyCodeLine{00014\ \{}
-\DoxyCodeLine{00015\ }
-\DoxyCodeLine{00016\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Item>}
-\DoxyCodeLine{00017\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node}{TBvhInfoNode}};}
-\DoxyCodeLine{00018\ }
-\DoxyCodeLine{00019\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Item,\ \textcolor{keyword}{typename}\ Index>}
-\DoxyCodeLine{00020\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1math_1_1_t_linear_depth_first_wide_bvh}{TLinearDepthFirstWideBvh}}\ final}
-\DoxyCodeLine{00021\ \{}
-\DoxyCodeLine{00022\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classph_1_1math_1_1_t_wide_bvh_node}{NodeType}}\ =\ \mbox{\hyperlink{classph_1_1math_1_1_t_wide_bvh_node}{TWideBvhNode<N,\ Item,\ Index>}};}
-\DoxyCodeLine{00024\ }
-\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{static}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1math_1_1_t_linear_depth_first_wide_bvh_ab2e15bdb1ab31e7555a2808be637ffb0}{TRAVERSAL\_STACK\_SIZE}}\ =\ std::min<std::size\_t>(}
-\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ sizeof\_in\_bits<Index>()\ *\ 3\ /\ 2,\ 48);}
-\DoxyCodeLine{00029\ }
-\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ SrcN>}
-\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1math_1_1_t_linear_depth_first_wide_bvh_a0a147e247d26c1bc4d135b47b45190f4}{build}}(}
-\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node}{TBvhInfoNode<SrcN,\ Item>}}*\ \textcolor{keyword}{const}\ rootNode,}
-\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ std::size\_t\ totalInfoNodes,}
-\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ std::size\_t\ totalItems);}
-\DoxyCodeLine{00035\ }
-\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ TesterFunc,\ \textcolor{keywordtype}{bool}\ IS\_ROBUST\ =\ true>}
-\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1math_1_1_t_linear_depth_first_wide_bvh_ae85384ec149535fff61ae89ea1379426}{nearestTraversal}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_line_segment}{TLineSegment<real>}}\&\ segment,\ TesterFunc\&\&\ intersectionTester)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{constant_8h}{Math/constant.h}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{utility_8h}{Utility/utility.h}}"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <Common/primitive\_type.h>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <Common/utility.h>}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <cstddef>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <array>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph_1_1math}{ph::math}}}
+\DoxyCodeLine{00018\ \{}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Item>}
+\DoxyCodeLine{00021\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node}{TBvhInfoNode}};}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{keyword}{enum\ class}\ \mbox{\hyperlink{namespaceph_1_1math_aabe5079ad127a59984a75116b4c2b0f3}{EBvhSplitAxisOrder}}\ :\ uint8f}
+\DoxyCodeLine{00024\ \{}
+\DoxyCodeLine{00026\ \ \ \ \ \mbox{\hyperlink{namespaceph_1_1math_aabe5079ad127a59984a75116b4c2b0f3a5cd8751eeac534908829566d37a72c8c}{Unbalanced}},}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00029\ \ \ \ \ \mbox{\hyperlink{namespaceph_1_1math_aabe5079ad127a59984a75116b4c2b0f3ac6589f5236c0c434d0c63dc5f9a856f2}{Balanced}},}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00032\ \ \ \ \ \mbox{\hyperlink{namespaceph_1_1math_aabe5079ad127a59984a75116b4c2b0f3a5b328d4a5e7355b8c7161e3cc1073abf}{BalancedPow2}},}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00036\ \ \ \ \ \mbox{\hyperlink{namespaceph_1_1math_aabe5079ad127a59984a75116b4c2b0f3a66ba162102bbf6ae31b522aec561735e}{Single}}}
+\DoxyCodeLine{00037\ \};}
 \DoxyCodeLine{00038\ }
-\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1math_1_1_t_linear_depth_first_wide_bvh_a8bba2ab3ed94c1842ada5c4995395f2d}{isEmpty}}()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_wide_bvh_node}{NodeType}}\&\ \mbox{\hyperlink{classph_1_1math_1_1_t_linear_depth_first_wide_bvh_ad108f5d43292757a532733fd9b4c3023}{getRoot}}()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00041\ \ \ \ \ std::size\_t\ \mbox{\hyperlink{classph_1_1math_1_1_t_linear_depth_first_wide_bvh_a0979f714297e729b3906dfd5974d60b1}{numNodes}}()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00042\ \ \ \ \ std::size\_t\ \mbox{\hyperlink{classph_1_1math_1_1_t_linear_depth_first_wide_bvh_a08aae19348b978463e81b87c472e1924}{numItems}}()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00043\ }
-\DoxyCodeLine{00044\ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordtype}{void}\ convertChildNodesRecursive(}
-\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node}{TBvhInfoNode<N,\ Item>}}*\ infoNode);}
-\DoxyCodeLine{00049\ }
-\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ SrcN>}
-\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordtype}{void}\ collapseNodesRecursive(}
-\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node}{TBvhInfoNode<SrcN,\ Item>}}*\ infoNode);}
+\DoxyCodeLine{00043\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Item,\ \textcolor{keyword}{typename}\ Index>}
+\DoxyCodeLine{00044\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1math_1_1_t_linear_depth_first_wide_bvh}{TLinearDepthFirstWideBvh}}\ final}
+\DoxyCodeLine{00045\ \{}
+\DoxyCodeLine{00046\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classph_1_1math_1_1_t_wide_bvh_node}{NodeType}}\ =\ \mbox{\hyperlink{classph_1_1math_1_1_t_wide_bvh_node}{TWideBvhNode<N,\ Index>}};}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{static}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1math_1_1_t_linear_depth_first_wide_bvh_ab2e15bdb1ab31e7555a2808be637ffb0}{TRAVERSAL\_STACK\_SIZE}}\ =\ std::min<std::size\_t>(}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ sizeof\_in\_bits<Index>()\ *\ 3\ /\ 2,\ 48);}
 \DoxyCodeLine{00053\ }
-\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordtype}{void}\ refitBuffer(std::size\_t\ nodeBufferSize,\ std::size\_t\ itemBufferSize);}
-\DoxyCodeLine{00055\ }
-\DoxyCodeLine{00056\ \ \ \ \ std::unique\_ptr<NodeType[]>\ m\_nodes;}
-\DoxyCodeLine{00057\ \ \ \ \ std::unique\_ptr<Item[]>\ m\_items;}
-\DoxyCodeLine{00058\ \ \ \ \ Index\ m\_numNodes\ =\ 0;}
-\DoxyCodeLine{00059\ \ \ \ \ Index\ m\_numItems\ =\ 0;}
-\DoxyCodeLine{00060\ \};}
-\DoxyCodeLine{00061\ }
-\DoxyCodeLine{00062\ \}\textcolor{comment}{//\ end\ namespace\ ph::math}}
-\DoxyCodeLine{00063\ }
-\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_linear_depth_first_wide_bvh_8ipp}{Math/Algorithm/BVH/TLinearDepthFirstWideBvh.ipp}}"{}}}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ SrcN>}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1math_1_1_t_linear_depth_first_wide_bvh_a0a147e247d26c1bc4d135b47b45190f4}{build}}(}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node}{TBvhInfoNode<SrcN,\ Item>}}*\ \textcolor{keyword}{const}\ rootNode,}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ std::size\_t\ totalInfoNodes,}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ std::size\_t\ totalItems);}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keywordtype}{bool}\ IS\_ROBUST\ =\ true,\ \textcolor{keyword}{typename}\ TesterFunc>}
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1math_1_1_t_linear_depth_first_wide_bvh_ae85384ec149535fff61ae89ea1379426}{nearestTraversal}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_line_segment}{TLineSegment<real>}}\&\ segment,\ TesterFunc\&\&\ intersectionTester)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1math_1_1_t_linear_depth_first_wide_bvh_a57b31cd515d00d38e7c47aa5106589e9}{isEmpty}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_wide_bvh_node}{NodeType}}\&\ \mbox{\hyperlink{classph_1_1math_1_1_t_linear_depth_first_wide_bvh_acdfa5e4bfc4b939164a649789d905177}{getRoot}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00065\ \ \ \ \ std::size\_t\ \mbox{\hyperlink{classph_1_1math_1_1_t_linear_depth_first_wide_bvh_a06eb4b572f231f5b0c68858e53c83d59}{numNodes}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00066\ \ \ \ \ std::size\_t\ \mbox{\hyperlink{classph_1_1math_1_1_t_linear_depth_first_wide_bvh_a30ec234bbfab2cf07e30073ff9f825ac}{numItems}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00067\ \ \ \ \ std::size\_t\ \mbox{\hyperlink{classph_1_1math_1_1_t_linear_depth_first_wide_bvh_aee218be0abeafdf3590687aa41b5a3ea}{memoryUsage}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00068\ \ \ \ \ std::string\ \mbox{\hyperlink{classph_1_1math_1_1_t_linear_depth_first_wide_bvh_a16e376655aebe028e5e98a78915f0d11}{balancedPow2OrderTableToString}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ SrcN>}
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keyword}{struct\ }TCollapsedNodes}
+\DoxyCodeLine{00073\ \ \ \ \ \{}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ std::array<const\ TBvhInfoNode<SrcN,\ Item>*,\ N>\ nodes\ =\ \{\};}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ std::array<std::size\_t,\ N>\ splitAxes\ =\ make\_array<std::size\_t,\ N>(\mbox{\hyperlink{namespaceph_1_1math_1_1constant_a633099a259bffb958d8394be85abc6ee}{constant::X\_AXIS}});}
+\DoxyCodeLine{00079\ \ \ \ \ \};}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keywordtype}{bool}\ IS\_ROBUST,\ \textcolor{keyword}{typename}\ TesterFunc>}
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keywordtype}{bool}\ nearestTraversalGeneral(}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_line_segment}{TLineSegment<real>}}\&\ segment,}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ TesterFunc\&\&\ intersectionTester)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keywordtype}{bool}\ IS\_ROBUST,\ EBvhSplitAxisOrder\ ORDER,\ \textcolor{keyword}{typename}\ TesterFunc>}
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{keywordtype}{bool}\ nearestTraversalOrdered(}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_line_segment}{TLineSegment<real>}}\&\ segment,}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ TesterFunc\&\&\ intersectionTester)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keywordtype}{void}\ convertNodesRecursive(}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node}{TBvhInfoNode<N,\ Item>}}*\ infoNode,}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\&\ isSingleSplitAxisNodes);}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ SrcN>}
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keywordtype}{void}\ collapseNodesRecursive(}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node}{TBvhInfoNode<SrcN,\ Item>}}*\ infoNode);}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{keywordtype}{void}\ refitBuffer(std::size\_t\ nodeBufferSize,\ std::size\_t\ itemBufferSize);}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00108\ \ \ \ \ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ SrcN>}
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{auto}\ collapseToSingleLevel(}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_info_node}{TBvhInfoNode<SrcN,\ Item>}}*\ infoNode)}
+\DoxyCodeLine{00111\ \ \ \ \ -\/>\ TCollapsedNodes<SrcN>;}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ SrcN>}
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ numTreeletLevels()}
+\DoxyCodeLine{00115\ \ \ \ \ -\/>\ std::size\_t;}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ makeIdentityOrderTable()}
+\DoxyCodeLine{00118\ \ \ \ \ -\/>\ std::array<uint8,\ N>;}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ makeSingleOrderTable()}
+\DoxyCodeLine{00121\ \ \ \ \ -\/>\ std::array<std::array<uint8,\ N>,\ 2>;}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00123\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ BALANCED\_POW2\_ORDER\_TABLE\_SIZE\ =\ 1\ <<\ (N\ -\/\ 1);}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ makeBalancedPow2OrderTable()}
+\DoxyCodeLine{00126\ \ \ \ \ -\/>\ std::array<std::array<uint8,\ N>,\ BALANCED\_POW2\_ORDER\_TABLE\_SIZE>;}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \ \ \ \ std::unique\_ptr<NodeType[]>\ m\_nodes;}
+\DoxyCodeLine{00129\ \ \ \ \ std::unique\_ptr<Item[]>\ m\_items;}
+\DoxyCodeLine{00130\ \ \ \ \ Index\ m\_numNodes\ =\ 0;}
+\DoxyCodeLine{00131\ \ \ \ \ Index\ m\_numItems\ =\ 0;}
+\DoxyCodeLine{00132\ \ \ \ \ \mbox{\hyperlink{namespaceph_1_1math_aabe5079ad127a59984a75116b4c2b0f3}{EBvhSplitAxisOrder}}\ m\_order\ =\ \mbox{\hyperlink{namespaceph_1_1math_aabe5079ad127a59984a75116b4c2b0f3a5cd8751eeac534908829566d37a72c8c}{EBvhSplitAxisOrder::Unbalanced}};}
+\DoxyCodeLine{00133\ \};}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00135\ \}\textcolor{comment}{//\ end\ namespace\ ph::math}}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00137\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_linear_depth_first_wide_bvh_8ipp}{Math/Algorithm/BVH/TLinearDepthFirstWideBvh.ipp}}"{}}}
 
 \end{DoxyCode}

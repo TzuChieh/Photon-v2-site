@@ -145,68 +145,107 @@ $(function(){initNavTree('math__basics_8h_source.html',''); initResizable(true);
 <div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>}</div>
 </div>
 <div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="keyword">template</span>&lt;std::<span class="keywordtype">int</span>egral T&gt;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="keyword">template</span>&lt;std::<span class="keywordtype">size_t</span> BASE, <span class="keyword">typename</span> T&gt;</div>
 <div class="foldopen" id="foldopen00038" data-start="{" data-end="}">
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="namespaceph_1_1math.html#aa1639a1b307574d4434e62163f699d25">   38</a></span><span class="keyword">inline</span> T <a class="code hl_function" href="namespaceph_1_1math.html#aa1639a1b307574d4434e62163f699d25">ceil_div</a>(<span class="keyword">const</span> T numerator, <span class="keyword">const</span> T denominator)</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="namespaceph_1_1math.html#a10b1c6c83ac6604b41693b55c1a9706f">   38</a></span><span class="keyword">inline</span> <span class="keyword">constexpr</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="namespaceph_1_1math.html#a10b1c6c83ac6604b41693b55c1a9706f">is_power_of</a>(<span class="keyword">const</span> T value)</div>
 <div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>{</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <a class="code hl_define" href="assertion_8h.html#a084da468d1c2924edeb475ac2813a894">PH_ASSERT_GE</a>(numerator, 0);</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <a class="code hl_define" href="assertion_8h.html#a1bf4090e4920d4e6021e6480ed22a1d6">PH_ASSERT_GT</a>(denominator, 0);</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <span class="comment">// Check for possible overflow when doing `numerator` + (`denominator` - 1).</span></div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <span class="comment">// (i.e., MAX &gt;= `numerator` + (`denominator` - 1), rearranged to minimize overflow)</span></div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <a class="code hl_define" href="assertion_8h.html#a084da468d1c2924edeb475ac2813a894">PH_ASSERT_GE</a>(std::numeric_limits&lt;T&gt;::max() - numerator, denominator - 1);</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <span class="comment">// We group the (`denominator` - 1) together as `numerator` is usually far larger than</span></div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <span class="comment">// `denominator`, doing (`denominator` - 1) first has better chance to avoid an overflow</span></div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <span class="keywordflow">return</span> (numerator + (denominator - 1)) / denominator;</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>}</div>
-</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="keyword">template</span>&lt;std::<span class="keywordtype">int</span>egral T&gt;</div>
-<div class="foldopen" id="foldopen00057" data-start="{" data-end="}">
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="namespaceph_1_1math.html#a09832832f991e284ec83b3531bbb2bdf">   57</a></span><span class="keyword">inline</span> T <a class="code hl_function" href="namespaceph_1_1math.html#a09832832f991e284ec83b3531bbb2bdf">next_multiple</a>(<span class="keyword">const</span> T value, <span class="keyword">const</span> T multiple)</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>{</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    <a class="code hl_define" href="assertion_8h.html#a1bf4090e4920d4e6021e6480ed22a1d6">PH_ASSERT_GT</a>(multiple, 0);</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="namespaceph_1_1math.html#aa1639a1b307574d4434e62163f699d25">ceil_div</a>(value, multiple) * multiple;</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>}</div>
-</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="keywordflow">if</span> <span class="keyword">constexpr</span>(BASE == 0)</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    {</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        <span class="keywordflow">return</span> value == 0;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    }</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span> <span class="keyword">constexpr</span>(BASE == 1)</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    {</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>        <span class="keywordflow">return</span> value == 1;</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    }</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span> <span class="keyword">constexpr</span>(BASE == 2)</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    {</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="namespaceph_1_1math.html#a2db200d8e62c40799c3fff427b4d869d">is_power_of_2</a>(value);</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    }</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    {</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>        <span class="keywordflow">if</span>(value &gt; 0)</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>        {</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>            <span class="keyword">static_assert</span>(BASE &lt;= std::numeric_limits&lt;T&gt;::max());</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>            T powVal = 1;</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>            <span class="keywordflow">while</span>(powVal &lt; value)</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>            {</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>                powVal *= <span class="keyword">static_cast&lt;</span>T<span class="keyword">&gt;</span>(BASE);<span class="comment">// TODO: overflow check</span></div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>            }</div>
 <div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span><span class="keyword">template</span>&lt;std::<span class="keywordtype">int</span>egral T&gt;</div>
-<div class="foldopen" id="foldopen00067" data-start="{" data-end="}">
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="namespaceph_1_1math.html#a97fd8863ca133b67190d7d2101f95918">   67</a></span><span class="keyword">inline</span> T <a class="code hl_function" href="namespaceph_1_1math.html#a97fd8863ca133b67190d7d2101f95918">next_power_of_2_multiple</a>(<span class="keyword">const</span> T value, <span class="keyword">const</span> T multiple)</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>{</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    <a class="code hl_define" href="assertion_8h.html#a084da468d1c2924edeb475ac2813a894">PH_ASSERT_GE</a>(value, 0);</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    <a class="code hl_define" href="assertion_8h.html#a558904c79650c33ffc88d08548193229">PH_ASSERT</a>(<a class="code hl_function" href="namespaceph_1_1math.html#a2db200d8e62c40799c3fff427b4d869d">is_power_of_2</a>(multiple));</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    </div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    <span class="comment">// Reference: https://stackoverflow.com/a/9194117</span></div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    <span class="comment">// Check for possible overflow when doing `value` + (`multiple` - 1).</span></div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    <span class="comment">// (see the implementation of `ceil_div()` for details about this test)</span></div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    <a class="code hl_define" href="assertion_8h.html#a084da468d1c2924edeb475ac2813a894">PH_ASSERT_GE</a>(std::numeric_limits&lt;T&gt;::max() - value, multiple - 1);</div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    <span class="comment">// `&amp; ~(multiple - 1)` is the same as `&amp; -multiple` for two&#39;s complement arithmetic</span></div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    <span class="keywordflow">return</span> (value + (multiple - 1)) &amp; (0 - multiple);</div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    <span class="comment">// Note:</span></div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    <span class="comment">// MSVC may emit C4146 warning on applying a unary negate operation on unsigned types. Subtracting a</span></div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    <span class="comment">// value from zero is the same as taking its negative, but using the binary subtraction operator avoids</span></div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    <span class="comment">// the warning about taking the negative of an unsigned value. Hence the `0 - multiple` instead of `-multiple`.</span></div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    <span class="comment">// Reference: https://stackoverflow.com/a/26893482</span></div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>}</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>            <span class="keywordflow">return</span> powVal == value;</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>        }</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>        <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>        {</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>        }</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    }</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>}</div>
 </div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span> </div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>}<span class="comment">// end namespace ph::math</span></div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span><span class="keyword">template</span>&lt;std::<span class="keywordtype">int</span>egral T&gt;</div>
+<div class="foldopen" id="foldopen00077" data-start="{" data-end="}">
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno"><a class="line" href="namespaceph_1_1math.html#aa1639a1b307574d4434e62163f699d25">   77</a></span><span class="keyword">inline</span> T <a class="code hl_function" href="namespaceph_1_1math.html#aa1639a1b307574d4434e62163f699d25">ceil_div</a>(<span class="keyword">const</span> T numerator, <span class="keyword">const</span> T denominator)</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>{</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    <a class="code hl_define" href="assertion_8h.html#a084da468d1c2924edeb475ac2813a894">PH_ASSERT_GE</a>(numerator, 0);</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    <a class="code hl_define" href="assertion_8h.html#a1bf4090e4920d4e6021e6480ed22a1d6">PH_ASSERT_GT</a>(denominator, 0);</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    <span class="comment">// Check for possible overflow when doing `numerator` + (`denominator` - 1).</span></div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    <span class="comment">// (i.e., MAX &gt;= `numerator` + (`denominator` - 1), rearranged to minimize overflow)</span></div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    <a class="code hl_define" href="assertion_8h.html#a084da468d1c2924edeb475ac2813a894">PH_ASSERT_GE</a>(std::numeric_limits&lt;T&gt;::max() - numerator, denominator - 1);</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> </div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    <span class="comment">// We group the (`denominator` - 1) together as `numerator` is usually far larger than</span></div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    <span class="comment">// `denominator`, doing (`denominator` - 1) first has better chance to avoid an overflow</span></div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    <span class="keywordflow">return</span> (numerator + (denominator - 1)) / denominator;</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>}</div>
+</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span><span class="keyword">template</span>&lt;std::<span class="keywordtype">int</span>egral T&gt;</div>
+<div class="foldopen" id="foldopen00096" data-start="{" data-end="}">
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno"><a class="line" href="namespaceph_1_1math.html#a09832832f991e284ec83b3531bbb2bdf">   96</a></span><span class="keyword">inline</span> T <a class="code hl_function" href="namespaceph_1_1math.html#a09832832f991e284ec83b3531bbb2bdf">next_multiple</a>(<span class="keyword">const</span> T value, <span class="keyword">const</span> T multiple)</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>{</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    <a class="code hl_define" href="assertion_8h.html#a1bf4090e4920d4e6021e6480ed22a1d6">PH_ASSERT_GT</a>(multiple, 0);</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span> </div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="namespaceph_1_1math.html#aa1639a1b307574d4434e62163f699d25">ceil_div</a>(value, multiple) * multiple;</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>}</div>
+</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span> </div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span><span class="keyword">template</span>&lt;std::<span class="keywordtype">int</span>egral T&gt;</div>
+<div class="foldopen" id="foldopen00106" data-start="{" data-end="}">
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno"><a class="line" href="namespaceph_1_1math.html#a97fd8863ca133b67190d7d2101f95918">  106</a></span><span class="keyword">inline</span> T <a class="code hl_function" href="namespaceph_1_1math.html#a97fd8863ca133b67190d7d2101f95918">next_power_of_2_multiple</a>(<span class="keyword">const</span> T value, <span class="keyword">const</span> T multiple)</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>{</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    <a class="code hl_define" href="assertion_8h.html#a084da468d1c2924edeb475ac2813a894">PH_ASSERT_GE</a>(value, 0);</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    <a class="code hl_define" href="assertion_8h.html#a558904c79650c33ffc88d08548193229">PH_ASSERT</a>(<a class="code hl_function" href="namespaceph_1_1math.html#a2db200d8e62c40799c3fff427b4d869d">is_power_of_2</a>(multiple));</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    </div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    <span class="comment">// Reference: https://stackoverflow.com/a/9194117</span></div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span> </div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    <span class="comment">// Check for possible overflow when doing `value` + (`multiple` - 1).</span></div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>    <span class="comment">// (see the implementation of `ceil_div()` for details about this test)</span></div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>    <a class="code hl_define" href="assertion_8h.html#a084da468d1c2924edeb475ac2813a894">PH_ASSERT_GE</a>(std::numeric_limits&lt;T&gt;::max() - value, multiple - 1);</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span> </div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    <span class="comment">// `&amp; ~(multiple - 1)` is the same as `&amp; -multiple` for two&#39;s complement arithmetic</span></div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    <span class="keywordflow">return</span> (value + (multiple - 1)) &amp; (0 - multiple);</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span> </div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>    <span class="comment">// Note:</span></div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>    <span class="comment">// MSVC may emit C4146 warning on applying a unary negate operation on unsigned types. Subtracting a</span></div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    <span class="comment">// value from zero is the same as taking its negative, but using the binary subtraction operator avoids</span></div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>    <span class="comment">// the warning about taking the negative of an unsigned value. Hence the `0 - multiple` instead of `-multiple`.</span></div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>    <span class="comment">// Reference: https://stackoverflow.com/a/26893482</span></div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>}</div>
+</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span> </div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>}<span class="comment">// end namespace ph::math</span></div>
 </div>
 <div class="ttc" id="aassertion_8h_html"><div class="ttname"><a href="assertion_8h.html">assertion.h</a></div></div>
 <div class="ttc" id="aassertion_8h_html_a084da468d1c2924edeb475ac2813a894"><div class="ttname"><a href="assertion_8h.html#a084da468d1c2924edeb475ac2813a894">PH_ASSERT_GE</a></div><div class="ttdeci">#define PH_ASSERT_GE(a, b)</div><div class="ttdef"><b>Definition</b> assertion.h:67</div></div>
 <div class="ttc" id="aassertion_8h_html_a1bf4090e4920d4e6021e6480ed22a1d6"><div class="ttname"><a href="assertion_8h.html#a1bf4090e4920d4e6021e6480ed22a1d6">PH_ASSERT_GT</a></div><div class="ttdeci">#define PH_ASSERT_GT(a, b)</div><div class="ttdef"><b>Definition</b> assertion.h:61</div></div>
 <div class="ttc" id="aassertion_8h_html_a558904c79650c33ffc88d08548193229"><div class="ttname"><a href="assertion_8h.html#a558904c79650c33ffc88d08548193229">PH_ASSERT</a></div><div class="ttdeci">#define PH_ASSERT(condition)</div><div class="ttdef"><b>Definition</b> assertion.h:49</div></div>
 <div class="ttc" id="anamespaceph_1_1math_html"><div class="ttname"><a href="namespaceph_1_1math.html">ph::math</a></div><div class="ttdef"><b>Definition</b> math_basics.h:16</div></div>
-<div class="ttc" id="anamespaceph_1_1math_html_a09832832f991e284ec83b3531bbb2bdf"><div class="ttname"><a href="namespaceph_1_1math.html#a09832832f991e284ec83b3531bbb2bdf">ph::math::next_multiple</a></div><div class="ttdeci">T next_multiple(const T value, const T multiple)</div><div class="ttdoc">Get the next number that is an integer multiple of multiple. Specifically, get the minimum number x =...</div><div class="ttdef"><b>Definition</b> math_basics.h:57</div></div>
-<div class="ttc" id="anamespaceph_1_1math_html_a2db200d8e62c40799c3fff427b4d869d"><div class="ttname"><a href="namespaceph_1_1math.html#a2db200d8e62c40799c3fff427b4d869d">ph::math::is_power_of_2</a></div><div class="ttdeci">constexpr bool is_power_of_2(const T value)</div><div class="ttdoc">Determines whether value is a power of 2 number.</div><div class="ttdef"><b>Definition</b> math_basics.h:21</div></div>
-<div class="ttc" id="anamespaceph_1_1math_html_a97fd8863ca133b67190d7d2101f95918"><div class="ttname"><a href="namespaceph_1_1math.html#a97fd8863ca133b67190d7d2101f95918">ph::math::next_power_of_2_multiple</a></div><div class="ttdeci">T next_power_of_2_multiple(const T value, const T multiple)</div><div class="ttdoc">Same as next_multiple(T, T) except that multiple must be a power of 2 number.</div><div class="ttdef"><b>Definition</b> math_basics.h:67</div></div>
-<div class="ttc" id="anamespaceph_1_1math_html_aa1639a1b307574d4434e62163f699d25"><div class="ttname"><a href="namespaceph_1_1math.html#aa1639a1b307574d4434e62163f699d25">ph::math::ceil_div</a></div><div class="ttdeci">T ceil_div(const T numerator, const T denominator)</div><div class="ttdoc">Divide numerator by denominator and round up to integer. Both inputs must be positive integer....</div><div class="ttdef"><b>Definition</b> math_basics.h:38</div></div>
+<div class="ttc" id="anamespaceph_1_1math_html_a09832832f991e284ec83b3531bbb2bdf"><div class="ttname"><a href="namespaceph_1_1math.html#a09832832f991e284ec83b3531bbb2bdf">ph::math::next_multiple</a></div><div class="ttdeci">T next_multiple(const T value, const T multiple)</div><div class="ttdoc">Get the next number that is an integer multiple of multiple. Specifically, get the minimum number x =...</div><div class="ttdef"><b>Definition</b> math_basics.h:96</div></div>
+<div class="ttc" id="anamespaceph_1_1math_html_a10b1c6c83ac6604b41693b55c1a9706f"><div class="ttname"><a href="namespaceph_1_1math.html#a10b1c6c83ac6604b41693b55c1a9706f">ph::math::is_power_of</a></div><div class="ttdeci">constexpr bool is_power_of(const T value)</div><div class="ttdoc">Determines whether value is a power-of-BASE number. Checks the equality BASE^n == value,...</div><div class="ttdef"><b>Definition</b> math_basics.h:38</div></div>
+<div class="ttc" id="anamespaceph_1_1math_html_a2db200d8e62c40799c3fff427b4d869d"><div class="ttname"><a href="namespaceph_1_1math.html#a2db200d8e62c40799c3fff427b4d869d">ph::math::is_power_of_2</a></div><div class="ttdeci">constexpr bool is_power_of_2(const T value)</div><div class="ttdoc">Determines whether value is a power-of-2 number.</div><div class="ttdef"><b>Definition</b> math_basics.h:21</div></div>
+<div class="ttc" id="anamespaceph_1_1math_html_a97fd8863ca133b67190d7d2101f95918"><div class="ttname"><a href="namespaceph_1_1math.html#a97fd8863ca133b67190d7d2101f95918">ph::math::next_power_of_2_multiple</a></div><div class="ttdeci">T next_power_of_2_multiple(const T value, const T multiple)</div><div class="ttdoc">Same as next_multiple(T, T) except that multiple must be a power of 2 number.</div><div class="ttdef"><b>Definition</b> math_basics.h:106</div></div>
+<div class="ttc" id="anamespaceph_1_1math_html_aa1639a1b307574d4434e62163f699d25"><div class="ttname"><a href="namespaceph_1_1math.html#aa1639a1b307574d4434e62163f699d25">ph::math::ceil_div</a></div><div class="ttdeci">T ceil_div(const T numerator, const T denominator)</div><div class="ttdoc">Divide numerator by denominator and round up to integer. Both inputs must be positive integer....</div><div class="ttdef"><b>Definition</b> math_basics.h:77</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

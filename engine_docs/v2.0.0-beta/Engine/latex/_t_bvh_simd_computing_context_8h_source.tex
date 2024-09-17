@@ -1,0 +1,399 @@
+\doxysection{TBvh\+Simd\+Computing\+Context.\+h}
+\hypertarget{_t_bvh_simd_computing_context_8h_source}{}\label{_t_bvh_simd_computing_context_8h_source}\index{Source/Math/Algorithm/BVH/TBvhSimdComputingContext.h@{Source/Math/Algorithm/BVH/TBvhSimdComputingContext.h}}
+\mbox{\hyperlink{_t_bvh_simd_computing_context_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_wide_bvh_node_8h}{Math/Algorithm/BVH/TWideBvhNode.h}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_a_a_b_b3_d_8h}{Math/Geometry/TAABB3D.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_vector3_8h}{Math/TVector3.h}}"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <Common/primitive\_type.h>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <Common/config.h>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <Common/compiler.h>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <Common/utility.h>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <Common/memory.h>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <Common/assertion.h>}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <cstddef>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <type\_traits>}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <array>}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <limits>}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ <concepts>}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#if\ PH\_USE\_SIMD}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#if\ PH\_COMPILER\_IS\_MSVC}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ <immintrin.h>}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ <x86intrin.h>}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph_1_1math}{ph::math}}}
+\DoxyCodeLine{00030\ \{}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{keyword}{namespace\ }detail::bvh}
+\DoxyCodeLine{00033\ \{}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00036\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structph_1_1math_1_1detail_1_1bvh_1_1_t_float_n}{TFloatN}}}
+\DoxyCodeLine{00037\ \{}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{structph_1_1math_1_1detail_1_1bvh_1_1_t_float_n_af3e953c4862b6007d1d2c5b8af0dd76c}{Type}}\ =\ void;}
+\DoxyCodeLine{00039\ \};}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#if\ PH\_USE\_SSE}}
+\DoxyCodeLine{00042\ \textcolor{keyword}{template}<>}
+\DoxyCodeLine{00043\ \textcolor{keyword}{struct\ }TFloatN<4>}
+\DoxyCodeLine{00044\ \{}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{structph_1_1math_1_1detail_1_1bvh_1_1_t_float_n_af3e953c4862b6007d1d2c5b8af0dd76c}{Type}}\ =\ \_\_m128;}
+\DoxyCodeLine{00046\ \};}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#if\ PH\_USE\_AVX}}
+\DoxyCodeLine{00050\ \textcolor{keyword}{template}<>}
+\DoxyCodeLine{00051\ \textcolor{keyword}{struct\ }TFloatN<8>}
+\DoxyCodeLine{00052\ \{}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{structph_1_1math_1_1detail_1_1bvh_1_1_t_float_n_af3e953c4862b6007d1d2c5b8af0dd76c}{Type}}\ =\ \_\_m256;}
+\DoxyCodeLine{00054\ \};}
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \}\textcolor{comment}{//\ end\ namespace\ detail::bvh}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00062\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Index>}
+\DoxyCodeLine{00063\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classph_1_1math_1_1_t_bvh_simd_computing_context}{TBvhSimdComputingContext}}\ final}
+\DoxyCodeLine{00064\ \{}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{comment}{//\ Developer\ note:\ Try\ not\ to\ mix\ SSE\ and\ AVX\ intrinsics,\ see\ https://stackoverflow.com/questions/41303780/why-\/is-\/this-\/sse-\/code-\/6-\/times-\/slower-\/without-\/vzeroupper-\/on-\/skylake.}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keyword}{static\_assert}(N\ >=\ 2);}
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_unsigned\_v<Index>);}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \textcolor{preprocessor}{\#if\ PH\_USE\_AVX\ \&\&\ PH\_USE\_SSE}}
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ std::size\_t\ BATCH\_SIZE\ =\ N\ <=\ 4\ ?\ 4\ :\ 8;}
+\DoxyCodeLine{00072\ \textcolor{preprocessor}{\#elif\ PH\_USE\_SSE}}
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ std::size\_t\ \mbox{\hyperlink{namespaceph_1_1math_ab660318bf54185615f64630fc8ac7779}{BATCH\_SIZE}}\ =\ 4;}
+\DoxyCodeLine{00074\ \textcolor{preprocessor}{\#elif\ PH\_USE\_AVX}}
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ std::size\_t\ \mbox{\hyperlink{namespaceph_1_1math_ab660318bf54185615f64630fc8ac7779}{BATCH\_SIZE}}\ =\ 8;}
+\DoxyCodeLine{00076\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ std::size\_t\ \mbox{\hyperlink{namespaceph_1_1math_ab660318bf54185615f64630fc8ac7779}{BATCH\_SIZE}}\ =\ 4;}
+\DoxyCodeLine{00078\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{comment}{//\ The\ batched\ float\ type}}
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keyword}{using\ }BFloat\ =\ \mbox{\hyperlink{structph_1_1math_1_1detail_1_1bvh_1_1_t_float_n_af3e953c4862b6007d1d2c5b8af0dd76c}{detail::bvh::TFloatN<BATCH\_SIZE>::Type}};}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{comment}{//\ Number\ of\ batches}}
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ std::size\_t\ B\ =\ N\ \%\ \mbox{\hyperlink{namespaceph_1_1math_ab660318bf54185615f64630fc8ac7779}{BATCH\_SIZE}}\ ?\ N\ /\ \mbox{\hyperlink{namespaceph_1_1math_ab660318bf54185615f64630fc8ac7779}{BATCH\_SIZE}}\ +\ 1\ :\ N\ /\ \mbox{\hyperlink{namespaceph_1_1math_ab660318bf54185615f64630fc8ac7779}{BATCH\_SIZE}};}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{comment}{//\ Ensure\ proper\ alignment}}
+\DoxyCodeLine{00087\ \textcolor{preprocessor}{\#if\ PH\_USE\_AVX\ ||\ PH\_USE\_SSE}}
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keyword}{static\_assert}(\textcolor{keyword}{alignof}(BFloat)\ >=\ \textcolor{keyword}{sizeof}(BFloat));}
+\DoxyCodeLine{00089\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_simd_computing_context_a45bbb3fdfd879d0c95fe351c77a64f6a}{isSupported}}()}
+\DoxyCodeLine{00098\ \ \ \ \ \{}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ hasSseSupport\ =\ PH\_USE\_SSE4\_1\ \&\&\ std::is\_same\_v<real,\ float32>;}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ hasAvxSupport\ =\ PH\_USE\_AVX\ \&\&\ std::is\_same\_v<real,\ float32>;}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ hasSseSupport\ ||\ hasAvxSupport;}
+\DoxyCodeLine{00102\ \ \ \ \ \}}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00105\ \ \ \ \ [[PH\_ALWAYS\_INLINE]]}
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_simd_computing_context_a0d15860607906e85e04d95071a335df3}{setSegment}}(}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{TVector3<float32>}}\&\ segmentOrigin,}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_vector3}{TVector3<float32>}}\&\ rcpSegmentDir)}
+\DoxyCodeLine{00109\ \ \ \ \ \{}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ di\ =\ 0;\ di\ <\ 3;\ ++di)}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(\mbox{\hyperlink{namespaceph_1_1math_ab660318bf54185615f64630fc8ac7779}{BATCH\_SIZE}}\ ==\ 4)}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00114\ \textcolor{preprocessor}{\#if\ PH\_USE\_SSE}}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_segmentOrigins[di]\ =\ \_mm\_set1\_ps(segmentOrigin[di]);}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_rcpSegmentDirs[di]\ =\ \_mm\_set1\_ps(rcpSegmentDir[di]);}
+\DoxyCodeLine{00117\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(\mbox{\hyperlink{namespaceph_1_1math_ab660318bf54185615f64630fc8ac7779}{BATCH\_SIZE}}\ ==\ 8)}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00121\ \textcolor{preprocessor}{\#if\ PH\_USE\_AVX}}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ di\ =\ 0;\ di\ <\ 3;\ ++di)}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_segmentOrigins[di]\ =\ \_mm256\_set1\_ps(segmentOrigin[di]);}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_rcpSegmentDirs[di]\ =\ \_mm256\_set1\_ps(rcpSegmentDir[di]);}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00127\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00130\ \ \ \ \ \}}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00132\ \ \ \ \ [[PH\_ALWAYS\_INLINE]]}
+\DoxyCodeLine{00133\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_simd_computing_context_a3015cbb84936176889bcf99fabb516bf}{setNode}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_wide_bvh_node}{TWideBvhNode<N,\ Index>}}\&\ node)\ \textcolor{keyword}{requires}\ std::is\_same\_v<real,\ float32>}
+\DoxyCodeLine{00134\ \ \ \ \ \{}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ emptyAABB\ =\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d_acd1ef6d19364c61bd5d10e513ed8ad29}{AABB3D::makeEmpty}}();}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ di\ =\ 0;\ di\ <\ 3;\ ++di)}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ ci\ =\ 0;\ ci\ <\ N;\ ci\ +=\ \mbox{\hyperlink{namespaceph_1_1math_ab660318bf54185615f64630fc8ac7779}{BATCH\_SIZE}})}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(N\ \%\ \mbox{\hyperlink{namespaceph_1_1math_ab660318bf54185615f64630fc8ac7779}{BATCH\_SIZE}})}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ aabb0\ =\ node.getAABB(ci);}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ aabb1\ =\ ci\ +\ 1\ <\ N\ ?\ node.getAABB(ci\ +\ 1)\ :\ emptyAABB;}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ aabb2\ =\ ci\ +\ 2\ <\ N\ ?\ node.getAABB(ci\ +\ 2)\ :\ emptyAABB;}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ aabb3\ =\ ci\ +\ 3\ <\ N\ ?\ node.getAABB(ci\ +\ 3)\ :\ emptyAABB;}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ aabb4\ =\ ci\ +\ 4\ <\ N\ ?\ node.getAABB(ci\ +\ 4)\ :\ emptyAABB;}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ aabb5\ =\ ci\ +\ 5\ <\ N\ ?\ node.getAABB(ci\ +\ 5)\ :\ emptyAABB;}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ aabb6\ =\ ci\ +\ 6\ <\ N\ ?\ node.getAABB(ci\ +\ 6)\ :\ emptyAABB;}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ aabb7\ =\ ci\ +\ 7\ <\ N\ ?\ node.getAABB(ci\ +\ 7)\ :\ emptyAABB;}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(\mbox{\hyperlink{namespaceph_1_1math_ab660318bf54185615f64630fc8ac7779}{BATCH\_SIZE}}\ ==\ 4)}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00154\ \textcolor{preprocessor}{\#if\ PH\_USE\_SSE}}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_aabbMins[di][ci\ /\ 4]\ =\ \_mm\_setr\_ps(}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ aabb0.getMinVertex()[di],}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ aabb1.getMinVertex()[di],}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ aabb2.getMinVertex()[di],}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ aabb3.getMinVertex()[di]);}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_aabbMaxs[di][ci\ /\ 4]\ =\ \_mm\_setr\_ps(}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ aabb0.getMaxVertex()[di],}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ aabb1.getMaxVertex()[di],}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ aabb2.getMaxVertex()[di],}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ aabb3.getMaxVertex()[di]);}
+\DoxyCodeLine{00165\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(\mbox{\hyperlink{namespaceph_1_1math_ab660318bf54185615f64630fc8ac7779}{BATCH\_SIZE}}\ ==\ 8)}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00169\ \textcolor{preprocessor}{\#if\ PH\_USE\_AVX}}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_aabbMins[di][ci\ /\ 8]\ =\ \_mm256\_setr\_ps(}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ aabb0.getMinVertex()[di],}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ aabb1.getMinVertex()[di],}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ aabb2.getMinVertex()[di],}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ aabb3.getMinVertex()[di],}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ aabb4.getMinVertex()[di],}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ aabb5.getMinVertex()[di],}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ aabb6.getMinVertex()[di],}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ aabb7.getMinVertex()[di]);}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_aabbMaxs[di][ci\ /\ 8]\ =\ \_mm256\_setr\_ps(}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ aabb0.getMaxVertex()[di],}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ aabb1.getMaxVertex()[di],}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ aabb2.getMaxVertex()[di],}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ aabb3.getMaxVertex()[di],}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ aabb4.getMaxVertex()[di],}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ aabb5.getMaxVertex()[di],}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ aabb6.getMaxVertex()[di],}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ aabb7.getMaxVertex()[di]);}
+\DoxyCodeLine{00188\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(\mbox{\hyperlink{namespaceph_1_1math_ab660318bf54185615f64630fc8ac7779}{BATCH\_SIZE}}\ ==\ 4)}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00195\ \textcolor{preprocessor}{\#if\ PH\_USE\_SSE}}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ PH\_ASSERT\_GE(node.SOA\_VIEW\_ALIGNMENT,\ 16);}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_aabbMins[di][ci\ /\ 4]\ =\ \_mm\_load\_ps(\&(node.getMinVerticesOnAxis(di)[ci]));}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_aabbMaxs[di][ci\ /\ 4]\ =\ \_mm\_load\_ps(\&(node.getMaxVerticesOnAxis(di)[ci]));}
+\DoxyCodeLine{00199\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(\mbox{\hyperlink{namespaceph_1_1math_ab660318bf54185615f64630fc8ac7779}{BATCH\_SIZE}}\ ==\ 8)}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00203\ \textcolor{preprocessor}{\#if\ PH\_USE\_AVX}}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ PH\_ASSERT\_GE(node.SOA\_VIEW\_ALIGNMENT,\ 32);}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_aabbMins[di][ci\ /\ 8]\ =\ \_mm256\_load\_ps(\&(node.getMinVerticesOnAxis(di)[ci]));}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_aabbMaxs[di][ci\ /\ 8]\ =\ \_mm256\_load\_ps(\&(node.getMaxVerticesOnAxis(di)[ci]));}
+\DoxyCodeLine{00207\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00212\ \ \ \ \ \}}
+\DoxyCodeLine{00213\ }
+\DoxyCodeLine{00214\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keywordtype}{bool}\ IS\_ROBUST\ =\ true>}
+\DoxyCodeLine{00215\ \ \ \ \ [[PH\_ALWAYS\_INLINE]]}
+\DoxyCodeLine{00216\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classph_1_1math_1_1_t_bvh_simd_computing_context_a66d395eaec7a5985e1ae59ddcd40de32}{intersectAabbVolumes}}(\textcolor{keyword}{const}\ float32\ segmentMinT,\ \textcolor{keyword}{const}\ float32\ segmentMaxT)}
+\DoxyCodeLine{00217\ \ \ \ \ \{}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ implementation\ is\ similar\ to\ \`{}TAABB3D<T>::intersectVolumeTavian()`\ and\ }}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \`{}TAABB3D<T>::intersectVolumeRobust()`}}
+\DoxyCodeLine{00220\ }
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(\mbox{\hyperlink{namespaceph_1_1math_ab660318bf54185615f64630fc8ac7779}{BATCH\_SIZE}}\ ==\ 4)}
+\DoxyCodeLine{00222\ \#\textcolor{keywordflow}{if}\ PH\_USE\_SSE}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \ \ \ \ m\_aabbMinTs\ =\ make\_array<\_\_m128,\ B>(\_mm\_set1\_ps(segmentMinT));}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \ \ \ \ m\_aabbMaxTs\ =\ make\_array<\_\_m128,\ B>(\_mm\_set1\_ps(segmentMaxT));}
+\DoxyCodeLine{00226\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(BATCH\_SIZE\ ==\ 8)}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00230\ \textcolor{preprocessor}{\#if\ PH\_USE\_AVX}}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \ \ \ \ m\_aabbMinTs\ =\ make\_array<\_\_m256,\ B>(\_mm256\_set1\_ps(segmentMinT));}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \ \ \ \ m\_aabbMaxTs\ =\ make\_array<\_\_m256,\ B>(\_mm256\_set1\_ps(segmentMaxT));}
+\DoxyCodeLine{00233\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00235\ }
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ di\ =\ 0;\ di\ <\ 3;\ ++di)}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ bi\ =\ 0;\ bi\ <\ B;\ ++bi)}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(\mbox{\hyperlink{namespaceph_1_1math_ab660318bf54185615f64630fc8ac7779}{BATCH\_SIZE}}\ ==\ 4)}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00242\ \textcolor{preprocessor}{\#if\ PH\_USE\_SSE}}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \_\_m128\ t1\ =}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_mm\_mul\_ps(\_mm\_sub\_ps(m\_aabbMins[di][bi],\ m\_segmentOrigins[di]),\ m\_rcpSegmentDirs[di]);}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \_\_m128\ t2\ =}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_mm\_mul\_ps(\_mm\_sub\_ps(m\_aabbMaxs[di][bi],\ m\_segmentOrigins[di]),\ m\_rcpSegmentDirs[di]);}
+\DoxyCodeLine{00247\ }
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \_\_m128\ minT\ =\ \_mm\_min\_ps(t1,\ t2);}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \_\_m128\ maxT\ =\ \_mm\_max\_ps(t1,\ t2);}
+\DoxyCodeLine{00250\ }
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Safe\ max:\ fallback\ to\ \`{}segmentMinT`\ in\ case\ of\ NaN}}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_aabbMinTs[bi]\ =\ \_mm\_max\_ps(minT,\ m\_aabbMinTs[bi]);}
+\DoxyCodeLine{00253\ }
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Safe\ min:\ fallback\ to\ \`{}segmentMaxT`\ in\ case\ of\ NaN}}
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_aabbMaxTs[bi]\ =\ \_mm\_min\_ps(maxT,\ m\_aabbMaxTs[bi]);}
+\DoxyCodeLine{00256\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(\mbox{\hyperlink{namespaceph_1_1math_ab660318bf54185615f64630fc8ac7779}{BATCH\_SIZE}}\ ==\ 8)}
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00260\ \textcolor{preprocessor}{\#if\ PH\_USE\_AVX}}
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \_\_m256\ t1\ =}
+\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_mm256\_mul\_ps(\_mm256\_sub\_ps(m\_aabbMins[di][bi],\ m\_segmentOrigins[di]),\ m\_rcpSegmentDirs[di]);}
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \_\_m256\ t2\ =}
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_mm256\_mul\_ps(\_mm256\_sub\_ps(m\_aabbMaxs[di][bi],\ m\_segmentOrigins[di]),\ m\_rcpSegmentDirs[di]);}
+\DoxyCodeLine{00265\ }
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \_\_m256\ minT\ =\ \_mm256\_min\_ps(t1,\ t2);}
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \_\_m256\ maxT\ =\ \_mm256\_max\_ps(t1,\ t2);}
+\DoxyCodeLine{00268\ }
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Safe\ max:\ fallback\ to\ \`{}segmentMinT`\ in\ case\ of\ NaN}}
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_aabbMinTs[bi]\ =\ \_mm256\_max\_ps(minT,\ m\_aabbMinTs[bi]);}
+\DoxyCodeLine{00271\ }
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Safe\ min:\ fallback\ to\ \`{}segmentMaxT`\ in\ case\ of\ NaN}}
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_aabbMaxTs[bi]\ =\ \_mm256\_min\_ps(maxT,\ m\_aabbMaxTs[bi]);}
+\DoxyCodeLine{00274\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00276\ }
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ following\ links\ have\ more\ information\ on\ the\ behavior\ of\ MINPS\ and\ MAXPS}}
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ (they\ all\ satisfy\ the\ safe\ requirement)}}
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ https://www.felixcloutier.com/x86/minps}}
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ https://tavianator.com/2015/ray\_box\_nan.html}}
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00282\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00283\ }
+\DoxyCodeLine{00284\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(IS\_ROBUST)}
+\DoxyCodeLine{00285\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ multiplier\ =\ std::numeric\_limits<float>::epsilon()\ *\ 2\ +\ 1;}
+\DoxyCodeLine{00287\ }
+\DoxyCodeLine{00288\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ bi\ =\ 0;\ bi\ <\ B;\ ++bi)}
+\DoxyCodeLine{00289\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00290\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(\mbox{\hyperlink{namespaceph_1_1math_ab660318bf54185615f64630fc8ac7779}{BATCH\_SIZE}}\ ==\ 4)}
+\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00292\ \textcolor{preprocessor}{\#if\ PH\_USE\_SSE}}
+\DoxyCodeLine{00293\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_aabbMaxTs[bi]\ =\ \_mm\_mul\_ps(m\_aabbMaxTs[bi],\ \_mm\_set1\_ps(multiplier));}
+\DoxyCodeLine{00294\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00295\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00296\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(\mbox{\hyperlink{namespaceph_1_1math_ab660318bf54185615f64630fc8ac7779}{BATCH\_SIZE}}\ ==\ 8)}
+\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00298\ \textcolor{preprocessor}{\#if\ PH\_USE\_AVX}}
+\DoxyCodeLine{00299\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_aabbMaxTs[bi]\ =\ \_mm256\_mul\_ps(m\_aabbMaxTs[bi],\ \_mm256\_set1\_ps(multiplier));}
+\DoxyCodeLine{00300\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00301\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00302\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00303\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00304\ \ \ \ \ \}}
+\DoxyCodeLine{00305\ }
+\DoxyCodeLine{00309\ \ \ \ \ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{unsigned}\_\textcolor{keywordtype}{int}egral\ MaskType\ =\ u\textcolor{keywordtype}{int}32>}
+\DoxyCodeLine{00310\ \ \ \ \ [[PH\_ALWAYS\_INLINE]]}
+\DoxyCodeLine{00311\ \ \ \ \ \textcolor{keyword}{auto}\ getIntersectResultAsMask()\ const}
+\DoxyCodeLine{00312\ \ \ \ \ -\/>\ \mbox{\hyperlink{namespaceph_1_1math_a2f04fb844a82a186c6fa82cd97b8de79}{MaskType}}}
+\DoxyCodeLine{00313\ \ \ \ \ \{}
+\DoxyCodeLine{00314\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_assert}(N\ <=\ sizeof\_in\_bits<MaskType>(),\ \textcolor{stringliteral}{"{}Need\ more\ bits\ for\ \`{}MaskType`."{}});}
+\DoxyCodeLine{00315\ }
+\DoxyCodeLine{00316\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceph_1_1math_a2f04fb844a82a186c6fa82cd97b8de79}{MaskType}}\ hitMask\ =\ 0;}
+\DoxyCodeLine{00317\ }
+\DoxyCodeLine{00318\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ bi\ =\ 0;\ bi\ <\ B;\ ++bi)}
+\DoxyCodeLine{00319\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00320\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(\mbox{\hyperlink{namespaceph_1_1math_ab660318bf54185615f64630fc8ac7779}{BATCH\_SIZE}}\ ==\ 4)}
+\DoxyCodeLine{00321\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00322\ \textcolor{preprocessor}{\#if\ PH\_USE\_SSE}}
+\DoxyCodeLine{00323\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ hitMask\ <<=\ 4;}
+\DoxyCodeLine{00324\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ hitMask\ |=\ \_mm\_movemask\_ps(\_mm\_cmple\_ps(m\_aabbMinTs[bi],\ m\_aabbMaxTs[bi]));}
+\DoxyCodeLine{00325\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00326\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00327\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(BATCH\_SIZE\ ==\ 8)}
+\DoxyCodeLine{00328\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00329\ \textcolor{preprocessor}{\#if\ PH\_USE\_AVX}}
+\DoxyCodeLine{00330\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ hitMask\ <<=\ 8;}
+\DoxyCodeLine{00331\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ hitMask\ |=\ \_mm256\_movemask\_ps(\_mm\_cmple\_ps(m\_aabbMinTs[bi],\ m\_aabbMaxTs[bi]));}
+\DoxyCodeLine{00332\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00333\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00334\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00335\ }
+\DoxyCodeLine{00336\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ hitMask;}
+\DoxyCodeLine{00337\ \ \ \ \ \}}
+\DoxyCodeLine{00338\ }
+\DoxyCodeLine{00339\ \ \ \ \ [[PH\_ALWAYS\_INLINE]]}
+\DoxyCodeLine{00340\ \ \ \ \ \textcolor{keyword}{auto}\ getIntersectResultAsMinTsOr(\textcolor{keyword}{const}\ float32\ missValue)\ \textcolor{keyword}{const}}
+\DoxyCodeLine{00341\ \ \ \ \ -\/>\ TAlignedArray<float32,\ B\ *\ \mbox{\hyperlink{namespaceph_1_1math_ab660318bf54185615f64630fc8ac7779}{BATCH\_SIZE}},\ \textcolor{keyword}{sizeof}(float32)\ *\ BATCH\_SIZE>}
+\DoxyCodeLine{00342\ \ \ \ \ \{}
+\DoxyCodeLine{00343\ \ \ \ \ \ \ \ \ TAlignedArray<float32,\ B\ *\ \mbox{\hyperlink{namespaceph_1_1math_ab660318bf54185615f64630fc8ac7779}{BATCH\_SIZE}},\ \textcolor{keyword}{sizeof}(float32)\ *\ \mbox{\hyperlink{namespaceph_1_1math_ab660318bf54185615f64630fc8ac7779}{BATCH\_SIZE}}>\ results;}
+\DoxyCodeLine{00344\ }
+\DoxyCodeLine{00345\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Perform\ \`{}value\ =\ aabbMinT\ <=\ aabbMaxTs\ ?\ aabbMaxTs\ :\ missValue`}}
+\DoxyCodeLine{00346\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ bi\ =\ 0;\ bi\ <\ B;\ ++bi)}
+\DoxyCodeLine{00347\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00348\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(\mbox{\hyperlink{namespaceph_1_1math_ab660318bf54185615f64630fc8ac7779}{BATCH\_SIZE}}\ ==\ 4)}
+\DoxyCodeLine{00349\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00350\ \textcolor{preprocessor}{\#if\ PH\_USE\_SSE4\_1}}
+\DoxyCodeLine{00351\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \_\_m128\ cmpleMask\ =\ \_mm\_cmple\_ps(m\_aabbMinTs[bi],\ m\_aabbMaxTs[bi]);}
+\DoxyCodeLine{00352\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \_\_m128\ values\ =\ \_mm\_blendv\_ps(\_mm\_set1\_ps(missValue),\ m\_aabbMinTs[bi],\ cmpleMask);}
+\DoxyCodeLine{00353\ }
+\DoxyCodeLine{00354\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_mm\_store\_ps(\&(results[bi\ *\ 4]),\ values);}
+\DoxyCodeLine{00355\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00356\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00357\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(\mbox{\hyperlink{namespaceph_1_1math_ab660318bf54185615f64630fc8ac7779}{BATCH\_SIZE}}\ ==\ 8)}
+\DoxyCodeLine{00358\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00359\ \textcolor{preprocessor}{\#if\ PH\_USE\_AVX}}
+\DoxyCodeLine{00360\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \_\_m256\ cmpleMask\ =\ \_mm256\_cmp\_ps(m\_aabbMinTs[bi],\ m\_aabbMaxTs[bi],\ \_CMP\_LE\_OQ);}
+\DoxyCodeLine{00361\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \_\_m256\ values\ =\ \_mm256\_blendv\_ps(\_mm256\_set1\_ps(missValue),\ m\_aabbMinTs[bi],\ cmpleMask);}
+\DoxyCodeLine{00362\ }
+\DoxyCodeLine{00363\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_mm256\_store\_ps(\&(results[bi\ *\ 8]),\ values);}
+\DoxyCodeLine{00364\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00365\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00366\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00367\ }
+\DoxyCodeLine{00368\ \textcolor{preprocessor}{\#if\ !PH\_USE\_SSE4\_1\ \&\&\ !PH\_USE\_AVX}}
+\DoxyCodeLine{00369\ \ \ \ \ \ \ \ \ results.fill(missValue);}
+\DoxyCodeLine{00370\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00371\ }
+\DoxyCodeLine{00372\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ results;}
+\DoxyCodeLine{00373\ \ \ \ \ \}}
+\DoxyCodeLine{00374\ }
+\DoxyCodeLine{00375\ \textcolor{preprocessor}{\#if\ PH\_COMPILER\_IS\_GNU}}
+\DoxyCodeLine{00376\ \textcolor{preprocessor}{\#pragma\ GCC\ diagnostic\ push}}
+\DoxyCodeLine{00377\ }
+\DoxyCodeLine{00378\ \textcolor{comment}{//\ g++\ 14\ will\ emit\ "{}-\/Wignored-\/attributes"{}\ warnings\ for\ \`{}BFloat`,\ see}}
+\DoxyCodeLine{00379\ \textcolor{comment}{//\ https://stackoverflow.com/questions/41676311/implication-\/of-\/gcc-\/warning-\/ignoring-\/attributes-\/on-\/template-\/argument-\/wignored.}}
+\DoxyCodeLine{00380\ \textcolor{comment}{//\ Ignoring\ for\ now\ as\ tests\ are\ passed.}}
+\DoxyCodeLine{00381\ \textcolor{preprocessor}{\#if\ \_\_GNUC\_\_\ ==\ 14}}
+\DoxyCodeLine{00382\ \textcolor{preprocessor}{\#pragma\ GCC\ diagnostic\ ignored\ "{}-\/Wignored-\/attributes"{}}}
+\DoxyCodeLine{00383\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00384\ }
+\DoxyCodeLine{00385\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00386\ }
+\DoxyCodeLine{00387\ \textcolor{preprocessor}{\#if\ PH\_USE\_AVX\ ||\ PH\_USE\_SSE}}
+\DoxyCodeLine{00388\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00389\ \ \ \ \ std::array<std::array<BFloat,\ B>,\ 3>\ m\_aabbMins;}
+\DoxyCodeLine{00390\ \ \ \ \ std::array<std::array<BFloat,\ B>,\ 3>\ m\_aabbMaxs;}
+\DoxyCodeLine{00391\ }
+\DoxyCodeLine{00392\ \ \ \ \ std::array<BFloat,\ 3>\ m\_segmentOrigins;}
+\DoxyCodeLine{00393\ \ \ \ \ std::array<BFloat,\ 3>\ m\_rcpSegmentDirs;}
+\DoxyCodeLine{00394\ }
+\DoxyCodeLine{00395\ \ \ \ \ std::array<BFloat,\ B>\ m\_aabbMinTs;}
+\DoxyCodeLine{00396\ \ \ \ \ std::array<BFloat,\ B>\ m\_aabbMaxTs;}
+\DoxyCodeLine{00397\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00398\ }
+\DoxyCodeLine{00399\ \textcolor{preprocessor}{\#if\ PH\_COMPILER\_IS\_GNU}}
+\DoxyCodeLine{00400\ \textcolor{preprocessor}{\#pragma\ GCC\ diagnostic\ pop}}
+\DoxyCodeLine{00401\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00402\ \};}
+\DoxyCodeLine{00403\ }
+\DoxyCodeLine{00404\ \}\textcolor{comment}{//\ end\ namespace\ ph::math}}
+
+\end{DoxyCode}

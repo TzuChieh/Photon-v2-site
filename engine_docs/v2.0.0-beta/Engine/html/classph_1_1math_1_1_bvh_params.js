@@ -1,7 +1,8 @@
 var classph_1_1math_1_1_bvh_params =
 [
-    [ "interactCost", "classph_1_1math_1_1_bvh_params.html#aef1aa876566e00e1961415d6a74357fb", null ],
-    [ "maxNodeItems", "classph_1_1math_1_1_bvh_params.html#a202f6840b47a800489ca166bf9e4c99d", null ],
+    [ "interactCost", "classph_1_1math_1_1_bvh_params.html#a7d8b6f9947e88d381011ee75a503ee9b", null ],
+    [ "maxNodeItems", "classph_1_1math_1_1_bvh_params.html#afb2310cca27e686a9bb728e2f93b9b43", null ],
+    [ "numSahBuckets", "classph_1_1math_1_1_bvh_params.html#a11cfdc16a4350f8d90e6d57853c017c8", null ],
     [ "splitMethod", "classph_1_1math_1_1_bvh_params.html#a86e2ed25976445594bff5af67dd3c59a", null ],
-    [ "traversalCost", "classph_1_1math_1_1_bvh_params.html#af695b3116bf5096576b82f2449d99c67", null ]
+    [ "traversalCost", "classph_1_1math_1_1_bvh_params.html#a852a1bdb7e08749c1acc377409ae8e6e", null ]
 ];

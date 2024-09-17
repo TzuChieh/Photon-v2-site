@@ -17,7 +17,7 @@ var searchData=
   ['kdtreenode_14',['KdtreeNode',['../classph_1_1_kdtree_node.html',1,'ph::KdtreeNode'],['../classph_1_1_kdtree_node.html#ac0d42b0a4d8cb4f3c93ca782b4f32142',1,'ph::KdtreeNode::KdtreeNode()']]],
   ['kdtreenode_2ecpp_15',['KdtreeNode.cpp',['../_kdtree_node_8cpp.html',1,'']]],
   ['kdtreenode_2eh_16',['KdtreeNode.h',['../_kdtree_node_8h.html',1,'']]],
-  ['kernelradius_17',['kernelRadius',['../classph_1_1_p_m_common_params.html#a6f6ce6d2ba1faa173486f57649f67f99',1,'ph::PMCommonParams']]],
+  ['kernelradius_17',['kernelRadius',['../classph_1_1_intersector_common_params.html#ae2059a1d0486706d57381900cf2e09cd',1,'ph::IntersectorCommonParams::kernelRadius'],['../classph_1_1_p_m_common_params.html#a6f6ce6d2ba1faa173486f57649f67f99',1,'ph::PMCommonParams::kernelRadius']]],
   ['key_18',['KEY',['../classph_1_1_t_fixed_map_entry.html#ab727d314dd7ac0128255a30f12aa8118',1,'ph::TFixedMapEntry']]],
   ['key_19',['Key',['../classph_1_1_t_fixed_map_entry.html#a5e974169c2cf1415a5214ac69a3ea126',1,'ph::TFixedMapEntry::Key'],['../classph_1_1_t_fixed_map_base.html#ab5e0c4fd76d18765cc6f38f8244ecd33',1,'ph::TFixedMapBase::Key'],['../namespaceph_1_1fixed__integer__map__detail.html#acac85a3dc082bd8bde34d22adc0ba118',1,'ph::fixed_integer_map_detail::Key']]],
   ['kib_20',['KiB',['../namespaceph_1_1math_1_1constant.html#aec2814da28a7c9f64c26e54b610e2004',1,'ph::math::constant']]],

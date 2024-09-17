@@ -9,9 +9,9 @@ Photon uses CMake as its main build system, and the toolkits you need are as fol
 
 
 \begin{DoxyItemize}
-\item CMake 3.\+10+ (3.\+20+ recommended)
-\item Python 3 (3.\+9 recommended)
-\item C++20 compliant compiler (necessary)
+\item CMake 3.\+20+ (3.\+28+ recommended)
+\item Python 3 (3.\+12 recommended)
+\item C++23 compliant compiler (necessary)
 \end{DoxyItemize}
 
 If you want to build the editor in previous version, you will also need\+:
@@ -21,7 +21,7 @@ If you want to build the editor in previous version, you will also need\+:
 \item JDK 1.\+8+ and Maven
 \end{DoxyItemize}
 
-This is not required for building the new C++ based editor.
+This is not required for building the new C++ based editor. To run the editor, you will need to have a graphics driver that supports Open\+GL (\texorpdfstring{$>$}{>}= 4.\+6 on Windows, \texorpdfstring{$>$}{>}= 4.\+5 otherwise).
 
 {\itshape Note that the working directory is assumed to be the project root (in the folder that you cloned) if not stated, and please use {\ttfamily ./build/} as build folder for now since build scripts are more or less hard-\/coded to use this path, currently.}\hypertarget{main_build_from_source_autotoc_md6}{}\doxysection{\texorpdfstring{Step 1\+: Run the Setup Script}{Step 1\+: Run the Setup Script}}\label{main_build_from_source_autotoc_md6}
 Run the setup script (depending on your system, choose either {\ttfamily ./setup.bat} or {\ttfamily ./setup.sh}), this will download pre-\/compiled libraries and resources into "{}./build"{}.\hypertarget{main_build_from_source_autotoc_md7}{}\doxysection{\texorpdfstring{Step 2\+: Compile}{Step 2\+: Compile}}\label{main_build_from_source_autotoc_md7}
@@ -32,10 +32,43 @@ For Linux and mac\+OS, run the following commands\+:
 
 \begin{DoxyItemize}
 \item {\ttfamily cd ./build/}
-\item {\ttfamily cmake -\/DCMAKE\+\_\+\+BUILD\+\_\+\+TYPE=release ../}
+\item {\ttfamily cmake -\/DCMAKE\+\_\+\+BUILD\+\_\+\+TYPE=Release ../}
 \item {\ttfamily make}
-\end{DoxyItemize}\hypertarget{main_build_from_source_autotoc_md8}{}\doxysection{\texorpdfstring{Step 3\+: Have Fun}{Step 3\+: Have Fun}}\label{main_build_from_source_autotoc_md8}
-The compiled binaries will be in the {\ttfamily ./build/bin/} folder.\hypertarget{main_build_from_source_autotoc_md9}{}\doxysection{\texorpdfstring{Appendix A\+: Available CMake Options}{Appendix A\+: Available CMake Options}}\label{main_build_from_source_autotoc_md9}
+\end{DoxyItemize}
+
+You can use a compiler of your choice by setting {\ttfamily CC} (for C compiler) and {\ttfamily CXX} (for C++ compiler) environment variables. For example\+:
+
+
+\begin{DoxyItemize}
+\item {\ttfamily export CC=gcc-\/15}
+\item {\ttfamily export CXX=g++-\/15}
+\end{DoxyItemize}
+
+\begin{DoxyRemark}{Remarks}
+{\ttfamily CC} and {\ttfamily CXX} can also take a path to the compiler executable.
+\end{DoxyRemark}
+\hypertarget{main_build_from_source_autotoc_md8}{}\doxysection{\texorpdfstring{Step 3\+: Have Fun}{Step 3\+: Have Fun}}\label{main_build_from_source_autotoc_md8}
+The compiled binaries will be in the {\ttfamily ./build/bin/} folder.
+
+Try running \textbf{ Photon\+CLI} with the following command in the build directory to render our hello-\/world scene\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{./bin/PhotonCLI\ -\/s\ ../scenes/cornell\_box.p2\ -\/t\ 4}
+
+\end{DoxyCode}
+
+
+It will produce an image file named {\ttfamily ./rendered\+\_\+scene.png} after some time, which should look like this\+:
+
+ 
+\begin{DoxyImage}
+\includegraphics[width=\textwidth,height=\textheight/2,keepaspectratio=true]{cornell_box_hello_world.jpg}
+\doxyfigcaption{A gold sphere placed inside a box.}
+\end{DoxyImage}
+   
+
+Happy rendering \doxygenemoji{\+:smile\+:}{smile}!\hypertarget{main_build_from_source_autotoc_md9}{}\doxysection{\texorpdfstring{Appendix A\+: Available CMake Options}{Appendix A\+: Available CMake Options}}\label{main_build_from_source_autotoc_md9}
 Several options are available for fine-\/tuning the built binaries. To specify a CMake option named {\ttfamily SOME\+\_\+\+OPTION} with value {\ttfamily SOME\+\_\+\+VALUE}, you should add it as an additional argument in the form
 
 
@@ -59,12 +92,18 @@ and substitute {\ttfamily SOME\+\_\+\+OPTION} and {\ttfamily SOME\+\_\+\+VALUE} 
 \hline
 \PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Options   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Values   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Effects    }\\\cline{1-3}
 \endhead
-CMAKE\+\_\+\+BUILD\+\_\+\+TYPE   &release, debug   &When set, build binaries with optimizations enabled; otherwise no optimization is done.    \\\cline{1-3}
-PH\+\_\+\+BUILD\+\_\+\+TESTS   &ON (default), OFF   &Build unit tests. They should be executed from the build folder.    \\\cline{1-3}
-PH\+\_\+\+BUILD\+\_\+\+EDITOR\+\_\+\+JNI   &ON, OFF (default)   &Build JNI for Photon Studio (previous editor).    \\\cline{1-3}
-PH\+\_\+\+BUILD\+\_\+\+EDITOR   &ON (default), OFF   &Build editor application.    \\\cline{1-3}
-PH\+\_\+\+BUILD\+\_\+\+SDL\+\_\+\+GEN   &ON (default), OFF   &Build SDL automation tool.    \\\cline{1-3}
-PH\+\_\+\+BUILD\+\_\+\+PHOTON\+\_\+\+CLI   &ON (default), OFF   &Build command-\/line application.   \\\cline{1-3}
+{\ttfamily CMAKE\+\_\+\+BUILD\+\_\+\+TYPE}   &{\ttfamily Release}, {\ttfamily Debug} (default)   &When set to {\ttfamily Release}, builds binaries with optimizations enabled; otherwise, no optimization is done (same as {\ttfamily Debug}).    \\\cline{1-3}
+{\ttfamily PH\+\_\+\+BUILD\+\_\+\+TESTS}   &{\ttfamily ON}, {\ttfamily OFF} (default\+: {\ttfamily ON})   &Build unit tests. They should be executed from the build folder.    \\\cline{1-3}
+{\ttfamily PH\+\_\+\+BUILD\+\_\+\+EDITOR\+\_\+\+JNI}   &{\ttfamily ON}, {\ttfamily OFF} (default\+: {\ttfamily OFF})   &Build JNI for Photon Studio (previous editor).    \\\cline{1-3}
+{\ttfamily PH\+\_\+\+BUILD\+\_\+\+EDITOR}   &{\ttfamily ON}, {\ttfamily OFF} (default\+: {\ttfamily ON})   &Build editor application.    \\\cline{1-3}
+{\ttfamily PH\+\_\+\+BUILD\+\_\+\+SDL\+\_\+\+GEN}   &{\ttfamily ON}, {\ttfamily OFF} (default\+: {\ttfamily ON})   &Build SDL automation tool.    \\\cline{1-3}
+{\ttfamily PH\+\_\+\+BUILD\+\_\+\+PHOTON\+\_\+\+CLI}   &{\ttfamily ON}, {\ttfamily OFF} (default\+: {\ttfamily ON})   &Build command-\/line application.    \\\cline{1-3}
+{\ttfamily PH\+\_\+\+BUILD\+\_\+\+OPTIONAL\+\_\+\+TOOLS}   &{\ttfamily ON}, {\ttfamily OFF} (default\+: {\ttfamily OFF})   &Build additional tools for the renderer.    \\\cline{1-3}
+{\ttfamily PH\+\_\+\+ENABLE\+\_\+\+DEBUG}   &{\ttfamily ON}, {\ttfamily OFF} (default\+: {\ttfamily ON})   &Enable debug functionalities (this is not a code optimization flag).    \\\cline{1-3}
+{\ttfamily PH\+\_\+\+ENABLE\+\_\+\+PROFILING}   &{\ttfamily ON}, {\ttfamily OFF} (default\+: {\ttfamily OFF})   &Enable profiling functionalities.    \\\cline{1-3}
+{\ttfamily PH\+\_\+\+DOUBLE\+\_\+\+PRECISION\+\_\+\+REAL}   &{\ttfamily ON}, {\ttfamily OFF} (default\+: {\ttfamily OFF})   &Use double precision type for real numbers.    \\\cline{1-3}
+{\ttfamily PH\+\_\+\+USE\+\_\+\+FAST\+\_\+\+MATH}   &{\ttfamily ON}, {\ttfamily OFF} (default\+: {\ttfamily OFF})   &More room for optimizations. This may not preserve strict IEEE compliance.    \\\cline{1-3}
+{\ttfamily PH\+\_\+\+USE\+\_\+\+SIMD}   &{\ttfamily ON}, {\ttfamily OFF} (default\+: {\ttfamily ON})   &Use vector instruction set found on the target hardware to accelerate computing.   \\\cline{1-3}
 \end{longtabu}
 
 

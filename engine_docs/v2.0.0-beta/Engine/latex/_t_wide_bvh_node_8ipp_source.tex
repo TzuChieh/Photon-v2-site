@@ -5,126 +5,186 @@
 \DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
 \DoxyCodeLine{00002\ }
 \DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_wide_bvh_node_8h}{Math/Algorithm/BVH/TWideBvhNode.h}}"{}}}
-\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{constant_8h}{Math/constant.h}}"{}}}
-\DoxyCodeLine{00005\ }
-\DoxyCodeLine{00006\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph_1_1math}{ph::math}}}
-\DoxyCodeLine{00007\ \{}
-\DoxyCodeLine{00008\ }
-\DoxyCodeLine{00009\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Item,\ \textcolor{keyword}{typename}\ Index>}
-\DoxyCodeLine{00010\ \textcolor{keyword}{inline}\ TWideBvhNode<N,\ Item,\ Index>}
-\DoxyCodeLine{00011\ ::TWideBvhNode()}
-\DoxyCodeLine{00012\ \ \ \ \ :\ m\_aabbs(make\_array<\mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d}{AABB3D}},\ 4>(\mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d}{AABB3D}}::makeEmpty()))}
-\DoxyCodeLine{00013\ \ \ \ \ ,\ m\_offsets(make\_array<Index,\ 4>(static\_cast<Index>(-\/1)))}
-\DoxyCodeLine{00014\ \ \ \ \ ,\ m\_numItemsAndFlags(make\_array<uint8,\ 4>(LEAF\_FLAG))\textcolor{comment}{//\ leaf\ with\ 0\ item}}
-\DoxyCodeLine{00015\ \{\}}
-\DoxyCodeLine{00016\ }
-\DoxyCodeLine{00017\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Item,\ \textcolor{keyword}{typename}\ Index>}
-\DoxyCodeLine{00018\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1math_1_1_t_wide_bvh_node}{TWideBvhNode<N,\ Item,\ Index>}}}
-\DoxyCodeLine{00019\ \mbox{\hyperlink{classph_1_1math_1_1_t_wide_bvh_node}{::getAABB}}(\textcolor{keyword}{const}\ std::size\_t\ childIdx)\ \textcolor{keyword}{const}}
-\DoxyCodeLine{00020\ -\/>\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d}{AABB3D}}\&}
-\DoxyCodeLine{00021\ \{}
-\DoxyCodeLine{00022\ \ \ \ \ PH\_ASSERT\_LT(childIdx,\ m\_aabbs.size());}
-\DoxyCodeLine{00023\ }
-\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_aabbs[childIdx];}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph_1_1math}{ph::math}}}
+\DoxyCodeLine{00006\ \{}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Index>}
+\DoxyCodeLine{00009\ \textcolor{keyword}{inline}\ TWideBvhNode<N,\ Index>}
+\DoxyCodeLine{00010\ ::TWideBvhNode()}
+\DoxyCodeLine{00011\ \ \ \ \ :\ m\_aabbMins\{\}}
+\DoxyCodeLine{00012\ \ \ \ \ ,\ m\_aabbMaxs\{\}}
+\DoxyCodeLine{00013\ \ \ \ \ ,\ m\_offsets(make\_array<Index,\ N>(static\_cast<Index>(-\/1)))}
+\DoxyCodeLine{00014\ \ \ \ \ ,\ m\_childrenData\{\}}
+\DoxyCodeLine{00015\ \{}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ emptyAABB\ =\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d_acd1ef6d19364c61bd5d10e513ed8ad29}{AABB3D::makeEmpty}}();}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ di\ =\ 0;\ di\ <\ 3;\ ++di)}
+\DoxyCodeLine{00018\ \ \ \ \ \{}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ ni\ =\ 0;\ ni\ <\ N;\ ++ni)}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \ \ \ \ m\_aabbMins[di][ni]\ =\ emptyAABB.getMinVertex()[di];}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \ \ \ \ m\_aabbMaxs[di][ni]\ =\ emptyAABB.getMaxVertex()[di];}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00024\ \ \ \ \ \}}
 \DoxyCodeLine{00025\ \}}
 \DoxyCodeLine{00026\ }
-\DoxyCodeLine{00027\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Item,\ \textcolor{keyword}{typename}\ Index>}
-\DoxyCodeLine{00028\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1math_1_1_t_wide_bvh_node}{TWideBvhNode<N,\ Item,\ Index>}}}
-\DoxyCodeLine{00029\ \mbox{\hyperlink{classph_1_1math_1_1_t_wide_bvh_node}{::isLeaf}}(\textcolor{keyword}{const}\ std::size\_t\ childIdx)\textcolor{keyword}{\ const}}
-\DoxyCodeLine{00030\ \textcolor{keyword}{}\{}
-\DoxyCodeLine{00031\ \ \ \ \ PH\_ASSERT\_LT(childIdx,\ m\_numItemsAndFlags.size());}
-\DoxyCodeLine{00032\ }
-\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordflow}{return}\ (m\_numItemsAndFlags[childIdx]\ \&\ FLAG\_BITS\_MASK)\ ==\ LEAF\_FLAG;}
-\DoxyCodeLine{00034\ \}}
-\DoxyCodeLine{00035\ }
-\DoxyCodeLine{00036\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Item,\ \textcolor{keyword}{typename}\ Index>}
-\DoxyCodeLine{00037\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1math_1_1_t_wide_bvh_node}{TWideBvhNode<N,\ Item,\ Index>}}}
-\DoxyCodeLine{00038\ \mbox{\hyperlink{classph_1_1math_1_1_t_wide_bvh_node}{::isInternal}}(\textcolor{keyword}{const}\ std::size\_t\ childIdx)\textcolor{keyword}{\ const}}
-\DoxyCodeLine{00039\ \textcolor{keyword}{}\{}
-\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordflow}{return}\ !isLeaf(childIdx);}
-\DoxyCodeLine{00041\ \}}
-\DoxyCodeLine{00042\ }
-\DoxyCodeLine{00043\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Item,\ \textcolor{keyword}{typename}\ Index>}
-\DoxyCodeLine{00044\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1math_1_1_t_wide_bvh_node}{TWideBvhNode<N,\ Item,\ Index>}}}
-\DoxyCodeLine{00045\ \mbox{\hyperlink{classph_1_1math_1_1_t_wide_bvh_node}{::getChildOffset}}(\textcolor{keyword}{const}\ std::size\_t\ childIdx)\ \textcolor{keyword}{const}}
-\DoxyCodeLine{00046\ -\/>\ std::size\_t}
-\DoxyCodeLine{00047\ \{}
-\DoxyCodeLine{00048\ \ \ \ \ PH\_ASSERT(isInternal(childIdx));}
-\DoxyCodeLine{00049\ }
-\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}std::size\_t\textcolor{keyword}{>}(m\_offsets[childIdx]);}
-\DoxyCodeLine{00051\ \}}
-\DoxyCodeLine{00052\ }
-\DoxyCodeLine{00053\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Item,\ \textcolor{keyword}{typename}\ Index>}
-\DoxyCodeLine{00054\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1math_1_1_t_wide_bvh_node}{TWideBvhNode<N,\ Item,\ Index>}}}
-\DoxyCodeLine{00055\ \mbox{\hyperlink{classph_1_1math_1_1_t_wide_bvh_node}{::getSplitAxis}}(\textcolor{keyword}{const}\ std::size\_t\ childIdx)\ \textcolor{keyword}{const}}
-\DoxyCodeLine{00056\ -\/>\ std::size\_t}
-\DoxyCodeLine{00057\ \{}
-\DoxyCodeLine{00058\ \ \ \ \ PH\_ASSERT(isInternal(childIdx));}
-\DoxyCodeLine{00059\ }
-\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}std::size\_t\textcolor{keyword}{>}(m\_numItemsAndFlags[childIdx]\ \&\ FLAG\_BITS\_MASK);}
-\DoxyCodeLine{00061\ \}}
-\DoxyCodeLine{00062\ }
-\DoxyCodeLine{00063\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Item,\ \textcolor{keyword}{typename}\ Index>}
-\DoxyCodeLine{00064\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1math_1_1_t_wide_bvh_node}{TWideBvhNode<N,\ Item,\ Index>}}}
-\DoxyCodeLine{00065\ \mbox{\hyperlink{classph_1_1math_1_1_t_wide_bvh_node}{::getItemOffset}}(\textcolor{keyword}{const}\ std::size\_t\ childIdx)\ \textcolor{keyword}{const}}
-\DoxyCodeLine{00066\ -\/>\ std::size\_t}
-\DoxyCodeLine{00067\ \{}
-\DoxyCodeLine{00068\ \ \ \ \ PH\_ASSERT(isLeaf(childIdx));}
-\DoxyCodeLine{00069\ }
-\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}std::size\_t\textcolor{keyword}{>}(m\_offsets[childIdx]);}
-\DoxyCodeLine{00071\ \}}
-\DoxyCodeLine{00072\ }
-\DoxyCodeLine{00073\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Item,\ \textcolor{keyword}{typename}\ Index>}
-\DoxyCodeLine{00074\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1math_1_1_t_wide_bvh_node}{TWideBvhNode<N,\ Item,\ Index>}}}
-\DoxyCodeLine{00075\ \mbox{\hyperlink{classph_1_1math_1_1_t_wide_bvh_node}{::numItems}}(\textcolor{keyword}{const}\ std::size\_t\ childIdx)\ \textcolor{keyword}{const}}
-\DoxyCodeLine{00076\ -\/>\ std::size\_t}
-\DoxyCodeLine{00077\ \{}
-\DoxyCodeLine{00078\ \ \ \ \ PH\_ASSERT(isLeaf(childIdx));}
-\DoxyCodeLine{00079\ }
-\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}std::size\_t\textcolor{keyword}{>}(m\_numItemsAndFlags[childIdx]\ >>\ NUM\_FLAG\_BITS);}
-\DoxyCodeLine{00081\ \}}
-\DoxyCodeLine{00082\ }
-\DoxyCodeLine{00083\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Item,\ \textcolor{keyword}{typename}\ Index>}
-\DoxyCodeLine{00084\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1math_1_1_t_wide_bvh_node}{TWideBvhNode<N,\ Item,\ Index>}}}
-\DoxyCodeLine{00085\ \mbox{\hyperlink{classph_1_1math_1_1_t_wide_bvh_node}{::setInternal}}(}
-\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ childIdx,}
-\DoxyCodeLine{00087\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d}{AABB3D}}\&\ childAABB,}
-\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ childOffset,}
-\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ splitAxis)}
-\DoxyCodeLine{00090\ -\/>\ \mbox{\hyperlink{classph_1_1math_1_1_t_wide_bvh_node}{TWideBvhNode}}\&}
-\DoxyCodeLine{00091\ \{}
-\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keyword}{static\_assert}(\mbox{\hyperlink{namespaceph_1_1math_1_1constant_a633099a259bffb958d8394be85abc6ee}{constant::X\_AXIS}}\ ==\ X\_AXIS\_FLAG);}
-\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keyword}{static\_assert}(\mbox{\hyperlink{namespaceph_1_1math_1_1constant_a02d97e4be2bd520fb35947c7c9ce0b2c}{constant::Y\_AXIS}}\ ==\ Y\_AXIS\_FLAG);}
-\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keyword}{static\_assert}(\mbox{\hyperlink{namespaceph_1_1math_1_1constant_a15bdc859ca6d66f04a20564583418404}{constant::Z\_AXIS}}\ ==\ Z\_AXIS\_FLAG);}
-\DoxyCodeLine{00095\ \ \ \ \ PH\_ASSERT\_IN\_RANGE\_INCLUSIVE(splitAxis,\ 0,\ 2);}
-\DoxyCodeLine{00096\ }
-\DoxyCodeLine{00097\ \ \ \ \ PH\_ASSERT\_LT(childIdx,\ m\_aabbs.size());}
-\DoxyCodeLine{00098\ }
-\DoxyCodeLine{00099\ \ \ \ \ m\_aabbs[childIdx]\ =\ childAABB;}
-\DoxyCodeLine{00100\ \ \ \ \ m\_offsets[childIdx]\ =\ lossless\_cast<Index>(childOffset);}
-\DoxyCodeLine{00101\ \ \ \ \ m\_numItemsAndFlags[childIdx]\ =\ \textcolor{keyword}{static\_cast<}uint8\textcolor{keyword}{>}(splitAxis);}
+\DoxyCodeLine{00027\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Index>}
+\DoxyCodeLine{00028\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1math_1_1_t_wide_bvh_node}{TWideBvhNode<N,\ Index>}}}
+\DoxyCodeLine{00029\ \mbox{\hyperlink{classph_1_1math_1_1_t_wide_bvh_node}{::getAABB}}(\textcolor{keyword}{const}\ std::size\_t\ childIdx)\ \textcolor{keyword}{const}}
+\DoxyCodeLine{00030\ -\/>\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d}{AABB3D}}}
+\DoxyCodeLine{00031\ \{}
+\DoxyCodeLine{00032\ \ \ \ \ PH\_ASSERT\_LT(childIdx,\ N);}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespaceph_1_1math_a79409e9e8aea24d984f98f3acb483937}{AABB3D}}(}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceph_1_1math_a7f5d9bea70db00eb52ece79b05e544c8}{Vector3R}}(m\_aabbMins[0][childIdx],\ m\_aabbMins[1][childIdx],\ m\_aabbMins[2][childIdx]),}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceph_1_1math_a7f5d9bea70db00eb52ece79b05e544c8}{Vector3R}}(m\_aabbMaxs[0][childIdx],\ m\_aabbMaxs[1][childIdx],\ m\_aabbMaxs[2][childIdx]));}
+\DoxyCodeLine{00037\ \}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Index>}
+\DoxyCodeLine{00040\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1math_1_1_t_wide_bvh_node}{TWideBvhNode<N,\ Index>}}}
+\DoxyCodeLine{00041\ \mbox{\hyperlink{classph_1_1math_1_1_t_wide_bvh_node}{::getMinVerticesOnAxis}}(\textcolor{keyword}{const}\ std::size\_t\ axis)\ \textcolor{keyword}{const}}
+\DoxyCodeLine{00042\ -\/>\ \mbox{\hyperlink{namespaceph_a06c532bb78132f63638ec3ef52d46ff3}{TSpanView<real,\ N>}}}
+\DoxyCodeLine{00043\ \{}
+\DoxyCodeLine{00044\ \ \ \ \ PH\_ASSERT\_IN\_RANGE\_INCLUSIVE(axis,\ 0,\ 2);}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_aabbMins[axis];}
+\DoxyCodeLine{00047\ \}}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Index>}
+\DoxyCodeLine{00050\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1math_1_1_t_wide_bvh_node}{TWideBvhNode<N,\ Index>}}}
+\DoxyCodeLine{00051\ \mbox{\hyperlink{classph_1_1math_1_1_t_wide_bvh_node}{::getMaxVerticesOnAxis}}(\textcolor{keyword}{const}\ std::size\_t\ axis)\ \textcolor{keyword}{const}}
+\DoxyCodeLine{00052\ -\/>\ \mbox{\hyperlink{namespaceph_a06c532bb78132f63638ec3ef52d46ff3}{TSpanView<real,\ N>}}}
+\DoxyCodeLine{00053\ \{}
+\DoxyCodeLine{00054\ \ \ \ \ PH\_ASSERT\_IN\_RANGE\_INCLUSIVE(axis,\ 0,\ 2);}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_aabbMaxs[axis];}
+\DoxyCodeLine{00057\ \}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Index>}
+\DoxyCodeLine{00060\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1math_1_1_t_wide_bvh_node}{TWideBvhNode<N,\ Index>}}}
+\DoxyCodeLine{00061\ \mbox{\hyperlink{classph_1_1math_1_1_t_wide_bvh_node}{::isLeaf}}(\textcolor{keyword}{const}\ std::size\_t\ childIdx)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00062\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00063\ \ \ \ \ PH\_ASSERT\_LT(childIdx,\ m\_childrenData.size());}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_childrenData[childIdx].isLeaf;}
+\DoxyCodeLine{00066\ \}}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Index>}
+\DoxyCodeLine{00069\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classph_1_1math_1_1_t_wide_bvh_node}{TWideBvhNode<N,\ Index>}}}
+\DoxyCodeLine{00070\ \mbox{\hyperlink{classph_1_1math_1_1_t_wide_bvh_node}{::isInternal}}(\textcolor{keyword}{const}\ std::size\_t\ childIdx)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00071\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordflow}{return}\ !isLeaf(childIdx);}
+\DoxyCodeLine{00073\ \}}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Index>}
+\DoxyCodeLine{00076\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1math_1_1_t_wide_bvh_node}{TWideBvhNode<N,\ Index>}}}
+\DoxyCodeLine{00077\ \mbox{\hyperlink{classph_1_1math_1_1_t_wide_bvh_node}{::getChildOffset}}(\textcolor{keyword}{const}\ std::size\_t\ childIdx)\ \textcolor{keyword}{const}}
+\DoxyCodeLine{00078\ -\/>\ std::size\_t}
+\DoxyCodeLine{00079\ \{}
+\DoxyCodeLine{00080\ \ \ \ \ PH\_ASSERT(isInternal(childIdx));}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}std::size\_t\textcolor{keyword}{>}(m\_offsets[childIdx]);}
+\DoxyCodeLine{00083\ \}}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Index>}
+\DoxyCodeLine{00086\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1math_1_1_t_wide_bvh_node}{TWideBvhNode<N,\ Index>}}}
+\DoxyCodeLine{00087\ \mbox{\hyperlink{classph_1_1math_1_1_t_wide_bvh_node}{::getSplitAxis}}(\textcolor{keyword}{const}\ std::size\_t\ childIdx)\ \textcolor{keyword}{const}}
+\DoxyCodeLine{00088\ -\/>\ std::size\_t}
+\DoxyCodeLine{00089\ \{}
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}std::size\_t\textcolor{keyword}{>}(m\_childrenData[childIdx].splitAxis);}
+\DoxyCodeLine{00091\ \}}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Index>}
+\DoxyCodeLine{00094\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1math_1_1_t_wide_bvh_node}{TWideBvhNode<N,\ Index>}}}
+\DoxyCodeLine{00095\ \mbox{\hyperlink{classph_1_1math_1_1_t_wide_bvh_node}{::getItemOffset}}(\textcolor{keyword}{const}\ std::size\_t\ childIdx)\ \textcolor{keyword}{const}}
+\DoxyCodeLine{00096\ -\/>\ std::size\_t}
+\DoxyCodeLine{00097\ \{}
+\DoxyCodeLine{00098\ \ \ \ \ PH\_ASSERT(isLeaf(childIdx));}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}std::size\_t\textcolor{keyword}{>}(m\_offsets[childIdx]);}
+\DoxyCodeLine{00101\ \}}
 \DoxyCodeLine{00102\ }
-\DoxyCodeLine{00103\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
-\DoxyCodeLine{00104\ \}}
-\DoxyCodeLine{00105\ }
-\DoxyCodeLine{00106\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Item,\ \textcolor{keyword}{typename}\ Index>}
-\DoxyCodeLine{00107\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1math_1_1_t_wide_bvh_node}{TWideBvhNode<N,\ Item,\ Index>}}}
-\DoxyCodeLine{00108\ \mbox{\hyperlink{classph_1_1math_1_1_t_wide_bvh_node}{::setLeaf}}(}
-\DoxyCodeLine{00109\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ childIdx,}
-\DoxyCodeLine{00110\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d}{AABB3D}}\&\ childAABB,}
-\DoxyCodeLine{00111\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ itemOffset,}
-\DoxyCodeLine{00112\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ numItems)}
-\DoxyCodeLine{00113\ -\/>\ \mbox{\hyperlink{classph_1_1math_1_1_t_wide_bvh_node}{TWideBvhNode}}\&}
-\DoxyCodeLine{00114\ \{}
-\DoxyCodeLine{00115\ \ \ \ \ PH\_ASSERT\_LE(numItems,\ MAX\_NODE\_ITEMS);}
-\DoxyCodeLine{00116\ }
-\DoxyCodeLine{00117\ \ \ \ \ m\_aabbs[childIdx]\ =\ childAABB;}
-\DoxyCodeLine{00118\ \ \ \ \ m\_offsets[childIdx]\ =\ lossless\_cast<Index>(itemOffset);}
-\DoxyCodeLine{00119\ \ \ \ \ m\_numItemsAndFlags[childIdx]\ =\ \textcolor{keyword}{static\_cast<}uint8\textcolor{keyword}{>}((numItems\ <<\ NUM\_FLAG\_BITS)\ |\ LEAF\_FLAG);}
-\DoxyCodeLine{00120\ }
-\DoxyCodeLine{00121\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
-\DoxyCodeLine{00122\ \}}
-\DoxyCodeLine{00123\ }
-\DoxyCodeLine{00124\ \}\textcolor{comment}{//\ end\ namespace\ ph::math}}
+\DoxyCodeLine{00103\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Index>}
+\DoxyCodeLine{00104\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1math_1_1_t_wide_bvh_node}{TWideBvhNode<N,\ Index>}}}
+\DoxyCodeLine{00105\ \mbox{\hyperlink{classph_1_1math_1_1_t_wide_bvh_node}{::numItems}}(\textcolor{keyword}{const}\ std::size\_t\ childIdx)\ \textcolor{keyword}{const}}
+\DoxyCodeLine{00106\ -\/>\ std::size\_t}
+\DoxyCodeLine{00107\ \{}
+\DoxyCodeLine{00108\ \ \ \ \ PH\_ASSERT(isLeaf(childIdx));}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}std::size\_t\textcolor{keyword}{>}(m\_childrenData[childIdx].numItems);}
+\DoxyCodeLine{00111\ \}}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Index>}
+\DoxyCodeLine{00114\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1math_1_1_t_wide_bvh_node}{TWideBvhNode<N,\ Index>}}}
+\DoxyCodeLine{00115\ \mbox{\hyperlink{classph_1_1math_1_1_t_wide_bvh_node}{::setInternal}}(}
+\DoxyCodeLine{00116\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ childIdx,}
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d}{AABB3D}}\&\ childAABB,}
+\DoxyCodeLine{00118\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ childOffset,}
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ splitAxis)}
+\DoxyCodeLine{00120\ -\/>\ \mbox{\hyperlink{classph_1_1math_1_1_t_wide_bvh_node}{TWideBvhNode}}\&}
+\DoxyCodeLine{00121\ \{}
+\DoxyCodeLine{00122\ \ \ \ \ PH\_ASSERT\_LT(childIdx,\ N);}
+\DoxyCodeLine{00123\ \ \ \ \ PH\_ASSERT\_IN\_RANGE\_INCLUSIVE(splitAxis,\ 0,\ 2);}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ di\ =\ 0;\ di\ <\ 3;\ ++di)}
+\DoxyCodeLine{00126\ \ \ \ \ \{}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ m\_aabbMins[di][childIdx]\ =\ childAABB.getMinVertex()[di];}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ m\_aabbMaxs[di][childIdx]\ =\ childAABB.getMaxVertex()[di];}
+\DoxyCodeLine{00129\ \ \ \ \ \}}
+\DoxyCodeLine{00130\ \ \ \ \ }
+\DoxyCodeLine{00131\ \ \ \ \ m\_offsets[childIdx]\ =\ lossless\_cast<Index>(childOffset);}
+\DoxyCodeLine{00132\ \ \ \ \ m\_childrenData[childIdx]\ =\ \{}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ .isLeaf\ =\ \textcolor{keyword}{false},}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ .splitAxis\ =\ \textcolor{keyword}{static\_cast<}uint8\textcolor{keyword}{>}(splitAxis),}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ .numItems\ =\ 0\};}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00137\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00138\ \}}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00140\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Index>}
+\DoxyCodeLine{00141\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1math_1_1_t_wide_bvh_node}{TWideBvhNode<N,\ Index>}}}
+\DoxyCodeLine{00142\ \mbox{\hyperlink{classph_1_1math_1_1_t_wide_bvh_node}{::setLeaf}}(}
+\DoxyCodeLine{00143\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ childIdx,}
+\DoxyCodeLine{00144\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d}{AABB3D}}\&\ childAABB,}
+\DoxyCodeLine{00145\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ itemOffset,}
+\DoxyCodeLine{00146\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ splitAxis,}
+\DoxyCodeLine{00147\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ numItems)}
+\DoxyCodeLine{00148\ -\/>\ \mbox{\hyperlink{classph_1_1math_1_1_t_wide_bvh_node}{TWideBvhNode}}\&}
+\DoxyCodeLine{00149\ \{}
+\DoxyCodeLine{00150\ \ \ \ \ PH\_ASSERT\_LT(childIdx,\ N);}
+\DoxyCodeLine{00151\ \ \ \ \ PH\_ASSERT\_IN\_RANGE\_INCLUSIVE(splitAxis,\ 0,\ 2);}
+\DoxyCodeLine{00152\ \ \ \ \ PH\_ASSERT\_LE(numItems,\ MAX\_NODE\_ITEMS);}
+\DoxyCodeLine{00153\ }
+\DoxyCodeLine{00154\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ di\ =\ 0;\ di\ <\ 3;\ ++di)}
+\DoxyCodeLine{00155\ \ \ \ \ \{}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ m\_aabbMins[di][childIdx]\ =\ childAABB.getMinVertex()[di];}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ m\_aabbMaxs[di][childIdx]\ =\ childAABB.getMaxVertex()[di];}
+\DoxyCodeLine{00158\ \ \ \ \ \}}
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00160\ \ \ \ \ m\_offsets[childIdx]\ =\ lossless\_cast<Index>(itemOffset);}
+\DoxyCodeLine{00161\ \ \ \ \ m\_childrenData[childIdx]\ =\ \{}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ .isLeaf\ =\ \textcolor{keyword}{true},}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ .splitAxis\ =\ \textcolor{keyword}{static\_cast<}uint8\textcolor{keyword}{>}(splitAxis),}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ .numItems\ =\ \textcolor{keyword}{static\_cast<}uint8\textcolor{keyword}{>}(numItems)\};}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00166\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00167\ \}}
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00169\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Index>}
+\DoxyCodeLine{00170\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classph_1_1math_1_1_t_wide_bvh_node}{TWideBvhNode<N,\ Index>}}}
+\DoxyCodeLine{00171\ \mbox{\hyperlink{classph_1_1math_1_1_t_wide_bvh_node}{::setEmptyLeaf}}(}
+\DoxyCodeLine{00172\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ childIdx,}
+\DoxyCodeLine{00173\ \ \ \ \ \textcolor{keyword}{const}\ std::size\_t\ splitAxis)}
+\DoxyCodeLine{00174\ -\/>\ \mbox{\hyperlink{classph_1_1math_1_1_t_wide_bvh_node}{TWideBvhNode}}\&}
+\DoxyCodeLine{00175\ \{}
+\DoxyCodeLine{00176\ \ \ \ \ \textcolor{keywordflow}{return}\ setLeaf(}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ childIdx,}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classph_1_1math_1_1_t_a_a_b_b3_d_acd1ef6d19364c61bd5d10e513ed8ad29}{AABB3D::makeEmpty}}(),}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_cast<}Index\textcolor{keyword}{>}(-\/1),}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ splitAxis,}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ 0);}
+\DoxyCodeLine{00182\ \}}
+\DoxyCodeLine{00183\ }
+\DoxyCodeLine{00184\ \}\textcolor{comment}{//\ end\ namespace\ ph::math}}
 
 \end{DoxyCode}

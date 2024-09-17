@@ -1,0 +1,48 @@
+\doxysection{acceleration\+\_\+structure\+\_\+basics.\+h}
+\hypertarget{acceleration__structure__basics_8h_source}{}\label{acceleration__structure__basics_8h_source}\index{Source/Math/Algorithm/acceleration\_structure\_basics.h@{Source/Math/Algorithm/acceleration\_structure\_basics.h}}
+\mbox{\hyperlink{acceleration__structure__basics_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_line_segment_8h}{Math/Geometry/TLineSegment.h}}"{}}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <Common/primitive\_type.h>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <Common/config.h>}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <concepts>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <optional>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <cstddef>}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#define\ PH\_PROFILE\_ACCELERATION\_STRUCTURES\ (1\ \&\&\ PH\_PROFILING)}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#if\ PH\_PROFILE\_ACCELERATION\_STRUCTURES}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <Common/profiling.h>}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceph_1_1math}{ph::math}}}
+\DoxyCodeLine{00019\ \{}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ TesterFunc,\ \textcolor{keyword}{typename}\ Item>}
+\DoxyCodeLine{00022\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptph_1_1math_1_1_c_item_segment_intersection_tester_vanilla}{CItemSegmentIntersectionTesterVanilla}}\ =\ \textcolor{keyword}{requires}\ (TesterFunc\ func,\ Item\ item)}
+\DoxyCodeLine{00023\ \{}
+\DoxyCodeLine{00024\ \ \ \ \ \{\ func(item,\ TLineSegment<real>\{\})\ \}\ -\/>\ std::same\_as<std::optional<real>>;}
+\DoxyCodeLine{00025\ \};}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ TesterFunc,\ \textcolor{keyword}{typename}\ Item>}
+\DoxyCodeLine{00028\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptph_1_1math_1_1_c_item_segment_intersection_tester_with_index}{CItemSegmentIntersectionTesterWithIndex}}\ =\ \textcolor{keyword}{requires}\ (}
+\DoxyCodeLine{00029\ \ \ \ \ TesterFunc\ func,\ }
+\DoxyCodeLine{00030\ \ \ \ \ Item\ item,\ }
+\DoxyCodeLine{00031\ \ \ \ \ TLineSegment<real>\ segment,}
+\DoxyCodeLine{00032\ \ \ \ \ std::size\_t\ itemIndex)}
+\DoxyCodeLine{00033\ \{}
+\DoxyCodeLine{00034\ \ \ \ \ \{\ func(item,\ segment,\ itemIndex)\ \}\ -\/>\ std::same\_as<std::optional<real>>;}
+\DoxyCodeLine{00035\ \};}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ TesterFunc,\ \textcolor{keyword}{typename}\ Item>}
+\DoxyCodeLine{00038\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptph_1_1math_1_1_c_item_segment_intersection_tester}{CItemSegmentIntersectionTester}}\ =\ }
+\DoxyCodeLine{00039\ \ \ \ \ \mbox{\hyperlink{conceptph_1_1math_1_1_c_item_segment_intersection_tester_vanilla}{CItemSegmentIntersectionTesterVanilla<TesterFunc,\ Item>}}\ ||}
+\DoxyCodeLine{00040\ \ \ \ \ \mbox{\hyperlink{conceptph_1_1math_1_1_c_item_segment_intersection_tester_with_index}{CItemSegmentIntersectionTesterWithIndex<TesterFunc,\ Item>}};}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \}\textcolor{comment}{//\ end\ namespace\ ph::math}}
+
+\end{DoxyCode}

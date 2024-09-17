@@ -1,6 +1,6 @@
 var NAVTREEINDEX4 =
 {
-"_primitive_metadata_8h_source.html":[8,0,2,3,3,27],
+"_primitive_metadata_8h_source.html":[8,0,2,3,3,28],
 "_primitive_pos_pdf_query_8cpp.html":[8,0,2,3,3,4,0],
 "_primitive_pos_pdf_query_8h.html":[8,0,2,3,3,4,1],
 "_primitive_pos_pdf_query_8h_source.html":[8,0,2,3,3,4,1],
@@ -89,10 +89,10 @@ var NAVTREEINDEX4 =
 "_renderer_proxy_8cpp.html":[8,0,2,3,7,8],
 "_renderer_proxy_8h.html":[8,0,2,3,7,9],
 "_renderer_proxy_8h_source.html":[8,0,2,3,7,9],
-"_resource_identifier_8cpp.html":[8,0,2,4,2,9],
-"_resource_identifier_8h.html":[8,0,2,4,2,10],
-"_resource_identifier_8h.html#a7da21862ab2211de1009ae6636d9dd10":[8,0,2,4,2,10,1],
-"_resource_identifier_8h_source.html":[8,0,2,4,2,10],
+"_resource_identifier_8cpp.html":[8,0,2,4,2,8],
+"_resource_identifier_8h.html":[8,0,2,4,2,9],
+"_resource_identifier_8h.html#a7da21862ab2211de1009ae6636d9dd10":[8,0,2,4,2,9,1],
+"_resource_identifier_8h_source.html":[8,0,2,4,2,9],
 "_rigid_transform_8h.html":[8,0,2,7,8,2],
 "_rigid_transform_8h_source.html":[8,0,2,7,8,2],
 "_roughness_to_alpha_mapping_8h.html":[8,0,2,0,5,0,7],

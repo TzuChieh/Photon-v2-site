@@ -1,6 +1,7 @@
 var memory_8h =
 [
     [ "ph::detail::AlignedMemoryDeleter", "structph_1_1detail_1_1_aligned_memory_deleter.html", "structph_1_1detail_1_1_aligned_memory_deleter" ],
+    [ "ph::TAlignedArray< T, N, ALIGNMENT_IN_BYTES >", "structph_1_1_t_aligned_array.html", null ],
     [ "TAlignedMemoryUniquePtr", "memory_8h.html#a7d604debbff6198a0a82f6bf85925c3c", null ],
     [ "allocate_aligned_memory", "memory_8h.html#a9d92e2667b84b33138b9090f433e48cf", null ],
     [ "free_aligned_memory", "memory_8h.html#a0f0be026a79079ba575ac780a8735598", null ],

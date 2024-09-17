@@ -21,10 +21,10 @@ var concepts =
         [ "CNonEmptyFunctorForm", "conceptph_1_1function__detail_1_1_c_non_empty_functor_form.html", null ]
       ] ],
       [ "math", "namespaceph_1_1math.html", [
-        [ "CIndexedPointKdtreeItemStorage", "conceptph_1_1math_1_1_c_indexed_point_kdtree_item_storage.html", null ],
         [ "CItemSegmentIntersectionTesterVanilla", "conceptph_1_1math_1_1_c_item_segment_intersection_tester_vanilla.html", null ],
         [ "CItemSegmentIntersectionTesterWithIndex", "conceptph_1_1math_1_1_c_item_segment_intersection_tester_with_index.html", null ],
         [ "CItemSegmentIntersectionTester", "conceptph_1_1math_1_1_c_item_segment_intersection_tester.html", null ],
+        [ "CIndexedPointKdtreeItemStorage", "conceptph_1_1math_1_1_c_indexed_point_kdtree_item_storage.html", null ],
         [ "CChromaticAdaptationDefinition", "conceptph_1_1math_1_1_c_chromatic_adaptation_definition.html", null ],
         [ "CSpectralSampleProps", "conceptph_1_1math_1_1_c_spectral_sample_props.html", null ],
         [ "CColorValuesInterface", "conceptph_1_1math_1_1_c_color_values_interface.html", null ],

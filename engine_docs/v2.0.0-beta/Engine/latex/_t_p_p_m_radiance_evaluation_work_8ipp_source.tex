@@ -75,16 +75,16 @@
 \DoxyCodeLine{00071\ \ \ \ \ std::vector<FullPhoton>\ photonCache;}
 \DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordflow}{for}(Viewpoint\&\ viewpoint\ :\ m\_viewpoints)}
 \DoxyCodeLine{00073\ \ \ \ \ \{}
-\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_a7d646adaf4c44ccfcbbe787120a7cb1fa2eee368b673cbaedbb7a829562fa85d7}{SurfaceHit}}\&\ \ \ \ surfaceHit\ =\ viewpoint.get<\mbox{\hyperlink{namespaceph_a7d646adaf4c44ccfcbbe787120a7cb1fa2eee368b673cbaedbb7a829562fa85d7}{EViewpointData::SurfaceHit}}>();}
-\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_1_1math_a7f5d9bea70db00eb52ece79b05e544c8}{math::Vector3R}}\ L\ \ \ \ \ \ \ \ \ \ =\ viewpoint.get<\mbox{\hyperlink{namespaceph_a7d646adaf4c44ccfcbbe787120a7cb1fa19eec7ab9f3a463f76c6b158371b05c5}{EViewpointData::ViewDir}}>();}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_a7d646adaf4c44ccfcbbe787120a7cb1fa2eee368b673cbaedbb7a829562fa85d7}{SurfaceHit}}\&\ \ \ \ surfaceHit\ =\ viewpoint.template\ get<EViewpointData::SurfaceHit>();}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_1_1math_a7f5d9bea70db00eb52ece79b05e544c8}{math::Vector3R}}\ L\ \ \ \ \ \ \ \ \ \ =\ viewpoint.template\ get<EViewpointData::ViewDir>();}
 \DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_1_1math_a7f5d9bea70db00eb52ece79b05e544c8}{math::Vector3R}}\ Ng\ \ \ \ \ \ \ \ \ =\ surfaceHit.getGeometryNormal();}
 \DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_1_1math_a7f5d9bea70db00eb52ece79b05e544c8}{math::Vector3R}}\ Ns\ \ \ \ \ \ \ \ \ =\ surfaceHit.getShadingNormal();}
-\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ real\ \ \ \ \ \ \ \ \ \ \ R\ \ \ \ \ \ \ \ \ \ =\ viewpoint.get<\mbox{\hyperlink{namespaceph_a7d646adaf4c44ccfcbbe787120a7cb1fad1106ccca74e98877ed6d7890c70bb2c}{EViewpointData::Radius}}>();}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ real\ \ \ \ \ \ \ \ \ \ \ R\ \ \ \ \ \ \ \ \ \ =\ viewpoint.template\ get<EViewpointData::Radius>();}
 \DoxyCodeLine{00079\ }
 \DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ photonCache.clear();}
 \DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ m\_photonMap-\/>find(surfaceHit.getPos(),\ R,\ photonCache);}
 \DoxyCodeLine{00082\ }
-\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ real\ N\ \ \ \ =\ viewpoint.get<\mbox{\hyperlink{namespaceph_a7d646adaf4c44ccfcbbe787120a7cb1fa119fba41118f04e03c5f46ff06b79da1}{EViewpointData::NumPhotons}}>();}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ real\ N\ \ \ \ =\ viewpoint.template\ get<EViewpointData::NumPhotons>();}
 \DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ real\ M\ \ \ \ =\ \textcolor{keyword}{static\_cast<}real\textcolor{keyword}{>}(photonCache.size());}
 \DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ real\ newN\ =\ N\ +\ m\_alpha\ *\ M;}
 \DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ real\ newR\ =\ (N\ +\ M)\ !=\ 0.0\_r\ ?\ R\ *\ std::sqrt(newN\ /\ (N\ +\ M))\ :\ R;}
@@ -111,23 +111,23 @@
 \DoxyCodeLine{00107\ }
 \DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ tauM.addLocal(tau);}
 \DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_1_1math_ad1ddf3801f5a9ea201227d49747987ed}{math::Spectrum}}\ tauN\ \ \ =\ viewpoint.get<\mbox{\hyperlink{namespaceph_a7d646adaf4c44ccfcbbe787120a7cb1faf3f155d55288e275dbad53d835b03757}{EViewpointData::Tau}}>();}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_1_1math_ad1ddf3801f5a9ea201227d49747987ed}{math::Spectrum}}\ tauN\ \ \ =\ viewpoint.template\ get<EViewpointData::Tau>();}
 \DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_1_1math_ad1ddf3801f5a9ea201227d49747987ed}{math::Spectrum}}\ newTau\ =\ (N\ +\ M)\ !=\ 0.0\_r\ ?\ (tauN\ +\ tauM)\ *\ (newN\ /\ (N\ +\ M))\ :\ \mbox{\hyperlink{namespaceph_1_1math_ad1ddf3801f5a9ea201227d49747987ed}{math::Spectrum}}(0);}
 \DoxyCodeLine{00112\ }
-\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ viewpoint.set<\mbox{\hyperlink{namespaceph_a7d646adaf4c44ccfcbbe787120a7cb1fad1106ccca74e98877ed6d7890c70bb2c}{EViewpointData::Radius}}>(newR);}
-\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ viewpoint.set<\mbox{\hyperlink{namespaceph_a7d646adaf4c44ccfcbbe787120a7cb1fa119fba41118f04e03c5f46ff06b79da1}{EViewpointData::NumPhotons}}>(newN);}
-\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ viewpoint.set<\mbox{\hyperlink{namespaceph_a7d646adaf4c44ccfcbbe787120a7cb1faf3f155d55288e275dbad53d835b03757}{EViewpointData::Tau}}>(newTau);}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ viewpoint.template\ set<EViewpointData::Radius>(newR);}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ viewpoint.template\ set<EViewpointData::NumPhotons>(newN);}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ viewpoint.template\ set<EViewpointData::Tau>(newTau);}
 \DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ }
 \DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Evaluate\ radiance\ using\ current\ iteration's\ data}}
 \DoxyCodeLine{00118\ }
 \DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ real\ kernelArea\ \ \ \ \ \ \ \ \ =\ newR\ *\ newR\ *\ \mbox{\hyperlink{namespaceph_1_1math_1_1constant_aeb217ecd643bb14c638c3d0457a031e0}{math::constant::pi<real>}};}
 \DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ real\ radianceMultiplier\ =\ m\_rcpTotalPhotonPaths\ /\ kernelArea;}
 \DoxyCodeLine{00121\ }
-\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceph_1_1math_ad1ddf3801f5a9ea201227d49747987ed}{math::Spectrum}}\ radiance(viewpoint.get<\mbox{\hyperlink{namespaceph_a7d646adaf4c44ccfcbbe787120a7cb1faf3f155d55288e275dbad53d835b03757}{EViewpointData::Tau}}>()\ *\ radianceMultiplier);}
-\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ radiance.mulLocal(viewpoint.get<\mbox{\hyperlink{namespaceph_a7d646adaf4c44ccfcbbe787120a7cb1fa0737ad937b6f497fd48cf5b484ed4c9b}{EViewpointData::ViewThroughput}}>());}
-\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ radiance.addLocal(viewpoint.get<\mbox{\hyperlink{namespaceph_a7d646adaf4c44ccfcbbe787120a7cb1fa5aefb2b156a27259f3f640c349bf6f93}{EViewpointData::ViewRadiance}}>());}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceph_1_1math_ad1ddf3801f5a9ea201227d49747987ed}{math::Spectrum}}\ radiance(viewpoint.template\ get<EViewpointData::Tau>()\ *\ radianceMultiplier);}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ radiance.mulLocal(viewpoint.template\ get<EViewpointData::ViewThroughput>());}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ radiance.addLocal(viewpoint.template\ get<EViewpointData::ViewRadiance>());}
 \DoxyCodeLine{00125\ }
-\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_1_1math_a130315e9eff82a9a70624253b5e6de50}{math::Vector2D}}\ rasterCoord\ =\ viewpoint.get<\mbox{\hyperlink{namespaceph_a7d646adaf4c44ccfcbbe787120a7cb1faa03022bf680492c4c7e9a0723ed7cd71}{EViewpointData::RasterCoord}}>();}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceph_1_1math_a130315e9eff82a9a70624253b5e6de50}{math::Vector2D}}\ rasterCoord\ =\ viewpoint.template\ get<EViewpointData::RasterCoord>();}
 \DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ m\_film-\/>addSample(rasterCoord.x(),\ rasterCoord.y(),\ radiance);}
 \DoxyCodeLine{00128\ \ \ \ \ \}}
 \DoxyCodeLine{00129\ \}}

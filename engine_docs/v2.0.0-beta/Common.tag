@@ -144,9 +144,9 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>PH_COMPILER_IS_GCC</name>
+      <name>PH_COMPILER_IS_GNU</name>
       <anchorfile>compiler_8h.html</anchorfile>
-      <anchor>a4b9ad3e2ea69c69bc404db7ad0de2206</anchor>
+      <anchor>acd283d4ecf92fbf02dbb6cd9d4a18211</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
@@ -392,6 +392,13 @@
       <name>PH_NUMERIC_IMAGE_MAX_ELEMENTS</name>
       <anchorfile>config_8h.html</anchorfile>
       <anchor>a519237ed61cc02aa57f8b964ed1ec643</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>PH_USE_SIMD</name>
+      <anchorfile>config_8h.html</anchorfile>
+      <anchor>a5794822eb884e850a190b187d5c08603</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -749,6 +756,7 @@
     <includes id="assertion_8h" name="assertion.h" local="yes" import="no" module="no" objc="no">Common/assertion.h</includes>
     <includes id="memory_8ipp" name="memory.ipp" local="yes" import="no" module="no" objc="no">Common/memory.ipp</includes>
     <class kind="struct">ph::detail::AlignedMemoryDeleter</class>
+    <class kind="struct">ph::TAlignedArray</class>
     <namespace>ph</namespace>
     <namespace>ph::detail</namespace>
   </compound>
@@ -2069,6 +2077,20 @@
     </member>
   </compound>
   <compound kind="struct">
+    <name>ph::TAlignedArray</name>
+    <filename>structph_1_1_t_aligned_array.html</filename>
+    <templarg>typename T</templarg>
+    <templarg>std::size_t N</templarg>
+    <templarg>std::size_t ALIGNMENT_IN_BYTES</templarg>
+    <member kind="variable" static="yes">
+      <type>static constexpr std::size_t</type>
+      <name>ALIGNMENT</name>
+      <anchorfile>structph_1_1_t_aligned_array.html</anchorfile>
+      <anchor>a462f386a794998026fcec7c307f337e9</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="struct">
     <name>ph::detail::stats::TimeCounter</name>
     <filename>structph_1_1detail_1_1stats_1_1_time_counter.html</filename>
     <member kind="function">
@@ -2322,6 +2344,7 @@
     <class kind="class">ph::OutOfRangeException</class>
     <class kind="class">ph::OverflowException</class>
     <class kind="class">ph::RuntimeException</class>
+    <class kind="struct">ph::TAlignedArray</class>
     <class kind="class">ph::TimerStatsReport</class>
     <class kind="class">ph::Timestamp</class>
     <class kind="class">ph::UninitializedObjectException</class>
@@ -2908,6 +2931,13 @@
       <name>is_power_of_2</name>
       <anchorfile>namespaceph_1_1math.html</anchorfile>
       <anchor>a2db200d8e62c40799c3fff427b4d869d</anchor>
+      <arglist>(const T value)</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr bool</type>
+      <name>is_power_of</name>
+      <anchorfile>namespaceph_1_1math.html</anchorfile>
+      <anchor>a10b1c6c83ac6604b41693b55c1a9706f</anchor>
       <arglist>(const T value)</arglist>
     </member>
     <member kind="function">

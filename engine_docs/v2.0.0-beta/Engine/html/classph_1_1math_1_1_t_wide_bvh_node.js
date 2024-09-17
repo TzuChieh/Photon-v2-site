@@ -1,13 +1,16 @@
 var classph_1_1math_1_1_t_wide_bvh_node =
 [
-    [ "TWideBvhNode", "classph_1_1math_1_1_t_wide_bvh_node.html#a0bd53b7ac95e2c991488188bca6f4afe", null ],
-    [ "getAABB", "classph_1_1math_1_1_t_wide_bvh_node.html#a407c1510b6edac49f95933657d5bfe18", null ],
-    [ "getChildOffset", "classph_1_1math_1_1_t_wide_bvh_node.html#a76da73f676864a6466472f87e93cbff7", null ],
-    [ "getItemOffset", "classph_1_1math_1_1_t_wide_bvh_node.html#a7293167d3649588e09ed8894286eac06", null ],
-    [ "getSplitAxis", "classph_1_1math_1_1_t_wide_bvh_node.html#a0a56e35bb0dc6f5f7d10f9fdc321fa63", null ],
-    [ "isInternal", "classph_1_1math_1_1_t_wide_bvh_node.html#aeb77ee005b8c5ae573fc4516c3f55914", null ],
-    [ "isLeaf", "classph_1_1math_1_1_t_wide_bvh_node.html#a925f8eacc8c5e136e915b43c1622006c", null ],
-    [ "numItems", "classph_1_1math_1_1_t_wide_bvh_node.html#a2035a757d76349f1efad0ac5e53782d7", null ],
-    [ "setInternal", "classph_1_1math_1_1_t_wide_bvh_node.html#adb14ec0b6257976793c35a0d2c88563e", null ],
-    [ "setLeaf", "classph_1_1math_1_1_t_wide_bvh_node.html#ab8ea049aa82d70bb438bc8c667b0be70", null ]
+    [ "TWideBvhNode", "classph_1_1math_1_1_t_wide_bvh_node.html#a00eaea02724808943957e260e07f14b2", null ],
+    [ "getAABB", "classph_1_1math_1_1_t_wide_bvh_node.html#ae0d4d64f47f80fe988a23182b9abc52b", null ],
+    [ "getChildOffset", "classph_1_1math_1_1_t_wide_bvh_node.html#a799bf7860195921bf3c568b5d2fa36bb", null ],
+    [ "getItemOffset", "classph_1_1math_1_1_t_wide_bvh_node.html#aabcbbc08b9830e881f020725443771e1", null ],
+    [ "getMaxVerticesOnAxis", "classph_1_1math_1_1_t_wide_bvh_node.html#a8b268b421b479bb4e63135271d3ea601", null ],
+    [ "getMinVerticesOnAxis", "classph_1_1math_1_1_t_wide_bvh_node.html#ab4b60e501dec3b406e59de64dca2fc51", null ],
+    [ "getSplitAxis", "classph_1_1math_1_1_t_wide_bvh_node.html#a63a6222f427b53da3be610dbc1e06e38", null ],
+    [ "isInternal", "classph_1_1math_1_1_t_wide_bvh_node.html#a477b5f757ad68380c6d68ab18121b1e3", null ],
+    [ "isLeaf", "classph_1_1math_1_1_t_wide_bvh_node.html#a6e51b2a4ffc007be43e61b82d75e4eb4", null ],
+    [ "numItems", "classph_1_1math_1_1_t_wide_bvh_node.html#add48196e5af4fedb85cabd2da4cea3fb", null ],
+    [ "setEmptyLeaf", "classph_1_1math_1_1_t_wide_bvh_node.html#af275a2a01d57dd4b8fdcbdf63ac73232", null ],
+    [ "setInternal", "classph_1_1math_1_1_t_wide_bvh_node.html#aa0b5bfde6d53f25aeb1e191aa6c2d814", null ],
+    [ "setLeaf", "classph_1_1math_1_1_t_wide_bvh_node.html#a6ebe583a03a291008e01005938e295f2", null ]
 ];

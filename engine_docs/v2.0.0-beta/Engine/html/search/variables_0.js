@@ -11,7 +11,7 @@ var searchData=
   ['additionalloghandlers_8',['additionalLogHandlers',['../classph_1_1_engine_init_settings.html#aecb241ac785258164149a69c5d94223c',1,'ph::EngineInitSettings']]],
   ['all_5fsurface_5felementals_9',['ALL_SURFACE_ELEMENTALS',['../namespaceph.html#ac2562eda4f90efe4267c1f774fd211bb',1,'ph']]],
   ['all_5fsurface_5fphenomena_10',['ALL_SURFACE_PHENOMENA',['../namespaceph.html#aabe77df4e760c2bcfffe395279637254',1,'ph']]],
-  ['alpha_11',['alpha',['../classph_1_1_p_m_common_params.html#a8bec8052cefff4dfbafe8b69bbe4361d',1,'ph::PMCommonParams']]],
+  ['alpha_11',['alpha',['../classph_1_1_intersector_common_params.html#a8892117ba181e0bbc1ef7f7c12fd00f4',1,'ph::IntersectorCommonParams::alpha'],['../classph_1_1_p_m_common_params.html#a8bec8052cefff4dfbafe8b69bbe4361d',1,'ph::PMCommonParams::alpha']]],
   ['amount_12',['amount',['../structph_1_1_physical_actor_1_1_sdl_translate.html#a80d8a5b3b86c8edd923305fa08f2e4c1',1,'ph::PhysicalActor::SdlTranslate::amount'],['../structph_1_1_physical_actor_1_1_sdl_scale.html#a1e775469116b875b69dd015a8d4b1d4a',1,'ph::PhysicalActor::SdlScale::amount']]],
   ['array_5fsize_13',['ARRAY_SIZE',['../classph_1_1_image.html#a6b7f6be7f4c886898a27a269c1acb464',1,'ph::Image']]],
   ['axis_14',['axis',['../structph_1_1_physical_actor_1_1_sdl_rotate.html#a36db524ee4500ccf8db01f10c5dd85a1',1,'ph::PhysicalActor::SdlRotate']]]

@@ -14,7 +14,7 @@ var searchData=
   ['ph_5fassert_5fne_11',['PH_ASSERT_NE',['../assertion_8h.html#af4c9378687a6e56415ea36738a102952',1,'assertion.h']]],
   ['ph_5fassert_5funreachable_5fsection_12',['PH_ASSERT_UNREACHABLE_SECTION',['../assertion_8h.html#aa2f996be5296d116fe4476fccc100d8a',1,'assertion.h']]],
   ['ph_5fcompiler_5fis_5fclang_13',['PH_COMPILER_IS_CLANG',['../compiler_8h.html#a019b43a82f5c7d084e6f54e0305acded',1,'compiler.h']]],
-  ['ph_5fcompiler_5fis_5fgcc_14',['PH_COMPILER_IS_GCC',['../compiler_8h.html#a4b9ad3e2ea69c69bc404db7ad0de2206',1,'compiler.h']]],
+  ['ph_5fcompiler_5fis_5fgnu_14',['PH_COMPILER_IS_GNU',['../compiler_8h.html#acd283d4ecf92fbf02dbb6cd9d4a18211',1,'compiler.h']]],
   ['ph_5fcompiler_5fis_5fmsvc_15',['PH_COMPILER_IS_MSVC',['../compiler_8h.html#a58b17391edb5a687f25c2f4ad5ae8a27',1,'compiler.h']]],
   ['ph_5fconcat_5f2_16',['PH_CONCAT_2',['../macro_8h.html#ad91bac2ae774a87c0d9ea35f29fa9242',1,'macro.h']]],
   ['ph_5fconcat_5f3_17',['PH_CONCAT_3',['../macro_8h.html#acd1d5fd7cd71234a78fff9f4bb1df453',1,'macro.h']]],
@@ -96,5 +96,6 @@ var searchData=
   ['ph_5fstrict_5fobject_5flifetime_93',['PH_STRICT_OBJECT_LIFETIME',['../config_8h.html#a6da505c6f98b761c4d64f8358fd47e86',1,'config.h']]],
   ['ph_5ftfunction_5fdefault_5fmin_5fsize_5fin_5fbytes_94',['PH_TFUNCTION_DEFAULT_MIN_SIZE_IN_BYTES',['../config_8h.html#a76f8d90d3f16b6fac6ad477205eda363',1,'config.h']]],
   ['ph_5fuse_5fdouble_5freal_95',['PH_USE_DOUBLE_REAL',['../config_8h.html#a4d30f2c71a05d60a268c3c813c6ebbf0',1,'config.h']]],
-  ['psnip_5ftrap_96',['psnip_trap',['../debug_8cpp.html#a3b6e41b5049f4576a7d37bac3490bcb7',1,'debug.cpp']]]
+  ['ph_5fuse_5fsimd_96',['PH_USE_SIMD',['../config_8h.html#a5794822eb884e850a190b187d5c08603',1,'config.h']]],
+  ['psnip_5ftrap_97',['psnip_trap',['../debug_8cpp.html#a3b6e41b5049f4576a7d37bac3490bcb7',1,'debug.cpp']]]
 ];

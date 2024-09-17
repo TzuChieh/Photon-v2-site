@@ -13,5 +13,5 @@ var searchData=
   ['ph_5fdefine_5fsdl_5fstruct_10',['PH_DEFINE_SDL_STRUCT',['../sdl__interface_8h.html#aad8e98c81fe0f8a9cfac9dd49db52e51',1,'sdl_interface.h']]],
   ['ph_5fmath_5fpcg64_5femulated_5fuint128_11',['PH_MATH_PCG64_EMULATED_UINT128',['../_pcg64_d_x_s_m_8h.html#a599d1704d9e5ca5e2c510da83b260ab8',1,'Pcg64DXSM.h']]],
   ['ph_5fmath_5fpcg64_5fforce_5femulated_5fuint128_12',['PH_MATH_PCG64_FORCE_EMULATED_UINT128',['../_pcg64_d_x_s_m_8h.html#ae3244cde328e9d3df9056c056183fe3b',1,'Pcg64DXSM.h']]],
-  ['ph_5fuse_5falternative_5fpath_5fimpl_13',['PH_USE_ALTERNATIVE_PATH_IMPL',['../_path_8h.html#a5939549a7f38df9d131df2fbbc88610e',1,'Path.h']]]
+  ['ph_5fprofile_5facceleration_5fstructures_13',['PH_PROFILE_ACCELERATION_STRUCTURES',['../acceleration__structure__basics_8h.html#a1de7c1b393d55f332058becd4390fbcd',1,'acceleration_structure_basics.h']]]
 ];

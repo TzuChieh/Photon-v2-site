@@ -33,5 +33,6 @@ var config_8h =
     [ "PH_STRICT_FLOATING_POINT_SIZES", "config_8h.html#a091618138ddc0b017c4dc7a98f12ae7f", null ],
     [ "PH_STRICT_OBJECT_LIFETIME", "config_8h.html#a6da505c6f98b761c4d64f8358fd47e86", null ],
     [ "PH_TFUNCTION_DEFAULT_MIN_SIZE_IN_BYTES", "config_8h.html#a76f8d90d3f16b6fac6ad477205eda363", null ],
-    [ "PH_USE_DOUBLE_REAL", "config_8h.html#a4d30f2c71a05d60a268c3c813c6ebbf0", null ]
+    [ "PH_USE_DOUBLE_REAL", "config_8h.html#a4d30f2c71a05d60a268c3c813c6ebbf0", null ],
+    [ "PH_USE_SIMD", "config_8h.html#a5794822eb884e850a190b187d5c08603", null ]
 ];
