@@ -17,14 +17,38 @@ In the build directory, you can run tests using
 \end{DoxyCode}
 
 
-or run and produce a markdown report with
+or run and produce a \href{https://github.com/TzuChieh/Photon-v2-TestReport/blob/main/RenderTest/2024_07_05/82d2799/report.md}{\texttt{ markdown report}} with
 
 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{python\ ./RenderTest/run\_and\_report.py}
 
 \end{DoxyCode}
-\hypertarget{main_photon_render_test_autotoc_md144}{}\doxysection{\texorpdfstring{Parallel Test Execution}{Parallel Test Execution}}\label{main_photon_render_test_autotoc_md144}
+\hypertarget{main_photon_render_test_autotoc_md144}{}\doxysubsection{\texorpdfstring{Using Virtual Environment}{Using Virtual Environment}}\label{main_photon_render_test_autotoc_md144}
+Running tests under a Python \href{https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/\#create-and-use-virtual-environments}{\texttt{ virtual environment}} can be beneficial, as the packages installed are the exact versions we required and is less likely to interfere with other projects. First, create a virtual environment under the build directory with
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{python\ -\/m\ venv\ ./RenderTestEnv/}
+
+\end{DoxyCode}
+
+
+This will create a directory named {\ttfamily Render\+Test\+Env} (or the name of your choice). To start using the virtual environment we just created, execute the following command\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{source\ ./RenderTestEnv/bin/activate}
+
+\end{DoxyCode}
+
+
+After this, you can execute {\ttfamily pip install -\/r ./\+Render\+Test/requirements.txt} to install all dependencies and run the tests with {\ttfamily python ./\+Render\+Test/run\+\_\+and\+\_\+report.py}.
+
+\begin{DoxyRemark}{Remarks}
+Depending on the system, you may need to use {\ttfamily python3} to run the python scripts instead.
+\end{DoxyRemark}
+\hypertarget{main_photon_render_test_autotoc_md145}{}\doxysection{\texorpdfstring{Parallel Test Execution}{Parallel Test Execution}}\label{main_photon_render_test_autotoc_md145}
 Most tests already utilizes threading provided by Photon itself. However, tests run by {\ttfamily pytest} is sequential by default. You can install the {\ttfamily pytest-\/xdist} plugin ({\ttfamily pip install pytest-\/xdist}) and run tests across multiple CPU cores. For example, to run tests using 20 CPU cores, you can execute the following command\+:
 
 
@@ -32,7 +56,7 @@ Most tests already utilizes threading provided by Photon itself. However, tests 
 \DoxyCodeLine{python\ ./RenderTest/run\_and\_report.py\ -\/n\ 20}
 
 \end{DoxyCode}
-\hypertarget{main_photon_render_test_autotoc_md145}{}\doxysection{\texorpdfstring{Run Specified Tests Only}{Run Specified Tests Only}}\label{main_photon_render_test_autotoc_md145}
+\hypertarget{main_photon_render_test_autotoc_md146}{}\doxysection{\texorpdfstring{Run Specified Tests Only}{Run Specified Tests Only}}\label{main_photon_render_test_autotoc_md146}
 You can use the keyword expressions provided by pytest. For example, to run {\ttfamily test\+\_\+fullscreen\+\_\+unit\+\_\+radiance}, you can use
 
 
@@ -40,5 +64,5 @@ You can use the keyword expressions provided by pytest. For example, to run {\tt
 \DoxyCodeLine{python\ ./RenderTest/run\_and\_report.py\ -\/k\ unit\_radiance}
 
 \end{DoxyCode}
-\hypertarget{main_photon_render_test_autotoc_md146}{}\doxysection{\texorpdfstring{Writing New Tests}{Writing New Tests}}\label{main_photon_render_test_autotoc_md146}
+\hypertarget{main_photon_render_test_autotoc_md147}{}\doxysection{\texorpdfstring{Writing New Tests}{Writing New Tests}}\label{main_photon_render_test_autotoc_md147}
 If you do not follow the pattern of existing tests, please keep in mind that the tests can run in parallel (e.\+g., using {\ttfamily xdist}). All tests must be written in a thread-\/safe and process-\/safe way. 

@@ -219,9 +219,9 @@ var NAVTREE =
       [ "Picture File", "main_scene_description_reference.html#autotoc_md143", null ]
     ] ],
     [ "Photon Render Test", "main_photon_render_test.html", [
-      [ "Parallel Test Execution", "main_photon_render_test.html#autotoc_md144", null ],
-      [ "Run Specified Tests Only", "main_photon_render_test.html#autotoc_md145", null ],
-      [ "Writing New Tests", "main_photon_render_test.html#autotoc_md146", null ]
+      [ "Parallel Test Execution", "main_photon_render_test.html#autotoc_md145", null ],
+      [ "Run Specified Tests Only", "main_photon_render_test.html#autotoc_md146", null ],
+      [ "Writing New Tests", "main_photon_render_test.html#autotoc_md147", null ]
     ] ],
     [ "Bibliography", "citelist.html", null ]
   ] ]
